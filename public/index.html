@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FirstVoices</title>
+    <meta
+      name="description"
+      content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture and linguistic history."
+    />
+    <meta
+      name="google-site-verification"
+      content="EDJl0zb8mhsF1z_YbnEcdOwKF72uLcZw_3FGbSMVGSM"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=4, user-scalable=yes"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="<%=require('favicons/favicon-32x32.png')%>"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="<%=require('favicons/favicon-16x16.png')%>"
+    />
+    <!-- Default meta tags for FB sharing -->
+    <meta property="og:url" content="https://www.firstvoices.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FirstVoices.com" />
+    <meta
+      property="og:description"
+      content="Check this out on FirstVoices: Indigenous Language Revitalization Platform"
+    />
+    <meta
+      property="og:image"
+      content="<%=require('images/fv-share-logo.png')%>"
+    />
+    <meta property="og:image:width" content="466" />
+    <meta property="og:image:height" content="156" />
+
+    <style>
+      /* CRITICAL CSS */
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .root {
+        min-height: 100vh;
+      }
+
+      .tempNav {
+        min-height: 66px;
+        background-color: rgb(49, 49, 51);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root" class="root">
+      <div class="tempNav"></div>
+    </div>
+
+    <% if (CONFIGURATION_SOURCE === 'SSI') { %>
+    <script type="text/javascript">
+      let SSI_API_URL = '<!--#echo var="API_URL" -->'
+      let SSI_V1_URL = '<!--#echo var="V1_URL" -->'
+    </script>
+    <% } %>
+
+    <!-- Matomo -->
+    <% if (process.env.NODE_ENV === 'production') { %>
+    <script type="text/javascript">
+      var _paq = _paq || []
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView'])
+      _paq.push(['enableLinkTracking'])
+      ;(function () {
+        var u = '//analytics.firstvoices.com/'
+        _paq.push(['setTrackerUrl', u + 'piwik.php'])
+        _paq.push(['setSiteId', '1'])
+        var d = document,
+          g = d.createElement('script'),
+          s = d.getElementsByTagName('script')[0]
+        g.type = 'text/javascript'
+        g.async = true
+        g.defer = true
+        g.src = u + 'piwik.js'
+        s.parentNode.insertBefore(g, s)
+      })()
+    </script>
+    <!-- End Matomo Code -->
+    <% } %>
+  </body>
+</html>

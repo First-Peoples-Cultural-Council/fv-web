@@ -1,0 +1,11 @@
+.DS_Store
+**/.DS_Store
+node_modules
+*.log
+.env
+
+.vscode/*
+!.vscode/extensions.json
+webpack/.node-cache/*
+*.releaseBackup
+release.properties

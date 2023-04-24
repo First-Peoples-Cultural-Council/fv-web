@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "atlassian.atlascode",
+    "austenc.tailwind-docs",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "dcortes92.freemarker",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "github.vscode-pull-request-github",
+    "ms-azuretools.vscode-docker",
+    "shengchen.vscode-checkstyle",
+    "sonarsource.sonarlint-vscode",
+    "vincaslt.highlight-matching-tag"
+  ]
+}

@@ -1,0 +1,94 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer utilities {
+  .masonry-cols-2 {
+    column-count: 2;
+    column-gap: 1em;
+  }
+  .masonry-cols-3 {
+    column-count: 3;
+    column-gap: 1em;
+  }
+  .masonry-cols-4 {
+    column-count: 4;
+    column-gap: 1em;
+  }
+  .masonry-cols-5 {
+    column-count: 5;
+    column-gap: 1em;
+  }
+  .breakAfter {
+    page-break-after: always;
+  }
+}
+
+/* Changes to wysiwyg classes need to be mirrored the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
+@layer components {
+  .ql-video {
+    @apply w-full h-96;
+  }
+  .wysiwyg h2 {
+    @apply border-b border-gray-500 font-bold my-6 py-5 text-2xl text-primary;
+  }
+  .wysiwyg h3 {
+    @apply font-bold my-4 text-xl text-primary;
+  }
+  .wysiwyg ol {
+    @apply list-decimal;
+  }
+  .wysiwyg ul {
+    @apply list-disc;
+  }
+  .wysiwyg div {
+    @apply my-4;
+  }
+}
+
+.uppy-Root label {
+  font-family: 'BCSans', sans-serif;
+}
+
+.uppy-Root .uppy-u-reset {
+  font-family: 'BCSans', sans-serif;
+}
+
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}
+
+@font-face {
+  font-family: 'BCSans';
+  font-style: normal;
+  src: url('./fonts/BCSans/BCSans-Regular.woff2') format('woff2'),
+    url('./fonts/BCSans/BCSans-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'BCSans';
+  font-style: italic;
+  src: url('./fonts/BCSans/BCSans-Italic.woff2') format('woff2'),
+    url('./fonts/BCSans/BCSans-Italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'BCSans';
+  font-weight: 700;
+  src: url('./fonts/BCSans/BCSans-Bold.woff2') format('woff2'),
+    url('./fonts/BCSans/BCSans-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'BCSans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('./fonts/BCSans/BCSans-BoldItalic.woff2') format('woff2'),
+    url('./fonts/BCSans/BCSans-BoldItalic.woff') format('woff');
+}
+@font-face {
+  font-family: 'BlackDiamond';
+  font-style: normal;
+  src: url('./fonts/BlackDiamond/BlackDiamond-Regular.ttf') format('truetype');
+}
