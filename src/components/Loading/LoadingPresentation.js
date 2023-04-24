@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 
 function LoadingPresentation({ height }) {
   return (
-    <div
-      className={`flex items-center justify-center mx-auto w-full ${height}`}
-    >
+    <div className={`flex items-center justify-center mx-auto w-full ${height}`}>
       <div>
         <div className="flex justify-center items-center">
           <div className="bg-song w-6 h-6 lg:w-10 lg:h-10 rounded-full m-5 lg:m-8 animate-pulse-blur" />
