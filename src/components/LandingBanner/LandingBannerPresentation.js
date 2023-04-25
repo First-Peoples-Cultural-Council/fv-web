@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function LandingBannerPresentation({ data }) {
   const { title, image, text, links } = data?.settings

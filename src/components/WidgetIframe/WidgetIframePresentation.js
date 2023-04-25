@@ -26,6 +26,7 @@ function WidgetIframePresentation({ widgetData }) {
               <div className="max-w-md mx-auto p-2 sm:p-6 sm:max-w-3xl lg:max-w-none lg:p-0">
                 <div className="aspect-w-2 aspect-h-2 lg:aspect-w-3">
                   <iframe
+                    title="Map"
                     allow="geolocation"
                     allowfullscreen="true"
                     mozallowfullscreen="true"
@@ -61,6 +62,7 @@ function WidgetIframePresentation({ widgetData }) {
               <div className="aspect-w-2 aspect-h-2 xl:aspect-w-3">
                 {isMapSrc && (
                   <iframe
+                    title={src}
                     className="object-cover object-center rounded-xl shadow-2xl border-2 border-secondary bg-white"
                     src={src}
                   />

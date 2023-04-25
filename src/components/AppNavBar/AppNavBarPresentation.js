@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import UserMenu from 'components/UserMenu'
 import { LOGIN_PATH, ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
@@ -115,6 +115,7 @@ function AppNavBarPresentation({ isHome = false }) {
             className="flex items-center md:hidden"
           >
             <button
+              type="button"
               type="button"
               onClick={() => openCloseMobileLandingNavbar()}
               className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"

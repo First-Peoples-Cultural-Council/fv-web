@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function AudiobarPresentation({
   data,
@@ -27,6 +27,7 @@ function AudiobarPresentation({
         } absolute inset-x-0 bottom-24 transition-all bg-gray-200 text-fv-charcoal shadow-xl`}
       >
         <button
+          type="button"
           className="float-right m-3 text-gray-500 hover:text-fv-charcoal focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
           onClick={() => setInfoOpen(false)}
         >
@@ -80,6 +81,7 @@ function AudiobarPresentation({
       {/* Audiobar */}
       <section className="max-w-screen-2xl">
         <button
+          type="button"
           id="CloseAudiobar"
           aria-label="Close Audiobar"
           className="float-right m-2 text-gray-500 hover:text-fv-charcoal focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
@@ -108,6 +110,7 @@ function AudiobarPresentation({
             <div className="w-full">
               <div className="flex justify-center items-center space-x-5">
                 <button
+                  type="button"
                   autoFocus
                   aria-label="Play/Pause"
                   onClick={() => onPlayPauseClick()}
@@ -124,6 +127,7 @@ function AudiobarPresentation({
                   <span className="mr-3 truncate">{data?.label}</span>
                 )}
                 <button
+                  type="button"
                   onClick={() => setInfoOpen(true)}
                   aria-label="Open Audio Info"
                 >
@@ -140,6 +144,7 @@ function AudiobarPresentation({
             <div className="w-full p-1 space-y-2">
               <div className="flex justify-center items-center text-white group">
                 <button
+                  type="button"
                   id="#"
                   aria-label="rate"
                   className="mr-2 font-bold text-black bg-white rounded px-2 py-1"
@@ -151,6 +156,7 @@ function AudiobarPresentation({
                   {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}
                 </a>
                 <button
+                  type="button"
                   id="MuteAudiobar"
                   aria-label="Mute"
                   className="text-white"

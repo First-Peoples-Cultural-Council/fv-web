@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { Copy, ShareButton, QrcodeButton } from 'components/Actions'
-import { makePlural } from 'common/urlHelpers'
+import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
   docId,

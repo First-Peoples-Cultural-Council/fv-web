@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DocumentThumbnailData from 'components/DocumentThumbnail/DocumentThumbnailData'
 import DocumentThumbnailPresentation from 'components/DocumentThumbnail/DocumentThumbnailPresentation'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 
 function DocumentThumbnailContainer({ docId }) {
   const { document, isLoading } = DocumentThumbnailData({ docId })

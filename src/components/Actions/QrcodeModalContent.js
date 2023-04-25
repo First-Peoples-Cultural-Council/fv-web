@@ -25,6 +25,7 @@ function QrcodeModalContent({ closeHandler, url }) {
       </div>
       <button
         type="button"
+        type="button"
         className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
         onClick={closeHandler}
       >

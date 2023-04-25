@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 
 function DashboardTilesPresentation({ tileContent }) {

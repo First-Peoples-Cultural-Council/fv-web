@@ -2,8 +2,8 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 
 // FPCC
-import TEMPLATEPresentation from 'components/TEMPLATE/TEMPLATEPresentation'
-import TEMPLATEData from 'components/TEMPLATE/TEMPLATEData'
+import TEMPLATEPresentation from 'components/_TEMPLATE/TEMPLATEPresentation'
+import TEMPLATEData from 'components/_TEMPLATE/TEMPLATEData'
 
 function TEMPLATEContainer() {
   const { exampleOutput } = TEMPLATEData({ exampleInput: 'passedInToData' })

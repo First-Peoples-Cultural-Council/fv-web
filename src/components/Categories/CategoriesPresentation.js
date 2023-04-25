@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import useCategoryIcon from 'common/useCategoryIcon'
+import getCategoryIcon from 'common/utils/getCategoryIcon'
 import GridListToggle from 'components/GridListToggle'
 import SearchTypeSelector from 'components/SearchTypeSelector'
 import SectionTitle from 'components/SectionTitle'
@@ -74,7 +74,7 @@ function CategoriesPresentation({
                               }categories/${category.id}?docType=${searchType}`}
                               className=" text-white text-center text-lg group w-full h-full px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                             >
-                              {useCategoryIcon(
+                              {getCategoryIcon(
                                 category.title,
                                 'fill-current h-auto w-3/5',
                               )}
@@ -120,7 +120,7 @@ function CategoriesPresentation({
                             className="w-full rounded-lg inline-flex items-center hover:opacity-75"
                           >
                             <div className="inline-flex bg-white text-tertiaryB rounded-lg items-center">
-                              {useCategoryIcon(
+                              {getCategoryIcon(
                                 category.title,
                                 'fill-current h-10 w-10',
                               )}

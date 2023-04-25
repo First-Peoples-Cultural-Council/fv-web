@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Menu } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import { makePlural } from 'common/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { makePlural } from 'common/utils/urlHelpers'
 import ShareLinks from 'components/ShareLinks'
 import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
@@ -24,6 +24,7 @@ function ShareButton({
       {({ active }) => (
         <>
           <button
+            type="button"
             id="ShareButton"
             className={`${
               active ? 'bg-gray-100 text-fv-charcoal' : 'text-fv-charcoal-light'
@@ -75,6 +76,7 @@ function ShareButton({
                 </>
               )}
               <button
+                type="button"
                 type="button"
                 className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
                 onClick={() => setShareModalOpen(false)}

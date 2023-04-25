@@ -5,7 +5,7 @@ import * as yup from 'yup'
 // FPCC
 import Form from 'components/Form'
 import { DOC_IMAGE, WIDGET_TEXTICONS } from 'common/constants'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
@@ -88,11 +88,10 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
 }
 
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { func, object } = PropTypes
 WidgetFormTextIcons.propTypes = {
   cancelHandler: func,
   dataToEdit: object,
-  widgetType: string,
   submitHandler: func,
 }
 

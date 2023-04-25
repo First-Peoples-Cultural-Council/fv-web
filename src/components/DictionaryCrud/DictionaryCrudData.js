@@ -12,7 +12,7 @@ import {
   DIR_PARTS_OF_SPEECH,
   NOTIFICATION_TIME,
 } from 'common/constants'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 
 function DictionaryCrudData({ docType }) {
   const { site } = useSiteStore()

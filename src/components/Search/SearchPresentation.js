@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchSiteForm from 'components/SearchSiteForm'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function SearchPresentation({
   searchType,
@@ -35,6 +35,7 @@ function SearchPresentation({
           className="col-span-1 transition duration-500 ease-in-out flex-nowrap"
         >
           <button
+            type="button"
             className={`flex w-full items-center justify-center lg:justify-start transition duration-500 ease-in-out text-sm md:text-base lg:text-lg p-2 xl:p-4 grow rounded-lg capitalize cursor-pointer leading-tight ${filterIsActiveClass}`}
             onClick={() => handleFilter(filter.type)}
           >

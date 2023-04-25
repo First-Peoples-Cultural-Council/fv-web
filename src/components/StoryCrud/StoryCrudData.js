@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 
 // FPCC
 import api from 'services/api'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 import { DOC_STORY } from 'common/constants'
 
 function StoryCrudData() {

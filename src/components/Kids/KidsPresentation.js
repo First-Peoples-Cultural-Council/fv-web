@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function KidsPresentation({ links, sitename, siteTitle }) {
   return (

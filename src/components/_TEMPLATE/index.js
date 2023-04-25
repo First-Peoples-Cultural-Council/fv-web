@@ -1,6 +1,6 @@
-import TEMPLATEContainer from 'components/TEMPLATE/TEMPLATEContainer'
-import TEMPLATEPresentation from 'components/TEMPLATE/TEMPLATEPresentation'
-import TEMPLATEData from 'components/TEMPLATE/TEMPLATEData'
+import TEMPLATEContainer from 'components/_TEMPLATE/TEMPLATEContainer'
+import TEMPLATEPresentation from 'components/_TEMPLATE/TEMPLATEPresentation'
+import TEMPLATEData from 'components/_TEMPLATE/TEMPLATEData'
 
 export default {
   Container: TEMPLATEContainer,

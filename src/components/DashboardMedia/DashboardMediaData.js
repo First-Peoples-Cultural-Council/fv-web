@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { getFvDocType } from 'common/stringHelpers'
+import { getFvDocType } from 'common/utils/stringHelpers'
 
 function DashboardMediaData() {
   const { site } = useSiteStore()

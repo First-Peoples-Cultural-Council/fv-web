@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 // FPCC
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 
 function useEditForm({ defaultValues, validator, dataToEdit }) {
   const isEditMode = isUUID(dataToEdit?.id)

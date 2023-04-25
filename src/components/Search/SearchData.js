@@ -5,7 +5,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useSiteStore } from 'context/SiteContext'
 import useSearchLoader from 'common/search/useSearchLoader'
 import api from 'services/api'
-import { makePlural } from 'common/urlHelpers'
+import { makePlural } from 'common/utils/urlHelpers'
 import useSearchType from 'components/SearchTypeSelector/useSearchType'
 
 function SearchData() {

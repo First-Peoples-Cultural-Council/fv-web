@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 function CategoriesBrowserPresentation({
   isLoading,
   chooseDocHandler,
@@ -31,6 +31,7 @@ function CategoriesBrowserPresentation({
             </form>
           </div>
           <button
+            type="button"
             onClick={() => chooseDocHandler(currentCategory?.id)}
             className="mx-auto my-4 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
           >

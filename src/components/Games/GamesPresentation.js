@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function GamesPresentation({ kids }) {
   const games = [

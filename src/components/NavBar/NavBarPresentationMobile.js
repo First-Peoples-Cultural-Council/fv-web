@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Transition } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { LOGIN_PATH } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
 
@@ -27,6 +27,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
       <li key={`${menuItem.title}_id`}>
         {hasItems ? (
           <button
+            type="button"
             onClick={(e) => {
               onMenuClick(e, menuItem)
             }}

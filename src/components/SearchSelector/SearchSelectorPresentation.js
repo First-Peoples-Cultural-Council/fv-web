@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function SearchSelectorPresentation({
   isSelectDialog,

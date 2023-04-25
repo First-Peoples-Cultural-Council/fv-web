@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import copyToClipboard from 'common/copyToClipboard'
+import getIcon from 'common/utils/getIcon'
+import copyToClipboard from 'common/utils/copyToClipboard'
 function Copy({
   docId,
   docTitle,
@@ -27,6 +27,7 @@ function Copy({
 
   return (
     <button
+      type="button"
       id="CopyAction"
       aria-label="Copy to clipboard"
       className="relative inline-flex items-center text-sm font-medium text-fv-charcoal hover:text-black group"

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
   return (
@@ -36,6 +36,7 @@ function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
               <Menu.Item key={`optionlist-key-${key}`}>
                 {({ active }) => (
                   <button
+                    type="button"
                     onClick={(event) => onSelect(event, key)}
                     className={`${
                       active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'

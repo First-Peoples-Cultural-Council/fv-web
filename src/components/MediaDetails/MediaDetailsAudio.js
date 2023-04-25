@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
-import { isDisplayablePropMedia } from 'common/stringHelpers'
+import { isDisplayablePropMedia } from 'common/utils/stringHelpers'
 
 function MediaDetailsAudio({ file }) {
   return (

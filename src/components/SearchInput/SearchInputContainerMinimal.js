@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import SearchBox from 'components/SearchBox'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
 
@@ -30,6 +30,7 @@ function SearchInputContainerMinimal({ kids, customBaseUrl, searchDocType }) {
 
         <label className="sr-only">Search/Go</label>
         <button
+          type="button"
           type="button"
           onClick={handleSearchNavigation}
           className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light rounded-r-full bg-gray-50 hover:bg-gray-100"

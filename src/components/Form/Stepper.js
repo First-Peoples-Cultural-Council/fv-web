@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function Stepper({ steps, onClickCallback }) {
@@ -30,6 +30,7 @@ function Stepper({ steps, onClickCallback }) {
             {activeStepNumber > stepIdx && (
               <button
                 type="button"
+                type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
               >
@@ -45,6 +46,7 @@ function Stepper({ steps, onClickCallback }) {
             )}
             {activeStepNumber === stepIdx && (
               <button
+                type="button"
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
@@ -62,6 +64,7 @@ function Stepper({ steps, onClickCallback }) {
             )}
             {activeStepNumber < stepIdx && (
               <button
+                type="button"
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}

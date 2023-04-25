@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function NextPrevious({ numberOfSteps, onClickCallback }) {
@@ -24,6 +24,7 @@ function NextPrevious({ numberOfSteps, onClickCallback }) {
       {activeStepNumber > 0 ? (
         <button
           type="button"
+          type="button"
           className="inline-flex items-center text-xl text-fv-charcoal"
           onClick={() => onStepClick({ forward: false })}
         >
@@ -35,6 +36,7 @@ function NextPrevious({ numberOfSteps, onClickCallback }) {
       )}
       {activeStepNumber !== numberOfSteps - 1 ? (
         <button
+          type="button"
           type="button"
           className="inline-flex items-center text-xl text-fv-charcoal"
           onClick={() => onStepClick({ forward: true })}

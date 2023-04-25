@@ -5,7 +5,7 @@ import * as yup from 'yup'
 // FPCC
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import { DOC_AUDIO } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 

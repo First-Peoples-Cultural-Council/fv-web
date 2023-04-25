@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl, makePlural } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
+import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
 
 import Drawer from 'components/Drawer'
 import GridListToggle from 'components/GridListToggle'
@@ -131,6 +131,7 @@ function SongsAndStoriesPresentation({
                                 return (
                                   <li key={item.id} className="relative">
                                     <button
+                                      type="button"
                                       style={conditionalStyle}
                                       className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
                                       onClick={() => handleItemClick(item)}
@@ -229,6 +230,7 @@ function SongsAndStoriesPresentation({
               <div className="p-3 text-center text-fv-charcoal font-medium">
                 <div ref={loadRef} className="w-full h-5" />
                 <button
+                  type="button"
                   className={!hasNextPage ? 'cursor-text' : ''}
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}

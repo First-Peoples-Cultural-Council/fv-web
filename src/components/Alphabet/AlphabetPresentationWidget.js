@@ -25,6 +25,7 @@ function AlphabetPresentationWidget({
               {characters &&
                 characters.map(({ title, id }) => (
                   <button
+                    type="button"
                     data-testid={
                       selectedData?.title === title
                         ? 'AlphabetPresentationWidget__selectedCharacter'

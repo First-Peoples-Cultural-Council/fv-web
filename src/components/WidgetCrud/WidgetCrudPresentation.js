@@ -30,9 +30,9 @@ import WidgetFormTextConcise from 'components/WidgetCrud/WidgetFormTextConcise'
 import WidgetFormTextFull from 'components/WidgetCrud/WidgetFormTextFull'
 import WidgetFormTextIcons from 'components/WidgetCrud/WidgetFormTextIcons'
 import WidgetFormApps from 'components/WidgetCrud/WidgetFormApps'
-import { getWidgetTypeLabel } from 'common/stringHelpers'
+import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
 import Form from 'components/Form'
-import useWidgetIcon from 'common/useWidgetIcon'
+import getWidgetIcon from 'common/utils/getWidgetIcon'
 import DeleteButton from 'components/DeleteButton'
 
 function WidgetCrudPresentation({
@@ -54,6 +54,8 @@ function WidgetCrudPresentation({
             {widgetTypes?.length > 0 &&
               widgetTypes?.map((type) => (
                 <button
+                  type="button"
+                  type="button"
                   key={type}
                   onClick={() => setSelectedType(type)}
                   className={`${
@@ -64,7 +66,7 @@ function WidgetCrudPresentation({
                 >
                   <div>
                     <div className="p-2 flex items-center">
-                      {useWidgetIcon(
+                      {getWidgetIcon(
                         type,
                         'w-10 h-10 fill-current inline-flex mx-2',
                       )}{' '}
@@ -78,6 +80,7 @@ function WidgetCrudPresentation({
           <div className="p-4">
             <div className="flex justify-center space-x-4">
               <button
+                type="button"
                 type="button"
                 className="inline-flex justify-center rounded-lg border shadow-lg px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
                 onClick={backHandler}

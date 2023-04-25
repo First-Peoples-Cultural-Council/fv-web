@@ -5,7 +5,7 @@ import * as yup from 'yup'
 // FPCC
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 
 function SpeakerCrudPresentation({ backHandler, dataToEdit, submitHandler }) {

@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
-import { makePlural } from 'common/urlHelpers'
-import useIntersectionObserver from 'common/useIntersectionObserver'
+import { makePlural } from 'common/utils/urlHelpers'
+import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 
 function SongsAndStoriesData({ searchType, kids }) {
   const { site } = useSiteStore()

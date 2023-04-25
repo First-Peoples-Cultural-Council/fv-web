@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import { useSiteStore } from 'context/SiteContext'
 
 function WidgetLogoPresentation({ widgetData }) {

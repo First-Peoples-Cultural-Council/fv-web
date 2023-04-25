@@ -7,8 +7,8 @@ import Loading from 'components/Loading'
 import DictionaryDetail from 'components/DictionaryDetail'
 import Song from 'components/Song'
 import Story from 'components/Story'
-import getIcon from 'common/getIcon'
-import { getFvDocType } from 'common/stringHelpers'
+import getIcon from 'common/utils/getIcon'
+import { getFvDocType } from 'common/utils/stringHelpers'
 import Drawer from 'components/Drawer'
 
 function DashboardEntriesPresentationList({
@@ -45,6 +45,7 @@ function DashboardEntriesPresentationList({
             to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
           >
             <button
+              type="button"
               type="button"
               className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
             >
@@ -175,6 +176,7 @@ function DashboardEntriesPresentationList({
               </div>
               <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
                 <button
+                  type="button"
                   className={!hasNextPage ? 'cursor-text' : ''}
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}

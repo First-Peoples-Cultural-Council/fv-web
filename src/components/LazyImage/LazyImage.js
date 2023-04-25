@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import simpleSvgPlaceholder from 'common/simpleSvgPlaceholder'
+import simpleSvgPlaceholder from 'common/utils/simpleSvgPlaceholder'
 
 function LazyImage({
   alt,
@@ -84,7 +84,7 @@ function LazyImage({
       <>
         <img src={src} className={imgStyling} alt={alt} onClick={onClick} />
         {label && (
-          <button onClick={onClick} className={labelClass}>
+          <button type="button" onClick={onClick} className={labelClass}>
             {label}
           </button>
         )}
@@ -108,7 +108,7 @@ function LazyImage({
         alt={alt}
       />
       {label && (
-        <button onClick={onClick} className={labelClass}>
+        <button type="button" onClick={onClick} className={labelClass}>
           {label}
         </button>
       )}

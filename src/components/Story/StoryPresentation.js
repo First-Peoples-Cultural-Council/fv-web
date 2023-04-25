@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'

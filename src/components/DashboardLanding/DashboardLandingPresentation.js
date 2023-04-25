@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardTiles from 'components/DashboardTiles'
-import getIcon from 'common/getIcon'
-import { getMediaUrl } from 'common/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import DashboardFooter from 'components/DashboardFooter'
 
 function DashboardLandingPresentation({

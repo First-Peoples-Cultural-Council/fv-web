@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function AudioMinimalPresentation({
   buttonRef,
@@ -22,6 +22,7 @@ function AudioMinimalPresentation({
 
   return (
     <button
+      type="button"
       type="button"
       onClick={onClick}
       onKeyDown={onKeyPress}

@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 // FPCC
 import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
-import useCategoryIcon from 'common/useCategoryIcon'
-import getIcon from 'common/getIcon'
+import getCategoryIcon from 'common/utils/getCategoryIcon'
+import getIcon from 'common/utils/getIcon'
 import SearchTypeSelector from 'components/SearchTypeSelector'
 
 function ByCategoryPresentation({
@@ -38,7 +38,7 @@ function ByCategoryPresentation({
           className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-tertiaryB"
           to={`/${sitename}/${kids ? 'kids/' : ''}categories/${category.id}`}
         >
-          {useCategoryIcon(
+          {getCategoryIcon(
             category.title,
             'inline-flex p-2 rounded-lg fill-current h-14 w-14',
           )}
@@ -90,7 +90,7 @@ function ByCategoryPresentation({
                     currentParentCategory.id
                   }?docType=${searchType}`}
                 >
-                  {useCategoryIcon(
+                  {getCategoryIcon(
                     currentParentCategory.title,
                     'inline-flex p-2 rounded-lg fill-current h-14 w-14',
                   )}

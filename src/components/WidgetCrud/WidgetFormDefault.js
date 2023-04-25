@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import { WIDGET_ALPHABET, WIDGET_STATS, WIDGET_WOTD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'

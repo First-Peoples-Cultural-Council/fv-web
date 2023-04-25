@@ -6,7 +6,7 @@ import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import AudioButton from 'components/AudioButton'
 import SearchTypeSelector from 'components/SearchTypeSelector'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function ByAlphabetPresentation({
   actions,

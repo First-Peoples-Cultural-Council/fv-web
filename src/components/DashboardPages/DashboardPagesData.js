@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { getCustomPageHref } from 'common/urlHelpers'
+import { getCustomPageHref } from 'common/utils/urlHelpers'
 import api from 'services/api'
 
 function DashboardPagesData() {

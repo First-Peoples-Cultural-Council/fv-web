@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import { Copy } from 'components/Actions'
 function AlphabetPresentationSelected({
   kids,
@@ -142,6 +142,7 @@ function AlphabetPresentationSelected({
         )}
         {relatedVideo?.length > 0 && (
           <button
+            type="button"
             onClick={onVideoClick}
             className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
           >
@@ -165,6 +166,7 @@ function AlphabetPresentationSelected({
                 <div className="flex items-start justify-between border-b border-solid border-gray-300 rounded-t">
                   <h3 className="p-2 text-2xl font-medium">{title}</h3>
                   <button
+                    type="button"
                     className="ml-auto p-2 bg-transparent border-0 float-right leading-none font-medium outline-none focus:outline-none text-black opacity-30 text-2xl"
                     onClick={() => onVideoClick()}
                   >

@@ -1,6 +1,6 @@
 import { DOC_PAGE, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import { getCustomPageHref } from 'common/urlHelpers'
-import { convertStateToVisibility } from 'common/stringHelpers'
+import { getCustomPageHref } from 'common/utils/urlHelpers'
+import { convertStateToVisibility } from 'common/utils/stringHelpers'
 
 const pageCrudDataAdaptor = ({ sitename, data }) => {
   if (!data) {

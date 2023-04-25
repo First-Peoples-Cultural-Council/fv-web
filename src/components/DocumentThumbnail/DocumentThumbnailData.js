@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 
 // FPCC
-import { getFriendlyDocType } from 'common/stringHelpers'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import api from 'services/api'
 
 function DocumentThumbnailData({ docId }) {

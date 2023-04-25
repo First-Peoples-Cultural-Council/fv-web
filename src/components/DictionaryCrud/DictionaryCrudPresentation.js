@@ -6,7 +6,7 @@ import * as yup from 'yup'
 // FPCC
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
-import { getFriendlyDocType } from 'common/stringHelpers'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
   DOC_AUDIO,
   DOC_CATEGORY,
@@ -15,9 +15,9 @@ import {
   DOC_WORD,
   DOC_PHRASE,
 } from 'common/constants'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function DictionaryCrudPresentation({
@@ -312,6 +312,7 @@ function DictionaryCrudPresentation({
           <div className="space-x-2 flex items-center h-10">
             <button
               type="button"
+              type="button"
               onClick={backStep}
               className="bg-white h-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
@@ -322,6 +323,7 @@ function DictionaryCrudPresentation({
               <span>{activeStep < 1 ? 'Cancel' : 'Previous Step'}</span>
             </button>
             <button
+              type="button"
               type="button"
               onClick={
                 activeStepNumber !== lastStep
@@ -334,6 +336,7 @@ function DictionaryCrudPresentation({
               <span>Finish</span>
             </button>
             <button
+              type="button"
               type="button"
               onClick={forwardStep}
               className={`${

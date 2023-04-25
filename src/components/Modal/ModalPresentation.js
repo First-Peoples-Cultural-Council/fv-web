@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Dialog, Transition } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
   return (
@@ -51,6 +51,7 @@ function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
             >
               {children}
               <button
+                type="button"
                 className="absolute -top-7 right-0 sm:-right-7 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
                 onClick={closeHandler}
               >

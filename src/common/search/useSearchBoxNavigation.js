@@ -7,7 +7,7 @@ import { useSiteStore } from 'context/SiteContext'
 import useSearchBox from 'components/SearchBox/useSearchBox'
 import useSearchLanguage from 'components/SearchLanguageSelector/useSearchLanguage'
 import useSearchType from 'components/SearchTypeSelector/useSearchType'
-import { makeTitleCase } from 'common/stringHelpers'
+import { makeTitleCase } from 'common/utils/stringHelpers'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.

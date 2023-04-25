@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import WidgetAddToDoc from 'components/WidgetAddToDoc'
-import { getWidgetTypeLabel } from 'common/stringHelpers'
-import useWidgetIcon from 'common/useWidgetIcon'
+import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import getWidgetIcon from 'common/utils/getWidgetIcon'
 import SortableContainer from 'components/SortableContainer'
 import SortableItem from 'components/SortableItem'
 
@@ -36,6 +36,7 @@ function WidgetAreaEditPresentation({
                 </p>
               </div>
               <button
+                type="button"
                 onClick={() => setAddModalOpen(true)}
                 className="flex h-10 items-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-white bg-secondary hover:bg-secondary-dark"
               >
@@ -54,14 +55,16 @@ function WidgetAreaEditPresentation({
                 items={widgetIds}
                 setItems={setWidgetIds}
               >
-                {widgetIds?.map((id, index) => (
+                {widgetIds?.map((id) => (
                   <SortableItem.Presentation
-                    key={`sortable-${id}-${index}`}
+                    key={`sortable-${id}`}
                     id={id}
                     handle
                   >
                     <div className="flex w-full items-center">
-                      <div
+                      <button
+                        type="button"
+                        type="button"
                         onClick={() => setCurrentWidget(widgetData?.[id])}
                         className={`${
                           currentWidget?.uid === widgetData?.[id]?.uid
@@ -71,7 +74,7 @@ function WidgetAreaEditPresentation({
                       >
                         <div className="grid grid-cols-6 gap-6 text-left">
                           <div className="flex items-center text-left col-span-1">
-                            {useWidgetIcon(
+                            {getWidgetIcon(
                               widgetData?.[id]?.type,
                               'w-12 h-12 fill-current text-primary',
                             )}
@@ -93,7 +96,7 @@ function WidgetAreaEditPresentation({
                             'w-5 h-5 fill-current text-primary',
                           )}
                         </div>
-                      </div>
+                      </button>
                       <div
                         className={`inline-flex ${
                           currentWidget?.uid === widgetData?.[id]?.uid
@@ -129,6 +132,7 @@ function WidgetAreaEditPresentation({
               to add one.
             </div>
             <button
+              type="button"
               onClick={() => setAddModalOpen(true)}
               className="flex mx-auto h-10 items-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-white bg-secondary hover:bg-secondary-dark"
             >

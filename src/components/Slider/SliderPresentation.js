@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function SliderPresentation({
   children,
@@ -35,6 +35,7 @@ function SliderPresentation({
 function SlideButton({ onClick, type }) {
   return (
     <button
+      type="button"
       className={`hidden lg:block absolute top-0 bottom-0 w-14  bg-black bg-opacity-50 my-28 z-4 transform ${
         type === 'prev' ? 'left-0' : 'right-0'
       }`}

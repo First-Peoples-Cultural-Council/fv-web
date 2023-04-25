@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 // FPCC
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import VisibilitySelect from 'components/VisibilitySelect'
 
 function PageCrudPresentation({ dataToEdit, site }) {

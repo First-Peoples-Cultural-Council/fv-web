@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getFriendlyDocType } from 'common/stringHelpers'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import { DOC_AUDIO, DOC_CATEGORY, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import useIdArrayField from 'common/useIdArrayField'
-import { useModalSelector } from 'common/useModalController'
+import useIdArrayField from 'common/hooks/useIdArrayField'
+import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
 import CategoriesBrowser from 'components/CategoriesBrowser'

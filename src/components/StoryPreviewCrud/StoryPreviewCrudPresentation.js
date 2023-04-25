@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 // import Story from 'components/Story'
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
   const {
@@ -75,6 +75,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
             <WysiwygBlock jsonString={translate ? intro : introTranslation} />
           </div>
           <button
+            type="button"
             className="text-primary-light font-semibold"
             onClick={() => setTranslate(!translate)}
           >
@@ -124,6 +125,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
                   </div>
                 )}
                 <button
+                  type="button"
                   className="text-primary-light font-semibold"
                   onClick={() => setTranslate(!translate)}
                 >

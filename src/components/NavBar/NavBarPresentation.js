@@ -9,7 +9,7 @@ import NavBarPresentationMobile from 'components/NavBar/NavBarPresentationMobile
 import SearchSiteForm from 'components/SearchSiteForm'
 import UserMenu from 'components/UserMenu'
 
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
   const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false)
@@ -89,6 +89,7 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
             {/* Mobile Menu Button */}
             <div id="MobileMenuButton" className="flex items-center lg:hidden">
               <button
+                type="button"
                 type="button"
                 onClick={() => openCloseMobileNavbar()}
                 className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"

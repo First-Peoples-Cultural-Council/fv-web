@@ -4,7 +4,7 @@ import { Editor, EditorState, convertFromRaw } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
 // FPCC
-import { safeJsonParse } from 'common/stringHelpers'
+import { safeJsonParse } from 'common/utils/stringHelpers'
 
 function WysiwygBlock({ jsonString }) {
   const content = safeJsonParse(jsonString)

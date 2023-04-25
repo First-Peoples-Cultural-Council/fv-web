@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useAudiobar } from 'context/AudiobarContext'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
   const { setAudioArray } = useAudiobar()
 
   const audioButtons = audioArray.map((audioId, index) => (
     <button
+      type="button"
       key={index}
       className="print:hidden relative group"
       onClick={() => setAudioArray([audioId])}

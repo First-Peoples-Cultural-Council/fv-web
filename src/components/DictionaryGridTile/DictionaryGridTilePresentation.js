@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import { makePlural } from 'common/urlHelpers'
+import { makePlural } from 'common/utils/urlHelpers'
 import ActionsMenu from 'components/ActionsMenu'
 import AudioButton from 'components/AudioButton'
 

@@ -1,5 +1,5 @@
 import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
-import { convertStateToVisibility } from 'common/stringHelpers'
+import { convertStateToVisibility } from 'common/utils/stringHelpers'
 
 export const isAuthorizedToView = (user, sitename, visibilityOrStateOfItem) => {
   const userRoles = user?.roles || {}

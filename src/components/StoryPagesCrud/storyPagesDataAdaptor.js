@@ -1,9 +1,9 @@
-import useWysiwygState from 'common/useWysiwygState'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 import {
   selectOneFormHelper,
   selectOneDataHelper,
 } from 'common/utils/mediaHelpers'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 
 export const storyPagesDataAdaptor = ({ data }) => {
   const pageArray = data?.contextParameters?.book?.pages || []
@@ -17,7 +17,7 @@ export const storyPagesDataAdaptor = ({ data }) => {
     getWysiwygStateFromHtml,
     getWysiwygJsonFromHtml,
     getWysiwygStateFromJson,
-  } = useWysiwygState()
+  } = wysiwygStateHelpers()
 
   function formatPage(page) {
     const modifiedV2 = !!page.modifiedv2
@@ -89,7 +89,7 @@ export const pageOrderDataAdaptor = ({ data }) => {
 }
 
 export const pageFormDataAdaptor = ({ formData }) => {
-  const { getJsonFromWysiwygState } = useWysiwygState()
+  const { getJsonFromWysiwygState } = wysiwygStateHelpers()
   const text = formData?.text?.getCurrentContent()
     ? getJsonFromWysiwygState(formData?.text?.getCurrentContent())
     : ''

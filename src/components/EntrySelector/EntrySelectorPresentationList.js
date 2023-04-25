@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getFriendlyDocType } from 'common/stringHelpers'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
 function EntrySelectorPresentationList({
   searchResults,
@@ -106,6 +106,7 @@ function EntrySelectorPresentationList({
             </table>
             <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
               <button
+                type="button"
                 className={!hasNextPage ? 'cursor-text' : ''}
                 onClick={() => fetchNextPage()}
                 disabled={!hasNextPage || isFetchingNextPage}

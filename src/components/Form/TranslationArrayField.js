@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function TranslationArrayField({
   label,
@@ -45,6 +45,7 @@ function TranslationArrayField({
                 </span>
                 <button
                   type="button"
+                  type="button"
                   aria-label="Delete Translation"
                   className="inline-flex"
                   onClick={() => remove(index)}
@@ -58,6 +59,7 @@ function TranslationArrayField({
 
         {fields?.length < maxItems && (
           <button
+            type="button"
             type="button"
             onClick={() =>
               append({

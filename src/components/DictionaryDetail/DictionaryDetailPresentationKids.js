@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 
@@ -27,6 +27,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
   return (
     <div className="bg-white" data-testid="DictionaryDetailPresentationKids">
       <button
+        type="button"
         onClick={backHandler}
         className="flex items-center font-medium text-base text-center text-fv-charcoal px-5 py-2 lg:ml-5"
       >

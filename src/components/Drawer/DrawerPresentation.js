@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Dialog, Transition } from '@headlessui/react'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function DrawerPresentation({
   children,
@@ -47,6 +47,7 @@ function DrawerPresentation({
                       </Link>
                     )}
                     <button
+                      type="button"
                       id="CloseDrawerBtn"
                       className="text-fv-charcoal-light hover:text-fv-charcoal"
                       onClick={closeHandler}

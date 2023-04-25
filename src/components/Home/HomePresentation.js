@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import SearchSiteForm from 'components/SearchSiteForm'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import LazyImage from 'components/LazyImage'
 
 function HomePresentation({ backgroundId, backgroundType, title, logoId }) {

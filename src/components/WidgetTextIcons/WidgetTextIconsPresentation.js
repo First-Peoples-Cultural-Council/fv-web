@@ -4,9 +4,9 @@ import 'draft-js/dist/Draft.css'
 import WysiwygBlock from 'components/WysiwygBlock'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import SectionTitle from 'components/SectionTitle'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Elders from 'assets/images/elders-landing.png'
 
 function WidgetTextIconsPresentation({ widgetData }) {

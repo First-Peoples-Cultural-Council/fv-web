@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 // FPCC
 import { useNotification } from 'context/NotificationContext'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { NOTIFICATION_TIME } from 'common/constants'
 
 function NotificationBanner() {
@@ -46,6 +46,7 @@ function NotificationBanner() {
                 <div className="-mx-1.5 -my-1.5">
                   <button
                     type="button"
+                    type="button"
                     onClick={handleClose}
                     className="inline-flex bg-green-50 rounded-lg p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
                   >
@@ -75,6 +76,7 @@ function NotificationBanner() {
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
                   <button
+                    type="button"
                     type="button"
                     onClick={handleClose}
                     className="inline-flex bg-red-50 rounded-lg p-1.5 text-red-500 hover:bg-red-100"
@@ -106,6 +108,7 @@ function NotificationBanner() {
                 <div className="-mx-1.5 -my-1.5">
                   <button
                     type="button"
+                    type="button"
                     onClick={handleClose}
                     className="inline-flex bg-yellow-50 rounded-lg p-1.5 text-yellow-500 hover:bg-yellow-100"
                   >
@@ -135,6 +138,7 @@ function NotificationBanner() {
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
                   <button
+                    type="button"
                     type="button"
                     onClick={handleClose}
                     className="inline-flex bg-blue-50 rounded-lg p-1.5 text-blue-500 hover:bg-blue-100"
@@ -166,6 +170,7 @@ function NotificationBanner() {
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
                   <button
+                    type="button"
                     type="button"
                     onClick={handleClose}
                     className="inline-flex bg-gray-50 rounded-lg p-1.5 text-primary hover:bg-gray-100"

@@ -1,7 +1,7 @@
 import {
   extractTextFromHtml,
   convertStateToVisibility,
-} from 'common/stringHelpers'
+} from 'common/utils/stringHelpers'
 
 function dictionaryCrudDataAdaptor(data) {
   if (!data?.properties) {

@@ -1,7 +1,7 @@
-import { convertStateToVisibility } from 'common/stringHelpers'
+import { convertStateToVisibility } from 'common/utils/stringHelpers'
 
 // FPCC
-import useWysiwygState from 'common/useWysiwygState'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 import { pageOrderDataAdaptor } from 'components/StoryPagesCrud/storyPagesDataAdaptor'
 
 function storyDataAdaptor({ data }) {
@@ -27,7 +27,7 @@ function storyDataAdaptor({ data }) {
   }
 
   // V1_FUDGE - checking pages individually for modifiedv2
-  const { getWysiwygJsonFromHtml } = useWysiwygState()
+  const { getWysiwygJsonFromHtml } = wysiwygStateHelpers()
   const formatPage = (page) => {
     const contentTranslation = page?.contentTranslation?.join('')
     return page?.modifiedv2

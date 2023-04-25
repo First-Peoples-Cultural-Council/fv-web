@@ -22,12 +22,14 @@ function ConfirmationDialogPresentation({
         <div className="w-full justify-center flex space-x-2">
           <button
             type="button"
+            type="button"
             className="inline-flex justify-center rounded-lg border-2 border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-fv-charcoal hover:bg-gray-100 sm:text-sm"
             onClick={() => closeHandler()}
           >
             Cancel
           </button>
           <button
+            type="button"
             type="button"
             className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
             onClick={() => {

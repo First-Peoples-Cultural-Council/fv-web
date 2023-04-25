@@ -3,7 +3,7 @@ import { useInfiniteQuery } from 'react-query'
 import PropTypes from 'prop-types'
 
 // FPCC
-import useIntersectionObserver from 'common/useIntersectionObserver'
+import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 
 /**
  * Calls search-like APIs and provides search results and loading/error info.

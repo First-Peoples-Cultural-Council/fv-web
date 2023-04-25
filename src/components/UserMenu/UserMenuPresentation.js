@@ -6,7 +6,7 @@ import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
 import Toggle from 'components/Toggle'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { LOGIN_PATH } from 'common/constants'
 
 function UserMenuPresentation({ currentUser, hasImmersion }) {

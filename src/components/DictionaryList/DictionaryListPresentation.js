@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import { makePlural } from 'common/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { makePlural } from 'common/utils/urlHelpers'
 import Loading from 'components/Loading'
 import ActionsMenu from 'components/ActionsMenu'
 import Drawer from 'components/Drawer'
@@ -13,7 +13,7 @@ import AudioButton from 'components/AudioButton'
 import Song from 'components/Song'
 import Story from 'components/Story'
 import { useAudiobar } from 'context/AudiobarContext'
-import { getFvDocType } from 'common/stringHelpers'
+import { getFvDocType } from 'common/utils/stringHelpers'
 
 function DictionaryListPresentation({
   actions,
@@ -104,6 +104,7 @@ function DictionaryListPresentation({
                     <th scope="col" className="px-6 py-3">
                       {sorting ? (
                         <button
+                          type="button"
                           onClick={() => onSortByClick('ENTRY')}
                           className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider"
                         >
@@ -165,6 +166,7 @@ function DictionaryListPresentation({
                           <tr key={id}>
                             <td className="px-6 py-4 flex justify-between">
                               <button
+                                type="button"
                                 className="text-left font-medium text-fv-charcoal lg:mr-2"
                                 onClick={() =>
                                   handleItemClick({ id, type, parentDialect })
@@ -234,6 +236,7 @@ function DictionaryListPresentation({
           </div>
           <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
             <button
+              type="button"
               className={!hasNextPage ? 'cursor-text' : ''}
               onClick={() => fetchNextPage()}
               disabled={!hasNextPage || isFetchingNextPage}

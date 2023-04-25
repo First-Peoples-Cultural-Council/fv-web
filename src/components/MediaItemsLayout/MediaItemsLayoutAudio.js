@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import mediaDataAdaptor from 'common/mediaDataAdaptor'
+import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
 import AudioNative from 'components/AudioNative'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { DOC_AUDIO } from 'common/constants'
 
 function MediaItemsLayoutAudio({
@@ -101,6 +101,7 @@ function MediaItemsLayoutAudio({
           </table>
           <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
             <button
+              type="button"
               className={!hasNextPage ? 'cursor-text' : ''}
               onClick={() => fetchNextPage()}
               disabled={!hasNextPage || isFetchingNextPage}

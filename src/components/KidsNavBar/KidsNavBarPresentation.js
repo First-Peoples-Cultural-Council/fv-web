@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import useText from 'common/useText'
+import getIcon from 'common/utils/getIcon'
+import generateText from 'common/utils/generateText'
 
 function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
   return home ? (
@@ -20,7 +20,7 @@ function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
             alt={`${siteTitle} Logo`}
             loading="lazy"
           />
-          {useText(
+          {generateText(
             'kids',
             'hidden xl:block absolute -bottom-5 right-8 md:-bottom-3 md:right-14 transform -rotate-6 text-white fill-current w-16 md:w-24',
           )}
@@ -58,7 +58,7 @@ function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
                 alt="site logo"
                 loading="lazy"
               />
-              {useText(
+              {generateText(
                 'kids',
                 'hidden xl:block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16',
               )}

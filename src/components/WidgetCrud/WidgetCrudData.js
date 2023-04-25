@@ -14,8 +14,8 @@ import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
 import widgetCrudDataAdaptor from 'components/WidgetCrud/widgetCrudDataAdaptor'
 import { useNotification } from 'context/NotificationContext'
-import { getWidgetsList } from 'common/widgetAccessHelpers'
-import useWysiwygState from 'common/useWysiwygState'
+import { getWidgetsList } from 'common/utils/widgetAccessHelpers'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 
 function WidgetCrudData({ insertIndex, destinationId }) {
   const { site } = useSiteStore()
@@ -23,7 +23,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const location = useLocation()
-  const { getJsonFromWysiwygState } = useWysiwygState()
+  const { getJsonFromWysiwygState } = wysiwygStateHelpers()
 
   const { isSuperAdmin } = user
 
@@ -60,22 +60,23 @@ function WidgetCrudData({ insertIndex, destinationId }) {
 
   let dataToEdit = null
 
-  if (_widgetId) {
-    const { data } = useQuery(
-      [_widgetId],
-      () => api.document.get({ id: _widgetId, properties: 'widget,settings' }),
-      {
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: false,
-      },
-    )
-    dataToEdit = widgetCrudDataAdaptor({ data })
-  }
+  const { data } = useQuery(
+    [_widgetId],
+    () => api.document.get({ id: _widgetId, properties: 'widget,settings' }),
+    {
+      enabled: !!_widgetId,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
+  dataToEdit = widgetCrudDataAdaptor({ data })
 
   // Add widget to active
   const insertOnPage = async (widget) => {
     if (widget && destinationData?.properties) {
-      const activeWidgets = [...destinationData?.properties?.['widgets:active']]
+      const activeWidgets = [
+        ...(destinationData?.properties?.['widgets:active'] || []),
+      ]
       activeWidgets.splice(_insertIndex, 0, widget)
       const inactiveWidgets = destinationData?.properties?.[
         'widgets:inactive'
@@ -109,7 +110,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
       }
     }
     if (_widgetId && dataToEdit) {
-      return await api.document.updateAndSetVisibility({
+      return api.document.updateAndSetVisibility({
         id: _widgetId,
         properties: {
           'widget:format': formData?.widgetFormat,
@@ -118,7 +119,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
         visibility: formData?.visibility,
       })
     }
-    return await api.document.createAndSetVisibility({
+    return api.document.createAndSetVisibility({
       parentId: site?.children?.Widgets,
       name: formData?.widgetName,
       docType: DOC_WIDGET,

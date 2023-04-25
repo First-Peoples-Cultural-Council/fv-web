@@ -2,7 +2,7 @@ import * as yup from 'yup'
 
 // FPCC
 import { UUID_REGEX, PUBLIC, MEMBERS, TEAM } from 'common/constants'
-import { getFileExtensions } from 'common/stringHelpers'
+import { getFileExtensions } from 'common/utils/stringHelpers'
 
 const uuid = yup
   .string()

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { Controller } from 'react-hook-form'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import MediaCrud from 'components/MediaCrud'
 import DocumentThumbnail from 'components/DocumentThumbnail'
 import Modal from 'components/Modal'
-import { getFriendlyDocType, isUUID } from 'common/stringHelpers'
+import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
 import { DOC_IMAGE } from 'common/constants'
 
 function AddMedia({ label, nameId, helpText, control, docType }) {
@@ -59,6 +59,7 @@ function AddMediaButton({ value, onChange, docType }) {
         </span>
         <button
           type="button"
+          type="button"
           aria-label="Remove"
           // eslint-disable-next-line react/no-unknown-property
           tooltip="Remove"
@@ -72,6 +73,7 @@ function AddMediaButton({ value, onChange, docType }) {
   ) : (
     <Fragment key="AddMediaButton">
       <button
+        type="button"
         type="button"
         onClick={(event) => onAddMediaClick(event)}
         className="mt-1 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"

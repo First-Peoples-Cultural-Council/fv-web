@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import placeholder from 'images/cover-thumbnail.png'
 
 function KidsNavBarData() {

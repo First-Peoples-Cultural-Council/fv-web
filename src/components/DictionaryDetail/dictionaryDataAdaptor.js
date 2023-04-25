@@ -2,7 +2,7 @@ import {
   getFriendlyDocType,
   extractTextFromHtml,
   convertStateToVisibility,
-} from 'common/stringHelpers'
+} from 'common/utils/stringHelpers'
 
 function dictionaryDataAdaptor(data) {
   if (!data?.properties) {

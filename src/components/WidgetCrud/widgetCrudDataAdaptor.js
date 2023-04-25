@@ -1,5 +1,5 @@
 import { DOC_WIDGET } from 'common/constants'
-import { convertStateToVisibility } from 'common/stringHelpers'
+import { convertStateToVisibility } from 'common/utils/stringHelpers'
 
 const widgetCrudDataAdaptor = ({ data }) => {
   if (!data) {

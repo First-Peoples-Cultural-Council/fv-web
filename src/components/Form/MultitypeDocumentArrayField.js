@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getFriendlyDocTypes } from 'common/stringHelpers'
+import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
 import { DOC_WORD, DOC_PHRASE } from 'common/constants'
-import useIdArrayField from 'common/useIdArrayField'
-import { useModalSelector } from 'common/useModalController'
+import useIdArrayField from 'common/hooks/useIdArrayField'
+import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import EntrySelector from 'components/EntrySelector'
 import ArrayBrowserField from 'components/Form/ArrayBrowserField'

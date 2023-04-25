@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getMediaUrl } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
 
 function SliderPresentationTile({ currentSlide, tileRef, item, onTileClick }) {
   const isActive = currentSlide?.id === item.id
@@ -29,6 +29,7 @@ function SliderPresentationTile({ currentSlide, tileRef, item, onTileClick }) {
       }`}
     >
       <button
+        type="button"
         style={conditionalStyle}
         className={`${conditionalClass} h-40 w-40 md:h-44 md:w-44 lg:h-72 lg:w-72 flex items-center rounded-lg shadow-lg`}
         onClick={() => onTileClick(item)}

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import { getMediaUrl } from 'common/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function DashboardPresentationSiteSelect({ sites, currentSite }) {
   return sites?.length > 1 ? (

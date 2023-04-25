@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function GridListTogglePresentation({
   accentColor,
@@ -12,6 +12,7 @@ function GridListTogglePresentation({
   return (
     <div className="ml-6 bg-gray-100 p-0.5 rounded-lg flex items-center">
       <button
+        type="button"
         type="button"
         onClick={() => setIsGridView(false)}
         className={`${
@@ -24,6 +25,7 @@ function GridListTogglePresentation({
         <span className="sr-only">Use list view</span>
       </button>
       <button
+        type="button"
         type="button"
         onClick={() => setIsGridView(true)}
         className={`${

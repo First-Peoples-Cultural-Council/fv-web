@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import { MEMBERS } from 'common/constants'
 
@@ -73,6 +73,7 @@ function SiteCard({ site }) {
             </p>
           </div>
           <button
+            type="button"
             type="button"
             className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
             onClick={() => setPrivateSiteModalOpen(true)}

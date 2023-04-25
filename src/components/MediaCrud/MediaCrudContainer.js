@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaCrud from 'components/MediaCrud'
-import { makeTitleCase } from 'common/stringHelpers'
+import { makeTitleCase } from 'common/utils/stringHelpers'
 import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 
 function MediaCrudContainer({
@@ -50,6 +50,7 @@ function MediaCrudContainer({
       selectedTab === 'Media Library' ? 'Upload Files' : 'Media Library'
     return (
       <button
+        type="button"
         className={`${buttonStyles} hover:bg-primary-light`}
         onClick={() => setSelectedTab(`${switchToTab}`)}
       >
@@ -75,6 +76,7 @@ function MediaCrudContainer({
           switchTabButton()
         ) : (
           <button
+            type="button"
             className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
             onClick={() => updateSavedMedia(selectedMedia)}
           >
@@ -83,6 +85,7 @@ function MediaCrudContainer({
           </button>
         )}
         <button
+          type="button"
           className={`${buttonStyles} mx-2 hover:bg-fv-warning-red`}
           onClick={() => clearSelectedMedia()}
           disabled={selectedTab === 'Upload Files'}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Listbox from 'components/Listbox'
 
 function TabsPresentation({ accentColor, selectedValue, tabs, setValue }) {
@@ -20,6 +20,7 @@ function TabsPresentation({ accentColor, selectedValue, tabs, setValue }) {
       >
         {tabs?.map((tab, tabIndex) => (
           <button
+            type="button"
             key={tabIndex + tab?.value}
             value={tab?.value}
             onClick={() => setValue(tab?.value)}

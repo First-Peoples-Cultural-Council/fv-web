@@ -4,7 +4,7 @@ import { Disclosure } from '@headlessui/react'
 
 // FPCC
 import StoryPageForm from 'components/StoryPagesCrud/StoryPageForm'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Form from 'components/Form'
 import ExpandablePreview from 'components/ExpandablePreview'
 import StoryPagePreview from 'components/StoryPagePreview'

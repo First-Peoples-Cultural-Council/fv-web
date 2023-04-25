@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import { DOC_AUDIO } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 
 function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
   const validator = yup.object().shape({

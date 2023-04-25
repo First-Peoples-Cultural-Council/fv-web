@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
-import { convertMsToTimeWords } from 'common/stringHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import { convertMsToTimeWords } from 'common/utils/stringHelpers'
 import { importAll } from 'common/utils/functionHelpers'
 import SectionTitle from 'components/SectionTitle'
 
@@ -167,12 +167,14 @@ function ParachutePresentation({
 
         <div className="mx-2.5">
           <button
+            type="button"
             onClick={newPuzzle}
             className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white mr-2.5"
           >
             New Puzzle
           </button>
           <button
+            type="button"
             className="inline-flex items-center bg-secondary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
             onClick={restart}
           >

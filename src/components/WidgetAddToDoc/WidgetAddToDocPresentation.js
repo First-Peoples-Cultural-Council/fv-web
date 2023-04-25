@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import useWidgetIcon from 'common/useWidgetIcon'
-import { getWidgetTypeLabel } from 'common/stringHelpers'
+import getIcon from 'common/utils/getIcon'
+import getWidgetIcon from 'common/utils/getWidgetIcon'
+import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
 import Loading from 'components/Loading'
 
 function WidgetAddToDocPresentation({
@@ -36,6 +36,7 @@ function WidgetAddToDocPresentation({
             <div className="max-w-7xl grid gap-5 grid-cols-4">
               {widgets?.map((widget) => (
                 <button
+                  type="button"
                   key={widget?.['ecm:uuid']}
                   onClick={() => setSelectedWidget(widget?.['ecm:uuid'])}
                   className={`${
@@ -45,7 +46,7 @@ function WidgetAddToDocPresentation({
                   } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
                 >
                   <div className="space-y-1 truncate">
-                    {useWidgetIcon(
+                    {getWidgetIcon(
                       widget?.['widget:type'],
                       'w-10 h-10 fill-current inline-flex mx-2',
                     )}

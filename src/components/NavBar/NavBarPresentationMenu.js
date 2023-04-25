@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function NavBarPresentationMenu({ menuItemData, sitename }) {
   const { href, title, itemsData, transKey } = menuItemData

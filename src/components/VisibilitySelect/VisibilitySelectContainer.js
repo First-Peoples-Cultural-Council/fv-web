@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 // FPCC
 import VisibilitySelectData from 'components/VisibilitySelect/VisibilitySelectData'
 import ConfirmationDialog from 'components/ConfirmationDialog'
-import { useModalControllerWithCallback } from 'common/useModalController'
+import { useModalControllerWithCallback } from 'common/hooks/useModalController'
 import Listbox from 'components/Listbox'
 import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
 

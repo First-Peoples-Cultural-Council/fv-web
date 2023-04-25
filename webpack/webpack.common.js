@@ -20,8 +20,6 @@ module.exports = (env, definitions) => ({
   },
   // https://webpack.js.org/configuration/performance/
   performance: {
-    maxAssetSize: 250000,
-    maxEntrypointSize: 250000,
     hints: 'warning',
   },
   output: {

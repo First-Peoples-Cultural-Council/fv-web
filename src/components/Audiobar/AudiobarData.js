@@ -5,8 +5,8 @@ import { Howl, Howler } from 'howler'
 // FPCC
 import api from 'services/api'
 import { useAudiobar } from 'context/AudiobarContext'
-import { getMediaUrl } from 'common/urlHelpers'
-import { getReadableFileSize } from 'common/stringHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getReadableFileSize } from 'common/utils/stringHelpers'
 
 function AudiobarData() {
   const { audioArray, setAudioArray } = useAudiobar()

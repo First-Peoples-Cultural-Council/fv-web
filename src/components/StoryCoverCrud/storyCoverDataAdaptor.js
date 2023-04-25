@@ -1,5 +1,5 @@
-import { convertStateToVisibility } from 'common/stringHelpers'
-import useWysiwygState from 'common/useWysiwygState'
+import { convertStateToVisibility } from 'common/utils/stringHelpers'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 import { selectOneDataHelper } from 'common/utils/mediaHelpers'
 import { pageOrderDataAdaptor } from 'components/StoryPagesCrud/storyPagesDataAdaptor'
 
@@ -44,7 +44,7 @@ function storyCoverDataAdaptor({ data }) {
     }
   } else {
     // V1_FUDGE
-    const { getWysiwygJsonFromHtml } = useWysiwygState()
+    const { getWysiwygJsonFromHtml } = wysiwygStateHelpers()
 
     let author = storyContextParams?.authors?.[0]?.['dc:title'] || ''
     if (storyContextParams?.authors?.length > 1) {

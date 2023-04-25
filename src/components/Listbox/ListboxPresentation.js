@@ -4,7 +4,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function ListboxPresentation({ selectedValue, options, setValue }) {
   const [t] = useTranslation()

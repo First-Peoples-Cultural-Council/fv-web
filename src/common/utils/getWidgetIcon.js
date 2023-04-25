@@ -32,10 +32,10 @@ const recognisedCategories = {
   WIDGET_WOTD: Calendar,
 }
 
-function useWidgetIcon(widgetType, iconStyling) {
+function getWidgetIcon(widgetType, iconStyling) {
   const styling = iconStyling || 'fill-current h-12 w-12'
   const iconFile = recognisedCategories[widgetType]
   const Icon = iconFile || Default
   return <Icon styling={styling} />
 }
-export default useWidgetIcon
+export default getWidgetIcon

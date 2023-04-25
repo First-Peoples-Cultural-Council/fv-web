@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import DictionaryGridTile from 'components/DictionaryGridTile'
 import LazyLoader from 'components/LazyLoader'
 
@@ -44,6 +44,7 @@ function DictionaryGridPresentation({
           <div className="p-4 align-middle inline-block min-w-full relative">
             {/* Hiding print button until custom print view has been created */}
             <button
+              type="button"
               className="hidden float-right m-1 text-primary font-medium"
               onClick={() => printBtn()}
             >
@@ -73,6 +74,7 @@ function DictionaryGridPresentation({
           </div>
           <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
             <button
+              type="button"
               className={!hasNextPage ? 'cursor-text' : ''}
               onClick={() => fetchNextPage()}
               disabled={!hasNextPage || isFetchingNextPage}

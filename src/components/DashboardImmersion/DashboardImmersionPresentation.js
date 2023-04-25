@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
 import ImmersionCrud from 'components/ImmersionCrud'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 // import en from 'assets/locale/en'
 
 function DashboardImmersionPresentation({

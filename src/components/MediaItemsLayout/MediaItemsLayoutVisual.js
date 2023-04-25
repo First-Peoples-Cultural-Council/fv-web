@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
-import mediaDataAdaptor from 'common/mediaDataAdaptor'
-import getIcon from 'common/getIcon'
+import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
+import getIcon from 'common/utils/getIcon'
 function MediaItemsLayoutVisual({
   data,
   docType,
@@ -60,6 +60,7 @@ function MediaItemsLayoutVisual({
                         />
                         <button
                           type="button"
+                          type="button"
                           className="absolute inset-0 focus:outline-none"
                           {...(selection
                             ? { onClick: () => mediaSelectHandler(doc?.id) } // Selecting a file from the dialogBox to attach to document
@@ -89,6 +90,7 @@ function MediaItemsLayoutVisual({
         </ul>
         <div className="pt-10 text-center text-fv-charcoal font-medium">
           <button
+            type="button"
             className={!hasNextPage ? 'cursor-text' : ''}
             onClick={() => fetchNextPage()}
             disabled={!hasNextPage || isFetchingNextPage}

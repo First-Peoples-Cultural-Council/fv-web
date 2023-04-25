@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from 'react-query'
 import { useSearchParams } from 'react-router-dom'
-import useWysiwygState from 'common/useWysiwygState'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 
 // FPCC
 import api from 'services/api'
@@ -8,7 +8,7 @@ import { useNotification } from 'context/NotificationContext'
 import { useSiteStore } from 'context/SiteContext'
 import storyCrudDataAdaptor from 'components/StoryCoverCrud/storyCoverDataAdaptor'
 import { DOC_STORY } from 'common/constants'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 import { selectOneFormHelper } from 'common/utils/mediaHelpers'
 
 function StoryCoverCrudData() {
@@ -16,7 +16,7 @@ function StoryCoverCrudData() {
   const queryClient = useQueryClient()
   const { setNotification } = useNotification()
   const [searchParams, setSearchParams] = useSearchParams()
-  const { getJsonFromWysiwygState } = useWysiwygState()
+  const { getJsonFromWysiwygState } = wysiwygStateHelpers()
 
   const storyId = searchParams.get('id') || null
 

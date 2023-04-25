@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function DashboardPagesPresentation({
   headerContent,

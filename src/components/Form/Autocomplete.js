@@ -4,7 +4,7 @@ import { Combobox, Transition } from '@headlessui/react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function Autocomplete({ control, disabled, helpText, label, nameId, options }) {
   const [query, setQuery] = useState('')

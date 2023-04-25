@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getFriendlyDocTypes } from 'common/stringHelpers'
-import getIcon from 'common/getIcon'
+import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
+import getIcon from 'common/utils/getIcon'
 import useModalDocumentSearch from 'common/search/useModalDocumentSearch'
-import useSearchResultSelector from 'common/useSearchResultSelector'
+import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SearchSelector from 'components/SearchSelector'
 import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'
 
@@ -41,6 +41,7 @@ function EntrySelectorContainer({ docTypes, addItem }) {
       search={search}
       headerSection={
         <button
+          type="button"
           onClick={() => addItem(selectedItem?.id)}
           className="mx-auto bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex
         justify-center text-sm font-medium text-white hover:bg-secondary-light

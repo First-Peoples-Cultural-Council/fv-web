@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function StoryPagePreviewPresentation({ page, pageNumber }) {
   return (

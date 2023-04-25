@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { getMediaUrl } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
 
 function SliderPresentationExpandedContent({ item, onCloseExpandedContent }) {
   const hasCoverImage = item.photos?.length > 0
@@ -26,6 +26,7 @@ function SliderPresentationExpandedContent({ item, onCloseExpandedContent }) {
       className="relative flex-basis text-center m-2 transition-transform duration-300 delay-100"
     >
       <button
+        type="button"
         className="absolute top-3 right-3 text-white"
         onClick={onCloseExpandedContent}
       >

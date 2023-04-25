@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPresentationSiteSelect'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 
 function DashboardPresentation({ children, currentUser, currentSite }) {

@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 
 function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
@@ -11,6 +11,7 @@ function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
   return (
     <>
       <button
+        type="button"
         id="DeleteButton"
         onClick={() => setDeleteModalOpen(true)}
         className={styling}
@@ -37,12 +38,14 @@ function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
           <div className="w-full justify-center flex space-x-2">
             <button
               type="button"
+              type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => setDeleteModalOpen(false)}
             >
               Cancel
             </button>
             <button
+              type="button"
               type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => {

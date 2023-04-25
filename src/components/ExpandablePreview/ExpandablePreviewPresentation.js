@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 function ExpandablePreviewPresentation({ open, preview, full }) {
   return (
     <div className="rounded-md shadow overflow-hidden bg-white">

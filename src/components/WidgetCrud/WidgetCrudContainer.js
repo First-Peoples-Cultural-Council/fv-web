@@ -26,7 +26,6 @@ function WidgetCrudContainer({ insertIndex, destinationId }) {
 // PROPTYPES
 const { number, string } = PropTypes
 WidgetCrudContainer.propTypes = {
-  widgetId: string,
   insertIndex: number,
   destinationId: string,
 }

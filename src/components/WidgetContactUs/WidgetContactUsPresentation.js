@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import WysiwygBlock from 'components/WysiwygBlock'
 
 function ContactUsPresentation({
@@ -162,8 +162,8 @@ function ContactUsPresentation({
 
               <div className="col-span-7 justify-start flex">
                 <button
-                  className="text-center shadow bg-primary hover:bg-primary-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg"
                   type="submit"
+                  className="text-center shadow bg-primary hover:bg-primary-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg"
                   onClick={handleSubmit(submitHandler)}
                 >
                   Submit

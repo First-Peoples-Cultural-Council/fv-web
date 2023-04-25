@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 
 function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({

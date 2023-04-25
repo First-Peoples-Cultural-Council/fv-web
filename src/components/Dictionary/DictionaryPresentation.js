@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function DictionaryPresentation({
   actions,

@@ -2,7 +2,7 @@ import { HEADER_ENRICHER } from 'common/constants'
 
 import { api } from 'services/config'
 import visibilityApi from 'services/api/visibility'
-import { convertStateToVisibility } from 'common/stringHelpers'
+import { convertStateToVisibility } from 'common/utils/stringHelpers'
 
 const create = async ({ parentId, name, docType, properties }) => {
   const body = {

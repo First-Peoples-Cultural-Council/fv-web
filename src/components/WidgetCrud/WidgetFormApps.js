@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
 import { WIDGET_APPS } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
@@ -77,11 +77,10 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
   )
 }
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { func, object } = PropTypes
 WidgetFormApps.propTypes = {
   cancelHandler: func,
   dataToEdit: object,
-  widgetType: string,
   submitHandler: func,
 }
 

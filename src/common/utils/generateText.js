@@ -1,6 +1,6 @@
 import React from 'react'
 
-function useText(textName, textStyling) {
+function generateText(textName, textStyling) {
   const styling = textStyling || 'fill-current h-12 w-8'
   switch (textName) {
     case 'kids':
@@ -56,4 +56,4 @@ function useText(textName, textStyling) {
       return <svg />
   }
 }
-export default useText
+export default generateText

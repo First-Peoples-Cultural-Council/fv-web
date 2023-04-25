@@ -6,8 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
 import api from 'services/api'
-import { getWidgetsList } from 'common/widgetAccessHelpers'
-import { getWidgetTypeLabel } from 'common/stringHelpers'
+import { getWidgetsList } from 'common/utils/widgetAccessHelpers'
+import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
 
 function DashboardWidgetsData() {
   const { site } = useSiteStore()

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Howler } from 'howler'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function AudioNativePresentation({ audioId, styling }) {
   const src = audioId ? getMediaUrl({ type: 'audio', id: audioId }) : ''

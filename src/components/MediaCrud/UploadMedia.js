@@ -9,7 +9,7 @@ import ImageEditor from '@uppy/image-editor'
 import api from 'services/api'
 import { DOC_AUDIO } from 'common/constants/docTypes'
 import UploadAudio from 'components/MediaCrud/UploadAudio'
-import { getFileExtensions } from 'common/stringHelpers'
+import { getFileExtensions } from 'common/utils/stringHelpers'
 
 // Uppy
 import '@uppy/core/dist/style.css'

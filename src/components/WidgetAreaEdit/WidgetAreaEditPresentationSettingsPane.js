@@ -9,15 +9,15 @@ import VisibilitySelect from 'components/VisibilitySelect'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
 
-import getIcon from 'common/getIcon'
-import { getMediaUrl } from 'common/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import {
   getWidgetTypeLabel,
   getWidgetLabel,
   isUUID,
-} from 'common/stringHelpers'
-import { isEditableWidgetType } from 'common/widgetAccessHelpers'
-import useWidgetIcon from 'common/useWidgetIcon'
+} from 'common/utils/stringHelpers'
+import { isEditableWidgetType } from 'common/utils/widgetAccessHelpers'
+import getWidgetIcon from 'common/utils/getWidgetIcon'
 import { WIDGET_WOTD } from 'common/constants'
 
 function WidgetAreaEditPresentationSettingsPane({
@@ -64,7 +64,7 @@ function WidgetAreaEditPresentationSettingsPane({
     return currentWidget?.settings.map((setting, index) => {
       if (setting?.key === 'audio' && isUUID(setting?.value)) {
         return (
-          <div key={`${setting?.key}_${index}`} className="col-span-3">
+          <div key={setting.key} className="col-span-3">
             <div className="mb-1 text-sm font-bold text-primary-light">
               Audio
             </div>
@@ -78,7 +78,7 @@ function WidgetAreaEditPresentationSettingsPane({
       }
       if (setting?.key === 'image' && isUUID(setting?.value)) {
         return (
-          <div key={`${setting?.key}_${index}`} className="col-span-1">
+          <div key={setting.key} className="col-span-1">
             <div className="mb-1 text-sm font-bold text-primary-light">
               Image
             </div>
@@ -96,7 +96,7 @@ function WidgetAreaEditPresentationSettingsPane({
       }
       if (setting?.key === 'textWithFormatting') {
         return (
-          <div key={`${setting?.key}_${index}`} className="col-span-3">
+          <div key={setting.key} className="col-span-3">
             <div className="mb-2 text-sm font-bold text-primary-light">
               Formatted Text
             </div>
@@ -108,7 +108,7 @@ function WidgetAreaEditPresentationSettingsPane({
       }
 
       return (
-        <div key={`${setting?.key}_${index}`} className="col-span-3">
+        <div key={setting.key} className="col-span-3">
           <dt className="mb-1 text-sm font-bold text-primary-light">
             {getWidgetLabel(setting?.key)}
           </dt>
@@ -132,7 +132,7 @@ function WidgetAreaEditPresentationSettingsPane({
         <div className="w-full p-8">
           <div className="block min-w-0 flex-1">
             <h2 className="text-2xl font-bold text-primary truncate">
-              {useWidgetIcon(
+              {getWidgetIcon(
                 currentWidget?.type,
                 'w-12 h-12 fill-current text-primary inline-flex mr-2',
               )}{' '}
@@ -159,6 +159,7 @@ function WidgetAreaEditPresentationSettingsPane({
               ) : null}
               <button
                 type="button"
+                type="button"
                 onClick={() => setPreviewModalOpen(true)}
                 className={buttonClass}
               >
@@ -166,6 +167,7 @@ function WidgetAreaEditPresentationSettingsPane({
                 <span>Preview</span>
               </button>
               <button
+                type="button"
                 type="button"
                 onClick={() => setRemoveModalOpen(true)}
                 className={buttonClass}
@@ -232,12 +234,14 @@ function WidgetAreaEditPresentationSettingsPane({
           <div className="w-full justify-center flex space-x-2">
             <button
               type="button"
+              type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => setRemoveModalOpen(false)}
             >
               Cancel
             </button>
             <button
+              type="button"
               type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => onRemoveConfirmationClick()}

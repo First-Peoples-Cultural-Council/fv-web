@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Form from 'components/Form'
-import { isEditableWidgetType } from 'common/widgetAccessHelpers'
+import { isEditableWidgetType } from 'common/utils/widgetAccessHelpers'
 
 function WidgetFormBase({
   children,

@@ -5,7 +5,7 @@ import 'draft-js/dist/Draft.css'
 
 // FPCC
 import WysiwygControls from 'components/Form/WysiwygControls'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 export const headerBlockTypes = [
   { label: 'Heading', value: 'header-two' },

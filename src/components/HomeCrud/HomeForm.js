@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import { DOC_IMAGE } from 'common/constants'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 
 function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({

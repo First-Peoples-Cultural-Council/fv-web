@@ -108,7 +108,7 @@ import Members from 'common/icons/Members'
 import Public from 'common/icons/Public'
 import Team from 'common/icons/Team'
 
-import { isStringWithLength } from 'common/stringHelpers'
+import { isStringWithLength } from 'common/utils/stringHelpers'
 import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
 
 // a helper function that given a string name returns an icon, if no string is supplied it will return a blank placeholder icon

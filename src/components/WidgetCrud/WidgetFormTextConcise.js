@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
 import { DOC_AUDIO, WIDGET_TEXTCONCISE } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
@@ -114,11 +114,10 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
   )
 }
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { func, object } = PropTypes
 WidgetFormTextConcise.propTypes = {
   cancelHandler: func,
   dataToEdit: object,
-  widgetType: string,
   submitHandler: func,
 }
 

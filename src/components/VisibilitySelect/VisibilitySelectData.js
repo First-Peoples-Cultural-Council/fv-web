@@ -7,7 +7,7 @@ import { useNotification } from 'context/NotificationContext'
 import {
   convertStateToVisibility,
   getFriendlyDocType,
-} from 'common/stringHelpers'
+} from 'common/utils/stringHelpers'
 import { useSiteStore } from 'context/SiteContext'
 
 function VisibilitySelectData({ id, docState, successCallback }) {

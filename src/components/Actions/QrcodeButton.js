@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Menu } from '@headlessui/react'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import Loading from 'components/Loading'
 import { MEMBERS, TEAM } from 'common/constants'
@@ -26,6 +26,7 @@ function QrcodeButton({
       {({ active }) => (
         <>
           <button
+            type="button"
             id="QrcodeButton"
             className={`${
               active ? 'bg-gray-100 text-fv-charcoal' : 'text-fv-charcoal-light'

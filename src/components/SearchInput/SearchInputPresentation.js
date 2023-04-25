@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import SearchLanguageSelector from 'components/SearchLanguageSelector'
 import SearchBox from 'components/SearchBox'
 
@@ -31,6 +31,7 @@ function SearchInputPresentation({
           onSelect={handleSearchLanguageChange}
         />
         <button
+          type="button"
           type="button"
           id="SearchSubmit"
           aria-label="Search/Go"

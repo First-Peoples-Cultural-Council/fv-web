@@ -1,5 +1,5 @@
 import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 const mediaDataAdaptor = ({ type, data }) => {
   if (!data) {

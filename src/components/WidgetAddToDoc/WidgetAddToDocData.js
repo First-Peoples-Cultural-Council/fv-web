@@ -6,7 +6,7 @@ import { DOC_SITE, WIDGET_TEXTFULL } from 'common/constants'
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
-import { getWidgetsList } from 'common/widgetAccessHelpers'
+import { getWidgetsList } from 'common/utils/widgetAccessHelpers'
 function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { site } = useSiteStore()
   const { user } = useUserStore()

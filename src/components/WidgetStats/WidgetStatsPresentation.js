@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
 
 function WidgetStatsPresentation({ data }) {

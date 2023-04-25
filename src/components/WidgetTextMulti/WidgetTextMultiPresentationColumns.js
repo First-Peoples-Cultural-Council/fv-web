@@ -4,7 +4,7 @@ import { FIRSTVOICESLINK } from 'common/constants'
 
 // FPCC
 import WysiwygBlock from 'components/WysiwygBlock'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function WidgetTextMultiPresentationColumns({ textWidgets }) {
   const getContent = (widget) => {

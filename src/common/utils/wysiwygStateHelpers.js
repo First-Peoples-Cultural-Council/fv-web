@@ -13,9 +13,9 @@ import {
   isStringWithLength,
   extractTextFromHtml,
   safeJsonParse,
-} from 'common/stringHelpers'
+} from 'common/utils/stringHelpers'
 
-function useWysiwygState() {
+function wysiwygStateHelpers() {
   // Converts an HTML string into Draft-js ContentState
   const getWysiwygStateFromHtml = (htmlString) => {
     const textFromHtml = extractTextFromHtml(htmlString)
@@ -58,4 +58,4 @@ function useWysiwygState() {
   }
 }
 
-export default useWysiwygState
+export default wysiwygStateHelpers

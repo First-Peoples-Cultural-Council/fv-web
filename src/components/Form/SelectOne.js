@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DocumentThumbnail from 'components/DocumentThumbnail'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
 import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 
 const DEFAULT_MEDIA_VALUE = {
   docId: '',
@@ -83,6 +83,7 @@ function SelectOneButton({ value, onChange }) {
         </span>
         <button
           type="button"
+          type="button"
           aria-label="Remove"
           // eslint-disable-next-line react/no-unknown-property
           tooltip="Remove"
@@ -96,6 +97,7 @@ function SelectOneButton({ value, onChange }) {
   ) : (
     <div className="block">
       <button
+        type="button"
         type="button"
         className={FRAGMENT_BUTTON_STYLES}
         onClick={() => setMediaChoiceModalOpen(true)}
@@ -113,6 +115,7 @@ function SelectOneButton({ value, onChange }) {
         <div className="mx-auto rounded-lg overflow-hidden bg-gray-50 p-8 m-8 mt-0">
           <h2 className="mb-4">What kind of file do you want to add?</h2>
           <button
+            type="button"
             className={FRAGMENT_BUTTON_STYLES}
             onClick={() => mediaChoiceButtonClicked(DOC_IMAGE)}
           >
@@ -120,6 +123,7 @@ function SelectOneButton({ value, onChange }) {
             <span>Add Image</span>
           </button>
           <button
+            type="button"
             className={FRAGMENT_BUTTON_STYLES}
             onClick={() => mediaChoiceButtonClicked(DOC_VIDEO)}
           >

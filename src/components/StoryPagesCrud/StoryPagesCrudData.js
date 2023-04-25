@@ -11,7 +11,7 @@ import {
   pageFormDataAdaptor,
 } from 'components/StoryPagesCrud/storyPagesDataAdaptor'
 import { DOC_STORY, DOC_STORYPAGE } from 'common/constants'
-import { isUUID } from 'common/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 
 function StoryPagesCrudData() {
   const queryClient = useQueryClient()

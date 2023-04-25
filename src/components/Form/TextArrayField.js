@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function TextArrayField({
   label,
@@ -41,6 +41,7 @@ function TextArrayField({
                 </span>
                 <button
                   type="button"
+                  type="button"
                   // eslint-disable-next-line react/no-unknown-property
                   tooltip="Delete"
                   aria-label="Delete"
@@ -55,6 +56,7 @@ function TextArrayField({
         </ul>
         {fields?.length < maxItems && (
           <button
+            type="button"
             type="button"
             onClick={() => append('')}
             className="bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"

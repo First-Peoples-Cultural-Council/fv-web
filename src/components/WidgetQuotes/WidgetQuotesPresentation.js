@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
-import { getMediaUrl } from 'common/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function WidgetQuotesPresentation({ widgetData }) {
   const {

@@ -12,7 +12,7 @@ import {
   DOC_WORD,
 } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({

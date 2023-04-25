@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import { Link, useParams } from 'react-router-dom'
 import {

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
-import { makePlural } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
+import { makePlural } from 'common/utils/urlHelpers'
 import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'

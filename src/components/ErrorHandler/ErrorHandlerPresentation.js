@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
   return (
@@ -22,6 +22,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
         </div>
         <div className="mb-5 md:mb-10">
           <button
+            type="button"
             className="text-lg font-light outline-none focus:outline-none transform transition-all hover:scale-110 text-tertiaryA hover:text-tertiaryA-dark"
             onClick={() => backHandler()}
           >

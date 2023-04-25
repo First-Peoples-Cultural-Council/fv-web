@@ -4,7 +4,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 
 /**
  * SortableItem
@@ -24,7 +24,7 @@ export function SortableItemPresentation({ id, children }) {
   return (
     <div ref={setNodeRef} style={style} className="flex items-center">
       <div className="p-2">
-        <button {...attributes} {...listeners}>
+        <button type="button" {...attributes} {...listeners}>
           {getIcon('ChevronUpDown', 'fill-current h-6')}
         </button>
       </div>

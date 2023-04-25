@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
 
@@ -68,6 +68,7 @@ function DashboardWidgetsPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button
+                  type="button"
                   type="button"
                   onClick={() => {
                     setCurrentWidget(widget)

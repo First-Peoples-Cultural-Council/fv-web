@@ -6,7 +6,7 @@ import 'draft-js/dist/Draft.css'
 
 // FPCC
 import WysiwygControls from 'components/Form/WysiwygControls'
-import { safeJsonParse } from 'common/stringHelpers'
+import { safeJsonParse } from 'common/utils/stringHelpers'
 
 function WysiwygField({ label, nameId, helpText, control, toolbar }) {
   const {

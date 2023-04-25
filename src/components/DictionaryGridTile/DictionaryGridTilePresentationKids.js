@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl, makePlural } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
+import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import LazyImage from 'components/LazyImage'
 

@@ -21,11 +21,12 @@ module.exports = {
   plugins: ['prettier', 'react', '@babel'],
   ignorePatterns: ['webpack/*.js'],
   rules: {
+    'consistent-return': ['warn'],
     'no-underscore-dangle': ['off'],
+    'no-unsafe-optional-chaining': ['warn'],
     'jsx-a11y/alt-text': ['warn'],
     'jsx-a11y/aria-role': ['warn'],
     'jsx-a11y/media-has-caption': ['off'],
-    'consistent-return': ['warn'],
     'react/button-has-type': ['warn'],
   },
   settings: {

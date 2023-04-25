@@ -1,5 +1,5 @@
 import { api, externalApi } from 'services/config'
-import { cleanNXQL } from 'common/stringHelpers'
+import { cleanNXQL } from 'common/utils/stringHelpers'
 import { HEADER_ENRICHER } from 'common/constants'
 
 const media = {

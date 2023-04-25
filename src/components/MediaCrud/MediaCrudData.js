@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useIntersectionObserver from 'common/useIntersectionObserver'
+import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import api from 'services/api'
-import { getFriendlyDocType } from 'common/stringHelpers'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
   SUPPORTED_IMAGE_EXTENSIONS,
   SUPPORTED_VIDEO_EXTENSIONS,

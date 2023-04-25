@@ -6,7 +6,7 @@ import * as yup from 'yup'
 // FPCC
 import api from 'services/api'
 import Form from 'components/Form'
-import useEditForm from 'common/useEditForm'
+import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 
 function UploadAudio({ site, extensionList, setSelectedMedia }) {

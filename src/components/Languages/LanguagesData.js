@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 
 // FPCC
 import api from 'services/api'
-import { getMediaUrl } from 'common/urlHelpers'
+import { getMediaUrl } from 'common/utils/urlHelpers'
 import { useUserStore } from 'context/UserContext'
 import placeholder from 'images/cover-thumbnail.png'
 

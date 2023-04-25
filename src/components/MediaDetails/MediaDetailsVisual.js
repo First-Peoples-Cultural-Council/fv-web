@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/urlHelpers'
-import getIcon from 'common/getIcon'
+import { getMediaUrl } from 'common/utils/urlHelpers'
+import getIcon from 'common/utils/getIcon'
 import { DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
-import { isDisplayablePropMedia } from 'common/stringHelpers'
+import { isDisplayablePropMedia } from 'common/utils/stringHelpers'
 
 function MediaDetailsVisual({ file, docType }) {
   return (

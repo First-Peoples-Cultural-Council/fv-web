@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import copyToClipboard from 'common/copyToClipboard'
+import copyToClipboard from 'common/utils/copyToClipboard'
 
 // FPCC
-import getIcon from 'common/getIcon'
+import getIcon from 'common/utils/getIcon'
 import { useNotification } from 'context/NotificationContext'
 function ShareLinksPresentation({ url, title, modalCloseHandler }) {
   const { setNotification } = useNotification()
@@ -28,6 +28,7 @@ function ShareLinksPresentation({ url, title, modalCloseHandler }) {
       {navigator.share ? (
         <li>
           <button
+            type="button"
             className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryB"
             onClick={() =>
               navigator.share({
@@ -80,6 +81,7 @@ function ShareLinksPresentation({ url, title, modalCloseHandler }) {
       </li>
       <li>
         <button
+          type="button"
           id="CopyUrl"
           aria-label="Copy to clipboard"
           className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryA"
