@@ -1,4 +1,4 @@
-name: On Pull Request to master
+name: Branch protection checks
 
 on:
   pull_request:
@@ -16,9 +16,6 @@ jobs:
       # Checkout the current working code base
       - name: Checkout working branch
         uses: actions/checkout@v3
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
 
       # Installs the correct Node version for the project
       - name: Setup Node.js for use with actions
@@ -35,6 +32,9 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       # Run Sonar Analysis on Frontend
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
