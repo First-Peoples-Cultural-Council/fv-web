@@ -31,13 +31,10 @@ function AudioMinimalContainer({
   )
 }
 // PROPTYPES
-const { bool, func, string, object } = PropTypes
+const { string, object } = PropTypes
 AudioMinimalContainer.propTypes = {
   id: string,
   src: string,
-  color: string,
-  onPlayCallback: func,
-  shouldStopPropagation: bool,
   icons: object,
   iconStyling: string,
   label: string,
