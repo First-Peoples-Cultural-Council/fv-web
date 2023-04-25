@@ -55,7 +55,6 @@ function WidgetCrudPresentation({
               widgetTypes?.map((type) => (
                 <button
                   type="button"
-                  type="button"
                   key={type}
                   onClick={() => setSelectedType(type)}
                   className={`${
@@ -80,7 +79,6 @@ function WidgetCrudPresentation({
           <div className="p-4">
             <div className="flex justify-center space-x-4">
               <button
-                type="button"
                 type="button"
                 className="inline-flex justify-center rounded-lg border shadow-lg px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
                 onClick={backHandler}
