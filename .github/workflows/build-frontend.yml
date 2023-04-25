@@ -31,10 +31,6 @@ jobs:
           npm run build:production
 
         # Run Sonar Analysis on Frontend
-      - name: Setup Sonar Analysis For Frontend
-        uses: warchant/setup-sonar-scanner@v3
-
-        # Run Sonar Analysis on Frontend
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
