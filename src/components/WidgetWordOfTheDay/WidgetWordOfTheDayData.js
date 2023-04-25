@@ -10,15 +10,19 @@ function WidgetWordOfTheDayData() {
   const { uid } = site
   const { sitename } = useParams()
 
-  const { data, error, isError } = useQuery(['wotd', uid], () => api.widget.getWordOfTheDay({ siteId: uid }), {
-    // The query will not execute until the uid exists
-    enabled: !!uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, error, isError } = useQuery(
+    ['wotd', uid],
+    () => api.widget.getWordOfTheDay({ siteId: uid }),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   let partOfSpeech = ''
-  let audio = []
+  const audio = []
 
   if (data?.partOfSpeech) {
     partOfSpeech = `Part of Speech: ${data?.partOfSpeech}`
@@ -31,7 +35,7 @@ function WidgetWordOfTheDayData() {
   }
 
   return {
-    audio: audio,
+    audio,
     hasShare: true,
     heading: data?.title,
     isError: isError && error && error?.response?.status === 404,

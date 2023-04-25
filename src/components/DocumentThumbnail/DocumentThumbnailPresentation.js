@@ -16,7 +16,8 @@ import {
 } from 'common/constants'
 
 function DocumentThumbnailPresentation({ document }) {
-  const labelClass = 'mt-1 ml-1 block text-xs font-medium truncate pointer-events-none'
+  const labelClass =
+    'mt-1 ml-1 block text-xs font-medium truncate pointer-events-none'
   const getContents = (type) => {
     switch (type) {
       case DOC_AUDIO:
@@ -39,7 +40,11 @@ function DocumentThumbnailPresentation({ document }) {
           <div className="relative w-48">
             <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
               <img
-                src={getMediaUrl({ type: 'gifOrImg', id: document?.id, viewName: 'Small' })}
+                src={getMediaUrl({
+                  type: 'gifOrImg',
+                  id: document?.id,
+                  viewName: 'Small',
+                })}
                 alt={`${document?.title}`}
                 className="object-cover pointer-events-none"
               />
@@ -53,7 +58,11 @@ function DocumentThumbnailPresentation({ document }) {
             <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
               <video
                 className="object-cover pointer-events-none"
-                src={getMediaUrl({ type: 'video', id: document?.id, viewName: 'Small' })}
+                src={getMediaUrl({
+                  type: 'video',
+                  id: document?.id,
+                  viewName: 'Small',
+                })}
                 disableRemotePlayback
               >
                 Your browser does not support the video tag.

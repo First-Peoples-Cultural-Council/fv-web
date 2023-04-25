@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next'
 // FPCC
 import api from 'services/api'
 import { useNotification } from 'context/NotificationContext'
-import { convertStateToVisibility, getFriendlyDocType } from 'common/stringHelpers'
+import {
+  convertStateToVisibility,
+  getFriendlyDocType,
+} from 'common/stringHelpers'
 import { useSiteStore } from 'context/SiteContext'
 
 function VisibilitySelectData({ id, docState, successCallback }) {
@@ -20,13 +23,16 @@ function VisibilitySelectData({ id, docState, successCallback }) {
   }, [docState])
 
   const updateVisibility = async (newVisibility) => {
-    const response = await api.visibility.update({ id: id, newVisibility: newVisibility })
+    const response = await api.visibility.update({
+      id,
+      newVisibility,
+    })
     if (response?.uid) {
       setNotification({
         type: 'SUCCESS',
-        message: `Success! Your ${getFriendlyDocType(response?.type)} is now visible to: ${t(
-          `visibility.${newVisibility}`
-        )}.`,
+        message: `Success! Your ${getFriendlyDocType(
+          response?.type,
+        )} is now visible to: ${t(`visibility.${newVisibility}`)}.`,
       })
       setDocVisibility(newVisibility)
       if (successCallback) return successCallback()
@@ -40,8 +46,8 @@ function VisibilitySelectData({ id, docState, successCallback }) {
   }
 
   const submitHandler = (selectedVisibility) => {
-    if (docVisibility !== selectedVisibility) updateVisibility(selectedVisibility)
-    return
+    if (docVisibility !== selectedVisibility)
+      updateVisibility(selectedVisibility)
   }
 
   return {

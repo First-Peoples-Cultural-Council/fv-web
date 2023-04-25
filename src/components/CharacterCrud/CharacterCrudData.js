@@ -31,7 +31,7 @@ function CharacterCrudData() {
     {
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   const submitHandler = (formData) => {
@@ -55,7 +55,10 @@ function CharacterCrudData() {
     })
 
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your character has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your character has been saved.',
+      })
       queryClient.invalidateQueries(['alphabet', site?.id])
       queryClient.invalidateQueries(['character', characterId])
       backHandler()

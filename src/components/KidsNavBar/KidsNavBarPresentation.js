@@ -8,7 +8,10 @@ import useText from 'common/useText'
 
 function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
   return home ? (
-    <header className="relative md:p-2 z-10 print:hidden" data-testid="KidsNavBarPresentation">
+    <header
+      className="relative md:p-2 z-10 print:hidden"
+      data-testid="KidsNavBarPresentation"
+    >
       <div className="h-28 max-w-screen-2xl mx-auto px-2 md:mb-10 md:mt-10 lg:px-6 xl:px-16 flex justify-center items-center">
         <div className="relative">
           <img
@@ -19,7 +22,7 @@ function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
           />
           {useText(
             'kids',
-            'hidden xl:block absolute -bottom-5 right-8 md:-bottom-3 md:right-14 transform -rotate-6 text-white fill-current w-16 md:w-24'
+            'hidden xl:block absolute -bottom-5 right-8 md:-bottom-3 md:right-14 transform -rotate-6 text-white fill-current w-16 md:w-24',
           )}
         </div>
       </div>
@@ -28,29 +31,52 @@ function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
         to={`/${sitename}`}
       >
         <span className="sr-only">Back to {siteTitle} main site</span>
-        {getIcon('Close', 'border-gray-300 hover:border-fv-charcoal border-2 border-dotted h-8 lg:h-14 w-auto')}
+        {getIcon(
+          'Close',
+          'border-gray-300 hover:border-fv-charcoal border-2 border-dotted h-8 lg:h-14 w-auto',
+        )}
       </Link>
     </header>
   ) : (
-    <header className="relative p-2 z-10 print:hidden" data-testid="KidsNavBarPresentation">
+    <header
+      className="relative p-2 z-10 print:hidden"
+      data-testid="KidsNavBarPresentation"
+    >
       <div className="max-w-screen-2xl mx-auto lg:px-6 xl:px-16">
         <div className="flex justify-between items-center py-1 lg:space-x-10">
-          <ul role="list" className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto">
-            <Link className="col-span-1 flex items-center xl:block  relative" to={`/${sitename}/kids`}>
-              <img className="w-full h-auto rounded-full mx-auto" src={logoUrl} alt="site logo" loading="lazy" />
+          <ul
+            role="list"
+            className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto"
+          >
+            <Link
+              className="col-span-1 flex items-center xl:block  relative"
+              to={`/${sitename}/kids`}
+            >
+              <img
+                className="w-full h-auto rounded-full mx-auto"
+                src={logoUrl}
+                alt="site logo"
+                loading="lazy"
+              />
               {useText(
                 'kids',
-                'hidden xl:block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16'
+                'hidden xl:block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16',
               )}
             </Link>
             {links.map((link) => (
-              <li key={link.id} className="col-span-1 inline-flex shadow-xl group rounded-lg overflow-hidden">
+              <li
+                key={link.id}
+                className="col-span-1 inline-flex shadow-xl group rounded-lg overflow-hidden"
+              >
                 <Link
                   to={`/${sitename}/kids/${link.path}`}
                   className={`bg-${link.color} group w-full flex items-center justify-center group-hover:opacity-75`}
                 >
                   <div className="w-full">
-                    {getIcon(link.icon, 'fill-current text-white h-8 sm:h-10 lg:h-14 xl:h-20 mx-auto')}
+                    {getIcon(
+                      link.icon,
+                      'fill-current text-white h-8 sm:h-10 lg:h-14 xl:h-20 mx-auto',
+                    )}
                     <div
                       className={`hidden sm:block w-full px-1 mt-1 bg-white text-center text-sm md:text-sm xl:text-lg font-bold text-${link.textColor}`}
                     >

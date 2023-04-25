@@ -3,7 +3,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useInfiniteQuery } from 'react-query'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 import useIntersectionObserver from 'common/useIntersectionObserver'
@@ -18,9 +18,14 @@ function MediaBrowserData({ docType }) {
   const navigate = useNavigate()
 
   // Extract search term from URL search params
-  const searchParamsQuery = new URLSearchParams(search).get('q') ? new URLSearchParams(search).get('q') : ''
+  const searchParamsQuery = new URLSearchParams(search).get('q')
+    ? new URLSearchParams(search).get('q')
+    : ''
   // Friendly Doc Type Label to use in document search
-  const friendlyDocTypeLabel = getFriendlyDocType({ docType: docType, plural: true })
+  const friendlyDocTypeLabel = getFriendlyDocType({
+    docType,
+    plural: true,
+  })
 
   const loadRef = useRef(null)
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
@@ -36,29 +41,48 @@ function MediaBrowserData({ docType }) {
     event.preventDefault()
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
-      navigate(`/${sitename}/dashboard/media/browser?type=${friendlyDocTypeLabel}&q=${searchInputValue}`)
+      navigate(
+        `/${sitename}/dashboard/media/browser?type=${friendlyDocTypeLabel}&q=${searchInputValue}`,
+      )
     } else {
-      navigate(`/${sitename}/dashboard/media/browser?type=${friendlyDocTypeLabel}`)
+      navigate(
+        `/${sitename}/dashboard/media/browser?type=${friendlyDocTypeLabel}`,
+      )
     }
   }
 
   // Data fetch
-  const { data, fetchNextPage, hasNextPage, isError, isFetchingNextPage, isLoading } = useInfiniteQuery(
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isError,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery(
     [`${docType}-search`, searchTerm],
     ({ pageParam = 0 }) =>
-      api.media.get({ siteId: site?.uid, searchTerm: searchTerm, type: docType, pageParam: pageParam }),
+      api.media.get({
+        siteId: site?.uid,
+        searchTerm,
+        type: docType,
+        pageParam,
+      }),
     {
       // The query will not execute until the siteId exists
       enabled: !!site?.uid,
       getNextPageParam: (lastPage) => lastPage.nextPage,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
     if (!currentFile && data?.pages?.[0]?.entries) {
-      const firstFile = mediaDataAdaptor({ type: docType, data: data?.pages?.[0]?.entries?.[0] })
+      const firstFile = mediaDataAdaptor({
+        type: docType,
+        data: data?.pages?.[0]?.entries?.[0],
+      })
       setCurrentFile(firstFile)
     }
   }, [data])
@@ -73,11 +97,11 @@ function MediaBrowserData({ docType }) {
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
-    } else if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    } else {
-      return 'End of results.'
     }
+    if (infiniteScroll?.hasNextPage) {
+      return 'Load more'
+    }
+    return 'End of results.'
   }
 
   return {
@@ -92,7 +116,7 @@ function MediaBrowserData({ docType }) {
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
-    friendlyDocTypeLabel: friendlyDocTypeLabel,
+    friendlyDocTypeLabel,
   }
 }
 

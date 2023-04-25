@@ -16,25 +16,32 @@ function ByCategoryData({ kids }) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const urlSearchType = searchParams.get('docType') || 'WORD_AND_PHRASE'
-  const { searchType, setSearchTypeInUrl, getSearchLabel } = useSearchBoxNavigation({
-    searchType: urlSearchType,
-  })
+  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+    useSearchBoxNavigation({
+      searchType: urlSearchType,
+    })
   const sortBy = searchParams.get('sortBy') || 'ENTRY'
   const sortAscending = searchParams.get('sortAscending') || 'true'
 
   const _searchParams = `docType=${searchType}&kidsOnly=${kids}&perPage=100&sortBy=${sortBy}&sortAscending=${sortAscending}&category=${categoryId}`
   // Search fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } = useSearchLoader({
-    searchApi: api.dictionary,
-    queryKey: 'dictionary',
-    siteUid: site?.uid,
-    searchParams: _searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({
+      searchApi: api.dictionary,
+      queryKey: 'dictionary',
+      siteUid: site?.uid,
+      searchParams: _searchParams,
+    })
 
   const categoriesResponse = useQuery(
     ['categories', uid],
-    () => api.category.get({ siteId: uid, parentsOnly: 'false', inUseOnly: 'true' }),
-    { enabled: !!uid, refetchOnWindowFocus: false, refetchOnReconnect: false }
+    () =>
+      api.category.get({
+        siteId: uid,
+        parentsOnly: 'false',
+        inUseOnly: 'true',
+      }),
+    { enabled: !!uid, refetchOnWindowFocus: false, refetchOnReconnect: false },
   )
 
   const [currentCategory, setCurrentCategory] = useState({})
@@ -42,22 +49,30 @@ function ByCategoryData({ kids }) {
   const categories = getParentCategories()
 
   function getChildren(parentId) {
-    return categoriesResponse?.data?.categories?.filter((category) => {
-      return category?.parentId === parentId
-    })
+    return categoriesResponse?.data?.categories?.filter(
+      (category) => category?.parentId === parentId,
+    )
   }
 
   function getParentCategories() {
-    return categoriesResponse?.data?.categories?.filter((category) => {
-      return category?.parentId === null
-    })
+    return categoriesResponse?.data?.categories?.filter(
+      (category) => category?.parentId === null,
+    )
   }
 
   useEffect(() => {
-    if (categoriesResponse?.data && categoriesResponse?.status === 'success' && !categoriesResponse?.isError) {
-      const selectedCategory = categoriesResponse?.data?.categories?.find((category) => category?.id === categoryId)
+    if (
+      categoriesResponse?.data &&
+      categoriesResponse?.status === 'success' &&
+      !categoriesResponse?.isError
+    ) {
+      const selectedCategory = categoriesResponse?.data?.categories?.find(
+        (category) => category?.id === categoryId,
+      )
       const parentCategory = selectedCategory?.parentId
-        ? categoriesResponse?.data?.categories?.find((category) => category?.id === selectedCategory.parentId)
+        ? categoriesResponse?.data?.categories?.find(
+            (category) => category?.id === selectedCategory.parentId,
+          )
         : selectedCategory
       if (selectedCategory?.id !== currentCategory?.id) {
         setCurrentCategory({
@@ -78,13 +93,13 @@ function ByCategoryData({ kids }) {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
 
   const onSortByClick = (field) => {
-    let newSortBy = field
+    const newSortBy = field
     let newSortAscending = 'true'
     if (sortBy === field && sortAscending === 'true') {
       newSortAscending = 'false'
@@ -97,10 +112,10 @@ function ByCategoryData({ kids }) {
   }
 
   return {
-    categories: categories ? categories : [],
+    categories: categories || [],
     categoriesAreLoading: categoriesResponse?.isLoading,
     isLoading: isLoading || isError,
-    items: searchResults ? searchResults : {},
+    items: searchResults || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
@@ -108,7 +123,7 @@ function ByCategoryData({ kids }) {
     loadRef,
     currentCategory,
     currentParentCategory,
-    searchType: searchType,
+    searchType,
     setSearchType: setSearchTypeInUrl,
     entryLabel: getSearchLabel({ searchType }),
     onSortByClick,

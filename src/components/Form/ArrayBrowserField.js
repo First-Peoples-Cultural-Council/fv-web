@@ -18,46 +18,54 @@ function ArrayBrowserField({
 }) {
   return (
     <Fragment key={`${nameId}_ArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <div className="space-y-2 mt-2">
         <div id="DocumentThumbnailGallery">
           {documentIds?.length > 0 &&
-            documentIds?.map((doc, index) => {
-              return (
-                <div
-                  key={`${doc}_${index}`}
-                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
-                >
-                  <DocumentThumbnail.Container docId={doc} />
-                  <div className="has-tooltip">
-                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">Remove</span>
-                    <button
-                      type="button"
-                      aria-label="Remove"
-                      className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-                      onClick={() => removeItem(doc)}
-                    >
-                      {getIcon('Close', 'fill-current h-5 w-5')}
-                    </button>
-                  </div>
+            documentIds?.map((doc, index) => (
+              <div
+                key={`${doc}_${index}`}
+                className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+              >
+                <DocumentThumbnail.Container docId={doc} />
+                <div className="has-tooltip">
+                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">
+                    Remove
+                  </span>
+                  <button
+                    type="button"
+                    aria-label="Remove"
+                    className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
+                    onClick={() => removeItem(doc)}
+                  >
+                    {getIcon('Close', 'fill-current h-5 w-5')}
+                  </button>
                 </div>
-              )
-            })}
+              </div>
+            ))}
         </div>
         {documentIds?.length >= maxItems ? (
           ''
         ) : (
-          <AddButton value={documentIds} label={buttonLabel} onClick={showContent}>
+          <AddButton
+            value={documentIds}
+            label={buttonLabel}
+            onClick={showContent}
+          >
             {children}
           </AddButton>
         )}
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }
 
-const AddButton = ({ label, children, onClick }) => {
+function AddButton({ label, children, onClick }) {
   return (
     <div key="PopupButtonPresentation">
       <button

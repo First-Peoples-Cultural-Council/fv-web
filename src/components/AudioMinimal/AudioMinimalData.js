@@ -4,7 +4,7 @@ import { Howl, Howler } from 'howler'
 function AudioMinimalData({ src }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const buttonRef = useRef()
-  const [sound, setSound] = useState({ src: src, howl: null })
+  const [sound, setSound] = useState({ src, howl: null })
 
   const onAudioClick = () => {
     Howler.stop()
@@ -19,18 +19,18 @@ function AudioMinimalData({ src }) {
         src: [src, src, src],
         format: ['webm', 'wav', 'mp3'],
         html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
-        onplay: function () {
+        onplay() {
           setIsPlaying(true)
         },
-        onend: function () {
+        onend() {
           setIsPlaying(false)
         },
-        onstop: function () {
+        onstop() {
           setIsPlaying(false)
         },
       })
       soundToPlay = newHowl
-      setSound({ src: src, howl: newHowl })
+      setSound({ src, howl: newHowl })
     }
     soundToPlay.play()
   }

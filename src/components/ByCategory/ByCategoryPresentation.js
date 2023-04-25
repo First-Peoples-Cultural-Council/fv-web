@@ -27,25 +27,27 @@ function ByCategoryPresentation({
   sitename,
   sorting,
 }) {
-  const getParentCategoriesList = () => {
-    return categories.map((category) => {
-      return (
-        <li
-          key={category.id}
-          id={'SearchFilter' + category.id}
-          className="inline-block lg:block transition duration-500 ease-in-out lg:my-2 lg:mx-5 grow "
+  const getParentCategoriesList = () =>
+    categories.map((category) => (
+      <li
+        key={category.id}
+        id={`SearchFilter${category.id}`}
+        className="inline-block lg:block transition duration-500 ease-in-out lg:my-2 lg:mx-5 grow "
+      >
+        <Link
+          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-tertiaryB"
+          to={`/${sitename}/${kids ? 'kids/' : ''}categories/${category.id}`}
         >
-          <Link
-            className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-tertiaryB"
-            to={`/${sitename}/${kids ? 'kids/' : ''}categories/${category.id}`}
-          >
-            {useCategoryIcon(category.title, 'inline-flex p-2 rounded-lg fill-current h-14 w-14')}
-            <div className="inline-flex text-lg font-medium">{category.title}</div>
-          </Link>
-        </li>
-      )
-    })
-  }
+          {useCategoryIcon(
+            category.title,
+            'inline-flex p-2 rounded-lg fill-current h-14 w-14',
+          )}
+          <div className="inline-flex text-lg font-medium">
+            {category.title}
+          </div>
+        </Link>
+      </li>
+    ))
   const getNoResultsMessage = () => {
     let typeLabel = ''
     switch (searchType) {
@@ -64,7 +66,9 @@ function ByCategoryPresentation({
 
   return (
     <>
-      <span className="hidden text-2xl font-bold text-center print:block">{currentCategory?.title}</span>
+      <span className="hidden text-2xl font-bold text-center print:block">
+        {currentCategory?.title}
+      </span>
       <div className="grid grid-cols-11 lg:p-2">
         <div className="col-span-11 lg:col-span-3 xl:col-span-2 mt-2 lg:mt-5">
           <div className="inline-block lg:block lg:px-3 lg:pt-3 print:hidden">
@@ -77,82 +81,107 @@ function ByCategoryPresentation({
             >
               <li
                 key={currentParentCategory.id}
-                id={'SearchFilter' + currentParentCategory.id}
+                id={`SearchFilter${currentParentCategory.id}`}
                 className="inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow"
               >
                 <Link
                   className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-tertiaryB bg-gray-300"
-                  to={`/${sitename}/${kids ? 'kids/' : ''}categories/${currentParentCategory.id}?docType=${searchType}`}
+                  to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
+                    currentParentCategory.id
+                  }?docType=${searchType}`}
                 >
-                  {useCategoryIcon(currentParentCategory.title, 'inline-flex p-2 rounded-lg fill-current h-14 w-14')}
-                  <div className="inline-flex text-lg font-medium">{currentParentCategory.title}</div>
+                  {useCategoryIcon(
+                    currentParentCategory.title,
+                    'inline-flex p-2 rounded-lg fill-current h-14 w-14',
+                  )}
+                  <div className="inline-flex text-lg font-medium">
+                    {currentParentCategory.title}
+                  </div>
                 </Link>
               </li>
               {currentParentCategory?.children?.length > 0
-                ? currentParentCategory?.children?.map((child) => {
-                    return (
-                      <li
-                        key={child.id}
-                        id={'SearchFilter' + child.id}
-                        className={`inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow ${
-                          child.id === currentCategory.id
-                            ? 'border-l-4 md:border-l-0 lg:border-l-4 border-tertiaryB'
-                            : ''
+                ? currentParentCategory?.children?.map((child) => (
+                    <li
+                      key={child.id}
+                      id={`SearchFilter${child.id}`}
+                      className={`inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow ${
+                        child.id === currentCategory.id
+                          ? 'border-l-4 md:border-l-0 lg:border-l-4 border-tertiaryB'
+                          : ''
+                      }`}
+                    >
+                      <Link
+                        className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-tertiaryB ${
+                          child.id === currentCategory.id ? 'bg-gray-300' : ''
                         }`}
+                        to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
+                          child.id
+                        }?docType=${searchType}`}
                       >
-                        <Link
-                          className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-tertiaryB ${
-                            child.id === currentCategory.id ? 'bg-gray-300' : ''
-                          }`}
-                          to={`/${sitename}/${kids ? 'kids/' : ''}categories/${child.id}?docType=${searchType}`}
-                        >
-                          {getIcon('Placeholder', 'inline-flex p-2 rounded-lg fill-current h-14 w-0')}
-                          <div className="inline-flex text-lg font-medium">{child.title}</div>
-                        </Link>
-                      </li>
-                    )
-                  })
+                        {getIcon(
+                          'Placeholder',
+                          'inline-flex p-2 rounded-lg fill-current h-14 w-0',
+                        )}
+                        <div className="inline-flex text-lg font-medium">
+                          {child.title}
+                        </div>
+                      </Link>
+                    </li>
+                  ))
                 : null}
             </ul>
           </div>
           <div className="hidden lg:block lg:p-3">
-            <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-gray-300">{getParentCategoriesList()}</ul>
+            <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-gray-300">
+              {getParentCategoriesList()}
+            </ul>
           </div>
           {kids ? null : (
             <div className="hidden lg:block mt-1 lg:mt-5">
-              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">BROWSE BY:</h2>
+              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">
+                BROWSE BY:
+              </h2>
               <ul className="list-none">
                 <li
-                  id={'CategoryLink'}
+                  id="CategoryLink"
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
                     to={`/${sitename}/alphabet`}
                   >
-                    {getIcon('Alphabet', 'inline-flex fill-current w-8 lg:mr-5')}Alphabet
+                    {getIcon(
+                      'Alphabet',
+                      'inline-flex fill-current w-8 lg:mr-5',
+                    )}
+                    Alphabet
                   </Link>
                 </li>
                 <li
-                  id={'WordsLink'}
+                  id="WordsLink"
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
                     to={`/${sitename}/words`}
                   >
-                    {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}Words
+                    {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}
+                    Words
                   </Link>
                 </li>
                 <li
-                  id={'PhrasesLink'}
+                  id="PhrasesLink"
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
                     to={`/${sitename}/phrases`}
                   >
-                    {getIcon('Phrase', 'inline-flex fill-current w-8 lg:mr-5 mb-2')}Phrases
+                    {getIcon(
+                      'Phrase',
+                      'inline-flex fill-current w-8 lg:mr-5 mb-2',
+                    )}
+                    Phrases
                   </Link>
                 </li>
               </ul>
@@ -182,7 +211,7 @@ function ByCategoryPresentation({
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}
-                  accentColor={'tertiaryB'}
+                  accentColor="tertiaryB"
                 />
               </div>
               <div className="hidden md:block p-2 print:block">

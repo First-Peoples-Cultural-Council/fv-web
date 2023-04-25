@@ -8,10 +8,18 @@ import AlphabetPresentationWidget from 'components/Alphabet/AlphabetPresentation
 import Loading from 'components/Loading'
 
 function AlphabetContainer({ widgetView, kids }) {
-  const { characters, isLoading, links, onCharacterClick, onVideoClick, selectedData, sitename, videoIsOpen } =
-    AlphabetData({
-      widgetView,
-    })
+  const {
+    characters,
+    isLoading,
+    links,
+    onCharacterClick,
+    onVideoClick,
+    selectedData,
+    sitename,
+    videoIsOpen,
+  } = AlphabetData({
+    widgetView,
+  })
 
   if (widgetView && isLoading) {
     return <AlphabetPlaceholder />

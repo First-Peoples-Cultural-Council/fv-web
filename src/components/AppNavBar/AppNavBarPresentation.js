@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import getIcon from 'common/getIcon'
 import UserMenu from 'components/UserMenu'
 import { LOGIN_PATH, ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
@@ -17,7 +17,7 @@ function AppNavBarPresentation({ isHome = false }) {
 
   useEffect(() => {
     listener = document.addEventListener('scroll', () => {
-      let scrolled = document.scrollingElement.scrollTop
+      const scrolled = document.scrollingElement.scrollTop
       if (scrolled >= 60) {
         setscrollAtTop(false)
       } else {
@@ -41,34 +41,34 @@ function AppNavBarPresentation({ isHome = false }) {
     }
   }, [useLocation()])
 
-  const createMobileMenuItem = (title, iconName, link, openNewTab = true) => {
-    return (
-      <li>
-        <a
-          className="w-full my-3 p-1 text-fv-charcoal flex items-center rounded focus:ring-2"
-          href={link}
-          {...(openNewTab ? { target: '_blank' } : '')}
-          rel="noopener noreferrer"
-        >
-          {getIcon(iconName, 'fill-current h-12 w-8')}
-          <span className="ml-3 font-medium">{title}</span>
-        </a>
-      </li>
-    )
-  }
+  const createMobileMenuItem = (title, iconName, link, openNewTab = true) => (
+    <li>
+      <a
+        className="w-full my-3 p-1 text-fv-charcoal flex items-center rounded focus:ring-2"
+        href={link}
+        {...(openNewTab ? { target: '_blank' } : '')}
+        rel="noopener noreferrer"
+      >
+        {getIcon(iconName, 'fill-current h-12 w-8')}
+        <span className="ml-3 font-medium">{title}</span>
+      </a>
+    </li>
+  )
 
-  const createMenuItem = (title, iconName, link, openNewTab = true) => {
-    return (
-      <li className="mr-4">
-        <a href={link} {...(openNewTab ? { target: '_blank' } : '')} rel="noopener noreferrer">
-          <div className="h-8 xl:h-10 group p-1 inline-flex items-center text-base font-medium text-white hover:text-gray-300">
-            {getIcon(iconName, 'fill-current h-full w-auto')}
-            <p className="ml-1 xl:ml-3 xl:mr-2">{title}</p>
-          </div>
-        </a>
-      </li>
-    )
-  }
+  const createMenuItem = (title, iconName, link, openNewTab = true) => (
+    <li className="mr-4">
+      <a
+        href={link}
+        {...(openNewTab ? { target: '_blank' } : '')}
+        rel="noopener noreferrer"
+      >
+        <div className="h-8 xl:h-10 group p-1 inline-flex items-center text-base font-medium text-white hover:text-gray-300">
+          {getIcon(iconName, 'fill-current h-full w-auto')}
+          <p className="ml-1 xl:ml-3 xl:mr-2">{title}</p>
+        </div>
+      </a>
+    </li>
+  )
 
   return (
     <nav id="AppNavBar" role="navigation">
@@ -84,17 +84,24 @@ function AppNavBarPresentation({ isHome = false }) {
               <span className="sr-only">FirstVoices Logo</span>
               {getIcon('FVLogo', 'fill-current h-10')}
             </span>
-            <div className="w-16 text-white text-sm leading-tight text-center mr-2">Beta Version</div>
+            <div className="w-16 text-white text-sm leading-tight text-center mr-2">
+              Beta Version
+            </div>
           </div>
 
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
             {createMenuItem('About', 'About', ABOUT_LINK)}
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
-            {isHome && isGuest && createMenuItem('Sign in / Register', 'Login', LOGIN_PATH, false)}
+            {isHome &&
+              isGuest &&
+              createMenuItem('Sign in / Register', 'Login', LOGIN_PATH, false)}
             {isHome ? (
               <li>
-                <Link to="/languages" className="flex bg-bgRed px-8 py-2 rounded-full">
+                <Link
+                  to="/languages"
+                  className="flex bg-bgRed px-8 py-2 rounded-full"
+                >
                   Explore Languages{getIcon('ChevronRight', 'fill-current h-6')}
                 </Link>
               </li>
@@ -103,14 +110,21 @@ function AppNavBarPresentation({ isHome = false }) {
             )}
           </ul>
           {/* Landing Mobile Menu Button */}
-          <div id="LandingMobileMenuButton" className="flex items-center md:hidden">
+          <div
+            id="LandingMobileMenuButton"
+            className="flex items-center md:hidden"
+          >
             <button
               type="button"
               onClick={() => openCloseMobileLandingNavbar()}
               className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
             >
-              <span className="sr-only">{mobileLandingNavbarOpen ? 'Close menu' : 'Open menu'}</span>
-              {mobileLandingNavbarOpen ? getIcon('Close', 'h-6 w-6') : getIcon('HamburgerMenu', 'h-6 w-6')}
+              <span className="sr-only">
+                {mobileLandingNavbarOpen ? 'Close menu' : 'Open menu'}
+              </span>
+              {mobileLandingNavbarOpen
+                ? getIcon('Close', 'h-6 w-6')
+                : getIcon('HamburgerMenu', 'h-6 w-6')}
             </button>
           </div>
         </div>
@@ -130,14 +144,31 @@ function AppNavBarPresentation({ isHome = false }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 text-fv-charcoal flex items-center rounded">
                 Welcome
-                {user?.firstName && user?.firstName != 'Guest' ? `, ${user?.firstName}!` : '!'}
+                {user?.firstName && user?.firstName !== 'Guest'
+                  ? `, ${user?.firstName}!`
+                  : '!'}
               </li>
             )}
             {createMobileMenuItem('About', 'About', ABOUT_LINK)}
-            {createMobileMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
-            {isHome && createMobileMenuItem('Explore Languages', 'Dictionary', 'languages', false)}
+            {createMobileMenuItem(
+              'Support',
+              'QuestionCircleSolid',
+              SUPPORT_LINK,
+            )}
+            {isHome &&
+              createMobileMenuItem(
+                'Explore Languages',
+                'Dictionary',
+                'languages',
+                false,
+              )}
             {isGuest
-              ? createMobileMenuItem('Sign in / Register', 'Login', LOGIN_PATH, false)
+              ? createMobileMenuItem(
+                  'Sign in / Register',
+                  'Login',
+                  LOGIN_PATH,
+                  false,
+                )
               : createMobileMenuItem('Sign out', 'LogOut', LOGIN_PATH, false)}
           </ul>
         </div>

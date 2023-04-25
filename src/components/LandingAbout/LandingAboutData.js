@@ -6,7 +6,7 @@ function LandingAboutData() {
     settings: {
       mockData: true,
       bg: 'bgGreen',
-      bgImage: bgImage,
+      bgImage,
       image: Img,
       title: 'ABOUT FIRSTVOICES',
       url: '/about',

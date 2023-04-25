@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { RichUtils } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
-//FPCC
+// FPCC
 import WysiwygControls from 'components/Form/WysiwygControls'
 import getIcon from 'common/getIcon'
 
@@ -14,7 +14,10 @@ export const headerBlockTypes = [
 
 function BlockStyleToolbar({ editorState, onChange, toolbar }) {
   const selection = editorState.getSelection()
-  const currentBlockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType()
+  const currentBlockType = editorState
+    .getCurrentContent()
+    .getBlockForKey(selection.getStartKey())
+    .getType()
 
   const toggleBlockType = (event, blockType) => {
     event.preventDefault()
@@ -32,14 +35,18 @@ function BlockStyleToolbar({ editorState, onChange, toolbar }) {
       )}
       {toolbar?.includes('OL') && (
         <WysiwygControls.Button
-          onClickHandler={(event) => toggleBlockType(event, 'ordered-list-item')}
+          onClickHandler={(event) =>
+            toggleBlockType(event, 'ordered-list-item')
+          }
           active={currentBlockType === 'OL'}
           label={getIcon('OrderedList', 'fill-current h-6 w-6')}
         />
       )}
       {toolbar?.includes('UL') && (
         <WysiwygControls.Button
-          onClickHandler={(event) => toggleBlockType(event, 'unordered-list-item')}
+          onClickHandler={(event) =>
+            toggleBlockType(event, 'unordered-list-item')
+          }
           active={currentBlockType === 'UL'}
           label={getIcon('UnorderedList', 'fill-current h-6 w-6')}
         />

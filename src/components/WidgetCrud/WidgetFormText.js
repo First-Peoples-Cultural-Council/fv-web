@@ -38,11 +38,12 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     urlLabel: '',
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { register, handleSubmit, control, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div id="WidgetFormText">
@@ -60,19 +61,44 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
         <>
           <div className="col-span-12">
             <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+            {errors?.title && (
+              <div className="text-red-500">{errors?.title?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.WysiwygField label="Text" nameId="textWithFormatting" control={control} toolbar="none" />
-            {errors?.textWithFormatting && <div className="text-red-500">{errors?.textWithFormatting?.message}</div>}
+            <Form.WysiwygField
+              label="Text"
+              nameId="textWithFormatting"
+              control={control}
+              toolbar="none"
+            />
+            {errors?.textWithFormatting && (
+              <div className="text-red-500">
+                {errors?.textWithFormatting?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-6">
-            <Form.AddMedia label="Image" nameId="image" docType={DOC_IMAGE} control={control} />
-            {errors?.image && <div className="text-red-500">{errors?.image?.message}</div>}
+            <Form.AddMedia
+              label="Image"
+              nameId="image"
+              docType={DOC_IMAGE}
+              control={control}
+            />
+            {errors?.image && (
+              <div className="text-red-500">{errors?.image?.message}</div>
+            )}
           </div>
           <div className="col-span-6">
-            <Form.AddMedia label="Audio" nameId="audio" docType={DOC_AUDIO} control={control} />
-            {errors?.audio && <div className="text-red-500">{errors?.audio?.message}</div>}
+            <Form.AddMedia
+              label="Audio"
+              nameId="audio"
+              docType={DOC_AUDIO}
+              control={control}
+            />
+            {errors?.audio && (
+              <div className="text-red-500">{errors?.audio?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.RadioButtons
@@ -105,7 +131,9 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter a URL you would like to link to (e.g. https://www.firstvoices.com/smalgyax-beta/words)"
               register={register}
             />
-            {errors?.url && <div className="text-red-500">{errors?.url?.message}</div>}
+            {errors?.url && (
+              <div className="text-red-500">{errors?.url?.message}</div>
+            )}
           </div>
           <div className="col-span-6">
             <Form.TextField
@@ -114,7 +142,9 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter a label for the URL button."
               register={register}
             />
-            {errors?.urlLabel && <div className="text-red-500">{errors?.urlLabel?.message}</div>}
+            {errors?.urlLabel && (
+              <div className="text-red-500">{errors?.urlLabel?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>

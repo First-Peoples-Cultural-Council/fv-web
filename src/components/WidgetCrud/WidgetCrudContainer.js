@@ -7,10 +7,11 @@ import WidgetCrudData from 'components/WidgetCrud/WidgetCrudData'
 import Loading from 'components/Loading'
 
 function WidgetCrudContainer({ insertIndex, destinationId }) {
-  const { backHandler, dataToEdit, isLoading, submitHandler, widgetTypes } = WidgetCrudData({
-    insertIndex,
-    destinationId,
-  })
+  const { backHandler, dataToEdit, isLoading, submitHandler, widgetTypes } =
+    WidgetCrudData({
+      insertIndex,
+      destinationId,
+    })
   return (
     <Loading.Container isLoading={isLoading}>
       <WidgetCrudPresentation

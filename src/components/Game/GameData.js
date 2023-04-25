@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 
 function GameData() {

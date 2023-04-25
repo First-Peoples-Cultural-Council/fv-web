@@ -12,8 +12,10 @@ function WidgetData({ type, widgetData, id }) {
   const idToUse = widgetId || id
 
   if (idToUse) {
-    const { data } = useQuery([idToUse], () => api.document.get({ id: idToUse, properties: 'widget,settings' }))
-    dataToReturn = widgetDataAdaptor({ data: data })
+    const { data } = useQuery([idToUse], () =>
+      api.document.get({ id: idToUse, properties: 'widget,settings' }),
+    )
+    dataToReturn = widgetDataAdaptor({ data })
   }
 
   return {

@@ -24,11 +24,15 @@ function SpeakerCrudData() {
   let dataToEdit = null
 
   if (speakerId) {
-    const { data } = useQuery(['speaker', speakerId], () => api.document.get({ id: speakerId, properties: '*' }), {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    })
-    dataToEdit = speakerCrudDataAdaptor({ data: data })
+    const { data } = useQuery(
+      ['speaker', speakerId],
+      () => api.document.get({ id: speakerId, properties: '*' }),
+      {
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+      },
+    )
+    dataToEdit = speakerCrudDataAdaptor({ data })
   }
 
   const submitHandler = (formData) => {
@@ -50,8 +54,11 @@ function SpeakerCrudData() {
       },
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! A new speaker has been created.' })
-      setTimeout(function () {
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! A new speaker has been created.',
+      })
+      setTimeout(() => {
         window.location.href = `/${site?.sitename}/dashboard/edit/speakers`
       }, 1000)
     } else {
@@ -72,7 +79,10 @@ function SpeakerCrudData() {
       },
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your speaker has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your speaker has been saved.',
+      })
       queryClient.invalidateQueries(['speakers', site?.id])
       queryClient.invalidateQueries(['speaker', speakerId])
       backHandler()

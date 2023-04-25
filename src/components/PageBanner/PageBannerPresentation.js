@@ -2,7 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { getMediaUrl } from 'common/urlHelpers'
 
-function PageBannerPresentation({ backgroundId, backgroundType, textNode, logoId, variant, site }) {
+function PageBannerPresentation({
+  backgroundId,
+  backgroundType,
+  textNode,
+  logoId,
+  variant,
+  site,
+}) {
   if (!backgroundId && !textNode && !logoId) {
     return null
   }
@@ -10,10 +17,12 @@ function PageBannerPresentation({ backgroundId, backgroundType, textNode, logoId
   const containerStyles =
     backgroundType === 'gifOrImg'
       ? {
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.47), rgba(0, 0, 0, 0.47)), url(${getMediaUrl({
-            id: backgroundId,
-            type: 'gifOrImg',
-          })})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.47), rgba(0, 0, 0, 0.47)), url(${getMediaUrl(
+            {
+              id: backgroundId,
+              type: 'gifOrImg',
+            },
+          )})`,
         }
       : {}
 
@@ -57,7 +66,13 @@ function PageBannerPresentation({ backgroundId, backgroundType, textNode, logoId
           }`}
         >
           {logoId && (
-            <div className={`${variant === 'CENTER' || window.innerWidth < 768 ? 'mb-1' : 'mr-1'} hidden md:flex`}>
+            <div
+              className={`${
+                variant === 'CENTER' || window.innerWidth < 768
+                  ? 'mb-1'
+                  : 'mr-1'
+              } hidden md:flex`}
+            >
               <img
                 className="h-16 w-auto xl:h-28 xl:w-auto rounded-full mx-auto"
                 src={getMediaUrl({ id: logoId, type: 'gifOrImg' })}

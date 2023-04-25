@@ -1,5 +1,8 @@
 import useWysiwygState from 'common/useWysiwygState'
-import { selectOneFormHelper, selectOneDataHelper } from 'common/utils/mediaHelpers'
+import {
+  selectOneFormHelper,
+  selectOneDataHelper,
+} from 'common/utils/mediaHelpers'
 import { isUUID } from 'common/stringHelpers'
 
 export const storyPagesDataAdaptor = ({ data }) => {
@@ -9,11 +12,15 @@ export const storyPagesDataAdaptor = ({ data }) => {
     return {}
   }
 
-  const { getJsonFromWysiwygState, getWysiwygStateFromHtml, getWysiwygJsonFromHtml, getWysiwygStateFromJson } =
-    useWysiwygState()
+  const {
+    getJsonFromWysiwygState,
+    getWysiwygStateFromHtml,
+    getWysiwygJsonFromHtml,
+    getWysiwygStateFromJson,
+  } = useWysiwygState()
 
   function formatPage(page) {
-    const modifiedV2 = page.modifiedv2 ? true : false
+    const modifiedV2 = !!page.modifiedv2
     let formattedData = null
 
     const videos = page.related_videos || []
@@ -26,7 +33,7 @@ export const storyPagesDataAdaptor = ({ data }) => {
       formattedData = {
         id: page?.uid || '',
         text: textJson,
-        textPreview: textState?.getPlainText().slice(0, 150) + '...',
+        textPreview: `${textState?.getPlainText().slice(0, 150)}...`,
         textTranslation: page.textTranslation,
         audio: page.related_audio || [],
         notes: page?.notes,
@@ -40,7 +47,7 @@ export const storyPagesDataAdaptor = ({ data }) => {
       formattedData = {
         id: page?.uid || '',
         text: getJsonFromWysiwygState(textState),
-        textPreview: textState?.getPlainText().slice(0, 150) + '...',
+        textPreview: `${textState?.getPlainText().slice(0, 150)}...`,
         textTranslation: getWysiwygJsonFromHtml(translations?.join('')),
         audio: page.related_audio || [],
         notes: [page?.cultural_note?.join(', ')],
@@ -69,21 +76,23 @@ export const pageOrderDataAdaptor = ({ data }) => {
 
   if (isV2 && data?.properties['fvbook:pages']?.length > 0) {
     return data?.properties['fvbook:pages']
-  } else {
-    const hasSortMaps = rawPageData?.length > 0 && rawPageData[0]?.sortMap != null
-    const pageOrder = hasSortMaps
-      ? rawPageData
-          .slice()
-          .sort((a, b) => a?.sortMap > b?.sortMap)
-          .map((p) => p?.uid)
-      : rawPageData?.map((p) => p.uid)
-    return pageOrder
   }
+  const hasSortMaps =
+    rawPageData?.length > 0 && rawPageData[0]?.sortMap !== null
+  const pageOrder = hasSortMaps
+    ? rawPageData
+        .slice()
+        .sort((a, b) => a?.sortMap > b?.sortMap)
+        .map((p) => p?.uid)
+    : rawPageData?.map((p) => p.uid)
+  return pageOrder
 }
 
 export const pageFormDataAdaptor = ({ formData }) => {
   const { getJsonFromWysiwygState } = useWysiwygState()
-  const text = formData?.text?.getCurrentContent() ? getJsonFromWysiwygState(formData?.text?.getCurrentContent()) : ''
+  const text = formData?.text?.getCurrentContent()
+    ? getJsonFromWysiwygState(formData?.text?.getCurrentContent())
+    : ''
   const textTranslation = formData?.textTranslation?.getCurrentContent()
     ? getJsonFromWysiwygState(formData?.textTranslation?.getCurrentContent())
     : ''
@@ -93,8 +102,12 @@ export const pageFormDataAdaptor = ({ formData }) => {
     'fvbookentry:text_translation': textTranslation,
     'fv:notes': formData?.notes,
     'fv:related_audio': formData?.audio,
-    'fv:related_pictures': isUUID(mediaObject?.imageId) ? [mediaObject?.imageId] : [],
-    'fv:related_videos': isUUID(mediaObject?.videoId) ? [mediaObject?.videoId] : [],
+    'fv:related_pictures': isUUID(mediaObject?.imageId)
+      ? [mediaObject?.imageId]
+      : [],
+    'fv:related_videos': isUUID(mediaObject?.videoId)
+      ? [mediaObject?.videoId]
+      : [],
     'fv:modifiedv2': true,
   }
 }

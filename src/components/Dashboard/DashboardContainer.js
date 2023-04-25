@@ -15,9 +15,17 @@ function DashboardContainer() {
   const { currentUser, currentSite, homeTiles, isLoading } = DashboardData()
   return (
     <Loading.Container isLoading={isLoading}>
-      <DashboardPresentation currentUser={currentUser} currentSite={currentSite}>
+      <DashboardPresentation
+        currentUser={currentUser}
+        currentSite={currentSite}
+      >
         <Routes>
-          <Route path="profile" element={<div className="px-6 text-2xl">User Profile placeholder</div>} />
+          <Route
+            path="profile"
+            element={
+              <div className="px-6 text-2xl">User Profile placeholder</div>
+            }
+          />
           <Route
             path="support"
             element={
@@ -59,7 +67,13 @@ function DashboardContainer() {
           />
           <Route
             path="*"
-            element={<DashboardHome.Presentation tiles={homeTiles} currentUser={currentUser} site={currentSite} />}
+            element={
+              <DashboardHome.Presentation
+                tiles={homeTiles}
+                currentUser={currentUser}
+                site={currentSite}
+              />
+            }
           />
         </Routes>
       </DashboardPresentation>

@@ -7,13 +7,18 @@ import PageForm from 'components/PageCrud/PageForm'
 import Loading from 'components/Loading'
 
 function PageCrudContainer() {
-  const { backHandler, dataToEdit, isWidgetAreaEdit, site, submitHandler } = PageCrudData()
+  const { backHandler, dataToEdit, isWidgetAreaEdit, site, submitHandler } =
+    PageCrudData()
   return isWidgetAreaEdit ? (
-    <Loading.Container isLoading={dataToEdit?.id ? false : true}>
+    <Loading.Container isLoading={!dataToEdit?.id}>
       <PageCrudPresentation dataToEdit={dataToEdit} site={site} />
     </Loading.Container>
   ) : (
-    <PageForm cancelHandler={backHandler} submitHandler={submitHandler} dataToEdit={dataToEdit} />
+    <PageForm
+      cancelHandler={backHandler}
+      submitHandler={submitHandler}
+      dataToEdit={dataToEdit}
+    />
   )
 }
 

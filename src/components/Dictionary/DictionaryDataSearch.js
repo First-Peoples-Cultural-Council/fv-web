@@ -14,18 +14,19 @@ function DictionaryDataSearch({ searchType }) {
   const [searchParams] = useSearchParams()
 
   // Search fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } = useSearchLoader({
-    searchApi: api.search,
-    queryKey: 'dictionary',
-    siteUid: site?.uid,
-    searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({
+      searchApi: api.search,
+      queryKey: 'dictionary',
+      siteUid: site?.uid,
+      searchParams,
+    })
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -54,7 +55,7 @@ function DictionaryDataSearch({ searchType }) {
   }
 
   return {
-    isLoading: site?.title ? false : true,
+    isLoading: !site?.title,
     isLoadingEntries: isLoading,
     items: searchResults,
     infiniteScroll,

@@ -6,7 +6,15 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/getIcon'
 
-function Autocomplete({ control, disabled, placeholder, helpText, label, nameId, options }) {
+function Autocomplete({
+  control,
+  disabled,
+  placeholder,
+  helpText,
+  label,
+  nameId,
+  options,
+}) {
   const [query, setQuery] = useState('')
   const getCurrentLabel = (currentValue) => {
     const currentOption = options?.find(({ value }) => value === currentValue)
@@ -16,12 +24,17 @@ function Autocomplete({ control, disabled, placeholder, helpText, label, nameId,
     query === ''
       ? options
       : options.filter((option) =>
-          option.label.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, ''))
+          option.label
+            .toLowerCase()
+            .replace(/\s+/g, '')
+            .includes(query.toLowerCase().replace(/\s+/g, '')),
         )
 
   return (
     <Fragment key="FormAutocomplete">
-      <label className="block text-sm font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <div className="w-full mt-1">
         <Controller
           control={control}
@@ -71,14 +84,20 @@ function Autocomplete({ control, disabled, placeholder, helpText, label, nameId,
                               key={optionIndex}
                               className={({ active }) =>
                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active ? 'bg-secondary text-white' : 'text-fv-charcoal'
+                                  active
+                                    ? 'bg-secondary text-white'
+                                    : 'text-fv-charcoal'
                                 }`
                               }
                               value={option?.value}
                             >
                               {({ selected, active }) => (
                                 <>
-                                  <span className={`inline-flex truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                                  <span
+                                    className={`inline-flex truncate ${
+                                      selected ? 'font-medium' : 'font-normal'
+                                    }`}
+                                  >
                                     {option.label}
                                   </span>
                                   {selected ? (
@@ -87,7 +106,10 @@ function Autocomplete({ control, disabled, placeholder, helpText, label, nameId,
                                         active ? 'text-white' : 'text-secondary'
                                       }`}
                                     >
-                                      {getIcon('Checkmark', 'h-5 w-5 fill-current')}
+                                      {getIcon(
+                                        'Checkmark',
+                                        'h-5 w-5 fill-current',
+                                      )}
                                     </span>
                                   ) : null}
                                 </>
@@ -102,13 +124,17 @@ function Autocomplete({ control, disabled, placeholder, helpText, label, nameId,
               </div>
               <div className="col-span-6">
                 <p className="text-xs">Selected {label}:</p>
-                {value?.map((optionValue) => getCurrentLabel(optionValue)).join(', ')}
+                {value
+                  ?.map((optionValue) => getCurrentLabel(optionValue))
+                  .join(', ')}
               </div>
             </div>
           )}
         />
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }

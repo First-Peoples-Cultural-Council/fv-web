@@ -1,4 +1,4 @@
-import React, { Fragment, Suspense, lazy, useState } from 'react'
+import React, { Suspense, lazy, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Menu } from '@headlessui/react'
 
@@ -9,14 +9,22 @@ import Loading from 'components/Loading'
 import { MEMBERS, TEAM } from 'common/constants'
 
 // Modal content kept in separate file and lazy loaded to prevent loading of QR library before onClick
-const QrcodeModalContent = lazy(() => import('components/Actions/QrcodeModalContent'))
+const QrcodeModalContent = lazy(() =>
+  import('components/Actions/QrcodeModalContent'),
+)
 
-function QrcodeButton({ docType, docVisibility, iconStyling, url, withLabels }) {
+function QrcodeButton({
+  docType,
+  docVisibility,
+  iconStyling,
+  url,
+  withLabels,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <Menu.Item>
       {({ active }) => (
-        <Fragment>
+        <>
           <button
             id="QrcodeButton"
             className={`${
@@ -29,7 +37,10 @@ function QrcodeButton({ docType, docVisibility, iconStyling, url, withLabels }) 
             {withLabels ? <span className="ml-3">QR CODE</span> : null}
           </button>
           {/* QR Modal Content */}
-          <Modal.Presentation isOpen={isModalOpen} closeHandler={() => setIsModalOpen(false)}>
+          <Modal.Presentation
+            isOpen={isModalOpen}
+            closeHandler={() => setIsModalOpen(false)}
+          >
             {docVisibility === TEAM || docVisibility === MEMBERS ? (
               <div
                 id="ShareModalContent"
@@ -38,15 +49,20 @@ function QrcodeButton({ docType, docVisibility, iconStyling, url, withLabels }) 
                 <p className="text-2xl text-fv-charcoal font-bold">
                   This {docType} is visible to {docVisibility} only!
                 </p>
-                <p className="text-lg text-fv-charcoal">QR Codes can only be generated for public content.</p>
+                <p className="text-lg text-fv-charcoal">
+                  QR Codes can only be generated for public content.
+                </p>
               </div>
             ) : (
               <Suspense fallback={<Loading.Container isLoading />}>
-                <QrcodeModalContent closeHandler={() => setIsModalOpen(false)} url={url} />
+                <QrcodeModalContent
+                  closeHandler={() => setIsModalOpen(false)}
+                  url={url}
+                />
               </Suspense>
             )}
           </Modal.Presentation>
-        </Fragment>
+        </>
       )}
     </Menu.Item>
   )

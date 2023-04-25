@@ -17,7 +17,9 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     title: definitions.title().required('A title is required'),
     acknowledgement: definitions.paragraph(),
     notes: definitions.paragraph(),
-    audioFile: definitions.file({ extensionList: extensionList }).required('A file is required'),
+    audioFile: definitions
+      .file({ extensionList })
+      .required('A file is required'),
   })
 
   const defaultValues = {
@@ -34,14 +36,21 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     dataToEdit: {},
   })
 
-  const { data: speakerData } = useQuery(['speakers', site?.uid], () => api.speaker.getAll({ siteId: site?.uid }), {
-    // The query will not execute until the uid exists
-    enabled: !!site?.uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data: speakerData } = useQuery(
+    ['speakers', site?.uid],
+    () => api.speaker.getAll({ siteId: site?.uid }),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!site?.uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
-  const speakerOptions = speakerData?.entries?.map((entry) => ({ label: entry?.title, value: entry?.uid }))
+  const speakerOptions = speakerData?.entries?.map((entry) => ({
+    label: entry?.title,
+    value: entry?.uid,
+  }))
 
   const submitHandler = (formData) => {
     const file = formData?.audioFile?.[0]
@@ -73,7 +82,10 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
             if (markCompleteResponse?.documentId) {
               setIsUploading(false)
               setFileUploaded(true)
-              setSelectedMedia((oldArray) => [...oldArray, markCompleteResponse?.documentId])
+              setSelectedMedia((oldArray) => [
+                ...oldArray,
+                markCompleteResponse?.documentId,
+              ])
             }
           })
       })
@@ -87,22 +99,44 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
         <div className="mt-2 grid grid-cols-12 gap-4">
           <div className="col-span-12">
             <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+            {errors?.title && (
+              <div className="text-red-500">{errors?.title?.message}</div>
+            )}
           </div>
 
           <div className="col-span-12">
-            <Form.TextField label="Acknowledgements" nameId="acknowledgement" register={register} />
-            {errors?.acknowledgement && <div className="text-red-500">{errors?.acknowledgement?.message}</div>}
+            <Form.TextField
+              label="Acknowledgements"
+              nameId="acknowledgement"
+              register={register}
+            />
+            {errors?.acknowledgement && (
+              <div className="text-red-500">
+                {errors?.acknowledgement?.message}
+              </div>
+            )}
           </div>
 
           <div className="col-span-12">
-            <Form.TextField label="General Notes" nameId="notes" register={register} />
-            {errors?.notes && <div className="text-red-500">{errors?.notes?.message}</div>}
+            <Form.TextField
+              label="General Notes"
+              nameId="notes"
+              register={register}
+            />
+            {errors?.notes && (
+              <div className="text-red-500">{errors?.notes?.message}</div>
+            )}
           </div>
 
           <div className="col-span-12">
-            <Form.FileUploadField label="Audio File" nameId="audioFile" register={register} />
-            {errors?.audioFile && <div className="text-red-500">{errors?.audioFile?.message}</div>}
+            <Form.FileUploadField
+              label="Audio File"
+              nameId="audioFile"
+              register={register}
+            />
+            {errors?.audioFile && (
+              <div className="text-red-500">{errors?.audioFile?.message}</div>
+            )}
           </div>
 
           <div className="col-span-12">
@@ -116,7 +150,13 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
           </div>
 
           <div className="col-span-12 flex justify-end mt-2 px-6">
-            {isUploading && <Form.SubmitButtons submitLabel="Uploading .." submitIcon="Upload" onSubmitClick={null} />}
+            {isUploading && (
+              <Form.SubmitButtons
+                submitLabel="Uploading .."
+                submitIcon="Upload"
+                onSubmitClick={null}
+              />
+            )}
             {!isUploading && !fileUploaded && (
               <Form.SubmitButtons
                 submitLabel="Upload File"

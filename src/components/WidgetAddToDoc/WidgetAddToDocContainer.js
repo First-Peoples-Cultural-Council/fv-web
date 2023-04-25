@@ -6,7 +6,11 @@ import WidgetAddToDocPresentation from 'components/WidgetAddToDoc/WidgetAddToDoc
 import WidgetAddToDocData from 'components/WidgetAddToDoc/WidgetAddToDocData'
 
 function WidgetAddToDocContainer({ closeHandler, insertIndex, destinationId }) {
-  const { isLoading, site, submitHandler, widgets } = WidgetAddToDocData({ closeHandler, insertIndex, destinationId })
+  const { isLoading, site, submitHandler, widgets } = WidgetAddToDocData({
+    closeHandler,
+    insertIndex,
+    destinationId,
+  })
   return (
     <WidgetAddToDocPresentation
       closeHandler={closeHandler}

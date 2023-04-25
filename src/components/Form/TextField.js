@@ -6,7 +6,10 @@ import PropTypes from 'prop-types'
 function TextField({ label, nameId, helpText, disabled, register }) {
   return (
     <Fragment key={`${nameId}_TextField`}>
-      <label htmlFor={nameId} className="block text-sm font-medium text-fv-charcoal">
+      <label
+        htmlFor={nameId}
+        className="block text-sm font-medium text-fv-charcoal"
+      >
         {label}
       </label>
       <div className="mt-1">
@@ -21,7 +24,9 @@ function TextField({ label, nameId, helpText, disabled, register }) {
           } mt-1 block w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
         />
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }

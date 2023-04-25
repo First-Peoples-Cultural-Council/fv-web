@@ -21,23 +21,41 @@ function WidgetFormBase({
     <form id="WidgetForm" onReset={reset}>
       <div className="grid grid-cols-12 gap-6">
         <div className="hidden">
-          <input id="widgetType" name="widgetType" type="hidden" value="default" {...register('widgetType')} />
+          <input
+            id="widgetType"
+            name="widgetType"
+            type="hidden"
+            value="default"
+            {...register('widgetType')}
+          />
         </div>
         <div className="col-span-12 sm:col-span-6">
           <Form.TextField
             label={isCreateMode ? 'A nickname for your Widget' : 'Nickname'}
             nameId="widgetName"
             register={register}
-            helpText={isCreateMode ? 'This nickname will not appear on your site and cannot be changed.' : ''}
+            helpText={
+              isCreateMode
+                ? 'This nickname will not appear on your site and cannot be changed.'
+                : ''
+            }
             disabled={!isCreateMode}
           />
-          {errors?.widgetName && <div className="text-red-500">{errors?.widgetName?.message}</div>}
+          {errors?.widgetName && (
+            <div className="text-red-500">{errors?.widgetName?.message}</div>
+          )}
         </div>
         {children}
         {isEditableWidgetType(widgetType) && (
           <div className="col-span-12">
-            <Form.Visibility control={control} errors={errors} label="Who can see this widget?" />
-            {errors?.visibility && <div className="text-red-500">{errors?.visibility?.message}</div>}
+            <Form.Visibility
+              control={control}
+              errors={errors}
+              label="Who can see this widget?"
+            />
+            {errors?.visibility && (
+              <div className="text-red-500">{errors?.visibility?.message}</div>
+            )}
           </div>
         )}
       </div>

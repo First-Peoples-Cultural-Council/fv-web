@@ -161,7 +161,13 @@ function DashboardEditContainer() {
         />
         <Route
           path="*"
-          element={<DashboardEditPresentation tileContent={tileContent} headerContent={headerContent} site={site} />}
+          element={
+            <DashboardEditPresentation
+              tileContent={tileContent}
+              headerContent={headerContent}
+              site={site}
+            />
+          }
         />
       </Routes>
     </div>

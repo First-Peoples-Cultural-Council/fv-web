@@ -17,9 +17,12 @@ function GamesPresentation({ kids }) {
   ]
   const { sitename } = useParams()
   return (
-    <main className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="GamesPresentation">
+    <main
+      className="pt-2 md:pt-4 lg:pt-8 bg-white"
+      data-testid="GamesPresentation"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title={'GAMES'} accentColor={'tertiaryA'} />
+        <SectionTitle.Presentation title="GAMES" accentColor="tertiaryA" />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="px-4 sm:px-6 lg:px-8">
@@ -35,7 +38,9 @@ function GamesPresentation({ kids }) {
                     <li key={game.pathname} className="relative">
                       <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryA group block w-full rounded-lg overflow-hidden">
                         <Link
-                          to={`/${sitename}/${kids ? 'kids/' : ''}games/${game.pathname}`}
+                          to={`/${sitename}/${kids ? 'kids/' : ''}games/${
+                            game.pathname
+                          }`}
                           className="bg-tertiaryA text-white text-4xl group w-full px-5 py-10 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                         >
                           {getIcon(game.icon, 'fill-current h-28')}

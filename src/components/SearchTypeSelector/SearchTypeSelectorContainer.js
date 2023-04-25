@@ -5,13 +5,25 @@ import PropTypes from 'prop-types'
 import Tabs from 'components/Tabs'
 import useSearchType from 'common/search/useSearchBoxNavigation'
 
-function SearchTypeSelectorContainer({ accentColor, selectedSearchType, setSearchType }) {
+function SearchTypeSelectorContainer({
+  accentColor,
+  selectedSearchType,
+  setSearchType,
+}) {
   const { allSearchTypes } = useSearchType({})
 
   const dictionaryTypes = [
     { label: 'WORDS', icon: 'Word', value: allSearchTypes.WORD.searchDocType },
-    { label: 'PHRASES', icon: 'Phrase', value: allSearchTypes.PHRASE.searchDocType },
-    { label: 'BOTH', icon: 'All', value: allSearchTypes.WORD_AND_PHRASE.searchDocType },
+    {
+      label: 'PHRASES',
+      icon: 'Phrase',
+      value: allSearchTypes.PHRASE.searchDocType,
+    },
+    {
+      label: 'BOTH',
+      icon: 'All',
+      value: allSearchTypes.WORD_AND_PHRASE.searchDocType,
+    },
   ]
 
   return (

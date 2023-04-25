@@ -14,21 +14,26 @@ function DashboardImmersionData() {
   const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
   useEffect(() => {
-    if (children && children?.['Label Dictionary']) setLabelDictionaryId(children['Label Dictionary'])
+    if (children && children?.['Label Dictionary'])
+      setLabelDictionaryId(children['Label Dictionary'])
   }, [children])
 
-  const { isLoading, error, isError, data } = useQuery(['immersion', uid], () => api.immersion.get(labelDictionaryId), {
-    // The query will not execute until the labelDictionaryId exists
-    enabled: !!labelDictionaryId,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { isLoading, error, isError, data } = useQuery(
+    ['immersion', uid],
+    () => api.immersion.get(labelDictionaryId),
+    {
+      // The query will not execute until the labelDictionaryId exists
+      enabled: !!labelDictionaryId,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])

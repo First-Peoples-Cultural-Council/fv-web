@@ -35,13 +35,21 @@ import Form from 'components/Form'
 import useWidgetIcon from 'common/useWidgetIcon'
 import DeleteButton from 'components/DeleteButton'
 
-function WidgetCrudPresentation({ backHandler, dataToEdit, submitHandler, widgetTypes }) {
+function WidgetCrudPresentation({
+  backHandler,
+  dataToEdit,
+  submitHandler,
+  widgetTypes,
+}) {
   const [selectedType, setSelectedType] = useState(null)
   return (
     <div id="WidgetCrudPresentation" className="max-w-5xl p-8">
       {!selectedType && !dataToEdit?.widgetType ? (
         <div className="space-y-2 p-6">
-          <Form.Header title={'Create a new Widget'} subtitle={"1. Choose what type of Widget you'd like to create."} />
+          <Form.Header
+            title="Create a new Widget"
+            subtitle={"1. Choose what type of Widget you'd like to create."}
+          />
           <div className="grid gap-4 grid-cols-4 place-content-center">
             {widgetTypes?.length > 0 &&
               widgetTypes?.map((type) => (
@@ -56,7 +64,11 @@ function WidgetCrudPresentation({ backHandler, dataToEdit, submitHandler, widget
                 >
                   <div>
                     <div className="p-2 flex items-center">
-                      {useWidgetIcon(type, 'w-10 h-10 fill-current inline-flex mx-2')} {getWidgetTypeLabel(type)}
+                      {useWidgetIcon(
+                        type,
+                        'w-10 h-10 fill-current inline-flex mx-2',
+                      )}{' '}
+                      {getWidgetTypeLabel(type)}
                     </div>
                   </div>
                 </button>
@@ -78,11 +90,15 @@ function WidgetCrudPresentation({ backHandler, dataToEdit, submitHandler, widget
       ) : (
         <div>
           <Form.Header
-            title={!dataToEdit?.widgetType ? 'Create a new Widget' : 'Edit your Widget'}
+            title={
+              !dataToEdit?.widgetType
+                ? 'Create a new Widget'
+                : 'Edit your Widget'
+            }
             subtitle={
               !dataToEdit?.widgetType
                 ? `2. Enter the details for your new ${getWidgetTypeLabel(
-                    dataToEdit?.widgetType || selectedType
+                    dataToEdit?.widgetType || selectedType,
                   )} Widget.`
                 : ''
             }
@@ -100,8 +116,12 @@ function WidgetCrudPresentation({ backHandler, dataToEdit, submitHandler, widget
 
           <WidgetForm
             submitHandler={submitHandler}
-            type={dataToEdit?.widgetType ? dataToEdit?.widgetType : selectedType}
-            cancelHandler={dataToEdit?.widgetType ? backHandler : () => setSelectedType(null)}
+            type={
+              dataToEdit?.widgetType ? dataToEdit?.widgetType : selectedType
+            }
+            cancelHandler={
+              dataToEdit?.widgetType ? backHandler : () => setSelectedType(null)
+            }
             dataToEdit={dataToEdit}
           />
         </div>
@@ -125,35 +145,93 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
       )
 
     case WIDGET_APPS:
-      return <WidgetFormApps cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormApps
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
     case WIDGET_KEYBOARDS:
-      return <WidgetFormKeyboards cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormKeyboards
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_CONTACT:
-      return <WidgetFormContact cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormContact
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_GALLERY:
-      return <WidgetFormGallery cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormGallery
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_LOGO:
-      return <WidgetFormLogo cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormLogo
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_QUOTES:
-      return <WidgetFormQuotes cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormQuotes
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_TEXT:
-      return <WidgetFormText cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormText
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_TEXTCONCISE:
       return (
-        <WidgetFormTextConcise cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+        <WidgetFormTextConcise
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
       )
 
     case WIDGET_TEXTFULL:
-      return <WidgetFormTextFull cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormTextFull
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_TEXTICONS:
-      return <WidgetFormTextIcons cancelHandler={cancelHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      return (
+        <WidgetFormTextIcons
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_IFRAME:
     case WIDGET_TEXTMULTI:

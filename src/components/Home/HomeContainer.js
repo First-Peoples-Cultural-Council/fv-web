@@ -10,7 +10,12 @@ function HomeContainer() {
 
   return (
     <div data-testid="Home">
-      <HomePresentation backgroundId={backgroundId} backgroundType={backgroundType} title={title} logoId={logoId} />
+      <HomePresentation
+        backgroundId={backgroundId}
+        backgroundType={backgroundType}
+        title={title}
+        logoId={logoId}
+      />
       <WidgetArea.Container id={siteId} />
     </div>
   )

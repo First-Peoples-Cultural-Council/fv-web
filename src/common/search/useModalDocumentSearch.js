@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
 import useSearchType from 'components/SearchTypeSelector/useSearchType'
@@ -16,19 +16,22 @@ function useModalDocumentSearch({ docTypes }) {
 
   const _searchParams = `q=${searchBox.submittedSearchTerm}&docType=${searchType}&domain=BOTH`
 
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError } = useSearchLoader({
-    searchApi: api.search,
-    queryKey: 'search',
-    siteUid: site?.uid,
-    searchParams: _searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading, isError } =
+    useSearchLoader({
+      searchApi: api.search,
+      queryKey: 'search',
+      siteUid: site?.uid,
+      searchParams: _searchParams,
+    })
 
   return {
     searchQuery: searchBox.displayedSearchTerm,
     setSearchQuery: searchBox.handleSearchTermChange,
     search: searchBox.handleSearchTermSubmit,
     searchResults,
-    hasResults: searchResults?.pages !== undefined && searchResults?.pages?.[0]?.results?.length > 0,
+    hasResults:
+      searchResults?.pages !== undefined &&
+      searchResults?.pages?.[0]?.results?.length > 0,
     infiniteScroll,
     isLoading: isLoading || isError,
     isLoadingEntries: isLoading,

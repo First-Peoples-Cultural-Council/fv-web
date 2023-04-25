@@ -25,32 +25,37 @@ function WidgetAddToDocPresentation({
     >
       <Loading.Container isLoading={isLoading}>
         {widgets?.length > 0 ? (
-          <Fragment>
+          <>
             <div className="text-center font-medium">
               <h2 className="text-2xl text-fv-charcoal">Available Widgets</h2>
-              <p className="text-xl text-fv-charcoal">Select a Widget to add to your page.</p>
+              <p className="text-xl text-fv-charcoal">
+                Select a Widget to add to your page.
+              </p>
             </div>
 
             <div className="max-w-7xl grid gap-5 grid-cols-4">
-              {widgets?.map((widget) => {
-                return (
-                  <button
-                    key={widget?.['ecm:uuid']}
-                    onClick={() => setSelectedWidget(widget?.['ecm:uuid'])}
-                    className={`${
-                      selectedWidget === widget?.['ecm:uuid']
-                        ? 'bg-secondary text-white'
-                        : 'hover:bg-gray-50 text-primary bg-white'
-                    } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
-                  >
-                    <div className="space-y-1 truncate">
-                      {useWidgetIcon(widget?.['widget:type'], 'w-10 h-10 fill-current inline-flex mx-2')}
-                      <p className="text-lg font-bold">{getWidgetTypeLabel(widget?.['widget:type'])}</p>
-                      <p>Name: {widget?.['ecm:name']}</p>
-                    </div>
-                  </button>
-                )
-              })}
+              {widgets?.map((widget) => (
+                <button
+                  key={widget?.['ecm:uuid']}
+                  onClick={() => setSelectedWidget(widget?.['ecm:uuid'])}
+                  className={`${
+                    selectedWidget === widget?.['ecm:uuid']
+                      ? 'bg-secondary text-white'
+                      : 'hover:bg-gray-50 text-primary bg-white'
+                  } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
+                >
+                  <div className="space-y-1 truncate">
+                    {useWidgetIcon(
+                      widget?.['widget:type'],
+                      'w-10 h-10 fill-current inline-flex mx-2',
+                    )}
+                    <p className="text-lg font-bold">
+                      {getWidgetTypeLabel(widget?.['widget:type'])}
+                    </p>
+                    <p>Name: {widget?.['ecm:name']}</p>
+                  </div>
+                </button>
+              ))}
             </div>
             <div className="space-y-3">
               <div className="space-x-2">
@@ -72,11 +77,15 @@ function WidgetAddToDocPresentation({
               </div>
               <div className="justify-center text-xl">OR</div>
             </div>
-          </Fragment>
+          </>
         ) : (
           <div className="text-center font-medium">
-            <p className="text-xl text-fv-charcoal">There are no existing Widgets available to add to your page.</p>
-            <p className="text-xl text-fv-charcoal">Would you like to create a new Widget?</p>
+            <p className="text-xl text-fv-charcoal">
+              There are no existing Widgets available to add to your page.
+            </p>
+            <p className="text-xl text-fv-charcoal">
+              Would you like to create a new Widget?
+            </p>
           </div>
         )}
         <Link

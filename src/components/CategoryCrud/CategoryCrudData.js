@@ -22,25 +22,34 @@ function CategoryCrudData() {
   // Fetch Parent Categories
   const { data, isLoading } = useQuery(
     ['parent-categories', site?.uid],
-    () => api.category.get({ siteId: site?.uid, parentsOnly: 'true', inUseOnly: 'false' }),
+    () =>
+      api.category.get({
+        siteId: site?.uid,
+        parentsOnly: 'true',
+        inUseOnly: 'false',
+      }),
     {
       enabled: !!site?.uid, // The query will not execute until the siteId exists
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
-  const parentCategories = site?.children?.Categories ? [{ label: '-----', value: site?.children?.Categories }] : []
+  const parentCategories = site?.children?.Categories
+    ? [{ label: '-----', value: site?.children?.Categories }]
+    : []
 
   if (data?.categories?.length > 0) {
-    data?.categories.forEach((category) => parentCategories?.push({ label: category?.title, value: category?.id }))
+    data?.categories.forEach((category) =>
+      parentCategories?.push({ label: category?.title, value: category?.id }),
+    )
   }
 
   let dataToEdit = null
 
   if (categoryId) {
     const { data: categoryData } = useQuery(['category', categoryId], () =>
-      api.document.get({ id: categoryId, properties: '*' })
+      api.document.get({ id: categoryId, properties: '*' }),
     )
     dataToEdit = categoryCrudDataAdaptor({ data: categoryData })
   }
@@ -64,8 +73,11 @@ function CategoryCrudData() {
       },
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your category has been created.' })
-      setTimeout(function () {
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your category has been created.',
+      })
+      setTimeout(() => {
         backHandler()
       }, 1000)
     } else {
@@ -88,9 +100,15 @@ function CategoryCrudData() {
     })
     if (response?.uid) {
       if (formData?.parentId !== dataToEdit?.parentId) {
-        api.category.updateParent({ categoryId: categoryId, parentCategoryId: formData?.parentId })
+        api.category.updateParent({
+          categoryId,
+          parentCategoryId: formData?.parentId,
+        })
       }
-      setNotification({ type: 'SUCCESS', message: 'Success! Your category has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your category has been saved.',
+      })
       queryClient.invalidateQueries(['categories', site?.id])
       queryClient.invalidateQueries(['category', categoryId])
       backHandler()

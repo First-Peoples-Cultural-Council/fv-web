@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { DOC_BOOK, DOC_PHRASE, DOC_SONG, DOC_STORY, DOC_WORD } from 'common/constants'
+import {
+  DOC_BOOK,
+  DOC_PHRASE,
+  DOC_SONG,
+  DOC_STORY,
+  DOC_WORD,
+} from 'common/constants'
 
 function useSearchType({ initialSearchType = 'ALL' }) {
-  const [selectedSearchType, setSelectedSearchType] = useState(initialSearchType)
+  const [selectedSearchType, setSelectedSearchType] =
+    useState(initialSearchType)
 
   const setSelectedSearchTypeWithDefaults = (newSearchType = 'ALL') => {
     setSelectedSearchType(newSearchType)
@@ -27,8 +34,11 @@ function useSearchType({ initialSearchType = 'ALL' }) {
   addSearchTypeData('ALL', 'language entry', 'language entries')
 
   const getSearchTypeFromDocTypes = (docTypes) => {
-    if (docTypes.length == 2) {
-      if (docTypes.indexOf(DOC_PHRASE) >= 0 && docTypes.indexOf(DOC_WORD) >= 0) {
+    if (docTypes.length === 2) {
+      if (
+        docTypes.indexOf(DOC_PHRASE) >= 0 &&
+        docTypes.indexOf(DOC_WORD) >= 0
+      ) {
         return 'WORD_AND_PHRASE'
       }
 
@@ -37,7 +47,7 @@ function useSearchType({ initialSearchType = 'ALL' }) {
       }
     }
 
-    if (docTypes.length == 1) {
+    if (docTypes.length === 1) {
       if (docTypes.indexOf(DOC_BOOK) >= 0) {
         return 'BOOK'
       }
@@ -64,7 +74,9 @@ function useSearchType({ initialSearchType = 'ALL' }) {
 
   const getSearchLabel = ({ searchType: searchDocType, plural = false }) => {
     const key =
-      Object.keys(allSearchTypes).indexOf(searchDocType?.toUpperCase()) > -1 ? searchDocType.toUpperCase() : 'ALL'
+      Object.keys(allSearchTypes).indexOf(searchDocType?.toUpperCase()) > -1
+        ? searchDocType.toUpperCase()
+        : 'ALL'
     const typeData = allSearchTypes[key]
     const searchLabel = plural ? typeData.labelPlural : typeData.label
     return searchLabel

@@ -34,11 +34,12 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
     urlLabel: '',
   }
 
-  const { register, control, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { register, control, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormTextConcise">
@@ -55,16 +56,35 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
       >
         <>
           <div className="col-span-12">
-            <Form.TextField label="Title Text" nameId="title" register={register} />
-            {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+            <Form.TextField
+              label="Title Text"
+              nameId="title"
+              register={register}
+            />
+            {errors?.title && (
+              <div className="text-red-500">{errors?.title?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.TextField label="Subtitle Text" nameId="text" register={register} />
-            {errors?.text && <div className="text-red-500">{errors?.text?.message}</div>}
+            <Form.TextField
+              label="Subtitle Text"
+              nameId="text"
+              register={register}
+            />
+            {errors?.text && (
+              <div className="text-red-500">{errors?.text?.message}</div>
+            )}
           </div>
           <div className="col-span-6">
-            <Form.AddMedia label="Audio" nameId="audio" docType={DOC_AUDIO} control={control} />
-            {errors?.audio && <div className="text-red-500">{errors?.audio?.message}</div>}
+            <Form.AddMedia
+              label="Audio"
+              nameId="audio"
+              docType={DOC_AUDIO}
+              control={control}
+            />
+            {errors?.audio && (
+              <div className="text-red-500">{errors?.audio?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -73,7 +93,9 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter any URL you would like to link to."
               register={register}
             />
-            {errors?.url && <div className="text-red-500">{errors?.url?.message}</div>}
+            {errors?.url && (
+              <div className="text-red-500">{errors?.url?.message}</div>
+            )}
           </div>
           <div className="col-span-6">
             <Form.TextField
@@ -82,7 +104,9 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter a label for the URL button."
               register={register}
             />
-            {errors?.urlLabel && <div className="text-red-500">{errors?.urlLabel?.message}</div>}
+            {errors?.urlLabel && (
+              <div className="text-red-500">{errors?.urlLabel?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>

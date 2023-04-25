@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { RichUtils } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
-//FPCC
+// FPCC
 import WysiwygControls from 'components/Form/WysiwygControls'
 
 function InlineStyleToolbar({ editorState, onChange }) {

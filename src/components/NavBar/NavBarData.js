@@ -6,7 +6,9 @@ import { useSiteStore } from 'context/SiteContext'
 function NavBarData() {
   const { sitename } = useParams()
   const location = useLocation()
-  const isHome = location.pathname === `/${encodeURI(sitename)}` || location.pathname === `/${encodeURI(sitename)}/`
+  const isHome =
+    location.pathname === `/${encodeURI(sitename)}` ||
+    location.pathname === `/${encodeURI(sitename)}/`
 
   const isSearchPage =
     location.pathname.startsWith(`/${sitename}/search`) ||

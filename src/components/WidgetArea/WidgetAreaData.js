@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
-//FPCC
+// FPCC
 import api from 'services/api'
 import { isAuthorizedToView } from 'common/utils/visibilityHelpers'
 import { useUserStore } from 'context/UserContext'
@@ -16,30 +16,34 @@ function WidgetAreaData({ id }) {
   // Use an 'enricher' with no properties (to reduce the response size)
   const { data, error, isError, isLoading } = useQuery(
     ['widget-area', id],
-    () => api.document.get({ id: id, properties: '', contextParameters: 'widgets' }),
+    () =>
+      api.document.get({
+        id,
+        properties: '',
+        contextParameters: 'widgets',
+      }),
     {
       // The query will not execute until the id exists
       enabled: !!id,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [error])
 
   // V1 FUDGE - Widget context params currently returns ALL widgets so it is necessary to hide according to access
-  const widgetsDataAdaptor = (widgets) => {
-    return widgets?.filter(function (widget) {
-      return isAuthorizedToView(user, sitename, widget?.visibility)
-    })
-  }
+  const widgetsDataAdaptor = (widgets) =>
+    widgets?.filter((widget) =>
+      isAuthorizedToView(user, sitename, widget?.visibility),
+    )
 
   return {
     isLoading,

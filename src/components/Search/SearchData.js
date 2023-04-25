@@ -23,18 +23,19 @@ function SearchData() {
   const entryLabel = getSearchLabel({ searchType })
 
   // Dictionary fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } = useSearchLoader({
-    searchApi: api.search,
-    queryKey: 'search',
-    siteUid: site?.uid,
-    searchParams: searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({
+      searchApi: api.search,
+      queryKey: 'search',
+      siteUid: site?.uid,
+      searchParams,
+    })
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -52,7 +53,11 @@ function SearchData() {
     : {}
 
   for (const [key, value] of Object.entries(countsByType)) {
-    filters.push({ type: key?.toUpperCase(), label: makePlural(key), count: value })
+    filters.push({
+      type: key?.toUpperCase(),
+      label: makePlural(key),
+      count: value,
+    })
   }
 
   const handleFilter = (filter) => {
@@ -65,12 +70,12 @@ function SearchData() {
   }
 
   return {
-    searchType: searchType,
-    siteTitle: title ? title : 'FirstVoices',
+    searchType,
+    siteTitle: title || 'FirstVoices',
     filters,
     handleFilter,
     infiniteScroll,
-    isLoading: isLoading,
+    isLoading,
     items: searchResults,
     loadRef,
     actions: ['copy'],

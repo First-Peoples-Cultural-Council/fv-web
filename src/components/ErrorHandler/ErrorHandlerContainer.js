@@ -23,8 +23,8 @@ function ErrorHandlerContainer({ error }) {
       return (
         <ErrorHandlerPresentation
           status={errorStatus}
-          heading={'Unauthorized'}
-          content={errorText ? errorText : 'You do not have permission to view this page.'}
+          heading="Unauthorized"
+          content={errorText || 'You do not have permission to view this page.'}
           backHandler={backHandler}
         />
       )
@@ -32,8 +32,8 @@ function ErrorHandlerContainer({ error }) {
       return (
         <ErrorHandlerPresentation
           status={errorStatus}
-          heading={'Not Found'}
-          content={errorText ? errorText : "Sorry, we couldn't find that page."}
+          heading="Not Found"
+          content={errorText || "Sorry, we couldn't find that page."}
           backHandler={backHandler}
         />
       )
@@ -42,8 +42,11 @@ function ErrorHandlerContainer({ error }) {
       return (
         <ErrorHandlerPresentation
           status={errorStatusCode}
-          heading={'Error'}
-          content={errorText ? errorText : 'Sorry, please try again. If this issue persists please contact our team.'}
+          heading="Error"
+          content={
+            errorText ||
+            'Sorry, please try again. If this issue persists please contact our team.'
+          }
           backHandler={backHandler}
         />
       )
@@ -52,8 +55,11 @@ function ErrorHandlerContainer({ error }) {
       return (
         <ErrorHandlerPresentation
           status={errorStatus}
-          heading={'Oops, something went wrong.'}
-          content={errorText ? errorText : 'Please try again. If this issue persists please contact our team.'}
+          heading="Oops, something went wrong."
+          content={
+            errorText ||
+            'Please try again. If this issue persists please contact our team.'
+          }
           backHandler={backHandler}
         />
       )
@@ -61,8 +67,8 @@ function ErrorHandlerContainer({ error }) {
       return (
         <ErrorHandlerPresentation
           status={errorStatus}
-          heading={'Oops, something went wrong.'}
-          content={'Please try again. If this issue persists please contact our team.'}
+          heading="Oops, something went wrong."
+          content="Please try again. If this issue persists please contact our team."
           backHandler={backHandler}
         />
       )

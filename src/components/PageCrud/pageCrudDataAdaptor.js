@@ -1,6 +1,5 @@
-import { DOC_PAGE } from 'common/constants'
+import { DOC_PAGE, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 import { getCustomPageHref } from 'common/urlHelpers'
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 import { convertStateToVisibility } from 'common/stringHelpers'
 
 const pageCrudDataAdaptor = ({ sitename, data }) => {
@@ -16,7 +15,10 @@ const pageCrudDataAdaptor = ({ sitename, data }) => {
       title: properties?.['dc:title'],
       subtitle: properties?.['dc:description'],
       url: properties?.['fvpage:url'],
-      href: getCustomPageHref({ sitename: sitename, pageUrl: properties?.['fvpage:url'] }),
+      href: getCustomPageHref({
+        sitename,
+        pageUrl: properties?.['fvpage:url'],
+      }),
       imageId: properties?.['fvpage:background_top_image'],
       videoId: properties?.['fvpage:background_top_video'],
       widgetsActive: properties?.['widgets:active'],

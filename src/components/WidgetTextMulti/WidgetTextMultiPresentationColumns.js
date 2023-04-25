@@ -12,18 +12,25 @@ function WidgetTextMultiPresentationColumns({ textWidgets }) {
     const accentColor = widget?.color || 'primary'
 
     return (
-      <div key={widget?.uid} className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
+      <div
+        key={widget?.uid}
+        className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden"
+      >
         <div className="shrink-0">
           <img
             className="h-72 w-full object-cover object-center"
             src={getMediaUrl({ id: image, type: 'image', viewName: 'Medium' })}
-            //alt={image?.title}
+            // alt={image?.title}
           />
         </div>
         <div className="flex-1 flex flex-col justify-between p-6">
           <div className="flex-1">
             <div className="block">
-              <p className={`text-xl font-bold text-center h-14 text-${accentColor}`}>{title}</p>
+              <p
+                className={`text-xl font-bold text-center h-14 text-${accentColor}`}
+              >
+                {title}
+              </p>
               <div className="mt-3 text-fv-charcoal">
                 <WysiwygBlock jsonString={textWithFormatting} />
               </div>
@@ -35,11 +42,13 @@ function WidgetTextMultiPresentationColumns({ textWidgets }) {
                 {url && (
                   <a
                     href={url}
-                    {...(url.includes(FIRSTVOICESLINK) ? { target: '_self' } : { target: '_blank' })}
+                    {...(url.includes(FIRSTVOICESLINK)
+                      ? { target: '_self' }
+                      : { target: '_blank' })}
                     rel="noopener noreferrer"
                     className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
                   >
-                    <span>{urlLabel ? urlLabel : 'Learn More'}</span>
+                    <span>{urlLabel || 'Learn More'}</span>
                   </a>
                 )}
               </div>
@@ -51,7 +60,10 @@ function WidgetTextMultiPresentationColumns({ textWidgets }) {
   }
 
   return (
-    <section className="w-full" data-testid="WidgetTextMultiPresentationColumns">
+    <section
+      className="w-full"
+      data-testid="WidgetTextMultiPresentationColumns"
+    >
       <div className="relative bg-gradient-to-b from-gray-50 to-gray-300 px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
         <div className="absolute inset-0">
           <div className="bg-gray-50 h-1/3 sm:h-2/3" />

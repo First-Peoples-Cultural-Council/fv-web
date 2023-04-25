@@ -44,11 +44,15 @@ function SpeakerCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField label="Name" nameId="name" register={register} />
-            {errors?.name && <div className="text-red-500">{errors?.name?.message}</div>}
+            {errors?.name && (
+              <div className="text-red-500">{errors?.name?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.TextField label="Bio" nameId="bio" register={register} />
-            {errors?.bio && <div className="text-red-500">{errors?.bio?.message}</div>}
+            {errors?.bio && (
+              <div className="text-red-500">{errors?.bio?.message}</div>
+            )}
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons

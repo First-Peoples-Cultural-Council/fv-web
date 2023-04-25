@@ -7,7 +7,8 @@ import DictionaryDetailPresentationKids from 'components/DictionaryDetail/Dictio
 import Loading from 'components/Loading'
 
 function DictionaryDetailContainer({ docId, docType, isDrawer, kids }) {
-  const { actions, entry, isLoading, moreActions, sitename, backHandler } = DictionaryDetailData({ docId, docType })
+  const { actions, entry, isLoading, moreActions, sitename, backHandler } =
+    DictionaryDetailData({ docId, docType })
   return (
     <Loading.Container isLoading={isLoading}>
       {isDrawer && (
@@ -18,9 +19,19 @@ function DictionaryDetailContainer({ docId, docType, isDrawer, kids }) {
           sitename={sitename}
         />
       )}
-      {kids && <DictionaryDetailPresentationKids entry={entry} backHandler={backHandler} />}
+      {kids && (
+        <DictionaryDetailPresentationKids
+          entry={entry}
+          backHandler={backHandler}
+        />
+      )}
       {!isDrawer && !kids && (
-        <DictionaryDetailPresentation actions={actions} entry={entry} moreActions={moreActions} sitename={sitename} />
+        <DictionaryDetailPresentation
+          actions={actions}
+          entry={entry}
+          moreActions={moreActions}
+          sitename={sitename}
+        />
       )}
     </Loading.Container>
   )

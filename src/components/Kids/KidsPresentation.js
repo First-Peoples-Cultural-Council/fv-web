@@ -16,7 +16,10 @@ function KidsPresentation({ links, sitename, siteTitle }) {
                 <h2 id="gallery-heading" className="sr-only">
                   {siteTitle} for Kids
                 </h2>
-                <ul role="list" className="grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-3">
+                <ul
+                  role="list"
+                  className="grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-3"
+                >
                   {links.map((link) => (
                     <li key={link.id} className="relative">
                       <div
@@ -26,7 +29,10 @@ function KidsPresentation({ links, sitename, siteTitle }) {
                           to={`/${sitename}/kids/${link.path}`}
                           className={`bg-${link.color} group w-full py-2 md:py-4 flex flex-col items-center font-medium group-hover:opacity-75`}
                         >
-                          {getIcon(link.icon, 'fill-current text-white h-20 md:h-40')}
+                          {getIcon(
+                            link.icon,
+                            'fill-current text-white h-20 md:h-40',
+                          )}
                           <span
                             className={`w-full p-1 md:p-3 bg-white text-center text-xl lg:text-4xl font-bold text-${link.textColor} m-2 md:m-5`}
                           >

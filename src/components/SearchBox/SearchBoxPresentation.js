@@ -1,7 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function SearchBoxPresentation({ onSubmit, setSearchTerm, placeholder, searchTerm, minimal = false }) {
+function SearchBoxPresentation({
+  onSubmit,
+  setSearchTerm,
+  placeholder,
+  searchTerm,
+  minimal = false,
+}) {
   const largeStyle =
     'block w-full focus md:text-xl lg:text-2xl text-fv-charcoal-light rounded-none rounded-l-md pl-4 truncate'
   const minimalStyle =

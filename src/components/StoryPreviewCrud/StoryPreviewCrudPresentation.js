@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-//FPCC
-//import Story from 'components/Story'
+// FPCC
+// import Story from 'components/Story'
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
 import { getMediaUrl } from 'common/urlHelpers'
 
@@ -30,22 +30,35 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
     if (coverVisual.type === 'image') {
       return (
         <div className="w-1/2">
-          <img src={getMediaUrl({ type: 'image', id: coverVisual.id, viewName: 'Medium' })} />
-        </div>
-      )
-    } else if (coverVisual.type === 'video') {
-      return (
-        <video src={getMediaUrl({ type: 'video', id: coverVisual.id, viewName: 'Small' })} controls>
-          Your browser does not support the video tag
-        </video>
-      )
-    } else {
-      return (
-        <div>
-          <p>No cover media selected</p>
+          <img
+            src={getMediaUrl({
+              type: 'image',
+              id: coverVisual.id,
+              viewName: 'Medium',
+            })}
+          />
         </div>
       )
     }
+    if (coverVisual.type === 'video') {
+      return (
+        <video
+          src={getMediaUrl({
+            type: 'video',
+            id: coverVisual.id,
+            viewName: 'Small',
+          })}
+          controls
+        >
+          Your browser does not support the video tag
+        </video>
+      )
+    }
+    return (
+      <div>
+        <p>No cover media selected</p>
+      </div>
+    )
   }
 
   return (
@@ -61,18 +74,25 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
           <div>
             <WysiwygBlock jsonString={translate ? intro : introTranslation} />
           </div>
-          <button className="text-primary-light font-semibold" onClick={() => setTranslate(!translate)}>
+          <button
+            className="text-primary-light font-semibold"
+            onClick={() => setTranslate(!translate)}
+          >
             View Translation
           </button>
           <h2 className="pt-8 font-semibold">Acknowledgements</h2>
           <p>{acknowledgements}</p>
-          <h2 className="pt-8 font-semibold">Want this included in the Kids site?</h2>
+          <h2 className="pt-8 font-semibold">
+            Want this included in the Kids site?
+          </h2>
           <p>{kidFriendly === 'true' ? 'Yes' : 'No'}</p>
           <h2 className="pt-8 pb-2 font-semibold">Featured Image</h2>
           {getCoverMedia()}
         </div>
         <div className="flex justify-end">
-          <Link to={`/${sitename}/dashboard/edit/story?step=0&id=${storyId}`}>EDIT</Link>
+          <Link to={`/${sitename}/dashboard/edit/story?step=0&id=${storyId}`}>
+            EDIT
+          </Link>
         </div>
       </div>
       {pages?.[currentPageId] && (
@@ -83,7 +103,11 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
               {pages?.[currentPageId]?.images?.length > 0 && (
                 <div className="w-1/2 pr-10">
                   <img
-                    src={getMediaUrl({ type: 'image', id: pages?.[currentPageId]?.images[0]?.uid, viewName: 'Medium' })}
+                    src={getMediaUrl({
+                      type: 'image',
+                      id: pages?.[currentPageId]?.images[0]?.uid,
+                      viewName: 'Medium',
+                    })}
                   />
                 </div>
               )}
@@ -91,11 +115,18 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
                 {pages?.[currentPageId].text && (
                   <div>
                     <WysiwygBlock
-                      jsonString={translate ? pages?.[currentPageId]?.text : pages?.[currentPageId]?.textTranslation}
+                      jsonString={
+                        translate
+                          ? pages?.[currentPageId]?.text
+                          : pages?.[currentPageId]?.textTranslation
+                      }
                     />
                   </div>
                 )}
-                <button className="text-primary-light font-semibold" onClick={() => setTranslate(!translate)}>
+                <button
+                  className="text-primary-light font-semibold"
+                  onClick={() => setTranslate(!translate)}
+                >
                   View Translation
                 </button>
               </div>
@@ -107,7 +138,9 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
                   key={pageIndex}
                   onClick={() => setCurrentPageId(pageId)}
                   className={`cursor-pointer ${
-                    pageId === currentPageId ? 'text-fv-charcoal-dark font-bold' : 'text-fv-charcoal-light'
+                    pageId === currentPageId
+                      ? 'text-fv-charcoal-dark font-bold'
+                      : 'text-fv-charcoal-light'
                   }`}
                 >
                   {pageIndex + 1}
@@ -115,7 +148,11 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
               ))}
             </div>
             <div className="flex justify-end">
-              <Link to={`/${sitename}/dashboard/edit/story?step=1&id=${storyId}`}>EDIT</Link>
+              <Link
+                to={`/${sitename}/dashboard/edit/story?step=1&id=${storyId}`}
+              >
+                EDIT
+              </Link>
             </div>
           </div>
         </div>
@@ -127,7 +164,9 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
           <p className="pb-8">{visibility}</p>
         </div>
         <div className="flex justify-end">
-          <Link to={`/${sitename}/dashboard/edit/story?step=2&id=${storyId}`}>EDIT</Link>
+          <Link to={`/${sitename}/dashboard/edit/story?step=2&id=${storyId}`}>
+            EDIT
+          </Link>
         </div>
       </div>
       <div className="flex w-full justify-end">
@@ -142,7 +181,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { string, object } = PropTypes
 
 StoryPreviewCrudPresentation.propTypes = {

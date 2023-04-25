@@ -12,7 +12,7 @@ function AudioNativePresentation({ audioId, styling }) {
     function handleMultiplPlayers(e) {
       const audio = document.getElementsByTagName('audio')
       for (let i = 0, len = audio.length; i < len; i++) {
-        if (audio[i] != e.target) {
+        if (audio[i] !== e.target) {
           audio[i].pause()
         }
       }
@@ -30,7 +30,9 @@ function AudioNativePresentation({ audioId, styling }) {
     Howler.stop()
   }
 
-  return <audio className={styling} src={src} controls onPlay={() => onPlay()} />
+  return (
+    <audio className={styling} src={src} controls onPlay={() => onPlay()} />
+  )
 }
 // PROPTYPES
 const { string } = PropTypes

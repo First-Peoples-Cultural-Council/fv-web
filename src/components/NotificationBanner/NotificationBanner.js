@@ -6,7 +6,7 @@ import { useNotification } from 'context/NotificationContext'
 import getIcon from 'common/getIcon'
 import { NOTIFICATION_TIME } from 'common/constants'
 
-const NotificationBanner = () => {
+function NotificationBanner() {
   const { notification, setNotification } = useNotification()
 
   useEffect(() => {
@@ -31,9 +31,16 @@ const NotificationBanner = () => {
         return (
           <div className="rounded-lg bg-green-50 p-4">
             <div className="flex">
-              <div className="flex-shrink-0">{getIcon('CheckCircleSolid', 'h-5 w-5 fill-current  text-green-400')}</div>
+              <div className="flex-shrink-0">
+                {getIcon(
+                  'CheckCircleSolid',
+                  'h-5 w-5 fill-current  text-green-400',
+                )}
+              </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-green-800">{notification?.message}</p>
+                <p className="text-sm font-medium text-green-800">
+                  {notification?.message}
+                </p>
               </div>
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
@@ -54,9 +61,16 @@ const NotificationBanner = () => {
         return (
           <div className="rounded-lg bg-red-50 p-4">
             <div className="flex">
-              <div className="flex-shrink-0">{getIcon('TimesCircleSolid', 'h-5 w-5 fill-current text-red-400')}</div>
+              <div className="flex-shrink-0">
+                {getIcon(
+                  'TimesCircleSolid',
+                  'h-5 w-5 fill-current text-red-400',
+                )}
+              </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-red-800">{notification?.message}</p>
+                <p className="text-sm font-medium text-red-800">
+                  {notification?.message}
+                </p>
               </div>
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
@@ -78,10 +92,15 @@ const NotificationBanner = () => {
           <div className="rounded-lg bg-yellow-50 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
-                {getIcon('ExclamationTriangleSolid', 'h-5 w-5 fill-current text-yellow-400')}
+                {getIcon(
+                  'ExclamationTriangleSolid',
+                  'h-5 w-5 fill-current text-yellow-400',
+                )}
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-yellow-800">{notification?.message}</p>
+                <p className="text-sm font-medium text-yellow-800">
+                  {notification?.message}
+                </p>
               </div>
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
@@ -102,9 +121,16 @@ const NotificationBanner = () => {
         return (
           <div className="rounded-lg bg-blue-50 p-4">
             <div className="flex">
-              <div className="flex-shrink-0">{getIcon('InfoCircleSolid', 'h-5 w-5 fill-current text-blue-400')}</div>
+              <div className="flex-shrink-0">
+                {getIcon(
+                  'InfoCircleSolid',
+                  'h-5 w-5 fill-current text-blue-400',
+                )}
+              </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-blue-800">{notification?.message}</p>
+                <p className="text-sm font-medium text-blue-800">
+                  {notification?.message}
+                </p>
               </div>
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
@@ -126,9 +152,16 @@ const NotificationBanner = () => {
         return (
           <div className="rounded-lg bg-gray-50 shadow-lg p-4">
             <div className="flex">
-              <div className="flex-shrink-0">{getIcon('InfoCircleSolid', 'h-5 w-5 fill-current text-primary')}</div>
+              <div className="flex-shrink-0">
+                {getIcon(
+                  'InfoCircleSolid',
+                  'h-5 w-5 fill-current text-primary',
+                )}
+              </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-primary">{notification?.message}</p>
+                <p className="text-sm font-medium text-primary">
+                  {notification?.message}
+                </p>
               </div>
               <div className="ml-auto pl-3">
                 <div className="-mx-1.5 -my-1.5">
@@ -149,8 +182,12 @@ const NotificationBanner = () => {
   }
 
   return (
-    <Transition as={Fragment} show={notification ? true : false}>
-      <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={handleClose}>
+    <Transition as={Fragment} show={!!notification}>
+      <Dialog
+        as="div"
+        className="fixed inset-0 z-10 overflow-y-auto"
+        onClose={handleClose}
+      >
         <div className="min-h-screen px-4 text-center">
           <Transition.Child
             as={Fragment}
@@ -165,7 +202,10 @@ const NotificationBanner = () => {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span className="inline-block h-screen align-middle" aria-hidden="true">
+          <span
+            className="inline-block h-screen align-middle"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
           <Transition.Child
@@ -177,7 +217,9 @@ const NotificationBanner = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="max-w-7xl mx-auto ">{getBanner(notification?.type)}</div>
+            <div className="max-w-7xl mx-auto ">
+              {getBanner(notification?.type)}
+            </div>
           </Transition.Child>
         </div>
       </Dialog>

@@ -54,8 +54,17 @@ function DictionaryFull({ searchType, kids }) {
 }
 
 function DictionarySearch({ searchType, kids }) {
-  const { actions, infiniteScroll, isLoading, isLoadingEntries, items, labels, moreActions, sitename, loadRef } =
-    DictionaryDataSearch({ searchType })
+  const {
+    actions,
+    infiniteScroll,
+    isLoading,
+    isLoadingEntries,
+    items,
+    labels,
+    moreActions,
+    sitename,
+    loadRef,
+  } = DictionaryDataSearch({ searchType })
   return (
     <Loading.Container isLoading={isLoading}>
       <DictionaryPresentation

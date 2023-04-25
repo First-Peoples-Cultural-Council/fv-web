@@ -12,11 +12,15 @@ function RequireAuth({ children, role, withMessage }) {
   const { sitename } = useParams()
 
   const statusTextUnauthorized =
-    role == 'SuperAdmin' ? 'This page is hidden.' : `You must be a ${role} of this site to access this.`
+    role === 'SuperAdmin'
+      ? 'This page is hidden.'
+      : `You must be a ${role} of this site to access this.`
 
   const unauthorised = withMessage ? (
     <Loading.Container isLoading={isLoading}>
-      <ErrorHandler.Container error={{ status: 401, statusText: statusTextUnauthorized }} />
+      <ErrorHandler.Container
+        error={{ status: 401, statusText: statusTextUnauthorized }}
+      />
     </Loading.Container>
   ) : (
     ''
@@ -36,7 +40,9 @@ function RequireAuth({ children, role, withMessage }) {
         }
         return unauthorised
       case 'Member':
-        if (userSiteRole.match(/^(Member|Recorder|RecorderWithApproval|Admin)$/)) {
+        if (
+          userSiteRole.match(/^(Member|Recorder|RecorderWithApproval|Admin)$/)
+        ) {
           return children
         }
         return unauthorised

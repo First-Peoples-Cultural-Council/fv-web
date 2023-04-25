@@ -7,7 +7,11 @@ import SearchBox from 'components/SearchBox'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
 
 function SearchInputContainerMinimal({ kids, customBaseUrl, searchDocType }) {
-  const { handleSearchNavigation, displayedSearchTerm, handleSearchTermChange } = useSearchBoxNavigation({
+  const {
+    handleSearchNavigation,
+    displayedSearchTerm,
+    handleSearchTermChange,
+  } = useSearchBoxNavigation({
     kids,
     customBaseUrl,
     searchDocType,

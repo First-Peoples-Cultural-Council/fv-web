@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import useSearchBox from 'components/SearchBox/useSearchBox'
 import useSearchLanguage from 'components/SearchLanguageSelector/useSearchLanguage'
@@ -19,12 +19,17 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
   const { site } = useSiteStore()
   const searchBox = useSearchBox()
   const searchTypeData = useSearchType({ initialSearchType: searchType })
-  const entryLabel = makeTitleCase(searchTypeData.getSearchLabel({ searchType: searchTypeData.searchType }))
+  const entryLabel = makeTitleCase(
+    searchTypeData.getSearchLabel({ searchType: searchTypeData.searchType }),
+  )
   const searchLanguageData = useSearchLanguage({ entryLabel })
   const placeholderSearchType = searchType || searchTypeData.searchType
   const searchBoxPlaceholder =
-    placeholderSearchType && placeholderSearchType != 'ALL'
-      ? `Search ${searchTypeData.getSearchLabel({ searchType: placeholderSearchType, plural: true })} in ${site.title}`
+    placeholderSearchType && placeholderSearchType !== 'ALL'
+      ? `Search ${searchTypeData.getSearchLabel({
+          searchType: placeholderSearchType,
+          plural: true,
+        })} in ${site.title}`
       : `Search ${site.title}`
 
   // update search settings when url changes
@@ -56,7 +61,12 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
     navigate(`${baseUrl}?${new URLSearchParams(params).toString()}`)
   }
 
-  const doSearchNavigation = ({ searchTerm, searchLanguage, searchType: searchDocType, kidFlag }) => {
+  const doSearchNavigation = ({
+    searchTerm,
+    searchLanguage,
+    searchType: searchDocType,
+    kidFlag,
+  }) => {
     const params = {
       q: searchTerm,
       domain: searchLanguage,
@@ -78,23 +88,19 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
     })
   }
 
-  const getCurrentSearchState = () => {
-    return {
-      searchTerm: searchBox.displayedSearchTerm,
-      searchLanguage: searchLanguageData.searchLanguage,
-      searchType: searchTypeData.searchType,
-      kidFlag: kids,
-    }
-  }
+  const getCurrentSearchState = () => ({
+    searchTerm: searchBox.displayedSearchTerm,
+    searchLanguage: searchLanguageData.searchLanguage,
+    searchType: searchTypeData.searchType,
+    kidFlag: kids,
+  })
 
-  const getCurrentSearchUrlState = () => {
-    return {
-      searchTerm: searchParams.get('q') || '',
-      searchLanguage: searchParams.get('domain') || 'BOTH',
-      searchType: searchParams.get('docType') || searchTypeData.searchType,
-      kidFlag: kids,
-    }
-  }
+  const getCurrentSearchUrlState = () => ({
+    searchTerm: searchParams.get('q') || '',
+    searchLanguage: searchParams.get('domain') || 'BOTH',
+    searchType: searchParams.get('docType') || searchTypeData.searchType,
+    kidFlag: kids,
+  })
 
   const doSearchWithParam = (name, value) => {
     const newParams = getCurrentSearchState()
@@ -117,7 +123,7 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
 
   const setSearchTypeInUrl = (value) => {
     const oldParams = getCurrentSearchUrlState()
-    const newParams = Object.assign({}, oldParams)
+    const newParams = { ...oldParams }
 
     newParams.searchType = value
     doSearchNavigation(newParams)

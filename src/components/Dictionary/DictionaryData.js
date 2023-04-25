@@ -28,18 +28,19 @@ function DictionaryData({ searchType, kids }) {
       })
 
   // Dictionary fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } = useSearchLoader({
-    searchApi: api.dictionary,
-    queryKey: 'dictionary',
-    siteUid: site?.uid,
-    searchParams: _searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({
+      searchApi: api.dictionary,
+      queryKey: 'dictionary',
+      siteUid: site?.uid,
+      searchParams: _searchParams,
+    })
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -79,13 +80,13 @@ function DictionaryData({ searchType, kids }) {
   Table sorting
   */
   const onSortByClick = (field) => {
-    let newSortBy = field
+    const newSortBy = field
     let newSortAscending = 'true'
     if (sortBy === field && sortAscending === 'true') {
       newSortAscending = 'false'
     }
     setSearchParams({
-      domain: domain,
+      domain,
       docType: searchType,
       sortBy: newSortBy,
       sortAscending: newSortAscending,
@@ -93,7 +94,7 @@ function DictionaryData({ searchType, kids }) {
   }
 
   return {
-    isLoading: site?.title ? false : true,
+    isLoading: !site?.title,
     isLoadingEntries: isLoading,
     items: searchResults,
     infiniteScroll,

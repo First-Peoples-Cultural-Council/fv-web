@@ -11,10 +11,16 @@ import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 
-function DictionaryDetailPresentation({ actions, moreActions, entry, sitename }) {
-  const lableStyling = 'text-left font-medium text-lg uppercase text-fv-charcoal'
+function DictionaryDetailPresentation({
+  actions,
+  moreActions,
+  entry,
+  sitename,
+}) {
+  const lableStyling =
+    'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
-  const noMedia = entry?.images?.length > 0 || entry?.videos?.length > 0 ? false : true
+  const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
   const shortTitle = entry?.title.length < 20
 
   return (
@@ -23,10 +29,19 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
       data-testid="DictionaryDetailPresentation"
     >
       <div className="grid grid-cols-8 gap-4">
-        <div id="WordDetails" className={`col-span-8 md:col-span-5 ${noMedia ? 'md:col-start-3' : ''}`}>
+        <div
+          id="WordDetails"
+          className={`col-span-8 md:col-span-5 ${
+            noMedia ? 'md:col-start-3' : ''
+          }`}
+        >
           <section className="lg:mb-3">
             <div className="py-2 md:p-3 md:flex items-top">
-              <span className={`font-bold ${shortTitle ? 'text-2xl md:text-5xl' : 'text-xl md:text-2xl'}`}>
+              <span
+                className={`font-bold ${
+                  shortTitle ? 'text-2xl md:text-5xl' : 'text-xl md:text-2xl'
+                }`}
+              >
                 {entry.title}
               </span>
 
@@ -38,7 +53,7 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                   docVisibility={entry?.visibility}
                   actions={actions}
                   moreActions={moreActions}
-                  iconStyling={'w-6 h-6'}
+                  iconStyling="w-6 h-6"
                   withLabels
                   withConfirmation
                 />
@@ -47,7 +62,10 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                 ''
               ) : (
                 <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-secondary-dark">
-                  {getIcon(entry?.visibility, 'fill-current inline-flex h-6 w-6 mr-2')}
+                  {getIcon(
+                    entry?.visibility,
+                    'fill-current inline-flex h-6 w-6 mr-2',
+                  )}
                 </div>
               )}
             </div>
@@ -55,7 +73,11 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
             {entry?.translations?.length > 0 && (
               <div className="py-2 md:p-3">
                 <ol
-                  className={`${entry?.translations?.length === 1 ? 'list-none' : 'list-decimal'} list-inside text-lg ${
+                  className={`${
+                    entry?.translations?.length === 1
+                      ? 'list-none'
+                      : 'list-decimal'
+                  } list-inside text-lg ${
                     shortTitle ? 'md:text-2xl' : 'md:text-xl'
                   }`}
                 >
@@ -74,8 +96,18 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                   <AudioMinimal.Container
                     key={`${audioFile.uid}_${index}`}
                     icons={{
-                      Play: getIcon('Audio', `fill-current h-6 w-6 ${audioFile?.speaker?.length > 0 ? 'mr-2' : ''}`),
-                      Stop: getIcon('Stop', `fill-current h-6 w-6 ${audioFile?.speaker?.length > 0 ? 'mr-2' : ''}`),
+                      Play: getIcon(
+                        'Audio',
+                        `fill-current h-6 w-6 ${
+                          audioFile?.speaker?.length > 0 ? 'mr-2' : ''
+                        }`,
+                      ),
+                      Stop: getIcon(
+                        'Stop',
+                        `fill-current h-6 w-6 ${
+                          audioFile?.speaker?.length > 0 ? 'mr-2' : ''
+                        }`,
+                      ),
                     }}
                     buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2"
                     label={audioFile?.speaker}
@@ -124,20 +156,37 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                       return (
                         <tr key={index} className={zebraStripe}>
                           <td className="p-2 flex items-center">
-                            <Link to={`/${sitename}/${makePlural(asset?.type)}/${asset.uid}`}>{asset['dc:title']}</Link>
+                            <Link
+                              to={`/${sitename}/${makePlural(asset?.type)}/${
+                                asset.uid
+                              }`}
+                            >
+                              {asset['dc:title']}
+                            </Link>
                             {asset?.related_audio?.map((audioId, i) => (
                               <AudioMinimal.Container
                                 key={`${audioId}_${i}`}
                                 icons={{
-                                  Play: getIcon('Audio', 'fill-current h-8 w-8 ml-2'),
-                                  Stop: getIcon('StopCircle', 'fill-current h-8 w-8 ml-2'),
+                                  Play: getIcon(
+                                    'Audio',
+                                    'fill-current h-8 w-8 ml-2',
+                                  ),
+                                  Stop: getIcon(
+                                    'StopCircle',
+                                    'fill-current h-8 w-8 ml-2',
+                                  ),
                                 }}
-                                src={getMediaUrl({ type: 'audio', id: audioId })}
+                                src={getMediaUrl({
+                                  type: 'audio',
+                                  id: audioId,
+                                })}
                               />
                             ))}
                           </td>
                           <td className="p-2">
-                            <span>{asset?.['fv:definitions']?.[0]?.translation}</span>
+                            <span>
+                              {asset?.['fv:definitions']?.[0]?.translation}
+                            </span>
                           </td>
                         </tr>
                       )
@@ -149,7 +198,7 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
           </section>
           {/* Other Information */}
           <section>
-            {/* Acknowledgements*/}
+            {/* Acknowledgements */}
             {entry?.acknowledgements?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={lableStyling}>Acknowledgement</h4>
@@ -192,7 +241,10 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
         </div>
         {/* Pictures and Video */}
         {noMedia ? null : (
-          <div id="WordMedia" className="col-span-8 md:col-span-3 py-2 md:p-5 md:mt-5">
+          <div
+            id="WordMedia"
+            className="col-span-8 md:col-span-3 py-2 md:p-5 md:mt-5"
+          >
             <ul>
               {entry?.images
                 ? entry?.images?.map((image, index) => (
@@ -200,7 +252,10 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
                           <div className="inline-flex rounded-lg overflow-hidden">
-                            <ImageWithLightbox.Presentation maxWidth={1000} image={image} />
+                            <ImageWithLightbox.Presentation
+                              maxWidth={1000}
+                              image={image}
+                            />
                           </div>
                         </div>
                       </div>
@@ -215,7 +270,11 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                           <div className="inline-flex rounded-lg overflow-hidden">
                             <video
                               className="shrink-0 w-full h-auto"
-                              src={getMediaUrl({ type: 'video', id: video.uid, viewName: 'Small' })}
+                              src={getMediaUrl({
+                                type: 'video',
+                                id: video.uid,
+                                viewName: 'Small',
+                              })}
                               controls
                             >
                               Your browser does not support the video tag.
@@ -227,13 +286,19 @@ function DictionaryDetailPresentation({ actions, moreActions, entry, sitename })
                             <div className="text-fv-charcoal">
                               {video?.['dc:title']}
                               {video?.['dc:description'] && (
-                                <span className="font-medium"> - {video?.['dc:description']}</span>
+                                <span className="font-medium">
+                                  {' '}
+                                  - {video?.['dc:description']}
+                                </span>
                               )}
                             </div>
                           )}
                           {video?.['fvm:acknowledgement'] && (
                             <div className="text-fv-charcoal">
-                              <span className="font-medium">Acknowledgement: {video?.['fvm:acknowledgement']}</span>
+                              <span className="font-medium">
+                                Acknowledgement:{' '}
+                                {video?.['fvm:acknowledgement']}
+                              </span>
                             </div>
                           )}
                         </Disclosure.Panel>

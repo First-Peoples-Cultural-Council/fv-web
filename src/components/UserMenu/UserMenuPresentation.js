@@ -23,7 +23,8 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
 
   const menuItemActiveClass = 'bg-gray-200 text-black rounded ring-black'
   const menuItemInactiveClass = 'text-fv-charcoal'
-  const menuItemBaseClass = 'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'
+  const menuItemBaseClass =
+    'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'
 
   return (
     <div id="NavUser" className="relative inline-flex">
@@ -50,14 +51,20 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
             <Menu.Item className="text-fv-charcoal px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-gray-200">
               <div>
                 Welcome
-                {currentUser?.firstName && currentUser?.firstName != 'Guest' ? `, ${currentUser?.firstName}!` : '!'}
+                {currentUser?.firstName && currentUser?.firstName !== 'Guest'
+                  ? `, ${currentUser?.firstName}!`
+                  : '!'}
               </div>
             </Menu.Item>
             {currentUser?.isAdmin && (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
                   <Link to={sitename ? `/${sitename}/dashboard` : '/dashboard'}>
-                    <div className={`${active ? menuItemActiveClass : menuItemInactiveClass} ${menuItemBaseClass}`}>
+                    <div
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass}`}
+                    >
                       Dashboard
                     </div>
                   </Link>
@@ -69,16 +76,27 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
                 {({ active }) => (
                   <div className="w-full flex justify-between items-center">
                     <div
-                      className={`${active ? menuItemActiveClass : menuItemInactiveClass} ${menuItemBaseClass} flex`}
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass} flex`}
                     >
                       <Toggle
-                        accentColor={'secondary'}
-                        toggled={i18n.language === 'language' ? true : false}
-                        toggleCallback={() => changeLanguage(i18n.language !== 'language')}
+                        accentColor="secondary"
+                        toggled={i18n.language === 'language'}
+                        toggleCallback={() =>
+                          changeLanguage(i18n.language !== 'language')
+                        }
                         label="Immersion Mode"
                       />
-                      <Link to={`/${sitename}/immersion`} target="_blank" rel="noopener noreferrer">
-                        {getIcon('Question', 'fill-current text-secondary ml-3 h-6 w-auto')}
+                      <Link
+                        to={`/${sitename}/immersion`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {getIcon(
+                          'Question',
+                          'fill-current text-secondary ml-3 h-6 w-auto',
+                        )}
                       </Link>
                     </div>
                   </div>
@@ -90,7 +108,11 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
                 <Menu.Item className="w-full flex">
                   {({ active }) => (
                     <a href={LOGIN_PATH}>
-                      <div className={`${active ? menuItemActiveClass : menuItemInactiveClass} ${menuItemBaseClass}`}>
+                      <div
+                        className={`${
+                          active ? menuItemActiveClass : menuItemInactiveClass
+                        } ${menuItemBaseClass}`}
+                      >
                         Sign In
                       </div>
                     </a>
@@ -108,17 +130,19 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
                 </Menu.Item> */}
               </>
             ) : (
-              <>
-                <Menu.Item className="w-full flex">
-                  {({ active }) => (
-                    <a href="/nuxeo/logout?requestedUrl=../languages">
-                      <div className={`${active ? menuItemActiveClass : menuItemInactiveClass} ${menuItemBaseClass}`}>
-                        Sign out
-                      </div>
-                    </a>
-                  )}
-                </Menu.Item>
-              </>
+              <Menu.Item className="w-full flex">
+                {({ active }) => (
+                  <a href="/nuxeo/logout?requestedUrl=../languages">
+                    <div
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass}`}
+                    >
+                      Sign out
+                    </div>
+                  </a>
+                )}
+              </Menu.Item>
             )}
           </Menu.Items>
         </Transition>

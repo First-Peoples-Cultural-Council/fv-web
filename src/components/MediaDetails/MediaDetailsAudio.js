@@ -19,7 +19,9 @@ function MediaDetailsAudio({ file }) {
               <span className="sr-only">Details for </span>
               {file?.filename}
             </h2>
-            <p className="text-sm font-medium text-fv-charcoal-light">{file?.title}</p>
+            <p className="text-sm font-medium text-fv-charcoal-light">
+              {file?.title}
+            </p>
           </div>
         </div>
       </div>
@@ -30,21 +32,27 @@ function MediaDetailsAudio({ file }) {
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {
                 return (
-                  <div key={key} className="py-3 flex justify-between text-sm font-medium">
+                  <div
+                    key={key}
+                    className="py-3 flex justify-between text-sm font-medium"
+                  >
                     <dt className="text-fv-charcoal-light">{key}</dt>
                     <dd className="text-fv-charcoal max-w-1/2">{file[key]}</dd>
                   </div>
                 )
-              } else {
-                return null
               }
+              return null
             })}
         </dl>
         {file?.speakers.length > 0 && (
           <dl className="mt-2 border-b border-gray-200 divide-y divide-gray-200">
             <div className="py-3 flex justify-between text-sm font-medium">
               <dt className="text-fv-charcoal-light">Speakers</dt>
-              <dd className="text-fv-charcoal">{file?.speakers?.map((speaker) => speaker?.['dc:title']).join(', ')}</dd>
+              <dd className="text-fv-charcoal">
+                {file?.speakers
+                  ?.map((speaker) => speaker?.['dc:title'])
+                  .join(', ')}
+              </dd>
             </div>
           </dl>
         )}
@@ -52,7 +60,9 @@ function MediaDetailsAudio({ file }) {
       <div>
         <h3 className="font-medium text-fv-charcoal">Description</h3>
         <div className="mt-2 flex items-center justify-between">
-          <p className="text-sm text-fv-charcoal-light italic">{file?.description}</p>
+          <p className="text-sm text-fv-charcoal-light italic">
+            {file?.description}
+          </p>
         </div>
       </div>
       <div className="flex">
@@ -61,7 +71,8 @@ function MediaDetailsAudio({ file }) {
           className="flex-1 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
         >
           <div className="flex w-full h-full items-center justify-center">
-            {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')} Download
+            {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}{' '}
+            Download
           </div>
         </a>
       </div>

@@ -6,6 +6,6 @@ import UploadMedia from 'components/MediaCrud/UploadMedia'
 export default {
   Container: MediaCrudContainer,
   Data: MediaCrudData,
-  SelectMedia: SelectMedia,
-  UploadMedia: UploadMedia,
+  SelectMedia,
+  UploadMedia,
 }

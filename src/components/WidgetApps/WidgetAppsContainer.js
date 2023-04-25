@@ -8,7 +8,14 @@ import WidgetAppsData from 'components/WidgetApps/WidgetAppsData'
 function WidgetAppsContainer({ widgetData }) {
   const { header, logoId, subtitle, urls } = WidgetAppsData({ widgetData })
 
-  return <WidgetAppsPresentation header={header} logoId={logoId} subtitle={subtitle} urls={urls} />
+  return (
+    <WidgetAppsPresentation
+      header={header}
+      logoId={logoId}
+      subtitle={subtitle}
+      urls={urls}
+    />
+  )
 }
 
 const { shape, string } = PropTypes

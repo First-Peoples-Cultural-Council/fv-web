@@ -10,14 +10,28 @@ import SearchSelector from 'components/SearchSelector'
 import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'
 
 function EntrySelectorContainer({ docTypes, addItem }) {
-  const { searchQuery, setSearchQuery, search, searchResults, hasResults, infiniteScroll, isLoadingEntries, loadRef } =
-    useModalDocumentSearch({ docTypes })
+  const {
+    searchQuery,
+    setSearchQuery,
+    search,
+    searchResults,
+    hasResults,
+    infiniteScroll,
+    isLoadingEntries,
+    loadRef,
+  } = useModalDocumentSearch({ docTypes })
 
-  const { selectedItem, setSelectedItem } = useSearchResultSelector({ searchResults })
+  const { selectedItem, setSelectedItem } = useSearchResultSelector({
+    searchResults,
+  })
 
   const docLabel = docTypes.length > 1 ? '' : getFriendlyDocTypes({ docTypes })
   const buttonLabel = `Add ${docLabel} to document`
-  const labelPlural = getFriendlyDocTypes({ docTypes, plural: true, isAnd: true })
+  const labelPlural = getFriendlyDocTypes({
+    docTypes,
+    plural: true,
+    isAnd: true,
+  })
 
   return (
     <SearchSelector.Presentation

@@ -8,25 +8,34 @@ import { WIDGET_ALPHABET, WIDGET_STATS, WIDGET_WOTD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
-function WidgetFormDefault({ cancelHandler, dataToEdit, submitHandler, widgetType }) {
+function WidgetFormDefault({
+  cancelHandler,
+  dataToEdit,
+  submitHandler,
+  widgetType,
+}) {
   const validator = yup.object({
     widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_ALPHABET, WIDGET_WOTD, WIDGET_STATS]),
+    widgetType: yup
+      .string()
+      .required()
+      .oneOf([WIDGET_ALPHABET, WIDGET_WOTD, WIDGET_STATS]),
     widgetFormat: yup.string().required().oneOf(['default']),
     visibility: definitions.visibility(),
   })
   const defaultValues = {
     widgetName: '',
-    widgetType: widgetType,
+    widgetType,
     widgetFormat: 'default',
     visibility: 'public',
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, register, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormDefault">

@@ -7,8 +7,16 @@ import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/getIcon'
 
-function DashboardAlphabetPresentation({ headerContent, isLoading, tileContent, characters, site, sitename }) {
-  const tableHeaderClass = 'px-6 py-3 text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+function DashboardAlphabetPresentation({
+  headerContent,
+  isLoading,
+  tileContent,
+  characters,
+  site,
+  sitename,
+}) {
+  const tableHeaderClass =
+    'px-6 py-3 text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   const getIndicatorIcon = (dataArray) => {
     const icon = dataArray?.length > 0 ? 'Checkmark' : 'Minus'
@@ -17,7 +25,11 @@ function DashboardAlphabetPresentation({ headerContent, isLoading, tileContent, 
 
   return (
     <div id="DashboardAlphabetPresentation" className="space-y-5">
-      <DashboardLanding.Presentation tileContent={tileContent} headerContent={headerContent} site={site}>
+      <DashboardLanding.Presentation
+        tileContent={tileContent}
+        headerContent={headerContent}
+        site={site}
+      >
         <DashboardTable.Presentation
           isLoading={isLoading}
           title="Characters"
@@ -38,7 +50,7 @@ function DashboardAlphabetPresentation({ headerContent, isLoading, tileContent, 
               <th scope="col" className={`${tableHeaderClass} text-center`}>
                 picture
               </th>
-              {/*`relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile.*/}
+              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
               <th scope="col" className={`relative ${tableHeaderClass}`}>
                 <span className="sr-only">Edit character</span>
               </th>
@@ -49,18 +61,26 @@ function DashboardAlphabetPresentation({ headerContent, isLoading, tileContent, 
           }
           tableBody={characters.map((character) => (
             <tr key={character.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">{character.title}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+                {character.title}
+              </td>
               {/* <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
               <div className="flex justify-center">{getIcon(character?.relatedWords)}</div>
             </td> */}
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
-                <div className="flex justify-center">{getIndicatorIcon(character?.relatedAudio)}</div>
+                <div className="flex justify-center">
+                  {getIndicatorIcon(character?.relatedAudio)}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
-                <div className="flex justify-center">{getIndicatorIcon(character?.relatedVideo)}</div>
+                <div className="flex justify-center">
+                  {getIndicatorIcon(character?.relatedVideo)}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
-                <div className="flex justify-center">{getIndicatorIcon(character?.relatedPictures)}</div>
+                <div className="flex justify-center">
+                  {getIndicatorIcon(character?.relatedPictures)}
+                </div>
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link

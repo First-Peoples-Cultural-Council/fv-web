@@ -4,7 +4,13 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import { DOC_AUDIO, DOC_IMAGE, DOC_PHRASE, DOC_VIDEO, DOC_WORD } from 'common/constants'
+import {
+  DOC_AUDIO,
+  DOC_IMAGE,
+  DOC_PHRASE,
+  DOC_VIDEO,
+  DOC_WORD,
+} from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/useEditForm'
 
@@ -37,7 +43,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     <div id="CharacterCrudPresentation" className="max-w-5xl p-8">
       <Form.Header
         title={`Edit your character - ${dataToEdit?.title}`}
-        subtitle={'Edit media for your alphabet character.'}
+        subtitle="Edit media for your alphabet character."
       />
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
@@ -50,7 +56,11 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               docTypes={[DOC_WORD, DOC_PHRASE]}
               docCountLimit={10}
             />
-            {errors?.relatedWords && <div className="text-red-500">{errors?.relatedWords?.message}</div>}
+            {errors?.relatedWords && (
+              <div className="text-red-500">
+                {errors?.relatedWords?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.DocumentArrayField
@@ -60,7 +70,11 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               docType={DOC_AUDIO}
               docCountLimit={3}
             />
-            {errors?.relatedAudio && <div className="text-red-500">{errors?.relatedAudio?.message}</div>}
+            {errors?.relatedAudio && (
+              <div className="text-red-500">
+                {errors?.relatedAudio?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.DocumentArrayField
@@ -70,7 +84,11 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               docType={DOC_IMAGE}
               docCountLimit={1}
             />
-            {errors?.relatedImages && <div className="text-red-500">{errors?.relatedImages?.message}</div>}
+            {errors?.relatedImages && (
+              <div className="text-red-500">
+                {errors?.relatedImages?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.DocumentArrayField
@@ -80,11 +98,21 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               docType={DOC_VIDEO}
               docCountLimit={1}
             />
-            {errors?.relatedVideos && <div className="text-red-500">{errors?.relatedVideos?.message}</div>}
+            {errors?.relatedVideos && (
+              <div className="text-red-500">
+                {errors?.relatedVideos?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.TextField label="Notes" nameId="generalNote" register={register} />
-            {errors?.generalNote && <div className="text-red-500">{errors?.generalNote?.message}</div>}
+            <Form.TextField
+              label="Notes"
+              nameId="generalNote"
+              register={register}
+            />
+            {errors?.generalNote && (
+              <div className="text-red-500">{errors?.generalNote?.message}</div>
+            )}
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons

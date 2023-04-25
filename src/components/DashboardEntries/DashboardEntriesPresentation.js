@@ -26,7 +26,7 @@ function DashboardEntriesPresentation({
 
         {showTypeSelector && (
           <SearchTypeSelector.Container
-            accentColor={'tertiaryB'}
+            accentColor="tertiaryB"
             selectedSearchType={searchType}
             setSearchType={setSearchType}
           />

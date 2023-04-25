@@ -7,12 +7,16 @@ import api from 'services/api'
 function GalleryData({ widgetData }) {
   const { id, sitename } = useParams()
   const galleryId = widgetData?.settings?.galleryId || id
-  const { data } = useQuery(['gallery', galleryId], () => api.gallery.get(galleryId), {
-    // The query will not execute until the galleryId exists
-    enabled: !!galleryId,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data } = useQuery(
+    ['gallery', galleryId],
+    () => api.gallery.get(galleryId),
+    {
+      // The query will not execute until the galleryId exists
+      enabled: !!galleryId,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const galleryDataAdaptor = (rawData) => {
     const properties = rawData?.properties
@@ -27,7 +31,7 @@ function GalleryData({ widgetData }) {
   return {
     data: galleryDataAdaptor(data),
     sitename,
-    widgetView: widgetData?.settings?.galleryId ? true : false,
+    widgetView: !!widgetData?.settings?.galleryId,
   }
 }
 

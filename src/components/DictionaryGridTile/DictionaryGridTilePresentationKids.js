@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { getMediaUrl, makePlural } from 'common/urlHelpers'
 import getIcon from 'common/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
@@ -20,22 +20,39 @@ function DictionaryGridTilePresentationKids({ entry }) {
       <div className="absolute top-2 right-2 print:hidden">
         <Link
           className="text-fv-charcoal-light"
-          to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(entry.type)}/${entry.id}`}
+          to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
+            entry.type,
+          )}/${entry.id}`}
         >
           <span className="sr-only">Full screen</span>
-          {getIcon('Fullscreen', 'fill-current h-4 w-4 hover:opacity-100 opacity-50')}
+          {getIcon(
+            'Fullscreen',
+            'fill-current h-4 w-4 hover:opacity-100 opacity-50',
+          )}
         </Link>
       </div>
       <div className="grid grid-cols-2 gap-2 p-2 h-full w-full">
         {/* Photos */}
         {image && (
-          <div id="media" className={`${image ? 'col-span-1 flex items-center justify-center' : 'hidden'}`}>
+          <div
+            id="media"
+            className={`${
+              image ? 'col-span-1 flex items-center justify-center' : 'hidden'
+            }`}
+          >
             <Link
               key={entry.id}
               className="flex items-center justify-center h-72 w-full rounded-l-lg"
-              to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(entry.type)}/${entry.id}`}
+              to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
+                entry.type,
+              )}/${entry.id}`}
             >
-              <LazyImage imgStyling="h-full object-contain max-h-72" width={250} forceLoad id={image} />
+              <LazyImage
+                imgStyling="h-full object-contain max-h-72"
+                width={250}
+                forceLoad
+                id={image}
+              />
             </Link>
           </div>
         )}
@@ -47,15 +64,26 @@ function DictionaryGridTilePresentationKids({ entry }) {
         >
           <div className="w-full">
             {/* Title */}
-            <div className={`inline-flex font-medium ${shortTitle ? 'text-3xl' : 'text-2xl'}`}>
-              <Link key={entry.id} to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(entry.type)}/${entry.id}`}>
+            <div
+              className={`inline-flex font-medium ${
+                shortTitle ? 'text-3xl' : 'text-2xl'
+              }`}
+            >
+              <Link
+                key={entry.id}
+                to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
+                  entry.type,
+                )}/${entry.id}`}
+              >
                 {entry.title}
               </Link>
             </div>
             {/* Translations/Definitions */}
             {entry?.translations?.length > 0 && (
               <ol
-                className={`${entry?.translations?.length > 1 ? 'list-decimal' : 'list-none'} list-inside my-2 text-lg`}
+                className={`${
+                  entry?.translations?.length > 1 ? 'list-decimal' : 'list-none'
+                } list-inside my-2 text-lg`}
               >
                 {entry?.translations?.map((translation, index) => (
                   <li key={index} className="p-0.5">

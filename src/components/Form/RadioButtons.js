@@ -16,7 +16,9 @@ function RadioButtons({ errors, label, options, nameId, control }) {
         render={({ field: { value, onChange } }) => (
           <RadioGroup value={value} onChange={onChange}>
             <div className="space-y-2">
-              <RadioGroup.Label className="text-sm font-medium text-fv-charcoal">{label}</RadioGroup.Label>
+              <RadioGroup.Label className="text-sm font-medium text-fv-charcoal">
+                {label}
+              </RadioGroup.Label>
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
                 {options.map((option, index) => (
                   <RadioGroup.Option
@@ -27,7 +29,11 @@ function RadioButtons({ errors, label, options, nameId, control }) {
                     {({ checked, active }) => (
                       <div className="flex items-center">
                         <span
-                          className={`${checked ? 'bg-secondary border-transparent' : 'bg-white border-gray-300'} ${
+                          className={`${
+                            checked
+                              ? 'bg-secondary border-transparent'
+                              : 'bg-white border-gray-300'
+                          } ${
                             active ? 'ring-2 ring-offset-2 ring-secondary' : ''
                           } h-4 w-4 rounded-full border flex items-center justify-center`}
                           aria-hidden="true"
@@ -38,7 +44,9 @@ function RadioButtons({ errors, label, options, nameId, control }) {
                           <RadioGroup.Label
                             as="p"
                             className={`ml-3 font-medium
-                              ${checked ? 'text-secondary' : 'text-fv-charcoal'}`}
+                              ${
+                                checked ? 'text-secondary' : 'text-fv-charcoal'
+                              }`}
                           >
                             {option?.label}
                           </RadioGroup.Label>

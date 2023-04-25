@@ -4,14 +4,25 @@ import PropTypes from 'prop-types'
 // FPCC
 import Loading from 'components/Loading'
 
-function DashboardTablePresentation({ title, isLoading, tableHead, tableBody }) {
+function DashboardTablePresentation({
+  title,
+  isLoading,
+  tableHead,
+  tableBody,
+}) {
   return (
     <Loading.Container isLoading={isLoading}>
-      <section id="DashboardTablePresentation" className="mx-auto max-w-7xl h-full px-8">
+      <section
+        id="DashboardTablePresentation"
+        className="mx-auto max-w-7xl h-full px-8"
+      >
         <div className="bg-white shadow rounded-md overflow-hidden">
           {title && (
             <div className="my-5 px-6">
-              <h2 id="billing-history-heading" className="text-lg leading-6 font-medium text-gray-900">
+              <h2
+                id="billing-history-heading"
+                className="text-lg leading-6 font-medium text-gray-900"
+              >
                 {title}
               </h2>
             </div>
@@ -22,7 +33,9 @@ function DashboardTablePresentation({ title, isLoading, tableHead, tableBody }) 
                 <div className="border-t border-gray-200 max-h-3/4-screen overflow-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">{tableHead}</thead>
-                    <tbody className="bg-white divide-y divide-gray-200">{tableBody}</tbody>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {tableBody}
+                    </tbody>
                   </table>
                 </div>
               </div>

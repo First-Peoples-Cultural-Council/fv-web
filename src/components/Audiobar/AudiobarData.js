@@ -38,19 +38,19 @@ function AudiobarData() {
     const newHowl = new Howl({
       src: [src, src, src],
       format: ['webm', 'wav', 'mp3'],
-      rate: rate,
+      rate,
       html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
-      onload: function () {
+      onload() {
         setDuration(formatTime(Math.round(newHowl.duration())))
       },
-      onplay: function () {
+      onplay() {
         setIsPlaying(true)
         requestAnimationFrame(step)
       },
-      onpause: function () {
+      onpause() {
         setIsPlaying(false)
       },
-      onend: function () {
+      onend() {
         setIsPlaying(false)
       },
     })
@@ -67,22 +67,26 @@ function AudiobarData() {
       }
     }
 
-    setSound({ id: id, howl: newHowl })
+    setSound({ id, howl: newHowl })
     newHowl.play()
   }
 
   const formatTime = (secs) => {
     const minutes = Math.floor(secs / 60) || 0
     const seconds = secs - minutes * 60 || 0
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
 
   // Data fetch
-  const { data } = useQuery(['Audio', audioId], () => api.document.get({ id: audioId, contextParameters: 'media' }), {
-    enabled: !!audioArray?.[0],
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data } = useQuery(
+    ['Audio', audioId],
+    () => api.document.get({ id: audioId, contextParameters: 'media' }),
+    {
+      enabled: !!audioArray?.[0],
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
     if (data !== undefined) {
@@ -96,13 +100,20 @@ function AudiobarData() {
     const file = properties?.['file:content']
     const contextParameters = audioData?.contextParameters?.media
     const speakers = []
-    contextParameters?.sources?.forEach((source) => speakers.push(source?.['dc:title']))
+    contextParameters?.sources?.forEach((source) =>
+      speakers.push(source?.['dc:title']),
+    )
     const recorders = []
-    contextParameters?.recorders?.forEach((source) => recorders.push(source?.['dc:title']))
+    contextParameters?.recorders?.forEach((source) =>
+      recorders.push(source?.['dc:title']),
+    )
 
     let label = properties?.['dc:title'] || ''
 
-    if (properties?.['dc:title']?.length > 0 && properties?.['dc:description'] > 0) {
+    if (
+      properties?.['dc:title']?.length > 0 &&
+      properties?.['dc:description'] > 0
+    ) {
       label = `${properties?.['dc:title']} - ${properties?.['dc:description']}`
     } else if (properties?.['dc:description']?.length > 0) {
       label = properties?.['dc:description']
@@ -113,11 +124,11 @@ function AudiobarData() {
       title: properties?.['dc:title'] || '',
       description: properties?.['dc:description'] || '',
       acknowledgement: properties?.['fvm:acknowledgement'] || '',
-      speakers: speakers,
-      recorders: recorders,
+      speakers,
+      recorders,
       downloadLink: `/nuxeo/nxfile/default/${audioData?.uid}/file:content/${file?.name}`,
       fileSize: getReadableFileSize(file?.length),
-      label: label,
+      label,
     }
   }
 

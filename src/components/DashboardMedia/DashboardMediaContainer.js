@@ -11,10 +11,19 @@ function DashboardMediaContainer() {
   return (
     <div id="DashboardMediaContainer">
       <Routes>
-        <Route path="browser" element={<MediaBrowser.Container docType={docType} />} />
+        <Route
+          path="browser"
+          element={<MediaBrowser.Container docType={docType} />}
+        />
         <Route
           path=""
-          element={<DashboardMediaPresentation tileContent={tileContent} headerContent={headerContent} site={site} />}
+          element={
+            <DashboardMediaPresentation
+              tileContent={tileContent}
+              headerContent={headerContent}
+              site={site}
+            />
+          }
         />
       </Routes>
     </div>

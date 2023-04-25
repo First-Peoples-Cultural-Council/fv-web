@@ -11,7 +11,10 @@ function ImmersionCrudContainer({ label }) {
 
   return (
     <Loading.Container isLoading={isLoading}>
-      <ImmersionCrudPresentation dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      <ImmersionCrudPresentation
+        dataToEdit={dataToEdit}
+        submitHandler={submitHandler}
+      />
     </Loading.Container>
   )
 }

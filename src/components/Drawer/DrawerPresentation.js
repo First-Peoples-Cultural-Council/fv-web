@@ -4,10 +4,22 @@ import PropTypes from 'prop-types'
 import { Dialog, Transition } from '@headlessui/react'
 import getIcon from 'common/getIcon'
 
-function DrawerPresentation({ children, isOpen, closeHandler, maxWidth, fullScreenPath }) {
+function DrawerPresentation({
+  children,
+  isOpen,
+  closeHandler,
+  maxWidth,
+  fullScreenPath,
+}) {
   return (
     <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog as="div" static className="fixed inset-0 overflow-hidden" open={isOpen} onClose={closeHandler}>
+      <Dialog
+        as="div"
+        static
+        className="fixed inset-0 overflow-hidden"
+        open={isOpen}
+        onClose={closeHandler}
+      >
         <div className="absolute inset-0 overflow-hidden">
           <Dialog.Overlay className="absolute inset-0" />
 

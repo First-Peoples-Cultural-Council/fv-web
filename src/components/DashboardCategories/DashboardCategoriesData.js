@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 
@@ -20,14 +20,14 @@ function DashboardCategoriesData() {
       enabled: !!site?.uid,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -50,9 +50,9 @@ function DashboardCategoriesData() {
   }
 
   const getParent = (parentId) => {
-    const parent = data?.categories?.filter((category) => {
-      return category?.id === parentId
-    })
+    const parent = data?.categories?.filter(
+      (category) => category?.id === parentId,
+    )
     return parent?.[0]?.title || ''
   }
 
@@ -64,7 +64,7 @@ function DashboardCategoriesData() {
         title: category?.title,
         parentCategory: getParent(category?.parentId),
         href: `/${site?.sitename}/categories/${category?.id}?docType=WORD_AND_PHRASE`,
-        category: category,
+        category,
       })
     })
     return categoriesData

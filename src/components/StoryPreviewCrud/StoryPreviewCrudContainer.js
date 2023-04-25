@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import StoryPreviewCrud from 'components/StoryPreviewCrud'
 import StoryData from 'components/Story/StoryData'
 import Loading from 'components/Loading'
@@ -14,7 +14,11 @@ function StoryPreviewCrudContainer() {
 
   return (
     <Loading.Container isLoading={isLoading}>
-      <StoryPreviewCrud.Presentation sitename={sitename} storyId={storyId} entry={entry} />
+      <StoryPreviewCrud.Presentation
+        sitename={sitename}
+        storyId={storyId}
+        entry={entry}
+      />
     </Loading.Container>
   )
 }

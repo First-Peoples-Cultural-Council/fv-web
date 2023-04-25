@@ -13,7 +13,10 @@ function HomePresentation({ backgroundId, backgroundType, title, logoId }) {
       case 'gifOrImg':
         return (
           <div>
-            <div id="HomeBannerWithImage" className="hidden md:flex justify-center">
+            <div
+              id="HomeBannerWithImage"
+              className="hidden md:flex justify-center"
+            >
               <LazyImage
                 imgStyling="z-0 w-auto h-auto min-w-full min-h-full max-h-1/2-screen xl:max-h-3/4-screen max-w-none"
                 width={1920}
@@ -29,11 +32,13 @@ function HomePresentation({ backgroundId, backgroundType, title, logoId }) {
                       imgStyling="z-30 h-auto w-full rounded-full"
                       height={175}
                       width={175}
-                      bgColor={'none'}
+                      bgColor="none"
                       id={logoId}
                     />
                   </div>
-                  <div className="hidden md:block text-white text-2xl">{title}</div>
+                  <div className="hidden md:block text-white text-2xl">
+                    {title}
+                  </div>
                 </div>
                 <div className="flex items-center justify-center w-full md:w-2/3">
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
@@ -65,11 +70,13 @@ function HomePresentation({ backgroundId, backgroundType, title, logoId }) {
                       imgStyling="z-30 h-auto w-full rounded-full"
                       height={175}
                       width={175}
-                      bgColor={'none'}
+                      bgColor="none"
                       id={logoId}
                     />
                   </div>
-                  <div className="hidden md:block text-white text-2xl">{title}</div>
+                  <div className="hidden md:block text-white text-2xl">
+                    {title}
+                  </div>
                 </div>
                 <div className="flex items-center justify-center w-full md:w-2/3">
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
@@ -82,7 +89,10 @@ function HomePresentation({ backgroundId, backgroundType, title, logoId }) {
         )
       default:
         return (
-          <div id="HomeBannerNoMedia" className="bg-gradient-to-b from-word to-word-dark">
+          <div
+            id="HomeBannerNoMedia"
+            className="bg-gradient-to-b from-word to-word-dark"
+          >
             <div className="flex flex-col md:flex-row items-center justify-center mx-auto max-w-7xl p-3 md:p-5">
               <div className="w-48 flex flex-col items-center justify-center">
                 <div className="flex mb-2">
@@ -90,11 +100,13 @@ function HomePresentation({ backgroundId, backgroundType, title, logoId }) {
                     imgStyling="h-auto w-24 sm:w-32 lg:w-40 rounded-full"
                     height={175}
                     width={175}
-                    bgColor={'none'}
+                    bgColor="none"
                     id={logoId}
                   />
                 </div>
-                <div className="hidden md:block text-white text-2xl text-center">{title}</div>
+                <div className="hidden md:block text-white text-2xl text-center">
+                  {title}
+                </div>
               </div>
               <div className="flex items-center justify-center w-full md:w-2/3 xl:w-3/4 md:h-24">
                 <div className="w-11/12 md:w-5/6 xl:w-3/4">
@@ -108,7 +120,10 @@ function HomePresentation({ backgroundId, backgroundType, title, logoId }) {
   }
 
   return (
-    <section data-testid="HomePresentation" className="bg-gradient-to-r from-gray-600 to-gray-700 min-h-96">
+    <section
+      data-testid="HomePresentation"
+      className="bg-gradient-to-r from-gray-600 to-gray-700 min-h-96"
+    >
       <div>{title ? getContents(backgroundType) : null}</div>
     </section>
   )

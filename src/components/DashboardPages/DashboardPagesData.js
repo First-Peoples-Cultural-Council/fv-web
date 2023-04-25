@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { getCustomPageHref } from 'common/urlHelpers'
 import api from 'services/api'
@@ -13,18 +13,22 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isLoading } = useQuery(['pages', site?.uid], () => api.page.getPages(site?.uid), {
-    // The query will not execute until the uid exists
-    enabled: !!site?.uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, error, isError, isLoading } = useQuery(
+    ['pages', site?.uid],
+    () => api.page.getPages(site?.uid),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!site?.uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -62,8 +66,11 @@ function DashboardPagesData() {
         title: page?.title,
         subtitle: page?.description,
         url: page?.url,
-        href: getCustomPageHref({ sitename: site?.sitename, pageUrl: page?.url }),
-        page: page,
+        href: getCustomPageHref({
+          sitename: site?.sitename,
+          pageUrl: page?.url,
+        }),
+        page,
       })
     })
     return pagesData

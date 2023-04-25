@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 
@@ -12,17 +12,21 @@ function DashboardAlphabetData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isLoading, error, isError } = useQuery(['alphabet', site?.uid], () => api.alphabet.get(site?.uid), {
-    enabled: !!site?.uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, isLoading, error, isError } = useQuery(
+    ['alphabet', site?.uid],
+    () => api.alphabet.get(site?.uid),
+    {
+      enabled: !!site?.uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])

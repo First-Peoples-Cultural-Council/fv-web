@@ -23,25 +23,42 @@ function MediaCrudData({ docType, maxFiles }) {
   const { sitename } = useParams()
   const navigate = useNavigate()
 
-  const searchParamsQuery = new URLSearchParams(search).get('q') ? new URLSearchParams(search).get('q') : ''
-  const pluralDocTypeLabel = getFriendlyDocType({ docType: docType, plural: true })
+  const searchParamsQuery = new URLSearchParams(search).get('q')
+    ? new URLSearchParams(search).get('q')
+    : ''
+  const pluralDocTypeLabel = getFriendlyDocType({
+    docType,
+    plural: true,
+  })
 
   const [selectedMedia, setSelectedMedia] = useState([])
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
   const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
 
   // Data Fetch
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, refetch } = useInfiniteQuery(
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    refetch,
+  } = useInfiniteQuery(
     [`${docType}-search`, searchTerm],
     ({ pageParam = 0 }) =>
-      api.media.get({ siteId: site?.uid, searchTerm: searchTerm, type: docType, pageParam: pageParam }),
+      api.media.get({
+        siteId: site?.uid,
+        searchTerm,
+        type: docType,
+        pageParam,
+      }),
     {
       // The query will not execute until the siteId exists
       enabled: !!site?.uid,
       getNextPageParam: (lastPage) => lastPage.nextPage,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage }
@@ -56,11 +73,11 @@ function MediaCrudData({ docType, maxFiles }) {
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
-    } else if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    } else {
-      return 'End of results.'
     }
+    if (infiniteScroll?.hasNextPage) {
+      return 'Load more'
+    }
+    return 'End of results.'
   }
 
   const handleTextFieldChange = (event) => {
@@ -74,18 +91,24 @@ function MediaCrudData({ docType, maxFiles }) {
       // If in modal trigger refetch NOT navigate
       refetch()
     } else if (searchInputValue) {
-      navigate(`/${sitename}/dashboard/media/browser?type=${pluralDocTypeLabel}&q=${searchInputValue}`)
+      navigate(
+        `/${sitename}/dashboard/media/browser?type=${pluralDocTypeLabel}&q=${searchInputValue}`,
+      )
     } else if (!searchInputValue) {
-      navigate(`/${sitename}/dashboard/media/browser?type=${pluralDocTypeLabel}`)
+      navigate(
+        `/${sitename}/dashboard/media/browser?type=${pluralDocTypeLabel}`,
+      )
     }
   }
 
   const mediaSelectHandler = (docId) => {
     let updatedSelectedMedia = [...selectedMedia]
-    if (selectedMedia.some((elemId) => elemId == docId)) {
-      updatedSelectedMedia = updatedSelectedMedia.filter((elemId) => elemId != docId)
-    } else if (maxFiles && updatedSelectedMedia.length == maxFiles) {
-      if (maxFiles == 1) {
+    if (selectedMedia.some((elemId) => elemId === docId)) {
+      updatedSelectedMedia = updatedSelectedMedia.filter(
+        (elemId) => elemId !== docId,
+      )
+    } else if (maxFiles && updatedSelectedMedia.length === maxFiles) {
+      if (maxFiles === 1) {
         updatedSelectedMedia = [docId]
       } else {
         return
@@ -113,7 +136,11 @@ function MediaCrudData({ docType, maxFiles }) {
     }
   })()
 
-  const docTypeLabelPlural = getFriendlyDocType({ docType, plural: true, isAnd: true })
+  const docTypeLabelPlural = getFriendlyDocType({
+    docType,
+    plural: true,
+    isAnd: true,
+  })
 
   return {
     site,
@@ -125,12 +152,12 @@ function MediaCrudData({ docType, maxFiles }) {
     fetchedMedia: data,
     searchValue: searchInputValue,
     loadLabel: getLoadLabel(),
-    selectedMedia: selectedMedia,
-    setSelectedMedia: setSelectedMedia,
-    mediaSelectHandler: mediaSelectHandler,
-    clearSelectedMedia: clearSelectedMedia,
-    docTypeLabelPlural: docTypeLabelPlural,
-    extensionList: extensionList,
+    selectedMedia,
+    setSelectedMedia,
+    mediaSelectHandler,
+    clearSelectedMedia,
+    docTypeLabelPlural,
+    extensionList,
   }
 }
 

@@ -22,14 +22,19 @@ function StoryCoverCrudData() {
 
   const { data } = useQuery(
     [DOC_STORY, storyId],
-    () => api.document.get({ id: storyId, properties: '*', contextParameters: 'ancestry,permissions,book' }),
+    () =>
+      api.document.get({
+        id: storyId,
+        properties: '*',
+        contextParameters: 'ancestry,permissions,book',
+      }),
     {
       enabled: isUUID(storyId),
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
-  const dataToEdit = storyCrudDataAdaptor({ data: data })
+  const dataToEdit = storyCrudDataAdaptor({ data })
 
   const submitHandler = (formData) => {
     if (storyId && dataToEdit) {
@@ -44,7 +49,9 @@ function StoryCoverCrudData() {
       ? getJsonFromWysiwygState(_formData?.intro?.getCurrentContent())
       : ''
     const introTranslation = _formData?.introTranslation?.getCurrentContent()
-      ? getJsonFromWysiwygState(_formData?.introTranslation?.getCurrentContent())
+      ? getJsonFromWysiwygState(
+          _formData?.introTranslation?.getCurrentContent(),
+        )
       : ''
     const mediaObject = selectOneFormHelper(_formData, 'cover')
 
@@ -59,9 +66,13 @@ function StoryCoverCrudData() {
       'fv:acknowledgements': _formData?.acknowledgements,
       'fv:notes': _formData?.notes,
       'fv:related_audio': _formData?.audio,
-      'fv:related_pictures': isUUID(mediaObject?.imageId) ? [mediaObject?.imageId] : [],
-      'fv:related_videos': isUUID(mediaObject?.videoId) ? [mediaObject?.videoId] : [],
-      'fvaudience:children': _formData?.kidFriendly === 'true' ? true : false,
+      'fv:related_pictures': isUUID(mediaObject?.imageId)
+        ? [mediaObject?.imageId]
+        : [],
+      'fv:related_videos': isUUID(mediaObject?.videoId)
+        ? [mediaObject?.videoId]
+        : [],
+      'fvaudience:children': _formData?.kidFriendly === 'true',
     }
   }
 
@@ -73,7 +84,10 @@ function StoryCoverCrudData() {
       properties: formDataAdaptor(formData),
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! A new story has been created.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! A new story has been created.',
+      })
       setSearchParams({ step: 1, id: response?.uid })
     } else {
       setNotification({
@@ -91,9 +105,15 @@ function StoryCoverCrudData() {
     })
     if (response?.uid) {
       if (formData?.visibility !== dataToEdit?.visibility) {
-        api.visibility.update({ id: storyId, newVisibility: formData?.visibility })
+        api.visibility.update({
+          id: storyId,
+          newVisibility: formData?.visibility,
+        })
       }
-      setNotification({ type: 'SUCCESS', message: 'Success! Your story has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your story has been saved.',
+      })
       queryClient.invalidateQueries([DOC_STORY, storyId])
       setSearchParams({ step: 1, id: storyId })
     } else {

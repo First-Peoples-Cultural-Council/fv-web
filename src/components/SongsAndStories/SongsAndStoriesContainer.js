@@ -6,7 +6,8 @@ import SongsAndStoriesPresentation from 'components/SongsAndStories/SongsAndStor
 import SongsAndStoriesData from 'components/SongsAndStories/SongsAndStoriesData'
 
 function SongsAndStoriesContainer({ searchType, kids }) {
-  const { infiniteScroll, items, isLoading, loadRef, sitename } = SongsAndStoriesData({ searchType, kids })
+  const { infiniteScroll, items, isLoading, loadRef, sitename } =
+    SongsAndStoriesData({ searchType, kids })
   return (
     <SongsAndStoriesPresentation
       searchType={searchType}

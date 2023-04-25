@@ -14,7 +14,12 @@ function AudiobarPresentationMobile({
   onRateChange,
 }) {
   return (
-    <nav id="Audiobar" className={`${open ? '' : 'hidden'} fixed inset-x-0 -bottom-1 z-50 bg-fv-charcoal p-2`}>
+    <nav
+      id="Audiobar"
+      className={`${
+        open ? '' : 'hidden'
+      } fixed inset-x-0 -bottom-1 z-50 bg-fv-charcoal p-2`}
+    >
       <div className="w-full h-full text-white flex align-center items-center">
         <div className="w-full space-y-1">
           <button
@@ -25,14 +30,18 @@ function AudiobarPresentationMobile({
           </button>
           <div className="flex justify-center items-center text-center overflow-x-auto">
             {data?.title}
-            {data?.speakers?.length > 0 && ` | Speakers: ${data?.speakers?.join(', ')}`}
+            {data?.speakers?.length > 0 &&
+              ` | Speakers: ${data?.speakers?.join(', ')}`}
           </div>
           <div className="flex justify-center items-center space-x-5">
             <button
               onClick={() => onPlayPauseClick()}
               className="text-fv-charcoal-dark p-3 rounded-full bg-white shadow-lg"
             >
-              {getIcon(`${isPlaying ? 'Pause' : 'Play'}`, 'w-4 h-4 fill-current')}
+              {getIcon(
+                `${isPlaying ? 'Pause' : 'Play'}`,
+                'w-4 h-4 fill-current',
+              )}
             </button>
           </div>
           <div className="flex">
@@ -45,7 +54,7 @@ function AudiobarPresentationMobile({
                 className="mr-2 font-bold text-black bg-white rounded px-2 py-1"
                 onClick={() => onRateChange()}
               >
-                {rate.toString() + 'x'}
+                {`${rate.toString()}x`}
               </button>
               <a href={data?.downloadLink} className="text-white float-right">
                 {getIcon('Download', 'w-6 h-6 fill-current inline-flex')}

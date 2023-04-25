@@ -44,7 +44,10 @@ function HomeCrudData() {
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries({ queryKey: ['site', site?.sitename] })
       // Snapshot the previous value
-      const previousSiteData = queryClient.getQueryData(['site', site?.sitename])
+      const previousSiteData = queryClient.getQueryData([
+        'site',
+        site?.sitename,
+      ])
       // Optimistically update to the new value
       if (previousSiteData) {
         // Updating image and video id for the original form
@@ -62,8 +65,11 @@ function HomeCrudData() {
       return { previousSiteData }
     },
     onSuccess: () => {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your logo and banner have been set.' })
-      setTimeout(function () {
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your logo and banner have been set.',
+      })
+      setTimeout(() => {
         navigate(`/${site?.sitename}/dashboard/edit/home`)
       }, NOTIFICATION_TIME)
     },
@@ -99,8 +105,8 @@ function HomeCrudData() {
     submitHandler,
     backHandler,
     site,
-    dataToEdit: dataToEdit,
-    isWidgetAreaEdit: !editHeader ? true : false,
+    dataToEdit,
+    isWidgetAreaEdit: !editHeader,
   }
 }
 

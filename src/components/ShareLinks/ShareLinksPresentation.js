@@ -13,20 +13,26 @@ function ShareLinksPresentation({ url, title, modalCloseHandler }) {
       modalCloseHandler()
     }
     setTimeout(() => {
-      setNotification({ type: 'SUCCESS', message: 'Success! The link has been copied to your clipboard.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! The link has been copied to your clipboard.',
+      })
     }, 100)
   }
 
   return (
-    <ul id="ShareLinksPresentation" className="flex align-center justify-center">
+    <ul
+      id="ShareLinksPresentation"
+      className="flex align-center justify-center"
+    >
       {navigator.share ? (
         <li>
           <button
             className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryB"
             onClick={() =>
               navigator.share({
-                title: title,
-                url: url,
+                title,
+                url,
               })
             }
           >

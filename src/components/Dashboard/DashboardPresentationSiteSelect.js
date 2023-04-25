@@ -9,7 +9,11 @@ import { getMediaUrl } from 'common/urlHelpers'
 
 function DashboardPresentationSiteSelect({ sites, currentSite }) {
   return sites?.length > 1 ? (
-    <Menu as="div" className="relative px-2" id="DashboardPresentationSiteSelect">
+    <Menu
+      as="div"
+      className="relative px-2"
+      id="DashboardPresentationSiteSelect"
+    >
       <div>
         <Menu.Button className="group w-full bg-fv-charcoal text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-fv-charcoal-light">
           <span className="flex w-full justify-between items-center">
@@ -26,14 +30,21 @@ function DashboardPresentationSiteSelect({ sites, currentSite }) {
                 />
               ) : (
                 <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
-                  <span className="text-center">{currentSite?.title?.charAt(0)}</span>
+                  <span className="text-center">
+                    {currentSite?.title?.charAt(0)}
+                  </span>
                 </div>
               )}
               <span className="flex-1 flex flex-col min-w-0">
-                <span className="text-sm font-medium truncate">{currentSite?.title}</span>
+                <span className="text-sm font-medium truncate">
+                  {currentSite?.title}
+                </span>
               </span>
             </span>
-            {getIcon('ChevronUpDown', 'fill-current flex-shrink-0 h-5 w-5 text-white')}
+            {getIcon(
+              'ChevronUpDown',
+              'fill-current flex-shrink-0 h-5 w-5 text-white',
+            )}
           </span>
         </Menu.Button>
       </div>
@@ -57,7 +68,10 @@ function DashboardPresentationSiteSelect({ sites, currentSite }) {
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                       } group w-full rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-gray-200`}
                     >
-                      <Link to={`/${site?.sitename}/dashboard`} className="flex w-full">
+                      <Link
+                        to={`/${site?.sitename}/dashboard`}
+                        className="flex w-full"
+                      >
                         <span className="flex w-full justify-between items-center">
                           <span className="flex min-w-0 items-center justify-between space-x-3">
                             {site?.logoId ? (
@@ -72,11 +86,15 @@ function DashboardPresentationSiteSelect({ sites, currentSite }) {
                               />
                             ) : (
                               <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
-                                <span className="text-center">{site?.title?.charAt(0)}</span>
+                                <span className="text-center">
+                                  {site?.title?.charAt(0)}
+                                </span>
                               </div>
                             )}
                             <span className="flex-1 flex flex-col min-w-0">
-                              <span className="text-gray-900 text-sm font-medium truncate">{site?.title}</span>
+                              <span className="text-gray-900 text-sm font-medium truncate">
+                                {site?.title}
+                              </span>
                             </span>
                           </span>
                         </span>
@@ -106,11 +124,15 @@ function DashboardPresentationSiteSelect({ sites, currentSite }) {
               />
             ) : (
               <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
-                <span className="text-center">{currentSite?.title?.charAt(0)}</span>
+                <span className="text-center">
+                  {currentSite?.title?.charAt(0)}
+                </span>
               </div>
             )}
             <span className="flex-1 flex flex-col min-w-0">
-              <span className="text-sm font-medium truncate">{currentSite?.title}</span>
+              <span className="text-sm font-medium truncate">
+                {currentSite?.title}
+              </span>
             </span>
           </span>
         </span>

@@ -7,5 +7,5 @@ export default {
   Container: LanguagesContainer,
   Presentation: LanguagesPresentation,
   Data: LanguagesData,
-  SiteCard: SiteCard,
+  SiteCard,
 }

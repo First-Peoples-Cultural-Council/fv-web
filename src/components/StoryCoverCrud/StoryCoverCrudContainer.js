@@ -6,7 +6,12 @@ import StoryCoverCrudData from 'components/StoryCoverCrud/StoryCoverCrudData'
 
 function StoryCoverCrudContainer() {
   const { dataToEdit, submitHandler } = StoryCoverCrudData()
-  return <StoryCoverCrudPresentation dataToEdit={dataToEdit} submitHandler={submitHandler} />
+  return (
+    <StoryCoverCrudPresentation
+      dataToEdit={dataToEdit}
+      submitHandler={submitHandler}
+    />
+  )
 }
 
 export default StoryCoverCrudContainer

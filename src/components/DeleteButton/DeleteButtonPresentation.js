@@ -9,21 +9,30 @@ function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
   return (
-    <Fragment>
-      <button id="DeleteButton" onClick={() => setDeleteModalOpen(true)} className={styling}>
+    <>
+      <button
+        id="DeleteButton"
+        onClick={() => setDeleteModalOpen(true)}
+        className={styling}
+      >
         {getIcon('Trash', 'fill-current -ml-1 mr-2 h-5 w-5')}
         <span>{label}</span>
       </button>
 
       {/* Remove Modal */}
-      <Modal.Presentation isOpen={deleteModalOpen} closeHandler={() => setDeleteModalOpen(false)}>
+      <Modal.Presentation
+        isOpen={deleteModalOpen}
+        closeHandler={() => setDeleteModalOpen(false)}
+      >
         <div
           id="RemoveWidgetModalContent"
           className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
         >
           <div className="text-center space-y-2">
             <p className="text-2xl text-fv-charcoal">{message}</p>
-            <p className="text-fv-charcoal-light">You can&apos;t undo this action.</p>
+            <p className="text-fv-charcoal-light">
+              You can&apos;t undo this action.
+            </p>
           </div>
           <div className="w-full justify-center flex space-x-2">
             <button
@@ -46,7 +55,7 @@ function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
           </div>
         </div>
       </Modal.Presentation>
-    </Fragment>
+    </>
   )
 }
 // PROPTYPES

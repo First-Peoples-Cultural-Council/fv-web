@@ -35,21 +35,28 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
       </button>
       <div className="min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white">
         <div className="grid grid-cols-6 gap-2">
-          {/* Pictures - large screens*/}
-          <section id="media" className="hidden lg:block col-span-6 lg:col-span-3">
+          {/* Pictures - large screens */}
+          <section
+            id="media"
+            className="hidden lg:block col-span-6 lg:col-span-3"
+          >
             {images}
           </section>
           <section
             id="EntryDetails"
             className={`${
-              images ? 'text-center lg:text-left col-span-6 lg:col-span-3' : 'col-span-6 text-center'
+              images
+                ? 'text-center lg:text-left col-span-6 lg:col-span-3'
+                : 'col-span-6 text-center'
             } flex items-center`}
           >
             <div className="w-full p-4 space-y-4">
               <div className="mt-2 max-w-2xl inline-flex items-center font-bold text-black md:mx-auto">
                 <div
                   className={`font-bold ${
-                    shortTitle ? 'text-3xl md:text-4xl lg:text-6xl' : 'text-xl md:text-2xl lg:text-3xl'
+                    shortTitle
+                      ? 'text-3xl md:text-4xl lg:text-6xl'
+                      : 'text-xl md:text-2xl lg:text-3xl'
                   }`}
                 >
                   {entry.title}
@@ -61,8 +68,14 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                       <AudioMinimal.Container
                         key={`${audioFile.uid}_${index}`}
                         icons={{
-                          Play: getIcon('Audio', 'fill-current h-9 w-9 sm:w-12 sm:h-12'),
-                          Stop: getIcon('StopCircle', 'fill-current h-9 w-9 sm:w-12 sm:h-12'),
+                          Play: getIcon(
+                            'Audio',
+                            'fill-current h-9 w-9 sm:w-12 sm:h-12',
+                          ),
+                          Stop: getIcon(
+                            'StopCircle',
+                            'fill-current h-9 w-9 sm:w-12 sm:h-12',
+                          ),
                         }}
                         src={getMediaUrl({ type: 'audio', id: audioFile.uid })}
                       />
@@ -75,7 +88,9 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                 <div className="">
                   <ol
                     className={`${
-                      entry?.translations?.length === 1 ? 'list-none' : 'list-decimal'
+                      entry?.translations?.length === 1
+                        ? 'list-none'
+                        : 'list-decimal'
                     } list-inside text-lg md:text-xl lg:text-2xl`}
                   >
                     {entry?.translations?.map((translation, index) => (
@@ -89,7 +104,10 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
             </div>
           </section>
           {/* Pictures - Mobile */}
-          <section id="media" className="block lg:hidden col-span-6 lg:col-span-3">
+          <section
+            id="media"
+            className="block lg:hidden col-span-6 lg:col-span-3"
+          >
             {images}
           </section>
         </div>

@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import CategoriesBrowserData from 'components/CategoriesBrowser/CategoriesBrowserData'
 import CategoriesBrowserPresentation from 'components/CategoriesBrowser/CategoriesBrowserPresentation'
 function CategoriesBrowserContainer({ chooseDocHandler }) {
-  const { isLoading, site, sitename, currentCategory, setCurrentCategory, filteredCategories, setQuery } =
-    CategoriesBrowserData()
+  const {
+    isLoading,
+    site,
+    sitename,
+    currentCategory,
+    setCurrentCategory,
+    filteredCategories,
+    setQuery,
+  } = CategoriesBrowserData()
   return (
     <CategoriesBrowserPresentation
       isLoading={isLoading}
@@ -21,7 +28,7 @@ function CategoriesBrowserContainer({ chooseDocHandler }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { func } = PropTypes
 CategoriesBrowserContainer.propTypes = {
   chooseDocHandler: func,

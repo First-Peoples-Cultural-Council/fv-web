@@ -6,29 +6,34 @@ import api from 'services/api'
 
 function WidgetStatsData() {
   const { site } = useSiteStore()
-  const { data } = useQuery(['stats', site?.uid], () => api.widget.getStats({ siteId: site?.uid }), {
-    // The query will not execute until the site?.uid exists
-    enabled: !!site?.uid,
-    refetchOnWindowFocus: false,
-  })
+  const { data } = useQuery(
+    ['stats', site?.uid],
+    () => api.widget.getStats({ siteId: site?.uid }),
+    {
+      // The query will not execute until the site?.uid exists
+      enabled: !!site?.uid,
+      refetchOnWindowFocus: false,
+    },
+  )
 
   const types = ['words', 'phrases', 'songs', 'stories']
   const temporal = data?.temporal
   const aggreggate = data?.aggregate
 
-  const getPeriodTotalForType = (period, docType) => {
-    return temporal?.[docType]?.[period]?.created
-  }
+  const getPeriodTotalForType = (period, docType) =>
+    temporal?.[docType]?.[period]?.created
 
   const getPeriodTotal = (period) => {
     let total = 0
-    types.forEach((type) => (total = total + getPeriodTotalForType(period, type)))
+    types.forEach((type) => (total += getPeriodTotalForType(period, type)))
     return total
   }
 
   const getPeriodTotalsForAllTypes = (period) => {
     const totals = {}
-    types.forEach((type) => (totals[type] = getPeriodTotalForType(period, type)))
+    types.forEach(
+      (type) => (totals[type] = getPeriodTotalForType(period, type)),
+    )
     return totals
   }
 

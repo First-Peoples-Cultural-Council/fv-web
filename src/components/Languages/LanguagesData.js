@@ -12,15 +12,23 @@ function LanguagesData() {
   const { user } = useUserStore()
 
   // Fetching data for all sites, user's sites and colors for parent languages
-  const { data: allSitesResponse } = useQuery(['languages'], () => api.site.getSites(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data: allSitesResponse } = useQuery(
+    ['languages'],
+    () => api.site.getSites(),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
-  const { data: userSitesResponse } = useQuery(['userSites', user?.id], () => api.user.getMySites(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data: userSitesResponse } = useQuery(
+    ['userSites', user?.id],
+    () => api.user.getMySites(),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const { data: parentLanguagesResponse } = useQuery(
     ['parentLanguagesData'],
@@ -28,41 +36,40 @@ function LanguagesData() {
     {
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   const languageSitesDataAdapter = ({ siteList, isAllSitesList }) => {
-    let siteListMapped = siteList?.map((site) => {
-      return getFormattedSiteObject(site)
-    })
+    let siteListMapped = siteList?.map((site) => getFormattedSiteObject(site))
 
     // For the allSites list, filter out non-version2 sites
     if (isAllSitesList) {
-      siteListMapped = siteListMapped?.filter((site) => {
-        return site?.features?.includes('version2')
-      })
+      siteListMapped = siteListMapped?.filter((site) =>
+        site?.features?.includes('version2'),
+      )
     }
 
     return categorizeAndSort(siteListMapped)
   }
 
-  const getFormattedSiteObject = (site) => {
-    return {
-      uid: site?.uid,
-      title: site?.title,
-      sitename: site?.sitename,
-      visibility: site?.visibility,
-      logoPath: site?.logoId ? getMediaUrl({ id: site.logoId, type: 'image', viewName: 'Thumbnail' }) : placeholder,
-      parentLanguageTitle: site?.parentLanguageTitle,
-      features: site?.features,
-    }
-  }
+  const getFormattedSiteObject = (site) => ({
+    uid: site?.uid,
+    title: site?.title,
+    sitename: site?.sitename,
+    visibility: site?.visibility,
+    logoPath: site?.logoId
+      ? getMediaUrl({ id: site.logoId, type: 'image', viewName: 'Thumbnail' })
+      : placeholder,
+    parentLanguageTitle: site?.parentLanguageTitle,
+    features: site?.features,
+  })
 
   const categorizeAndSort = (siteList) => {
     // Categorization based on the parent language
     const categorizedSiteList = {}
     siteList?.forEach((mappedSite) => {
-      mappedSite.parentLanguageTitle = mappedSite.parentLanguageTitle || OTHER_LANGUAGES_DESCRIPTOR
+      mappedSite.parentLanguageTitle =
+        mappedSite.parentLanguageTitle || OTHER_LANGUAGES_DESCRIPTOR
       if (!categorizedSiteList?.[mappedSite.parentLanguageTitle]) {
         categorizedSiteList[mappedSite.parentLanguageTitle] = []
       }
@@ -96,15 +103,23 @@ function LanguagesData() {
     const output = {}
 
     parentLanguagesEntries?.entries.forEach((entry) => {
-      output[entry?.id] = entry?.properties.color.toLowerCase().replace(/\s/g, '')
+      output[entry?.id] = entry?.properties.color
+        .toLowerCase()
+        .replace(/\s/g, '')
     })
 
     return output
   }
 
   return {
-    allSitesList: languageSitesDataAdapter({ siteList: allSitesResponse, isAllSitesList: true }),
-    userSitesList: languageSitesDataAdapter({ siteList: userSitesResponse, isAllSitesList: false }),
+    allSitesList: languageSitesDataAdapter({
+      siteList: allSitesResponse,
+      isAllSitesList: true,
+    }),
+    userSitesList: languageSitesDataAdapter({
+      siteList: userSitesResponse,
+      isAllSitesList: false,
+    }),
     parentLanguagesData: parentLanguagesDataAdapter(parentLanguagesResponse),
   }
 }

@@ -6,7 +6,8 @@ import DashboardAlphabetData from 'components/DashboardAlphabet/DashboardAlphabe
 import DashboardAlphabetPresentation from 'components/DashboardAlphabet/DashboardAlphabetPresentation'
 
 function DashboardAlphabetContainer() {
-  const { characters, headerContent, isLoading, site, sitename, tileContent } = DashboardAlphabetData()
+  const { characters, headerContent, isLoading, site, sitename, tileContent } =
+    DashboardAlphabetData()
   return (
     <div id="DashboardAlphabetContainer">
       <Routes>

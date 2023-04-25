@@ -31,9 +31,12 @@ function ImmersionCrudData({ label }) {
       },
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! A new immersion label has been created.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! A new immersion label has been created.',
+      })
       queryClient.invalidateQueries(['immersion', site?.uid])
-      setTimeout(function () {
+      setTimeout(() => {
         window.location.href = `/${site?.sitename}/dashboard/edit/immersion`
       }, 1000)
     } else {
@@ -54,7 +57,10 @@ function ImmersionCrudData({ label }) {
       },
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your immersion label has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your immersion label has been saved.',
+      })
       queryClient.invalidateQueries(['immersion', site?.uid])
     } else {
       setNotification({

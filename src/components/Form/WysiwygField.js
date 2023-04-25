@@ -21,7 +21,9 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
 
   const parsedValue = safeJsonParse(value)
   if (Object.prototype.hasOwnProperty.call(parsedValue, 'blocks')) {
-    const initialState = EditorState.createWithContent(convertFromRaw(parsedValue))
+    const initialState = EditorState.createWithContent(
+      convertFromRaw(parsedValue),
+    )
     setEditorState(initialState)
     onChange(initialState)
   }
@@ -55,7 +57,9 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
 
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <div className="block w-full bg-white overflow-hidden shadow-sm mt-1 sm:text-sm border border-gray-300 rounded-lg">
         {toolbar !== 'none' && (
           <div className="flex w-full border-b border-gray-200 text-xl text-gray-600">
@@ -85,7 +89,9 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
           />
         </div>
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }

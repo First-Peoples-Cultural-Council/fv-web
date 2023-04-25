@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Menu } from '@headlessui/react'
 
@@ -9,12 +9,20 @@ import ShareLinks from 'components/ShareLinks'
 import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
 
-function ShareButton({ docId, docTitle, docType, docVisibility, sitename, iconStyling, withLabels }) {
+function ShareButton({
+  docId,
+  docTitle,
+  docType,
+  docVisibility,
+  sitename,
+  iconStyling,
+  withLabels,
+}) {
   const [shareModelOpen, setShareModalOpen] = useState(false)
   return (
     <Menu.Item>
       {({ active }) => (
-        <Fragment>
+        <>
           <button
             id="ShareButton"
             className={`${
@@ -27,19 +35,26 @@ function ShareButton({ docId, docTitle, docType, docVisibility, sitename, iconSt
             {withLabels ? <span className="ml-3">SHARE</span> : null}
           </button>
           {/* Share Modal */}
-          <Modal.Presentation isOpen={shareModelOpen} closeHandler={() => setShareModalOpen(false)}>
+          <Modal.Presentation
+            isOpen={shareModelOpen}
+            closeHandler={() => setShareModalOpen(false)}
+          >
             <div
               id="ShareModalContent"
               className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
             >
               {docVisibility === TEAM || docVisibility === MEMBERS ? (
                 <div className="text-center font-medium">
-                  <p className="text-2xl text-fv-charcoal">This {docType} is visible to</p>
-                  <p className="text-2xl text-fv-charcoal font-bold">{docVisibility} only!</p>
+                  <p className="text-2xl text-fv-charcoal">
+                    This {docType} is visible to
+                  </p>
+                  <p className="text-2xl text-fv-charcoal font-bold">
+                    {docVisibility} only!
+                  </p>
                   <a
                     className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-secondary"
                     href={`mailto:?subject=${docTitle}&body=${window.location.origin.toString()}/${sitename}/${makePlural(
-                      docType
+                      docType,
                     )}/${docId}`}
                   >
                     {getIcon('Mail', 'fill-current h-7 w-7')}
@@ -51,7 +66,9 @@ function ShareButton({ docId, docTitle, docType, docVisibility, sitename, iconSt
                     Share <em>{docTitle}</em> on:
                   </h3>
                   <ShareLinks.Presentation
-                    url={`${window.location.origin.toString()}/${sitename}/${makePlural(docType)}/${docId}`}
+                    url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+                      docType,
+                    )}/${docId}`}
                     title={docTitle}
                     modalCloseHandler={() => setShareModalOpen(false)}
                   />
@@ -66,7 +83,7 @@ function ShareButton({ docId, docTitle, docType, docVisibility, sitename, iconSt
               </button>
             </div>
           </Modal.Presentation>
-        </Fragment>
+        </>
       )}
     </Menu.Item>
   )

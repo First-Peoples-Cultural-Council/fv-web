@@ -36,11 +36,12 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
     quote3By: '',
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, register, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormQuotes">
@@ -56,30 +57,72 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
         widgetType={WIDGET_QUOTES}
       >
         <>
-          <input id="widgetFormat" name="widgetFormat" type="hidden" value="default" {...register('widgetFormat')} />
+          <input
+            id="widgetFormat"
+            name="widgetFormat"
+            type="hidden"
+            value="default"
+            {...register('widgetFormat')}
+          />
           <div className="col-span-12">
-            <Form.TextField label="Quote 1" nameId="quote1" register={register} />
-            {errors?.quote1 && <div className="text-red-500">{errors?.quote1?.message}</div>}
+            <Form.TextField
+              label="Quote 1"
+              nameId="quote1"
+              register={register}
+            />
+            {errors?.quote1 && (
+              <div className="text-red-500">{errors?.quote1?.message}</div>
+            )}
           </div>
           <div className="col-span-6 -mt-4">
-            <Form.TextField label="Attributed to" nameId="quote1By" register={register} />
-            {errors?.quote1By && <div className="text-red-500">{errors?.quote1By?.message}</div>}
+            <Form.TextField
+              label="Attributed to"
+              nameId="quote1By"
+              register={register}
+            />
+            {errors?.quote1By && (
+              <div className="text-red-500">{errors?.quote1By?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.TextField label="Quote 2" nameId="quote2" register={register} />
-            {errors?.quote2 && <div className="text-red-500">{errors?.quote2?.message}</div>}
+            <Form.TextField
+              label="Quote 2"
+              nameId="quote2"
+              register={register}
+            />
+            {errors?.quote2 && (
+              <div className="text-red-500">{errors?.quote2?.message}</div>
+            )}
           </div>
           <div className="col-span-6 -mt-4">
-            <Form.TextField label="Attributed to" nameId="quote2By" register={register} />
-            {errors?.quote2By && <div className="text-red-500">{errors?.quote2By?.message}</div>}
+            <Form.TextField
+              label="Attributed to"
+              nameId="quote2By"
+              register={register}
+            />
+            {errors?.quote2By && (
+              <div className="text-red-500">{errors?.quote2By?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.TextField label="Quote 3" nameId="quote3" register={register} />
-            {errors?.quote3 && <div className="text-red-500">{errors?.quote3?.message}</div>}
+            <Form.TextField
+              label="Quote 3"
+              nameId="quote3"
+              register={register}
+            />
+            {errors?.quote3 && (
+              <div className="text-red-500">{errors?.quote3?.message}</div>
+            )}
           </div>
           <div className="col-span-6 -mt-4">
-            <Form.TextField label="Attributed to" nameId="quote3By" register={register} />
-            {errors?.quote3By && <div className="text-red-500">{errors?.quote3By?.message}</div>}
+            <Form.TextField
+              label="Attributed to"
+              nameId="quote3By"
+              register={register}
+            />
+            {errors?.quote3By && (
+              <div className="text-red-500">{errors?.quote3By?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>
@@ -87,7 +130,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { func, object, string } = PropTypes
 WidgetFormQuotes.propTypes = {
   cancelHandler: func,

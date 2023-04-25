@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import api from 'services/api'
 import { useNotification } from 'context/NotificationContext'
 
@@ -12,10 +12,13 @@ function DeleteButtonData({ id }) {
   // Add widget to active
   const deleteHandler = async () => {
     if (id) {
-      const response = await api.document.trash({ id: id })
+      const response = await api.document.trash({ id })
       if (response?.isTrashed) {
-        setNotification({ type: 'SUCCESS', message: 'Success! Your item has been deleted.' })
-        setTimeout(function () {
+        setNotification({
+          type: 'SUCCESS',
+          message: 'Success! Your item has been deleted.',
+        })
+        setTimeout(() => {
           navigate(-2)
         }, 1000)
       } else {
@@ -26,7 +29,6 @@ function DeleteButtonData({ id }) {
         })
       }
     }
-    return
   }
 
   return {

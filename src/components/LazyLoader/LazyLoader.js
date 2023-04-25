@@ -20,7 +20,7 @@ function LazyLoader({ children, tag, styling, placeholder, forceLoad }) {
             }
           })
         },
-        { threshold: [0.5, 1] }
+        { threshold: [0.5, 1] },
       )
       io.current.observe(ref.current)
     }

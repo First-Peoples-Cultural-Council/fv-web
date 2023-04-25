@@ -13,7 +13,9 @@ function StoryPresentationDrawer({ entry, sitename }) {
         <div className="sm:flex-1">
           <div>
             <div className="flex items-center">
-              <h3 className="font-medium text-xl text-fv-charcoal sm:text-3xl">{entry?.title}</h3>
+              <h3 className="font-medium text-xl text-fv-charcoal sm:text-3xl">
+                {entry?.title}
+              </h3>
             </div>
             <p className="text-fv-charcoal-light">
               {entry?.titleTranslation?.[0]?.translation}
@@ -22,11 +24,16 @@ function StoryPresentationDrawer({ entry, sitename }) {
           </div>
         </div>
       </div>
-      {(entry?.coverVisual?.type === 'gifOrImg' || entry?.coverVisual?.type === 'image') && (
+      {(entry?.coverVisual?.type === 'gifOrImg' ||
+        entry?.coverVisual?.type === 'image') && (
         <div className="my-2 md:my-6">
           <img
             className="h-40 md:h-96 w-auto mx-auto"
-            src={getMediaUrl({ type: entry?.coverVisual.type, id: entry?.coverVisual?.id, viewName: 'Small' })}
+            src={getMediaUrl({
+              type: entry?.coverVisual.type,
+              id: entry?.coverVisual?.id,
+              viewName: 'Small',
+            })}
             alt={entry?.title}
             loading="lazy"
           />
@@ -36,7 +43,11 @@ function StoryPresentationDrawer({ entry, sitename }) {
         <div className="my-2 md:my-6 flex mx-auto px-4">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
-            src={getMediaUrl({ type: entry?.coverVisual.type, id: entry?.coverVisual?.id, viewName: 'Small' })}
+            src={getMediaUrl({
+              type: entry?.coverVisual.type,
+              id: entry?.coverVisual?.id,
+              viewName: 'Small',
+            })}
             controls
           >
             Your browser does not support the video tag.
@@ -47,7 +58,9 @@ function StoryPresentationDrawer({ entry, sitename }) {
       {(entry?.intro?.length > 0 || entry?.introTranslation?.length > 0) && (
         <div className="px-4 pt-5 sm:px-0 sm:pt-0">
           <div className="space-y-2 px-4 sm:px-6 sm:space-y-4">
-            <h4 className="font-bold text-fv-charcoal sm:w-40 sm:shrink-0">INTRODUCTION</h4>
+            <h4 className="font-bold text-fv-charcoal sm:w-40 sm:shrink-0">
+              INTRODUCTION
+            </h4>
             <div className="text-fv-charcoal sm:col-span-2 space-y-2">
               <WysiwygBlock jsonString={entry?.intro} />
               <WysiwygBlock jsonString={entry?.introTranslation} />

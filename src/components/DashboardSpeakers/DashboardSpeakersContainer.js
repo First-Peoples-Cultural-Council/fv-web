@@ -6,7 +6,8 @@ import DashboardSpeakersData from 'components/DashboardSpeakers/DashboardSpeaker
 import DashboardSpeakersPresentation from 'components/DashboardSpeakers/DashboardSpeakersPresentation'
 
 function DashboardSpeakersContainer() {
-  const { speakers, headerContent, isLoading, site, sitename, tileContent } = DashboardSpeakersData()
+  const { speakers, headerContent, isLoading, site, sitename, tileContent } =
+    DashboardSpeakersData()
   return (
     <div id="DashboardSpeakersContainer">
       <Routes>

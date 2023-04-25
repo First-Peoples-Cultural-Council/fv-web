@@ -29,7 +29,7 @@ function ContactUsData({ widgetData }) {
         message: formData.message,
       })
 
-      if (response?.status == 202) {
+      if (response?.status === 202) {
         setNotification({
           type: 'SUCCESS',
           message: 'Thank you for emailing the Language Team.',
@@ -54,7 +54,8 @@ function ContactUsData({ widgetData }) {
           default:
             setNotification({
               type: 'ERROR',
-              message: 'We have encountered an unexpected error. Please report this to our Help Desk.',
+              message:
+                'We have encountered an unexpected error. Please report this to our Help Desk.',
             })
             break
         }

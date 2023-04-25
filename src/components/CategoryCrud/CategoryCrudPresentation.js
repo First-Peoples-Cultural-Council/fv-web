@@ -28,19 +28,24 @@ function CategoryCrudPresentation({
     parentId: categoriesDirectoryId,
   }
 
-  const { control, errors, handleSubmit, isCreateMode, register, reset } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, errors, handleSubmit, isCreateMode, register, reset } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
-  const isNotParent = dataToEdit?.parentId !== categoriesDirectoryId && dataToEdit?.parentId !== phrasebooksDirectoryId
+  const isNotParent =
+    dataToEdit?.parentId !== categoriesDirectoryId &&
+    dataToEdit?.parentId !== phrasebooksDirectoryId
 
   return (
     <div id="CategoryCrudPresentation" className="max-w-5xl p-8">
       <Form.Header
         title={isCreateMode ? 'Create a new category' : 'Edit your category'}
-        subtitle={isCreateMode ? 'Enter the details for your new category.' : ''}
+        subtitle={
+          isCreateMode ? 'Enter the details for your new category.' : ''
+        }
       />
       {!isCreateMode && (
         <div className="w-full flex justify-end mt-6 px-6">
@@ -55,16 +60,31 @@ function CategoryCrudPresentation({
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+            {errors?.title && (
+              <div className="text-red-500">{errors?.title?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.TextField label="Description" nameId="description" register={register} />
-            {errors?.description && <div className="text-red-500">{errors?.description?.message}</div>}
+            <Form.TextField
+              label="Description"
+              nameId="description"
+              register={register}
+            />
+            {errors?.description && (
+              <div className="text-red-500">{errors?.description?.message}</div>
+            )}
           </div>
           {isNotParent && (
             <div className="col-span-12">
-              <Form.Select label="Parent Category" nameId="parentId" control={control} options={parentCategories} />
-              {errors?.parentId && <div className="text-red-500">{errors?.parentId?.message}</div>}
+              <Form.Select
+                label="Parent Category"
+                nameId="parentId"
+                control={control}
+                options={parentCategories}
+              />
+              {errors?.parentId && (
+                <div className="text-red-500">{errors?.parentId?.message}</div>
+              )}
             </div>
           )}
           <div className="col-span-12 flex justify-end mt-6 px-6">

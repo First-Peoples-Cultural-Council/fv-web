@@ -26,13 +26,18 @@ function AppData() {
     refetchOnReconnect: false,
   })
   useEffect(() => {
-    if (userIsLoading === false && userError === null && userRolesIsLoading === false && userRolesError === null) {
+    if (
+      userIsLoading === false &&
+      userError === null &&
+      userRolesIsLoading === false &&
+      userRolesError === null
+    ) {
       userDispatch({ type: 'SET', data: { ...userData, roles: userRolesData } })
     }
   }, [userIsLoading, userRolesIsLoading, userRolesError, userError])
 
   return {
-    appIsLoading: userData?.id ? false : true,
+    appIsLoading: !userData?.id,
   }
 }
 

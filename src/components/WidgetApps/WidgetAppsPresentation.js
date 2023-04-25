@@ -14,13 +14,31 @@ function WidgetAppsPresentation({ header, logoId, subtitle, urls }) {
           <h1 className="text-4xl font-bold">{header}</h1>
           <p className="text-base font-medium">{subtitle}</p>
           {urls?.iosUrl && (
-            <a href={urls?.iosUrl} target="_blank" rel="noopener noreferrer" className="inline-flex mr-5">
-              <img className="h-14 w-auto mx-auto shadow-xl" src={appleBadge} alt="App Store Logo" />
+            <a
+              href={urls?.iosUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex mr-5"
+            >
+              <img
+                className="h-14 w-auto mx-auto shadow-xl"
+                src={appleBadge}
+                alt="App Store Logo"
+              />
             </a>
           )}
           {urls?.androidUrl && (
-            <a href={urls?.androidUrl} target="_blank" rel="noopener noreferrer" className="inline-flex mr-5">
-              <img className="h-14 w-auto mx-auto shadow-xl" src={googleBadge} alt="App Store Logo" />
+            <a
+              href={urls?.androidUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex mr-5"
+            >
+              <img
+                className="h-14 w-auto mx-auto shadow-xl"
+                src={googleBadge}
+                alt="App Store Logo"
+              />
             </a>
           )}
         </div>

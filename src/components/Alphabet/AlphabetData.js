@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 
@@ -17,19 +17,23 @@ const AlphabetData = ({ widgetView }) => {
     ? new URLSearchParams(location.search).get('char')
     : null
 
-  const { status, isLoading, error, isError, data } = useQuery(['alphabet', uid], () => api.alphabet.get(uid), {
-    enabled: !!uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { status, isLoading, error, isError, data } = useQuery(
+    ['alphabet', uid],
+    () => api.alphabet.get(uid),
+    {
+      enabled: !!uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   // Find slected character data
   const findSelectedCharacterData = (selectedCharacter) => {
     const characters = Object.assign([], data?.characters)
-    const found = characters.filter(function findChar(char) {
-      return char.title === selectedCharacter
-    })[0]
-    return found ? found : null
+    const found = characters.filter(
+      (char) => char.title === selectedCharacter,
+    )[0]
+    return found
   }
 
   useEffect(() => {
@@ -40,7 +44,9 @@ const AlphabetData = ({ widgetView }) => {
       }
     }
     if (!character && data?.characters?.length > 0) {
-      const _selectedData = findSelectedCharacterData(data?.characters?.[0]?.title)
+      const _selectedData = findSelectedCharacterData(
+        data?.characters?.[0]?.title,
+      )
       if (_selectedData && _selectedData?.title !== selectedData?.title) {
         setSelectedData(_selectedData)
       }
@@ -51,7 +57,7 @@ const AlphabetData = ({ widgetView }) => {
     if (isError && !widgetView) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])

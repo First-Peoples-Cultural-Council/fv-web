@@ -19,7 +19,10 @@ function StoryCrudContainer() {
         return (
           <StoryCrudStepWrapper>
             <div className="bg-white p-8 rounded-lg w-full space-y-2">
-              <label htmlFor="first-name" className="block text-sm font-medium text-fv-charcoal">
+              <label
+                htmlFor="first-name"
+                className="block text-sm font-medium text-fv-charcoal"
+              >
                 Who can see this content?
               </label>
               <VisibilitySelect.Container id={storyId} docState={storyState} />
@@ -38,7 +41,9 @@ function StoryCrudContainer() {
     }
   }
 
-  return <section id="StoryCrudPresentation">{getStepContent(activeStep)}</section>
+  return (
+    <section id="StoryCrudPresentation">{getStepContent(activeStep)}</section>
+  )
 }
 
 export default StoryCrudContainer

@@ -3,7 +3,12 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // FPCC
-import { DOC_SITE, DOC_WIDGET, NOTIFICATION_TIME, WIDGET_TEXTFULL } from 'common/constants'
+import {
+  DOC_SITE,
+  DOC_WIDGET,
+  NOTIFICATION_TIME,
+  WIDGET_TEXTFULL,
+} from 'common/constants'
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
@@ -32,7 +37,9 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     ? new URLSearchParams(location.search).get('id')
     : null
 
-  const _destinationId = new URLSearchParams(location.search).get('destinationId')
+  const _destinationId = new URLSearchParams(location.search).get(
+    'destinationId',
+  )
     ? new URLSearchParams(location.search).get('destinationId')
     : destinationId
 
@@ -48,17 +55,21 @@ function WidgetCrudData({ insertIndex, destinationId }) {
       enabled: !!_destinationId,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   let dataToEdit = null
 
   if (_widgetId) {
-    const { data } = useQuery([_widgetId], () => api.document.get({ id: _widgetId, properties: 'widget,settings' }), {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    })
-    dataToEdit = widgetCrudDataAdaptor({ data: data })
+    const { data } = useQuery(
+      [_widgetId],
+      () => api.document.get({ id: _widgetId, properties: 'widget,settings' }),
+      {
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+      },
+    )
+    dataToEdit = widgetCrudDataAdaptor({ data })
   }
 
   // Add widget to active
@@ -66,7 +77,9 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     if (widget && destinationData?.properties) {
       const activeWidgets = [...destinationData?.properties?.['widgets:active']]
       activeWidgets.splice(_insertIndex, 0, widget)
-      const inactiveWidgets = destinationData?.properties?.['widgets:inactive'].filter((e) => e !== widget)
+      const inactiveWidgets = destinationData?.properties?.[
+        'widgets:inactive'
+      ].filter((e) => e !== widget)
       await api.document.setProperty({
         input: _destinationId,
         properties: `widgets:active=${activeWidgets.join()}\nwidgets:inactive=${inactiveWidgets.join()}`,
@@ -74,7 +87,6 @@ function WidgetCrudData({ insertIndex, destinationId }) {
       // Invalidates cache of query and prompts updating the list after adding widget e.g. WidgetAreaEditData
       queryClient.invalidateQueries(['widget-area', _destinationId])
     }
-    return
   }
 
   const saveWidget = async (formData) => {
@@ -83,14 +95,14 @@ function WidgetCrudData({ insertIndex, destinationId }) {
       if (!key.startsWith('widget')) {
         if (key === 'textWithFormatting') {
           settings.push({
-            key: key,
+            key,
             value: getJsonFromWysiwygState(value?.getCurrentContent()),
             category: 'general',
           })
         } else {
           settings.push({
-            key: key,
-            value: value,
+            key,
+            value,
             category: 'general',
           })
         }
@@ -105,28 +117,30 @@ function WidgetCrudData({ insertIndex, destinationId }) {
         },
         visibility: formData?.visibility,
       })
-    } else {
-      return await api.document.createAndSetVisibility({
-        parentId: site?.children?.Widgets,
-        name: formData?.widgetName,
-        docType: DOC_WIDGET,
-        properties: {
-          'widget:type': formData?.widgetType,
-          'widget:format': formData?.widgetFormat,
-          'settings:settings': settings,
-        },
-        visibility: formData?.visibility,
-      })
     }
+    return await api.document.createAndSetVisibility({
+      parentId: site?.children?.Widgets,
+      name: formData?.widgetName,
+      docType: DOC_WIDGET,
+      properties: {
+        'widget:type': formData?.widgetType,
+        'widget:format': formData?.widgetFormat,
+        'settings:settings': settings,
+      },
+      visibility: formData?.visibility,
+    })
   }
 
   const { mutate } = useMutation(saveWidget, {
     onSuccess: (response) => {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your Widget has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your Widget has been saved.',
+      })
       if (_destinationId) {
         insertOnPage(response?.uid)
       }
-      setTimeout(function () {
+      setTimeout(() => {
         backHandler()
       }, NOTIFICATION_TIME)
     },
@@ -140,7 +154,9 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: [_widgetId] })
       if (_destinationId) {
-        queryClient.invalidateQueries({ queryKey: ['widget-aware-destination', _destinationId] })
+        queryClient.invalidateQueries({
+          queryKey: ['widget-aware-destination', _destinationId],
+        })
       }
     },
   })
@@ -150,14 +166,16 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     mutate(values)
   }
 
-  const isHomePage = destinationData?.type === DOC_SITE ? true : false
+  const isHomePage = destinationData?.type === DOC_SITE
 
   return {
     submitHandler,
-    widgetTypes: isHomePage ? widgetTypes.filter((widgetType) => widgetType !== WIDGET_TEXTFULL) : widgetTypes,
+    widgetTypes: isHomePage
+      ? widgetTypes.filter((widgetType) => widgetType !== WIDGET_TEXTFULL)
+      : widgetTypes,
     backHandler,
     dataToEdit,
-    isLoading: !_widgetId || dataToEdit ? false : true,
+    isLoading: !(!_widgetId || dataToEdit),
   }
 }
 

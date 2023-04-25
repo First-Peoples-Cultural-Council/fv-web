@@ -5,7 +5,15 @@ import StoryPagesCrudPresentation from 'components/StoryPagesCrud/StoryPagesCrud
 import StoryPagesCrudData from 'components/StoryPagesCrud/StoryPagesCrudData'
 
 function StoryPagesCrudContainer() {
-  const { addPageOpen, setAddPageOpen, pageIds, setPageIds, goToStep, pages, submitHandler } = StoryPagesCrudData()
+  const {
+    addPageOpen,
+    setAddPageOpen,
+    pageIds,
+    setPageIds,
+    goToStep,
+    pages,
+    submitHandler,
+  } = StoryPagesCrudData()
 
   return (
     <StoryPagesCrudPresentation

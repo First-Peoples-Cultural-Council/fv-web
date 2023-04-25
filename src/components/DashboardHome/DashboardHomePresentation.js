@@ -28,15 +28,25 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                         </div>
                       </div>
                       <div className="pt-1 text-left">
-                        <p className="text-sm font-medium text-fv-charcoal-light">Welcome back,</p>
-                        <p className="font-bold text-fv-charcoal text-2xl">{currentUser.displayName}</p>
-                        <p className="text-sm font-medium text-fv-charcoal-light">{currentUser.role}</p>
+                        <p className="text-sm font-medium text-fv-charcoal-light">
+                          Welcome back,
+                        </p>
+                        <p className="font-bold text-fv-charcoal text-2xl">
+                          {currentUser.displayName}
+                        </p>
+                        <p className="text-sm font-medium text-fv-charcoal-light">
+                          {currentUser.role}
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-5">
                       <div className="pt-1 text-right">
-                        <p className="text-xl font-bold text-fv-charcoal">You are on:</p>
-                        <p className="text-xl font-medium text-fv-charcoal-light">{site?.title}</p>
+                        <p className="text-xl font-bold text-fv-charcoal">
+                          You are on:
+                        </p>
+                        <p className="text-xl font-medium text-fv-charcoal-light">
+                          {site?.title}
+                        </p>
                       </div>
                       <div className="flex-shrink-0">
                         {site?.logoId ? (
@@ -51,7 +61,9 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                           />
                         ) : (
                           <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
-                            <span className="text-center">{site?.title?.charAt(0)}</span>
+                            <span className="text-center">
+                              {site?.title?.charAt(0)}
+                            </span>
                           </div>
                         )}
                       </div>
@@ -68,11 +80,14 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                   {getIcon('InfoCircleSolid', 'h-12 w-12 fill-current')}
                 </div>
                 <div className=" text-fv-charcoal text-sm">
-                  Editing in the new Dashboard has not been enabled for some content on this site. For now, you can edit
-                  that content in the old FirstVoices view, and it will be updated in the new FirstVoices. To go to the
-                  old site click{' '}
+                  Editing in the new Dashboard has not been enabled for some
+                  content on this site. For now, you can edit that content in
+                  the old FirstVoices view, and it will be updated in the new
+                  FirstVoices. To go to the old site click{' '}
                   <a
-                    href={`https://www.firstvoices.com/explore${site?.path || ''}`}
+                    href={`https://www.firstvoices.com/explore${
+                      site?.path || ''
+                    }`}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="text-blue-600 visited:text-purple-600 underline"

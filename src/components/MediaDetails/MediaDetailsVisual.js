@@ -12,17 +12,21 @@ function MediaDetailsVisual({ file, docType }) {
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6">
       <div>
         <div className="block w-full h-120 rounded-lg overflow-hidden">
-          {docType == DOC_IMAGE && (
+          {docType === DOC_IMAGE && (
             <img
               src={getMediaUrl({ type: 'gifOrImg', id: file?.id })}
               alt={`${file?.title} Image`}
               className="object-contain w-full h-120"
             />
           )}
-          {docType == DOC_VIDEO && (
+          {docType === DOC_VIDEO && (
             <video
               className="object-contain w-full h-120"
-              src={getMediaUrl({ type: 'video', id: file?.id, viewName: 'Small' })}
+              src={getMediaUrl({
+                type: 'video',
+                id: file?.id,
+                viewName: 'Small',
+              })}
               controls
             />
           )}
@@ -46,14 +50,16 @@ function MediaDetailsVisual({ file, docType }) {
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {
                 return (
-                  <div key={key} className="py-3 flex justify-between text-sm font-medium">
+                  <div
+                    key={key}
+                    className="py-3 flex justify-between text-sm font-medium"
+                  >
                     <dt className="text-fv-charcoal-light">{key}</dt>
                     <dd className="text-fv-charcoal">{file[key]}</dd>
                   </div>
                 )
-              } else {
-                return null
               }
+              return null
             })}
         </dl>
       </div>
@@ -63,7 +69,8 @@ function MediaDetailsVisual({ file, docType }) {
           className="flex-1 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
         >
           <div className="flex w-full h-full items-center justify-center">
-            {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')} Download
+            {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}{' '}
+            Download
           </div>
         </a>
       </div>

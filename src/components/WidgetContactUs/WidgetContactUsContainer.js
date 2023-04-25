@@ -7,7 +7,9 @@ import WidgetContactUsData from 'components/WidgetContactUs/WidgetContactUsData'
 
 function WidgetContactUsContainer({ widgetData }) {
   const { title, text, textWithFormatting } = widgetData?.settings
-  const { siteTitle, links, submitHandler } = WidgetContactUsData({ widgetData })
+  const { siteTitle, links, submitHandler } = WidgetContactUsData({
+    widgetData,
+  })
 
   return (
     <WidgetContactUsPresentation

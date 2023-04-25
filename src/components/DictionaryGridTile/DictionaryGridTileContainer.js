@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import DictionaryGridTilePresentationKids from 'components/DictionaryGridTile/DictionaryGridTilePresentationKids'
 import DictionaryGridTilePresentation from 'components/DictionaryGridTile/DictionaryGridTilePresentation'
 
@@ -9,7 +9,11 @@ function DictionaryGridTileContainer({ actions, moreActions, entry, kids }) {
   return kids ? (
     <DictionaryGridTilePresentationKids entry={entry} />
   ) : (
-    <DictionaryGridTilePresentation entry={entry} actions={actions} moreActions={moreActions} />
+    <DictionaryGridTilePresentation
+      entry={entry}
+      actions={actions}
+      moreActions={moreActions}
+    />
   )
 }
 

@@ -6,7 +6,10 @@ import getIcon from 'common/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function Stepper({ steps, onClickCallback }) {
-  const [activeStep, setActiveStep] = useSearchParamsState({ searchParamName: 'step', defaultValue: '0' })
+  const [activeStep, setActiveStep] = useSearchParamsState({
+    searchParamName: 'step',
+    defaultValue: '0',
+  })
   const activeStepNumber = Number(activeStep)
 
   const onStepClick = (step) => {
@@ -25,30 +28,49 @@ function Stepper({ steps, onClickCallback }) {
         {steps.map((step, stepIdx) => (
           <li key={step.title} className="relative md:flex md:flex-1">
             {activeStepNumber > stepIdx && (
-              <button type="button" onClick={() => onStepClick(stepIdx)} className={buttonClass}>
+              <button
+                type="button"
+                onClick={() => onStepClick(stepIdx)}
+                className={buttonClass}
+              >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary group-hover:bg-primary-dark">
                     {getIcon('Checkmark', 'h-5 w-5 text-white fill-current')}
                   </span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-fv-charcoal">{step.title}</span>
+                <span className="ml-4 text-sm font-medium text-fv-charcoal">
+                  {step.title}
+                </span>
               </button>
             )}
             {activeStepNumber === stepIdx && (
-              <button type="button" onClick={() => onStepClick(stepIdx)} className={buttonClass} aria-current="step">
+              <button
+                type="button"
+                onClick={() => onStepClick(stepIdx)}
+                className={buttonClass}
+                aria-current="step"
+              >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-primary">
                     <span className="text-primary">{`0${stepIdx + 1}`}</span>
                   </span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-primary">{step.title}</span>
+                <span className="ml-4 text-sm font-medium text-primary">
+                  {step.title}
+                </span>
               </button>
             )}
             {activeStepNumber < stepIdx && (
-              <button type="button" onClick={() => onStepClick(stepIdx)} className={buttonClass}>
+              <button
+                type="button"
+                onClick={() => onStepClick(stepIdx)}
+                className={buttonClass}
+              >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
                   <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-fv-charcoal-light">
-                    <span className="text-fv-charcoal-light group-hover:text-fv-charcoal">{`0${stepIdx + 1}`}</span>
+                    <span className="text-fv-charcoal-light group-hover:text-fv-charcoal">{`0${
+                      stepIdx + 1
+                    }`}</span>
                   </span>
                   <span className="ml-4 text-sm font-medium text-fv-charcoal-light group-hover:text-fv-charcoal">
                     {step.title}
@@ -60,7 +82,10 @@ function Stepper({ steps, onClickCallback }) {
             {stepIdx !== steps.length - 1 ? (
               <>
                 {/* Arrow separator for lg screens and up */}
-                <div className="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
+                <div
+                  className="absolute top-0 right-0 hidden h-full w-5 md:block"
+                  aria-hidden="true"
+                >
                   {getIcon('ArrowDivider', 'h-full w-full text-gray-300')}
                 </div>
               </>

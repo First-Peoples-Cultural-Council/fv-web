@@ -20,7 +20,8 @@ function MediaItemsLayoutAudio({
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
-  const headerClass = 'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+  const headerClass =
+    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
     <div id="MediaItemsLayoutAudio">
@@ -45,8 +46,13 @@ function MediaItemsLayoutAudio({
               {data?.pages?.map((page, index) => (
                 <React.Fragment key={index}>
                   {page.entries.map((rawAudioDoc) => {
-                    const audioFile = mediaDataAdaptor({ type: DOC_AUDIO, data: rawAudioDoc })
-                    if (savedMedia?.some((elemId) => elemId == audioFile?.id)) {
+                    const audioFile = mediaDataAdaptor({
+                      type: DOC_AUDIO,
+                      data: rawAudioDoc,
+                    })
+                    if (
+                      savedMedia?.some((elemId) => elemId === audioFile?.id)
+                    ) {
                       // If a media file is already attached to the document
                       // it will not be presented as a choice in the selectMedia dialog box
                       return null
@@ -55,7 +61,9 @@ function MediaItemsLayoutAudio({
                       <tr
                         key={audioFile.id}
                         className={`${
-                          audioFile?.id === currentFile?.id ? 'ring-2 ring-offset-2 ring-primary' : ''
+                          audioFile?.id === currentFile?.id
+                            ? 'ring-2 ring-offset-2 ring-primary'
+                            : ''
                         } rounded-lg relative`}
                         {...(selection
                           ? { onClick: () => mediaSelectHandler(audioFile?.id) } // Selecting a file from the dialogBox to attach to document
@@ -63,14 +71,24 @@ function MediaItemsLayoutAudio({
                       >
                         {selection && (
                           <td>
-                            {selectedMedia?.some((elemId) => elemId == audioFile?.id) && // Add a small checkIcon on the top-right if it is selected
-                              getIcon('CheckCircleSolid', 'h-8 w-8 fill-green-700')}
+                            {selectedMedia?.some(
+                              (elemId) => elemId === audioFile?.id,
+                            ) && // Add a small checkIcon on the top-right if it is selected
+                              getIcon(
+                                'CheckCircleSolid',
+                                'h-8 w-8 fill-green-700',
+                              )}
                           </td>
                         )}
                         <td className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal">
-                          <AudioNative styling="w-full " audioId={audioFile?.id} />
+                          <AudioNative
+                            styling="w-full "
+                            audioId={audioFile?.id}
+                          />
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">{audioFile.title}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+                          {audioFile.title}
+                        </td>
                         <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left">
                           {audioFile?.description}
                         </td>

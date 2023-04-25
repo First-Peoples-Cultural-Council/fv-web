@@ -21,7 +21,9 @@ import { DOC_PHRASE, DOC_WORD } from 'common/constants'
 
 function SiteFrameKids({ siteLoading }) {
   const location = useLocation()
-  const isHome = location?.pathname?.endsWith('kids') || location?.pathname?.endsWith('kids/')
+  const isHome =
+    location?.pathname?.endsWith('kids') ||
+    location?.pathname?.endsWith('kids/')
   return (
     <div className="overflow-hidden">
       <header className="w-full">
@@ -30,19 +32,48 @@ function SiteFrameKids({ siteLoading }) {
       <main role="main" className="relative z-0 xl:pt-3">
         <Loading.Container isLoading={siteLoading}>
           <Routes>
-            <Route path="dictionary" element={<Dictionary.Container searchType={'WORD_AND_PHRASE'} kids />} />
-            <Route path="words/:id" element={<DictionaryDetail.Container docType={DOC_WORD} kids />} />
-            <Route path="words" element={<Dictionary.Container searchType={'WORD'} kids />} />
-            <Route path="phrases/:id" element={<DictionaryDetail.Container docType={DOC_PHRASE} kids />} />
-            <Route path="phrases" element={<Dictionary.Container searchType={'PHRASE'} kids />} />
-            <Route path="alphabet/:character" element={<ByAlphabet.Container kids />} />
+            <Route
+              path="dictionary"
+              element={
+                <Dictionary.Container searchType="WORD_AND_PHRASE" kids />
+              }
+            />
+            <Route
+              path="words/:id"
+              element={<DictionaryDetail.Container docType={DOC_WORD} kids />}
+            />
+            <Route
+              path="words"
+              element={<Dictionary.Container searchType="WORD" kids />}
+            />
+            <Route
+              path="phrases/:id"
+              element={<DictionaryDetail.Container docType={DOC_PHRASE} kids />}
+            />
+            <Route
+              path="phrases"
+              element={<Dictionary.Container searchType="PHRASE" kids />}
+            />
+            <Route
+              path="alphabet/:character"
+              element={<ByAlphabet.Container kids />}
+            />
             <Route path="alphabet" element={<Alphabet.Container kids />} />
-            <Route path="categories/:categoryId" element={<ByCategory.Container kids />} />
+            <Route
+              path="categories/:categoryId"
+              element={<ByCategory.Container kids />}
+            />
             <Route path="categories" element={<Categories.Container kids />} />
             <Route path="songs/:id" element={<Song.Container kids />} />
-            <Route path="songs" element={<SongsAndStories.Container searchType={'SONG'} kids />} />
+            <Route
+              path="songs"
+              element={<SongsAndStories.Container searchType="SONG" kids />}
+            />
             <Route path="stories/:id" element={<Story.Container kids />} />
-            <Route path="stories" element={<SongsAndStories.Container searchType={'STORY'} kids />} />
+            <Route
+              path="stories"
+              element={<SongsAndStories.Container searchType="STORY" kids />}
+            />
             <Route path="games/:id" element={<Game.Container kids />} />
             <Route path="games" element={<Games.Presentation kids />} />
             <Route path="/" element={<Kids.Container />} />

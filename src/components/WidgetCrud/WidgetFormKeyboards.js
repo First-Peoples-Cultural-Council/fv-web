@@ -28,11 +28,12 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
     windowsUrl: '',
     chromebookUrl: '',
   }
-  const { control, register, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, register, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormKeyboards">
@@ -55,7 +56,9 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
             />
-            {errors?.macUrl && <div className="text-red-500">{errors?.macUrl?.message}</div>}
+            {errors?.macUrl && (
+              <div className="text-red-500">{errors?.macUrl?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -64,7 +67,9 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
             />
-            {errors?.windowsUrl && <div className="text-red-500">{errors?.windowsUrl?.message}</div>}
+            {errors?.windowsUrl && (
+              <div className="text-red-500">{errors?.windowsUrl?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -73,7 +78,11 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               register={register}
               helpText="e.g. https://chrome.google.com/webstore/detail/firstvoices-keyboards/..."
             />
-            {errors?.chromebookUrl && <div className="text-red-500">{errors?.chromebookUrl?.message}</div>}
+            {errors?.chromebookUrl && (
+              <div className="text-red-500">
+                {errors?.chromebookUrl?.message}
+              </div>
+            )}
           </div>
         </>
       </WidgetFormBase>

@@ -19,7 +19,9 @@ function PageCrudData() {
 
   const backHandler = () => navigate(-1)
 
-  const _pageId = new URLSearchParams(location.search).get('id') ? new URLSearchParams(location.search).get('id') : null
+  const _pageId = new URLSearchParams(location.search).get('id')
+    ? new URLSearchParams(location.search).get('id')
+    : null
   const editHeader = new URLSearchParams(location.search).get('editHeader')
     ? new URLSearchParams(location.search).get('editHeader')
     : null
@@ -27,12 +29,16 @@ function PageCrudData() {
   let dataToEdit = null
 
   if (_pageId) {
-    const { data } = useQuery([_pageId], () => api.document.get({ id: _pageId, properties: '*' }), {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    })
+    const { data } = useQuery(
+      [_pageId],
+      () => api.document.get({ id: _pageId, properties: '*' }),
+      {
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: false,
+      },
+    )
 
-    dataToEdit = pageCrudDataAdaptor({ data: data, sitename: site?.sitename })
+    dataToEdit = pageCrudDataAdaptor({ data, sitename: site?.sitename })
   }
 
   const formDataAdaptor = (_formData) => {
@@ -54,21 +60,23 @@ function PageCrudData() {
         properties: formDataAdaptor(formData),
         visibility: formData?.visibility,
       })
-    } else {
-      return await api.document.createAndSetVisibility({
-        parentId: site?.children?.Pages,
-        name: formData?.url,
-        docType: DOC_PAGE,
-        properties: formDataAdaptor(formData),
-        visibility: formData?.visibility,
-      })
     }
+    return await api.document.createAndSetVisibility({
+      parentId: site?.children?.Pages,
+      name: formData?.url,
+      docType: DOC_PAGE,
+      properties: formDataAdaptor(formData),
+      visibility: formData?.visibility,
+    })
   }
 
   const { mutate } = useMutation(savePage, {
     onSuccess: (response) => {
-      setNotification({ type: 'SUCCESS', message: 'Success! The page has been saved.' })
-      setTimeout(function () {
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! The page has been saved.',
+      })
+      setTimeout(() => {
         window.location.href = `/${site?.sitename}/dashboard/edit/page?id=${response?.uid}`
       }, 1000)
     },
@@ -94,7 +102,7 @@ function PageCrudData() {
     backHandler,
     site,
     dataToEdit,
-    isWidgetAreaEdit: _pageId && !editHeader ? true : false,
+    isWidgetAreaEdit: !!(_pageId && !editHeader),
   }
 }
 

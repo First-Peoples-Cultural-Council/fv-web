@@ -7,7 +7,9 @@ function immersionDataAdaptor(data) {
   const entries = data?.entries
 
   for (const [key, value] of Object.entries(en.translation.general)) {
-    const found = entries?.find((entry) => entry?.properties?.['fvlabel:labelKey'] === `general.${key}`)
+    const found = entries?.find(
+      (entry) => entry?.properties?.['fvlabel:labelKey'] === `general.${key}`,
+    )
     if (!found) {
       allLabels.push({
         id: null,

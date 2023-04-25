@@ -6,7 +6,8 @@ import DashboardCategoriesData from 'components/DashboardCategories/DashboardCat
 import DashboardCategoriesPresentation from 'components/DashboardCategories/DashboardCategoriesPresentation'
 
 function DashboardCategoriesContainer() {
-  const { categories, headerContent, isLoading, site, sitename, tileContent } = DashboardCategoriesData()
+  const { categories, headerContent, isLoading, site, sitename, tileContent } =
+    DashboardCategoriesData()
   return (
     <div id="DashboardCategoriesContainer">
       <Routes>

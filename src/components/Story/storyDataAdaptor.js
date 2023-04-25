@@ -10,13 +10,18 @@ function storyDataAdaptor({ data }) {
   }
 
   const properties = data?.properties ? data.properties : {}
-  const contextParams = data?.contextParameters?.book ? data.contextParameters.book : {}
+  const contextParams = data?.contextParameters?.book
+    ? data.contextParameters.book
+    : {}
 
   // V1_FUDGE - fudging the old data that allowed for multiple cover media
   let coverVisual = { type: null, id: null }
   if (contextParams?.related_pictures?.length > 0) {
     const firstImage = contextParams?.related_pictures?.[0]
-    coverVisual = { type: firstImage?.['mime-type'] === 'image/gif' ? 'gifOrImg' : 'image', id: firstImage?.uid }
+    coverVisual = {
+      type: firstImage?.['mime-type'] === 'image/gif' ? 'gifOrImg' : 'image',
+      id: firstImage?.uid,
+    }
   } else if (properties['fv:related_videos']?.[0]?.length > 0) {
     coverVisual = { type: 'video', id: properties['fv:related_videos']?.[0] }
   }
@@ -49,7 +54,7 @@ function storyDataAdaptor({ data }) {
     }
   }
 
-  const hasBeenEditedInv2 = properties['fv:modifiedv2'] ? true : false
+  const hasBeenEditedInv2 = !!properties['fv:modifiedv2']
   if (hasBeenEditedInv2) {
     return {
       id: data?.uid || '',
@@ -57,11 +62,11 @@ function storyDataAdaptor({ data }) {
       state: data?.state || '',
       visibility: convertStateToVisibility(data?.state),
       kidFriendly: properties['fvaudience:children'] ? 'true' : 'false',
-      //Cover
+      // Cover
       title: properties['dc:title'] || '',
       titleTranslation: properties['fvbook:title_literal_translation'] || [],
       author: properties['fvbook:author_name'] || '',
-      coverVisual: coverVisual,
+      coverVisual,
       // Introduction
       intro: properties['fvbook:intro'] || '',
       introTranslation: properties['fvbook:intro_translation'] || '',
@@ -74,44 +79,48 @@ function storyDataAdaptor({ data }) {
       pageOrder: pageOrderDataAdaptor({ data }),
       pages: pageMap || {},
     }
-  } else {
-    // V1_FUDGE
-    let author = contextParams?.authors?.[0]?.['dc:title'] || ''
-    if (contextParams?.authors?.length > 1) {
-      for (let i = 1; i < contextParams?.authors?.length; i++) {
-        author = author + `, ${contextParams?.authors?.[i]?.['dc:title']}`
-      }
+  }
+  // V1_FUDGE
+  let author = contextParams?.authors?.[0]?.['dc:title'] || ''
+  if (contextParams?.authors?.length > 1) {
+    for (let i = 1; i < contextParams?.authors?.length; i++) {
+      author += `, ${contextParams?.authors?.[i]?.['dc:title']}`
     }
-    const titleTranslation = properties['fvbook:title_literal_translation']?.map((trans) => trans.translation)
+  }
+  const titleTranslation = properties['fvbook:title_literal_translation']?.map(
+    (trans) => trans.translation,
+  )
 
-    const introTranslationArray = properties['fvbook:introduction_literal_translation']?.map(
-      (trans) => trans.translation
-    )
-    const introTranslation = introTranslationArray.join('')
+  const introTranslationArray = properties[
+    'fvbook:introduction_literal_translation'
+  ]?.map((trans) => trans.translation)
+  const introTranslation = introTranslationArray.join('')
 
-    return {
-      id: data?.uid || '',
-      type: properties['fvbook:type'] || 'story',
-      state: data?.state || '',
-      visibility: convertStateToVisibility(data?.state),
-      kidFriendly: properties['fv:available_in_childrens_archive'] ? 'true' : 'false',
-      //Cover
-      title: properties['dc:title'] || '',
-      titleTranslation: [{ language: 'english', translation: titleTranslation?.join(' ') }] || [],
-      author: author,
-      coverVisual: coverVisual,
-      // Introduction
-      intro: getWysiwygJsonFromHtml(properties['fvbook:introduction']),
-      introTranslation: getWysiwygJsonFromHtml(introTranslation),
-      acknowledgements: [properties['fvbook:acknowledgement']] || [],
-      notes: properties?.['fv:cultural_note'] || [],
-      audio: properties['fv:related_audio'] || [],
-      videos: properties['fv:related_videos'] || [],
-      images: properties['fv:related_pictures'] || [],
-      // Pages
-      pageOrder: pageOrderDataAdaptor({ data }),
-      pages: pageMap || {},
-    }
+  return {
+    id: data?.uid || '',
+    type: properties['fvbook:type'] || 'story',
+    state: data?.state || '',
+    visibility: convertStateToVisibility(data?.state),
+    kidFriendly: properties['fv:available_in_childrens_archive']
+      ? 'true'
+      : 'false',
+    // Cover
+    title: properties['dc:title'] || '',
+    titleTranslation:
+      [{ language: 'english', translation: titleTranslation?.join(' ') }] || [],
+    author,
+    coverVisual,
+    // Introduction
+    intro: getWysiwygJsonFromHtml(properties['fvbook:introduction']),
+    introTranslation: getWysiwygJsonFromHtml(introTranslation),
+    acknowledgements: [properties['fvbook:acknowledgement']] || [],
+    notes: properties?.['fv:cultural_note'] || [],
+    audio: properties['fv:related_audio'] || [],
+    videos: properties['fv:related_videos'] || [],
+    images: properties['fv:related_pictures'] || [],
+    // Pages
+    pageOrder: pageOrderDataAdaptor({ data }),
+    pages: pageMap || {},
   }
 }
 

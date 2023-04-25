@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
@@ -14,19 +14,25 @@ function CategoriesData() {
 
   const [searchParams] = useSearchParams()
   const urlSearchType = searchParams.get('docType') || 'WORD_AND_PHRASE'
-  const { searchType, setSearchTypeInUrl, getSearchLabel } = useSearchBoxNavigation({
-    searchType: urlSearchType,
-  })
+  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+    useSearchBoxNavigation({
+      searchType: urlSearchType,
+    })
 
   // Data fetch
   const response = useQuery(
     ['categories', site?.uid],
-    () => api.category.get({ siteId: site?.uid, parentsOnly: 'false', inUseOnly: 'true' }),
+    () =>
+      api.category.get({
+        siteId: site?.uid,
+        parentsOnly: 'false',
+        inUseOnly: 'true',
+      }),
     {
       enabled: !!site?.uid, // The query will not execute until the siteId exists
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   const { status, isLoading, error, isError, data } = response
@@ -41,9 +47,9 @@ function CategoriesData() {
   }
 
   function getChildren(parentId) {
-    return data?.categories?.filter((category) => {
-      return category?.parentId === parentId
-    })
+    return data?.categories?.filter(
+      (category) => category?.parentId === parentId,
+    )
   }
 
   useEffect(() => {
@@ -56,7 +62,9 @@ function CategoriesData() {
       if (searchType === 'WORD_AND_PHRASE') {
         setCategoriesToShow(categoriesInclChildren)
       } else {
-        const filteredCategories = categoriesInclChildren.filter(filterCategoriesByType)
+        const filteredCategories = categoriesInclChildren.filter(
+          filterCategoriesByType,
+        )
         setCategoriesToShow(filteredCategories)
       }
     }
@@ -66,7 +74,7 @@ function CategoriesData() {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])

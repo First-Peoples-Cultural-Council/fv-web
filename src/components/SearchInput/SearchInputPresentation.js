@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import getIcon from 'common/getIcon'
 import SearchLanguageSelector from 'components/SearchLanguageSelector'
 import SearchBox from 'components/SearchBox'
@@ -16,7 +16,7 @@ function SearchInputPresentation({
   searchValue,
 }) {
   return (
-    <Fragment>
+    <>
       <SearchBox.Presentation
         onSubmit={handleSearchSubmit}
         setSearchTerm={handleTextFieldChange}
@@ -30,11 +30,16 @@ function SearchInputPresentation({
           options={searchLanguageOptions}
           onSelect={handleSearchLanguageChange}
         />
-        <button type="button" id="SearchSubmit" aria-label="Search/Go" onClick={handleSearchSubmit}>
+        <button
+          type="button"
+          id="SearchSubmit"
+          aria-label="Search/Go"
+          onClick={handleSearchSubmit}
+        >
           {getIcon('Search', 'fill-current h-7 w-7 ')}
         </button>
       </div>
-    </Fragment>
+    </>
   )
 }
 

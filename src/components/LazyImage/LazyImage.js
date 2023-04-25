@@ -4,7 +4,18 @@ import PropTypes from 'prop-types'
 // FPCC
 import simpleSvgPlaceholder from 'common/simpleSvgPlaceholder'
 
-function LazyImage({ alt, id, mimeType, bgColor, height, width, imgStyling, onClick, forceLoad, label }) {
+function LazyImage({
+  alt,
+  id,
+  mimeType,
+  bgColor,
+  height,
+  width,
+  imgStyling,
+  onClick,
+  forceLoad,
+  label,
+}) {
   const [imgLoaded, setImgLoaded] = useState(false)
   const [src, setSrc] = useState(src)
   const ref = useRef()
@@ -57,7 +68,7 @@ function LazyImage({ alt, id, mimeType, bgColor, height, width, imgStyling, onCl
             }
           })
         },
-        { threshold: [0, 0.5, 1] }
+        { threshold: [0, 0.5, 1] },
       )
       io.current.observe(ref.current)
     }
@@ -70,24 +81,24 @@ function LazyImage({ alt, id, mimeType, bgColor, height, width, imgStyling, onCl
 
   if (forceLoad) {
     return (
-      <React.Fragment>
+      <>
         <img src={src} className={imgStyling} alt={alt} onClick={onClick} />
         {label && (
           <button onClick={onClick} className={labelClass}>
             {label}
           </button>
         )}
-      </React.Fragment>
+      </>
     )
   }
 
   const placeholder =
     height > 0 || width > 0
-      ? simpleSvgPlaceholder({ width: width, height: height, bgColor: bgColor })
+      ? simpleSvgPlaceholder({ width, height, bgColor })
       : simpleSvgPlaceholder()
 
   return (
-    <React.Fragment>
+    <>
       <img
         ref={ref}
         src={placeholder}
@@ -101,7 +112,7 @@ function LazyImage({ alt, id, mimeType, bgColor, height, width, imgStyling, onCl
           {label}
         </button>
       )}
-    </React.Fragment>
+    </>
   )
 }
 

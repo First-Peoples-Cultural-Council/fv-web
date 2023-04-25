@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Editor } from 'draft-js'
+import { Editor, EditorState, convertFromRaw } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import { EditorState, convertFromRaw } from 'draft-js'
 
 // FPCC
 import { safeJsonParse } from 'common/stringHelpers'
@@ -15,7 +14,7 @@ function WysiwygBlock({ jsonString }) {
 
   return editorState ? (
     <div className="wysiwyg w-full">
-      <Editor editorState={editorState} readOnly={true} />
+      <Editor editorState={editorState} readOnly />
     </div>
   ) : null
 }

@@ -17,31 +17,43 @@ function ByAlphabetData({ kids }) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const urlSearchType = searchParams.get('docType') || 'WORD_AND_PHRASE'
-  const { searchType, setSearchTypeInUrl, getSearchLabel } = useSearchBoxNavigation({
-    searchType: urlSearchType,
-  })
+  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+    useSearchBoxNavigation({
+      searchType: urlSearchType,
+    })
   const sortBy = searchParams.get('sortBy') || 'ENTRY'
   const sortAscending = searchParams.get('sortAscending') || 'true'
   const perPageDefault = 100
 
   const _searchParams = `docType=${searchType}&kidsOnly=${kids}&perPage=${perPageDefault}&sortBy=${sortBy}&sortAscending=${sortAscending}&alphabetCharacter=${character}`
 
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } = useSearchLoader({
-    searchApi: api.dictionary,
-    queryKey: 'dictionary',
-    siteUid: site?.uid,
-    searchParams: _searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({
+      searchApi: api.dictionary,
+      queryKey: 'dictionary',
+      siteUid: site?.uid,
+      searchParams: _searchParams,
+    })
 
-  const alphabetResponse = useQuery(['alphabet', uid], () => api.alphabet.get(uid), {
-    enabled: !!uid,
-  })
+  const alphabetResponse = useQuery(
+    ['alphabet', uid],
+    () => api.alphabet.get(uid),
+    {
+      enabled: !!uid,
+    },
+  )
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
   useEffect(() => {
-    if (alphabetResponse?.data && alphabetResponse?.status === 'success' && !alphabetResponse?.isError) {
-      const selectedCharacter = alphabetResponse?.data?.characters?.find((char) => char?.title === character)
+    if (
+      alphabetResponse?.data &&
+      alphabetResponse?.status === 'success' &&
+      !alphabetResponse?.isError
+    ) {
+      const selectedCharacter = alphabetResponse?.data?.characters?.find(
+        (char) => char?.title === character,
+      )
       if (selectedCharacter?.id !== currentCharacter?.id) {
         setCurrentCharacter(selectedCharacter)
       }
@@ -52,7 +64,7 @@ function ByAlphabetData({ kids }) {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -71,10 +83,13 @@ function ByAlphabetData({ kids }) {
   }
 
   return {
-    characters: alphabetResponse?.data?.characters?.length > 0 ? alphabetResponse?.data?.characters : [],
+    characters:
+      alphabetResponse?.data?.characters?.length > 0
+        ? alphabetResponse?.data?.characters
+        : [],
     charactersAreLoading: alphabetResponse?.isLoading,
     isLoading: isLoading || isError,
-    items: searchResults ? searchResults : {},
+    items: searchResults || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     onSortByClick,

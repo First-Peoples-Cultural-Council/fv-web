@@ -5,8 +5,18 @@ import PropTypes from 'prop-types'
 import AudioMinimalPresentation from './AudioMinimalPresentation'
 import AudioMinimalData from './AudioMinimalData'
 
-function AudioMinimalContainer({ src, id, icons, iconStyling, label, buttonStyling }) {
-  const { buttonRef, isPlaying, onClick, onKeyPress } = AudioMinimalData({ src, id })
+function AudioMinimalContainer({
+  src,
+  id,
+  icons,
+  iconStyling,
+  label,
+  buttonStyling,
+}) {
+  const { buttonRef, isPlaying, onClick, onKeyPress } = AudioMinimalData({
+    src,
+    id,
+  })
   return (
     <AudioMinimalPresentation
       buttonRef={buttonRef}

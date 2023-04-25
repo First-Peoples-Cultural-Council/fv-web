@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { arrayShuffle } from 'common/utils/functionHelpers'
 import api from 'services/api'
@@ -14,20 +14,25 @@ function ParachuteData() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [resultsCount, setResultsCount] = useState()
 
-  const randomIntBetween = (min, max) => {
-    return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) + Math.ceil(min)
-  }
+  const randomIntBetween = (min, max) =>
+    Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) +
+    Math.ceil(min)
 
   const [pageParam, setPageParam] = useState(0)
 
   const { data } = useQuery(
     ['gameContent', site?.uid + pageParam],
-    () => api.gameContent.get({ siteId: site?.uid, pageParam: pageParam, perPage: PUZZLES }),
+    () =>
+      api.gameContent.get({
+        siteId: site?.uid,
+        pageParam,
+        perPage: PUZZLES,
+      }),
     {
       enabled: !!site?.uid,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
@@ -48,9 +53,12 @@ function ParachuteData() {
 
   const getCharacters = () => {
     // V1_FUDGE - in future get separated characters from BE
-    const combinedWords = data?.entries.map((word) => word?.properties?.['dc:title']).join('')
+    const combinedWords = data?.entries
+      .map((word) => word?.properties?.['dc:title'])
+      .join('')
     const uniqueCharacters = [...combinedWords].filter(
-      (value, index) => value !== ' ' && [...combinedWords].indexOf(value) === index
+      (value, index) =>
+        value !== ' ' && [...combinedWords].indexOf(value) === index,
     )
     arrayShuffle(uniqueCharacters)
     return uniqueCharacters
@@ -73,9 +81,16 @@ function ParachuteData() {
   return data?.entries.length > 0
     ? {
         isLoading: false,
-        puzzle: createPuzzle(data?.entries?.[currentWordIndex]?.properties['dc:title']),
-        translation: data?.entries?.[currentWordIndex]?.properties['fv:definitions']?.[0]?.translation,
-        audio: data?.entries?.[currentWordIndex]?.properties?.['fv:related_audio']?.[0],
+        puzzle: createPuzzle(
+          data?.entries?.[currentWordIndex]?.properties['dc:title'],
+        ),
+        translation:
+          data?.entries?.[currentWordIndex]?.properties['fv:definitions']?.[0]
+            ?.translation,
+        audio:
+          data?.entries?.[currentWordIndex]?.properties?.[
+            'fv:related_audio'
+          ]?.[0],
         alphabet: getCharacters(),
         newPuzzle: nextWord,
       }

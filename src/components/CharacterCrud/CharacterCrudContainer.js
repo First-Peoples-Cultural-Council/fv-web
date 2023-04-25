@@ -6,11 +6,16 @@ import CharacterCrudData from 'components/CharacterCrud/CharacterCrudData'
 import Loading from 'components/Loading'
 
 function CharacterCrudContainer() {
-  const { backHandler, dataToEdit, isLoading, submitHandler } = CharacterCrudData()
+  const { backHandler, dataToEdit, isLoading, submitHandler } =
+    CharacterCrudData()
 
   return (
     <Loading.Container isLoading={isLoading}>
-      <CharacterCrudPresentation backHandler={backHandler} dataToEdit={dataToEdit} submitHandler={submitHandler} />
+      <CharacterCrudPresentation
+        backHandler={backHandler}
+        dataToEdit={dataToEdit}
+        submitHandler={submitHandler}
+      />
     </Loading.Container>
   )
 }

@@ -14,7 +14,9 @@ function SongPresentationDrawer({ entry, sitename }) {
         <div className="sm:flex-1">
           <div>
             <div className="flex items-center">
-              <h3 className="font-medium text-xl text-fv-charcoal sm:text-3xl">{entry?.title}</h3>
+              <h3 className="font-medium text-xl text-fv-charcoal sm:text-3xl">
+                {entry?.title}
+              </h3>
             </div>
             <p className="text-fv-charcoal-light">
               {entry?.titleTranslation}
@@ -23,11 +25,16 @@ function SongPresentationDrawer({ entry, sitename }) {
           </div>
         </div>
       </div>
-      {(entry.coverVisual?.type === 'gifOrImg' || entry.coverVisual?.type === 'image') && (
+      {(entry.coverVisual?.type === 'gifOrImg' ||
+        entry.coverVisual?.type === 'image') && (
         <div className="my-2 md:my-4 relative h-40 md:h-96 px-4">
           <img
             className="absolute h-full w-full object-contain"
-            src={getMediaUrl({ type: entry?.coverVisual.type, id: entry?.coverVisual?.id, viewName: 'Small' })}
+            src={getMediaUrl({
+              type: entry?.coverVisual.type,
+              id: entry?.coverVisual?.id,
+              viewName: 'Small',
+            })}
             loading="lazy"
           />
         </div>
@@ -36,7 +43,11 @@ function SongPresentationDrawer({ entry, sitename }) {
         <div className="my-2 md:my-6 flex mx-auto px-4">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
-            src={getMediaUrl({ type: entry?.coverVisual.type, id: entry?.coverVisual?.id, viewName: 'Small' })}
+            src={getMediaUrl({
+              type: entry?.coverVisual.type,
+              id: entry?.coverVisual?.id,
+              viewName: 'Small',
+            })}
             controls
           >
             Your browser does not support the video tag.
@@ -59,13 +70,20 @@ function SongPresentationDrawer({ entry, sitename }) {
       <div className="flex mt-2 md:mt-6 px-6 space-y-2">
         {entry?.audio?.length > 0 &&
           entry.audio?.map((audio, index) => (
-            <AudioNative key={`${audio}_${index}`} styling="w-96 text-black mx-auto print:hidden" audioId={audio} />
+            <AudioNative
+              key={`${audio}_${index}`}
+              styling="w-96 text-black mx-auto print:hidden"
+              audioId={audio}
+            />
           ))}
       </div>
       <div className="mt-2 md:mt-6">
-        {(entry?.introduction?.length > 0 || entry?.introductionTranslation?.length > 0) && (
+        {(entry?.introduction?.length > 0 ||
+          entry?.introductionTranslation?.length > 0) && (
           <div className="space-y-2 px-4 sm:px-6 sm:space-y-4">
-            <h4 className="font-bold text-fv-charcoal sm:w-40 sm:shrink-0">INTRODUCTION</h4>
+            <h4 className="font-bold text-fv-charcoal sm:w-40 sm:shrink-0">
+              INTRODUCTION
+            </h4>
             <div className="text-fv-charcoal sm:col-span-2">
               <SanitizedHtml className="mb-2" text={entry?.introduction} />
               <SanitizedHtml text={entry?.introductionTranslation} />

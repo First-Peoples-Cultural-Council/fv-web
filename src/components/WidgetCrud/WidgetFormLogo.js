@@ -26,11 +26,12 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
     text: '',
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, register, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormLogo">
@@ -59,8 +60,14 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           <div className="col-span-12">
-            <Form.TextAreaField label="Text" nameId="text" register={register} />
-            {errors?.text && <div className="text-red-500">{errors?.text?.message}</div>}
+            <Form.TextAreaField
+              label="Text"
+              nameId="text"
+              register={register}
+            />
+            {errors?.text && (
+              <div className="text-red-500">{errors?.text?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>

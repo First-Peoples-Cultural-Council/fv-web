@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 
@@ -19,14 +19,14 @@ function DashboardSpeakersData() {
       enabled: !!site?.uid,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -54,7 +54,7 @@ function DashboardSpeakersData() {
         id: speaker?.uid,
         name: speaker?.properties?.['dc:title'],
         bio: speaker?.properties?.['dc:description'],
-        speaker: speaker,
+        speaker,
       })
     })
     return speakersData
@@ -66,7 +66,8 @@ function DashboardSpeakersData() {
     isLoading: isLoading || isError,
     site,
     sitename,
-    speakers: data?.entries?.length > 0 ? speakersDataAdaptor(data.entries) : [],
+    speakers:
+      data?.entries?.length > 0 ? speakersDataAdaptor(data.entries) : [],
   }
 }
 

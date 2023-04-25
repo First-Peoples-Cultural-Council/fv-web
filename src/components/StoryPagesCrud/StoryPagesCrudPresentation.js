@@ -31,7 +31,10 @@ function StoryPagesCrudPresentation({
 
   const stepHandle = (step) => {
     if (addPageOpen) {
-      setNotification({ type: 'WARNING', message: 'Save or cancel your new page before moving on.' })
+      setNotification({
+        type: 'WARNING',
+        message: 'Save or cancel your new page before moving on.',
+      })
     } else goToStep(step)
   }
 
@@ -47,23 +50,32 @@ function StoryPagesCrudPresentation({
           <SortableContainer.Presentation items={pageIds} setItems={setPageIds}>
             {pageIds?.map((id, i) => (
               <SortableItem.Presentation key={`sortable-${id}`} id={id} handle>
-                <Disclosure as="div" key={`story-page-${id}`} className="w-full my-1">
-                  {({ open, close }) => {
-                    return (
-                      <ExpandablePreview.Presentation
-                        open={open}
-                        preview={<StoryPagePreview.Presentation page={pages[id]} pageNumber={getPageNumber(i)} />}
-                        full={
-                          <StoryPageForm
-                            page={pages[id]}
-                            pageNumber={getPageNumber(i)}
-                            submitHandler={(event) => submitAndClose(event, close)}
-                            cancelHandler={close}
-                          />
-                        }
-                      />
-                    )
-                  }}
+                <Disclosure
+                  as="div"
+                  key={`story-page-${id}`}
+                  className="w-full my-1"
+                >
+                  {({ open, close }) => (
+                    <ExpandablePreview.Presentation
+                      open={open}
+                      preview={
+                        <StoryPagePreview.Presentation
+                          page={pages[id]}
+                          pageNumber={getPageNumber(i)}
+                        />
+                      }
+                      full={
+                        <StoryPageForm
+                          page={pages[id]}
+                          pageNumber={getPageNumber(i)}
+                          submitHandler={(event) =>
+                            submitAndClose(event, close)
+                          }
+                          cancelHandler={close}
+                        />
+                      }
+                    />
+                  )}
                 </Disclosure>
               </SortableItem.Presentation>
             ))}
@@ -71,7 +83,10 @@ function StoryPagesCrudPresentation({
         )}
 
         {addPageOpen ? (
-          <div id="AddNewPageForm" className="pt-5 bg-white rounded-lg  shadow-xl transform transition-all">
+          <div
+            id="AddNewPageForm"
+            className="pt-5 bg-white rounded-lg  shadow-xl transform transition-all"
+          >
             <Form.Header title="Add A New Page" />
             <div className="w-full">
               <StoryPageForm

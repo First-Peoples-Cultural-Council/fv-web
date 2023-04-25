@@ -50,25 +50,35 @@ function DictionaryPresentation({
       ) : (
         <div className="grid grid-cols-12">
           <div className="hidden lg:block print:hidden col-span-2 mt-5">
-            <h1 className={`flex items-center text-3xl xl:text-4xl text-${labels.color}Text ml-4 xl:ml-7 mb-8`}>
+            <h1
+              className={`flex items-center text-3xl xl:text-4xl text-${labels.color}Text ml-4 xl:ml-7 mb-8`}
+            >
               {labels.title}
             </h1>
-            <h2 className="block text-xl xl:text-2xl font-medium text-fv-charcoal ml-4 xl:ml-7">BROWSE BY:</h2>
+            <h2 className="block text-xl xl:text-2xl font-medium text-fv-charcoal ml-4 xl:ml-7">
+              BROWSE BY:
+            </h2>
             <ul className="inline-block list-none">
-              <li id={'CategoryLink'} className={linkStyle.li}>
-                <Link className={linkStyle.link} to={`/${sitename}/categories?docType=${searchType}`}>
+              <li id="CategoryLink" className={linkStyle.li}>
+                <Link
+                  className={linkStyle.link}
+                  to={`/${sitename}/categories?docType=${searchType}`}
+                >
                   {getIcon('Categories', linkStyle.icon)}
                   <p>Categories</p>
                 </Link>
               </li>
-              <li id={'AlphabetLink'} className={linkStyle.li}>
-                <Link className={linkStyle.link} to={`/${sitename}/alphabet?docType=${searchType}`}>
+              <li id="AlphabetLink" className={linkStyle.li}>
+                <Link
+                  className={linkStyle.link}
+                  to={`/${sitename}/alphabet?docType=${searchType}`}
+                >
                   {getIcon('Alphabet', linkStyle.icon)}
                   <p>Alphabet</p>
                 </Link>
               </li>
               {searchType !== 'WORD' && (
-                <li id={'DocLink'} className={linkStyle.li}>
+                <li id="DocLink" className={linkStyle.li}>
                   <Link className={linkStyle.link} to={`/${sitename}/words`}>
                     {getIcon('Word', linkStyle.icon)}
                     <p>Words</p>
@@ -76,7 +86,7 @@ function DictionaryPresentation({
                 </li>
               )}
               {searchType !== 'PHRASE' && (
-                <li id={'DocLink'} className={linkStyle.li}>
+                <li id="DocLink" className={linkStyle.li}>
                   <Link className={linkStyle.link} to={`/${sitename}/phrases`}>
                     {getIcon('Phrase', linkStyle.icon)}
                     <p>Phrases</p>

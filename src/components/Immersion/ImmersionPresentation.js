@@ -9,17 +9,27 @@ function ImmersionPresentation({ actions, isLoadingEntries, items }) {
   return (
     <section className="py-12 bg-white" data-testid="ImmersionPresentation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title={'What is Immersion Mode?'} accentColor={'primary'} />
+        <SectionTitle.Presentation
+          title="What is Immersion Mode?"
+          accentColor="primary"
+        />
         <div className="text-center text-fv-charcoal-light px-20 py-5 space-y-4">
-          Your language team has added translations for the buttons and headers on FirstVoices, so that you can use
-          Immersion Mode to navigate through the site in your language. When Immersion Mode is turned on, many of the
-          English labels will be replaced by labels in your language.
+          Your language team has added translations for the buttons and headers
+          on FirstVoices, so that you can use Immersion Mode to navigate through
+          the site in your language. When Immersion Mode is turned on, many of
+          the English labels will be replaced by labels in your language.
         </div>
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="min-h-220 col-span-12 md:col-span-10">
-              <h2 className="text-center text-fv-charcoal text-2xl pb-2">Immersion Labels</h2>
-              <ImmersionPresentationList actions={actions} isLoading={isLoadingEntries} items={items} />
+              <h2 className="text-center text-fv-charcoal text-2xl pb-2">
+                Immersion Labels
+              </h2>
+              <ImmersionPresentationList
+                actions={actions}
+                isLoading={isLoadingEntries}
+                items={items}
+              />
             </div>
           </main>
         </div>

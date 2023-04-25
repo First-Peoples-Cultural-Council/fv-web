@@ -11,13 +11,11 @@ function WidgetAreaContainer({ id }) {
   return (
     <section>
       {widgets?.length > 0 &&
-        widgets.map((widget, index) => {
-          return (
-            <LazyLoader key={`${widget?.uid ? widget?.uid : 'widget'}_${index}`}>
-              <Widget.Container widgetType={widget?.type} data={widget} />
-            </LazyLoader>
-          )
-        })}
+        widgets.map((widget, index) => (
+          <LazyLoader key={`${widget?.uid ? widget?.uid : 'widget'}_${index}`}>
+            <Widget.Container widgetType={widget?.type} data={widget} />
+          </LazyLoader>
+        ))}
     </section>
   )
 }

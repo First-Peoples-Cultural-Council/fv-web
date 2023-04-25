@@ -1,13 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import CategoriesPresentation from 'components/Categories/CategoriesPresentation'
 import CategoriesData from 'components/Categories/CategoriesData'
 import Loading from 'components/Loading'
 
 function CategoriesContainer({ kids }) {
-  const { categories, searchType, setSearchTypeInUrl, entryLabelPlural, isLoading, sitename } = CategoriesData()
+  const {
+    categories,
+    searchType,
+    setSearchTypeInUrl,
+    entryLabelPlural,
+    isLoading,
+    sitename,
+  } = CategoriesData()
   return (
     <Loading.Container isLoading={isLoading}>
       <CategoriesPresentation

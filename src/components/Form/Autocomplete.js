@@ -16,12 +16,17 @@ function Autocomplete({ control, disabled, helpText, label, nameId, options }) {
     query === ''
       ? options
       : options.filter((option) =>
-          option.label.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, ''))
+          option.label
+            .toLowerCase()
+            .replace(/\s+/g, '')
+            .includes(query.toLowerCase().replace(/\s+/g, '')),
         )
 
   return (
     <Fragment key="FormAutocomplete">
-      <label className="block text-sm font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <div className="w-full mt-1">
         <Controller
           control={control}
@@ -60,21 +65,29 @@ function Autocomplete({ control, disabled, helpText, label, nameId, options }) {
                 >
                   <Combobox.Options className="focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5">
                     {filteredOptions?.length === 0 && query !== '' ? (
-                      <div className="relative cursor-default select-none py-2 px-4 text-gray-700">Nothing found.</div>
+                      <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                        Nothing found.
+                      </div>
                     ) : (
                       filteredOptions?.map((option, optionIndex) => (
                         <Combobox.Option
                           key={optionIndex}
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                              active ? 'bg-secondary text-white' : 'text-fv-charcoal'
+                              active
+                                ? 'bg-secondary text-white'
+                                : 'text-fv-charcoal'
                             }`
                           }
                           value={option?.value}
                         >
                           {({ selected, active }) => (
                             <>
-                              <span className={`inline-flex truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                              <span
+                                className={`inline-flex truncate ${
+                                  selected ? 'font-medium' : 'font-normal'
+                                }`}
+                              >
                                 {option.label}
                               </span>
                               {selected ? (
@@ -98,7 +111,9 @@ function Autocomplete({ control, disabled, helpText, label, nameId, options }) {
           )}
         />
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }

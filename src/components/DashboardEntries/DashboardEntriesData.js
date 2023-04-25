@@ -11,13 +11,21 @@ function DashboardEntriesData() {
   const [searchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
   const urlSearchType = searchParams.get('docType') || 'ALL'
-  const { searchType, setSearchTypeInUrl, getSearchLabel } = useSearchBoxNavigation({
-    searchType: urlSearchType,
-  })
-  const showTypeSelector = urlSearchType === 'WORD' || urlSearchType === 'PHRASE' || urlSearchType === 'WORD_AND_PHRASE'
+  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+    useSearchBoxNavigation({
+      searchType: urlSearchType,
+    })
+  const showTypeSelector =
+    urlSearchType === 'WORD' ||
+    urlSearchType === 'PHRASE' ||
+    urlSearchType === 'WORD_AND_PHRASE'
 
   let searchAPI
-  if (urlSearchType === 'WORD' || urlSearchType === 'PHRASE' || urlSearchType === 'WORD_AND_PHRASE') {
+  if (
+    urlSearchType === 'WORD' ||
+    urlSearchType === 'PHRASE' ||
+    urlSearchType === 'WORD_AND_PHRASE'
+  ) {
     searchAPI = api.dictionary
   } else if (urlSearchType === 'SONG') {
     searchAPI = api.song
@@ -28,12 +36,14 @@ function DashboardEntriesData() {
   }
 
   // Search fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading } = useSearchLoader({
-    searchApi: searchAPI,
-    queryKey: 'search',
-    siteUid: site?.uid,
-    searchParams,
-  })
+  const { searchResults, infiniteScroll, loadRef, isLoading } = useSearchLoader(
+    {
+      searchApi: searchAPI,
+      queryKey: 'search',
+      siteUid: site?.uid,
+      searchParams,
+    },
+  )
 
   return {
     isLoadingEntries: isLoading,
@@ -43,7 +53,9 @@ function DashboardEntriesData() {
     searchType,
     setSearchType: setSearchTypeInUrl,
     entryLabel: getSearchLabel({ searchType }),
-    emptyListMessage: searchTerm ? 'Sorry, there are no results for this search.' : 'Please enter your search above.',
+    emptyListMessage: searchTerm
+      ? 'Sorry, there are no results for this search.'
+      : 'Please enter your search above.',
     showTypeSelector,
     initialSearchType: urlSearchType,
   }

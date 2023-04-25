@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import getIcon from 'common/getIcon'
 
 function LandingBannerPresentation({ data }) {
@@ -26,12 +26,23 @@ function LandingBannerPresentation({ data }) {
           {text}
         </p>
       </div>
-      <p className="md:hidden bg-tertiaryD text-white text-xs px-10 leading-6 py-6 text-center">{text}</p>
+      <p className="md:hidden bg-tertiaryD text-white text-xs px-10 leading-6 py-6 text-center">
+        {text}
+      </p>
       <div className="md:flex justify-center">
         <ul className="md:flex md:-mt-20 justify-center md:w-11/12">
           {links &&
             links.map((link) => {
-              const { id, backgroundColor, backgroundImage, icon, url, extUrl, urlLabel, info } = link
+              const {
+                id,
+                backgroundColor,
+                backgroundImage,
+                icon,
+                url,
+                extUrl,
+                urlLabel,
+                info,
+              } = link
               return (
                 <li
                   key={id}
@@ -45,16 +56,29 @@ function LandingBannerPresentation({ data }) {
                 >
                   {url && (
                     <Link to={url} className="flex-col items-center">
-                      <p className="flex justify-center">{getIcon(`${icon}`, 'fill-current h-12 w-12')}</p>
+                      <p className="flex justify-center">
+                        {getIcon(`${icon}`, 'fill-current h-12 w-12')}
+                      </p>
                       <p className="p-2 md:text-2xl">{urlLabel}</p>
-                      <p className="text-xs md:text-sm w-1/2 mx-auto my-2">{info}</p>
+                      <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
+                        {info}
+                      </p>
                     </Link>
                   )}
                   {extUrl && (
-                    <a href={extUrl} target="_blank" rel="noopener noreferrer" className="flex-col items-center">
-                      <p className="flex justify-center">{getIcon(`${icon}`, 'fill-current h-12 w-12')}</p>
+                    <a
+                      href={extUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-col items-center"
+                    >
+                      <p className="flex justify-center">
+                        {getIcon(`${icon}`, 'fill-current h-12 w-12')}
+                      </p>
                       <p className="p-2 md:text-2xl">{urlLabel}</p>
-                      <p className="text-xs md:text-sm w-1/2 mx-auto my-2">{info}</p>
+                      <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
+                        {info}
+                      </p>
                     </a>
                   )}
                 </li>
@@ -66,7 +90,7 @@ function LandingBannerPresentation({ data }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { object } = PropTypes
 
 LandingBannerPresentation.propTypes = {

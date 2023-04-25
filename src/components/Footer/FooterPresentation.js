@@ -12,7 +12,9 @@ function FooterPresentation() {
     <nav id="footer" className="bg-fv-charcoal print:hidden">
       <div className="max-w-screen-2xl mx-auto grid grid-cols-8 md:pt-8 md:pb-4 md:px-4">
         <div className="col-span-8 md:col-span-3 lg:col-start-2 lg:col-span-3 xl:col-start-2 xl:col-span-4 p-2 md:p-0">
-          <h4 className="text-white text-xs md:text-base md:mb-2">An initiative of</h4>
+          <h4 className="text-white text-xs md:text-base md:mb-2">
+            An initiative of
+          </h4>
           <a href="https://www.fpcc.ca/" target="_blank" rel="noreferrer">
             <img
               className="h-14 inline mr-5"
@@ -22,7 +24,12 @@ function FooterPresentation() {
             />
           </a>
           <a href="https://www.fpcf.ca/" target="_blank" rel="noreferrer">
-            <img className="h-16 inline" src={fpcfLogo} alt="First People's Cultural Foundation Logo" loading="lazy" />
+            <img
+              className="h-16 inline"
+              src={fpcfLogo}
+              alt="First People's Cultural Foundation Logo"
+              loading="lazy"
+            />
           </a>
         </div>
         <div className="col-span-8 md:col-span-2">
@@ -41,7 +48,12 @@ function FooterPresentation() {
             >
               Help
             </a>
-            <a className={linkClass} href="http://fpcf.ca/donate-now/" target="_blank" rel="noopener noreferrer">
+            <a
+              className={linkClass}
+              href="http://fpcf.ca/donate-now/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Donate
             </a>
           </div>
@@ -62,12 +74,14 @@ function FooterPresentation() {
         </div>
       </div>
       <div className="p-2 md:py-6 md:px-3  md:flex md:items-center md:justify-center border-t-2 border-white border-opacity-10 text-xs text-white text-opacity-80">
-        © This database is protected by copyright laws and is owned by the First Peoples’ Cultural Foundation. All
-        materials on this site are protected by copyright laws and are owned by the individual Indigenous language
-        communities who created the content. Language and multimedia data available on this site is intended for
-        private, non-commercial use by individuals. Any commercial use of the language data or multimedia data in whole
-        or in part, directly or indirectly, is specifically forbidden except with the prior written authority of the
-        owner of the copyright.
+        © This database is protected by copyright laws and is owned by the First
+        Peoples’ Cultural Foundation. All materials on this site are protected
+        by copyright laws and are owned by the individual Indigenous language
+        communities who created the content. Language and multimedia data
+        available on this site is intended for private, non-commercial use by
+        individuals. Any commercial use of the language data or multimedia data
+        in whole or in part, directly or indirectly, is specifically forbidden
+        except with the prior written authority of the owner of the copyright.
       </div>
     </nav>
   )

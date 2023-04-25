@@ -37,7 +37,10 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {getIcon('ChevronRight', 'absolute right-3 fill-current w-10')}
           </button>
         ) : (
-          <Link className="w-full my-3 p-1 flex items-center rounded" to={`/${sitename + menuItem?.href}`}>
+          <Link
+            className="w-full my-3 p-1 flex items-center rounded"
+            to={`/${sitename + menuItem?.href}`}
+          >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
             <span className="ml-3 font-medium">{menuItem.title}</span>
           </Link>
@@ -59,7 +62,9 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 flex items-center rounded ml-3 font-medium">
                 Welcome
-                {user?.firstName && user?.firstName != 'Guest' ? `, ${user?.firstName}!` : '!'}
+                {user?.firstName && user?.firstName !== 'Guest'
+                  ? `, ${user?.firstName}!`
+                  : '!'}
               </li>
             )}
             {menuData?.dictionary && generateMenuItem(menuData?.dictionary)}
@@ -69,14 +74,20 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {menuData?.kids && generateMenuItem(menuData?.kids)}
             {isGuest ? (
               <li key="SignIn_id">
-                <a href={LOGIN_PATH} className="w-full my-3 p-1 flex items-center rounded">
+                <a
+                  href={LOGIN_PATH}
+                  className="w-full my-3 p-1 flex items-center rounded"
+                >
                   {getIcon('Login', 'fill-current h-12 w-8')}
                   <span className="ml-3 font-medium">Sign in / Register</span>
                 </a>
               </li>
             ) : (
               <li key="SignOut_id">
-                <a href={LOGIN_PATH} className="w-full my-3 p-1 flex items-center rounded">
+                <a
+                  href={LOGIN_PATH}
+                  className="w-full my-3 p-1 flex items-center rounded"
+                >
                   {getIcon('LogOut', 'fill-current h-12 w-8')}
                   <span className="ml-3 font-medium">Sign Out</span>
                 </a>

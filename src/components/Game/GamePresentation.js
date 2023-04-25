@@ -18,7 +18,12 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
             onLoad={() => setIsLoaded(true)}
             src={`https://games.firstvoices.io/wordle/?language=${sitename}`}
             allowFullScreen
-            style={{ marginTop: '35px', minHeight: '100vh', overflow: 'hidden', border: 'none' }}
+            style={{
+              marginTop: '35px',
+              minHeight: '100vh',
+              overflow: 'hidden',
+              border: 'none',
+            }}
             width="100%"
           />
         </div>
@@ -31,7 +36,12 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
             onLoad={() => setIsLoaded(true)}
             src={`${GlobalConfiguration.V1_URL}/games/${gameId}?siteId=${siteId}&iframe=true&alphabetId=${alphabetId}`}
             allowFullScreen
-            style={{ marginTop: '35px', minHeight: '100vh', overflow: 'hidden', border: 'none' }}
+            style={{
+              marginTop: '35px',
+              minHeight: '100vh',
+              overflow: 'hidden',
+              border: 'none',
+            }}
             width="100%"
           />
         </div>

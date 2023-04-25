@@ -28,8 +28,14 @@ function SiteContainer() {
             </Loading.Container>
           }
         />
-        <Route path="kids/*" element={<SiteFrameKids siteLoading={siteLoading} />} />
-        <Route path="widgets/*" element={<SiteFrameEmbed siteLoading={siteLoading} />} />
+        <Route
+          path="kids/*"
+          element={<SiteFrameKids siteLoading={siteLoading} />}
+        />
+        <Route
+          path="widgets/*"
+          element={<SiteFrameEmbed siteLoading={siteLoading} />}
+        />
         <Route path="*" element={<SiteFrame siteLoading={siteLoading} />} />
       </Routes>
     </div>

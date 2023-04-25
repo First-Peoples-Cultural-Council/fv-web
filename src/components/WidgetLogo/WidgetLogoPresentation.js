@@ -14,14 +14,23 @@ function WidgetLogoPresentation({ widgetData }) {
       <div className="my-2 sm:m-10 py-6 sm:py-10 px-2 lg:px-4 bg-tertiaryB sm:rounded-lg">
         <div className="max-w-2xl mx-auto px-4 lg:max-w-7xl border-t border-b border-white">
           <div className="space-y-16 py-4">
-            <div key={uid} className="grid grid-cols-12 lg:gap-x-16 items-center">
+            <div
+              key={uid}
+              className="grid grid-cols-12 lg:gap-x-16 items-center"
+            >
               <div className="mt-6 lg:mt-0 col-span-12 lg:col-span-8 xl:col-span-9">
-                <p className="mt-2 md:text-lg text-white whitespace-pre-line">{text}</p>
+                <p className="mt-2 md:text-lg text-white whitespace-pre-line">
+                  {text}
+                </p>
               </div>
               <div className="flex-auto col-span-12 sm:col-span-6 sm:col-start-4 lg:col-span-4 xl:col-span-3 order-first lg:order-last">
                 <div className="aspect-w-2 aspect-h-2 rounded-full bg-gray-100 overflow-hidden">
                   <img
-                    src={getMediaUrl({ id: site?.logoId, type: 'image', viewName: 'Medium' })}
+                    src={getMediaUrl({
+                      id: site?.logoId,
+                      type: 'image',
+                      viewName: 'Medium',
+                    })}
                     alt={`${site?.title} Logo`}
                     className="object-center object-cover"
                   />
@@ -41,7 +50,11 @@ function WidgetLogoPresentation({ widgetData }) {
               <div className="aspect-w-2 aspect-h-2 rounded-full shadow-xl overflow-hidden">
                 <img
                   className="object-cover xl:h-full xl:w-full"
-                  src={getMediaUrl({ id: site?.logoId, type: 'image', viewName: 'Medium' })}
+                  src={getMediaUrl({
+                    id: site?.logoId,
+                    type: 'image',
+                    viewName: 'Medium',
+                  })}
                   alt={`${site?.title} Logo`}
                 />
               </div>
@@ -49,7 +62,9 @@ function WidgetLogoPresentation({ widgetData }) {
           </div>
           <div className="xl:m-0 col-span-3 flex items-center xl:col-span-2 xl:pl-8">
             <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 xl:px-0 xl:py-5 xl:max-w-none">
-              <p className="my-1 lg:text-lg font-medium text-white whitespace-pre-line">{text}</p>
+              <p className="my-1 lg:text-lg font-medium text-white whitespace-pre-line">
+                {text}
+              </p>
             </div>
           </div>
         </div>

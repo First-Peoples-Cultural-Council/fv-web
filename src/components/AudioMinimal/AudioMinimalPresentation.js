@@ -18,7 +18,7 @@ function AudioMinimalPresentation({
     Play: getIcon('PlayCircle', iconStyling),
     Stop: getIcon('StopCircle', iconStyling),
   }
-  const Icons = Object.assign({}, iconsDefault, icons)
+  const Icons = { ...iconsDefault, ...icons }
 
   return (
     <button

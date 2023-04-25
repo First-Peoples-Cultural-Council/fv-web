@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import 'draft-js/dist/Draft.css'
 import WysiwygBlock from 'components/WysiwygBlock'
 
-//FPCC
+// FPCC
 import { getMediaUrl } from 'common/urlHelpers'
 import SectionTitle from 'components/SectionTitle'
 import getIcon from 'common/getIcon'
@@ -12,18 +12,23 @@ import Elders from 'assets/images/elders-landing.png'
 function WidgetTextIconsPresentation({ widgetData }) {
   const { title, textWithFormatting, image } = widgetData?.settings
 
-  const getImage = () => {
-    return (
-      <img
-        className="hidden lg:inline object-cover object-center overflow-hidden md:w-7/12 pt-4 md:rounded-r-[78px]"
-        src={image ? getMediaUrl({ id: image, type: 'image', viewName: 'Medium' }) : Elders}
-        alt={title}
-      />
-    )
-  }
+  const getImage = () => (
+    <img
+      className="hidden lg:inline object-cover object-center overflow-hidden md:w-7/12 pt-4 md:rounded-r-[78px]"
+      src={
+        image
+          ? getMediaUrl({ id: image, type: 'image', viewName: 'Medium' })
+          : Elders
+      }
+      alt={title}
+    />
+  )
 
   return (
-    <section id="WidgetTextIconsPresentation" className="bg-white pt-3 md:pt-6 pb-8 md:pb-14">
+    <section
+      id="WidgetTextIconsPresentation"
+      className="bg-white pt-3 md:pt-6 pb-8 md:pb-14"
+    >
       <div className="p-4">
         <SectionTitle.Presentation title={title} />
       </div>
@@ -54,7 +59,7 @@ function WidgetTextIconsPresentation({ widgetData }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { object } = PropTypes
 
 WidgetTextIconsPresentation.propTypes = {

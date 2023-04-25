@@ -11,13 +11,15 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
   const [t] = useTranslation()
   const hasItems = itemsData?.length > 0
 
-  const generateMenuItems = (items) => {
-    return items.map((menuItem) => (
+  const generateMenuItems = (items) =>
+    items.map((menuItem) => (
       <Menu.Item key={`HeaderMenu_${menuItem.title}`}>
         {({ active }) => (
           <Link
             to={`/${sitename + menuItem.href}`}
-            className={`${active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'} flex w-full rounded-lg`}
+            className={`${
+              active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
+            } flex w-full rounded-lg`}
           >
             <div className="px-2 py-1 w-full text-lg whitespace-nowrap font-medium">
               {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
@@ -26,14 +28,15 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
         )}
       </Menu.Item>
     ))
-  }
 
   return hasItems ? (
     <Menu id="NavBarPresentationMenu" as="div" className="relative">
       <Menu.Button>
         <div className="h-8 xl:h-10 group p-1 bg-fv-charcoal rounded-lg  inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-100">
           {getIcon(title, 'fill-current h-full w-auto')}
-          <p className="ml-1 xl:ml-3 xl:mr-2">{transKey ? t(transKey) : title}</p>
+          <p className="ml-1 xl:ml-3 xl:mr-2">
+            {transKey ? t(transKey) : title}
+          </p>
           {getIcon('ChevronDown', 'fill-current h-8')}
         </div>
       </Menu.Button>
@@ -48,7 +51,9 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="bg-white space-y-2">{generateMenuItems(itemsData)}</div>
+          <div className="bg-white space-y-2">
+            {generateMenuItems(itemsData)}
+          </div>
         </Menu.Items>
       </Transition>
     </Menu>

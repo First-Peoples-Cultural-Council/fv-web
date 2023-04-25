@@ -46,26 +46,26 @@ function CategoriesBrowserPresentation({
                 <h2 className="w-1/2">Parent Category</h2>
               </div>
               <ul className="flex-col divide-y divide-gray-200 bg-white">
-                {filteredCategories.map((category) => {
-                  return (
-                    <li
-                      key={category.id}
-                      onClick={() => setCurrentCategory(category)}
-                      className={`${
-                        category?.id === currentCategory?.id
-                          ? 'ring-2 ring-offset-2 ring-primary'
-                          : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
-                      } flex justify-start p-4 cursor-pointer rounded-sm`}
-                    >
-                      <div className="w-1/2">{category.title}</div>
-                      <div className="w-1/2">{category.parentCategory}</div>
-                    </li>
-                  )
-                })}
+                {filteredCategories.map((category) => (
+                  <li
+                    key={category.id}
+                    onClick={() => setCurrentCategory(category)}
+                    className={`${
+                      category?.id === currentCategory?.id
+                        ? 'ring-2 ring-offset-2 ring-primary'
+                        : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
+                    } flex justify-start p-4 cursor-pointer rounded-sm`}
+                  >
+                    <div className="w-1/2">{category.title}</div>
+                    <div className="w-1/2">{category.parentCategory}</div>
+                  </li>
+                ))}
               </ul>
             </section>
           )}
-          {!filteredCategories && <p className="bg-white">You have not created any categories yet</p>}
+          {!filteredCategories && (
+            <p className="bg-white">You have not created any categories yet</p>
+          )}
         </Loading.Container>
       </div>
     </main>

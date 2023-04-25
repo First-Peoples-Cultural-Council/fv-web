@@ -27,7 +27,7 @@ function DashboardData() {
   useEffect(() => {
     if (user && userSitesIsLoading === false && userSitesError === null) {
       const defaultSite = userSitesData?.[0] ? userSitesData?.[0] : null
-      const isMember = user?.roles?.[sitename] || user?.isSuperAdmin ? true : false
+      const isMember = !!(user?.roles?.[sitename] || user?.isSuperAdmin)
       if (!sitename || !isMember) {
         window.location.href = `/${defaultSite?.sitename}/dashboard`
       }
@@ -38,7 +38,7 @@ function DashboardData() {
 
   const currentUser = {
     ...user,
-    isAdmin: roles?.[sitename] === 'Admin' || isSuperAdmin ? true : false,
+    isAdmin: !!(roles?.[sitename] === 'Admin' || isSuperAdmin),
     role: `${site?.title} ${roles?.[sitename] ? roles?.[sitename] : ''}`,
     sites: userSitesData,
   }
@@ -71,7 +71,8 @@ function DashboardData() {
     {
       icon: 'QuestionCircleSolid',
       name: 'Support',
-      description: 'Ask a question or find out how to do something on FirstVoices',
+      description:
+        'Ask a question or find out how to do something on FirstVoices',
       href: 'https://firstvoices.atlassian.net/servicedesk/customer/portals',
       iconColor: 'songText',
       auth: 'Member',

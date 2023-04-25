@@ -4,7 +4,10 @@ import PropTypes from 'prop-types'
 function FileUploadField({ label, nameId, disabled, register }) {
   return (
     <Fragment key={`${nameId}_FileUploadField`}>
-      <label htmlFor={nameId} className="block text-sm font-medium text-fv-charcol">
+      <label
+        htmlFor={nameId}
+        className="block text-sm font-medium text-fv-charcol"
+      >
         {label}
       </label>
       <div className="mt-1">

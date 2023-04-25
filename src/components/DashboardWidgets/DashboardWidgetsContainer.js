@@ -6,7 +6,8 @@ import DashboardWidgetsData from 'components/DashboardWidgets/DashboardWidgetsDa
 import DashboardWidgetsPresentation from 'components/DashboardWidgets/DashboardWidgetsPresentation'
 
 function DashboardWidgetsContainer() {
-  const { widgets, headerContent, isLoading, site, tileContent } = DashboardWidgetsData()
+  const { widgets, headerContent, isLoading, site, tileContent } =
+    DashboardWidgetsData()
   return (
     <div id="DashboardWidgetsContainer">
       <Routes>

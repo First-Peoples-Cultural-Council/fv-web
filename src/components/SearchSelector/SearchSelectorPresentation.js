@@ -29,7 +29,10 @@ function SearchSelectorPresentation({
           >
             <form onSubmit={search} className="w-full flex">
               <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <button type="submit" className="absolute inset-y-0 left-0 flex items-center">
+                <button
+                  type="submit"
+                  className="absolute inset-y-0 left-0 flex items-center"
+                >
                   {getIcon('Search', 'fill-current flex-shrink-0 h-5 w-5')}
                 </button>
                 <input
@@ -45,18 +48,26 @@ function SearchSelectorPresentation({
             </form>
           </div>
         </div>
-        <div className={isSelectDialog ? 'grow mt-2 h-72 overflow-y-scroll' : ''}>
+        <div
+          className={isSelectDialog ? 'grow mt-2 h-72 overflow-y-scroll' : ''}
+        >
           <Loading.Container isLoading={isLoadingEntries}>
             {hasResults && (
               <div>
-                {headerSection && <div className="w-full flex justify-center mb-5 mt-5">{headerSection}</div>}
+                {headerSection && (
+                  <div className="w-full flex justify-center mb-5 mt-5">
+                    {headerSection}
+                  </div>
+                )}
                 {resultsSection}
               </div>
             )}
             {!hasResults && (
               <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
                 <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
-                  {searchQuery ? 'Sorry, there are no results for this search.' : 'Please enter your search above.'}
+                  {searchQuery
+                    ? 'Sorry, there are no results for this search.'
+                    : 'Please enter your search above.'}
                 </div>
               </div>
             )}

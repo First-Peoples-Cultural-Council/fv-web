@@ -16,16 +16,20 @@ function SiteData() {
   // --------------------------------
   // Get Language Site data
   // --------------------------------
-  const { isLoading, error, data } = useQuery(['site', sitename], () => api.site.get(sitename), {
-    // The query will not execute until the sitename exists
-    enabled: !!sitename,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { isLoading, error, data } = useQuery(
+    ['site', sitename],
+    () => api.site.get(sitename),
+    {
+      // The query will not execute until the sitename exists
+      enabled: !!sitename,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
     if (isLoading === false && error === null) {
-      siteDispatch({ type: 'SET', data: data })
+      siteDispatch({ type: 'SET', data })
       if (data?.features?.includes('immersion')) {
         setLabelDictionaryId(data?.children?.['Label Dictionary'])
       }
@@ -33,7 +37,7 @@ function SiteData() {
     if (error) {
       navigate(
         `/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [sitename, isLoading, error])
@@ -45,15 +49,23 @@ function SiteData() {
     isLoading: immersionIsLoading,
     error: immersionError,
     data: immersionData,
-  } = useQuery(['immersion', data?.uid], () => api.immersion.get(labelDictionaryId), {
-    // The query will not execute until the labelDictionaryId exists
-    enabled: !!labelDictionaryId,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(
+    ['immersion', data?.uid],
+    () => api.immersion.get(labelDictionaryId),
+    {
+      // The query will not execute until the labelDictionaryId exists
+      enabled: !!labelDictionaryId,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
-    if (immersionData && immersionIsLoading === false && immersionError === null) {
+    if (
+      immersionData &&
+      immersionIsLoading === false &&
+      immersionError === null
+    ) {
       let translations = {}
       const ids = {}
       immersionData?.entries?.forEach((entry) => {
@@ -62,7 +74,7 @@ function SiteData() {
           entry?.properties?.['dc:title'],
           entry?.properties?.['fvlabel:labelKey'],
           translations,
-          ids
+          ids,
         )
         translations = output?.locales
       })

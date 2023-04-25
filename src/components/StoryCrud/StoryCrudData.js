@@ -8,17 +8,24 @@ import { DOC_STORY } from 'common/constants'
 
 function StoryCrudData() {
   const [searchParams] = useSearchParams()
-  const activeStep = searchParams.get('step') ? parseInt(searchParams.get('step')) : 0
+  const activeStep = searchParams.get('step')
+    ? parseInt(searchParams.get('step'))
+    : 0
   const storyId = searchParams.get('id') || null
 
   const { data } = useQuery(
     [DOC_STORY, storyId],
-    () => api.document.get({ id: storyId, properties: '*', contextParameters: 'ancestry,permissions,book' }),
+    () =>
+      api.document.get({
+        id: storyId,
+        properties: '*',
+        contextParameters: 'ancestry,permissions,book',
+      }),
     {
       enabled: isUUID(storyId),
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   return {

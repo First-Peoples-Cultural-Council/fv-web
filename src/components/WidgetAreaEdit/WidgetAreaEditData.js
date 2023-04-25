@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
-//FPCC
+// FPCC
 import { DOC_SITE } from 'common/constants'
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
@@ -17,13 +17,18 @@ function WidgetAreaEditData({ widgetAreaId }) {
 
   const { data, error, isLoading, refetch } = useQuery(
     ['widget-area', widgetAreaId],
-    () => api.document.get({ id: widgetAreaId, properties: '*', contextParameters: 'widgets' }),
+    () =>
+      api.document.get({
+        id: widgetAreaId,
+        properties: '*',
+        contextParameters: 'widgets',
+      }),
     {
       // The query will not execute until the id exists
       enabled: !!widgetAreaId,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
@@ -42,7 +47,10 @@ function WidgetAreaEditData({ widgetAreaId }) {
 
   const { mutate } = useMutation(saveWidgetOrder, {
     onSuccess: () => {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your Widget order has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your Widget order has been saved.',
+      })
     },
     onError: () => {
       setNotification({
@@ -59,7 +67,10 @@ function WidgetAreaEditData({ widgetAreaId }) {
 
   const { mutate: removeWidgetMutate } = useMutation(saveWidgetOrder, {
     onSuccess: () => {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your Widget has been removed from the page.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your Widget has been removed from the page.',
+      })
       setCurrentWidget(null)
     },
     onError: () => {
@@ -98,8 +109,10 @@ function WidgetAreaEditData({ widgetAreaId }) {
     return widgetMap
   }
 
-  let destinationTitle = data?.properties?.['dc:title'] ? data?.properties?.['dc:title'] : ''
-  const isHomePage = data?.type === DOC_SITE ? true : false
+  let destinationTitle = data?.properties?.['dc:title']
+    ? data?.properties?.['dc:title']
+    : ''
+  const isHomePage = data?.type === DOC_SITE
   if (isHomePage) {
     destinationTitle = 'Home'
   }

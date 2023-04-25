@@ -6,7 +6,8 @@ import getIcon from 'common/getIcon'
 import SectionTitle from 'components/SectionTitle'
 
 function WidgetStatsPresentation({ data }) {
-  const iconStyling = 'fill-current text-tertiaryC h-10 md:h-12 lg:h-14 w-auto mx-auto'
+  const iconStyling =
+    'fill-current text-tertiaryC h-10 md:h-12 lg:h-14 w-auto mx-auto'
   const totalStyling = data?.words
     ? 'text-4xl md:text-5xl lg:text-6xl font-medium'
     : 'text-4xl md:text-5xl lg:text-6xl font-medium opacity-0'
@@ -14,7 +15,11 @@ function WidgetStatsPresentation({ data }) {
   return (
     <section className="bg-tertiaryA pt-3 md:pt-6">
       <div className="mx-5 lg:mx-10 mb-2 md:mb-6 lg:mb-8 xl:mb-12">
-        <SectionTitle.Presentation title={data?.header} bgColor={'tertiaryA'} accentColor={'white'} />
+        <SectionTitle.Presentation
+          title={data?.header}
+          bgColor="tertiaryA"
+          accentColor="white"
+        />
       </div>
       <div className="w-full bg-gradient-to-b from-tertiaryA to-primary-light pb-8">
         <div className="max-w-6xl grid grid-cols-4 mx-auto text-white text-center">

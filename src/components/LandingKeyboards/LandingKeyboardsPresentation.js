@@ -1,16 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import SectionTitle from 'components/SectionTitle'
 function LandingKeyboardsPresentation({ data }) {
-  const { mobileText, title, google, appStore, fvKeyboards, image, text, urlLabel, bg } = data?.settings
+  const {
+    mobileText,
+    title,
+    google,
+    appStore,
+    fvKeyboards,
+    image,
+    text,
+    urlLabel,
+    bg,
+  } = data?.settings
   return (
     <section id="LandingKeyboardsPresentation">
       <div className="bg-tertiaryD text-white flex flex-col items-center lg:hidden">
         <p className="text-sm pt-10">{mobileText}</p>
         <div className="pt-2 pb-6 w-full">
-          <SectionTitle.Presentation title={title} bgColor="tertiaryD" accentColor="white" />
+          <SectionTitle.Presentation
+            title={title}
+            bgColor="tertiaryD"
+            accentColor="white"
+          />
         </div>
         <div className="flex flex-row h-40">
           <div className="w-2/3 pl-10">
@@ -19,7 +33,11 @@ function LandingKeyboardsPresentation({ data }) {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <img src={google} alt="google play store" className="py-2 w-4/5" />
+              <img
+                src={google}
+                alt="google play store"
+                className="py-2 w-4/5"
+              />
             </a>
             <a
               href="https://apps.apple.com/ca/app/firstvoices-keyboards/id1066651145"
@@ -35,7 +53,11 @@ function LandingKeyboardsPresentation({ data }) {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <img src={fvKeyboards} alt="First Voices Keyboards" className="h-28 w-28" />
+            <img
+              src={fvKeyboards}
+              alt="First Voices Keyboards"
+              className="h-28 w-28"
+            />
           </a>
         </div>
       </div>
@@ -44,7 +66,7 @@ function LandingKeyboardsPresentation({ data }) {
         style={{
           backgroundImage: `url(${bg})`,
           backgroundRepeat: 'no-repeat',
-          //backgroundPosition: 'right 20% top',
+          // backgroundPosition: 'right 20% top',
           backgroundSize: 'cover',
         }}
       >
@@ -66,7 +88,7 @@ function LandingKeyboardsPresentation({ data }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { object } = PropTypes
 
 LandingKeyboardsPresentation.propTypes = {

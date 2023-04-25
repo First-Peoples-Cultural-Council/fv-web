@@ -25,9 +25,13 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
     }
   }, [useLocation()])
 
-  const generateMenu = (menu) => {
-    return <NavBarPresentationMenu key={`NavBarMenu_${menu?.id}`} menuItemData={menu} sitename={sitename} />
-  }
+  const generateMenu = (menu) => (
+    <NavBarPresentationMenu
+      key={`NavBarMenu_${menu?.id}`}
+      menuItemData={menu}
+      sitename={sitename}
+    />
+  )
 
   const fvlogo = isHome
     ? getIcon('FVLogo', 'fill-current h-10')
@@ -39,11 +43,17 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
         <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
           {/* Home Links */}
           <div className="flex items-center">
-            <div className={`${isHome ? '' : 'hidden'} md:flex items-center text-white`}>
+            <div
+              className={`${
+                isHome ? '' : 'hidden'
+              } md:flex items-center text-white`}
+            >
               <span className="sr-only">FirstVoices Logo</span>
               {fvlogo}
             </div>
-            <div className="w-16 text-white text-sm leading-tight text-center mr-2">Beta Version</div>
+            <div className="w-16 text-white text-sm leading-tight text-center mr-2">
+              Beta Version
+            </div>
             {!isHome && (
               <Link
                 className="h-9 text-white flex items-center group bg-fv-charcoal rounded-lg text-lg font-medium hover:text-gray-100"
@@ -65,7 +75,10 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
           <div className="flex items-center space-x-2 lg:space-x-4">
             {/* Search */}
             {!isHome && !isSearchPage && (
-              <div id="NavSearch" className="flex w-full md:w-auto items-center">
+              <div
+                id="NavSearch"
+                className="flex w-full md:w-auto items-center"
+              >
                 <SearchSiteForm.Container minimal />
               </div>
             )}
@@ -80,8 +93,12 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
                 onClick={() => openCloseMobileNavbar()}
                 className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
               >
-                <span className="sr-only">{mobileNavbarOpen ? 'Close menu' : 'Open menu'}</span>
-                {mobileNavbarOpen ? getIcon('Close', 'h-6 w-6') : getIcon('HamburgerMenu', 'h-6 w-6')}
+                <span className="sr-only">
+                  {mobileNavbarOpen ? 'Close menu' : 'Open menu'}
+                </span>
+                {mobileNavbarOpen
+                  ? getIcon('Close', 'h-6 w-6')
+                  : getIcon('HamburgerMenu', 'h-6 w-6')}
               </button>
             </div>
           </div>

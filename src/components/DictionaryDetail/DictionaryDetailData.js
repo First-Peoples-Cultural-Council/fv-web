@@ -11,7 +11,7 @@ function DictionaryDetailData({ docId, docType }) {
   const { id, sitename } = useParams()
   const navigate = useNavigate()
 
-  const idToSend = docId ? docId : id
+  const idToSend = docId || id
   const contextParameters = docType === DOC_WORD ? 'word' : 'phrase'
 
   const backHandler = () => navigate(-1)
@@ -19,13 +19,13 @@ function DictionaryDetailData({ docId, docType }) {
   // Data fetch
   const response = useQuery(
     [docType, idToSend],
-    () => api.document.get({ id: idToSend, contextParameters: contextParameters }),
+    () => api.document.get({ id: idToSend, contextParameters }),
     {
       // The query will not execute until the id has been provided
       enabled: !!idToSend,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
   const { data, error, isError, isLoading } = response
   const entry = dictionaryDataAdaptor(data)
@@ -34,7 +34,7 @@ function DictionaryDetailData({ docId, docType }) {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])

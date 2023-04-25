@@ -7,7 +7,11 @@ import { useNotification } from 'context/NotificationContext'
 import { useSiteStore } from 'context/SiteContext'
 import dictionaryCrudDataAdaptor from 'components/DictionaryCrud/dictionaryCrudDataAdaptor'
 import partOfSpeechDataAdaptor from 'components/DictionaryCrud/partOfSpeechDataAdaptor'
-import { DOC_WORD, DIR_PARTS_OF_SPEECH, NOTIFICATION_TIME } from 'common/constants'
+import {
+  DOC_WORD,
+  DIR_PARTS_OF_SPEECH,
+  NOTIFICATION_TIME,
+} from 'common/constants'
 import { isUUID } from 'common/stringHelpers'
 
 function DictionaryCrudData({ docType }) {
@@ -24,16 +28,20 @@ function DictionaryCrudData({ docType }) {
   const { data } = useQuery(
     [docType, entryId],
     () =>
-      api.document.get({ id: entryId, properties: '*', contextParameters: docType === DOC_WORD ? 'word' : 'phrase' }),
+      api.document.get({
+        id: entryId,
+        properties: '*',
+        contextParameters: docType === DOC_WORD ? 'word' : 'phrase',
+      }),
     {
       enabled: isUUID(entryId),
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
   const dataToEdit = dictionaryCrudDataAdaptor(data)
 
-  const isWord = docType === DOC_WORD ? true : false
+  const isWord = docType === DOC_WORD
   const { data: partOfSpeechData } = useQuery(
     ['parts_of_speech'],
     () => api.directory.get({ directoryName: DIR_PARTS_OF_SPEECH }),
@@ -41,7 +49,7 @@ function DictionaryCrudData({ docType }) {
       enabled: isWord,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
   const partsOfSpeech = partOfSpeechDataAdaptor({ data: partOfSpeechData })
 
@@ -61,7 +69,7 @@ function DictionaryCrudData({ docType }) {
       'fv:related_assets': _formData?.relatedAssets,
       'fv:related_pictures': _formData?.images,
       'fv:related_videos': _formData?.videos,
-      'fvaudience:children': _formData?.kidFriendly === 'true' ? true : false,
+      'fvaudience:children': _formData?.kidFriendly === 'true',
       'fv:acknowledgements': _formData?.acknowledgements,
       'fv:notes': _formData?.notes,
     }
@@ -82,13 +90,16 @@ function DictionaryCrudData({ docType }) {
     const response = await api.document.createAndSetVisibility({
       parentId: site?.children?.Dictionary,
       name: formData?.title,
-      docType: docType,
+      docType,
       properties: formDataAdaptor(formData),
       visibility: formData?.visibility,
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! A new dictionary entry has been created.' })
-      setTimeout(function () {
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! A new dictionary entry has been created.',
+      })
+      setTimeout(() => {
         navigate(`/${site?.sitename}/dashboard/create`)
       }, NOTIFICATION_TIME)
     } else {
@@ -108,8 +119,11 @@ function DictionaryCrudData({ docType }) {
     })
     if (response?.uid) {
       queryClient.invalidateQueries([docType, entryId])
-      setNotification({ type: 'SUCCESS', message: 'Success! Your dictionary entry has been saved.' })
-      setTimeout(function () {
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your dictionary entry has been saved.',
+      })
+      setTimeout(() => {
         backHandler()
       }, NOTIFICATION_TIME)
     } else {

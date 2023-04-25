@@ -7,7 +7,12 @@ import getIcon from 'common/getIcon'
 import { getMediaUrl } from 'common/urlHelpers'
 import DashboardFooter from 'components/DashboardFooter'
 
-function DashboardLandingPresentation({ children, headerContent, site, tileContent }) {
+function DashboardLandingPresentation({
+  children,
+  headerContent,
+  site,
+  tileContent,
+}) {
   const iconColor = headerContent?.iconColor || 'secondary'
   return (
     <div className="flex flex-col min-h-screen justify-between">
@@ -25,14 +30,24 @@ function DashboardLandingPresentation({ children, headerContent, site, tileConte
                   </div>
                 </div>
                 <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                  <p className={`text-xl font-bold text-${iconColor} sm:text-2xl`}>{headerContent?.title}</p>
-                  <p className="text-sm font-medium text-fv-charcoal-light">{headerContent?.subtitle}</p>
+                  <p
+                    className={`text-xl font-bold text-${iconColor} sm:text-2xl`}
+                  >
+                    {headerContent?.title}
+                  </p>
+                  <p className="text-sm font-medium text-fv-charcoal-light">
+                    {headerContent?.subtitle}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-5">
                 <div className="pt-1 text-right">
-                  <p className="text-xl font-bold text-fv-charcoal">You are on:</p>
-                  <p className="text-xl font-medium text-fv-charcoal-light">{site?.title}</p>
+                  <p className="text-xl font-bold text-fv-charcoal">
+                    You are on:
+                  </p>
+                  <p className="text-xl font-medium text-fv-charcoal-light">
+                    {site?.title}
+                  </p>
                 </div>
                 <div className="flex-shrink-0">
                   {site?.logoId ? (
@@ -47,7 +62,9 @@ function DashboardLandingPresentation({ children, headerContent, site, tileConte
                     />
                   ) : (
                     <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
-                      <span className="text-center">{site?.title?.charAt(0)}</span>
+                      <span className="text-center">
+                        {site?.title?.charAt(0)}
+                      </span>
                     </div>
                   )}
                 </div>

@@ -7,7 +7,14 @@ import DeleteButtonPresentation from 'components/DeleteButton/DeleteButtonPresen
 
 function DeleteButtonContainer({ id, label, message, styling }) {
   const { deleteHandler } = DeleteButtonData({ id })
-  return <DeleteButtonPresentation deleteHandler={deleteHandler} label={label} message={message} styling={styling} />
+  return (
+    <DeleteButtonPresentation
+      deleteHandler={deleteHandler}
+      label={label}
+      message={message}
+      styling={styling}
+    />
+  )
 }
 
 // PROPTYPES

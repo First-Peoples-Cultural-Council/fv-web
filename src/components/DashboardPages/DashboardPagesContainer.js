@@ -6,7 +6,8 @@ import DashboardPagesData from 'components/DashboardPages/DashboardPagesData'
 import DashboardPagesPresentation from 'components/DashboardPages/DashboardPagesPresentation'
 
 function DashboardPagesContainer() {
-  const { customPages, headerContent, isLoading, site, sitename, tileContent } = DashboardPagesData()
+  const { customPages, headerContent, isLoading, site, sitename, tileContent } =
+    DashboardPagesData()
   return (
     <div id="DashboardPagesContainer">
       <Routes>

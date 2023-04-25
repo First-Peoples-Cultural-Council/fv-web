@@ -4,7 +4,17 @@ import WidgetWordOfTheDayPresentation from 'components/WidgetWordOfTheDay/Widget
 import WidgetWordOfTheDayData from 'components/WidgetWordOfTheDay/WidgetWordOfTheDayData'
 
 function WidgetWordOfTheDayContainer() {
-  const { audio, hasShare, heading, subheading, metadata, relativeUrl, title, url, isError } = WidgetWordOfTheDayData()
+  const {
+    audio,
+    hasShare,
+    heading,
+    subheading,
+    metadata,
+    relativeUrl,
+    title,
+    url,
+    isError,
+  } = WidgetWordOfTheDayData()
   return isError ? null : (
     <WidgetWordOfTheDayPresentation
       audio={audio}

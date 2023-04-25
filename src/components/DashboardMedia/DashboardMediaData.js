@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { getFvDocType } from 'common/stringHelpers'
 
@@ -8,7 +8,9 @@ function DashboardMediaData() {
   const { site } = useSiteStore()
   const [searchParams] = useSearchParams()
 
-  const docType = searchParams.get('type') ? getFvDocType(searchParams.get('type')) : null
+  const docType = searchParams.get('type')
+    ? getFvDocType(searchParams.get('type'))
+    : null
 
   const tileContent = [
     {

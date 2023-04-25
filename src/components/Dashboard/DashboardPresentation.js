@@ -19,7 +19,10 @@ function DashboardPresentation({ children, currentUser, currentSite }) {
             </div>
 
             <nav className="flex-1">
-              <DashboardPresentationSiteSelect sites={currentUser?.sites} currentSite={currentSite} />
+              <DashboardPresentationSiteSelect
+                sites={currentUser?.sites}
+                currentSite={currentSite}
+              />
               <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
                 {primaryNavigationItems(currentSite?.sitename)}
                 {secondaryNavigationItems(currentUser?.sites, currentSite)}
@@ -67,17 +70,22 @@ const primaryNavigationItems = (currentSitename) => {
   return (
     <div className="pl-14 pr-2 pb-4 space-y-1">
       {navigation.map((item) => {
-        let resolved = useResolvedPath(item.href)
-        let match = useMatch({ path: resolved.pathname, end: true })
+        const resolved = useResolvedPath(item.href)
+        const match = useMatch({ path: resolved.pathname, end: true })
         return (
           <RequireAuth key={item.name} role={item.auth}>
             <Link
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
-                match ? 'bg-fv-charcoal-dark text-white' : 'text-gray-300 hover:bg-fv-charcoal-light hover:text-white'
+                match
+                  ? 'bg-fv-charcoal-dark text-white'
+                  : 'text-gray-300 hover:bg-fv-charcoal-light hover:text-white'
               }`}
             >
-              {getIcon(item.icon, 'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6')}
+              {getIcon(
+                item.icon,
+                'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+              )}
               {item.name}
             </Link>
           </RequireAuth>
@@ -95,7 +103,7 @@ const secondaryNavigationItems = (sites, currentSite) => {
         name: `${site?.title} site`,
         href: `/${site?.sitename}`,
         icon: 'BackArrow',
-      })
+      }),
     )
   }
 
@@ -109,7 +117,7 @@ const secondaryNavigationItems = (sites, currentSite) => {
       >
         {getIcon(
           'QuestionCircleSolid',
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6'
+          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
         )}
         Support
       </a>
@@ -119,7 +127,10 @@ const secondaryNavigationItems = (sites, currentSite) => {
         target="_blank"
         rel="noreferrer noopener"
       >
-        {getIcon('RightArrowCircle', 'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6')}
+        {getIcon(
+          'RightArrowCircle',
+          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+        )}
         Go to the old FirstVoices
       </a>
       {secondaryNavigation.map((item, index) => (
@@ -128,7 +139,10 @@ const secondaryNavigationItems = (sites, currentSite) => {
           to={item.href}
           className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
         >
-          {getIcon(item.icon, 'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6')}
+          {getIcon(
+            item.icon,
+            'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+          )}
           {item.name}
         </Link>
       ))}
@@ -136,27 +150,27 @@ const secondaryNavigationItems = (sites, currentSite) => {
   )
 }
 
-const userProfile = (user) => {
-  return (
-    <div className="flex-shrink-0 flex bg-fv-charcoal-light p-4">
-      <Link to="profile" className="flex-shrink-0 w-full group block">
-        <div className="flex items-center">
-          <div className="inline-flex">
-            <div className="inline-block text-left">
-              <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-xl rounded-full h-12 w-12 items-center justify-center">
-                {user?.userInitials}
-              </div>
+const userProfile = (user) => (
+  <div className="flex-shrink-0 flex bg-fv-charcoal-light p-4">
+    <Link to="profile" className="flex-shrink-0 w-full group block">
+      <div className="flex items-center">
+        <div className="inline-flex">
+          <div className="inline-block text-left">
+            <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-xl rounded-full h-12 w-12 items-center justify-center">
+              {user?.userInitials}
             </div>
           </div>
-          <div className="ml-3">
-            <p className="text-sm font-medium text-white">{user?.displayName}</p>
-            <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">View profile</p>
-          </div>
         </div>
-      </Link>
-    </div>
-  )
-}
+        <div className="ml-3">
+          <p className="text-sm font-medium text-white">{user?.displayName}</p>
+          <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
+            View profile
+          </p>
+        </div>
+      </div>
+    </Link>
+  </div>
+)
 
 // PROPTYPES
 const { node, object } = PropTypes

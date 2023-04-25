@@ -8,7 +8,7 @@ import LazyImage from 'components/LazyImage'
 function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   return (
-    <Fragment>
+    <>
       <LazyImage
         imgStyling={imgStyling}
         width={maxWidth}
@@ -20,13 +20,16 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
         alt={`Gallery Image ${image?.['dc:title']}`}
       />
       {/* Lightbox Modal */}
-      <Modal.Presentation isOpen={lightboxOpen} closeHandler={() => setLightboxOpen(false)}>
+      <Modal.Presentation
+        isOpen={lightboxOpen}
+        closeHandler={() => setLightboxOpen(false)}
+      >
         <div
           id="ImageWithLightboxPresentation"
           className="inline-block text-white transform transition-all align-middle max-w-2xl lg:max-w-4xl xl:max-w-7xl"
         >
           <LazyImage
-            imgStyling={'object-contain sm:h-4/5-screen shadow-xl mx-auto'}
+            imgStyling="object-contain sm:h-4/5-screen shadow-xl mx-auto"
             width={1920}
             onClick={() => setLightboxOpen(true)}
             forceLoad
@@ -34,13 +37,23 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
             mimeType={image?.['mime-type']}
             alt={`Gallery Image ${image?.['dc:title']}`}
           />
-          <div className="mt-1 text-lg md:text-xl font-medium">{image?.['dc:title']}</div>
-          {image?.['dc:description'] && <div className="text-base">{image?.['dc:description']}</div>}
-          {image?.speaker && <div className="text-sm">Source: {image?.speaker}</div>}
-          {image?.acknowledgement && <div className="text-sm">Acknowledgement: {image?.acknowledgement}</div>}
+          <div className="mt-1 text-lg md:text-xl font-medium">
+            {image?.['dc:title']}
+          </div>
+          {image?.['dc:description'] && (
+            <div className="text-base">{image?.['dc:description']}</div>
+          )}
+          {image?.speaker && (
+            <div className="text-sm">Source: {image?.speaker}</div>
+          )}
+          {image?.acknowledgement && (
+            <div className="text-sm">
+              Acknowledgement: {image?.acknowledgement}
+            </div>
+          )}
         </div>
       </Modal.Presentation>
-    </Fragment>
+    </>
   )
 }
 // PROPTYPES

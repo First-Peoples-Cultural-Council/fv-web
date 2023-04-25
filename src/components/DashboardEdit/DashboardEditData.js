@@ -1,4 +1,4 @@
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 
 function DashboardEditData() {
@@ -56,7 +56,8 @@ function DashboardEditData() {
     {
       icon: 'Categories',
       name: 'Edit Categories',
-      description: 'Edit the categories for words and phrases in your dictionary',
+      description:
+        'Edit the categories for words and phrases in your dictionary',
       href: 'categories',
       iconColor: 'tertiaryB',
       auth: 'SuperAdmin',
@@ -72,7 +73,8 @@ function DashboardEditData() {
     {
       icon: 'Alphabet',
       name: 'Edit your Alphabet',
-      description: 'Update media and linked content for your alphabet characters',
+      description:
+        'Update media and linked content for your alphabet characters',
       href: 'alphabet',
       iconColor: 'primary',
       auth: 'SuperAdmin',

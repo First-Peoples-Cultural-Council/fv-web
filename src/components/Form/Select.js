@@ -8,7 +8,9 @@ import Listbox from 'components/Listbox'
 function Select({ control, helpText, label, nameId, options }) {
   return (
     <Fragment key="FormSelect">
-      <label className="block text-sm font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <div className="mt-4 w-96">
         <Controller
           control={control}
@@ -16,11 +18,17 @@ function Select({ control, helpText, label, nameId, options }) {
           id={nameId}
           name={nameId}
           render={({ field: { value, onChange } }) => (
-            <Listbox.Presentation selectedValue={value} options={options} setValue={onChange} />
+            <Listbox.Presentation
+              selectedValue={value}
+              options={options}
+              setValue={onChange}
+            />
           )}
         />
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }

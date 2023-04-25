@@ -2,17 +2,21 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import api from 'services/api'
 
 function LandingPageData() {
   const { sitename } = useParams()
   const navigate = useNavigate()
 
-  const { data, error, isError } = useQuery(['landingPage'], () => api.landingPage.getPage(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, error, isError } = useQuery(
+    ['landingPage'],
+    () => api.landingPage.getPage(),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const landingPageUid = data?.entries?.[0]?.uid
 
@@ -29,7 +33,7 @@ function LandingPageData() {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])

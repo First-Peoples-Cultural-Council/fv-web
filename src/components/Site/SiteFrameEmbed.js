@@ -8,7 +8,7 @@ import Loading from 'components/Loading'
 
 function SiteFrameEmbed({ siteLoading }) {
   return (
-    <Fragment>
+    <>
       <main role="main">
         <Loading.Container isLoading={siteLoading}>
           <Routes>
@@ -17,7 +17,7 @@ function SiteFrameEmbed({ siteLoading }) {
         </Loading.Container>
       </main>
       <Audiobar.Container />
-    </Fragment>
+    </>
   )
 }
 

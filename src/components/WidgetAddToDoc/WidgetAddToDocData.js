@@ -13,12 +13,16 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { isSuperAdmin } = user
   const queryClient = useQueryClient()
 
-  const { data, isLoading } = useQuery(['all-widgets', site?.uid], () => api.widget.getWidgets({ siteId: site?.uid }), {
-    // The query will not execute until the id exists
-    enabled: !!site?.uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, isLoading } = useQuery(
+    ['all-widgets', site?.uid],
+    () => api.widget.getWidgets({ siteId: site?.uid }),
+    {
+      // The query will not execute until the id exists
+      enabled: !!site?.uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const { data: destinationData, isLoading: destinationIsLoading } = useQuery(
     ['widget-aware-destination', destinationId],
@@ -28,7 +32,7 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
       enabled: !!destinationId,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   // Add widget to active
@@ -36,7 +40,9 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
     if (widgetId && destinationData?.properties) {
       const activeWidgets = [...destinationData?.properties?.['widgets:active']]
       activeWidgets.splice(insertIndex, 0, widgetId)
-      const inactiveWidgets = destinationData?.properties?.['widgets:inactive'].filter((e) => e !== widgetId)
+      const inactiveWidgets = destinationData?.properties?.[
+        'widgets:inactive'
+      ].filter((e) => e !== widgetId)
       await api.document.setProperty({
         input: destinationId,
         properties: `widgets:active=${activeWidgets.join()}\nwidgets:inactive=${inactiveWidgets.join()}`,
@@ -45,28 +51,30 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
       queryClient.invalidateQueries(['widget-area', destinationId])
       closeHandler()
     }
-    return
   }
 
   // Don't include widgets that are already active on the page
-  let otherWidgets = data?.entries?.filter((entry) => {
-    return destinationData?.properties?.['widgets:active']?.includes(entry?.['ecm:uuid']) ? false : true
-  })
+  let otherWidgets = data?.entries?.filter(
+    (entry) =>
+      !destinationData?.properties?.['widgets:active']?.includes(
+        entry?.['ecm:uuid'],
+      ),
+  )
 
   const adminWidgets = getWidgetsList(isSuperAdmin)
 
   if (!isSuperAdmin) {
-    otherWidgets = otherWidgets?.filter((entry) => {
-      return adminWidgets.includes(entry?.['widget:type'])
-    })
+    otherWidgets = otherWidgets?.filter((entry) =>
+      adminWidgets.includes(entry?.['widget:type']),
+    )
   }
 
   // Don't include Page Text Widget on the Home page
-  const isHomePage = destinationData?.type === DOC_SITE ? true : false
+  const isHomePage = destinationData?.type === DOC_SITE
   const widgets = isHomePage
-    ? otherWidgets?.filter((widget) => {
-        return widget?.['widget:type'] === WIDGET_TEXTFULL ? false : true
-      })
+    ? otherWidgets?.filter(
+        (widget) => widget?.['widget:type'] !== WIDGET_TEXTFULL,
+      )
     : otherWidgets
 
   return {

@@ -8,7 +8,13 @@ import KidsNavBarData from 'components/KidsNavBar/KidsNavBarData'
 function KidsNavBarContainer({ home }) {
   const { links, logoUrl, sitename, siteTitle } = KidsNavBarData()
   return (
-    <KidsNavBarPresentation links={links} logoUrl={logoUrl} sitename={sitename} siteTitle={siteTitle} home={home} />
+    <KidsNavBarPresentation
+      links={links}
+      logoUrl={logoUrl}
+      sitename={sitename}
+      siteTitle={siteTitle}
+      home={home}
+    />
   )
 }
 

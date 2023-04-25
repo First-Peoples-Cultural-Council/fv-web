@@ -4,7 +4,11 @@ import PropTypes from 'prop-types'
 // FPCC
 
 function ErrorMessage({ errors, nameId }) {
-  return errors?.[nameId] && <div className="text-red-500">{errors?.[nameId]?.message}</div>
+  return (
+    errors?.[nameId] && (
+      <div className="text-red-500">{errors?.[nameId]?.message}</div>
+    )
+  )
 }
 
 // PROPTYPES

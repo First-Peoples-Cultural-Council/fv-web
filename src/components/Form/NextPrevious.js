@@ -6,7 +6,10 @@ import getIcon from 'common/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function NextPrevious({ numberOfSteps, onClickCallback }) {
-  const [activeStep, setActiveStep] = useSearchParamsState({ searchParamName: 'step', defaultValue: '0' })
+  const [activeStep, setActiveStep] = useSearchParamsState({
+    searchParamName: 'step',
+    defaultValue: '0',
+  })
   const activeStepNumber = Number(activeStep)
 
   const onStepClick = ({ forward }) => {
@@ -24,7 +27,8 @@ function NextPrevious({ numberOfSteps, onClickCallback }) {
           className="inline-flex items-center text-xl text-fv-charcoal"
           onClick={() => onStepClick({ forward: false })}
         >
-          {getIcon('Next', 'fill-current rotate-180 h-5 mr-2')} <span>PREVIOUS</span>
+          {getIcon('Next', 'fill-current rotate-180 h-5 mr-2')}{' '}
+          <span>PREVIOUS</span>
         </button>
       ) : (
         <div></div>

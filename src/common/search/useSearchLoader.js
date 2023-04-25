@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import useIntersectionObserver from 'common/useIntersectionObserver'
 
 /**
@@ -12,20 +12,28 @@ function useSearchLoader({ searchApi, queryKey, siteUid, searchParams }) {
   const searchParamString = searchParams.toString()
 
   // Fetch search results
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = useInfiniteQuery(
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  } = useInfiniteQuery(
     [`${queryKey}-search`, searchParamString],
     ({ pageParam = 1 }) =>
       searchApi.get({
         siteId: siteUid,
         searchParams: searchParamString,
-        pageParam: pageParam,
+        pageParam,
       }),
     {
       enabled: !!siteUid,
       getNextPageParam: (lastPage) => lastPage.nextPage,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage }

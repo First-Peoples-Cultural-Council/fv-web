@@ -8,11 +8,19 @@ import DeleteButton from 'components/DeleteButton'
 
 function StoryCrudStepWrapper({ children, onClickCallback }) {
   const [searchParams] = useSearchParams()
-  const storyFormSteps = [{ title: 'Cover Page' }, { title: 'Pages' }, { title: 'Privacy' }, { title: 'Preview' }]
+  const storyFormSteps = [
+    { title: 'Cover Page' },
+    { title: 'Pages' },
+    { title: 'Privacy' },
+    { title: 'Preview' },
+  ]
   const id = searchParams.get('id')
 
   return (
-    <div data-testid="StoryCrudStepWrapper" className="flex flex-col p-8 space-y-4 min-h-screen max-w-5xl">
+    <div
+      data-testid="StoryCrudStepWrapper"
+      className="flex flex-col p-8 space-y-4 min-h-screen max-w-5xl"
+    >
       <div className="w-full flex justify-center">
         <Form.Header title={id ? 'Edit Your Story' : 'Add A New Story'} />
       </div>
@@ -26,10 +34,16 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
         ) : null}
       </div>
       <div className="my-5">
-        <Form.Stepper steps={storyFormSteps} onClickCallback={onClickCallback} />
+        <Form.Stepper
+          steps={storyFormSteps}
+          onClickCallback={onClickCallback}
+        />
       </div>
       <section>{children}</section>
-      <Form.NextPrevious numberOfSteps={storyFormSteps?.length} onClickCallback={onClickCallback} />
+      <Form.NextPrevious
+        numberOfSteps={storyFormSteps?.length}
+        onClickCallback={onClickCallback}
+      />
     </div>
   )
 }

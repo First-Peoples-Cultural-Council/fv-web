@@ -5,22 +5,26 @@ import DOMPurify from 'dompurify'
 DOMPurify.addHook('uponSanitizeElement', (node, data) => {
   if (data.tagName === 'iframe') {
     const src = node.getAttribute('src') || ''
-    if (!src.match(/youtube.com|youtube-nocookie.com/) ) {
+    if (!src.match(/youtube.com|youtube-nocookie.com/)) {
       return node.parentNode?.removeChild(node)
     }
   }
 })
 
-const Sanitize = (content) => {
-  return DOMPurify.sanitize(content, {
+const Sanitize = (content) =>
+  DOMPurify.sanitize(content, {
     ADD_TAGS: ['iframe'],
     ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'],
   })
-}
 
 function SanitizedHtml({ text, className, tagName }) {
   const Tag = tagName
-  return <Tag className={className} dangerouslySetInnerHTML={{ __html: Sanitize(text) }} />
+  return (
+    <Tag
+      className={className}
+      dangerouslySetInnerHTML={{ __html: Sanitize(text) }}
+    />
+  )
 }
 
 // PROPTYPES

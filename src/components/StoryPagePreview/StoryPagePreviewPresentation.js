@@ -7,18 +7,29 @@ import { getMediaUrl } from 'common/urlHelpers'
 
 function StoryPagePreviewPresentation({ page, pageNumber }) {
   return (
-    <div data-testid="StoryPagePreview" className="w-full grid grid-cols-11 gap-8 p-4">
+    <div
+      data-testid="StoryPagePreview"
+      className="w-full grid grid-cols-11 gap-8 p-4"
+    >
       <div className="col-span-1">{pageNumber}</div>
       <div className="col-span-4 h-50 overflow-hidden">
-        {page?.visualMedia?.docType == DOC_IMAGE && (
+        {page?.visualMedia?.docType === DOC_IMAGE && (
           <img
-            src={getMediaUrl({ type: 'image', id: page?.visualMedia?.docId, viewName: 'Thumbnail' })}
+            src={getMediaUrl({
+              type: 'image',
+              id: page?.visualMedia?.docId,
+              viewName: 'Thumbnail',
+            })}
             className="object-cover rounded-md"
           />
         )}
-        {page?.visualMedia?.docType == DOC_VIDEO && (
+        {page?.visualMedia?.docType === DOC_VIDEO && (
           <video
-            src={getMediaUrl({ type: 'video', id: page?.visualMedia?.docId, viewName: 'Thumbnail' })}
+            src={getMediaUrl({
+              type: 'video',
+              id: page?.visualMedia?.docId,
+              viewName: 'Thumbnail',
+            })}
             className="object-cover"
             controls
           >

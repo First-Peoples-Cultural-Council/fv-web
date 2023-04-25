@@ -9,14 +9,25 @@ import getIcon from 'common/getIcon'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
 
-function DashboardWidgetsPresentation({ headerContent, isLoading, tileContent, widgets, site }) {
+function DashboardWidgetsPresentation({
+  headerContent,
+  isLoading,
+  tileContent,
+  widgets,
+  site,
+}) {
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
   const [currentWidget, setCurrentWidget] = useState({})
-  const tableHeaderClass = 'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+  const tableHeaderClass =
+    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
     <div id="DashboardWidgetsPresentation" className="space-y-5">
-      <DashboardLanding.Presentation tileContent={tileContent} headerContent={headerContent} site={site}>
+      <DashboardLanding.Presentation
+        tileContent={tileContent}
+        headerContent={headerContent}
+        site={site}
+      >
         <DashboardTable.Presentation
           isLoading={isLoading}
           title="Widgets"
@@ -28,7 +39,7 @@ function DashboardWidgetsPresentation({ headerContent, isLoading, tileContent, w
               <th scope="col" className={tableHeaderClass}>
                 Type
               </th>
-              {/*`relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile.*/}
+              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
               <th scope="col" className={`relative ${tableHeaderClass}`}>
                 <span className="sr-only">Edit Widget</span>
               </th>
@@ -39,8 +50,12 @@ function DashboardWidgetsPresentation({ headerContent, isLoading, tileContent, w
           }
           tableBody={widgets.map((widget) => (
             <tr key={widget?.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{widget?.name}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">{widget?.typeLabel}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                {widget?.name}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+                {widget?.typeLabel}
+              </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 {widget?.editable ? (
                   <Link
@@ -60,16 +75,27 @@ function DashboardWidgetsPresentation({ headerContent, isLoading, tileContent, w
                   }}
                   className="text-secondary hover:text-secondary-dark flex items-center"
                 >
-                  {getIcon('Fullscreen', 'fill-current w-6 h-6 mr-2', 'Preview')}
+                  {getIcon(
+                    'Fullscreen',
+                    'fill-current w-6 h-6 mr-2',
+                    'Preview',
+                  )}
                 </button>
               </td>
             </tr>
           ))}
         />
         {/* Preview Modal */}
-        <Modal.Presentation isOpen={previewModalOpen} closeHandler={() => setPreviewModalOpen(false)}>
+        <Modal.Presentation
+          isOpen={previewModalOpen}
+          closeHandler={() => setPreviewModalOpen(false)}
+        >
           <div className="bg-white w-4/5-screen mx-auto p-5 rounded-lg">
-            <Widget.Container widgetType={currentWidget?.type} data={currentWidget} id={currentWidget?.id} />
+            <Widget.Container
+              widgetType={currentWidget?.type}
+              data={currentWidget}
+              id={currentWidget?.id}
+            />
           </div>
         </Modal.Presentation>
       </DashboardLanding.Presentation>

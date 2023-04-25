@@ -10,9 +10,17 @@ import Modal from 'components/Modal'
 import EntrySelector from 'components/EntrySelector'
 import ArrayBrowserField from 'components/Form/ArrayBrowserField'
 
-function MultitypeDocumentArrayField({ label, nameId, helpText, control, docTypes, docCountLimit }) {
+function MultitypeDocumentArrayField({
+  label,
+  nameId,
+  helpText,
+  control,
+  docTypes,
+  docCountLimit,
+}) {
   const { addItems, removeItem, value } = useIdArrayField(nameId, control)
-  const { modalOpen, openModal, closeModal, selectItem, unselectItem } = useModalSelector(addItems, removeItem)
+  const { modalOpen, openModal, closeModal, selectItem, unselectItem } =
+    useModalSelector(addItems, removeItem)
 
   return (
     <ArrayBrowserField
@@ -28,7 +36,11 @@ function MultitypeDocumentArrayField({ label, nameId, helpText, control, docType
     >
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
-          <EntrySelector.Container docTypes={docTypes} addItem={selectItem} removeItem={unselectItem} />
+          <EntrySelector.Container
+            docTypes={docTypes}
+            addItem={selectItem}
+            removeItem={unselectItem}
+          />
         </div>
       </Modal.Presentation>
     </ArrayBrowserField>

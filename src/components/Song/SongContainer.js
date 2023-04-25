@@ -9,7 +9,11 @@ function SongContainer({ docId, isDrawer }) {
   const { entry, isLoading, sitename } = SongData({ docId })
   return (
     <Loading.Container isLoading={isLoading}>
-      {isDrawer ? <SongPresentationDrawer entry={entry} sitename={sitename} /> : <SongPresentation entry={entry} />}
+      {isDrawer ? (
+        <SongPresentationDrawer entry={entry} sitename={sitename} />
+      ) : (
+        <SongPresentation entry={entry} />
+      )}
     </Loading.Container>
   )
 }

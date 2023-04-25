@@ -23,10 +23,14 @@ function MediaBrowserContainerNonModal({ docType }) {
     friendlyDocTypeLabel,
   } = MediaBrowser.Data({ docType })
 
-  const hasResults = media?.pages !== undefined && media?.pages?.[0]?.entries?.length > 0 ? true : false
+  const hasResults = !!(
+    media?.pages !== undefined && media?.pages?.[0]?.entries?.length > 0
+  )
   // Switiching Main and Sidebar components based on document type between Audio and Visual
-  const BrowserComponent = docType === DOC_AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
-  const SidebarComponent = docType === DOC_AUDIO ? MediaDetails.Audio : MediaDetails.Visual
+  const BrowserComponent =
+    docType === DOC_AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
+  const SidebarComponent =
+    docType === DOC_AUDIO ? MediaDetails.Audio : MediaDetails.Visual
 
   return (
     <SearchSelector.Presentation
@@ -39,7 +43,10 @@ function MediaBrowserContainerNonModal({ docType }) {
         <div className="grid grid-cols-3 w-full">
           <main className="col-span-2 pt-4 mx-2">
             <section className="p-2 h-full" aria-labelledby="results-header">
-              <h1 id="results-header" className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4">
+              <h1
+                id="results-header"
+                className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
+              >
                 {friendlyDocTypeLabel}
               </h1>
               <BrowserComponent

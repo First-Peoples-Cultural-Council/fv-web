@@ -77,7 +77,13 @@ function DashboardCreateContainer() {
         />
         <Route
           path="*"
-          element={<DashboardCreatePresentation tileContent={tileContent} headerContent={headerContent} site={site} />}
+          element={
+            <DashboardCreatePresentation
+              tileContent={tileContent}
+              headerContent={headerContent}
+              site={site}
+            />
+          }
         />
       </Routes>
     </div>

@@ -18,9 +18,21 @@ import '@uppy/progress-bar/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import '@uppy/image-editor/dist/style.css'
 
-function UploadMedia({ site, docType, extensionList, setSelectedMedia, maxFiles }) {
-  if (docType == DOC_AUDIO) {
-    return <UploadAudio site={site} extensionList={extensionList} setSelectedMedia={setSelectedMedia} />
+function UploadMedia({
+  site,
+  docType,
+  extensionList,
+  setSelectedMedia,
+  maxFiles,
+}) {
+  if (docType === DOC_AUDIO) {
+    return (
+      <UploadAudio
+        site={site}
+        extensionList={extensionList}
+        setSelectedMedia={setSelectedMedia}
+      />
+    )
   }
 
   const uppy = useUppy(() => {
@@ -34,16 +46,18 @@ function UploadMedia({ site, docType, extensionList, setSelectedMedia, maxFiles 
         if (!extensionList.includes(getFileExtensions(currentFile.name))) {
           uppy.info(
             {
-              message: `Unsupported file type. Please upload media with the extension ${extensionList.join(', ')}`,
-              details: 'File couldn’t be uploaded because it was of unsupported type.',
+              message: `Unsupported file type. Please upload media with the extension ${extensionList.join(
+                ', ',
+              )}`,
+              details:
+                'File couldn’t be uploaded because it was of unsupported type.',
             },
             'error',
-            5000
+            5000,
           )
           return false
-        } else {
-          return true
         }
+        return true
       },
     })
 
@@ -73,9 +87,9 @@ function UploadMedia({ site, docType, extensionList, setSelectedMedia, maxFiles 
 
     _uppy.use(AwsS3, {
       getUploadParameters(file) {
-        return api.media.getS3Url({ quantity: 1 }).then((data) => {
+        return api.media.getS3Url({ quantity: 1 }).then((data) =>
           // Return an object in the correct shape.
-          return {
+          ({
             url: `${data?.urls?.[0]}`,
             method: 'PUT',
             fields: [],
@@ -83,13 +97,13 @@ function UploadMedia({ site, docType, extensionList, setSelectedMedia, maxFiles 
             headers: {
               'content-type': file.type,
             },
-          }
-        })
+          }),
+        )
       },
     })
 
-    _uppy.on('upload-success', (file) => {
-      return api.media
+    _uppy.on('upload-success', (file) =>
+      api.media
         .markComplete({
           filename: file?.name,
           dialectId: site?.uid,
@@ -98,28 +112,26 @@ function UploadMedia({ site, docType, extensionList, setSelectedMedia, maxFiles 
           notes: file?.meta?.notes,
           acknowledgement: file?.meta?.acknowledgement,
         })
-        .then((data) => {
-          return setSelectedMedia((oldArray) => [...oldArray, data?.documentId])
-        })
-    })
+        .then((data) =>
+          setSelectedMedia((oldArray) => [...oldArray, data?.documentId]),
+        ),
+    )
 
     return _uppy
   })
 
-  useEffect(() => {
-    return () => uppy.close({ reason: 'unmount' })
-  }, [uppy])
+  useEffect(() => () => uppy.close({ reason: 'unmount' }), [uppy])
 
   return (
     <div id="UploadMedia" className="h-3/4 mt-4">
       <Dashboard
-        inline={true}
+        inline
         uppy={uppy}
         width="100%"
         height="400"
         doneButtonHandler={null}
-        fileManagerSelectionType={'files'}
-        showSelectedFiles={true}
+        fileManagerSelectionType="files"
+        showSelectedFiles
         plugins={['ImageEditor']}
         metaFields={[
           { id: 'title', name: 'Title', placeholder: 'Title for the image.' },
@@ -128,7 +140,11 @@ function UploadMedia({ site, docType, extensionList, setSelectedMedia, maxFiles 
             name: 'Acknowledgement',
             placeholder: 'Who created this media or where did you get it from?',
           },
-          { id: 'notes', name: 'General notes', placeholder: 'Any other details regarding this media file.' },
+          {
+            id: 'notes',
+            name: 'General notes',
+            placeholder: 'Any other details regarding this media file.',
+          },
         ]}
       />
     </div>

@@ -11,7 +11,9 @@ import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 
 function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    title: definitions.paragraph({ charCount: 120 }).required('You must enter at least 1 character in this field.'),
+    title: definitions
+      .paragraph({ charCount: 120 })
+      .required('You must enter at least 1 character in this field.'),
     titleTranslation: definitions.translation,
     author: yup.string(),
     intro: definitions.wysiwyg({ charCount: 1200 }),
@@ -24,7 +26,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
 
   const defaultValues = {
     visibility: 'public',
-    //Cover
+    // Cover
     title: '',
     titleTranslation: [],
     author: '',
@@ -40,11 +42,12 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     kidFriendly: 'true',
   }
 
-  const { control, errors, handleSubmit, isValid, register, reset, trigger } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   const stepCallback = () => {
     trigger()
@@ -53,18 +56,26 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
       // otherwise reordering pages will set the cover to modifiedv2 without the cover having been converted
       handleSubmit(submitHandler)()
     }
-    return
   }
 
   return (
     <StoryCrudStepWrapper onClickCallback={stepCallback}>
-      <div id="StoryCoverCrudPresentation" className="shadow rounded-md overflow-hidden bg-white">
+      <div
+        id="StoryCoverCrudPresentation"
+        className="shadow rounded-md overflow-hidden bg-white"
+      >
         <form onReset={reset}>
           <div className="grid grid-cols-12 gap-8 p-8">
             <div className="col-span-7 space-y-4">
               <div className="w-full">
-                <Form.TextField label="Title" nameId="title" register={register} />
-                {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+                <Form.TextField
+                  label="Title"
+                  nameId="title"
+                  register={register}
+                />
+                {errors?.title && (
+                  <div className="text-red-500">{errors?.title?.message}</div>
+                )}
               </div>
               <div className="w-full">
                 <Form.TranslationArrayField
@@ -75,15 +86,32 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   control={control}
                   hideLabel
                 />
-                {errors?.titleTranslation && <div className="text-red-500">{errors?.titleTranslation?.message}</div>}
+                {errors?.titleTranslation && (
+                  <div className="text-red-500">
+                    {errors?.titleTranslation?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full">
-                <Form.TextField label="Author" nameId="author" register={register} />
-                {errors?.author && <div className="text-red-500">{errors?.author?.message}</div>}
+                <Form.TextField
+                  label="Author"
+                  nameId="author"
+                  register={register}
+                />
+                {errors?.author && (
+                  <div className="text-red-500">{errors?.author?.message}</div>
+                )}
               </div>
               <div className="col-span-12">
-                <Form.WysiwygField label="Story Introduction" nameId="intro" control={control} toolbar="none" />
-                {errors?.intro && <div className="text-red-500">{errors?.intro?.message}</div>}
+                <Form.WysiwygField
+                  label="Story Introduction"
+                  nameId="intro"
+                  control={control}
+                  toolbar="none"
+                />
+                {errors?.intro && (
+                  <div className="text-red-500">{errors?.intro?.message}</div>
+                )}
               </div>
               <div className="w-full">
                 <Form.WysiwygField
@@ -92,7 +120,11 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   control={control}
                   toolbar="none"
                 />
-                {errors?.introTranslation && <div className="text-red-500">{errors?.introTranslation?.message}</div>}
+                {errors?.introTranslation && (
+                  <div className="text-red-500">
+                    {errors?.introTranslation?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full">
                 <Form.DocumentArrayField
@@ -102,7 +134,9 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   docType={DOC_AUDIO}
                   docCountLimit={3}
                 />
-                {errors?.relatedAudio && <div className="text-red-500">{errors?.audio?.message}</div>}
+                {errors?.relatedAudio && (
+                  <div className="text-red-500">{errors?.audio?.message}</div>
+                )}
               </div>
 
               <div className="w-full">
@@ -112,11 +146,22 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   register={register}
                   control={control}
                 />
-                {errors?.acknowledgments && <div className="text-red-500">{errors?.acknowledgments?.message}</div>}
+                {errors?.acknowledgments && (
+                  <div className="text-red-500">
+                    {errors?.acknowledgments?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full">
-                <Form.TextArrayField label="Notes" nameId="notes" register={register} control={control} />
-                {errors?.notes && <div className="text-red-500">{errors?.notes?.message}</div>}
+                <Form.TextArrayField
+                  label="Notes"
+                  nameId="notes"
+                  register={register}
+                  control={control}
+                />
+                {errors?.notes && (
+                  <div className="text-red-500">{errors?.notes?.message}</div>
+                )}
               </div>
               <div className="w-full">
                 <Form.RadioButtons
@@ -132,8 +177,14 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
               </div>
             </div>
             <div className="col-span-5 space-y-4">
-              <Form.SelectOne label="Add a Cover Media" nameId="cover" control={control} />
-              {errors?.selectOne && <div className="text-red-500">{errors?.selectOne?.message}</div>}
+              <Form.SelectOne
+                label="Add a Cover Media"
+                nameId="cover"
+                control={control}
+              />
+              {errors?.selectOne && (
+                <div className="text-red-500">{errors?.selectOne?.message}</div>
+              )}
             </div>
           </div>
         </form>

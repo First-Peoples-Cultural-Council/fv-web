@@ -9,7 +9,11 @@ function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
   const { setAudioArray } = useAudiobar()
 
   const audioButtons = audioArray.map((audioId, index) => (
-    <button key={index} className="print:hidden relative group" onClick={() => setAudioArray([audioId])}>
+    <button
+      key={index}
+      className="print:hidden relative group"
+      onClick={() => setAudioArray([audioId])}
+    >
       <label className="sr-only">Play audio</label>
       {getIcon('Audio', iconStyling)}
       {hoverTooltip ? (
@@ -30,7 +34,8 @@ AudioButton.propTypes = {
 }
 
 AudioButton.defaultProps = {
-  iconStyling: 'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-10 w-10',
+  iconStyling:
+    'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-10 w-10',
 }
 
 export default AudioButton

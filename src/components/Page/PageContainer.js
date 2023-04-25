@@ -11,7 +11,9 @@ function PageContainer({ url }) {
   const { banner, title, subtitle, widgets, notFound } = PageData({ url })
   const { backgroundId, backgroundType, logoId } = banner
   return notFound ? (
-    <ErrorHandler.Container error={{ status: 404, statusText: 'Page not found' }} />
+    <ErrorHandler.Container
+      error={{ status: 404, statusText: 'Page not found' }}
+    />
   ) : (
     <main id="CustomPage">
       <Helmet>
@@ -32,9 +34,9 @@ function PageContainer({ url }) {
       />
       <div className="pb-16 max-w-7xl mx-auto">
         {widgets &&
-          widgets.map((widget, index) => {
-            return <WidgetContainer key={index} id={widget} />
-          })}
+          widgets.map((widget, index) => (
+            <WidgetContainer key={index} id={widget} />
+          ))}
       </div>
     </main>
   )

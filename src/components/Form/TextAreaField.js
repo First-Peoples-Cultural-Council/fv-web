@@ -3,10 +3,20 @@ import PropTypes from 'prop-types'
 
 // FPCC
 
-function TextAreaField({ defaultValue, label, nameId, helpText, register, rows }) {
+function TextAreaField({
+  defaultValue,
+  label,
+  nameId,
+  helpText,
+  register,
+  rows,
+}) {
   return (
     <Fragment key={`${nameId}_TextAreaField`}>
-      <label htmlFor={nameId} className="block text-sm font-medium text-fv-charcoal">
+      <label
+        htmlFor={nameId}
+        className="block text-sm font-medium text-fv-charcoal"
+      >
         {label}
       </label>
       <div className="mt-1">
@@ -19,7 +29,9 @@ function TextAreaField({ defaultValue, label, nameId, helpText, register, rows }
           defaultValue={defaultValue}
         />
       </div>
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }

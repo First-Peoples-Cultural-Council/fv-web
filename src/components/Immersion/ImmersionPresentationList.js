@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import AudioButton from 'components/AudioButton'
 import Loading from 'components/Loading'
 import ActionsMenu from 'components/ActionsMenu'
@@ -32,35 +32,38 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-300">
-                  {items.map(({ id, immersionLabel, english, transKey, relatedAudio }) => {
-                    return immersionLabel ? (
-                      <tr key={transKey}>
-                        <td className="px-6 py-4 flex items-center">
-                          <div className="font-medium text-fv-charcoal mr-2">{immersionLabel || '-'}</div>
-                          {relatedAudio?.length > 0 && (
-                            <AudioButton
-                              audioArray={relatedAudio}
-                              iconStyling={
-                                'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-8 w-8 md:h-6 md:w-6'
-                              }
-                              hoverTooltip
+                  {items.map(
+                    ({ id, immersionLabel, english, transKey, relatedAudio }) =>
+                      immersionLabel ? (
+                        <tr key={transKey}>
+                          <td className="px-6 py-4 flex items-center">
+                            <div className="font-medium text-fv-charcoal mr-2">
+                              {immersionLabel || '-'}
+                            </div>
+                            {relatedAudio?.length > 0 && (
+                              <AudioButton
+                                audioArray={relatedAudio}
+                                iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-8 w-8 md:h-6 md:w-6"
+                                hoverTooltip
+                              />
+                            )}
+                          </td>
+                          <td className="px-6 py-4 text-fv-charcoal">
+                            {english}
+                          </td>
+                          <td className="text-right px-6">
+                            <ActionsMenu.Presentation
+                              docId={id}
+                              docTitle={immersionLabel}
+                              docType="label"
+                              actions={actions}
+                              withConfirmation
+                              withTooltip
                             />
-                          )}
-                        </td>
-                        <td className="px-6 py-4 text-fv-charcoal">{english}</td>
-                        <td className="text-right px-6">
-                          <ActionsMenu.Presentation
-                            docId={id}
-                            docTitle={immersionLabel}
-                            docType={'label'}
-                            actions={actions}
-                            withConfirmation
-                            withTooltip
-                          />
-                        </td>
-                      </tr>
-                    ) : null
-                  })}
+                          </td>
+                        </tr>
+                      ) : null,
+                  )}
                 </tbody>
               </table>
             </div>

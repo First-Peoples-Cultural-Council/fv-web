@@ -25,22 +25,21 @@ function ByAlphabetPresentation({
   sitename,
   sorting,
 }) {
-  const getAlphabetList = () => {
-    return characters.map(({ title, id }) => {
-      return (
-        <Link
-          data-testid={'SearchFilter_' + currentCharacter.id}
-          className={`border col-span-1 font-medium inline-flex justify-center m-1 p-2 rounded-lg shadow text-3xl ${
-            currentCharacter?.id === id ? 'bg-primary text-white' : ''
-          }`}
-          key={id}
-          to={`/${sitename}/${kids ? 'kids/' : ''}alphabet/${title}?docType=${searchType}`}
-        >
-          {title}
-        </Link>
-      )
-    })
-  }
+  const getAlphabetList = () =>
+    characters.map(({ title, id }) => (
+      <Link
+        data-testid={`SearchFilter_${currentCharacter.id}`}
+        className={`border col-span-1 font-medium inline-flex justify-center m-1 p-2 rounded-lg shadow text-3xl ${
+          currentCharacter?.id === id ? 'bg-primary text-white' : ''
+        }`}
+        key={id}
+        to={`/${sitename}/${
+          kids ? 'kids/' : ''
+        }alphabet/${title}?docType=${searchType}`}
+      >
+        {title}
+      </Link>
+    ))
 
   const getNoResultsMessage = () => {
     let typeLabel = ''
@@ -58,18 +57,21 @@ function ByAlphabetPresentation({
     return (
       <>
         There are currently no {typeLabel} beginning with{' '}
-        <span className="text-2xl font-bold">{currentCharacter.title}</span> on this language site.
+        <span className="text-2xl font-bold">{currentCharacter.title}</span> on
+        this language site.
       </>
     )
   }
   return (
     <>
-      <span className="hidden text-4xl font-bold text-center print:block">{currentCharacter.title}</span>
+      <span className="hidden text-4xl font-bold text-center print:block">
+        {currentCharacter.title}
+      </span>
       <div className="grid grid-cols-11 md:p-2">
         <div className="col-span-11 md:col-span-4 xl:col-span-3 mt-2 md:mt-5 print:hidden">
           <div className="hidden md:block xl:p-2">
             <div
-              data-testid={'SearchFilter_' + currentCharacter.id}
+              data-testid={`SearchFilter_${currentCharacter.id}`}
               className="font-medium flex justify-center mx-auto p-2 xl:p-4 text-5xl xl:text-7xl text-primary"
             >
               {currentCharacter.title}
@@ -77,7 +79,7 @@ function ByAlphabetPresentation({
                 <div className="ml-2">
                   <AudioButton
                     audioArray={[currentCharacter?.relatedAudio?.[0]?.id]}
-                    iconStyling={'fill-current h-8 w-8'}
+                    iconStyling="fill-current h-8 w-8"
                   />
                 </div>
               )}
@@ -90,39 +92,50 @@ function ByAlphabetPresentation({
           </div>
           {kids ? null : (
             <div className="hidden lg:block mt-5">
-              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">BROWSE BY:</h2>
+              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">
+                BROWSE BY:
+              </h2>
               <ul className="list-none">
                 <li
-                  id={'CategoryLink'}
+                  id="CategoryLink"
                   className="inline-block md:block transition duration-500 ease-in-out md:my-3 md:ml-8"
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
                     to={`/${sitename}/categories?docType=${searchType}`}
                   >
-                    {getIcon('Categories', 'inline-flex fill-current w-8 lg:mr-5')}Categories
+                    {getIcon(
+                      'Categories',
+                      'inline-flex fill-current w-8 lg:mr-5',
+                    )}
+                    Categories
                   </Link>
                 </li>
                 <li
-                  id={'WordsLink'}
+                  id="WordsLink"
                   className="inline-block md:block transition duration-500 ease-in-out md:my-3 md:ml-8"
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
                     to={`/${sitename}/words`}
                   >
-                    {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}Words
+                    {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}
+                    Words
                   </Link>
                 </li>
                 <li
-                  id={'PhrasesLink'}
+                  id="PhrasesLink"
                   className="inline-block md:block transition duration-500 ease-in-out md:my-3 md:ml-8"
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
                     to={`/${sitename}/phrases`}
                   >
-                    {getIcon('Phrase', 'inline-flex fill-current w-8 lg:mr-5 mb-2')}Phrases
+                    {getIcon(
+                      'Phrase',
+                      'inline-flex fill-current w-8 lg:mr-5 mb-2',
+                    )}
+                    Phrases
                   </Link>
                 </li>
               </ul>
@@ -153,7 +166,7 @@ function ByAlphabetPresentation({
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}
-                  accentColor={'primary'}
+                  accentColor="primary"
                 />
               </div>
               <div className="hidden md:block p-2 print:block">

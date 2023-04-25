@@ -4,9 +4,16 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/getIcon'
 
-function SubmitButtons({ cancelIcon, cancelLabel, submitIcon, submitLabel, onCancelClick, onSubmitClick }) {
+function SubmitButtons({
+  cancelIcon,
+  cancelLabel,
+  submitIcon,
+  submitLabel,
+  onCancelClick,
+  onSubmitClick,
+}) {
   return (
-    <Fragment>
+    <>
       {onCancelClick && (
         <button
           type="button"
@@ -25,7 +32,7 @@ function SubmitButtons({ cancelIcon, cancelLabel, submitIcon, submitLabel, onCan
         {submitIcon && getIcon(submitIcon, 'fill-current -ml-1 mr-2 h-5 w-5')}
         <span>{submitLabel}</span>
       </button>
-    </Fragment>
+    </>
   )
 }
 

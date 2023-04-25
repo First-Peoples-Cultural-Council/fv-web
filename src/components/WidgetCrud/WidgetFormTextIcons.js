@@ -30,11 +30,12 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     image: '',
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { register, handleSubmit, control, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormTextIcons">
@@ -52,15 +53,33 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
         <>
           <div className="col-span-12">
             <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+            {errors?.title && (
+              <div className="text-red-500">{errors?.title?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
-            <Form.WysiwygField label="Text" nameId="textWithFormatting" control={control} toolbar="none" />
-            {errors?.textWithFormatting && <div className="text-red-500">{errors?.textWithFormatting?.message}</div>}
+            <Form.WysiwygField
+              label="Text"
+              nameId="textWithFormatting"
+              control={control}
+              toolbar="none"
+            />
+            {errors?.textWithFormatting && (
+              <div className="text-red-500">
+                {errors?.textWithFormatting?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-6">
-            <Form.AddMedia label="Image" nameId="image" docType={DOC_IMAGE} control={control} />
-            {errors?.image && <div className="text-red-500">{errors?.image?.message}</div>}
+            <Form.AddMedia
+              label="Image"
+              nameId="image"
+              docType={DOC_IMAGE}
+              control={control}
+            />
+            {errors?.image && (
+              <div className="text-red-500">{errors?.image?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>
@@ -68,7 +87,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
   )
 }
 
-//PROPTYPES
+// PROPTYPES
 const { func, object, string } = PropTypes
 WidgetFormTextIcons.propTypes = {
   cancelHandler: func,

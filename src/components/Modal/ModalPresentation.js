@@ -8,7 +8,13 @@ import getIcon from 'common/getIcon'
 function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
   return (
     <Transition.Root show={isOpen} as={Fragment}>
-      <Dialog as="div" static className="fixed z-10 inset-0 overflow-y-auto" open={isOpen} onClose={closeHandler}>
+      <Dialog
+        as="div"
+        static
+        className="fixed z-10 inset-0 overflow-y-auto"
+        open={isOpen}
+        onClose={closeHandler}
+      >
         <div className="items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center block p-0">
           <Transition.Child
             as={Fragment}
@@ -23,7 +29,10 @@ function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
           </Transition.Child>
 
           {/* This element is to 'trick' the browser into centering the modal contents. */}
-          <span className="inline-block align-middle h-screen" aria-hidden="true">
+          <span
+            className="inline-block align-middle h-screen"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
           <Transition.Child

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useInfiniteQuery } from 'react-query'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 import { makePlural } from 'common/urlHelpers'
@@ -16,16 +16,27 @@ function SongsAndStoriesData({ searchType, kids }) {
 
   const _searchParams = `docType=${searchType}&kidsOnly=${kids}`
 
-  const { data, fetchNextPage, hasNextPage, isError, isFetchingNextPage, isLoading } = useInfiniteQuery(
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isError,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery(
     [pluralSearchType, site?.uid],
     ({ pageParam = 1 }) =>
-      api.songsAndStories.get({ siteId: site?.uid, searchParams: _searchParams, pageParam: pageParam }),
+      api.songsAndStories.get({
+        siteId: site?.uid,
+        searchParams: _searchParams,
+        pageParam,
+      }),
     {
       enabled: !!site?.uid,
       getNextPageParam: (lastPage) => lastPage.nextPage,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   let loadButtonLabel = ''
@@ -42,10 +53,15 @@ function SongsAndStoriesData({ searchType, kids }) {
     enabled: hasNextPage,
   })
 
-  const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage, loadButtonLabel }
+  const infiniteScroll = {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    loadButtonLabel,
+  }
 
   return {
-    items: data ? data : {},
+    items: data || {},
     isLoading: isLoading || isError,
     infiniteScroll,
     sitename,

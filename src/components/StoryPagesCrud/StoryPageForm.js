@@ -44,13 +44,26 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
             <input id="id" name="id" type="hidden" {...register('id')} />
           </div>
           <div className="col-span-4">
-            <Form.SelectOne label="Add Media" nameId="visualMedia" control={control} />
-            {errors?.selectOne && <div className="text-red-500">{errors?.selectOne?.message}</div>}
+            <Form.SelectOne
+              label="Add Media"
+              nameId="visualMedia"
+              control={control}
+            />
+            {errors?.selectOne && (
+              <div className="text-red-500">{errors?.selectOne?.message}</div>
+            )}
           </div>
           <div className="col-span-7 space-y-4">
             <div className="w-full">
-              <Form.WysiwygField label="Page Text" nameId="text" control={control} toolbar="none" />
-              {errors?.text && <div className="text-red-500">{errors?.text?.message}</div>}
+              <Form.WysiwygField
+                label="Page Text"
+                nameId="text"
+                control={control}
+                toolbar="none"
+              />
+              {errors?.text && (
+                <div className="text-red-500">{errors?.text?.message}</div>
+              )}
             </div>
             <div className="w-full">
               <Form.WysiwygField
@@ -59,7 +72,11 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 control={control}
                 toolbar="none"
               />
-              {errors?.textTranslation && <div className="text-red-500">{errors?.textTranslation?.message}</div>}
+              {errors?.textTranslation && (
+                <div className="text-red-500">
+                  {errors?.textTranslation?.message}
+                </div>
+              )}
             </div>
             <div className="w-full">
               <Form.DocumentArrayField
@@ -69,11 +86,21 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 docType={DOC_AUDIO}
                 docCountLimit={3}
               />
-              {errors?.relatedAudio && <div className="text-red-500">{errors?.audio?.message}</div>}
+              {errors?.relatedAudio && (
+                <div className="text-red-500">{errors?.audio?.message}</div>
+              )}
             </div>
             <div className="w-full">
-              <Form.TextArrayField label="Notes" nameId="notes" register={register} control={control} maxItems={1} />
-              {errors?.notes && <div className="text-red-500">{errors?.notes?.message}</div>}
+              <Form.TextArrayField
+                label="Notes"
+                nameId="notes"
+                register={register}
+                control={control}
+                maxItems={1}
+              />
+              {errors?.notes && (
+                <div className="text-red-500">{errors?.notes?.message}</div>
+              )}
             </div>
           </div>
 

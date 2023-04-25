@@ -17,7 +17,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
     videoId: definitions.uuid(),
   })
 
-  let defaultValues = {
+  const defaultValues = {
     title: '',
     subtitle: '',
     url: '',
@@ -30,19 +30,29 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
     },
   }
 
-  const { control, errors, handleSubmit, isCreateMode, register, reset } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, errors, handleSubmit, isCreateMode, register, reset } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
-    <div id="PageForm" className="flex flex-col max-w-5xl p-8 space-y-2 min-h-screen">
+    <div
+      id="PageForm"
+      className="flex flex-col max-w-5xl p-8 space-y-2 min-h-screen"
+    >
       <div>
         <div className="w-full flex justify-center">
           <Form.Header
-            title={isCreateMode ? 'Create a new custom page' : 'Edit your custom page'}
-            subtitle={isCreateMode ? 'Enter the details for your new page.' : ''}
+            title={
+              isCreateMode
+                ? 'Create a new custom page'
+                : 'Edit your custom page'
+            }
+            subtitle={
+              isCreateMode ? 'Enter the details for your new page.' : ''
+            }
           />
         </div>
         {!isCreateMode && (
@@ -55,18 +65,35 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
         )}
       </div>
-      <form onReset={reset} className="grow grid grid-cols-1 gap-2 content-between">
+      <form
+        onReset={reset}
+        className="grow grid grid-cols-1 gap-2 content-between"
+      >
         <div className="space-y-5 w-full">
           <section>
             <div className="shadow rounded-md">
               <div className="grid grid-cols-12 gap-8 bg-white p-8 rounded-md">
                 <div className="col-span-12 sm:col-span-6">
-                  <Form.TextField label="Title" nameId="title" register={register} />
-                  {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+                  <Form.TextField
+                    label="Title"
+                    nameId="title"
+                    register={register}
+                  />
+                  {errors?.title && (
+                    <div className="text-red-500">{errors?.title?.message}</div>
+                  )}
                 </div>
                 <div className="col-span-12">
-                  <Form.TextField label="Subtitle" nameId="subtitle" register={register} />
-                  {errors?.subtitle && <div className="text-red-500">{errors?.subtitle?.message}</div>}
+                  <Form.TextField
+                    label="Subtitle"
+                    nameId="subtitle"
+                    register={register}
+                  />
+                  {errors?.subtitle && (
+                    <div className="text-red-500">
+                      {errors?.subtitle?.message}
+                    </div>
+                  )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <Form.TextField
@@ -80,7 +107,9 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                     register={register}
                     disabled={!isCreateMode}
                   />
-                  {errors?.url && <div className="text-red-500">{errors?.url?.message}</div>}
+                  {errors?.url && (
+                    <div className="text-red-500">{errors?.url?.message}</div>
+                  )}
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
                   <Form.SelectOne
@@ -89,8 +118,9 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                     control={control}
                     helpText={
                       <div>
-                        Choose between adding an image or a silent video. Recommended size: 2048 x 300, or the widest
-                        possible video.
+                        Choose between adding an image or a silent video.
+                        Recommended size: 2048 x 300, or the widest possible
+                        video.
                         <div>
                           <a
                             href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/36012038/New+Creating+and+editing+custom+pages"
@@ -104,10 +134,18 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                       </div>
                     }
                   />
-                  {errors?.selectOne && <div className="text-red-500">{errors?.selectOne?.message}</div>}
+                  {errors?.selectOne && (
+                    <div className="text-red-500">
+                      {errors?.selectOne?.message}
+                    </div>
+                  )}
                 </div>
                 <div className="col-span-12">
-                  <Form.Visibility control={control} errors={errors} label="Who can see this page?" />
+                  <Form.Visibility
+                    control={control}
+                    errors={errors}
+                    label="Who can see this page?"
+                  />
                 </div>
               </div>
             </div>

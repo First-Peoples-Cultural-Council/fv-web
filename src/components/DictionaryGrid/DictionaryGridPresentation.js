@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-//FPCC
+// FPCC
 import Loading from 'components/Loading'
 import getIcon from 'common/getIcon'
 import DictionaryGridTile from 'components/DictionaryGridTile'
@@ -23,16 +23,16 @@ function DictionaryGridPresentation({
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
-    } else if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    } else {
-      return 'End of results.'
     }
+    if (infiniteScroll?.hasNextPage) {
+      return 'Load more'
+    }
+    return 'End of results.'
   }
 
   const printBtn = () => {
     setLoadAll(true)
-    setTimeout(function delayedPrint() {
+    setTimeout(() => {
       window.print()
     }, 1000)
   }
@@ -43,14 +43,19 @@ function DictionaryGridPresentation({
         <div id="DictionaryGridPresentation" className="mx-auto flex flex-col">
           <div className="p-4 align-middle inline-block min-w-full relative">
             {/* Hiding print button until custom print view has been created */}
-            <button className="hidden float-right m-1 text-primary font-medium" onClick={() => printBtn()}>
+            <button
+              className="hidden float-right m-1 text-primary font-medium"
+              onClick={() => printBtn()}
+            >
               {getIcon('Print', 'fill-current w-8 h-auto')}
             </button>
             {items.pages.map((page, index) => (
               <div
                 key={index}
                 className={`grid grid-cols-1 mb-6  ${
-                  hasSideNav ? 'lg:grid-cols-2' : 'md:grid-cols-2 xl:grid-cols-3'
+                  hasSideNav
+                    ? 'lg:grid-cols-2'
+                    : 'md:grid-cols-2 xl:grid-cols-3'
                 } gap-4 md:gap-6`}
               >
                 {page.results.map((result) => (

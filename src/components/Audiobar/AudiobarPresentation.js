@@ -35,24 +35,36 @@ function AudiobarPresentation({
         <div className="max-w-7xl mx-auto py-5">
           <div className="mb-4 font-bold">
             <div className="text-4xl">About this audio</div>
-            {data?.title && <div className="text-2xl">Title: {data?.title}</div>}
+            {data?.title && (
+              <div className="text-2xl">Title: {data?.title}</div>
+            )}
           </div>
           <div className="grid grid-cols-2">
             <div className="col-span-1 space-y-2">
-              {data?.description && <div className="text-lg ">{data?.description}</div>}
-              {data?.acknowledegment && <div className="text-lg ">{data?.acknowledegment}</div>}
+              {data?.description && (
+                <div className="text-lg ">{data?.description}</div>
+              )}
+              {data?.acknowledegment && (
+                <div className="text-lg ">{data?.acknowledegment}</div>
+              )}
             </div>
             <div className="col-span-1 text-lg space-y-2">
               {data?.speakers?.length > 0 && (
                 <div className="grid grid-cols-4 text-lg">
-                  <div className="font-bold col-span-1">{data?.speakers?.length === 1 ? 'Speaker' : 'Speakers'}</div>
+                  <div className="font-bold col-span-1">
+                    {data?.speakers?.length === 1 ? 'Speaker' : 'Speakers'}
+                  </div>
                   <div className="col-span-3">{data?.speakers?.join(', ')}</div>
                 </div>
               )}
               {data?.recorders?.length > 0 && (
                 <div className="grid grid-cols-4 text-lg">
-                  <div className="font-bold col-span-1">{data?.recorders?.length === 1 ? 'Recorder' : 'Recorders'}</div>
-                  <div className="col-span-3">{data?.recorders?.join(', ')}</div>
+                  <div className="font-bold col-span-1">
+                    {data?.recorders?.length === 1 ? 'Recorder' : 'Recorders'}
+                  </div>
+                  <div className="col-span-3">
+                    {data?.recorders?.join(', ')}
+                  </div>
                 </div>
               )}
               {data?.fileSize && (
@@ -80,7 +92,9 @@ function AudiobarPresentation({
             <div className="p-3 lg:pl-14 xl:pl-20 space-y-1 text-white">
               {data?.speakers?.length > 0 && (
                 <>
-                  <div className="mt-1 text-sm">{data?.speakers?.length === 1 ? 'SPEAKER' : 'SPEAKERS'}</div>
+                  <div className="mt-1 text-sm">
+                    {data?.speakers?.length === 1 ? 'SPEAKER' : 'SPEAKERS'}
+                  </div>
                   {data?.speakers?.map((speaker, index) => (
                     <div key={index} className="mt-1">
                       {speaker}
@@ -99,13 +113,24 @@ function AudiobarPresentation({
                   onClick={() => onPlayPauseClick()}
                   className="text-fv-charcoal-dark p-2 rounded-full bg-white shadow-lg"
                 >
-                  {getIcon(`${isPlaying ? 'Pause' : 'Play'}`, 'w-4 h-4 fill-current')}
+                  {getIcon(
+                    `${isPlaying ? 'Pause' : 'Play'}`,
+                    'w-4 h-4 fill-current',
+                  )}
                 </button>
               </div>
               <div className="text-center text-sm mt-1 overflow-x-auto text-white">
-                {data?.label?.length > 0 && <span className="mr-3 truncate">{data?.label}</span>}
-                <button onClick={() => setInfoOpen(true)} aria-label="Open Audio Info">
-                  {getIcon('InfoCircleSolid', 'w-4 h-4 mb-1 fill-current inline-flex')}
+                {data?.label?.length > 0 && (
+                  <span className="mr-3 truncate">{data?.label}</span>
+                )}
+                <button
+                  onClick={() => setInfoOpen(true)}
+                  aria-label="Open Audio Info"
+                >
+                  {getIcon(
+                    'InfoCircleSolid',
+                    'w-4 h-4 mb-1 fill-current inline-flex',
+                  )}
                 </button>
               </div>
               <div className="text-center text-sm text-white">{`${curTime} / ${duration}`}</div>
@@ -120,15 +145,27 @@ function AudiobarPresentation({
                   className="mr-2 font-bold text-black bg-white rounded px-2 py-1"
                   onClick={() => onRateChange()}
                 >
-                  {rate.toString() + 'x'}
+                  {`${rate.toString()}x`}
                 </button>
                 <a href={data?.downloadLink} className="text-white">
                   {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}
                 </a>
-                <button id="MuteAudiobar" aria-label="Mute" className="text-white" onClick={() => onVolumeChange(0)}>
-                  {getIcon(`${volume === 0 ? 'Mute' : 'Audio'}`, 'w-6 h-6 fill-current mr-2 inline-flex')}
+                <button
+                  id="MuteAudiobar"
+                  aria-label="Mute"
+                  className="text-white"
+                  onClick={() => onVolumeChange(0)}
+                >
+                  {getIcon(
+                    `${volume === 0 ? 'Mute' : 'Audio'}`,
+                    'w-6 h-6 fill-current mr-2 inline-flex',
+                  )}
                 </button>
-                <label id="VolumeAudiobarLabel" htmlFor="VolumeAudiobar" className="sr-only">
+                <label
+                  id="VolumeAudiobarLabel"
+                  htmlFor="VolumeAudiobar"
+                  className="sr-only"
+                >
                   Volume range slider
                 </label>
                 <input

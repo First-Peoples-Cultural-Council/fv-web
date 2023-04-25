@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
-//FPCC
+// FPCC
 import api from 'services/api'
 import { WIDGET_TEXT } from 'common/constants'
 
@@ -14,20 +14,25 @@ function WidgetTextMultiData({ widgetData }) {
   // Use an 'enricher' with no properties (to reduce the response size)
   const { data, error, isError, isLoading } = useQuery(
     ['widget-area', widgetData?.uid],
-    () => api.document.get({ id: widgetData?.uid, properties: '', contextParameters: 'widgets' }),
+    () =>
+      api.document.get({
+        id: widgetData?.uid,
+        properties: '',
+        contextParameters: 'widgets',
+      }),
     {
       // The query will not execute until the id exists
       enabled: !!widgetData?.uid,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [error])
@@ -41,10 +46,13 @@ function WidgetTextMultiData({ widgetData }) {
   }
 
   const textMultiDataAdator = (widgets) => {
-    let formattedWidgets = []
+    const formattedWidgets = []
     widgets.forEach((widget) => {
       if (widget?.type === WIDGET_TEXT) {
-        formattedWidgets.push({ ...widget, settings: settingsAdaptor(widget?.settings) })
+        formattedWidgets.push({
+          ...widget,
+          settings: settingsAdaptor(widget?.settings),
+        })
       }
     })
     return formattedWidgets
@@ -54,7 +62,9 @@ function WidgetTextMultiData({ widgetData }) {
     isLoading,
     error,
     textWidgets:
-      data?.contextParameters?.widgets?.length > 0 ? textMultiDataAdator(data?.contextParameters?.widgets) : [],
+      data?.contextParameters?.widgets?.length > 0
+        ? textMultiDataAdator(data?.contextParameters?.widgets)
+        : [],
   }
 }
 

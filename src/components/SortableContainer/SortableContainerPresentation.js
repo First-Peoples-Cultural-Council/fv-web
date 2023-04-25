@@ -1,8 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
-import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  restrictToParentElement,
+  restrictToVerticalAxis,
+} from '@dnd-kit/modifiers'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
 
 /**
  * SortableContainer
@@ -16,7 +31,7 @@ function SortableContainerPresentation({ items, setItems, children }) {
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   )
 
   return (
@@ -26,7 +41,11 @@ function SortableContainerPresentation({ items, setItems, children }) {
       modifiers={[restrictToVerticalAxis, restrictToParentElement]}
       onDragEnd={handleDragEnd}
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy} useDragOverlay={false}>
+      <SortableContext
+        items={items}
+        strategy={verticalListSortingStrategy}
+        useDragOverlay={false}
+      >
         {children}
       </SortableContext>
     </DndContext>

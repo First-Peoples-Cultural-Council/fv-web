@@ -21,8 +21,12 @@ function SelectMedia({
   loadLabel,
   docTypeLabelPlural,
 }) {
-  const hasResults = fetchedMedia?.pages !== undefined && fetchedMedia?.pages?.[0]?.entries?.length > 0 ? true : false
-  const BrowserComponent = docType === DOC_AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
+  const hasResults = !!(
+    fetchedMedia?.pages !== undefined &&
+    fetchedMedia?.pages?.[0]?.entries?.length > 0
+  )
+  const BrowserComponent =
+    docType === DOC_AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
 
   return (
     <div id="SelectMedia" className="h-full">
@@ -31,7 +35,7 @@ function SelectMedia({
         searchPromptText={`Search all ${docTypeLabelPlural}`}
         setSearchQuery={handleTextFieldChange}
         search={handleSearchSubmit}
-        isSelectDialog={true}
+        isSelectDialog
         resultsSection={
           <div className="p-4 pt-0" aria-labelledby="results-header">
             <h2 id="results-header" className="sr-only">
@@ -42,7 +46,7 @@ function SelectMedia({
               docType={docType}
               infiniteScroll={infiniteScroll}
               loadLabel={loadLabel}
-              selection={true}
+              selection
               savedMedia={savedMedia}
               selectedMedia={selectedMedia}
               mediaSelectHandler={mediaSelectHandler}

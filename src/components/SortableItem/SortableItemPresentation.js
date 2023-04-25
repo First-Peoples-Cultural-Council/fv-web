@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
-//FPCC
+// FPCC
 import getIcon from 'common/getIcon'
 
 /**
@@ -13,7 +13,8 @@ import getIcon from 'common/getIcon'
  * @param {children} the contents of the sortable item
  */
 export function SortableItemPresentation({ id, children }) {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: id })
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id })
 
   const style = {
     transform: CSS.Transform.toString(transform),

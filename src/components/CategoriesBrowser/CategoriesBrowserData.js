@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 
@@ -19,13 +19,13 @@ function CategoriesBrowserData() {
       enabled: !!site?.uid,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   const getParent = (parentId) => {
-    const parent = data?.categories?.filter((category) => {
-      return category?.id === parentId
-    })
+    const parent = data?.categories?.filter(
+      (category) => category?.id === parentId,
+    )
     return parent?.[0]?.title || ''
   }
 
@@ -37,7 +37,7 @@ function CategoriesBrowserData() {
         title: category?.title,
         parentCategory: getParent(category?.parentId),
         href: `/${site?.sitename}/categories/${category?.id}?docType=WORD_AND_PHRASE`,
-        category: category,
+        category,
       })
     })
     return categoriesData
@@ -52,7 +52,10 @@ function CategoriesBrowserData() {
     return query === ''
       ? formattedCategories
       : formattedCategories.filter((category) =>
-          category.title.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, ''))
+          category.title
+            .toLowerCase()
+            .replace(/\s+/g, '')
+            .includes(query.toLowerCase().replace(/\s+/g, '')),
         )
   }
 
@@ -62,7 +65,8 @@ function CategoriesBrowserData() {
     sitename,
     currentCategory,
     setCurrentCategory,
-    filteredCategories: data?.categories?.length > 0 ? filteredCategories() : [],
+    filteredCategories:
+      data?.categories?.length > 0 ? filteredCategories() : [],
     setQuery,
   }
 }

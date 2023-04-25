@@ -24,12 +24,17 @@ function StoryPagesCrudData() {
 
   const { data, refetch, isLoading, error } = useQuery(
     [DOC_STORY, storyId],
-    () => api.document.get({ id: storyId, properties: '*', contextParameters: 'ancestry,permissions,book' }),
+    () =>
+      api.document.get({
+        id: storyId,
+        properties: '*',
+        contextParameters: 'ancestry,permissions,book',
+      }),
     {
       enabled: isUUID(storyId),
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   )
 
   useEffect(() => {
@@ -53,14 +58,18 @@ function StoryPagesCrudData() {
   }
 
   const createPage = async (formData) => {
-    const pageNumber = pageIds?.length > 0 ? `${pageIds?.length + 1}`.padStart(5, '0') : '00001'
-    const properties = { ...pageFormDataAdaptor({ formData }), 'fvbookentry:sort_map': pageNumber }
+    const pageNumber =
+      pageIds?.length > 0 ? `${pageIds?.length + 1}`.padStart(5, '0') : '00001'
+    const properties = {
+      ...pageFormDataAdaptor({ formData }),
+      'fvbookentry:sort_map': pageNumber,
+    }
 
     const createdResponse = await api.document.create({
       parentId: storyId,
       name: `PAGE_${pageNumber}`,
       docType: DOC_STORYPAGE,
-      properties: properties,
+      properties,
     })
 
     if (createdResponse?.uid) {
@@ -68,7 +77,10 @@ function StoryPagesCrudData() {
       const reorderedResponse = await savePageOrder(newPageOrder)
 
       if (reorderedResponse?.uid) {
-        setNotification({ type: 'SUCCESS', message: 'Success! A new story page has been created.' })
+        setNotification({
+          type: 'SUCCESS',
+          message: 'Success! A new story page has been created.',
+        })
         setAddPageOpen(false)
         queryClient.invalidateQueries(['StoryPages', storyId])
         refetch()
@@ -89,7 +101,10 @@ function StoryPagesCrudData() {
       properties: pageFormDataAdaptor({ formData }),
     })
     if (response?.uid) {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your story page has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your story page has been saved.',
+      })
       queryClient.invalidateQueries(['StoryPages', storyId])
       refetch()
     } else {
@@ -113,7 +128,10 @@ function StoryPagesCrudData() {
 
   const { mutate } = useMutation(savePageOrder, {
     onSuccess: () => {
-      setNotification({ type: 'SUCCESS', message: 'Success! Your page order has been saved.' })
+      setNotification({
+        type: 'SUCCESS',
+        message: 'Success! Your page order has been saved.',
+      })
     },
     onError: () => {
       setNotification({
@@ -136,7 +154,7 @@ function StoryPagesCrudData() {
   return {
     addPageOpen,
     setAddPageOpen,
-    goToStep: (step) => setSearchParams({ step: step, id: storyId }),
+    goToStep: (step) => setSearchParams({ step, id: storyId }),
     pageIds,
     setPageIds: updatePageOrder,
     pages: formattedPageData,

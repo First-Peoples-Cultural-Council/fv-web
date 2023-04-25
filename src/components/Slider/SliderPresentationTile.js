@@ -4,16 +4,20 @@ import PropTypes from 'prop-types'
 import { getMediaUrl } from 'common/urlHelpers'
 import getIcon from 'common/getIcon'
 
-const SliderPresentationTile = ({ currentSlide, tileRef, item, onTileClick }) => {
+function SliderPresentationTile({ currentSlide, tileRef, item, onTileClick }) {
   const isActive = currentSlide?.id === item.id
-  const hasCoverImage = item.photos?.length > 0 ? true : false
-  const conditionalClass = hasCoverImage ? 'bg-center bg-cover text-white' : 'text-fv-charcoal-light bg-gray-100'
+  const hasCoverImage = item.photos?.length > 0
+  const conditionalClass = hasCoverImage
+    ? 'bg-center bg-cover text-white'
+    : 'text-fv-charcoal-light bg-gray-100'
   const conditionalStyle = hasCoverImage
     ? {
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl({
-          type: 'image',
-          id: item.photos[0],
-        })})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl(
+          {
+            type: 'image',
+            id: item.photos[0],
+          },
+        )})`,
       }
     : {}
 
@@ -32,7 +36,9 @@ const SliderPresentationTile = ({ currentSlide, tileRef, item, onTileClick }) =>
         <span className="sr-only">Go to {item.title}</span>
         <div className="w-full flex flex-col text-center items-center">
           <div className="text-lg lg:text-2xl font-medium mb-2">
-            {item.title} {item.videos?.length > 0 && getIcon('Video', 'inline-flex text-gray-400 fill-current w-6')}
+            {item.title}{' '}
+            {item.videos?.length > 0 &&
+              getIcon('Video', 'inline-flex text-gray-400 fill-current w-6')}
           </div>
           <div className="text-base font-light">{item.titleTranslation}</div>
           <div className="text-base font-light">{item.author}</div>

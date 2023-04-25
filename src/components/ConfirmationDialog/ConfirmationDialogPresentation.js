@@ -4,7 +4,12 @@ import PropTypes from 'prop-types'
 // FPCC
 import Modal from 'components/Modal'
 
-function ConfirmationDialogPresentation({ onConfirmation, message, isOpen, closeHandler }) {
+function ConfirmationDialogPresentation({
+  onConfirmation,
+  message,
+  isOpen,
+  closeHandler,
+}) {
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={closeHandler}>
       <div

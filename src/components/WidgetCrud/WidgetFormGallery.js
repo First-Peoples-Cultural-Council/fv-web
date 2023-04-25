@@ -26,11 +26,12 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
     galleryId: '',
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, register, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormGallery">
@@ -52,7 +53,9 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
             helpText="Enter the UID for the gallery (e.g. f0083daa-2988-4144-be17-34cd8fb288c9)."
             register={register}
           />
-          {errors?.galleryId && <div className="text-red-500">{errors?.galleryId?.message}</div>}
+          {errors?.galleryId && (
+            <div className="text-red-500">{errors?.galleryId?.message}</div>
+          )}
         </div>
       </WidgetFormBase>
     </div>

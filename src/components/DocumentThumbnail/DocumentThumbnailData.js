@@ -6,11 +6,15 @@ import api from 'services/api'
 
 function DocumentThumbnailData({ docId }) {
   // Data fetch
-  const response = useQuery(['document', docId], () => api.document.get({ id: docId }), {
-    enabled: !!docId,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const response = useQuery(
+    ['document', docId],
+    () => api.document.get({ id: docId }),
+    {
+      enabled: !!docId,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
   const { data, isError, isLoading } = response
   const documentDataAdaptor = (dataObject) => {
     const properties = dataObject?.properties ? dataObject.properties : {}

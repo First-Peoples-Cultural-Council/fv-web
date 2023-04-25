@@ -4,14 +4,22 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/getIcon'
 import copyToClipboard from 'common/copyToClipboard'
-function Copy({ docId, docTitle, iconStyling, withLabels, withConfirmation, withTooltip, hoverTooltip }) {
+function Copy({
+  docId,
+  docTitle,
+  iconStyling,
+  withLabels,
+  withConfirmation,
+  withTooltip,
+  hoverTooltip,
+}) {
   const [confirmation, setConfirmation] = useState(false)
 
   const confirmationCallback = () => {
     /* clipboard successfully set */
     if (withConfirmation) {
       setConfirmation(true)
-      setTimeout(function timeout() {
+      setTimeout(() => {
         setConfirmation(false)
       }, 1000)
     }
@@ -33,19 +41,23 @@ function Copy({ docId, docTitle, iconStyling, withLabels, withConfirmation, with
       {withLabels ? (
         <>
           <span className="mx-2">COPY</span>
-          <span id={`copy-message-${docId}`} className={confirmation ? '' : 'hidden'}>
+          <span
+            id={`copy-message-${docId}`}
+            className={confirmation ? '' : 'hidden'}
+          >
             <span className="absolute bottom-1 -right-1 bg-white">COPIED</span>
           </span>
         </>
       ) : null}
       {withTooltip ? (
-        <>
-          <span id={`copy-message-${docId}`} className={confirmation ? '' : 'hidden'}>
-            <div className="absolute bottom-0 -right-1 w-auto p-1 text-sm bg-fv-charcoal-light text-white text-center rounded-lg shadow-lg ">
-              Copied
-            </div>
-          </span>
-        </>
+        <span
+          id={`copy-message-${docId}`}
+          className={confirmation ? '' : 'hidden'}
+        >
+          <div className="absolute bottom-0 -right-1 w-auto p-1 text-sm bg-fv-charcoal-light text-white text-center rounded-lg shadow-lg ">
+            Copied
+          </div>
+        </span>
       ) : null}
     </button>
   )

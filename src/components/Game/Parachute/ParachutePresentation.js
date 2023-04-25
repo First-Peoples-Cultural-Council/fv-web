@@ -7,7 +7,13 @@ import { convertMsToTimeWords } from 'common/stringHelpers'
 import { importAll } from 'common/utils/functionHelpers'
 import SectionTitle from 'components/SectionTitle'
 
-function ParachutePresentation({ alphabet, puzzle, translation, audio, newPuzzle }) {
+function ParachutePresentation({
+  alphabet,
+  puzzle,
+  translation,
+  audio,
+  newPuzzle,
+}) {
   const [guessedLetters, setGuessedLetters] = useState([])
   const [gameStatus, setGameStatus] = useState('IN-PROGRESS')
   const [guessesRemaining, setGuessesRemaining] = useState(7)
@@ -26,7 +32,11 @@ function ParachutePresentation({ alphabet, puzzle, translation, audio, newPuzzle
   }
 
   const guessLetter = (letter) => {
-    if (guessesRemaining > 0 && gameStatus === 'IN-PROGRESS' && !guessedLetters.includes(letter)) {
+    if (
+      guessesRemaining > 0 &&
+      gameStatus === 'IN-PROGRESS' &&
+      !guessedLetters.includes(letter)
+    ) {
       setGuessedLetters([...guessedLetters, letter])
       let letterFound = false
       let newGameStatus = 'SUCCESS'
@@ -55,14 +65,16 @@ function ParachutePresentation({ alphabet, puzzle, translation, audio, newPuzzle
     }
   }
 
-  const renderKeyboard = () => {
-    return alphabet.map((letter, index) => {
+  const renderKeyboard = () =>
+    alphabet.map((letter, index) => {
       const guessed = guessedLetters.includes(letter)
       return (
         <div
           key={letter + index}
           className={`${
-            guessed ? 'bg-secondary text-white' : 'border-gray-500 text-fv-charcoal hover:bg-gray-100'
+            guessed
+              ? 'bg-secondary text-white'
+              : 'border-gray-500 text-fv-charcoal hover:bg-gray-100'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
           onClick={() => guessLetter(letter)}
         >
@@ -70,7 +82,6 @@ function ParachutePresentation({ alphabet, puzzle, translation, audio, newPuzzle
         </div>
       )
     })
-  }
 
   const renderSuccess = () => {
     const timeDiff = Date.now() - startTime
@@ -83,35 +94,50 @@ function ParachutePresentation({ alphabet, puzzle, translation, audio, newPuzzle
     )
   }
 
-  const renderFail = () => {
-    return (
-      <h4 className="text-lg text-fv-charcoal">
-        <p>Oh no! You&apos;re out of guesses.</p>
-        <div>
-          Don&apos;t quit now.{' '}
-          <span className="inline-flex underline cursor-pointer" onClick={restart}>
-            Try again.
-          </span>
-        </div>
-      </h4>
-    )
-  }
+  const renderFail = () => (
+    <h4 className="text-lg text-fv-charcoal">
+      <p>Oh no! You&apos;re out of guesses.</p>
+      <div>
+        Don&apos;t quit now.{' '}
+        <span
+          className="inline-flex underline cursor-pointer"
+          onClick={restart}
+        >
+          Try again.
+        </span>
+      </div>
+    </h4>
+  )
 
-  const gameImages = importAll(require.context('assets/images/games/parachute', false, /\.(png|jpe?g|svg)$/))
+  const gameImages = importAll(
+    require.context(
+      'assets/images/games/parachute',
+      false,
+      /\.(png|jpe?g|svg)$/,
+    ),
+  )
 
   return (
-    <section className="py-2 md:py-4 lg:py-8 bg-white" data-testid="SongsAndStoriesPresentation">
+    <section
+      className="py-2 md:py-4 lg:py-8 bg-white"
+      data-testid="SongsAndStoriesPresentation"
+    >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
         <div>
           <SectionTitle.Presentation title="PARACHUTE" accentColor="primary" />
-          <p className="text-fv-charcoal mt-2">Guess the puzzle to make it to the beach</p>
+          <p className="text-fv-charcoal mt-2">
+            Guess the puzzle to make it to the beach
+          </p>
         </div>
 
-        <img src={gameImages[`${guessesRemaining}.png`]} className="max-w-3xl mx-auto object-cover h-96 w-full" />
+        <img
+          src={gameImages[`${guessesRemaining}.png`]}
+          className="max-w-3xl mx-auto object-cover h-96 w-full"
+        />
 
         <div className="inline-block">
-          {currentPuzzle.map((piece, index) => {
-            return piece?.letter === ' ' ? (
+          {currentPuzzle.map((piece, index) =>
+            piece?.letter === ' ' ? (
               <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
             ) : (
               <div
@@ -122,11 +148,15 @@ function ParachutePresentation({ alphabet, puzzle, translation, audio, newPuzzle
               >
                 <div>{piece?.found ? piece?.letter : '_'}</div>
               </div>
-            )
-          })}
+            ),
+          )}
         </div>
 
-        <audio className="max-w-md mx-auto my-4" src={getMediaUrl({ id: audio, type: 'audio' })} controls />
+        <audio
+          className="max-w-md mx-auto my-4"
+          src={getMediaUrl({ id: audio, type: 'audio' })}
+          controls
+        />
         <div>Hint: {translation}</div>
 
         <div className="w-full m-auto max-w-lg my-4">

@@ -8,12 +8,16 @@ function ResourceData({ resourceId }) {
   const { site } = useSiteStore()
   const { title, uid } = site
 
-  const { data, isLoading } = useQuery(['pages', resourceId], () => api.page.get(uid, resourceId), {
-    // The query will not execute until the uid exists
-    enabled: !!uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, isLoading } = useQuery(
+    ['pages', resourceId],
+    () => api.page.get(uid, resourceId),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const getDefaultBlocks = (id) => {
     if (id === 'apps') {
@@ -60,7 +64,7 @@ function ResourceData({ resourceId }) {
   }
 
   return {
-    isLoading: isLoading,
+    isLoading,
     blocks: getDefaultBlocks(resourceId),
     widgets: data?.widgets || [],
   }

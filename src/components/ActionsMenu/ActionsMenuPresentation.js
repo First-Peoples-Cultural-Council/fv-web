@@ -82,7 +82,9 @@ function ActionsMenuPresentation({
                         iconStyling={iconStyling}
                         docType={docType}
                         docVisibility={docVisibility}
-                        url={`${window.location.origin.toString()}/${sitename}/${makePlural(docType)}/${docId}`}
+                        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+                          docType,
+                        )}/${docId}`}
                       />
                     )}
                   </div>

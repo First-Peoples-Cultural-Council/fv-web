@@ -6,7 +6,8 @@ import DashboardImmersionData from 'components/DashboardImmersion/DashboardImmer
 import DashboardImmersionPresentation from 'components/DashboardImmersion/DashboardImmersionPresentation'
 
 function DashboardImmersionContainer() {
-  const { labels, headerContent, isLoading, site, tileContent } = DashboardImmersionData()
+  const { labels, headerContent, isLoading, site, tileContent } =
+    DashboardImmersionData()
   return (
     <div id="DashboardImmersionContainer">
       <Routes>

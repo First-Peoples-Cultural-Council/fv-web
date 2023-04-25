@@ -28,11 +28,12 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
     androidUrl: '',
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, register, handleSubmit, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormApps">
@@ -55,7 +56,9 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
               register={register}
               helpText="e.g. https://play.google.com/store/apps/details?id=..."
             />
-            {errors?.androidUrl && <div className="text-red-500">{errors?.androidUrl?.message}</div>}
+            {errors?.androidUrl && (
+              <div className="text-red-500">{errors?.androidUrl?.message}</div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -64,7 +67,9 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
               register={register}
               helpText="e.g. https://apps.apple.com/ca/app/..."
             />
-            {errors?.iosUrl && <div className="text-red-500">{errors?.iosUrl?.message}</div>}
+            {errors?.iosUrl && (
+              <div className="text-red-500">{errors?.iosUrl?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>

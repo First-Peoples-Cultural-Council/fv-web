@@ -10,7 +10,7 @@ function WidgetContainer({ widgetType, data, id }) {
   const { type, formattedData } = WidgetData({
     type: widgetType,
     widgetData: data,
-    id: id,
+    id,
   })
   // Temporary fix to hide trashed Widgets - need other solution
   if (formattedData?.title?.endsWith('.trashed')) {

@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import getIcon from 'common/getIcon'
 import { makePlural } from 'common/urlHelpers'
 import Loading from 'components/Loading'
@@ -38,11 +38,11 @@ function DictionaryListPresentation({
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
-    } else if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    } else {
-      return 'End of results.'
     }
+    if (infiniteScroll?.hasNextPage) {
+      return 'Load more'
+    }
+    return 'End of results.'
   }
 
   const getSortingIcon = (field) => {
@@ -63,7 +63,11 @@ function DictionaryListPresentation({
       case 'phrase':
       case 'word':
         return (
-          <DictionaryDetail.Container docId={selectedItem?.id} docType={getFvDocType(selectedItem?.type)} isDrawer />
+          <DictionaryDetail.Container
+            docId={selectedItem?.id}
+            docType={getFvDocType(selectedItem?.type)}
+            isDrawer
+          />
         )
       case 'song':
         return <Song.Container docId={selectedItem?.id} isDrawer />
@@ -77,16 +81,15 @@ function DictionaryListPresentation({
   function handleItemClick(item) {
     if (window.innerWidth < 768) {
       navigate(
-        `/${item?.parentDialect?.shortUrl ? item.parentDialect.shortUrl : sitename}/${makePlural(item?.type)}/${
-          item?.id
-        }`
+        `/${
+          item?.parentDialect?.shortUrl ? item.parentDialect.shortUrl : sitename
+        }/${makePlural(item?.type)}/${item?.id}`,
       )
     } else {
       setAudioArray([])
       setselectedItem(item)
       setDrawerOpen(true)
     }
-    return
   }
 
   return (
@@ -104,12 +107,16 @@ function DictionaryListPresentation({
                           onClick={() => onSortByClick('ENTRY')}
                           className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider"
                         >
-                          <div className="inline-flex">{entryLabel.toUpperCase()}</div>
+                          <div className="inline-flex">
+                            {entryLabel.toUpperCase()}
+                          </div>
                           {getSortingIcon('ENTRY')}
                         </button>
                       ) : (
                         <div className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider">
-                          <div className="inline-flex">{entryLabel.toUpperCase()}</div>
+                          <div className="inline-flex">
+                            {entryLabel.toUpperCase()}
+                          </div>
                           {getSortingIcon('ENTRY')}
                         </div>
                       )}
@@ -145,62 +152,80 @@ function DictionaryListPresentation({
                 <tbody className="bg-white divide-y divide-gray-300">
                   {items.pages.map((page, index) => (
                     <Fragment key={index}>
-                      {page.results.map(({ id, title, translations, audio, type, parentDialect, visibility }) => (
-                        <tr key={id}>
-                          <td className="px-6 py-4 flex justify-between">
-                            <button
-                              className="text-left font-medium text-fv-charcoal lg:mr-2"
-                              onClick={() => handleItemClick({ id, type, parentDialect })}
-                            >
-                              {title}
-                            </button>
-                            <AudioButton
-                              audioArray={audio}
-                              iconStyling={'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6'}
-                              hoverTooltip
-                            />
-                          </td>
-                          <td className="px-6 py-4">
-                            {translations ? (
-                              <ol className="text-fv-charcoal">
-                                {translations.map((translation, i) => (
-                                  <li key={i}>
-                                    {translations.length > 1 ? `${i + 1}. ` : null} {translation}
-                                  </li>
-                                ))}
-                              </ol>
-                            ) : null}
-                          </td>
-                          {showType && (
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <span
-                                className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${type} capitalize text-white`}
+                      {page.results.map(
+                        ({
+                          id,
+                          title,
+                          translations,
+                          audio,
+                          type,
+                          parentDialect,
+                          visibility,
+                        }) => (
+                          <tr key={id}>
+                            <td className="px-6 py-4 flex justify-between">
+                              <button
+                                className="text-left font-medium text-fv-charcoal lg:mr-2"
+                                onClick={() =>
+                                  handleItemClick({ id, type, parentDialect })
+                                }
                               >
-                                {type}
-                              </span>
+                                {title}
+                              </button>
+                              <AudioButton
+                                audioArray={audio}
+                                iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
+                                hoverTooltip
+                              />
                             </td>
-                          )}
-                          {wholeDomain && (
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <Link className="text-left text-sm text-fv-charcoal" to={`/${parentDialect.shortUrl}`}>
-                                {parentDialect.name}
-                              </Link>
+                            <td className="px-6 py-4">
+                              {translations ? (
+                                <ol className="text-fv-charcoal">
+                                  {translations.map((translation, i) => (
+                                    <li key={i}>
+                                      {translations.length > 1
+                                        ? `${i + 1}. `
+                                        : null}{' '}
+                                      {translation}
+                                    </li>
+                                  ))}
+                                </ol>
+                              ) : null}
                             </td>
-                          )}
-                          <td className="text-right px-6">
-                            <ActionsMenu.Presentation
-                              docId={id}
-                              docTitle={title}
-                              docType={type}
-                              docVisibility={visibility}
-                              actions={actions}
-                              moreActions={moreActions}
-                              withConfirmation
-                              withTooltip
-                            />
-                          </td>
-                        </tr>
-                      ))}
+                            {showType && (
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span
+                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${type} capitalize text-white`}
+                                >
+                                  {type}
+                                </span>
+                              </td>
+                            )}
+                            {wholeDomain && (
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <Link
+                                  className="text-left text-sm text-fv-charcoal"
+                                  to={`/${parentDialect.shortUrl}`}
+                                >
+                                  {parentDialect.name}
+                                </Link>
+                              </td>
+                            )}
+                            <td className="text-right px-6">
+                              <ActionsMenu.Presentation
+                                docId={id}
+                                docTitle={title}
+                                docType={type}
+                                docVisibility={visibility}
+                                actions={actions}
+                                moreActions={moreActions}
+                                withConfirmation
+                                withTooltip
+                              />
+                            </td>
+                          </tr>
+                        ),
+                      )}
                     </Fragment>
                   ))}
                 </tbody>
@@ -219,14 +244,20 @@ function DictionaryListPresentation({
         </div>
       ) : (
         <div className="w-full flex">
-          <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">{noResultsMessage}</div>
+          <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
+            {noResultsMessage}
+          </div>
         </div>
       )}
       <Drawer.Presentation
         isOpen={drawerOpen}
         closeHandler={() => setDrawerOpen(false)}
         fullScreenPath={
-          selectedItem?.type ? `/${sitename}/${makePlural(selectedItem?.type)}/${selectedItem?.id}` : null
+          selectedItem?.type
+            ? `/${sitename}/${makePlural(selectedItem?.type)}/${
+                selectedItem?.id
+              }`
+            : null
         }
       >
         {getDrawerContents()}

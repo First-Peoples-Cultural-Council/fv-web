@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 
@@ -12,21 +12,25 @@ function PageData({ url }) {
   const { pageUrl, sitename } = useParams()
   const navigate = useNavigate()
 
-  const urlToUse = url ? url : pageUrl
+  const urlToUse = url || pageUrl
 
   // Data fetch
-  const { data, error, isError, isFetched } = useQuery(['pages', uid + urlToUse], () => api.page.get(uid, urlToUse), {
-    // The query will not execute until the uid exists
-    enabled: !!uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const { data, error, isError, isFetched } = useQuery(
+    ['pages', uid + urlToUse],
+    () => api.page.get(uid, urlToUse),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   useEffect(() => {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -43,11 +47,14 @@ function PageData({ url }) {
   }
 
   return {
-    notFound: isFetched && data?.length === 0 ? true : false,
+    notFound: !!(isFetched && data?.length === 0),
     banner: {
       backgroundId,
       backgroundType,
-      logoId: urlToUse === 'our-language' || urlToUse === 'our-people' ? logoId : null,
+      logoId:
+        urlToUse === 'our-language' || urlToUse === 'our-people'
+          ? logoId
+          : null,
     },
     widgets: data?.widgets || [],
     title: data?.title,

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { makePlural } from 'common/urlHelpers'
 import ActionsMenu from 'components/ActionsMenu'
 import AudioButton from 'components/AudioButton'
@@ -14,7 +14,10 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
       className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-gray-200"
       data-testid="DictionaryGridTilePresentation"
     >
-      <section id="EntryDetails" className="w-full flex items-center text-fv-charcoal">
+      <section
+        id="EntryDetails"
+        className="w-full flex items-center text-fv-charcoal"
+      >
         <div className="w-full">
           {/* Title */}
           <div
@@ -22,7 +25,12 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
               shortTitle ? 'text-2xl' : 'text-xl'
             }`}
           >
-            <Link key={entry.id} to={`/${entry?.parentDialect?.shortUrl}/${makePlural(entry.type)}/${entry.id}`}>
+            <Link
+              key={entry.id}
+              to={`/${entry?.parentDialect?.shortUrl}/${makePlural(
+                entry.type,
+              )}/${entry.id}`}
+            >
               {entry.title}
             </Link>
             <ActionsMenu.Presentation
@@ -32,7 +40,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
               docVisibility={entry?.visibility}
               actions={actions}
               moreActions={moreActions}
-              iconStyling={'w-8 h-8'}
+              iconStyling="w-8 h-8"
               withConfirmation
               withTooltip
             />

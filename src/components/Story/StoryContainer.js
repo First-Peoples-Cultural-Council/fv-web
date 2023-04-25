@@ -12,7 +12,11 @@ function StoryContainer({ docId, isDrawer }) {
     <ErrorHandler.Container error={{ status: error.response.status }} />
   ) : (
     <Loading.Container isLoading={isLoading}>
-      {isDrawer ? <StoryPresentationDrawer entry={entry} sitename={sitename} /> : <StoryPresentation entry={entry} />}
+      {isDrawer ? (
+        <StoryPresentationDrawer entry={entry} sitename={sitename} />
+      ) : (
+        <StoryPresentation entry={entry} />
+      )}
     </Loading.Container>
   )
 }

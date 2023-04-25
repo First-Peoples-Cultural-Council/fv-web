@@ -4,7 +4,11 @@ import PropTypes from 'prop-types'
 // FPCC
 
 function TEMPLATEPresentation({ exampleProp }) {
-  return <div data-testid="TEMPLATEPresentation">TEMPLATEPresentation: {exampleProp}</div>
+  return (
+    <div data-testid="TEMPLATEPresentation">
+      TEMPLATEPresentation: {exampleProp}
+    </div>
+  )
 }
 // PROPTYPES
 const { string } = PropTypes

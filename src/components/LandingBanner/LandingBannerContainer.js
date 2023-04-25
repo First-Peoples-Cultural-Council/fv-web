@@ -1,6 +1,6 @@
 import React from 'react'
 
-//FPCC
+// FPCC
 import LandingBannerData from 'components/LandingBanner/LandingBannerData'
 import LandingBannerPresentation from 'components/LandingBanner/LandingBannerPresentation'
 

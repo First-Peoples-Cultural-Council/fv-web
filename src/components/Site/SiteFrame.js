@@ -39,35 +39,78 @@ function SiteFrame({ siteLoading }) {
         <Loading.Container isLoading={siteLoading}>
           <Routes>
             <Route path="search" element={<Search.Container />} />
-            <Route path="dictionary" element={<Dictionary.Container searchType={'WORD_AND_PHRASE'} />} />
-            <Route path="words/:id" element={<DictionaryDetail.Container docType={DOC_WORD} />} />
-            <Route path="words" element={<Dictionary.Container searchType={'WORD'} />} />
-            <Route path="phrases/:id" element={<DictionaryDetail.Container docType={DOC_PHRASE} />} />
-            <Route path="phrases" element={<Dictionary.Container searchType={'PHRASE'} />} />
-            <Route path="alphabet/:character" element={<ByAlphabet.Container />} />
+            <Route
+              path="dictionary"
+              element={<Dictionary.Container searchType="WORD_AND_PHRASE" />}
+            />
+            <Route
+              path="words/:id"
+              element={<DictionaryDetail.Container docType={DOC_WORD} />}
+            />
+            <Route
+              path="words"
+              element={<Dictionary.Container searchType="WORD" />}
+            />
+            <Route
+              path="phrases/:id"
+              element={<DictionaryDetail.Container docType={DOC_PHRASE} />}
+            />
+            <Route
+              path="phrases"
+              element={<Dictionary.Container searchType="PHRASE" />}
+            />
+            <Route
+              path="alphabet/:character"
+              element={<ByAlphabet.Container />}
+            />
             <Route path="alphabet" element={<Alphabet.Container />} />
-            <Route path="categories/:categoryId" element={<ByCategory.Container />} />
+            <Route
+              path="categories/:categoryId"
+              element={<ByCategory.Container />}
+            />
             <Route path="categories" element={<Categories.Container />} />
             <Route path="songs/:id" element={<Song.Container />} />
-            <Route path="songs" element={<SongsAndStories.Container searchType={'SONG'} />} />
+            <Route
+              path="songs"
+              element={<SongsAndStories.Container searchType="SONG" />}
+            />
             <Route path="stories/:id" element={<Story.Container />} />
-            <Route path="stories" element={<SongsAndStories.Container searchType={'STORY'} />} />
+            <Route
+              path="stories"
+              element={<SongsAndStories.Container searchType="STORY" />}
+            />
             <Route path="gallery/:id" element={<Gallery.Container />} />
             <Route path="games/:id" element={<Game.Container />} />
             <Route path="games" element={<Games.Presentation />} />
             <Route path="immersion" element={<Immersion.Container />} />
-            <Route path="apps" element={<Resource.Container resourceId="apps" />} />
-            <Route path="keyboards" element={<Resource.Container resourceId="keyboards" />} />
+            <Route
+              path="apps"
+              element={<Resource.Container resourceId="apps" />}
+            />
+            <Route
+              path="keyboards"
+              element={<Resource.Container resourceId="keyboards" />}
+            />
             <Route path="conditions-of-use" element={<ConditionsOfUse />} />
             <Route path="disclaimer" element={<Disclaimer />} />
-            <Route path="our-language" element={<Page.Container url="our-language" />} />
-            <Route path="our-people" element={<Page.Container url="our-people" />} />
+            <Route
+              path="our-language"
+              element={<Page.Container url="our-language" />}
+            />
+            <Route
+              path="our-people"
+              element={<Page.Container url="our-people" />}
+            />
             <Route path="custom/:pageUrl" element={<Page.Container />} />
             <Route path="error" element={<ErrorHandler.Container />} />
             <Route path="" element={<Home.Container />} />
             <Route
               path="*"
-              element={<ErrorHandler.Container error={{ status: 404, statusText: 'Page not found' }} />}
+              element={
+                <ErrorHandler.Container
+                  error={{ status: 404, statusText: 'Page not found' }}
+                />
+              }
             />
           </Routes>
         </Loading.Container>

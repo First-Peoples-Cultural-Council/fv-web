@@ -5,7 +5,13 @@ import PropTypes from 'prop-types'
 import DashboardLanding from 'components/DashboardLanding'
 
 function DashboardCreatePresentation({ tileContent, headerContent, site }) {
-  return <DashboardLanding.Presentation tileContent={tileContent} headerContent={headerContent} site={site} />
+  return (
+    <DashboardLanding.Presentation
+      tileContent={tileContent}
+      headerContent={headerContent}
+      site={site}
+    />
+  )
 }
 // PROPTYPES
 const { array, object } = PropTypes

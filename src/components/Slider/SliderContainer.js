@@ -5,12 +5,19 @@ import PropTypes from 'prop-types'
 import SliderData from 'components/Slider/SliderData'
 import SliderPresentation from 'components/Slider/SliderPresentation'
 import SliderPresentationTile from 'components/Slider/SliderPresentationTile'
+import TopicsPresentationTopic from 'components/Topics/TopicsPresentationTopic'
 import SliderPresentationExpandedContent from './SliderPresentationExpandedContent'
 
-import TopicsPresentationTopic from 'components/Topics/TopicsPresentationTopic'
-
 function SliderContainer({ items, topics }) {
-  const { handlePrev, handleNext, slideProps, containerRef, hasNext, hasPrev, tileRef } = SliderData({ items })
+  const {
+    handlePrev,
+    handleNext,
+    slideProps,
+    containerRef,
+    hasNext,
+    hasPrev,
+    tileRef,
+  } = SliderData({ items })
   const [currentSlide, setCurrentSlide] = useState()
   const handleSelect = (_item) => {
     setCurrentSlide(_item)
@@ -29,8 +36,8 @@ function SliderContainer({ items, topics }) {
         hasNext={hasNext}
         hasPrev={hasPrev}
       >
-        {items.map((item) => {
-          return topics ? (
+        {items.map((item) =>
+          topics ? (
             <TopicsPresentationTopic
               key={item.id}
               currentSlide={currentSlide}
@@ -46,10 +53,15 @@ function SliderContainer({ items, topics }) {
               item={item}
               onTileClick={handleSelect}
             />
-          )
-        })}
+          ),
+        )}
       </SliderPresentation>
-      {currentSlide && <SliderPresentationExpandedContent item={currentSlide} onCloseExpandedContent={handleClose} />}
+      {currentSlide && (
+        <SliderPresentationExpandedContent
+          item={currentSlide}
+          onCloseExpandedContent={handleClose}
+        />
+      )}
     </div>
   )
 }

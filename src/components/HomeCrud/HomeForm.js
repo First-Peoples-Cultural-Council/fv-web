@@ -45,7 +45,9 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 control={control}
                 helpText="Recommended size: 512 x 512"
               />
-              {errors?.logoId && <div className="text-red-500">{errors?.logoId?.message}</div>}
+              {errors?.logoId && (
+                <div className="text-red-500">{errors?.logoId?.message}</div>
+              )}
             </div>
             <div className="col-span-12 flex items-center justify-start">
               <Form.SelectOne
@@ -54,8 +56,9 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 control={control}
                 helpText={
                   <div>
-                    Choose between adding an image or a silent video. Recommended size: 2048 x 300 up to 2048 x 512, or
-                    the widest possible video.
+                    Choose between adding an image or a silent video.
+                    Recommended size: 2048 x 300 up to 2048 x 512, or the widest
+                    possible video.
                     <div>
                       <a
                         href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/17662356/New+Change+your+homepage+logo+and+banner"
@@ -69,7 +72,9 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                   </div>
                 }
               />
-              {errors?.selectOne && <div className="text-red-500">{errors?.selectOne?.message}</div>}
+              {errors?.selectOne && (
+                <div className="text-red-500">{errors?.selectOne?.message}</div>
+              )}
             </div>
           </div>
           <div className="mt-4 flex justify-end px-6">

@@ -32,11 +32,12 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     urls: '',
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { register, handleSubmit, control, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormContact">
@@ -54,15 +55,32 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
         <>
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && <div className="text-red-500">{errors?.title?.message}</div>}
+            {errors?.title && (
+              <div className="text-red-500">{errors?.title?.message}</div>
+            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.TextAreaField label="Text" nameId="text" register={register} />
-            {errors?.text && <div className="text-red-500">{errors?.text?.message}</div>}
+            <Form.TextAreaField
+              label="Text"
+              nameId="text"
+              register={register}
+            />
+            {errors?.text && (
+              <div className="text-red-500">{errors?.text?.message}</div>
+            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.WysiwygField label="Address" nameId="textWithFormatting" control={control} toolbar="none" />
-            {errors?.textWithFormatting && <div className="text-red-500">{errors?.textWithFormatting?.message}</div>}
+            <Form.WysiwygField
+              label="Address"
+              nameId="textWithFormatting"
+              control={control}
+              toolbar="none"
+            />
+            {errors?.textWithFormatting && (
+              <div className="text-red-500">
+                {errors?.textWithFormatting?.message}
+              </div>
+            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -71,7 +89,9 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter any URLs you would like to include separated by commas."
               register={register}
             />
-            {errors?.urls && <div className="text-red-500">{errors?.urls?.message}</div>}
+            {errors?.urls && (
+              <div className="text-red-500">{errors?.urls?.message}</div>
+            )}
           </div>
         </>
       </WidgetFormBase>

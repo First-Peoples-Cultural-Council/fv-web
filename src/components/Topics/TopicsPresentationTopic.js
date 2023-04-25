@@ -2,12 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import getIcon from 'common/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import { WIDGET_LIST_WORD, WIDGET_LIST_PHRASE, WIDGET_LIST_SONG, WIDGET_LIST_STORY } from 'common/constants'
+import { Link, useParams } from 'react-router-dom'
+import {
+  WIDGET_LIST_WORD,
+  WIDGET_LIST_PHRASE,
+  WIDGET_LIST_SONG,
+  WIDGET_LIST_STORY,
+} from 'common/constants'
 
 function TopicsPresentationTopic({ topic }) {
-  const { audio, heading, image, listCount, subheading, type, url: _url } = topic
+  const {
+    audio,
+    heading,
+    image,
+    listCount,
+    subheading,
+    type,
+    url: _url,
+  } = topic
   const { sitename } = useParams()
   const url = `${sitename}/${_url}`
   let typeColor
@@ -44,7 +56,9 @@ function TopicsPresentationTopic({ topic }) {
     ? 'bg-center bg-cover text-white'
     : `border-12 border-${typeColor} text-${typeColor}Text`
   const conditionalStyle = image
-    ? { backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${image})` }
+    ? {
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${image})`,
+      }
     : {}
 
   return (
@@ -53,14 +67,28 @@ function TopicsPresentationTopic({ topic }) {
       style={conditionalStyle}
       className={`${conditionalClass} mx-2 lg:m-0 flex flex-col items-center justify-between rounded-lg p-8 w-full`}
     >
-      {getIcon(icon, `${image ? '' : `text-${typeColor}`} fill-current w-7 h-7 lg:w-10 lg:h-10 xl:w-14 xl:h-14`)}
+      {getIcon(
+        icon,
+        `${
+          image ? '' : `text-${typeColor}`
+        } fill-current w-7 h-7 lg:w-10 lg:h-10 xl:w-14 xl:h-14`,
+      )}
       {heading && (
-        <h1 className={`${textSize} w-48 lg:w-auto text-center font-medium my-3`}>
+        <h1
+          className={`${textSize} w-48 lg:w-auto text-center font-medium my-3`}
+        >
           <Link to={url}>{heading}</Link>
         </h1>
       )}
-      {subheading && <h2 className="text-xl lg:text-2xl text-center">{subheading}</h2>}
-      {audio && <AudioMinimal.Container src={audio} iconStyling="fill-current w-7 h-7 lg:w-8 lg:h-8 mt-3" />}
+      {subheading && (
+        <h2 className="text-xl lg:text-2xl text-center">{subheading}</h2>
+      )}
+      {audio && (
+        <AudioMinimal.Container
+          src={audio}
+          iconStyling="fill-current w-7 h-7 lg:w-8 lg:h-8 mt-3"
+        />
+      )}
       {listCount > 0 && (
         <div className="text-lg lg:text-xl text-center">
           {listCount === 1 && `${listCount} phrase`}

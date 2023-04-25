@@ -22,8 +22,8 @@ function SearchPresentation({
 }) {
   const wholeDomain = siteTitle === 'FirstVoices'
 
-  const getFilterListItems = () => {
-    return filters.map((filter) => {
+  const getFilterListItems = () =>
+    filters.map((filter) => {
       const filterIsActiveClass =
         searchType === filter.type
           ? 'border-l-4 border-primary bg-primary text-white'
@@ -31,7 +31,7 @@ function SearchPresentation({
       return (
         <li
           key={filter.label}
-          id={'SearchFilter' + filter.label}
+          id={`SearchFilter${filter.label}`}
           className="col-span-1 transition duration-500 ease-in-out flex-nowrap"
         >
           <button
@@ -43,24 +43,27 @@ function SearchPresentation({
         </li>
       )
     })
-  }
 
   const getItemContents = (_filter) => {
     if (_filter.type === 'ALL') {
       return searchType !== 'ALL' ? (
         <>
-          {getIcon('BackArrow', 'inline-flex h-5 md:h-7 mr-3 text-primary fill-current')}
+          {getIcon(
+            'BackArrow',
+            'inline-flex h-5 md:h-7 mr-3 text-primary fill-current',
+          )}
           <span>{_filter.label}</span>
         </>
       ) : (
-        <>
-          <span className="h-5 md:h-7 flex items-center">{_filter.label}</span>
-        </>
+        <span className="h-5 md:h-7 flex items-center">{_filter.label}</span>
       )
     }
     return (
       <>
-        {getIcon(_filter.label, 'inline-flex h-5 md:h-7 -ml-3 lg:ml-0 mr-3 fill-current')}
+        {getIcon(
+          _filter.label,
+          'inline-flex h-5 md:h-7 -ml-3 lg:ml-0 mr-3 fill-current',
+        )}
         <span>{_filter.label}</span>
       </>
     )

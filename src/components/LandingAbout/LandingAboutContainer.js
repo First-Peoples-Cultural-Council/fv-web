@@ -1,6 +1,6 @@
 import React from 'react'
 
-//FPCC
+// FPCC
 import LandingAboutData from 'components/LandingAbout/LandingAboutData'
 import WidgetTextPresentation from 'components/WidgetText/WidgetTextPresentation'
 

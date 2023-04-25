@@ -26,11 +26,12 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     textWithFormatting: '',
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { register, handleSubmit, control, reset, errors, isCreateMode } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div data-testid="WidgetFormText">
@@ -46,8 +47,16 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
         widgetType={WIDGET_TEXTFULL}
       >
         <div className="col-span-12">
-          <Form.WysiwygField label="Text" nameId="textWithFormatting" control={control} />
-          {errors?.textWithFormatting && <div className="text-red-500">{errors?.textWithFormatting?.message}</div>}
+          <Form.WysiwygField
+            label="Text"
+            nameId="textWithFormatting"
+            control={control}
+          />
+          {errors?.textWithFormatting && (
+            <div className="text-red-500">
+              {errors?.textWithFormatting?.message}
+            </div>
+          )}
         </div>
       </WidgetFormBase>
     </div>

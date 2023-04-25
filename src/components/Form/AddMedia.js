@@ -7,29 +7,32 @@ import getIcon from 'common/getIcon'
 import MediaCrud from 'components/MediaCrud'
 import DocumentThumbnail from 'components/DocumentThumbnail'
 import Modal from 'components/Modal'
-import { getFriendlyDocType } from 'common/stringHelpers'
+import { getFriendlyDocType, isUUID } from 'common/stringHelpers'
 import { DOC_IMAGE } from 'common/constants'
-import { isUUID } from 'common/stringHelpers'
 
 function AddMedia({ label, nameId, helpText, control, docType }) {
   return (
     <Fragment key={`${nameId}_AddMedia`}>
-      <label className="block text-sm font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <Controller
         id={nameId}
         name={nameId}
         defaultValue=""
         control={control}
-        render={({ field: { value, onChange } }) => {
-          return <AddMediaButton value={value} onChange={onChange} docType={docType} />
-        }}
+        render={({ field: { value, onChange } }) => (
+          <AddMediaButton value={value} onChange={onChange} docType={docType} />
+        )}
       />
-      {helpText && <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>}
+      {helpText && (
+        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+      )}
     </Fragment>
   )
 }
 
-const AddMediaButton = ({ value, onChange, docType }) => {
+function AddMediaButton({ value, onChange, docType }) {
   const [modalOpen, setModalOpen] = useState(false)
 
   const chooseMediaHandler = (id) => {
@@ -51,7 +54,9 @@ const AddMediaButton = ({ value, onChange, docType }) => {
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       <DocumentThumbnail.Container docId={value} />
       <div className="has-tooltip">
-        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">Remove</span>
+        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
+          Remove
+        </span>
         <button
           type="button"
           aria-label="Remove"
@@ -75,7 +80,11 @@ const AddMediaButton = ({ value, onChange, docType }) => {
         <span>{`Add ${getFriendlyDocType({ docType })}`}</span>
       </button>
       {/* Add Modal */}
-      <Modal.Presentation isOpen={modalOpen} closeHandler={() => setModalOpen(false)} isDashboard>
+      <Modal.Presentation
+        isOpen={modalOpen}
+        closeHandler={() => setModalOpen(false)}
+        isDashboard
+      >
         <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-4">
           <MediaCrud.Container
             savedMedia={[value]}

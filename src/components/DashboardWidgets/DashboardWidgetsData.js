@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
-//FPCC
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
 import api from 'services/api'
@@ -17,12 +17,16 @@ function DashboardWidgetsData() {
   const { isSuperAdmin } = user
 
   // Data fetch
-  const response = useQuery(['widgets', site?.uid], () => api.widget.getWidgets({ siteId: site?.uid }), {
-    // The query will not execute until the uid exists
-    enabled: !!site?.uid,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  const response = useQuery(
+    ['widgets', site?.uid],
+    () => api.widget.getWidgets({ siteId: site?.uid }),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!site?.uid,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
 
   const { data, error, isError, isLoading } = response
 
@@ -30,7 +34,7 @@ function DashboardWidgetsData() {
     if (isError) {
       navigate(
         `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true }
+        { replace: true },
       )
     }
   }, [isError])
@@ -47,7 +51,8 @@ function DashboardWidgetsData() {
 
   const headerContent = {
     title: 'Widgets',
-    subtitle: 'Manage, create, and edit the Widgets available to use across your site pages',
+    subtitle:
+      'Manage, create, and edit the Widgets available to use across your site pages',
     icon: 'Widget',
   }
 
@@ -63,7 +68,7 @@ function DashboardWidgetsData() {
         typeLabel: getWidgetTypeLabel(widget?.['widget:type']),
         format: widget?.['widget:format'],
         editable: adminWidgets.includes(widget?.['widget:type']),
-        widget: widget,
+        widget,
       })
     })
     return widgetsData

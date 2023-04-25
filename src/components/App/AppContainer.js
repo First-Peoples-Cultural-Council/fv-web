@@ -65,7 +65,9 @@ function AppContainer() {
               path="error"
               element={
                 <AppWrapper>
-                  <ErrorHandler.Container error={{ status: 404, statusText: 'Page not found' }} />
+                  <ErrorHandler.Container
+                    error={{ status: 404, statusText: 'Page not found' }}
+                  />
                 </AppWrapper>
               }
             />
