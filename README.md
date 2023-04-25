@@ -1,7 +1,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fv-web&metric=alert_status)](https://sonarcloud.io/dashboard?id=fv-web)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fv-web&metric=coverage)](https://sonarcloud.io/dashboard?id=fv-web)
 
-# FirstVoices Front-end
+# FirstVoices Frontend
 
 ## Getting Started
 
