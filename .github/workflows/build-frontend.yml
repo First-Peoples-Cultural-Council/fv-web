@@ -15,6 +15,9 @@ jobs:
       # Checkout the current working code base
       - name: Checkout working branch
         uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
 
       # Installs the correct Node version for the project
       - name: Setup Node.js for use with actions
@@ -32,8 +35,8 @@ jobs:
         uses: warchant/setup-sonar-scanner@v3
 
         # Run Sonar Analysis on Frontend
-      - name: Sonar Analysis on Frontend
-        run: sonar-scanner
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_LOGIN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
