@@ -1,4 +1,4 @@
-name: Build Frontend
+name: On Pull Request to master
 
 on:
   pull_request:
@@ -6,7 +6,8 @@ on:
       - master
 
 jobs:
-  build_linux:
+  build:
+    name: Build Frontend
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -30,7 +31,11 @@ jobs:
           npm ci --include=dev
           npm run build:production
 
-        # Run Sonar Analysis on Frontend
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      # Run Sonar Analysis on Frontend
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
