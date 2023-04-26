@@ -32,7 +32,6 @@ function SearchInputPresentation({
         />
         <button
           type="button"
-          type="button"
           id="SearchSubmit"
           aria-label="Search/Go"
           onClick={handleSearchSubmit}
