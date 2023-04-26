@@ -31,12 +31,10 @@ describe('V2 tests, word and phrase', () => {
     cy.contains(' 404').should('not.exist')
     cy.wait(2000)
 
-    cy.get('a[data-testid^="SearchFilter"]').then((_letter) => {
-      for (let i = 0; i < _letter.length; i++) {
-        cy.get(_letter[i]).click()
-        cy.wait(3000)
-        cy.contains(' 404').should('not.exist')
-      }
+    cy.get('a[data-testid^="SearchFilter"]').each((letter) => {
+      cy.get(letter).click()
+      cy.wait(3000)
+      cy.contains(' 404').should('not.exist')
     })
   })
 
