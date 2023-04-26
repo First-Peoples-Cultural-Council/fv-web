@@ -61,7 +61,7 @@ function WidgetAreaEditPresentationSettingsPane({
       )
     }
 
-    return currentWidget?.settings.map((setting, index) => {
+    return currentWidget?.settings.map((setting) => {
       if (setting?.key === 'audio' && isUUID(setting?.value)) {
         return (
           <div key={setting.key} className="col-span-3">
@@ -159,7 +159,6 @@ function WidgetAreaEditPresentationSettingsPane({
               ) : null}
               <button
                 type="button"
-                type="button"
                 onClick={() => setPreviewModalOpen(true)}
                 className={buttonClass}
               >
@@ -167,7 +166,6 @@ function WidgetAreaEditPresentationSettingsPane({
                 <span>Preview</span>
               </button>
               <button
-                type="button"
                 type="button"
                 onClick={() => setRemoveModalOpen(true)}
                 className={buttonClass}
@@ -234,14 +232,12 @@ function WidgetAreaEditPresentationSettingsPane({
           <div className="w-full justify-center flex space-x-2">
             <button
               type="button"
-              type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => setRemoveModalOpen(false)}
             >
               Cancel
             </button>
             <button
-              type="button"
               type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => onRemoveConfirmationClick()}

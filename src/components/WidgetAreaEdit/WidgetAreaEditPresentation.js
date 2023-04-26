@@ -64,7 +64,6 @@ function WidgetAreaEditPresentation({
                     <div className="flex w-full items-center">
                       <button
                         type="button"
-                        type="button"
                         onClick={() => setCurrentWidget(widgetData?.[id])}
                         className={`${
                           currentWidget?.uid === widgetData?.[id]?.uid

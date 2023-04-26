@@ -6,7 +6,8 @@ on:
       - master
 
 jobs:
-  build_linux:
+  build:
+    name: Build Frontend
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -26,14 +27,3 @@ jobs:
         run: |
           npm ci --include=dev
           npm run build:production
-
-        # Run Sonar Analysis on Frontend
-      - name: Setup Sonar Analysis For Frontend
-        uses: warchant/setup-sonar-scanner@v3
-
-        # Run Sonar Analysis on Frontend
-      - name: Sonar Analysis on Frontend
-        run: sonar-scanner
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_LOGIN }}
