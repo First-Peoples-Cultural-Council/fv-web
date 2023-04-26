@@ -9,3 +9,9 @@ node_modules
 webpack/.node-cache/*
 *.releaseBackup
 release.properties
+
+/frontend/cypress/screenshots/
+/frontend/cypress/scripts/files/import.log
+/frontend/cypress/scripts/files/*_errors.csv
+/frontend/cypress/temp/
+/frontend/cypress/videos/

@@ -1,0 +1,4 @@
+*
+*/
+!.gitignore
+!cypress.env.sample.json

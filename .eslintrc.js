@@ -18,8 +18,8 @@ module.exports = {
       presets: ['@babel/preset-react'],
     },
   },
-  plugins: ['prettier', 'react', '@babel'],
-  ignorePatterns: ['webpack/*.js'],
+  plugins: ['prettier', 'react', '@babel', 'cypress'],
+  ignorePatterns: ['webpack/*.js', 'cypress/*.js'],
   rules: {
     'consistent-return': ['warn'],
     'no-underscore-dangle': ['off'],
