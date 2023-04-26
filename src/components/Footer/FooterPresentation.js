@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC / FPCF
@@ -50,7 +49,7 @@ function FooterPresentation() {
             </a>
             <a
               className={linkClass}
-              href="http://fpcf.ca/donate-now/"
+              href="https://fpcf.ca/what-you-can-do/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -68,8 +67,6 @@ function FooterPresentation() {
           </div>
           <div className="leading-7 text-white px-2">
             © 2000-{new Date().getFullYear()} FirstVoices
-            <br />
-            <small>Last Build: {BUILD_DATE}</small>
           </div>
         </div>
       </div>
@@ -85,11 +82,6 @@ function FooterPresentation() {
       </div>
     </nav>
   )
-}
-// PROPTYPES
-const { string } = PropTypes
-FooterPresentation.propTypes = {
-  exampleProp: string,
 }
 
 export default FooterPresentation
