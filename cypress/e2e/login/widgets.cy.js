@@ -8,7 +8,7 @@ function checkValidation(widgetName) {
 }
 
 function createwidget(name) {
-  let widgetname = 'testwidgetcypress'
+  const widgetname = 'testwidgetcypress'
   cy.contains(name).click()
   cy.get('#widgetName').type(widgetname)
 }
@@ -20,7 +20,13 @@ function throughme(name) {
   cy.wait(1000)
   cy.contains('Edit Widgets').click()
 
-  cy.contains(name).scrollIntoView().parent().children().eq(2).children().click()
+  cy.contains(name)
+    .scrollIntoView()
+    .parent()
+    .children()
+    .eq(2)
+    .children()
+    .click()
 
   cy.get('#widgetName').should('contain.value', name)
   cy.wait(1500)
@@ -30,15 +36,16 @@ function throughme(name) {
 
 describe('Widget tests', () => {
   beforeEach(() => {
-    cy.on('uncaught:exception', (err, runnable) => {
-      return false
-    })
+    cy.on('uncaught:exception', () => false)
     cy.viewport(1024, 768)
-    cy.visit(Cypress.env('baseUrl') + '/' + 'nuxeo/login.jsp')
+    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
     cy.wait(2000)
-    cy.login(Cypress.env('CYPRESS_FV_USERNAME'), Cypress.env('CYPRESS_FV_PASSWORD'))
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
     cy.wait(3000)
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(2000)
     cy.contains('cn').click()
     cy.wait(500)
@@ -48,7 +55,7 @@ describe('Widget tests', () => {
   })
 
   it('Check widget validation', () => {
-    let widgets = [
+    const widgets = [
       'Alphabet',
       'Mobile App',
       'Contact Us',
@@ -81,9 +88,17 @@ describe('Widget tests', () => {
     throughme('testwidgetcypress')
   })
 
-  let subwidgets = ['Alphabet', 'Contact Us', 'Logo', 'Quotes', 'New This Week', 'Page Text', 'Word of the Day']
-  subwidgets.forEach(function (_widget) {
-    it('Create a widget -' + _widget, () => {
+  const subwidgets = [
+    'Alphabet',
+    'Contact Us',
+    'Logo',
+    'Quotes',
+    'New This Week',
+    'Page Text',
+    'Word of the Day',
+  ]
+  subwidgets.forEach((_widget) => {
+    it(`Create a widget -${_widget}`, () => {
       createwidget(_widget)
       throughme('testwidgetcypress')
     })
@@ -129,4 +144,4 @@ describe('Widget tests', () => {
     cy.get('#title').type('test')
     throughme('testwidgetcypress')
   })
-}) //end of describe
+}) // end of describe

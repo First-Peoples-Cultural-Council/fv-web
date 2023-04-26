@@ -1,7 +1,10 @@
 function _login() {
-  cy.visit(Cypress.env('baseUrl') + '/' + '/nuxeo/login.jsp')
-  cy.login(Cypress.env('CYPRESS_FV_USERNAME'), Cypress.env('CYPRESS_FV_PASSWORD'))
-  cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+  cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+  cy.login(
+    Cypress.env('CYPRESS_FV_USERNAME'),
+    Cypress.env('CYPRESS_FV_PASSWORD'),
+  )
+  cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
 }
 
 function _menunav() {
@@ -35,12 +38,10 @@ describe('Phrase testing', () => {
   })
 
   it('Get first Phrase and search for it', () => {
-    //i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
-    cy.on('uncaught:exception', (err, runnable) => {
-      return false
-    })
+    // i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
+    cy.on('uncaught:exception', () => false)
 
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(1000)
     _menunav()
     cy.wait(1000)
@@ -48,20 +49,21 @@ describe('Phrase testing', () => {
       .first()
       .invoke('text')
       .then((text) => {
-        cy.get('[data-testid=SearchInput').type(text + '{enter}')
+        cy.get('[data-testid=SearchInput').type(`${text}{enter}`)
         cy.contains(text)
       })
   })
 
   it('Check out Phrase drawer', () => {
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
 
     _menunav()
     cy.wait(2000)
 
-    //cy.get('table tr td button', { timeout: 12000 }).first().click() //phrases drawer should be open now
     cy.get(':nth-child(1) > .flex > .text-left').click()
-    cy.get('[data-testid=DictionaryDetailPresentationDrawer]').should('be.visible')
+    cy.get('[data-testid=DictionaryDetailPresentationDrawer]').should(
+      'be.visible',
+    )
 
     cy.contains('MORE', { timeout: 12000 }).click()
 
@@ -72,4 +74,4 @@ describe('Phrase testing', () => {
     cy.contains('QR CODE', { timeout: 12000 }).click()
     cy.contains('Cancel').click()
   })
-})
+}) // end of describe

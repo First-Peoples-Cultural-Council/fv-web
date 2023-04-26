@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: '@imaginary-cloud/react',
+  extends: ['@imaginary-cloud/react', 'plugin:cypress/recommended'],
   overrides: [],
   parser: '@babel/eslint-parser',
   parserOptions: {
@@ -19,7 +19,7 @@ module.exports = {
     },
   },
   plugins: ['prettier', 'react', '@babel', 'cypress'],
-  ignorePatterns: ['webpack/*.js', 'cypress/*.js'],
+  ignorePatterns: ['webpack/*.js'],
   rules: {
     'consistent-return': ['warn'],
     'no-underscore-dangle': ['off'],

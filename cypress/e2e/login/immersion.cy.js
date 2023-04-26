@@ -2,15 +2,16 @@
 
 describe('Immersion Test', () => {
   beforeEach(() => {
-    cy.on('uncaught:exception', (err, runnable) => {
-      return false
-    })
+    cy.on('uncaught:exception', () => false)
     cy.viewport(1024, 768)
-    cy.visit(Cypress.env('baseUrl') + '/' + 'nuxeo/login.jsp')
+    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
     cy.wait(2000)
-    cy.login(Cypress.env('CYPRESS_FV_USERNAME'), Cypress.env('CYPRESS_FV_PASSWORD'))
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
     cy.wait(3000)
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(2000)
   })
 
@@ -40,4 +41,4 @@ describe('Immersion Test', () => {
 
     cy.contains('Edit your Immersion Labels').click()
   })
-}) //end of describe
+}) // end of describe

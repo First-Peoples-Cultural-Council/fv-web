@@ -1,6 +1,6 @@
 describe('V2 tests, word and phrase', () => {
   beforeEach(() => {
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.viewport(1200, 1200)
     cy.wait(2000)
     cy.contains('Kids').click()
@@ -11,7 +11,9 @@ describe('V2 tests, word and phrase', () => {
     cy.contains('Dictionary').click()
     cy.contains('404').should('not.exist')
     cy.wait(1000)
-    cy.get('[data-testid="DictionaryGridTilePresentationKids"]  > .grid > #media').each((_words) => {
+    cy.get(
+      '[data-testid="DictionaryGridTilePresentationKids"]  > .grid > #media',
+    ).each((_words) => {
       cy.request({
         url: _words[0].lastChild.href,
         failOnStatusCode: true,
@@ -57,4 +59,4 @@ describe('V2 tests, word and phrase', () => {
     cy.contains('Stories').click()
     cy.contains(' 404').should('not.exist')
   })
-}) //end of description
+}) // end of describe
