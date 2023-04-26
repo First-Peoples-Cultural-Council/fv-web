@@ -1,14 +1,10 @@
-///
-
 describe('Test songs', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.contains('Learn').click()
     cy.contains('Songs').click()
-    cy.on('uncaught:exception', (err, runnable) => {
-      return false
-    })
+    cy.on('uncaught:exception', () => false)
   })
 
   it('Go to songs, make sure it loads', () => {})
@@ -37,4 +33,4 @@ describe('Test songs', () => {
       cy.get('#CloseDrawerBtn').click()
     })
   })
-})
+}) // end of describe

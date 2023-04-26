@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Cypress
-        run: npm i cypress@10.0.3
+        run: npm i cypress@12.11.0
 
       - name: Run tests
         run: |
-          npx  cypress run --config projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://v2.dev.firstvoices.com',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}} -s "cypress/e2e/FirstVoicesDev/*.cy.js,cypress/e2e/FirstVoicesDev/v2_login/*.cy.js"
+          npx  cypress run --config projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://v2.dev.firstvoices.com',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}} -s "cypress/e2e/*.cy.js,cypress/e2e/**/*.cy.js"
         env:
           baseUrl: 'https://v2.dev.firstvoices.com'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

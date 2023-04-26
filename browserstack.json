@@ -31,7 +31,7 @@
     }
   ],
   "run_settings": {
-    "cypress_config_file": "./cypress.json",
+    "cypress_config_file": "./cypress.config.js",
     "project_name": "project-name",
     "build_name": "build-name 2",
     "exclude": [],
@@ -39,7 +39,7 @@
     "npm_dependencies": {},
     "package_config_options": {},
     "headless": false,
-    "specs": ["cypress/integration/FirstVoicesDev/*"]
+    "specs": ["cypress/e2e/*"]
   },
   "connection_settings": {
     "local": false,

@@ -1,14 +1,10 @@
-///
-
 describe('Test stories', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.contains('Learn').click()
     cy.contains('Stories').click()
-    cy.on('uncaught:exception', (err, runnable) => {
-      return false
-    })
+    cy.on('uncaught:exception', () => false)
   })
 
   it('Go to stories, make sure it loads', () => {})
@@ -37,4 +33,4 @@ describe('Test stories', () => {
       cy.get('#CloseDrawerBtn').click()
     })
   })
-})
+}) // end of describe

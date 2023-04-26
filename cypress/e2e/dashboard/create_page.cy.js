@@ -2,7 +2,8 @@
 
 function randomString(length, chars) {
   let result = ''
-  for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)]
+  for (let i = length; i > 0; --i)
+    result += chars[Math.floor(Math.random() * chars.length)]
   return result
 }
 
@@ -12,10 +13,13 @@ describe('page tests', () => {
   })
 
   it.only('View Create Page', () => {
-    cy.visit(Cypress.env('baseUrl') + '/' + '/nuxeo/login.jsp')
-    cy.login(Cypress.env('CYPRESS_FV_USERNAME'), Cypress.env('CYPRESS_FV_PASSWORD'))
+    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
     cy.wait(3000)
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(500)
     cy.contains('cn').click()
     cy.contains('Dashboard').click()
@@ -25,9 +29,12 @@ describe('page tests', () => {
   })
 
   it('View Create Page - check vaidation', () => {
-    cy.visit(Cypress.env('baseUrl') + '/' + '/nuxeo/login.jsp')
-    cy.login(Cypress.env('CYPRESS_FV_USERNAME'), Cypress.env('CYPRESS_FV_PASSWORD'))
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    cy.visit(`${Cypress.env('baseUrl')}/` + `/nuxeo/login.jsp`)
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(500)
     cy.contains('cn').click()
     cy.contains('Dashboard').click()
@@ -40,10 +47,16 @@ describe('page tests', () => {
   })
 
   it('View Create Page - create page', () => {
-    const rString = randomString(17, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    cy.visit(Cypress.env('baseUrl') + '/' + '/nuxeo/login.jsp')
-    cy.login(Cypress.env('CYPRESS_FV_USERNAME'), Cypress.env('CYPRESS_FV_PASSWORD'))
-    cy.visit(Cypress.env('baseUrl') + '/' + Cypress.env('DIALECT'))
+    const rString = randomString(
+      17,
+      'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    )
+    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(500)
     cy.contains('cn').click()
     cy.contains('Dashboard').click()
