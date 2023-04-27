@@ -59,7 +59,6 @@ function AddMediaButton({ value, onChange, docType }) {
         </span>
         <button
           type="button"
-          type="button"
           aria-label="Remove"
           // eslint-disable-next-line react/no-unknown-property
           tooltip="Remove"
@@ -73,7 +72,6 @@ function AddMediaButton({ value, onChange, docType }) {
   ) : (
     <Fragment key="AddMediaButton">
       <button
-        type="button"
         type="button"
         onClick={(event) => onAddMediaClick(event)}
         className="mt-1 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"

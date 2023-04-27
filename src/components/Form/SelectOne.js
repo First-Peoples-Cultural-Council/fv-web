@@ -83,7 +83,6 @@ function SelectOneButton({ value, onChange }) {
         </span>
         <button
           type="button"
-          type="button"
           aria-label="Remove"
           // eslint-disable-next-line react/no-unknown-property
           tooltip="Remove"
@@ -97,7 +96,6 @@ function SelectOneButton({ value, onChange }) {
   ) : (
     <div className="block">
       <button
-        type="button"
         type="button"
         className={FRAGMENT_BUTTON_STYLES}
         onClick={() => setMediaChoiceModalOpen(true)}

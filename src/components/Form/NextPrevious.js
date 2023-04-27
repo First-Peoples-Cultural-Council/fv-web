@@ -24,7 +24,6 @@ function NextPrevious({ numberOfSteps, onClickCallback }) {
       {activeStepNumber > 0 ? (
         <button
           type="button"
-          type="button"
           className="inline-flex items-center text-xl text-fv-charcoal"
           onClick={() => onStepClick({ forward: false })}
         >
@@ -36,7 +35,6 @@ function NextPrevious({ numberOfSteps, onClickCallback }) {
       )}
       {activeStepNumber !== numberOfSteps - 1 ? (
         <button
-          type="button"
           type="button"
           className="inline-flex items-center text-xl text-fv-charcoal"
           onClick={() => onStepClick({ forward: true })}
