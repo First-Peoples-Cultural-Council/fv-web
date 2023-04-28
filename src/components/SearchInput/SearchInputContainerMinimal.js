@@ -28,10 +28,12 @@ function SearchInputContainerMinimal({ kids, customBaseUrl, searchDocType }) {
           minimal
         />
 
-        <label className="sr-only">Search/Go</label>
+        <label htmlFor="search-button" className="sr-only">
+          Search/Go
+        </label>
         <button
           type="button"
-          type="button"
+          id="search-button"
           onClick={handleSearchNavigation}
           className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light rounded-r-full bg-gray-50 hover:bg-gray-100"
         >

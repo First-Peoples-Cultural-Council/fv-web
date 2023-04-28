@@ -1,5 +1,4 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=First-Peoples-Cultural-Council_fv-web&metric=alert_status)](https://sonarcloud.io/dashboard?id=First-Peoples-Cultural-Council_fv-web)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=First-Peoples-Cultural-Council_fv-web&metric=coverage)](https://sonarcloud.io/dashboard?id=First-Peoples-Cultural-Council_fv-web)
 
 # FirstVoices Frontend
 

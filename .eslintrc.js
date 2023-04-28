@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'consistent-return': ['warn'],
     'no-underscore-dangle': ['off'],
+    'import/no-cycle': ['warn'],
     'no-unsafe-optional-chaining': ['warn'],
     'jsx-a11y/alt-text': ['warn'],
     'jsx-a11y/aria-role': ['warn'],
