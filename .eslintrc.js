@@ -29,6 +29,7 @@ module.exports = {
     'jsx-a11y/aria-role': ['warn'],
     'jsx-a11y/media-has-caption': ['off'],
     'react/button-has-type': ['warn'],
+    'cypress/no-unnecessary-waiting': ['off'],
   },
   settings: {
     react: {
