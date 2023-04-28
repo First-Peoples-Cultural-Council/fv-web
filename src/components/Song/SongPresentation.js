@@ -5,9 +5,14 @@ import PropTypes from 'prop-types'
 import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioNative from 'components/AudioNative'
 import SanitizedHtml from 'components/SanitizedHtml'
+// eslint-disable-next-line import/no-unresolved
+import ImageWithLightbox from 'components/ImageWithLightBox'
 
 function SongPresentation({ entry }) {
-  const hasMedia = !!(entry?.pictures?.length > 0 || entry?.videos?.length > 0)
+  // console.log({entry})
+  const hasMedia = !!(
+    entry?.coverVisual?.length > 0 || entry?.videos?.length > 0
+  )
   return (
     <div
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2 md:my-10 bg-white"
@@ -16,7 +21,7 @@ function SongPresentation({ entry }) {
       <div className="grid grid-cols-3 gap-10">
         {hasMedia && (
           <div className="hidden md:flex md:col-span-1">
-            {getMedia({ pictures: entry?.pictures, videos: entry?.videos })}
+            {getMedia({ pictures: entry?.coverVisual, videos: entry?.videos })}
           </div>
         )}
         <div
@@ -49,9 +54,9 @@ function SongPresentation({ entry }) {
             )}
             {entry?.audio?.length > 0 && (
               <div className="py-5 space-y-5">
-                {entry.audio?.map((audio, index) => (
+                {entry.audio?.map((audio) => (
                   <AudioNative
-                    key={`${audio}_${index}`}
+                    key={audio}
                     styling="w-full print:hidden"
                     audioId={audio}
                   />
@@ -64,9 +69,9 @@ function SongPresentation({ entry }) {
               )}
               {/* V1_FUDGE - will need modifying for new FVSong docs */}
               {entry?.lyrics?.length > 0
-                ? entry.lyrics.map((page, pageIndex) => (
+                ? entry.lyrics.map((page) => (
                     <div
-                      key={pageIndex}
+                      key={page.uid}
                       className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
                     >
                       <SanitizedHtml text={page?.content} />
@@ -75,6 +80,7 @@ function SongPresentation({ entry }) {
                           ? page?.contentTranslation.map(
                               (translation, translationIndex) => (
                                 <SanitizedHtml
+                                  // eslint-disable-next-line react/no-array-index-key
                                   key={translationIndex}
                                   text={translation}
                                 />
@@ -83,9 +89,9 @@ function SongPresentation({ entry }) {
                           : null}
                         {page?.related_audio?.length > 0 && (
                           <div className="space-y-5">
-                            {page?.related_audio?.map((audio, index) => (
+                            {page?.related_audio?.map((audio) => (
                               <AudioNative
-                                key={`${audio.uid}_${index}`}
+                                key={audio.uid}
                                 styling="w-full print:hidden"
                                 audioId={audio.uid}
                               />
@@ -99,7 +105,10 @@ function SongPresentation({ entry }) {
             </div>
             {hasMedia && (
               <div className="flex md:hidden mt-2">
-                {getMedia({ pictures: entry?.pictures, videos: entry?.videos })}
+                {getMedia({
+                  pictures: entry?.coverVisual,
+                  videos: entry?.videos,
+                })}
               </div>
             )}
           </div>
@@ -111,17 +120,20 @@ function SongPresentation({ entry }) {
 
 const getMedia = ({ pictures = [], videos = [] }) => {
   const media = pictures.length + videos.length
+  // console.log({media})
+  // console.log({pictures})
 
-  const getPictureType = (mediaFile) => {
-    const mimeType = mediaFile?.['mime-type']
-    if (mimeType === 'image/gif') return 'gifOrImg'
-    return 'image'
-  }
+  // const getPictureType = (mediaFile) => {
+  //   const mimeType = mediaFile?.['mime-type']
+  //   if (mimeType === 'image/gif') return 'gifOrImg'
+  //   return 'image'
+  // }
 
   if (pictures.length === 1 && media === 1) {
     return (
       <div className="space-y-4">
-        <img
+        <ImageWithLightbox.Presentation maxWidth={1000} image={pictures} />
+        {/* <img
           className="h-auto w-full"
           src={getMediaUrl({
             type: getPictureType(pictures?.[0]),
@@ -129,7 +141,7 @@ const getMedia = ({ pictures = [], videos = [] }) => {
             viewName: 'Medium',
           })}
           loading="lazy"
-        />
+        /> */}
       </div>
     )
   }
@@ -151,23 +163,26 @@ const getMedia = ({ pictures = [], videos = [] }) => {
     return (
       <div className="space-y-4">
         {pictures.length > 0
-          ? pictures?.map((pic, picIndex) => (
-              <img
-                key={picIndex}
-                className="h-auto w-auto"
-                src={getMediaUrl({
-                  type: getPictureType(pic),
-                  id: pic?.uid || pic,
-                  viewName: 'Medium',
-                })}
-                loading="lazy"
-              />
+          ? pictures?.map((pic) => (
+              <ImageWithLightbox.Presentation maxWidth={1000} image={pic} />
+
+              // <img
+              //   // eslint-disable-next-line react/no-array-index-key
+              //   key={picIndex}
+              //   className="h-auto w-auto"
+              //   src={getMediaUrl({
+              //     type: getPictureType(pic),
+              //     id: pic?.uid || pic,
+              //     viewName: 'Medium',
+              //   })}
+              //   loading="lazy"
+              // />
             ))
           : null}
         {videos.length > 0
-          ? videos?.map((video, videoIndex) => (
+          ? videos?.map((video) => (
               <video
-                key={videoIndex}
+                key={video.uid}
                 className="h-auto w-full"
                 src={getMediaUrl({
                   type: 'video',
@@ -189,9 +204,12 @@ const getMedia = ({ pictures = [], videos = [] }) => {
       <div className="w-full md:w-6/12">
         <div className="masonry-cols-2 p-4">
           {pictures.length > 0
-            ? pictures?.map((pic, picIndex) => (
-                <div key={picIndex} className="mb-4">
-                  <img
+            ? pictures?.map((pic) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <div key={pic.uid} className="mb-4">
+                  <ImageWithLightbox.Presentation maxWidth={1000} image={pic} />
+
+                  {/* <img
                     className="h-auto w-full"
                     src={getMediaUrl({
                       type: getPictureType(pic),
@@ -199,12 +217,13 @@ const getMedia = ({ pictures = [], videos = [] }) => {
                       viewName: 'Medium',
                     })}
                     loading="lazy"
-                  />
+                  /> */}
                 </div>
               ))
             : null}
           {videos.length > 0
             ? videos?.map((video, videoIndex) => (
+                // eslint-disable-next-line react/no-array-index-key
                 <div key={videoIndex} className="mb-4">
                   <video
                     className="h-auto w-full"
