@@ -29,7 +29,7 @@ describe('V2 tests, word and phrase', () => {
 
   it('Check About Menu ', () => {
     cy.on('uncaught:exception', () => true)
-    // used to be login code here like in the above it function. add back here if needed.  and the first visit should be put back to beforeEach
+    // Used to be login code here like in the above it function. add back here if needed.  and the first visit should be put back to beforeEach
     const aboutMenu = ['Our Language', 'Our People']
     cy.wait(1000)
     cy.checkLinks(aboutMenu, 'About')
