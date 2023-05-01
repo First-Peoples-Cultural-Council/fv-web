@@ -6,11 +6,9 @@ import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'
-// eslint-disable-next-line import/no-unresolved
-import ImageWithLightBox from 'components/ImageWithLightBox'
+import ImageWithLightbox from 'components/ImageWithLightbox'
 
 function StoryPresentation({ entry }) {
-  // console.log({entry})
   const coverMedia = entry?.images?.length + entry?.videos?.length
   return (
     <div data-testid="StoryPresentation" className="bg-gray-200">
@@ -19,20 +17,10 @@ function StoryPresentation({ entry }) {
         entry?.coverVisual?.type === 'image') && (
         <div className="grid grid-cols-2 md:gap-4 bg-white overflow-hidden shadow-lg">
           <div className="col-span-2 md:col-span-1 flex max-h-screen">
-            <ImageWithLightBox.Presentation
+            <ImageWithLightbox.Presentation
               maxWidth={1000}
               image={entry?.coverVisual}
             />
-            {/* <img
-              className="h-auto w-full xl:h-full xl:w-auto max-h-screen object-contain md:shadow-lg"
-              src={getMediaUrl({
-                type: entry?.coverVisual.type,
-                id: entry?.coverVisual?.id,
-                viewName: 'FullHD',
-              })}
-              loading="lazy"
-              alt={`${entry?.title} ${entry?.titleTranslation?.[0]?.translation} Cover`}
-            /> */}
           </div>
           <div className="col-span-2 md:col-span-1 flex items-center ">
             <div className="px-4 py-2 md:p-6 space-y-4">
@@ -277,9 +265,8 @@ const getMedia = ({ images = [], videos = [] }) => {
       <div className="w-full md:w-6/12">
         <div className="masonry-cols-2 p-4">
           {images.length > 0
-            ? images?.map((image, imageIndex) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={imageIndex} className="mb-4">
+            ? images?.map((image) => (
+                <div key={image || image.uid} className="mb-4">
                   <img
                     className="h-auto w-full"
                     src={getMediaUrl({
