@@ -6,7 +6,6 @@ import Modal from 'components/Modal'
 import LazyImage from 'components/LazyImage'
 
 function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
-  console.log({ image })
   const [lightboxOpen, setLightboxOpen] = useState(false)
   return (
     <>

@@ -5,8 +5,7 @@ import PropTypes from 'prop-types'
 import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioNative from 'components/AudioNative'
 import SanitizedHtml from 'components/SanitizedHtml'
-// eslint-disable-next-line import/no-unresolved
-import ImageWithLightbox from 'components/ImageWithLightBox'
+import ImageWithLightbox from 'components/ImageWithLightbox'
 
 function SongPresentation({ entry }) {
   // console.log({entry})
@@ -118,34 +117,15 @@ function SongPresentation({ entry }) {
   )
 }
 
-const getMedia = ({ pictures = [], videos = [] }) => {
-  const media = pictures.length + videos.length
-  // console.log({media})
-  // console.log({pictures})
-
-  // const getPictureType = (mediaFile) => {
-  //   const mimeType = mediaFile?.['mime-type']
-  //   if (mimeType === 'image/gif') return 'gifOrImg'
-  //   return 'image'
-  // }
-
-  if (pictures.length === 1 && media === 1) {
+const getMedia = ({ pictures, videos }) => {
+  if (pictures.type === 'image') {
     return (
       <div className="space-y-4">
         <ImageWithLightbox.Presentation maxWidth={1000} image={pictures} />
-        {/* <img
-          className="h-auto w-full"
-          src={getMediaUrl({
-            type: getPictureType(pictures?.[0]),
-            id: pictures?.[0]?.uid || pictures?.[0],
-            viewName: 'Medium',
-          })}
-          loading="lazy"
-        /> */}
       </div>
     )
   }
-  if (videos.length === 1 && media === 1) {
+  if (videos) {
     return (
       <video
         className="h-auto w-full"
@@ -159,91 +139,26 @@ const getMedia = ({ pictures = [], videos = [] }) => {
       </video>
     )
   }
-  if (media === 2) {
+  if (videos.length > 1) {
     return (
       <div className="space-y-4">
-        {pictures.length > 0
-          ? pictures?.map((pic) => (
-              <ImageWithLightbox.Presentation maxWidth={1000} image={pic} />
-
-              // <img
-              //   // eslint-disable-next-line react/no-array-index-key
-              //   key={picIndex}
-              //   className="h-auto w-auto"
-              //   src={getMediaUrl({
-              //     type: getPictureType(pic),
-              //     id: pic?.uid || pic,
-              //     viewName: 'Medium',
-              //   })}
-              //   loading="lazy"
-              // />
-            ))
-          : null}
-        {videos.length > 0
-          ? videos?.map((video) => (
-              <video
-                key={video.uid}
-                className="h-auto w-full"
-                src={getMediaUrl({
-                  type: 'video',
-                  id: video?.uid || video,
-                  viewName: 'Small',
-                })}
-                controls
-              >
-                Your browser does not support the video tag.
-              </video>
-            ))
-          : null}
+        {videos?.map((video) => (
+          <video
+            key={video.uid}
+            className="h-auto w-full"
+            src={getMediaUrl({
+              type: 'video',
+              id: video?.uid || video,
+              viewName: 'Small',
+            })}
+            controls
+          >
+            Your browser does not support the video tag.
+          </video>
+        ))}
       </div>
     )
   }
-
-  if (media > 2) {
-    return (
-      <div className="w-full md:w-6/12">
-        <div className="masonry-cols-2 p-4">
-          {pictures.length > 0
-            ? pictures?.map((pic) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={pic.uid} className="mb-4">
-                  <ImageWithLightbox.Presentation maxWidth={1000} image={pic} />
-
-                  {/* <img
-                    className="h-auto w-full"
-                    src={getMediaUrl({
-                      type: getPictureType(pic),
-                      id: pic?.uid || pic,
-                      viewName: 'Medium',
-                    })}
-                    loading="lazy"
-                  /> */}
-                </div>
-              ))
-            : null}
-          {videos.length > 0
-            ? videos?.map((video, videoIndex) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <div key={videoIndex} className="mb-4">
-                  <video
-                    className="h-auto w-full"
-                    src={getMediaUrl({
-                      type: 'video',
-                      id: video?.uid || video,
-                      viewName: 'Small',
-                    })}
-                    controls
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              ))
-            : null}
-        </div>
-      </div>
-    )
-  }
-  return null
 }
 
 // PROPTYPES
