@@ -151,8 +151,8 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-300">
-                  {items.pages.map((page, index) => (
-                    <Fragment key={index}>
+                  {items.pages.map((page) => (
+                    <Fragment key={page.nextPage}>
                       {page.results.map(
                         ({
                           id,
@@ -174,17 +174,19 @@ function DictionaryListPresentation({
                               >
                                 {title}
                               </button>
-                              <AudioButton
-                                audioArray={audio}
-                                iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
-                                hoverTooltip
-                              />
+                              <div className="w-32">
+                                <AudioButton
+                                  audioArray={audio}
+                                  iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
+                                  hoverTooltip
+                                />
+                              </div>
                             </td>
                             <td className="px-6 py-4">
                               {translations ? (
                                 <ol className="text-fv-charcoal">
                                   {translations.map((translation, i) => (
-                                    <li key={i}>
+                                    <li key={translation}>
                                       {translations.length > 1
                                         ? `${i + 1}. `
                                         : null}{' '}
