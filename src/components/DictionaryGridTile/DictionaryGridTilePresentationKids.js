@@ -19,7 +19,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
       {/* Link to  entry */}
       <div className="absolute top-2 right-2 print:hidden">
         <Link
-          className="text-fv-charcoal-light"
+          className="text-fv-charcoal-dark"
           to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
             entry.type,
           )}/${entry.id}`}
@@ -85,8 +85,8 @@ function DictionaryGridTilePresentationKids({ entry }) {
                   entry?.translations?.length > 1 ? 'list-decimal' : 'list-none'
                 } list-inside my-2 text-lg`}
               >
-                {entry?.translations?.map((translation, index) => (
-                  <li key={index} className="p-0.5">
+                {entry?.translations?.map((translation) => (
+                  <li key={translation} className="p-0.5">
                     {translation}
                   </li>
                 ))}
@@ -94,9 +94,9 @@ function DictionaryGridTilePresentationKids({ entry }) {
             )}
             {/* Entry Audio */}
             {entry?.audio?.length > 0 &&
-              entry?.audio.map((audioId, index) => (
+              entry?.audio.map((audioId) => (
                 <AudioMinimal.Container
-                  key={`${audioId}_${index}`}
+                  key={audioId}
                   icons={{
                     Play: getIcon('Audio', 'fill-current h-10 w-10'),
                     Stop: getIcon('StopCircle', 'fill-current h-10 w-10'),
