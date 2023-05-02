@@ -90,7 +90,6 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
             <div id="MobileMenuButton" className="flex items-center lg:hidden">
               <button
                 type="button"
-                type="button"
                 onClick={() => openCloseMobileNavbar()}
                 className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
               >
@@ -115,7 +114,9 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >
-        <NavBarPresentationMobile menuData={menuData} sitename={sitename} />
+        <div className="lg:hidden">
+          <NavBarPresentationMobile menuData={menuData} sitename={sitename} />
+        </div>
       </Transition>
     </nav>
   )
