@@ -151,9 +151,8 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-300">
-                  {items.pages.map((page, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <Fragment key={index}>
+                  {items.pages.map((page) => (
+                    <Fragment key={page.nextPage}>
                       {page.results.map(
                         ({
                           id,
@@ -187,8 +186,7 @@ function DictionaryListPresentation({
                               {translations ? (
                                 <ol className="text-fv-charcoal">
                                   {translations.map((translation, i) => (
-                                    // eslint-disable-next-line react/no-array-index-key
-                                    <li key={i}>
+                                    <li key={translation}>
                                       {translations.length > 1
                                         ? `${i + 1}. `
                                         : null}{' '}
