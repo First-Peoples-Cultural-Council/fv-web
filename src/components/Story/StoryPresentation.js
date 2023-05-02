@@ -6,6 +6,7 @@ import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'
+import ImageWithLightbox from 'components/ImageWithLightbox'
 
 function StoryPresentation({ entry }) {
   const coverMedia = entry?.images?.length + entry?.videos?.length
@@ -16,15 +17,9 @@ function StoryPresentation({ entry }) {
         entry?.coverVisual?.type === 'image') && (
         <div className="grid grid-cols-2 md:gap-4 bg-white overflow-hidden shadow-lg">
           <div className="col-span-2 md:col-span-1 flex max-h-screen">
-            <img
-              className="h-auto w-full xl:h-full xl:w-auto max-h-screen object-contain md:shadow-lg"
-              src={getMediaUrl({
-                type: entry?.coverVisual.type,
-                id: entry?.coverVisual?.id,
-                viewName: 'FullHD',
-              })}
-              loading="lazy"
-              alt={`${entry?.title} ${entry?.titleTranslation?.[0]?.translation} Cover`}
+            <ImageWithLightbox.Presentation
+              maxWidth={1000}
+              image={entry?.coverVisual}
             />
           </div>
           <div className="col-span-2 md:col-span-1 flex items-center ">
@@ -115,9 +110,9 @@ function StoryPresentation({ entry }) {
                   </div>
                   {entry?.audio?.length > 0 && (
                     <div className="space-y-5">
-                      {entry?.audio?.map((audioId, index) => (
+                      {entry?.audio?.map((audioId) => (
                         <AudioNative
-                          key={`${audioId}_${index}`}
+                          key={`${audioId}}`}
                           styling="lg:w-96 print:hidden"
                           audioId={audioId}
                         />
@@ -142,7 +137,7 @@ function StoryPresentation({ entry }) {
           ? entry.pageOrder.map((pageId, pageIndex) => {
               const page = entry?.pages[pageId]
               return (
-                <LazyLoader key={pageIndex}>
+                <LazyLoader key={pageId}>
                   <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg p-4 lg:p-0 lg:mt-5">
                     {getMedia({ images: page?.images, videos: page?.videos })}
                     <div className="w-full md:w-6/12 flex flex-col grow shrink">
@@ -155,9 +150,9 @@ function StoryPresentation({ entry }) {
                         </div>
                         {page?.audio?.length > 0 && (
                           <div className="space-y-5">
-                            {page?.audio?.map((audio, index) => (
+                            {page?.audio?.map((audio) => (
                               <AudioNative
-                                key={`${audio.uid}_${index}`}
+                                key={audio.uid}
                                 styling="lg:w-96 print:hidden"
                                 audioId={audio.uid}
                               />
@@ -204,7 +199,7 @@ const getMedia = ({ images = [], videos = [] }) => {
             viewName: 'Medium',
           })}
           loading="lazy"
-          alt="Story Image"
+          alt="Story"
         />
       </div>
     )
@@ -230,9 +225,9 @@ const getMedia = ({ images = [], videos = [] }) => {
       <div className="w-full md:w-6/12">
         <div className="grid grid-cols-2 gap-4 m-4">
           {images.length > 0
-            ? images?.map((image, imageIndex) => (
+            ? images?.map((image) => (
                 <img
-                  key={imageIndex}
+                  key={image}
                   className="h-auto w-auto"
                   src={getMediaUrl({
                     type: getPictureType(image),
@@ -240,14 +235,14 @@ const getMedia = ({ images = [], videos = [] }) => {
                     viewName: 'Medium',
                   })}
                   loading="lazy"
-                  alt="Story Image"
+                  alt="Story"
                 />
               ))
             : null}
           {videos.length > 0
-            ? videos?.map((video, videoIndex) => (
+            ? videos?.map((video) => (
                 <video
-                  key={videoIndex}
+                  key={video}
                   className="h-auto w-full"
                   src={getMediaUrl({
                     type: 'video',
@@ -270,8 +265,8 @@ const getMedia = ({ images = [], videos = [] }) => {
       <div className="w-full md:w-6/12">
         <div className="masonry-cols-2 p-4">
           {images.length > 0
-            ? images?.map((image, imageIndex) => (
-                <div key={imageIndex} className="mb-4">
+            ? images?.map((image) => (
+                <div key={image || image.uid} className="mb-4">
                   <img
                     className="h-auto w-full"
                     src={getMediaUrl({
@@ -279,15 +274,15 @@ const getMedia = ({ images = [], videos = [] }) => {
                       id: image?.uid || image,
                       viewName: 'Medium',
                     })}
-                    alt="Story Image"
+                    alt="Story"
                     loading="lazy"
                   />
                 </div>
               ))
             : null}
           {videos.length > 0
-            ? videos?.map((video, videoIndex) => (
-                <div key={videoIndex} className="mb-4">
+            ? videos?.map((video) => (
+                <div key={video} className="mb-4">
                   <video
                     className="h-auto w-full"
                     src={getMediaUrl({
