@@ -72,7 +72,7 @@ Important Note: when running 'npm ci' for the first time you will be silently pr
 $ npm run start
 ```
 
-8. Visit [localhost:3001](http://localhost:3001) in your web browser to view the FirstVoices app.
+8. Visit [localhost:3000](http://localhost:3000) in your web browser to view the FirstVoices app.
 
 ## Building for Production
 

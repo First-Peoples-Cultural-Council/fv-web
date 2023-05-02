@@ -22,10 +22,10 @@
     "node": "^18.16.0"
   },
   "scripts": {
-    "start": "webpack serve --env V1_URL=http://0.0.0.0:3001 --config webpack/webpack.development.js",
+    "start": "webpack serve --env V1_URL=http://0.0.0.0:3000 --config webpack/webpack.development.js",
     "startDev": "webpack serve --env V1_URL=https://dev.firstvoices.com NUXEO_URL=https://dev.firstvoices.com/nuxeo API_URL=https://v2.dev.firstvoices.com/nuxeo/api/v1/ --config webpack/webpack.development.js",
     "startPreprod": "webpack serve --env NUXEO_URL=https://preprod.firstvoices.com API_URL=https://preprod.firstvoices.com/nuxeo/api/v1/ --config webpack/webpack.development.js",
-    "startProxiedPreprod": "webpack serve --env NUXEO_URL=https://preprod.firstvoices.com API_URL=https://localhost:3001/nuxeo/api/v1/ --config webpack/webpack.proxied.preprod.js",
+    "startProxiedPreprod": "webpack serve --env NUXEO_URL=https://preprod.firstvoices.com API_URL=https://localhost:3000/nuxeo/api/v1/ --config webpack/webpack.proxied.preprod.js",
     "startInSkaffold": "webpack serve --progress --config webpack/webpack.skaffold.js --disable-host-check",
     "build:production": "webpack --color --progress --config webpack/webpack.production.js",
     "prepare": "husky install",
@@ -101,6 +101,7 @@
     "html-webpack-plugin": "^5.5.1",
     "i18next": "^22.4.15",
     "ky": "^0.33.3",
+    "oidc-react": "^3.1.0",
     "postcss": "^8.4.23",
     "postcss-loader": "^7.2.4",
     "postcss-preset-env": "^8.3.2",

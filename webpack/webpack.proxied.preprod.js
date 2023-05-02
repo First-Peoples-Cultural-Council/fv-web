@@ -30,7 +30,7 @@ module.exports = (env) => {
         },
       },
       server: 'https',
-      port: 3001,
+      port: 3000,
       historyApiFallback: true,
       host: '0.0.0.0',
       proxy: [
@@ -47,7 +47,7 @@ module.exports = (env) => {
       ],
     },
     output: {
-      publicPath: 'https://localhost:3001/',
+      publicPath: 'https://localhost:3000/',
     },
   })
 }
