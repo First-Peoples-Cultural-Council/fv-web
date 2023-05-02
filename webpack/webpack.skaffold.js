@@ -4,7 +4,7 @@ const common = require('./webpack.common.js')
 const definitions = {
   CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
   ENV_V1_URL: '',
-  ENV_API_URL: '/nuxeo/api/v1/',
+  ENV_V1_API_URL: '/nuxeo/api/v1/',
 }
 
 module.exports = (env) =>

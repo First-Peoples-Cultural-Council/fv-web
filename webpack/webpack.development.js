@@ -12,9 +12,9 @@ module.exports = (env) => {
     CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
     ENV_V1_URL:
       env && env.V1_URL ? JSON.stringify(env.V1_URL) : JSON.stringify(''),
-    ENV_API_URL:
-      env && env.API_URL
-        ? JSON.stringify(env.API_URL)
+    ENV_V1_API_URL:
+      env && env.V1_API_URL
+        ? JSON.stringify(env.V1_API_URL)
         : JSON.stringify('/nuxeo/api/v1/'),
   }
 
