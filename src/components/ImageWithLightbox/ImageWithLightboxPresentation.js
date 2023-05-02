@@ -13,7 +13,7 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
         imgStyling={imgStyling}
         width={maxWidth}
         onClick={() => setLightboxOpen(true)}
-        id={image.uid}
+        id={image.uid || image.id}
         mimeType={image?.['mime-type']}
         label="i"
         forceLoad
@@ -33,7 +33,7 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
             width={1920}
             onClick={() => setLightboxOpen(true)}
             forceLoad
-            id={image.uid}
+            id={image.uid || image.id}
             mimeType={image?.['mime-type']}
             alt={`Gallery Image ${image?.['dc:title']}`}
           />
