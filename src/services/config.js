@@ -2,7 +2,7 @@ import ky from 'ky'
 import { GlobalConfiguration } from 'src/GlobalConfiguration'
 
 export const api = ky.create({
-  prefixUrl: GlobalConfiguration.API_URL,
+  prefixUrl: GlobalConfiguration.V1_API_URL,
   timeout: 60000,
 })
 
