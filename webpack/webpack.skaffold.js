@@ -5,6 +5,8 @@ const definitions = {
   CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
   ENV_V1_URL: '',
   ENV_V1_API_URL: '/nuxeo/api/v1/',
+  ENV_AWS_USER_POOL_ID: '',
+  ENV_AWS_CLIENT_ID: '',
 }
 
 module.exports = (env) =>

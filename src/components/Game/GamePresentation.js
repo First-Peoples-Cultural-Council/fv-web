@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { GlobalConfiguration } from 'src/GlobalConfiguration'
+import GlobalConfiguration from 'src/GlobalConfiguration'
 
 import Parachute from 'components/Game/Parachute'
 
@@ -15,6 +15,7 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
         <div className={`${isLoaded ? '' : 'hidden'}`}>
           <iframe
             id="GameIframe"
+            title="Wordle"
             onLoad={() => setIsLoaded(true)}
             src={`https://games.firstvoices.io/wordle/?language=${sitename}`}
             allowFullScreen
@@ -33,6 +34,7 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
         <div className={`${isLoaded ? '' : 'hidden'}`}>
           <iframe
             id="GameIframe"
+            title={gameId}
             onLoad={() => setIsLoaded(true)}
             src={`${GlobalConfiguration.V1_URL}/games/${gameId}?siteId=${siteId}&iframe=true&alphabetId=${alphabetId}`}
             allowFullScreen

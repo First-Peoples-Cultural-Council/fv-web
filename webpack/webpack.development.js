@@ -16,6 +16,12 @@ module.exports = (env) => {
       env && env.V1_API_URL
         ? JSON.stringify(env.V1_API_URL)
         : JSON.stringify('/nuxeo/api/v1/'),
+    ENV_AWS_USER_POOL_ID: process.env.AWS_USER_POOL_ID
+      ? JSON.stringify(process.env.AWS_USER_POOL_ID)
+      : JSON.stringify(''),
+    ENV_AWS_CLIENT_ID: process.env.AWS_CLIENT_ID
+      ? JSON.stringify(process.env.AWS_CLIENT_ID)
+      : JSON.stringify(''),
   }
 
   return merge(common(env, definitions), {
