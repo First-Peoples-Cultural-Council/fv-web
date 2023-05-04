@@ -88,6 +88,7 @@
     "@uppy/image-editor": "^2.0.1",
     "@uppy/progress-bar": "^3.0.1",
     "@uppy/react": "^3.0.2",
+    "amazon-cognito-identity-js": "^6.2.0",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
