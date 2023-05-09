@@ -56,10 +56,7 @@ function CategoriesPresentation({
                   <h2 id="gallery-heading" className="sr-only">
                     Categories
                   </h2>
-                  <ul
-                    role="list"
-                    className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8"
-                  >
+                  <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
                     {categories?.length > 0 ? (
                       categories.map((category) => (
                         <li
@@ -102,10 +99,7 @@ function CategoriesPresentation({
                   <h2 id="gallery-heading" className="sr-only">
                     Categories
                   </h2>
-                  <ul
-                    role="list"
-                    className="grid grid-cols-2 gap-2 lg:gap-3 lg:grid-cols-3"
-                  >
+                  <ul className="grid grid-cols-2 gap-2 lg:gap-3 lg:grid-cols-3">
                     {categories?.length > 0 ? (
                       categories?.map((category) => (
                         <li
@@ -174,7 +168,6 @@ CategoriesPresentation.propTypes = {
   entryLabelPlural: string,
   kids: bool,
   sitename: string,
-  tabs: array,
 }
 
 export default CategoriesPresentation

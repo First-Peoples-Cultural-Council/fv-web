@@ -76,8 +76,8 @@ function AlphabetPresentationWidget({
             )}
             {links?.length > 0 && (
               <ul className="text-center mt-10">
-                {links.map(({ url, title }, index) => (
-                  <li key={index} className="m-3">
+                {links.map(({ url, title }) => (
+                  <li key={url} className="m-3">
                     <Link to={url}>{title}</Link>
                   </li>
                 ))}

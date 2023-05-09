@@ -257,7 +257,6 @@ ByCategoryPresentation.propTypes = {
   currentParentCategory: object,
   searchType: string,
   entryLabel: string,
-  defaultDocType: string,
   setSearchType: func,
   infiniteScroll: object,
   loadRef: object,
@@ -266,10 +265,8 @@ ByCategoryPresentation.propTypes = {
   kids: bool,
   moreActions: array,
   onSortByClick: func,
-  selectedTab: object,
   sitename: string,
   sorting: object,
-  tabs: array,
 }
 
 export default ByCategoryPresentation

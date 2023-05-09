@@ -11,7 +11,7 @@ function AudioNativePresentation({ audioId, styling }) {
   useEffect(() => {
     function handleMultiplPlayers(e) {
       const audio = document.getElementsByTagName('audio')
-      for (let i = 0, len = audio.length; i < len; i++) {
+      for (let i = 0, len = audio.length; i < len; i += 1) {
         if (audio[i] !== e.target) {
           audio[i].pause()
         }
