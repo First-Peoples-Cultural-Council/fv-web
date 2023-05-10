@@ -12,9 +12,9 @@ module.exports = (env) => {
     CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
     ENV_V1_URL:
       env && env.V1_URL ? JSON.stringify(env.V1_URL) : JSON.stringify(''),
-    ENV_API_URL:
-      env && env.API_URL
-        ? JSON.stringify(env.API_URL)
+    ENV_V1_API_URL:
+      env && env.V1_API_URL
+        ? JSON.stringify(env.V1_API_URL)
         : JSON.stringify('/nuxeo/api/v1/'),
   }
 
@@ -29,7 +29,7 @@ module.exports = (env) => {
           errors: true,
         },
       },
-      port: 3001,
+      port: 3000,
       historyApiFallback: true,
       host: '0.0.0.0',
       proxy: [
@@ -41,7 +41,7 @@ module.exports = (env) => {
       ],
     },
     output: {
-      publicPath: 'http://localhost:3001/',
+      publicPath: 'http://localhost:3000/',
     },
   })
 }
