@@ -116,7 +116,6 @@ function AppNavBarPresentation({ isHome = false }) {
           >
             <button
               type="button"
-              type="button"
               onClick={() => openCloseMobileLandingNavbar()}
               className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
             >
