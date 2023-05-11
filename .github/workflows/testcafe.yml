@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: [8, 10, 12]
     steps:
       - uses: actions/setup-node@v1
         with:
@@ -22,7 +22,7 @@ jobs:
         with: 
           args: "chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual"
       - name: Install TestCafe Diff Blink
-        run: npm i testcafe-blink-dff
+        run: npm i testcafe-blink-diff
       - name: Run tests
         run: |
           npx testcafe-blink-diff testcafe/screenshots --compare base:actual --open --threshold 0.03 testcafe
