@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8" />
     <title>FirstVoices</title>
@@ -60,7 +60,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="h-full">
     <div id="root" class="root">
       <div class="tempNav"></div>
     </div>
@@ -68,7 +68,7 @@
     <% if (CONFIGURATION_SOURCE === 'SSI') { %>
     <script type="text/javascript">
       let SSI_V1_API_URL = '<!--#echo var="V1_API_URL" -->'
-      let SSI_V1_URL = '<!--#echo var="V1_URL" -->'
+      let SSI_API_URL = '<!--#echo var="API_URL" -->'
     </script>
     <% } %>
 

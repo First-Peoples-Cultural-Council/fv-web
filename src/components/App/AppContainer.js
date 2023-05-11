@@ -13,6 +13,7 @@ import ErrorHandler from 'components/ErrorHandler'
 import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
 import Loading from 'components/Loading'
+import Login from 'components/Login'
 import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
 import Site from 'components/Site'
@@ -79,6 +80,7 @@ function AppContainer() {
                 </AppWrapper>
               }
             />
+            <Route path="login" element={<Login.Container />} />
             <Route path=":sitename/*" element={<Site.Container />} />
           </Routes>
         </AudiobarProvider>

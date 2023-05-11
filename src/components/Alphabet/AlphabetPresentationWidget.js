@@ -22,16 +22,15 @@ function AlphabetPresentationWidget({
         <div className="grid grid-cols-7 gap-2 md:gap-4 xl:gap-8 md:divide-x-2 divide-gray-300">
           <div className="col-span-7 md:col-span-4">
             <div className="grid grid-cols-6 lg:grid-cols-7">
-              {characters &&
-                characters.map(({ title, id }) => (
-                  <button
-                    type="button"
-                    data-testid={
-                      selectedData?.title === title
-                        ? 'AlphabetPresentationWidget__selectedCharacter'
-                        : undefined
-                    }
-                    className={`
+              {characters?.map(({ title, id }) => (
+                <button
+                  type="button"
+                  data-testid={
+                    selectedData?.title === title
+                      ? 'AlphabetPresentationWidget__selectedCharacter'
+                      : undefined
+                  }
+                  className={`
                       border
                       col-span-1
                       font-medium
@@ -49,12 +48,12 @@ function AlphabetPresentationWidget({
                           : ''
                       }
                       `}
-                    key={id}
-                    onClick={() => onCharacterClick(title)}
-                  >
-                    {title}
-                  </button>
-                ))}
+                  key={id}
+                  onClick={() => onCharacterClick(title)}
+                >
+                  {title}
+                </button>
+              ))}
             </div>
           </div>
           <div className="col-span-7 p-4 md:col-span-3 mt-4 md:mt-0 pb-2">
@@ -76,8 +75,8 @@ function AlphabetPresentationWidget({
             )}
             {links?.length > 0 && (
               <ul className="text-center mt-10">
-                {links.map(({ url, title }, index) => (
-                  <li key={index} className="m-3">
+                {links.map(({ url, title }) => (
+                  <li key={url} className="m-3">
                     <Link to={url}>{title}</Link>
                   </li>
                 ))}

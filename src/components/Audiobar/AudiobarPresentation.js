@@ -97,8 +97,8 @@ function AudiobarPresentation({
                   <div className="mt-1 text-sm">
                     {data?.speakers?.length === 1 ? 'SPEAKER' : 'SPEAKERS'}
                   </div>
-                  {data?.speakers?.map((speaker, index) => (
-                    <div key={index} className="mt-1">
+                  {data?.speakers?.map((speaker) => (
+                    <div key={speaker.uid} className="mt-1">
                       {speaker}
                     </div>
                   ))}
@@ -111,7 +111,6 @@ function AudiobarPresentation({
               <div className="flex justify-center items-center space-x-5">
                 <button
                   type="button"
-                  autoFocus
                   aria-label="Play/Pause"
                   onClick={() => onPlayPauseClick()}
                   className="text-fv-charcoal-dark p-2 rounded-full bg-white shadow-lg"

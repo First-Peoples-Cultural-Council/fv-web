@@ -1,6 +1,6 @@
 import { HEADER_ENRICHER } from 'common/constants'
 
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 import visibilityApi from 'services/api/visibility'
 import { convertStateToVisibility } from 'common/utils/stringHelpers'
 
@@ -11,7 +11,7 @@ const create = async ({ parentId, name, docType, properties }) => {
     type: docType,
     properties: { ...properties, 'fv:modifiedv2': true },
   }
-  return api.post(`id/${parentId}`, { json: body }).json()
+  return apiV1.post(`id/${parentId}`, { json: body }).json()
 }
 
 const update = async ({ id, properties }) => {
@@ -20,7 +20,7 @@ const update = async ({ id, properties }) => {
     uid: id,
     properties: { ...properties, 'fv:modifiedv2': true },
   }
-  return api.put(`id/${id}`, { json: body }).json()
+  return apiV1.put(`id/${id}`, { json: body }).json()
 }
 
 const document = {
@@ -28,7 +28,7 @@ const document = {
     const enrichers = contextParameters
       ? `&${HEADER_ENRICHER}=${contextParameters}`
       : ''
-    return api.get(`id/${id}?properties=${properties}${enrichers}`).json()
+    return apiV1.get(`id/${id}?properties=${properties}${enrichers}`).json()
   },
   setProperty: async ({ input, properties }) => {
     const body = {
@@ -39,7 +39,7 @@ const document = {
       input,
       context: {},
     }
-    return api.post('automation/Document.Update', { json: body }).json()
+    return apiV1.post('automation/Document.Update', { json: body }).json()
   },
   create,
   createAndSetVisibility: async ({
@@ -78,7 +78,7 @@ const document = {
     const body = {
       input: id,
     }
-    return api.post('automation/Document.Trash', { json: body }).json()
+    return apiV1.post('automation/Document.Trash', { json: body }).json()
   },
 }
 

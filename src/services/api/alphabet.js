@@ -1,7 +1,7 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const alphabet = {
-  get: async (siteId) => api.get(`alphabet/${siteId}`).json(),
+  get: async (siteId) => apiV1.get(`alphabet/${siteId}`).json(),
 }
 
 export default alphabet

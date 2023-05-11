@@ -77,7 +77,6 @@ function ShareButton({
               )}
               <button
                 type="button"
-                type="button"
                 className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
                 onClick={() => setShareModalOpen(false)}
               >
@@ -92,9 +91,8 @@ function ShareButton({
 }
 
 // PROPTYPES
-const { bool, func, string } = PropTypes
+const { bool, string } = PropTypes
 ShareButton.propTypes = {
-  onClick: func,
   iconStyling: string,
   withLabels: bool,
   docId: string,

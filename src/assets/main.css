@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import '@bcgov/bc-sans/css/BCSans.css';
 
 @layer utilities {
   .masonry-cols-2 {
@@ -62,31 +63,6 @@
   @apply visible z-50;
 }
 
-@font-face {
-  font-family: 'BCSans';
-  font-style: normal;
-  src: url('./fonts/BCSans/BCSans-Regular.woff2') format('woff2'),
-    url('./fonts/BCSans/BCSans-Regular.woff') format('woff');
-}
-@font-face {
-  font-family: 'BCSans';
-  font-style: italic;
-  src: url('./fonts/BCSans/BCSans-Italic.woff2') format('woff2'),
-    url('./fonts/BCSans/BCSans-Italic.woff') format('woff');
-}
-@font-face {
-  font-family: 'BCSans';
-  font-weight: 700;
-  src: url('./fonts/BCSans/BCSans-Bold.woff2') format('woff2'),
-    url('./fonts/BCSans/BCSans-Bold.woff') format('woff');
-}
-@font-face {
-  font-family: 'BCSans';
-  font-style: italic;
-  font-weight: 700;
-  src: url('./fonts/BCSans/BCSans-BoldItalic.woff2') format('woff2'),
-    url('./fonts/BCSans/BCSans-BoldItalic.woff') format('woff');
-}
 @font-face {
   font-family: 'BlackDiamond';
   font-style: normal;

@@ -13,8 +13,8 @@ const AlphabetData = ({ widgetView }) => {
   const [selectedData, setSelectedData] = useState({})
   const navigate = useNavigate()
 
-  const character = new URLSearchParams(location.search).get('char')
-    ? new URLSearchParams(location.search).get('char')
+  const character = new URLSearchParams(document.location.search).get('char')
+    ? new URLSearchParams(document.location.search).get('char')
     : null
 
   const { status, isLoading, error, isError, data } = useQuery(

@@ -1,6 +1,6 @@
 import { HEADER_ENRICHER } from 'common/constants'
 
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const visibility = {
   update: async ({ id, newVisibility }) => {
@@ -15,7 +15,7 @@ const visibility = {
       [HEADER_ENRICHER]: 'ancestry,permissions',
       properties: '*',
     }
-    return api
+    return apiV1
       .post('automation/Document.UpdateVisibilityOperation', {
         json: bodyObject,
         headers,

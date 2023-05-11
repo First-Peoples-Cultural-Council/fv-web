@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { GlobalConfiguration } from 'src/GlobalConfiguration'
 
 import Parachute from 'components/Game/Parachute'
 
-function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
+function GamePresentation({ sitename, gameId }) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   switch (gameId) {
@@ -15,6 +14,7 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
         <div className={`${isLoaded ? '' : 'hidden'}`}>
           <iframe
             id="GameIframe"
+            title="Wordle"
             onLoad={() => setIsLoaded(true)}
             src={`https://games.firstvoices.io/wordle/?language=${sitename}`}
             allowFullScreen
@@ -30,20 +30,8 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
       )
     default:
       return (
-        <div className={`${isLoaded ? '' : 'hidden'}`}>
-          <iframe
-            id="GameIframe"
-            onLoad={() => setIsLoaded(true)}
-            src={`${GlobalConfiguration.V1_URL}/games/${gameId}?siteId=${siteId}&iframe=true&alphabetId=${alphabetId}`}
-            allowFullScreen
-            style={{
-              marginTop: '35px',
-              minHeight: '100vh',
-              overflow: 'hidden',
-              border: 'none',
-            }}
-            width="100%"
-          />
+        <div className="w-full text-center text-2xl">
+          {gameId} - Game in construction
         </div>
       )
   }
@@ -52,10 +40,8 @@ function GamePresentation({ siteId, sitename, gameId, alphabetId }) {
 // PROPTYPES
 const { string } = PropTypes
 GamePresentation.propTypes = {
-  siteId: string,
   sitename: string,
   gameId: string,
-  alphabetId: string,
 }
 
 export default GamePresentation

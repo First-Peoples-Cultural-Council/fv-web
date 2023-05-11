@@ -1,4 +1,4 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const mail = {
   post: async ({ siteId, from, message, name }) => {
@@ -8,7 +8,7 @@ const mail = {
       idOfDialect: siteId,
       name,
     }
-    return api.post('contact_us', { json: params })
+    return apiV1.post('contact_us', { json: params })
   },
 }
 
