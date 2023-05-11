@@ -7,8 +7,14 @@ on:
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
-    container: testcafe/browsers:node12.18.3-chrome87-ff82
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [12]
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node}}
       - name: checkout
         uses: actions/checkout@v3
 
