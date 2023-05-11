@@ -58,9 +58,12 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testcafe": "^0.2.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
+    "testcafe": "^2.5.1-rc.1",
+    "testcafe-blink-diff": "^0.5.5",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.3"
   },

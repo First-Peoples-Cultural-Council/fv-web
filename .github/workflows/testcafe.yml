@@ -1,0 +1,26 @@
+name: Testcafe-Tests
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 1 * * *'
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    container: testcafe/browsers:node12.18.3-chrome87-ff82
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Install Testcafe
+        run: npm i testcafe@2.5.1-rc.1
+
+      - name: Install TestCafe Diff Blink
+        run: npm i testcafe-diff-blink@0.5.5
+
+      - name: Run tests
+        run: |
+          npx testcafe chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual
+          npx testcafe-blink-diff testcafe/screenshots --compare base:actual --open --threshold 0.03 testcafe
+
+
