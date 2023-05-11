@@ -10,6 +10,7 @@ import 'assets/main.css'
 import App from 'components/App'
 import Loading from 'components/Loading'
 import ScrollToTopOnMount from 'common/ScrollToTopOnMount'
+import { AuthProvider } from 'context/AuthContext'
 import { SiteProvider } from 'context/SiteContext'
 import { UserProvider } from 'context/UserContext'
 
@@ -31,15 +32,17 @@ const root = createRoot(container)
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <UserProvider>
-      <SiteProvider>
-        <BrowserRouter>
-          <ScrollToTopOnMount />
-          <Suspense fallback={<Loading.Container isLoading />}>
-            <App.Container />
-          </Suspense>
-        </BrowserRouter>
-      </SiteProvider>
-    </UserProvider>
+    <AuthProvider>
+      <UserProvider>
+        <SiteProvider>
+          <BrowserRouter>
+            <ScrollToTopOnMount />
+            <Suspense fallback={<Loading.Container isLoading />}>
+              <App.Container />
+            </Suspense>
+          </BrowserRouter>
+        </SiteProvider>
+      </UserProvider>
+    </AuthProvider>
   </QueryClientProvider>,
 )
