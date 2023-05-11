@@ -6,7 +6,6 @@ import { useSiteStore } from 'context/SiteContext'
 function GameData() {
   const { id } = useParams()
   const { site } = useSiteStore()
-  const { uid, children } = site
 
   function getGameId(path) {
     switch (path) {
@@ -31,9 +30,7 @@ function GameData() {
 
   return {
     gameId: getGameId(id),
-    siteId: uid,
     sitename: site?.sitename,
-    alphabetId: children?.Alphabet,
   }
 }
 

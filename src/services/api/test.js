@@ -1,7 +1,7 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const test = {
-  get: async () => api.get('url-goes-here', { prefixUrl: '' }).json(),
+  get: async () => apiV1.get('url-goes-here', { prefixUrl: '' }).json(),
 }
 
 export default test

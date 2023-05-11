@@ -80,6 +80,9 @@ function dictionaryDataAdaptor(data) {
     acknowledgements.push(sources)
   }
 
+  const relatedPhrases = contextParams?.related_phrases || []
+  const relatedAssets = contextParams?.related_assets || []
+
   return {
     id: data?.uid || '',
     type: getFriendlyDocType({ docType: data?.type }) || '',
@@ -87,10 +90,7 @@ function dictionaryDataAdaptor(data) {
     translations: properties['fv:definitions'] || [],
     pronunciation: properties?.['fv-word:pronunciation'] || '',
     categories: contextParams?.categories || [],
-    relatedAssets:
-      []
-        .concat(contextParams?.related_phrases, contextParams?.related_assets)
-        .filter((item) => item !== null) || [],
+    relatedAssets: [...relatedPhrases, ...relatedAssets],
     audio: contextParams?.related_audio || [],
     images: contextParams?.related_pictures || [],
     videos: contextParams?.related_videos || [],

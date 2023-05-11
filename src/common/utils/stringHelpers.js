@@ -312,6 +312,7 @@ export const makeTypeSingular = (plural) => {
 }
 
 export const makePlural = (string) => {
+  if (typeof string !== 'string' || string?.length < 1) return ''
   const lastCharacter = string.slice(-1)
   if (lastCharacter === 'y') {
     const plural = string.slice(0, -1)

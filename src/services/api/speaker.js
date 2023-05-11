@@ -1,9 +1,11 @@
 import { HEADER_ENRICHER, DOC_SPEAKER } from 'common/constants'
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const speakers = {
   get: async (speakersId) =>
-    api.get(`id/${speakersId}?properties=*&${HEADER_ENRICHER}=speakers`).json(),
+    apiV1
+      .get(`id/${speakersId}?properties=*&${HEADER_ENRICHER}=speakers`)
+      .json(),
   getAll: async ({ siteId }) => {
     const bodyObject = {
       params: {
@@ -13,7 +15,7 @@ const speakers = {
       context: {},
     }
     const headers = { [HEADER_ENRICHER]: 'ancestry', properties: '*' }
-    return api
+    return apiV1
       .post('automation/Document.EnrichedQuery', { json: bodyObject, headers })
       .json()
   },

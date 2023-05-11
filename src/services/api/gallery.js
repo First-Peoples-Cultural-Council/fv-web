@@ -1,9 +1,9 @@
 import { HEADER_ENRICHER } from 'common/constants'
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const gallery = {
   get: async (galleryId) =>
-    api
+    apiV1
       .get(`id/${galleryId}?properties=dublincore&${HEADER_ENRICHER}=gallery`)
       .json(),
   getAll: async (siteId) => {
@@ -15,7 +15,7 @@ const gallery = {
       context: {},
     }
     const headers = { [HEADER_ENRICHER]: 'gallery', properties: 'dublincore' }
-    return api
+    return apiV1
       .post('automation/Document.EnrichedQuery', { json: bodyObject, headers })
       .json()
   },

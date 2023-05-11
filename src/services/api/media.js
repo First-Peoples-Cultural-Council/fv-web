@@ -1,4 +1,4 @@
-import { api, externalApi } from 'services/config'
+import { apiV1, externalApi } from 'services/config'
 import { cleanNXQL } from 'common/utils/stringHelpers'
 import { HEADER_ENRICHER } from 'common/constants'
 
@@ -22,7 +22,7 @@ const media = {
       context: {},
     }
     const headers = { [HEADER_ENRICHER]: 'ancestory,media', properties: '*' }
-    const response = await api
+    const response = await apiV1
       .post('automation/Document.EnrichedQuery', { json: body, headers })
       .json()
     const lastPage = Math.ceil((response?.resultsCount || 0) / perPage)
@@ -30,7 +30,7 @@ const media = {
     return { ...response, nextPage, lastPage }
   },
   getS3Url: async () =>
-    api.post('media_upload/generate_urls', { json: { quantity: 1 } }).json(),
+    apiV1.post('media_upload/generate_urls', { json: { quantity: 1 } }).json(),
   upload: async ({ s3Url, file }) => externalApi.put(s3Url, { body: file }),
   markComplete: async ({
     acknowledgement,
@@ -50,7 +50,7 @@ const media = {
       acknowledgement,
       speaker: speaker || [],
     }
-    return api.post('media_upload/mark_complete', { json: body }).json()
+    return apiV1.post('media_upload/mark_complete', { json: body }).json()
   },
 }
 
