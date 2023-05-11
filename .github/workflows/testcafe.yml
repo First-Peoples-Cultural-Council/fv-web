@@ -22,7 +22,7 @@ jobs:
         with: 
           args: "chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual"
       - name: install testcafe-blink-diff
-        uses: DevExpress/testcafe-blink-dff@latest
+        uses: DevExpress/testcafe-blink-diff@latest
         with:
           args: "testcafe/screenshots --compare base:actual --open --threshold 0.03 testcafe"
       
