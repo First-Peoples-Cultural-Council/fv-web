@@ -1,10 +1,10 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const widget = {
   getWordOfTheDay: async ({ siteId }) =>
-    api.get(`word_of_the_day/${siteId}`).json(),
+    apiV1.get(`word_of_the_day/${siteId}`).json(),
   getStats: async ({ siteId }) =>
-    api.get(`statistics/generate?siteId=${siteId}`).json(),
+    apiV1.get(`statistics/generate?siteId=${siteId}`).json(),
   getWidgets: async ({ siteId }) => {
     const body = {
       params: {
@@ -18,7 +18,7 @@ const widget = {
       },
       context: {},
     }
-    return api
+    return apiV1
       .post('automation/Repository.ResultSetQuery', { json: body })
       .json()
   },
