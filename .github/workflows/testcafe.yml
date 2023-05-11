@@ -26,6 +26,8 @@ jobs:
       - name: Run tests
         run: |
           ls
+          cd testcafe
+          ls
           npx testcafe-blink-diff testcafe/screenshots --compare base:actual --open --threshold 0.03 testcafe
 
 
