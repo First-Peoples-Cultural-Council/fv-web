@@ -22,7 +22,7 @@ jobs:
         run: npm i testcafe@2.5.1-rc.1
 
       - name: Install TestCafe Diff Blink
-        run: npm i testcafe-diff-blink@0.5.5
+        run: npm i testcafe-diff-blink
 
       - name: Run tests
         run: |
