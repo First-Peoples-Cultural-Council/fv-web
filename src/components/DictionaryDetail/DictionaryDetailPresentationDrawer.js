@@ -20,7 +20,7 @@ function DictionaryDetailPresentationDrawer({
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
   const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
-  const shortTitle = entry?.title?.length < 16
+  const shortTitle = entry?.title.length < 16
   return (
     <div data-testid="DictionaryDetailPresentationDrawer">
       <div id="WordDetails" className="px-6">
