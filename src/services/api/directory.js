@@ -1,4 +1,4 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const directory = {
   get: async ({
@@ -7,7 +7,7 @@ const directory = {
     sortOrder = 'DESC',
     pageSize = 100,
   }) =>
-    api
+    apiV1
       .get(
         `directory/${directoryName}?sortBy${sortBy}&sortOrder=${sortOrder}&pageSize=${pageSize}`,
       )

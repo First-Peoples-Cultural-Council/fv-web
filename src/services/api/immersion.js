@@ -1,6 +1,6 @@
 import { HEADER_ENRICHER } from 'common/constants'
 
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const immersion = {
   get: async (labelDictionaryId) => {
@@ -14,7 +14,7 @@ const immersion = {
       context: {},
     }
     const headers = { [HEADER_ENRICHER]: 'label', properties: '*' }
-    return api
+    return apiV1
       .post('automation/Document.EnrichedQuery', { json: bodyObject, headers })
       .json()
   },

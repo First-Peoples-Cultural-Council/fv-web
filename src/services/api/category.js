@@ -1,8 +1,8 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const category = {
   get: async ({ siteId, parentsOnly = 'false', inUseOnly = 'false' }) =>
-    api
+    apiV1
       .get(
         `category/${siteId}?parentsOnly=${parentsOnly}&inUseOnly=${inUseOnly}`,
       )
@@ -12,7 +12,7 @@ const category = {
       categoryId,
       parentCategoryId,
     }
-    return api.post('category/updateParent', { json: body }).json()
+    return apiV1.post('category/updateParent', { json: body }).json()
   },
 }
 
