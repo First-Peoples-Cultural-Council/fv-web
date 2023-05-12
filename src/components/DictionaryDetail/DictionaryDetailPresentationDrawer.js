@@ -16,7 +16,6 @@ function DictionaryDetailPresentationDrawer({
   entry,
   sitename,
 }) {
-  console.log({ entry })
   const lableStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
