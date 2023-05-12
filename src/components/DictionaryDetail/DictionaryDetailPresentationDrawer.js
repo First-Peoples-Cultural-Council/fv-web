@@ -16,11 +16,12 @@ function DictionaryDetailPresentationDrawer({
   entry,
   sitename,
 }) {
+  console.log({ entry })
   const lableStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
   const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
-  const shortTitle = entry?.title.length < 16
+  const shortTitle = entry?.title?.length < 16
   return (
     <div data-testid="DictionaryDetailPresentationDrawer">
       <div id="WordDetails" className="px-6">
@@ -29,7 +30,7 @@ function DictionaryDetailPresentationDrawer({
             <div
               className={`font-bold ${shortTitle ? 'text-4xl' : 'text-2xl'}`}
             >
-              {entry.title}
+              {entry?.title}
             </div>
             <div className="ml-5">
               <ActionsMenu.Presentation
@@ -61,9 +62,9 @@ function DictionaryDetailPresentationDrawer({
                     : 'list-decimal'
                 } list-inside ${shortTitle ? 'text-xl ' : 'md:text-lg'}`}
               >
-                {entry?.translations?.map((translation, index) => (
-                  <li key={index} className="p-0.5">
-                    {translation.translation}
+                {entry?.translations?.map((translation) => (
+                  <li key={translation} className="p-0.5">
+                    {translation?.translation}
                   </li>
                 ))}
               </ol>
@@ -72,9 +73,9 @@ function DictionaryDetailPresentationDrawer({
           {/* Audio */}
           {entry?.audio?.length > 0 && (
             <div className="py-3">
-              {entry.audio.map((audioFile, index) => (
+              {entry?.audio?.map((audioFile) => (
                 <AudioMinimal.Container
-                  key={`${audioFile.uid}_${index}`}
+                  key={audioFile.uid}
                   icons={{
                     Play: getIcon(
                       'Play',
@@ -103,10 +104,10 @@ function DictionaryDetailPresentationDrawer({
           {entry?.categories?.length > 0 && (
             <div className="py-3">
               <h4 className={lableStyling}>Categories</h4>
-              {entry.categories.map((category) => (
+              {entry?.categories?.map((category) => (
                 <Link
-                  key={category.uid}
-                  to={`/${sitename}/categories/${category.uid}`}
+                  key={category?.uid}
+                  to={`/${sitename}/categories/${category?.uid}`}
                   className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-tertiaryB hover:bg-tertiaryB-dark text-white mr-1"
                 >
                   {category['dc:title']}
@@ -134,18 +135,18 @@ function DictionaryDetailPresentationDrawer({
                   {entry?.relatedAssets?.map((asset, index) => {
                     const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
                     return (
-                      <tr key={index} className={zebraStripe}>
+                      <tr key={asset?.uid} className={zebraStripe}>
                         <td className="py-2 pl-5 flex items-center">
                           <Link
                             to={`/${sitename}/${makePlural(asset?.type)}/${
-                              asset.uid
+                              asset?.uid
                             }`}
                           >
-                            {asset['dc:title']}
+                            {asset ? asset['dc:title'] : null}
                           </Link>
-                          {asset?.related_audio?.map((audioId, i) => (
+                          {asset?.related_audio?.map((audioId) => (
                             <AudioMinimal.Container
-                              key={`${audioId}_${i}`}
+                              key={audioId}
                               icons={{
                                 Play: getIcon(
                                   'Audio',
@@ -178,8 +179,8 @@ function DictionaryDetailPresentationDrawer({
           <section id="WordMedia" className="py-3">
             <div className="grid grid-cols-2 gap-2">
               {entry?.images
-                ? entry?.images?.map((image, index) => (
-                    <div key={`${image.uid}_${index}`}>
+                ? entry?.images?.map((image) => (
+                    <div key={image?.uid}>
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
                           <div className="inline-flex rounded-lg overflow-hidden cursor-pointer">
@@ -194,8 +195,8 @@ function DictionaryDetailPresentationDrawer({
                   ))
                 : null}
               {entry?.videos
-                ? entry?.videos?.map((video, index) => (
-                    <div key={`${video.uid}_${index}`}>
+                ? entry?.videos?.map((video) => (
+                    <div key={video?.uid}>
                       <Disclosure>
                         <Disclosure.Button>
                           <div className="inline-flex rounded-lg overflow-hidden">
@@ -248,8 +249,8 @@ function DictionaryDetailPresentationDrawer({
               <h4 className={lableStyling}>Acknowledgement</h4>
               <ul className="list-disc">
                 {entry?.acknowledgements?.length > 0 &&
-                  entry?.acknowledgements?.map((acknowledgement, index) => (
-                    <li key={index} className={contentStyling}>
+                  entry?.acknowledgements?.map((acknowledgement) => (
+                    <li key={acknowledgement} className={contentStyling}>
                       {acknowledgement}
                     </li>
                   ))}
@@ -261,8 +262,8 @@ function DictionaryDetailPresentationDrawer({
             <div className="py-3">
               <h4 className={lableStyling}>Notes</h4>
               <ul className="list-disc">
-                {entry?.notes?.map((note, i) => (
-                  <li key={i} className={contentStyling}>
+                {entry?.notes?.map((note) => (
+                  <li key={note} className={contentStyling}>
                     {note}
                   </li>
                 ))}

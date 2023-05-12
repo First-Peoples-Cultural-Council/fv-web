@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
-import { makePlural } from 'common/utils/urlHelpers'
 import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
@@ -81,8 +80,8 @@ function DictionaryDetailPresentation({
                     shortTitle ? 'md:text-2xl' : 'md:text-xl'
                   }`}
                 >
-                  {entry?.translations?.map((translation, index) => (
-                    <li key={index} className="p-0.5">
+                  {entry?.translations?.map((translation) => (
+                    <li key={translation} className="p-0.5">
                       {translation?.translation}
                     </li>
                   ))}
@@ -92,9 +91,9 @@ function DictionaryDetailPresentation({
             {/* Audio */}
             {entry?.audio?.length > 0 && (
               <div className="py-2 md:p-3">
-                {entry?.audio?.map((audioFile, index) => (
+                {entry?.audio?.map((audioFile) => (
                   <AudioMinimal.Container
-                    key={`${audioFile.uid}_${index}`}
+                    key={audioFile.uid}
                     icons={{
                       Play: getIcon(
                         'Audio',
@@ -154,7 +153,7 @@ function DictionaryDetailPresentation({
                     {entry?.relatedAssets?.map((asset, index) => {
                       const zebraStripe = index % 2 === 1 ? '' : 'bg-gray-100'
                       return (
-                        <tr key={index} className={zebraStripe}>
+                        <tr key={asset.uid} className={zebraStripe}>
                           <td className="p-2 flex items-center">
                             <Link
                               to={`/${sitename}/${makePlural(asset?.type)}/${
@@ -163,9 +162,9 @@ function DictionaryDetailPresentation({
                             >
                               {asset['dc:title']}
                             </Link>
-                            {asset?.related_audio?.map((audioId, i) => (
+                            {asset?.related_audio?.map((audioId) => (
                               <AudioMinimal.Container
-                                key={`${audioId}_${i}`}
+                                key={audioId}
                                 icons={{
                                   Play: getIcon(
                                     'Audio',
@@ -204,8 +203,8 @@ function DictionaryDetailPresentation({
                 <h4 className={lableStyling}>Acknowledgement</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.acknowledgements?.length > 0 &&
-                    entry?.acknowledgements?.map((acknowledgement, index) => (
-                      <li key={index} className={contentStyling}>
+                    entry?.acknowledgements?.map((acknowledgement) => (
+                      <li key={acknowledgement} className={contentStyling}>
                         {acknowledgement}
                       </li>
                     ))}
@@ -217,8 +216,8 @@ function DictionaryDetailPresentation({
               <div className="py-2 md:p-4">
                 <h4 className={lableStyling}>Notes</h4>
                 <ul className="list-none md:list-disc space-y-1">
-                  {entry?.notes?.map((note, index) => (
-                    <li key={index} className={contentStyling}>
+                  {entry?.notes?.map((note) => (
+                    <li key={note} className={contentStyling}>
                       {note}
                     </li>
                   ))}
@@ -247,8 +246,8 @@ function DictionaryDetailPresentation({
           >
             <ul>
               {entry?.images
-                ? entry?.images?.map((image, index) => (
-                    <li key={`${image.uid}_${index}`} className="my-2">
+                ? entry?.images?.map((image) => (
+                    <li key={image.uid} className="my-2">
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
                           <div className="inline-flex rounded-lg overflow-hidden">
@@ -263,8 +262,8 @@ function DictionaryDetailPresentation({
                   ))
                 : null}
               {entry?.videos
-                ? entry?.videos?.map((video, index) => (
-                    <li key={`${video.uid}_${index}`} className="my-2">
+                ? entry?.videos?.map((video) => (
+                    <li key={video.uid} className="my-2">
                       <Disclosure>
                         <Disclosure.Button>
                           <div className="inline-flex rounded-lg overflow-hidden">
