@@ -250,7 +250,7 @@ function DictionaryDetailPresentation({
                     <li key={image.uid} className="my-2">
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
-                          <div className="inline-flex rounded-lg overflow-hidden">
+                          <div className="inline-flex rounded-lg overflow-auto">
                             <ImageWithLightbox.Presentation
                               maxWidth={1000}
                               image={image}
