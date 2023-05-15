@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+
 describe('alphabet Test', () => {
   beforeEach(() => {
     cy.on('uncaught:exception', () => false)
@@ -13,6 +14,7 @@ describe('alphabet Test', () => {
     cy.contains('Dashboard').click()
     cy.contains('Edit').click()
   })
+
   it('edit alphabet', () => {
     const note =
       "Angie, Angie When will those clouds all disappear? Angie, Angie Where will it lead us from here? With no lovin' in our"
