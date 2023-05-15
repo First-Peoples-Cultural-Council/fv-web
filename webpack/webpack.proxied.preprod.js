@@ -10,12 +10,20 @@ const common = require('./webpack.common.js')
 module.exports = (env) => {
   const definitions = {
     CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
-    ENV_V1_URL:
-      env && env.V1_URL ? JSON.stringify(env.V1_URL) : JSON.stringify(''),
     ENV_API_URL:
       env && env.API_URL
         ? JSON.stringify(env.API_URL)
+        : JSON.stringify('/api/1.0/'),
+    ENV_V1_API_URL:
+      env && env.V1_API_URL
+        ? JSON.stringify(env.V1_API_URL)
         : JSON.stringify('/nuxeo/api/v1/'),
+    ENV_AWS_USER_POOL_ID: process.env.AWS_USER_POOL_ID
+      ? JSON.stringify(process.env.AWS_USER_POOL_ID)
+      : JSON.stringify(''),
+    ENV_AWS_CLIENT_ID: process.env.AWS_CLIENT_ID
+      ? JSON.stringify(process.env.AWS_CLIENT_ID)
+      : JSON.stringify(''),
   }
 
   return merge(common(env, definitions), {
@@ -30,7 +38,7 @@ module.exports = (env) => {
         },
       },
       server: 'https',
-      port: 3001,
+      port: 3000,
       historyApiFallback: true,
       host: '0.0.0.0',
       proxy: [
@@ -47,7 +55,7 @@ module.exports = (env) => {
       ],
     },
     output: {
-      publicPath: 'https://localhost:3001/',
+      publicPath: 'https://localhost:3000/',
     },
   })
 }

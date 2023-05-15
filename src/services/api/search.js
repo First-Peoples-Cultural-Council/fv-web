@@ -1,8 +1,8 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const search = {
   get: async ({ siteId, searchParams, pageParam, perPage = 24 }) => {
-    const response = await api
+    const response = await apiV1
       .get(
         `customSearch/?${searchParams}&ancestorId=${siteId}&page=${pageParam}&perPage=${perPage}`,
       )

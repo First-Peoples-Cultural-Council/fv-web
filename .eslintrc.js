@@ -4,7 +4,11 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['@imaginary-cloud/react', 'plugin:cypress/recommended'],
+  extends: [
+    '@imaginary-cloud/react',
+    'plugin:cypress/recommended',
+    'plugin:testcafe/recommended',
+  ],
   overrides: [],
   parser: '@babel/eslint-parser',
   parserOptions: {
@@ -18,18 +22,17 @@ module.exports = {
       presets: ['@babel/preset-react'],
     },
   },
-  plugins: ['prettier', 'react', '@babel', 'cypress'],
-  ignorePatterns: ['webpack/*.js'],
+  plugins: ['prettier', 'react', '@babel', 'cypress', 'testcafe'],
+  ignorePatterns: ['webpack/*.js', 'testcafe/*.js'],
   rules: {
     'consistent-return': ['warn'],
     'no-underscore-dangle': ['off'],
-    'import/no-cycle': ['warn'],
     'no-unsafe-optional-chaining': ['warn'],
+    'import/no-cycle': ['warn'],
+    'import/no-extraneous-dependencies': ['warn'],
     'jsx-a11y/alt-text': ['warn'],
     'jsx-a11y/aria-role': ['warn'],
     'jsx-a11y/media-has-caption': ['off'],
-    'react/button-has-type': ['warn'],
-    'cypress/no-unnecessary-waiting': ['off'],
   },
   settings: {
     react: {

@@ -17,16 +17,16 @@ function ConditionsOfUsePresentation() {
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 text-center py-8">
           <p className={paraStyle}>
             By accessing this site, or by downloading the language data, the
-            user confirms agreement with and acceptance of the <br />{' '}
-            "Conditions of Use" for this website as detailed below.
+            user confirms agreement with and acceptance of the <br />
+            &ldquo;Conditions of Use&ldquo; for this website as detailed below.
           </p>
           <div>
             <h2 className={headerStyle}>Terms of Use Agreement</h2>
             <p className={paraStyle}>
               By accessing the FirstVoices websites operated by the First
-              Peoples’ Cultural Council (FPCC) (also known as First Peoples'
-              Heritage, Language & Culture Council or FPHLCC), the user agrees
-              to be bound by all of the terms for use and agrees these terms
+              Peoples’ Cultural Council (FPCC) (also known as First
+              Peoples&lsquo; Heritage, Language & Culture Council or FPHLCC),
+              the user agrees to be bound by all of the terms for use and agrees
               constitute a binding contract between the user and the FPCC.
             </p>
             <p className={paraStyle}>
@@ -55,17 +55,18 @@ function ConditionsOfUsePresentation() {
               otherwise save individual pages for private use. However, language
               and/or multimedia data may not be modified or altered in any
               respect, merged with other data or published in any form, in whole
-              or in part. The prohibited uses include "screen scraping,"
-              "database scraping" and any other activity intended to collect,
-              store, reorganize or manipulate data on the pages produced by, or
-              displayed on the FirstVoices websites.
+              or in part. The prohibited uses include &ldquo;screen
+              scraping,&ldquo; &ldquo;database scraping&ldquo; and any other
+              activity intended to collect, store, reorganize or manipulate data
+              on the pages produced by, or displayed on the FirstVoices
+              websites.
             </p>
           </div>
           <div>
             <h2 className={headerStyle}>Trademarks</h2>
             <p className={paraStyle}>
               FirstVoices and the FirstVoices logo are registered word-marks
-              owned by First Peoples' Cultural Foundation (FPCF). The
+              owned by First Peoples&lsquo; Cultural Foundation (FPCF). The
               FirstVoices word-marks are used to identify Indigenous language
               services provided by FirstVoices staff and members of associated
               Indigenous language communities collaborating with FPCC on the
@@ -84,7 +85,7 @@ function ConditionsOfUsePresentation() {
             <p className={paraStyle}>
               All links to any FirstVoices website must be accompanied by a
               prominent notice, which makes it clear to a browser that the link
-              leads to a website of The First Peoples' Cultural Council.
+              leads to a website of The First Peoples&lsquo; Cultural Council.
             </p>
             <ul className="list-outside list-disc text-left px-16">
               <li>

@@ -8,14 +8,14 @@ import getIcon from 'common/utils/getIcon'
 function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
   const { setAudioArray } = useAudiobar()
 
-  const audioButtons = audioArray.map((audioId, index) => (
+  const audioButtons = audioArray.map((audioId) => (
     <button
       type="button"
-      key={index}
+      key={audioId}
       className="print:hidden relative group"
       onClick={() => setAudioArray([audioId])}
     >
-      <label className="sr-only">Play audio</label>
+      <div className="sr-only">Play audio</div>
       {getIcon('Audio', iconStyling)}
       {hoverTooltip ? (
         <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-fv-charcoal-light text-white text-center rounded-lg whitespace-nowrap">

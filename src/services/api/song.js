@@ -1,8 +1,8 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const song = {
   get: async ({ siteId, searchParams, pageParam, perPage = 48 }) => {
-    const response = await api
+    const response = await apiV1
       .get(
         `songs/${siteId}?${searchParams}&page=${pageParam}&perPage=${perPage}`,
       )

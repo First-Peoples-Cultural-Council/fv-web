@@ -48,9 +48,10 @@ function CategoriesBrowserPresentation({
               </div>
               <ul className="flex-col divide-y divide-gray-200 bg-white">
                 {filteredCategories.map((category) => (
-                  <li
+                  <option
                     key={category.id}
                     onClick={() => setCurrentCategory(category)}
+                    onKeyUp={setCurrentCategory(category)}
                     className={`${
                       category?.id === currentCategory?.id
                         ? 'ring-2 ring-offset-2 ring-primary'
@@ -59,7 +60,7 @@ function CategoriesBrowserPresentation({
                   >
                     <div className="w-1/2">{category.title}</div>
                     <div className="w-1/2">{category.parentCategory}</div>
-                  </li>
+                  </option>
                 ))}
               </ul>
             </section>

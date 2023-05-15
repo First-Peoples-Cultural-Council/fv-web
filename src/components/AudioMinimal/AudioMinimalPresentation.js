@@ -23,7 +23,6 @@ function AudioMinimalPresentation({
   return (
     <button
       type="button"
-      type="button"
       onClick={onClick}
       onKeyDown={onKeyPress}
       ref={buttonRef}

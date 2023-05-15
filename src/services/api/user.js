@@ -1,11 +1,11 @@
-import { api } from 'services/config'
+import { apiV1 } from 'services/config'
 
 const user = {
-  get: async () => api.get('me/').json(),
-  getMySites: async () => api.get('site/?mySites=true').json(),
-  getRoles: async () => api.get('me/@dashboard').json(),
+  get: async () => apiV1.get('me/').json(),
+  getMySites: async () => apiV1.get('site/?mySites=true').json(),
+  getRoles: async () => apiV1.get('me/@dashboard').json(),
   getSiteDocuments: async () =>
-    api
+    apiV1
       .post('automation/FVGetDialectsForUser', {
         json: {},
         headers: { properties: '*' },
