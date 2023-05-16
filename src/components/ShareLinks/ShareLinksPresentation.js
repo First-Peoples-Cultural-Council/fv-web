@@ -23,7 +23,7 @@ function ShareLinksPresentation({ url, title, modalCloseHandler }) {
   return (
     <ul
       id="ShareLinksPresentation"
-      className="flex align-center justify-center"
+      className="flex align-center justify-center z-50"
     >
       {navigator.share ? (
         <li>
