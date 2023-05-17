@@ -6,13 +6,9 @@ import api from 'services/api'
 import { useNotification } from 'context/NotificationContext'
 import { useSiteStore } from 'context/SiteContext'
 import dictionaryCrudDataAdaptor from 'components/DictionaryCrud/dictionaryCrudDataAdaptor'
-import partOfSpeechDataAdaptor from 'components/DictionaryCrud/partOfSpeechDataAdaptor'
-import {
-  DOC_WORD,
-  DIR_PARTS_OF_SPEECH,
-  NOTIFICATION_TIME,
-} from 'common/constants'
+import { DOC_WORD, NOTIFICATION_TIME } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
+import usePartsOfSpeech from 'common/dataHooks/usePartsOfSpeech'
 
 function DictionaryCrudData({ docType }) {
   const { site } = useSiteStore()
@@ -41,17 +37,7 @@ function DictionaryCrudData({ docType }) {
   )
   const dataToEdit = dictionaryCrudDataAdaptor(data)
 
-  const isWord = docType === DOC_WORD
-  const { data: partOfSpeechData } = useQuery(
-    ['parts_of_speech'],
-    () => api.directory.get({ directoryName: DIR_PARTS_OF_SPEECH }),
-    {
-      enabled: isWord,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
-  const partsOfSpeech = partOfSpeechDataAdaptor({ data: partOfSpeechData })
+  const { data: partOfSpeechData } = usePartsOfSpeech()
 
   const submitHandler = (formData) => {
     if (entryId && dataToEdit) {
@@ -140,7 +126,7 @@ function DictionaryCrudData({ docType }) {
     backHandler,
     site,
     dataToEdit,
-    partsOfSpeech,
+    partsOfSpeech: partOfSpeechData,
   }
 }
 
