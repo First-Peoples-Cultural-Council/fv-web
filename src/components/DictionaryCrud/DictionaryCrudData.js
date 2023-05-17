@@ -37,7 +37,7 @@ function DictionaryCrudData({ docType }) {
   )
   const dataToEdit = dictionaryCrudDataAdaptor(data)
 
-  const { data: partOfSpeechData } = usePartsOfSpeech()
+  const { data: partsOfSpeechData } = usePartsOfSpeech()
 
   const submitHandler = (formData) => {
     if (entryId && dataToEdit) {
@@ -126,7 +126,7 @@ function DictionaryCrudData({ docType }) {
     backHandler,
     site,
     dataToEdit,
-    partsOfSpeech: partOfSpeechData,
+    partsOfSpeech: partsOfSpeechData,
   }
 }
 
