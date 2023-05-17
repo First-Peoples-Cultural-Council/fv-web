@@ -1,5 +1,6 @@
 export * from './directories'
 export * from './docTypes'
 export * from './misc'
+export * from './paths'
 export * from './visibility'
 export * from './widgetTypes'
