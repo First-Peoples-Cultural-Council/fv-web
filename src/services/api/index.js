@@ -11,6 +11,7 @@ import landingPage from 'services/api/landingpage'
 import mail from 'services/api/mail'
 import media from 'services/api/media'
 import page from 'services/api/page'
+import partsOfSpeech from 'services/api/partsOfSpeech'
 import search from 'services/api/search'
 import site from 'services/api/site'
 import song from 'services/api/song'
@@ -36,6 +37,7 @@ export default {
   mail,
   media,
   page,
+  partsOfSpeech,
   search,
   site,
   song,
