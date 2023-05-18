@@ -264,22 +264,27 @@ function DictionaryDetailPresentation({
               {entry?.videos
                 ? entry?.videos?.map((video) => (
                     <li key={video.uid} className="my-2">
+                      <div className="inline-flex rounded-lg overflow-hidden">
+                        <video
+                          className="shrink-0 w-full h-auto"
+                          src={getMediaUrl({
+                            type: 'video',
+                            id: video.uid,
+                            viewName: 'Small',
+                          })}
+                          controls
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
                       <Disclosure>
-                        <Disclosure.Button>
-                          <div className="inline-flex rounded-lg overflow-hidden">
-                            <video
-                              className="shrink-0 w-full h-auto"
-                              src={getMediaUrl({
-                                type: 'video',
-                                id: video.uid,
-                                viewName: 'Small',
-                              })}
-                              controls
-                            >
-                              Your browser does not support the video tag.
-                            </video>
+                        <div className="flex justify-end">
+                          <div className="border-2 z-10 bg-white w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full">
+                            <Disclosure.Button>
+                              <span>i</span>
+                            </Disclosure.Button>
                           </div>
-                        </Disclosure.Button>
+                        </div>
                         <Disclosure.Panel>
                           {video?.['dc:title'] && (
                             <div className="text-fv-charcoal">
