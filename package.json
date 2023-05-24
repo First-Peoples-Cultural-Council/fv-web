@@ -29,6 +29,7 @@
     "startInSkaffold": "webpack serve --progress --config webpack/webpack.skaffold.js --disable-host-check",
     "build:production": "webpack --color --progress --config webpack/webpack.production.js",
     "prepare": "husky install",
+    "lintStaged": "lint-staged",
     "lint": "eslint ./ --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
