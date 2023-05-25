@@ -9,6 +9,8 @@ function checkValidation(widgetName) {
 
 function createwidget(name) {
   const widgetname = 'testwidgetcypress'
+  cy.contains('Create').click()
+  cy.contains('Create a Widget').click()
   cy.contains(name).click()
   cy.get('#widgetName').type(widgetname)
 }
@@ -51,7 +53,7 @@ describe('Widget tests', () => {
     cy.wait(500)
     cy.contains('Dashboard').click()
     cy.wait(1000)
-    cy.contains('Create a Widget').click()
+    //  cy.contains('Create a Widget').click()
   })
 
   it('Check widget validation', () => {
@@ -70,22 +72,13 @@ describe('Widget tests', () => {
       'Text with Icons',
       'Word of the Day',
     ]
+    cy.contains('Create a Widget').click()
     widgets.forEach(checkValidation)
   })
 
   it('Check edit widgets', () => {
     cy.contains('Edit').click()
     cy.contains('Edit Widgets').click()
-  })
-
-  it('Create a widget - short text', () => {
-    createwidget('Short Text')
-    cy.get('#title').type('text title test')
-    cy.get('#text').type('subtitle text')
-    cy.get('#url').type('https://www.google.ca/')
-    cy.get('#urlLabel').type('url label')
-
-    throughme('testwidgetcypress')
   })
 
   const subwidgets = [
@@ -96,52 +89,36 @@ describe('Widget tests', () => {
     'New This Week',
     'Page Text',
     'Word of the Day',
+    'Mobile App',
+    'Gallery',
+    'Keyboard',
+    'Text With Image',
+    'Short Text',
+    'Text with Icons',
   ]
-  subwidgets.forEach((_widget) => {
-    it(`Create a widget -${_widget}`, () => {
+  it(`Create widgets`, () => {
+    subwidgets.forEach((_widget) => {
       createwidget(_widget)
+      if (_widget === 'Mobile App') {
+        cy.get('#androidUrl').type('https://www.google.ca/')
+        cy.get('#iosUrl').type('https://www.google.ca/')
+      } else if (_widget === 'Gallery') {
+        cy.get('#galleryId').type('f0083daa-2988-4144-be17-34cd8fb288c9')
+      } else if (_widget === 'Keyboard') {
+        cy.get('#macUrl').type('https://www.google.ca/')
+        cy.get('#windowsUrl').type('https://www.google.ca/')
+      } else if (
+        _widget === 'Text With Image' ||
+        _widget === 'Text with Icons'
+      ) {
+        cy.get('#title').type('test')
+      } else if (_widget === 'Short Text') {
+        cy.get('#title').type('text title test')
+        cy.get('#text').type('subtitle text')
+        cy.get('#url').type('https://www.google.ca/')
+        cy.get('#urlLabel').type('url label')
+      }
       throughme('testwidgetcypress')
     })
-  })
-
-  it('Create a widget - mobile', () => {
-    createwidget('Mobile App')
-    cy.get('#androidUrl').type('https://www.google.ca/')
-    cy.get('#iosUrl').type('https://www.google.ca/')
-
-    throughme('testwidgetcypress')
-  })
-
-  it('Create a widget - gallery', () => {
-    createwidget('Gallery')
-    cy.get('#galleryId').type('f0083daa-2988-4144-be17-34cd8fb288c9')
-
-    throughme('testwidgetcypress')
-  })
-
-  it('Create a widget - keyboard', () => {
-    createwidget('Keyboard')
-    cy.get('#macUrl').type('https://www.google.ca/')
-    cy.get('#windowsUrl').type('https://www.google.ca/')
-
-    throughme('testwidgetcypress')
-  })
-
-  it('Create a widget - Text with image', () => {
-    createwidget('Text With Image')
-    cy.get('#title').type('test')
-    throughme('testwidgetcypress')
-  })
-
-  it('Create a widget - short text', () => {
-    createwidget('Short Text')
-    cy.get('#title').type('test')
-    throughme('testwidgetcypress')
-  })
-
-  it('Create a widget - text with icons', () => {
-    createwidget('Text with Icons')
-    cy.get('#title').type('test')
-    throughme('testwidgetcypress')
   })
 }) // end of describe

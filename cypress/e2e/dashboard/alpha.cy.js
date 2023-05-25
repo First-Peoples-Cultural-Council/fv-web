@@ -21,8 +21,11 @@ describe('alphabet Test', () => {
     cy.contains('Edit your Alphabet').click()
     cy.get('.min-w-full > .bg-white >').should('have.length', 58)
     cy.get(':nth-child(1) > :nth-child(5) > .text-secondary >').click()
-    cy.get('#generalNote').should('contain.value', note)
-    cy.get('#generalNote').clear()
+    if (cy.get('#generalNote').should('have.value', '')) {
+      cy.get('#generalNote').should('contain.value', note)
+      cy.get('#generalNote').clear()
+    }
+
     cy.contains('Save Changes').click()
     cy.get(':nth-child(1) > :nth-child(5) > .text-secondary >').click()
     cy.get('#generalNote').should('contain.value', '')

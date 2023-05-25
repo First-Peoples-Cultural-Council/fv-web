@@ -2,7 +2,7 @@
 
 function randomString(length, chars) {
   let result = ''
-  for (let i = length; i > 0; --i)
+  for (let i = length; i > 0; i -= 1)
     result += chars[Math.floor(Math.random() * chars.length)]
   return result
 }
@@ -10,9 +10,6 @@ function randomString(length, chars) {
 describe('page tests', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
-  })
-
-  it.only('View Create Page', () => {
     cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
     cy.login(
       Cypress.env('CYPRESS_FV_USERNAME'),
@@ -21,19 +18,19 @@ describe('page tests', () => {
     cy.wait(3000)
     cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(500)
+  })
+
+  it('View Create Page', () => {
+    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.wait(500)
     cy.contains('cn').click()
     cy.contains('Dashboard').click()
     cy.contains('Custom Pages').click()
     cy.contains('Create a Custom Page').click()
     cy.contains('Create a new custom page').should('exist')
-  })
+    // })
 
-  it('View Create Page - check vaidation', () => {
-    cy.visit(`${Cypress.env('baseUrl')}/` + `/nuxeo/login.jsp`)
-    cy.login(
-      Cypress.env('CYPRESS_FV_USERNAME'),
-      Cypress.env('CYPRESS_FV_PASSWORD'),
-    )
+    // it('View Create Page - check vaidation', () => {
     cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(500)
     cy.contains('cn').click()
@@ -44,17 +41,12 @@ describe('page tests', () => {
 
     cy.contains('title must be').should('exist')
     cy.contains('Please enter a URL').should('exist')
-  })
+    // })
 
-  it('View Create Page - create page', () => {
+    // it('View Create Page - create page', () => {
     const rString = randomString(
       17,
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    )
-    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
-    cy.login(
-      Cypress.env('CYPRESS_FV_USERNAME'),
-      Cypress.env('CYPRESS_FV_PASSWORD'),
     )
     cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
     cy.wait(500)
