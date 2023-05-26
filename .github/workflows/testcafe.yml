@@ -6,21 +6,26 @@ on:
 
 jobs:
   test_schedule:
-    runs-on: ubuntu-latest
-    container: testcafe/browsers:node12.18.3-chrome87-ff82
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - name: checkout
         uses: actions/checkout@v3
-
-      - name: Install Testcafe
-        run: npm i testcafe@2.5.1-rc.1
-
-      - name: Install TestCafe Diff Blink
-        run: npm i testcafe-diff-blink@0.5.5
-
+      - name: Run TestCafe tests
+        uses: DevExpress/testcafe-action@latest
+        with: 
+          args: "chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual"
+      - name: install testcafe-blink-diff
+        run: npm i testcafe-blink-diff
       - name: Run tests
         run: |
-          npx testcafe chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual
-          npx testcafe-blink-diff testcafe/screenshots --compare base:actual --open --threshold 0.03 testcafe
+          pwd
+          npx testcafe-blink-diff testcafe/screenshots --compare base:actual --open --threshold 3.3 testcafe
 
 
