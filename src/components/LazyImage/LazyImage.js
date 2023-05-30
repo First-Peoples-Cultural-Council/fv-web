@@ -81,14 +81,14 @@ function LazyImage({
 
   if (forceLoad) {
     return (
-      <>
-        <img src={src} className={imgStyling} alt={alt} onClick={onClick} />
+      <button onClick={onClick} type="button">
+        <img src={src} className={imgStyling} alt={alt} />
         {label && (
           <button type="button" onClick={onClick} className={labelClass}>
             {label}
           </button>
         )}
-      </>
+      </button>
     )
   }
 
@@ -98,13 +98,12 @@ function LazyImage({
       : simpleSvgPlaceholder()
 
   return (
-    <>
+    <button type="button" onClick={onClick}>
       <img
         ref={ref}
         src={placeholder}
         className={`${imgStyling} ${imgLoaded ? 'opacity-1' : 'opacity-0'}`}
         onLoad={() => setImgLoaded(true)}
-        onClick={onClick}
         alt={alt}
       />
       {label && (
@@ -112,7 +111,7 @@ function LazyImage({
           {label}
         </button>
       )}
-    </>
+    </button>
   )
 }
 

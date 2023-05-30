@@ -1,0 +1,23 @@
+{
+    auto_https off
+}
+:8080
+
+root * /srv
+file_server
+
+log {
+  level WARN
+}
+encode gzip
+
+try_files {path} /index.html
+
+templates /index.html* {
+  mime text/html
+}
+
+header /index.html {
+  Cache-Control max-age=0,no-cache,no-store,must-revalidate
+}
+
