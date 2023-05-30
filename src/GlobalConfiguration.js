@@ -6,12 +6,8 @@ let AWS_USER_POOL_ID
 let AWS_CLIENT_ID
 
 switch (CONFIGURATION_SOURCE) {
-  case 'Caddy':
-    // they have been injected into the HTML with Caddy's syntax
-    V1_API_URL = SSI_V1_API_URL
-    API_URL = SSI_API_URL
-    break
   case 'SSI':
+  case 'Caddy':
     // they have been injected into the HTML
     V1_API_URL = SSI_V1_API_URL
     API_URL = SSI_API_URL
