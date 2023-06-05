@@ -67,7 +67,7 @@ function LanguagesData() {
 
     if (categorizedSiteList) {
       ordered = Object.keys(categorizedSiteList)
-        .sort()
+        .sort((a, b) => a - b)
         .reduce((obj, key) => {
           const newObj = { ...obj }
           newObj[key] = categorizedSiteList[key]
