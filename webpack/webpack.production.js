@@ -2,7 +2,7 @@ const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
 const definitions = {
-  CONFIGURATION_SOURCE: JSON.stringify('SSI'),
+  CONFIGURATION_SOURCE: JSON.stringify('Caddy'),
 }
 
 module.exports = (env) =>

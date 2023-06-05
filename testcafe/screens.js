@@ -2,7 +2,7 @@ import { takeSnapshot } from 'testcafe-blink-diff'
 const { Selector } = require('testcafe')
 let testName = ''
 
-fixture('FV Site Pages').page('https://v2.dev.firstvoices.com/lilwat')
+fixture('FVSitePages').page('https://v2.dev.firstvoices.com/lilwat')
 test('Site Homepage', async (t) => {
   testName = t.testRun.test.name
   await t.maximizeWindow()
@@ -99,7 +99,7 @@ test('Keyboards', async (t) => {
   })
 }).page('https://v2.dev.firstvoices.com/lilwat/keyboards')
 
-test('Our Language', async (t) => {
+test('OurLanguage', async (t) => {
   testName = t.testRun.test.name
   await t.maximizeWindow()
   await takeSnapshot(t, testName, {
@@ -109,7 +109,7 @@ test('Our Language', async (t) => {
   })
 }).page('https://v2.dev.firstvoices.com/lilwat/our-language')
 
-test('Our People', async (t) => {
+test('OurPeople', async (t) => {
   testName = t.testRun.test.name
   await t.maximizeWindow()
   await takeSnapshot(t, testName, {
@@ -119,7 +119,7 @@ test('Our People', async (t) => {
   })
 }).page('https://v2.dev.firstvoices.com/lilwat/our-people')
 
-test('Kids - Home', async (t) => {
+test('Kids-Home', async (t) => {
   testName = t.testRun.test.name
   await t.maximizeWindow()
   await takeSnapshot(t, testName, {
@@ -129,7 +129,7 @@ test('Kids - Home', async (t) => {
   })
 }).page('https://v2.dev.firstvoices.com/lilwat/kids')
 
-test('Nav bar - Dictionary', async (t) => {
+test('Navbar-Dictionary', async (t) => {
   testName = t.testRun.test.name
   await t.maximizeWindow().click(Selector('#NavBarPresentationMenu').nth(0))
   await takeSnapshot(t, testName, {

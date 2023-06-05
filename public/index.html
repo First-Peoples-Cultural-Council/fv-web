@@ -71,6 +71,14 @@
       let SSI_API_URL = '<!--#echo var="API_URL" -->'
     </script>
     <% } %>
+    <% if (CONFIGURATION_SOURCE === 'Caddy') { %>
+    <script type="text/javascript">
+      let SSI_V1_API_URL = '{{env "V1_API_URL"}}';
+      let SSI_API_URL = '{{env "API_URL"}}';
+      let SSI_AWS_USER_POOL_ID = '{{env "AWS_USER_POOL_ID"}}';
+      let SSI_AWS_CLIENT_ID = '{{env "AWS_CLIENT_ID"}}';
+    </script>
+    <% } %>
 
     <!-- Matomo -->
     <% if (process.env.NODE_ENV === 'production') { %>

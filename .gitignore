@@ -15,3 +15,6 @@ release.properties
 /frontend/cypress/scripts/files/*_errors.csv
 /frontend/cypress/temp/
 /frontend/cypress/videos/
+
+.idea
+dist
