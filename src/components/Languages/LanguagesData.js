@@ -5,6 +5,7 @@ import api from 'services/api'
 import { getMediaUrl } from 'common/utils/urlHelpers'
 import { useUserStore } from 'context/UserContext'
 import placeholder from 'images/cover-thumbnail.png'
+import useSites from 'common/dataHooks/useSites'
 
 const OTHER_LANGUAGES_DESCRIPTOR = 'Other FirstVoices Language Sites'
 
@@ -12,27 +13,11 @@ function LanguagesData() {
   const { user } = useUserStore()
 
   // Fetching data for all sites, user's sites and colors for parent languages
-  const { data: allSitesResponse } = useQuery(
-    ['languages'],
-    () => api.site.getSites(),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const { data: allSitesResponse } = useSites()
 
   const { data: userSitesResponse } = useQuery(
     ['userSites', user?.id],
     () => api.user.getMySites(),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
-
-  const { data: parentLanguagesResponse } = useQuery(
-    ['parentLanguagesData'],
-    () => api.directory.get({ directoryName: 'parent_languages' }),
     {
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
@@ -68,12 +53,13 @@ function LanguagesData() {
     // Categorization based on the parent language
     const categorizedSiteList = {}
     siteList?.forEach((mappedSite) => {
-      mappedSite.parentLanguageTitle =
+      const newSite = { ...mappedSite }
+      newSite.parentLanguageTitle =
         mappedSite.parentLanguageTitle || OTHER_LANGUAGES_DESCRIPTOR
-      if (!categorizedSiteList?.[mappedSite.parentLanguageTitle]) {
-        categorizedSiteList[mappedSite.parentLanguageTitle] = []
+      if (!categorizedSiteList?.[newSite.parentLanguageTitle]) {
+        categorizedSiteList[newSite.parentLanguageTitle] = []
       }
-      categorizedSiteList[mappedSite.parentLanguageTitle].push(mappedSite)
+      categorizedSiteList[newSite.parentLanguageTitle].push(newSite)
     })
 
     // Sort the languasoges in alphabetical order of their parent languages
@@ -83,8 +69,9 @@ function LanguagesData() {
       ordered = Object.keys(categorizedSiteList)
         .sort()
         .reduce((obj, key) => {
-          obj[key] = categorizedSiteList[key]
-          return obj
+          const newObj = { ...obj }
+          newObj[key] = categorizedSiteList[key]
+          return newObj
         }, {})
     }
 
@@ -99,28 +86,14 @@ function LanguagesData() {
     return ordered
   }
 
-  const parentLanguagesDataAdapter = (parentLanguagesEntries) => {
-    const output = {}
-
-    parentLanguagesEntries?.entries.forEach((entry) => {
-      output[entry?.id] = entry?.properties.color
-        .toLowerCase()
-        .replace(/\s/g, '')
-    })
-
-    return output
-  }
-
   return {
-    allSitesList: languageSitesDataAdapter({
-      siteList: allSitesResponse,
-      isAllSitesList: true,
-    }),
+    // sites
+    allSitesList: allSitesResponse,
+    // mySites
     userSitesList: languageSitesDataAdapter({
       siteList: userSitesResponse,
       isAllSitesList: false,
     }),
-    parentLanguagesData: parentLanguagesDataAdapter(parentLanguagesResponse),
   }
 }
 

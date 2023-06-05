@@ -5,11 +5,7 @@ import PropTypes from 'prop-types'
 import Languages from 'components/Languages'
 import SectionTitle from 'components/SectionTitle'
 
-function LanguagesPresentation({
-  allSitesList,
-  userSitesList,
-  parentLanguagesData,
-}) {
+function LanguagesPresentation({ allSitesList, userSitesList }) {
   return (
     <section
       data-testid="LanguagesPresentation"
@@ -44,23 +40,23 @@ function LanguagesPresentation({
             />
           </div>
           <div className="mt-5">
-            {Object.keys(allSitesList).map((parentLanguage) => {
+            {allSitesList.map((parentLanguage) => {
               // Generating class for border color
-              const borderColor = parentLanguagesData[parentLanguage]
-                ? `border-[${parentLanguagesData[parentLanguage]}]`
+              const borderColor = parentLanguage
+                ? `border-[${parentLanguage}]`
                 : 'border-gray'
 
               return (
                 <div
                   id="LanguagesPresentation"
-                  key={parentLanguage}
+                  key={parentLanguage.language}
                   className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
                 >
                   <h1 className="pl-4 text-xl font-extrabold text-primary">
-                    {parentLanguage}
+                    {parentLanguage.language}
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
-                    {allSitesList[parentLanguage].map((site) => (
+                    {parentLanguage.sites.map((site) => (
                       <Languages.SiteCard key={site.uid} site={site} />
                     ))}
                   </div>
@@ -75,11 +71,10 @@ function LanguagesPresentation({
 }
 
 // PROPTYPES
-const { object } = PropTypes
+const { object, array } = PropTypes
 LanguagesPresentation.propTypes = {
-  allSitesList: object,
+  allSitesList: array,
   userSitesList: object,
-  parentLanguagesData: object,
 }
 
 export default LanguagesPresentation

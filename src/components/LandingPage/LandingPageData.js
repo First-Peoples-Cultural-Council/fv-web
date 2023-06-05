@@ -18,6 +18,8 @@ function LandingPageData() {
     },
   )
 
+  // const { data: testData } = useQuery(['sites'], () => api.site.get())
+  // console.log({ testData })
   const landingPageUid = data?.entries?.[0]?.uid
 
   // const rssFeed =
