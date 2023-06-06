@@ -4,11 +4,12 @@ import React from 'react'
 import Languages from 'components/Languages'
 
 function LanguagesContainer() {
-  const { allSitesList, userSitesList } = Languages.Data()
+  const { allSitesList, userSitesList, parentLanguagesData } = Languages.Data()
   return (
     <Languages.Presentation
       allSitesList={allSitesList}
       userSitesList={userSitesList}
+      parentLanguagesData={parentLanguagesData}
     />
   )
 }

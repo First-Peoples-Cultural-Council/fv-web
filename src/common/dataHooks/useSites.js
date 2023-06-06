@@ -13,12 +13,11 @@ export default function useSites() {
       uid: site?.id,
       title: site?.title,
       sitename: site?.slug,
-      visibility: site?.visibility,
+      visibility: site?.visibility?.toLowerCase(),
       logoPath: site?.logo?.content || placeholder,
       parentLanguageTitle: site?.language,
       features: site?.features,
     })),
   }))
-
   return { ...response, data: formattedData }
 }

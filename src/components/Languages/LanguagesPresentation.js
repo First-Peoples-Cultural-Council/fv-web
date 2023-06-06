@@ -42,8 +42,8 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
           <div className="mt-5">
             {allSitesList.map((parentLanguage) => {
               // Generating class for border color
-              const borderColor = parentLanguage
-                ? `border-[${parentLanguage}]`
+              const borderColor = parentLanguage.language
+                ? `border-[${parentLanguage.language}]`
                 : 'border-gray'
 
               return (

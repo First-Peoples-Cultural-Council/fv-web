@@ -24,6 +24,15 @@ function LanguagesData() {
     },
   )
 
+  const { data: parentLanguagesResponse } = useQuery(
+    ['parentLanguagesData'],
+    () => api.directory.get({ directoryName: 'parent_languages' }),
+    {
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  )
+
   const languageSitesDataAdapter = ({ siteList, isAllSitesList }) => {
     let siteListMapped = siteList?.map((site) => getFormattedSiteObject(site))
 
@@ -86,6 +95,18 @@ function LanguagesData() {
     return ordered
   }
 
+  const parentLanguagesDataAdapter = (parentLanguagesEntries) => {
+    const output = {}
+
+    parentLanguagesEntries?.entries.forEach((entry) => {
+      output[entry?.id] = entry?.properties.color
+        .toLowerCase()
+        .replace(/\s/g, '')
+    })
+
+    return output
+  }
+
   return {
     // sites
     allSitesList: allSitesResponse,
@@ -94,6 +115,7 @@ function LanguagesData() {
       siteList: userSitesResponse,
       isAllSitesList: false,
     }),
+    parentLanguagesData: parentLanguagesDataAdapter(parentLanguagesResponse),
   }
 }
 
