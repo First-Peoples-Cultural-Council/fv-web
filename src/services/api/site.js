@@ -2,10 +2,7 @@ import { apiV1, apiBase } from 'services/config'
 import { SITES } from 'common/constants'
 
 const site = {
-  get: async () => {
-    const response = await apiBase.get(SITES).json()
-    return response
-  },
+  get: async (sitename) => apiV1.get(`site/${sitename}`).json(),
   getSites: async () => apiBase.get(SITES).json(),
   mySites: async () => apiV1.get('site?mySites=true').json(),
 }
