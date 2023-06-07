@@ -5,7 +5,12 @@ import PropTypes from 'prop-types'
 import Languages from 'components/Languages'
 import SectionTitle from 'components/SectionTitle'
 
-function LanguagesPresentation({ allSitesList, userSitesList }) {
+function LanguagesPresentation({
+  allSitesList,
+  userSitesList,
+  parentLanguagesData,
+}) {
+  console.log(parentLanguagesData)
   return (
     <section
       data-testid="LanguagesPresentation"
@@ -42,10 +47,9 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
           <div className="mt-5">
             {allSitesList.map((parentLanguage) => {
               // Generating class for border color
-              const borderColor = parentLanguage.language
-                ? `border-[${parentLanguage.language}]`
+              const borderColor = parentLanguagesData[parentLanguage.language]
+                ? `border-[${parentLanguagesData[parentLanguage.language]}]`
                 : 'border-gray'
-
               return (
                 <div
                   id="LanguagesPresentation"
@@ -75,6 +79,7 @@ const { object, array } = PropTypes
 LanguagesPresentation.propTypes = {
   allSitesList: array,
   userSitesList: object,
+  parentLanguagesData: object,
 }
 
 export default LanguagesPresentation
