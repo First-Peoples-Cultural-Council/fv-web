@@ -32,7 +32,7 @@ function SiteCard({ site }) {
         <img
           className="absolute h-16 w-16 md:w-24 md:h-24 rounded-full ring-1 ring-gray-200 -left-8 md:-left-10"
           src={site.logoPath}
-          alt={`${site.title} - Logo Image`}
+          alt={`${site.title} - Logo`}
         ></img>
         <p className="w-full ml-24 mr-8 md:mr-4 tracking-tight text-center break-word">
           {site.title}
@@ -73,7 +73,6 @@ function SiteCard({ site }) {
             </p>
           </div>
           <button
-            type="button"
             type="button"
             className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
             onClick={() => setPrivateSiteModalOpen(true)}
