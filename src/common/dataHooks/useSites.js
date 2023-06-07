@@ -6,7 +6,7 @@ import api from 'services/api'
 import placeholder from 'images/cover-thumbnail.png'
 
 export default function useSites() {
-  const response = useQuery([SITES], () => api.site.get())
+  const response = useQuery([SITES], () => api.site.getSites())
   const formattedData = response?.data?.map((language) => ({
     language: language?.language,
     sites: language?.sites.map((site) => ({
