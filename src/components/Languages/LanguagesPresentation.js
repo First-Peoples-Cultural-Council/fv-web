@@ -10,7 +10,6 @@ function LanguagesPresentation({
   userSitesList,
   parentLanguagesData,
 }) {
-  console.log(parentLanguagesData)
   return (
     <section
       data-testid="LanguagesPresentation"
