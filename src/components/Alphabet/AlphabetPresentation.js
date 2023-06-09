@@ -89,7 +89,7 @@ AlphabetPresentation.propTypes = {
       relatedAudio: array,
       relatedLinks: array,
       relatedPictures: array,
-      relatedVideo: array,
+      relatedVideo: object,
       relatedWords: array,
     }),
   ),
