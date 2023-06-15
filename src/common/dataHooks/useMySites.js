@@ -7,7 +7,6 @@ import placeholder from 'images/cover-thumbnail.png'
 
 export default function useMySites() {
   const userSitesResponse = useQuery([MY_SITES], () => api.site.mySites())
-  //   console.log({ userSitesResponse })
   const formattedUserSitesData = userSitesResponse?.data?.map((site) => ({
     uid: site?.id,
     title: site?.title,
@@ -17,9 +16,7 @@ export default function useMySites() {
     parentLanguageTitle: site?.language,
     features: site?.features,
   }))
-  //   console.log({ formattedUserSitesData })
   return {
-    // ...userSitesResponse,
     mySitesData: formattedUserSitesData,
   }
 }
