@@ -19,23 +19,8 @@ export default function useSites() {
       features: site?.features,
     })),
   }))
-  // console.log({ allSitesResponse })
-  // const userSitesResponse = useQuery([MY_SITES], () => api.site.mySites())
-  // console.log({ userSitesResponse })
-  // const formattedUserSitesData = userSitesResponse?.data?.map((site) => ({
-  //   uid: site?.id,
-  //   title: site?.title,
-  //   sitename: site?.slug,
-  //   visibility: site?.visibility?.toLowerCase(),
-  //   logoPath: site?.logo?.content || placeholder,
-  //   parentLanguageTitle: site?.language,
-  //   features: site?.features,
-  // }))
-  // console.log({ formattedUserSitesData })
+
   return {
-    // ...allSitesResponse,
     allSitesData: formattedSitesData,
-    // ...userSitesResponse,
-    // userSitesList: formattedUserSitesData,
   }
 }
