@@ -17,6 +17,7 @@ export default function useMySites() {
     features: site?.features,
   }))
   return {
+    ...userSitesResponse,
     mySitesData: formattedUserSitesData,
   }
 }

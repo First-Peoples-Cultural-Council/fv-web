@@ -21,6 +21,7 @@ export default function useSites() {
   }))
 
   return {
+    ...allSitesResponse,
     allSitesData: formattedSitesData,
   }
 }
