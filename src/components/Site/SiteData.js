@@ -1,13 +1,11 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
 import i18next from 'i18next'
 
 // FPCC
-import api from 'services/api'
-import { useSiteDispatch } from 'context/SiteContext'
-// import useSite from 'common/dataHooks/useSite'
 import useImmersion from 'common/dataHooks/useImmersion'
+import useSite from 'common/dataHooks/useSite'
+import { useSiteDispatch } from 'context/SiteContext'
 
 function SiteData() {
   const navigate = useNavigate()
@@ -17,16 +15,7 @@ function SiteData() {
   // --------------------------------
   // Get Language Site data
   // --------------------------------
-  const { isLoading, error, data } = useQuery(
-    ['site', sitename],
-    () => api.site.get(sitename),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!sitename,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const { isLoading, error, data } = useSite()
 
   useEffect(() => {
     if (isLoading === false && error === null) {

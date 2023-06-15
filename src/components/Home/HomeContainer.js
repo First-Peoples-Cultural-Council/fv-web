@@ -3,10 +3,10 @@ import React from 'react'
 // FPCC
 import HomeData from 'components/Home/HomeData'
 import HomePresentation from 'components/Home/HomePresentation'
-import WidgetArea from 'components/WidgetArea'
+// import WidgetArea from 'components/WidgetArea'
 
 function HomeContainer() {
-  const { backgroundId, backgroundType, title, logoId, siteId } = HomeData()
+  const { backgroundId, backgroundType, title, logoId } = HomeData()
 
   return (
     <div data-testid="Home">
@@ -16,7 +16,7 @@ function HomeContainer() {
         title={title}
         logoId={logoId}
       />
-      <WidgetArea.Container id={siteId} />
+      {/* <WidgetArea.Container id={siteId} /> */}
     </div>
   )
 }
