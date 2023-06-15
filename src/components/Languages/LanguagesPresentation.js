@@ -16,7 +16,7 @@ function LanguagesPresentation({
       className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
       {/* USER SITES LANGUAGES SECTION */}
-      {userSitesList && Object.keys(userSitesList).length > 0 && (
+      {userSitesList && userSitesList.length > 0 && (
         <div>
           <div className="mt-4 py-8 items-center">
             <SectionTitle.Presentation
@@ -25,11 +25,9 @@ function LanguagesPresentation({
             />
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
-            {Object.keys(userSitesList).map((parentLanguage) =>
-              userSitesList[parentLanguage].map((site) => (
-                <Languages.SiteCard key={site.uid} site={site} />
-              )),
-            )}
+            {userSitesList.map((site) => (
+              <Languages.SiteCard key={site.uid} site={site} />
+            ))}
           </div>
         </div>
       )}
@@ -77,7 +75,7 @@ function LanguagesPresentation({
 const { object, array } = PropTypes
 LanguagesPresentation.propTypes = {
   allSitesList: array,
-  userSitesList: object,
+  userSitesList: array,
   parentLanguagesData: object,
 }
 
