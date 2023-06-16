@@ -1,4 +1,4 @@
-import { apiV1, apiBase } from 'services/config'
+import { apiBase } from 'services/config'
 import { SITES, MY_SITES } from 'common/constants'
 
 const site = {
