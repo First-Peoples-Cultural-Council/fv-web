@@ -19,16 +19,13 @@ function DictionaryGridTilePresentationKids({ entry }) {
       {/* Link to  entry */}
       <div className="absolute top-2 right-2 print:hidden">
         <Link
-          className="text-fv-charcoal-dark"
+          className="text-fv-charcoal"
           to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
             entry.type,
           )}/${entry.id}`}
         >
           <span className="sr-only">Full screen</span>
-          {getIcon(
-            'Fullscreen',
-            'fill-current h-4 w-4 hover:opacity-100 opacity-50',
-          )}
+          {getIcon('Fullscreen', 'fill-current h-4 w-4 hover:cursor-pointer')}
         </Link>
       </div>
       <div className="grid grid-cols-2 gap-2 p-2 h-full w-full">
