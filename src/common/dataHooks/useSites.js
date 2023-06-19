@@ -6,10 +6,10 @@ import api from 'services/api'
 import placeholder from 'images/cover-thumbnail.png'
 
 export default function useSites() {
-  const response = useQuery([SITES], () => api.site.getSites())
-  const formattedData = response?.data?.map((language) => ({
-    language: language?.language,
-    sites: language?.sites.map((site) => ({
+  const allSitesResponse = useQuery([SITES], () => api.site.getSites())
+  const formattedSitesData = allSitesResponse?.data?.map((parentLanguage) => ({
+    language: parentLanguage?.language,
+    sites: parentLanguage?.sites.map((site) => ({
       uid: site?.id,
       title: site?.title,
       sitename: site?.slug,
@@ -19,5 +19,9 @@ export default function useSites() {
       features: site?.features,
     })),
   }))
-  return { ...response, data: formattedData }
+
+  return {
+    ...allSitesResponse,
+    allSitesData: formattedSitesData,
+  }
 }

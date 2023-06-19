@@ -50,9 +50,9 @@ function DictionaryGridPresentation({
             >
               {getIcon('Print', 'fill-current w-8 h-auto')}
             </button>
-            {items.pages.map((page, index) => (
+            {items.pages.map((page) => (
               <div
-                key={index}
+                key={page.nextPage}
                 className={`grid grid-cols-1 mb-6  ${
                   hasSideNav
                     ? 'lg:grid-cols-2'
@@ -93,7 +93,7 @@ function DictionaryGridPresentation({
 }
 
 // PROPTYPES
-const { array, bool, node, object, string } = PropTypes
+const { array, bool, node, object } = PropTypes
 DictionaryGridPresentation.propTypes = {
   hasSideNav: bool,
   infiniteScroll: object,
@@ -101,7 +101,6 @@ DictionaryGridPresentation.propTypes = {
   items: object,
   kids: bool,
   noResultsMessage: node,
-  sitename: string,
   actions: array,
   moreActions: array,
 }
