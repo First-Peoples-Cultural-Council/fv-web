@@ -4,6 +4,7 @@ import React from 'react'
 import HomeData from 'components/Home/HomeData'
 import HomePresentation from 'components/Home/HomePresentation'
 // import WidgetArea from 'components/WidgetArea'
+// Temporarily commenting out WidgetArea until WIdget API is built and functional
 
 function HomeContainer() {
   const { backgroundId, backgroundType, title, logoId } = HomeData()
