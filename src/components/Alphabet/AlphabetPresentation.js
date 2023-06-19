@@ -34,23 +34,17 @@ function AlphabetPresentation({
           </div>
         )}
         <div className="mb-5 grid grid-cols-6 sm:grid-cols-8 xl:grid-cols-12 gap-2 max-w-screen-lg mx-auto items-center">
-          {characters &&
-            characters.map(({ title, id }) => (
-              <Link
-                data-testid={
-                  selectedData?.title === title
-                    ? 'AlphabetPresentation__selectedCharacter'
-                    : undefined
-                }
-                className={`border col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
-                  selectedData?.title === title ? 'bg-primary text-white' : ''
-                } `}
-                key={id}
-                to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
-              >
-                {title}
-              </Link>
-            ))}
+          {characters?.map(({ title, id }) => (
+            <Link
+              className={`border col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
+                selectedData?.title === title ? 'bg-primary text-white' : ''
+              } `}
+              key={id}
+              to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
+            >
+              {title}
+            </Link>
+          ))}
         </div>
         <div className="p-2  pb-4 lg:pb-10">
           {selectedData?.title === undefined && (
