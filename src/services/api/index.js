@@ -1,6 +1,7 @@
 import alphabet from 'services/api/alphabet'
 import blog from 'services/api/blog'
 import category from 'services/api/category'
+import characters from 'services/api/characters'
 import dictionary from 'services/api/dictionary'
 import directory from 'services/api/directory'
 import document from 'services/api/document'
@@ -27,6 +28,7 @@ export default {
   alphabet,
   blog,
   category,
+  characters,
   dictionary,
   directory,
   document,
