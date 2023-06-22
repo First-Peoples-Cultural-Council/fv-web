@@ -7,8 +7,10 @@ import { useSiteStore } from 'context/SiteContext'
 
 export default function useAlphabet() {
   const { site } = useSiteStore()
-  const response = useQuery([CHARACTERS, site?.sitename], () =>
-    api.characters.get({ sitename: site?.sitename }),
+  const response = useQuery(
+    [CHARACTERS, site?.sitename],
+    () => api.characters.get({ sitename: site?.sitename }),
+    { enabled: !!site?.sitename },
   )
   const formattedResults = response?.data?.results?.map((character) => ({
     id: character?.id,
