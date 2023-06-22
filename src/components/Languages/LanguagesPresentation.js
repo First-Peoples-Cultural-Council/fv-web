@@ -11,7 +11,7 @@ function LanguagesPresentation({
   parentLanguagesData,
 }) {
   console.log({ allSitesList })
-  // console.log({parentLanguagesData})
+  console.log({ parentLanguagesData })
   return (
     <section
       data-testid="LanguagesPresentation"
