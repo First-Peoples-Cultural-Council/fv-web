@@ -1,5 +1,5 @@
 export * from './docTypes'
-export * from './mediaSizes'
+export * from './media'
 export * from './misc'
 export * from './paths'
 export * from './visibility'
