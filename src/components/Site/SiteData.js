@@ -1,38 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
 import i18next from 'i18next'
 
 // FPCC
-import api from 'services/api'
+import useImmersion from 'common/dataHooks/useImmersion'
+import useSite from 'common/dataHooks/useSite'
 import { useSiteDispatch } from 'context/SiteContext'
 
 function SiteData() {
   const navigate = useNavigate()
   const siteDispatch = useSiteDispatch()
   const { sitename } = useParams()
-  const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
   // --------------------------------
   // Get Language Site data
   // --------------------------------
-  const { isLoading, error, data } = useQuery(
-    ['site', sitename],
-    () => api.site.get(sitename),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!sitename,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const { isLoading, error, data } = useSite()
 
   useEffect(() => {
     if (isLoading === false && error === null) {
       siteDispatch({ type: 'SET', data })
-      if (data?.features?.includes('immersion')) {
-        setLabelDictionaryId(data?.children?.['Label Dictionary'])
-      }
     }
     if (error) {
       navigate(
@@ -49,16 +36,7 @@ function SiteData() {
     isLoading: immersionIsLoading,
     error: immersionError,
     data: immersionData,
-  } = useQuery(
-    ['immersion', data?.uid],
-    () => api.immersion.get(labelDictionaryId),
-    {
-      // The query will not execute until the labelDictionaryId exists
-      enabled: !!labelDictionaryId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  } = useImmersion()
 
   useEffect(() => {
     if (
@@ -68,11 +46,11 @@ function SiteData() {
     ) {
       let translations = {}
       const ids = {}
-      immersionData?.entries?.forEach((entry) => {
+      immersionData?.results?.forEach((label) => {
         const output = updateLabels(
-          entry?.properties?.['ecm:uuid'],
-          entry?.properties?.['dc:title'],
-          entry?.properties?.['fvlabel:labelKey'],
+          label?.id,
+          label?.label,
+          label?.labelPath,
           translations,
           ids,
         )

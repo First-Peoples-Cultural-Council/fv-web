@@ -5,7 +5,6 @@ import { Link, useParams } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import { Copy } from 'components/Actions'
 function AlphabetPresentationSelected({
   kids,
@@ -37,9 +36,9 @@ function AlphabetPresentationSelected({
       >
         {title}
         {relatedAudio?.length > 0 &&
-          relatedAudio?.map(({ id, i }) => (
+          relatedAudio?.map(({ id }) => (
             <AudioButton
-              key={id + i}
+              key={id}
               audioArray={[id]}
               iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
               hoverTooltip
@@ -59,11 +58,8 @@ function AlphabetPresentationSelected({
         <div className="flex justify-center m-8">
           <img
             className="rounded-md max-w-xs"
-            src={getMediaUrl({
-              type: 'image',
-              id: relatedPictures?.[0]?.id,
-              viewName: 'Medium',
-            })}
+            src={relatedPictures?.[0]?.content}
+            alt={relatedPictures?.[0]?.title}
             loading="lazy"
           />
         </div>
@@ -73,46 +69,41 @@ function AlphabetPresentationSelected({
           <h2 className="sm:text-2xl font-medium text-xl text-center text-primary p-3">
             Example words
           </h2>
-          {relatedWords.map(
-            (
-              {
-                id: wordId,
-                title: wordTitle,
-                translations,
-                relatedAudio: wordRelatedAudio,
-              },
-              index,
-            ) => {
-              const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
-              return (
-                <div
-                  key={wordId}
-                  className={`grid grid-cols-5 w-full py-2 px-4 ${zebraStripe}`}
-                >
-                  <div className="col-span-2 sm:flex-col sm:place-content-center md:flex-row md:text-center p-2">
-                    <Link
-                      to={`/${sitename}/${kids ? 'kids/' : ''}words/${wordId}`}
-                      className="text-center m-2"
-                    >
-                      {wordTitle}
-                    </Link>
-                    {wordRelatedAudio?.length > 0 &&
-                      wordRelatedAudio?.map(({ id, i }) => (
-                        <AudioButton
-                          key={id + i}
-                          audioArray={[id]}
-                          iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
-                          hoverTooltip
-                        />
-                      ))}
-                  </div>
-                  <div className="col-span-3 flex items-center p-2">
-                    <span>{translations.join('; ')}</span>
-                  </div>
+          {relatedWords.map((word, index) => {
+            const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
+            return (
+              <div
+                key={word?.id}
+                className={`grid grid-cols-5 w-full py-2 px-4 ${zebraStripe}`}
+              >
+                <div className="col-span-2 sm:flex-col sm:place-content-center md:flex-row md:text-center p-2">
+                  <Link
+                    to={`/${sitename}/${kids ? 'kids/' : ''}words/${word?.id}`}
+                    className="text-center m-2"
+                  >
+                    {word?.title}
+                  </Link>
+                  {word?.relatedAudio?.length > 0 &&
+                    word?.relatedAudio?.map(({ id }) => (
+                      <AudioButton
+                        key={id}
+                        audioArray={[id]}
+                        iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
+                        hoverTooltip
+                      />
+                    ))}
                 </div>
-              )
-            },
-          )}
+                <div className="col-span-3 flex items-center p-2">
+                  {word?.translations?.length > 0 &&
+                    word?.translations.map((translation) => (
+                      <span key={translation.id}>
+                        {translation?.text};&nbsp;
+                      </span>
+                    ))}
+                </div>
+              </div>
+            )
+          })}
         </div>
       )}
       {generalNote?.length > 0 && (
@@ -140,7 +131,7 @@ function AlphabetPresentationSelected({
             <div className="-mr-1 ml-2 mb-1 text-3xl font-bold">{title}</div>
           </Link>
         )}
-        {relatedVideo?.length > 0 && (
+        {relatedVideo && (
           <button
             type="button"
             onClick={onVideoClick}
@@ -156,7 +147,7 @@ function AlphabetPresentationSelected({
       {videoIsOpen && (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="w-auto my-6 mx-auto max-w-3xl max-h-3/4-screen">
               {/* content */}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* header */}
@@ -171,14 +162,11 @@ function AlphabetPresentationSelected({
                   </button>
                 </div>
                 {/* body */}
-                <div className="relative p-2 flex-auto">
+                <div className="p-2">
                   <video
                     height="50"
                     width="auto"
-                    src={getMediaUrl({
-                      id: relatedVideo?.[0]?.id,
-                      type: 'video',
-                    })}
+                    src={relatedVideo?.content}
                     controls
                     autoPlay
                   >
@@ -196,15 +184,14 @@ function AlphabetPresentationSelected({
 }
 
 // PROPTYPES
-const { array, bool, func, string } = PropTypes
+const { array, bool, func, object, string } = PropTypes
 
 AlphabetPresentationSelected.propTypes = {
   title: string,
   relatedPictures: array,
   generalNote: string,
-  id: string,
   relatedAudio: array,
-  relatedVideo: array,
+  relatedVideo: object,
   relatedWords: array,
   onVideoClick: func,
   videoIsOpen: bool,

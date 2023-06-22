@@ -1,34 +1,20 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import useAlphabet from 'common/dataHooks/useAlphabet'
 
-const AlphabetData = ({ widgetView }) => {
-  const { site } = useSiteStore()
-  const { uid } = site
+const AlphabetData = () => {
   const { sitename } = useParams()
   const [selectedData, setSelectedData] = useState({})
-  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
 
-  const character = new URLSearchParams(document.location.search).get('char')
-    ? new URLSearchParams(document.location.search).get('char')
-    : null
+  const character = searchParams.get('char') || null
 
-  const { status, isLoading, error, isError, data } = useQuery(
-    ['alphabet', uid],
-    () => api.alphabet.get(uid),
-    {
-      enabled: !!uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const { status, isLoading, data } = useAlphabet()
 
   // Find slected character data
-  const findSelectedCharacterData = (selectedCharacter) => {
+  const findCharacterData = (selectedCharacter) => {
     const characters = Object.assign([], data?.characters)
     const found = characters.filter(
       (char) => char.title === selectedCharacter,
@@ -36,39 +22,34 @@ const AlphabetData = ({ widgetView }) => {
     return found
   }
 
-  useEffect(() => {
-    if (character && data?.characters?.length > 0) {
-      const _selectedData = findSelectedCharacterData(character)
-      if (_selectedData && _selectedData?.title !== selectedData?.title) {
-        setSelectedData(_selectedData)
-      }
+  const setCharacterDataToDisplay = (characterTitle) => {
+    const dataForCharacter = findCharacterData(characterTitle)
+    if (dataForCharacter && dataForCharacter?.title !== selectedData?.title) {
+      setSelectedData(dataForCharacter)
     }
-    if (!character && data?.characters?.length > 0) {
-      const _selectedData = findSelectedCharacterData(
-        data?.characters?.[0]?.title,
-      )
-      if (_selectedData && _selectedData?.title !== selectedData?.title) {
-        setSelectedData(_selectedData)
+  }
+
+  useEffect(() => {
+    if (data?.characters?.length > 0) {
+      if (character) {
+        setCharacterDataToDisplay(character)
+      } else {
+        setCharacterDataToDisplay(data?.characters?.[0]?.title)
       }
     }
   }, [character, data])
 
-  useEffect(() => {
-    if (isError && !widgetView) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
-
   // Video Modal
   const [videoIsOpen, setVideoIsOpen] = useState(false)
 
+  // onCharacterClick only used in Widget mode - Alphabet page is url driven
   const onCharacterClick = (clickedCharacter) => {
-    const _selectedData = findSelectedCharacterData(clickedCharacter)
-    if (_selectedData && _selectedData?.title !== selectedData?.title) {
-      setSelectedData(_selectedData)
+    const dataForClickedCharacter = findCharacterData(clickedCharacter)
+    if (
+      dataForClickedCharacter &&
+      dataForClickedCharacter?.title !== selectedData?.title
+    ) {
+      setSelectedData(dataForClickedCharacter)
     }
   }
 
@@ -78,8 +59,8 @@ const AlphabetData = ({ widgetView }) => {
 
   return {
     characters: data?.characters,
-    links: data?.relatedLinks,
-    isLoading: isLoading || status === 'idle' || isError,
+    links: data?.relatedLinks || [],
+    isLoading: isLoading || status === 'idle',
     sitename,
     onCharacterClick,
     onVideoClick,
