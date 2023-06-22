@@ -10,8 +10,6 @@ function LanguagesPresentation({
   userSitesList,
   parentLanguagesData,
 }) {
-  console.log({ allSitesList })
-  console.log({ parentLanguagesData })
   return (
     <section
       data-testid="LanguagesPresentation"
@@ -45,14 +43,12 @@ function LanguagesPresentation({
           </div>
           <div className="mt-5">
             {allSitesList.map((parentLanguage) => {
-              // console.log({parentLanguage})
               // Generating class for border color
               const borderColor = parentLanguagesData[
                 parentLanguage.languageCode
               ]
                 ? `border-[${parentLanguagesData[parentLanguage.languageCode]}]`
                 : 'border-gray'
-              // console.log({borderColor})
               return (
                 <div
                   id="LanguagesPresentation"

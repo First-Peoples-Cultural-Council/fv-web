@@ -11,30 +11,6 @@ function LanguagesData() {
 
   const { mySitesData } = useMySites()
 
-  // console.log({parentLanguageColors})
-
-  // const { data: parentLanguagesResponse } = useQuery(
-  //   ['parentLanguagesData'],
-  //   () => api.directory.get({ directoryName: 'parent_languages' }),
-  //   {
-  //     refetchOnWindowFocus: false,
-  //     refetchOnReconnect: false,
-  //   },
-  // )
-
-  // const parentLanguagesDataAdapter = (parentLanguagesEntries) => {
-  //   const output = {}
-
-  //   parentLanguagesEntries?.entries.forEach((entry) => {
-  //     output[entry?.id] = entry?.properties.color
-  //       .toLowerCase()
-  //       .replace(/\s/g, '')
-  //   })
-  //   console.log({output})
-  //   return output
-  // }
-  // parentLanguagesDataAdapter(parentLanguagesResponse)
-
   return {
     // sites
     allSitesList: allSitesData,
