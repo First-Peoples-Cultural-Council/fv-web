@@ -28,7 +28,6 @@ function StoryPagePreviewPresentation({ page, pageNumber }) {
             src={getMediaUrl({
               type: 'video',
               id: page?.visualMedia?.docId,
-              viewName: 'Thumbnail',
             })}
             className="object-cover"
             controls

@@ -148,7 +148,6 @@ const getMedia = ({ pictures, videos }) => {
             src={getMediaUrl({
               type: 'video',
               id: video?.uid || video,
-              viewName: 'Small',
             })}
             controls
           >

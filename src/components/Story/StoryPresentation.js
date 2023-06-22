@@ -247,7 +247,6 @@ const getMedia = ({ images = [], videos = [] }) => {
                   src={getMediaUrl({
                     type: 'video',
                     id: video?.uid || video,
-                    viewName: 'Small',
                   })}
                   controls
                 >
@@ -288,7 +287,6 @@ const getMedia = ({ images = [], videos = [] }) => {
                     src={getMediaUrl({
                       type: 'video',
                       id: video?.uid || video,
-                      viewName: 'Small',
                     })}
                     controls
                   >
