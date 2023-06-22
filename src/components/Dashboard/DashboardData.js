@@ -82,7 +82,7 @@ function DashboardData() {
 
   return {
     currentUser,
-    currentSite: site,
+    site,
     homeTiles,
     isLoading: userSitesIsLoading || !site,
   }
