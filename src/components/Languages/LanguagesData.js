@@ -1,42 +1,46 @@
-import { useQuery } from 'react-query'
+// import { useQuery } from 'react-query'
 
 // FPCC
-import api from 'services/api'
+// import api from 'services/api'
 import useSites from 'common/dataHooks/useSites'
 import useMySites from 'common/dataHooks/useMySites'
+import { parentLanguageColors } from 'assets/parentLanguageColors'
 
 function LanguagesData() {
   const { allSitesData } = useSites()
 
   const { mySitesData } = useMySites()
 
-  const { data: parentLanguagesResponse } = useQuery(
-    ['parentLanguagesData'],
-    () => api.directory.get({ directoryName: 'parent_languages' }),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  // console.log({parentLanguageColors})
 
-  const parentLanguagesDataAdapter = (parentLanguagesEntries) => {
-    const output = {}
+  // const { data: parentLanguagesResponse } = useQuery(
+  //   ['parentLanguagesData'],
+  //   () => api.directory.get({ directoryName: 'parent_languages' }),
+  //   {
+  //     refetchOnWindowFocus: false,
+  //     refetchOnReconnect: false,
+  //   },
+  // )
 
-    parentLanguagesEntries?.entries.forEach((entry) => {
-      output[entry?.id] = entry?.properties.color
-        .toLowerCase()
-        .replace(/\s/g, '')
-    })
+  // const parentLanguagesDataAdapter = (parentLanguagesEntries) => {
+  //   const output = {}
 
-    return output
-  }
+  //   parentLanguagesEntries?.entries.forEach((entry) => {
+  //     output[entry?.id] = entry?.properties.color
+  //       .toLowerCase()
+  //       .replace(/\s/g, '')
+  //   })
+  //   console.log({output})
+  //   return output
+  // }
+  // parentLanguagesDataAdapter(parentLanguagesResponse)
 
   return {
     // sites
     allSitesList: allSitesData,
     // mySites
     userSitesList: mySitesData,
-    parentLanguagesData: parentLanguagesDataAdapter(parentLanguagesResponse),
+    parentLanguagesData: parentLanguageColors,
   }
 }
 
