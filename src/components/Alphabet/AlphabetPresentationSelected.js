@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
 import { Copy } from 'components/Actions'
 import { IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
-import { getMediaPath } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 function AlphabetPresentationSelected({
   kids,
   onVideoClick,
