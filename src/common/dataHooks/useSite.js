@@ -40,21 +40,27 @@ export default function useSite() {
     title: response?.data?.title,
     sitename: response?.data?.slug,
     parentLanguageTitle: response?.data?.language,
-    logoPathMedium: getMediaPath({
-      mediaObject: response?.data?.logo,
-      type: IMAGE,
-      size: MEDIUM,
-    }),
-    logoPathSmall: getMediaPath({
-      mediaObject: response?.data?.logo,
-      type: IMAGE,
-      size: SMALL,
-    }),
-    logoPathThumbnail: getMediaPath({
-      mediaObject: response?.data?.logo,
-      type: IMAGE,
-      size: THUMBNAIL,
-    }),
+    logoPathMedium: response?.data?.logo
+      ? getMediaPath({
+          mediaObject: response?.data?.logo,
+          type: IMAGE,
+          size: MEDIUM,
+        })
+      : null,
+    logoPathSmall: response?.data?.logo
+      ? getMediaPath({
+          mediaObject: response?.data?.logo,
+          type: IMAGE,
+          size: SMALL,
+        })
+      : null,
+    logoPathThumbnail: response?.data?.logo
+      ? getMediaPath({
+          mediaObject: response?.data?.logo,
+          type: IMAGE,
+          size: THUMBNAIL,
+        })
+      : null,
     topBackgroundImageId: response?.data?.bannerImage,
     topBackgroundVideoId: response?.data?.bannerVideo,
     joinText: null,
