@@ -6,12 +6,14 @@ import WidgetAppsPresentation from 'components/WidgetApps/WidgetAppsPresentation
 import WidgetAppsData from 'components/WidgetApps/WidgetAppsData'
 
 function WidgetAppsContainer({ widgetData }) {
-  const { header, logoId, subtitle, urls } = WidgetAppsData({ widgetData })
+  const { header, logoPath, subtitle, urls } = WidgetAppsData({
+    widgetData,
+  })
 
   return (
     <WidgetAppsPresentation
       header={header}
-      logoId={logoId}
+      logoPath={logoPath}
       subtitle={subtitle}
       urls={urls}
     />
