@@ -1,7 +1,4 @@
-// import { useQuery } from 'react-query'
-
 // FPCC
-// import api from 'services/api'
 import useSites from 'common/dataHooks/useSites'
 import useMySites from 'common/dataHooks/useMySites'
 import { parentLanguageColors } from 'assets/parentLanguageColors'
