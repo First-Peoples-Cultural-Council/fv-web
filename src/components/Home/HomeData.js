@@ -3,8 +3,7 @@ import { useSiteStore } from 'context/SiteContext'
 
 function HomeData() {
   const { site } = useSiteStore()
-  const { title, uid, logoId, topBackgroundImageId, topBackgroundVideoId } =
-    site
+  const { topBackgroundImageId, topBackgroundVideoId } = site
 
   let backgroundType = null
   let backgroundId = null
@@ -20,9 +19,7 @@ function HomeData() {
   return {
     backgroundId,
     backgroundType,
-    title,
-    logoId,
-    siteId: uid,
+    site,
   }
 }
 
