@@ -33,10 +33,9 @@ function PageContainer({ url }) {
         logoPath={logoPath}
       />
       <div className="pb-16 max-w-7xl mx-auto">
-        {widgets &&
-          widgets.map((widget) => (
-            <WidgetContainer key={widget?.id} id={widget} />
-          ))}
+        {widgets?.map((widget) => (
+          <WidgetContainer key={widget?.id} id={widget} />
+        ))}
       </div>
     </main>
   )
