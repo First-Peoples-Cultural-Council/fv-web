@@ -3,11 +3,17 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import SearchSiteForm from 'components/SearchSiteForm'
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import LazyImage from 'components/LazyImage'
+import { ORIGINAL } from 'common/constants'
 
-function HomePresentation({ backgroundId, backgroundType, site }) {
-  const bgSrc = getMediaUrl({ id: backgroundId, type: backgroundType })
+function HomePresentation({ bannerMedia, bannerType, site }) {
+  const bgSrc = getMediaPath({
+    mediaObject: bannerMedia,
+    type: bannerType,
+    size: ORIGINAL,
+  })
+
   function getContents(type) {
     switch (type) {
       case 'gifOrImg':
@@ -21,7 +27,7 @@ function HomePresentation({ backgroundId, backgroundType, site }) {
                 imgStyling="z-0 w-auto h-auto min-w-full min-h-full max-h-1/2-screen xl:max-h-3/4-screen max-w-none"
                 width={1920}
                 forceLoad
-                id={backgroundId}
+                imageObject={bannerMedia}
               />
             </div>
             <div className="z-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-word to-word-dark">
@@ -33,7 +39,7 @@ function HomePresentation({ backgroundId, backgroundType, site }) {
                       height={175}
                       width={175}
                       bgColor="none"
-                      id={site?.logoId}
+                      imageObject={site?.logo}
                     />
                   </div>
                   <div className="hidden md:block text-white text-2xl">
@@ -71,7 +77,7 @@ function HomePresentation({ backgroundId, backgroundType, site }) {
                       height={175}
                       width={175}
                       bgColor="none"
-                      id={site?.logoId}
+                      imageObject={site?.logo}
                     />
                   </div>
                   <div className="hidden md:block text-white text-2xl">
@@ -97,11 +103,11 @@ function HomePresentation({ backgroundId, backgroundType, site }) {
               <div className="w-48 flex flex-col items-center justify-center">
                 <div className="flex mb-2">
                   <LazyImage
-                    imgStyling="h-auto w-24 sm:w-32 lg:w-40 rounded-full"
+                    imgStyling="h-24 sm:h-32 lg:h-40 w-24 sm:w-32 lg:w-40 rounded-full"
                     height={175}
                     width={175}
                     bgColor="none"
-                    id={site?.logoId}
+                    imageObject={site?.logo}
                   />
                 </div>
                 <div className="hidden md:block text-white text-2xl text-center">
@@ -124,15 +130,15 @@ function HomePresentation({ backgroundId, backgroundType, site }) {
       data-testid="HomePresentation"
       className="bg-gradient-to-r from-gray-600 to-gray-700 min-h-96"
     >
-      <div>{site?.title ? getContents(backgroundType) : null}</div>
+      <div>{site?.title ? getContents(bannerType) : null}</div>
     </section>
   )
 }
 // PROPTYPES
 const { object, string } = PropTypes
 HomePresentation.propTypes = {
-  backgroundId: string,
-  backgroundType: string,
+  bannerMedia: string,
+  bannerType: string,
   site: object,
 }
 
