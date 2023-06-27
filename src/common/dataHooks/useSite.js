@@ -62,7 +62,7 @@ export default function useSite() {
           size: THUMBNAIL,
         })
       : null,
-    bannerMedia: response?.data?.bannerImage,
+    bannerImage: response?.data?.bannerImage,
     bannerVideo: response?.data?.bannerVideo,
     joinText: null,
     hasContactUs: true,

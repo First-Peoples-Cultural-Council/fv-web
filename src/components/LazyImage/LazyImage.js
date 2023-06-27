@@ -3,93 +3,66 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import simpleSvgPlaceholder from 'common/utils/simpleSvgPlaceholder'
+import {
+  IMAGE,
+  MEDIUM,
+  ORIGINAL,
+  SMALL,
+  THUMBNAIL,
+} from 'common/constants/media'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function LazyImage({
   alt,
-  id,
-  mimeType,
+  imageObject,
   bgColor,
   height,
   width,
   imgStyling,
   onClick,
-  forceLoad,
   label,
 }) {
-  const [imgLoaded, setImgLoaded] = useState(false)
-  const [src, setSrc] = useState(src)
-  const ref = useRef()
-  const io = useRef()
-
-  const labelClass =
-    'absolute border-2 z-10 bg-white w-4 h-4 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full'
-
-  function isGif() {
-    return mimeType && mimeType === 'image/gif'
-  }
-
-  if (!src && id) {
-    if (isGif()) {
-      if (width && width <= 560) {
-        // Render static image for for GIF
-        setSrc(`/nuxeo/nxpicsfile/default/${id}/Small:content/`)
-      } else {
-        // Render full GIF (Note: this can be very large)
-        setSrc(`/nuxeo/nxfile/default/${id}/file:content/`)
-      }
-    } else {
-      // Handle JPG/PNG - determine size based on anticipated width/height if available, otherwise default to Medium.
-      // Sizes map to picture conversions in org.nuxeo.ecm.platform.picture.ImagingComponent.default.config--pictureConversions
-      let viewName = 'Medium'
-
-      if (width && width <= 100) {
-        viewName = 'Thumbnail'
-      } else if (width && width > 100 && width <= 560) {
-        viewName = 'Small'
-      } else if (width && width > 560 && width <= 1000) {
-        viewName = 'Medium'
-      } else if (width && width > 1000 && width <= 1920) {
-        viewName = 'FullHD'
-      } else if (width && width > 1920) {
-        viewName = 'OriginalJpeg'
-      }
-      setSrc(`/nuxeo/nxpicsfile/default/${id}/${viewName}:content/`)
-    }
-  }
+  const [loaded, setLoaded] = useState(false)
+  const imgRef = useRef()
 
   useEffect(() => {
-    if (ref.current && !forceLoad) {
-      io.current = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.intersectionRatio > 0.5) {
-              ref.current.src = src
-              io.current.unobserve(ref.current)
-            }
-          })
-        },
-        { threshold: [0, 0.5, 1] },
-      )
-      io.current.observe(ref.current)
+    if (imgRef.current && imgRef.current.complete) {
+      setLoaded(true)
     }
-    return () => {
-      if (ref?.current) {
-        io.current.unobserve(ref.current)
-      }
-    }
-  }, [ref])
+  }, [])
 
-  if (forceLoad) {
-    return (
-      <button onClick={onClick} type="button">
-        <img src={src} className={imgStyling} alt={alt} />
-        {label && (
-          <button type="button" onClick={onClick} className={labelClass}>
-            {label}
-          </button>
-        )}
-      </button>
-    )
+  let src = ''
+
+  switch (width) {
+    case width <= 100:
+      src = getMediaPath({
+        mediaObject: imageObject,
+        type: IMAGE,
+        size: THUMBNAIL,
+      })
+      break
+    case width > 100 && width <= 560:
+      src = getMediaPath({
+        mediaObject: imageObject,
+        type: IMAGE,
+        size: SMALL,
+      })
+      break
+    case width > 1000:
+      src = getMediaPath({
+        mediaObject: imageObject,
+        type: IMAGE,
+        size: ORIGINAL,
+      })
+      break
+    case width > 560 && width <= 1000:
+    default:
+      src = getMediaPath({
+        mediaObject: imageObject,
+        type: IMAGE,
+        size: MEDIUM,
+      })
+      break
   }
 
   const placeholder =
@@ -97,17 +70,32 @@ function LazyImage({
       ? simpleSvgPlaceholder({ width, height, bgColor })
       : simpleSvgPlaceholder()
 
+  const aspectRatio = width / height
+
   return (
-    <button type="button" onClick={onClick}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative overflow-hidden ${imgStyling}`}
+    >
+      <div style={{ paddingBottom: `${100 / aspectRatio}%` }} />
+      <img src={placeholder} alt="Placeholder" aria-hidden="true" />
       <img
-        ref={ref}
-        src={placeholder}
-        className={`${imgStyling} ${imgLoaded ? 'opacity-1' : 'opacity-0'}`}
-        onLoad={() => setImgLoaded(true)}
+        loading="lazy"
+        src={src}
         alt={alt}
+        ref={imgRef}
+        onLoad={() => setLoaded(true)}
+        className={`absolute w-full h-full top-0 bottom-0 left-0 right-0 object-cover object-center ${
+          loaded ? 'opacity-1' : 'opacity-0'
+        }`}
       />
       {label && (
-        <button type="button" onClick={onClick} className={labelClass}>
+        <button
+          type="button"
+          onClick={onClick}
+          className="absolute border-2 z-10 bg-white w-4 h-4 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full"
+        >
           {label}
         </button>
       )}
@@ -116,25 +104,22 @@ function LazyImage({
 }
 
 // PROPTYPES
-const { bool, func, number, string } = PropTypes
+const { func, number, object, string } = PropTypes
 LazyImage.propTypes = {
   alt: string,
   label: string,
-  id: string,
-  mimeType: string,
+  imageObject: object,
   imgStyling: string,
   onClick: func,
   height: number,
   width: number,
   bgColor: string,
-  forceLoad: bool,
 }
 
 LazyImage.defaultProps = {
   alt: '',
   imgStyling: 'w-full h-auto',
   onClick: null,
-  forceLoad: false,
 }
 
 export default LazyImage

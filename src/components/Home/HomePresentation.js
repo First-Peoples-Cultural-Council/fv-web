@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import SearchSiteForm from 'components/SearchSiteForm'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import LazyImage from 'components/LazyImage'
-import { ORIGINAL } from 'common/constants'
+import { ORIGINAL, IMAGE, VIDEO } from 'common/constants'
 
 function HomePresentation({ bannerMedia, bannerType, site }) {
   const bgSrc = getMediaPath({
@@ -14,9 +14,13 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
     size: ORIGINAL,
   })
 
+  const logoWidth = 'w-24 sm:w-32  md:w-44 lg:w-60'
+  const logoHeight = 'h-24 sm:h-32 md:h-44 lg:h-60'
+  const titleStyling = 'hidden md:block w-full text-center text-white text-2xl'
+
   function getContents(type) {
     switch (type) {
-      case 'gifOrImg':
+      case IMAGE:
         return (
           <div>
             <div
@@ -24,27 +28,27 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
               className="hidden md:flex justify-center"
             >
               <LazyImage
-                imgStyling="z-0 w-auto h-auto min-w-full min-h-full max-h-1/2-screen xl:max-h-3/4-screen max-w-none"
-                width={1920}
-                forceLoad
+                imgStyling="z-0 h-80 lg:h-96 w-full"
+                width={1280}
+                height={320}
                 imageObject={bannerMedia}
               />
             </div>
             <div className="z-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-word to-word-dark">
               <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
-                <div className="w-24 sm:w-32 lg:w-40 xl:w-48 md:-mt-24 lg:-mt-32 xl:-mt-44 flex flex-col items-center justify-center mr-4">
+                <div
+                  className={`${logoWidth} md:-mt-24 lg:-mt-44 flex flex-col items-center justify-center mr-4`}
+                >
                   <div className="flex flex-col w-full mb-2">
                     <LazyImage
-                      imgStyling="z-30 h-auto w-full rounded-full"
+                      imgStyling={`${logoHeight} w-full rounded-full`}
                       height={175}
                       width={175}
                       bgColor="none"
                       imageObject={site?.logo}
                     />
                   </div>
-                  <div className="hidden md:block text-white text-2xl">
-                    {site?.title}
-                  </div>
+                  <div className={titleStyling}>{site?.title}</div>
                 </div>
                 <div className="flex items-center justify-center w-full md:w-2/3">
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
@@ -55,7 +59,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
             </div>
           </div>
         )
-      case 'video':
+      case VIDEO:
         return (
           <div
             id="HomeBannerWithVideo"
@@ -70,19 +74,19 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
             />
             <div className="w-full z-20 px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
-                <div className="w-24 sm:w-32 lg:w-40 xl:w-48 flex flex-col items-center justify-center mr-4">
+                <div
+                  className={`${logoWidth} flex flex-col items-center justify-center mr-4`}
+                >
                   <div className="flex w-full mb-2">
                     <LazyImage
-                      imgStyling="z-30 h-auto w-full rounded-full"
+                      imgStyling={`${logoHeight} z-30 w-full rounded-full`}
                       height={175}
                       width={175}
                       bgColor="none"
                       imageObject={site?.logo}
                     />
                   </div>
-                  <div className="hidden md:block text-white text-2xl">
-                    {site?.title}
-                  </div>
+                  <div className={titleStyling}>{site?.title}</div>
                 </div>
                 <div className="flex items-center justify-center w-full md:w-2/3">
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
@@ -100,19 +104,19 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
             className="bg-gradient-to-b from-word to-word-dark"
           >
             <div className="flex flex-col md:flex-row items-center justify-center mx-auto max-w-7xl p-3 md:p-5">
-              <div className="w-48 flex flex-col items-center justify-center">
+              <div
+                className={`${logoWidth} flex flex-col items-center justify-center`}
+              >
                 <div className="flex mb-2">
                   <LazyImage
-                    imgStyling="h-24 sm:h-32 lg:h-40 w-24 sm:w-32 lg:w-40 rounded-full"
+                    imgStyling={`${logoHeight} w-full rounded-full`}
                     height={175}
                     width={175}
                     bgColor="none"
                     imageObject={site?.logo}
                   />
                 </div>
-                <div className="hidden md:block text-white text-2xl text-center">
-                  {site?.title}
-                </div>
+                <div className={titleStyling}>{site?.title}</div>
               </div>
               <div className="flex items-center justify-center w-full md:w-2/3 xl:w-3/4 md:h-24">
                 <div className="w-11/12 md:w-5/6 xl:w-3/4">
@@ -137,7 +141,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
 // PROPTYPES
 const { object, string } = PropTypes
 HomePresentation.propTypes = {
-  bannerMedia: string,
+  bannerMedia: object,
   bannerType: string,
   site: object,
 }
