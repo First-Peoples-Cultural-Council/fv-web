@@ -7,7 +7,7 @@ import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPrese
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 
-function DashboardPresentation({ children, currentUser, currentSite }) {
+function DashboardPresentation({ children, currentUser, site }) {
   return (
     <div data-testid="DashboardPresentation">
       {/* Sidebar */}
@@ -21,11 +21,11 @@ function DashboardPresentation({ children, currentUser, currentSite }) {
             <nav className="flex-1">
               <DashboardPresentationSiteSelect
                 sites={currentUser?.sites}
-                currentSite={currentSite}
+                site={site}
               />
               <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
-                {primaryNavigationItems(currentSite?.sitename)}
-                {secondaryNavigationItems(currentUser?.sites, currentSite)}
+                {primaryNavigationItems(site?.sitename)}
+                {secondaryNavigationItems(currentUser?.sites)}
               </div>
             </nav>
           </div>
@@ -95,7 +95,7 @@ const primaryNavigationItems = (currentSitename) => {
   )
 }
 
-const secondaryNavigationItems = (sites, currentSite) => {
+const secondaryNavigationItems = (sites) => {
   const secondaryNavigation = []
   if (sites?.length > 0) {
     sites.forEach((site) =>
@@ -121,21 +121,9 @@ const secondaryNavigationItems = (sites, currentSite) => {
         )}
         Support
       </a>
-      <a
-        href={`https://www.firstvoices.com/explore${currentSite?.path || ''}`}
-        className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        {getIcon(
-          'RightArrowCircle',
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
-        )}
-        Go to the old FirstVoices
-      </a>
-      {secondaryNavigation.map((item, index) => (
+      {secondaryNavigation.map((item) => (
         <Link
-          key={item.name + index}
+          key={item.name}
           to={item.href}
           className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
         >
@@ -177,7 +165,7 @@ const { node, object } = PropTypes
 DashboardPresentation.propTypes = {
   children: node,
   currentUser: object,
-  currentSite: object,
+  site: object,
 }
 
 export default DashboardPresentation

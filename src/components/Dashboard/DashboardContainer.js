@@ -12,13 +12,10 @@ import DashboardMedia from 'components/DashboardMedia'
 import Loading from 'components/Loading'
 
 function DashboardContainer() {
-  const { currentUser, currentSite, homeTiles, isLoading } = DashboardData()
+  const { currentUser, site, homeTiles, isLoading } = DashboardData()
   return (
     <Loading.Container isLoading={isLoading}>
-      <DashboardPresentation
-        currentUser={currentUser}
-        currentSite={currentSite}
-      >
+      <DashboardPresentation currentUser={currentUser} site={site}>
         <Routes>
           <Route
             path="profile"
@@ -71,7 +68,7 @@ function DashboardContainer() {
               <DashboardHome.Presentation
                 tiles={homeTiles}
                 currentUser={currentUser}
-                site={currentSite}
+                site={site}
               />
             }
           />

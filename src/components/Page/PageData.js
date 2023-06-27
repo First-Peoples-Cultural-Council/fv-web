@@ -8,7 +8,7 @@ import api from 'services/api'
 
 function PageData({ url }) {
   const { site } = useSiteStore()
-  const { uid, logoId } = site
+  const { uid, logoPathMedium } = site
   const { pageUrl, sitename } = useParams()
   const navigate = useNavigate()
 
@@ -51,9 +51,9 @@ function PageData({ url }) {
     banner: {
       backgroundId,
       backgroundType,
-      logoId:
+      logoPath:
         urlToUse === 'our-language' || urlToUse === 'our-people'
-          ? logoId
+          ? logoPathMedium
           : null,
     },
     widgets: data?.widgets || [],

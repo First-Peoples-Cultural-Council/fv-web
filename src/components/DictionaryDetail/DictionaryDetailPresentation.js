@@ -270,7 +270,6 @@ function DictionaryDetailPresentation({
                           src={getMediaUrl({
                             type: 'video',
                             id: video.uid,
-                            viewName: 'Small',
                           })}
                           controls
                         >

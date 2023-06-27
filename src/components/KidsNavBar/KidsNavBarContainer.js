@@ -6,11 +6,11 @@ import KidsNavBarPresentation from 'components/KidsNavBar/KidsNavBarPresentation
 import KidsNavBarData from 'components/KidsNavBar/KidsNavBarData'
 
 function KidsNavBarContainer({ home }) {
-  const { links, logoUrl, sitename, siteTitle } = KidsNavBarData()
+  const { links, logoPath, sitename, siteTitle } = KidsNavBarData()
   return (
     <KidsNavBarPresentation
       links={links}
-      logoUrl={logoUrl}
+      logoPath={logoPath}
       sitename={sitename}
       siteTitle={siteTitle}
       home={home}

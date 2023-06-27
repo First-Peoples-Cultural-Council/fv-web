@@ -1,4 +1,5 @@
 export * from './docTypes'
+export * from './media'
 export * from './misc'
 export * from './paths'
 export * from './visibility'

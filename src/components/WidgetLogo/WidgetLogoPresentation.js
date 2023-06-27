@@ -2,12 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import { useSiteStore } from 'context/SiteContext'
 
 function WidgetLogoPresentation({ widgetData }) {
   const { site } = useSiteStore()
-  const { text, uid } = widgetData?.settings
+  const { text, uid } = widgetData?.settings || {}
   const format = widgetData?.format ? widgetData?.format : 'right'
   return format === 'right' ? (
     <section className="w-full bg-white" data-testid="WidgetLogoPresentation">
@@ -26,11 +25,7 @@ function WidgetLogoPresentation({ widgetData }) {
               <div className="flex-auto col-span-12 sm:col-span-6 sm:col-start-4 lg:col-span-4 xl:col-span-3 order-first lg:order-last">
                 <div className="aspect-w-2 aspect-h-2 rounded-full bg-gray-100 overflow-hidden">
                   <img
-                    src={getMediaUrl({
-                      id: site?.logoId,
-                      type: 'image',
-                      viewName: 'Medium',
-                    })}
+                    src={site?.logoPathMedium}
                     alt={`${site?.title} Logo`}
                     className="object-center object-cover"
                   />
@@ -50,11 +45,7 @@ function WidgetLogoPresentation({ widgetData }) {
               <div className="aspect-w-2 aspect-h-2 rounded-full shadow-xl overflow-hidden">
                 <img
                   className="object-cover xl:h-full xl:w-full"
-                  src={getMediaUrl({
-                    id: site?.logoId,
-                    type: 'image',
-                    viewName: 'Medium',
-                  })}
+                  src={site?.logoPathMedium}
                   alt={`${site?.title} Logo`}
                 />
               </div>

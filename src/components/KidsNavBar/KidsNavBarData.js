@@ -2,17 +2,11 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { getMediaUrl } from 'common/utils/urlHelpers'
-import placeholder from 'images/cover-thumbnail.png'
 
 function KidsNavBarData() {
   const { sitename } = useParams()
   const { site } = useSiteStore()
-  const { title, logoId } = site
-  const logoUrl =
-    logoId !== null
-      ? getMediaUrl({ type: 'image', id: logoId, viewName: 'Small' })
-      : placeholder
+  const { title, logoPathMedium } = site
 
   const links = [
     {
@@ -66,7 +60,7 @@ function KidsNavBarData() {
   ]
   return {
     links,
-    logoUrl,
+    logoPath: logoPathMedium,
     sitename,
     siteTitle: title,
   }

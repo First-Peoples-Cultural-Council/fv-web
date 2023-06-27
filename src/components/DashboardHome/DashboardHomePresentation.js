@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardTiles from 'components/DashboardTiles'
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
+import DashboardLocator from 'components/DashboardLocator'
 
 function DashboardHomePresentation({ site, tiles, currentUser }) {
   return (
@@ -14,7 +14,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
         <div className="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
           <div className="grid grid-cols-1 gap-4 lg:col-span-2">
             {/* Welcome panel */}
-            <section id="UserDashboardHeader">
+            <section>
               <div className="rounded-lg bg-white overflow-hidden shadow">
                 <h2 className="sr-only" id="profile-overview-title">
                   Profile Overview
@@ -39,35 +39,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-5">
-                      <div className="pt-1 text-right">
-                        <p className="text-xl font-bold text-fv-charcoal">
-                          You are on:
-                        </p>
-                        <p className="text-xl font-medium text-fv-charcoal-light">
-                          {site?.title}
-                        </p>
-                      </div>
-                      <div className="flex-shrink-0">
-                        {site?.logoId ? (
-                          <img
-                            className="flex max-w-xs bg-gray-300 rounded-full h-20 w-20 items-center justify-center"
-                            src={getMediaUrl({
-                              type: 'image',
-                              id: site?.logoId,
-                              viewName: 'Thumbnail',
-                            })}
-                            alt={`${site?.title} Logo`}
-                          />
-                        ) : (
-                          <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
-                            <span className="text-center">
-                              {site?.title?.charAt(0)}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                    <DashboardLocator.Presentation site={site} />
                   </div>
                 </div>
               </div>

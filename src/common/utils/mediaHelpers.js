@@ -1,4 +1,34 @@
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import {
+  DOC_IMAGE,
+  DOC_VIDEO,
+  AUDIO,
+  VIDEO,
+  IMAGE,
+  ORIGINAL,
+  SMALL,
+  MEDIUM,
+  THUMBNAIL,
+} from 'common/constants'
+// NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
+export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
+  if (!mediaObject?.original) {
+    return "A media object with the property of 'originl' must be supplied to retrieve a src path."
+  }
+  if (![ORIGINAL, SMALL, MEDIUM, THUMBNAIL].includes(size)) {
+    return 'Only ORIGINAL, SMALL, MEDIUM, or THUMBNAIL are accepted as sizes for media.'
+  }
+  switch (type) {
+    case AUDIO:
+      return mediaObject?.original?.path
+
+    case VIDEO:
+    case IMAGE:
+      return mediaObject?.[size]?.path
+
+    default:
+      return 'The media type supplied is not recognised by the getMediaPath helper'
+  }
+}
 
 export const selectOneFormHelper = (formData, mediaObjectkey) => {
   // Helper function to be used where a choice between
