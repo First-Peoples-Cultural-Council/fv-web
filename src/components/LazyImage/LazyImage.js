@@ -26,7 +26,7 @@ function LazyImage({
   const imgRef = useRef()
 
   useEffect(() => {
-    if (imgRef.current && imgRef.current.complete) {
+    if (imgRef?.current?.complete) {
       setLoaded(true)
     }
   }, [])
