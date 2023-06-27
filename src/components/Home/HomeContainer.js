@@ -7,13 +7,13 @@ import HomePresentation from 'components/Home/HomePresentation'
 // Temporarily commenting out WidgetArea until WIdget API is built and functional
 
 function HomeContainer() {
-  const { backgroundId, backgroundType, site } = HomeData()
+  const { bannerMedia, bannerType, site } = HomeData()
 
   return (
     <div data-testid="Home">
       <HomePresentation
-        backgroundId={backgroundId}
-        backgroundType={backgroundType}
+        bannerMedia={bannerMedia}
+        bannerType={bannerType}
         site={site}
       />
       {/* <WidgetArea.Container id={siteId} /> */}

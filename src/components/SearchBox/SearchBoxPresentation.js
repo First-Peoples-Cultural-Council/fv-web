@@ -9,7 +9,7 @@ function SearchBoxPresentation({
   minimal = false,
 }) {
   const largeStyle =
-    'block w-full focus md:text-xl lg:text-2xl text-fv-charcoal-light rounded-none rounded-l-md pl-4 truncate'
+    'block w-full md:text-xl lg:text-2xl text-fv-charcoal-light rounded-none rounded-l-md pl-4 truncate border-0'
   const minimalStyle =
     'w-full text-sm text-fv-charcoal-light rounded-none rounded-l-full pl-4 focus:outline-none truncate'
 

@@ -40,6 +40,7 @@ export default function useSite() {
     title: response?.data?.title,
     sitename: response?.data?.slug,
     parentLanguageTitle: response?.data?.language,
+    logo: response?.data?.logo,
     logoPathMedium: response?.data?.logo
       ? getMediaPath({
           mediaObject: response?.data?.logo,
@@ -61,8 +62,8 @@ export default function useSite() {
           size: THUMBNAIL,
         })
       : null,
-    topBackgroundImageId: response?.data?.bannerImage,
-    topBackgroundVideoId: response?.data?.bannerVideo,
+    bannerImage: response?.data?.bannerImage,
+    bannerVideo: response?.data?.bannerVideo,
     joinText: null,
     hasContactUs: true,
     visibility: response?.data?.visibility?.toLowerCase(),
