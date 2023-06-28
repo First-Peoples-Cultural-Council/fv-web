@@ -16,10 +16,23 @@ export default function useCategories() {
       enabled: !!sitename,
     },
   )
-  console.log({ response })
+  //   console.log({ response })
 
-  //   const formattedResults
+  const formattedResults = response?.data?.results?.map((category) => ({
+    id: category?.id,
+    title: category?.title,
+    description: category?.description,
+    url: category?.url,
+    children: category?.children?.map((child) => ({
+      id: child?.id,
+      title: child?.title,
+      description: child?.description,
+      url: child?.url,
+    })),
+  }))
+  //   console.log({ formattedResults })
   return {
     ...response,
+    response: { ...response.data, categories: formattedResults },
   }
 }

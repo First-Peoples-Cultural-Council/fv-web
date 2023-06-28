@@ -3,7 +3,7 @@ import { SITES, CATEGORIES } from 'common/constants'
 
 const category = {
   get: async ({ sitename }) =>
-    apiBase.get(`${SITES}/${sitename}/${CATEGORIES}/`).json,
+    apiBase.get(`${SITES}/${sitename}/${CATEGORIES}/`).json(),
   // get: async ({ siteId, parentsOnly = 'false', inUseOnly = 'false' }) =>
   //   apiV1
   //     .get(
