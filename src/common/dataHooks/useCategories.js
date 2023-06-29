@@ -7,7 +7,6 @@ import api from 'services/api'
 
 export default function useCategories() {
   const { sitename } = useParams()
-  //   console.log({ sitename })
   const response = useQuery(
     [CATEGORIES, sitename],
     () => api.category.get({ sitename }),
@@ -16,7 +15,6 @@ export default function useCategories() {
       enabled: !!sitename,
     },
   )
-  // console.log({ response })
 
   const formattedResults = response?.data?.results?.map((category) => ({
     id: category?.id,
@@ -30,7 +28,6 @@ export default function useCategories() {
       url: child?.url,
     })),
   }))
-  // console.log({ formattedResults })
   return {
     response: { ...response, data: formattedResults },
   }

@@ -19,56 +19,8 @@ function CategoriesData() {
 
   // Data fetch
   const { response } = useCategories()
-  console.log({ response })
-  // const response = useQuery(
-  //   ['categories', site?.uid],
-  //   () =>
-  //     api.category.get({
-  //       siteId: site?.uid,
-  //       parentsOnly: 'false',
-  //       inUseOnly: 'true',
-  //     }),
-  //   {
-  //     enabled: !!site?.uid, // The query will not execute until the siteId exists
-  //     refetchOnWindowFocus: false,
-  //     refetchOnReconnect: false,
-  //   },
-  // )
 
   const { status, isLoading, error, isError, data } = response
-  // const [categoriesToShow, setCategoriesToShow] = useState([])
-
-  // function filterCategoriesByType(category) {
-  //   return category?.type === searchType
-  // }
-
-  // function filterParentCategories(category) {
-  //   return category?.parentId === null
-  // }
-
-  // function getChildren(parentId) {
-  //   return data?.categories?.filter(
-  //     (category) => category?.parentId === parentId,
-  //   )
-  // }
-
-  // useEffect(() => {
-  //   if (data && status === 'success' && !isError) {
-  //     const parentCategories = data?.categories?.filter(filterParentCategories)
-  //     const categoriesInclChildren = parentCategories.map((category) => ({
-  //       ...category,
-  //       children: getChildren(category.id),
-  //     }))
-  //     if (searchType === 'WORD_AND_PHRASE') {
-  //       setCategoriesToShow(categoriesInclChildren)
-  //     } else {
-  //       const filteredCategories = categoriesInclChildren.filter(
-  //         filterCategoriesByType,
-  //       )
-  //       setCategoriesToShow(filteredCategories)
-  //     }
-  //   }
-  // }, [status, searchType])
 
   useEffect(() => {
     if (isError) {
