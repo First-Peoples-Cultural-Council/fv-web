@@ -2,9 +2,18 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import { SITES, PUBLIC, MEMBERS, TEAM } from 'common/constants'
+import {
+  SITES,
+  PUBLIC,
+  MEMBERS,
+  TEAM,
+  IMAGE,
+  MEDIUM,
+  SMALL,
+  THUMBNAIL,
+} from 'common/constants'
 import api from 'services/api'
-import placeholder from 'images/cover-thumbnail.png'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
 export default function useSite() {
   const { sitename } = useParams()
@@ -31,9 +40,30 @@ export default function useSite() {
     title: response?.data?.title,
     sitename: response?.data?.slug,
     parentLanguageTitle: response?.data?.language,
-    logoId: response?.data?.logo?.content || placeholder,
-    topBackgroundImageId: response?.data?.bannerImage,
-    topBackgroundVideoId: response?.data?.bannerVideo,
+    logo: response?.data?.logo,
+    logoPathMedium: response?.data?.logo
+      ? getMediaPath({
+          mediaObject: response?.data?.logo,
+          type: IMAGE,
+          size: MEDIUM,
+        })
+      : null,
+    logoPathSmall: response?.data?.logo
+      ? getMediaPath({
+          mediaObject: response?.data?.logo,
+          type: IMAGE,
+          size: SMALL,
+        })
+      : null,
+    logoPathThumbnail: response?.data?.logo
+      ? getMediaPath({
+          mediaObject: response?.data?.logo,
+          type: IMAGE,
+          size: THUMBNAIL,
+        })
+      : null,
+    bannerImage: response?.data?.bannerImage,
+    bannerVideo: response?.data?.bannerVideo,
     joinText: null,
     hasContactUs: true,
     visibility: response?.data?.visibility?.toLowerCase(),

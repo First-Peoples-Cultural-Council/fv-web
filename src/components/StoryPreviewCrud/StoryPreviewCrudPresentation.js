@@ -46,7 +46,6 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
           src={getMediaUrl({
             type: 'video',
             id: coverVisual.id,
-            viewName: 'Small',
           })}
           controls
         >
@@ -136,8 +135,9 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
             <div className="flex top-4 justify-center py-2 gap-x-2 text-fv-charcoal-light">
               Pages
               {pageOrder?.map((pageId, pageIndex) => (
-                <span
-                  key={pageIndex}
+                <button
+                  type="button"
+                  key={pageId}
                   onClick={() => setCurrentPageId(pageId)}
                   className={`cursor-pointer ${
                     pageId === currentPageId
@@ -146,7 +146,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
                   }`}
                 >
                   {pageIndex + 1}
-                </span>
+                </button>
               ))}
             </div>
             <div className="flex justify-end">

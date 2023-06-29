@@ -15,7 +15,7 @@ function MediaDetailsVisual({ file, docType }) {
           {docType === DOC_IMAGE && (
             <img
               src={getMediaUrl({ type: 'gifOrImg', id: file?.id })}
-              alt={`${file?.title} Image`}
+              alt={file?.title}
               className="object-contain w-full h-120"
             />
           )}
@@ -25,7 +25,6 @@ function MediaDetailsVisual({ file, docType }) {
               src={getMediaUrl({
                 type: 'video',
                 id: file?.id,
-                viewName: 'Small',
               })}
               controls
             />

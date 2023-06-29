@@ -47,8 +47,8 @@ function DictionaryGridTilePresentationKids({ entry }) {
               <LazyImage
                 imgStyling="h-full object-contain max-h-72"
                 width={250}
-                forceLoad
-                id={image}
+                height={288}
+                imageObject={image}
               />
             </Link>
           </div>

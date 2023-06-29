@@ -9,7 +9,7 @@ import ErrorHandler from 'components/ErrorHandler'
 
 function PageContainer({ url }) {
   const { banner, title, subtitle, widgets, notFound } = PageData({ url })
-  const { backgroundId, backgroundType, logoId } = banner
+  const { backgroundId, backgroundType, logoPath } = banner
   return notFound ? (
     <ErrorHandler.Container
       error={{ status: 404, statusText: 'Page not found' }}
@@ -30,13 +30,12 @@ function PageContainer({ url }) {
             <p>{subtitle}</p>
           </div>
         }
-        logoId={logoId}
+        logoPath={logoPath}
       />
       <div className="pb-16 max-w-7xl mx-auto">
-        {widgets &&
-          widgets.map((widget, index) => (
-            <WidgetContainer key={index} id={widget} />
-          ))}
+        {widgets?.map((widget) => (
+          <WidgetContainer key={widget?.id} id={widget} />
+        ))}
       </div>
     </main>
   )

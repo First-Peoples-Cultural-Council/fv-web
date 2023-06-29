@@ -43,7 +43,6 @@ function DocumentThumbnailPresentation({ document }) {
                 src={getMediaUrl({
                   type: 'gifOrImg',
                   id: document?.id,
-                  viewName: 'Small',
                 })}
                 alt={`${document?.title}`}
                 className="object-cover pointer-events-none"
@@ -61,7 +60,6 @@ function DocumentThumbnailPresentation({ document }) {
                 src={getMediaUrl({
                   type: 'video',
                   id: document?.id,
-                  viewName: 'Small',
                 })}
                 disableRemotePlayback
               >

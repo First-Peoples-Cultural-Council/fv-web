@@ -6,11 +6,11 @@ function PageBannerPresentation({
   backgroundId,
   backgroundType,
   textNode,
-  logoId,
+  logoPath,
   variant,
   site,
 }) {
-  if (!backgroundId && !textNode && !logoId) {
+  if (!backgroundId && !textNode && !logoPath) {
     return null
   }
 
@@ -56,7 +56,7 @@ function PageBannerPresentation({
           alt="Banner Video"
         />
       )}
-      {(textNode || logoId) && (
+      {(textNode || logoPath) && (
         <div
           data-testid="PageBannerPresentation__foreground"
           className={`flex grow flex-initial items-center text-center px-5 md:px-24 max-w-screen-xl z-10 ${
@@ -65,7 +65,7 @@ function PageBannerPresentation({
               : 'flex-row justify-start px-5'
           }`}
         >
-          {logoId && (
+          {logoPath && (
             <div
               className={`${
                 variant === 'CENTER' || window.innerWidth < 768
@@ -75,7 +75,7 @@ function PageBannerPresentation({
             >
               <img
                 className="h-16 w-auto xl:h-28 xl:w-auto rounded-full mx-auto"
-                src={getMediaUrl({ id: logoId, type: 'gifOrImg' })}
+                src={logoPath}
                 alt={`${site?.title} Logo`}
                 loading="lazy"
               />
@@ -93,7 +93,7 @@ PageBannerPresentation.propTypes = {
   backgroundId: string,
   backgroundType: string,
   textNode: node,
-  logoId: string,
+  logoPath: string,
   site: object,
   /** Changes layout of component. Variants are: left aligned, center aligned, or search */
   variant: oneOf(['LEFT', 'CENTER']),

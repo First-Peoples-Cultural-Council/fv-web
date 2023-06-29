@@ -6,6 +6,8 @@ import { Link, useParams } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
 import { Copy } from 'components/Actions'
+import { IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 function AlphabetPresentationSelected({
   kids,
   onVideoClick,
@@ -58,7 +60,11 @@ function AlphabetPresentationSelected({
         <div className="flex justify-center m-8">
           <img
             className="rounded-md max-w-xs"
-            src={relatedPictures?.[0]?.content}
+            src={getMediaPath({
+              mediaObject: relatedPictures?.[0],
+              type: IMAGE,
+              size: SMALL,
+            })}
             alt={relatedPictures?.[0]?.title}
             loading="lazy"
           />
@@ -166,7 +172,11 @@ function AlphabetPresentationSelected({
                   <video
                     height="50"
                     width="auto"
-                    src={relatedVideo?.content}
+                    src={getMediaPath({
+                      mediaObject: relatedVideo,
+                      type: VIDEO,
+                      size: ORIGINAL,
+                    })}
                     controls
                     autoPlay
                   >

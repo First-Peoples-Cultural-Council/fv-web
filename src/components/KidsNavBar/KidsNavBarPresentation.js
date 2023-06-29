@@ -6,7 +6,13 @@ import { Link } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import generateText from 'common/utils/generateText'
 
-function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
+function KidsNavBarPresentation({
+  links,
+  logoPath,
+  sitename,
+  siteTitle,
+  home,
+}) {
   return home ? (
     <header
       className="relative md:p-2 z-10 print:hidden"
@@ -16,7 +22,7 @@ function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
         <div className="relative">
           <img
             className="h-24 w-24 md:h-32 md:w-32 xl:h-44 xl:w-44 rounded-full mx-auto"
-            src={logoUrl}
+            src={logoPath}
             alt={`${siteTitle} Logo`}
             loading="lazy"
           />
@@ -44,17 +50,14 @@ function KidsNavBarPresentation({ links, logoUrl, sitename, siteTitle, home }) {
     >
       <div className="max-w-screen-2xl mx-auto lg:px-6 xl:px-16">
         <div className="flex justify-between items-center py-1 lg:space-x-10">
-          <ul
-            role="list"
-            className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto"
-          >
+          <ul className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto">
             <Link
               className="col-span-1 flex items-center xl:block  relative"
               to={`/${sitename}/kids`}
             >
               <img
                 className="w-full h-auto rounded-full mx-auto"
-                src={logoUrl}
+                src={logoPath}
                 alt="site logo"
                 loading="lazy"
               />
@@ -98,7 +101,7 @@ const { array, bool, string } = PropTypes
 KidsNavBarPresentation.propTypes = {
   home: bool,
   links: array,
-  logoUrl: string,
+  logoPath: string,
   sitename: string,
   siteTitle: string,
 }

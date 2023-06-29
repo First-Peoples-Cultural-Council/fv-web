@@ -1,28 +1,26 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
+import { IMAGE, VIDEO } from 'common/constants'
 
 function HomeData() {
   const { site } = useSiteStore()
-  const { title, uid, logoId, topBackgroundImageId, topBackgroundVideoId } =
-    site
+  const { bannerImage, bannerVideo } = site
 
-  let backgroundType = null
-  let backgroundId = null
+  let bannerType = null
+  let bannerMedia = null
 
-  if (topBackgroundImageId) {
-    backgroundType = 'gifOrImg'
-    backgroundId = topBackgroundImageId
-  } else if (topBackgroundVideoId) {
-    backgroundType = 'video'
-    backgroundId = topBackgroundVideoId
+  if (bannerImage) {
+    bannerType = IMAGE
+    bannerMedia = bannerImage
+  } else if (bannerVideo) {
+    bannerType = VIDEO
+    bannerMedia = bannerVideo
   }
 
   return {
-    backgroundId,
-    backgroundType,
-    title,
-    logoId,
-    siteId: uid,
+    bannerMedia,
+    bannerType,
+    site,
   }
 }
 

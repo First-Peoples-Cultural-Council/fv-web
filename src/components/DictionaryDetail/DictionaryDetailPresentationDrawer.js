@@ -204,7 +204,6 @@ function DictionaryDetailPresentationDrawer({
                               src={getMediaUrl({
                                 type: 'video',
                                 id: video.uid,
-                                viewName: 'Small',
                               })}
                               controls
                             >
