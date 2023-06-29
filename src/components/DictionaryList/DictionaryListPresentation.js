@@ -33,7 +33,7 @@ function DictionaryListPresentation({
   const [selectedItem, setselectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
   const navigate = useNavigate()
-  const { setAudioArray } = useAudiobar()
+  const { setCurrentAudio } = useAudiobar()
 
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
@@ -86,7 +86,7 @@ function DictionaryListPresentation({
         }/${makePlural(item?.type)}/${item?.id}`,
       )
     } else {
-      setAudioArray([])
+      setCurrentAudio()
       setselectedItem(item)
       setDrawerOpen(true)
     }

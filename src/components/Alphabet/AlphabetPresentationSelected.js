@@ -37,15 +37,13 @@ function AlphabetPresentationSelected({
             mb-5"
       >
         {title}
-        {relatedAudio?.length > 0 &&
-          relatedAudio?.map(({ id }) => (
-            <AudioButton
-              key={id}
-              audioArray={[id]}
-              iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
-              hoverTooltip
-            />
-          ))}
+        {relatedAudio?.length > 0 && (
+          <AudioButton
+            audioArray={relatedAudio}
+            iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
+            hoverTooltip
+          />
+        )}
         {title ? (
           <Copy
             docTitle={title}
@@ -89,15 +87,13 @@ function AlphabetPresentationSelected({
                   >
                     {word?.title}
                   </Link>
-                  {word?.relatedAudio?.length > 0 &&
-                    word?.relatedAudio?.map(({ id }) => (
-                      <AudioButton
-                        key={id}
-                        audioArray={[id]}
-                        iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
-                        hoverTooltip
-                      />
-                    ))}
+                  {word?.relatedAudio?.length > 0 && (
+                    <AudioButton
+                      audioArray={word?.relatedAudio}
+                      iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
+                      hoverTooltip
+                    />
+                  )}
                 </div>
                 <div className="col-span-3 flex items-center p-2">
                   {word?.translations?.length > 0 &&

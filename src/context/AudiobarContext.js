@@ -7,16 +7,16 @@ function useAudiobar() {
   if (!context) {
     throw new Error('useAudiobar must be used within AudioProvider')
   }
-  const [audioArray, setAudioArray] = context
+  const [currentAudio, setCurrentAudio] = context
   return {
-    audioArray,
-    setAudioArray,
+    currentAudio,
+    setCurrentAudio,
   }
 }
 
 function AudiobarProvider(props) {
-  const [audioArray, setAudioArray] = useState()
-  const value = useMemo(() => [audioArray, setAudioArray], [audioArray])
+  const [currentAudio, setCurrentAudio] = useState()
+  const value = useMemo(() => [currentAudio, setCurrentAudio], [currentAudio])
   return <AudiobarContext.Provider value={value} {...props} />
 }
 

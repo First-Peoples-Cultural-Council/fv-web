@@ -41,36 +41,36 @@ function AudiobarPresentation({
             )}
           </div>
           <div className="grid grid-cols-2">
-            <div className="col-span-1 space-y-2">
+            <div className="col-span-1 space-y-2 text-lg">
               {data?.description && (
-                <div className="text-lg ">{data?.description}</div>
+                <>
+                  <div className="font-bold">Description:</div>
+                  <div>{data?.description}</div>
+                </>
               )}
-              {data?.acknowledegment && (
-                <div className="text-lg ">{data?.acknowledegment}</div>
+              {data?.acknowledgement && (
+                <>
+                  <div className="font-bold">Acknowledgement:</div>
+                  <div>{data?.acknowledgement}</div>
+                </>
               )}
             </div>
             <div className="col-span-1 text-lg space-y-2">
               {data?.speakers?.length > 0 && (
                 <div className="grid grid-cols-4 text-lg">
                   <div className="font-bold col-span-1">
-                    {data?.speakers?.length === 1 ? 'Speaker' : 'Speakers'}
+                    {data?.speakers?.length === 1 ? 'Speaker:' : 'Speakers:'}
                   </div>
-                  <div className="col-span-3">{data?.speakers?.join(', ')}</div>
-                </div>
-              )}
-              {data?.recorders?.length > 0 && (
-                <div className="grid grid-cols-4 text-lg">
-                  <div className="font-bold col-span-1">
-                    {data?.recorders?.length === 1 ? 'Recorder' : 'Recorders'}
-                  </div>
-                  <div className="col-span-3">
-                    {data?.recorders?.join(', ')}
-                  </div>
+                  {data?.speakers.map((speaker) => (
+                    <div key={speaker?.id} className="col-span-3">
+                      {speaker?.name}
+                    </div>
+                  ))}
                 </div>
               )}
               {data?.fileSize && (
                 <div className="grid grid-cols-4 text-lg">
-                  <div className="font-bold col-span-1">File Size</div>
+                  <div className="font-bold col-span-1">File Size:</div>
                   <div className="col-span-3">{data?.fileSize}</div>
                 </div>
               )}
@@ -98,8 +98,8 @@ function AudiobarPresentation({
                     {data?.speakers?.length === 1 ? 'SPEAKER' : 'SPEAKERS'}
                   </div>
                   {data?.speakers?.map((speaker) => (
-                    <div key={speaker.uid} className="mt-1">
-                      {speaker}
+                    <div key={speaker.id} className="mt-1">
+                      {speaker?.name}
                     </div>
                   ))}
                 </>
@@ -127,7 +127,7 @@ function AudiobarPresentation({
                 )}
                 <button
                   type="button"
-                  onClick={() => setInfoOpen(true)}
+                  onClick={() => setInfoOpen(!infoOpen)}
                   aria-label="Open Audio Info"
                 >
                   {getIcon(
@@ -184,7 +184,7 @@ function AudiobarPresentation({
                   onChange={(event) => {
                     onVolumeChange(event.target.value)
                   }}
-                  className="w-1/2 h-1 bg-gray-400 rounded outline-none inline-flex "
+                  className="w-1/2 h-1 bg-gray-400 rounded outline-none inline-flex"
                 />
               </div>
             </div>

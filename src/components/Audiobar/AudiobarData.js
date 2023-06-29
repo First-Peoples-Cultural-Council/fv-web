@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import { Howl, Howler } from 'howler'
 
 // FPCC
-import api from 'services/api'
 import { useAudiobar } from 'context/AudiobarContext'
-import { getMediaUrl } from 'common/utils/urlHelpers'
-import { getReadableFileSize } from 'common/utils/stringHelpers'
+import { AUDIO } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function AudiobarData() {
-  const { audioArray, setAudioArray } = useAudiobar()
-  const audioId = audioArray?.[0]
+  const { currentAudio, setCurrentAudio } = useAudiobar()
 
   const [curTime, setCurTime] = useState('0:00')
   const [duration, setDuration] = useState('0:00')
@@ -20,24 +17,23 @@ function AudiobarData() {
   const [sound, setSound] = useState({ id: '', howl: null })
 
   useEffect(() => {
-    if (audioArray?.[0]?.length > 0) {
+    if (currentAudio) {
       sound?.howl?.stop()
       setIsOpen(true)
-      generateSound(audioId)
+      generateSound(currentAudio)
+      const formattedData = audioDataAdaptor(currentAudio)
+      setDataToUse(formattedData)
     }
-    if (audioArray?.length < 1) {
-      setIsOpen(false)
-    }
-    return function cleanup() {
-      setAudioArray()
-    }
-  }, [audioArray])
 
-  const generateSound = (id) => {
-    const src = getMediaUrl({ id: audioId, type: 'audio' })
+    return function cleanup() {
+      setCurrentAudio()
+    }
+  }, [currentAudio])
+
+  const generateSound = (object) => {
+    const src = getMediaPath({ mediaObject: object, type: AUDIO })
     const newHowl = new Howl({
-      src: [src, src, src],
-      format: ['webm', 'wav', 'mp3'],
+      src: [src],
       rate,
       html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
       onload() {
@@ -67,7 +63,7 @@ function AudiobarData() {
       }
     }
 
-    setSound({ id, howl: newHowl })
+    setSound({ id: object?.id, howl: newHowl })
     newHowl.play()
   }
 
@@ -77,57 +73,23 @@ function AudiobarData() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
   }
 
-  // Data fetch
-  const { data } = useQuery(
-    ['Audio', audioId],
-    () => api.document.get({ id: audioId, contextParameters: 'media' }),
-    {
-      enabled: !!audioArray?.[0],
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const audioDataAdaptor = (object) => {
+    let label = object?.title || ''
 
-  useEffect(() => {
-    if (data !== undefined) {
-      const formattedData = audioDataAdaptor(data)
-      setDataToUse(formattedData)
-    }
-  }, [data])
-
-  const audioDataAdaptor = (audioData) => {
-    const properties = audioData?.properties
-    const file = properties?.['file:content']
-    const contextParameters = audioData?.contextParameters?.media
-    const speakers = []
-    contextParameters?.sources?.forEach((source) =>
-      speakers.push(source?.['dc:title']),
-    )
-    const recorders = []
-    contextParameters?.recorders?.forEach((source) =>
-      recorders.push(source?.['dc:title']),
-    )
-
-    let label = properties?.['dc:title'] || ''
-
-    if (
-      properties?.['dc:title']?.length > 0 &&
-      properties?.['dc:description'] > 0
-    ) {
-      label = `${properties?.['dc:title']} - ${properties?.['dc:description']}`
-    } else if (properties?.['dc:description']?.length > 0) {
-      label = properties?.['dc:description']
+    if (object?.title?.length > 0 && object?.description > 0) {
+      label = `${object?.title} - ${object?.description}`
+    } else if (object?.description?.length > 0) {
+      label = object?.description
     }
 
     return {
-      id: audioData?.uid,
-      title: properties?.['dc:title'] || '',
-      description: properties?.['dc:description'] || '',
-      acknowledgement: properties?.['fvm:acknowledgement'] || '',
-      speakers,
-      recorders,
-      downloadLink: `/nuxeo/nxfile/default/${audioData?.uid}/file:content/${file?.name}`,
-      fileSize: getReadableFileSize(file?.length),
+      id: object?.id,
+      title: object?.title || '',
+      description: object?.description || '',
+      acknowledgement: object?.acknowledgement || '',
+      speakers: object?.speakers || [],
+      downloadLink: object?.original?.path || '',
+      fileSize: object?.original?.fileSize || '',
       label,
     }
   }

@@ -6,14 +6,14 @@ import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
 
 function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
-  const { setAudioArray } = useAudiobar()
+  const { setCurrentAudio } = useAudiobar()
 
-  const audioButtons = audioArray.map((audioId) => (
+  const audioButtons = audioArray.map((audioObject) => (
     <button
       type="button"
-      key={audioId}
+      key={audioObject?.id}
       className="print:hidden relative group"
-      onClick={() => setAudioArray([audioId])}
+      onClick={() => setCurrentAudio(audioObject)}
     >
       <div className="sr-only">Play audio</div>
       {getIcon('Audio', iconStyling)}
