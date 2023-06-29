@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -36,39 +36,39 @@ function CategoriesData() {
   // )
 
   const { status, isLoading, error, isError, data } = response
-  const [categoriesToShow, setCategoriesToShow] = useState([])
+  // const [categoriesToShow, setCategoriesToShow] = useState([])
 
-  function filterCategoriesByType(category) {
-    return category?.type === searchType
-  }
+  // function filterCategoriesByType(category) {
+  //   return category?.type === searchType
+  // }
 
-  function filterParentCategories(category) {
-    return category?.parentId === null
-  }
+  // function filterParentCategories(category) {
+  //   return category?.parentId === null
+  // }
 
-  function getChildren(parentId) {
-    return data?.categories?.filter(
-      (category) => category?.parentId === parentId,
-    )
-  }
+  // function getChildren(parentId) {
+  //   return data?.categories?.filter(
+  //     (category) => category?.parentId === parentId,
+  //   )
+  // }
 
-  useEffect(() => {
-    if (data && status === 'success' && !isError) {
-      const parentCategories = data?.categories?.filter(filterParentCategories)
-      const categoriesInclChildren = parentCategories.map((category) => ({
-        ...category,
-        children: getChildren(category.id),
-      }))
-      if (searchType === 'WORD_AND_PHRASE') {
-        setCategoriesToShow(categoriesInclChildren)
-      } else {
-        const filteredCategories = categoriesInclChildren.filter(
-          filterCategoriesByType,
-        )
-        setCategoriesToShow(filteredCategories)
-      }
-    }
-  }, [status, searchType])
+  // useEffect(() => {
+  //   if (data && status === 'success' && !isError) {
+  //     const parentCategories = data?.categories?.filter(filterParentCategories)
+  //     const categoriesInclChildren = parentCategories.map((category) => ({
+  //       ...category,
+  //       children: getChildren(category.id),
+  //     }))
+  //     if (searchType === 'WORD_AND_PHRASE') {
+  //       setCategoriesToShow(categoriesInclChildren)
+  //     } else {
+  //       const filteredCategories = categoriesInclChildren.filter(
+  //         filterCategoriesByType,
+  //       )
+  //       setCategoriesToShow(filteredCategories)
+  //     }
+  //   }
+  // }, [status, searchType])
 
   useEffect(() => {
     if (isError) {
@@ -80,7 +80,7 @@ function CategoriesData() {
   }, [isError])
 
   return {
-    categories: categoriesToShow,
+    categories: data,
     searchType,
     setSearchTypeInUrl,
     entryLabelPlural: getSearchLabel({ searchType, plural: true }),

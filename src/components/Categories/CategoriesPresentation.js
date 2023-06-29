@@ -16,6 +16,7 @@ function CategoriesPresentation({
   kids,
   sitename,
 }) {
+  console.log({ categories })
   const [isGridView, setIsGridView] = useState(true)
   return (
     <section

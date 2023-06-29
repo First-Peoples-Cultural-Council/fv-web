@@ -16,7 +16,7 @@ export default function useCategories() {
       enabled: !!sitename,
     },
   )
-  //   console.log({ response })
+  // console.log({ response })
 
   const formattedResults = response?.data?.results?.map((category) => ({
     id: category?.id,
@@ -30,9 +30,8 @@ export default function useCategories() {
       url: child?.url,
     })),
   }))
-  //   console.log({ formattedResults })
+  // console.log({ formattedResults })
   return {
-    ...response,
-    response: { ...response.data, categories: formattedResults },
+    response: { ...response, data: formattedResults },
   }
 }
