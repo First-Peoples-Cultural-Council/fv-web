@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import { useSearchParams } from 'react-router-dom'
 
+// Adapted from https://blog.logrocket.com/use-state-url-persist-state-usesearchparams/
+
 function useSearchParamsState({ searchParamName, defaultValue }) {
   const [searchParams, setSearchParams] = useSearchParams()
 

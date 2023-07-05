@@ -1,0 +1,8 @@
+export const CATEGORY = 'category'
+export const DOMAIN = 'domain'
+export const GAMES = 'games'
+export const KIDS = 'kids'
+export const PAGE = 'page'
+export const PAGE_SIZE = 'pageSize'
+export const STARTS_WITH_CHAR = 'startsWithChar'
+export const TYPES = 'types'
