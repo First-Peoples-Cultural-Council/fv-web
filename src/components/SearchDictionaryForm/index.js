@@ -1,5 +1,5 @@
-import SearchDictionaryContainer from 'components/SearchDictionaryForm/SearchDictionaryContainer'
+import SearchDictionaryFormContainer from 'components/SearchDictionaryForm/SearchDictionaryFormContainer'
 
 export default {
-  Container: SearchDictionaryContainer,
+  Container: SearchDictionaryFormContainer,
 }

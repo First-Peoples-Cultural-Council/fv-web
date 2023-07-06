@@ -1,5 +1,5 @@
-import SiteSearchContainer from 'components/SearchSiteForm/SiteSearchContainer'
+import SearchSiteFormContainer from 'components/SearchSiteForm/SearchSiteFormContainer'
 
 export default {
-  Container: SiteSearchContainer,
+  Container: SearchSiteFormContainer,
 }
