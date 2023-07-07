@@ -26,12 +26,7 @@ function ByCategoryData({ kids }) {
   const _searchParams = `docType=${searchType}&kidsOnly=${kids}&perPage=100&sortBy=${sortBy}&sortAscending=${sortAscending}&category=${categoryId}`
   // Search fetch
   const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
-    useSearchLoader({
-      searchApi: api.dictionary,
-      queryKey: 'dictionary',
-      siteUid: site?.uid,
-      searchParams: _searchParams,
-    })
+    useSearchLoader({ searchParams: _searchParams })
 
   const categoriesResponse = useQuery(
     ['categories', uid],

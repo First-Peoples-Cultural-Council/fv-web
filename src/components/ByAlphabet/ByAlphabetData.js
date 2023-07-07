@@ -28,12 +28,7 @@ function ByAlphabetData({ kids }) {
   const _searchParams = `docType=${searchType}&kidsOnly=${kids}&perPage=${perPageDefault}&sortBy=${sortBy}&sortAscending=${sortAscending}&alphabetCharacter=${character}`
 
   const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
-    useSearchLoader({
-      searchApi: api.dictionary,
-      queryKey: 'dictionary',
-      siteUid: site?.uid,
-      searchParams: _searchParams,
-    })
+    useSearchLoader({ searchParams: _searchParams })
 
   const alphabetResponse = useQuery(
     ['alphabet', uid],
