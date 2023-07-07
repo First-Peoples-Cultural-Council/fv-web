@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import useSearchLoader from 'common/search/useSearchLoader'
-import api from 'services/api'
 
 function DictionaryDataSearch({ searchType }) {
   const { sitename } = useParams()
@@ -15,12 +14,7 @@ function DictionaryDataSearch({ searchType }) {
 
   // Search fetch
   const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
-    useSearchLoader({
-      searchApi: api.search,
-      queryKey: 'dictionary',
-      siteUid: site?.uid,
-      searchParams,
-    })
+    useSearchLoader({ searchParams })
 
   useEffect(() => {
     if (isError) {

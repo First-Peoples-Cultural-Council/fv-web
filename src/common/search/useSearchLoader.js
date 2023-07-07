@@ -1,14 +1,18 @@
 import { useRef } from 'react'
 import { useInfiniteQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
+import { SEARCH } from 'common/constants'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
+import api from 'services/api'
 
 /**
  * Calls search-like APIs and provides search results and loading/error info.
  */
-function useSearchLoader({ searchApi, queryKey, siteUid, searchParams }) {
+function useSearchLoader({ searchParams }) {
+  const { sitename } = useParams()
   const searchParamString = searchParams.toString()
 
   // Fetch search results
@@ -21,16 +25,16 @@ function useSearchLoader({ searchApi, queryKey, siteUid, searchParams }) {
     isLoading,
     isError,
   } = useInfiniteQuery(
-    [`${queryKey}-search`, searchParamString],
-    ({ pageParam = 1 }) =>
-      searchApi.get({
-        siteId: siteUid,
+    [SEARCH, sitename, searchParamString],
+    ({ page = 1 }) =>
+      api.search.get({
+        sitename,
         searchParams: searchParamString,
-        pageParam,
+        page,
       }),
     {
-      enabled: !!siteUid,
-      getNextPageParam: (lastPage) => lastPage.nextPage,
+      enabled: !!sitename,
+      getNextPageParam: (currentPage) => currentPage.nextPage,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
     },
@@ -56,11 +60,8 @@ function useSearchLoader({ searchApi, queryKey, siteUid, searchParams }) {
 }
 
 // PROPTYPES
-const { obj, string } = PropTypes
+const { obj } = PropTypes
 useSearchLoader.propTypes = {
-  searchApi: obj,
-  queryKey: string,
-  siteUid: string,
   searchParams: obj,
 }
 
