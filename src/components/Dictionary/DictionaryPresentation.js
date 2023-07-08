@@ -6,6 +6,11 @@ import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import getIcon from 'common/utils/getIcon'
+import {
+  TYPE_DICTIONARY,
+  TYPE_PHRASE,
+  TYPE_WORD,
+} from 'common/constants/searchParams'
 
 function DictionaryPresentation({
   actions,
@@ -17,9 +22,7 @@ function DictionaryPresentation({
   kids,
   labels,
   moreActions,
-  onSortByClick,
   sitename,
-  sorting,
 }) {
   const linkStyle = {
     li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
@@ -43,7 +46,7 @@ function DictionaryPresentation({
             isLoading={isLoadingEntries}
             items={items}
             sitename={sitename}
-            showType={searchType === 'WORD_AND_PHRASE'}
+            showType={searchType === TYPE_DICTIONARY}
             kids
           />
         </div>
@@ -53,7 +56,7 @@ function DictionaryPresentation({
             <h1
               className={`flex items-center text-3xl xl:text-4xl text-${labels.color}Text ml-4 xl:ml-7 mb-8`}
             >
-              {labels.title}
+              {labels.uppercase}
             </h1>
             <h2 className="block text-xl xl:text-2xl font-medium text-fv-charcoal ml-4 xl:ml-7">
               BROWSE BY:
@@ -77,7 +80,7 @@ function DictionaryPresentation({
                   <p>Alphabet</p>
                 </Link>
               </li>
-              {searchType !== 'WORD' && (
+              {searchType !== TYPE_WORD && (
                 <li id="DocLink" className={linkStyle.li}>
                   <Link className={linkStyle.link} to={`/${sitename}/words`}>
                     {getIcon('Word', linkStyle.icon)}
@@ -85,7 +88,7 @@ function DictionaryPresentation({
                   </Link>
                 </li>
               )}
-              {searchType !== 'PHRASE' && (
+              {searchType !== TYPE_PHRASE && (
                 <li id="DocLink" className={linkStyle.li}>
                   <Link className={linkStyle.link} to={`/${sitename}/phrases`}>
                     {getIcon('Phrase', linkStyle.icon)}
@@ -103,11 +106,9 @@ function DictionaryPresentation({
                 isLoading={isLoadingEntries}
                 items={items}
                 moreActions={moreActions}
-                onSortByClick={onSortByClick}
                 sitename={sitename}
-                sorting={sorting}
-                entryLabel={labels.entryLabel}
-                showType={searchType === 'WORD_AND_PHRASE'}
+                entryLabel={labels.singular}
+                showType={searchType === TYPE_DICTIONARY}
               />
             </div>
             <div className="block md:hidden print:hidden">
@@ -118,7 +119,7 @@ function DictionaryPresentation({
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
-                showType={searchType === 'WORD_AND_PHRASE'}
+                showType={searchType === TYPE_DICTIONARY}
               />
             </div>
           </div>
@@ -129,13 +130,10 @@ function DictionaryPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, func, object, string } = PropTypes
+const { array, bool, object, string } = PropTypes
 DictionaryPresentation.propTypes = {
   actions: array,
-  currentOption: object,
   searchType: string,
-  handleSearchSubmit: func,
-  handleTextFieldChange: func,
   infiniteScroll: object,
   loadRef: object,
   isLoadingEntries: bool,
@@ -143,13 +141,7 @@ DictionaryPresentation.propTypes = {
   kids: bool,
   labels: object,
   moreActions: array,
-  onOptionClick: func,
-  onSortByClick: func,
-  options: array,
-  resetSearch: func,
-  searchValue: string,
   sitename: string,
-  sorting: object,
 }
 
 export default DictionaryPresentation

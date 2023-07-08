@@ -17,7 +17,13 @@ import Dictionary from 'components/Dictionary'
 import Song from 'components/Song'
 import SongsAndStories from 'components/SongsAndStories'
 import Story from 'components/Story'
-import { DOC_PHRASE, DOC_WORD } from 'common/constants'
+import {
+  DOC_PHRASE,
+  DOC_WORD,
+  TYPE_PHRASE,
+  TYPE_WORD,
+  TYPE_DICTIONARY,
+} from 'common/constants'
 
 function SiteFrameKids({ siteLoading }) {
   const location = useLocation()
@@ -35,7 +41,7 @@ function SiteFrameKids({ siteLoading }) {
             <Route
               path="dictionary"
               element={
-                <Dictionary.Container searchType="WORD_AND_PHRASE" kids />
+                <Dictionary.Container searchType={TYPE_DICTIONARY} kids />
               }
             />
             <Route
@@ -44,7 +50,7 @@ function SiteFrameKids({ siteLoading }) {
             />
             <Route
               path="words"
-              element={<Dictionary.Container searchType="WORD" kids />}
+              element={<Dictionary.Container searchType={TYPE_WORD} kids />}
             />
             <Route
               path="phrases/:id"
@@ -52,7 +58,7 @@ function SiteFrameKids({ siteLoading }) {
             />
             <Route
               path="phrases"
-              element={<Dictionary.Container searchType="PHRASE" kids />}
+              element={<Dictionary.Container searchType={TYPE_PHRASE} kids />}
             />
             <Route
               path="alphabet/:character"

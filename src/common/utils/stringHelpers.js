@@ -6,12 +6,19 @@ import {
   DOC_PAGE,
   DOC_PHRASE,
   DOC_WORD,
+  DOC_STORY,
+  DOC_SONG,
   DOC_AUDIO,
   DOC_IMAGE,
   DOC_VIDEO,
   MEMBERS,
   PUBLIC,
   TEAM,
+  TYPE_DICTIONARY,
+  TYPE_PHRASE,
+  TYPE_WORD,
+  TYPE_STORY,
+  TYPE_SONG,
   UUID_REGEX,
   WIDGET_ALPHABET,
   WIDGET_APPS,
@@ -179,6 +186,51 @@ export const getFvDocType = (string) => {
       return DOC_BOOK
     default:
       return 'Unrecognised doc type term.'
+  }
+}
+
+export const getSearchTypeFromDocType = (docType) => {
+  switch (docType) {
+    case DOC_PHRASE:
+      return TYPE_PHRASE
+    case DOC_SONG:
+      return TYPE_SONG
+    case DOC_STORY:
+      return TYPE_STORY
+    case DOC_WORD:
+      return TYPE_WORD
+    default:
+      return 'Unrecognised type.'
+  }
+}
+
+export const getPresentationPropertiesForType = (type) => {
+  switch (type) {
+    case TYPE_WORD:
+      return {
+        uppercase: 'WORDS',
+        singular: 'word',
+        plural: 'words',
+        slug: 'words',
+        color: 'word',
+      }
+    case TYPE_PHRASE:
+      return {
+        uppercase: 'PHRASES',
+        singular: 'phrase',
+        plural: 'phrases',
+        slug: 'phrases',
+        color: 'phrase',
+      }
+    case TYPE_DICTIONARY:
+    default:
+      return {
+        uppercase: 'DICTIONARY',
+        singular: 'word / phrase',
+        plural: 'words and phrases',
+        slug: 'dictionary',
+        color: 'word',
+      }
   }
 }
 
