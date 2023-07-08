@@ -3,26 +3,28 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Tabs from 'components/Tabs'
-import useSearchType from 'common/search/useSearchBoxNavigation'
+import {
+  TYPE_DICTIONARY,
+  TYPE_PHRASE,
+  TYPE_WORD,
+} from 'common/constants/searchParams'
 
 function SearchTypeSelectorContainer({
   accentColor,
   selectedSearchType,
   setSearchType,
 }) {
-  const { allSearchTypes } = useSearchType({})
-
   const dictionaryTypes = [
-    { label: 'WORDS', icon: 'Word', value: allSearchTypes.WORD.searchDocType },
+    { label: 'WORDS', icon: 'Word', value: TYPE_WORD },
     {
       label: 'PHRASES',
       icon: 'Phrase',
-      value: allSearchTypes.PHRASE.searchDocType,
+      value: TYPE_PHRASE,
     },
     {
       label: 'BOTH',
       icon: 'All',
-      value: allSearchTypes.WORD_AND_PHRASE.searchDocType,
+      value: TYPE_DICTIONARY,
     },
   ]
 
@@ -43,7 +45,7 @@ const { func, oneOf, string } = PropTypes
 SearchTypeSelectorContainer.propTypes = {
   accentColor: string,
   setSearchType: func,
-  selectedSearchType: oneOf(['WORD', 'PHRASE', 'WORD_AND_PHRASE']),
+  selectedSearchType: oneOf([TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD]),
 }
 
 export default SearchTypeSelectorContainer

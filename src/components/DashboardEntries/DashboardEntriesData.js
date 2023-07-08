@@ -3,19 +3,20 @@ import { useSearchParams } from 'react-router-dom'
 // FPCC
 import useSearchLoader from 'common/search/useSearchLoader'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
 function DashboardEntriesData() {
   const [searchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
-  const urlSearchType = searchParams.get('docType') || 'ALL'
+  const urlSearchType = searchParams.get('type') || TYPE_DICTIONARY
   const { searchType, setSearchTypeInUrl, getSearchLabel } =
     useSearchBoxNavigation({
       searchType: urlSearchType,
     })
   const showTypeSelector =
-    urlSearchType === 'WORD' ||
-    urlSearchType === 'PHRASE' ||
-    urlSearchType === 'WORD_AND_PHRASE'
+    urlSearchType === TYPE_WORD ||
+    urlSearchType === TYPE_PHRASE ||
+    urlSearchType === TYPE_DICTIONARY
 
   // Search fetch
   const { searchResults, infiniteScroll, loadRef, isLoading } = useSearchLoader(
