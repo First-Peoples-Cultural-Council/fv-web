@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchLoader from 'common/search/useSearchLoader'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
 import { DOMAIN, DOMAIN_BOTH, TYPES, KIDS } from 'common/constants'
 

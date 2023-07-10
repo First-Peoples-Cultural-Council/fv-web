@@ -6,11 +6,7 @@ import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import getIcon from 'common/utils/getIcon'
-import {
-  TYPE_DICTIONARY,
-  TYPE_PHRASE,
-  TYPE_WORD,
-} from 'common/constants/searchParams'
+import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
 function DictionaryPresentation({
   actions,
