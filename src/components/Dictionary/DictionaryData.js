@@ -16,13 +16,13 @@ function DictionaryDataSearch({ searchType, kids }) {
 
   const domain = searchParams.get(DOMAIN) || DOMAIN_BOTH
 
-  const _searchParams =
-    searchParams.get(TYPES) ||
-    new URLSearchParams({
-      [DOMAIN]: domain,
-      [TYPES]: searchType,
-      [KIDS]: kids,
-    })
+  const _searchParams = searchParams.get(TYPES)
+    ? searchParams
+    : new URLSearchParams({
+        [DOMAIN]: domain,
+        [TYPES]: searchType,
+        [KIDS]: kids,
+      })
 
   // Search fetch
   const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
