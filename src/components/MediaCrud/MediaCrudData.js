@@ -15,7 +15,7 @@ import {
   DOC_AUDIO,
   DOC_IMAGE,
   DOC_VIDEO,
-} from 'common/constants/docTypes'
+} from 'common/constants'
 
 function MediaCrudData({ docType, maxFiles }) {
   const { site } = useSiteStore()

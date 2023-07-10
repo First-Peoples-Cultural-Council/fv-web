@@ -8,6 +8,7 @@ import useSearchBox from 'components/SearchBox/useSearchBox'
 import useSearchLanguage from 'components/SearchLanguageSelector/useSearchLanguage'
 import useSearchType from 'components/SearchTypeSelector/useSearchType'
 import { makeTitleCase } from 'common/utils/stringHelpers'
+import { DOMAIN, DOMAIN_BOTH, TYPES, TYPE_ENTRY } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
@@ -25,7 +26,7 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
   const searchLanguageData = useSearchLanguage({ entryLabel })
   const placeholderSearchType = searchType || searchTypeData.searchType
   const searchBoxPlaceholder =
-    placeholderSearchType && placeholderSearchType !== 'ALL'
+    placeholderSearchType && placeholderSearchType !== TYPE_ENTRY
       ? `Search ${searchTypeData.getSearchLabel({
           searchType: placeholderSearchType,
           plural: true,
@@ -44,8 +45,10 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
       searchBox.setDisplayedSearchTerm(query)
     }
 
-    searchLanguageData.setSearchLanguage(searchParams.get('domain') || 'BOTH')
-    searchTypeData.setSearchType(searchParams.get('docType') || searchType)
+    searchLanguageData.setSearchLanguage(
+      searchParams.get(DOMAIN) || DOMAIN_BOTH,
+    )
+    searchTypeData.setSearchType(searchParams.get(TYPES) || searchType)
   }, [searchParams, searchType])
 
   // provide navigation functions for search urls
@@ -97,8 +100,8 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
 
   const getCurrentSearchUrlState = () => ({
     searchTerm: searchParams.get('q') || '',
-    searchLanguage: searchParams.get('domain') || 'BOTH',
-    searchType: searchParams.get('docType') || searchTypeData.searchType,
+    searchLanguage: searchParams.get(DOMAIN) || DOMAIN_BOTH,
+    searchType: searchParams.get(TYPES) || searchTypeData.searchType,
     kidFlag: kids,
   })
 

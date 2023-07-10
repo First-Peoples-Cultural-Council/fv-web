@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getMediaUrl } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
+import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 import { isDisplayablePropMedia } from 'common/utils/stringHelpers'
 
 function MediaDetailsVisual({ file, docType }) {

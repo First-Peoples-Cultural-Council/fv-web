@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
+import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
 import getIcon from 'common/utils/getIcon'
 function MediaItemsLayoutVisual({
@@ -22,13 +22,11 @@ function MediaItemsLayoutVisual({
   return (
     <div id="MediaItemsLayoutVisual" className="overflow-y-auto h-full">
       <div className={selection ? 'h-3/4 overflow-y-auto' : ''}>
-        <ul
-          role="list"
-          className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8"
-        >
+        <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
           {data?.pages !== undefined &&
             data?.pages?.[0]?.entries?.length > 0 &&
             data?.pages?.map((page, index) => (
+              // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
                 {page.entries.map((rawDocument) => {
                   const doc = mediaDataAdaptor({
@@ -59,7 +57,6 @@ function MediaItemsLayoutVisual({
                           } object-cover pointer-events-none`}
                         />
                         <button
-                          type="button"
                           type="button"
                           className="absolute inset-0 focus:outline-none"
                           {...(selection

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchType from 'components/SearchTypeSelector/useSearchType'
 import useSearchBox from 'components/SearchBox/useSearchBox'
-import useSearchLoader from 'common/search/useSearchLoader'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 
 function useModalDocumentSearch({ docTypes }) {
   const { getSearchTypeFromDocTypes } = useSearchType({})

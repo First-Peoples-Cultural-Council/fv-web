@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchLoader from 'common/search/useSearchLoader'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { makeTitleCase } from 'common/utils/stringHelpers'
 import useSearchType from 'components/SearchTypeSelector/useSearchType'
 import {

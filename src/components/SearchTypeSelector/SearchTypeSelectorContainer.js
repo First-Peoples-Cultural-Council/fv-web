@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Tabs from 'components/Tabs'
-import {
-  TYPE_DICTIONARY,
-  TYPE_PHRASE,
-  TYPE_WORD,
-} from 'common/constants/searchParams'
+import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
 function SearchTypeSelectorContainer({
   accentColor,
