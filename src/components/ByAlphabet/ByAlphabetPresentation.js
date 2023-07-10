@@ -7,6 +7,7 @@ import DictionaryGrid from 'components/DictionaryGrid'
 import AudioButton from 'components/AudioButton'
 import SearchTypeSelector from 'components/SearchTypeSelector'
 import getIcon from 'common/utils/getIcon'
+import { TYPE_DICTIONARY } from 'common/constants'
 
 function ByAlphabetPresentation({
   actions,
@@ -21,9 +22,7 @@ function ByAlphabetPresentation({
   items,
   kids,
   moreActions,
-  onSortByClick,
   sitename,
-  sorting,
 }) {
   const getAlphabetList = () =>
     characters.map(({ title, id }) => (
@@ -153,7 +152,7 @@ function ByAlphabetPresentation({
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
-                showType={searchType === 'WORD_AND_PHRASE'}
+                showType={searchType === TYPE_DICTIONARY}
                 hasSideNav
                 kids
               />
@@ -177,9 +176,7 @@ function ByAlphabetPresentation({
                   items={items}
                   moreActions={moreActions}
                   noResultsMessage={getNoResultsMessage()}
-                  onSortByClick={onSortByClick}
                   sitename={sitename}
-                  sorting={sorting}
                   showType
                   entryLabel={entryLabel}
                 />
@@ -192,7 +189,7 @@ function ByAlphabetPresentation({
                   items={items}
                   moreActions={moreActions}
                   sitename={sitename}
-                  showType={searchType === 'WORD_AND_PHRASE'}
+                  showType={searchType === TYPE_DICTIONARY}
                 />
               </div>
             </div>
@@ -218,9 +215,7 @@ ByAlphabetPresentation.propTypes = {
   items: object,
   kids: bool,
   moreActions: array,
-  onSortByClick: func,
   sitename: string,
-  sorting: object,
 }
 
 export default ByAlphabetPresentation

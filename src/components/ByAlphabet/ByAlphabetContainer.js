@@ -20,10 +20,8 @@ function ByAlphabetContainer({ kids }) {
     isLoading,
     items,
     moreActions,
-    onSortByClick,
     selectedTab,
     sitename,
-    sorting,
     tabs,
   } = ByAlphabetData({ kids })
   return (
@@ -41,10 +39,8 @@ function ByAlphabetContainer({ kids }) {
         items={items}
         kids={kids}
         moreActions={moreActions}
-        onSortByClick={onSortByClick}
         selectedTab={selectedTab}
         sitename={sitename}
-        sorting={sorting}
         tabs={tabs}
       />
     </Loading.Container>
