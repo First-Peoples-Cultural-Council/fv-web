@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
-import useSearchLoader from 'common/search/useSearchLoader'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
 import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
@@ -19,13 +19,13 @@ function DashboardEntriesData() {
     urlSearchType === TYPE_DICTIONARY
 
   // Search fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading } = useSearchLoader(
-    { searchParams },
-  )
+  const { data, infiniteScroll, loadRef, isLoading } = useSearchLoader({
+    searchParams,
+  })
 
   return {
     isLoadingEntries: isLoading,
-    items: searchResults,
+    items: data,
     infiniteScroll,
     loadRef: searchTerm ? loadRef : null,
     searchType,

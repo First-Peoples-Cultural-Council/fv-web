@@ -7,7 +7,7 @@ import DictionaryGrid from 'components/DictionaryGrid'
 import AudioButton from 'components/AudioButton'
 import SearchTypeSelector from 'components/SearchTypeSelector'
 import getIcon from 'common/utils/getIcon'
-import { TYPE_DICTIONARY } from 'common/constants'
+import { TYPES, TYPE_DICTIONARY } from 'common/constants'
 
 function ByAlphabetPresentation({
   actions,
@@ -34,7 +34,7 @@ function ByAlphabetPresentation({
         key={id}
         to={`/${sitename}/${
           kids ? 'kids/' : ''
-        }alphabet/${title}?docType=${searchType}`}
+        }alphabet/${title}?${TYPES}=${searchType}`}
       >
         {title}
       </Link>
@@ -101,7 +101,7 @@ function ByAlphabetPresentation({
                 >
                   <Link
                     className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
-                    to={`/${sitename}/categories?docType=${searchType}`}
+                    to={`/${sitename}/categories?${TYPES}=${searchType}`}
                   >
                     {getIcon(
                       'Categories',

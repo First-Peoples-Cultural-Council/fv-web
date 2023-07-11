@@ -25,7 +25,7 @@ function DictionaryDataSearch({ searchType, kids }) {
       })
 
   // Search fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
   useEffect(() => {
@@ -42,7 +42,7 @@ function DictionaryDataSearch({ searchType, kids }) {
   return {
     isLoading: !site?.title,
     isLoadingEntries: isLoading,
-    items: searchResults,
+    items: data,
     infiniteScroll,
     labels,
     loadRef,

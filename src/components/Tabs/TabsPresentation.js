@@ -21,7 +21,7 @@ function TabsPresentation({ accentColor, selectedValue, tabs, setValue }) {
         {tabs?.map((tab, tabIndex) => (
           <button
             type="button"
-            key={tabIndex + tab?.value}
+            key={tab?.value}
             value={tab?.value}
             onClick={() => setValue(tab?.value)}
             className={classNames(
@@ -29,7 +29,7 @@ function TabsPresentation({ accentColor, selectedValue, tabs, setValue }) {
                 ? `text-white bg-${accentColor} border-${accentColor}`
                 : 'text-gray-500 bg-white hover:text-gray-700 hover:bg-gray-100 border-gray-200',
               tabIndex === 0 ? 'rounded-l-lg border-r-0' : '',
-              tabIndex === tabs?.length - 1 ? 'rounded-r-lg border-l-0' : '',
+              tabIndex === tabs.length - 1 ? 'rounded-r-lg border-l-0' : '',
               'group relative min-w-auto flex items-center border-2 py-2 px-4 font-medium text-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-fv-charcoal-light',
             )}
             aria-current={tab?.value === selectedValue ? tab?.label : undefined}

@@ -15,21 +15,22 @@ import {
 } from 'common/constants'
 
 /**
- * Calls search-like APIs and provides search results and loading/error info.
+ * Calls search API and provides search results and infinite scroll info.
  */
 function useSearchLoader({ searchParams }) {
   const { sitename } = useParams()
   const searchParamString = searchParams.toString()
 
   const pagesDataAdaptor = (pages) =>
-    pages.map((page) => singlePageDataAdaptor(page))
+    pages.map((page, index) => singlePageDataAdaptor(page, index))
 
-  const singlePageDataAdaptor = (page) => {
+  const singlePageDataAdaptor = (page, index) => {
     const formattedEntries = page?.results?.map((result) =>
       resultAdaptor(result),
     )
     return {
       ...page,
+      pageNumber: index + 1,
       results: formattedEntries,
     }
   }
@@ -71,15 +72,7 @@ function useSearchLoader({ searchParams }) {
   }
 
   // Fetch search results
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isLoading,
-    isError,
-  } = useInfiniteQuery(
+  const response = useInfiniteQuery(
     [SEARCH, sitename, searchParamString],
     ({ page = 1 }) =>
       api.search.get({
@@ -99,22 +92,23 @@ function useSearchLoader({ searchParams }) {
     },
   )
 
-  const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage }
+  const infiniteScroll = {
+    fetchNextPage: response?.fetchNextPage,
+    hasNextPage: response?.hasNextPage,
+    isFetchingNextPage: response?.isFetchingNextPage,
+  }
 
   const loadRef = useRef(null)
   useIntersectionObserver({
     target: loadRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage,
+    onIntersect: response?.fetchNextPage,
+    enabled: response?.hasNextPage,
   })
 
   return {
-    searchResults: data,
-    error,
+    ...response,
     infiniteScroll,
     loadRef,
-    isLoading,
-    isError,
   }
 }
 

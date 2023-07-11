@@ -34,7 +34,7 @@ function SearchData() {
   const entryLabel = getSearchLabel({ searchType })
 
   // Dictionary fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
     useSearchLoader({ searchParams })
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function SearchData() {
     handleFilter,
     infiniteScroll,
     isLoading,
-    items: searchResults,
+    items: data,
     loadRef,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],

@@ -151,8 +151,8 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-300">
-                  {items.pages.map((page) => (
-                    <Fragment key={page.nextPage}>
+                  {items?.pages?.map((page) => (
+                    <Fragment key={page.pageNumber}>
                       {page.results.map(
                         ({
                           id,

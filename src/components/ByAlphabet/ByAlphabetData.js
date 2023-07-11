@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
-import useSearchLoader from 'common/search/useSearchLoader'
-import api from 'services/api'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import useAlphabet from 'common/dataHooks/useAlphabet'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
 import {
   KIDS,
@@ -16,8 +14,6 @@ import {
 } from 'common/constants'
 
 function ByAlphabetData({ kids }) {
-  const { site } = useSiteStore()
-  const { uid } = site
   const navigate = useNavigate()
   const { sitename, character } = useParams()
   const [searchParams] = useSearchParams()
@@ -34,16 +30,10 @@ function ByAlphabetData({ kids }) {
     [STARTS_WITH_CHAR]: character,
   })
 
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
-  const alphabetResponse = useQuery(
-    ['alphabet', uid],
-    () => api.alphabet.get(uid),
-    {
-      enabled: !!uid,
-    },
-  )
+  const alphabetResponse = useAlphabet()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
@@ -78,7 +68,7 @@ function ByAlphabetData({ kids }) {
         : [],
     charactersAreLoading: alphabetResponse?.isLoading,
     isLoading: isLoading || isError,
-    items: searchResults || {},
+    items: data || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,

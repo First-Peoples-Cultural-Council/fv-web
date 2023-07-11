@@ -12,19 +12,19 @@ function useModalDocumentSearch({ docTypes }) {
 
   const _searchParams = `q=${searchBox.submittedSearchTerm}&docType=${searchType}&domain=BOTH`
 
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError } =
-    useSearchLoader({
+  const { data, infiniteScroll, loadRef, isLoading, isError } = useSearchLoader(
+    {
       searchParams: _searchParams,
-    })
+    },
+  )
 
   return {
     searchQuery: searchBox.displayedSearchTerm,
     setSearchQuery: searchBox.handleSearchTermChange,
     search: searchBox.handleSearchTermSubmit,
-    searchResults,
+    searchResults: data,
     hasResults:
-      searchResults?.pages !== undefined &&
-      searchResults?.pages?.[0]?.results?.length > 0,
+      data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0,
     infiniteScroll,
     isLoading: isLoading || isError,
     isLoadingEntries: isLoading,

@@ -6,7 +6,12 @@ import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import getIcon from 'common/utils/getIcon'
-import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
+import {
+  TYPES,
+  TYPE_DICTIONARY,
+  TYPE_PHRASE,
+  TYPE_WORD,
+} from 'common/constants'
 
 function DictionaryPresentation({
   actions,
@@ -61,7 +66,7 @@ function DictionaryPresentation({
               <li id="CategoryLink" className={linkStyle.li}>
                 <Link
                   className={linkStyle.link}
-                  to={`/${sitename}/categories?docType=${searchType}`}
+                  to={`/${sitename}/categories?${TYPES}=${searchType}`}
                 >
                   {getIcon('Categories', linkStyle.icon)}
                   <p>Categories</p>
@@ -70,7 +75,7 @@ function DictionaryPresentation({
               <li id="AlphabetLink" className={linkStyle.li}>
                 <Link
                   className={linkStyle.link}
-                  to={`/${sitename}/alphabet?docType=${searchType}`}
+                  to={`/${sitename}/alphabet?${TYPES}=${searchType}`}
                 >
                   {getIcon('Alphabet', linkStyle.icon)}
                   <p>Alphabet</p>
