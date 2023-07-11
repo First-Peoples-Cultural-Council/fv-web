@@ -83,8 +83,8 @@ function DictionaryGridTilePresentationKids({ entry }) {
                 } list-inside my-2 text-lg`}
               >
                 {entry?.translations?.map((translation) => (
-                  <li key={translation} className="p-0.5">
-                    {translation}
+                  <li key={translation?.id} className="p-0.5">
+                    {translation?.text}
                   </li>
                 ))}
               </ol>
