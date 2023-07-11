@@ -10,6 +10,7 @@ import Story from 'components/Story'
 import getIcon from 'common/utils/getIcon'
 import { getFvDocType } from 'common/utils/stringHelpers'
 import Drawer from 'components/Drawer'
+import { TYPE_PHRASE, TYPE_SONG, TYPE_STORY, TYPE_WORD } from 'common/constants'
 
 function DashboardEntriesPresentationList({
   infiniteScroll,
@@ -38,54 +39,20 @@ function DashboardEntriesPresentationList({
   }
 
   function getContents() {
-    function EditButton() {
-      return (
-        <div className="flex justify-end mx-3 my-2">
-          <Link
-            to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
-          >
-            <button
-              type="button"
-              type="button"
-              className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-            >
-              {getIcon(
-                'Pencil',
-                'fill-current -ml-1 mr-2 h-5 w-5 text-fv-charcoal-light',
-              )}
-              <span>Edit</span>
-            </button>
-          </Link>
-        </div>
-      )
-    }
     switch (selectedItem?.type) {
-      case 'phrase':
-      case 'word':
+      case TYPE_PHRASE:
+      case TYPE_WORD:
         return (
-          <>
-            <EditButton />
-            <DictionaryDetail.Container
-              docId={selectedItem?.id}
-              docType={getFvDocType(selectedItem?.type)}
-              isDrawer
-            />
-          </>
+          <DictionaryDetail.Container
+            docId={selectedItem?.id}
+            docType={getFvDocType(selectedItem?.type)}
+            isDrawer
+          />
         )
-      case 'song':
-        return (
-          <>
-            <EditButton />
-            <Song.Container docId={selectedItem?.id} isDrawer />
-          </>
-        )
-      case 'story':
-        return (
-          <>
-            <EditButton />
-            <Story.Container docId={selectedItem?.id} isDrawer />{' '}
-          </>
-        )
+      case TYPE_SONG:
+        return <Song.Container docId={selectedItem?.id} isDrawer />
+      case TYPE_STORY:
+        return <Story.Container docId={selectedItem?.id} isDrawer />
       default:
         return null
     }
@@ -124,50 +91,42 @@ function DashboardEntriesPresentationList({
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-300">
-                      {items.pages.map((page, index) => (
-                        <Fragment key={index}>
-                          {page.results.map(
-                            ({
-                              id,
-                              title,
-                              translations,
-                              type,
-                              parentDialect,
-                            }) => (
-                              <tr
-                                key={id}
-                                onClick={() =>
-                                  handleItemClick({ id, type, parentDialect })
-                                }
-                                className="cursor-pointer hover:bg-gray-100"
-                              >
-                                <td className="px-6 py-4 flex items-center text-left font-medium text-fv-charcoal lg:mr-2">
-                                  {title}
-                                </td>
-                                <td className="px-6 py-4">
-                                  {translations ? (
-                                    <ol className="text-fv-charcoal">
-                                      {translations.map((translation, i) => (
-                                        <li key={i}>
-                                          {translations.length > 1
+                      {items.pages.map((page) => (
+                        <Fragment key={page?.pageNumber}>
+                          {page.results.map((entry) => (
+                            <tr
+                              key={entry?.id}
+                              onClick={() => handleItemClick(entry)}
+                              className="cursor-pointer hover:bg-gray-100"
+                            >
+                              <td className="px-6 py-4 flex items-center text-left font-medium text-fv-charcoal lg:mr-2">
+                                {entry?.title}
+                              </td>
+                              <td className="px-6 py-4">
+                                {entry?.translations ? (
+                                  <ol className="text-fv-charcoal">
+                                    {entry?.translations.map(
+                                      (translation, i) => (
+                                        <li key={translation?.id}>
+                                          {entry?.translations.length > 1
                                             ? `${i + 1}. `
                                             : null}{' '}
-                                          {translation}
+                                          {translation?.text}
                                         </li>
-                                      ))}
-                                    </ol>
-                                  ) : null}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <span
-                                    className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${type} capitalize text-white`}
-                                  >
-                                    {type}
-                                  </span>
-                                </td>
-                              </tr>
-                            ),
-                          )}
+                                      ),
+                                    )}
+                                  </ol>
+                                ) : null}
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span
+                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry?.type} capitalize text-white`}
+                                >
+                                  {entry?.type}
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
                         </Fragment>
                       ))}
                     </tbody>
@@ -197,7 +156,27 @@ function DashboardEntriesPresentationList({
           isOpen={drawerOpen}
           closeHandler={() => setDrawerOpen(false)}
         >
-          {selectedItem?.type && getContents()}
+          {selectedItem?.type && (
+            <>
+              <div className="flex justify-end mx-3 my-2">
+                <Link
+                  to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
+                >
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                  >
+                    {getIcon(
+                      'Pencil',
+                      'fill-current -ml-1 mr-2 h-5 w-5 text-fv-charcoal-light',
+                    )}
+                    <span>Edit</span>
+                  </button>
+                </Link>
+              </div>
+              {getContents()}
+            </>
+          )}
         </Drawer.Presentation>
       </div>
     </Loading.Container>

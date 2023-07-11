@@ -27,9 +27,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
           >
             <Link
               key={entry.id}
-              to={`/${entry?.parentDialect?.shortUrl}/${makePlural(
-                entry.type,
-              )}/${entry.id}`}
+              to={`/${entry?.sitename}/${makePlural(entry.type)}/${entry.id}`}
             >
               {entry.title}
             </Link>

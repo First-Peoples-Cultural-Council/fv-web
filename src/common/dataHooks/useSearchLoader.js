@@ -36,36 +36,32 @@ function useSearchLoader({ searchParams }) {
   }
 
   const resultAdaptor = (result) => {
+    const baseObject = {
+      id: result?.entry?.id,
+      title: result?.entry?.title,
+      type: result?.type,
+      sitename: result?.entry?.site?.slug,
+      siteTitle: result?.entry?.site?.title,
+      visibility: result?.entry?.visibility,
+    }
     switch (result?.type) {
       case 'dictionary_entry':
       case TYPE_WORD:
       case TYPE_PHRASE:
         return {
-          id: result?.entry?.id,
-          title: result?.entry?.title,
+          ...baseObject,
           translations: result?.entry?.translations,
           audio: result?.entry?.relatedAudio,
-          type: result?.entry?.type,
-          parentDialect: result?.entry?.site?.slug,
-          visibility: result?.entry?.visibility,
         }
       case TYPE_SONG:
       case TYPE_STORY:
         return {
-          id: result?.entry?.id,
-          title: result?.entry?.title,
+          ...baseObject,
           translations: [result?.entry?.title_translation],
-          type: result?.type,
-          parentDialect: result?.entry?.site?.slug,
-          visibility: result?.entry?.visibility,
         }
       default:
         return {
-          id: result?.entry?.id,
-          title: result?.entry?.title,
-          type: result?.type,
-          parentDialect: result?.entry?.site?.slug,
-          visibility: result?.entry?.visibility,
+          ...baseObject,
           message: 'Unrecognized entry type!',
         }
     }

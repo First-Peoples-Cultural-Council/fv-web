@@ -20,9 +20,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
       <div className="absolute top-2 right-2 print:hidden">
         <Link
           className="text-fv-charcoal"
-          to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
-            entry.type,
-          )}/${entry.id}`}
+          to={`/${entry?.sitename}/kids/${makePlural(entry.type)}/${entry.id}`}
         >
           <span className="sr-only">Full screen</span>
           {getIcon('Fullscreen', 'fill-current h-4 w-4 hover:cursor-pointer')}
@@ -40,9 +38,9 @@ function DictionaryGridTilePresentationKids({ entry }) {
             <Link
               key={entry.id}
               className="flex items-center justify-center h-72 w-full rounded-l-lg"
-              to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
-                entry.type,
-              )}/${entry.id}`}
+              to={`/${entry?.sitename}/kids/${makePlural(entry.type)}/${
+                entry.id
+              }`}
             >
               <LazyImage
                 imgStyling="h-full object-contain max-h-72"
@@ -68,9 +66,9 @@ function DictionaryGridTilePresentationKids({ entry }) {
             >
               <Link
                 key={entry.id}
-                to={`/${entry?.parentDialect?.shortUrl}/kids/${makePlural(
-                  entry.type,
-                )}/${entry.id}`}
+                to={`/${entry?.sitename}/kids/${makePlural(entry.type)}/${
+                  entry.id
+                }`}
               >
                 {entry.title}
               </Link>

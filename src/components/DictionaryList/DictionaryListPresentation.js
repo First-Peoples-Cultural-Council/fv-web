@@ -80,11 +80,7 @@ function DictionaryListPresentation({
 
   function handleItemClick(item) {
     if (window.innerWidth < 768) {
-      navigate(
-        `/${
-          item?.parentDialect?.shortUrl ? item.parentDialect.shortUrl : sitename
-        }/${makePlural(item?.type)}/${item?.id}`,
-      )
+      navigate(`/${item?.sitename}/${makePlural(item?.type)}/${item?.id}`)
     } else {
       setCurrentAudio()
       setselectedItem(item)
@@ -153,83 +149,71 @@ function DictionaryListPresentation({
                 <tbody className="bg-white divide-y divide-gray-300">
                   {items?.pages?.map((page) => (
                     <Fragment key={page.pageNumber}>
-                      {page.results.map(
-                        ({
-                          id,
-                          title,
-                          translations,
-                          audio,
-                          type,
-                          parentDialect,
-                          visibility,
-                        }) => (
-                          <tr key={id}>
-                            <td className="px-6 py-4 flex justify-between">
-                              <button
-                                type="button"
-                                className="text-left font-medium text-fv-charcoal lg:mr-2"
-                                onClick={() =>
-                                  handleItemClick({ id, type, parentDialect })
-                                }
-                              >
-                                {title}
-                              </button>
-                              <div className="w-32">
-                                <AudioButton
-                                  audioArray={audio}
-                                  iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
-                                  hoverTooltip
-                                />
-                              </div>
-                            </td>
-                            <td className="px-6 py-4">
-                              {translations ? (
-                                <ol className="text-fv-charcoal">
-                                  {translations.map((translation, i) => (
-                                    <li key={translation?.id}>
-                                      {translations.length > 1
-                                        ? `${i + 1}. `
-                                        : null}{' '}
-                                      {translation?.text}
-                                    </li>
-                                  ))}
-                                </ol>
-                              ) : null}
-                            </td>
-                            {showType && (
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <span
-                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${type} capitalize text-white`}
-                                >
-                                  {type}
-                                </span>
-                              </td>
-                            )}
-                            {wholeDomain && (
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <Link
-                                  className="text-left text-sm text-fv-charcoal"
-                                  to={`/${parentDialect.shortUrl}`}
-                                >
-                                  {parentDialect.name}
-                                </Link>
-                              </td>
-                            )}
-                            <td className="text-right px-6">
-                              <ActionsMenu.Presentation
-                                docId={id}
-                                docTitle={title}
-                                docType={type}
-                                docVisibility={visibility}
-                                actions={actions}
-                                moreActions={moreActions}
-                                withConfirmation
-                                withTooltip
+                      {page.results.map((entry) => (
+                        <tr key={entry?.id}>
+                          <td className="px-6 py-4 flex justify-between">
+                            <button
+                              type="button"
+                              className="text-left font-medium text-fv-charcoal lg:mr-2"
+                              onClick={() => handleItemClick(entry)}
+                            >
+                              {entry?.title}
+                            </button>
+                            <div className="w-32">
+                              <AudioButton
+                                audioArray={entry?.audio}
+                                iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
+                                hoverTooltip
                               />
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            {entry?.translations ? (
+                              <ol className="text-fv-charcoal">
+                                {entry?.translations?.map((translation, i) => (
+                                  <li key={translation?.id}>
+                                    {entry?.translations?.length > 1
+                                      ? `${i + 1}. `
+                                      : null}{' '}
+                                    {translation?.text}
+                                  </li>
+                                ))}
+                              </ol>
+                            ) : null}
+                          </td>
+                          {showType && (
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span
+                                className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry?.type} capitalize text-white`}
+                              >
+                                {entry?.type}
+                              </span>
                             </td>
-                          </tr>
-                        ),
-                      )}
+                          )}
+                          {wholeDomain && (
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <Link
+                                className="text-left text-sm text-fv-charcoal"
+                                to={`/${entry?.sitename}`}
+                              >
+                                {entry?.siteTitle}
+                              </Link>
+                            </td>
+                          )}
+                          <td className="text-right px-6">
+                            <ActionsMenu.Presentation
+                              docId={entry?.id}
+                              docTitle={entry?.title}
+                              docType={entry?.type}
+                              docVisibility={entry?.visibility}
+                              actions={actions}
+                              moreActions={moreActions}
+                              withConfirmation
+                              withTooltip
+                            />
+                          </td>
+                        </tr>
+                      ))}
                     </Fragment>
                   ))}
                 </tbody>
