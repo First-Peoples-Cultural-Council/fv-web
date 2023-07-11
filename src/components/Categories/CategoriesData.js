@@ -18,9 +18,7 @@ function CategoriesData() {
     })
 
   // Data fetch
-  const { response } = useCategories()
-
-  const { status, isLoading, error, isError, data } = response
+  const { status, isLoading, error, isError, data } = useCategories()
 
   useEffect(() => {
     if (isError) {

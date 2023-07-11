@@ -6,8 +6,8 @@ import api from 'services/api'
 import placeholder from 'images/cover-thumbnail.png'
 
 export default function useMySites() {
-  const userSitesResponse = useQuery([MY_SITES], () => api.site.mySites())
-  const formattedUserSitesData = userSitesResponse?.data?.results?.map((site) => ({
+  const response = useQuery([MY_SITES], () => api.site.mySites())
+  const formattedUserSitesData = response?.data?.results?.map((site) => ({
     uid: site?.id,
     title: site?.title,
     sitename: site?.slug,
@@ -18,7 +18,7 @@ export default function useMySites() {
     role: site?.role,
   }))
   return {
-    ...userSitesResponse,
+    ...response,
     mySitesData: formattedUserSitesData,
   }
 }

@@ -28,7 +28,5 @@ export default function useCategories() {
       url: child?.url,
     })),
   }))
-  return {
-    response: { ...response, data: formattedResults },
-  }
+  return { ...response, data: formattedResults }
 }
