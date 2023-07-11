@@ -20,10 +20,8 @@ function ByCategoryContainer({ kids }) {
     isLoading,
     items,
     moreActions,
-    onSortByClick,
     selectedTab,
     sitename,
-    sorting,
     tabs,
   } = ByCategoryData({ kids })
   return (
@@ -42,10 +40,8 @@ function ByCategoryContainer({ kids }) {
         items={items}
         kids={kids}
         moreActions={moreActions}
-        onSortByClick={onSortByClick}
         selectedTab={selectedTab}
         sitename={sitename}
-        sorting={sorting}
         tabs={tabs}
       />
     </Loading.Container>

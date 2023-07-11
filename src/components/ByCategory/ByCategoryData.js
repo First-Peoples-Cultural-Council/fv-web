@@ -1,88 +1,56 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
-import useSearchLoader from 'common/search/useSearchLoader'
-import api from 'services/api'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import useCategories from 'common/dataHooks/useCategories'
+import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
 function ByCategoryData({ kids }) {
-  const { site } = useSiteStore()
-  const { uid } = site
   const navigate = useNavigate()
   const { sitename, categoryId } = useParams()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
-  const urlSearchType = searchParams.get('docType') || 'WORD_AND_PHRASE'
+  const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
   const { searchType, setSearchTypeInUrl, getSearchLabel } =
     useSearchBoxNavigation({
       searchType: urlSearchType,
     })
-  const sortBy = searchParams.get('sortBy') || 'ENTRY'
-  const sortAscending = searchParams.get('sortAscending') || 'true'
 
-  const _searchParams = `docType=${searchType}&kidsOnly=${kids}&perPage=100&sortBy=${sortBy}&sortAscending=${sortAscending}&category=${categoryId}`
+  const _searchParams = new URLSearchParams({
+    [TYPES]: searchType,
+    [KIDS]: kids,
+    [CATEGORY]: categoryId,
+  })
+
   // Search fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
-  const categoriesResponse = useQuery(
-    ['categories', uid],
-    () =>
-      api.category.get({
-        siteId: uid,
-        parentsOnly: 'false',
-        inUseOnly: 'true',
-      }),
-    { enabled: !!uid, refetchOnWindowFocus: false, refetchOnReconnect: false },
-  )
+  const categoriesResponse = useCategories()
 
   const [currentCategory, setCurrentCategory] = useState({})
   const [currentParentCategory, setCurrentParentCategory] = useState({})
-  const categories = getParentCategories()
-
-  function getChildren(parentId) {
-    return categoriesResponse?.data?.categories?.filter(
-      (category) => category?.parentId === parentId,
-    )
-  }
-
-  function getParentCategories() {
-    return categoriesResponse?.data?.categories?.filter(
-      (category) => category?.parentId === null,
-    )
-  }
 
   useEffect(() => {
-    if (
-      categoriesResponse?.data &&
-      categoriesResponse?.status === 'success' &&
-      !categoriesResponse?.isError
-    ) {
-      const selectedCategory = categoriesResponse?.data?.categories?.find(
+    if (categoriesResponse?.allCategories?.length > 0 && categoryId) {
+      const selectedCategory = categoriesResponse?.allCategories?.find(
         (category) => category?.id === categoryId,
       )
       const parentCategory = selectedCategory?.parentId
-        ? categoriesResponse?.data?.categories?.find(
+        ? categoriesResponse?.allCategories?.find(
             (category) => category?.id === selectedCategory.parentId,
           )
         : selectedCategory
       if (selectedCategory?.id !== currentCategory?.id) {
-        setCurrentCategory({
-          ...selectedCategory,
-          children: getChildren(selectedCategory.id),
-        })
+        setCurrentCategory(selectedCategory)
         if (parentCategory) {
-          setCurrentParentCategory({
-            ...parentCategory,
-            children: getChildren(parentCategory.id),
-          })
+          setCurrentParentCategory(parentCategory)
         }
       }
     }
-  }, [categoriesResponse?.status, currentCategory, categoryId])
+  }, [categoriesResponse, currentCategory, categoryId])
 
   useEffect(() => {
     if (isError) {
@@ -91,26 +59,13 @@ function ByCategoryData({ kids }) {
         { replace: true },
       )
     }
-  }, [isError])
-
-  const onSortByClick = (field) => {
-    const newSortBy = field
-    let newSortAscending = 'true'
-    if (sortBy === field && sortAscending === 'true') {
-      newSortAscending = 'false'
-    }
-    setSearchParams({
-      docType: searchType,
-      sortBy: newSortBy,
-      sortAscending: newSortAscending,
-    })
-  }
+  }, [error, isError, navigate, sitename])
 
   return {
-    categories: categories || [],
+    categories: categoriesResponse?.data?.results || [],
     categoriesAreLoading: categoriesResponse?.isLoading,
     isLoading: isLoading || isError,
-    items: searchResults || {},
+    items: data || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
@@ -121,8 +76,6 @@ function ByCategoryData({ kids }) {
     searchType,
     setSearchType: setSearchTypeInUrl,
     entryLabel: getSearchLabel({ searchType }),
-    onSortByClick,
-    sorting: { sortBy, sortAscending },
   }
 }
 
