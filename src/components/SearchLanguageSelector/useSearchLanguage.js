@@ -1,13 +1,20 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
+// FPCC
+import {
+  DOMAIN_LANGUAGE,
+  DOMAIN_BOTH,
+  DOMAIN_TRANSLATION,
+} from 'common/constants'
+
 function useSearchLanguage({ entryLabel = 'Language Entry' }) {
   const [searchLanguage, setSearchLanguage] = useState()
 
   const searchLanguageOptions = {
-    BOTH: 'All',
-    ENGLISH: 'Translation',
-    LANGUAGE: entryLabel,
+    [DOMAIN_BOTH]: 'All',
+    [DOMAIN_TRANSLATION]: 'Translation',
+    [DOMAIN_LANGUAGE]: entryLabel,
   }
 
   const handleSearchLanguageChange = (event, key) => {
