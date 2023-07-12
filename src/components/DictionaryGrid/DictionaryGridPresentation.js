@@ -52,7 +52,7 @@ function DictionaryGridPresentation({
             </button>
             {items.pages.map((page) => (
               <div
-                key={page.nextPage}
+                key={page.pageNumber}
                 className={`grid grid-cols-1 mb-6  ${
                   hasSideNav
                     ? 'lg:grid-cols-2'
