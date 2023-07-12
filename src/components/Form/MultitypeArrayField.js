@@ -3,19 +3,19 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
-import { DOC_WORD, DOC_PHRASE } from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import EntrySelector from 'components/EntrySelector'
 import ArrayBrowserField from 'components/Form/ArrayBrowserField'
 
-function MultitypeDocumentArrayField({
+function MultitypeArrayField({
   label,
   nameId,
   helpText,
   control,
-  docTypes,
+  types,
   docCountLimit,
 }) {
   const { addItems, removeItem, value } = useIdArrayField(nameId, control)
@@ -25,7 +25,7 @@ function MultitypeDocumentArrayField({
   return (
     <ArrayBrowserField
       label={label}
-      buttonLabel={`Add ${getFriendlyDocTypes({ docTypes })}`}
+      buttonLabel={`Add ${getFriendlyDocTypes({ docTypes: types })}`}
       nameId={nameId}
       helpText={helpText}
       control={control}
@@ -37,7 +37,7 @@ function MultitypeDocumentArrayField({
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
           <EntrySelector.Container
-            docTypes={docTypes}
+            types={types}
             addItem={selectItem}
             removeItem={unselectItem}
           />
@@ -49,8 +49,8 @@ function MultitypeDocumentArrayField({
 
 // PROPTYPES
 const { object, arrayOf, oneOf, number, string } = PropTypes
-MultitypeDocumentArrayField.propTypes = {
-  docTypes: arrayOf(oneOf([DOC_WORD, DOC_PHRASE])),
+MultitypeArrayField.propTypes = {
+  types: arrayOf(oneOf([TYPE_WORD, TYPE_PHRASE])),
   helpText: string,
   label: string,
   nameId: string.isRequired,
@@ -58,10 +58,10 @@ MultitypeDocumentArrayField.propTypes = {
   docCountLimit: number,
 }
 
-MultitypeDocumentArrayField.defaultProps = {
-  docTypes: [DOC_WORD],
+MultitypeArrayField.defaultProps = {
+  types: [TYPE_WORD],
   label: '',
   docCountLimit: 3,
 }
 
-export default MultitypeDocumentArrayField
+export default MultitypeArrayField

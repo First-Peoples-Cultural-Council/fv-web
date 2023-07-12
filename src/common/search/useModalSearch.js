@@ -1,16 +1,25 @@
 import PropTypes from 'prop-types'
 
 // FPCC
-import useSearchType from 'components/SearchTypeSelector/useSearchType'
-import useSearchBox from 'components/SearchBox/useSearchBox'
+import useSearchBox from 'common/search/useSearchBox'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import {
+  DOMAIN,
+  DOMAIN_BOTH,
+  TYPES,
+  TYPE_WORD,
+  TYPE_PHRASE,
+} from 'common/constants'
 
-function useModalDocumentSearch({ docTypes }) {
-  const { getSearchTypeFromDocTypes } = useSearchType({})
-  const searchType = getSearchTypeFromDocTypes(docTypes)
+function useModalSearch({ types }) {
+  const searchType = types.join()
   const searchBox = useSearchBox()
 
-  const _searchParams = `q=${searchBox.submittedSearchTerm}&docType=${searchType}&domain=BOTH`
+  const _searchParams = new URLSearchParams({
+    q: searchBox.submittedSearchTerm,
+    [TYPES]: searchType,
+    [DOMAIN]: DOMAIN_BOTH,
+  })
 
   const { data, infiniteScroll, loadRef, isLoading, isError } = useSearchLoader(
     {
@@ -33,9 +42,9 @@ function useModalDocumentSearch({ docTypes }) {
 }
 
 // PROPTYPES
-const { arrayOf, string } = PropTypes
-useModalDocumentSearch.propTypes = {
-  docTypes: arrayOf(string),
+const { arrayOf, oneOf } = PropTypes
+useModalSearch.propTypes = {
+  docTypes: arrayOf(oneOf([TYPE_WORD, TYPE_PHRASE])),
 }
 
-export default useModalDocumentSearch
+export default useModalSearch

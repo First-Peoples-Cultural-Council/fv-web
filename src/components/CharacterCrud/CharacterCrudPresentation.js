@@ -7,9 +7,9 @@ import Form from 'components/Form'
 import {
   DOC_AUDIO,
   DOC_IMAGE,
-  DOC_PHRASE,
   DOC_VIDEO,
-  DOC_WORD,
+  TYPE_PHRASE,
+  TYPE_WORD,
 } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -48,12 +48,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12">
-            <Form.MultitypeDocumentArrayField
+            <Form.MultitypeArrayField
               label="Related Content"
               nameId="relatedAssets"
               control={control}
               helpText="Words and phrases related to your alphabet character"
-              docTypes={[DOC_WORD, DOC_PHRASE]}
+              types={[TYPE_WORD, TYPE_PHRASE]}
               docCountLimit={10}
             />
             {errors?.relatedWords && (

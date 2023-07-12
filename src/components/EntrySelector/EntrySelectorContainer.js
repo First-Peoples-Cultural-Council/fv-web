@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
-import useModalDocumentSearch from 'common/search/useModalDocumentSearch'
+import useModalSearch from 'common/search/useModalSearch'
 import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SearchSelector from 'components/SearchSelector'
 import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'
 
-function EntrySelectorContainer({ docTypes, addItem }) {
+function EntrySelectorContainer({ types, addItem }) {
   const {
     searchQuery,
     setSearchQuery,
@@ -19,16 +19,17 @@ function EntrySelectorContainer({ docTypes, addItem }) {
     infiniteScroll,
     isLoadingEntries,
     loadRef,
-  } = useModalDocumentSearch({ docTypes })
+  } = useModalSearch({ types })
 
   const { selectedItem, setSelectedItem } = useSearchResultSelector({
     searchResults,
   })
 
-  const docLabel = docTypes.length > 1 ? '' : getFriendlyDocTypes({ docTypes })
+  const docLabel =
+    types.length > 1 ? '' : getFriendlyDocTypes({ docTypes: types })
   const buttonLabel = `Add ${docLabel} to document`
   const labelPlural = getFriendlyDocTypes({
-    docTypes,
+    docTypes: types,
     plural: true,
     isAnd: true,
   })
@@ -54,7 +55,7 @@ function EntrySelectorContainer({ docTypes, addItem }) {
       resultsSection={
         <div className="p-4 pt-0">
           <EntrySelectorPresentationList
-            docTypes={docTypes}
+            types={types}
             searchResults={searchResults}
             selected={selectedItem}
             setSelected={setSelectedItem}
@@ -72,9 +73,8 @@ function EntrySelectorContainer({ docTypes, addItem }) {
 // PROPTYPES
 const { arrayOf, func, string } = PropTypes
 EntrySelectorContainer.propTypes = {
-  docTypes: arrayOf(string),
+  types: arrayOf(string),
   addItem: func,
-  removeItem: func,
 }
 
 export default EntrySelectorContainer
