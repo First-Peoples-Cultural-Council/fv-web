@@ -5,6 +5,7 @@ import { Howl, Howler } from 'howler'
 import { useAudiobar } from 'context/AudiobarContext'
 import { AUDIO } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
+import { getReadableFileSize } from 'common/utils/stringHelpers'
 
 function AudiobarData() {
   const { currentAudio, setCurrentAudio } = useAudiobar()
@@ -89,7 +90,7 @@ function AudiobarData() {
       acknowledgement: object?.acknowledgement || '',
       speakers: object?.speakers || [],
       downloadLink: object?.original?.path || '',
-      fileSize: object?.original?.fileSize || '',
+      fileSize: getReadableFileSize(object?.original?.size) || '',
       label,
     }
   }
