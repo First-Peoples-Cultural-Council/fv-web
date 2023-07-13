@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
 
 function SiteSearchContainer({ kids = false, minimal = false }) {

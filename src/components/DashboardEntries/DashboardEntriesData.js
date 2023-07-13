@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import {
   TYPES,
   TYPE_DICTIONARY,

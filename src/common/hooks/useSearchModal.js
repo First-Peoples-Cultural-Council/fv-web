@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 // FPCC
-import useSearchBox from 'common/search/useSearchBox'
+import useSearchBox from 'common/hooks/useSearchBox'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import {
   DOMAIN,

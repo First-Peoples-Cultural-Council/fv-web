@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchBox from 'common/search/useSearchBox'
-import useSearchLanguage from 'common/search/useSearchLanguage'
-import useSearchType from 'common/search/useSearchType'
+import useSearchBox from 'common/hooks/useSearchBox'
+import useSearchLanguage from 'common/hooks/useSearchLanguage'
+import useSearchType from 'common/hooks/useSearchType'
 import { DOMAIN, DOMAIN_BOTH, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 
 /**

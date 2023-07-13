@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import useCategories from 'common/dataHooks/useCategories'
 import { TYPES, TYPE_DICTIONARY } from 'common/constants'
 

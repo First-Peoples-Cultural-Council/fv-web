@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import { DOMAIN_BOTH } from 'common/constants'
 
 function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {

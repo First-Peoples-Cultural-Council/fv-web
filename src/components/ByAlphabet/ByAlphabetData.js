@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useAlphabet from 'common/dataHooks/useAlphabet'
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import {
   KIDS,
   STARTS_WITH_CHAR,

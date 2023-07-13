@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
-import useSearchModal from 'common/search/useSearchModal'
+import useSearchModal from 'common/hooks/useSearchModal'
 import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SearchSelector from 'components/SearchSelector'
 import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'

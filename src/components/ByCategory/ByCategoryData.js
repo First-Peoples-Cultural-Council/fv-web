@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useCategories from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
