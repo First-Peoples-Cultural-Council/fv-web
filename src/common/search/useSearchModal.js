@@ -11,7 +11,7 @@ import {
   TYPE_PHRASE,
 } from 'common/constants'
 
-function useModalSearch({ types }) {
+function useSearchModal({ types }) {
   const searchType = types.join()
   const searchBox = useSearchBox()
 
@@ -43,8 +43,8 @@ function useModalSearch({ types }) {
 
 // PROPTYPES
 const { arrayOf, oneOf } = PropTypes
-useModalSearch.propTypes = {
+useSearchModal.propTypes = {
   docTypes: arrayOf(oneOf([TYPE_WORD, TYPE_PHRASE])),
 }
 
-export default useModalSearch
+export default useSearchModal

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
-import useModalSearch from 'common/search/useModalSearch'
+import useSearchModal from 'common/search/useSearchModal'
 import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SearchSelector from 'components/SearchSelector'
 import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'
@@ -19,7 +19,7 @@ function EntrySelectorContainer({ types, addItem }) {
     infiniteScroll,
     isLoadingEntries,
     loadRef,
-  } = useModalSearch({ types })
+  } = useSearchModal({ types })
 
   const { selectedItem, setSelectedItem } = useSearchResultSelector({
     searchResults,
