@@ -8,13 +8,9 @@ import { makePlural } from 'common/utils/urlHelpers'
 import Loading from 'components/Loading'
 import ActionsMenu from 'components/ActionsMenu'
 import Drawer from 'components/Drawer'
-import DictionaryDetail from 'components/DictionaryDetail'
+import EntryDetail from 'components/EntryDetail'
 import AudioButton from 'components/AudioButton'
-import Song from 'components/Song'
-import Story from 'components/Story'
 import { useAudiobar } from 'context/AudiobarContext'
-import { getFvDocType } from 'common/utils/stringHelpers'
-import { TYPE_PHRASE, TYPE_SONG, TYPE_STORY, TYPE_WORD } from 'common/constants'
 
 function DictionaryListPresentation({
   actions,
@@ -57,26 +53,6 @@ function DictionaryListPresentation({
       return getIcon('ChevronUp', 'inline-flex h-6 fill-current')
     }
     return getIcon('ChevronUpDown', 'inline-flex h-6 fill-current')
-  }
-
-  function getDrawerContents() {
-    switch (selectedItem?.type) {
-      case TYPE_PHRASE:
-      case TYPE_WORD:
-        return (
-          <DictionaryDetail.Container
-            docId={selectedItem?.id}
-            docType={getFvDocType(selectedItem?.type)}
-            isDrawer
-          />
-        )
-      case TYPE_SONG:
-        return <Song.Container docId={selectedItem?.id} isDrawer />
-      case TYPE_STORY:
-        return <Story.Container docId={selectedItem?.id} isDrawer />
-      default:
-        return null
-    }
   }
 
   function handleItemClick(item) {
@@ -250,7 +226,11 @@ function DictionaryListPresentation({
             : null
         }
       >
-        {getDrawerContents()}
+        <EntryDetail.Container
+          id={selectedItem?.id}
+          type={selectedItem?.type}
+          isDrawer
+        />
       </Drawer.Presentation>
     </Loading.Container>
   )

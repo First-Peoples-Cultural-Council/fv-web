@@ -4,13 +4,9 @@ import { Link, useParams } from 'react-router-dom'
 
 // FPCC
 import Loading from 'components/Loading'
-import DictionaryDetail from 'components/DictionaryDetail'
-import Song from 'components/Song'
-import Story from 'components/Story'
+import EntryDetail from 'components/EntryDetail'
 import getIcon from 'common/utils/getIcon'
-import { getFvDocType } from 'common/utils/stringHelpers'
 import Drawer from 'components/Drawer'
-import { TYPE_PHRASE, TYPE_SONG, TYPE_STORY, TYPE_WORD } from 'common/constants'
 
 function DashboardEntriesPresentationList({
   infiniteScroll,
@@ -36,26 +32,6 @@ function DashboardEntriesPresentationList({
   function handleItemClick(item) {
     setselectedItem(item)
     setDrawerOpen(true)
-  }
-
-  function getContents() {
-    switch (selectedItem?.type) {
-      case TYPE_PHRASE:
-      case TYPE_WORD:
-        return (
-          <DictionaryDetail.Container
-            docId={selectedItem?.id}
-            docType={getFvDocType(selectedItem?.type)}
-            isDrawer
-          />
-        )
-      case TYPE_SONG:
-        return <Song.Container docId={selectedItem?.id} isDrawer />
-      case TYPE_STORY:
-        return <Story.Container docId={selectedItem?.id} isDrawer />
-      default:
-        return null
-    }
   }
 
   return (
@@ -174,7 +150,11 @@ function DashboardEntriesPresentationList({
                   </button>
                 </Link>
               </div>
-              {getContents()}
+              <EntryDetail.Container
+                id={selectedItem?.id}
+                type={selectedItem?.type}
+                isDrawer
+              />
             </>
           )}
         </Drawer.Presentation>
