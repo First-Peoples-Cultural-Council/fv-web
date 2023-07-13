@@ -15,6 +15,7 @@ import {
   PUBLIC,
   TEAM,
   TYPE_DICTIONARY,
+  TYPE_ENTRY,
   TYPE_PHRASE,
   TYPE_WORD,
   TYPE_STORY,
@@ -222,14 +223,38 @@ export const getPresentationPropertiesForType = (type) => {
         slug: 'phrases',
         color: 'phrase',
       }
+    case TYPE_SONG:
+      return {
+        uppercase: 'SONGS',
+        singular: 'song',
+        plural: 'songs',
+        slug: 'songs',
+        color: 'song',
+      }
+    case TYPE_STORY:
+      return {
+        uppercase: 'STORIES',
+        singular: 'story',
+        plural: 'stories',
+        slug: 'stories',
+        color: 'story',
+      }
     case TYPE_DICTIONARY:
-    default:
       return {
         uppercase: 'DICTIONARY',
         singular: 'word / phrase',
         plural: 'words and phrases',
         slug: 'dictionary',
         color: 'word',
+      }
+    case TYPE_ENTRY:
+    default:
+      return {
+        uppercase: 'DICTIONARY',
+        singular: 'language entry',
+        plural: 'language entries',
+        slug: 'search',
+        color: 'fv-charcoal',
       }
   }
 }
@@ -260,10 +285,8 @@ export const getWidgetTypeLabel = (type) => {
       return 'Short Text'
     case WIDGET_TEXTFULL:
       return 'Page Text'
-
     case WIDGET_TEXTICONS:
       return 'Text with Icons'
-
     case WIDGET_TEXTMULTI:
       return 'Multi-text'
     case WIDGET_WOTD:
