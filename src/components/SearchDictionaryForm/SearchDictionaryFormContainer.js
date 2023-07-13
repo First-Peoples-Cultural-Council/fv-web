@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import { DOMAIN_BOTH } from 'common/constants'
 
-function SearchDictionaryContainer({ kids, customBaseUrl, searchType }) {
+function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {
   // basic searchbox behaviour
   const {
     handleSearchNavigation,
@@ -18,32 +19,33 @@ function SearchDictionaryContainer({ kids, customBaseUrl, searchType }) {
     handleSearchTermChange,
     searchBoxPlaceholder,
     doSearchNavigation,
-  } = useSearchBoxNavigation({ customBaseUrl, searchType, kids })
-
-  // reset feature
-  const [initialSearchType] = useState(searchType)
+  } = useSearchBoxNavigation({
+    customBaseUrl,
+    initialSearchType: searchType,
+    kids,
+  })
 
   const resetSearch = (event) => {
     event.preventDefault()
     setDisplayedSearchTerm('')
     doSearchNavigation({
       searchTerm: '',
-      searchLanguage: 'BOTH',
-      searchType: initialSearchType,
+      searchLanguage: DOMAIN_BOTH,
+      searchType,
       kidFlag: kids,
     })
   }
 
   return (
-    <div id="DictionarySearchContainer" className="flex w-full rounded-lg">
+    <div id="SearchDictionaryFormContainer" className="flex w-full rounded-lg">
       <SearchInputPresentation
-        handleSearchSubmit={handleSearchNavigation}
-        handleTextFieldChange={handleSearchTermChange}
-        handleSearchLanguageChange={handleSearchLanguageNavigation}
+        handleSearchNavigation={handleSearchNavigation}
+        handleSearchTermChange={handleSearchTermChange}
+        handleSearchLanguageNavigation={handleSearchLanguageNavigation}
         searchLanguage={searchLanguage}
         searchLanguageOptions={searchLanguageOptions}
-        searchValue={displayedSearchTerm}
-        placeholder={searchBoxPlaceholder}
+        displayedSearchTerm={displayedSearchTerm}
+        searchBoxPlaceholder={searchBoxPlaceholder}
       />
 
       {submittedSearchTerm && (
@@ -61,10 +63,10 @@ function SearchDictionaryContainer({ kids, customBaseUrl, searchType }) {
 
 // PROPTYPES
 const { bool, string } = PropTypes
-SearchDictionaryContainer.propTypes = {
+SearchDictionaryFormContainer.propTypes = {
   customBaseUrl: string,
   kids: bool,
   searchType: string,
 }
 
-export default SearchDictionaryContainer
+export default SearchDictionaryFormContainer

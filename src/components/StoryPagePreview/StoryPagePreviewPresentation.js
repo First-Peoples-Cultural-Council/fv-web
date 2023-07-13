@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
+import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function StoryPagePreviewPresentation({ page, pageNumber }) {

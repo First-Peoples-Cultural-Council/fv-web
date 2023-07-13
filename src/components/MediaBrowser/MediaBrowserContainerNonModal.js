@@ -6,7 +6,7 @@ import MediaBrowser from 'components/MediaBrowser'
 import MediaDetails from 'components/MediaDetails'
 import MediaItemsLayout from 'components/MediaItemsLayout'
 import SearchSelector from 'components/SearchSelector'
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
+import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 
 function MediaBrowserContainerNonModal({ docType }) {
   const {

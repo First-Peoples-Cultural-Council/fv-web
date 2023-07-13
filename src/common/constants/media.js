@@ -8,3 +8,15 @@ export const ORIGINAL = 'original'
 export const SMALL = 'small'
 export const MEDIUM = 'medium'
 export const THUMBNAIL = 'thumbnail'
+
+// Supported Extensions
+export const SUPPORTED_IMAGE_EXTENSIONS = [
+  'jpeg',
+  'jpg',
+  'png',
+  'gif',
+  'tiff',
+  'tif',
+]
+export const SUPPORTED_VIDEO_EXTENSIONS = ['mp4', 'mov']
+export const SUPPORTED_AUDIO_EXTENSIONS = ['wav', 'mp3']

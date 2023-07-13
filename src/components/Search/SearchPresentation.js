@@ -5,6 +5,7 @@ import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchSiteForm from 'components/SearchSiteForm'
 import getIcon from 'common/utils/getIcon'
+import { TYPE_ENTRY } from 'common/constants'
 
 function SearchPresentation({
   searchType,
@@ -36,39 +37,26 @@ function SearchPresentation({
         >
           <button
             type="button"
-            className={`flex w-full items-center justify-center lg:justify-start transition duration-500 ease-in-out text-sm md:text-base lg:text-lg p-2 xl:p-4 grow rounded-lg capitalize cursor-pointer leading-tight ${filterIsActiveClass}`}
+            className={`flex w-full items-center justify-center lg:justify-start transition duration-300 ease-in-out text-sm md:text-base lg:text-lg p-2 grow rounded-lg capitalize cursor-pointer leading-tight ${filterIsActiveClass}`}
             onClick={() => handleFilter(filter.type)}
           >
-            {getItemContents(filter)}
+            {filter.type === TYPE_ENTRY ? (
+              <span className="h-5 md:h-7 flex items-center">
+                {filter.label}
+              </span>
+            ) : (
+              <>
+                {getIcon(
+                  filter.label,
+                  'inline-flex h-5 md:h-7 -ml-3 lg:ml-0 mr-3 fill-current',
+                )}
+                <span>{filter.label}</span>
+              </>
+            )}
           </button>
         </li>
       )
     })
-
-  const getItemContents = (_filter) => {
-    if (_filter.type === 'ALL') {
-      return searchType !== 'ALL' ? (
-        <>
-          {getIcon(
-            'BackArrow',
-            'inline-flex h-5 md:h-7 mr-3 text-primary fill-current',
-          )}
-          <span>{_filter.label}</span>
-        </>
-      ) : (
-        <span className="h-5 md:h-7 flex items-center">{_filter.label}</span>
-      )
-    }
-    return (
-      <>
-        {getIcon(
-          _filter.label,
-          'inline-flex h-5 md:h-7 -ml-3 lg:ml-0 mr-3 fill-current',
-        )}
-        <span>{_filter.label}</span>
-      </>
-    )
-  }
 
   return (
     <>
@@ -118,7 +106,6 @@ const { array, bool, func, object, string } = PropTypes
 SearchPresentation.propTypes = {
   actions: array,
   searchType: string,
-  domain: string,
   filters: array,
   handleFilter: func,
   infiniteScroll: object,

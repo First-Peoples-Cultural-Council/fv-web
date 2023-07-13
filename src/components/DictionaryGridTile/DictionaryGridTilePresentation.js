@@ -27,9 +27,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
           >
             <Link
               key={entry.id}
-              to={`/${entry?.parentDialect?.shortUrl}/${makePlural(
-                entry.type,
-              )}/${entry.id}`}
+              to={`/${entry?.sitename}/${makePlural(entry.type)}/${entry.id}`}
             >
               {entry.title}
             </Link>
@@ -52,9 +50,9 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
                 entry?.translations?.length === 1 ? 'list-none' : 'list-decimal'
               } list-inside my-2 text-fv-charcoal-light`}
             >
-              {entry?.translations?.map((translation, index) => (
-                <li key={index} className="p-0.5">
-                  {translation}
+              {entry?.translations?.map((translation) => (
+                <li key={translation?.id} className="p-0.5">
+                  {translation?.text}
                 </li>
               ))}
             </ol>

@@ -1,40 +1,32 @@
 import { useEffect } from 'react'
-import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchLoader from 'common/search/useSearchLoader'
-import api from 'services/api'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
+import { DOMAIN, DOMAIN_BOTH, TYPES, KIDS } from 'common/constants'
 
-function DictionaryData({ searchType, kids }) {
-  const { site } = useSiteStore()
+function DictionaryDataSearch({ searchType, kids }) {
   const { sitename } = useParams()
+  const { site } = useSiteStore()
   const navigate = useNavigate()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
-  const domain = searchParams.get('domain') || 'BOTH'
-  const sortBy = searchParams.get('sortBy') || 'ENTRY'
-  const sortAscending = searchParams.get('sortAscending') || 'true'
+  const domain = searchParams.get(DOMAIN) || DOMAIN_BOTH
 
-  const _searchParams = searchParams?.toString()
+  const _searchParams = searchParams.get(TYPES)
     ? searchParams
     : new URLSearchParams({
-        domain,
-        docType: searchType,
-        kidsOnly: kids,
-        sortBy: 'ENTRY',
-        sortAscending: true,
+        [DOMAIN]: domain,
+        [TYPES]: searchType,
+        [KIDS]: kids,
       })
 
-  // Dictionary fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
-    useSearchLoader({
-      searchApi: api.dictionary,
-      queryKey: 'dictionary',
-      siteUid: site?.uid,
-      searchParams: _searchParams,
-    })
+  // Search fetch
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({ searchParams: _searchParams })
 
   useEffect(() => {
     if (isError) {
@@ -45,73 +37,26 @@ function DictionaryData({ searchType, kids }) {
     }
   }, [isError])
 
-  const labels = getLabels(searchType)
-
-  function getLabels(type) {
-    switch (type) {
-      case 'WORD':
-        return {
-          title: 'WORDS',
-          entryLabel: 'word',
-          plural: 'words',
-          url: 'words',
-          color: 'word',
-        }
-      case 'PHRASE':
-        return {
-          title: 'PHRASES',
-          entryLabel: 'phrase',
-          plural: 'phrases',
-          url: 'phrases',
-          color: 'phrase',
-        }
-      default:
-        return {
-          title: 'DICTIONARY',
-          entryLabel: 'word / phrase',
-          plural: 'words and phrases',
-          url: 'dictionary',
-          color: 'word',
-        }
-    }
-  }
-
-  /*
-  Table sorting
-  */
-  const onSortByClick = (field) => {
-    const newSortBy = field
-    let newSortAscending = 'true'
-    if (sortBy === field && sortAscending === 'true') {
-      newSortAscending = 'false'
-    }
-    setSearchParams({
-      domain,
-      docType: searchType,
-      sortBy: newSortBy,
-      sortAscending: newSortAscending,
-    })
-  }
+  const labels = getPresentationPropertiesForType(searchType)
 
   return {
     isLoading: !site?.title,
     isLoadingEntries: isLoading,
-    items: searchResults,
+    items: data,
     infiniteScroll,
-    onSortByClick,
-    sitename,
-    sorting: { sortBy, sortAscending },
     labels,
     loadRef,
+    sitename,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
   }
 }
 
 // PROPTYPES
-const { string } = PropTypes
-DictionaryData.propTypes = {
+const { bool, string } = PropTypes
+DictionaryDataSearch.propTypes = {
   searchType: string.isRequired,
+  kids: bool,
 }
 
-export default DictionaryData
+export default DictionaryDataSearch

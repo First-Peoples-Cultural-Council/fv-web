@@ -3,13 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import simpleSvgPlaceholder from 'common/utils/simpleSvgPlaceholder'
-import {
-  IMAGE,
-  MEDIUM,
-  ORIGINAL,
-  SMALL,
-  THUMBNAIL,
-} from 'common/constants/media'
+import { IMAGE, MEDIUM, ORIGINAL, SMALL, THUMBNAIL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function LazyImage({

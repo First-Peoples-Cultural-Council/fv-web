@@ -1,6 +1,6 @@
 import ArrayBrowserField from 'components/Form/ArrayBrowserField'
 import DocumentArrayField from 'components/Form/DocumentArrayField'
-import MultitypeDocumentArrayField from 'components/Form/MultitypeDocumentArrayField'
+import MultitypeArrayField from 'components/Form/MultitypeArrayField'
 
 import AddMedia from 'components/Form/AddMedia'
 import Autocomplete from 'components/Form/Autocomplete'
@@ -24,7 +24,7 @@ import WysiwygField from 'components/Form/WysiwygField'
 export default {
   ArrayBrowserField,
   DocumentArrayField,
-  MultitypeDocumentArrayField,
+  MultitypeArrayField,
   AddMedia,
   Autocomplete,
   AutocompleteMultiple,

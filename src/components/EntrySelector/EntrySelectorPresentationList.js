@@ -9,11 +9,11 @@ function EntrySelectorPresentationList({
   infiniteScroll,
   selected,
   setSelected,
-  docTypes,
+  types,
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
-  const isMultiDocType = docTypes.length > 1
+  const isMultiDocType = types.length > 1
 
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
@@ -47,7 +47,7 @@ function EntrySelectorPresentationList({
                   <th scope="col" className={headerClass}>
                     {isMultiDocType
                       ? 'Language Entry'
-                      : getFriendlyDocType({ docType: docTypes[0] })}
+                      : getFriendlyDocType({ docType: types[0] })}
                   </th>
                   <th scope="col" className={headerClass}>
                     Translation
@@ -60,8 +60,8 @@ function EntrySelectorPresentationList({
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {searchResults?.pages?.map((page, index) => (
-                  <React.Fragment key={index}>
+                {searchResults?.pages?.map((page) => (
+                  <React.Fragment key={page.pageNumber}>
                     {page.results?.map((item) => (
                       <tr
                         key={item.id}
@@ -79,11 +79,11 @@ function EntrySelectorPresentationList({
                           {item?.translations ? (
                             <ol className="text-fv-charcoal">
                               {item.translations.map((translation, i) => (
-                                <li key={i}>
+                                <li key={translation.id}>
                                   {item.translations.length > 1
                                     ? `${i + 1}. `
                                     : null}{' '}
-                                  {translation}
+                                  {translation?.text}
                                 </li>
                               ))}
                             </ol>
@@ -128,7 +128,7 @@ EntrySelectorPresentationList.propTypes = {
   infiniteScroll: object,
   selected: object,
   setSelected: func,
-  docTypes: arrayOf(string),
+  types: arrayOf(string),
 }
 
 export default EntrySelectorPresentationList

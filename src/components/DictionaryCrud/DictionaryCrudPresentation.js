@@ -13,7 +13,8 @@ import {
   DOC_IMAGE,
   DOC_VIDEO,
   DOC_WORD,
-  DOC_PHRASE,
+  TYPE_WORD,
+  TYPE_PHRASE,
 } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
@@ -158,14 +159,14 @@ function DictionaryCrudPresentation({
               )}
             </div>
             <div className="col-span-12">
-              <Form.MultitypeDocumentArrayField
+              <Form.MultitypeArrayField
                 label="Related Entries"
                 nameId="relatedAssets"
                 control={control}
                 helpText={`Words and phrases related to your ${getFriendlyDocType(
                   { docType },
                 )}`}
-                docTypes={[DOC_WORD, DOC_PHRASE]}
+                types={[TYPE_WORD, TYPE_PHRASE]}
                 docCountLimit={8}
               />
               {errors?.relatedAssets && (
@@ -312,7 +313,6 @@ function DictionaryCrudPresentation({
           <div className="space-x-2 flex items-center h-10">
             <button
               type="button"
-              type="button"
               onClick={backStep}
               className="bg-white h-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
@@ -323,7 +323,6 @@ function DictionaryCrudPresentation({
               <span>{activeStep < 1 ? 'Cancel' : 'Previous Step'}</span>
             </button>
             <button
-              type="button"
               type="button"
               onClick={
                 activeStepNumber !== lastStep
@@ -336,7 +335,6 @@ function DictionaryCrudPresentation({
               <span>Finish</span>
             </button>
             <button
-              type="button"
               type="button"
               onClick={forwardStep}
               className={`${
@@ -413,7 +411,6 @@ const { array, bool, func, object, string } = PropTypes
 
 DictionaryCrudPresentation.propTypes = {
   backHandler: func,
-  speakersDirectoryId: string,
   submitHandler: func,
   dataToEdit: object,
   docType: string,

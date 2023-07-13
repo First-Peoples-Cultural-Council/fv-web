@@ -6,12 +6,20 @@ import {
   DOC_PAGE,
   DOC_PHRASE,
   DOC_WORD,
+  DOC_STORY,
+  DOC_SONG,
   DOC_AUDIO,
   DOC_IMAGE,
   DOC_VIDEO,
   MEMBERS,
   PUBLIC,
   TEAM,
+  TYPE_DICTIONARY,
+  TYPE_ENTRY,
+  TYPE_PHRASE,
+  TYPE_WORD,
+  TYPE_STORY,
+  TYPE_SONG,
   UUID_REGEX,
   WIDGET_ALPHABET,
   WIDGET_APPS,
@@ -182,6 +190,75 @@ export const getFvDocType = (string) => {
   }
 }
 
+export const getSearchTypeFromDocType = (docType) => {
+  switch (docType) {
+    case DOC_PHRASE:
+      return TYPE_PHRASE
+    case DOC_SONG:
+      return TYPE_SONG
+    case DOC_STORY:
+      return TYPE_STORY
+    case DOC_WORD:
+      return TYPE_WORD
+    default:
+      return 'Unrecognised type.'
+  }
+}
+
+export const getPresentationPropertiesForType = (type) => {
+  switch (type) {
+    case TYPE_WORD:
+      return {
+        uppercase: 'WORDS',
+        singular: 'word',
+        plural: 'words',
+        slug: 'words',
+        color: 'word',
+      }
+    case TYPE_PHRASE:
+      return {
+        uppercase: 'PHRASES',
+        singular: 'phrase',
+        plural: 'phrases',
+        slug: 'phrases',
+        color: 'phrase',
+      }
+    case TYPE_SONG:
+      return {
+        uppercase: 'SONGS',
+        singular: 'song',
+        plural: 'songs',
+        slug: 'songs',
+        color: 'song',
+      }
+    case TYPE_STORY:
+      return {
+        uppercase: 'STORIES',
+        singular: 'story',
+        plural: 'stories',
+        slug: 'stories',
+        color: 'story',
+      }
+    case TYPE_DICTIONARY:
+      return {
+        uppercase: 'DICTIONARY',
+        singular: 'word / phrase',
+        plural: 'words and phrases',
+        slug: 'dictionary',
+        color: 'word',
+      }
+    case TYPE_ENTRY:
+    default:
+      return {
+        uppercase: 'DICTIONARY',
+        singular: 'language entry',
+        plural: 'language entries',
+        slug: 'search',
+        color: 'fv-charcoal',
+      }
+  }
+}
+
 export const getWidgetTypeLabel = (type) => {
   switch (type) {
     case WIDGET_ALPHABET:
@@ -208,10 +285,8 @@ export const getWidgetTypeLabel = (type) => {
       return 'Short Text'
     case WIDGET_TEXTFULL:
       return 'Page Text'
-
     case WIDGET_TEXTICONS:
       return 'Text with Icons'
-
     case WIDGET_TEXTMULTI:
       return 'Multi-text'
     case WIDGET_WOTD:

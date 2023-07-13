@@ -7,6 +7,7 @@ import getCategoryIcon from 'common/utils/getCategoryIcon'
 import GridListToggle from 'components/GridListToggle'
 import SearchTypeSelector from 'components/SearchTypeSelector'
 import SectionTitle from 'components/SectionTitle'
+import { TYPES } from 'common/constants'
 
 function CategoriesPresentation({
   categories,
@@ -68,7 +69,9 @@ function CategoriesPresentation({
                               key={category.id}
                               to={`/${sitename}/${
                                 kids ? 'kids/' : ''
-                              }categories/${category.id}?docType=${searchType}`}
+                              }categories/${
+                                category.id
+                              }?${TYPES}=${searchType}`}
                               className=" text-white text-center text-lg group w-full h-full px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                             >
                               {getCategoryIcon(
@@ -110,7 +113,7 @@ function CategoriesPresentation({
                             key={category.id}
                             to={`/${sitename}/${
                               kids ? 'kids/' : ''
-                            }categories/${category.id}?docType=${searchType}`}
+                            }categories/${category.id}?${TYPES}=${searchType}`}
                             className="w-full rounded-lg inline-flex items-center hover:opacity-75"
                           >
                             <div className="inline-flex bg-white text-tertiaryB rounded-lg items-center">
@@ -132,7 +135,7 @@ function CategoriesPresentation({
                                 key={child.id}
                                 to={`/${sitename}/${
                                   kids ? 'kids/' : ''
-                                }categories/${child.id}?docType=${searchType}`}
+                                }categories/${child.id}?${TYPES}=${searchType}`}
                                 className="w-full rounded-lg inline-flex items-center"
                               >
                                 <div className="inline-flex font-medium text-tertiaryB hover:opacity-75 rounded-lg items-center">

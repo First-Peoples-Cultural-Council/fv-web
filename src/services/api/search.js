@@ -1,19 +1,13 @@
-import { apiV1 } from 'services/config'
+import { apiBase } from 'services/config'
+import { SEARCH, SITES } from 'common/constants'
 
 const search = {
-  get: async ({ siteId, searchParams, pageParam, perPage = 24 }) => {
-    const response = await apiV1
+  get: async ({ sitename, searchParams, page, perPage = 48 }) =>
+    apiBase
       .get(
-        `customSearch/?${searchParams}&ancestorId=${siteId}&page=${pageParam}&perPage=${perPage}`,
+        `${SITES}/${sitename}/${SEARCH}/?${searchParams}&page=${page}&pageSize=${perPage}`,
       )
-      .json()
-    const lastPage = Math.ceil(
-      (response?.statistics?.resultCount || 0) / perPage,
-    )
-    const lastSearchFetch = lastPage >= 4 ? 4 : lastPage
-    const nextPage = pageParam >= lastPage ? undefined : pageParam + 1
-    return { ...response, nextPage, lastPage: lastSearchFetch }
-  },
+      .json(),
 }
 
 export default search

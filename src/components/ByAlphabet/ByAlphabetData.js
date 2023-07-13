@@ -1,47 +1,39 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
-import useSearchLoader from 'common/search/useSearchLoader'
-import api from 'services/api'
-import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import useAlphabet from 'common/dataHooks/useAlphabet'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import {
+  KIDS,
+  STARTS_WITH_CHAR,
+  TYPES,
+  TYPE_DICTIONARY,
+} from 'common/constants'
 
 function ByAlphabetData({ kids }) {
-  const { site } = useSiteStore()
-  const { uid } = site
   const navigate = useNavigate()
   const { sitename, character } = useParams()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
-  const urlSearchType = searchParams.get('docType') || 'WORD_AND_PHRASE'
-  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+  const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
+  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
-      searchType: urlSearchType,
-    })
-  const sortBy = searchParams.get('sortBy') || 'ENTRY'
-  const sortAscending = searchParams.get('sortAscending') || 'true'
-  const perPageDefault = 100
-
-  const _searchParams = `docType=${searchType}&kidsOnly=${kids}&perPage=${perPageDefault}&sortBy=${sortBy}&sortAscending=${sortAscending}&alphabetCharacter=${character}`
-
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
-    useSearchLoader({
-      searchApi: api.dictionary,
-      queryKey: 'dictionary',
-      siteUid: site?.uid,
-      searchParams: _searchParams,
+      initialSearchType: urlSearchType,
     })
 
-  const alphabetResponse = useQuery(
-    ['alphabet', uid],
-    () => api.alphabet.get(uid),
-    {
-      enabled: !!uid,
-    },
-  )
+  const _searchParams = new URLSearchParams({
+    [TYPES]: searchType,
+    [KIDS]: kids,
+    [STARTS_WITH_CHAR]: character,
+  })
+
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({ searchParams: _searchParams })
+
+  const alphabetResponse = useAlphabet()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
@@ -69,19 +61,6 @@ function ByAlphabetData({ kids }) {
     }
   }, [isError])
 
-  const onSortByClick = (field) => {
-    let newSortAscending = 'true'
-    if (sortBy === field && sortAscending === 'true') {
-      newSortAscending = 'false'
-    }
-    setSearchParams({
-      docType: searchType,
-      perPage: perPageDefault,
-      sortBy: field,
-      sortAscending: newSortAscending,
-    })
-  }
-
   return {
     characters:
       alphabetResponse?.data?.characters?.length > 0
@@ -89,18 +68,16 @@ function ByAlphabetData({ kids }) {
         : [],
     charactersAreLoading: alphabetResponse?.isLoading,
     isLoading: isLoading || isError,
-    items: searchResults || {},
+    items: data || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
-    onSortByClick,
     sitename,
-    sorting: { sortBy, sortAscending },
     infiniteScroll,
     loadRef,
     currentCharacter,
     searchType,
     setSearchType: setSearchTypeInUrl,
-    entryLabel: getSearchLabel({ searchType }),
+    entryLabel: getSearchTypeLabel({ searchType }),
   }
 }
 

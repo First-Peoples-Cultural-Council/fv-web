@@ -8,6 +8,7 @@ import DictionaryGrid from 'components/DictionaryGrid'
 import getCategoryIcon from 'common/utils/getCategoryIcon'
 import getIcon from 'common/utils/getIcon'
 import SearchTypeSelector from 'components/SearchTypeSelector'
+import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
 function ByCategoryPresentation({
   actions,
@@ -23,9 +24,7 @@ function ByCategoryPresentation({
   kids,
   items,
   moreActions,
-  onSortByClick,
   sitename,
-  sorting,
 }) {
   const getParentCategoriesList = () =>
     categories.map((category) => (
@@ -51,10 +50,10 @@ function ByCategoryPresentation({
   const getNoResultsMessage = () => {
     let typeLabel = ''
     switch (searchType) {
-      case 'WORD':
+      case TYPE_WORD:
         typeLabel = 'words'
         break
-      case 'PHRASE':
+      case TYPE_PHRASE:
         typeLabel = 'phrases'
         break
       default:
@@ -198,7 +197,7 @@ function ByCategoryPresentation({
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
-                showType={searchType === 'WORD_AND_PHRASE'}
+                showType={searchType === TYPE_DICTIONARY}
                 hasSideNav
                 kids
               />
@@ -222,9 +221,7 @@ function ByCategoryPresentation({
                   items={items}
                   moreActions={moreActions}
                   noResultsMessage={getNoResultsMessage()}
-                  onSortByClick={onSortByClick}
                   sitename={sitename}
-                  sorting={sorting}
                   entryLabel={entryLabel}
                   showType
                 />
@@ -237,7 +234,7 @@ function ByCategoryPresentation({
                   items={items}
                   moreActions={moreActions}
                   sitename={sitename}
-                  showType={searchType === 'WORD_AND_PHRASE'}
+                  showType={searchType === TYPE_DICTIONARY}
                 />
               </div>
             </div>
@@ -264,9 +261,7 @@ ByCategoryPresentation.propTypes = {
   items: object,
   kids: bool,
   moreActions: array,
-  onSortByClick: func,
   sitename: string,
-  sorting: object,
 }
 
 export default ByCategoryPresentation

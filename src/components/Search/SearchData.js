@@ -3,10 +3,21 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchLoader from 'common/search/useSearchLoader'
-import api from 'services/api'
-import { makePlural } from 'common/utils/urlHelpers'
-import useSearchType from 'components/SearchTypeSelector/useSearchType'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import {
+  makeTitleCase,
+  getPresentationPropertiesForType,
+} from 'common/utils/stringHelpers'
+import {
+  DOMAIN,
+  DOMAIN_BOTH,
+  TYPES,
+  TYPE_PHRASE,
+  TYPE_SONG,
+  TYPE_STORY,
+  TYPE_WORD,
+  TYPE_ENTRY,
+} from 'common/constants'
 
 function SearchData() {
   const { site } = useSiteStore()
@@ -16,20 +27,16 @@ function SearchData() {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchTerm = searchParams.get('q') || ''
-  const domain = searchParams.get('domain') || 'BOTH'
+  const domain = searchParams.get(DOMAIN) || DOMAIN_BOTH
 
-  const { getSearchLabel } = useSearchType({})
-  const searchType = searchParams.get('docType') || 'ALL'
-  const entryLabel = getSearchLabel({ searchType })
+  const docTypesToFilterBy = [TYPE_WORD, TYPE_PHRASE, TYPE_SONG, TYPE_STORY]
+
+  const searchType = searchParams.get(TYPES) || TYPE_ENTRY
+  const labels = getPresentationPropertiesForType({ searchType })
 
   // Dictionary fetch
-  const { searchResults, infiniteScroll, loadRef, isLoading, isError, error } =
-    useSearchLoader({
-      searchApi: api.search,
-      queryKey: 'search',
-      siteUid: site?.uid,
-      searchParams,
-    })
+  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
+    useSearchLoader({ searchParams })
 
   useEffect(() => {
     if (isError) {
@@ -41,30 +48,23 @@ function SearchData() {
   }, [isError])
 
   // Get Filters
+
   const filters = [
     {
-      type: 'ALL',
-      label: searchType === 'ALL' ? 'All Results' : 'Back to all results',
-      count: searchResults?.pages?.[0]?.statistics.resultCount,
+      type: TYPE_ENTRY,
+      label: 'All Results',
     },
   ]
-  const countsByType = searchResults?.pages?.[0]?.statistics.countsByType
-    ? searchResults?.pages?.[0]?.statistics.countsByType
-    : {}
 
-  for (const [key, value] of Object.entries(countsByType)) {
-    filters.push({
-      type: key?.toUpperCase(),
-      label: makePlural(key),
-      count: value,
-    })
-  }
+  docTypesToFilterBy.forEach((type) =>
+    filters.push({ type, label: makeTitleCase(type) }),
+  )
 
   const handleFilter = (filter) => {
     const params = {
       q: searchTerm,
-      domain,
-      docType: filter,
+      [DOMAIN]: domain,
+      [TYPES]: filter,
     }
     setSearchParams(params)
   }
@@ -76,12 +76,12 @@ function SearchData() {
     handleFilter,
     infiniteScroll,
     isLoading,
-    items: searchResults,
+    items: data,
     loadRef,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
-    entryLabel,
+    entryLabel: labels?.plural,
   }
 }
 

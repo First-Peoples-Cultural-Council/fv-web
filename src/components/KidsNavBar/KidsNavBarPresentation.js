@@ -14,7 +14,7 @@ function KidsNavBarPresentation({
   home,
 }) {
   return home ? (
-    <header
+    <nav
       className="relative md:p-2 z-10 print:hidden"
       data-testid="KidsNavBarPresentation"
     >
@@ -42,30 +42,32 @@ function KidsNavBarPresentation({
           'border-gray-300 hover:border-fv-charcoal border-2 border-dotted h-8 lg:h-14 w-auto',
         )}
       </Link>
-    </header>
+    </nav>
   ) : (
-    <header
+    <nav
       className="relative p-2 z-10 print:hidden"
       data-testid="KidsNavBarPresentation"
     >
       <div className="max-w-screen-2xl mx-auto lg:px-6 xl:px-16">
         <div className="flex justify-between items-center py-1 lg:space-x-10">
           <ul className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto">
-            <Link
-              className="col-span-1 flex items-center xl:block  relative"
-              to={`/${sitename}/kids`}
-            >
-              <img
-                className="w-full h-auto rounded-full mx-auto"
-                src={logoPath}
-                alt="site logo"
-                loading="lazy"
-              />
-              {generateText(
-                'kids',
-                'hidden xl:block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16',
-              )}
-            </Link>
+            <li className="col-span-1 inline-flex">
+              <Link
+                className="flex items-center relative"
+                to={`/${sitename}/kids`}
+              >
+                <img
+                  className="h-24 w-24 md:h-32 md:w-32 rounded-full"
+                  src={logoPath}
+                  alt="site logo"
+                  loading="lazy"
+                />
+                {generateText(
+                  'kids',
+                  'hidden xl:block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16',
+                )}
+              </Link>
+            </li>
             {links.map((link) => (
               <li
                 key={link.id}
@@ -93,7 +95,7 @@ function KidsNavBarPresentation({
           <p />
         </div>
       </div>
-    </header>
+    </nav>
   )
 }
 // PROPTYPES

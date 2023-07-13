@@ -9,7 +9,7 @@ import api from 'services/api'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants/docTypes'
+import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 
 function MediaBrowserData({ docType }) {
   const { site } = useSiteStore()

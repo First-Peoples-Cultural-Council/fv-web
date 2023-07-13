@@ -15,20 +15,15 @@ export default function useCategories() {
       enabled: !!sitename,
     },
   )
+  const allCategories = []
+  response?.data?.results?.forEach((category) => {
+    allCategories.push({ ...category, parentId: null })
+    if (category?.children?.length > 0) {
+      category?.children?.forEach((child) => {
+        allCategories.push({ ...child, parentId: category.id })
+      })
+    }
+  })
 
-  const formattedResults = response?.data?.results?.map((category) => ({
-    id: category?.id,
-    title: category?.title,
-    description: category?.description,
-    url: category?.url,
-    children: category?.children?.map((child) => ({
-      id: child?.id,
-      title: child?.title,
-      description: child?.description,
-      url: child?.url,
-    })),
-  }))
-  return {
-    response: { ...response, data: formattedResults },
-  }
+  return { ...response, allCategories }
 }
