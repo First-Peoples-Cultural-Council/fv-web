@@ -13,9 +13,9 @@ function ByCategoryData({ kids }) {
   const [searchParams] = useSearchParams()
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
-  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
-      searchType: urlSearchType,
+      initialSearchType: urlSearchType,
     })
 
   const _searchParams = new URLSearchParams({
@@ -75,7 +75,7 @@ function ByCategoryData({ kids }) {
     currentParentCategory,
     searchType,
     setSearchType: setSearchTypeInUrl,
-    entryLabel: getSearchLabel({ searchType }),
+    entryLabel: getSearchTypeLabel({ searchType }),
   }
 }
 

@@ -13,9 +13,9 @@ function CategoriesData() {
 
   const [searchParams] = useSearchParams()
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
-  const { searchType, setSearchTypeInUrl, getSearchLabel } =
+  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
-      searchType: urlSearchType,
+      initialSearchType: urlSearchType,
     })
 
   // Data fetch
@@ -34,7 +34,7 @@ function CategoriesData() {
     categories: data?.results,
     searchType,
     setSearchTypeInUrl,
-    entryLabelPlural: getSearchLabel({ searchType, plural: true }),
+    entryLabelPlural: getSearchTypeLabel({ searchType, plural: true }),
     isLoading: isLoading || status === 'idle' || isError,
     sitename,
   }

@@ -9,10 +9,17 @@ import {
   TYPE_WORD,
   TYPE_DICTIONARY,
   TYPE_ENTRY,
+  TYPES,
 } from 'common/constants'
 import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
+import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function useSearchType({ initialSearchType = TYPE_ENTRY }) {
+  const [searchTypeInUrl, setSearchTypeInUrl] = useSearchParamsState({
+    searchParamName: TYPES,
+    defaultValue: initialSearchType,
+  })
+
   const [selectedSearchType, setSelectedSearchType] =
     useState(initialSearchType)
 
@@ -20,7 +27,7 @@ function useSearchType({ initialSearchType = TYPE_ENTRY }) {
     setSelectedSearchType(newSearchType)
   }
 
-  const getSearchLabel = ({ searchType, plural = false }) => {
+  const getSearchTypeLabel = ({ searchType, plural = false }) => {
     const labels = getPresentationPropertiesForType(searchType)
     if (plural) return labels.plural
     return labels.singular
@@ -33,7 +40,9 @@ function useSearchType({ initialSearchType = TYPE_ENTRY }) {
   return {
     searchType: selectedSearchType,
     setSearchType: setSelectedSearchTypeWithDefaults,
-    getSearchLabel,
+    searchTypeInUrl,
+    setSearchTypeInUrl,
+    getSearchTypeLabel,
     handleSearchTypeChange,
   }
 }

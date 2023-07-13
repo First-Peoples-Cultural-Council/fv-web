@@ -31,7 +31,7 @@ function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {
     doSearchNavigation({
       searchTerm: '',
       searchLanguage: DOMAIN_BOTH,
-      searchTypes: searchType,
+      searchType,
       kidFlag: kids,
     })
   }

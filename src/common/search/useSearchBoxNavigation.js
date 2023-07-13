@@ -4,52 +4,80 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchBox from 'components/SearchBox/useSearchBox'
-import useSearchLanguage from 'components/SearchLanguageSelector/useSearchLanguage'
-import useSearchType from 'components/SearchTypeSelector/useSearchType'
-import { makeTitleCase } from 'common/utils/stringHelpers'
-import { DOMAIN, DOMAIN_BOTH, TYPES, TYPE_ENTRY } from 'common/constants'
+import useSearchBox from 'common/search/useSearchBox'
+import useSearchLanguage from 'common/search/useSearchLanguage'
+import useSearchType from 'common/search/useSearchType'
+import { DOMAIN, DOMAIN_BOTH, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
  * Search parameters are pulled from URL parameters. Search type can also be set by passing in a
  * parameter, if it is not present as a URL query parameter.
  */
-function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
+function useSearchBoxNavigation({
+  customBaseUrl,
+  initialSearchType,
+  kids = false,
+}) {
   // initial search settings
   const { site } = useSiteStore()
-  const searchBox = useSearchBox()
-  const searchTypeData = useSearchType({ initialSearchType: searchType })
-  const entryLabel = makeTitleCase(
-    searchTypeData.getSearchLabel({ searchType: searchTypeData.searchType }),
-  )
-  const searchLanguageData = useSearchLanguage({ entryLabel })
-  const placeholderSearchType = searchType || searchTypeData.searchType
+  // update search settings when url changes
+  const [searchParams] = useSearchParams()
+
+  // State and methods from other hooks
+  const {
+    displayedSearchTerm,
+    handleSearchTermChange,
+    setDisplayedSearchTerm,
+    submittedSearchTerm,
+    setSubmittedSearchTerm,
+  } = useSearchBox()
+
+  const {
+    getSearchTypeLabel,
+    searchType: _searchType,
+    setSearchType,
+    setSearchTypeInUrl,
+  } = useSearchType({
+    initialSearchType,
+  })
+
+  const {
+    searchLanguage: _searchLanguage,
+    setSearchLanguage,
+    searchLanguageInUrl,
+    setSearchLanguageInUrl,
+    searchLanguageOptions,
+  } = useSearchLanguage({ searchType: _searchType })
+
+  const placeholderSearchType = initialSearchType || _searchType
+
   const searchBoxPlaceholder =
     placeholderSearchType && placeholderSearchType !== TYPE_ENTRY
-      ? `Search ${searchTypeData.getSearchLabel({
+      ? `Search ${getSearchTypeLabel({
           searchType: placeholderSearchType,
           plural: true,
         })} in ${site.title}`
       : `Search ${site.title}`
 
-  // update search settings when url changes
-  const [searchParams] = useSearchParams()
-
   useEffect(() => {
     const query = searchParams.get('q') || ''
-    if (query !== searchBox.submittedSearchTerm) {
-      searchBox.setSubmittedSearchTerm(query)
+    if (query !== submittedSearchTerm) {
+      setSubmittedSearchTerm(query)
     }
-    if (!searchBox.displayedSearchTerm) {
-      searchBox.setDisplayedSearchTerm(query)
+    if (!displayedSearchTerm) {
+      setDisplayedSearchTerm(query)
     }
 
-    searchLanguageData.setSearchLanguage(
-      searchParams.get(DOMAIN) || DOMAIN_BOTH,
-    )
-    searchTypeData.setSearchType(searchParams.get(TYPES) || searchType)
-  }, [searchParams, searchType])
+    setSearchLanguage(searchParams.get(DOMAIN) || DOMAIN_BOTH)
+
+    setSearchType(searchParams.get(TYPES) || initialSearchType)
+  }, [
+    searchParams,
+    initialSearchType,
+    displayedSearchTerm,
+    submittedSearchTerm,
+  ])
 
   // provide navigation functions for search urls
   const { pathname } = useLocation()
@@ -67,14 +95,14 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
   const doSearchNavigation = ({
     searchTerm,
     searchLanguage,
-    searchType: searchDocType,
+    searchType,
     kidFlag,
   }) => {
     const params = {
       q: searchTerm,
-      domain: searchLanguage,
-      docType: searchDocType,
-      kidsOnly: kidFlag,
+      [DOMAIN]: searchLanguage,
+      [TYPES]: searchType,
+      [KIDS]: kidFlag,
     }
     _doSearchNavigation(params)
   }
@@ -82,66 +110,39 @@ function useSearchBoxNavigation({ customBaseUrl, searchType, kids = false }) {
   const handleSearchNavigation = (event) => {
     // search with current state
     event.preventDefault()
-    searchBox.setSubmittedSearchTerm(searchBox.displayedSearchTerm)
+    setSubmittedSearchTerm(displayedSearchTerm)
     doSearchNavigation({
-      searchTerm: searchBox.displayedSearchTerm,
-      searchLanguage: searchLanguageData.searchLanguage,
-      searchType: searchTypeData.searchType,
+      searchTerm: displayedSearchTerm,
+      searchLanguage: _searchLanguage,
+      searchType: _searchType,
       kidFlag: kids,
     })
   }
 
-  const getCurrentSearchState = () => ({
-    searchTerm: searchBox.displayedSearchTerm,
-    searchLanguage: searchLanguageData.searchLanguage,
-    searchType: searchTypeData.searchType,
-    kidFlag: kids,
-  })
-
-  const getCurrentSearchUrlState = () => ({
-    searchTerm: searchParams.get('q') || '',
-    searchLanguage: searchParams.get(DOMAIN) || DOMAIN_BOTH,
-    searchType: searchParams.get(TYPES) || searchTypeData.searchType,
-    kidFlag: kids,
-  })
-
-  const doSearchWithParam = (name, value) => {
-    const newParams = getCurrentSearchState()
-    if (name) {
-      newParams[name] = value
-    }
-
-    doSearchNavigation(newParams)
-  }
-
   const handleSearchLanguageNavigation = (event, value) => {
-    searchLanguageData.handleSearchLanguageChange(event, value)
-    doSearchWithParam('searchLanguage', value)
-  }
-
-  const handleSearchTypeNavigation = (event, value) => {
-    searchTypeData.handleSearchTypeChange(event, value)
-    doSearchWithParam('searchType', value)
-  }
-
-  const setSearchTypeInUrl = (value) => {
-    const oldParams = getCurrentSearchUrlState()
-    const newParams = { ...oldParams }
-
-    newParams.searchType = value
-    doSearchNavigation(newParams)
+    setSearchLanguage(value)
+    setSearchLanguageInUrl(value)
   }
 
   return {
     handleSearchNavigation,
     handleSearchLanguageNavigation,
-    handleSearchTypeNavigation,
-    setSearchTypeInUrl,
     doSearchNavigation,
     searchBoxPlaceholder,
-    ...searchLanguageData,
-    ...searchTypeData,
-    ...searchBox,
+    // From useSearchType
+    searchType: _searchType,
+    setSearchTypeInUrl,
+    getSearchTypeLabel,
+    // From useSearchLanguage
+    searchLanguage: _searchLanguage,
+    searchLanguageInUrl,
+    setSearchLanguageInUrl,
+    searchLanguageOptions,
+    // from useSearchBox
+    displayedSearchTerm,
+    handleSearchTermChange,
+    setDisplayedSearchTerm,
+    submittedSearchTerm,
   }
 }
 
