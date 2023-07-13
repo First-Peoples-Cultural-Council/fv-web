@@ -1,6 +1,6 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
+import { TYPES, TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
 
 function DashboardEditData() {
   const { site } = useSiteStore()
@@ -10,7 +10,7 @@ function DashboardEditData() {
       icon: 'Phrase',
       name: 'Edit Words and Phrases',
       description: 'Edit the words and phrases in your dictionary',
-      href: `entries?type=${TYPE_DICTIONARY}`,
+      href: `entries?${TYPES}=${TYPE_DICTIONARY}`,
       iconColor: 'phraseText',
       auth: 'SuperAdmin',
     },
@@ -18,7 +18,7 @@ function DashboardEditData() {
       icon: 'Song',
       name: 'Edit Songs',
       description: 'Edit the songs on your site',
-      href: `entries?type=${TYPE_SONG}`,
+      href: `entries?${TYPES}=${TYPE_SONG}`,
       iconColor: 'songText',
       auth: 'SuperAdmin',
     },
@@ -26,7 +26,7 @@ function DashboardEditData() {
       icon: 'Story',
       name: 'Edit Stories',
       description: 'Edit the stories on your site',
-      href: `entries?type=${TYPE_STORY}`,
+      href: `entries?${TYPES}=${TYPE_STORY}`,
       iconColor: 'storyText',
       auth: 'SuperAdmin',
     },

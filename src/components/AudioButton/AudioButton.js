@@ -8,7 +8,7 @@ import getIcon from 'common/utils/getIcon'
 function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
   const { setCurrentAudio } = useAudiobar()
 
-  const audioButtons = audioArray.map((audioObject) => (
+  const audioButtons = audioArray?.map((audioObject) => (
     <button
       type="button"
       key={audioObject?.id}

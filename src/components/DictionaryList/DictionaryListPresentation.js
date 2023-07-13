@@ -14,6 +14,7 @@ import Song from 'components/Song'
 import Story from 'components/Story'
 import { useAudiobar } from 'context/AudiobarContext'
 import { getFvDocType } from 'common/utils/stringHelpers'
+import { TYPE_PHRASE, TYPE_SONG, TYPE_STORY, TYPE_WORD } from 'common/constants'
 
 function DictionaryListPresentation({
   actions,
@@ -60,8 +61,8 @@ function DictionaryListPresentation({
 
   function getDrawerContents() {
     switch (selectedItem?.type) {
-      case 'phrase':
-      case 'word':
+      case TYPE_PHRASE:
+      case TYPE_WORD:
         return (
           <DictionaryDetail.Container
             docId={selectedItem?.id}
@@ -69,9 +70,9 @@ function DictionaryListPresentation({
             isDrawer
           />
         )
-      case 'song':
+      case TYPE_SONG:
         return <Song.Container docId={selectedItem?.id} isDrawer />
-      case 'story':
+      case TYPE_STORY:
         return <Story.Container docId={selectedItem?.id} isDrawer />
       default:
         return null
@@ -93,7 +94,7 @@ function DictionaryListPresentation({
       {items?.pages !== undefined && items?.pages?.[0]?.results?.length > 0 ? (
         <div id="DictionaryListPresentation" className="flex flex-col">
           <div className="py-2 align-middle inline-block min-w-full">
-            <div className="shadow-md overflow-hidden border-b border-gray-300 sm:rounded-lg">
+            <div className="overflow-hidden sm:rounded-lg">
               <table className="min-w-full divide-y border-b-2 mb-20 divide-gray-300">
                 <thead className="bg-gray-50">
                   <tr>

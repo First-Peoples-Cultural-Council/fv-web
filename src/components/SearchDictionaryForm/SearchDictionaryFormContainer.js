@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
 import useSearchBoxNavigation from 'common/search/useSearchBoxNavigation'
+import { DOMAIN_BOTH } from 'common/constants'
 
 function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {
   // basic searchbox behaviour
@@ -18,18 +19,19 @@ function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {
     handleSearchTermChange,
     searchBoxPlaceholder,
     doSearchNavigation,
-  } = useSearchBoxNavigation({ customBaseUrl, searchType, kids })
-
-  // reset feature
-  const [initialSearchType] = useState(searchType)
+  } = useSearchBoxNavigation({
+    customBaseUrl,
+    initialSearchType: searchType,
+    kids,
+  })
 
   const resetSearch = (event) => {
     event.preventDefault()
     setDisplayedSearchTerm('')
     doSearchNavigation({
       searchTerm: '',
-      searchLanguage: 'BOTH',
-      searchType: initialSearchType,
+      searchLanguage: DOMAIN_BOTH,
+      searchTypes: searchType,
       kidFlag: kids,
     })
   }

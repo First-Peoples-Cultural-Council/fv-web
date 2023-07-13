@@ -8,7 +8,7 @@ import getIcon from 'common/utils/getIcon'
 function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
   return (
     <Menu
-      id="SearchFilterSelector"
+      id="SearchLanguageSelectorPresentation"
       as="div"
       className="relative inline-block text-left"
     >

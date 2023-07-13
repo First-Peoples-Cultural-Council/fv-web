@@ -37,7 +37,7 @@ function SearchPresentation({
         >
           <button
             type="button"
-            className={`flex w-full items-center justify-center lg:justify-start transition duration-500 ease-in-out text-sm md:text-base lg:text-lg p-2 xl:p-4 grow rounded-lg capitalize cursor-pointer leading-tight ${filterIsActiveClass}`}
+            className={`flex w-full items-center justify-center lg:justify-start transition duration-300 ease-in-out text-sm md:text-base lg:text-lg p-2 grow rounded-lg capitalize cursor-pointer leading-tight ${filterIsActiveClass}`}
             onClick={() => handleFilter(filter.type)}
           >
             {filter.type === TYPE_ENTRY ? (

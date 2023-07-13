@@ -4,8 +4,10 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import { makeTitleCase } from 'common/utils/stringHelpers'
-import useSearchType from 'components/SearchTypeSelector/useSearchType'
+import {
+  makeTitleCase,
+  getPresentationPropertiesForType,
+} from 'common/utils/stringHelpers'
 import {
   DOMAIN,
   DOMAIN_BOTH,
@@ -29,9 +31,8 @@ function SearchData() {
 
   const docTypesToFilterBy = [TYPE_WORD, TYPE_PHRASE, TYPE_SONG, TYPE_STORY]
 
-  const { getSearchLabel } = useSearchType({})
   const searchType = searchParams.get(TYPES) || TYPE_ENTRY
-  const entryLabel = getSearchLabel({ searchType })
+  const labels = getPresentationPropertiesForType({ searchType })
 
   // Dictionary fetch
   const { data, infiniteScroll, loadRef, isLoading, isError, error } =
@@ -80,7 +81,7 @@ function SearchData() {
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
-    entryLabel,
+    entryLabel: labels?.plural,
   }
 }
 
