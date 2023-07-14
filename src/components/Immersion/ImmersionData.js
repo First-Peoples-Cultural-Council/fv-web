@@ -14,7 +14,7 @@ function ImmersionData() {
   const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
   useEffect(() => {
-    if (children && children?.['Label Dictionary'])
+    if (children?.['Label Dictionary'])
       setLabelDictionaryId(children['Label Dictionary'])
   }, [children])
 
