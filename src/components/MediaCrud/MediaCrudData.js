@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 
 // FPCC

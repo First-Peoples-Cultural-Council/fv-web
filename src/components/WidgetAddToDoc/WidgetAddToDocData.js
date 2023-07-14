@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 // FPCC
 import { DOC_SITE, WIDGET_TEXTFULL } from 'common/constants'
