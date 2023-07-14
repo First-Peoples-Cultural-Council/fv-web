@@ -12,19 +12,14 @@ function AppData() {
     isLoading: userIsLoading,
     error: userError,
     data: userData,
-  } = useQuery('user', () => api.user.get(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(['user'], () => api.user.get())
 
   const {
     isLoading: userRolesIsLoading,
     error: userRolesError,
     data: userRolesData,
-  } = useQuery('userRoles', () => api.user.getRoles(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(['userRoles'], () => api.user.getRoles())
+
   useEffect(() => {
     if (
       userIsLoading === false &&

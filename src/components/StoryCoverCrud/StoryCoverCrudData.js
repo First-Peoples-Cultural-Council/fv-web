@@ -30,8 +30,6 @@ function StoryCoverCrudData() {
       }),
     {
       enabled: isUUID(storyId),
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
   const dataToEdit = storyCrudDataAdaptor({ data })

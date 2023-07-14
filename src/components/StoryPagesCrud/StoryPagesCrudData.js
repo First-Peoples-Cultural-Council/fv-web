@@ -32,8 +32,6 @@ function StoryPagesCrudData() {
       }),
     {
       enabled: isUUID(storyId),
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -118,7 +116,7 @@ function StoryPagesCrudData() {
 
   const savePageOrder = async (ids) => {
     setPageIds(ids)
-    return await api.document.update({
+    return api.document.update({
       id: storyId,
       properties: {
         'fvbook:pages': ids,

@@ -21,8 +21,6 @@ function PageData({ url }) {
     {
       // The query will not execute until the uid exists
       enabled: !!uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

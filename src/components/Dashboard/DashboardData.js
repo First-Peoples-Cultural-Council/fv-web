@@ -19,10 +19,7 @@ function DashboardData() {
     data: userSitesData,
     isLoading: userSitesIsLoading,
     error: userSitesError,
-  } = useQuery(['userSites', user?.id], () => api.user.getMySites(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(['userSites', user?.id], () => api.user.getMySites())
 
   useEffect(() => {
     if (user && userSitesIsLoading === false && userSitesError === null) {

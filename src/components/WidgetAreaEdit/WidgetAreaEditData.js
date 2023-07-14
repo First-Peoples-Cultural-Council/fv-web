@@ -26,8 +26,6 @@ function WidgetAreaEditData({ widgetAreaId }) {
     {
       // The query will not execute until the id exists
       enabled: !!widgetAreaId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -39,7 +37,7 @@ function WidgetAreaEditData({ widgetAreaId }) {
 
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
-    return await api.document.update({
+    return api.document.update({
       id: widgetAreaId,
       properties: { 'widgets:active': idArray },
     })
@@ -101,11 +99,11 @@ function WidgetAreaEditData({ widgetAreaId }) {
 
   const widgetDataAdaptor = (_data) => {
     const widgetMap = {}
-    for (const widget of _data) {
+    _data.forEach((widget) => {
       if (widget?.uid) {
         widgetMap[widget.uid] = widget
       }
-    }
+    })
     return widgetMap
   }
 

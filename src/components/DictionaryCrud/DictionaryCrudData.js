@@ -31,8 +31,6 @@ function DictionaryCrudData({ docType }) {
       }),
     {
       enabled: isUUID(entryId),
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
   const dataToEdit = dictionaryCrudDataAdaptor(data)

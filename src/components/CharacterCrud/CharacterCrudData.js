@@ -25,13 +25,8 @@ function CharacterCrudData() {
     backHandler()
   }
 
-  const { data, isLoading } = useQuery(
-    ['character', characterId],
-    () => api.document.get({ id: characterId, properties: '*' }),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
+  const { data, isLoading } = useQuery(['character', characterId], () =>
+    api.document.get({ id: characterId, properties: '*' }),
   )
 
   const submitHandler = (formData) => {

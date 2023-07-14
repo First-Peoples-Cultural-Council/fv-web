@@ -19,8 +19,6 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
     {
       // The query will not execute until the id exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -30,8 +28,6 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
     {
       // The query will not execute until the id exists
       enabled: !!destinationId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

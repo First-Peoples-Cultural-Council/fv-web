@@ -19,8 +19,6 @@ function DashboardPagesData() {
     {
       // The query will not execute until the uid exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

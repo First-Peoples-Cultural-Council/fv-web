@@ -24,8 +24,6 @@ function ImmersionData() {
     {
       // The query will not execute until the labelDictionaryId exists
       enabled: !!labelDictionaryId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

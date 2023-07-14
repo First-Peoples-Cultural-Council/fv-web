@@ -25,8 +25,6 @@ function WidgetAreaData({ id }) {
     {
       // The query will not execute until the id exists
       enabled: !!id,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

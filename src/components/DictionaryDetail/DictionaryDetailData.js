@@ -23,8 +23,6 @@ function DictionaryDetailData({ docId, docType }) {
     {
       // The query will not execute until the id has been provided
       enabled: !!idToSend,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
   const { data, error, isError, isLoading } = response

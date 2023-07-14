@@ -14,7 +14,7 @@ function DashboardImmersionData() {
   const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
   useEffect(() => {
-    if (children && children?.['Label Dictionary'])
+    if (children?.['Label Dictionary'])
       setLabelDictionaryId(children['Label Dictionary'])
   }, [children])
 
@@ -24,8 +24,6 @@ function DashboardImmersionData() {
     {
       // The query will not execute until the labelDictionaryId exists
       enabled: !!labelDictionaryId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

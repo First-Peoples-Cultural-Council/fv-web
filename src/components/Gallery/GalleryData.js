@@ -13,8 +13,6 @@ function GalleryData({ widgetData }) {
     {
       // The query will not execute until the galleryId exists
       enabled: !!galleryId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

@@ -8,15 +8,16 @@ import api from 'services/api'
 function WidgetData({ type, widgetData, id }) {
   const { widgetId } = useParams()
 
-  let dataToReturn = widgetData ? widgetDataAdaptor({ data: widgetData }) : {}
   const idToUse = widgetId || id
 
-  if (idToUse) {
-    const { data } = useQuery([idToUse], () =>
-      api.document.get({ id: idToUse, properties: 'widget,settings' }),
-    )
-    dataToReturn = widgetDataAdaptor({ data })
-  }
+  const { data } = useQuery(
+    [idToUse],
+    () => api.document.get({ id: idToUse, properties: 'widget,settings' }),
+    { enabled: !!idToUse },
+  )
+  const dataToReturn = widgetData
+    ? widgetDataAdaptor({ data: widgetData })
+    : widgetDataAdaptor({ data })
 
   return {
     type: type || dataToReturn?.type,

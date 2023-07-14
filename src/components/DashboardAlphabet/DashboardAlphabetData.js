@@ -17,8 +17,6 @@ function DashboardAlphabetData() {
     () => api.alphabet.get(site?.uid),
     {
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

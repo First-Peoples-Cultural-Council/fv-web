@@ -9,13 +9,8 @@ function LandingPageData() {
   const { sitename } = useParams()
   const navigate = useNavigate()
 
-  const { data, error, isError } = useQuery(
-    ['landingPage'],
-    () => api.landingPage.getPage(),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
+  const { data, error, isError } = useQuery(['landingPage'], () =>
+    api.landingPage.getPage(),
   )
 
   const landingPageUid = data?.entries?.[0]?.uid

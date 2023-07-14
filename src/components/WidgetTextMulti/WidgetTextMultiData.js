@@ -23,8 +23,6 @@ function WidgetTextMultiData({ widgetData }) {
     {
       // The query will not execute until the id exists
       enabled: !!widgetData?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

@@ -14,8 +14,6 @@ function ResourceData({ resourceId }) {
     {
       // The query will not execute until the uid exists
       enabled: !!uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

@@ -30,8 +30,6 @@ function CategoryCrudData() {
       }),
     {
       enabled: !!site?.uid, // The query will not execute until the siteId exists
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -47,12 +45,15 @@ function CategoryCrudData() {
 
   let dataToEdit = null
 
-  if (categoryId) {
-    const { data: categoryData } = useQuery(['category', categoryId], () =>
-      api.document.get({ id: categoryId, properties: '*' }),
-    )
-    dataToEdit = categoryCrudDataAdaptor({ data: categoryData })
-  }
+  const { data: categoryData } = useQuery(
+    ['category', categoryId],
+    () => api.document.get({ id: categoryId, properties: '*' }),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!categoryId?.uid,
+    },
+  )
+  dataToEdit = categoryCrudDataAdaptor({ data: categoryData })
 
   const submitHandler = (formData) => {
     if (categoryId && dataToEdit) {

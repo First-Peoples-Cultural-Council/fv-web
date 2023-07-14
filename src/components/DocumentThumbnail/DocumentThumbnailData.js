@@ -11,8 +11,6 @@ function DocumentThumbnailData({ docId }) {
     () => api.document.get({ id: docId }),
     {
       enabled: !!docId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
   const { data, isError, isLoading } = response

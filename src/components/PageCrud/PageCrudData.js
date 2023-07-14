@@ -28,18 +28,15 @@ function PageCrudData() {
 
   let dataToEdit = null
 
-  if (_pageId) {
-    const { data } = useQuery(
-      [_pageId],
-      () => api.document.get({ id: _pageId, properties: '*' }),
-      {
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: false,
-      },
-    )
+  const { data } = useQuery(
+    [_pageId],
+    () => api.document.get({ id: _pageId, properties: '*' }),
+    {
+      enabled: !!_pageId,
+    },
+  )
 
-    dataToEdit = pageCrudDataAdaptor({ data, sitename: site?.sitename })
-  }
+  dataToEdit = pageCrudDataAdaptor({ data, sitename: site?.sitename })
 
   const formDataAdaptor = (_formData) => {
     const mediaObject = selectOneFormHelper(_formData, 'banner')
@@ -55,13 +52,13 @@ function PageCrudData() {
 
   const savePage = async (formData) => {
     if (_pageId && dataToEdit) {
-      return await api.document.updateAndSetVisibility({
+      return api.document.updateAndSetVisibility({
         id: _pageId,
         properties: formDataAdaptor(formData),
         visibility: formData?.visibility,
       })
     }
-    return await api.document.createAndSetVisibility({
+    return api.document.createAndSetVisibility({
       parentId: site?.children?.Pages,
       name: formData?.url,
       docType: DOC_PAGE,
