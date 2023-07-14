@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 
 import { useSiteStore } from 'context/SiteContext'
@@ -8,14 +8,12 @@ function ResourceData({ resourceId }) {
   const { site } = useSiteStore()
   const { title, uid } = site
 
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ['pages', resourceId],
     () => api.page.get(uid, resourceId),
     {
       // The query will not execute until the uid exists
       enabled: !!uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -64,7 +62,7 @@ function ResourceData({ resourceId }) {
   }
 
   return {
-    isLoading,
+    isLoading: isInitialLoading,
     blocks: getDefaultBlocks(resourceId),
     widgets: data?.widgets || [],
   }

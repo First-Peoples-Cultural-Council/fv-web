@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 import api from 'services/api'
@@ -18,12 +18,12 @@ function StoryData({ docId }) {
       enabled: !!idToSend,
     },
   )
-  const { data, isError, isLoading, isFetched, error } = response
+  const { data, isError, isInitialLoading, isFetched, error } = response
   const entry = storyDataAdaptor({ data })
 
   return {
     notFound: !!(isFetched && entry === null),
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     entry: data?.title ? entry : {},
     sitename,
     error,

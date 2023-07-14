@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
@@ -11,14 +11,12 @@ function CategoriesBrowserData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isLoading, isError } = useQuery(
+  const { data, isInitialLoading, isError } = useQuery(
     ['categories', site?.uid],
     () => api.category.get({ siteId: site?.uid }),
     {
       // The query will not execute until the uid exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -60,7 +58,7 @@ function CategoriesBrowserData() {
   }
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     currentCategory,

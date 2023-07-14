@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
@@ -11,14 +11,12 @@ function DashboardSpeakersData() {
   const navigate = useNavigate()
   const { sitename } = useParams()
 
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['speakers', site?.uid],
     () => api.speaker.getAll({ siteId: site?.uid }),
     {
       // The query will not execute until the uid exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -63,7 +61,7 @@ function DashboardSpeakersData() {
   return {
     headerContent,
     tileContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     speakers:

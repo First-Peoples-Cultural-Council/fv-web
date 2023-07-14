@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // FPCC
@@ -53,8 +53,6 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     {
       // The query will not execute until the id exists
       enabled: !!_destinationId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -65,8 +63,6 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     () => api.document.get({ id: _widgetId, properties: 'widget,settings' }),
     {
       enabled: !!_widgetId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
   dataToEdit = widgetCrudDataAdaptor({ data })
@@ -92,7 +88,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
 
   const saveWidget = async (formData) => {
     const settings = []
-    for (const [key, value] of Object.entries(formData)) {
+    Object.entries(formData).forEach(([key, value]) => {
       if (!key.startsWith('widget')) {
         if (key === 'textWithFormatting') {
           settings.push({
@@ -108,7 +104,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
           })
         }
       }
-    }
+    })
     if (_widgetId && dataToEdit) {
       return api.document.updateAndSetVisibility({
         id: _widgetId,

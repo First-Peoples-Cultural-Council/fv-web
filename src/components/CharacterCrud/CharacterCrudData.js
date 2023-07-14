@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // FPCC
@@ -25,13 +25,8 @@ function CharacterCrudData() {
     backHandler()
   }
 
-  const { data, isLoading } = useQuery(
-    ['character', characterId],
-    () => api.document.get({ id: characterId, properties: '*' }),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
+  const { data, isInitialLoading } = useQuery(['character', characterId], () =>
+    api.document.get({ id: characterId, properties: '*' }),
   )
 
   const submitHandler = (formData) => {
@@ -74,7 +69,7 @@ function CharacterCrudData() {
     submitHandler,
     backHandler,
     dataToEdit: data ? characterCrudDataAdaptor({ data }) : {},
-    isLoading,
+    isLoading: isInitialLoading,
   }
 }
 

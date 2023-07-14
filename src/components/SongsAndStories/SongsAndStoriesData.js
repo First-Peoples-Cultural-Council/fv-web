@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -22,7 +22,7 @@ function SongsAndStoriesData({ searchType, kids }) {
     hasNextPage,
     isError,
     isFetchingNextPage,
-    isLoading,
+    isInitialLoading,
   } = useInfiniteQuery(
     [pluralSearchType, site?.uid],
     ({ pageParam = 1 }) =>
@@ -62,7 +62,7 @@ function SongsAndStoriesData({ searchType, kids }) {
 
   return {
     items: data || {},
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     infiniteScroll,
     sitename,
     loadRef,

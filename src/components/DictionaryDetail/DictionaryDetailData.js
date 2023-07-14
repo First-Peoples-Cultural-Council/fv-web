@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
@@ -23,11 +23,9 @@ function DictionaryDetailData({ docId, docType }) {
     {
       // The query will not execute until the id has been provided
       enabled: !!idToSend,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
-  const { data, error, isError, isLoading } = response
+  const { data, error, isError, isInitialLoading } = response
   const entry = dictionaryDataAdaptor(data)
 
   useEffect(() => {
@@ -40,7 +38,7 @@ function DictionaryDetailData({ docId, docType }) {
   }, [isError])
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     entry: data?.title ? entry : {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],

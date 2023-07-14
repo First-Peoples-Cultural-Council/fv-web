@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 
 // FPCC
@@ -9,13 +9,8 @@ function LandingPageData() {
   const { sitename } = useParams()
   const navigate = useNavigate()
 
-  const { data, error, isError } = useQuery(
-    ['landingPage'],
-    () => api.landingPage.getPage(),
-    {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
+  const { data, error, isError } = useQuery(['landingPage'], () =>
+    api.landingPage.getPage(),
   )
 
   const landingPageUid = data?.entries?.[0]?.uid

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 // FPCC
 import { DOC_SITE, WIDGET_TEXTFULL } from 'common/constants'
@@ -13,27 +13,24 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { isSuperAdmin } = user
   const queryClient = useQueryClient()
 
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ['all-widgets', site?.uid],
     () => api.widget.getWidgets({ siteId: site?.uid }),
     {
       // The query will not execute until the id exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
-  const { data: destinationData, isLoading: destinationIsLoading } = useQuery(
-    ['widget-aware-destination', destinationId],
-    () => api.document.get({ id: destinationId, properties: '*' }),
-    {
-      // The query will not execute until the id exists
-      enabled: !!destinationId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
+  const { data: destinationData, isInitialLoading: destinationIsLoading } =
+    useQuery(
+      ['widget-aware-destination', destinationId],
+      () => api.document.get({ id: destinationId, properties: '*' }),
+      {
+        // The query will not execute until the id exists
+        enabled: !!destinationId,
+      },
+    )
 
   // Add widget to active
   const submitHandler = async (widgetId) => {
@@ -78,7 +75,7 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
     : otherWidgets
 
   return {
-    isLoading: destinationIsLoading || isLoading,
+    isLoading: destinationIsLoading || isInitialLoading,
     site,
     submitHandler,
     widgets: widgets || [],

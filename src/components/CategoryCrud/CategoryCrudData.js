@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -20,7 +20,7 @@ function CategoryCrudData() {
   const categoryId = searchParams.get('id')
 
   // Fetch Parent Categories
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ['parent-categories', site?.uid],
     () =>
       api.category.get({
@@ -30,8 +30,6 @@ function CategoryCrudData() {
       }),
     {
       enabled: !!site?.uid, // The query will not execute until the siteId exists
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -47,12 +45,15 @@ function CategoryCrudData() {
 
   let dataToEdit = null
 
-  if (categoryId) {
-    const { data: categoryData } = useQuery(['category', categoryId], () =>
-      api.document.get({ id: categoryId, properties: '*' }),
-    )
-    dataToEdit = categoryCrudDataAdaptor({ data: categoryData })
-  }
+  const { data: categoryData } = useQuery(
+    ['category', categoryId],
+    () => api.document.get({ id: categoryId, properties: '*' }),
+    {
+      // The query will not execute until the uid exists
+      enabled: !!categoryId?.uid,
+    },
+  )
+  dataToEdit = categoryCrudDataAdaptor({ data: categoryData })
 
   const submitHandler = (formData) => {
     if (categoryId && dataToEdit) {
@@ -128,7 +129,7 @@ function CategoryCrudData() {
     submitHandler,
     backHandler,
     dataToEdit,
-    isLoading,
+    isLoading: isInitialLoading,
   }
 }
 

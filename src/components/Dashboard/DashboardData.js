@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
@@ -17,12 +17,9 @@ function DashboardData() {
   // --------------------------------
   const {
     data: userSitesData,
-    isLoading: userSitesIsLoading,
+    isInitialLoading: userSitesIsLoading,
     error: userSitesError,
-  } = useQuery(['userSites', user?.id], () => api.user.getMySites(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(['userSites', user?.id], () => api.user.getMySites())
 
   useEffect(() => {
     if (user && userSitesIsLoading === false && userSitesError === null) {

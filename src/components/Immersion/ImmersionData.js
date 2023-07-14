@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
 // FPCC
@@ -14,18 +14,16 @@ function ImmersionData() {
   const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
   useEffect(() => {
-    if (children && children?.['Label Dictionary'])
+    if (children?.['Label Dictionary'])
       setLabelDictionaryId(children['Label Dictionary'])
   }, [children])
 
-  const { isLoading, error, isError, data } = useQuery(
+  const { isInitialLoading, error, isError, data } = useQuery(
     ['immersion', uid],
     () => api.immersion.get(labelDictionaryId),
     {
       // The query will not execute until the labelDictionaryId exists
       enabled: !!labelDictionaryId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -40,7 +38,7 @@ function ImmersionData() {
 
   return {
     isLoading: !title,
-    isLoadingEntries: isLoading || isError,
+    isLoadingEntries: isInitialLoading || isError,
     items: data?.entries?.length > 0 ? immersionDataAdaptor(data) : [],
     actions: ['copy'],
   }

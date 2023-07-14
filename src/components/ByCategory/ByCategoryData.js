@@ -25,7 +25,7 @@ function ByCategoryData({ kids }) {
   })
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
   const categoriesResponse = useCategories()
@@ -64,7 +64,7 @@ function ByCategoryData({ kids }) {
   return {
     categories: categoriesResponse?.data?.results || [],
     categoriesAreLoading: categoriesResponse?.isLoading,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     items: data || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],

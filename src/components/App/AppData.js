@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import { useUserDispatch } from 'context/UserContext'
@@ -9,22 +9,17 @@ function AppData() {
   const userDispatch = useUserDispatch()
 
   const {
-    isLoading: userIsLoading,
+    isInitialLoading: userIsLoading,
     error: userError,
     data: userData,
-  } = useQuery('user', () => api.user.get(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(['user'], () => api.user.get())
 
   const {
-    isLoading: userRolesIsLoading,
+    isInitialLoading: userRolesIsLoading,
     error: userRolesError,
     data: userRolesData,
-  } = useQuery('userRoles', () => api.user.getRoles(), {
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-  })
+  } = useQuery(['userRoles'], () => api.user.getRoles())
+
   useEffect(() => {
     if (
       userIsLoading === false &&

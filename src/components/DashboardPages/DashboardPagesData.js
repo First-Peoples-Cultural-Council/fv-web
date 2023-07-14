@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
@@ -13,14 +13,12 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['pages', site?.uid],
     () => api.page.getPages(site?.uid),
     {
       // The query will not execute until the uid exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -78,7 +76,7 @@ function DashboardPagesData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,

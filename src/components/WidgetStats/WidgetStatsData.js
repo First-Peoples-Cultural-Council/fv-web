@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
@@ -12,7 +12,6 @@ function WidgetStatsData() {
     {
       // The query will not execute until the site?.uid exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
     },
   )
 
@@ -25,15 +24,17 @@ function WidgetStatsData() {
 
   const getPeriodTotal = (period) => {
     let total = 0
-    types.forEach((type) => (total += getPeriodTotalForType(period, type)))
+    types.forEach((type) => {
+      total += getPeriodTotalForType(period, type)
+    })
     return total
   }
 
   const getPeriodTotalsForAllTypes = (period) => {
     const totals = {}
-    types.forEach(
-      (type) => (totals[type] = getPeriodTotalForType(period, type)),
-    )
+    types.forEach((type) => {
+      totals[type] = getPeriodTotalForType(period, type)
+    })
     return totals
   }
 

@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import api from 'services/api'
@@ -9,7 +9,7 @@ import { DOC_STORY } from 'common/constants'
 function StoryCrudData() {
   const [searchParams] = useSearchParams()
   const activeStep = searchParams.get('step')
-    ? parseInt(searchParams.get('step'))
+    ? parseInt(searchParams.get('step'), 10)
     : 0
   const storyId = searchParams.get('id') || null
 
@@ -23,8 +23,6 @@ function StoryCrudData() {
       }),
     {
       enabled: isUUID(storyId),
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

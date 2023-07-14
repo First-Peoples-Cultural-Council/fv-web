@@ -1,4 +1,4 @@
-import { useQueryClient, useMutation } from 'react-query'
+import { useQueryClient, useMutation } from '@tanstack/react-query'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // FPCC
@@ -28,7 +28,7 @@ function HomeCrudData() {
 
   const updateSite = async (formData) => {
     const mediaObject = selectOneFormHelper(formData, 'banner')
-    return await api.document.update({
+    return api.document.update({
       id: site?.uid,
       properties: {
         'fvdialect:logo': formData?.logoId,

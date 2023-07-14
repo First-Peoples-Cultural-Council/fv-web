@@ -35,7 +35,7 @@ function SearchData() {
   const labels = getPresentationPropertiesForType({ searchType })
 
   // Dictionary fetch
-  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
     useSearchLoader({ searchParams })
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function SearchData() {
     filters,
     handleFilter,
     infiniteScroll,
-    isLoading,
+    isLoading: isInitialLoading,
     items: data,
     loadRef,
     actions: ['copy'],
