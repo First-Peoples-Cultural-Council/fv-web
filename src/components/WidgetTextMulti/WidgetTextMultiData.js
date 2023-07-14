@@ -12,7 +12,7 @@ function WidgetTextMultiData({ widgetData }) {
   const { sitename } = useParams()
 
   // Use an 'enricher' with no properties (to reduce the response size)
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['widget-area', widgetData?.uid],
     () =>
       api.document.get({
@@ -57,7 +57,7 @@ function WidgetTextMultiData({ widgetData }) {
   }
 
   return {
-    isLoading,
+    isLoading: isInitialLoading,
     error,
     textWidgets:
       data?.contextParameters?.widgets?.length > 0

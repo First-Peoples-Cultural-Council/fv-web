@@ -9,13 +9,13 @@ function AppData() {
   const userDispatch = useUserDispatch()
 
   const {
-    isLoading: userIsLoading,
+    isInitialLoading: userIsLoading,
     error: userError,
     data: userData,
   } = useQuery(['user'], () => api.user.get())
 
   const {
-    isLoading: userRolesIsLoading,
+    isInitialLoading: userRolesIsLoading,
     error: userRolesError,
     data: userRolesData,
   } = useQuery(['userRoles'], () => api.user.getRoles())

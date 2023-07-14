@@ -52,5 +52,5 @@ export default function useImmersion() {
       { id: '023', label: 'Équipe seulement', labelPath: 'visibility.team' },
     ],
   }
-  return { error: null, data, isLoading: false }
+  return { error: null, data, isInitialLoading: false }
 }

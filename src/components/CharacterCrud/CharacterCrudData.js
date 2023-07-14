@@ -25,7 +25,7 @@ function CharacterCrudData() {
     backHandler()
   }
 
-  const { data, isLoading } = useQuery(['character', characterId], () =>
+  const { data, isInitialLoading } = useQuery(['character', characterId], () =>
     api.document.get({ id: characterId, properties: '*' }),
   )
 
@@ -69,7 +69,7 @@ function CharacterCrudData() {
     submitHandler,
     backHandler,
     dataToEdit: data ? characterCrudDataAdaptor({ data }) : {},
-    isLoading,
+    isLoading: isInitialLoading,
   }
 }
 

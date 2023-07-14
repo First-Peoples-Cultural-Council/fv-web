@@ -22,7 +22,7 @@ function SongsAndStoriesData({ searchType, kids }) {
     hasNextPage,
     isError,
     isFetchingNextPage,
-    isLoading,
+    isInitialLoading,
   } = useInfiniteQuery(
     [pluralSearchType, site?.uid],
     ({ pageParam = 1 }) =>
@@ -62,7 +62,7 @@ function SongsAndStoriesData({ searchType, kids }) {
 
   return {
     items: data || {},
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     infiniteScroll,
     sitename,
     loadRef,

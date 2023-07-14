@@ -26,7 +26,7 @@ function DashboardWidgetsData() {
     },
   )
 
-  const { data, error, isError, isLoading } = response
+  const { data, error, isError, isInitialLoading } = response
 
   useEffect(() => {
     if (isError) {
@@ -74,7 +74,7 @@ function DashboardWidgetsData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     tileContent,
     widgets: data?.entries?.length > 0 ? widgetsDataAdaptor(data.entries) : [],

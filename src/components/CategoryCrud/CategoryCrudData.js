@@ -20,7 +20,7 @@ function CategoryCrudData() {
   const categoryId = searchParams.get('id')
 
   // Fetch Parent Categories
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ['parent-categories', site?.uid],
     () =>
       api.category.get({
@@ -129,7 +129,7 @@ function CategoryCrudData() {
     submitHandler,
     backHandler,
     dataToEdit,
-    isLoading,
+    isLoading: isInitialLoading,
   }
 }
 

@@ -13,7 +13,7 @@ function DocumentThumbnailData({ docId }) {
       enabled: !!docId,
     },
   )
-  const { data, isError, isLoading } = response
+  const { data, isError, isInitialLoading } = response
   const documentDataAdaptor = (dataObject) => {
     const properties = dataObject?.properties ? dataObject.properties : {}
     const doc = {
@@ -27,7 +27,7 @@ function DocumentThumbnailData({ docId }) {
   }
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     document: data?.title ? documentDataAdaptor(data) : {},
   }
 }

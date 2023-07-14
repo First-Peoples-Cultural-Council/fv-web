@@ -58,7 +58,7 @@ function MediaBrowserData({ docType }) {
     hasNextPage,
     isError,
     isFetchingNextPage,
-    isLoading,
+    isInitialLoading,
   } = useInfiniteQuery(
     [`${docType}-search`, searchTerm],
     ({ pageParam = 0 }) =>
@@ -108,8 +108,8 @@ function MediaBrowserData({ docType }) {
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoading: isLoading || isError,
-    isLoadingEntries: isLoading,
+    isLoading: isInitialLoading || isError,
+    isLoadingEntries: isInitialLoading,
     loadRef,
     media: data,
     searchValue: searchInputValue,

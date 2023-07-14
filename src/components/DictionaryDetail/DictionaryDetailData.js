@@ -25,7 +25,7 @@ function DictionaryDetailData({ docId, docType }) {
       enabled: !!idToSend,
     },
   )
-  const { data, error, isError, isLoading } = response
+  const { data, error, isError, isInitialLoading } = response
   const entry = dictionaryDataAdaptor(data)
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function DictionaryDetailData({ docId, docType }) {
   }, [isError])
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     entry: data?.title ? entry : {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],

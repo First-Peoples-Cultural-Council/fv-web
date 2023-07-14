@@ -12,7 +12,7 @@ function DashboardAlphabetData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isLoading, error, isError } = useQuery(
+  const { data, isInitialLoading, error, isError } = useQuery(
     ['alphabet', site?.uid],
     () => api.alphabet.get(site?.uid),
     {
@@ -39,7 +39,7 @@ function DashboardAlphabetData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,

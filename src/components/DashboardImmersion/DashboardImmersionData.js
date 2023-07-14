@@ -18,7 +18,7 @@ function DashboardImmersionData() {
       setLabelDictionaryId(children['Label Dictionary'])
   }, [children])
 
-  const { isLoading, error, isError, data } = useQuery(
+  const { isInitialLoading, error, isError, data } = useQuery(
     ['immersion', uid],
     () => api.immersion.get(labelDictionaryId),
     {
@@ -47,7 +47,7 @@ function DashboardImmersionData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     tileContent,
     labels: immersionDataAdaptor(data) || [],

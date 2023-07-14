@@ -13,7 +13,7 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['pages', site?.uid],
     () => api.page.getPages(site?.uid),
     {
@@ -76,7 +76,7 @@ function DashboardPagesData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,

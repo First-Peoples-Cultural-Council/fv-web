@@ -41,7 +41,7 @@ function MediaCrudData({ docType, maxFiles }) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-    isLoading,
+    isInitialLoading,
     refetch,
   } = useInfiniteQuery(
     [`${docType}-search`, searchTerm],
@@ -147,7 +147,7 @@ function MediaCrudData({ docType, maxFiles }) {
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoadingEntries: isLoading,
+    isLoadingEntries: isInitialLoading,
     loadRef,
     fetchedMedia: data,
     searchValue: searchInputValue,

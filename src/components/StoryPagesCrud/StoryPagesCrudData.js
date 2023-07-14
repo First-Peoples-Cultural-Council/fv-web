@@ -22,7 +22,7 @@ function StoryPagesCrudData() {
 
   const storyId = searchParams.get('id') || null
 
-  const { data, refetch, isLoading, error } = useQuery(
+  const { data, refetch, isInitialLoading, error } = useQuery(
     [DOC_STORY, storyId],
     () =>
       api.document.get({
@@ -36,14 +36,14 @@ function StoryPagesCrudData() {
   )
 
   useEffect(() => {
-    if (isLoading === false && error === null) {
+    if (isInitialLoading === false && error === null) {
       const pageOrder = pageOrderDataAdaptor({ data })
       setPageIds(pageOrder)
       if (pageOrder?.length < 1) {
         setAddPageOpen(true)
       }
     }
-  }, [data, isLoading, error])
+  }, [data, isInitialLoading, error])
 
   const formattedPageData = storyPagesDataAdaptor({ data })
 

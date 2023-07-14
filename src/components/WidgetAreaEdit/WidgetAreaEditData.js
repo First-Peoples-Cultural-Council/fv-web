@@ -15,7 +15,7 @@ function WidgetAreaEditData({ widgetAreaId }) {
   const queryClient = useQueryClient()
   const [currentWidget, setCurrentWidget] = useState(null)
 
-  const { data, error, isLoading, refetch } = useQuery(
+  const { data, error, isInitialLoading, refetch } = useQuery(
     ['widget-area', widgetAreaId],
     () =>
       api.document.get({
@@ -30,10 +30,10 @@ function WidgetAreaEditData({ widgetAreaId }) {
   )
 
   useEffect(() => {
-    if (isLoading === false && error === null) {
+    if (isInitialLoading === false && error === null) {
       setWidgetIds(data?.properties?.['widgets:active'])
     }
-  }, [data, site, isLoading, error])
+  }, [data, site, isInitialLoading, error])
 
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
@@ -120,7 +120,7 @@ function WidgetAreaEditData({ widgetAreaId }) {
     setCurrentWidget,
     destination: { title: destinationTitle, uid: widgetAreaId },
     handleRemoveWidget,
-    isLoading,
+    isLoading: isInitialLoading,
     widgetData: widgetDataAdaptor(widgetDataToUse),
     widgetIds,
     setWidgetIds: updateWidgetOrder,

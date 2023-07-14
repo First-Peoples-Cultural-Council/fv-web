@@ -8,7 +8,7 @@ function ResourceData({ resourceId }) {
   const { site } = useSiteStore()
   const { title, uid } = site
 
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ['pages', resourceId],
     () => api.page.get(uid, resourceId),
     {
@@ -62,7 +62,7 @@ function ResourceData({ resourceId }) {
   }
 
   return {
-    isLoading,
+    isLoading: isInitialLoading,
     blocks: getDefaultBlocks(resourceId),
     widgets: data?.widgets || [],
   }

@@ -11,7 +11,7 @@ function DashboardSpeakersData() {
   const navigate = useNavigate()
   const { sitename } = useParams()
 
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['speakers', site?.uid],
     () => api.speaker.getAll({ siteId: site?.uid }),
     {
@@ -61,7 +61,7 @@ function DashboardSpeakersData() {
   return {
     headerContent,
     tileContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     speakers:

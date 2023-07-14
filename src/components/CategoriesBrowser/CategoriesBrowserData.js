@@ -11,7 +11,7 @@ function CategoriesBrowserData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isLoading, isError } = useQuery(
+  const { data, isInitialLoading, isError } = useQuery(
     ['categories', site?.uid],
     () => api.category.get({ siteId: site?.uid }),
     {
@@ -58,7 +58,7 @@ function CategoriesBrowserData() {
   }
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     currentCategory,

@@ -24,12 +24,12 @@ function DashboardEntriesData() {
     urlSearchType === TYPE_DICTIONARY
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isLoading } = useSearchLoader({
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
     searchParams,
   })
 
   return {
-    isLoadingEntries: isLoading,
+    isLoadingEntries: isInitialLoading,
     items: data,
     infiniteScroll,
     loadRef: searchTerm ? loadRef : null,

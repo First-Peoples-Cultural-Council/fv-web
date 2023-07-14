@@ -19,11 +19,11 @@ function SongData({ docId }) {
       enabled: !!idToSend,
     },
   )
-  const { data, isError, isLoading } = response
+  const { data, isError, isInitialLoading } = response
   const entry = songDataAdaptor(data)
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     entry: data?.title ? entry : {},
     sitename,
   }

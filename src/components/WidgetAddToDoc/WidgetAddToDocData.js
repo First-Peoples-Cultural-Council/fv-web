@@ -13,7 +13,7 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { isSuperAdmin } = user
   const queryClient = useQueryClient()
 
-  const { data, isLoading } = useQuery(
+  const { data, isInitialLoading } = useQuery(
     ['all-widgets', site?.uid],
     () => api.widget.getWidgets({ siteId: site?.uid }),
     {
@@ -22,14 +22,15 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
     },
   )
 
-  const { data: destinationData, isLoading: destinationIsLoading } = useQuery(
-    ['widget-aware-destination', destinationId],
-    () => api.document.get({ id: destinationId, properties: '*' }),
-    {
-      // The query will not execute until the id exists
-      enabled: !!destinationId,
-    },
-  )
+  const { data: destinationData, isInitialLoading: destinationIsLoading } =
+    useQuery(
+      ['widget-aware-destination', destinationId],
+      () => api.document.get({ id: destinationId, properties: '*' }),
+      {
+        // The query will not execute until the id exists
+        enabled: !!destinationId,
+      },
+    )
 
   // Add widget to active
   const submitHandler = async (widgetId) => {
@@ -74,7 +75,7 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
     : otherWidgets
 
   return {
-    isLoading: destinationIsLoading || isLoading,
+    isLoading: destinationIsLoading || isInitialLoading,
     site,
     submitHandler,
     widgets: widgets || [],

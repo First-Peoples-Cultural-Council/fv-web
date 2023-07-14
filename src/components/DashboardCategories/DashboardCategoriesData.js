@@ -12,7 +12,7 @@ function DashboardCategoriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['categories', site?.uid],
     () => api.category.get({ siteId: site?.uid }),
     {
@@ -70,7 +70,7 @@ function DashboardCategoriesData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,

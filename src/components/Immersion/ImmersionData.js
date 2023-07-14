@@ -18,7 +18,7 @@ function ImmersionData() {
       setLabelDictionaryId(children['Label Dictionary'])
   }, [children])
 
-  const { isLoading, error, isError, data } = useQuery(
+  const { isInitialLoading, error, isError, data } = useQuery(
     ['immersion', uid],
     () => api.immersion.get(labelDictionaryId),
     {
@@ -38,7 +38,7 @@ function ImmersionData() {
 
   return {
     isLoading: !title,
-    isLoadingEntries: isLoading || isError,
+    isLoadingEntries: isInitialLoading || isError,
     items: data?.entries?.length > 0 ? immersionDataAdaptor(data) : [],
     actions: ['copy'],
   }

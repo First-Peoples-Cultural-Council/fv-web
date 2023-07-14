@@ -17,7 +17,7 @@ function DashboardData() {
   // --------------------------------
   const {
     data: userSitesData,
-    isLoading: userSitesIsLoading,
+    isInitialLoading: userSitesIsLoading,
     error: userSitesError,
   } = useQuery(['userSites', user?.id], () => api.user.getMySites())
 
