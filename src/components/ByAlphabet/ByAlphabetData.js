@@ -30,7 +30,7 @@ function ByAlphabetData({ kids }) {
     [STARTS_WITH_CHAR]: character,
   })
 
-  const { data, infiniteScroll, loadRef, isLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
   const alphabetResponse = useAlphabet()
@@ -67,7 +67,7 @@ function ByAlphabetData({ kids }) {
         ? alphabetResponse?.data?.characters
         : [],
     charactersAreLoading: alphabetResponse?.isLoading,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     items: data || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],

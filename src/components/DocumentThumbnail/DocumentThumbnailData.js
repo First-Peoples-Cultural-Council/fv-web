@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
@@ -11,11 +11,9 @@ function DocumentThumbnailData({ docId }) {
     () => api.document.get({ id: docId }),
     {
       enabled: !!docId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
-  const { data, isError, isLoading } = response
+  const { data, isError, isInitialLoading } = response
   const documentDataAdaptor = (dataObject) => {
     const properties = dataObject?.properties ? dataObject.properties : {}
     const doc = {
@@ -29,7 +27,7 @@ function DocumentThumbnailData({ docId }) {
   }
 
   return {
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     document: data?.title ? documentDataAdaptor(data) : {},
   }
 }

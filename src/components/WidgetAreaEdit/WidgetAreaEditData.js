@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 // FPCC
 import { DOC_SITE } from 'common/constants'
@@ -15,7 +15,7 @@ function WidgetAreaEditData({ widgetAreaId }) {
   const queryClient = useQueryClient()
   const [currentWidget, setCurrentWidget] = useState(null)
 
-  const { data, error, isLoading, refetch } = useQuery(
+  const { data, error, isInitialLoading, refetch } = useQuery(
     ['widget-area', widgetAreaId],
     () =>
       api.document.get({
@@ -26,20 +26,18 @@ function WidgetAreaEditData({ widgetAreaId }) {
     {
       // The query will not execute until the id exists
       enabled: !!widgetAreaId,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
   useEffect(() => {
-    if (isLoading === false && error === null) {
+    if (isInitialLoading === false && error === null) {
       setWidgetIds(data?.properties?.['widgets:active'])
     }
-  }, [data, site, isLoading, error])
+  }, [data, site, isInitialLoading, error])
 
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
-    return await api.document.update({
+    return api.document.update({
       id: widgetAreaId,
       properties: { 'widgets:active': idArray },
     })
@@ -101,11 +99,11 @@ function WidgetAreaEditData({ widgetAreaId }) {
 
   const widgetDataAdaptor = (_data) => {
     const widgetMap = {}
-    for (const widget of _data) {
+    _data.forEach((widget) => {
       if (widget?.uid) {
         widgetMap[widget.uid] = widget
       }
-    }
+    })
     return widgetMap
   }
 
@@ -122,7 +120,7 @@ function WidgetAreaEditData({ widgetAreaId }) {
     setCurrentWidget,
     destination: { title: destinationTitle, uid: widgetAreaId },
     handleRemoveWidget,
-    isLoading,
+    isLoading: isInitialLoading,
     widgetData: widgetDataAdaptor(widgetDataToUse),
     widgetIds,
     setWidgetIds: updateWidgetOrder,

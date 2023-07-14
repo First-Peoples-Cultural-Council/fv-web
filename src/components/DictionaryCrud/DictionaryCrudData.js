@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -31,8 +31,6 @@ function DictionaryCrudData({ docType }) {
       }),
     {
       enabled: isUUID(entryId),
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
   const dataToEdit = dictionaryCrudDataAdaptor(data)

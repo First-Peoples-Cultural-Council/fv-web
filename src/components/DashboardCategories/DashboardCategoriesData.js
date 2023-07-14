@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
@@ -12,14 +12,12 @@ function DashboardCategoriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['categories', site?.uid],
     () => api.category.get({ siteId: site?.uid }),
     {
       // The query will not execute until the uid exists
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -72,7 +70,7 @@ function DashboardCategoriesData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,

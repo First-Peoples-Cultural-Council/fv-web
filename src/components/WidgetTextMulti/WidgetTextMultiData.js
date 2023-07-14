@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import api from 'services/api'
@@ -12,7 +12,7 @@ function WidgetTextMultiData({ widgetData }) {
   const { sitename } = useParams()
 
   // Use an 'enricher' with no properties (to reduce the response size)
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['widget-area', widgetData?.uid],
     () =>
       api.document.get({
@@ -23,8 +23,6 @@ function WidgetTextMultiData({ widgetData }) {
     {
       // The query will not execute until the id exists
       enabled: !!widgetData?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -59,7 +57,7 @@ function WidgetTextMultiData({ widgetData }) {
   }
 
   return {
-    isLoading,
+    isLoading: isInitialLoading,
     error,
     textWidgets:
       data?.contextParameters?.widgets?.length > 0

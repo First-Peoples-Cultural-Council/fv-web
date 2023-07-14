@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import api from 'services/api'
@@ -14,7 +14,7 @@ function WidgetAreaData({ id }) {
   const { user } = useUserStore()
 
   // Use an 'enricher' with no properties (to reduce the response size)
-  const { data, error, isError, isLoading } = useQuery(
+  const { data, error, isError, isInitialLoading } = useQuery(
     ['widget-area', id],
     () =>
       api.document.get({
@@ -25,8 +25,6 @@ function WidgetAreaData({ id }) {
     {
       // The query will not execute until the id exists
       enabled: !!id,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -46,7 +44,7 @@ function WidgetAreaData({ id }) {
     )
 
   return {
-    isLoading,
+    isLoading: isInitialLoading,
     error,
     widgets: widgetsDataAdaptor(data?.contextParameters?.widgets || []),
   }

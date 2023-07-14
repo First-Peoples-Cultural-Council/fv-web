@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // FPCC
@@ -22,18 +22,15 @@ function SpeakerCrudData() {
     : null
 
   let dataToEdit = null
-
-  if (speakerId) {
-    const { data } = useQuery(
-      ['speaker', speakerId],
-      () => api.document.get({ id: speakerId, properties: '*' }),
-      {
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: false,
-      },
-    )
-    dataToEdit = speakerCrudDataAdaptor({ data })
-  }
+  const { data } = useQuery(
+    ['speaker', speakerId],
+    () => api.document.get({ id: speakerId, properties: '*' }),
+    {
+      enabled: !!speakerId,
+      refetchOnReconnect: false,
+    },
+  )
+  dataToEdit = speakerCrudDataAdaptor({ data })
 
   const submitHandler = (formData) => {
     if (speakerId && dataToEdit) {

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
@@ -16,8 +16,6 @@ function WidgetWordOfTheDayData() {
     {
       // The query will not execute until the uid exists
       enabled: !!uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

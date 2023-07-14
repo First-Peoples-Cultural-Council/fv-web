@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
@@ -30,8 +30,6 @@ function ParachuteData() {
       }),
     {
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 

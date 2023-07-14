@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
@@ -12,13 +12,11 @@ function DashboardAlphabetData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isLoading, error, isError } = useQuery(
+  const { data, isInitialLoading, error, isError } = useQuery(
     ['alphabet', site?.uid],
     () => api.alphabet.get(site?.uid),
     {
       enabled: !!site?.uid,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
@@ -41,7 +39,7 @@ function DashboardAlphabetData() {
 
   return {
     headerContent,
-    isLoading: isLoading || isError,
+    isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,

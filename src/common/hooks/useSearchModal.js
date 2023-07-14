@@ -21,11 +21,10 @@ function useSearchModal({ types }) {
     [DOMAIN]: DOMAIN_BOTH,
   })
 
-  const { data, infiniteScroll, loadRef, isLoading, isError } = useSearchLoader(
-    {
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
+    useSearchLoader({
       searchParams: _searchParams,
-    },
-  )
+    })
 
   return {
     searchQuery: searchBox.displayedSearchTerm,
@@ -35,8 +34,8 @@ function useSearchModal({ types }) {
     hasResults:
       data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0,
     infiniteScroll,
-    isLoading: isLoading || isError,
-    isLoadingEntries: isLoading,
+    isLoading: isInitialLoading || isError,
+    isLoadingEntries: isInitialLoading,
     loadRef,
   }
 }

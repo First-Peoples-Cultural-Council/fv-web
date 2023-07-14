@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -22,7 +22,7 @@ function StoryPagesCrudData() {
 
   const storyId = searchParams.get('id') || null
 
-  const { data, refetch, isLoading, error } = useQuery(
+  const { data, refetch, isInitialLoading, error } = useQuery(
     [DOC_STORY, storyId],
     () =>
       api.document.get({
@@ -32,20 +32,18 @@ function StoryPagesCrudData() {
       }),
     {
       enabled: isUUID(storyId),
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
     },
   )
 
   useEffect(() => {
-    if (isLoading === false && error === null) {
+    if (isInitialLoading === false && error === null) {
       const pageOrder = pageOrderDataAdaptor({ data })
       setPageIds(pageOrder)
       if (pageOrder?.length < 1) {
         setAddPageOpen(true)
       }
     }
-  }, [data, isLoading, error])
+  }, [data, isInitialLoading, error])
 
   const formattedPageData = storyPagesDataAdaptor({ data })
 
@@ -118,7 +116,7 @@ function StoryPagesCrudData() {
 
   const savePageOrder = async (ids) => {
     setPageIds(ids)
-    return await api.document.update({
+    return api.document.update({
       id: storyId,
       properties: {
         'fvbook:pages': ids,
