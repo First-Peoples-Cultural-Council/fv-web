@@ -45,13 +45,13 @@ function useSearchLoader({ searchParams }) {
       visibility: result?.entry?.visibility,
     }
     switch (result?.type) {
-      case 'dictionary_entry':
       case TYPE_WORD:
       case TYPE_PHRASE:
         return {
           ...baseObject,
-          translations: result?.entry?.translations,
-          audio: result?.entry?.relatedAudio,
+          translations: result?.entry?.translations || [],
+          audio: result?.entry?.relatedAudio || [],
+          image: result?.entry?.relatedImages?.[0] || null,
         }
       case TYPE_SONG:
       case TYPE_STORY:

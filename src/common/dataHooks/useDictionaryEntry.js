@@ -13,7 +13,7 @@ export default function useDictionaryEntry({ sitename, id }) {
     type: response?.data?.type?.toLowerCase() || '',
     title: response?.data?.title,
     translations: response?.data?.translations || [],
-    pronunciation: response?.data?.pronunciations || [],
+    pronunciations: response?.data?.pronunciations || [],
     categories: response?.data?.categories || [],
     relatedAssets: response?.data?.relatedEntries || [],
     audio: response?.data?.relatedAudio || [],
