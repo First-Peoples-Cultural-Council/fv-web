@@ -30,18 +30,8 @@ function AudioMinimalPresentation({
       aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
       className={buttonStyling}
     >
-      {isPlaying === true && (
-        <>
-          {Icons.Stop}
-          {label}
-        </>
-      )}
-      {isPlaying === false && (
-        <>
-          {Icons.Play}
-          {label}
-        </>
-      )}
+      {isPlaying === true ? Icons.Stop : Icons.Play}
+      {label}
     </button>
   )
 }

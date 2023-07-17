@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
+import { makePlural } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import LazyImage from 'components/LazyImage'
 
 function DictionaryGridTilePresentationKids({ entry }) {
-  const image = entry?.photos?.[0]?.length > 0 ? entry?.photos?.[0] : null
   const shortTitle = entry?.title.length < 18
   return (
     <div
@@ -28,11 +27,13 @@ function DictionaryGridTilePresentationKids({ entry }) {
       </div>
       <div className="grid grid-cols-2 gap-2 p-2 h-full w-full">
         {/* Photos */}
-        {image && (
+        {entry?.image && (
           <div
             id="media"
             className={`${
-              image ? 'col-span-1 flex items-center justify-center' : 'hidden'
+              entry?.image
+                ? 'col-span-1 flex items-center justify-center'
+                : 'hidden'
             }`}
           >
             <Link
@@ -46,7 +47,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
                 imgStyling="h-full object-contain max-h-72"
                 width={250}
                 height={288}
-                imageObject={image}
+                imageObject={entry?.image}
               />
             </Link>
           </div>
@@ -54,7 +55,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
         <div
           id="EntryDetails"
           className={`${
-            image ? 'col-span-1' : 'col-span-2'
+            entry?.image ? 'col-span-1' : 'col-span-2'
           } h-72 flex text-center w-full items-center text-fv-charcoal`}
         >
           <div className="w-full">
@@ -89,14 +90,14 @@ function DictionaryGridTilePresentationKids({ entry }) {
             )}
             {/* Entry Audio */}
             {entry?.audio?.length > 0 &&
-              entry?.audio.map((audioId) => (
+              entry?.audio.map((audioObject) => (
                 <AudioMinimal.Container
-                  key={audioId}
+                  key={audioObject?.id}
                   icons={{
                     Play: getIcon('Audio', 'fill-current h-10 w-10'),
                     Stop: getIcon('StopCircle', 'fill-current h-10 w-10'),
                   }}
-                  src={getMediaUrl({ type: 'audio', id: audioId })}
+                  audioObject={audioObject}
                 />
               ))}
           </div>

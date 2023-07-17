@@ -1,10 +1,19 @@
 import { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Howl, Howler } from 'howler'
-function AudioMinimalData({ src }) {
+
+// FPCC
+import { AUDIO, ORIGINAL } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+function AudioMinimalData({ audioObject }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const buttonRef = useRef()
-  const [sound, setSound] = useState({ src, howl: null })
+  const src = getMediaPath({
+    mediaObject: audioObject,
+    type: AUDIO,
+    size: ORIGINAL,
+  })
+  const [sound, setSound] = useState({ id: '', howl: null })
 
   const onAudioClick = () => {
     Howler.stop()
@@ -16,8 +25,7 @@ function AudioMinimalData({ src }) {
       soundToPlay = sound.howl
     } else {
       const newHowl = new Howl({
-        src: [src, src, src],
-        format: ['webm', 'wav', 'mp3'],
+        src: [src],
         html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
         onplay() {
           setIsPlaying(true)
@@ -30,7 +38,7 @@ function AudioMinimalData({ src }) {
         },
       })
       soundToPlay = newHowl
-      setSound({ src, howl: newHowl })
+      setSound({ id: audioObject?.id, howl: newHowl })
     }
     soundToPlay.play()
   }
@@ -46,9 +54,9 @@ function AudioMinimalData({ src }) {
 }
 
 // PROPTYPES
-const { string } = PropTypes
+const { object } = PropTypes
 AudioMinimalData.propTypes = {
-  src: string.isRequired,
+  audioObject: object.isRequired,
 }
 
 export default AudioMinimalData

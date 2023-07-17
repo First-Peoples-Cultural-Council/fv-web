@@ -2,7 +2,7 @@ import alphabet from 'services/api/alphabet'
 import blog from 'services/api/blog'
 import category from 'services/api/category'
 import characters from 'services/api/characters'
-import dictionary from 'services/api/dictionary'
+import dictionaryEntry from 'services/api/dictionaryEntry'
 import directory from 'services/api/directory'
 import document from 'services/api/document'
 import gallery from 'services/api/gallery'
@@ -29,7 +29,7 @@ export default {
   blog,
   category,
   characters,
-  dictionary,
+  dictionaryEntry,
   directory,
   document,
   immersion,

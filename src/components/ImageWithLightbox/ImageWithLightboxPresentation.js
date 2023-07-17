@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -13,11 +13,10 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
         imgStyling={imgStyling}
         width={maxWidth}
         onClick={() => setLightboxOpen(true)}
-        id={image.uid || image.id}
-        mimeType={image?.['mime-type']}
+        imageObject={image}
         label="i"
         forceLoad
-        alt={`Gallery Image ${image?.['dc:title']}`}
+        alt={image?.title}
       />
       {/* Lightbox Modal */}
       <Modal.Presentation
@@ -33,18 +32,14 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
             width={1920}
             onClick={() => setLightboxOpen(true)}
             forceLoad
-            id={image.uid || image.id}
-            mimeType={image?.['mime-type']}
-            alt={`Gallery Image ${image?.['dc:title']}`}
+            imageObject={image}
+            alt={image?.title}
           />
           <div className="mt-1 text-lg md:text-xl font-medium">
-            {image?.['dc:title']}
+            {image?.title}
           </div>
-          {image?.['dc:description'] && (
-            <div className="text-base">{image?.['dc:description']}</div>
-          )}
-          {image?.speaker && (
-            <div className="text-sm">Source: {image?.speaker}</div>
+          {image?.description && (
+            <div className="text-base">{image?.description}</div>
           )}
           {image?.acknowledgement && (
             <div className="text-sm">
@@ -57,17 +52,11 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
   )
 }
 // PROPTYPES
-const { shape, string, number } = PropTypes
+const { object, string, number } = PropTypes
 ImageWithLightboxPresentation.propTypes = {
   maxWidth: number,
   imgStyling: string,
-  image: shape({
-    uid: string,
-    'dc:title': string,
-    'dc:description': string,
-    speaker: string,
-    acknowledgement: string,
-  }),
+  image: object,
 }
 
 ImageWithLightboxPresentation.defaultProps = {
