@@ -208,18 +208,18 @@ function DictionaryDetailPresentation({
               </div>
             )}
             {/* Notes */}
-            {entry?.notes?.length > 0 ? (
+            {entry?.notes?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={lableStyling}>Notes</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.notes?.map((note) => (
-                    <li key={note} className={contentStyling}>
-                      {note}
+                    <li key={note?.id} className={contentStyling}>
+                      {note?.text}
                     </li>
                   ))}
                 </ul>
               </div>
-            ) : null}
+            )}
             {/* Pronunciations */}
             {entry?.pronunciations?.length > 0 && (
               <div className="py-2 md:p-4">
