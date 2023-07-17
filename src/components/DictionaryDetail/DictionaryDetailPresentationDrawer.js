@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
+import { ORIGINAL, VIDEO } from 'common/constants'
+import { makePlural } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
@@ -63,7 +65,10 @@ function DictionaryDetailPresentationDrawer({
               >
                 {entry?.translations?.map((translation) => (
                   <li key={translation} className="p-0.5">
-                    {translation?.translation}
+                    <span className={contentStyling}>
+                      {translation?.partOfSpeech}
+                    </span>
+                    <span className={contentStyling}>{translation?.text}</span>
                   </li>
                 ))}
               </ol>
@@ -72,28 +77,29 @@ function DictionaryDetailPresentationDrawer({
           {/* Audio */}
           {entry?.audio?.length > 0 && (
             <div className="py-3">
-              {entry?.audio?.map((audioFile) => (
-                <AudioMinimal.Container
-                  key={audioFile.uid}
-                  icons={{
-                    Play: getIcon(
-                      'Play',
-                      `fill-current h-6 w-6 md:w-4 md:h-4 ${
-                        audioFile?.speaker?.length > 0 ? 'mr-2' : ''
-                      }`,
-                    ),
-                    Stop: getIcon(
-                      'Stop',
-                      `fill-current h-6 w-6 md:w-4 md:h-4 ${
-                        audioFile?.speaker?.length > 0 ? 'mr-2' : ''
-                      }`,
-                    ),
-                  }}
-                  buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2"
-                  label={audioFile?.speaker}
-                  src={getMediaUrl({ type: 'audio', id: audioFile.uid })}
-                />
-              ))}
+              {entry?.audio?.length > 0 &&
+                entry?.audio.map((audioObject) => (
+                  <AudioMinimal.Container
+                    key={audioObject?.id}
+                    icons={{
+                      Play: getIcon(
+                        'Play',
+                        `fill-current h-6 w-6 md:w-4 md:h-4 ${
+                          audioObject?.speakers?.length > 0 ? 'mr-2' : ''
+                        }`,
+                      ),
+                      Stop: getIcon(
+                        'Stop',
+                        `fill-current h-6 w-6 md:w-4 md:h-4 ${
+                          audioObject?.speakers?.length > 0 ? 'mr-2' : ''
+                        }`,
+                      ),
+                    }}
+                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2"
+                    label={audioObject?.speakers?.[0]?.name}
+                    audioObject={audioObject}
+                  />
+                ))}
             </div>
           )}
         </section>
@@ -105,11 +111,11 @@ function DictionaryDetailPresentationDrawer({
               <h4 className={lableStyling}>Categories</h4>
               {entry?.categories?.map((category) => (
                 <Link
-                  key={category?.uid}
-                  to={`/${sitename}/categories/${category?.uid}`}
+                  key={category?.id}
+                  to={`/${sitename}/categories/${category?.id}`}
                   className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-tertiaryB hover:bg-tertiaryB-dark text-white mr-1"
                 >
-                  {category['dc:title']}
+                  {category?.title}
                   <span className="sr-only">,&nbsp;</span>
                 </Link>
               ))}
@@ -134,18 +140,18 @@ function DictionaryDetailPresentationDrawer({
                   {entry?.relatedAssets?.map((asset, index) => {
                     const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
                     return (
-                      <tr key={asset?.uid} className={zebraStripe}>
+                      <tr key={asset?.id} className={zebraStripe}>
                         <td className="py-2 pl-5 flex items-center">
                           <Link
                             to={`/${sitename}/${makePlural(asset?.type)}/${
-                              asset?.uid
+                              asset?.id
                             }`}
                           >
-                            {asset ? asset['dc:title'] : null}
+                            {asset ? asset?.title : null}
                           </Link>
-                          {asset?.related_audio?.map((audioId) => (
+                          {asset?.relatedAudio?.map((audioObject) => (
                             <AudioMinimal.Container
-                              key={audioId}
+                              key={audioObject?.id}
                               icons={{
                                 Play: getIcon(
                                   'Audio',
@@ -156,14 +162,12 @@ function DictionaryDetailPresentationDrawer({
                                   'fill-current h-8 w-8 ml-2',
                                 ),
                               }}
-                              src={getMediaUrl({ type: 'audio', id: audioId })}
+                              audioObject={audioObject}
                             />
                           ))}
                         </td>
                         <td className="py-2 pr-5">
-                          <span>
-                            {asset?.['fv:definitions']?.[0]?.translation}
-                          </span>
+                          <span>{asset?.translations?.[0]?.text}</span>
                         </td>
                       </tr>
                     )
@@ -179,7 +183,7 @@ function DictionaryDetailPresentationDrawer({
             <div className="grid grid-cols-2 gap-2">
               {entry?.images
                 ? entry?.images?.map((image) => (
-                    <div key={image?.uid}>
+                    <div key={image?.id}>
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
                           <div className="inline-flex rounded-lg overflow-hidden cursor-pointer">
@@ -195,15 +199,16 @@ function DictionaryDetailPresentationDrawer({
                 : null}
               {entry?.videos
                 ? entry?.videos?.map((video) => (
-                    <div key={video?.uid}>
+                    <div key={video?.id}>
                       <Disclosure>
                         <Disclosure.Button>
                           <div className="inline-flex rounded-lg overflow-hidden">
                             <video
                               className="shrink-0 w-full h-auto"
-                              src={getMediaUrl({
-                                type: 'video',
-                                id: video.uid,
+                              src={getMediaPath({
+                                mediaObject: video,
+                                type: VIDEO,
+                                size: ORIGINAL,
                               })}
                               controls
                             >
@@ -214,20 +219,19 @@ function DictionaryDetailPresentationDrawer({
                         <Disclosure.Panel>
                           {video?.['dc:title'] && (
                             <div className="text-fv-charcoal">
-                              {video?.['dc:title']}
-                              {video?.['dc:description'] && (
+                              {video?.title}
+                              {video?.description && (
                                 <span className="font-medium">
                                   {' '}
-                                  - {video?.['dc:description']}
+                                  - {video?.description}
                                 </span>
                               )}
                             </div>
                           )}
-                          {video?.['fvm:acknowledgement'] && (
+                          {video?.acknowledgment && (
                             <div className="text-fv-charcoal">
                               <span className="font-medium">
-                                Acknowledgement:{' '}
-                                {video?.['fvm:acknowledgement']}
+                                Acknowledgement: {video?.acknowledgment}
                               </span>
                             </div>
                           )}
@@ -248,36 +252,36 @@ function DictionaryDetailPresentationDrawer({
               <ul className="list-disc">
                 {entry?.acknowledgements?.length > 0 &&
                   entry?.acknowledgements?.map((acknowledgement) => (
-                    <li key={acknowledgement} className={contentStyling}>
-                      {acknowledgement}
+                    <li key={acknowledgement?.id} className={contentStyling}>
+                      {acknowledgement?.text}
                     </li>
                   ))}
               </ul>
             </div>
           )}
           {/* Notes */}
-          {entry?.notes?.length > 0 ? (
+          {entry?.notes?.length > 0 && (
             <div className="py-3">
               <h4 className={lableStyling}>Notes</h4>
               <ul className="list-disc">
                 {entry?.notes?.map((note) => (
-                  <li key={note} className={contentStyling}>
-                    {note}
+                  <li key={note?.id} className={contentStyling}>
+                    {note?.text}
                   </li>
                 ))}
               </ul>
             </div>
-          ) : null}
-          {entry?.partOfSpeech && (
-            <div className="py-3">
-              <h4 className={lableStyling}>Part of Speech</h4>
-              <div className={contentStyling}>{entry?.partOfSpeech}</div>
-            </div>
           )}
-          {entry?.pronunciation && (
+          {entry?.pronunciations?.length > 0 && (
             <div className="py-3">
-              <h4 className={lableStyling}>Pronunciation</h4>
-              <div className={contentStyling}>{entry?.pronunciation}</div>
+              <h4 className={lableStyling}>Pronunciations</h4>
+              <ul className="list-disc">
+                {entry?.pronunciations?.map((pronunciation) => (
+                  <li key={pronunciation?.id} className={contentStyling}>
+                    {pronunciation?.text}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </section>

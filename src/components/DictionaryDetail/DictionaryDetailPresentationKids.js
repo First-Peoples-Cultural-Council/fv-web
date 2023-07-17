@@ -2,26 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 
 function DictionaryDetailPresentationKids({ entry, backHandler }) {
   const images =
-    entry?.images?.length > 0 ? (
-      <>
-        {entry?.images?.map((image, index) => (
-          <div key={`${image.uid}_${index}`} className="w-full inline-flex p-2">
+    entry?.images?.length > 0
+      ? entry?.images?.map((image) => (
+          <div key={image.id} className="w-full inline-flex p-2">
             <ImageWithLightbox.Presentation
               imgStyling="object-contain rounded-lg w-full h-auto"
               maxWidth={1000}
               image={image}
             />
           </div>
-        ))}
-      </>
-    ) : null
+        ))
+      : null
 
   const shortTitle = entry?.title.length < 16
   return (
@@ -65,9 +62,9 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                 {/* Audio */}
                 {entry?.audio?.length > 0 && (
                   <div className="ml-4 inline-flex text-fv-charcoal">
-                    {entry.audio.map((audioFile, index) => (
+                    {entry?.audio.map((audioObject) => (
                       <AudioMinimal.Container
-                        key={`${audioFile.uid}_${index}`}
+                        key={audioObject?.id}
                         icons={{
                           Play: getIcon(
                             'Audio',
@@ -78,7 +75,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                             'fill-current h-9 w-9 sm:w-12 sm:h-12',
                           ),
                         }}
-                        src={getMediaUrl({ type: 'audio', id: audioFile.uid })}
+                        audioObject={audioObject}
                       />
                     ))}
                   </div>
@@ -94,9 +91,9 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                         : 'list-decimal'
                     } list-inside text-lg md:text-xl lg:text-2xl`}
                   >
-                    {entry?.translations?.map((translation, index) => (
-                      <li key={index} className="p-0.5">
-                        {translation.translation}
+                    {entry?.translations?.map((translation) => (
+                      <li key={translation?.id} className="p-0.5">
+                        {translation?.text}
                       </li>
                     ))}
                   </ol>
