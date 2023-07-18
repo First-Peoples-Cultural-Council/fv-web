@@ -5,7 +5,7 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_LOGO } from 'common/constants'
+import { WIDGET_LOGO, FORMAT_RIGHT, FORMAT_LEFT } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
@@ -13,7 +13,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     widgetName: definitions.nickname(),
     widgetType: yup.string().required().oneOf([WIDGET_LOGO]),
-    widgetFormat: yup.string().required().oneOf(['right', 'left']),
+    widgetFormat: yup.string().required().oneOf([FORMAT_RIGHT, FORMAT_LEFT]),
     text: definitions.paragraph({ charCount: 500 }),
     visibility: definitions.visibility(),
   })
@@ -21,7 +21,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
   const defaultValues = {
     widgetName: '',
     widgetType: WIDGET_LOGO,
-    widgetFormat: 'left',
+    widgetFormat: FORMAT_LEFT,
     visibility: 'public',
     text: '',
   }
@@ -54,8 +54,8 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
               errors={errors}
               nameId="widgetFormat"
               options={[
-                { label: 'Left', value: 'left' },
-                { label: 'Right', value: 'right' },
+                { label: 'Left', value: FORMAT_LEFT },
+                { label: 'Right', value: FORMAT_RIGHT },
               ]}
             />
           </div>

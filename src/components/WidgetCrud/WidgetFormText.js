@@ -5,7 +5,13 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { DOC_AUDIO, DOC_IMAGE, WIDGET_TEXT } from 'common/constants'
+import {
+  DOC_AUDIO,
+  DOC_IMAGE,
+  WIDGET_TEXT,
+  FORMAT_LEFT,
+  FORMAT_RIGHT,
+} from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
@@ -13,7 +19,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     widgetName: definitions.nickname(),
     widgetType: yup.string().required().oneOf([WIDGET_TEXT]),
-    widgetFormat: yup.string().required().oneOf(['left', 'right']),
+    widgetFormat: yup.string().required().oneOf([FORMAT_LEFT, FORMAT_RIGHT]),
     title: definitions.title(),
     textWithFormatting: definitions.wysiwyg({ charCount: 1200 }),
     audio: definitions.uuid(),
@@ -27,7 +33,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
   const defaultValues = {
     widgetName: '',
     widgetType: WIDGET_TEXT,
-    widgetFormat: 'right',
+    widgetFormat: FORMAT_RIGHT,
     visibility: 'public',
     title: '',
     textWithFormatting: '',
@@ -107,8 +113,8 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               errors={errors}
               nameId="widgetFormat"
               options={[
-                { label: 'Left', value: 'left' },
-                { label: 'Right', value: 'right' },
+                { label: 'Left', value: FORMAT_LEFT },
+                { label: 'Right', value: FORMAT_RIGHT },
               ]}
             />
           </div>
