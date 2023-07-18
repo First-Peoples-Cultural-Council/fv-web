@@ -5,25 +5,25 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_KEYBOARDS } from 'common/constants'
+import { WIDGET_KEYBOARDS, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_KEYBOARDS]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_KEYBOARDS]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     macUrl: definitions.url({ required: true }),
     windowsUrl: definitions.url({ required: true }),
     chromebookUrl: definitions.url(),
     visibility: definitions.visibility(),
   })
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_KEYBOARDS,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_KEYBOARDS,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     macUrl: '',
     windowsUrl: '',
     chromebookUrl: '',
@@ -46,7 +46,7 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_KEYBOARDS}
+        type={WIDGET_KEYBOARDS}
       >
         <>
           <div className="col-span-12">

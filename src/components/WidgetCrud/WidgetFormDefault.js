@@ -4,30 +4,31 @@ import * as yup from 'yup'
 
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
-import { WIDGET_ALPHABET, WIDGET_STATS, WIDGET_WOTD } from 'common/constants'
+import {
+  WIDGET_ALPHABET,
+  WIDGET_STATS,
+  WIDGET_WOTD,
+  FORMAT_DEFAULT,
+  PUBLIC,
+} from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
-function WidgetFormDefault({
-  cancelHandler,
-  dataToEdit,
-  submitHandler,
-  widgetType,
-}) {
+function WidgetFormDefault({ cancelHandler, dataToEdit, submitHandler, type }) {
   const validator = yup.object({
-    widgetName: definitions.nickname(),
-    widgetType: yup
+    nickname: definitions.nickname(),
+    type: yup
       .string()
       .required()
       .oneOf([WIDGET_ALPHABET, WIDGET_WOTD, WIDGET_STATS]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     visibility: definitions.visibility(),
   })
   const defaultValues = {
-    widgetName: '',
-    widgetType,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
   }
 
   const { control, register, handleSubmit, reset, errors, isCreateMode } =
@@ -48,7 +49,7 @@ function WidgetFormDefault({
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={widgetType}
+        type={type}
       />
     </div>
   )
@@ -58,7 +59,7 @@ const { func, object, string } = PropTypes
 WidgetFormDefault.propTypes = {
   cancelHandler: func,
   dataToEdit: object,
-  widgetType: string,
+  type: string,
   submitHandler: func,
 }
 

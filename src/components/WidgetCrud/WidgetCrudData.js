@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import {
@@ -12,7 +12,7 @@ import {
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
-import widgetCrudDataAdaptor from 'components/WidgetCrud/widgetCrudDataAdaptor'
+import useWidget from 'common/dataHooks/useWidget'
 import { useNotification } from 'context/NotificationContext'
 import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
@@ -22,7 +22,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
   const { user } = useUserStore()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const location = useLocation()
+  const [searchParams] = useSearchParams()
   const { getJsonFromWysiwygState } = wysiwygStateHelpers()
 
   const { isSuperAdmin } = user
@@ -33,19 +33,11 @@ function WidgetCrudData({ insertIndex, destinationId }) {
 
   const backHandler = () => navigate(-1)
 
-  const _widgetId = new URLSearchParams(location.search).get('id')
-    ? new URLSearchParams(location.search).get('id')
-    : null
+  const _widgetId = searchParams.get('id') || null
 
-  const _destinationId = new URLSearchParams(location.search).get(
-    'destinationId',
-  )
-    ? new URLSearchParams(location.search).get('destinationId')
-    : destinationId
+  const _destinationId = searchParams.get('destinationId') || destinationId
 
-  const _insertIndex = new URLSearchParams(location.search).get('insertIndex')
-    ? new URLSearchParams(location.search).get('insertIndex')
-    : insertIndex
+  const _insertIndex = searchParams.get('insertIndex') || insertIndex
 
   const { data: destinationData } = useQuery(
     ['widget-aware-destination', _destinationId],
@@ -56,16 +48,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     },
   )
 
-  let dataToEdit = null
-
-  const { data } = useQuery(
-    [_widgetId],
-    () => api.document.get({ id: _widgetId, properties: 'widget,settings' }),
-    {
-      enabled: !!_widgetId,
-    },
-  )
-  dataToEdit = widgetCrudDataAdaptor({ data })
+  const { data } = useWidget({ sitename: site?.sitename, id: _widgetId })
 
   // Add widget to active
   const insertOnPage = async (widget) => {
@@ -105,11 +88,11 @@ function WidgetCrudData({ insertIndex, destinationId }) {
         }
       }
     })
-    if (_widgetId && dataToEdit) {
+    if (_widgetId && data) {
       return api.document.updateAndSetVisibility({
         id: _widgetId,
         properties: {
-          'widget:format': formData?.widgetFormat,
+          'widget:format': formData?.format,
           'settings:settings': settings,
         },
         visibility: formData?.visibility,
@@ -117,11 +100,11 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     }
     return api.document.createAndSetVisibility({
       parentId: site?.children?.Widgets,
-      name: formData?.widgetName,
+      name: formData?.nickname,
       docType: DOC_WIDGET,
       properties: {
-        'widget:type': formData?.widgetType,
-        'widget:format': formData?.widgetFormat,
+        'widget:type': formData?.type,
+        'widget:format': formData?.format,
         'settings:settings': settings,
       },
       visibility: formData?.visibility,
@@ -168,11 +151,11 @@ function WidgetCrudData({ insertIndex, destinationId }) {
   return {
     submitHandler,
     widgetTypes: isHomePage
-      ? widgetTypes.filter((widgetType) => widgetType !== WIDGET_TEXTFULL)
+      ? widgetTypes.filter((type) => type !== WIDGET_TEXTFULL)
       : widgetTypes,
     backHandler,
-    dataToEdit,
-    isLoading: !(!_widgetId || dataToEdit),
+    dataToEdit: data,
+    isLoading: !(!_widgetId || data),
   }
 }
 
