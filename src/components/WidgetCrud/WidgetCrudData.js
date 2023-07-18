@@ -14,7 +14,7 @@ import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
 import widgetCrudDataAdaptor from 'components/WidgetCrud/widgetCrudDataAdaptor'
 import { useNotification } from 'context/NotificationContext'
-import { getWidgetsList } from 'common/utils/widgetAccessHelpers'
+import { getWidgetsList } from 'common/utils/widgetHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 
 function WidgetCrudData({ insertIndex, destinationId }) {

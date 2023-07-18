@@ -54,3 +54,11 @@ export const isEditableWidgetType = (widgetType) => {
   ]
   return editableWidgetTypes.indexOf(widgetType) !== -1
 }
+
+export const getObjectFromSettingsArray = (settingsArray) => {
+  const settingsObject = {}
+  settingsArray?.forEach((setting) => {
+    settingsObject[setting?.key] = setting?.value
+  })
+  return settingsObject
+}

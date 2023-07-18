@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
 import api from 'services/api'
-import { getWidgetsList } from 'common/utils/widgetAccessHelpers'
+import { getWidgetsList } from 'common/utils/widgetHelpers'
 import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
 
 function DashboardWidgetsData() {
