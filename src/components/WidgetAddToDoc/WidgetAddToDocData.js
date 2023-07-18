@@ -42,7 +42,7 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   }
 
   // Don't include widgets that are already active on the page
-  let otherWidgets = widgets.filter(
+  let otherWidgets = widgets?.filter(
     (widget) =>
       !destinationData?.properties?.['widgets:active']?.includes(widget?.id),
   )
