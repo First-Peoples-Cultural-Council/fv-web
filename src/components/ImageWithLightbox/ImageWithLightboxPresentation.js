@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 // FPCC
 import Modal from 'components/Modal'
 import LazyImage from 'components/LazyImage'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import { IMAGE, ORIGINAL } from 'common/constants'
 
 function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
@@ -27,12 +29,13 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
           id="ImageWithLightboxPresentation"
           className="inline-block text-white transform transition-all align-middle max-w-2xl lg:max-w-4xl xl:max-w-7xl"
         >
-          <LazyImage
-            imgStyling="object-contain sm:h-4/5-screen shadow-xl mx-auto"
-            width={1920}
-            onClick={() => setLightboxOpen(true)}
-            forceLoad
-            imageObject={image}
+          <img
+            className="object-contain sm:h-4/5-screen shadow-xl mx-auto"
+            src={getMediaPath({
+              mediaObject: image,
+              type: IMAGE,
+              size: ORIGINAL,
+            })}
             alt={image?.title}
           />
           <div className="mt-1 text-lg md:text-xl font-medium">
