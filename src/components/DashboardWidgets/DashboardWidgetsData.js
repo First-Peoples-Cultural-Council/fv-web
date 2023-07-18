@@ -1,32 +1,19 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { useUserStore } from 'context/UserContext'
-import api from 'services/api'
-import { getWidgetsList } from 'common/utils/widgetHelpers'
-import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import useWidgets from 'common/dataHooks/useWidgets'
 
 function DashboardWidgetsData() {
   const { site } = useSiteStore()
   const navigate = useNavigate()
   const { sitename } = useParams()
-  const { user } = useUserStore()
-  const { isSuperAdmin } = user
 
   // Data fetch
-  const response = useQuery(
-    ['widgets', site?.uid],
-    () => api.widget.getWidgets({ siteId: site?.uid }),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!site?.uid,
-    },
-  )
+  const response = useWidgets({ sitename })
 
-  const { data, error, isError, isInitialLoading } = response
+  const { error, isError, isInitialLoading, widgets } = response
 
   useEffect(() => {
     if (isError) {
@@ -54,30 +41,12 @@ function DashboardWidgetsData() {
     icon: 'Widget',
   }
 
-  const adminWidgets = getWidgetsList(isSuperAdmin)
-
-  const widgetsDataAdaptor = (dataArray) => {
-    const widgetsData = []
-    dataArray.forEach((widget) => {
-      widgetsData.push({
-        id: widget?.['ecm:uuid'],
-        name: widget?.['ecm:name'],
-        type: widget?.['widget:type'],
-        typeLabel: getWidgetTypeLabel(widget?.['widget:type']),
-        format: widget?.['widget:format'],
-        editable: adminWidgets.includes(widget?.['widget:type']),
-        widget,
-      })
-    })
-    return widgetsData
-  }
-
   return {
     headerContent,
     isLoading: isInitialLoading || isError,
     site,
     tileContent,
-    widgets: data?.entries?.length > 0 ? widgetsDataAdaptor(data.entries) : [],
+    widgets: widgets?.length > 0 ? widgets : [],
   }
 }
 

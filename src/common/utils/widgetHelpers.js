@@ -18,7 +18,7 @@ import {
   WIDGET_WOTD,
 } from 'common/constants'
 
-export const getWidgetsList = (isSuperAdmin) =>
+export const getEditableWidgetsForUser = (isSuperAdmin) =>
   [
     isSuperAdmin && WIDGET_ALPHABET,
     isSuperAdmin && WIDGET_APPS,
