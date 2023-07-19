@@ -4,7 +4,7 @@ import { IMAGE, VIDEO } from 'common/constants'
 
 function HomeData() {
   const { site } = useSiteStore()
-  const { bannerImage, bannerVideo } = site
+  const { bannerImage, bannerVideo, homepageWidgets } = site
 
   let bannerType = null
   let bannerMedia = null
@@ -21,6 +21,7 @@ function HomeData() {
     bannerMedia,
     bannerType,
     site,
+    widgetData: homepageWidgets,
   }
 }
 

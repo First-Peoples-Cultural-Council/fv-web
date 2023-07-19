@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
+import { widgetListAdaptor } from 'common/dataAdaptors'
+
 import {
   SITES,
   PUBLIC,
@@ -64,13 +66,15 @@ export default function useSite() {
       : null,
     bannerImage: response?.data?.bannerImage,
     bannerVideo: response?.data?.bannerVideo,
-    joinText: null,
-    hasContactUs: true,
     visibility: response?.data?.visibility?.toLowerCase(),
     visibilityOptions: constructVisibilityOptions(
       response?.data?.visibility?.toLowerCase(),
     ),
     features: response?.data?.features,
+    homepageWidgets: widgetListAdaptor(response?.data?.homepage),
+    // The following are missing from the current API response - to be added at a later date
+    joinText: null,
+    hasContactUs: true,
   }
   return { ...response, data: formattedSiteData }
 }
