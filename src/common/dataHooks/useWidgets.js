@@ -3,12 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 // FPCC
 import { WIDGETS } from 'common/constants'
 import api from 'services/api'
-import {
-  getObjectFromSettingsArray,
-  getEditableWidgetsForUser,
-} from 'common/utils/widgetHelpers'
-import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { useUserStore } from 'context/UserContext'
+import { widgetAdaptor } from 'common/dataAdaptors'
 
 export default function useWidgets({ sitename }) {
   const { user } = useUserStore()
@@ -20,16 +17,13 @@ export default function useWidgets({ sitename }) {
     () => api.widgets.getWidgets({ sitename }),
     { enabled: !!sitename },
   )
-  const formattedWidgets = response?.data?.results?.map((widget) => ({
-    format: widget?.format,
-    settings: getObjectFromSettingsArray(widget?.settings),
-    nickname: widget?.title,
-    type: widget?.type,
-    id: widget?.id,
-    typeLabel: getWidgetTypeLabel(widget?.type),
-    editable: editableWidgets.includes(widget?.type),
-    widget,
-  }))
+  const formattedWidgets = response?.data?.results?.map((widget) => {
+    const formattedWidget = widgetAdaptor(widget)
+    return {
+      ...formattedWidget,
+      editable: editableWidgets.includes(widget?.type),
+    }
+  })
   return {
     ...response,
     widgets: formattedWidgets,
