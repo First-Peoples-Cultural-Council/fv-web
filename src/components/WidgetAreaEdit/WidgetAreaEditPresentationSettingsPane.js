@@ -204,10 +204,7 @@ function WidgetAreaEditPresentationSettingsPane({
         closeHandler={() => setPreviewModalOpen(false)}
       >
         <div className="max-w-5xl mx-auto">
-          <Widget.Container
-            widgetType={currentWidget?.type}
-            data={currentWidget}
-          />
+          <Widget.Container data={currentWidget} />
         </div>
       </Modal.Presentation>
 

@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import PageData from 'components/Page/PageData'
-import WidgetContainer from 'components/Widget/WidgetContainer'
+import Widget from 'components/Widget'
 import PageBanner from 'components/PageBanner'
 import ErrorHandler from 'components/ErrorHandler'
 
@@ -34,7 +34,7 @@ function PageContainer({ url }) {
       />
       <div className="pb-16 max-w-7xl mx-auto">
         {widgets?.map((widget) => (
-          <WidgetContainer key={widget?.id} id={widget} />
+          <Widget.Container key={widget?.id} data={widget} />
         ))}
       </div>
     </main>
