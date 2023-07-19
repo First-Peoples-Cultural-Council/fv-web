@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import PageData from 'components/Page/PageData'
-import Widget from 'components/Widget'
+import WidgetArea from 'components/WidgetArea'
 import PageBanner from 'components/PageBanner'
 import ErrorHandler from 'components/ErrorHandler'
 
@@ -33,9 +33,7 @@ function PageContainer({ url }) {
         logoPath={logoPath}
       />
       <div className="pb-16 max-w-7xl mx-auto">
-        {widgets?.map((widget) => (
-          <Widget.Container key={widget?.id} data={widget} />
-        ))}
+        <WidgetArea.Container widgetData={widgets} />
       </div>
     </main>
   )
