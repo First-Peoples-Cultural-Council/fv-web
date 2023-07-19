@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { getCustomPageHref } from 'common/utils/urlHelpers'
-import api from 'services/api'
+import usePages from 'common/dataHooks/usePages'
 
 function DashboardPagesData() {
   const { site } = useSiteStore()
@@ -13,14 +11,7 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isInitialLoading } = useQuery(
-    ['pages', site?.uid],
-    () => api.page.getPages(site?.uid),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!site?.uid,
-    },
-  )
+  const { data, error, isError, isInitialLoading } = usePages({ sitename })
 
   useEffect(() => {
     if (isError) {
@@ -56,31 +47,13 @@ function DashboardPagesData() {
     icon: 'WebPages',
   }
 
-  const pagesDataAdaptor = (dataArray) => {
-    const pagesData = []
-    dataArray.forEach((page) => {
-      pagesData.push({
-        id: page?.id,
-        title: page?.title,
-        subtitle: page?.description,
-        url: page?.url,
-        href: getCustomPageHref({
-          sitename: site?.sitename,
-          pageUrl: page?.url,
-        }),
-        page,
-      })
-    })
-    return pagesData
-  }
-
   return {
     headerContent,
     isLoading: isInitialLoading || isError,
     site,
     sitename,
     tileContent,
-    customPages: data?.length > 0 ? pagesDataAdaptor(data) : [],
+    customPages: data?.results?.length > 0 ? data?.results : [],
   }
 }
 
