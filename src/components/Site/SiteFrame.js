@@ -91,11 +91,11 @@ function SiteFrame({ siteLoading }) {
             <Route path="immersion" element={<Immersion.Container />} />
             <Route
               path="apps"
-              element={<Resource.Container resourceId="apps" />}
+              element={<Resource.Container pageSlug="apps" />}
             />
             <Route
               path="keyboards"
-              element={<Resource.Container resourceId="keyboards" />}
+              element={<Resource.Container pageSlug="keyboards" />}
             />
             <Route path="conditions-of-use" element={<ConditionsOfUse />} />
             <Route path="disclaimer" element={<Disclaimer />} />

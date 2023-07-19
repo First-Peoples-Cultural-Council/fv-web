@@ -1,24 +1,20 @@
-import { useQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 
+// FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import usePage from 'common/dataHooks/usePage'
 
-function ResourceData({ resourceId }) {
+function ResourceData({ pageSlug }) {
   const { site } = useSiteStore()
-  const { title, uid } = site
+  const { title, sitename } = site
 
-  const { data, isInitialLoading } = useQuery(
-    ['pages', resourceId],
-    () => api.page.get(uid, resourceId),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!uid,
-    },
-  )
+  const { data, isInitialLoading } = usePage({
+    sitename,
+    pageSlug,
+  })
 
-  const getDefaultBlocks = (id) => {
-    if (id === 'apps') {
+  const getDefaultBlocks = (slug) => {
+    if (slug === 'apps') {
       // Default sections for Mobile Apps page
       return [
         {
@@ -32,7 +28,7 @@ function ResourceData({ resourceId }) {
       ]
     }
 
-    if (id === 'keyboards') {
+    if (slug === 'keyboards') {
       // Default sections for Keyboards page
       return [
         {
@@ -63,14 +59,14 @@ function ResourceData({ resourceId }) {
 
   return {
     isLoading: isInitialLoading,
-    blocks: getDefaultBlocks(resourceId),
+    blocks: getDefaultBlocks(pageSlug),
     widgets: data?.widgets || [],
   }
 }
 // PROPTYPES
 const { string } = PropTypes
 ResourceData.propTypes = {
-  resourceId: string,
+  pageSlug: string,
 }
 
 export default ResourceData
