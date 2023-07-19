@@ -1,23 +1,16 @@
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import widgetDataAdaptor from 'components/Widget/widgetDataAdaptor'
-import api from 'services/api'
+import useWidget from 'common/dataHooks/useWidget'
 
 function WidgetData({ type, widgetData, id }) {
-  const { widgetId } = useParams()
+  const { widgetId, sitename } = useParams()
 
   const idToUse = widgetId || id
 
-  const { data } = useQuery(
-    [idToUse],
-    () => api.document.get({ id: idToUse, properties: 'widget,settings' }),
-    { enabled: !!idToUse },
-  )
-  const dataToReturn = widgetData
-    ? widgetDataAdaptor({ data: widgetData })
-    : widgetDataAdaptor({ data })
+  const { data } = useWidget({ id: idToUse, sitename })
+
+  const dataToReturn = widgetData || data
 
   return {
     type: type || dataToReturn?.type,

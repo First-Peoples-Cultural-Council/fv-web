@@ -51,7 +51,7 @@ function DashboardWidgetsPresentation({
           tableBody={widgets.map((widget) => (
             <tr key={widget?.id}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {widget?.name}
+                {widget?.nickname}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
                 {widget?.typeLabel}
@@ -68,7 +68,6 @@ function DashboardWidgetsPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button
-                  type="button"
                   type="button"
                   onClick={() => {
                     setCurrentWidget(widget)

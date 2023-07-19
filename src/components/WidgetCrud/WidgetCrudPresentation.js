@@ -44,7 +44,7 @@ function WidgetCrudPresentation({
   const [selectedType, setSelectedType] = useState(null)
   return (
     <div id="WidgetCrudPresentation" className="max-w-5xl p-8">
-      {!selectedType && !dataToEdit?.widgetType ? (
+      {!selectedType && !dataToEdit?.type ? (
         <div className="space-y-2 p-6">
           <Form.Header
             title="Create a new Widget"
@@ -92,14 +92,12 @@ function WidgetCrudPresentation({
         <div>
           <Form.Header
             title={
-              !dataToEdit?.widgetType
-                ? 'Create a new Widget'
-                : 'Edit your Widget'
+              !dataToEdit?.type ? 'Create a new Widget' : 'Edit your Widget'
             }
             subtitle={
-              !dataToEdit?.widgetType
+              !dataToEdit?.type
                 ? `2. Enter the details for your new ${getWidgetTypeLabel(
-                    dataToEdit?.widgetType || selectedType,
+                    dataToEdit?.type || selectedType,
                   )} Widget.`
                 : ''
             }
@@ -117,11 +115,9 @@ function WidgetCrudPresentation({
 
           <WidgetForm
             submitHandler={submitHandler}
-            type={
-              dataToEdit?.widgetType ? dataToEdit?.widgetType : selectedType
-            }
+            type={dataToEdit?.type ? dataToEdit?.type : selectedType}
             cancelHandler={
-              dataToEdit?.widgetType ? backHandler : () => setSelectedType(null)
+              dataToEdit?.type ? backHandler : () => setSelectedType(null)
             }
             dataToEdit={dataToEdit}
           />
@@ -141,7 +137,7 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
           cancelHandler={cancelHandler}
           dataToEdit={dataToEdit}
           submitHandler={submitHandler}
-          widgetType={type}
+          type={type}
         />
       )
 

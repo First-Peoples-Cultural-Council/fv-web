@@ -5,15 +5,15 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_QUOTES } from 'common/constants'
+import { WIDGET_QUOTES, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_QUOTES]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_QUOTES]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     quote1: definitions.paragraph({ charCount: 225 }),
     quote1By: definitions.paragraph({ charCount: 50 }),
     quote2: definitions.paragraph({ charCount: 225 }),
@@ -24,10 +24,10 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_QUOTES,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_QUOTES,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     quote1: '',
     quote1By: '',
     quote2: '',
@@ -54,15 +54,15 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_QUOTES}
+        type={WIDGET_QUOTES}
       >
         <>
           <input
-            id="widgetFormat"
-            name="widgetFormat"
+            id="format"
+            name="format"
             type="hidden"
             value="default"
-            {...register('widgetFormat')}
+            {...register('format')}
           />
           <div className="col-span-12">
             <Form.TextField
@@ -135,7 +135,7 @@ const { func, object, string } = PropTypes
 WidgetFormQuotes.propTypes = {
   cancelHandler: func,
   dataToEdit: object,
-  widgetType: string,
+  type: string,
   submitHandler: func,
 }
 

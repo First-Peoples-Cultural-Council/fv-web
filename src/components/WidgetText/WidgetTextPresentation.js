@@ -5,7 +5,12 @@ import PropTypes from 'prop-types'
 import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioButton from 'components/AudioButton'
 import WysiwygBlock from 'components/WysiwygBlock'
-import { FIRSTVOICESLINK } from 'common/constants'
+import {
+  FIRSTVOICESLINK,
+  FORMAT_LEFT,
+  FORMAT_RIGHT,
+  FORMAT_DEFAULT,
+} from 'common/constants'
 
 function WidgetTextPresentation({ widgetData }) {
   const {
@@ -18,7 +23,7 @@ function WidgetTextPresentation({ widgetData }) {
     bg,
     bgImage,
   } = widgetData?.settings
-  const format = widgetData?.format || 'left'
+  const format = widgetData?.format || FORMAT_LEFT
 
   const getImageElement = () =>
     image ? (
@@ -93,7 +98,7 @@ function WidgetTextPresentation({ widgetData }) {
     </div>
   )
 
-  if (format === 'right') {
+  if (format === FORMAT_RIGHT) {
     return (
       <section className="w-full" data-testid="WidgetTextPresentation">
         <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-gray-100">
@@ -118,7 +123,7 @@ function WidgetTextPresentation({ widgetData }) {
 const { string, shape, bool } = PropTypes
 WidgetTextPresentation.propTypes = {
   widgetData: shape({
-    format: PropTypes.oneOf(['right', 'left']),
+    format: PropTypes.oneOf([FORMAT_LEFT, FORMAT_RIGHT, FORMAT_DEFAULT]),
     settings: shape({
       title: string,
       textWithFormatting: string,

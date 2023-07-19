@@ -5,24 +5,29 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_LOGO } from 'common/constants'
+import {
+  WIDGET_LOGO,
+  FORMAT_RIGHT,
+  FORMAT_LEFT,
+  PUBLIC,
+} from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_LOGO]),
-    widgetFormat: yup.string().required().oneOf(['right', 'left']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_LOGO]),
+    format: yup.string().required().oneOf([FORMAT_RIGHT, FORMAT_LEFT]),
     text: definitions.paragraph({ charCount: 500 }),
     visibility: definitions.visibility(),
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_LOGO,
-    widgetFormat: 'left',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_LOGO,
+    format: FORMAT_LEFT,
+    visibility: PUBLIC,
     text: '',
   }
 
@@ -44,7 +49,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_LOGO}
+        type={WIDGET_LOGO}
       >
         <>
           <div className="col-span-12">
@@ -52,10 +57,10 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
               label="Which side do you want the logo on?"
               control={control}
               errors={errors}
-              nameId="widgetFormat"
+              nameId="format"
               options={[
-                { label: 'Left', value: 'left' },
-                { label: 'Right', value: 'right' },
+                { label: 'Left', value: FORMAT_LEFT },
+                { label: 'Right', value: FORMAT_RIGHT },
               ]}
             />
           </div>

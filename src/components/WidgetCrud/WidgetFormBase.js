@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Form from 'components/Form'
-import { isEditableWidgetType } from 'common/utils/widgetAccessHelpers'
+import { isEditableWidgetType } from 'common/utils/widgetHelpers'
 
 function WidgetFormBase({
   children,
@@ -15,24 +15,24 @@ function WidgetFormBase({
   reset,
   handleSubmit,
   submitHandler,
-  widgetType,
+  type,
 }) {
   return (
     <form id="WidgetForm" onReset={reset}>
       <div className="grid grid-cols-12 gap-6">
         <div className="hidden">
           <input
-            id="widgetType"
-            name="widgetType"
+            id="type"
+            name="type"
             type="hidden"
             value="default"
-            {...register('widgetType')}
+            {...register('type')}
           />
         </div>
         <div className="col-span-12 sm:col-span-6">
           <Form.TextField
             label={isCreateMode ? 'A nickname for your Widget' : 'Nickname'}
-            nameId="widgetName"
+            nameId="nickname"
             register={register}
             helpText={
               isCreateMode
@@ -41,12 +41,12 @@ function WidgetFormBase({
             }
             disabled={!isCreateMode}
           />
-          {errors?.widgetName && (
-            <div className="text-red-500">{errors?.widgetName?.message}</div>
+          {errors?.nickname && (
+            <div className="text-red-500">{errors?.nickname?.message}</div>
           )}
         </div>
         {children}
-        {isEditableWidgetType(widgetType) && (
+        {isEditableWidgetType(type) && (
           <div className="col-span-12">
             <Form.Visibility
               control={control}
@@ -79,7 +79,7 @@ WidgetFormBase.propTypes = {
   children: node,
   cancelHandler: func,
   isCreateMode: bool,
-  widgetType: string,
+  type: string,
   // passed through from react-hook-form
   control: object,
   errors: object,

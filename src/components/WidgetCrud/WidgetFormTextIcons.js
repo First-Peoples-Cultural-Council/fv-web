@@ -4,16 +4,21 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import { DOC_IMAGE, WIDGET_TEXTICONS } from 'common/constants'
+import {
+  DOC_IMAGE,
+  WIDGET_TEXTICONS,
+  FORMAT_DEFAULT,
+  PUBLIC,
+} from 'common/constants'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_TEXTICONS]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_TEXTICONS]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     title: definitions.title(),
     textWithFormatting: definitions.wysiwyg({ charCount: 1200 }),
     image: definitions.uuid(),
@@ -21,10 +26,10 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_TEXTICONS,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_TEXTICONS,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     title: '',
     textWithFormatting: '',
     image: '',
@@ -48,7 +53,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_TEXTICONS}
+        type={WIDGET_TEXTICONS}
       >
         <>
           <div className="col-span-12">
