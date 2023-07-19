@@ -1,26 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getMediaUrl } from 'common/utils/urlHelpers'
+
+// FPCC
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import { IMAGE, VIDEO, ORIGINAL } from 'common/constants'
 
 function PageBannerPresentation({
-  backgroundId,
+  background,
   backgroundType,
   textNode,
   logoPath,
   variant,
   site,
 }) {
-  if (!backgroundId && !textNode && !logoPath) {
+  if (!background && !textNode && !logoPath) {
     return null
   }
 
   const containerStyles =
-    backgroundType === 'gifOrImg'
+    backgroundType === IMAGE
       ? {
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.47), rgba(0, 0, 0, 0.47)), url(${getMediaUrl(
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.47), rgba(0, 0, 0, 0.47)), url(${getMediaPath(
             {
-              id: backgroundId,
-              type: 'gifOrImg',
+              mediaObject: background,
+              type: IMAGE,
+              size: ORIGINAL,
             },
           )})`,
         }
@@ -28,9 +32,9 @@ function PageBannerPresentation({
 
   function getConditionalClass() {
     switch (backgroundType) {
-      case 'gifOrImg':
+      case IMAGE:
         return 'text-white bg-no-repeat bg-cover bg-center py-6 md:py-16'
-      case 'video':
+      case VIDEO:
         return 'text-white bg-gray-300 items-center h-72 md:h-96 overflow-hidden'
       default:
         return 'bg-gray-300 py-16'
@@ -43,17 +47,18 @@ function PageBannerPresentation({
       className={`flex justify-center relative ${getConditionalClass()}`}
       style={containerStyles}
     >
-      {backgroundType === 'video' && (
+      {backgroundType === VIDEO && (
         <video
           className="absolute z-10 w-auto h-auto min-w-full min-h-full max-w-none"
           autoPlay
           muted
           loop
-          src={getMediaUrl({
-            id: backgroundId,
-            type: 'video',
+          src={getMediaPath({
+            mediaObject: background,
+            type: VIDEO,
+            size: ORIGINAL,
           })}
-          alt="Banner Video"
+          alt={background?.title}
         />
       )}
       {(textNode || logoPath) && (
@@ -90,7 +95,7 @@ function PageBannerPresentation({
 // PROPTYPES
 const { node, string, object, oneOf } = PropTypes
 PageBannerPresentation.propTypes = {
-  backgroundId: string,
+  background: object,
   backgroundType: string,
   textNode: node,
   logoPath: string,
