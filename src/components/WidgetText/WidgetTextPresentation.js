@@ -83,11 +83,11 @@ function WidgetTextPresentation({ widgetData }) {
                   ? { target: '_self' }
                   : { target: '_blank' })}
                 rel="noopener noreferrer"
-                className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-full text-${
-                  bg || 'white'
-                } bg-${
-                  bg ? 'white' : 'secondary'
-                } hover:bg-secondary-dark md:text-lg`}
+                className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-full md:text-lg text-${
+                  bg
+                    ? `text-${bg} bg-white hover:font-bold hover:px-4`
+                    : 'text-white bg-secondary hover:bg-secondary-dark'
+                }`}
               >
                 {urlLabel || 'More...'}
               </a>
