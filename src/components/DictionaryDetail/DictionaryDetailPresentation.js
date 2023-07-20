@@ -10,7 +10,7 @@ import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
-import { ORIGINAL, VIDEO } from 'common/constants'
+import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
 
 function DictionaryDetailPresentation({
   actions,
@@ -59,7 +59,7 @@ function DictionaryDetailPresentation({
                   withConfirmation
                 />
               </div>
-              {entry?.visibility === 'public' || !entry?.visibility ? (
+              {entry?.visibility === PUBLIC || !entry?.visibility ? (
                 ''
               ) : (
                 <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-secondary-dark">
@@ -84,7 +84,12 @@ function DictionaryDetailPresentation({
                 >
                   {entry?.translations?.map((translation) => (
                     <li key={translation?.id} className="p-0.5">
-                      {translation?.text}
+                      <span className={`${contentStyling} italic`}>
+                        {translation?.partOfSpeech}
+                      </span>
+                      <span className={contentStyling}>
+                        {translation?.text}
+                      </span>
                     </li>
                   ))}
                 </ol>

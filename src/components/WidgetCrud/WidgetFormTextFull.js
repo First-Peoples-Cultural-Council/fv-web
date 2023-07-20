@@ -5,24 +5,24 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_TEXTFULL } from 'common/constants'
+import { WIDGET_TEXTFULL, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_TEXTFULL]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_TEXTFULL]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     textWithFormatting: definitions.wysiwyg({ charCount: 4500 }),
     visibility: definitions.visibility(),
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_TEXTFULL,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_TEXTFULL,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     textWithFormatting: '',
   }
 
@@ -44,7 +44,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_TEXTFULL}
+        type={WIDGET_TEXTFULL}
       >
         <div className="col-span-12">
           <Form.WysiwygField

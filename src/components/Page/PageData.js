@@ -1,28 +1,24 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import usePage from 'common/dataHooks/usePage'
+import { IMAGE, VIDEO } from 'common/constants'
 
 function PageData({ url }) {
   const { site } = useSiteStore()
-  const { uid, logoPathMedium } = site
+  const { logoPathMedium } = site
   const { pageUrl, sitename } = useParams()
   const navigate = useNavigate()
 
   const urlToUse = url || pageUrl
 
   // Data fetch
-  const { data, error, isError, isFetched } = useQuery(
-    ['pages', uid + urlToUse],
-    () => api.page.get(uid, urlToUse),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!uid,
-    },
-  )
+  const { data, error, isError, isFetched } = usePage({
+    sitename,
+    pageSlug: pageUrl,
+  })
 
   useEffect(() => {
     if (isError) {
@@ -34,20 +30,20 @@ function PageData({ url }) {
   }, [isError])
 
   let backgroundType = null
-  let backgroundId = null
+  let background = null
 
-  if (data?.topBackgroundImageId) {
-    backgroundType = 'gifOrImg'
-    backgroundId = data?.topBackgroundImageId
-  } else if (data?.topBackgroundVideoId) {
-    backgroundType = 'video'
-    backgroundId = data?.topBackgroundVideoId
+  if (data?.bannerImage) {
+    backgroundType = IMAGE
+    background = data?.bannerImage
+  } else if (data?.bannerVideo) {
+    backgroundType = VIDEO
+    background = data?.bannerVideo
   }
 
   return {
     notFound: !!(isFetched && data?.length === 0),
     banner: {
-      backgroundId,
+      background,
       backgroundType,
       logoPath:
         urlToUse === 'our-language' || urlToUse === 'our-people'
@@ -56,7 +52,7 @@ function PageData({ url }) {
     },
     widgets: data?.widgets || [],
     title: data?.title,
-    subtitle: data?.description,
+    subtitle: data?.subtitle,
   }
 }
 

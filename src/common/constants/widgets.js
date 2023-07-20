@@ -15,3 +15,8 @@ export const WIDGET_TEXTFULL = 'WIDGET_TEXTFULL'
 export const WIDGET_TEXTICONS = 'WIDGET_TEXTICONS'
 export const WIDGET_TEXTMULTI = 'WIDGET_TEXTMULTI'
 export const WIDGET_WOTD = 'WIDGET_WOTD'
+
+/* ---- Widget Format Options ---- */
+export const FORMAT_DEFAULT = 'Default'
+export const FORMAT_LEFT = 'Left'
+export const FORMAT_RIGHT = 'Right'

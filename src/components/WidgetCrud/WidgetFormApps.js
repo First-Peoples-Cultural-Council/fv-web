@@ -5,25 +5,25 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_APPS } from 'common/constants'
+import { WIDGET_APPS, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_APPS]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_APPS]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     iosUrl: definitions.url({ required: true }),
     androidUrl: definitions.url({ required: true }),
     visibility: definitions.visibility(),
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_APPS,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_APPS,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     iosUrl: '',
     androidUrl: '',
   }
@@ -46,7 +46,7 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_APPS}
+        type={WIDGET_APPS}
       >
         <>
           <div className="col-span-12">

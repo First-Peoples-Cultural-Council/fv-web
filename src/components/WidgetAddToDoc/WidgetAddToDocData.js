@@ -5,22 +5,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { DOC_SITE, WIDGET_TEXTFULL } from 'common/constants'
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
-import { useUserStore } from 'context/UserContext'
-import { getWidgetsList } from 'common/utils/widgetAccessHelpers'
+import useWidgets from 'common/dataHooks/useWidgets'
+
 function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { site } = useSiteStore()
-  const { user } = useUserStore()
-  const { isSuperAdmin } = user
   const queryClient = useQueryClient()
 
-  const { data, isInitialLoading } = useQuery(
-    ['all-widgets', site?.uid],
-    () => api.widget.getWidgets({ siteId: site?.uid }),
-    {
-      // The query will not execute until the id exists
-      enabled: !!site?.uid,
-    },
-  )
+  const { widgets, isInitialLoading } = useWidgets({ sitename: site?.sitename })
 
   const { data: destinationData, isInitialLoading: destinationIsLoading } =
     useQuery(
@@ -51,34 +42,25 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   }
 
   // Don't include widgets that are already active on the page
-  let otherWidgets = data?.entries?.filter(
-    (entry) =>
-      !destinationData?.properties?.['widgets:active']?.includes(
-        entry?.['ecm:uuid'],
-      ),
+  let otherWidgets = widgets?.filter(
+    (widget) =>
+      !destinationData?.properties?.['widgets:active']?.includes(widget?.id),
   )
 
-  const adminWidgets = getWidgetsList(isSuperAdmin)
-
-  if (!isSuperAdmin) {
-    otherWidgets = otherWidgets?.filter((entry) =>
-      adminWidgets.includes(entry?.['widget:type']),
-    )
-  }
+  // Only include widgets that are editable by the user
+  otherWidgets = otherWidgets?.filter((widget) => widget?.editable)
 
   // Don't include Page Text Widget on the Home page
   const isHomePage = destinationData?.type === DOC_SITE
-  const widgets = isHomePage
-    ? otherWidgets?.filter(
-        (widget) => widget?.['widget:type'] !== WIDGET_TEXTFULL,
-      )
+  const widgetsToShow = isHomePage
+    ? otherWidgets?.filter((widget) => widget?.type !== WIDGET_TEXTFULL)
     : otherWidgets
 
   return {
     isLoading: destinationIsLoading || isInitialLoading,
     site,
     submitHandler,
-    widgets: widgets || [],
+    widgets: widgetsToShow || [],
   }
 }
 

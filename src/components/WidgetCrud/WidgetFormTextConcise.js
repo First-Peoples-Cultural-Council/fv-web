@@ -5,15 +5,20 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { DOC_AUDIO, WIDGET_TEXTCONCISE } from 'common/constants'
+import {
+  DOC_AUDIO,
+  WIDGET_TEXTCONCISE,
+  FORMAT_DEFAULT,
+  PUBLIC,
+} from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_TEXTCONCISE]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_TEXTCONCISE]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     title: definitions.title(),
     text: definitions.paragraph({ charCount: 200 }),
     audio: definitions.uuid(),
@@ -23,10 +28,10 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_TEXTCONCISE,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_TEXTCONCISE,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     title: '',
     text: '',
     audio: '',
@@ -52,7 +57,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_TEXTCONCISE}
+        type={WIDGET_TEXTCONCISE}
       >
         <>
           <div className="col-span-12">

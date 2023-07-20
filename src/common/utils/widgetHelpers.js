@@ -18,7 +18,7 @@ import {
   WIDGET_WOTD,
 } from 'common/constants'
 
-export const getWidgetsList = (isSuperAdmin) =>
+export const getEditableWidgetsForUser = (isSuperAdmin) =>
   [
     isSuperAdmin && WIDGET_ALPHABET,
     isSuperAdmin && WIDGET_APPS,
@@ -53,4 +53,12 @@ export const isEditableWidgetType = (widgetType) => {
     WIDGET_TEXTMULTI,
   ]
   return editableWidgetTypes.indexOf(widgetType) !== -1
+}
+
+export const getObjectFromSettingsArray = (settingsArray) => {
+  const settingsObject = {}
+  settingsArray?.forEach((setting) => {
+    settingsObject[setting?.key] = setting?.value
+  })
+  return settingsObject
 }

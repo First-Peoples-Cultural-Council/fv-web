@@ -23,15 +23,15 @@ export const getMediaUrl = ({ id, type, viewName = 'Medium' }) => {
   }
 }
 
-export const getCustomPageHref = ({ sitename, pageUrl }) => {
-  switch (pageUrl) {
+export const getCustomPageHref = ({ sitename, pageSlug }) => {
+  switch (pageSlug) {
     case 'our-people':
     case 'our-language':
     case 'apps':
     case 'keyboards':
-      return `/${sitename}/${pageUrl}`
+      return `/${sitename}/${pageSlug}`
     default:
-      return `/${sitename}/custom/${pageUrl}`
+      return `/${sitename}/custom/${pageSlug}`
   }
 }
 

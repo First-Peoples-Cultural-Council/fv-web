@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import { ORIGINAL, VIDEO } from 'common/constants'
+import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
 import { makePlural } from 'common/utils/urlHelpers'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
@@ -45,7 +45,7 @@ function DictionaryDetailPresentationDrawer({
                 withConfirmation
               />
             </div>
-            {entry?.visibility === 'public' || !entry?.visibility
+            {entry?.visibility === PUBLIC || !entry?.visibility
               ? ''
               : getIcon(
                   entry?.visibility,
@@ -61,11 +61,11 @@ function DictionaryDetailPresentationDrawer({
                   entry?.translations?.length === 1
                     ? 'list-none'
                     : 'list-decimal'
-                } list-inside ${shortTitle ? 'text-xl ' : 'md:text-lg'}`}
+                } list-inside text-lg`}
               >
                 {entry?.translations?.map((translation) => (
                   <li key={translation} className="p-0.5">
-                    <span className={contentStyling}>
+                    <span className={`${contentStyling} italic`}>
                       {translation?.partOfSpeech}
                     </span>
                     <span className={contentStyling}>{translation?.text}</span>

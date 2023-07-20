@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
@@ -37,23 +37,23 @@ function WidgetAddToDocPresentation({
               {widgets?.map((widget) => (
                 <button
                   type="button"
-                  key={widget?.['ecm:uuid']}
-                  onClick={() => setSelectedWidget(widget?.['ecm:uuid'])}
+                  key={widget?.id}
+                  onClick={() => setSelectedWidget(widget?.id)}
                   className={`${
-                    selectedWidget === widget?.['ecm:uuid']
+                    selectedWidget === widget?.id
                       ? 'bg-secondary text-white'
                       : 'hover:bg-gray-50 text-primary bg-white'
                   } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
                 >
                   <div className="space-y-1 truncate">
                     {getWidgetIcon(
-                      widget?.['widget:type'],
+                      widget?.type,
                       'w-10 h-10 fill-current inline-flex mx-2',
                     )}
                     <p className="text-lg font-bold">
-                      {getWidgetTypeLabel(widget?.['widget:type'])}
+                      {getWidgetTypeLabel(widget?.type)}
                     </p>
-                    <p>Name: {widget?.['ecm:name']}</p>
+                    <p>Name: {widget?.nickname}</p>
                   </div>
                 </button>
               ))}

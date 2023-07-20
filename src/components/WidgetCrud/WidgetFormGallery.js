@@ -5,24 +5,24 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_GALLERY } from 'common/constants'
+import { WIDGET_GALLERY, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    widgetName: definitions.nickname(),
-    widgetType: yup.string().required().oneOf([WIDGET_GALLERY]),
-    widgetFormat: yup.string().required().oneOf(['default']),
+    nickname: definitions.nickname(),
+    type: yup.string().required().oneOf([WIDGET_GALLERY]),
+    format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     galleryId: definitions.uuid().required('A gallery id is required'),
     visibility: definitions.visibility(),
   })
 
   const defaultValues = {
-    widgetName: '',
-    widgetType: WIDGET_GALLERY,
-    widgetFormat: 'default',
-    visibility: 'public',
+    nickname: '',
+    type: WIDGET_GALLERY,
+    format: FORMAT_DEFAULT,
+    visibility: PUBLIC,
     galleryId: '',
   }
 
@@ -44,7 +44,7 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        widgetType={WIDGET_GALLERY}
+        type={WIDGET_GALLERY}
       >
         <div className="col-span-12">
           <Form.TextField

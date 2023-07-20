@@ -16,7 +16,7 @@ import {
   getWidgetLabel,
   isUUID,
 } from 'common/utils/stringHelpers'
-import { isEditableWidgetType } from 'common/utils/widgetAccessHelpers'
+import { isEditableWidgetType } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import { WIDGET_WOTD } from 'common/constants'
 
@@ -204,10 +204,7 @@ function WidgetAreaEditPresentationSettingsPane({
         closeHandler={() => setPreviewModalOpen(false)}
       >
         <div className="max-w-5xl mx-auto">
-          <Widget.Container
-            widgetType={currentWidget?.type}
-            data={currentWidget}
-          />
+          <Widget.Container data={currentWidget} />
         </div>
       </Modal.Presentation>
 
