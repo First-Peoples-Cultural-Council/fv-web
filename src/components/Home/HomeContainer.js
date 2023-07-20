@@ -3,11 +3,10 @@ import React from 'react'
 // FPCC
 import HomeData from 'components/Home/HomeData'
 import HomePresentation from 'components/Home/HomePresentation'
-// import WidgetArea from 'components/WidgetArea'
-// Temporarily commenting out WidgetArea until WIdget API is built and functional
+import WidgetArea from 'components/WidgetArea'
 
 function HomeContainer() {
-  const { bannerMedia, bannerType, site } = HomeData()
+  const { bannerMedia, bannerType, site, widgetData } = HomeData()
 
   return (
     <div data-testid="Home">
@@ -16,7 +15,7 @@ function HomeContainer() {
         bannerType={bannerType}
         site={site}
       />
-      {/* <WidgetArea.Container id={siteId} /> */}
+      <WidgetArea.Container widgetData={widgetData} />
     </div>
   )
 }

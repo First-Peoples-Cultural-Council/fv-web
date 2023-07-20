@@ -3,13 +3,13 @@ import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import PageData from 'components/Page/PageData'
-import WidgetContainer from 'components/Widget/WidgetContainer'
+import WidgetArea from 'components/WidgetArea'
 import PageBanner from 'components/PageBanner'
 import ErrorHandler from 'components/ErrorHandler'
 
 function PageContainer({ url }) {
   const { banner, title, subtitle, widgets, notFound } = PageData({ url })
-  const { backgroundId, backgroundType, logoPath } = banner
+  const { background, backgroundType, logoPath } = banner
   return notFound ? (
     <ErrorHandler.Container
       error={{ status: 404, statusText: 'Page not found' }}
@@ -22,7 +22,7 @@ function PageContainer({ url }) {
       </Helmet>
       <PageBanner.Presentation
         variant={subtitle ? 'CENTER' : 'LEFT'}
-        backgroundId={backgroundId}
+        background={background}
         backgroundType={backgroundType}
         textNode={
           <div>
@@ -33,9 +33,7 @@ function PageContainer({ url }) {
         logoPath={logoPath}
       />
       <div className="pb-16 max-w-7xl mx-auto">
-        {widgets?.map((widget) => (
-          <WidgetContainer key={widget?.id} id={widget} />
-        ))}
+        <WidgetArea.Container widgetData={widgets} />
       </div>
     </main>
   )

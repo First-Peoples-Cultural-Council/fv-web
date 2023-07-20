@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ResourcePresentation from 'components/Resource/ResourcePresentation'
-import Resource from 'components/Resource'
+import ResourceData from 'components/Resource/ResourceData'
 
-function ResourceContainer({ resourceId }) {
-  const { blocks, widgets } = Resource.Data({ resourceId })
+function ResourceContainer({ pageSlug }) {
+  const { blocks, widgets } = ResourceData({ pageSlug })
 
   return (
     <div>
@@ -17,7 +17,7 @@ function ResourceContainer({ resourceId }) {
 // PROPTYPES
 const { string } = PropTypes
 ResourceContainer.propTypes = {
-  resourceId: string,
+  pageSlug: string,
 }
 
 export default ResourceContainer

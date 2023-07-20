@@ -91,11 +91,7 @@ function DashboardWidgetsPresentation({
           closeHandler={() => setPreviewModalOpen(false)}
         >
           <div className="bg-white w-4/5-screen mx-auto p-5 rounded-lg">
-            <Widget.Container
-              widgetType={currentWidget?.type}
-              data={currentWidget}
-              id={currentWidget?.id}
-            />
+            <Widget.Container data={currentWidget} />
           </div>
         </Modal.Presentation>
       </DashboardLanding.Presentation>

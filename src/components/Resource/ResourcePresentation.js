@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import WidgetContainer from 'components/Widget/WidgetContainer'
+import Widget from 'components/Widget'
 import SanitizedHtml from 'components/SanitizedHtml'
 
 function ResourcePresentation({ blocks, widgets }) {
@@ -9,16 +9,16 @@ function ResourcePresentation({ blocks, widgets }) {
     <div id="ResourcePresentation" className="justify-center">
       {widgets && (
         <div className="max-w-screen-xl px-4 lg:px-24 mx-auto">
-          {widgets.map((widget, index) => (
-            <WidgetContainer key={index} id={widget} />
+          {widgets.map((widget) => (
+            <Widget.Container key={widget?.id} data={widget} />
           ))}
         </div>
       )}
       {blocks && (
         <div>
-          {blocks.map((block, index) => (
+          {blocks.map((block) => (
             <section
-              key={index}
+              key={block?.id}
               className="max-w-screen-xl py-2 px-4 my-5 lg:px-24 mx-auto"
             >
               {block?.title && (
@@ -26,21 +26,8 @@ function ResourcePresentation({ blocks, widgets }) {
                   {block?.title}
                 </h2>
               )}
-              {block?.summary && (
-                <SanitizedHtml
-                  text={block?.summary}
-                  className="bg-gray-50 border border-gray-200 mb-5 p-5 text-xl rounded-lg"
-                />
-              )}
-              {/* The class "wysiwyg" is needed to apply styling to the html - see `assets/main.css` for styles applied */}
-              <SanitizedHtml className="wysiwyg" text={block?.text} />
-              {block?.widget && <WidgetContainer id={block?.widget} />}
-              {block?.file && (
-                <img
-                  src={`${block?.file.path}`}
-                  loading="lazy"
-                  className="shadow-1xl mx-auto my-5"
-                />
+              {block?.text && (
+                <SanitizedHtml className="wysiwyg" text={block?.text} />
               )}
             </section>
           ))}

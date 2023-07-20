@@ -11,7 +11,7 @@ import immersion from 'services/api/immersion'
 import landingPage from 'services/api/landingpage'
 import mail from 'services/api/mail'
 import media from 'services/api/media'
-import page from 'services/api/page'
+import pages from 'services/api/pages'
 import partsOfSpeech from 'services/api/partsOfSpeech'
 import search from 'services/api/search'
 import site from 'services/api/site'
@@ -39,7 +39,7 @@ export default {
   landingPage,
   mail,
   media,
-  page,
+  pages,
   partsOfSpeech,
   search,
   site,

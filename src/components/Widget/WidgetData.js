@@ -3,17 +3,15 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import useWidget from 'common/dataHooks/useWidget'
 
-function WidgetData({ type, widgetData, id }) {
+function WidgetData({ widgetData }) {
   const { widgetId, sitename } = useParams()
 
-  const idToUse = widgetId || id
+  const { data } = useWidget({ id: widgetId, sitename })
 
-  const { data } = useWidget({ id: idToUse, sitename })
-
-  const dataToReturn = widgetData || data
+  const dataToReturn = widgetId ? data : widgetData
 
   return {
-    type: type || dataToReturn?.type,
+    type: dataToReturn?.type,
     formattedData: dataToReturn,
   }
 }
