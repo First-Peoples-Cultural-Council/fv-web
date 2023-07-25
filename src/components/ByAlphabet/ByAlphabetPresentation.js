@@ -74,10 +74,10 @@ function ByAlphabetPresentation({
               className="font-medium flex justify-center mx-auto p-2 xl:p-4 text-5xl xl:text-7xl text-primary"
             >
               {currentCharacter.title}
-              {currentCharacter?.relatedAudio?.[0]?.id && (
+              {currentCharacter?.relatedAudio?.length > 0 && (
                 <div className="ml-2">
                   <AudioButton
-                    audioArray={[currentCharacter?.relatedAudio?.[0]?.id]}
+                    audioArray={currentCharacter?.relatedAudio}
                     iconStyling="fill-current h-8 w-8"
                   />
                 </div>
