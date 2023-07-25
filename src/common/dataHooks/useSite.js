@@ -71,7 +71,10 @@ export default function useSite() {
       response?.data?.visibility?.toLowerCase(),
     ),
     features: response?.data?.features,
-    homepageWidgets: widgetListAdaptor(response?.data?.homepage),
+    homepageWidgets: widgetListAdaptor({
+      widgetList: response?.data?.homepage,
+      sitename,
+    }),
     // The following are missing from the current API response - to be added at a later date
     joinText: null,
     hasContactUs: true,

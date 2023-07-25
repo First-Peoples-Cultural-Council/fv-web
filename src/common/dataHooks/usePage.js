@@ -12,7 +12,10 @@ export default function usePage({ sitename, pageSlug }) {
     { enabled: !!pageSlug },
   )
 
-  const widgets = widgetListAdaptor(response?.data?.widgets)
+  const widgets = widgetListAdaptor({
+    widgetList: response?.data?.widgets,
+    sitename,
+  })
 
   return { ...response, data: { ...response?.data, widgets } }
 }

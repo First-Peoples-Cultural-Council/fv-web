@@ -18,7 +18,7 @@ export default function useWidgets({ sitename }) {
     { enabled: !!sitename },
   )
   const formattedWidgets = response?.data?.results?.map((widget) => {
-    const formattedWidget = widgetAdaptor(widget)
+    const formattedWidget = widgetAdaptor({ widgetData: widget, sitename })
     return {
       ...formattedWidget,
       editable: editableWidgets.includes(widget?.type),
