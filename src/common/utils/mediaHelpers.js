@@ -12,7 +12,7 @@ import {
 // NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
 export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   if (!mediaObject?.original) {
-    return "A media object with the property of 'originl' must be supplied to retrieve a src path."
+    return `${type} object with the property of 'original' must be supplied to retrieve a src path.`
   }
   if (![ORIGINAL, SMALL, MEDIUM, THUMBNAIL].includes(size)) {
     return 'Only ORIGINAL, SMALL, MEDIUM, or THUMBNAIL are accepted as sizes for media.'

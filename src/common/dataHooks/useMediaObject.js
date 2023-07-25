@@ -15,19 +15,19 @@ export default function useMediaObject({ sitename, id, type }) {
   const audioResponse = useQuery(
     [AUDIO_PATH, sitename, id],
     () => api.media.getAudio({ sitename, id }),
-    { enable: type === AUDIO && !!id },
+    { enabled: type === AUDIO && !!id },
   )
 
   const imageResponse = useQuery(
     [IMAGE_PATH, sitename, id],
     () => api.media.getImage({ sitename, id }),
-    { enable: type === IMAGE && !!id },
+    { enabled: type === IMAGE && !!id },
   )
 
   const videoResponse = useQuery(
     [VIDEO_PATH, sitename, id],
     () => api.media.getVideo({ sitename, id }),
-    { enable: type === VIDEO && !!id },
+    { enabled: type === VIDEO && !!id },
   )
 
   switch (type) {

@@ -2,14 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioButton from 'components/AudioButton'
 import WysiwygBlock from 'components/WysiwygBlock'
+import ImgFromId from 'components/ImgFromId'
+import useMediaObject from 'common/dataHooks/useMediaObject'
 import {
   FIRSTVOICESLINK,
   FORMAT_LEFT,
   FORMAT_RIGHT,
   FORMAT_DEFAULT,
+  AUDIO,
+  IMAGE,
+  MEDIUM,
 } from 'common/constants'
 
 function WidgetTextPresentation({ widgetData }) {
@@ -22,15 +27,27 @@ function WidgetTextPresentation({ widgetData }) {
     audio,
     bg,
     bgImage,
-  } = widgetData?.settings
+  } = widgetData.settings
   const format = widgetData?.format || FORMAT_LEFT
+
+  const bgImageObject = useMediaObject({
+    sitename: widgetData?.sitename,
+    id: bgImage,
+    type: IMAGE,
+  })
+
+  const audioObject = useMediaObject({
+    sitename: widgetData?.sitename,
+    id: audio,
+    type: AUDIO,
+  })
 
   const getImageElement = () =>
     image ? (
       <div className="md:w-1/2 overflow-hidden inline-flex items-center">
-        <img
+        <ImgFromId.Container
           className="w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover"
-          src={getMediaUrl({ id: image, type: 'gifOrImg' })}
+          id={image}
           alt={title}
         />
       </div>
@@ -42,11 +59,14 @@ function WidgetTextPresentation({ widgetData }) {
         bg || ''
       } inline-flex items-center`}
       style={{
-        backgroundImage: `url(${getMediaUrl({
-          id: bgImage,
-          type: 'image',
-          viewName: 'Medium',
-        })})`,
+        backgroundImage: `url(${
+          bgImage &&
+          getMediaPath({
+            mediaObject: bgImageObject,
+            type: IMAGE,
+            size: MEDIUM,
+          })
+        })`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right 20% top',
         backgroundSize: 'cover',
@@ -61,7 +81,7 @@ function WidgetTextPresentation({ widgetData }) {
           <span className="inline-block">{title}</span>
           {audio && (
             <AudioButton
-              audioArray={[audio]}
+              audioArray={[audioObject]}
               iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
               hoverTooltip
             />
@@ -83,7 +103,7 @@ function WidgetTextPresentation({ widgetData }) {
                   ? { target: '_self' }
                   : { target: '_blank' })}
                 rel="noopener noreferrer"
-                className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-full md:text-lg text-${
+                className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-full md:text-lg ${
                   bg
                     ? `text-${bg} bg-white hover:font-bold hover:px-4`
                     : 'text-white bg-secondary hover:bg-secondary-dark'
