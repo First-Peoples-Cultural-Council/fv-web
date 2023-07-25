@@ -14,7 +14,6 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
   WIDGET_WOTD,
 } from 'common/constants'
 
@@ -33,7 +32,6 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     isSuperAdmin && WIDGET_TEXTICONS,
-    //   WIDGET_TEXTMULTI,
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
 
@@ -50,7 +48,6 @@ export const isEditableWidgetType = (widgetType) => {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
-    WIDGET_TEXTMULTI,
   ]
   return editableWidgetTypes.indexOf(widgetType) !== -1
 }

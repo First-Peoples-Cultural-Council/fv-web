@@ -16,7 +16,6 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
   WIDGET_WOTD,
 } from 'common/constants'
 import WidgetFormDefault from 'components/WidgetCrud/WidgetFormDefault'
@@ -231,7 +230,6 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
       )
 
     case WIDGET_IFRAME:
-    case WIDGET_TEXTMULTI:
       return (
         <div className="text-xs">
           <h2>Widget Form Placeholder for {type}</h2>
@@ -277,7 +275,6 @@ WidgetForm.propTypes = {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
-    WIDGET_TEXTMULTI,
     WIDGET_WOTD,
   ]),
 }

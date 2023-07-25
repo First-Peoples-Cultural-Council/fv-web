@@ -34,7 +34,6 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
   WIDGET_WOTD,
   DISPLAYABLE_PROPS_MEDIA,
 } from 'common/constants'
@@ -287,8 +286,6 @@ export const getWidgetTypeLabel = (type) => {
       return 'Page Text'
     case WIDGET_TEXTICONS:
       return 'Text with Icons'
-    case WIDGET_TEXTMULTI:
-      return 'Multi-text'
     case WIDGET_WOTD:
       return 'Word of the Day'
     default:
