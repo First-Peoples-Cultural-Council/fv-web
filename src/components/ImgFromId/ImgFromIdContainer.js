@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 
@@ -11,6 +11,7 @@ function ImgFromIdContainer(props) {
   const { id, size, alt, className, ...other } = props
 
   const { sitename } = useParams()
+  const [src, setSrc] = useState('')
 
   const imageObject = useMediaObject({
     sitename,
@@ -18,11 +19,18 @@ function ImgFromIdContainer(props) {
     type: IMAGE,
   })
 
-  const src = getMediaPath({
-    mediaObject: imageObject,
-    type: IMAGE,
-    size: MEDIUM,
-  })
+  useEffect(() => {
+    if (imageObject?.original) {
+      const srcToUse = getMediaPath({
+        mediaObject: imageObject,
+        type: IMAGE,
+        size: MEDIUM,
+      })
+      if (srcToUse !== src) {
+        setSrc(srcToUse)
+      }
+    }
+  }, [src, setSrc, imageObject])
 
   return (
     <img
