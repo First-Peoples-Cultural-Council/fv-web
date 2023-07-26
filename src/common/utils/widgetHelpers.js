@@ -94,3 +94,20 @@ export const getWidgetTypeLabel = (type) => {
       return 'Unrecognised Widget Type'
   }
 }
+
+export const getWidgetLabel = (string) => {
+  switch (string) {
+    case 'title':
+      return 'Title'
+    case 'url':
+      return 'Link Url'
+    case 'urlLabel':
+      return 'Button Text'
+    case 'text':
+      return 'Subtitle'
+    case 'galleryId':
+      return 'Gallery'
+    default:
+      return string
+  }
+}
