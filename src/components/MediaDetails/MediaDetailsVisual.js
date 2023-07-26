@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { getMediaUrl } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
 import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import { isDisplayablePropMedia } from 'common/utils/stringHelpers'
+import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
 
 function MediaDetailsVisual({ file, docType }) {
   return (

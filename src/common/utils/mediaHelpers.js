@@ -8,6 +8,7 @@ import {
   SMALL,
   MEDIUM,
   THUMBNAIL,
+  DISPLAYABLE_PROPS_MEDIA,
 } from 'common/constants'
 // NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
 export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
@@ -34,6 +35,10 @@ export const getReadableFileSize = (size) => {
   const e = Math.log(size) / Math.log(1e3) || 0
   return `${+(size / 1e3 ** e).toFixed(2)} ${'kMGTPEZY'[e - 1] || ''}B`
 }
+
+export const isDisplayablePropMedia = (property, value) =>
+  (typeof value === 'string' || value instanceof String) &&
+  DISPLAYABLE_PROPS_MEDIA.includes(property)
 
 export const selectOneFormHelper = (formData, mediaObjectkey) => {
   // Helper function to be used where a choice between

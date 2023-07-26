@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
-import { isDisplayablePropMedia } from 'common/utils/stringHelpers'
+import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
 
 function MediaDetailsAudio({ file }) {
   return (
