@@ -10,10 +10,9 @@ import Loading from 'components/Loading'
 
 function WidgetWordOfTheDayPresentation({
   audio,
-  hasShare,
-  heading,
-  subheading,
-  metadata,
+  wordTitle,
+  translations,
+  partOfSpeech,
   relativeUrl,
   title,
   url,
@@ -24,9 +23,9 @@ function WidgetWordOfTheDayPresentation({
         <SectionTitle.Presentation title={title} />
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <Loading.Container isLoading={!(heading?.length > 0)} height="h-full">
+        <Loading.Container isLoading={wordTitle?.length < 0} height="h-full">
           <div className="mt-2 max-w-2xl inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-secondary md:mx-auto sm:text-5xl">
-            <Link to={relativeUrl}>{heading}</Link>
+            <Link to={relativeUrl}>{wordTitle}</Link>
             {audio && (
               <span className="ml-2 text-black">
                 <AudioButton
@@ -38,33 +37,30 @@ function WidgetWordOfTheDayPresentation({
             )}
           </div>
           <p className="mt-4 max-w-2xl text-2xl md:mx-auto sm:text-3xl">
-            {subheading}
+            {translations}
           </p>
-          <p className="mt-4 max-w-2xl text-m md:mx-auto italic">{metadata}</p>
+          <p className="mt-4 max-w-2xl text-m md:mx-auto italic">
+            {partOfSpeech}
+          </p>
         </Loading.Container>
-        {hasShare === true && (
-          <>
-            <h3 className="mt-8 max-w-2xl text-lg text-secondary md:mx-auto sm:text-xl">
-              Share on:
-            </h3>
-            <ShareLinks.Presentation url={url} title={heading} />
-          </>
-        )}
+        <h3 className="mt-8 max-w-2xl text-lg text-secondary md:mx-auto sm:text-xl">
+          Share on:
+        </h3>
+        <ShareLinks.Presentation url={url} title={wordTitle} />
       </div>
     </section>
   )
 }
 // PROPTYPES
-const { bool, string, array } = PropTypes
+const { string, array } = PropTypes
 WidgetWordOfTheDayPresentation.propTypes = {
   audio: array,
-  hasShare: bool,
-  heading: string,
+  wordTitle: string,
   relativeUrl: string,
-  subheading: string,
+  translations: string,
   title: string,
   url: string,
-  metadata: array,
+  partOfSpeech: string,
 }
 
 export default WidgetWordOfTheDayPresentation

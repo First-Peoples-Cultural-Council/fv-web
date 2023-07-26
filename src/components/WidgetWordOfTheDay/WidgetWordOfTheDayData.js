@@ -2,46 +2,33 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
+import { WORD_OF_THE_DAY } from 'common/constants/paths'
 
 function WidgetWordOfTheDayData() {
-  const { site } = useSiteStore()
-  const { uid } = site
   const { sitename } = useParams()
 
   const { data, error, isError } = useQuery(
-    ['wotd', uid],
-    () => api.widget.getWordOfTheDay({ siteId: uid }),
+    [WORD_OF_THE_DAY, sitename],
+    () => api.widgets.getWordOfTheDay({ sitename }),
     {
       // The query will not execute until the uid exists
-      enabled: !!uid,
+      enabled: !!sitename,
     },
   )
-
-  let partOfSpeech = ''
-  const audio = []
-
-  if (data?.partOfSpeech) {
-    partOfSpeech = `Part of Speech: ${data?.partOfSpeech}`
-  }
-
-  if (data?.relatedAudio?.length > 0) {
-    data?.relatedAudio?.forEach((element) => {
-      audio.push(element.id)
-    })
-  }
+  const word = data?.[0]?.dictionaryEntry
+  const translationArray = word?.translations?.map((trans) => `${trans?.text}`)
+  const partOfSpeech = word?.translations?.[0]?.partOfSpeech?.title
 
   return {
-    audio,
-    hasShare: true,
-    heading: data?.title,
+    audio: word?.relatedAudio,
+    wordTitle: word?.title,
     isError: isError && error && error?.response?.status === 404,
-    subheading: data?.translations ? data?.translations.join('; ') : '',
-    metadata: [partOfSpeech],
+    translations: translationArray?.join('; '),
+    partOfSpeech,
     title: 'WORD OF THE DAY',
-    url: `${window.location.origin.toString()}/${sitename}/words/${data?.id}`,
-    relativeUrl: `/${sitename}/words/${data?.id}`,
+    url: `${window.location.origin.toString()}/${sitename}/words/${word?.id}`,
+    relativeUrl: `/${sitename}/words/${word?.id}`,
   }
 }
 

@@ -11,8 +11,9 @@ import WysiwygBlock from 'components/WysiwygBlock'
 
 import getIcon from 'common/utils/getIcon'
 import { getMediaUrl } from 'common/utils/urlHelpers'
-import { getWidgetLabel, isUUID } from 'common/utils/stringHelpers'
+import { isUUID } from 'common/utils/stringHelpers'
 import {
+  getWidgetLabel,
   getWidgetTypeLabel,
   isEditableWidgetType,
 } from 'common/utils/widgetHelpers'
