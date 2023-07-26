@@ -6,7 +6,7 @@ import { useSiteStore } from 'context/SiteContext'
 
 function WidgetLogoPresentation({ widgetData }) {
   const { site } = useSiteStore()
-  const { text, uid } = widgetData?.settings || {}
+  const { text, id } = widgetData?.settings || {}
   const format = widgetData?.format ? widgetData?.format : 'right'
   return format === 'right' ? (
     <section className="w-full bg-white" data-testid="WidgetLogoPresentation">
@@ -14,7 +14,7 @@ function WidgetLogoPresentation({ widgetData }) {
         <div className="max-w-2xl mx-auto px-4 lg:max-w-7xl border-t border-b border-white">
           <div className="space-y-16 py-4">
             <div
-              key={uid}
+              key={id}
               className="grid grid-cols-12 lg:gap-x-16 items-center"
             >
               <div className="mt-6 lg:mt-0 col-span-12 lg:col-span-8 xl:col-span-9">

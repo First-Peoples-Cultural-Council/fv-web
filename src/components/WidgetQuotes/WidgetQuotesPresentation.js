@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import useMediaObject from 'common/dataHooks/useMediaObject'
+import { IMAGE, MEDIUM } from 'common/constants'
 
 function WidgetQuotesPresentation({ widgetData }) {
   const {
@@ -14,7 +16,13 @@ function WidgetQuotesPresentation({ widgetData }) {
     quote2By,
     quote3,
     quote3By,
-  } = widgetData?.settings
+  } = widgetData.settings
+
+  const bgImageObject = useMediaObject({
+    sitename: widgetData?.sitename,
+    id: backgroundImage,
+    type: IMAGE,
+  })
 
   const makeQuote = (qoute, quoteBy) => (
     <div className="relative w-4/5 md:w-[30%] h-80 mt-24 md:my-28 bg-white rounded-t-xl rounded-br-xl flex flex-col justify-center items-center">
@@ -33,10 +41,14 @@ function WidgetQuotesPresentation({ widgetData }) {
       id="WidgetQuotesPresentation"
       className="bg-phrase flex flex-col md:flex-row justify-evenly items-center pb-16 md:pb-0"
       style={{
-        backgroundImage: `url(${getMediaUrl({
-          id: backgroundImage,
-          type: 'gifOrImg',
-        })}`,
+        backgroundImage: `url(${
+          backgroundImage &&
+          getMediaPath({
+            mediaObject: bgImageObject,
+            type: IMAGE,
+            size: MEDIUM,
+          })
+        }`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       }}
