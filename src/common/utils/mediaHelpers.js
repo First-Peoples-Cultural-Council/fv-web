@@ -30,6 +30,11 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   }
 }
 
+export const getReadableFileSize = (size) => {
+  const e = Math.log(size) / Math.log(1e3) || 0
+  return `${+(size / 1e3 ** e).toFixed(2)} ${'kMGTPEZY'[e - 1] || ''}B`
+}
+
 export const selectOneFormHelper = (formData, mediaObjectkey) => {
   // Helper function to be used where a choice between
   // an image or video is given to add to a form
