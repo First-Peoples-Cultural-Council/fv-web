@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
-import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import Loading from 'components/Loading'
 
 function WidgetAddToDocPresentation({

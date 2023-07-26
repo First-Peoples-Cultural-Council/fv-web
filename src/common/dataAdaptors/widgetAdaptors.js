@@ -1,6 +1,8 @@
 // FPCC
-import { getObjectFromSettingsArray } from 'common/utils/widgetHelpers'
-import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import {
+  getObjectFromSettingsArray,
+  getWidgetTypeLabel,
+} from 'common/utils/widgetHelpers'
 
 export function widgetAdaptor({ widgetData, sitename }) {
   return {

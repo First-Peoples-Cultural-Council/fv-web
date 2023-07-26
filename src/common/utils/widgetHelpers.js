@@ -59,3 +59,38 @@ export const getObjectFromSettingsArray = (settingsArray) => {
   })
   return settingsObject
 }
+
+export const getWidgetTypeLabel = (type) => {
+  switch (type) {
+    case WIDGET_ALPHABET:
+      return 'Alphabet'
+    case WIDGET_APPS:
+      return 'Mobile App'
+    case WIDGET_CONTACT:
+      return 'Contact Us'
+    case WIDGET_GALLERY:
+      return 'Gallery'
+    case WIDGET_IFRAME:
+      return 'Map'
+    case WIDGET_KEYBOARDS:
+      return 'Keyboard'
+    case WIDGET_LOGO:
+      return 'Logo'
+    case WIDGET_QUOTES:
+      return 'Quotes'
+    case WIDGET_STATS:
+      return 'New This Week'
+    case WIDGET_TEXT:
+      return 'Text With Image'
+    case WIDGET_TEXTCONCISE:
+      return 'Short Text'
+    case WIDGET_TEXTFULL:
+      return 'Page Text'
+    case WIDGET_TEXTICONS:
+      return 'Text with Icons'
+    case WIDGET_WOTD:
+      return 'Word of the Day'
+    default:
+      return 'Unrecognised Widget Type'
+  }
+}
