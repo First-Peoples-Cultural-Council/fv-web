@@ -6,10 +6,9 @@ import WidgetWordOfTheDayData from 'components/WidgetWordOfTheDay/WidgetWordOfTh
 function WidgetWordOfTheDayContainer() {
   const {
     audio,
-    hasShare,
-    heading,
-    subheading,
-    metadata,
+    wordTitle,
+    translations,
+    partOfSpeech,
     relativeUrl,
     title,
     url,
@@ -18,10 +17,9 @@ function WidgetWordOfTheDayContainer() {
   return isError ? null : (
     <WidgetWordOfTheDayPresentation
       audio={audio}
-      hasShare={hasShare}
-      heading={heading}
-      subheading={subheading}
-      metadata={metadata}
+      wordTitle={wordTitle}
+      translations={translations}
+      partOfSpeech={partOfSpeech}
       relativeUrl={relativeUrl}
       title={title}
       url={url}

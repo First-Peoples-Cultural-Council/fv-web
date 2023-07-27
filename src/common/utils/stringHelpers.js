@@ -21,22 +21,6 @@ import {
   TYPE_STORY,
   TYPE_SONG,
   UUID_REGEX,
-  WIDGET_ALPHABET,
-  WIDGET_APPS,
-  WIDGET_CONTACT,
-  WIDGET_GALLERY,
-  WIDGET_IFRAME,
-  WIDGET_KEYBOARDS,
-  WIDGET_LOGO,
-  WIDGET_QUOTES,
-  WIDGET_STATS,
-  WIDGET_TEXT,
-  WIDGET_TEXTCONCISE,
-  WIDGET_TEXTFULL,
-  WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
-  WIDGET_WOTD,
-  DISPLAYABLE_PROPS_MEDIA,
 } from 'common/constants'
 
 export const cleanNXQL = (str) => {
@@ -75,11 +59,6 @@ export const extractTextFromHtml = (htmlString) => {
   const span = document.createElement('span')
   span.innerHTML = htmlString
   return span.textContent || span.innerText
-}
-
-export const getReadableFileSize = (size) => {
-  const e = Math.log(size) / Math.log(1e3) || 0
-  return `${+(size / 1e3 ** e).toFixed(2)} ${'kMGTPEZY'[e - 1] || ''}B`
 }
 
 export const getFriendlyDocType = ({
@@ -259,43 +238,6 @@ export const getPresentationPropertiesForType = (type) => {
   }
 }
 
-export const getWidgetTypeLabel = (type) => {
-  switch (type) {
-    case WIDGET_ALPHABET:
-      return 'Alphabet'
-    case WIDGET_APPS:
-      return 'Mobile App'
-    case WIDGET_CONTACT:
-      return 'Contact Us'
-    case WIDGET_GALLERY:
-      return 'Gallery'
-    case WIDGET_IFRAME:
-      return 'Map'
-    case WIDGET_KEYBOARDS:
-      return 'Keyboard'
-    case WIDGET_LOGO:
-      return 'Logo'
-    case WIDGET_QUOTES:
-      return 'Quotes'
-    case WIDGET_STATS:
-      return 'New This Week'
-    case WIDGET_TEXT:
-      return 'Text With Image'
-    case WIDGET_TEXTCONCISE:
-      return 'Short Text'
-    case WIDGET_TEXTFULL:
-      return 'Page Text'
-    case WIDGET_TEXTICONS:
-      return 'Text with Icons'
-    case WIDGET_TEXTMULTI:
-      return 'Multi-text'
-    case WIDGET_WOTD:
-      return 'Word of the Day'
-    default:
-      return 'Unrecognised Widget Type'
-  }
-}
-
 export const isStringWithLength = (str) => {
   if (typeof str === 'string' || str instanceof String) {
     return str?.length > 0
@@ -405,26 +347,5 @@ export const makeTitleCase = (string) =>
     (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
   )
 
-export const getWidgetLabel = (string) => {
-  switch (string) {
-    case 'title':
-      return 'Title'
-    case 'url':
-      return 'Link Url'
-    case 'urlLabel':
-      return 'Button Text'
-    case 'text':
-      return 'Subtitle'
-    case 'galleryId':
-      return 'Gallery'
-    default:
-      return string
-  }
-}
-
 export const getFileExtensions = (fileName) =>
   fileName?.split('.').pop().toLowerCase()
-
-export const isDisplayablePropMedia = (property, value) =>
-  (typeof value === 'string' || value instanceof String) &&
-  DISPLAYABLE_PROPS_MEDIA.includes(property)

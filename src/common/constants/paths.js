@@ -7,6 +7,7 @@ export const MY_SITES = 'my-sites'
 export const SEARCH = 'search'
 export const SITES = 'sites'
 export const WIDGETS = 'widgets'
+export const WORD_OF_THE_DAY = 'word-of-the-day'
 
 // MEDIA
 export const AUDIO_PATH = 'audio'

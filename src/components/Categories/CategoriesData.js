@@ -19,8 +19,7 @@ function CategoriesData() {
     })
 
   // Data fetch
-  const { fetchStatus, isInitialLoading, error, isError, data } =
-    useCategories()
+  const { isInitialLoading, error, isError, data } = useCategories()
 
   useEffect(() => {
     if (isError) {
@@ -36,7 +35,7 @@ function CategoriesData() {
     searchType,
     setSearchTypeInUrl,
     entryLabelPlural: getSearchTypeLabel({ searchType, plural: true }),
-    isLoading: isInitialLoading || fetchStatus === 'idle' || isError,
+    isLoading: isInitialLoading || isError,
     sitename,
   }
 }

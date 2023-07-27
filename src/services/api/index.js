@@ -22,7 +22,6 @@ import story from 'services/api/story'
 import test from 'services/api/test'
 import user from 'services/api/user'
 import visibility from 'services/api/visibility'
-import widget from 'services/api/widget'
 import widgets from 'services/api/widgets'
 
 export default {
@@ -50,6 +49,5 @@ export default {
   test,
   user,
   visibility,
-  widget,
   widgets,
 }
