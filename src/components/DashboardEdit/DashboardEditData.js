@@ -80,14 +80,15 @@ function DashboardEditData() {
       iconColor: 'primary',
       auth: 'SuperAdmin',
     },
-    {
-      icon: 'Translate',
-      name: 'Edit your Immersion Labels',
-      description: 'Update the labels used in immersion mode on your site',
-      href: 'immersion',
-      iconColor: 'tertiaryA',
-      auth: 'SuperAdmin',
-    },
+    // Temp. hiding for FW-4514.
+    // {
+    //   icon: 'Translate',
+    //   name: 'Edit your Immersion Labels',
+    //   description: 'Update the labels used in immersion mode on your site',
+    //   href: 'immersion',
+    //   iconColor: 'tertiaryA',
+    //   auth: 'SuperAdmin',
+    // },
   ]
   const headerContent = {
     title: 'Edit',
