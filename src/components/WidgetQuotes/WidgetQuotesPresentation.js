@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import useMediaObject from 'common/dataHooks/useMediaObject'
+import { useImageObject } from 'common/dataHooks/useMedia'
 import { IMAGE, MEDIUM } from 'common/constants'
 
 function WidgetQuotesPresentation({ widgetData }) {
@@ -18,10 +18,9 @@ function WidgetQuotesPresentation({ widgetData }) {
     quote3By,
   } = widgetData.settings
 
-  const bgImageObject = useMediaObject({
+  const bgImageObject = useImageObject({
     sitename: widgetData?.sitename,
     id: backgroundImage,
-    type: IMAGE,
   })
 
   const makeQuote = (qoute, quoteBy) => (

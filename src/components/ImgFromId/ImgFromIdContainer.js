@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import useMediaObject from 'common/dataHooks/useMediaObject'
+import { useImageObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, MEDIUM } from 'common/constants'
 
@@ -13,11 +13,7 @@ function ImgFromIdContainer(props) {
   const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
-  const imageObject = useMediaObject({
-    sitename,
-    id,
-    type: IMAGE,
-  })
+  const imageObject = useImageObject({ sitename, id })
 
   useEffect(() => {
     if (imageObject?.original) {

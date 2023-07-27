@@ -6,13 +6,12 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioButton from 'components/AudioButton'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImgFromId from 'components/ImgFromId'
-import useMediaObject from 'common/dataHooks/useMediaObject'
+import { useAudioObject, useImageObject } from 'common/dataHooks/useMedia'
 import {
   FIRSTVOICESLINK,
   FORMAT_LEFT,
   FORMAT_RIGHT,
   FORMAT_DEFAULT,
-  AUDIO,
   IMAGE,
   MEDIUM,
 } from 'common/constants'
@@ -30,16 +29,14 @@ function WidgetTextPresentation({ widgetData }) {
   } = widgetData.settings
   const format = widgetData?.format || FORMAT_LEFT
 
-  const bgImageObject = useMediaObject({
+  const bgImageObject = useImageObject({
     sitename: widgetData?.sitename,
     id: bgImage,
-    type: IMAGE,
   })
 
-  const audioObject = useMediaObject({
+  const audioObject = useAudioObject({
     sitename: widgetData?.sitename,
     id: audio,
-    type: AUDIO,
   })
 
   const getImageElement = () =>
