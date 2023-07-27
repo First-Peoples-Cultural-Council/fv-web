@@ -1,25 +1,26 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useParams, Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+// import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
-import Toggle from 'components/Toggle'
-import getIcon from 'common/utils/getIcon'
 import { LOGIN_PATH } from 'common/constants'
 
-function UserMenuPresentation({ currentUser, hasImmersion }) {
-  const { i18n } = useTranslation()
+function UserMenuPresentation({ currentUser }) {
+  // const { i18n } = useTranslation()
   const { sitename } = useParams()
 
-  const changeLanguage = (setToLanguage) => {
-    if (setToLanguage) {
-      i18n.changeLanguage('language')
-    } else {
-      i18n.changeLanguage('en')
-    }
-  }
+  // hasImmersion as a prop is being removed for FW-4514, can be added back later
+  // when enabling immersion again
+
+  // const changeLanguage = (setToLanguage) => {
+  //   if (setToLanguage) {
+  //     i18n.changeLanguage('language')
+  //   } else {
+  //     i18n.changeLanguage('en')
+  //   }
+  // }
 
   const menuItemActiveClass = 'bg-gray-200 text-black rounded ring-black'
   const menuItemInactiveClass = 'text-fv-charcoal'
@@ -71,7 +72,8 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
                 )}
               </Menu.Item>
             )}
-            {hasImmersion && (
+            {/* Temp. hiding for FW-4514. */}
+            {/* {hasImmersion && (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
                   <div className="w-full flex justify-between items-center">
@@ -102,7 +104,7 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
                   </div>
                 )}
               </Menu.Item>
-            )}
+            )} */}
             {currentUser?.username === 'Guest' || !currentUser?.username ? (
               <>
                 <Menu.Item className="w-full flex">
@@ -151,10 +153,10 @@ function UserMenuPresentation({ currentUser, hasImmersion }) {
   )
 }
 // PROPTYPES
-const { bool, object } = PropTypes
+const { object } = PropTypes
 UserMenuPresentation.propTypes = {
   currentUser: object,
-  hasImmersion: bool,
+  // hasImmersion: bool,
 }
 
 export default UserMenuPresentation
