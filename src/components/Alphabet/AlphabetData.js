@@ -11,7 +11,7 @@ const AlphabetData = () => {
 
   const character = searchParams.get('char') || null
 
-  const { fetchStatus, isInitialLoading, data } = useAlphabet()
+  const { isInitialLoading, data } = useAlphabet()
 
   // Find slected character data
   const findCharacterData = (selectedCharacter) => {
@@ -60,7 +60,7 @@ const AlphabetData = () => {
   return {
     characters: data?.characters,
     links: data?.relatedLinks || [],
-    isLoading: isInitialLoading || fetchStatus === 'idle',
+    isLoading: isInitialLoading,
     sitename,
     onCharacterClick,
     onVideoClick,

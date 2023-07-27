@@ -4,8 +4,7 @@ import { Howl, Howler } from 'howler'
 // FPCC
 import { useAudiobar } from 'context/AudiobarContext'
 import { AUDIO } from 'common/constants'
-import { getMediaPath } from 'common/utils/mediaHelpers'
-import { getReadableFileSize } from 'common/utils/stringHelpers'
+import { getMediaPath, getReadableFileSize } from 'common/utils/mediaHelpers'
 
 function AudiobarData() {
   const { currentAudio, setCurrentAudio } = useAudiobar()

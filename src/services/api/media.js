@@ -1,8 +1,20 @@
-import { apiV1, externalApi } from 'services/config'
+import { apiBase, apiV1, externalApi } from 'services/config'
 import { cleanNXQL } from 'common/utils/stringHelpers'
-import { HEADER_ENRICHER } from 'common/constants'
+import {
+  HEADER_ENRICHER,
+  SITES,
+  AUDIO_PATH,
+  IMAGE_PATH,
+  VIDEO_PATH,
+} from 'common/constants'
 
 const media = {
+  getAudio: async ({ sitename, id }) =>
+    apiBase.get(`${SITES}/${sitename}/${AUDIO_PATH}/${id}`).json(),
+  getImage: async ({ sitename, id }) =>
+    apiBase.get(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
+  getVideo: async ({ sitename, id }) =>
+    apiBase.get(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
   get: async ({ searchTerm, siteId, type, pageParam, perPage = 24 }) => {
     const search = searchTerm
       ? `AND  (dc:title ILIKE '%${cleanNXQL(

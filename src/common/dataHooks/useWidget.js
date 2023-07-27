@@ -13,6 +13,6 @@ export default function useWidget({ sitename, id }) {
   )
   return {
     ...response,
-    data: widgetAdaptor(response?.data),
+    data: widgetAdaptor({ widgetData: response?.data, sitename }),
   }
 }

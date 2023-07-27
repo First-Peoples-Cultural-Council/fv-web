@@ -14,7 +14,6 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
   WIDGET_WOTD,
 } from 'common/constants'
 
@@ -33,7 +32,6 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     isSuperAdmin && WIDGET_TEXTICONS,
-    //   WIDGET_TEXTMULTI,
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
 
@@ -50,7 +48,6 @@ export const isEditableWidgetType = (widgetType) => {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
-    WIDGET_TEXTMULTI,
   ]
   return editableWidgetTypes.indexOf(widgetType) !== -1
 }
@@ -61,4 +58,56 @@ export const getObjectFromSettingsArray = (settingsArray) => {
     settingsObject[setting?.key] = setting?.value
   })
   return settingsObject
+}
+
+export const getWidgetTypeLabel = (type) => {
+  switch (type) {
+    case WIDGET_ALPHABET:
+      return 'Alphabet'
+    case WIDGET_APPS:
+      return 'Mobile App'
+    case WIDGET_CONTACT:
+      return 'Contact Us'
+    case WIDGET_GALLERY:
+      return 'Gallery'
+    case WIDGET_IFRAME:
+      return 'Map'
+    case WIDGET_KEYBOARDS:
+      return 'Keyboard'
+    case WIDGET_LOGO:
+      return 'Logo'
+    case WIDGET_QUOTES:
+      return 'Quotes'
+    case WIDGET_STATS:
+      return 'New This Week'
+    case WIDGET_TEXT:
+      return 'Text With Image'
+    case WIDGET_TEXTCONCISE:
+      return 'Short Text'
+    case WIDGET_TEXTFULL:
+      return 'Page Text'
+    case WIDGET_TEXTICONS:
+      return 'Text with Icons'
+    case WIDGET_WOTD:
+      return 'Word of the Day'
+    default:
+      return 'Unrecognised Widget Type'
+  }
+}
+
+export const getWidgetLabel = (string) => {
+  switch (string) {
+    case 'title':
+      return 'Title'
+    case 'url':
+      return 'Link Url'
+    case 'urlLabel':
+      return 'Button Text'
+    case 'text':
+      return 'Subtitle'
+    case 'galleryId':
+      return 'Gallery'
+    default:
+      return string
+  }
 }

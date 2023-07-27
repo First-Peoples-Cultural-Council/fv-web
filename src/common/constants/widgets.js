@@ -13,7 +13,6 @@ export const WIDGET_TEXT = 'WIDGET_TEXT'
 export const WIDGET_TEXTCONCISE = 'WIDGET_TEXTCONCISE'
 export const WIDGET_TEXTFULL = 'WIDGET_TEXTFULL'
 export const WIDGET_TEXTICONS = 'WIDGET_TEXTICONS'
-export const WIDGET_TEXTMULTI = 'WIDGET_TEXTMULTI'
 export const WIDGET_WOTD = 'WIDGET_WOTD'
 
 /* ---- Widget Format Options ---- */

@@ -1,18 +1,23 @@
 // FPCC
-import { getObjectFromSettingsArray } from 'common/utils/widgetHelpers'
-import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import {
+  getObjectFromSettingsArray,
+  getWidgetTypeLabel,
+} from 'common/utils/widgetHelpers'
 
-export function widgetAdaptor(rawWidgetData) {
+export function widgetAdaptor({ widgetData, sitename }) {
   return {
-    format: rawWidgetData?.format,
-    settings: getObjectFromSettingsArray(rawWidgetData?.settings),
-    nickname: rawWidgetData?.title,
-    type: rawWidgetData?.type,
-    id: rawWidgetData?.id,
-    typeLabel: getWidgetTypeLabel(rawWidgetData?.type),
+    format: widgetData?.format,
+    settings: getObjectFromSettingsArray(widgetData?.settings),
+    nickname: widgetData?.title,
+    type: widgetData?.type,
+    id: widgetData?.id,
+    typeLabel: getWidgetTypeLabel(widgetData?.type),
+    sitename,
   }
 }
 
-export function widgetListAdaptor(widgetListArray) {
-  return widgetListArray?.map((widget) => widgetAdaptor(widget))
+export function widgetListAdaptor({ widgetList, sitename }) {
+  return widgetList?.map((widgetData) =>
+    widgetAdaptor({ widgetData, sitename }),
+  )
 }

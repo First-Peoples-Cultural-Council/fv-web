@@ -3,10 +3,17 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import AudioButton from 'components/AudioButton'
+import { useAudioObject } from 'common/dataHooks/useMedia'
 import { FIRSTVOICESLINK } from 'common/constants'
 
 function WidgetTextConcisePresentation({ widgetData }) {
-  const { audio, title, text, url, urlLabel } = widgetData?.settings
+  const { audio, title, text, url, urlLabel } = widgetData.settings
+
+  const audioObject = useAudioObject({
+    sitename: widgetData?.sitename,
+    id: audio,
+  })
+
   return (
     <section
       id="WidgetTextConcisePresentation"
@@ -20,7 +27,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
           </span>
           {audio && (
             <AudioButton
-              audioArray={[audio]}
+              audioArray={[audioObject]}
               iconStyling="fill-current h-9 w-9 sm:w-12 sm:h-12 ml-2"
               hoverTooltip
             />
