@@ -19,7 +19,7 @@ function SongsAndStoriesPresentation({
   isLoading,
   items,
   kids,
-  loadRef,
+  // loadRef,
   sitename,
 }) {
   const type = searchType.toLowerCase()
@@ -89,12 +89,9 @@ function SongsAndStoriesPresentation({
                       <h2 id="gallery-heading" className="sr-only">
                         {pluralDocType}
                       </h2>
-                      <ul
-                        role="list"
-                        className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
-                      >
-                        {items?.pages?.map((page, index) => (
-                          <React.Fragment key={index}>
+                      <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                        {items?.pages?.map((page) => (
+                          <React.Fragment key={page.next}>
                             {page.results.length > 0 ? (
                               page.results.map((item) => {
                                 const hasCoverImage = item.photos?.length > 0
@@ -192,14 +189,17 @@ function SongsAndStoriesPresentation({
                         {pluralDocType}
                       </h2>
                       <div className="w-full text-left py-2 text-lg text-fv-charcoal">
-                        {items?.pages?.map((page, index) => (
-                          <React.Fragment key={index}>
+                        {items?.pages?.map((page) => (
+                          <React.Fragment key={page.next}>
                             {page.results.length > 0 ? (
                               page.results.map((item) => (
                                 <div
                                   key={item.id}
                                   className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
                                   onClick={() => handleItemClick(item)}
+                                  onKeyDown={handleItemClick(item)}
+                                  role="button"
+                                  tabIndex={0}
                                 >
                                   <div className="text-xl">{item?.title}</div>
                                   <div className="text-base text-fv-charcoal-light">
@@ -228,7 +228,7 @@ function SongsAndStoriesPresentation({
                 </Loading.Container>
               </div>
               <div className="p-3 text-center text-fv-charcoal font-medium">
-                <div ref={loadRef} className="w-full h-5" />
+                {/* <div ref={loadRef} className="w-full h-5" /> */}
                 <button
                   type="button"
                   className={!hasNextPage ? 'cursor-text' : ''}
@@ -267,7 +267,7 @@ SongsAndStoriesPresentation.propTypes = {
   isLoading: bool,
   items: object,
   kids: bool,
-  loadRef: object,
+  // loadRef: object,
   sitename: string,
 }
 
