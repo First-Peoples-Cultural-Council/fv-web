@@ -19,9 +19,10 @@ function SongsAndStoriesPresentation({
   isLoading,
   items,
   kids,
-  // loadRef,
+  loadRef,
   sitename,
 }) {
+  // console.log({items})
   const type = searchType.toLowerCase()
   const pluralDocType = makePlural(searchType)
   const [isGridView, setIsGridView] = useState(true)
@@ -91,8 +92,8 @@ function SongsAndStoriesPresentation({
                       </h2>
                       <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                         {items?.pages?.map((page) => (
-                          <React.Fragment key={page.next}>
-                            {page.results.length > 0 ? (
+                          <React.Fragment key={page.id}>
+                            {page.length > 0 ? (
                               page.results.map((item) => {
                                 const hasCoverImage = item.photos?.length > 0
                                 const hideTextOverlay =
@@ -228,7 +229,7 @@ function SongsAndStoriesPresentation({
                 </Loading.Container>
               </div>
               <div className="p-3 text-center text-fv-charcoal font-medium">
-                {/* <div ref={loadRef} className="w-full h-5" /> */}
+                <div ref={loadRef} className="w-full h-5" />
                 <button
                   type="button"
                   className={!hasNextPage ? 'cursor-text' : ''}
@@ -267,7 +268,7 @@ SongsAndStoriesPresentation.propTypes = {
   isLoading: bool,
   items: object,
   kids: bool,
-  // loadRef: object,
+  loadRef: object,
   sitename: string,
 }
 

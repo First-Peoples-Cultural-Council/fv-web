@@ -1,4 +1,4 @@
-// import { useRef } from 'react'
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 // import { useInfiniteQuery } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 // import { useSiteStore } from 'context/SiteContext'
 // import api from 'services/api'
 // import { makePlural } from 'common/utils/urlHelpers'
-// import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
+import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import useSongs from 'common/dataHooks/useSongs'
 
 function SongsAndStoriesData() {
@@ -17,8 +17,16 @@ function SongsAndStoriesData() {
 
   // const _searchParams = `docType=${searchType}&kidsOnly=${kids}`
 
-  const { data } = useSongs()
-  // console.log({data})
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isError,
+    isFetchingNextPage,
+    isInitialLoading,
+  } = useSongs({ sitename })
+
+  console.log({ data })
 
   // const {
   //   data,
@@ -43,33 +51,33 @@ function SongsAndStoriesData() {
   //   },
   // )
 
-  // let loadButtonLabel = ''
-  // if (isFetchingNextPage) {
-  //   loadButtonLabel = 'Loading more...'
-  // } else if (hasNextPage) {
-  //   loadButtonLabel = 'Load more'
-  // }
+  let loadButtonLabel = ''
+  if (isFetchingNextPage) {
+    loadButtonLabel = 'Loading more...'
+  } else if (hasNextPage) {
+    loadButtonLabel = 'Load more'
+  }
 
-  // const loadRef = useRef(null)
-  // useIntersectionObserver({
-  //   target: loadRef,
-  //   onIntersect: fetchNextPage,
-  //   enabled: hasNextPage,
-  // })
+  const loadRef = useRef(null)
+  useIntersectionObserver({
+    target: loadRef,
+    onIntersect: fetchNextPage,
+    enabled: hasNextPage,
+  })
 
-  // const infiniteScroll = {
-  //   fetchNextPage,
-  //   hasNextPage,
-  //   isFetchingNextPage,
-  //   loadButtonLabel,
-  // }
+  const infiniteScroll = {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    loadButtonLabel,
+  }
 
   return {
     items: data || {},
-    // isLoading: isInitialLoading || isError,
-    // infiniteScroll,
+    isLoading: isInitialLoading || isError,
+    infiniteScroll,
     sitename,
-    // loadRef,
+    loadRef,
   }
 }
 

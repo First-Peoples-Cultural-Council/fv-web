@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom'
 function HomeData() {
   const { sitename } = useParams()
 
-  const { allSongsResponse } = useSongs({ sitename })
+  const { data } = useSongs({ sitename })
 
-  console.log({ allSongsResponse })
+  console.log({ data })
 
   const { site } = useSiteStore()
   const { bannerImage, bannerVideo, homepageWidgets } = site
