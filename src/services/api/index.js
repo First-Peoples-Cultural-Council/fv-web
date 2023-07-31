@@ -16,8 +16,9 @@ import people from 'services/api/people'
 import search from 'services/api/search'
 import site from 'services/api/site'
 import song from 'services/api/song'
-import songsAndStories from 'services/api/songsAndStories'
-import story from 'services/api/story'
+import speaker from 'services/api/speaker'
+import stories from 'services/api/stories'
+import test from 'services/api/test'
 import user from 'services/api/user'
 import visibility from 'services/api/visibility'
 import widgets from 'services/api/widgets'
@@ -41,8 +42,9 @@ export default {
   search,
   site,
   song,
-  songsAndStories,
-  story,
+  speaker,
+  stories,
+  test,
   user,
   visibility,
   widgets,

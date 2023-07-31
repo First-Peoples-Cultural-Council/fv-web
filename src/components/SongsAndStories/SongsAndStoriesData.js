@@ -1,43 +1,17 @@
-import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { useSongs } from 'common/dataHooks/useSongs'
 
-function SongsAndStoriesData() {
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+
+function SongsAndStoriesData({ searchType, kids }) {
   const { sitename } = useParams()
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isError,
-    isFetchingNextPage,
-    isInitialLoading,
-  } = useSongs({ sitename })
+  const _searchParams = `types=${searchType}&kids=${kids}`
 
-  let loadButtonLabel = ''
-  if (isFetchingNextPage) {
-    loadButtonLabel = 'Loading more...'
-  } else if (hasNextPage) {
-    loadButtonLabel = 'Load more'
-  }
-
-  const loadRef = useRef(null)
-  useIntersectionObserver({
-    target: loadRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage,
-  })
-
-  const infiniteScroll = {
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    loadButtonLabel,
-  }
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
+    useSearchLoader({ searchParams: _searchParams })
 
   return {
     items: data || [],

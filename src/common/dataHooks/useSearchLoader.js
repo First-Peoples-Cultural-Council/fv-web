@@ -13,6 +13,7 @@ import {
   TYPE_STORY,
   TYPE_WORD,
 } from 'common/constants'
+import { storySummaryAdaptor } from 'common/dataAdaptors'
 
 /**
  * Calls search API and provides search results and infinite scroll info.
@@ -56,8 +57,8 @@ function useSearchLoader({ searchParams }) {
       case TYPE_SONG:
       case TYPE_STORY:
         return {
+          ...storySummaryAdaptor({ item: result?.entry }),
           ...baseObject,
-          translations: [result?.entry?.title_translation],
         }
       default:
         return {

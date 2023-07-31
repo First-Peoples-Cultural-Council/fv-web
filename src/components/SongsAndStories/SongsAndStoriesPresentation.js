@@ -13,6 +13,7 @@ import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import Song from 'components/Song'
 import Story from 'components/Story'
+
 import { SMALL, IMAGE } from 'common/constants'
 
 function SongsAndStoriesPresentation({
@@ -92,12 +93,14 @@ function SongsAndStoriesPresentation({
                         {pluralDocType}
                       </h2>
                       <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                        {items?.map((page) => (
-                          <React.Fragment key={page}>
-                            {page?.results?.length > 0 ? (
-                              page?.results?.map((item) => {
-                                const hasCoverImage = item?.coverVisual?.id
-                                const hideTextOverlay = item?.hideOverlay
+                        {items?.pages?.map((page) => (
+                          <React.Fragment key={page.pageNumber}>
+                            {page.results.length > 0 ? (
+                              page.results.map((item) => {
+                                const hasCoverImage =
+                                  item.coverVisual?.type === IMAGE
+                                const hideTextOverlay = item.hideOverlay
+
                                 let conditionalClass =
                                   'text-fv-charcoal-light bg-gray-100'
                                 let conditionalStyle = {}
@@ -105,8 +108,8 @@ function SongsAndStoriesPresentation({
                                   conditionalClass = 'bg-center bg-cover'
                                   conditionalStyle = {
                                     backgroundImage: `url(${getMediaPath({
-                                      type: IMAGE,
-                                      mediaObject: item?.coverVisual,
+                                      type: item.coverVisual?.type,
+                                      mediaObject: item.coverVisual?.entry,
                                       size: SMALL,
                                     })})`,
                                   }
@@ -116,8 +119,8 @@ function SongsAndStoriesPresentation({
                                   conditionalStyle = {
                                     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaPath(
                                       {
-                                        type: IMAGE,
-                                        mediaObject: item?.coverVisual,
+                                        type: item.coverVisual?.type,
+                                        mediaObject: item.coverVisual?.entry,
                                         size: SMALL,
                                       },
                                     )})`,
@@ -179,17 +182,18 @@ function SongsAndStoriesPresentation({
                         {pluralDocType}
                       </h2>
                       <div className="w-full text-left py-2 text-lg text-fv-charcoal">
-                        {items?.map((page) => (
-                          <React.Fragment key={page.next}>
+
+                        {items?.pages?.map((page) => (
+                          <React.Fragment key={page.pageNumber}>
                             {page.results.length > 0 ? (
-                              page?.results?.map((item) => (
+                              page.results.map((item, index) => (
                                 <div
                                   key={item.id}
+                                  role="button"
+                                  tabIndex={index}
                                   className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
                                   onClick={() => handleItemClick(item)}
                                   onKeyDown={() => handleItemClick(item)}
-                                  role="button"
-                                  tabIndex={0}
                                 >
                                   <div className="text-xl">{item?.title}</div>
                                   <div className="text-base text-fv-charcoal-light">
