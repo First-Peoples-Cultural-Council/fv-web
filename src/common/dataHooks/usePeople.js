@@ -46,9 +46,8 @@ export function usePersonCreate() {
     queryKey: [PEOPLE, sitename],
   })
 
-  const onSubmit = (event) => {
-    event.preventDefault()
-    mutation.mutate(new FormData(event.target))
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
   }
   return { onSubmit }
 }
@@ -74,9 +73,8 @@ export function usePersonUpdate() {
     queryKey: [PEOPLE, sitename],
   })
 
-  const onSubmit = (event) => {
-    event.preventDefault()
-    mutation.mutate(new FormData(event.target))
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
   }
   return { onSubmit }
 }
