@@ -104,7 +104,7 @@ function WidgetCrudPresentation({
 
           <div className="w-full flex justify-end mt-6 px-6">
             {dataToEdit?.id && (
-              <DeleteButton.Container
+              <DeleteButton.Presentation
                 id={dataToEdit?.id}
                 label="Delete Widget"
                 message="Are you sure you want to delete this Widget from your site?"
