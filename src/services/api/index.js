@@ -18,7 +18,6 @@ import search from 'services/api/search'
 import site from 'services/api/site'
 import song from 'services/api/song'
 import songsAndStories from 'services/api/songsAndStories'
-import speaker from 'services/api/speaker'
 import story from 'services/api/story'
 import test from 'services/api/test'
 import user from 'services/api/user'
@@ -46,7 +45,6 @@ export default {
   site,
   song,
   songsAndStories,
-  speaker,
   story,
   test,
   user,
