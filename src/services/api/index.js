@@ -13,6 +13,7 @@ import mail from 'services/api/mail'
 import media from 'services/api/media'
 import pages from 'services/api/pages'
 import partsOfSpeech from 'services/api/partsOfSpeech'
+import people from 'services/api/people'
 import search from 'services/api/search'
 import site from 'services/api/site'
 import song from 'services/api/song'
@@ -40,6 +41,7 @@ export default {
   media,
   pages,
   partsOfSpeech,
+  people,
   search,
   site,
   song,
