@@ -6,7 +6,7 @@ import SpeakerCrudData from 'components/SpeakerCrud/SpeakerCrudData'
 import Loading from 'components/Loading'
 
 function SpeakerCrudContainer() {
-  const { backHandler, dataToEdit, isLoading, submitHandler } =
+  const { backHandler, dataToEdit, isLoading, submitHandler, deleteHandler } =
     SpeakerCrudData()
 
   return (
@@ -15,6 +15,7 @@ function SpeakerCrudContainer() {
         backHandler={backHandler}
         dataToEdit={dataToEdit}
         submitHandler={submitHandler}
+        deleteHandler={deleteHandler}
       />
     </Loading.Container>
   )

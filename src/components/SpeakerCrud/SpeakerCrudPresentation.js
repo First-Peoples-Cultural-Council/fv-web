@@ -8,7 +8,12 @@ import DeleteButton from 'components/DeleteButton'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 
-function SpeakerCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
+function SpeakerCrudPresentation({
+  backHandler,
+  dataToEdit,
+  submitHandler,
+  deleteHandler,
+}) {
   const validator = yup.object().shape({
     name: definitions.title().required('A name is required'),
     bio: definitions.paragraph().required('A bio is required'),
@@ -33,8 +38,8 @@ function SpeakerCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
       />
       {!isCreateMode && (
         <div className="w-full flex justify-end mt-6 px-6">
-          <DeleteButton.Container
-            id={dataToEdit?.id}
+          <DeleteButton.Presentation
+            deleteHandler={deleteHandler}
             label="Delete Speaker"
             message="Are you sure you want to delete this speaker from your site?"
           />
@@ -71,11 +76,11 @@ function SpeakerCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
 }
 
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { func, object } = PropTypes
 
 SpeakerCrudPresentation.propTypes = {
   backHandler: func,
-  speakersDirectoryId: string,
+  deleteHandler: func,
   submitHandler: func,
   dataToEdit: object,
 }

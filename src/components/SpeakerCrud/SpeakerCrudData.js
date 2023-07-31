@@ -6,6 +6,7 @@ import {
   usePerson,
   usePersonCreate,
   usePersonUpdate,
+  usePersonDelete,
 } from 'common/dataHooks/usePeople'
 
 function SpeakerCrudData() {
@@ -20,6 +21,7 @@ function SpeakerCrudData() {
   const { data } = usePerson({ id: speakerId })
   const { onSubmit: create } = usePersonCreate()
   const { onSubmit: update } = usePersonUpdate()
+  const { onSubmit: deletePerson } = usePersonDelete()
 
   const submitHandler = (formData) => {
     if (speakerId && data?.id) {
@@ -34,6 +36,7 @@ function SpeakerCrudData() {
     backHandler,
     site,
     dataToEdit: data,
+    deleteHandler: () => deletePerson(data?.id),
   }
 }
 
