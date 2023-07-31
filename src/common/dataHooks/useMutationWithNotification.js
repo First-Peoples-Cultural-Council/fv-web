@@ -9,6 +9,7 @@ export default function useMutationWithNotification({
   redirectTo,
   queryKeyToInvalidate,
   type,
+  actionWord = 'saved',
 }) {
   const queryClient = useQueryClient()
   const { setNotification } = useNotification()
@@ -18,7 +19,7 @@ export default function useMutationWithNotification({
     onSuccess: () => {
       setNotification({
         type: SUCCESS,
-        message: `Success! The ${type} has been saved.`,
+        message: `Success! The ${type} has been ${actionWord}.`,
       })
       if (redirectTo) {
         setTimeout(() => {
@@ -29,7 +30,7 @@ export default function useMutationWithNotification({
     onError: () => {
       setNotification({
         type: ERROR,
-        message: `ERROR: There was a problem saving your ${type}. Please try again. If the error persists please contact FirstVoices Support.`,
+        message: `ERROR: Your ${type} was NOT ${actionWord}. Please try again. If the error persists please contact FirstVoices Support.`,
       })
     },
     onSettled: () => {

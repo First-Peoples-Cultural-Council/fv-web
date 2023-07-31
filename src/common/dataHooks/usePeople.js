@@ -44,6 +44,8 @@ export function usePersonCreate() {
     mutationFn: createPerson,
     redirectTo: `/${sitename}/dashboard/edit/speakers`,
     queryKey: [PEOPLE, sitename],
+    actionWord: 'created',
+    type: 'speaker',
   })
 
   const onSubmit = (formData) => {
@@ -70,9 +72,32 @@ export function usePersonUpdate() {
   const mutation = useMutationWithNotification({
     mutationFn: updatePerson,
     redirectTo: `/${sitename}/dashboard/edit/speakers`,
-    queryKey: [PEOPLE, sitename],
+    queryKeyToInvalidate: [PEOPLE, sitename],
+    actionWord: 'updated',
+    type: 'speaker',
   })
 
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
+}
+
+export function usePersonDelete() {
+  const { sitename } = useParams()
+  const deletePerson = async (id) =>
+    api.people.delete({
+      id,
+      sitename,
+    })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: deletePerson,
+    redirectTo: `/${sitename}/dashboard/edit/speakers`,
+    queryKeyToInvalidate: [PEOPLE, sitename],
+    actionWord: 'deleted',
+    type: 'speaker',
+  })
   const onSubmit = (formData) => {
     mutation.mutate(formData)
   }
