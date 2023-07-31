@@ -11,7 +11,7 @@ function DashboardWidgetsData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const response = useWidgets({ sitename })
+  const response = useWidgets()
 
   const { error, isError, isInitialLoading, widgets } = response
 

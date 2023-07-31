@@ -16,7 +16,6 @@ function PageData({ url }) {
 
   // Data fetch
   const { data, error, isError, isFetched } = usePage({
-    sitename,
     pageSlug: pageUrl,
   })
 

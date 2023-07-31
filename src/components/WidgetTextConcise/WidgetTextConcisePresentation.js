@@ -10,7 +10,6 @@ function WidgetTextConcisePresentation({ widgetData }) {
   const { audio, title, text, url, urlLabel } = widgetData.settings
 
   const audioObject = useAudioObject({
-    sitename: widgetData?.sitename,
     id: audio,
   })
 

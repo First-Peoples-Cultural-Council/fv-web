@@ -11,7 +11,7 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isInitialLoading } = usePages({ sitename })
+  const { data, error, isError, isInitialLoading } = usePages()
 
   useEffect(() => {
     if (isError) {
