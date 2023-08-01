@@ -1,21 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Link, useParams } from 'react-router-dom'
+// import PropTypes from 'prop-types'
+// import { Link, useParams } from 'react-router-dom'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
-import getIcon from 'common/utils/getIcon'
+// import getIcon from 'common/utils/getIcon'
 
-function GamesPresentation({ kids }) {
-  const games = [
-    { pathname: 'memory', title: 'Memory', icon: 'Memory' },
-    { pathname: 'jigsaw', title: 'Jigsaw', icon: 'Jigsaw' },
-    { pathname: 'parachute', title: 'Parachute', icon: 'Parachute' },
-    { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
-    { pathname: 'wordscramble', title: 'Word Scramble', icon: 'WordScramble' },
-    { pathname: 'wordsearch', title: 'Word Search', icon: 'WordSearch' },
-  ]
-  const { sitename } = useParams()
+function GamesPresentation() {
+  // Adding notice and commenting things out for FW-4515 until games are updated for new back-end.
+
+  // const games = [
+  //   { pathname: 'memory', title: 'Memory', icon: 'Memory' },
+  //   { pathname: 'jigsaw', title: 'Jigsaw', icon: 'Jigsaw' },
+  //   { pathname: 'parachute', title: 'Parachute', icon: 'Parachute' },
+  //   { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
+  //   { pathname: 'wordscramble', title: 'Word Scramble', icon: 'WordScramble' },
+  //   { pathname: 'wordsearch', title: 'Word Search', icon: 'WordSearch' },
+  // ]
+  // const { sitename } = useParams()
   return (
     <main
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
@@ -23,7 +25,12 @@ function GamesPresentation({ kids }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="GAMES" accentColor="tertiaryA" />
-        <div className="flex-1 flex items-stretch overflow-hidden">
+        <div className="w-full flex-1 min-h-full min-w-full p-10 lg:p-20 text-gray-800 relative items-center text-center">
+          <h1 className="font-black text-3xl lg:text-5xl text-fv-charcoal mb-10">
+            Games coming soon.
+          </h1>
+        </div>
+        {/* <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="px-4 sm:px-6 lg:px-8">
               <section className="mt-8 pb-16" aria-labelledby="gallery-heading">
@@ -54,16 +61,16 @@ function GamesPresentation({ kids }) {
               </section>
             </div>
           </main>
-        </div>
+        </div> */}
       </div>
     </main>
   )
 }
 
 // PROPTYPES
-const { bool } = PropTypes
-GamesPresentation.propTypes = {
-  kids: bool,
-}
+// const { bool } = PropTypes
+// GamesPresentation.propTypes = {
+//   kids: bool,
+// }
 
 export default GamesPresentation
