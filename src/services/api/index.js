@@ -3,7 +3,6 @@ import blog from 'services/api/blog'
 import category from 'services/api/category'
 import characters from 'services/api/characters'
 import dictionaryEntry from 'services/api/dictionaryEntry'
-import directory from 'services/api/directory'
 import document from 'services/api/document'
 import gallery from 'services/api/gallery'
 import gameContent from 'services/api/gameContent'
@@ -19,7 +18,6 @@ import site from 'services/api/site'
 import song from 'services/api/song'
 import songsAndStories from 'services/api/songsAndStories'
 import story from 'services/api/story'
-import test from 'services/api/test'
 import user from 'services/api/user'
 import visibility from 'services/api/visibility'
 import widgets from 'services/api/widgets'
@@ -30,7 +28,6 @@ export default {
   category,
   characters,
   dictionaryEntry,
-  directory,
   document,
   immersion,
   gallery,
@@ -46,7 +43,6 @@ export default {
   song,
   songsAndStories,
   story,
-  test,
   user,
   visibility,
   widgets,
