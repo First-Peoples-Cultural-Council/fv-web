@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import usePages from 'common/dataHooks/usePages'
+import { usePages } from 'common/dataHooks/usePages'
 
 function DashboardPagesData() {
   const { site } = useSiteStore()

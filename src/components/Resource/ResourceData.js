@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import usePage from 'common/dataHooks/usePage'
+import { usePage } from 'common/dataHooks/usePages'
 
 function ResourceData({ pageSlug }) {
   const { site } = useSiteStore()
