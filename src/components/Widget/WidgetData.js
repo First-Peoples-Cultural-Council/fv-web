@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import useWidget from 'common/dataHooks/useWidget'
+import { useWidget } from 'common/dataHooks/useWidgets'
 
 function WidgetData({ widgetData }) {
   const { widgetId } = useParams()
