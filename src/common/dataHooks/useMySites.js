@@ -5,7 +5,7 @@ import { MY_SITES } from 'common/constants'
 import api from 'services/api'
 import placeholder from 'images/cover-thumbnail.png'
 
-export default function useMySites() {
+export function useMySites() {
   const response = useQuery([MY_SITES], () => api.site.mySites())
   const formattedUserSitesData = response?.data?.results?.map((site) => ({
     uid: site?.id,

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useCategories from 'common/dataHooks/useCategories'
+import { useCategories } from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
 function ByCategoryData({ kids }) {
   const navigate = useNavigate()

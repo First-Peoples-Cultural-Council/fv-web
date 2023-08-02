@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 
-export default function useAlphabet() {
+export function useCharacters() {
   const { sitename } = useParams()
   const response = useQuery(
     [CHARACTERS, sitename],
