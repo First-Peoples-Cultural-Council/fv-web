@@ -2,8 +2,11 @@ import { apiBase } from 'services/config'
 import { SITES, SONGS } from 'common/constants'
 
 const song = {
-  get: async ({ sitename }) =>
+  getSongs: async ({ sitename }) =>
     apiBase.get(`${SITES}/${sitename}/${SONGS}/`).json(),
+
+  getSong: async ({ sitename, id }) =>
+    apiBase.get(`${SITES}/${sitename}/${SONGS}/${id}`).json(),
   // get: async ({ siteId, searchParams, pageParam, perPage = 48 }) => {
   //   const response = await apiV1
   //     .get(

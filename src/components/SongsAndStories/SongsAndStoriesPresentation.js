@@ -22,7 +22,7 @@ function SongsAndStoriesPresentation({
   loadRef,
   sitename,
 }) {
-  // console.log({items})
+  console.log({ items })
   const type = searchType.toLowerCase()
   const pluralDocType = makePlural(searchType)
   const [isGridView, setIsGridView] = useState(true)
@@ -34,6 +34,7 @@ function SongsAndStoriesPresentation({
   const navigate = useNavigate()
 
   function getDrawerContents() {
+    // console.log({selectedItems})
     switch (selectedItem?.type) {
       case 'song':
         return <Song.Container docId={selectedItem?.id} isDrawer />
@@ -91,15 +92,15 @@ function SongsAndStoriesPresentation({
                         {pluralDocType}
                       </h2>
                       <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                        {items?.pages?.map((page) => (
+                        {items?.map((page) => (
                           <React.Fragment key={page.id}>
-                            {page.length > 0 ? (
-                              page.results.map((item) => {
-                                const hasCoverImage = item.photos?.length > 0
+                            {page?.results?.length > 0 ? (
+                              page?.results?.map((item) => {
+                                const hasCoverImage =
+                                  item?.coverVisual?.length > 0
                                 const hideTextOverlay =
                                   item?.presentationSettings?.some(
-                                    (setting) =>
-                                      setting.key === 'hideTextOverlay',
+                                    (setting) => setting.key === 'hideOverlay',
                                   )
                                 let conditionalClass =
                                   'text-fv-charcoal-light bg-gray-100'
@@ -109,7 +110,7 @@ function SongsAndStoriesPresentation({
                                   conditionalStyle = {
                                     backgroundImage: `url(${getMediaUrl({
                                       type: 'image',
-                                      id: item.photos[0],
+                                      id: item?.coverVisual,
                                       viewName: 'Small',
                                     })})`,
                                   }
@@ -120,14 +121,14 @@ function SongsAndStoriesPresentation({
                                     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl(
                                       {
                                         type: 'image',
-                                        id: item.photos[0],
+                                        id: item?.coverVisual,
                                         viewName: 'Small',
                                       },
                                     )})`,
                                   }
                                 }
                                 return (
-                                  <li key={item.id} className="relative">
+                                  <li key={item?.id} className="relative">
                                     <button
                                       type="button"
                                       style={conditionalStyle}
@@ -140,8 +141,8 @@ function SongsAndStoriesPresentation({
                                             hideTextOverlay ? 'opacity-0' : ''
                                           } text-lg lg:text-2xl font-medium mb-2`}
                                         >
-                                          {item.title}{' '}
-                                          {item.videos?.length > 0 &&
+                                          {item?.title}
+                                          {item?.videos?.length > 0 &&
                                             getIcon(
                                               'Video',
                                               'inline-flex text-gray-400 fill-current w-6',
@@ -152,17 +153,17 @@ function SongsAndStoriesPresentation({
                                             hideTextOverlay ? 'opacity-0' : ''
                                           } text-base font-light`}
                                         >
-                                          {item.titleTranslation}
+                                          {item?.titleTranslation}
                                         </div>
                                         <div
                                           className={`${
                                             hideTextOverlay ? 'opacity-0' : ''
                                           } text-base font-light`}
                                         >
-                                          {item.author}
+                                          {item?.author}
                                         </div>
                                         <span className="sr-only">
-                                          Go to {item.title}
+                                          Go to {item?.title}
                                         </span>
                                       </div>
                                     </button>
@@ -190,10 +191,10 @@ function SongsAndStoriesPresentation({
                         {pluralDocType}
                       </h2>
                       <div className="w-full text-left py-2 text-lg text-fv-charcoal">
-                        {items?.pages?.map((page) => (
+                        {items?.map((page) => (
                           <React.Fragment key={page.next}>
                             {page.results.length > 0 ? (
-                              page.results.map((item) => (
+                              page?.results?.map((item) => (
                                 <div
                                   key={item.id}
                                   className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
@@ -261,12 +262,12 @@ function SongsAndStoriesPresentation({
   )
 }
 // PROPTYPES
-const { bool, object, string } = PropTypes
+const { bool, object, string, array } = PropTypes
 SongsAndStoriesPresentation.propTypes = {
   searchType: string,
   infiniteScroll: object,
   isLoading: bool,
-  items: object,
+  items: array,
   kids: bool,
   loadRef: object,
   sitename: string,

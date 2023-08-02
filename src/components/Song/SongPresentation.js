@@ -8,6 +8,7 @@ import SanitizedHtml from 'components/SanitizedHtml'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 
 function SongPresentation({ entry }) {
+  console.log({ entry })
   const hasMedia = !!(
     entry?.coverVisual?.length > 0 || entry?.videos?.length > 0
   )

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 // import api from 'services/api'
 // import { makePlural } from 'common/utils/urlHelpers'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import useSongs from 'common/dataHooks/useSongs'
+import { useSongs } from 'common/dataHooks/useSongs'
 
 function SongsAndStoriesData() {
   // const { site } = useSiteStore()
@@ -73,7 +73,7 @@ function SongsAndStoriesData() {
   }
 
   return {
-    items: data || {},
+    items: data || [],
     isLoading: isInitialLoading || isError,
     infiniteScroll,
     sitename,
