@@ -1,25 +1,33 @@
 import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { SITES } from 'common/constants'
 import api from 'services/api'
-import placeholder from 'images/cover-thumbnail.png'
 
-export default function useSites() {
+import { siteAdaptor, sitesListAdaptor } from 'common/dataAdaptors'
+
+export function useSite() {
+  const { sitename } = useParams()
+  const response = useQuery(
+    [SITES, sitename],
+    () => api.site.get({ sitename }),
+    {
+      // The query will not execute until the sitename exists
+      enabled: !!sitename,
+    },
+  )
+
+  const formattedSiteData = siteAdaptor({ siteData: response?.data || [] })
+
+  return { ...response, data: formattedSiteData }
+}
+
+export function useSites() {
   const allSitesResponse = useQuery([SITES], () => api.site.getSites())
-  const formattedSitesData = allSitesResponse?.data?.map((parentLanguage) => ({
-    language: parentLanguage?.language,
-    languageCode: parentLanguage?.languageCode,
-    sites: parentLanguage?.sites.map((site) => ({
-      uid: site?.id,
-      title: site?.title,
-      sitename: site?.slug,
-      visibility: site?.visibility?.toLowerCase(),
-      logoPath: site?.logo?.small?.path || placeholder,
-      parentLanguageTitle: site?.language,
-      features: site?.features,
-    })),
-  }))
+  const formattedSitesData = sitesListAdaptor({
+    sitesData: allSitesResponse?.data,
+  })
 
   return {
     ...allSitesResponse,
