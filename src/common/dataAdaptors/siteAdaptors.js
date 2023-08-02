@@ -12,19 +12,24 @@ import { widgetListAdaptor } from 'common/dataAdaptors/widgetAdaptors'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import placeholder from 'images/cover-thumbnail.png'
 
-export function sitesListAdaptor({ sitesData }) {
-  return sitesData?.map((language) => ({
+export function languagesListAdaptor({ languagesData }) {
+  return languagesData?.map((language) => ({
     language: language?.language,
     languageCode: language?.languageCode,
-    sites: language?.sites.map((site) => ({
-      uid: site?.id,
-      title: site?.title,
-      sitename: site?.slug,
-      visibility: site?.visibility?.toLowerCase(),
-      logoPath: site?.logo?.small?.path || placeholder,
-      parentLanguageTitle: site?.language,
-      features: site?.features,
-    })),
+    sites: sitesListAdaptor({ sitesData: language?.sites }),
+  }))
+}
+
+export function sitesListAdaptor({ sitesData }) {
+  return sitesData?.map((site) => ({
+    uid: site?.id,
+    title: site?.title,
+    sitename: site?.slug,
+    visibility: site?.visibility?.toLowerCase(),
+    logoPath: site?.logo?.small?.path || placeholder,
+    parentLanguageTitle: site?.language,
+    features: site?.features,
+    role: site?.role, // Data for this will only be included in the my-sites response
   }))
 }
 

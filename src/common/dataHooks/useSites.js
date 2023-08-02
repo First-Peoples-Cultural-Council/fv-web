@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { SITES } from 'common/constants'
 import api from 'services/api'
 
-import { siteAdaptor, sitesListAdaptor } from 'common/dataAdaptors'
+import { siteAdaptor, languagesListAdaptor } from 'common/dataAdaptors'
 
 export function useSite() {
   const { sitename } = useParams()
@@ -25,8 +25,8 @@ export function useSite() {
 
 export function useSites() {
   const allSitesResponse = useQuery([SITES], () => api.site.getSites())
-  const formattedSitesData = sitesListAdaptor({
-    sitesData: allSitesResponse?.data,
+  const formattedSitesData = languagesListAdaptor({
+    languagesData: allSitesResponse?.data,
   })
 
   return {
