@@ -48,7 +48,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     },
   )
 
-  const { data } = useWidget({ sitename: site?.sitename, id: _widgetId })
+  const { data } = useWidget({ id: _widgetId })
 
   // Add widget to active
   const insertOnPage = async (widget) => {

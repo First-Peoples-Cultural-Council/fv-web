@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { PAGES } from 'common/constants'
 import api from 'services/api'
 import { widgetListAdaptor } from 'common/dataAdaptors'
 
-export default function usePage({ sitename, pageSlug }) {
+export default function usePage({ pageSlug }) {
+  const { sitename } = useParams()
   const response = useQuery(
     [PAGES, sitename, pageSlug],
     () => api.pages.getPage({ sitename, pageSlug }),

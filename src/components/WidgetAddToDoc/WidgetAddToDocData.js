@@ -11,7 +11,7 @@ function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { site } = useSiteStore()
   const queryClient = useQueryClient()
 
-  const { widgets, isInitialLoading } = useWidgets({ sitename: site?.sitename })
+  const { widgets, isInitialLoading } = useWidgets()
 
   const { data: destinationData, isInitialLoading: destinationIsLoading } =
     useQuery(

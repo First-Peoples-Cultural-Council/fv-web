@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { WIDGETS } from 'common/constants'
@@ -7,7 +8,8 @@ import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { useUserStore } from 'context/UserContext'
 import { widgetAdaptor } from 'common/dataAdaptors'
 
-export default function useWidgets({ sitename }) {
+export default function useWidgets() {
+  const { sitename } = useParams()
   const { user } = useUserStore()
   const { isSuperAdmin } = user
   const editableWidgets = getEditableWidgetsForUser(isSuperAdmin)

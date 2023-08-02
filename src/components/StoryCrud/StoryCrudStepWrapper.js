@@ -26,7 +26,7 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
       </div>
       <div className="flex w-full justify-end">
         {id ? (
-          <DeleteButton.Container
+          <DeleteButton.Presentation
             id={id}
             label="Delete Story"
             message="Are you sure you want to delete this story from your site?"

@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom'
 import useWidget from 'common/dataHooks/useWidget'
 
 function WidgetData({ widgetData }) {
-  const { widgetId, sitename } = useParams()
+  const { widgetId } = useParams()
 
-  const { data } = useWidget({ id: widgetId, sitename })
+  const { data } = useWidget({ id: widgetId })
 
   const dataToReturn = widgetId ? data : widgetData
 

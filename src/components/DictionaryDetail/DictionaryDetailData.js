@@ -14,7 +14,6 @@ function DictionaryDetailData({ docId }) {
 
   // Data fetch
   const { data, error, isError, isInitialLoading } = useDictionaryEntry({
-    sitename,
     id: idToSend,
   })
 

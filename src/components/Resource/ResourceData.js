@@ -6,10 +6,9 @@ import usePage from 'common/dataHooks/usePage'
 
 function ResourceData({ pageSlug }) {
   const { site } = useSiteStore()
-  const { title, sitename } = site
+  const { title } = site
 
   const { data, isInitialLoading } = usePage({
-    sitename,
     pageSlug,
   })
 

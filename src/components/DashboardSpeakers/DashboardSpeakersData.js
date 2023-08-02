@@ -1,24 +1,16 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import { usePeople } from 'common/dataHooks/usePeople'
 
 function DashboardSpeakersData() {
   const { site } = useSiteStore()
   const navigate = useNavigate()
   const { sitename } = useParams()
 
-  const { data, error, isError, isInitialLoading } = useQuery(
-    ['speakers', site?.uid],
-    () => api.speaker.getAll({ siteId: site?.uid }),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!site?.uid,
-    },
-  )
+  const { data, error, isError, isInitialLoading } = usePeople()
 
   useEffect(() => {
     if (isError) {
@@ -45,27 +37,13 @@ function DashboardSpeakersData() {
     icon: 'Speak',
   }
 
-  const speakersDataAdaptor = (dataArray) => {
-    const speakersData = []
-    dataArray.forEach((speaker) => {
-      speakersData.push({
-        id: speaker?.uid,
-        name: speaker?.properties?.['dc:title'],
-        bio: speaker?.properties?.['dc:description'],
-        speaker,
-      })
-    })
-    return speakersData
-  }
-
   return {
     headerContent,
     tileContent,
     isLoading: isInitialLoading || isError,
     site,
     sitename,
-    speakers:
-      data?.entries?.length > 0 ? speakersDataAdaptor(data.entries) : [],
+    speakers: data?.results || [],
   }
 }
 

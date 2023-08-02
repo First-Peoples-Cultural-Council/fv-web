@@ -30,12 +30,10 @@ function WidgetTextPresentation({ widgetData }) {
   const format = widgetData?.format || FORMAT_LEFT
 
   const bgImageObject = useImageObject({
-    sitename: widgetData?.sitename,
     id: bgImage,
   })
 
   const audioObject = useAudioObject({
-    sitename: widgetData?.sitename,
     id: audio,
   })
 
