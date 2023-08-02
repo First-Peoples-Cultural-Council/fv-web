@@ -3,20 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 // FPCC
 import { MY_SITES } from 'common/constants'
 import api from 'services/api'
-import placeholder from 'images/cover-thumbnail.png'
+import { sitesListAdaptor } from 'common/dataAdaptors/siteAdaptors'
 
-export default function useMySites() {
+export function useMySites() {
   const response = useQuery([MY_SITES], () => api.site.mySites())
-  const formattedUserSitesData = response?.data?.results?.map((site) => ({
-    uid: site?.id,
-    title: site?.title,
-    sitename: site?.slug,
-    visibility: site?.visibility?.toLowerCase(),
-    logoPath: site?.logo?.content || placeholder,
-    parentLanguageTitle: site?.language,
-    features: site?.features,
-    role: site?.role,
-  }))
+  const formattedUserSitesData = sitesListAdaptor({
+    sitesData: response?.data?.results,
+  })
   return {
     ...response,
     mySitesData: formattedUserSitesData,
