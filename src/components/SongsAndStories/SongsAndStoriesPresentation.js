@@ -24,7 +24,6 @@ function SongsAndStoriesPresentation({
   loadRef,
   sitename,
 }) {
-  console.log({ items })
   const type = searchType.toLowerCase()
   const pluralDocType = makePlural(searchType)
   const [isGridView, setIsGridView] = useState(true)
@@ -36,7 +35,6 @@ function SongsAndStoriesPresentation({
   const navigate = useNavigate()
 
   function getDrawerContents() {
-    // console.log({selectedItems})
     switch (selectedItem?.type) {
       case 'song':
         return <Song.Container docId={selectedItem?.id} isDrawer />
@@ -98,7 +96,6 @@ function SongsAndStoriesPresentation({
                           <React.Fragment key={page.id}>
                             {page?.results?.length > 0 ? (
                               page?.results?.map((item) => {
-                                console.log({ item })
                                 const hasCoverImage = item?.coverVisual?.id
                                 const hideTextOverlay = item?.hideOverlay
                                 let conditionalClass =
@@ -159,7 +156,7 @@ function SongsAndStoriesPresentation({
                                             hideTextOverlay ? 'opacity-0' : ''
                                           } text-base font-light`}
                                         >
-                                          {item?.author}
+                                          {item?.acknowledgement}
                                         </div>
                                         <span className="sr-only">
                                           Go to {item?.title}
@@ -206,9 +203,9 @@ function SongsAndStoriesPresentation({
                                   <div className="text-base text-fv-charcoal-light">
                                     {item?.titleTranslation}
                                   </div>
-                                  {item?.author?.length > 0 && (
+                                  {item?.acknowledgement?.length > 0 && (
                                     <div className="text-base text-fv-charcoal-light">
-                                      by {item?.author}
+                                      by {item?.acknowledgement}
                                     </div>
                                   )}
                                 </div>

@@ -6,7 +6,6 @@ import SongPresentationDrawer from 'components/Song/SongPresentationDrawer'
 import Loading from 'components/Loading'
 
 function SongContainer({ docId, isDrawer }) {
-  console.log('SongContainer', docId)
   const { entry, isLoading, sitename } = SongData({ docId })
   return (
     <Loading.Container isLoading={isLoading}>
