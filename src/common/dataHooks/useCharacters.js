@@ -5,11 +5,33 @@ import { useParams } from 'react-router-dom'
 import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 
+export function useCharacter({ id }) {
+  const { sitename } = useParams()
+  const response = useQuery(
+    [CHARACTERS, sitename],
+    () => api.characters.get({ sitename, id }),
+    { enabled: !!id },
+  )
+  const formattedData = {
+    id: response?.data?.id,
+    title: response?.data?.title,
+    relatedWords: response?.data?.relatedEntries,
+    relatedAudio: response?.data?.relatedAudio,
+    relatedVideo: response?.data?.relatedVideos?.[0] || null,
+    relatedPictures: response?.data?.relatedImages,
+    generalNote: response?.data?.note,
+  }
+  return {
+    ...response,
+    data: formattedData,
+  }
+}
+
 export function useCharacters() {
   const { sitename } = useParams()
   const response = useQuery(
     [CHARACTERS, sitename],
-    () => api.characters.get({ sitename }),
+    () => api.characters.getAll({ sitename }),
     { enabled: !!sitename },
   )
   const formattedResults = response?.data?.results?.map((character) => ({
