@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import MediaCrud from 'components/MediaCrud'
+import MediaCrudData from 'components/MediaCrud/MediaCrudData'
+import UploadMedia from 'components/MediaCrud/UploadMedia'
+import SelectMedia from 'components/MediaCrud/SelectMedia'
+// import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import { makeTitleCase } from 'common/utils/stringHelpers'
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 
 function MediaCrudContainer({
   savedMedia,
@@ -28,7 +31,7 @@ function MediaCrudContainer({
     docTypeLabelPlural,
     site,
     extensionList,
-  } = MediaCrud.Data({ docType, maxFiles })
+  } = MediaCrudData({ docType, maxFiles })
 
   const [selectedTab, setSelectedTab] = useState('Media Library')
   const [allowSwitchTab, setAllowSwitchTab] = useState(true)
@@ -95,7 +98,7 @@ function MediaCrudContainer({
       </div>
       <div className="grow mt-2">
         {selectedTab === 'Media Library' ? (
-          <MediaCrud.SelectMedia
+          <SelectMedia
             docType={docType}
             searchValue={searchValue}
             handleSearchSubmit={handleSearchSubmit}
@@ -111,7 +114,7 @@ function MediaCrudContainer({
             docTypeLabelPlural={docTypeLabelPlural}
           />
         ) : (
-          <MediaCrud.UploadMedia
+          <UploadMedia
             docType={docType}
             site={site}
             extensionList={extensionList}
@@ -129,7 +132,7 @@ const { array, func, oneOf, number } = PropTypes
 MediaCrudContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
-  docType: oneOf([DOC_AUDIO, DOC_IMAGE, DOC_VIDEO]),
+  docType: oneOf([AUDIO, IMAGE, VIDEO]),
   maxFiles: number,
 }
 

@@ -5,7 +5,11 @@ import * as yup from 'yup'
 
 // FPCC
 import api from 'services/api'
-import Form from 'components/Form'
+import Header from 'components/Form/Header'
+import SubmitButtons from 'components/Form/SubmitButtons'
+import TextField from 'components/Form/TextField'
+import FileUploadField from 'components/Form/FileUploadField'
+import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 
@@ -92,18 +96,18 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
 
   return (
     <div id="UploadAudio" className="text-left px-4">
-      <Form.Header subtitle="Upload a new Audio file" />
+      <Header subtitle="Upload a new Audio file" />
       <form onReset={reset}>
         <div className="mt-2 grid grid-cols-12 gap-4">
           <div className="col-span-12">
-            <Form.TextField label="Title" nameId="title" register={register} />
+            <TextField label="Title" nameId="title" register={register} />
             {errors?.title && (
               <div className="text-red-500">{errors?.title?.message}</div>
             )}
           </div>
 
           <div className="col-span-12">
-            <Form.TextField
+            <TextField
               label="Acknowledgements"
               nameId="acknowledgement"
               register={register}
@@ -116,7 +120,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
           </div>
 
           <div className="col-span-12">
-            <Form.TextField
+            <TextField
               label="General Notes"
               nameId="notes"
               register={register}
@@ -127,7 +131,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
           </div>
 
           <div className="col-span-12">
-            <Form.FileUploadField
+            <FileUploadField
               label="Audio File"
               nameId="audioFile"
               register={register}
@@ -138,7 +142,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
           </div>
 
           <div className="col-span-12">
-            <Form.AutocompleteMultiple
+            <AutocompleteMultiple
               label="Speakers"
               nameId="speakers"
               control={control}
@@ -149,14 +153,14 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
 
           <div className="col-span-12 flex justify-end mt-2 px-6">
             {isUploading && (
-              <Form.SubmitButtons
+              <SubmitButtons
                 submitLabel="Uploading .."
                 submitIcon="Upload"
                 onSubmitClick={null}
               />
             )}
             {!isUploading && !fileUploaded && (
-              <Form.SubmitButtons
+              <SubmitButtons
                 submitLabel="Upload File"
                 submitIcon="Upload"
                 onSubmitClick={handleSubmit(submitHandler)}

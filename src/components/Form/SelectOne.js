@@ -3,11 +3,11 @@ import { Controller } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 // FPCC
-import DocumentThumbnail from 'components/DocumentThumbnail'
+import MediaThumbnail from 'components/MediaThumbnail'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { IMAGE, VIDEO, SMALL } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
 
 const DEFAULT_MEDIA_VALUE = {
@@ -36,7 +36,7 @@ function SelectOne({ label, nameId, control, helpText }) {
         )}
       />
       {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+        <div className="mt-2 text-sm text-fv-charcoal-light">{helpText}</div>
       )}
     </div>
   )
@@ -73,10 +73,14 @@ function SelectOneButton({ value, onChange }) {
     setMediaChoiceModalOpen(false)
     setAddMediaModalOpen(true)
   }
-
   return value?.docId ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <DocumentThumbnail.Container docId={value?.docId} />
+      <MediaThumbnail.Visual
+        id={value?.docId}
+        type={docType}
+        size={SMALL}
+        imageStyles="object-cover pointer-events-none"
+      />
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove
@@ -115,7 +119,7 @@ function SelectOneButton({ value, onChange }) {
           <button
             type="button"
             className={FRAGMENT_BUTTON_STYLES}
-            onClick={() => mediaChoiceButtonClicked(DOC_IMAGE)}
+            onClick={() => mediaChoiceButtonClicked(IMAGE)}
           >
             {getIcon('Images', 'fill-current -ml-1 mr-2 h-5 w-5')}
             <span>Add Image</span>
@@ -123,7 +127,7 @@ function SelectOneButton({ value, onChange }) {
           <button
             type="button"
             className={FRAGMENT_BUTTON_STYLES}
-            onClick={() => mediaChoiceButtonClicked(DOC_VIDEO)}
+            onClick={() => mediaChoiceButtonClicked(VIDEO)}
           >
             {getIcon('Video', 'fill-current -ml-1 mr-2 h-5 w-5')}
             <span>Add Video</span>
@@ -156,7 +160,7 @@ SelectOne.propTypes = {
   label: string,
   nameId: string,
   control: object,
-  helpText: string,
+  helpText: object,
 }
 
 SelectOneButton.propTypes = {

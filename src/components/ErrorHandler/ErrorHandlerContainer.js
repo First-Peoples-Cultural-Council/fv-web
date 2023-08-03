@@ -75,9 +75,8 @@ function ErrorHandlerContainer({ error }) {
   }
 }
 // PROPTYPES
-const { node, object } = PropTypes
+const { object } = PropTypes
 ErrorHandlerContainer.propTypes = {
-  children: node,
   error: object,
 }
 

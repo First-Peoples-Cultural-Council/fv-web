@@ -1,38 +1,32 @@
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 const mediaDataAdaptor = ({ type, data }) => {
   if (!data) {
     return null
   }
 
-  const { properties } = data
+  const properties = {}
 
   let formattedData = {
-    id: data?.uid,
-    filename: data?.properties?.['file:content']?.name,
-    title: properties?.['dc:title'],
-    description: properties?.['dc:description'],
-    mimeType: properties?.['file:content']?.['mime-type'],
-    downloadLink: `/nuxeo/nxfile/default/${data?.uid}/file:content/${data?.properties?.['file:content']?.name}`,
+    id: data?.id,
+    title: data?.title,
+    description: data?.description,
+    mimeType: data?.original?.mimetype,
+    downloadLink: data?.original?.path,
+    // filename: data?.properties?.['file:content']?.name,
   }
 
-  if (type === DOC_IMAGE) {
-    const info = properties?.['picture:info']
+  if (type === IMAGE) {
     formattedData = {
       ...formattedData,
-      height: info?.height,
-      width: info?.width,
-      views: properties?.['picture:views'],
-      thumbnail: getMediaUrl({
-        id: data?.uid,
-        type: 'image',
-        viewName: 'Small',
-      }),
+      height: data?.original?.height,
+      width: data?.original?.width,
+      // views: properties?.['picture:views'],
+      thumbnail: data?.small?.path,
     }
   }
 
-  if (type === DOC_VIDEO) {
+  if (type === VIDEO) {
     const info = properties?.['vid:info']
     formattedData = {
       ...formattedData,
@@ -43,7 +37,7 @@ const mediaDataAdaptor = ({ type, data }) => {
     }
   }
 
-  if (type === DOC_AUDIO) {
+  if (type === AUDIO) {
     formattedData = {
       ...formattedData,
       speakers: data?.contextParameters?.media?.speakers,
@@ -51,7 +45,7 @@ const mediaDataAdaptor = ({ type, data }) => {
     }
   }
 
-  if ([DOC_AUDIO, DOC_IMAGE, DOC_VIDEO].includes(type)) {
+  if ([AUDIO, IMAGE, VIDEO].includes(type)) {
     return formattedData
   }
 

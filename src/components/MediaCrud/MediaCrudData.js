@@ -12,9 +12,9 @@ import {
   SUPPORTED_IMAGE_EXTENSIONS,
   SUPPORTED_VIDEO_EXTENSIONS,
   SUPPORTED_AUDIO_EXTENSIONS,
-  DOC_AUDIO,
-  DOC_IMAGE,
-  DOC_VIDEO,
+  AUDIO,
+  IMAGE,
+  VIDEO,
 } from 'common/constants'
 
 function MediaCrudData({ docType, maxFiles }) {
@@ -44,12 +44,11 @@ function MediaCrudData({ docType, maxFiles }) {
     isInitialLoading,
     refetch,
   } = useInfiniteQuery(
-    [`${docType}-search`, searchTerm],
-    ({ pageParam = 0 }) =>
+    [`${pluralDocTypeLabel}-search`, searchTerm],
+    ({ pageParam = 1 }) =>
       api.media.get({
-        siteId: site?.uid,
-        searchTerm,
-        type: docType,
+        sitename,
+        docType: pluralDocTypeLabel,
         pageParam,
       }),
     {
@@ -125,11 +124,11 @@ function MediaCrudData({ docType, maxFiles }) {
 
   const extensionList = (() => {
     switch (docType) {
-      case DOC_IMAGE:
+      case IMAGE:
         return SUPPORTED_IMAGE_EXTENSIONS
-      case DOC_VIDEO:
+      case VIDEO:
         return SUPPORTED_VIDEO_EXTENSIONS
-      case DOC_AUDIO:
+      case AUDIO:
         return SUPPORTED_AUDIO_EXTENSIONS
       default:
         return SUPPORTED_IMAGE_EXTENSIONS
@@ -164,7 +163,7 @@ function MediaCrudData({ docType, maxFiles }) {
 const { number, oneOf } = PropTypes
 
 MediaCrudData.propTypes = {
-  docType: oneOf([DOC_AUDIO, DOC_IMAGE, DOC_VIDEO]),
+  docType: oneOf([AUDIO, IMAGE, VIDEO]),
   maxFiles: number,
 }
 

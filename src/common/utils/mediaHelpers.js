@@ -60,15 +60,15 @@ export const selectOneFormHelper = (formData, mediaObjectkey) => {
 
 export const selectOneDataHelper = (imageArray, videoArray) => {
   // allow for array of media objects or array of media ids
-  if (imageArray?.length && (imageArray?.[0]?.uid || imageArray?.[0])) {
+  if (imageArray?.length && (imageArray?.[0]?.id || imageArray?.[0])) {
     return {
-      docId: imageArray?.[0]?.uid || imageArray?.[0],
+      docId: imageArray?.[0]?.id || imageArray?.[0],
       docType: DOC_IMAGE,
     }
   }
-  if (videoArray?.length && (videoArray?.[0]?.uid || videoArray?.[0])) {
+  if (videoArray?.length && (videoArray?.[0]?.id || videoArray?.[0])) {
     return {
-      docId: videoArray?.[0]?.uid || videoArray?.[0],
+      docId: videoArray?.[0]?.id || videoArray?.[0],
       docType: DOC_VIDEO,
     }
   }

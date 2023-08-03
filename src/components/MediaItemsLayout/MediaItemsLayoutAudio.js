@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
-import { DOC_AUDIO } from 'common/constants'
+import { AUDIO } from 'common/constants'
 
 function MediaItemsLayoutAudio({
   data,
@@ -30,7 +30,12 @@ function MediaItemsLayoutAudio({
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                {selection && <th scope="col" className={headerClass}></th>}
+                {selection && (
+                  // Todo: confirm the following text label
+                  <th scope="col" className={headerClass}>
+                    {selection}
+                  </th>
+                )}
                 <th scope="col" className={headerClass}>
                   Audio
                 </th>
@@ -44,10 +49,12 @@ function MediaItemsLayoutAudio({
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {data?.pages?.map((page, index) => (
+                // todo: fix the following linting error
+                // eslint-disable-next-line react/no-array-index-key
                 <React.Fragment key={index}>
                   {page.entries.map((rawAudioDoc) => {
                     const audioFile = mediaDataAdaptor({
-                      type: DOC_AUDIO,
+                      type: AUDIO,
                       data: rawAudioDoc,
                     })
                     if (
