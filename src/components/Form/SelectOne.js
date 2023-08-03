@@ -75,12 +75,16 @@ function SelectOneButton({ value, onChange }) {
   }
   return value?.docId ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <MediaThumbnail.Visual
-        id={value?.docId}
-        type={docType}
-        size={SMALL}
-        imageStyles="object-cover pointer-events-none"
-      />
+      {docType === IMAGE ? (
+        <MediaThumbnail.Image
+          id={value?.docId}
+          type={docType}
+          size={SMALL}
+          imageStyles="object-cover pointer-events-none"
+        />
+      ) : (
+        <MediaThumbnail.Video id={value?.docId} type={docType} />
+      )}
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove

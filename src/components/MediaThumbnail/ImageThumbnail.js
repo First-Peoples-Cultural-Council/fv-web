@@ -7,7 +7,7 @@ import { useImageObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, MEDIUM } from 'common/constants'
 
-function VisualThumbnailPresentation(props) {
+function ImageThumbnail(props) {
   const { id, type, size, alt, containerStyles, imageStyles, ...other } = props
 
   const { sitename } = useParams()
@@ -19,14 +19,14 @@ function VisualThumbnailPresentation(props) {
     if (mediaObject?.original) {
       const srcToUse = getMediaPath({
         mediaObject,
+        size,
         type: IMAGE,
-        size: MEDIUM,
       })
       if (srcToUse !== src) {
         setSrc(srcToUse)
       }
     }
-  }, [src, setSrc, mediaObject])
+  }, [src, setSrc, mediaObject, size])
 
   return (
     <div className={containerStyles}>
@@ -42,7 +42,7 @@ function VisualThumbnailPresentation(props) {
 
 // PROPTYPES
 const { string, oneOf } = PropTypes
-VisualThumbnailPresentation.propTypes = {
+ImageThumbnail.propTypes = {
   id: string,
   size: string,
   alt: string,
@@ -52,11 +52,11 @@ VisualThumbnailPresentation.propTypes = {
 }
 
 // Todo: Confirm default props for videos
-VisualThumbnailPresentation.defaultProps = {
+ImageThumbnail.defaultProps = {
   size: MEDIUM,
   containerStyles:
     'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
   imageStyles: 'w-full h-full object-contain',
 }
 
-export default VisualThumbnailPresentation
+export default ImageThumbnail
