@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
+import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
 export function useCharacter({ id }) {
   const { sitename } = useParams()
@@ -15,10 +16,10 @@ export function useCharacter({ id }) {
   const formattedData = {
     id: response?.data?.id,
     title: response?.data?.title,
-    relatedWords: response?.data?.relatedEntries,
+    relatedDictionaryEntries: response?.data?.relatedDictionaryEntries,
     relatedAudio: response?.data?.relatedAudio,
-    relatedVideo: response?.data?.relatedVideos?.[0] || null,
-    relatedPictures: response?.data?.relatedImages,
+    relatedVideos: response?.data?.relatedVideos,
+    relatedImages: response?.data?.relatedImages,
     generalNote: response?.data?.note,
   }
   return {
@@ -37,14 +38,47 @@ export function useCharacters() {
   const formattedResults = response?.data?.results?.map((character) => ({
     id: character?.id,
     title: character?.title,
-    relatedWords: character?.relatedEntries,
+    relatedDictionaryEntries: character?.relatedDictionaryEntries,
     relatedAudio: character?.relatedAudio,
     relatedVideo: character?.relatedVideos?.[0] || null,
-    relatedPictures: character?.relatedImages,
+    relatedImage: character?.relatedImages?.[0] || null,
     generalNote: character?.note,
   }))
   return {
     ...response,
     data: { ...response.data, characters: formattedResults },
   }
+}
+
+export function useCharacterPartialUpdate() {
+  const { sitename } = useParams()
+
+  const updateCharacter = async (formData) => {
+    const properties = {
+      related_audio: formData?.relatedAudio || [],
+      related_images: formData?.relatedImages || [],
+      related_videos: formData?.relatedVideos || [],
+      note: formData?.generalNote || '',
+      related_dictionary_entries: formData?.relatedDictionaryEntries || [],
+    }
+
+    return api.people.update({
+      id: formData?.id,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateCharacter,
+    redirectTo: `/${sitename}/dashboard/edit/alphabet`,
+    queryKeyToInvalidate: [CHARACTERS, sitename],
+    actionWord: 'updated',
+    type: 'character',
+  })
+
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
 }

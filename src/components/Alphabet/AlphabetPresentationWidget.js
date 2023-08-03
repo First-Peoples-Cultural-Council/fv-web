@@ -68,7 +68,9 @@ function AlphabetPresentationWidget({
               <AlphabetPresentationSelected
                 title={selectedData?.title}
                 generalNote={selectedData?.generalNote}
-                relatedWords={selectedData?.relatedWords}
+                relatedDictionaryEntries={
+                  selectedData?.relatedDictionaryEntries
+                }
                 relatedAudio={selectedData?.relatedAudio}
                 alphabetLink
               />

@@ -1,4 +1,3 @@
-import alphabet from 'services/api/alphabet'
 import blog from 'services/api/blog'
 import category from 'services/api/category'
 import characters from 'services/api/characters'
@@ -23,7 +22,6 @@ import visibility from 'services/api/visibility'
 import widgets from 'services/api/widgets'
 
 export default {
-  alphabet,
   blog,
   category,
   characters,

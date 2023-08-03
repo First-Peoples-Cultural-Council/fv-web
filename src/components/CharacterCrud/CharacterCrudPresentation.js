@@ -16,20 +16,18 @@ import useEditForm from 'common/hooks/useEditForm'
 
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    relatedAssets: definitions.idArray(),
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
-    relatedWords: definitions.idArray(),
+    relatedDictionaryEntries: definitions.idArray(),
     generalNote: definitions.paragraph({ charCount: 120 }),
   })
 
   const defaultValues = {
-    relatedAssets: [],
     relatedAudio: [],
     relatedImages: [],
     relatedVideos: [],
-    relatedWords: [],
+    relatedDictionaryEntries: [],
     generalNote: '',
   }
 
@@ -56,9 +54,9 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               types={[TYPE_WORD, TYPE_PHRASE]}
               docCountLimit={10}
             />
-            {errors?.relatedWords && (
+            {errors?.relatedDictionaryEntries && (
               <div className="text-red-500">
-                {errors?.relatedWords?.message}
+                {errors?.relatedDictionaryEntries?.[0]?.message}
               </div>
             )}
           </div>
@@ -72,7 +70,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             />
             {errors?.relatedAudio && (
               <div className="text-red-500">
-                {errors?.relatedAudio?.message}
+                {errors?.relatedAudio?.[0]?.message}
               </div>
             )}
           </div>
@@ -86,7 +84,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             />
             {errors?.relatedImages && (
               <div className="text-red-500">
-                {errors?.relatedImages?.message}
+                {errors?.relatedImages?.[0]?.message}
               </div>
             )}
           </div>
@@ -100,7 +98,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             />
             {errors?.relatedVideos && (
               <div className="text-red-500">
-                {errors?.relatedVideos?.message}
+                {errors?.relatedVideos?.[0]?.message}
               </div>
             )}
           </div>

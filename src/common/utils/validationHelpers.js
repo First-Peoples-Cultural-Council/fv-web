@@ -6,6 +6,7 @@ import { getFileExtensions } from 'common/utils/stringHelpers'
 
 const uuid = yup
   .string()
+  .typeError('A valid string id is required')
   .matches(UUID_REGEX, {
     message: 'A valid id is required',
     excludeEmptyString: true,

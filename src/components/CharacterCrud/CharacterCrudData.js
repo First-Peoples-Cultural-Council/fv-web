@@ -1,74 +1,37 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
 
 // FPCC
-import api from 'services/api'
-import { useSiteStore } from 'context/SiteContext'
-import characterCrudDataAdaptor from 'components/CharacterCrud/characterCrudDataAdaptor'
-import { useNotification } from 'context/NotificationContext'
+import {
+  useCharacter,
+  useCharacterPartialUpdate,
+} from 'common/dataHooks/useCharacters'
 
 function CharacterCrudData() {
-  const { site } = useSiteStore()
-  const queryClient = useQueryClient()
+  const { sitename } = useParams()
   const navigate = useNavigate()
-  const location = useLocation()
+  const [searchParams] = useSearchParams()
 
-  const { setNotification } = useNotification()
-
-  const backHandler = () => navigate(-1)
-
-  const characterId = new URLSearchParams(location.search).get('id')
-    ? new URLSearchParams(location.search).get('id')
-    : null
-
+  const characterId = searchParams.get('id') || null
   if (!characterId) {
-    backHandler()
+    window.location.href = `/${sitename}/dashboard/edit/alphabet`
   }
 
-  const { data, isInitialLoading } = useQuery(['character', characterId], () =>
-    api.document.get({ id: characterId, properties: '*' }),
-  )
+  const { isInitialLoading, data } = useCharacter({ id: characterId })
+
+  const { onSubmit } = useCharacterPartialUpdate()
 
   const submitHandler = (formData) => {
     if (characterId && data) {
-      updateCharacter(formData)
+      onSubmit(formData)
     }
   }
 
-  const updateCharacter = async (formData) => {
-    const response = await api.document.update({
-      id: characterId,
-      parentRef: formData?.parentId,
-      properties: {
-        'fvcharacter:related_words': formData?.relatedWords || [],
-        'fv:related_assets': formData?.relatedAssets || [],
-        'fv:related_audio': formData?.relatedAudio || [],
-        'fv:related_pictures': formData?.relatedImages || [],
-        'fv:related_videos': formData?.relatedVideos || [],
-        'fv:general_note': formData?.generalNote || '',
-      },
-    })
-
-    if (response?.uid) {
-      setNotification({
-        type: 'SUCCESS',
-        message: 'Success! Your character has been saved.',
-      })
-      queryClient.invalidateQueries(['alphabet', site?.id])
-      queryClient.invalidateQueries(['character', characterId])
-      backHandler()
-    } else {
-      setNotification({
-        type: 'ERROR',
-        message: `ERROR: ${response?.status} ${response?.message}. Please try again. If the error persists please contact FirstVoices Support.`,
-      })
-    }
-  }
+  const backHandler = () => navigate(-1)
 
   return {
     submitHandler,
     backHandler,
-    dataToEdit: data ? characterCrudDataAdaptor({ data }) : {},
+    dataToEdit: data || null,
     isLoading: isInitialLoading,
   }
 }
