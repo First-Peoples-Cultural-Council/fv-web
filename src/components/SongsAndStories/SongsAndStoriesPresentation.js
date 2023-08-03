@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
+import { makePlural } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 
 import Drawer from 'components/Drawer'
@@ -12,6 +13,7 @@ import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import Song from 'components/Song'
 import Story from 'components/Story'
+import { SMALL, IMAGE } from 'common/constants'
 
 function SongsAndStoriesPresentation({
   searchType,
@@ -96,33 +98,30 @@ function SongsAndStoriesPresentation({
                           <React.Fragment key={page.id}>
                             {page?.results?.length > 0 ? (
                               page?.results?.map((item) => {
-                                const hasCoverImage =
-                                  item?.coverVisual?.length > 0
-                                const hideTextOverlay =
-                                  item?.presentationSettings?.some(
-                                    (setting) => setting.key === 'hideOverlay',
-                                  )
+                                console.log({ item })
+                                const hasCoverImage = item?.coverVisual?.id
+                                const hideTextOverlay = item?.hideOverlay
                                 let conditionalClass =
                                   'text-fv-charcoal-light bg-gray-100'
                                 let conditionalStyle = {}
                                 if (hasCoverImage && hideTextOverlay) {
                                   conditionalClass = 'bg-center bg-cover'
                                   conditionalStyle = {
-                                    backgroundImage: `url(${getMediaUrl({
-                                      type: 'image',
-                                      id: item?.coverVisual,
-                                      viewName: 'Small',
+                                    backgroundImage: `url(${getMediaPath({
+                                      type: IMAGE,
+                                      mediaObject: item?.coverVisual,
+                                      size: SMALL,
                                     })})`,
                                   }
                                 } else if (hasCoverImage && !hideTextOverlay) {
                                   conditionalClass =
                                     'bg-center bg-cover text-white'
                                   conditionalStyle = {
-                                    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl(
+                                    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaPath(
                                       {
-                                        type: 'image',
-                                        id: item?.coverVisual,
-                                        viewName: 'Small',
+                                        type: IMAGE,
+                                        mediaObject: item?.coverVisual,
+                                        size: SMALL,
                                       },
                                     )})`,
                                   }

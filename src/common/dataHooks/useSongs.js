@@ -9,7 +9,7 @@ import { SONGS, TYPE_SONG } from 'common/constants'
 const formatSong = (result) => ({
   author: result?.acknowledgements || '',
   audio: result?.relatedAudio || '',
-  coverVisual: result?.coverImage || '',
+  coverVisual: result?.coverImage || {},
   created: result?.created,
   excludeFromGames: result?.excludeFromGames,
   excludeFromKids: result?.excludeFromKids,

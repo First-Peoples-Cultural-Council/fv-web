@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
 import SanitizedHtml from 'components/SanitizedHtml'
 import ImageWithLightbox from 'components/ImageWithLightbox'
+import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
   console.log({ entry })
@@ -129,9 +131,10 @@ const getMedia = ({ pictures, videos }) => {
     return (
       <video
         className="h-auto w-full"
-        src={getMediaUrl({
-          type: 'video',
-          id: videos?.[0]?.uid || videos?.[0],
+        src={getMediaPath({
+          type: VIDEO,
+          mediaObject: videos?.[0],
+          size: ORIGINAL,
         })}
         controls
       >
