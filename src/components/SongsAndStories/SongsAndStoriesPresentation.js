@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl, makePlural } from 'common/utils/urlHelpers'
+import { makePlural } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 
 import Drawer from 'components/Drawer'
@@ -12,6 +13,7 @@ import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import Song from 'components/Song'
 import Story from 'components/Story'
+import { SMALL, IMAGE } from 'common/constants'
 
 function SongsAndStoriesPresentation({
   searchType,
@@ -89,82 +91,67 @@ function SongsAndStoriesPresentation({
                       <h2 id="gallery-heading" className="sr-only">
                         {pluralDocType}
                       </h2>
-                      <ul
-                        role="list"
-                        className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
-                      >
-                        {items?.pages?.map((page, index) => (
-                          <React.Fragment key={index}>
-                            {page.results.length > 0 ? (
-                              page.results.map((item) => {
-                                const hasCoverImage = item.photos?.length > 0
-                                const hideTextOverlay =
-                                  item?.presentationSettings?.some(
-                                    (setting) =>
-                                      setting.key === 'hideTextOverlay',
-                                  )
+                      <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                        {items?.map((page) => (
+                          <React.Fragment key={page}>
+                            {page?.results?.length > 0 ? (
+                              page?.results?.map((item) => {
+                                const hasCoverImage = item?.coverVisual?.id
+                                const hideTextOverlay = item?.hideOverlay
                                 let conditionalClass =
                                   'text-fv-charcoal-light bg-gray-100'
                                 let conditionalStyle = {}
                                 if (hasCoverImage && hideTextOverlay) {
                                   conditionalClass = 'bg-center bg-cover'
                                   conditionalStyle = {
-                                    backgroundImage: `url(${getMediaUrl({
-                                      type: 'image',
-                                      id: item.photos[0],
-                                      viewName: 'Small',
+                                    backgroundImage: `url(${getMediaPath({
+                                      type: IMAGE,
+                                      mediaObject: item?.coverVisual,
+                                      size: SMALL,
                                     })})`,
                                   }
                                 } else if (hasCoverImage && !hideTextOverlay) {
                                   conditionalClass =
                                     'bg-center bg-cover text-white'
                                   conditionalStyle = {
-                                    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl(
+                                    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaPath(
                                       {
-                                        type: 'image',
-                                        id: item.photos[0],
-                                        viewName: 'Small',
+                                        type: IMAGE,
+                                        mediaObject: item?.coverVisual,
+                                        size: SMALL,
                                       },
                                     )})`,
                                   }
                                 }
                                 return (
-                                  <li key={item.id} className="relative">
+                                  <li key={item?.id} className="relative">
                                     <button
                                       type="button"
                                       style={conditionalStyle}
                                       className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
                                       onClick={() => handleItemClick(item)}
                                     >
-                                      <div className="w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75">
-                                        <div
-                                          className={`${
-                                            hideTextOverlay ? 'opacity-0' : ''
-                                          } text-lg lg:text-2xl font-medium mb-2`}
-                                        >
-                                          {item.title}{' '}
-                                          {item.videos?.length > 0 &&
+                                      <div
+                                        className={`${
+                                          hideTextOverlay ? 'opacity-0' : ''
+                                        } w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75`}
+                                      >
+                                        <div className="text-lg lg:text-2xl font-medium mb-2">
+                                          {item?.title}
+                                          {item?.videos?.length > 0 &&
                                             getIcon(
                                               'Video',
                                               'inline-flex text-gray-400 fill-current w-6',
                                             )}
                                         </div>
-                                        <div
-                                          className={`${
-                                            hideTextOverlay ? 'opacity-0' : ''
-                                          } text-base font-light`}
-                                        >
-                                          {item.titleTranslation}
+                                        <div className="text-base font-light">
+                                          {item?.titleTranslation}
                                         </div>
-                                        <div
-                                          className={`${
-                                            hideTextOverlay ? 'opacity-0' : ''
-                                          } text-base font-light`}
-                                        >
-                                          {item.author}
+                                        <div className="text-base font-light">
+                                          {item?.acknowledgement}
                                         </div>
                                         <span className="sr-only">
-                                          Go to {item.title}
+                                          Go to {item?.title}
                                         </span>
                                       </div>
                                     </button>
@@ -192,22 +179,28 @@ function SongsAndStoriesPresentation({
                         {pluralDocType}
                       </h2>
                       <div className="w-full text-left py-2 text-lg text-fv-charcoal">
-                        {items?.pages?.map((page, index) => (
-                          <React.Fragment key={index}>
+                        {items?.map((page) => (
+                          <React.Fragment key={page.next}>
                             {page.results.length > 0 ? (
-                              page.results.map((item) => (
+                              page?.results?.map((item) => (
                                 <div
                                   key={item.id}
                                   className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
                                   onClick={() => handleItemClick(item)}
+                                  onKeyDown={() => handleItemClick(item)}
+                                  role="button"
+                                  tabIndex={0}
                                 >
                                   <div className="text-xl">{item?.title}</div>
                                   <div className="text-base text-fv-charcoal-light">
                                     {item?.titleTranslation}
                                   </div>
-                                  {item?.author?.length > 0 && (
+                                  {item?.acknowledgement?.length > 0 && (
                                     <div className="text-base text-fv-charcoal-light">
-                                      by {item?.author}
+                                      by
+                                      {item?.acknowledgement.map((author) => (
+                                        <div key={author}>{author}</div>
+                                      ))}
                                     </div>
                                   )}
                                 </div>
@@ -260,12 +253,12 @@ function SongsAndStoriesPresentation({
   )
 }
 // PROPTYPES
-const { bool, object, string } = PropTypes
+const { bool, object, string, array } = PropTypes
 SongsAndStoriesPresentation.propTypes = {
   searchType: string,
   infiniteScroll: object,
   isLoading: bool,
-  items: object,
+  items: array,
   kids: bool,
   loadRef: object,
   sitename: string,
