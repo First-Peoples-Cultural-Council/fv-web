@@ -5,8 +5,25 @@ import { useParams } from 'react-router-dom'
 import { PAGES } from 'common/constants'
 import api from 'services/api'
 import { getCustomPageHref } from 'common/utils/urlHelpers'
+import { widgetListAdaptor } from 'common/dataAdaptors'
 
-export default function usePages() {
+export function usePage({ pageSlug }) {
+  const { sitename } = useParams()
+  const response = useQuery(
+    [PAGES, sitename, pageSlug],
+    () => api.pages.getPage({ sitename, pageSlug }),
+    { enabled: !!pageSlug },
+  )
+
+  const widgets = widgetListAdaptor({
+    widgetList: response?.data?.widgets,
+    sitename,
+  })
+
+  return { ...response, data: { ...response?.data, widgets } }
+}
+
+export function usePages() {
   const { sitename } = useParams()
 
   const response = useQuery(

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
-import useAlphabet from 'common/dataHooks/useAlphabet'
+import { useCharacters } from 'common/dataHooks/useCharacters'
 
 const AlphabetData = () => {
   const { sitename } = useParams()
@@ -11,7 +11,7 @@ const AlphabetData = () => {
 
   const character = searchParams.get('char') || null
 
-  const { isInitialLoading, data } = useAlphabet()
+  const { isInitialLoading, data } = useCharacters()
 
   // Find slected character data
   const findCharacterData = (selectedCharacter) => {

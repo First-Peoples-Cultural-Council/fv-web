@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import i18next from 'i18next'
 
 // FPCC
-import useImmersion from 'common/dataHooks/useImmersion'
-import useSite from 'common/dataHooks/useSite'
+import { useImmersion } from 'common/dataHooks/useImmersion'
+import { useSite } from 'common/dataHooks/useSites'
 import { useSiteDispatch } from 'context/SiteContext'
 
 function SiteData() {

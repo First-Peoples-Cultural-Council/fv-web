@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { CATEGORIES } from 'common/constants'
 import api from 'services/api'
 
-export default function useCategories() {
+export function useCategories() {
   const { sitename } = useParams()
   const response = useQuery(
     [CATEGORIES, sitename],

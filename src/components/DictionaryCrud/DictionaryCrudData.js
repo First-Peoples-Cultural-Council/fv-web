@@ -8,7 +8,7 @@ import { useSiteStore } from 'context/SiteContext'
 import dictionaryCrudDataAdaptor from 'components/DictionaryCrud/dictionaryCrudDataAdaptor'
 import { DOC_WORD, NOTIFICATION_TIME } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
-import usePartsOfSpeech from 'common/dataHooks/usePartsOfSpeech'
+import { usePartsOfSpeech } from 'common/dataHooks/usePartsOfSpeech'
 
 function DictionaryCrudData({ docType }) {
   const { site } = useSiteStore()

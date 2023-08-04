@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import usePage from 'common/dataHooks/usePage'
+import { usePage } from 'common/dataHooks/usePages'
 import { IMAGE, VIDEO } from 'common/constants'
 
 function PageData({ url }) {

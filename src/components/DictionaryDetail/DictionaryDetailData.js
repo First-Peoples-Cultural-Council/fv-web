@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
-import useDictionaryEntry from 'common/dataHooks/useDictionaryEntry'
+import { useDictionaryEntry } from 'common/dataHooks/useDictionaryEntry'
 
 function DictionaryDetailData({ docId }) {
   const { id, sitename } = useParams()
