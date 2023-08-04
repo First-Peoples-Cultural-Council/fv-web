@@ -129,10 +129,9 @@ function SongPresentation({ entry }) {
   )
 }
 
-const getMedia = ({ pictures, videos }) => {
-  console.log({ videos })
-  if (pictures.length > 0) {
-    return (
+const getMedia = ({ pictures, videos }) => (
+  <div>
+    {pictures.length > 0 && (
       <div className="space-y-4">
         {pictures?.map((picture) => (
           <ImageWithLightbox.Presentation
@@ -142,26 +141,8 @@ const getMedia = ({ pictures, videos }) => {
           />
         ))}
       </div>
-    )
-  }
-  // if (videos.length === 1) {
-  //   console.log('insert')
-  //   return (
-  //     <video
-  //       className="h-auto w-full"
-  //       src={getMediaPath({
-  //         type: VIDEO,
-  //         mediaObject: videos?.[0],
-  //         size: ORIGINAL,
-  //       })}
-  //       controls
-  //     >
-  //       Your browser does not support the video tag.
-  //     </video>
-  //   )
-  // }
-  if (videos.length > 0) {
-    return (
+    )}
+    {videos.length > 0 && (
       <div className="space-y-4">
         {videos?.map((video) => (
           <video
@@ -178,10 +159,44 @@ const getMedia = ({ pictures, videos }) => {
           </video>
         ))}
       </div>
-    )
-  }
-  return null
-}
+    )}
+  </div>
+
+  // if (pictures.length > 0) {
+  //   return (
+  //     <div className="space-y-4">
+  //       {pictures?.map((picture) => (
+  //         <ImageWithLightbox.Presentation
+  //           maxWidth={1000}
+  //           image={picture}
+  //           key={picture.id}
+  //         />
+  //       ))}
+  //     </div>
+  //   )
+  // }
+  // if (videos.length > 0) {
+  //   return (
+  //     <div className="space-y-4">
+  //       {videos?.map((video) => (
+  //         <video
+  //           key={video.id}
+  //           className="h-auto w-full"
+  //           src={getMediaPath({
+  //             type: VIDEO,
+  //             mediaObject: video,
+  //             size: ORIGINAL,
+  //           })}
+  //           controls
+  //         >
+  //           Your browser does not support the video tag.
+  //         </video>
+  //       ))}
+  //     </div>
+  //   )
+  // }
+  // return null
+)
 
 // PROPTYPES
 const { object } = PropTypes
