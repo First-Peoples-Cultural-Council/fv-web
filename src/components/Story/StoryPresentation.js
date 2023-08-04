@@ -110,11 +110,11 @@ function StoryPresentation({ entry }) {
                   </div>
                   {entry?.audio?.length > 0 && (
                     <div className="space-y-5">
-                      {entry?.audio?.map((audioId) => (
+                      {entry?.audio?.map((audio) => (
                         <AudioNative
-                          key={`${audioId}}`}
+                          key={`${audio}}`}
                           styling="lg:w-96 print:hidden"
-                          audioId={audioId}
+                          audioObject={audio}
                         />
                       ))}
                     </div>
@@ -154,7 +154,7 @@ function StoryPresentation({ entry }) {
                               <AudioNative
                                 key={audio.uid}
                                 styling="lg:w-96 print:hidden"
-                                audioId={audio.uid}
+                                audioObject={audio}
                               />
                             ))}
                           </div>

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
 import SanitizedHtml from 'components/SanitizedHtml'
+import { IMAGE, VIDEO, SMALL } from 'common/constants'
 
 function SongPresentationDrawer({ entry, sitename }) {
   return (
@@ -25,17 +26,17 @@ function SongPresentationDrawer({ entry, sitename }) {
           </div>
         </div>
       </div>
-      {(entry.coverVisual?.type === 'gifOrImg' ||
-        entry.coverVisual?.type === 'image') && (
+      {entry.coverVisual?.id && (
         <div className="my-2 md:my-4 relative h-40 md:h-96 px-4">
           <img
             className="absolute h-full w-full object-contain"
-            src={getMediaUrl({
-              type: entry?.coverVisual.type,
-              id: entry?.coverVisual?.id,
+            src={getMediaPath({
+              type: IMAGE,
+              mediaObject: entry?.coverVisual,
               viewName: 'Small',
             })}
             loading="lazy"
+            alt={entry.title}
           />
         </div>
       )}
@@ -43,10 +44,10 @@ function SongPresentationDrawer({ entry, sitename }) {
         <div className="my-2 md:my-6 flex mx-auto px-4">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
-            src={getMediaUrl({
-              type: entry?.coverVisual.type,
-              id: entry?.coverVisual?.id,
-              viewName: 'Small',
+            src={getMediaPath({
+              type: VIDEO,
+              mediaObject: entry?.coverVisual,
+              size: SMALL,
             })}
             controls
           >
@@ -69,9 +70,9 @@ function SongPresentationDrawer({ entry, sitename }) {
 
       <div className="flex mt-2 md:mt-6 px-6 space-y-2">
         {entry?.audio?.length > 0 &&
-          entry.audio?.map((audio, index) => (
+          entry.audio?.map((audio) => (
             <AudioNative
-              key={`${audio}_${index}`}
+              key={audio.id}
               styling="w-96 text-black mx-auto print:hidden"
               audioId={audio}
             />
