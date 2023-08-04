@@ -8,7 +8,7 @@ import { storySummaryAdaptor, storyDetailAdaptor } from 'common/dataAdaptors'
 export function useStories({ sitename }) {
   const response = useQuery(
     [STORIES, sitename],
-    () => api.stories.getStories({ sitename }),
+    () => api.stories.getAll({ sitename }),
     { enabled: !!sitename },
   )
 
@@ -22,7 +22,7 @@ export function useStories({ sitename }) {
 export function useStory({ sitename, id }) {
   const response = useQuery(
     [STORIES, sitename, id],
-    () => api.stories.getStory({ sitename, id }),
+    () => api.stories.get({ sitename, id }),
     { enabled: !!id },
   )
 
