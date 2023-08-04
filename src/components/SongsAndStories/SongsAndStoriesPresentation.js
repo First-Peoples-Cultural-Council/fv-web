@@ -58,6 +58,18 @@ function SongsAndStoriesPresentation({
     setDrawerOpen(true)
   }
 
+  function showNoResultsMessage(page) {
+    return (
+      !page.results?.length && (
+        <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
+          <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
+            No {makePlural(type)} have been added to this site yet!
+          </div>
+        </div>
+      )
+    )
+  }
+
   function showGrid() {
     return (
       <section className="mt-4 lg:mt-8 pb-16" aria-labelledby="gallery-heading">
@@ -124,13 +136,7 @@ function SongsAndStoriesPresentation({
                   </li>
                 )
               })}
-              {!page.results?.length && (
-                <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
-                  <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
-                    No {makePlural(type)} have been added to this site yet!
-                  </div>
-                </div>
-              )}
+              {showNoResultsMessage(page)}
             </React.Fragment>
           ))}
         </ul>
@@ -144,37 +150,32 @@ function SongsAndStoriesPresentation({
         <h2 id="gallery-heading" className="sr-only">
           {pluralDocType}
         </h2>
+
         <div className="w-full text-left py-2 text-lg text-fv-charcoal">
           {items?.pages?.map((page) => (
             <React.Fragment key={page.pageNumber}>
-              {page.results.length > 0 ? (
-                page.results.map((item, index) => (
-                  <div
-                    key={item.id}
-                    role="button"
-                    tabIndex={index}
-                    className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
-                    onClick={() => handleItemClick(item)}
-                    onKeyDown={() => handleItemClick(item)}
-                  >
-                    <div className="text-xl">{item?.title}</div>
+              {page.results.map((item, index) => (
+                <div
+                  key={item.id}
+                  role="button"
+                  tabIndex={index}
+                  className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
+                  onClick={() => handleItemClick(item)}
+                  onKeyDown={() => handleItemClick(item)}
+                >
+                  <div className="text-xl">{item?.title}</div>
+                  <div className="text-base text-fv-charcoal-light">
+                    {item?.titleTranslation}
+                  </div>
+                  {item?.author?.length > 0 && (
                     <div className="text-base text-fv-charcoal-light">
-                      {item?.titleTranslation}
+                      by {item?.author}
                     </div>
-                    {item?.author?.length > 0 && (
-                      <div className="text-base text-fv-charcoal-light">
-                        by {item?.author}
-                      </div>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
-                  <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
-                    No {makePlural(type)} have been added to this site yet!
-                  </div>
+                  )}
                 </div>
-              )}
+              ))}
+
+              {showNoResultsMessage(page)}
             </React.Fragment>
           ))}
         </div>
