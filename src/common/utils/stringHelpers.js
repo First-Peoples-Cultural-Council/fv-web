@@ -66,8 +66,8 @@ export const getFriendlyDocType = ({
   plural = false,
   titleCase = false,
 }) => {
-  // Temp. adding redundant cases to use the function with updated media doc types
-  // Todo: Remove the temp redundant cases.
+  // Temporarily adding redundant cases to use the function with updated media types
+  // until we completely switch over to new document types
   let friendly = ''
   switch (docType) {
     case DOC_AUDIO:

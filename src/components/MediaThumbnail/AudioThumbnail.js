@@ -33,7 +33,6 @@ AudioThumbnail.propTypes = {
   type: oneOf([AUDIO]),
 }
 
-// Todo: Confirm default props for videos
 AudioThumbnail.defaultProps = {
   containerStyles: 'elative w-72 block overflow-hidden',
   audioStyles: 'w-full',

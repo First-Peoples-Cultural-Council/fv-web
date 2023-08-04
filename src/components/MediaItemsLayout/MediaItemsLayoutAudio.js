@@ -21,7 +21,7 @@ function MediaItemsLayoutAudio({
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
   const headerClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
     <div id="MediaItemsLayoutAudio">
@@ -31,7 +31,6 @@ function MediaItemsLayoutAudio({
             <thead className="bg-gray-50">
               <tr>
                 {selection && (
-                  // Todo: confirm the following text label
                   <th scope="col" className={headerClass}>
                     {selection}
                   </th>
@@ -48,10 +47,8 @@ function MediaItemsLayoutAudio({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {data?.pages?.map((page, index) => (
-                // todo: fix the following linting
-                // eslint-disable-next-line react/no-array-index-key
-                <React.Fragment key={index}>
+              {data?.pages?.map((page) => (
+                <React.Fragment key={page?.nextPage}>
                   {page.results.map((rawAudioDoc) => {
                     const audioFile = mediaDataAdaptor({
                       type: AUDIO,

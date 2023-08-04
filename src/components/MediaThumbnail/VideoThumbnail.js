@@ -47,7 +47,6 @@ VideoThumbnail.propTypes = {
   type: oneOf([VIDEO]),
 }
 
-// Todo: Confirm default props for videos
 VideoThumbnail.defaultProps = {
   size: ORIGINAL,
   containerStyles:
