@@ -69,9 +69,9 @@ function storyCoverDataAdaptor({ data }) {
         : 'false',
       // Cover
       title: properties['dc:title'] || '',
-      titleTranslation:
-        [{ language: 'english', translation: titleTranslation?.join(' ') }] ||
-        [],
+      titleTranslation: [
+        { language: 'english', translation: titleTranslation?.join(' ') },
+      ],
       author,
       videos: properties['fv:related_videos'] || [],
       images: properties['fv:related_pictures'] || [],
