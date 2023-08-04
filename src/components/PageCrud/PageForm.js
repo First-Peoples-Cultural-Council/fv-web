@@ -112,7 +112,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                   )}
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
-                  <Form.SelectOne
+                  <Form.SelectOneMedia
                     label="Add Banner Background"
                     nameId="banner"
                     control={control}
@@ -134,9 +134,9 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                       </div>
                     }
                   />
-                  {errors?.selectOne && (
+                  {errors?.banner && (
                     <div className="text-red-500">
-                      {errors?.selectOne?.message}
+                      {errors?.banner?.message}
                     </div>
                   )}
                 </div>

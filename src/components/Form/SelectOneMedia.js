@@ -19,7 +19,7 @@ const FRAGMENT_BUTTON_STYLES =
   'mt-1 mr-4 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex ' +
   'justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
 
-function SelectOne({ label, nameId, control, helpText }) {
+function SelectOneMedia({ label, nameId, control, helpText }) {
   return (
     <div>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -160,7 +160,7 @@ function SelectOneButton({ value, onChange }) {
 
 const { func, object, string } = PropTypes
 
-SelectOne.propTypes = {
+SelectOneMedia.propTypes = {
   label: string,
   nameId: string,
   control: object,
@@ -172,4 +172,4 @@ SelectOneButton.propTypes = {
   onChange: func,
 }
 
-export default SelectOne
+export default SelectOneMedia

@@ -44,13 +44,13 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
             <input id="id" name="id" type="hidden" {...register('id')} />
           </div>
           <div className="col-span-4">
-            <Form.SelectOne
+            <Form.SelectOneMedia
               label="Add Media"
               nameId="visualMedia"
               control={control}
             />
-            {errors?.selectOne && (
-              <div className="text-red-500">{errors?.selectOne?.message}</div>
+            {errors?.visualMedia && (
+              <div className="text-red-500">{errors?.visualMedia?.message}</div>
             )}
           </div>
           <div className="col-span-7 space-y-4">
