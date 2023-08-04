@@ -9,7 +9,6 @@ import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
-  console.log({ entry })
   const hasCoverVisual = entry?.coverVisual?.id
   const hasMedia = !!(entry?.pictures.length > 0 || entry?.videos?.length > 0)
   return (
@@ -161,41 +160,6 @@ const getMedia = ({ pictures, videos }) => (
       </div>
     )}
   </div>
-
-  // if (pictures.length > 0) {
-  //   return (
-  //     <div className="space-y-4">
-  //       {pictures?.map((picture) => (
-  //         <ImageWithLightbox.Presentation
-  //           maxWidth={1000}
-  //           image={picture}
-  //           key={picture.id}
-  //         />
-  //       ))}
-  //     </div>
-  //   )
-  // }
-  // if (videos.length > 0) {
-  //   return (
-  //     <div className="space-y-4">
-  //       {videos?.map((video) => (
-  //         <video
-  //           key={video.id}
-  //           className="h-auto w-full"
-  //           src={getMediaPath({
-  //             type: VIDEO,
-  //             mediaObject: video,
-  //             size: ORIGINAL,
-  //           })}
-  //           controls
-  //         >
-  //           Your browser does not support the video tag.
-  //         </video>
-  //       ))}
-  //     </div>
-  //   )
-  // }
-  // return null
 )
 
 // PROPTYPES

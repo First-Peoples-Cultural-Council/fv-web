@@ -93,7 +93,7 @@ function SongsAndStoriesPresentation({
                       </h2>
                       <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                         {items?.map((page) => (
-                          <React.Fragment key={page.id}>
+                          <React.Fragment key={page}>
                             {page?.results?.length > 0 ? (
                               page?.results?.map((item) => {
                                 const hasCoverImage = item?.coverVisual?.id
@@ -205,7 +205,10 @@ function SongsAndStoriesPresentation({
                                   </div>
                                   {item?.acknowledgement?.length > 0 && (
                                     <div className="text-base text-fv-charcoal-light">
-                                      by {item?.acknowledgement}
+                                      by
+                                      {item?.acknowledgement.map((author) => (
+                                        <div key={author}>{author}</div>
+                                      ))}
                                     </div>
                                   )}
                                 </div>
