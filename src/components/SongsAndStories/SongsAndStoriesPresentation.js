@@ -64,24 +64,24 @@ function SongsAndStoriesPresentation({
         <h2 id="gallery-heading" className="sr-only">
           {pluralDocType}
         </h2>
+
         <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {items?.pages?.map((page) => (
             <React.Fragment key={page.pageNumber}>
               {page.results.map((item) => {
-                const hasCoverImage = item.coverVisual?.type === IMAGE
-                const hideTextOverlay = item.hideOverlay
-
                 let conditionalClass = 'text-fv-charcoal-light bg-gray-100'
                 let conditionalStyle = {}
+                let opacityClass = ''
 
-                if (hasCoverImage) {
+                if (item.coverVisual?.type === IMAGE) {
                   const imageUrl = `url(${getMediaPath({
                     type: item.coverVisual?.type,
                     mediaObject: item.coverVisual?.entry,
                     size: SMALL,
                   })})`
 
-                  if (hideTextOverlay) {
+                  if (item.hideOverlay) {
+                    opacityClass = 'opacity-0'
                     conditionalClass = 'bg-center bg-cover'
                     conditionalStyle = {
                       backgroundImage: imageUrl,
@@ -101,12 +101,10 @@ function SongsAndStoriesPresentation({
                       className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
                       onClick={() => handleItemClick(item)}
                     >
-                      <div className="w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75">
-                        <div
-                          className={`${
-                            hideTextOverlay ? 'opacity-0' : ''
-                          } text-lg lg:text-2xl font-medium mb-2`}
-                        >
+                      <div
+                        className={`${opacityClass} w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75`}
+                      >
+                        <div className="text-lg lg:text-2xl font-medium mb-2">
                           {item.title}{' '}
                           {item.videos?.length > 0 &&
                             getIcon(
@@ -114,18 +112,10 @@ function SongsAndStoriesPresentation({
                               'inline-flex text-gray-400 fill-current w-6',
                             )}
                         </div>
-                        <div
-                          className={`${
-                            hideTextOverlay ? 'opacity-0' : ''
-                          } text-base font-light`}
-                        >
+                        <div className="text-base font-light">
                           {item.titleTranslation}
                         </div>
-                        <div
-                          className={`${
-                            hideTextOverlay ? 'opacity-0' : ''
-                          } text-base font-light`}
-                        >
+                        <div className="text-base font-light">
                           {item.author}
                         </div>
                         <span className="sr-only">Go to {item.title}</span>
