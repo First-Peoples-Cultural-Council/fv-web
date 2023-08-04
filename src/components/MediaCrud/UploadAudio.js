@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useQuery } from '@tanstack/react-query'
 import * as yup from 'yup'
 
 // FPCC
@@ -12,6 +11,7 @@ import FileUploadField from 'components/Form/FileUploadField'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
+import { usePeople } from 'common/dataHooks/usePeople'
 
 function UploadAudio({ site, extensionList, setSelectedMedia }) {
   const [isUploading, setIsUploading] = useState(false)
@@ -40,18 +40,11 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     dataToEdit: {},
   })
 
-  const { data: speakerData } = useQuery(
-    ['speakers', site?.uid],
-    () => api.speaker.getAll({ siteId: site?.uid }),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!site?.uid,
-    },
-  )
+  const { data: speakerData } = usePeople()
 
-  const speakerOptions = speakerData?.entries?.map((entry) => ({
+  const speakerOptions = speakerData?.results?.map((entry) => ({
     label: entry?.title,
-    value: entry?.uid,
+    value: entry?.id,
   }))
 
   const submitHandler = (formData) => {

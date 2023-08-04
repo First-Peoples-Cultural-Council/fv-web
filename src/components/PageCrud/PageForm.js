@@ -57,7 +57,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
         </div>
         {!isCreateMode && (
           <div className="flex w-full justify-end">
-            <DeleteButton.Container
+            <DeleteButton.Presentation
               id={dataToEdit?.id}
               label="Delete Page"
               message="Are you sure you want to delete this page from your site?"

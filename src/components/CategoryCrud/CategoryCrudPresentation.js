@@ -49,7 +49,7 @@ function CategoryCrudPresentation({
       />
       {!isCreateMode && (
         <div className="w-full flex justify-end mt-6 px-6">
-          <DeleteButton.Container
+          <DeleteButton.Presentation
             id={dataToEdit?.id}
             label="Delete Category"
             message="Are you sure you want to delete this category from your site?"

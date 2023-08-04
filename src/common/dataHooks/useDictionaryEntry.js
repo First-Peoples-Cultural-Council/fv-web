@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { DICTIONARY } from 'common/constants'
 import api from 'services/api'
 
-export default function useDictionaryEntry({ sitename, id }) {
+export function useDictionaryEntry({ id }) {
+  const { sitename } = useParams()
   const response = useQuery([DICTIONARY, sitename, id], () =>
     api.dictionaryEntry.get({ sitename, id }),
   )

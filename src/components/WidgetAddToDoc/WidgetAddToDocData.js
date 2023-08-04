@@ -5,13 +5,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { DOC_SITE, WIDGET_TEXTFULL } from 'common/constants'
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
-import useWidgets from 'common/dataHooks/useWidgets'
+import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function WidgetAddToDocData({ closeHandler, insertIndex, destinationId }) {
   const { site } = useSiteStore()
   const queryClient = useQueryClient()
 
-  const { widgets, isInitialLoading } = useWidgets({ sitename: site?.sitename })
+  const { widgets, isInitialLoading } = useWidgets()
 
   const { data: destinationData, isInitialLoading: destinationIsLoading } =
     useQuery(

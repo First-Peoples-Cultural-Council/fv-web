@@ -362,7 +362,7 @@ function DictionaryCrudPresentation({
           />
         </div>
         <div className="flex w-full justify-end">
-          <DeleteButton.Container
+          <DeleteButton.Presentation
             id={dataToEdit?.id}
             label={`Delete ${getFriendlyDocType({ docType })}`}
             message={`Are you sure you want to delete this ${getFriendlyDocType(

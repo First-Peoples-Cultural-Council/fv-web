@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useImageObject } from 'common/dataHooks/useMedia'
@@ -9,11 +8,9 @@ import { IMAGE, MEDIUM } from 'common/constants'
 
 function ImgFromIdContainer(props) {
   const { id, size, alt, className, ...other } = props
-
-  const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
-  const imageObject = useImageObject({ sitename, id })
+  const imageObject = useImageObject({ id })
 
   useEffect(() => {
     if (imageObject?.original) {
