@@ -1,24 +1,17 @@
 import { relatedMediaAdaptor } from 'common/dataAdaptors/relatedMediaAdaptor'
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
-import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
-import { audienceAdaptor } from 'common/dataAdaptors/audienceAdaptor'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 import { selectCoverMedia } from 'common/utils/mediaHelpers'
+import { coverAdaptor } from 'common/dataAdaptors/coverAdaptor'
+import { TYPE_STORY } from 'common/constants'
 
 export function storySummaryAdaptor({ item }) {
   return {
     // cover
-    id: item?.id || '',
-    type: 'story',
-    title: item?.title || '',
-    titleTranslation: item?.titleTranslation || '',
+    ...coverAdaptor({ item }),
+    type: TYPE_STORY,
     author: item?.author || '',
-    coverVisual: selectCoverMedia(item?.relatedImages, item?.relatedVideos),
-    hideOverlay: !!item?.hideOverlay,
-    ...relatedMediaAdaptor({ item }),
-    ...visibilityAdaptor({ item }),
-    ...audienceAdaptor({ item }),
   }
 }
 
