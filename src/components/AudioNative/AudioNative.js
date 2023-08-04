@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import { Howler } from 'howler'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import { AUDIO } from 'common/constants'
 
 function AudioNativePresentation({ audioId, styling }) {
-  const src = audioId ? getMediaUrl({ type: 'audio', id: audioId }) : ''
+  const src = audioId ? getMediaPath({ type: AUDIO, mediaObject: audioId }) : ''
 
   useEffect(() => {
     function handleMultiplPlayers(e) {
@@ -35,9 +36,9 @@ function AudioNativePresentation({ audioId, styling }) {
   )
 }
 // PROPTYPES
-const { string } = PropTypes
+const { object, string } = PropTypes
 AudioNativePresentation.propTypes = {
-  audioId: string,
+  audioId: object,
   styling: string,
 }
 AudioNativePresentation.defaultProps = {
