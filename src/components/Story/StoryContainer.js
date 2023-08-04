@@ -8,6 +8,7 @@ import Loading from 'components/Loading'
 
 function StoryContainer({ docId, isDrawer }) {
   const { entry, isLoading, sitename, notFound, error } = StoryData({ docId })
+
   return notFound ? (
     <ErrorHandler.Container error={{ status: error.response.status }} />
   ) : (

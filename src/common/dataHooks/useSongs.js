@@ -3,29 +3,8 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import api from 'services/api'
-import { SONGS, TYPE_SONG } from 'common/constants'
-
-const formatSong = (result) => ({
-  acknowledgement: result?.acknowledgements || [],
-  audio: result?.relatedAudio || [],
-  coverVisual: result?.coverImage || {},
-  created: result?.created,
-  excludeFromGames: result?.excludeFromGames,
-  excludeFromKids: result?.excludeFromKids,
-  hideOverlay: result?.hideOverlay,
-  id: result?.id || '',
-  introduction: result?.introduction || '',
-  introductionTranslation: result?.introductionTranslation || '',
-  lastModified: result?.lastModified,
-  lyrics: result?.lyrics || [],
-  notes: result?.notes || [],
-  title: result?.title || '',
-  titleTranslation: result?.titleTranslation || '',
-  type: TYPE_SONG,
-  url: result?.url,
-  videos: result?.relatedVideos || [],
-  pictures: result?.relatedImages || [],
-})
+import { SONGS } from 'common/constants'
+import { songDetailAdaptor } from 'common/dataAdaptors/songAdaptors'
 
 export function useSongs() {
   const { sitename } = useParams()
@@ -43,7 +22,9 @@ export function useSongs() {
     },
   )
   const formattedResponse = allSongsResponse?.data?.pages?.map((page) => ({
-    results: page?.results?.map((result) => formatSong(result)),
+    results: page?.results?.map((result) =>
+      songDetailAdaptor({ item: result }),
+    ),
   }))
 
   return {
@@ -62,7 +43,7 @@ export function useSong({ id }) {
       enabled: !!id,
     },
   )
-  const formattedSong = formatSong(response.data)
+  const formattedSong = songDetailAdaptor({ item: response?.data })
   return {
     ...response,
     data: formattedSong,

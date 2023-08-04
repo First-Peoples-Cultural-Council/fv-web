@@ -9,8 +9,9 @@ import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
-  const hasCoverVisual = entry?.coverVisual?.id
-  const hasMedia = !!(entry?.pictures.length > 0 || entry?.videos?.length > 0)
+  const hasMedia = !!(
+    entry?.relatedImages.length > 0 || entry?.relatedVideos?.length > 0
+  )
   return (
     <div
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2 md:my-10 bg-white"
@@ -18,17 +19,12 @@ function SongPresentation({ entry }) {
     >
       <div className="grid grid-cols-3 gap-10">
         <div>
-          {hasCoverVisual && (
-            <div className="hidden md:flex md:col-span-1">
-              <ImageWithLightbox.Presentation
-                maxWidth={1000}
-                image={entry.coverVisual}
-              />
-            </div>
-          )}
           {hasMedia && (
             <div className="hidden md:flex md:col-span-1">
-              {getMedia({ pictures: entry?.pictures, videos: entry?.videos })}
+              {getMedia({
+                pictures: entry?.relatedImages,
+                videos: entry?.relatedVideos,
+              })}
             </div>
           )}
         </div>
@@ -62,9 +58,9 @@ function SongPresentation({ entry }) {
                 </div>
               </div>
             )}
-            {entry?.audio?.length > 0 && (
+            {entry?.relatedAudio?.length > 0 && (
               <div className="py-5 space-y-5">
-                {entry.audio?.map((audio) => (
+                {entry.relatedAudio?.map((audio) => (
                   <AudioNative
                     key={audio.id}
                     styling="w-full print:hidden"
@@ -77,47 +73,26 @@ function SongPresentation({ entry }) {
               {entry.hasLyrics && (
                 <h4 className="font-bold text-fv-charcoal">LYRICS</h4>
               )}
-              {/* V1_FUDGE - will need modifying for new FVSong docs */}
-              {entry?.lyrics?.length > 0
-                ? entry.lyrics.map((page) => (
-                    <div
-                      key={page.id}
-                      className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
-                    >
-                      <SanitizedHtml text={page?.content} />
-                      <div className="pl-5">
-                        {page?.contentTranslation?.length > 0
-                          ? page?.contentTranslation.map(
-                              (translation, translationIndex) => (
-                                <SanitizedHtml
-                                  // eslint-disable-next-line react/no-array-index-key
-                                  key={translationIndex}
-                                  text={translation}
-                                />
-                              ),
-                            )
-                          : null}
-                        {page?.related_audio?.length > 0 && (
-                          <div className="space-y-5">
-                            {page?.related_audio?.map((audio) => (
-                              <AudioNative
-                                key={audio.uid}
-                                styling="w-full print:hidden"
-                                audioId={audio.uid}
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))
-                : null}
+              {entry.lyrics.map((lyric) => (
+                <div
+                  key={lyric.id}
+                  className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
+                >
+                  <SanitizedHtml text={lyric?.text} />
+                  <div className="pl-5">
+                    <SanitizedHtml
+                      // eslint-disable-next-line react/no-array-index-key
+                      text={lyric.translation}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
             {hasMedia && (
               <div className="flex md:hidden mt-2">
                 {getMedia({
-                  pictures: entry?.pictures,
-                  videos: entry?.videos,
+                  pictures: entry?.relatedImages,
+                  videos: entry?.relatedVideos,
                 })}
               </div>
             )}

@@ -13,6 +13,7 @@ import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import Song from 'components/Song'
 import Story from 'components/Story'
+
 import { SMALL, IMAGE } from 'common/constants'
 
 function SongsAndStoriesPresentation({
@@ -57,6 +58,131 @@ function SongsAndStoriesPresentation({
     setDrawerOpen(true)
   }
 
+  function showNoResultsMessage(page) {
+    return (
+      !page.results?.length && (
+        <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
+          <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
+            No {makePlural(type)} have been added to this site yet!
+          </div>
+        </div>
+      )
+    )
+  }
+
+  function showGrid() {
+    return (
+      <section className="mt-4 lg:mt-8 pb-16" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading" className="sr-only">
+          {pluralDocType}
+        </h2>
+
+        <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          {items?.pages?.map((page) => (
+            <React.Fragment key={page.pageNumber}>
+              {page.results.map((item) => {
+                let conditionalClass = 'text-fv-charcoal-light bg-gray-100'
+                let conditionalStyle = {}
+                let opacityClass = ''
+
+                if (item.coverVisual?.type === IMAGE) {
+                  const imageUrl = `url(${getMediaPath({
+                    type: item.coverVisual?.type,
+                    mediaObject: item.coverVisual?.entry,
+                    size: SMALL,
+                  })})`
+
+                  if (item.hideOverlay) {
+                    opacityClass = 'opacity-0'
+                    conditionalClass = 'bg-center bg-cover'
+                    conditionalStyle = {
+                      backgroundImage: imageUrl,
+                    }
+                  } else {
+                    conditionalClass = 'bg-center bg-cover text-white'
+                    conditionalStyle = {
+                      backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), ${imageUrl}`,
+                    }
+                  }
+                }
+                return (
+                  <li key={item.id} className="relative">
+                    <button
+                      type="button"
+                      style={conditionalStyle}
+                      className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
+                      onClick={() => handleItemClick(item)}
+                    >
+                      <div
+                        className={`${opacityClass} w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75`}
+                      >
+                        <div className="text-lg lg:text-2xl font-medium mb-2">
+                          {item.title}{' '}
+                          {item.videos?.length > 0 &&
+                            getIcon(
+                              'Video',
+                              'inline-flex text-gray-400 fill-current w-6',
+                            )}
+                        </div>
+                        <div className="text-base font-light">
+                          {item.titleTranslation}
+                        </div>
+                        <div className="text-base font-light">
+                          {item.author}
+                        </div>
+                        <span className="sr-only">Go to {item.title}</span>
+                      </div>
+                    </button>
+                  </li>
+                )
+              })}
+              {showNoResultsMessage(page)}
+            </React.Fragment>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  function showList() {
+    return (
+      <section className="pb-16" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading" className="sr-only">
+          {pluralDocType}
+        </h2>
+
+        <div className="w-full text-left py-2 text-lg text-fv-charcoal">
+          {items?.pages?.map((page) => (
+            <React.Fragment key={page.pageNumber}>
+              {page.results.map((item, index) => (
+                <div
+                  key={item.id}
+                  role="button"
+                  tabIndex={index}
+                  className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
+                  onClick={() => handleItemClick(item)}
+                  onKeyDown={() => handleItemClick(item)}
+                >
+                  <div className="text-xl">{item?.title}</div>
+                  <div className="text-base text-fv-charcoal-light">
+                    {item?.titleTranslation}
+                  </div>
+                  {item?.author?.length > 0 && (
+                    <div className="text-base text-fv-charcoal-light">
+                      by {item?.author}
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {showNoResultsMessage(page)}
+            </React.Fragment>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
   return (
     <>
       <section
@@ -83,141 +209,7 @@ function SongsAndStoriesPresentation({
                   </div>
                 )}
                 <Loading.Container isLoading={isLoading}>
-                  {isGridView ? (
-                    <section
-                      className="mt-4 lg:mt-8 pb-16"
-                      aria-labelledby="gallery-heading"
-                    >
-                      <h2 id="gallery-heading" className="sr-only">
-                        {pluralDocType}
-                      </h2>
-                      <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                        {items?.map((page) => (
-                          <React.Fragment key={page}>
-                            {page?.results?.length > 0 ? (
-                              page?.results?.map((item) => {
-                                const hasCoverImage = item?.coverVisual?.id
-                                const hideTextOverlay = item?.hideOverlay
-                                let conditionalClass =
-                                  'text-fv-charcoal-light bg-gray-100'
-                                let conditionalStyle = {}
-                                if (hasCoverImage && hideTextOverlay) {
-                                  conditionalClass = 'bg-center bg-cover'
-                                  conditionalStyle = {
-                                    backgroundImage: `url(${getMediaPath({
-                                      type: IMAGE,
-                                      mediaObject: item?.coverVisual,
-                                      size: SMALL,
-                                    })})`,
-                                  }
-                                } else if (hasCoverImage && !hideTextOverlay) {
-                                  conditionalClass =
-                                    'bg-center bg-cover text-white'
-                                  conditionalStyle = {
-                                    backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaPath(
-                                      {
-                                        type: IMAGE,
-                                        mediaObject: item?.coverVisual,
-                                        size: SMALL,
-                                      },
-                                    )})`,
-                                  }
-                                }
-                                return (
-                                  <li key={item?.id} className="relative">
-                                    <button
-                                      type="button"
-                                      style={conditionalStyle}
-                                      className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
-                                      onClick={() => handleItemClick(item)}
-                                    >
-                                      <div
-                                        className={`${
-                                          hideTextOverlay ? 'opacity-0' : ''
-                                        } w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75`}
-                                      >
-                                        <div className="text-lg lg:text-2xl font-medium mb-2">
-                                          {item?.title}
-                                          {item?.videos?.length > 0 &&
-                                            getIcon(
-                                              'Video',
-                                              'inline-flex text-gray-400 fill-current w-6',
-                                            )}
-                                        </div>
-                                        <div className="text-base font-light">
-                                          {item?.titleTranslation}
-                                        </div>
-                                        <div className="text-base font-light">
-                                          {item?.acknowledgement}
-                                        </div>
-                                        <span className="sr-only">
-                                          Go to {item?.title}
-                                        </span>
-                                      </div>
-                                    </button>
-                                  </li>
-                                )
-                              })
-                            ) : (
-                              <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
-                                <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
-                                  No {makePlural(type)} have been added to this
-                                  site yet!
-                                </div>
-                              </div>
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </ul>
-                    </section>
-                  ) : (
-                    <section
-                      className="pb-16"
-                      aria-labelledby="gallery-heading"
-                    >
-                      <h2 id="gallery-heading" className="sr-only">
-                        {pluralDocType}
-                      </h2>
-                      <div className="w-full text-left py-2 text-lg text-fv-charcoal">
-                        {items?.map((page) => (
-                          <React.Fragment key={page.next}>
-                            {page.results.length > 0 ? (
-                              page?.results?.map((item) => (
-                                <div
-                                  key={item.id}
-                                  className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
-                                  onClick={() => handleItemClick(item)}
-                                  onKeyDown={() => handleItemClick(item)}
-                                  role="button"
-                                  tabIndex={0}
-                                >
-                                  <div className="text-xl">{item?.title}</div>
-                                  <div className="text-base text-fv-charcoal-light">
-                                    {item?.titleTranslation}
-                                  </div>
-                                  {item?.acknowledgement?.length > 0 && (
-                                    <div className="text-base text-fv-charcoal-light">
-                                      by
-                                      {item?.acknowledgement.map((author) => (
-                                        <div key={author}>{author}</div>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
-                              ))
-                            ) : (
-                              <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
-                                <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
-                                  No {makePlural(type)} have been added to this
-                                  site yet!
-                                </div>
-                              </div>
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </section>
-                  )}
+                  {isGridView ? showGrid() : showList()}
                 </Loading.Container>
               </div>
               <div className="p-3 text-center text-fv-charcoal font-medium">
