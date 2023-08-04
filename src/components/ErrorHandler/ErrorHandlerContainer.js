@@ -8,7 +8,7 @@ function ErrorHandlerContainer({ error }) {
   let errorStatus = null
   let errorText = null
 
-  if (error && error?.status) {
+  if (error?.status) {
     errorStatus = error?.status
     errorText = error?.statusText
   }
