@@ -47,7 +47,7 @@ function SongPresentation({ entry }) {
             </h2>
             <div className="text-fv-charcoal-light">
               {entry?.acknowledgement?.length > 0
-                ? ` by ${entry.acknowledgement}`
+                ? ` acknowledgement: ${entry.acknowledgement}`
                 : ''}
             </div>
           </div>
