@@ -10,7 +10,6 @@ import { IMAGE, VIDEO } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function StoryPresentation({ entry }) {
-  console.log('StoryPresentation: ', { entry })
   const coverMedia = entry?.coverVisual?.entry
   return (
     <div data-testid="StoryPresentation" className="bg-gray-200">
