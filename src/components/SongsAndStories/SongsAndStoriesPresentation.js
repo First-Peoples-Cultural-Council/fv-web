@@ -131,12 +131,12 @@ function SongsAndStoriesPresentation({
                                       className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
                                       onClick={() => handleItemClick(item)}
                                     >
-                                      <div className="w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75">
-                                        <div
-                                          className={`${
-                                            hideTextOverlay ? 'opacity-0' : ''
-                                          } text-lg lg:text-2xl font-medium mb-2`}
-                                        >
+                                      <div
+                                        className={`${
+                                          hideTextOverlay ? 'opacity-0' : ''
+                                        } w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75`}
+                                      >
+                                        <div className="text-lg lg:text-2xl font-medium mb-2">
                                           {item?.title}
                                           {item?.videos?.length > 0 &&
                                             getIcon(
@@ -144,18 +144,10 @@ function SongsAndStoriesPresentation({
                                               'inline-flex text-gray-400 fill-current w-6',
                                             )}
                                         </div>
-                                        <div
-                                          className={`${
-                                            hideTextOverlay ? 'opacity-0' : ''
-                                          } text-base font-light`}
-                                        >
+                                        <div className="text-base font-light">
                                           {item?.titleTranslation}
                                         </div>
-                                        <div
-                                          className={`${
-                                            hideTextOverlay ? 'opacity-0' : ''
-                                          } text-base font-light`}
-                                        >
+                                        <div className="text-base font-light">
                                           {item?.acknowledgement}
                                         </div>
                                         <span className="sr-only">
