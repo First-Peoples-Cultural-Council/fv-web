@@ -187,7 +187,7 @@ function SongsAndStoriesPresentation({
                                   key={item.id}
                                   className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
                                   onClick={() => handleItemClick(item)}
-                                  onKeyDown={handleItemClick(item)}
+                                  onKeyDown={() => handleItemClick(item)}
                                   role="button"
                                   tabIndex={0}
                                 >
