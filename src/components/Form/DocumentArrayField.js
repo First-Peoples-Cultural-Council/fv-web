@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import { DOC_AUDIO, DOC_CATEGORY, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { AUDIO, DOC_CATEGORY, IMAGE, VIDEO } from 'common/constants'
 import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
@@ -35,6 +35,7 @@ function DocumentArrayField({
       maxItems={docCountLimit}
       removeItem={removeItem}
       showContent={openModal}
+      docType={docType}
       documentIds={value}
     >
       <Modal.Presentation
@@ -50,9 +51,7 @@ function DocumentArrayField({
           } mx-auto rounded-lg overflow-hidden bg-gray-50`}
         >
           <div className={`${docType !== DOC_CATEGORY ? 'h-full' : ''} p-4`}>
-            {(docType === DOC_IMAGE ||
-              docType === DOC_VIDEO ||
-              docType === DOC_AUDIO) && (
+            {(docType === IMAGE || docType === VIDEO || docType === AUDIO) && (
               <MediaCrud.Container
                 savedMedia={value}
                 updateSavedMedia={selectItem}
@@ -81,7 +80,7 @@ DocumentArrayField.propTypes = {
 }
 
 DocumentArrayField.defaultProps = {
-  docType: DOC_IMAGE,
+  docType: IMAGE,
   label: '',
   docCountLimit: 3,
 }

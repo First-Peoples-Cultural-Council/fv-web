@@ -25,7 +25,7 @@ function MediaItemsLayoutAudio({
 
   return (
     <div id="MediaItemsLayoutAudio">
-      {data?.pages !== undefined && data?.pages?.[0]?.entries?.length > 0 && (
+      {data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0 && (
         <div>
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -49,10 +49,10 @@ function MediaItemsLayoutAudio({
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {data?.pages?.map((page, index) => (
-                // todo: fix the following linting error
+                // todo: fix the following linting
                 // eslint-disable-next-line react/no-array-index-key
                 <React.Fragment key={index}>
-                  {page.entries.map((rawAudioDoc) => {
+                  {page.results.map((rawAudioDoc) => {
                     const audioFile = mediaDataAdaptor({
                       type: AUDIO,
                       data: rawAudioDoc,
@@ -90,7 +90,7 @@ function MediaItemsLayoutAudio({
                         <td className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal">
                           <AudioNative
                             styling="w-full "
-                            audioId={audioFile?.id}
+                            audioObject={audioFile}
                           />
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">

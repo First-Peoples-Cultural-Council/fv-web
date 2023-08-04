@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import MediaCrudData from 'components/MediaCrud/MediaCrudData'
 import UploadMedia from 'components/MediaCrud/UploadMedia'
 import SelectMedia from 'components/MediaCrud/SelectMedia'
-// import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import { makeTitleCase } from 'common/utils/stringHelpers'
 

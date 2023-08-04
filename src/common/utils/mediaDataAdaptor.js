@@ -5,8 +5,6 @@ const mediaDataAdaptor = ({ type, data }) => {
     return null
   }
 
-  const properties = {}
-
   let formattedData = {
     id: data?.id,
     title: data?.title,
@@ -36,8 +34,9 @@ const mediaDataAdaptor = ({ type, data }) => {
   if (type === AUDIO) {
     formattedData = {
       ...formattedData,
-      speakers: data?.contextParameters?.media?.speakers,
-      acknowledgement: properties?.['fvm:acknowledgement'],
+      speakers: data?.speakers,
+      acknowledgement: data?.acknowledgement,
+      original: data?.original,
     }
   }
 

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import DocumentThumbnail from 'components/DocumentThumbnail'
+import { AUDIO, IMAGE, VIDEO, SMALL } from 'common/constants'
+import MediaThumbnail from 'components/MediaThumbnail'
 
 function ArrayBrowserField({
   children,
@@ -11,6 +13,7 @@ function ArrayBrowserField({
   buttonLabel,
   nameId,
   helpText,
+  docType,
   documentIds,
   maxItems,
   removeItem,
@@ -24,22 +27,38 @@ function ArrayBrowserField({
       <div className="space-y-2 mt-2">
         <div id="DocumentThumbnailGallery">
           {documentIds?.length > 0 &&
-            documentIds?.map((doc, index) => (
+            documentIds?.map((docId) => (
               <div
-                key={`${doc}_${index}`}
+                key={`${docId}`}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
               >
-                <DocumentThumbnail.Container docId={doc} />
+                {docType === AUDIO && (
+                  <MediaThumbnail.Audio id={docId} type={docType} />
+                )}
+                {docType === IMAGE && (
+                  <MediaThumbnail.Image
+                    id={docId}
+                    type={docType}
+                    size={SMALL}
+                    imageStyles="object-cover pointer-events-none"
+                  />
+                )}
+                {docType === VIDEO && (
+                  <MediaThumbnail.Video id={docId} type={docType} />
+                )}
+                {/* For all other types of documents. */}
+                {![AUDIO, IMAGE, VIDEO].includes(docType) && (
+                  <DocumentThumbnail.Container docId={docId} />
+                )}
                 <div className="has-tooltip">
                   <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">
                     Remove
                   </span>
                   <button
                     type="button"
-                    type="button"
                     aria-label="Remove"
                     className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-                    onClick={() => removeItem(doc)}
+                    onClick={() => removeItem(docId)}
                   >
                     {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
@@ -71,7 +90,6 @@ function AddButton({ label, children, onClick }) {
     <div key="PopupButtonPresentation">
       <button
         type="button"
-        type="button"
         onClick={onClick}
         className="bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
       >
@@ -90,17 +108,16 @@ ArrayBrowserField.propTypes = {
   label: string,
   buttonLabel: string,
   nameId: string.isRequired,
+  docType: string,
   documentIds: arrayOf(string),
   maxItems: number,
   children: node,
-  addItem: func,
   removeItem: func,
   showContent: func,
 }
 
 AddButton.propTypes = {
   label: string,
-  icon: string,
   children: node,
   onClick: func,
 }

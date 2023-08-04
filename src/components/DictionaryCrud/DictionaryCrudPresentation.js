@@ -8,10 +8,10 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
-  DOC_AUDIO,
+  AUDIO,
   DOC_CATEGORY,
-  DOC_IMAGE,
-  DOC_VIDEO,
+  IMAGE,
+  VIDEO,
   DOC_WORD,
   TYPE_WORD,
   TYPE_PHRASE,
@@ -137,7 +137,7 @@ function DictionaryCrudPresentation({
                 label="Audio"
                 nameId="audio"
                 control={control}
-                docType={DOC_AUDIO}
+                docType={AUDIO}
                 docCountLimit={10}
               />
               {errors?.audio && (
@@ -211,7 +211,7 @@ function DictionaryCrudPresentation({
                 label="Images"
                 nameId="images"
                 control={control}
-                docType={DOC_IMAGE}
+                docType={IMAGE}
                 docCountLimit={10}
               />
               {errors?.images && (
@@ -223,7 +223,7 @@ function DictionaryCrudPresentation({
                 label="Videos"
                 nameId="videos"
                 control={control}
-                docType={DOC_VIDEO}
+                docType={VIDEO}
                 docCountLimit={10}
               />
               {errors?.videos && (
