@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
-import useCategories from 'common/dataHooks/useCategories'
+import { useCategories } from 'common/dataHooks/useCategories'
 import { TYPES, TYPE_DICTIONARY } from 'common/constants'
 
 function CategoriesData() {
@@ -19,8 +19,7 @@ function CategoriesData() {
     })
 
   // Data fetch
-  const { fetchStatus, isInitialLoading, error, isError, data } =
-    useCategories()
+  const { isInitialLoading, error, isError, data } = useCategories()
 
   useEffect(() => {
     if (isError) {
@@ -36,7 +35,7 @@ function CategoriesData() {
     searchType,
     setSearchTypeInUrl,
     entryLabelPlural: getSearchTypeLabel({ searchType, plural: true }),
-    isLoading: isInitialLoading || fetchStatus === 'idle' || isError,
+    isLoading: isInitialLoading || isError,
     sitename,
   }
 }

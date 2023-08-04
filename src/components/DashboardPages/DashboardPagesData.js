@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import usePages from 'common/dataHooks/usePages'
+import { usePages } from 'common/dataHooks/usePages'
 
 function DashboardPagesData() {
   const { site } = useSiteStore()
@@ -11,7 +11,7 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isInitialLoading } = usePages({ sitename })
+  const { data, error, isError, isInitialLoading } = usePages()
 
   useEffect(() => {
     if (isError) {

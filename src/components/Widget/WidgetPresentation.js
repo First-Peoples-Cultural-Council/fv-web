@@ -16,7 +16,6 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
   WIDGET_WOTD,
 } from 'common/constants'
 
@@ -32,7 +31,6 @@ import WidgetText from 'components/WidgetText'
 import WidgetTextConcise from 'components/WidgetTextConcise'
 import WidgetTextFull from 'components/WidgetTextFull'
 import WidgetTextIcons from 'components/WidgetTextIcons'
-import WidgetTextMulti from 'components/WidgetTextMulti'
 import WidgetStats from 'components/WidgetStats'
 import WidgetWordOfTheDay from 'components/WidgetWordOfTheDay'
 
@@ -77,9 +75,6 @@ function WidgetPresentation({ data, type }) {
     case WIDGET_TEXTICONS:
       return <WidgetTextIcons.Presentation widgetData={data} />
 
-    case WIDGET_TEXTMULTI:
-      return <WidgetTextMulti.Container widgetData={data} />
-
     case WIDGET_WOTD:
       return <WidgetWordOfTheDay.Container />
 
@@ -106,7 +101,6 @@ WidgetPresentation.propTypes = {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
-    WIDGET_TEXTMULTI,
     WIDGET_WOTD,
   ]),
 }

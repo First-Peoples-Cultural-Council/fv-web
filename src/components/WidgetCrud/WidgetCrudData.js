@@ -12,7 +12,7 @@ import {
 import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
-import useWidget from 'common/dataHooks/useWidget'
+import { useWidget } from 'common/dataHooks/useWidgets'
 import { useNotification } from 'context/NotificationContext'
 import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
@@ -48,7 +48,7 @@ function WidgetCrudData({ insertIndex, destinationId }) {
     },
   )
 
-  const { data } = useWidget({ sitename: site?.sitename, id: _widgetId })
+  const { data } = useWidget({ id: _widgetId })
 
   // Add widget to active
   const insertOnPage = async (widget) => {

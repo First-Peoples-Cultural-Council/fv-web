@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import { ERROR, SUCCESS, WARNING, INFO, NEUTRAL } from 'common/constants'
 
 function AlertBannerPresentation({ alertType, handleClose, message }) {
   switch (alertType) {
-    case 'SUCCESS':
+    case SUCCESS:
       return (
         <div className="rounded-lg bg-green-50 p-4">
           <div className="flex">
@@ -36,7 +37,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
           </div>
         </div>
       )
-    case 'ERROR':
+    case ERROR:
       return (
         <div className="rounded-lg bg-red-50 p-4">
           <div className="flex">
@@ -63,7 +64,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
           </div>
         </div>
       )
-    case 'WARNING':
+    case WARNING:
       return (
         <div className="rounded-lg bg-yellow-50 p-4">
           <div className="flex">
@@ -93,7 +94,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
           </div>
         </div>
       )
-    case 'INFO':
+    case INFO:
       return (
         <div className="rounded-lg bg-blue-50 p-4">
           <div className="flex">
@@ -120,7 +121,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
           </div>
         </div>
       )
-    case 'NEUTRAL':
+    case NEUTRAL:
     default:
       return (
         <div className="rounded-lg bg-gray-50 shadow-lg p-4">
@@ -151,10 +152,10 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
   }
 }
 // PROPTYPES
-const { func, string } = PropTypes
+const { func, string, oneOf } = PropTypes
 AlertBannerPresentation.propTypes = {
   message: string,
-  alertType: string,
+  alertType: oneOf([ERROR, SUCCESS, WARNING, INFO, NEUTRAL]),
   handleClose: func,
 }
 

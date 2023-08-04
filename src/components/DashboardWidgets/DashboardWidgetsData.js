@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useWidgets from 'common/dataHooks/useWidgets'
+import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function DashboardWidgetsData() {
   const { site } = useSiteStore()
@@ -11,7 +11,7 @@ function DashboardWidgetsData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const response = useWidgets({ sitename })
+  const response = useWidgets()
 
   const { error, isError, isInitialLoading, widgets } = response
 

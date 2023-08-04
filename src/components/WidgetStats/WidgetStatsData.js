@@ -8,7 +8,7 @@ function WidgetStatsData() {
   const { site } = useSiteStore()
   const { data } = useQuery(
     ['stats', site?.uid],
-    () => api.widget.getStats({ siteId: site?.uid }),
+    () => api.widgets.getStats({ siteId: site?.uid }),
     {
       // The query will not execute until the site?.uid exists
       enabled: !!site?.uid,

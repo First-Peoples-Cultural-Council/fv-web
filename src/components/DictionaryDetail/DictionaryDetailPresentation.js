@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import { makePlural } from 'common/utils/urlHelpers'
+import { makePlural } from 'common/utils/stringHelpers'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
@@ -70,9 +70,16 @@ function DictionaryDetailPresentation({
                 </div>
               )}
             </div>
+
             {/* Translations/Definitions */}
             {entry?.translations?.length > 0 && (
               <div className="py-2 md:p-3">
+                {/* Part of Speech */}
+                {entry?.translations?.[0]?.partOfSpeech?.title && (
+                  <div className="text-xl italic">
+                    {entry?.translations?.[0]?.partOfSpeech?.title?.toLowerCase()}
+                  </div>
+                )}
                 <ol
                   className={`${
                     entry?.translations?.length === 1
@@ -84,9 +91,6 @@ function DictionaryDetailPresentation({
                 >
                   {entry?.translations?.map((translation) => (
                     <li key={translation?.id} className="p-0.5">
-                      <span className={`${contentStyling} italic`}>
-                        {translation?.partOfSpeech}
-                      </span>
                       <span className={contentStyling}>
                         {translation?.text}
                       </span>

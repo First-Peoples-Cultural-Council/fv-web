@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useAlphabet from 'common/dataHooks/useAlphabet'
+import { useCharacters } from 'common/dataHooks/useCharacters'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import {
   KIDS,
@@ -33,7 +33,7 @@ function ByAlphabetData({ kids }) {
   const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
-  const alphabetResponse = useAlphabet()
+  const alphabetResponse = useCharacters()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 

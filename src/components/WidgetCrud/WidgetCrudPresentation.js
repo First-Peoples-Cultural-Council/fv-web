@@ -16,7 +16,6 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_TEXTMULTI,
   WIDGET_WOTD,
 } from 'common/constants'
 import WidgetFormDefault from 'components/WidgetCrud/WidgetFormDefault'
@@ -30,7 +29,7 @@ import WidgetFormTextConcise from 'components/WidgetCrud/WidgetFormTextConcise'
 import WidgetFormTextFull from 'components/WidgetCrud/WidgetFormTextFull'
 import WidgetFormTextIcons from 'components/WidgetCrud/WidgetFormTextIcons'
 import WidgetFormApps from 'components/WidgetCrud/WidgetFormApps'
-import { getWidgetTypeLabel } from 'common/utils/stringHelpers'
+import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import Form from 'components/Form'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import DeleteButton from 'components/DeleteButton'
@@ -105,7 +104,7 @@ function WidgetCrudPresentation({
 
           <div className="w-full flex justify-end mt-6 px-6">
             {dataToEdit?.id && (
-              <DeleteButton.Container
+              <DeleteButton.Presentation
                 id={dataToEdit?.id}
                 label="Delete Widget"
                 message="Are you sure you want to delete this Widget from your site?"
@@ -231,7 +230,6 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
       )
 
     case WIDGET_IFRAME:
-    case WIDGET_TEXTMULTI:
       return (
         <div className="text-xs">
           <h2>Widget Form Placeholder for {type}</h2>
@@ -277,7 +275,6 @@ WidgetForm.propTypes = {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
-    WIDGET_TEXTMULTI,
     WIDGET_WOTD,
   ]),
 }

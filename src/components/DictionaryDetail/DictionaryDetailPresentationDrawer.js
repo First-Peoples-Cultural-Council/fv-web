@@ -56,6 +56,12 @@ function DictionaryDetailPresentationDrawer({
           {/* Translations/Definitions */}
           {entry?.translations?.length > 0 && (
             <div className="py-3">
+              {/* Part of Speech */}
+              {entry?.translations?.[0]?.partOfSpeech?.title && (
+                <div className="text-lg italic">
+                  {entry?.translations?.[0]?.partOfSpeech?.title?.toLowerCase()}
+                </div>
+              )}
               <ol
                 className={`${
                   entry?.translations?.length === 1
@@ -65,9 +71,6 @@ function DictionaryDetailPresentationDrawer({
               >
                 {entry?.translations?.map((translation) => (
                   <li key={translation} className="p-0.5">
-                    <span className={`${contentStyling} italic`}>
-                      {translation?.partOfSpeech}
-                    </span>
                     <span className={contentStyling}>{translation?.text}</span>
                   </li>
                 ))}

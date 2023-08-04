@@ -8,11 +8,12 @@ import {
   SMALL,
   MEDIUM,
   THUMBNAIL,
+  DISPLAYABLE_PROPS_MEDIA,
 } from 'common/constants'
 // NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
 export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   if (!mediaObject?.original) {
-    return "A media object with the property of 'originl' must be supplied to retrieve a src path."
+    return `${type} object with the property of 'original' must be supplied to retrieve a src path.`
   }
   if (![ORIGINAL, SMALL, MEDIUM, THUMBNAIL].includes(size)) {
     return 'Only ORIGINAL, SMALL, MEDIUM, or THUMBNAIL are accepted as sizes for media.'
@@ -29,6 +30,15 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
       return 'The media type supplied is not recognised by the getMediaPath helper'
   }
 }
+
+export const getReadableFileSize = (size) => {
+  const e = Math.log(size) / Math.log(1e3) || 0
+  return `${+(size / 1e3 ** e).toFixed(2)} ${'kMGTPEZY'[e - 1] || ''}B`
+}
+
+export const isDisplayablePropMedia = (property, value) =>
+  (typeof value === 'string' || value instanceof String) &&
+  DISPLAYABLE_PROPS_MEDIA.includes(property)
 
 export const selectOneFormHelper = (formData, mediaObjectkey) => {
   // Helper function to be used where a choice between
