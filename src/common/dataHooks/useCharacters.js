@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 export function useCharacter({ id }) {
   const { sitename } = useParams()
@@ -53,16 +54,17 @@ export function useCharacters() {
 export function useCharacterPartialUpdate() {
   const { sitename } = useParams()
 
-  const updateCharacter = async (formData) => {
+  const partialUpdateCharacter = async (formData) => {
     const properties = {
-      related_audio: formData?.relatedAudio || [],
-      related_images: formData?.relatedImages || [],
-      related_videos: formData?.relatedVideos || [],
+      relatedAudio: formData?.relatedAudio || [],
+      relatedImages: formData?.relatedImages || [],
+      relatedVideos: formData?.relatedVideos || [],
       note: formData?.generalNote || '',
-      related_dictionary_entries: formData?.relatedDictionaryEntries || [],
+      relatedDictionaryEntries:
+        objectsToIdsAdaptor(formData?.relatedDictionaryEntries) || [],
     }
 
-    return api.people.update({
+    return api.characters.partialUpdate({
       id: formData?.id,
       sitename,
       properties,
@@ -70,7 +72,7 @@ export function useCharacterPartialUpdate() {
   }
 
   const mutation = useMutationWithNotification({
-    mutationFn: updateCharacter,
+    mutationFn: partialUpdateCharacter,
     redirectTo: `/${sitename}/dashboard/edit/alphabet`,
     queryKeyToInvalidate: [CHARACTERS, sitename],
     actionWord: 'updated',

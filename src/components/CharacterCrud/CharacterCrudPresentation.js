@@ -4,13 +4,7 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import {
-  DOC_AUDIO,
-  DOC_IMAGE,
-  DOC_VIDEO,
-  TYPE_PHRASE,
-  TYPE_WORD,
-} from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
@@ -19,7 +13,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
-    relatedDictionaryEntries: definitions.idArray(),
+    relatedDictionaryEntries: definitions.objectArray(),
     generalNote: definitions.paragraph({ charCount: 120 }),
   })
 
@@ -46,13 +40,14 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12">
-            <Form.MultitypeArrayField
+            <Form.EntryArrayField
               label="Related Content"
-              nameId="relatedAssets"
+              nameId="relatedDictionaryEntries"
               control={control}
+              register={register}
               helpText="Words and phrases related to your alphabet character"
+              maxItems={10}
               types={[TYPE_WORD, TYPE_PHRASE]}
-              docCountLimit={10}
             />
             {errors?.relatedDictionaryEntries && (
               <div className="text-red-500">
@@ -65,7 +60,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              docType={DOC_AUDIO}
+              docType={AUDIO}
               docCountLimit={3}
             />
             {errors?.relatedAudio && (
@@ -79,7 +74,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Image"
               nameId="relatedImages"
               control={control}
-              docType={DOC_IMAGE}
+              docType={IMAGE}
               docCountLimit={1}
             />
             {errors?.relatedImages && (
@@ -93,7 +88,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Video"
               nameId="relatedVideos"
               control={control}
-              docType={DOC_VIDEO}
+              docType={VIDEO}
               docCountLimit={1}
             />
             {errors?.relatedVideos && (

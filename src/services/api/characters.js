@@ -10,7 +10,7 @@ const characters = {
       related_images: properties?.relatedImages,
       related_videos: properties?.relatedVideos,
       note: properties?.note,
-      related_dictionary_entries: properties?.relatedEntries,
+      related_dictionary_entries: properties?.relatedDictionaryEntries,
     }
     return apiBase
       .patch(`${SITES}/${sitename}/${CHARACTERS}/${id}`, { json: body })

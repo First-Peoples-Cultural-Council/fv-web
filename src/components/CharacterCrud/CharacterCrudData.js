@@ -5,6 +5,7 @@ import {
   useCharacter,
   useCharacterPartialUpdate,
 } from 'common/dataHooks/useCharacters'
+import { allRelatedMediaToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 function CharacterCrudData() {
   const { sitename } = useParams()
@@ -31,7 +32,7 @@ function CharacterCrudData() {
   return {
     submitHandler,
     backHandler,
-    dataToEdit: data || null,
+    dataToEdit: data ? allRelatedMediaToIdsAdaptor(data) : null,
     isLoading: isInitialLoading,
   }
 }
