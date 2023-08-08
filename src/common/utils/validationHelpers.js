@@ -16,6 +16,7 @@ const uuid = yup
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
+  objectArray: () => yup.array().of(yup.object({ id: uuid })),
   label: () => yup.string().max(35).trim(),
   latinOnly: ({ message = 'This is a required field' } = {}) =>
     yup

@@ -1,10 +1,10 @@
 import ArrayBrowserField from 'components/Form/ArrayBrowserField'
 import DocumentArrayField from 'components/Form/DocumentArrayField'
-import MultitypeArrayField from 'components/Form/MultitypeArrayField'
 
 import AddMedia from 'components/Form/AddMedia'
 import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
+import EntryArrayField from 'components/Form/EntryArrayField'
 import ErrorMessage from 'components/Form/ErrorMessage'
 import FileUploadField from 'components/Form/FileUploadField'
 import Header from 'components/Form/Header'
@@ -24,10 +24,10 @@ import WysiwygField from 'components/Form/WysiwygField'
 export default {
   ArrayBrowserField,
   DocumentArrayField,
-  MultitypeArrayField,
   AddMedia,
   Autocomplete,
   AutocompleteMultiple,
+  EntryArrayField,
   ErrorMessage,
   FileUploadField,
   Header,
