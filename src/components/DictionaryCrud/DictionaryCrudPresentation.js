@@ -159,15 +159,16 @@ function DictionaryCrudPresentation({
               )}
             </div>
             <div className="col-span-12">
-              <Form.MultitypeArrayField
-                label="Related Entries"
+              <Form.EntryArrayField
+                label="Related Content"
                 nameId="relatedAssets"
                 control={control}
+                register={register}
                 helpText={`Words and phrases related to your ${getFriendlyDocType(
                   { docType },
                 )}`}
+                maxItems={10}
                 types={[TYPE_WORD, TYPE_PHRASE]}
-                docCountLimit={8}
               />
               {errors?.relatedAssets && (
                 <div className="text-red-500">
