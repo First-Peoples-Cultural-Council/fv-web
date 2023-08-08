@@ -74,3 +74,20 @@ export const selectOneMediaDataHelper = (imageArray, videoArray) => {
   }
   return {}
 }
+
+export const selectCoverMedia = (imageArray, videoArray) => {
+  // allow for array of media objects or array of media ids
+  if (imageArray?.length && imageArray?.[0]) {
+    return {
+      entry: imageArray?.[0],
+      type: IMAGE,
+    }
+  }
+  if (videoArray?.length && videoArray?.[0]) {
+    return {
+      entry: videoArray?.[0],
+      type: VIDEO,
+    }
+  }
+  return {}
+}

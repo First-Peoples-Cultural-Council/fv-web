@@ -26,14 +26,14 @@ function SongPresentationDrawer({ entry, sitename }) {
           </div>
         </div>
       </div>
-      {entry.coverVisual?.id && (
+      {entry.coverVisual?.type === IMAGE && (
         <div className="my-2 md:my-4 relative h-40 md:h-96 px-4">
           <img
             className="absolute h-full w-full object-contain"
             src={getMediaPath({
               type: IMAGE,
-              mediaObject: entry?.coverVisual,
-              viewName: 'Small',
+              mediaObject: entry?.coverVisual?.entry,
+              size: SMALL,
             })}
             loading="lazy"
             alt={entry.title}
@@ -69,8 +69,8 @@ function SongPresentationDrawer({ entry, sitename }) {
       </div>
 
       <div className="flex mt-2 md:mt-6 px-6 space-y-2">
-        {entry?.audio?.length > 0 &&
-          entry.audio?.map((audio) => (
+        {entry?.relatedAudio?.length > 0 &&
+          entry.relatedAudio?.map((audio) => (
             <AudioNative
               key={audio.id}
               styling="w-96 text-black mx-auto print:hidden"

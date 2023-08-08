@@ -2,24 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImageWithLightbox from 'components/ImageWithLightbox'
+import { IMAGE, VIDEO } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function StoryPresentation({ entry }) {
-  const coverMedia = entry?.images?.length + entry?.videos?.length
+  const coverMedia = entry?.coverVisual?.entry
   return (
     <div data-testid="StoryPresentation" className="bg-gray-200">
       {/* Cover with image */}
-      {(entry?.coverVisual?.type === 'gifOrImg' ||
-        entry?.coverVisual?.type === 'image') && (
+      {entry?.coverVisual?.type === IMAGE && (
         <div className="grid grid-cols-2 md:gap-4 bg-white overflow-hidden shadow-lg">
           <div className="col-span-2 md:col-span-1 flex max-h-screen">
             <ImageWithLightbox.Presentation
               maxWidth={1000}
-              image={entry?.coverVisual}
+              image={coverMedia}
             />
           </div>
           <div className="col-span-2 md:col-span-1 flex items-center ">
@@ -28,7 +28,7 @@ function StoryPresentation({ entry }) {
                 {entry?.title}
               </h1>
               <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
-                {entry?.titleTranslation?.[0]?.translation}
+                {entry?.titleTranslation}
               </h2>
               {entry?.author?.length > 0 && (
                 <div className="text-fv-charcoal-light">by {entry.author}</div>
@@ -38,15 +38,15 @@ function StoryPresentation({ entry }) {
         </div>
       )}
       {/* Cover with video */}
-      {entry?.coverVisual?.type === 'video' && (
+      {entry?.coverVisual?.type === VIDEO && (
         <div className="bg-white overflow-hidden shadow-lg">
           <div className="flex justify-center items-center ">
             <div className="flex max-h-screen">
               <video
                 className="h-full mx-auto"
-                src={getMediaUrl({
+                src={getMediaPath({
                   type: entry?.coverVisual.type,
-                  id: entry?.coverVisual?.id,
+                  mediaObject: entry?.coverVisual.entry,
                   viewName: 'Small',
                 })}
                 controls
@@ -59,7 +59,7 @@ function StoryPresentation({ entry }) {
                 {entry?.title}
               </h1>
               <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
-                {entry?.titleTranslation?.[0]?.translation}
+                {entry?.titleTranslation}
               </h2>
               <div className="text-fv-charcoal-light">
                 {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
@@ -69,7 +69,7 @@ function StoryPresentation({ entry }) {
         </div>
       )}
       {/* Cover no media */}
-      {entry?.coverVisual?.type === null && (
+      {!entry?.coverVisual?.type && (
         <div className="bg-white overflow-hidden shadow-lg">
           <div className="flex justify-center">
             <div className="p-10 space-y-4">
@@ -77,7 +77,7 @@ function StoryPresentation({ entry }) {
                 {entry?.title}
               </h1>
               <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
-                {entry?.titleTranslation?.[0]?.translation}
+                {entry?.titleTranslation}
               </h2>
               <div className="text-fv-charcoal-light">
                 {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
@@ -91,12 +91,15 @@ function StoryPresentation({ entry }) {
         {/* Introduction */}
         {(entry?.intro?.length > 0 ||
           entry?.introTranslation?.length > 0 ||
-          coverMedia > 1 ||
-          entry?.audio?.length > 0) && (
+          coverMedia ||
+          entry?.relatedAudio?.length > 0) && (
           <LazyLoader>
             <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg mt-5 p-4 lg:p-0">
-              {coverMedia > 1 &&
-                getMedia({ images: entry?.images, videos: entry?.videos })}
+              {coverMedia &&
+                getMedia({
+                  images: entry?.relatedImages,
+                  videos: entry?.relatedVideos,
+                })}
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
                 <div className="flex-1 bg-white rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
                   <h2 className="w-full text-fv-charcoal-light text-xs md:text-sm">
@@ -108,9 +111,9 @@ function StoryPresentation({ entry }) {
                   <div className="w-full md:text-lg text-fv-charcoal-light">
                     <WysiwygBlock jsonString={entry?.introTranslation} />
                   </div>
-                  {entry?.audio?.length > 0 && (
+                  {entry?.relatedAudio?.length > 0 && (
                     <div className="space-y-5">
-                      {entry?.audio?.map((audio) => (
+                      {entry?.relatedAudio?.map((audio) => (
                         <AudioNative
                           key={`${audio}}`}
                           styling="lg:w-96 print:hidden"
@@ -133,46 +136,46 @@ function StoryPresentation({ entry }) {
           </LazyLoader>
         )}
         {/* Pages */}
-        {entry?.pageOrder?.length > 0
-          ? entry.pageOrder.map((pageId, pageIndex) => {
-              const page = entry?.pages[pageId]
-              return (
-                <LazyLoader key={pageId}>
-                  <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg p-4 lg:p-0 lg:mt-5">
-                    {getMedia({ images: page?.images, videos: page?.videos })}
-                    <div className="w-full md:w-6/12 flex flex-col grow shrink">
-                      <div className="flex-1 bg-white text-fv-charcoal md:text-lg rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
-                        <div className="w-full font-medium">
-                          <WysiwygBlock jsonString={page?.text} />
-                        </div>
-                        <div className="text-fv-charcoal-light">
-                          <WysiwygBlock jsonString={page?.textTranslation} />
-                        </div>
-                        {page?.audio?.length > 0 && (
-                          <div className="space-y-5">
-                            {page?.audio?.map((audio) => (
-                              <AudioNative
-                                key={audio.uid}
-                                styling="lg:w-96 print:hidden"
-                                audioObject={audio}
-                              />
-                            ))}
-                          </div>
-                        )}
+        {entry?.pages?.length > 0
+          ? entry.pages.map((page) => (
+              <LazyLoader key={page.id}>
+                <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg p-4 lg:p-0 lg:mt-5">
+                  {getMedia({
+                    images: page?.relatedImages,
+                    videos: page?.relatedVideos,
+                  })}
+                  <div className="w-full md:w-6/12 flex flex-col grow shrink">
+                    <div className="flex-1 bg-white text-fv-charcoal md:text-lg rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
+                      <div className="w-full font-medium">
+                        <WysiwygBlock jsonString={page?.text} />
                       </div>
-                      <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden lg:shadow-lg p-4 lg:p-6">
-                        <div className="flex items-center justify-end">
-                          <p className="text-fv-charcoal-light text-xs md:text-sm">
-                            {pageIndex + 1}
-                          </p>
+                      <div className="text-fv-charcoal-light">
+                        <WysiwygBlock jsonString={page?.textTranslation} />
+                      </div>
+                      {page?.relatedAudio?.length > 0 && (
+                        <div className="space-y-5">
+                          {page?.relatedAudio?.map((audio) => (
+                            <AudioNative
+                              key={audio.id}
+                              styling="lg:w-96 print:hidden"
+                              audioObject={audio}
+                            />
+                          ))}
                         </div>
+                      )}
+                    </div>
+                    <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden lg:shadow-lg p-4 lg:p-6">
+                      <div className="flex items-center justify-end">
+                        <p className="text-fv-charcoal-light text-xs md:text-sm">
+                          {page.order}
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <div className="breakAfter" />
-                </LazyLoader>
-              )
-            })
+                </div>
+                <div className="breakAfter" />
+              </LazyLoader>
+            ))
           : null}
       </div>
     </div>
@@ -182,41 +185,46 @@ function StoryPresentation({ entry }) {
 const getMedia = ({ images = [], videos = [] }) => {
   const media = images.length + videos.length
 
-  const getPictureType = (mediaFile) => {
-    const mimeType = mediaFile?.['mime-type']
-    if (mimeType === 'image/gif') return 'gifOrImg'
-    return 'image'
-  }
+  const getImageTag = ({ image, className }) => (
+    <img
+      className={className}
+      src={getMediaPath({
+        type: IMAGE,
+        mediaObject: image,
+        viewName: 'Medium',
+      })}
+      loading="lazy"
+      alt="Story"
+    />
+  )
+
+  const getVideoTag = ({ video, className }) => (
+    <video
+      className={className}
+      src={getMediaPath({
+        type: VIDEO,
+        mediaObject: video,
+      })}
+      controls
+    >
+      Your browser does not support the video tag.
+    </video>
+  )
 
   if (images.length === 1 && media === 1) {
     return (
       <div className="w-full md:w-6/12">
-        <img
-          className="h-auto w-full"
-          src={getMediaUrl({
-            type: getPictureType(images?.[0]),
-            id: images?.[0]?.uid || images?.[0],
-            viewName: 'Medium',
-          })}
-          loading="lazy"
-          alt="Story"
-        />
+        {getImageTag({
+          image: images?.[0],
+          className: 'h-auto w-full',
+        })}
       </div>
     )
   }
   if (videos.length === 1 && media === 1) {
     return (
       <div className="w-full md:w-6/12 flex-none">
-        <video
-          className="h-auto w-full"
-          src={getMediaUrl({
-            type: 'video',
-            id: videos?.[0]?.uid || videos?.[0],
-          })}
-          controls
-        >
-          Your browser does not support the video tag.
-        </video>
+        {getVideoTag({ video: videos?.[0], className: 'h-auto w-full' })}
       </div>
     )
   }
@@ -225,34 +233,14 @@ const getMedia = ({ images = [], videos = [] }) => {
       <div className="w-full md:w-6/12">
         <div className="grid grid-cols-2 gap-4 m-4">
           {images.length > 0
-            ? images?.map((image) => (
-                <img
-                  key={image}
-                  className="h-auto w-auto"
-                  src={getMediaUrl({
-                    type: getPictureType(image),
-                    id: image?.uid || image,
-                    viewName: 'Medium',
-                  })}
-                  loading="lazy"
-                  alt="Story"
-                />
-              ))
+            ? images?.map((image) =>
+                getImageTag({ image, className: 'h-auto w-auto' }),
+              )
             : null}
           {videos.length > 0
-            ? videos?.map((video) => (
-                <video
-                  key={video}
-                  className="h-auto w-full"
-                  src={getMediaUrl({
-                    type: 'video',
-                    id: video?.uid || video,
-                  })}
-                  controls
-                >
-                  Your browser does not support the video tag.
-                </video>
-              ))
+            ? videos?.map((video) =>
+                getVideoTag({ video, className: 'h-auto w-full' }),
+              )
             : null}
         </div>
       </div>
@@ -265,33 +253,18 @@ const getMedia = ({ images = [], videos = [] }) => {
         <div className="masonry-cols-2 p-4">
           {images.length > 0
             ? images?.map((image) => (
-                <div key={image || image.uid} className="mb-4">
-                  <img
-                    className="h-auto w-full"
-                    src={getMediaUrl({
-                      type: getPictureType(image),
-                      id: image?.uid || image,
-                      viewName: 'Medium',
-                    })}
-                    alt="Story"
-                    loading="lazy"
-                  />
+                <div key={image.id} className="mb-4">
+                  {getImageTag({
+                    image,
+                    className: 'h-auto w-full',
+                  })}
                 </div>
               ))
             : null}
           {videos.length > 0
             ? videos?.map((video) => (
-                <div key={video} className="mb-4">
-                  <video
-                    className="h-auto w-full"
-                    src={getMediaUrl({
-                      type: 'video',
-                      id: video?.uid || video,
-                    })}
-                    controls
-                  >
-                    Your browser does not support the video tag.
-                  </video>
+                <div key={video.id} className="mb-4">
+                  {getVideoTag({ video, className: 'h-auto w-full' })}
                 </div>
               ))
             : null}

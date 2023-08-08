@@ -13,6 +13,7 @@ import {
   TYPE_STORY,
   TYPE_WORD,
 } from 'common/constants'
+import { storySummaryAdaptor, songSummaryAdaptor } from 'common/dataAdaptors'
 
 /**
  * Calls search API and provides search results and infinite scroll info.
@@ -54,10 +55,14 @@ function useSearchLoader({ searchParams }) {
           image: result?.entry?.relatedImages?.[0] || null,
         }
       case TYPE_SONG:
+        return {
+          ...songSummaryAdaptor({ item: result?.entry }),
+          ...baseObject,
+        }
       case TYPE_STORY:
         return {
+          ...storySummaryAdaptor({ item: result?.entry }),
           ...baseObject,
-          translations: [result?.entry?.title_translation],
         }
       default:
         return {

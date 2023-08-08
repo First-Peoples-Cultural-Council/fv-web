@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import WysiwygBlock from 'components/WysiwygBlock'
+import { IMAGE, VIDEO } from 'common/constants'
 
 function StoryPresentationDrawer({ entry, sitename }) {
   return (
@@ -18,20 +19,19 @@ function StoryPresentationDrawer({ entry, sitename }) {
               </h3>
             </div>
             <p className="text-fv-charcoal-light">
-              {entry?.titleTranslation?.[0]?.translation}
+              {entry?.titleTranslation}
               {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
             </p>
           </div>
         </div>
       </div>
-      {(entry?.coverVisual?.type === 'gifOrImg' ||
-        entry?.coverVisual?.type === 'image') && (
+      {entry?.coverVisual?.type === IMAGE && (
         <div className="my-2 md:my-6">
           <img
             className="h-40 md:h-96 w-auto mx-auto"
-            src={getMediaUrl({
+            src={getMediaPath({
               type: entry?.coverVisual.type,
-              id: entry?.coverVisual?.id,
+              mediaObject: entry?.coverVisual?.entry,
               viewName: 'Small',
             })}
             alt={entry?.title}
@@ -39,13 +39,13 @@ function StoryPresentationDrawer({ entry, sitename }) {
           />
         </div>
       )}
-      {entry?.coverVisual?.type === 'video' && (
+      {entry?.coverVisual?.type === VIDEO && (
         <div className="my-2 md:my-6 flex mx-auto px-4">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
-            src={getMediaUrl({
+            src={getMediaPath({
               type: entry?.coverVisual.type,
-              id: entry?.coverVisual?.id,
+              mediaObject: entry?.coverVisual?.entry,
               viewName: 'Small',
             })}
             controls
