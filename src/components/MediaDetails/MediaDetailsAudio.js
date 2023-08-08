@@ -11,7 +11,7 @@ function MediaDetailsAudio({ file }) {
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6">
       <div>
         <div className="block w-full rounded-lg overflow-hidden">
-          <AudioNative styling="w-full" audioId={file?.id} />
+          <AudioNative styling="w-full" audioObject={file} />
         </div>
         <div className="mt-4 flex items-start">
           <div>
