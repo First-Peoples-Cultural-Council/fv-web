@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { useImageObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { IMAGE, MEDIUM } from 'common/constants'
+import { IMAGE, SMALL } from 'common/constants'
 
 function ImageThumbnail(props) {
-  const { id, type, size, alt, containerStyles, imageStyles, ...other } = props
+  const { id, size, alt, containerStyles, imageStyles, ...other } = props
 
   const { sitename } = useParams()
   const [src, setSrc] = useState('')
@@ -41,18 +41,17 @@ function ImageThumbnail(props) {
 }
 
 // PROPTYPES
-const { string, oneOf } = PropTypes
+const { string } = PropTypes
 ImageThumbnail.propTypes = {
   id: string,
   size: string,
   alt: string,
   containerStyles: string,
   imageStyles: string,
-  type: oneOf([IMAGE]),
 }
 
 ImageThumbnail.defaultProps = {
-  size: MEDIUM,
+  size: SMALL,
   containerStyles:
     'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
   imageStyles: 'w-full h-full object-contain',

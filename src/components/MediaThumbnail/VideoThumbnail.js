@@ -8,7 +8,7 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import { VIDEO, ORIGINAL } from 'common/constants'
 
 function VideoThumbnail(props) {
-  const { id, type, size, alt, containerStyles, videoStyles, ...other } = props
+  const { id, size, alt, containerStyles, videoStyles, ...other } = props
 
   const { sitename } = useParams()
   const [src, setSrc] = useState('')
@@ -37,14 +37,13 @@ function VideoThumbnail(props) {
 }
 
 // PROPTYPES
-const { string, oneOf } = PropTypes
+const { string } = PropTypes
 VideoThumbnail.propTypes = {
   id: string,
   size: string,
   alt: string,
   containerStyles: string,
   videoStyles: string,
-  type: oneOf([VIDEO]),
 }
 
 VideoThumbnail.defaultProps = {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import DocumentThumbnail from 'components/DocumentThumbnail'
-import { AUDIO, IMAGE, VIDEO, SMALL } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
 
 function ArrayBrowserField({
@@ -32,20 +32,14 @@ function ArrayBrowserField({
                 key={`${docId}`}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
               >
-                {docType === AUDIO && (
-                  <MediaThumbnail.Audio id={docId} type={docType} />
-                )}
+                {docType === AUDIO && <MediaThumbnail.Audio id={docId} />}
                 {docType === IMAGE && (
                   <MediaThumbnail.Image
                     id={docId}
-                    type={docType}
-                    size={SMALL}
                     imageStyles="object-cover pointer-events-none"
                   />
                 )}
-                {docType === VIDEO && (
-                  <MediaThumbnail.Video id={docId} type={docType} />
-                )}
+                {docType === VIDEO && <MediaThumbnail.Video id={docId} />}
                 {/* For all other types of documents. */}
                 {![AUDIO, IMAGE, VIDEO].includes(docType) && (
                   <DocumentThumbnail.Container docId={docId} />

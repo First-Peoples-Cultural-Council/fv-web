@@ -7,7 +7,7 @@ import MediaThumbnail from 'components/MediaThumbnail'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
-import { IMAGE, VIDEO, SMALL } from 'common/constants'
+import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
 
 const DEFAULT_MEDIA_VALUE = {
@@ -78,12 +78,10 @@ function SelectOneButton({ value, onChange }) {
       {docType === IMAGE ? (
         <MediaThumbnail.Image
           id={value?.docId}
-          type={docType}
-          size={SMALL}
           imageStyles="object-cover pointer-events-none"
         />
       ) : (
-        <MediaThumbnail.Video id={value?.docId} type={docType} />
+        <MediaThumbnail.Video id={value?.docId} />
       )}
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
