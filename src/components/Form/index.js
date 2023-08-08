@@ -11,7 +11,7 @@ import Header from 'components/Form/Header'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
-import SelectOne from 'components/Form/SelectOne'
+import SelectOneMedia from 'components/Form/SelectOneMedia'
 import Stepper from 'components/Form/Stepper'
 import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
@@ -34,7 +34,7 @@ export default {
   NextPrevious,
   RadioButtons,
   Select,
-  SelectOne,
+  SelectOneMedia,
   Stepper,
   SubmitButtons,
   TextField,

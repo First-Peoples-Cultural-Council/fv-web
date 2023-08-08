@@ -8,7 +8,7 @@ function ErrorHandlerContainer({ error }) {
   let errorStatus = null
   let errorText = null
 
-  if (error && error?.status) {
+  if (error?.status) {
     errorStatus = error?.status
     errorText = error?.statusText
   }
@@ -75,9 +75,8 @@ function ErrorHandlerContainer({ error }) {
   }
 }
 // PROPTYPES
-const { node, object } = PropTypes
+const { object } = PropTypes
 ErrorHandlerContainer.propTypes = {
-  children: node,
   error: object,
 }
 

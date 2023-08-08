@@ -177,13 +177,13 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
               </div>
             </div>
             <div className="col-span-5 space-y-4">
-              <Form.SelectOne
+              <Form.SelectOneMedia
                 label="Add a Cover Media"
                 nameId="cover"
                 control={control}
               />
-              {errors?.selectOne && (
-                <div className="text-red-500">{errors?.selectOne?.message}</div>
+              {errors?.cover && (
+                <div className="text-red-500">{errors?.cover?.message}</div>
               )}
             </div>
           </div>

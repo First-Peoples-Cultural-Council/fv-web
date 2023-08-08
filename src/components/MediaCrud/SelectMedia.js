@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import MediaItemsLayout from 'components/MediaItemsLayout'
 import SearchSelectorPresentation from 'components/SearchSelector/SearchSelectorPresentation'
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function SelectMedia({
   docType,
@@ -23,10 +23,10 @@ function SelectMedia({
 }) {
   const hasResults = !!(
     fetchedMedia?.pages !== undefined &&
-    fetchedMedia?.pages?.[0]?.entries?.length > 0
+    fetchedMedia?.pages?.[0]?.results?.length > 0
   )
   const BrowserComponent =
-    docType === DOC_AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
+    docType === AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
 
   return (
     <div id="SelectMedia" className="h-full">
@@ -64,7 +64,7 @@ function SelectMedia({
 // PROPTYPES
 const { array, bool, func, object, string, oneOf } = PropTypes
 SelectMedia.propTypes = {
-  docType: oneOf([DOC_AUDIO, DOC_IMAGE, DOC_VIDEO]),
+  docType: oneOf([AUDIO, IMAGE, VIDEO]),
   searchValue: string,
   handleSearchSubmit: func,
   handleTextFieldChange: func,

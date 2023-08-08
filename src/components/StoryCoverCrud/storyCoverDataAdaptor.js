@@ -1,6 +1,6 @@
 import { convertStateToVisibility } from 'common/utils/stringHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
-import { selectOneDataHelper } from 'common/utils/mediaHelpers'
+import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
 import { pageOrderDataAdaptor } from 'components/StoryPagesCrud/storyPagesDataAdaptor'
 
 function storyCoverDataAdaptor({ data }) {
@@ -40,7 +40,7 @@ function storyCoverDataAdaptor({ data }) {
       // Pages
       pageOrder: pageOrderDataAdaptor({ data }),
       pages: storyContextParams?.pages || [],
-      cover: selectOneDataHelper(images, videos),
+      cover: selectOneMediaDataHelper(images, videos),
     }
   } else {
     // V1_FUDGE
@@ -48,7 +48,7 @@ function storyCoverDataAdaptor({ data }) {
 
     let author = storyContextParams?.authors?.[0]?.['dc:title'] || ''
     if (storyContextParams?.authors?.length > 1) {
-      for (let i = 1; i < storyContextParams?.authors?.length; i++) {
+      for (let i = 1; i < storyContextParams?.authors?.length; i += 1) {
         author += `, ${storyContextParams?.authors?.[i]?.['dc:title']}`
       }
     }
@@ -69,9 +69,9 @@ function storyCoverDataAdaptor({ data }) {
         : 'false',
       // Cover
       title: properties['dc:title'] || '',
-      titleTranslation:
-        [{ language: 'english', translation: titleTranslation?.join(' ') }] ||
-        [],
+      titleTranslation: [
+        { language: 'english', translation: titleTranslation?.join(' ') },
+      ],
       author,
       videos: properties['fv:related_videos'] || [],
       images: properties['fv:related_pictures'] || [],
@@ -86,7 +86,7 @@ function storyCoverDataAdaptor({ data }) {
       // Pages
       pageOrder: pageOrderDataAdaptor({ data }),
       pages: storyContextParams?.pages || [],
-      cover: selectOneDataHelper(images, videos),
+      cover: selectOneMediaDataHelper(images, videos),
     }
   }
 

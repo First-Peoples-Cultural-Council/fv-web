@@ -66,9 +66,12 @@ export const getFriendlyDocType = ({
   plural = false,
   titleCase = false,
 }) => {
+  // Temporarily adding redundant cases to use the function with updated media types
+  // until we completely switch over to new document types
   let friendly = ''
   switch (docType) {
     case DOC_AUDIO:
+    case 'audio':
       friendly = 'audio'
       break
     case DOC_BOOK:
@@ -78,6 +81,7 @@ export const getFriendlyDocType = ({
       friendly = plural ? 'categories' : 'category'
       break
     case DOC_IMAGE:
+    case 'image':
       friendly = plural ? 'images' : 'image'
       break
     case DOC_PAGE:
@@ -87,6 +91,7 @@ export const getFriendlyDocType = ({
       friendly = plural ? 'phrases' : 'phrase'
       break
     case DOC_VIDEO:
+    case 'video':
       friendly = plural ? 'videos' : 'video'
       break
     case DOC_WORD:
@@ -303,6 +308,7 @@ export const safeJsonParse = (str) => {
     }
     return error
   }
+  return false // default return case
 }
 
 export const makeTypeSingular = (plural) => {

@@ -9,7 +9,7 @@ import { useSiteStore } from 'context/SiteContext'
 import storyCrudDataAdaptor from 'components/StoryCoverCrud/storyCoverDataAdaptor'
 import { DOC_STORY } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
-import { selectOneFormHelper } from 'common/utils/mediaHelpers'
+import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 
 function StoryCoverCrudData() {
   const { site } = useSiteStore()
@@ -51,7 +51,7 @@ function StoryCoverCrudData() {
           _formData?.introTranslation?.getCurrentContent(),
         )
       : ''
-    const mediaObject = selectOneFormHelper(_formData, 'cover')
+    const mediaObject = selectOneMediaFormHelper(_formData, 'cover')
 
     return {
       'dc:title': _formData?.title,
