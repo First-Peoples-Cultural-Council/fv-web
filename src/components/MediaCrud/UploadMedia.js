@@ -36,7 +36,10 @@ function UploadMedia({
       id: 'mediaUpload',
       autoProceed: false,
       allowMultipleUploadBatches: true,
-      restrictions: { maxNumberOfFiles: maxFiles },
+      restrictions: {
+        maxNumberOfFiles: maxFiles,
+        requiredMetaFields: ['title'],
+      },
       // eslint-disable-next-line no-unused-vars
       onBeforeFileAdded: (currentFile, _files) => {
         if (!extensionList.includes(getFileExtensions(currentFile.name))) {
@@ -94,6 +97,7 @@ function UploadMedia({
         }
       },
     })
+
     return _uppy
   })
 
@@ -121,16 +125,59 @@ function UploadMedia({
         showSelectedFiles
         plugins={['ImageEditor']}
         metaFields={[
-          { id: 'title', name: 'Title', placeholder: 'Title for the image.' },
+          {
+            id: 'title',
+            name: 'Title',
+            placeholder: 'Title for the media file.',
+          },
+          {
+            id: 'description',
+            name: 'General description',
+            placeholder: 'Description of the media file to be uploaded.',
+          },
           {
             id: 'acknowledgement',
             name: 'Acknowledgement',
             placeholder: 'Who created this media or where did you get it from?',
           },
           {
-            id: 'notes',
-            name: 'General notes',
-            placeholder: 'Any other details regarding this media file.',
+            id: 'excludeFromGames',
+            name: 'Exclude from games',
+            render({ value, onChange, required, form }, h) {
+              return h('input', {
+                type: 'checkbox',
+                required,
+                form,
+                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+                defaultChecked: value === 'on',
+              })
+            },
+          },
+          {
+            id: 'excludeFromKids',
+            name: 'Exclude from Kids',
+            render({ value, onChange, required, form }, h) {
+              return h('input', {
+                type: 'checkbox',
+                required,
+                form,
+                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+                defaultChecked: value === 'on',
+              })
+            },
+          },
+          {
+            id: 'isShared',
+            name: 'isShared',
+            render({ value, onChange, required, form }, h) {
+              return h('input', {
+                type: 'checkbox',
+                required,
+                form,
+                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+                defaultChecked: value === 'on',
+              })
+            },
           },
         ]}
       />
