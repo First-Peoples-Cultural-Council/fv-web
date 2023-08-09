@@ -59,7 +59,7 @@ function CategoriesBrowserPresentation({
                     } flex justify-start p-4 cursor-pointer rounded-sm`}
                   >
                     <div className="w-1/2">{category.title}</div>
-                    <div className="w-1/2">{category.parentCategory}</div>
+                    <div className="w-1/2">{category.parentTitle}</div>
                   </option>
                 ))}
               </ul>
