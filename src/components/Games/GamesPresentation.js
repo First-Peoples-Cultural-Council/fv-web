@@ -27,7 +27,7 @@ function GamesPresentation() {
         <SectionTitle.Presentation title="GAMES" accentColor="tertiaryA" />
         <div className="w-full flex-1 min-h-full min-w-full p-10 lg:p-20 text-gray-800 relative items-center text-center">
           <h1 className="font-black text-3xl lg:text-5xl text-fv-charcoal mb-10">
-            Games coming soon.
+            FirstVoices Games will return soon!
           </h1>
         </div>
         {/* <div className="flex-1 flex items-stretch overflow-hidden">
