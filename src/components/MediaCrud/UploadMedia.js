@@ -166,19 +166,6 @@ function UploadMedia({
               })
             },
           },
-          {
-            id: 'isShared',
-            name: 'isShared',
-            render({ value, onChange, required, form }, h) {
-              return h('input', {
-                type: 'checkbox',
-                required,
-                form,
-                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-                defaultChecked: value === 'on',
-              })
-            },
-          },
         ]}
       />
     </div>
