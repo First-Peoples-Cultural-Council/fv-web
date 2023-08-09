@@ -67,10 +67,4 @@ function GamesPresentation() {
   )
 }
 
-// PROPTYPES
-// const { bool } = PropTypes
-// GamesPresentation.propTypes = {
-//   kids: bool,
-// }
-
 export default GamesPresentation
