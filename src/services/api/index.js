@@ -1,5 +1,5 @@
 import blog from 'services/api/blog'
-import category from 'services/api/category'
+import categories from 'services/api/categories'
 import characters from 'services/api/characters'
 import dictionaryEntry from 'services/api/dictionaryEntry'
 import document from 'services/api/document'
@@ -22,7 +22,7 @@ import widgets from 'services/api/widgets'
 
 export default {
   blog,
-  category,
+  categories,
   characters,
   dictionaryEntry,
   document,
