@@ -4,12 +4,14 @@ import PropTypes from 'prop-types'
 import Audiobar from 'components/Audiobar'
 import Footer from 'components/Footer'
 import AppNavBar from 'components/AppNavBar'
+import UserMenuData from 'components/UserMenu/UserMenuData'
 
 function AppWrapper({ children, isHome = false }) {
+  const { login, logout } = UserMenuData()
   return (
     <div id="AppWrapper" className="overflow-hidden bg-white">
       <header className="fixed w-full top-0 z-50 print:hidden">
-        <AppNavBar.Presentation isHome={isHome} />
+        <AppNavBar.Presentation isHome={isHome} login={login} logout={logout} />
       </header>
       <div className={isHome ? '' : 'pt-16 min-h-screen'}>{children}</div>
       <footer>

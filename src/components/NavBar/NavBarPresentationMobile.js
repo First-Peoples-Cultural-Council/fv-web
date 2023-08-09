@@ -5,14 +5,15 @@ import { Transition } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { LOGIN_PATH } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
+import UserMenuData from 'components/UserMenu/UserMenuData'
 
 function NavBarPresentationMobile({ menuData, sitename }) {
   const { user } = useUserStore()
   const [selectedSubMenu, setSelectedSubMenu] = useState({})
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const isGuest = user?.username === 'Guest' || !user?.username
+  const { login, logout } = UserMenuData()
 
   const onMenuClick = (event, menuObject) => {
     event.stopPropagation()
@@ -75,9 +76,12 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {menuData?.kids && generateMenuItem(menuData?.kids)}
             {isGuest ? (
               <li key="SignIn_id">
+                {/* eslint-disable-next-line */}
                 <a
-                  href={LOGIN_PATH}
                   className="w-full my-3 p-1 flex items-center rounded"
+                  type="button"
+                  onClick={login}
+                  onKeyDown={login}
                 >
                   {getIcon('Login', 'fill-current h-12 w-8')}
                   <span className="ml-3 font-medium">Sign in / Register</span>
@@ -85,9 +89,12 @@ function NavBarPresentationMobile({ menuData, sitename }) {
               </li>
             ) : (
               <li key="SignOut_id">
+                {/* eslint-disable-next-line */}
                 <a
-                  href={LOGIN_PATH}
                   className="w-full my-3 p-1 flex items-center rounded"
+                  type="button"
+                  onClick={logout}
+                  onKeyDown={logout}
                 >
                   {getIcon('LogOut', 'fill-current h-12 w-8')}
                   <span className="ml-3 font-medium">Sign Out</span>
@@ -112,9 +119,12 @@ function NavBarPresentationMobile({ menuData, sitename }) {
               ? selectedSubMenu?.itemsData.map((item) => generateMenuItem(item))
               : null}
             <li key="BackButton_id">
+              onClick={() => setIsSubMenuOpen(false)}
+              {/* eslint-disable-next-line */}
               <a
                 type="button"
                 onClick={() => setIsSubMenuOpen(false)}
+                onKeyDown={() => setIsSubMenuOpen(false)}
                 className="w-full m-3 p-1 flex items-center focus:outline-none"
               >
                 {getIcon('ChevronLeft', 'fill-current h-12 w-8')}

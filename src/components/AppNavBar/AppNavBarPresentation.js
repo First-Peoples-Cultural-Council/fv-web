@@ -6,10 +6,10 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import UserMenu from 'components/UserMenu'
-import { LOGIN_PATH, ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
+import { ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
 
-function AppNavBarPresentation({ isHome = false }) {
+function AppNavBarPresentation({ isHome = false, login, logout }) {
   let listener = null
   const { user } = useUserStore()
   const [scrollAtTop, setscrollAtTop] = useState(true)
@@ -35,19 +35,29 @@ function AppNavBarPresentation({ isHome = false }) {
     setMobileLandingNavbarOpen(!mobileLandingNavbarOpen)
   }
 
+  const location = useLocation()
+
   useEffect(() => {
     if (mobileLandingNavbarOpen) {
       setMobileLandingNavbarOpen(false)
     }
-  }, [useLocation()])
+  }, [location, mobileLandingNavbarOpen])
 
-  const createMobileMenuItem = (title, iconName, link, openNewTab = true) => (
+  const createMobileMenuItem = (
+    title,
+    iconName,
+    link,
+    openNewTab = true,
+    onClick = null,
+  ) => (
     <li>
       <a
         className="w-full my-3 p-1 text-fv-charcoal flex items-center rounded focus:ring-2"
         href={link}
         {...(openNewTab ? { target: '_blank' } : '')}
         rel="noopener noreferrer"
+        onClick={onClick}
+        onKeyDown={onClick}
       >
         {getIcon(iconName, 'fill-current h-12 w-8')}
         <span className="ml-3 font-medium">{title}</span>
@@ -55,12 +65,20 @@ function AppNavBarPresentation({ isHome = false }) {
     </li>
   )
 
-  const createMenuItem = (title, iconName, link, openNewTab = true) => (
+  const createMenuItem = (
+    title,
+    iconName,
+    link,
+    openNewTab = true,
+    onClick = null,
+  ) => (
     <li className="mr-4">
       <a
         href={link}
         {...(openNewTab ? { target: '_blank' } : '')}
         rel="noopener noreferrer"
+        onClick={onClick}
+        onKeyDown={onClick}
       >
         <div className="h-8 xl:h-10 group p-1 inline-flex items-center text-base font-medium text-white hover:text-gray-300">
           {getIcon(iconName, 'fill-current h-full w-auto')}
@@ -95,7 +113,7 @@ function AppNavBarPresentation({ isHome = false }) {
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
             {isHome &&
               isGuest &&
-              createMenuItem('Sign in / Register', 'Login', LOGIN_PATH, false)}
+              createMenuItem('Sign in / Register', 'Login', '', false, login)}
             {isHome ? (
               <li>
                 <Link
@@ -166,10 +184,11 @@ function AppNavBarPresentation({ isHome = false }) {
               ? createMobileMenuItem(
                   'Sign in / Register',
                   'Login',
-                  LOGIN_PATH,
+                  '',
                   false,
+                  login,
                 )
-              : createMobileMenuItem('Sign out', 'LogOut', LOGIN_PATH, false)}
+              : createMobileMenuItem('Sign out', 'LogOut', '', false, logout)}
           </ul>
         </div>
       </Transition>
@@ -177,9 +196,11 @@ function AppNavBarPresentation({ isHome = false }) {
   )
 }
 
-const { bool } = PropTypes
+const { bool, func } = PropTypes
 AppNavBarPresentation.propTypes = {
   isHome: bool,
+  login: func,
+  logout: func,
 }
 
 export default AppNavBarPresentation

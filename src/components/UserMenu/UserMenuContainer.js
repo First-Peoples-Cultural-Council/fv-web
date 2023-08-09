@@ -1,14 +1,17 @@
 import React from 'react'
 
 // FPCC
-import UserMenu from 'components/UserMenu'
+import UserMenuData from 'components/UserMenu/UserMenuData'
+import UserMenuPresentation from 'components/UserMenu/UserMenuPresentation'
 
 function UserMenuContainer() {
-  const { currentUser, hasImmersion } = UserMenu.Data()
+  const { currentUser, hasImmersion, login, logout } = UserMenuData()
   return (
-    <UserMenu.Presentation
+    <UserMenuPresentation
       currentUser={currentUser}
       hasImmersion={hasImmersion}
+      login={login}
+      logout={logout}
     />
   )
 }

@@ -10,8 +10,6 @@ export const DISPLAYABLE_PROPS_MEDIA = [
   'mimeType',
   'acknowledgement',
 ]
-export const LOGIN_PATH =
-  '/nuxeo/logout?forceAnonymousLogin=true&requestedUrl=login.jsp'
 export const ABOUT_LINK =
   'https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704813/About+FirstVoices'
 export const SUPPORT_LINK =

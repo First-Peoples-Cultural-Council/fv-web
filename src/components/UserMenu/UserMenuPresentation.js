@@ -4,10 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 // import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
-// FPCC
-import { LOGIN_PATH } from 'common/constants'
-
-function UserMenuPresentation({ currentUser }) {
+function UserMenuPresentation({ currentUser, login, logout }) {
   // const { i18n } = useTranslation()
   const { sitename } = useParams()
 
@@ -109,7 +106,12 @@ function UserMenuPresentation({ currentUser }) {
               <>
                 <Menu.Item className="w-full flex">
                   {({ active }) => (
-                    <a href={LOGIN_PATH}>
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
+                    <a
+                      type="button"
+                      onClick={() => login()}
+                      onKeyDown={() => login()}
+                    >
                       <div
                         className={`${
                           active ? menuItemActiveClass : menuItemInactiveClass
@@ -134,7 +136,12 @@ function UserMenuPresentation({ currentUser }) {
             ) : (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
-                  <a href="/nuxeo/logout?requestedUrl=../languages">
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
+                  <a
+                    type="button"
+                    onClick={() => logout()}
+                    onKeyDown={() => logout()}
+                  >
                     <div
                       className={`${
                         active ? menuItemActiveClass : menuItemInactiveClass
@@ -153,10 +160,12 @@ function UserMenuPresentation({ currentUser }) {
   )
 }
 // PROPTYPES
-const { object } = PropTypes
+const { object, func } = PropTypes
 UserMenuPresentation.propTypes = {
   currentUser: object,
   // hasImmersion: bool,
+  login: func,
+  logout: func,
 }
 
 export default UserMenuPresentation
