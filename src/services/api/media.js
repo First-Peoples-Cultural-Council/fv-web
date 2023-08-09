@@ -1,12 +1,5 @@
 import { apiBase, apiV1, externalApi } from 'services/config'
-import { cleanNXQL } from 'common/utils/stringHelpers'
-import {
-  HEADER_ENRICHER,
-  SITES,
-  AUDIO_PATH,
-  IMAGE_PATH,
-  VIDEO_PATH,
-} from 'common/constants'
+import { SITES, AUDIO_PATH, IMAGE_PATH, VIDEO_PATH } from 'common/constants'
 
 const media = {
   getAudio: async ({ sitename, id }) =>
@@ -15,32 +8,18 @@ const media = {
     apiBase.get(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
   getVideo: async ({ sitename, id }) =>
     apiBase.get(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
-  get: async ({ searchTerm, siteId, type, pageParam, perPage = 24 }) => {
-    const search = searchTerm
-      ? `AND  (dc:title ILIKE '%${cleanNXQL(
-          searchTerm,
-        )}%' OR dc:description ILIKE '%${cleanNXQL(searchTerm)}%')`
-      : ''
-    const body = {
-      params: {
-        currentPageIndex: `${pageParam}`,
-        language: 'NXQL',
-        pageSize: `${perPage}`,
-        query: `SELECT * FROM ${type} WHERE ecm:ancestorId = '${siteId}' AND ecm:isVersion = 0 AND ecm:isTrashed = 0 ${search}`,
-        maxResults: '300',
-        sortOrder: searchTerm ? 'ASC' : 'DESC',
-        sortBy: searchTerm ? 'ecm:name' : 'dc:created',
-      },
-      context: {},
-    }
-    const headers = { [HEADER_ENRICHER]: 'ancestory,media', properties: '*' }
-    const response = await apiV1
-      .post('automation/Document.EnrichedQuery', { json: body, headers })
+  get: async ({ sitename, docType, pageParam, perPage = 24 }) => {
+    const response = await apiBase
+      .get(
+        `${SITES}/${sitename}/${docType}/?page=${pageParam}&pageSize=${perPage}`,
+      )
       .json()
-    const lastPage = Math.ceil((response?.resultsCount || 0) / perPage)
-    const nextPage = pageParam >= lastPage ? undefined : pageParam + 1
+    const lastPage = response?.previous
+    const nextPage = response?.next
     return { ...response, nextPage, lastPage }
   },
+  getMediaDocument: async ({ sitename, docId, docType }) =>
+    apiBase.get(`${SITES}/${sitename}/${docType}/${docId}`).json(),
   getS3Url: async () =>
     apiV1.post('media_upload/generate_urls', { json: { quantity: 1 } }).json(),
   upload: async ({ s3Url, file }) => externalApi.put(s3Url, { body: file }),

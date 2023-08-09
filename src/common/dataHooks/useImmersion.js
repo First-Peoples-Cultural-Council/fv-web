@@ -4,7 +4,7 @@
 // import { SITES } from 'common/constants'
 // import api from 'services/api'
 
-export default function useImmersion() {
+export function useImmersion() {
   // Temporary data - return French Labels for all sites
   const data = {
     count: 8,

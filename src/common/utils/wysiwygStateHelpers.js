@@ -40,6 +40,10 @@ function wysiwygStateHelpers() {
   }
 
   const getWysiwygStateFromJson = (jsonString) => {
+    if (!isStringWithLength(jsonString)) {
+      return ContentState.createFromText('')
+    }
+
     const content = safeJsonParse(jsonString)
     return convertFromRaw(content)
   }

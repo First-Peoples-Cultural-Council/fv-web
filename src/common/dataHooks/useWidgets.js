@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { WIDGETS } from 'common/constants'
@@ -7,7 +8,22 @@ import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { useUserStore } from 'context/UserContext'
 import { widgetAdaptor } from 'common/dataAdaptors'
 
-export default function useWidgets({ sitename }) {
+export function useWidget({ id }) {
+  const { sitename } = useParams()
+
+  const response = useQuery(
+    [WIDGETS, sitename, id],
+    () => api.widgets.getWidget({ sitename, id }),
+    { enabled: !!id },
+  )
+  return {
+    ...response,
+    data: widgetAdaptor({ widgetData: response?.data, sitename }),
+  }
+}
+
+export function useWidgets() {
+  const { sitename } = useParams()
   const { user } = useUserStore()
   const { isSuperAdmin } = user
   const editableWidgets = getEditableWidgetsForUser(isSuperAdmin)

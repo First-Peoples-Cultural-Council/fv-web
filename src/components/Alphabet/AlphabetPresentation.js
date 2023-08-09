@@ -58,10 +58,10 @@ function AlphabetPresentation({
           {selectedData?.id && (
             <AlphabetPresentationSelected
               title={selectedData?.title}
-              relatedWords={selectedData?.relatedWords}
+              relatedDictionaryEntries={selectedData?.relatedDictionaryEntries}
               relatedAudio={selectedData?.relatedAudio}
               relatedVideo={selectedData?.relatedVideo}
-              relatedPictures={selectedData?.relatedPictures}
+              relatedImage={selectedData?.relatedImage}
               generalNote={selectedData?.generalNote}
               onVideoClick={onVideoClick}
               videoIsOpen={videoIsOpen}
@@ -84,7 +84,7 @@ AlphabetPresentation.propTypes = {
       relatedLinks: array,
       relatedPictures: array,
       relatedVideo: object,
-      relatedWords: array,
+      relatedDictionaryEntries: array,
     }),
   ),
   kids: bool,

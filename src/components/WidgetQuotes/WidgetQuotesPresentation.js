@@ -19,7 +19,6 @@ function WidgetQuotesPresentation({ widgetData }) {
   } = widgetData.settings
 
   const bgImageObject = useImageObject({
-    sitename: widgetData?.sitename,
     id: backgroundImage,
   })
 

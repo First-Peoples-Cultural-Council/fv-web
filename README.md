@@ -34,7 +34,7 @@ $ source ~/.bash_profile
 $ echo $NVM_DIR
 ```
 
-3. Clone this repository and navigate into the `fv-web-ui/frontend` directory:
+3. Clone this repository and navigate into the `fv-web` directory:
 
 ```bash
 $ git clone https://github.com/First-Peoples-Cultural-Council/fv-web.git

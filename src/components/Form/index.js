@@ -1,17 +1,17 @@
 import ArrayBrowserField from 'components/Form/ArrayBrowserField'
 import DocumentArrayField from 'components/Form/DocumentArrayField'
-import MultitypeArrayField from 'components/Form/MultitypeArrayField'
 
 import AddMedia from 'components/Form/AddMedia'
 import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
+import EntryArrayField from 'components/Form/EntryArrayField'
 import ErrorMessage from 'components/Form/ErrorMessage'
 import FileUploadField from 'components/Form/FileUploadField'
 import Header from 'components/Form/Header'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
-import SelectOne from 'components/Form/SelectOne'
+import SelectOneMedia from 'components/Form/SelectOneMedia'
 import Stepper from 'components/Form/Stepper'
 import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
@@ -24,17 +24,17 @@ import WysiwygField from 'components/Form/WysiwygField'
 export default {
   ArrayBrowserField,
   DocumentArrayField,
-  MultitypeArrayField,
   AddMedia,
   Autocomplete,
   AutocompleteMultiple,
+  EntryArrayField,
   ErrorMessage,
   FileUploadField,
   Header,
   NextPrevious,
   RadioButtons,
   Select,
-  SelectOne,
+  SelectOneMedia,
   Stepper,
   SubmitButtons,
   TextField,

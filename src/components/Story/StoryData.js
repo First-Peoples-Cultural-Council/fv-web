@@ -1,30 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-
-import api from 'services/api'
-import storyDataAdaptor from 'components/Story/storyDataAdaptor'
+import { useStory } from 'common/dataHooks/useStories'
 
 function StoryData({ docId }) {
   const { id, sitename } = useParams()
-
   const idToSend = docId || id
 
   // Data fetch
-  const response = useQuery(
-    ['story', idToSend],
-    () => api.document.get({ id: idToSend, contextParameters: 'book' }),
-    {
-      // The query will not execute until the id has been provided
-      enabled: !!idToSend,
-    },
-  )
-  const { data, isError, isInitialLoading, isFetched, error } = response
-  const entry = storyDataAdaptor({ data })
+  const { data, isError, isInitialLoading, isFetched, error } = useStory({
+    sitename,
+    id: idToSend,
+  })
+  const entry = data?.title ? data : {}
 
   return {
     notFound: !!(isFetched && entry === null),
     isLoading: isInitialLoading || isError,
-    entry: data?.title ? entry : {},
+    entry,
     sitename,
     error,
   }

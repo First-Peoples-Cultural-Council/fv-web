@@ -2,14 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
 import SanitizedHtml from 'components/SanitizedHtml'
 import ImageWithLightbox from 'components/ImageWithLightbox'
+import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
   const hasMedia = !!(
-    entry?.coverVisual?.length > 0 || entry?.videos?.length > 0
+    entry?.relatedImages.length > 0 || entry?.relatedVideos?.length > 0
   )
   return (
     <div
@@ -17,11 +18,16 @@ function SongPresentation({ entry }) {
       data-testid="SongPresentation"
     >
       <div className="grid grid-cols-3 gap-10">
-        {hasMedia && (
-          <div className="hidden md:flex md:col-span-1">
-            {getMedia({ pictures: entry?.coverVisual, videos: entry?.videos })}
-          </div>
-        )}
+        <div>
+          {hasMedia && (
+            <div className="hidden md:flex md:col-span-1">
+              {getMedia({
+                pictures: entry?.relatedImages,
+                videos: entry?.relatedVideos,
+              })}
+            </div>
+          )}
+        </div>
         <div
           className={`col-span-3 ${
             hasMedia ? 'md:col-span-2' : 'max-w-4xl mx-auto'
@@ -36,7 +42,9 @@ function SongPresentation({ entry }) {
               {entry?.titleTranslation}
             </h2>
             <div className="text-fv-charcoal-light">
-              {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
+              {entry?.acknowledgement?.length > 0
+                ? ` acknowledgement: ${entry.acknowledgement}`
+                : ''}
             </div>
           </div>
           <div>
@@ -50,11 +58,11 @@ function SongPresentation({ entry }) {
                 </div>
               </div>
             )}
-            {entry?.audio?.length > 0 && (
+            {entry?.relatedAudio?.length > 0 && (
               <div className="py-5 space-y-5">
-                {entry.audio?.map((audio) => (
+                {entry.relatedAudio?.map((audio) => (
                   <AudioNative
-                    key={audio}
+                    key={audio.id}
                     styling="w-full print:hidden"
                     audioId={audio}
                   />
@@ -65,47 +73,26 @@ function SongPresentation({ entry }) {
               {entry.hasLyrics && (
                 <h4 className="font-bold text-fv-charcoal">LYRICS</h4>
               )}
-              {/* V1_FUDGE - will need modifying for new FVSong docs */}
-              {entry?.lyrics?.length > 0
-                ? entry.lyrics.map((page) => (
-                    <div
-                      key={page.uid}
-                      className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
-                    >
-                      <SanitizedHtml text={page?.content} />
-                      <div className="pl-5">
-                        {page?.contentTranslation?.length > 0
-                          ? page?.contentTranslation.map(
-                              (translation, translationIndex) => (
-                                <SanitizedHtml
-                                  // eslint-disable-next-line react/no-array-index-key
-                                  key={translationIndex}
-                                  text={translation}
-                                />
-                              ),
-                            )
-                          : null}
-                        {page?.related_audio?.length > 0 && (
-                          <div className="space-y-5">
-                            {page?.related_audio?.map((audio) => (
-                              <AudioNative
-                                key={audio.uid}
-                                styling="w-full print:hidden"
-                                audioId={audio.uid}
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))
-                : null}
+              {entry.lyrics.map((lyric) => (
+                <div
+                  key={lyric.id}
+                  className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
+                >
+                  <SanitizedHtml text={lyric?.text} />
+                  <div className="pl-5">
+                    <SanitizedHtml
+                      // eslint-disable-next-line react/no-array-index-key
+                      text={lyric.translation}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
             {hasMedia && (
               <div className="flex md:hidden mt-2">
                 {getMedia({
-                  pictures: entry?.coverVisual,
-                  videos: entry?.videos,
+                  pictures: entry?.relatedImages,
+                  videos: entry?.relatedVideos,
                 })}
               </div>
             )}
@@ -116,38 +103,29 @@ function SongPresentation({ entry }) {
   )
 }
 
-const getMedia = ({ pictures, videos }) => {
-  if (pictures.type === 'image') {
-    return (
+const getMedia = ({ pictures, videos }) => (
+  <div>
+    {pictures.length > 0 && (
       <div className="space-y-4">
-        <ImageWithLightbox.Presentation maxWidth={1000} image={pictures} />
+        {pictures?.map((picture) => (
+          <ImageWithLightbox.Presentation
+            maxWidth={1000}
+            image={picture}
+            key={picture.id}
+          />
+        ))}
       </div>
-    )
-  }
-  if (videos) {
-    return (
-      <video
-        className="h-auto w-full"
-        src={getMediaUrl({
-          type: 'video',
-          id: videos?.[0]?.uid || videos?.[0],
-        })}
-        controls
-      >
-        Your browser does not support the video tag.
-      </video>
-    )
-  }
-  if (videos.length > 1) {
-    return (
+    )}
+    {videos.length > 0 && (
       <div className="space-y-4">
         {videos?.map((video) => (
           <video
-            key={video.uid}
+            key={video.id}
             className="h-auto w-full"
-            src={getMediaUrl({
-              type: 'video',
-              id: video?.uid || video,
+            src={getMediaPath({
+              type: VIDEO,
+              mediaObject: video,
+              size: ORIGINAL,
             })}
             controls
           >
@@ -155,10 +133,9 @@ const getMedia = ({ pictures, videos }) => {
           </video>
         ))}
       </div>
-    )
-  }
-  return null
-}
+    )}
+  </div>
+)
 
 // PROPTYPES
 const { object } = PropTypes

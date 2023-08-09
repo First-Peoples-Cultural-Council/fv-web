@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -38,14 +38,12 @@ function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
           <div className="w-full justify-center flex space-x-2">
             <button
               type="button"
-              type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => setDeleteModalOpen(false)}
             >
               Cancel
             </button>
             <button
-              type="button"
               type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => {

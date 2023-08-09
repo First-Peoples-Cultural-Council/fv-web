@@ -1,4 +1,5 @@
 // IMPORTANT getMediaUrl is now deprecated V1_FUDGE
+// use mediaHelpers/getMediaPath instead
 // size only applies to images
 // Values for size can be: 'Thumbnail', 'Small', 'Medium', 'FullHD', 'OriginalJpeg',
 export const getMediaUrl = ({ id, type, viewName = 'Medium' }) => {

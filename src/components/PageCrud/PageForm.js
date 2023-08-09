@@ -57,7 +57,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
         </div>
         {!isCreateMode && (
           <div className="flex w-full justify-end">
-            <DeleteButton.Container
+            <DeleteButton.Presentation
               id={dataToEdit?.id}
               label="Delete Page"
               message="Are you sure you want to delete this page from your site?"
@@ -112,7 +112,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                   )}
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
-                  <Form.SelectOne
+                  <Form.SelectOneMedia
                     label="Add Banner Background"
                     nameId="banner"
                     control={control}
@@ -134,9 +134,9 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                       </div>
                     }
                   />
-                  {errors?.selectOne && (
+                  {errors?.banner && (
                     <div className="text-red-500">
-                      {errors?.selectOne?.message}
+                      {errors?.banner?.message}
                     </div>
                   )}
                 </div>

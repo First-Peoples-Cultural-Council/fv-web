@@ -1,33 +1,16 @@
-import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import { useCharacters } from 'common/dataHooks/useCharacters'
 
 function DashboardAlphabetData() {
   const { site } = useSiteStore()
-  const navigate = useNavigate()
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isInitialLoading, error, isError } = useQuery(
-    ['alphabet', site?.uid],
-    () => api.alphabet.get(site?.uid),
-    {
-      enabled: !!site?.uid,
-    },
-  )
 
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
+  const { isInitialLoading, data } = useCharacters()
 
   const tileContent = []
 
@@ -39,11 +22,11 @@ function DashboardAlphabetData() {
 
   return {
     headerContent,
-    isLoading: isInitialLoading || isError,
+    isLoading: isInitialLoading,
     site,
     sitename,
     tileContent,
-    characters: data?.id ? data?.characters : [],
+    characters: data?.characters || [],
   }
 }
 

@@ -22,31 +22,35 @@ function SearchSelectorPresentation({
       <div className="h-full w-full flex flex-col">
         {/* Content area */}
         <div className="w-full">
-          <div
-            className={`${
-              isSelectDialog ? 'w-3/4' : 'w-full'
-            } relative z-10 flex items-center h-16 mx-auto bg-white border-b border-gray-200 shadow-sm px-6`}
-          >
-            <form onSubmit={search} className="w-full flex">
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <button
-                  type="submit"
-                  className="absolute inset-y-0 left-0 flex items-center"
-                >
-                  {getIcon('Search', 'fill-current flex-shrink-0 h-5 w-5')}
-                </button>
-                <input
-                  name="search-field"
-                  id="search-field"
-                  className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
-                  placeholder={searchPromptText}
-                  type="search"
-                  onChange={setSearchQuery}
-                  value={searchQuery}
-                />
-              </div>
-            </form>
-          </div>
+          {!['audio', 'image', 'video'].some((v) =>
+            searchPromptText.includes(v),
+          ) && (
+            <div
+              className={`${
+                isSelectDialog ? 'w-3/4' : 'w-full'
+              } relative z-10 flex items-center h-16 mx-auto bg-white border-b border-gray-200 shadow-sm px-6`}
+            >
+              <form onSubmit={search} className="w-full flex">
+                <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                  <button
+                    type="submit"
+                    className="absolute inset-y-0 left-0 flex items-center"
+                  >
+                    {getIcon('Search', 'fill-current flex-shrink-0 h-5 w-5')}
+                  </button>
+                  <input
+                    name="search-field"
+                    id="search-field"
+                    className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
+                    placeholder={searchPromptText}
+                    type="search"
+                    onChange={setSearchQuery}
+                    value={searchQuery}
+                  />
+                </div>
+              </form>
+            </div>
+          )}
         </div>
         <div
           className={isSelectDialog ? 'grow mt-2 h-72 overflow-y-scroll' : ''}
@@ -87,7 +91,6 @@ SearchSelectorPresentation.propTypes = {
   searchPromptText: string,
   setSearchQuery: func,
   search: func,
-  loadingContainer: object,
   headerSection: node,
   resultsSection: node,
   isLoadingEntries: bool,

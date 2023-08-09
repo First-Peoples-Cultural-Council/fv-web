@@ -1,7 +1,7 @@
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 import {
-  selectOneFormHelper,
-  selectOneDataHelper,
+  selectOneMediaFormHelper,
+  selectOneMediaDataHelper,
 } from 'common/utils/mediaHelpers'
 import { isUUID } from 'common/utils/stringHelpers'
 
@@ -37,7 +37,7 @@ export const storyPagesDataAdaptor = ({ data }) => {
         textTranslation: page.textTranslation,
         audio: page.related_audio || [],
         notes: page?.notes,
-        visualMedia: selectOneDataHelper(images, videos),
+        visualMedia: selectOneMediaDataHelper(images, videos),
       }
     } else {
       // V1_FUDGE
@@ -51,7 +51,7 @@ export const storyPagesDataAdaptor = ({ data }) => {
         textTranslation: getWysiwygJsonFromHtml(translations?.join('')),
         audio: page.related_audio || [],
         notes: [page?.cultural_note?.join(', ')],
-        visualMedia: selectOneDataHelper(images, videos),
+        visualMedia: selectOneMediaDataHelper(images, videos),
       }
     }
 
@@ -60,11 +60,11 @@ export const storyPagesDataAdaptor = ({ data }) => {
 
   const pageMap = {}
 
-  for (const page of pageArray) {
+  pageArray.forEach((page) => {
     if (page?.uid) {
       pageMap[page.uid] = formatPage(page)
     }
-  }
+  })
 
   return pageMap
 }
@@ -96,7 +96,7 @@ export const pageFormDataAdaptor = ({ formData }) => {
   const textTranslation = formData?.textTranslation?.getCurrentContent()
     ? getJsonFromWysiwygState(formData?.textTranslation?.getCurrentContent())
     : ''
-  const mediaObject = selectOneFormHelper(formData, 'visualMedia')
+  const mediaObject = selectOneMediaFormHelper(formData, 'visualMedia')
   return {
     'fvbookentry:text': text,
     'fvbookentry:text_translation': textTranslation,

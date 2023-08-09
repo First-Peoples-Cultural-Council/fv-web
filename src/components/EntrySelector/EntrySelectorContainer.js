@@ -43,7 +43,7 @@ function EntrySelectorContainer({ types, addItem }) {
       headerSection={
         <button
           type="button"
-          onClick={() => addItem(selectedItem?.id)}
+          onClick={() => addItem(selectedItem)}
           className="mx-auto bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex
         justify-center text-sm font-medium text-white hover:bg-secondary-light
         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
@@ -60,7 +60,7 @@ function EntrySelectorContainer({ types, addItem }) {
             selected={selectedItem}
             setSelected={setSelectedItem}
             infiniteScroll={infiniteScroll}
-          ></EntrySelectorPresentationList>
+          />
         </div>
       }
       isLoadingEntries={isLoadingEntries}

@@ -40,7 +40,7 @@ export const isDisplayablePropMedia = (property, value) =>
   (typeof value === 'string' || value instanceof String) &&
   DISPLAYABLE_PROPS_MEDIA.includes(property)
 
-export const selectOneFormHelper = (formData, mediaObjectkey) => {
+export const selectOneMediaFormHelper = (formData, mediaObjectkey) => {
   // Helper function to be used where a choice between
   // an image or video is given to add to a form
 
@@ -58,18 +58,35 @@ export const selectOneFormHelper = (formData, mediaObjectkey) => {
   }
 }
 
-export const selectOneDataHelper = (imageArray, videoArray) => {
+export const selectOneMediaDataHelper = (imageArray, videoArray) => {
   // allow for array of media objects or array of media ids
-  if (imageArray?.length && (imageArray?.[0]?.uid || imageArray?.[0])) {
+  if (imageArray?.length && (imageArray?.[0]?.id || imageArray?.[0])) {
     return {
-      docId: imageArray?.[0]?.uid || imageArray?.[0],
+      docId: imageArray?.[0]?.id || imageArray?.[0],
       docType: DOC_IMAGE,
     }
   }
-  if (videoArray?.length && (videoArray?.[0]?.uid || videoArray?.[0])) {
+  if (videoArray?.length && (videoArray?.[0]?.id || videoArray?.[0])) {
     return {
-      docId: videoArray?.[0]?.uid || videoArray?.[0],
+      docId: videoArray?.[0]?.id || videoArray?.[0],
       docType: DOC_VIDEO,
+    }
+  }
+  return {}
+}
+
+export const selectCoverMedia = (imageArray, videoArray) => {
+  // allow for array of media objects or array of media ids
+  if (imageArray?.length && imageArray?.[0]) {
+    return {
+      entry: imageArray?.[0],
+      type: IMAGE,
+    }
+  }
+  if (videoArray?.length && videoArray?.[0]) {
+    return {
+      entry: videoArray?.[0],
+      type: VIDEO,
     }
   }
   return {}
