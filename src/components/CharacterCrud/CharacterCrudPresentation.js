@@ -4,32 +4,24 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import {
-  DOC_AUDIO,
-  DOC_IMAGE,
-  DOC_VIDEO,
-  TYPE_PHRASE,
-  TYPE_WORD,
-} from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    relatedAssets: definitions.idArray(),
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
-    relatedWords: definitions.idArray(),
+    relatedDictionaryEntries: definitions.objectArray(),
     generalNote: definitions.paragraph({ charCount: 120 }),
   })
 
   const defaultValues = {
-    relatedAssets: [],
     relatedAudio: [],
     relatedImages: [],
     relatedVideos: [],
-    relatedWords: [],
+    relatedDictionaryEntries: [],
     generalNote: '',
   }
 
@@ -48,17 +40,18 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12">
-            <Form.MultitypeArrayField
+            <Form.EntryArrayField
               label="Related Content"
-              nameId="relatedAssets"
+              nameId="relatedDictionaryEntries"
               control={control}
+              register={register}
               helpText="Words and phrases related to your alphabet character"
+              maxItems={10}
               types={[TYPE_WORD, TYPE_PHRASE]}
-              docCountLimit={10}
             />
-            {errors?.relatedWords && (
+            {errors?.relatedDictionaryEntries && (
               <div className="text-red-500">
-                {errors?.relatedWords?.message}
+                {errors?.relatedDictionaryEntries?.[0]?.message}
               </div>
             )}
           </div>
@@ -67,12 +60,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              docType={DOC_AUDIO}
+              docType={AUDIO}
               docCountLimit={3}
             />
             {errors?.relatedAudio && (
               <div className="text-red-500">
-                {errors?.relatedAudio?.message}
+                {errors?.relatedAudio?.[0]?.message}
               </div>
             )}
           </div>
@@ -81,12 +74,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Image"
               nameId="relatedImages"
               control={control}
-              docType={DOC_IMAGE}
+              docType={IMAGE}
               docCountLimit={1}
             />
             {errors?.relatedImages && (
               <div className="text-red-500">
-                {errors?.relatedImages?.message}
+                {errors?.relatedImages?.[0]?.message}
               </div>
             )}
           </div>
@@ -95,12 +88,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Video"
               nameId="relatedVideos"
               control={control}
-              docType={DOC_VIDEO}
+              docType={VIDEO}
               docCountLimit={1}
             />
             {errors?.relatedVideos && (
               <div className="text-red-500">
-                {errors?.relatedVideos?.message}
+                {errors?.relatedVideos?.[0]?.message}
               </div>
             )}
           </div>

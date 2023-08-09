@@ -64,9 +64,6 @@ function DashboardAlphabetPresentation({
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 {character.title}
               </td>
-              {/* <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
-              <div className="flex justify-center">{getIcon(character?.relatedWords)}</div>
-            </td> */}
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedAudio)}
@@ -74,12 +71,12 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 <div className="flex justify-center">
-                  {getIndicatorIcon(character?.relatedVideo)}
+                  {getIndicatorIcon(character?.relatedVideos)}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 <div className="flex justify-center">
-                  {getIndicatorIcon(character?.relatedPictures)}
+                  {getIndicatorIcon(character?.relatedImages)}
                 </div>
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
