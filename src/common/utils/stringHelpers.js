@@ -82,6 +82,7 @@ export const getFriendlyDocType = ({
       break
     case DOC_IMAGE:
     case 'image':
+    case 'images':
       friendly = plural ? 'images' : 'image'
       break
     case DOC_PAGE:
@@ -92,6 +93,7 @@ export const getFriendlyDocType = ({
       break
     case DOC_VIDEO:
     case 'video':
+    case 'videos':
       friendly = plural ? 'videos' : 'video'
       break
     case DOC_WORD:
