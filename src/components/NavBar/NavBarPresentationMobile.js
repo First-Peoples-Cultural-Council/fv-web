@@ -6,14 +6,14 @@ import { Transition } from '@headlessui/react'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { useUserStore } from 'context/UserContext'
-import UserMenuData from 'components/UserMenu/UserMenuData'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function NavBarPresentationMobile({ menuData, sitename }) {
   const { user } = useUserStore()
   const [selectedSubMenu, setSelectedSubMenu] = useState({})
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const isGuest = user?.username === 'Guest' || !user?.username
-  const { login, logout } = UserMenuData()
+  const { login, logout } = useLoginLogout()
 
   const onMenuClick = (event, menuObject) => {
     event.stopPropagation()

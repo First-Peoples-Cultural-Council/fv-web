@@ -15,6 +15,7 @@ import ScrollToTopOnMount from 'common/ScrollToTopOnMount'
 import GlobalConfiguration from 'src/GlobalConfiguration'
 import { SiteProvider } from 'context/SiteContext'
 import { UserProvider } from 'context/UserContext'
+import { ORIGINAL_DESTINATION } from 'common/constants'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,8 +32,6 @@ const queryClient = new QueryClient({
   },
 })
 
-const ORIGINAL_DESTINATION = 'original_destination'
-
 const oidcConfig = {
   authority: GlobalConfiguration.OIDC_AUTHORITY_URL,
   client_id: GlobalConfiguration.AWS_CLIENT_ID,
@@ -47,11 +46,15 @@ const oidcConfig = {
     } else {
       // remove url params to complete the login
       window.history.replaceState({}, document.title, window.location.pathname)
+      window.location.reload()
     }
   },
-  metadataSeed: {
+}
+
+if (GlobalConfiguration.END_SESSION_URL) {
+  oidcConfig.metadataSeed = {
     end_session_endpoint: GlobalConfiguration.END_SESSION_URL,
-  },
+  }
 }
 
 const container = document.getElementById('root')

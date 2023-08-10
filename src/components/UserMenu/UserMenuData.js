@@ -1,25 +1,12 @@
-import { useAuth } from 'react-oidc-context'
-
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function UserMenuData() {
   const { site } = useSiteStore()
   const { user } = useUserStore()
-  const auth = useAuth()
-
-  function logout(e) {
-    e.preventDefault()
-    auth.removeUser()
-
-    window.location.reload()
-  }
-
-  function login(e) {
-    e.preventDefault()
-    auth.signinRedirect()
-  }
+  const { login, logout } = useLoginLogout
 
   return {
     currentUser: user,
