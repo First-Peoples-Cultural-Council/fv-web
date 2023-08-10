@@ -12,7 +12,8 @@ function UserMenuData() {
   function logout(e) {
     e.preventDefault()
     auth.removeUser()
-    auth.signoutRedirect()
+
+    window.location.reload()
   }
 
   function login(e) {
