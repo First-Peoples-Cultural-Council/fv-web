@@ -6,13 +6,29 @@ import { useParams } from 'react-router-dom'
 import { useUserStore } from 'context/UserContext'
 import ErrorHandler from 'components/ErrorHandler'
 import Loading from 'components/Loading'
+import {
+  SUPER_ADMIN,
+  LANGUAGE_ADMIN,
+  EDITOR,
+  ASSISTANT,
+  MEMBER,
+  GENERAL,
+  atLeastMember,
+  atLeastAssistant,
+  atLeastEditor,
+  atLeastLanguageAdmin,
+} from 'common/constants/roles'
 
 function RequireAuth({ children, role, withMessage }) {
   const { user, isLoading } = useUserStore()
   const { sitename } = useParams()
 
+  if (user?.isSuperAdmin || role === GENERAL) {
+    return children
+  }
+
   const statusTextUnauthorized =
-    role === 'SuperAdmin'
+    role === SUPER_ADMIN
       ? 'This page is hidden.'
       : `You must be a ${role} of this site to access this.`
 
@@ -28,38 +44,25 @@ function RequireAuth({ children, role, withMessage }) {
   const userRoles = user?.roles || {}
   const userSiteRole = userRoles?.[sitename] || ''
 
-  if (userRoles?.ALL === 'SuperAdmin') {
-    return children
-  }
-
   const whatToRender = () => {
     switch (role) {
-      case 'GeneralMember':
-        return children
-      case 'Member':
-        if (
-          userSiteRole.match(/^(Member|Recorder|RecorderWithApproval|Admin)$/)
-        ) {
+      case MEMBER:
+        if (userSiteRole.match(atLeastMember)) {
           return children
         }
         return unauthorised
-      case 'Recorder':
-        if (userSiteRole.match(/^(Recorder|RecorderWithApproval|Admin)$/)) {
+      case ASSISTANT:
+        if (userSiteRole.match(atLeastAssistant)) {
           return children
         }
         return unauthorised
-      case 'RecorderWithApproval':
-        if (userSiteRole.match(/^(RecorderWithApproval|Admin)$/)) {
+      case EDITOR:
+        if (userSiteRole.match(atLeastEditor)) {
           return children
         }
         return unauthorised
-      case 'Admin':
-        if (userSiteRole.match(/^(Admin)$/)) {
-          return children
-        }
-        return unauthorised
-      case 'SuperAdmin':
-        if (userRoles?.ALL === 'SuperAdmin') {
+      case LANGUAGE_ADMIN:
+        if (userSiteRole.match(atLeastLanguageAdmin)) {
           return children
         }
         return unauthorised

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
+import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCategoriesData() {
   const { site } = useSiteStore()
@@ -37,7 +38,7 @@ function DashboardCategoriesData() {
       description: 'Add a new category to your dictionary',
       href: `/${sitename}/dashboard/create/category`,
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
   ]
 

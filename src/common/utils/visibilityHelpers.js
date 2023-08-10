@@ -1,28 +1,26 @@
 import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
 import { convertStateToVisibility } from 'common/utils/stringHelpers'
+import { atLeastMember, atLeastAssistant } from 'common/constants/roles'
 
 export const isAuthorizedToView = (user, sitename, visibilityOrStateOfItem) => {
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[sitename] || ''
-
-  const visibility = convertStateToVisibility(visibilityOrStateOfItem)
-
-  if (userRoles?.ALL === 'SuperAdmin') {
+  if (user?.isSuperAdmin) {
     return true
   }
+
+  const userRoles = user?.roles || {}
+  const userSiteRole = userRoles?.[sitename] || ''
+  const visibility = convertStateToVisibility(visibilityOrStateOfItem)
 
   switch (visibility) {
     case PUBLIC:
       return true
     case MEMBERS:
-      if (
-        userSiteRole.match(/^(Member|Recorder|RecorderWithApproval|Admin)$/)
-      ) {
+      if (userSiteRole.match(atLeastMember)) {
         return true
       }
       return false
     case TEAM:
-      if (userSiteRole.match(/^(Recorder|RecorderWithApproval|Admin)$/)) {
+      if (userSiteRole.match(atLeastAssistant)) {
         return true
       }
       return false
