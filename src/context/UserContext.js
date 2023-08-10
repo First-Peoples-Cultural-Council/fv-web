@@ -51,8 +51,6 @@ function makeInitials(name) {
 }
 
 const userDataAdaptor = (data) => {
-  console.log('userDataAdaptor: ', { data })
-
   if (!data.profile) {
     // anonymous user
     return {
@@ -66,6 +64,7 @@ const userDataAdaptor = (data) => {
     }
   }
 
+  // authenticated user
   const isAdmin = false
 
   const formatted = {
@@ -80,7 +79,6 @@ const userDataAdaptor = (data) => {
     roles: data?.roles,
   }
 
-  console.log('formatted user: ', formatted.isAnonymous, { formatted })
   return formatted
 }
 
