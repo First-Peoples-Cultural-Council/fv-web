@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import Audiobar from 'components/Audiobar'
 import Footer from 'components/Footer'
 import AppNavBar from 'components/AppNavBar'
-import UserMenuData from 'components/UserMenu/UserMenuData'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function AppWrapper({ children, isHome = false }) {
-  const { login, logout } = UserMenuData()
+  const { login, logout } = useLoginLogout()
   return (
     <div id="AppWrapper" className="overflow-hidden bg-white">
       <header className="fixed w-full top-0 z-50 print:hidden">
