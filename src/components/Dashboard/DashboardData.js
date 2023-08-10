@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import api from 'services/api'
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
 import { LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
+import { useMySites } from 'common/dataHooks/useMySites'
 
 function DashboardData() {
   const { user } = useUserStore()
@@ -16,11 +15,12 @@ function DashboardData() {
   // --------------------------------
   // Get user sites
   // --------------------------------
+
   const {
-    data: userSitesData,
     isInitialLoading: userSitesIsLoading,
     error: userSitesError,
-  } = useQuery(['userSites', user?.id], () => api.user.getMySites())
+    mySitesData: userSitesData,
+  } = useMySites()
 
   useEffect(() => {
     if (user && userSitesIsLoading === false && userSitesError === null) {
