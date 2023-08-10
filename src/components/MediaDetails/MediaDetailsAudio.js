@@ -49,9 +49,7 @@ function MediaDetailsAudio({ file }) {
             <div className="py-3 flex justify-between text-sm font-medium">
               <dt className="text-fv-charcoal-light">Speakers</dt>
               <dd className="text-fv-charcoal">
-                {file?.speakers
-                  ?.map((speaker) => speaker?.['dc:title'])
-                  .join(', ')}
+                {file?.speakers?.map((speaker) => speaker?.name).join(', ')}
               </dd>
             </div>
           </dl>
