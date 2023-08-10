@@ -6,7 +6,7 @@ import useLoginLogout from 'common/hooks/useLoginLogout'
 function UserMenuData() {
   const { site } = useSiteStore()
   const { user } = useUserStore()
-  const { login, logout } = useLoginLogout
+  const { login, logout } = useLoginLogout()
 
   return {
     currentUser: user,
