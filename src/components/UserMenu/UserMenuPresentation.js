@@ -102,23 +102,23 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                 )}
               </Menu.Item>
             )} */}
-            {currentUser?.username === 'Guest' || !currentUser?.username ? (
-              <>
-                <Menu.Item className="w-full flex">
-                  {({ active }) => (
-                    // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
-                    <a type="button" onClick={login} onKeyDown={login}>
-                      <div
-                        className={`${
-                          active ? menuItemActiveClass : menuItemInactiveClass
-                        } ${menuItemBaseClass}`}
-                      >
-                        Sign In
-                      </div>
-                    </a>
-                  )}
-                </Menu.Item>
-                {/* // Hide Register button until v2 version is built
+            {/* {currentUser?.username === 'Guest' || !currentUser?.username ? ( */}
+            <>
+              <Menu.Item className="w-full flex">
+                {({ active }) => (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
+                  <a type="button" onClick={login} onKeyDown={login}>
+                    <div
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass}`}
+                    >
+                      Sign In
+                    </div>
+                  </a>
+                )}
+              </Menu.Item>
+              {/* // Hide Register button until v2 version is built
                 <Menu.Item className="w-full flex">
                   {({ active }) => (
                     <a href="/register?requestedUrl=/register">
@@ -128,23 +128,23 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                     </a>
                   )}
                 </Menu.Item> */}
-              </>
-            ) : (
-              <Menu.Item className="w-full flex">
-                {({ active }) => (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
-                  <a type="button" onClick={logout} onKeyDown={logout}>
-                    <div
-                      className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass}`}
-                    >
-                      Sign out
-                    </div>
-                  </a>
-                )}
-              </Menu.Item>
-            )}
+            </>
+            {/* ) : ( */}
+            <Menu.Item className="w-full flex">
+              {({ active }) => (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
+                <a type="button" onClick={logout} onKeyDown={logout}>
+                  <div
+                    className={`${
+                      active ? menuItemActiveClass : menuItemInactiveClass
+                    } ${menuItemBaseClass}`}
+                  >
+                    Sign out
+                  </div>
+                </a>
+              )}
+            </Menu.Item>
+            {/* )} */}
           </Menu.Items>
         </Transition>
       </Menu>
