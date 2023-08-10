@@ -40,32 +40,48 @@ function userReducer(state, action) {
   }
 }
 
-const userDataAdaptor = (data) => {
-  const properties = data?.properties || {}
-  const { firstName, lastName, username, groups } = properties
-  let isAdmin = false
+function makeInitials(name) {
+  const parts = name?.split(' ')
 
-  if (groups?.length > 0) {
-    isAdmin = groups.join().includes('administrator')
+  if (parts?.length > 1) {
+    return `${parts[0]?.charAt(0)} ${parts[parts.length - 1]?.charAt(0)}`
   }
-  return {
-    firstName,
-    lastName,
-    username,
-    userInitials:
-      firstName || lastName
-        ? (firstName?.charAt(0) || '') + (lastName?.charAt(0) || '')
-        : username?.charAt(0) || '',
-    displayName:
-      firstName || lastName
-        ? `${firstName || ''} ${lastName || ''}`
-        : username || '',
-    groups,
+
+  return parts[0]?.charAt(0)
+}
+
+const userDataAdaptor = (data) => {
+  console.log('userDataAdaptor: ', { data })
+
+  if (!data.profile) {
+    // anonymous user
+    return {
+      isAnonymous: true,
+      userInitials: '',
+      displayName: 'Guest',
+      groups: [],
+      isAdmin: false,
+      isSuperAdmin: false,
+      roles: [],
+    }
+  }
+
+  const isAdmin = false
+
+  const formatted = {
+    isAnonymous: false,
+    id: data?.profile?.sub,
+    displayName: data?.profile?.name || '',
+    firstName: data?.profile?.name?.split(' ').shift(),
+    userInitials: makeInitials(data?.profile?.name),
+    groups: [],
     isAdmin: !!(isAdmin || data?.isAdministrator),
     isSuperAdmin: data?.isAdministrator,
-    isAnonymous: data?.isAnonymous,
     roles: data?.roles,
   }
+
+  console.log('formatted user: ', formatted.isAnonymous, { formatted })
+  return formatted
 }
 
 const [UserProvider, useUserStore, useUserDispatch] = makeStore(

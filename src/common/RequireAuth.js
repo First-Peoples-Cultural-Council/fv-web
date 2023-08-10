@@ -35,10 +35,7 @@ function RequireAuth({ children, role, withMessage }) {
   const whatToRender = () => {
     switch (role) {
       case 'GeneralMember':
-        if (Object.keys(userRoles).length > 0) {
-          return children
-        }
-        return unauthorised
+        return children
       case 'Member':
         if (
           userSiteRole.match(/^(Member|Recorder|RecorderWithApproval|Admin)$/)

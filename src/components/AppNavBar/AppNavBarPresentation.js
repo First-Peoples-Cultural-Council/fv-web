@@ -13,7 +13,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   let listener = null
   const { user } = useUserStore()
   const [scrollAtTop, setscrollAtTop] = useState(true)
-  const isGuest = user?.username === 'Guest' || !user?.username
+  const isGuest = user.isAnonymous
 
   useEffect(() => {
     listener = document.addEventListener('scroll', () => {
@@ -160,9 +160,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 text-fv-charcoal flex items-center rounded">
                 Welcome
-                {user?.firstName && user?.firstName !== 'Guest'
-                  ? `, ${user?.firstName}!`
-                  : '!'}
+                {!user?.isAnonymous ? `, ${user?.firstName}!` : '!'}
               </li>
             )}
             {createMobileMenuItem('About', 'About', ABOUT_LINK)}
