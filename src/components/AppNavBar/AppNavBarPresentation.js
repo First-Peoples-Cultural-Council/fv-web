@@ -35,13 +35,11 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
     setMobileLandingNavbarOpen(!mobileLandingNavbarOpen)
   }
 
-  const location = useLocation()
-
   useEffect(() => {
     if (mobileLandingNavbarOpen) {
       setMobileLandingNavbarOpen(false)
     }
-  }, [location, mobileLandingNavbarOpen])
+  }, [useLocation(), setMobileLandingNavbarOpen])
 
   const createMobileMenuItem = (
     title,
