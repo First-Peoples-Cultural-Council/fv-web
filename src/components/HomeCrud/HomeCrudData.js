@@ -6,7 +6,7 @@ import api from 'services/api'
 import { NOTIFICATION_TIME } from 'common/constants'
 import { useSiteStore, useSiteDispatch } from 'context/SiteContext'
 import { useNotification } from 'context/NotificationContext'
-import { selectOneFormHelper } from 'common/utils/mediaHelpers'
+import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 import homeCrudDataAdaptor from 'components/HomeCrud/homeCrudDataAdaptor'
 
 function HomeCrudData() {
@@ -27,7 +27,7 @@ function HomeCrudData() {
   const dataToEdit = homeCrudDataAdaptor({ data: site })
 
   const updateSite = async (formData) => {
-    const mediaObject = selectOneFormHelper(formData, 'banner')
+    const mediaObject = selectOneMediaFormHelper(formData, 'banner')
     return api.document.update({
       id: site?.uid,
       properties: {
@@ -51,7 +51,7 @@ function HomeCrudData() {
       // Optimistically update to the new value
       if (previousSiteData) {
         // Updating image and video id for the original form
-        const mediaObject = selectOneFormHelper(formData, 'banner')
+        const mediaObject = selectOneMediaFormHelper(formData, 'banner')
         siteDispatch({
           type: 'SET',
           data: {

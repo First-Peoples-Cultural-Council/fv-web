@@ -4,7 +4,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Controller } from 'react-hook-form'
 
 // FPCC
-import Form from 'components/Form'
+import ErrorMessage from 'components/Form/ErrorMessage'
 
 function RadioButtons({ errors, label, options, nameId, control }) {
   return (
@@ -20,9 +20,9 @@ function RadioButtons({ errors, label, options, nameId, control }) {
                 {label}
               </RadioGroup.Label>
               <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-                {options.map((option, index) => (
+                {options.map((option) => (
                   <RadioGroup.Option
-                    key={index}
+                    key={option?.value}
                     value={option?.value}
                     className="flex relative cursor-pointer px-4 py-3 focus:outline-none"
                   >
@@ -60,7 +60,7 @@ function RadioButtons({ errors, label, options, nameId, control }) {
           </RadioGroup>
         )}
       />
-      <Form.ErrorMessage errors={errors} nameId={nameId} />
+      <ErrorMessage errors={errors} nameId={nameId} />
     </Fragment>
   )
 }

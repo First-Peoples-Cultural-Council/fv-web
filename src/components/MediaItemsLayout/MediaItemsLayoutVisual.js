@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { IMAGE, VIDEO } from 'common/constants'
 import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
 import getIcon from 'common/utils/getIcon'
 function MediaItemsLayoutVisual({
@@ -24,11 +24,11 @@ function MediaItemsLayoutVisual({
       <div className={selection ? 'h-3/4 overflow-y-auto' : ''}>
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
           {data?.pages !== undefined &&
-            data?.pages?.[0]?.entries?.length > 0 &&
+            data?.pages?.[0]?.results?.length > 0 &&
             data?.pages?.map((page, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
-                {page.entries.map((rawDocument) => {
+                {page.results.map((rawDocument) => {
                   const doc = mediaDataAdaptor({
                     type: docType,
                     data: rawDocument,
@@ -103,7 +103,7 @@ function MediaItemsLayoutVisual({
 const { func, array, object, oneOf, string, bool } = PropTypes
 MediaItemsLayoutVisual.propTypes = {
   data: object,
-  docType: oneOf([DOC_IMAGE, DOC_VIDEO]),
+  docType: oneOf([IMAGE, VIDEO]),
   infiniteScroll: object,
   currentFile: object,
   setCurrentFile: func,

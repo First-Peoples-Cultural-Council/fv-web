@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import MediaBrowser from 'components/MediaBrowser'
+import MediaBrowserData from 'components/MediaBrowser/MediaBrowserData'
 import MediaDetails from 'components/MediaDetails'
 import MediaItemsLayout from 'components/MediaItemsLayout'
 import SearchSelector from 'components/SearchSelector'
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function MediaBrowserContainerNonModal({ docType }) {
   const {
@@ -21,16 +21,17 @@ function MediaBrowserContainerNonModal({ docType }) {
     loadRef,
     loadLabel,
     friendlyDocTypeLabel,
-  } = MediaBrowser.Data({ docType })
+  } = MediaBrowserData({ docType })
 
   const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.entries?.length > 0
+    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
+
   // Switiching Main and Sidebar components based on document type between Audio and Visual
   const BrowserComponent =
-    docType === DOC_AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
+    docType === AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
   const SidebarComponent =
-    docType === DOC_AUDIO ? MediaDetails.Audio : MediaDetails.Visual
+    docType === AUDIO ? MediaDetails.Audio : MediaDetails.Visual
 
   return (
     <SearchSelector.Presentation
@@ -74,7 +75,7 @@ function MediaBrowserContainerNonModal({ docType }) {
 const { oneOf } = PropTypes
 
 MediaBrowserContainerNonModal.propTypes = {
-  docType: oneOf([DOC_AUDIO, DOC_IMAGE, DOC_VIDEO, null]),
+  docType: oneOf([AUDIO, IMAGE, VIDEO, null]),
 }
 
 export default MediaBrowserContainerNonModal

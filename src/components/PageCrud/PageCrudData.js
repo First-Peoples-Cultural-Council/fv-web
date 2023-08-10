@@ -7,7 +7,7 @@ import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
 import pageCrudDataAdaptor from 'components/PageCrud/pageCrudDataAdaptor'
 import { useNotification } from 'context/NotificationContext'
-import { selectOneFormHelper } from 'common/utils/mediaHelpers'
+import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 
 function PageCrudData() {
   const { site } = useSiteStore()
@@ -39,7 +39,7 @@ function PageCrudData() {
   dataToEdit = pageCrudDataAdaptor({ data, sitename: site?.sitename })
 
   const formDataAdaptor = (_formData) => {
-    const mediaObject = selectOneFormHelper(_formData, 'banner')
+    const mediaObject = selectOneMediaFormHelper(_formData, 'banner')
 
     return {
       'dc:title': _formData?.title,

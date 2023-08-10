@@ -50,7 +50,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
               )}
             </div>
             <div className="col-span-12 flex items-center justify-start">
-              <Form.SelectOne
+              <Form.SelectOneMedia
                 label="Add Banner"
                 nameId="banner"
                 control={control}
@@ -72,8 +72,8 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                   </div>
                 }
               />
-              {errors?.selectOne && (
-                <div className="text-red-500">{errors?.selectOne?.message}</div>
+              {errors?.banner && (
+                <div className="text-red-500">{errors?.banner?.message}</div>
               )}
             </div>
           </div>

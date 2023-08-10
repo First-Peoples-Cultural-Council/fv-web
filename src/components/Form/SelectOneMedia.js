@@ -3,11 +3,11 @@ import { Controller } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 // FPCC
-import DocumentThumbnail from 'components/DocumentThumbnail'
+import MediaThumbnail from 'components/MediaThumbnail'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
 
 const DEFAULT_MEDIA_VALUE = {
@@ -19,7 +19,7 @@ const FRAGMENT_BUTTON_STYLES =
   'mt-1 mr-4 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex ' +
   'justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
 
-function SelectOne({ label, nameId, control, helpText }) {
+function SelectOneMedia({ label, nameId, control, helpText }) {
   return (
     <div>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -36,7 +36,7 @@ function SelectOne({ label, nameId, control, helpText }) {
         )}
       />
       {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
+        <div className="mt-2 text-sm text-fv-charcoal-light">{helpText}</div>
       )}
     </div>
   )
@@ -73,10 +73,16 @@ function SelectOneButton({ value, onChange }) {
     setMediaChoiceModalOpen(false)
     setAddMediaModalOpen(true)
   }
-
   return value?.docId ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <DocumentThumbnail.Container docId={value?.docId} />
+      {docType === IMAGE ? (
+        <MediaThumbnail.Image
+          id={value?.docId}
+          imageStyles="object-cover pointer-events-none"
+        />
+      ) : (
+        <MediaThumbnail.Video id={value?.docId} />
+      )}
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove
@@ -115,7 +121,7 @@ function SelectOneButton({ value, onChange }) {
           <button
             type="button"
             className={FRAGMENT_BUTTON_STYLES}
-            onClick={() => mediaChoiceButtonClicked(DOC_IMAGE)}
+            onClick={() => mediaChoiceButtonClicked(IMAGE)}
           >
             {getIcon('Images', 'fill-current -ml-1 mr-2 h-5 w-5')}
             <span>Add Image</span>
@@ -123,7 +129,7 @@ function SelectOneButton({ value, onChange }) {
           <button
             type="button"
             className={FRAGMENT_BUTTON_STYLES}
-            onClick={() => mediaChoiceButtonClicked(DOC_VIDEO)}
+            onClick={() => mediaChoiceButtonClicked(VIDEO)}
           >
             {getIcon('Video', 'fill-current -ml-1 mr-2 h-5 w-5')}
             <span>Add Video</span>
@@ -152,11 +158,11 @@ function SelectOneButton({ value, onChange }) {
 
 const { func, object, string } = PropTypes
 
-SelectOne.propTypes = {
+SelectOneMedia.propTypes = {
   label: string,
   nameId: string,
   control: object,
-  helpText: string,
+  helpText: object,
 }
 
 SelectOneButton.propTypes = {
@@ -164,4 +170,4 @@ SelectOneButton.propTypes = {
   onChange: func,
 }
 
-export default SelectOne
+export default SelectOneMedia

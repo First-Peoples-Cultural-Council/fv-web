@@ -6,8 +6,10 @@ import { Howler } from 'howler'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { AUDIO } from 'common/constants'
 
-function AudioNativePresentation({ audioId, styling }) {
-  const src = audioId ? getMediaPath({ type: AUDIO, mediaObject: audioId }) : ''
+function AudioNativePresentation({ audioObject, styling }) {
+  const src = audioObject
+    ? getMediaPath({ mediaObject: audioObject, type: AUDIO })
+    : ''
 
   useEffect(() => {
     function handleMultiplPlayers(e) {
@@ -38,7 +40,7 @@ function AudioNativePresentation({ audioId, styling }) {
 // PROPTYPES
 const { object, string } = PropTypes
 AudioNativePresentation.propTypes = {
-  audioId: object,
+  audioObject: object,
   styling: string,
 }
 AudioNativePresentation.defaultProps = {

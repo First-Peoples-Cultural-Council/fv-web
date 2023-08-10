@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
-import { DOC_AUDIO } from 'common/constants'
+import { AUDIO } from 'common/constants'
 
 function MediaItemsLayoutAudio({
   data,
@@ -21,16 +21,20 @@ function MediaItemsLayoutAudio({
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
   const headerClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
     <div id="MediaItemsLayoutAudio">
-      {data?.pages !== undefined && data?.pages?.[0]?.entries?.length > 0 && (
+      {data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0 && (
         <div>
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                {selection && <th scope="col" className={headerClass}></th>}
+                {selection && (
+                  <th scope="col" className={headerClass}>
+                    {selection}
+                  </th>
+                )}
                 <th scope="col" className={headerClass}>
                   Audio
                 </th>
@@ -43,11 +47,11 @@ function MediaItemsLayoutAudio({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {data?.pages?.map((page, index) => (
-                <React.Fragment key={index}>
-                  {page.entries.map((rawAudioDoc) => {
+              {data?.pages?.map((page) => (
+                <React.Fragment key={page?.nextPage}>
+                  {page.results.map((rawAudioDoc) => {
                     const audioFile = mediaDataAdaptor({
-                      type: DOC_AUDIO,
+                      type: AUDIO,
                       data: rawAudioDoc,
                     })
                     if (
@@ -83,7 +87,7 @@ function MediaItemsLayoutAudio({
                         <td className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal">
                           <AudioNative
                             styling="w-full "
-                            audioId={audioFile?.id}
+                            audioObject={audioFile}
                           />
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">

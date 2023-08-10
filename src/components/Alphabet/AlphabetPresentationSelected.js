@@ -12,10 +12,10 @@ function AlphabetPresentationSelected({
   kids,
   onVideoClick,
   title,
-  relatedWords,
+  relatedDictionaryEntries,
   relatedAudio,
   relatedVideo,
-  relatedPictures,
+  relatedImage,
   generalNote,
   videoIsOpen,
   alphabetLink,
@@ -54,26 +54,26 @@ function AlphabetPresentationSelected({
           />
         ) : null}
       </h1>
-      {relatedPictures?.length > 0 && (
+      {relatedImage && (
         <div className="flex justify-center m-8">
           <img
             className="rounded-md max-w-xs"
             src={getMediaPath({
-              mediaObject: relatedPictures?.[0],
+              mediaObject: relatedImage,
               type: IMAGE,
               size: SMALL,
             })}
-            alt={relatedPictures?.[0]?.title}
+            alt={relatedImage?.title}
             loading="lazy"
           />
         </div>
       )}
-      {relatedWords?.length > 0 && (
+      {relatedDictionaryEntries?.length > 0 && (
         <div className="mx-auto my-5 w-4/5">
           <h2 className="sm:text-2xl font-medium text-xl text-center text-primary p-3">
             Example words
           </h2>
-          {relatedWords.map((word, index) => {
+          {relatedDictionaryEntries.map((word, index) => {
             const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
             return (
               <div
@@ -194,11 +194,11 @@ const { array, bool, func, object, string } = PropTypes
 
 AlphabetPresentationSelected.propTypes = {
   title: string,
-  relatedPictures: array,
+  relatedImage: object,
   generalNote: string,
   relatedAudio: array,
   relatedVideo: object,
-  relatedWords: array,
+  relatedDictionaryEntries: array,
   onVideoClick: func,
   videoIsOpen: bool,
   kids: bool,

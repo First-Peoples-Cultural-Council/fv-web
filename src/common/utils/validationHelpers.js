@@ -6,6 +6,7 @@ import { getFileExtensions } from 'common/utils/stringHelpers'
 
 const uuid = yup
   .string()
+  .typeError('A valid string id is required')
   .matches(UUID_REGEX, {
     message: 'A valid id is required',
     excludeEmptyString: true,
@@ -15,6 +16,7 @@ const uuid = yup
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
+  objectArray: () => yup.array().of(yup.object({ id: uuid })),
   label: () => yup.string().max(35).trim(),
   latinOnly: ({ message = 'This is a required field' } = {}) =>
     yup
