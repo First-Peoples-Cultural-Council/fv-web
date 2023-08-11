@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useAuth } from 'react-oidc-context'
 
 // FPCC
 import { useUserDispatch } from 'context/UserContext'
-import api from 'services/api'
+import { useMySites } from 'common/dataHooks/useMySites'
 
 function AppData() {
   const userDispatch = useUserDispatch()
@@ -13,8 +12,8 @@ function AppData() {
   const {
     isInitialLoading: userRolesIsLoading,
     error: userRolesError,
-    data: userRolesData,
-  } = useQuery(['userRoles'], () => api.user.getRoles())
+    mySitesData,
+  } = useMySites()
 
   useEffect(() => {
     if (
@@ -25,7 +24,7 @@ function AppData() {
     ) {
       userDispatch({
         type: 'SET',
-        data: { profile: auth?.user?.profile, roles: userRolesData },
+        data: { profile: auth?.user?.profile, memberships: mySitesData },
       })
     }
   }, [auth.isLoading, auth.error, userRolesIsLoading, userRolesError])

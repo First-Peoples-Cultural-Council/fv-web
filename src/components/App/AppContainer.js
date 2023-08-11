@@ -16,6 +16,7 @@ import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
 import Site from 'components/Site'
+import { LANGUAGE_ADMIN, GENERAL } from 'common/constants/roles'
 
 const Dashboard = lazy(() => import('components/Dashboard/DashboardContainer'))
 
@@ -32,7 +33,7 @@ function AppContainer() {
               path=""
               element={
                 <AppWrapper isHome>
-                  <RequireAuth role="SuperAdmin" withMessage>
+                  <RequireAuth role={GENERAL} withMessage>
                     <LandingPage.Container />
                   </RequireAuth>
                 </AppWrapper>
@@ -49,7 +50,7 @@ function AppContainer() {
             <Route
               path="dashboard/*"
               element={
-                <RequireAuth role="Admin" withMessage>
+                <RequireAuth role={LANGUAGE_ADMIN} withMessage>
                   <Dashboard />
                 </RequireAuth>
               }

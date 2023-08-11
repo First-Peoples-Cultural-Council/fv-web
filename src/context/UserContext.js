@@ -1,4 +1,5 @@
 import makeStore from 'context/makeStore'
+import { LANGUAGE_ADMIN, EDITOR, ASSISTANT } from 'common/constants/roles'
 
 export const userInitialState = {
   user: {
@@ -50,6 +51,14 @@ function makeInitials(name) {
   return parts[0]?.charAt(0)
 }
 
+function getRoles(memberships) {
+  const roles = {}
+  memberships.forEach((m) => {
+    roles[m.sitename] = m.role
+  })
+  return roles
+}
+
 const userDataAdaptor = (data) => {
   if (!data.profile) {
     // anonymous user
@@ -57,29 +66,32 @@ const userDataAdaptor = (data) => {
       isAnonymous: true,
       userInitials: '',
       displayName: 'Guest',
-      groups: [],
-      isAdmin: false,
+      isTeam: false,
+      isLanguageAdmin: false,
       isSuperAdmin: false,
       roles: [],
     }
   }
 
   // authenticated user
-  const isAdmin = false
+  const roles = getRoles(data?.memberships)
 
-  const formatted = {
+  const isLanguageAdmin = Object.values(roles).some((r) => r === LANGUAGE_ADMIN)
+  const isTeam =
+    isLanguageAdmin ||
+    Object.values(roles).some((r) => r === ASSISTANT || r === EDITOR)
+
+  return {
     isAnonymous: false,
     id: data?.profile?.sub,
     displayName: data?.profile?.name || '',
     firstName: data?.profile?.name?.split(' ').shift(),
     userInitials: makeInitials(data?.profile?.name),
-    groups: [],
-    isAdmin: !!(isAdmin || data?.isAdministrator),
-    isSuperAdmin: data?.isAdministrator,
-    roles: data?.roles,
+    isLanguageAdmin,
+    isTeam,
+    isSuperAdmin: false, // until fw-4694
+    roles,
   }
-
-  return formatted
 }
 
 const [UserProvider, useUserStore, useUserDispatch] = makeStore(

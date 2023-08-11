@@ -10,6 +10,7 @@ import DashboardEdit from 'components/DashboardEdit'
 import DashboardCreate from 'components/DashboardCreate'
 import DashboardMedia from 'components/DashboardMedia'
 import Loading from 'components/Loading'
+import { LANGUAGE_ADMIN, ASSISTANT } from 'common/constants/roles'
 
 function DashboardContainer() {
   const { currentUser, site, homeTiles, isLoading } = DashboardData()
@@ -41,7 +42,7 @@ function DashboardContainer() {
           <Route
             path="create/*"
             element={
-              <RequireAuth role="Admin" withMessage>
+              <RequireAuth role={LANGUAGE_ADMIN} withMessage>
                 <DashboardCreate.Container />
               </RequireAuth>
             }
@@ -49,7 +50,7 @@ function DashboardContainer() {
           <Route
             path="edit/*"
             element={
-              <RequireAuth role="Admin" withMessage>
+              <RequireAuth role={LANGUAGE_ADMIN} withMessage>
                 <DashboardEdit.Container />
               </RequireAuth>
             }
@@ -57,7 +58,7 @@ function DashboardContainer() {
           <Route
             path="media/*"
             element={
-              <RequireAuth role="Recorder" withMessage>
+              <RequireAuth role={ASSISTANT} withMessage>
                 <DashboardMedia.Container />
               </RequireAuth>
             }
