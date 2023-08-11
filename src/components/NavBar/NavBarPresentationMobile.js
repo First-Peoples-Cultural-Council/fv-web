@@ -64,8 +64,8 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 flex items-center rounded ml-3 font-medium">
                 Welcome
-                {user?.firstName && !user?.isAnonymous
-                  ? `, ${user?.firstName}!`
+                {user?.displayName && !user?.isAnonymous
+                  ? `, ${user?.displayName}!`
                   : '!'}
               </li>
             )}

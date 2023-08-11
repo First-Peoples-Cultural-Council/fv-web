@@ -32,7 +32,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                           Welcome back,
                         </p>
                         <p className="font-bold text-fv-charcoal text-2xl">
-                          {currentUser.displayName}
+                          {currentUser.fullName}
                         </p>
                         <p className="text-sm font-medium text-fv-charcoal-light">
                           {currentUser.role}
