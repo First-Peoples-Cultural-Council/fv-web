@@ -36,7 +36,7 @@ function DashboardData() {
 
   const currentUser = {
     ...user,
-    isAdmin: user?.isLanguageAdmin,
+    isAdmin: !!(roles?.[sitename] === LANGUAGE_ADMIN || user?.isSuperAdmin),
     role: `${site?.title} ${roles?.[sitename] ? roles?.[sitename] : ''}`,
     sites: userSitesData,
   }

@@ -89,7 +89,7 @@ const userDataAdaptor = (data) => {
     userInitials: makeInitials(data?.profile?.name),
     isLanguageAdmin,
     isTeam,
-    isSuperAdmin: false, // until fw-
+    isSuperAdmin: false, // until fw-4694
     roles,
   }
 }
