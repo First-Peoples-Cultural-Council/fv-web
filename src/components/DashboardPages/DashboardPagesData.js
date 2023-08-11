@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { usePages } from 'common/dataHooks/usePages'
+import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardPagesData() {
   const { site } = useSiteStore()
@@ -29,7 +30,7 @@ function DashboardPagesData() {
       description: 'Edit the main homepage for your site',
       href: `/${sitename}/dashboard/edit/home`,
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Create',
@@ -37,7 +38,7 @@ function DashboardPagesData() {
       description: 'Add a new page to your site',
       href: `/${sitename}/dashboard/create/page`,
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
   ]
 

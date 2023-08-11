@@ -1,5 +1,6 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
+import { SUPER_ADMIN, LANGUAGE_ADMIN, EDITOR } from 'common/constants/roles'
 
 function DashboardCreateData() {
   const { site } = useSiteStore()
@@ -11,7 +12,7 @@ function DashboardCreateData() {
       description: 'Add a new word to your dictionary',
       href: 'word',
       iconColor: 'wordText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Phrase',
@@ -19,7 +20,7 @@ function DashboardCreateData() {
       description: 'Add a new phrase to your dictionary',
       href: 'phrase',
       iconColor: 'phraseText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'WebPages',
@@ -27,7 +28,7 @@ function DashboardCreateData() {
       description: 'Add a new page to your site',
       href: 'page',
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Widget',
@@ -35,7 +36,7 @@ function DashboardCreateData() {
       description: "Add a new Widget to your site's collection",
       href: 'widget',
       iconColor: 'wordText',
-      auth: 'RecorderWithApproval',
+      auth: EDITOR,
     },
     {
       icon: 'Story',
@@ -43,7 +44,7 @@ function DashboardCreateData() {
       description: 'Add a new story to your site',
       href: 'story',
       iconColor: 'storyText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Category',
@@ -51,7 +52,7 @@ function DashboardCreateData() {
       description: 'Add a new category to your dictionary',
       href: 'category',
       iconColor: 'wordText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Speak',
@@ -59,7 +60,7 @@ function DashboardCreateData() {
       description: 'Add a new speaker to your site',
       href: 'speaker',
       iconColor: 'wordText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
   ]
   const headerContent = {

@@ -12,7 +12,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
   const { user } = useUserStore()
   const [selectedSubMenu, setSelectedSubMenu] = useState({})
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
-  const isGuest = user?.username === 'Guest' || !user?.username
+  const isGuest = user.isAnonymous
   const { login, logout } = useLoginLogout()
 
   const onMenuClick = (event, menuObject) => {
@@ -64,7 +64,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 flex items-center rounded ml-3 font-medium">
                 Welcome
-                {user?.firstName && user?.firstName !== 'Guest'
+                {user?.firstName && !user?.isAnonymous
                   ? `, ${user?.firstName}!`
                   : '!'}
               </li>
