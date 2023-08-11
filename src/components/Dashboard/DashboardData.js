@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import api from 'services/api'
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
+import { LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
+import { useMySites } from 'common/dataHooks/useMySites'
 
 function DashboardData() {
   const { user } = useUserStore()
@@ -15,11 +15,12 @@ function DashboardData() {
   // --------------------------------
   // Get user sites
   // --------------------------------
+
   const {
-    data: userSitesData,
     isInitialLoading: userSitesIsLoading,
     error: userSitesError,
-  } = useQuery(['userSites', user?.id], () => api.user.getMySites())
+    mySitesData: userSitesData,
+  } = useMySites()
 
   useEffect(() => {
     if (user && userSitesIsLoading === false && userSitesError === null) {
@@ -31,11 +32,11 @@ function DashboardData() {
     }
   }, [user, userSitesIsLoading, userSitesError])
 
-  const { roles, isSuperAdmin } = user
+  const { roles } = user
 
   const currentUser = {
     ...user,
-    isAdmin: !!(roles?.[sitename] === 'Admin' || isSuperAdmin),
+    isAdmin: !!(roles?.[sitename] === LANGUAGE_ADMIN || user?.isSuperAdmin),
     role: `${site?.title} ${roles?.[sitename] ? roles?.[sitename] : ''}`,
     sites: userSitesData,
   }
@@ -47,7 +48,7 @@ function DashboardData() {
       description: "Add a new Widget to your site's collection",
       href: 'create/widget',
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'WebPages',
@@ -55,7 +56,7 @@ function DashboardData() {
       description: 'Manage all custom pages on your site',
       href: 'edit/pages',
       iconColor: 'phraseText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Home',
@@ -63,7 +64,7 @@ function DashboardData() {
       description: 'Edit the main homepage for your site',
       href: 'edit/home',
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'QuestionCircleSolid',
@@ -72,7 +73,7 @@ function DashboardData() {
         'Ask a question or find out how to do something on FirstVoices',
       href: 'https://firstvoices.atlassian.net/servicedesk/customer/portals',
       iconColor: 'songText',
-      auth: 'Member',
+      auth: MEMBER,
       externalLink: true,
     },
   ]

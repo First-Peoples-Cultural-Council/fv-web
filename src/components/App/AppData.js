@@ -1,38 +1,36 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useAuth } from 'react-oidc-context'
 
 // FPCC
 import { useUserDispatch } from 'context/UserContext'
-import api from 'services/api'
+import { useMySites } from 'common/dataHooks/useMySites'
 
 function AppData() {
   const userDispatch = useUserDispatch()
-
-  const {
-    isInitialLoading: userIsLoading,
-    error: userError,
-    data: userData,
-  } = useQuery(['user'], () => api.user.get())
+  const auth = useAuth()
 
   const {
     isInitialLoading: userRolesIsLoading,
     error: userRolesError,
-    data: userRolesData,
-  } = useQuery(['userRoles'], () => api.user.getRoles())
+    mySitesData,
+  } = useMySites()
 
   useEffect(() => {
     if (
-      userIsLoading === false &&
-      userError === null &&
+      auth.isLoading === false &&
+      !auth.error &&
       userRolesIsLoading === false &&
       userRolesError === null
     ) {
-      userDispatch({ type: 'SET', data: { ...userData, roles: userRolesData } })
+      userDispatch({
+        type: 'SET',
+        data: { profile: auth?.user?.profile, memberships: mySitesData },
+      })
     }
-  }, [userIsLoading, userRolesIsLoading, userRolesError, userError])
+  }, [auth.isLoading, auth.error, userRolesIsLoading, userRolesError])
 
   return {
-    appIsLoading: !userData?.id,
+    appIsLoading: auth.isLoading,
   }
 }
 

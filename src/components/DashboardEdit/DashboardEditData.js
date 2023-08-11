@@ -1,6 +1,7 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { TYPES, TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
+import { SUPER_ADMIN, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditData() {
   const { site } = useSiteStore()
@@ -12,7 +13,7 @@ function DashboardEditData() {
       description: 'Edit the words and phrases in your dictionary',
       href: `entries?${TYPES}=${TYPE_DICTIONARY}`,
       iconColor: 'phraseText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Song',
@@ -20,7 +21,7 @@ function DashboardEditData() {
       description: 'Edit the songs on your site',
       href: `entries?${TYPES}=${TYPE_SONG}`,
       iconColor: 'songText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Story',
@@ -28,7 +29,7 @@ function DashboardEditData() {
       description: 'Edit the stories on your site',
       href: `entries?${TYPES}=${TYPE_STORY}`,
       iconColor: 'storyText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Home',
@@ -36,7 +37,7 @@ function DashboardEditData() {
       description: 'Edit the main homepage for your site',
       href: 'home',
       iconColor: 'wordText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'WebPages',
@@ -44,7 +45,7 @@ function DashboardEditData() {
       description: 'Manage and edit the custom pages on your site',
       href: 'pages',
       iconColor: 'tertiaryA',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Widget',
@@ -52,7 +53,7 @@ function DashboardEditData() {
       description: 'Manage and edit the Widgets on your site',
       href: 'widgets',
       iconColor: 'songText',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Categories',
@@ -61,7 +62,7 @@ function DashboardEditData() {
         'Edit the categories for words and phrases in your dictionary',
       href: 'categories',
       iconColor: 'tertiaryB',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Speak',
@@ -69,7 +70,7 @@ function DashboardEditData() {
       description: 'Edit the speakers on your site',
       href: 'speakers',
       iconColor: 'storyText',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Alphabet',
@@ -78,7 +79,7 @@ function DashboardEditData() {
         'Update media and linked content for your alphabet characters',
       href: 'alphabet',
       iconColor: 'primary',
-      auth: 'SuperAdmin',
+      auth: SUPER_ADMIN,
     },
     // Temp. hiding for FW-4514.
     // {
@@ -87,7 +88,7 @@ function DashboardEditData() {
     //   description: 'Update the labels used in immersion mode on your site',
     //   href: 'immersion',
     //   iconColor: 'tertiaryA',
-    //   auth: 'SuperAdmin',
+    //   auth: SUPER_ADMIN,
     // },
   ]
   const headerContent = {

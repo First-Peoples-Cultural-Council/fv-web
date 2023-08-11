@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
+import { MEMBER } from 'common/constants/roles'
 
 function DashboardTilesPresentation({ tileContent }) {
   const tileClass = (index) => {
@@ -55,10 +56,7 @@ function DashboardTilesPresentation({ tileContent }) {
           Quick links
         </h2>
         {tileContent.map((tile, actionIdx) => (
-          <RequireAuth
-            key={tile.name}
-            role={tile?.auth ? tile?.auth : 'Member'}
-          >
+          <RequireAuth key={tile.name} role={tile?.auth ? tile?.auth : MEMBER}>
             <div key={tile.name} className={tileClass(actionIdx)}>
               <div>
                 <span
