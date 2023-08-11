@@ -60,7 +60,7 @@ function getRoles(memberships) {
 }
 
 const userDataAdaptor = (data) => {
-  if (!data.profile) {
+  if (!data?.profile) {
     // anonymous user
     return {
       isAnonymous: true,
@@ -95,7 +95,7 @@ const userDataAdaptor = (data) => {
 
   return {
     isAnonymous: false,
-    id: data?.profile?.sub,
+    id: userProfile?.sub,
     displayName,
     fullName,
     userInitials: makeInitials(fullName),
