@@ -7,6 +7,7 @@ import api from 'services/api'
 import Header from 'components/Form/Header'
 import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
+import RadioButtons from 'components/Form/RadioButtons'
 import FileUploadField from 'components/Form/FileUploadField'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import useEditForm from 'common/hooks/useEditForm'
@@ -20,7 +21,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     acknowledgement: definitions.paragraph(),
-    notes: definitions.paragraph(),
+    description: definitions.paragraph(),
     audioFile: definitions
       .file({ extensionList })
       .required('A file is required'),
@@ -29,7 +30,10 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
   const defaultValues = {
     title: '',
     acknowledgement: '',
-    notes: '',
+    description: '',
+    excludeFromGames: false,
+    excludeFromKids: false,
+    isShared: false,
     audioFile: null,
     speakers: [],
   }
@@ -43,7 +47,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
   const { data: speakerData } = usePeople()
 
   const speakerOptions = speakerData?.results?.map((entry) => ({
-    label: entry?.title,
+    label: entry?.name,
     value: entry?.id,
   }))
 
@@ -53,49 +57,52 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     if (!file) {
       return
     }
-    // Getting media upload Url
-    api.media.getS3Url({ quantity: 1 }).then((data) => {
-      const s3Url = data?.urls?.[0]
-      // Handle error here if no s3Url
-      if (!s3Url) return
-      setIsUploading(true)
-      api.media.upload({ s3Url, file }).then((s3Response) => {
-        const mediaUrl = s3Response?.url
-        if (!mediaUrl) return
-        api.media
-          .markComplete({
-            filename: file?.name,
-            dialectId: site?.uid,
-            url: mediaUrl,
-            title: formData?.title,
-            notes: formData?.notes,
-            acknowledgement: formData?.acknowledgement,
-            speaker: formData?.speakers,
-          })
-          .then((markCompleteResponse) => {
-            // If upload done, update the form array
-            if (markCompleteResponse?.documentId) {
-              setIsUploading(false)
-              setFileUploaded(true)
-              setSelectedMedia((oldArray) => [
-                ...oldArray,
-                markCompleteResponse?.documentId,
-              ])
-            }
-          })
-      })
+
+    const data = new FormData()
+    data.append('title', formData?.title)
+    data.append('description', formData?.description)
+    data.append('acknowledgement', formData?.acknowledgement)
+    data.append('excludeFromGames', formData?.excludeFromGames)
+    data.append('excludeFromKids', formData?.excludeFromKids)
+    data.append('isShared', formData?.isShared)
+    data.append('original', file)
+
+    formData?.speakers.forEach((speaker) => {
+      data.append('speakers', speaker)
     })
+
+    api.media
+      .uploadAudio({
+        sitename: site?.sitename,
+        data,
+      })
+      .then((res) => {
+        setIsUploading(false)
+        setFileUploaded(true)
+        setSelectedMedia((oldArray) => [...oldArray, res?.id])
+      })
   }
 
   return (
     <div id="UploadAudio" className="text-left px-4">
       <Header subtitle="Upload a new Audio file" />
       <form onReset={reset}>
-        <div className="mt-2 grid grid-cols-12 gap-4">
+        <div className="mt-2 grid grid-cols-12">
           <div className="col-span-12">
             <TextField label="Title" nameId="title" register={register} />
             {errors?.title && (
               <div className="text-red-500">{errors?.title?.message}</div>
+            )}
+          </div>
+
+          <div className="col-span-12">
+            <TextField
+              label="Description"
+              nameId="description"
+              register={register}
+            />
+            {errors?.description && (
+              <div className="text-red-500">{errors?.description?.message}</div>
             )}
           </div>
 
@@ -113,14 +120,29 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
           </div>
 
           <div className="col-span-12">
-            <TextField
-              label="General Notes"
-              nameId="notes"
-              register={register}
+            <RadioButtons
+              label="Exclude from Games?"
+              control={control}
+              errors={errors}
+              nameId="excludeFromGames"
+              options={[
+                { label: 'Yes', value: 'true' },
+                { label: 'No', value: 'false' },
+              ]}
             />
-            {errors?.notes && (
-              <div className="text-red-500">{errors?.notes?.message}</div>
-            )}
+          </div>
+
+          <div className="col-span-12">
+            <RadioButtons
+              label="Exclude from Kids site?"
+              control={control}
+              errors={errors}
+              nameId="excludeFromKids"
+              options={[
+                { label: 'Yes', value: 'true' },
+                { label: 'No', value: 'false' },
+              ]}
+            />
           </div>
 
           <div className="col-span-12">
