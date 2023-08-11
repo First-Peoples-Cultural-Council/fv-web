@@ -45,7 +45,7 @@ function makeInitials(name) {
   const parts = name?.split(' ')
 
   if (parts?.length > 1) {
-    return `${parts[0]?.charAt(0)} ${parts[parts.length - 1]?.charAt(0)}`
+    return `${parts[0]?.charAt(0)}${parts[parts.length - 1]?.charAt(0)}`
   }
 
   return parts[0]?.charAt(0)
@@ -53,7 +53,7 @@ function makeInitials(name) {
 
 function getRoles(memberships) {
   const roles = {}
-  memberships.forEach((m) => {
+  memberships?.forEach((m) => {
     roles[m.sitename] = m.role
   })
   return roles
@@ -81,12 +81,24 @@ const userDataAdaptor = (data) => {
     isLanguageAdmin ||
     Object.values(roles).some((r) => r === ASSISTANT || r === EDITOR)
 
+  // pull names from standard oidc claims in the user profile
+  const userProfile = data?.profile
+  const firstName = userProfile?.given_name || ''
+  const lastName = userProfile?.family_name || ''
+  const fullName = userProfile?.name || [firstName, lastName].join(' ') || ''
+  const displayName =
+    userProfile?.nickname ||
+    firstName ||
+    userProfile?.preferred_username ||
+    fullName ||
+    userProfile?.email
+
   return {
     isAnonymous: false,
     id: data?.profile?.sub,
-    displayName: data?.profile?.name || '',
-    firstName: data?.profile?.name?.split(' ').shift(),
-    userInitials: makeInitials(data?.profile?.name),
+    displayName,
+    fullName,
+    userInitials: makeInitials(fullName),
     isLanguageAdmin,
     isTeam,
     isSuperAdmin: false, // until fw-4694

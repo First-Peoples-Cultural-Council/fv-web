@@ -17,10 +17,8 @@ function AppData() {
 
   useEffect(() => {
     if (
-      auth.isLoading === false &&
-      !auth.error &&
-      userRolesIsLoading === false &&
-      userRolesError === null
+      (auth.isLoading === false && !auth.error) ||
+      (userRolesIsLoading === false && userRolesError === null)
     ) {
       userDispatch({
         type: 'SET',

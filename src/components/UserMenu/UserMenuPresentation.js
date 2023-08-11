@@ -49,8 +49,8 @@ function UserMenuPresentation({ currentUser, login, logout }) {
             <Menu.Item className="text-fv-charcoal px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-gray-200">
               <div>
                 Welcome
-                {currentUser?.firstName && !currentUser?.isAnonymous
-                  ? `, ${currentUser?.firstName}!`
+                {currentUser?.displayName && !currentUser?.isAnonymous
+                  ? `, ${currentUser?.displayName}!`
                   : '!'}
               </div>
             </Menu.Item>

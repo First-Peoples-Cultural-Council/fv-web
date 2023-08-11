@@ -162,7 +162,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 text-fv-charcoal flex items-center rounded">
                 Welcome
-                {!user?.isAnonymous ? `, ${user?.firstName}!` : '!'}
+                {!user?.isAnonymous ? `, ${user?.displayName}!` : '!'}
               </li>
             )}
             {createMobileMenuItem('About', 'About', ABOUT_LINK)}

@@ -151,7 +151,7 @@ const userProfile = (user) => (
           </div>
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-white">{user?.displayName}</p>
+          <p className="text-sm font-medium text-white">{user?.fullName}</p>
           <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
             View profile
           </p>
