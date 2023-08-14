@@ -18,11 +18,17 @@ module.exports = (env) => {
       env && env.V1_API_URL
         ? JSON.stringify(env.V1_API_URL)
         : JSON.stringify('/nuxeo/api/v1/'),
-    ENV_AWS_USER_POOL_ID: process.env.AWS_USER_POOL_ID
-      ? JSON.stringify(process.env.AWS_USER_POOL_ID)
-      : JSON.stringify(''),
     ENV_AWS_CLIENT_ID: process.env.AWS_CLIENT_ID
       ? JSON.stringify(process.env.AWS_CLIENT_ID)
+      : JSON.stringify(''),
+    ENV_OIDC_AUTHORITY_URL: process.env.OIDC_AUTHORITY_URL
+      ? JSON.stringify(process.env.OIDC_AUTHORITY_URL)
+      : JSON.stringify(''),
+    ENV_OAUTH2_REDIRECT_URL: process.env.OAUTH2_REDIRECT_URL
+      ? JSON.stringify(process.env.OAUTH2_REDIRECT_URL)
+      : JSON.stringify(''),
+    ENV_END_SESSION_URL: process.env.END_SESSION_URL
+      ? JSON.stringify(process.env.END_SESSION_URL)
       : JSON.stringify(''),
   }
 

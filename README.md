@@ -72,6 +72,13 @@ Important Note: when running 'npm ci' for the first time you will be silently pr
 $ npm run start
 ```
 
+1. Configure required environment variables.
+
+- AWS_CLIENT_ID - OAuth2 client id
+- OIDC_AUTHORITY_URL - Authority URL for retrieving OIDC metadata
+- OAUTH2_REDIRECT_URL - Destination to redirect after signing in
+- END_SESSION_URL - OAuth2 end session (or logout) endpoint, if not included in the OIDC metadata
+
 8. Visit [localhost:3000](http://localhost:3000) in your web browser to view the FirstVoices app.
 
 ## Building for Production

@@ -2,14 +2,18 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Uppy from '@uppy/core'
 import { Dashboard, useUppy } from '@uppy/react'
-import AwsS3 from '@uppy/aws-s3'
+import XHR from '@uppy/xhr-upload'
 import ImageEditor from '@uppy/image-editor'
 
 // FPCC
+import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 import api from 'services/api'
-import { DOC_AUDIO } from 'common/constants/docTypes'
+import { AUDIO } from 'common/constants'
 import UploadAudio from 'components/MediaCrud/UploadAudio'
-import { getFileExtensions } from 'common/utils/stringHelpers'
+import {
+  getFileExtensions,
+  getFriendlyDocType,
+} from 'common/utils/stringHelpers'
 
 // Uppy
 import '@uppy/core/dist/style.css'
@@ -25,22 +29,17 @@ function UploadMedia({
   setSelectedMedia,
   maxFiles,
 }) {
-  if (docType === DOC_AUDIO) {
-    return (
-      <UploadAudio
-        site={site}
-        extensionList={extensionList}
-        setSelectedMedia={setSelectedMedia}
-      />
-    )
-  }
+  const friendlyDocType = getFriendlyDocType({ docType, plural: true })
 
   const uppy = useUppy(() => {
     const _uppy = new Uppy({
       id: 'mediaUpload',
       autoProceed: false,
       allowMultipleUploadBatches: true,
-      restrictions: { maxNumberOfFiles: maxFiles },
+      restrictions: {
+        maxNumberOfFiles: maxFiles,
+        requiredMetaFields: ['title'],
+      },
       // eslint-disable-next-line no-unused-vars
       onBeforeFileAdded: (currentFile, _files) => {
         if (!extensionList.includes(getFileExtensions(currentFile.name))) {
@@ -85,42 +84,34 @@ function UploadMedia({
       },
     })
 
-    _uppy.use(AwsS3, {
-      getUploadParameters(file) {
-        return api.media.getS3Url({ quantity: 1 }).then((data) =>
-          // Return an object in the correct shape.
-          ({
-            url: `${data?.urls?.[0]}`,
-            method: 'PUT',
-            fields: [],
-            // Provide content type header required by S3
-            headers: {
-              'content-type': file.type,
-            },
-          }),
-        )
+    _uppy.use(XHR, {
+      endpoint: api.media.getUploadEndpoint(site?.sitename, friendlyDocType),
+      fieldName: 'original',
+      formData: true,
+      headers: getAuthHeaderIfTokenExists(),
+      getResponseData: (responseText) => {
+        const _responseText = JSON.parse(responseText)
+        setSelectedMedia((oldArray) => [...oldArray, _responseText?.id])
+        return {
+          url: _responseText?.url,
+        }
       },
     })
-
-    _uppy.on('upload-success', (file) =>
-      api.media
-        .markComplete({
-          filename: file?.name,
-          dialectId: site?.uid,
-          url: file?.xhrUpload?.endpoint,
-          title: file?.meta?.title,
-          notes: file?.meta?.notes,
-          acknowledgement: file?.meta?.acknowledgement,
-        })
-        .then((data) =>
-          setSelectedMedia((oldArray) => [...oldArray, data?.documentId]),
-        ),
-    )
 
     return _uppy
   })
 
   useEffect(() => () => uppy.close({ reason: 'unmount' }), [uppy])
+
+  if (docType === AUDIO) {
+    return (
+      <UploadAudio
+        site={site}
+        extensionList={extensionList}
+        setSelectedMedia={setSelectedMedia}
+      />
+    )
+  }
 
   return (
     <div id="UploadMedia" className="h-3/4 mt-4">
@@ -134,16 +125,46 @@ function UploadMedia({
         showSelectedFiles
         plugins={['ImageEditor']}
         metaFields={[
-          { id: 'title', name: 'Title', placeholder: 'Title for the image.' },
+          {
+            id: 'title',
+            name: 'Title',
+            placeholder: 'Title for the media file.',
+          },
+          {
+            id: 'description',
+            name: 'General description',
+            placeholder: 'Description of the media file to be uploaded.',
+          },
           {
             id: 'acknowledgement',
             name: 'Acknowledgement',
             placeholder: 'Who created this media or where did you get it from?',
           },
           {
-            id: 'notes',
-            name: 'General notes',
-            placeholder: 'Any other details regarding this media file.',
+            id: 'excludeFromGames',
+            name: 'Exclude from games',
+            render({ value, onChange, required, form }, h) {
+              return h('input', {
+                type: 'checkbox',
+                required,
+                form,
+                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+                defaultChecked: value === 'on',
+              })
+            },
+          },
+          {
+            id: 'excludeFromKids',
+            name: 'Exclude from Kids',
+            render({ value, onChange, required, form }, h) {
+              return h('input', {
+                type: 'checkbox',
+                required,
+                form,
+                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+                defaultChecked: value === 'on',
+              })
+            },
           },
         ]}
       />

@@ -9,7 +9,7 @@ import api from 'services/api'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
-import { DOC_AUDIO, DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function MediaBrowserData({ docType }) {
   const { site } = useSiteStore()
@@ -61,11 +61,10 @@ function MediaBrowserData({ docType }) {
     isInitialLoading,
   } = useInfiniteQuery(
     [`${docType}-search`, searchTerm],
-    ({ pageParam = 0 }) =>
+    ({ pageParam = 1 }) =>
       api.media.get({
-        siteId: site?.uid,
-        searchTerm,
-        type: docType,
+        sitename: site?.sitename,
+        docType: friendlyDocTypeLabel,
         pageParam,
       }),
     {
@@ -78,14 +77,14 @@ function MediaBrowserData({ docType }) {
   )
 
   useEffect(() => {
-    if (!currentFile && data?.pages?.[0]?.entries) {
+    if (!currentFile && data?.pages?.[0]?.results) {
       const firstFile = mediaDataAdaptor({
         type: docType,
-        data: data?.pages?.[0]?.entries?.[0],
+        data: data?.pages?.[0]?.results?.[0],
       })
       setCurrentFile(firstFile)
     }
-  }, [data])
+  }, [currentFile, data, docType])
 
   const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage }
   useIntersectionObserver({
@@ -123,7 +122,7 @@ function MediaBrowserData({ docType }) {
 const { oneOf } = PropTypes
 
 MediaBrowserData.propTypes = {
-  docType: oneOf([DOC_AUDIO, DOC_IMAGE, DOC_VIDEO]),
+  docType: oneOf([AUDIO, IMAGE, VIDEO]),
 }
 
 export default MediaBrowserData

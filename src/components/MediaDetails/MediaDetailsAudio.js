@@ -11,7 +11,7 @@ function MediaDetailsAudio({ file }) {
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6">
       <div>
         <div className="block w-full rounded-lg overflow-hidden">
-          <AudioNative styling="w-full" audioId={file?.id} />
+          <AudioNative styling="w-full" audioObject={file} />
         </div>
         <div className="mt-4 flex items-start">
           <div>
@@ -49,9 +49,7 @@ function MediaDetailsAudio({ file }) {
             <div className="py-3 flex justify-between text-sm font-medium">
               <dt className="text-fv-charcoal-light">Speakers</dt>
               <dd className="text-fv-charcoal">
-                {file?.speakers
-                  ?.map((speaker) => speaker?.['dc:title'])
-                  .join(', ')}
+                {file?.speakers?.map((speaker) => speaker?.name).join(', ')}
               </dd>
             </div>
           </dl>

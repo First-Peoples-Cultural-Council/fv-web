@@ -5,8 +5,10 @@ const definitions = {
   CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
   ENV_API_URL: '/api/1.0/',
   ENV_V1_API_URL: '/nuxeo/api/v1/',
-  ENV_AWS_USER_POOL_ID: '',
   ENV_AWS_CLIENT_ID: '',
+  ENV_OIDC_AUTHORITY_URL: '',
+  ENV_OAUTH2_REDIRECT_URL: '',
+  ENV_END_SESSION_URL: '',
 }
 
 module.exports = (env) =>

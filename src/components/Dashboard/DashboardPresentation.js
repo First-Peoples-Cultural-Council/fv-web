@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPresentationSiteSelect'
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
+import { LANGUAGE_ADMIN, ASSISTANT, MEMBER } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site }) {
   return (
@@ -46,25 +47,25 @@ const primaryNavigationItems = (currentSitename) => {
       name: 'Dashboard',
       href: `/${currentSitename}/dashboard`,
       icon: 'Dashboard',
-      auth: 'Member',
+      auth: MEMBER,
     },
     {
       name: 'Create',
       href: 'create',
       icon: 'Create',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       name: 'Edit',
       href: 'edit',
       icon: 'Pencil',
-      auth: 'Admin',
+      auth: LANGUAGE_ADMIN,
     },
     {
       name: 'Media',
       href: 'media',
       icon: 'Microphone',
-      auth: 'Recorder',
+      auth: ASSISTANT,
     },
   ]
   return (
@@ -150,7 +151,7 @@ const userProfile = (user) => (
           </div>
         </div>
         <div className="ml-3">
-          <p className="text-sm font-medium text-white">{user?.displayName}</p>
+          <p className="text-sm font-medium text-white">{user?.fullName}</p>
           <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
             View profile
           </p>

@@ -2,30 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import { isDisplayablePropMedia, getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
-import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
+import { IMAGE, VIDEO } from 'common/constants'
 
 function MediaDetailsVisual({ file, docType }) {
   return (
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6">
       <div>
         <div className="block w-full h-120 rounded-lg overflow-hidden">
-          {docType === DOC_IMAGE && (
+          {docType === IMAGE && (
             <img
-              src={getMediaUrl({ type: 'gifOrImg', id: file?.id })}
+              src={getMediaPath({ mediaObject: file, type: IMAGE })}
               alt={file?.title}
               className="object-contain w-full h-120"
             />
           )}
-          {docType === DOC_VIDEO && (
+          {docType === VIDEO && (
             <video
               className="object-contain w-full h-120"
-              src={getMediaUrl({
-                type: 'video',
-                id: file?.id,
-              })}
+              src={getMediaPath({ mediaObject: file, type: VIDEO })}
               controls
             />
           )}
@@ -80,7 +76,7 @@ function MediaDetailsVisual({ file, docType }) {
 const { object, oneOf } = PropTypes
 MediaDetailsVisual.propTypes = {
   file: object,
-  docType: oneOf([DOC_IMAGE, DOC_VIDEO]),
+  docType: oneOf([IMAGE, VIDEO]),
 }
 
 export default MediaDetailsVisual

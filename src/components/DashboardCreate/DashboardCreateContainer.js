@@ -13,6 +13,7 @@ import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
 import { DOC_PHRASE, DOC_WORD } from 'common/constants'
+import { LANGUAGE_ADMIN, SUPER_ADMIN } from 'common/constants/roles'
 
 function DashboardCreateContainer() {
   const { tileContent, headerContent, site } = DashboardCreateData()
@@ -22,7 +23,7 @@ function DashboardCreateContainer() {
         <Route
           path="category"
           element={
-            <RequireAuth role="SuperAdmin" withMessage>
+            <RequireAuth role={SUPER_ADMIN} withMessage>
               <CategoryCrud.Container />
             </RequireAuth>
           }
@@ -30,7 +31,7 @@ function DashboardCreateContainer() {
         <Route
           path="page"
           element={
-            <RequireAuth role="Admin" withMessage>
+            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
               <PageCrud.Container />
             </RequireAuth>
           }
@@ -38,7 +39,7 @@ function DashboardCreateContainer() {
         <Route
           path="phrase"
           element={
-            <RequireAuth role="SuperAdmin" withMessage>
+            <RequireAuth role={SUPER_ADMIN} withMessage>
               <DictionaryCrud.Container docType={DOC_PHRASE} isCreate />
             </RequireAuth>
           }
@@ -46,7 +47,7 @@ function DashboardCreateContainer() {
         <Route
           path="speaker"
           element={
-            <RequireAuth role="SuperAdmin" withMessage>
+            <RequireAuth role={SUPER_ADMIN} withMessage>
               <SpeakerCrud.Container />
             </RequireAuth>
           }
@@ -54,7 +55,7 @@ function DashboardCreateContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth role="SuperAdmin" withMessage>
+            <RequireAuth role={SUPER_ADMIN} withMessage>
               <StoryCrud.Container />
             </RequireAuth>
           }
@@ -62,7 +63,7 @@ function DashboardCreateContainer() {
         <Route
           path="widget"
           element={
-            <RequireAuth role="Admin" withMessage>
+            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
               <WidgetCrud.Container />
             </RequireAuth>
           }
@@ -70,7 +71,7 @@ function DashboardCreateContainer() {
         <Route
           path="word"
           element={
-            <RequireAuth role="SuperAdmin" withMessage>
+            <RequireAuth role={SUPER_ADMIN} withMessage>
               <DictionaryCrud.Container docType={DOC_WORD} isCreate />
             </RequireAuth>
           }
