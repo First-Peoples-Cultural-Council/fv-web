@@ -10,22 +10,21 @@ import useEditForm from 'common/hooks/useEditForm'
 
 function CategoryCrudPresentation({
   backHandler,
-  categoriesDirectoryId,
-  phrasebooksDirectoryId,
   dataToEdit,
-  parentCategories,
+  deleteHandler,
+  parentCategoryOptions,
   submitHandler,
 }) {
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     description: definitions.paragraph(),
-    parentId: definitions.uuid().required(),
+    parentId: definitions.uuid(),
   })
 
   const defaultValues = {
     title: '',
     description: '',
-    parentId: categoriesDirectoryId,
+    parentId: '',
   }
 
   const { control, errors, handleSubmit, isCreateMode, register, reset } =
@@ -34,10 +33,6 @@ function CategoryCrudPresentation({
       validator,
       dataToEdit,
     })
-
-  const isNotParent =
-    dataToEdit?.parentId !== categoriesDirectoryId &&
-    dataToEdit?.parentId !== phrasebooksDirectoryId
 
   return (
     <div id="CategoryCrudPresentation" className="max-w-5xl p-8">
@@ -50,7 +45,7 @@ function CategoryCrudPresentation({
       {!isCreateMode && (
         <div className="w-full flex justify-end mt-6 px-6">
           <DeleteButton.Presentation
-            id={dataToEdit?.id}
+            deleteHandler={deleteHandler}
             label="Delete Category"
             message="Are you sure you want to delete this category from your site?"
           />
@@ -74,13 +69,13 @@ function CategoryCrudPresentation({
               <div className="text-red-500">{errors?.description?.message}</div>
             )}
           </div>
-          {isNotParent && (
+          {parentCategoryOptions?.length > 0 && (
             <div className="col-span-12">
               <Form.Select
                 label="Parent Category"
                 nameId="parentId"
                 control={control}
-                options={parentCategories}
+                options={parentCategoryOptions}
               />
               {errors?.parentId && (
                 <div className="text-red-500">{errors?.parentId?.message}</div>
@@ -104,15 +99,14 @@ function CategoryCrudPresentation({
 }
 
 // PROPTYPES
-const { array, func, object, string } = PropTypes
+const { array, func, object } = PropTypes
 
 CategoryCrudPresentation.propTypes = {
   backHandler: func,
-  categoriesDirectoryId: string,
-  phrasebooksDirectoryId: string,
+  deleteHandler: func,
   submitHandler: func,
   dataToEdit: object,
-  parentCategories: array,
+  parentCategoryOptions: array,
 }
 
 export default CategoryCrudPresentation

@@ -8,12 +8,11 @@ import Loading from 'components/Loading'
 function CategoryCrudContainer() {
   const {
     backHandler,
-    categoriesDirectoryId,
-    phrasebooksDirectoryId,
     dataToEdit,
+    deleteHandler,
     isLoading,
     submitHandler,
-    parentCategories,
+    parentCategoryOptions,
   } = CategoryCrudData()
 
   return (
@@ -22,9 +21,8 @@ function CategoryCrudContainer() {
         backHandler={backHandler}
         dataToEdit={dataToEdit}
         submitHandler={submitHandler}
-        categoriesDirectoryId={categoriesDirectoryId}
-        parentCategories={parentCategories}
-        phrasebooksDirectoryId={phrasebooksDirectoryId}
+        deleteHandler={deleteHandler}
+        parentCategoryOptions={parentCategoryOptions}
       />
     </Loading.Container>
   )

@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import { useCategories } from 'common/dataHooks/useCategories'
 import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCategoriesData() {
@@ -13,14 +12,8 @@ function DashboardCategoriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isInitialLoading } = useQuery(
-    ['categories', site?.uid],
-    () => api.category.get({ siteId: site?.uid }),
-    {
-      // The query will not execute until the uid exists
-      enabled: !!site?.uid,
-    },
-  )
+
+  const { allCategories, isError, error, isInitialLoading } = useCategories()
 
   useEffect(() => {
     if (isError) {
@@ -29,7 +22,7 @@ function DashboardCategoriesData() {
         { replace: true },
       )
     }
-  }, [isError])
+  }, [isError, error, sitename, navigate])
 
   const tileContent = [
     {
@@ -48,34 +41,13 @@ function DashboardCategoriesData() {
     icon: 'Categories',
   }
 
-  const getParent = (parentId) => {
-    const parent = data?.categories?.filter(
-      (category) => category?.id === parentId,
-    )
-    return parent?.[0]?.title || ''
-  }
-
-  const categoriesDataAdaptor = (dataArray) => {
-    const categoriesData = []
-    dataArray?.categories?.forEach((category) => {
-      categoriesData.push({
-        id: category?.id,
-        title: category?.title,
-        parentCategory: getParent(category?.parentId),
-        href: `/${site?.sitename}/categories/${category?.id}?docType=WORD_AND_PHRASE`,
-        category,
-      })
-    })
-    return categoriesData
-  }
-
   return {
     headerContent,
-    isLoading: isInitialLoading || isError,
+    isLoading: isInitialLoading,
     site,
     sitename,
     tileContent,
-    categories: data?.categories?.length > 0 ? categoriesDataAdaptor(data) : [],
+    categories: allCategories || [],
   }
 }
 
