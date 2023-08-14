@@ -8,7 +8,8 @@ import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
-function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
+function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
+  console.log({ dataToEdit })
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     subtitle: definitions.paragraph(),
@@ -61,6 +62,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
               id={dataToEdit?.id}
               label="Delete Page"
               message="Are you sure you want to delete this page from your site?"
+              deleteHandler={deleteHandler}
             />
           </div>
         )}
@@ -98,7 +100,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                 <div className="col-span-12 sm:col-span-6">
                   <Form.TextField
                     label="URL"
-                    nameId="url"
+                    nameId="slug"
                     helpText={
                       isCreateMode
                         ? 'Enter a short URL for your page with no special characters or spaces (example: our-people)'
@@ -107,8 +109,8 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                     register={register}
                     disabled={!isCreateMode}
                   />
-                  {errors?.url && (
-                    <div className="text-red-500">{errors?.url?.message}</div>
+                  {errors?.slug && (
+                    <div className="text-red-500">{errors?.slug?.message}</div>
                   )}
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
@@ -159,7 +161,11 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
               cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
               cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
               onCancelClick={cancelHandler}
-              onSubmitClick={handleSubmit(submitHandler)}
+              onSubmitClick={() => {
+                console.log('test')
+
+                handleSubmit(submitHandler)
+              }}
             />
           </div>
         </section>
@@ -174,6 +180,7 @@ const { func, object } = PropTypes
 PageForm.propTypes = {
   cancelHandler: func,
   submitHandler: func,
+  deleteHandler: func,
   dataToEdit: object,
 }
 

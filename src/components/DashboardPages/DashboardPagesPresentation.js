@@ -17,7 +17,7 @@ function DashboardPagesPresentation({
 }) {
   const tableHeaderClass =
     'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
-
+  console.log({ customPages })
   return (
     <div id="DashboardPagesPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -61,7 +61,7 @@ function DashboardPagesPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
-                  to={`/${sitename}/dashboard/edit/page?id=${page?.id}`}
+                  to={`/${sitename}/dashboard/edit/page?slug=${page?.url}`}
                   className="text-secondary hover:text-secondary-dark flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
