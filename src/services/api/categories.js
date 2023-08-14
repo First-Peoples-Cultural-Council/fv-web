@@ -1,7 +1,7 @@
 import { apiBase } from 'services/config'
 import { SITES, CATEGORIES } from 'common/constants'
 
-const people = {
+const categories = {
   get: async ({ sitename, id }) =>
     apiBase.get(`${SITES}/${sitename}/${CATEGORIES}/${id}`).json(),
   create: async ({ sitename, properties }) => {
@@ -30,4 +30,4 @@ const people = {
     apiBase.get(`${SITES}/${sitename}/${CATEGORIES}/`).json(),
 }
 
-export default people
+export default categories
