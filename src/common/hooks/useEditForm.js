@@ -32,7 +32,7 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
         }
       })
     }
-  }, [dataToEdit])
+  }, [dataToEdit, isEditMode, setValue])
 
   return {
     control,

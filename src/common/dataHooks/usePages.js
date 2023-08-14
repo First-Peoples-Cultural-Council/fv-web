@@ -16,8 +16,6 @@ export function usePage({ pageSlug }) {
     { enabled: !!pageSlug },
   )
 
-  console.log({ response })
-
   const widgets = response?.data?.widgets
     ? widgetListAdaptor({
         widgetList: response?.data?.widgets,
@@ -87,6 +85,8 @@ export function usePageCreate() {
 export function usePageUpdate() {
   const { sitename } = useParams()
 
+  console.log('updated')
+
   const updatePage = async (formData) => {
     const properties = {
       title: formData?.title || null,
@@ -97,7 +97,7 @@ export function usePageUpdate() {
       bannerImage: formData?.banner_image || null,
       bannerVideo: formData?.banner_video || null,
     }
-    return api.page.update({
+    return api.pages.update({
       slug: formData?.url,
       sitename,
       properties,

@@ -9,11 +9,10 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
 function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
-  console.log({ dataToEdit })
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     subtitle: definitions.paragraph(),
-    url: definitions.latinOnly({ message: 'Please enter a URL' }),
+    slug: definitions.latinOnly({ message: 'Please enter a URL' }),
     imageId: definitions.uuid(),
     videoId: definitions.uuid(),
   })
@@ -21,7 +20,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
   const defaultValues = {
     title: '',
     subtitle: '',
-    url: '',
+    slug: '',
     imageId: '',
     videoId: '',
     visibility: 'public',
@@ -161,11 +160,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
               cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
               cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
               onCancelClick={cancelHandler}
-              onSubmitClick={() => {
-                console.log('test')
-
-                handleSubmit(submitHandler)
-              }}
+              onSubmitClick={handleSubmit(submitHandler)}
             />
           </div>
         </section>

@@ -7,9 +7,9 @@ const pages = {
   create: async ({ sitename, properties }) => {
     apiBase.post(`${SITES}/${sitename}/${PAGES}/`, { json: properties }).json()
   },
-  update: async ({ sitename, id, properties }) => {
+  update: async ({ sitename, slug, properties }) => {
     apiBase
-      .put(`${SITES}/${sitename}/${PAGES}/${id}`, { json: properties })
+      .put(`${SITES}/${sitename}/${PAGES}/${slug}`, { json: properties })
       .json()
   },
   delete: async ({ sitename, pageSlug }) =>
