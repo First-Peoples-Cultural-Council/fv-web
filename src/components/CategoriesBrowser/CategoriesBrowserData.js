@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useCategories from 'common/dataHooks/useCategories'
+import { useCategories } from 'common/dataHooks/useCategories'
 
 function CategoriesBrowserData() {
   const { site } = useSiteStore()
