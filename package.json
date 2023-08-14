@@ -62,7 +62,7 @@
     "eslint-plugin-testcafe": "^0.2.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.1",
     "testcafe": "^2.6.2",
     "testcafe-blink-diff": "^0.5.5",
     "webpack-cli": "^5.0.1",
