@@ -13,7 +13,10 @@ export function useCategory({ id }) {
     () => api.categories.get({ sitename, id }),
     { enabled: !!id },
   )
-  return response
+  return {
+    ...response,
+    data: { ...response?.data, parentId: response?.data?.parent?.id },
+  }
 }
 
 export function useCategories() {
@@ -119,8 +122,8 @@ export function useCategoryDelete() {
     actionWord: 'deleted',
     type: 'category',
   })
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
+  const onSubmit = (id) => {
+    mutation.mutate(id)
   }
   return { onSubmit }
 }
