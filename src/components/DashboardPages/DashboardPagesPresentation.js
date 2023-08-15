@@ -17,7 +17,6 @@ function DashboardPagesPresentation({
 }) {
   const tableHeaderClass =
     'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
-  console.log({ customPages })
   return (
     <div id="DashboardPagesPresentation" className="space-y-5">
       <DashboardLanding.Presentation

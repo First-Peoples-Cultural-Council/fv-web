@@ -85,8 +85,6 @@ export function usePageCreate() {
 export function usePageUpdate() {
   const { sitename } = useParams()
 
-  console.log('updated')
-
   const updatePage = async (formData) => {
     const properties = {
       title: formData?.title || null,
@@ -120,9 +118,9 @@ export function usePageUpdate() {
 
 export function usePageDelete() {
   const { sitename } = useParams()
-  const deletePage = async (pageSlug) =>
+  const deletePage = async (slug) =>
     api.pages.delete({
-      pageSlug,
+      slug,
       sitename,
     })
 

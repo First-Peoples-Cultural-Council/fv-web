@@ -12,8 +12,8 @@ const pages = {
       .put(`${SITES}/${sitename}/${PAGES}/${slug}`, { json: properties })
       .json()
   },
-  delete: async ({ sitename, pageSlug }) =>
-    apiBase.delete(`${SITES}/${sitename}/${PAGES}/${pageSlug}`).json(),
+  delete: async ({ sitename, slug }) =>
+    apiBase.delete(`${SITES}/${sitename}/${PAGES}/${slug}`).json(),
   getPages: async ({ sitename }) =>
     apiBase.get(`${SITES}/${sitename}/${PAGES}/`).json(),
 }
