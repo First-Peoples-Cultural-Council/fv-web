@@ -18,10 +18,11 @@ function DashboardAlphabetPresentation({
   const tableHeaderClass =
     'px-6 py-3 text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
-  const getIndicatorIcon = (dataArray) => {
-    const icon = dataArray?.length > 0 ? 'Checkmark' : 'Minus'
+  const getIndicatorIcon = (data) => {
+    const icon = data?.length > 0 || data?.id ? 'Checkmark' : 'Minus'
     return getIcon(icon, 'fill-current w-6 h-6')
   }
+  console.log(characters)
 
   return (
     <div id="DashboardAlphabetPresentation" className="space-y-5">
@@ -48,7 +49,7 @@ function DashboardAlphabetPresentation({
                 video
               </th>
               <th scope="col" className={`${tableHeaderClass} text-center`}>
-                picture
+                image
               </th>
               {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
               <th scope="col" className={`relative ${tableHeaderClass}`}>
@@ -71,12 +72,12 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 <div className="flex justify-center">
-                  {getIndicatorIcon(character?.relatedVideos)}
+                  {getIndicatorIcon(character?.relatedVideo)}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 <div className="flex justify-center">
-                  {getIndicatorIcon(character?.relatedImages)}
+                  {getIndicatorIcon(character?.relatedImage)}
                 </div>
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">

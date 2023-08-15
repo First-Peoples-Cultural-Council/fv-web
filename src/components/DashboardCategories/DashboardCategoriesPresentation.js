@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
+import { TYPE_DICTIONARY } from 'common/constants'
 
 function DashboardCategoriesPresentation({
   headerContent,
@@ -51,7 +52,7 @@ function DashboardCategoriesPresentation({
                 {category.title}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
-                {category.parentCategory}
+                {category.parentTitle || '-------'}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
@@ -63,7 +64,7 @@ function DashboardCategoriesPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
-                  to={category.href}
+                  to={`/${sitename}/categories/${category?.id}?type=${TYPE_DICTIONARY}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-secondary hover:text-secondary-dark flex items-center"
