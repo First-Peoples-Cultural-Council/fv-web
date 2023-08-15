@@ -42,7 +42,7 @@ function DashboardContainer() {
           <Route
             path="create/*"
             element={
-              <RequireAuth role={ASSISTANT} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardCreate.Container />
               </RequireAuth>
             }
@@ -50,7 +50,7 @@ function DashboardContainer() {
           <Route
             path="edit/*"
             element={
-              <RequireAuth role={ASSISTANT} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardEdit.Container />
               </RequireAuth>
             }
@@ -58,7 +58,7 @@ function DashboardContainer() {
           <Route
             path="media/*"
             element={
-              <RequireAuth role={ASSISTANT} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardMedia.Container />
               </RequireAuth>
             }

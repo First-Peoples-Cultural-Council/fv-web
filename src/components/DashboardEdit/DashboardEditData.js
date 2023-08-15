@@ -1,7 +1,7 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { TYPES, TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
-import { SUPER_ADMIN, LANGUAGE_ADMIN } from 'common/constants/roles'
+import { EDITOR, SUPER_ADMIN, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditData() {
   const { site } = useSiteStore()
@@ -13,7 +13,7 @@ function DashboardEditData() {
       description: 'Edit the words and phrases in your dictionary',
       href: `entries?${TYPES}=${TYPE_DICTIONARY}`,
       iconColor: 'phraseText',
-      auth: SUPER_ADMIN,
+      auth: EDITOR,
     },
     {
       icon: 'Song',
@@ -21,7 +21,7 @@ function DashboardEditData() {
       description: 'Edit the songs on your site',
       href: `entries?${TYPES}=${TYPE_SONG}`,
       iconColor: 'songText',
-      auth: SUPER_ADMIN,
+      auth: EDITOR,
     },
     {
       icon: 'Story',
@@ -29,7 +29,7 @@ function DashboardEditData() {
       description: 'Edit the stories on your site',
       href: `entries?${TYPES}=${TYPE_STORY}`,
       iconColor: 'storyText',
-      auth: SUPER_ADMIN,
+      auth: EDITOR,
     },
     {
       icon: 'Home',
@@ -37,7 +37,7 @@ function DashboardEditData() {
       description: 'Edit the main homepage for your site',
       href: 'home',
       iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'WebPages',
@@ -62,7 +62,7 @@ function DashboardEditData() {
         'Edit the categories for words and phrases in your dictionary',
       href: 'categories',
       iconColor: 'tertiaryB',
-      auth: SUPER_ADMIN,
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Speak',
@@ -70,7 +70,7 @@ function DashboardEditData() {
       description: 'Edit the speakers on your site',
       href: 'speakers',
       iconColor: 'storyText',
-      auth: SUPER_ADMIN,
+      auth: EDITOR,
     },
     {
       icon: 'Alphabet',
@@ -79,7 +79,7 @@ function DashboardEditData() {
         'Update media and linked content for your alphabet characters',
       href: 'alphabet',
       iconColor: 'primary',
-      auth: SUPER_ADMIN,
+      auth: LANGUAGE_ADMIN,
     },
     // Temp. hiding for FW-4514.
     // {
