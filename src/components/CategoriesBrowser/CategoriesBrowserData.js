@@ -10,7 +10,7 @@ function CategoriesBrowserData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { isInitialLoading, isError, allCategories } = useCategories()
+  const { isInitialLoading, allCategories } = useCategories()
 
   const [currentCategory, setCurrentCategory] = useState()
 
@@ -27,7 +27,7 @@ function CategoriesBrowserData() {
         )
 
   return {
-    isLoading: isInitialLoading || isError,
+    isLoading: isInitialLoading,
     site,
     sitename,
     currentCategory,

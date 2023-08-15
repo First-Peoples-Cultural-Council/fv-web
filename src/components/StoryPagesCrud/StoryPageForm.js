@@ -79,12 +79,12 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
               )}
             </div>
             <div className="w-full">
-              <Form.DocumentArrayField
+              <Form.MediaArrayField
                 label="Audio"
                 nameId="audio"
                 control={control}
-                docType={DOC_AUDIO}
-                docCountLimit={3}
+                type={DOC_AUDIO}
+                maxItems={3}
               />
               {errors?.relatedAudio && (
                 <div className="text-red-500">{errors?.audio?.message}</div>

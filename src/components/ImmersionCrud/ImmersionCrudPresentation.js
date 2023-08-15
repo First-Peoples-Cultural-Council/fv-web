@@ -40,11 +40,11 @@ function ImmersionCrudPresentation({ dataToEdit, submitHandler }) {
   // NB Always set existing data on load (transkey provided for new labels and needs to be set)
   useEffect(() => {
     if (dataToEdit?.transKey) {
-      for (const property in dataToEdit) {
+      Object.keys(dataToEdit).forEach((property) => {
         if (Object.prototype.hasOwnProperty.call(dataToEdit, property)) {
           setValue(property, dataToEdit[property])
         }
-      }
+      })
     }
   }, [dataToEdit])
 
@@ -76,12 +76,12 @@ function ImmersionCrudPresentation({ dataToEdit, submitHandler }) {
                 )}
               </div>
               <div className="col-span-12">
-                <Form.DocumentArrayField
+                <Form.MediaArrayField
                   label="Audio"
                   nameId="relatedAudio"
                   control={control}
-                  docType={DOC_AUDIO}
-                  docCountLimit={1}
+                  type={DOC_AUDIO}
+                  maxItems={1}
                 />
                 {errors?.relatedAudio && (
                   <div className="text-red-500">
