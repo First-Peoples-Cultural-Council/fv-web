@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPresentationSiteSelect'
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
-import { LANGUAGE_ADMIN, ASSISTANT, MEMBER } from 'common/constants/roles'
+import { ASSISTANT, MEMBER } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site }) {
   return (
@@ -53,13 +53,13 @@ const primaryNavigationItems = (currentSitename) => {
       name: 'Create',
       href: 'create',
       icon: 'Create',
-      auth: LANGUAGE_ADMIN,
+      auth: ASSISTANT,
     },
     {
       name: 'Edit',
       href: 'edit',
       icon: 'Pencil',
-      auth: LANGUAGE_ADMIN,
+      auth: ASSISTANT,
     },
     {
       name: 'Media',
@@ -74,7 +74,7 @@ const primaryNavigationItems = (currentSitename) => {
         const resolved = useResolvedPath(item.href)
         const match = useMatch({ path: resolved.pathname, end: true })
         return (
-          <RequireAuth key={item.name} role={item.auth}>
+          <RequireAuth key={item.name} siteMembership={item.auth}>
             <Link
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${

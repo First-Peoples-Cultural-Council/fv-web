@@ -30,7 +30,7 @@ function DashboardData() {
         window.location.href = `/${defaultSite?.sitename}/dashboard`
       }
     }
-  }, [user, userSitesIsLoading, userSitesError])
+  }, [user, userSitesIsLoading, userSitesError, userSitesData, sitename])
 
   const { roles } = user
 
