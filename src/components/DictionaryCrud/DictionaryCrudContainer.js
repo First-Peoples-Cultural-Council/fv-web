@@ -6,9 +6,9 @@ import DictionaryCrudPresentation from 'components/DictionaryCrud/DictionaryCrud
 import DictionaryCrudData from 'components/DictionaryCrud/DictionaryCrudData'
 import Loading from 'components/Loading'
 
-function DictionaryCrudContainer({ docType, isCreate }) {
+function DictionaryCrudContainer({ type, isCreate }) {
   const { backHandler, dataToEdit, isLoading, partsOfSpeech, submitHandler } =
-    DictionaryCrudData({ docType, isCreate })
+    DictionaryCrudData({ type, isCreate })
 
   return (
     <Loading.Container isLoading={isLoading}>
@@ -16,7 +16,7 @@ function DictionaryCrudContainer({ docType, isCreate }) {
         backHandler={backHandler}
         dataToEdit={dataToEdit}
         submitHandler={submitHandler}
-        docType={docType}
+        type={type}
         isCreate={isCreate}
         partsOfSpeech={partsOfSpeech}
       />
@@ -27,7 +27,7 @@ function DictionaryCrudContainer({ docType, isCreate }) {
 // PROPTYPES
 const { bool, string } = PropTypes
 DictionaryCrudContainer.propTypes = {
-  docType: string,
+  type: string,
   isCreate: bool,
 }
 

@@ -25,7 +25,7 @@ function DictionaryCrudPresentation({
   backHandler,
   dataToEdit,
   submitHandler,
-  docType,
+  type,
   isCreate,
   partsOfSpeech,
 }) {
@@ -43,7 +43,7 @@ function DictionaryCrudPresentation({
       .required('You must enter at least 1 character in this field.'),
     translations: definitions.translations(),
     pronunciation: yup.string().max(30).trim(),
-    relatedAssets: definitions.idArray(),
+    relatedEntries: definitions.idArray(),
     categories: definitions.idArray(),
     audio: definitions.idArray(),
     images: definitions.idArray(),
@@ -58,7 +58,7 @@ function DictionaryCrudPresentation({
     pronunciation: '',
     categories: [],
     audio: [],
-    relatedAssets: [],
+    relatedEntries: [],
     images: [],
     videos: [],
     notes: [],
@@ -76,7 +76,7 @@ function DictionaryCrudPresentation({
     })
 
   const steps = [
-    { title: `Add ${getFriendlyDocType({ docType })} content` },
+    { title: `Add ${getFriendlyDocType({ docType: type })} content` },
     { title: 'Add media and other info' },
     { title: 'Save and finish' },
   ]
@@ -110,7 +110,7 @@ function DictionaryCrudPresentation({
           <Fragment key={step}>
             <div className="col-span-12">
               <Form.TextField
-                label={getFriendlyDocType({ docType, titleCase: true })}
+                label={getFriendlyDocType({ docType: type, titleCase: true })}
                 nameId="title"
                 register={register}
               />
@@ -161,18 +161,18 @@ function DictionaryCrudPresentation({
             <div className="col-span-12">
               <Form.EntryArrayField
                 label="Related Content"
-                nameId="relatedAssets"
+                nameId="relatedEntries"
                 control={control}
                 register={register}
                 helpText={`Words and phrases related to your ${getFriendlyDocType(
-                  { docType },
+                  { docType: type },
                 )}`}
                 maxItems={10}
                 types={[TYPE_WORD, TYPE_PHRASE]}
               />
-              {errors?.relatedAssets && (
+              {errors?.relatedEntries && (
                 <div className="text-red-500">
-                  {errors?.relatedAssets?.message}
+                  {errors?.relatedEntries?.message}
                 </div>
               )}
             </div>
@@ -231,7 +231,7 @@ function DictionaryCrudPresentation({
                 <div className="text-red-500">{errors?.videos?.message}</div>
               )}
             </div>
-            {docType === DOC_WORD && (
+            {type === DOC_WORD && (
               <>
                 <div className="col-span-6">
                   <Form.TextField
@@ -293,7 +293,9 @@ function DictionaryCrudPresentation({
       className="flex flex-col max-w-5xl p-8 space-y-4 min-h-screen"
     >
       <div className="w-full flex justify-center">
-        <Form.Header title={`Create ${getFriendlyDocType({ docType })}`} />
+        <Form.Header
+          title={`Create ${getFriendlyDocType({ docType: type })}`}
+        />
       </div>
       <Form.Stepper onClickCallback={stepHandle} steps={steps} />
       <form
@@ -357,7 +359,7 @@ function DictionaryCrudPresentation({
       <div>
         <div className="w-full flex justify-center">
           <Form.Header
-            title={`Edit ${getFriendlyDocType({ docType })}: ${
+            title={`Edit ${getFriendlyDocType({ docType: type })}: ${
               dataToEdit?.title
             }`}
           />
@@ -365,9 +367,9 @@ function DictionaryCrudPresentation({
         <div className="flex w-full justify-end">
           <DeleteButton.Presentation
             id={dataToEdit?.id}
-            label={`Delete ${getFriendlyDocType({ docType })}`}
+            label={`Delete ${getFriendlyDocType({ docType: type })}`}
             message={`Are you sure you want to delete this ${getFriendlyDocType(
-              { docType },
+              { docType: type },
             )} from your site?`}
           />
         </div>
@@ -391,7 +393,7 @@ function DictionaryCrudPresentation({
             <Form.SubmitButtons
               submitLabel={
                 isCreate
-                  ? `Add ${getFriendlyDocType({ docType })}`
+                  ? `Add ${getFriendlyDocType({ docType: type })}`
                   : 'Save Changes'
               }
               submitIcon={isCreate ? 'Add' : 'Save'}
@@ -414,7 +416,7 @@ DictionaryCrudPresentation.propTypes = {
   backHandler: func,
   submitHandler: func,
   dataToEdit: object,
-  docType: string,
+  type: string,
   isCreate: bool,
   partsOfSpeech: array,
 }
