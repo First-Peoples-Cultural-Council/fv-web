@@ -146,7 +146,7 @@ function DictionaryDetailPresentation({
               </div>
             )}
             {/* Related Content */}
-            {entry?.relatedAssets?.length > 0 && (
+            {entry?.relatedEntries?.length > 0 && (
               <div className="py-2 md:p-4">
                 <table className="w-full">
                   <thead>
@@ -161,7 +161,7 @@ function DictionaryDetailPresentation({
                     </tr>
                   </thead>
                   <tbody className="py-2 px-10">
-                    {entry?.relatedAssets?.map((asset, index) => {
+                    {entry?.relatedEntries?.map((asset, index) => {
                       const zebraStripe = index % 2 === 1 ? '' : 'bg-gray-100'
                       return (
                         <tr key={asset.id} className={zebraStripe}>
