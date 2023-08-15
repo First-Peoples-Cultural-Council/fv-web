@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { PAGES } from 'common/constants'
 import api from 'services/api'
 import { getCustomPageHref } from 'common/utils/urlHelpers'
-import { widgetListAdaptor } from 'common/dataAdaptors'
+import { widgetListAdaptor, pageAdaptor } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
 export function usePage({ pageSlug }) {
@@ -53,15 +53,7 @@ export function usePageCreate() {
   const { sitename } = useParams()
 
   const createPage = async (formData) => {
-    const properties = {
-      title: formData?.title || null,
-      visibility: formData?.visibility,
-      subtitle: formData?.subtitle || null,
-      slug: formData?.url || null,
-      widgets: formData?.widgets || [],
-      bannerImage: formData?.bannerImage || null,
-      bannerVideo: formData?.bannerVideo || null,
-    }
+    const properties = pageAdaptor({ formData })
     return api.pages.create({
       sitename,
       properties,
@@ -86,15 +78,7 @@ export function usePageUpdate() {
   const { sitename } = useParams()
 
   const updatePage = async (formData) => {
-    const properties = {
-      title: formData?.title || null,
-      visibility: formData?.visibility,
-      subtitle: formData?.subtitle || null,
-      slug: formData?.url || null,
-      widgets: formData?.widgets || [],
-      bannerImage: formData?.bannerImage || null,
-      bannerVideo: formData?.bannerVideo || null,
-    }
+    const properties = pageAdaptor({ formData })
     return api.pages.update({
       slug: formData?.url,
       sitename,

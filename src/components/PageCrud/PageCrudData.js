@@ -30,6 +30,7 @@ function PageCrudData() {
   const { onSubmit: deletePage } = usePageDelete()
 
   const submitHandler = (formData) => {
+    // debugger
     if (pageSlug && data?.slug) {
       update(formData)
     } else {

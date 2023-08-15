@@ -36,7 +36,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
       validator,
       dataToEdit,
     })
-
+  // console.log({errors})
   return (
     <div
       id="PageForm"
