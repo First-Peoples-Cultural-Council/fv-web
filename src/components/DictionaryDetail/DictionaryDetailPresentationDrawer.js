@@ -21,7 +21,9 @@ function DictionaryDetailPresentationDrawer({
   const lableStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
-  const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
+  const noMedia = !(
+    entry?.relatedImages?.length > 0 || entry?.relatedVideos?.length > 0
+  )
   const shortTitle = entry?.title.length < 16
   return (
     <div data-testid="DictionaryDetailPresentationDrawer">
@@ -78,10 +80,10 @@ function DictionaryDetailPresentationDrawer({
             </div>
           )}
           {/* Audio */}
-          {entry?.audio?.length > 0 && (
+          {entry?.relatedAudio?.length > 0 && (
             <div className="py-3">
-              {entry?.audio?.length > 0 &&
-                entry?.audio.map((audioObject) => (
+              {entry?.relatedAudio?.length > 0 &&
+                entry?.relatedAudio?.map((audioObject) => (
                   <AudioMinimal.Container
                     key={audioObject?.id}
                     icons={{
@@ -184,8 +186,8 @@ function DictionaryDetailPresentationDrawer({
         {noMedia ? null : (
           <section id="WordMedia" className="py-3">
             <div className="grid grid-cols-2 gap-2">
-              {entry?.images
-                ? entry?.images?.map((image) => (
+              {entry?.relatedImages
+                ? entry?.relatedImages?.map((image) => (
                     <div key={image?.id}>
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
@@ -200,8 +202,8 @@ function DictionaryDetailPresentationDrawer({
                     </div>
                   ))
                 : null}
-              {entry?.videos
-                ? entry?.videos?.map((video) => (
+              {entry?.relatedVideos
+                ? entry?.relatedVideos?.map((video) => (
                     <div key={video?.id}>
                       <Disclosure>
                         <Disclosure.Button>

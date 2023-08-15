@@ -21,7 +21,9 @@ function DictionaryDetailPresentation({
   const lableStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
-  const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
+  const noMedia = !(
+    entry?.relatedImages?.length > 0 || entry?.relatedVideos?.length > 0
+  )
   const shortTitle = entry?.title.length < 20
 
   return (
@@ -100,9 +102,9 @@ function DictionaryDetailPresentation({
               </div>
             )}
             {/* Audio */}
-            {entry?.audio?.length > 0 && (
+            {entry?.relatedAudio?.length > 0 && (
               <div className="py-2 md:p-3">
-                {entry?.audio?.map((audioObject) => (
+                {entry?.relatedAudio?.map((audioObject) => (
                   <AudioMinimal.Container
                     key={audioObject?.id}
                     icons={{
@@ -173,7 +175,7 @@ function DictionaryDetailPresentation({
                             >
                               {asset?.title}
                             </Link>
-                            {asset?.audio?.map((audioObject) => (
+                            {asset?.relatedAudio?.map((audioObject) => (
                               <AudioMinimal.Container
                                 key={audioObject?.id}
                                 icons={{
@@ -251,8 +253,8 @@ function DictionaryDetailPresentation({
             className="col-span-8 md:col-span-3 py-2 md:p-5 md:mt-5"
           >
             <ul>
-              {entry?.images
-                ? entry?.images?.map((image) => (
+              {entry?.relatedImages
+                ? entry?.relatedImages?.map((image) => (
                     <li key={image.id} className="my-2">
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
@@ -267,8 +269,8 @@ function DictionaryDetailPresentation({
                     </li>
                   ))
                 : null}
-              {entry?.videos
-                ? entry?.videos?.map((video) => (
+              {entry?.relatedVideos
+                ? entry?.relatedVideos?.map((video) => (
                     <li key={video.id} className="my-2">
                       <div className="inline-flex rounded-lg overflow-hidden">
                         <video
