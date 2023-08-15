@@ -19,18 +19,18 @@ import {
   atLeastLanguageAdmin,
 } from 'common/constants/roles'
 
-function RequireAuth({ children, role, withMessage }) {
+function RequireAuth({ children, siteMembership, withMessage }) {
   const { user, isLoading } = useUserStore()
   const { sitename } = useParams()
 
-  if (user?.isSuperAdmin || role === GENERAL) {
+  if (user?.isSuperAdmin || siteMembership === GENERAL) {
     return children
   }
 
   const statusTextUnauthorized =
-    role === SUPER_ADMIN
+    siteMembership === SUPER_ADMIN
       ? 'This page is hidden.'
-      : `You must be a ${role} of this site to access this.`
+      : `You must be a ${siteMembership} of this site to access this.`
 
   const unauthorised = withMessage ? (
     <Loading.Container isLoading={isLoading}>
@@ -45,7 +45,7 @@ function RequireAuth({ children, role, withMessage }) {
   const userSiteRole = userRoles?.[sitename] || ''
 
   const whatToRender = () => {
-    switch (role) {
+    switch (siteMembership) {
       case MEMBER:
         if (userSiteRole.match(atLeastMember)) {
           return children
@@ -77,7 +77,7 @@ function RequireAuth({ children, role, withMessage }) {
 const { bool, object, string } = PropTypes
 RequireAuth.propTypes = {
   children: object,
-  role: string,
+  siteMembership: string,
   withMessage: bool,
 }
 

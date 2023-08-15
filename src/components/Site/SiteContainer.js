@@ -9,7 +9,7 @@ import SiteFrameEmbed from 'components/Site/SiteFrameEmbed'
 import ScrollToTopOnMount from 'common/ScrollToTopOnMount'
 import SiteData from 'components/Site/SiteData'
 import Loading from 'components/Loading'
-import { LANGUAGE_ADMIN } from 'common/constants/roles'
+import { ASSISTANT } from 'common/constants/roles'
 
 const Dashboard = lazy(() => import('components/Dashboard/DashboardContainer'))
 
@@ -23,7 +23,7 @@ function SiteContainer() {
           path="dashboard/*"
           element={
             <Loading.Container isLoading={siteLoading}>
-              <RequireAuth role={LANGUAGE_ADMIN} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <Dashboard />
               </RequireAuth>
             </Loading.Container>
