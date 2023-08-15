@@ -54,7 +54,7 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                   : '!'}
               </div>
             </Menu.Item>
-            {currentUser?.isLanguageAdmin && (
+            {currentUser?.isTeam && (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
                   <Link to={sitename ? `/${sitename}/dashboard` : '/dashboard'}>

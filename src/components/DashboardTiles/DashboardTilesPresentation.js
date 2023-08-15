@@ -56,7 +56,10 @@ function DashboardTilesPresentation({ tileContent }) {
           Quick links
         </h2>
         {tileContent.map((tile, actionIdx) => (
-          <RequireAuth key={tile.name} role={tile?.auth ? tile?.auth : MEMBER}>
+          <RequireAuth
+            key={tile.name}
+            siteMembership={tile?.auth ? tile?.auth : MEMBER}
+          >
             <div key={tile.name} className={tileClass(actionIdx)}>
               <div>
                 <span

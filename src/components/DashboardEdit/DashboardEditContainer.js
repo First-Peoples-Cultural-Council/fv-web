@@ -23,7 +23,7 @@ import DashboardEntries from 'components/DashboardEntries'
 import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
 import DashboardWidgets from 'components/DashboardWidgets'
-import { LANGUAGE_ADMIN, SUPER_ADMIN } from 'common/constants/roles'
+import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditContainer() {
   const { tileContent, headerContent, site } = DashboardEditData()
@@ -34,7 +34,7 @@ function DashboardEditContainer() {
         <Route
           path="alphabet"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardAlphabet.Container />
             </RequireAuth>
           }
@@ -42,7 +42,7 @@ function DashboardEditContainer() {
         <Route
           path="categories"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardCategories.Container />
             </RequireAuth>
           }
@@ -50,7 +50,7 @@ function DashboardEditContainer() {
         <Route
           path="entries/*"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <DashboardEntries.Container />
             </RequireAuth>
           }
@@ -59,7 +59,7 @@ function DashboardEditContainer() {
         {/* <Route
           path="immersion"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={SUPER_ADMIN} withMessage>
               <DashboardImmersiom.Container />
             </RequireAuth>
           }
@@ -67,7 +67,7 @@ function DashboardEditContainer() {
         <Route
           path="pages"
           element={
-            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardPages.Container />
             </RequireAuth>
           }
@@ -75,7 +75,7 @@ function DashboardEditContainer() {
         <Route
           path="speakers"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <DashboardSpeakers.Container />
             </RequireAuth>
           }
@@ -83,7 +83,7 @@ function DashboardEditContainer() {
         <Route
           path="widgets"
           element={
-            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardWidgets.Container />
             </RequireAuth>
           }
@@ -92,7 +92,7 @@ function DashboardEditContainer() {
         <Route
           path="category"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <CategoryCrud.Container />
             </RequireAuth>
           }
@@ -100,7 +100,7 @@ function DashboardEditContainer() {
         <Route
           path="character"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <CharacterCrud.Container />
             </RequireAuth>
           }
@@ -108,7 +108,7 @@ function DashboardEditContainer() {
         <Route
           path="home"
           element={
-            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <HomeCrud.Container />
             </RequireAuth>
           }
@@ -116,7 +116,7 @@ function DashboardEditContainer() {
         <Route
           path="page"
           element={
-            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <PageCrud.Container />
             </RequireAuth>
           }
@@ -124,7 +124,7 @@ function DashboardEditContainer() {
         <Route
           path="phrase"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <DictionaryCrud.Container docType={DOC_PHRASE} />
             </RequireAuth>
           }
@@ -132,7 +132,7 @@ function DashboardEditContainer() {
         <Route
           path="speaker"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <SpeakerCrud.Container />
             </RequireAuth>
           }
@@ -140,7 +140,7 @@ function DashboardEditContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <StoryCrud.Container />
             </RequireAuth>
           }
@@ -148,7 +148,7 @@ function DashboardEditContainer() {
         <Route
           path="widget"
           element={
-            <RequireAuth role={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <WidgetCrud.Container />
             </RequireAuth>
           }
@@ -156,7 +156,7 @@ function DashboardEditContainer() {
         <Route
           path="word"
           element={
-            <RequireAuth role={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <DictionaryCrud.Container docType={DOC_WORD} />
             </RequireAuth>
           }

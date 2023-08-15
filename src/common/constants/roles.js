@@ -11,14 +11,23 @@ export const STAFF_ADMIN = 'Staff Admin'
 
 // regular expressions for matching roles
 export const atLeastMember = new RegExp(
-  `^(${[MEMBER, ASSISTANT, EDITOR, LANGUAGE_ADMIN].join('|')})$`,
+  `^(${[
+    MEMBER,
+    ASSISTANT,
+    EDITOR,
+    LANGUAGE_ADMIN,
+    SUPER_ADMIN,
+    STAFF_ADMIN,
+  ].join('|')})$`,
 )
 export const atLeastAssistant = new RegExp(
-  `^(${[ASSISTANT, EDITOR, LANGUAGE_ADMIN].join('|')})$`,
+  `^(${[ASSISTANT, EDITOR, LANGUAGE_ADMIN, SUPER_ADMIN, STAFF_ADMIN].join(
+    '|',
+  )})$`,
 )
 export const atLeastEditor = new RegExp(
-  `^(${[EDITOR, LANGUAGE_ADMIN].join('|')})$`,
+  `^(${[EDITOR, LANGUAGE_ADMIN, SUPER_ADMIN, STAFF_ADMIN].join('|')})$`,
 )
 export const atLeastLanguageAdmin = new RegExp(
-  `^(${[LANGUAGE_ADMIN].join('|')})$`,
+  `^(${[LANGUAGE_ADMIN, SUPER_ADMIN, STAFF_ADMIN].join('|')})$`,
 )
