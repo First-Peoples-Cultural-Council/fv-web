@@ -13,16 +13,16 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
     title: definitions.title().required('A title is required'),
     subtitle: definitions.paragraph(),
     slug: definitions.latinOnly({ message: 'Please enter a URL' }),
-    imageId: definitions.uuid(),
-    videoId: definitions.uuid(),
+    bannerImage: definitions.uuid(),
+    bannerVideo: definitions.uuid(),
   })
 
   const defaultValues = {
     title: '',
     subtitle: '',
     slug: '',
-    imageId: '',
-    videoId: '',
+    bannerImage: '',
+    bannerVideo: '',
     visibility: 'public',
     banner: {
       docId: '',

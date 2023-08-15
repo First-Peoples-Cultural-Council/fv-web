@@ -59,8 +59,8 @@ export function usePageCreate() {
       subtitle: formData?.subtitle || null,
       slug: formData?.url || null,
       widgets: formData?.widgets || [],
-      bannerImage: formData?.banner_image || null,
-      bannerVideo: formData?.banner_video || null,
+      bannerImage: formData?.bannerImage || null,
+      bannerVideo: formData?.bannerVideo || null,
     }
     return api.pages.create({
       sitename,
@@ -92,8 +92,8 @@ export function usePageUpdate() {
       subtitle: formData?.subtitle || null,
       slug: formData?.url || null,
       widgets: formData?.widgets || [],
-      bannerImage: formData?.banner_image || null,
-      bannerVideo: formData?.banner_video || null,
+      bannerImage: formData?.bannerImage || null,
+      bannerVideo: formData?.bannerVideo || null,
     }
     return api.pages.update({
       slug: formData?.url,
