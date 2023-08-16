@@ -89,6 +89,7 @@ export const getFriendlyDocType = ({
       friendly = plural ? 'custom pages' : 'custom page'
       break
     case DOC_PHRASE:
+    case TYPE_PHRASE:
       friendly = plural ? 'phrases' : 'phrase'
       break
     case DOC_VIDEO:
@@ -97,6 +98,7 @@ export const getFriendlyDocType = ({
       friendly = plural ? 'videos' : 'video'
       break
     case DOC_WORD:
+    case TYPE_WORD:
       friendly = plural ? 'words' : 'word'
       break
     default:
