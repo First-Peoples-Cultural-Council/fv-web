@@ -7,8 +7,14 @@ import DictionaryCrudData from 'components/DictionaryCrud/DictionaryCrudData'
 import Loading from 'components/Loading'
 
 function DictionaryCrudContainer({ type, isCreate }) {
-  const { backHandler, dataToEdit, isLoading, partsOfSpeech, submitHandler } =
-    DictionaryCrudData({ type, isCreate })
+  const {
+    backHandler,
+    dataToEdit,
+    isLoading,
+    partsOfSpeech,
+    submitHandler,
+    deleteHandler,
+  } = DictionaryCrudData({ type, isCreate })
 
   return (
     <Loading.Container isLoading={isLoading}>
@@ -16,6 +22,7 @@ function DictionaryCrudContainer({ type, isCreate }) {
         backHandler={backHandler}
         dataToEdit={dataToEdit}
         submitHandler={submitHandler}
+        deleteHandler={deleteHandler}
         type={type}
         isCreate={isCreate}
         partsOfSpeech={partsOfSpeech}
