@@ -1,5 +1,5 @@
 import hero from 'assets/images/hero-background.png'
-import laptop from 'assets/images/landing-banner-blue.png'
+// import laptop from 'assets/images/landing-banner-blue.png'
 import languages from 'assets/images/languages-background.png'
 import map from 'assets/images/landing-banner-brown.png'
 
@@ -10,15 +10,16 @@ function LandingBannerData() {
       title: 'Live Your Language!',
       text: 'FirstVoices is a collaborative platform where Indigenous communities manage, curate and share their languages',
       links: [
-        {
-          id: 1,
-          url: '/search',
-          urlLabel: 'SEARCH FIRSTVOICES',
-          info: 'Search the entire FirstVoices website',
-          backgroundColor: 'bgGreen',
-          backgroundImage: laptop,
-          icon: 'Search',
-        },
+        // hiding until site search page is created
+        // {
+        //   id: 1,
+        //   url: '/search',
+        //   urlLabel: 'SEARCH FIRSTVOICES',
+        //   info: 'Search the entire FirstVoices website',
+        //   backgroundColor: 'bgGreen',
+        //   backgroundImage: laptop,
+        //   icon: 'Search',
+        // },
         {
           id: 2,
           url: '/languages',
