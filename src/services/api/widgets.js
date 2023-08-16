@@ -11,6 +11,8 @@ const widgets = {
   getStats: async ({ sitename }) => ({
     message: `Stats API placeholder for ${sitename}`,
   }),
+  create: async ({ sitename, formData }) =>
+    apiBase.post(`${SITES}/${sitename}/${WIDGETS}/`, { json: formData }).json(),
 }
 
 export default widgets

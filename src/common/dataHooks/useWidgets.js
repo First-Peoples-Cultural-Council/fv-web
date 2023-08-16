@@ -7,6 +7,7 @@ import api from 'services/api'
 import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { useUserStore } from 'context/UserContext'
 import { widgetAdaptor } from 'common/dataAdaptors'
+import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
 export function useWidget({ id }) {
   const { sitename } = useParams()
@@ -44,4 +45,23 @@ export function useWidgets() {
     ...response,
     widgets: formattedWidgets,
   }
+}
+
+export function useWidgetsCreate() {
+  const { sitename } = useParams()
+
+  const createWidget = async (formData) =>
+    api.widgets.create({ sitename, formData })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: createWidget,
+    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    queryKeyToInvalidate: [WIDGETS, sitename],
+    actionWord: 'created',
+    type: 'widget',
+  })
+
+  const onSubmit = (formData) => mutation.mutate(formData)
+
+  return { onSubmit }
 }
