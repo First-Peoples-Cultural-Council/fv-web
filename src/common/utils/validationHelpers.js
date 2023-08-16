@@ -35,7 +35,7 @@ export const definitions = {
   textArray: () =>
     yup.array().of(
       yup.object({
-        text: yup.string().max(5).trim(),
+        text: yup.string().trim(),
       }),
     ),
   url: ({ required = false } = {}) =>

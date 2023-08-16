@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { DICTIONARY, TYPE_DICTIONARY } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 export function useDictionaryEntry({ id }) {
   const { sitename } = useParams()
@@ -13,21 +14,22 @@ export function useDictionaryEntry({ id }) {
   )
   const formattedEntry = {
     id: response?.data?.id || '',
-    type: response?.data?.type?.toLowerCase() || '',
-    title: response?.data?.title,
-    translations: response?.data?.translations || [],
+    acknowledgements: response?.data?.acknowledgements || [],
+    alternateSpellings: response?.data?.alternateSpellings || [],
     categories: response?.data?.categories || [],
+    excludeFromGames: response?.data?.excludeFromGames || false,
+    excludeFromKids: response?.data?.excludeFromKids || false,
+    notes: response?.data?.notes || [],
+    partOfSpeech: response?.data?.partOfSpeech || '',
+    pronunciations: response?.data?.pronunciations || [],
     relatedEntries: response?.data?.relatedEntries || [],
     relatedAudio: response?.data?.relatedAudio || [],
     relatedImages: response?.data?.relatedImages || [],
     relatedVideos: response?.data?.relatedVideos || [],
-    acknowledgements: response?.data?.acknowledgements || [],
-    alternateSpellings: response?.data?.alternateSpellings || [],
-    pronunciations: response?.data?.pronunciations || [],
-    notes: response?.data?.notes || [],
+    title: response?.data?.title,
+    translations: response?.data?.translations || [],
+    type: response?.data?.type?.toLowerCase() || '',
     visibility: response?.data?.visibility || 'Public',
-    excludeFromKids: response?.data?.excludeFromKids,
-    excludeFromGames: response?.data?.excludeFromGames,
   }
   return {
     ...response,
@@ -110,21 +112,22 @@ export function useDictionaryEntryDelete() {
 // for sending to APIs
 const dictionaryEntryAdaptor = (data) => {
   const formattedData = {
-    related_audio: data?.audio || [],
-    related_images: data?.images || [],
-    related_videos: data?.videos || [],
     title: data?.title || '',
-    type: data?.type || 'WORD',
-    visibility: data?.visibility || 'Public',
-    categories: data?.categories || [],
+    type: data?.type || 'word',
+    visibility: data?.visibility || 'public',
+    categories: objectsToIdsAdaptor(data?.categories) || [],
     acknowledgements: data?.acknowledgements || [],
     alternate_spellings: data?.alternateSpellings || [],
     notes: data?.notes || [],
     translations: data?.translations || [],
+    part_of_speech: data?.partOfSpeech || '',
     pronunciations: data?.pronunciations || [],
-    exclude_from_games: data?.excludeFromGames || 'False',
-    exclude_from_kids: data?.excludeFromKids || 'False',
-    related_dictionary_entries: data?.relatedEntries || [],
+    exclude_from_games: data?.excludeFromGames || false,
+    exclude_from_kids: data?.excludeFromKids || false,
+    related_audio: data?.audio || [],
+    related_images: data?.images || [],
+    related_videos: data?.videos || [],
+    related_dictionary_entries: objectsToIdsAdaptor(data?.relatedEntries) || [],
   }
   return formattedData
 }

@@ -7,15 +7,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import {
-  AUDIO,
-  DOC_CATEGORY,
-  IMAGE,
-  VIDEO,
-  DOC_WORD,
-  TYPE_WORD,
-  TYPE_PHRASE,
-} from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -25,10 +17,12 @@ function DictionaryCrudPresentation({
   backHandler,
   dataToEdit,
   submitHandler,
+  deleteHandler,
   type,
   isCreate,
   partsOfSpeech,
 }) {
+  console.log(dataToEdit)
   const [activeStep, setActiveStep] = useSearchParamsState({
     searchParamName: 'step',
     defaultValue: '0',
@@ -36,36 +30,39 @@ function DictionaryCrudPresentation({
   const activeStepNumber = Number(activeStep)
 
   const validator = yup.object().shape({
+    acknowledgments: definitions.textArray(),
+    alternateSpellings: definitions.textArray(),
+    categories: definitions.objectArray(),
+    notes: definitions.textArray(),
+    partOfSpeech: definitions.uuid(),
+    pronunciations: definitions.textArray(),
+    relatedAudio: definitions.idArray(),
+    relatedEntries: definitions.objectArray(),
+    relatedImages: definitions.idArray(),
+    relatedVideos: definitions.idArray(),
     title: yup
       .string()
       .min(1)
       .max(120)
       .required('You must enter at least 1 character in this field.'),
-    translations: definitions.translations(),
-    pronunciation: yup.string().max(30).trim(),
-    relatedEntries: definitions.idArray(),
-    categories: definitions.idArray(),
-    audio: definitions.idArray(),
-    images: definitions.idArray(),
-    videos: definitions.idArray(),
-    acknowledgments: definitions.stringArray(),
-    notes: definitions.stringArray(),
+    translations: definitions.textArray(),
   })
 
   const defaultValues = {
-    title: '',
-    translations: [{ language: 'english', translation: '' }],
-    pronunciation: '',
-    categories: [],
-    audio: [],
-    relatedEntries: [],
-    images: [],
-    videos: [],
-    notes: [],
     acknowledgements: [],
+    alternateSpellings: [],
+    categories: [],
     kidFriendly: 'true',
+    notes: [],
+    partOfSpeech: '',
+    pronunciations: [],
+    relatedAudio: [],
+    relatedEntries: [],
+    relatedImages: [],
+    relatedVideos: [],
+    title: '',
+    translations: [],
     visibility: 'public',
-    partOfSpeech: null,
   }
 
   const { control, errors, handleSubmit, isValid, register, reset, trigger } =
@@ -74,7 +71,7 @@ function DictionaryCrudPresentation({
       validator,
       dataToEdit,
     })
-
+  console.log(errors)
   const steps = [
     { title: `Add ${getFriendlyDocType({ docType: type })} content` },
     { title: 'Add media and other info' },
@@ -84,7 +81,9 @@ function DictionaryCrudPresentation({
 
   const stepHandle = (step) => {
     trigger()
-    if (isValid) return setActiveStep(String(step))
+    if (isValid) {
+      setActiveStep(String(step))
+    }
   }
 
   const forwardStep = () => {
@@ -94,9 +93,8 @@ function DictionaryCrudPresentation({
   const backStep = () => {
     if (activeStep > 0) {
       const stepToGoTo = activeStepNumber - 1
-      return setActiveStep(String(stepToGoTo))
-    }
-    backHandler()
+      setActiveStep(String(stepToGoTo))
+    } else backHandler()
   }
 
   const onFinishClick = () => {
@@ -119,37 +117,36 @@ function DictionaryCrudPresentation({
               )}
             </div>
             <div className="col-span-12">
-              <Form.TranslationArrayField
+              <Form.TextArrayField
                 label="Translations"
                 nameId="translations"
                 register={register}
                 control={control}
+                errors={errors}
                 hideLabel
               />
-              {errors?.translations && (
+            </div>
+            <div className="col-span-12">
+              <Form.MediaArrayField
+                label="Audio"
+                nameId="relatedAudio"
+                control={control}
+                register={register}
+                type={AUDIO}
+                maxItems={10}
+              />
+              {errors?.relatedAudio && (
                 <div className="text-red-500">
-                  {errors?.translations?.message}
+                  {errors?.relatedAudio?.message}
                 </div>
               )}
             </div>
             <div className="col-span-12">
-              <Form.DocumentArrayField
-                label="Audio"
-                nameId="audio"
-                control={control}
-                docType={AUDIO}
-                docCountLimit={10}
-              />
-              {errors?.audio && (
-                <div className="text-red-500">{errors?.audio?.message}</div>
-              )}
-            </div>
-            <div className="col-span-12">
-              <Form.DocumentArrayField
+              <Form.CategoryArrayField
                 label="Categories"
                 nameId="categories"
                 control={control}
-                docType={DOC_CATEGORY}
+                register={register}
                 docCountLimit={8}
               />
               {errors?.categories && (
@@ -182,11 +179,9 @@ function DictionaryCrudPresentation({
                 nameId="notes"
                 register={register}
                 control={control}
+                errors={errors}
                 maxItems={6}
               />
-              {errors?.notes && (
-                <div className="text-red-500">{errors?.notes?.message}</div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.TextArrayField
@@ -194,13 +189,9 @@ function DictionaryCrudPresentation({
                 nameId="acknowledgements"
                 register={register}
                 control={control}
+                errors={errors}
                 maxItems={6}
               />
-              {errors?.acknowledgments && (
-                <div className="text-red-500">
-                  {errors?.acknowledgments?.message}
-                </div>
-              )}
             </div>
           </Fragment>
         )
@@ -208,43 +199,37 @@ function DictionaryCrudPresentation({
         return (
           <Fragment key={step}>
             <div className="col-span-12">
-              <Form.DocumentArrayField
+              <Form.MediaArrayField
                 label="Images"
-                nameId="images"
+                nameId="relatedImages"
                 control={control}
-                docType={IMAGE}
-                docCountLimit={10}
+                register={register}
+                type={IMAGE}
+                maxItems={10}
               />
-              {errors?.images && (
-                <div className="text-red-500">{errors?.images?.message}</div>
+              {errors?.relatedImages && (
+                <div className="text-red-500">
+                  {errors?.relatedImages?.message}
+                </div>
               )}
             </div>
             <div className="col-span-12">
-              <Form.DocumentArrayField
+              <Form.MediaArrayField
                 label="Videos"
-                nameId="videos"
+                nameId="relatedVideos"
                 control={control}
-                docType={VIDEO}
-                docCountLimit={10}
+                register={register}
+                type={VIDEO}
+                maxItems={10}
               />
-              {errors?.videos && (
-                <div className="text-red-500">{errors?.videos?.message}</div>
+              {errors?.relatedVideos && (
+                <div className="text-red-500">
+                  {errors?.relatedVideos?.message}
+                </div>
               )}
             </div>
-            {type === DOC_WORD && (
+            {type === TYPE_WORD && (
               <>
-                <div className="col-span-6">
-                  <Form.TextField
-                    label="Pronunciation"
-                    nameId="pronunciation"
-                    register={register}
-                  />
-                  {errors?.pronunciation && (
-                    <div className="text-red-500">
-                      {errors?.pronunciation?.message}
-                    </div>
-                  )}
-                </div>
                 <div className="col-span-6">
                   <Form.Autocomplete
                     label="Part of speech"
@@ -257,6 +242,26 @@ function DictionaryCrudPresentation({
                       {errors?.partOfSpeech?.message}
                     </div>
                   )}
+                </div>
+                <div className="col-span-12">
+                  <Form.TextArrayField
+                    label="Pronunciations"
+                    nameId="pronunciations"
+                    register={register}
+                    control={control}
+                    errors={errors}
+                    maxItems={3}
+                  />
+                </div>
+                <div className="col-span-12">
+                  <Form.TextArrayField
+                    label="Alternate spellings"
+                    nameId="alternateSpellings"
+                    register={register}
+                    control={control}
+                    errors={errors}
+                    maxItems={3}
+                  />
                 </div>
               </>
             )}
@@ -366,7 +371,7 @@ function DictionaryCrudPresentation({
         </div>
         <div className="flex w-full justify-end">
           <DeleteButton.Presentation
-            id={dataToEdit?.id}
+            deleteHandler={deleteHandler}
             label={`Delete ${getFriendlyDocType({ docType: type })}`}
             message={`Are you sure you want to delete this ${getFriendlyDocType(
               { docType: type },
@@ -415,6 +420,7 @@ const { array, bool, func, object, string } = PropTypes
 DictionaryCrudPresentation.propTypes = {
   backHandler: func,
   submitHandler: func,
+  deleteHandler: func,
   dataToEdit: object,
   type: string,
   isCreate: bool,
