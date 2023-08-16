@@ -31,26 +31,26 @@ function CategoryArrayField({
       <label className="block text-sm font-medium text-fv-charcoal">
         {label}
       </label>
-      <div className="space-y-2 mt-2">
+      <div className="space-y-2 mt-1">
         <ul className="space-y-2 space-x-1">
           {fields.map((item, index) => (
             <li
               key={item.id}
-              className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1"
+              className="p-1 inline-flex items-center rounded-lg shadow-md bg-tertiaryB hover:bg-tertiaryB-dark text-white space-x-1"
             >
               <input type="hidden" {...register(`${nameId}.${index}`)} />
-              <div className="font-bold text-lg">{item?.title}</div>
+              <div className="font-bold text-sm">{item?.title}</div>
               <div className="has-tooltip flex items-center">
                 <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
-                  Delete Translation
+                  Remove from category
                 </span>
                 <button
                   type="button"
-                  aria-label="Delete Translation"
-                  className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
+                  aria-label="Remove from category"
+                  className="border p-1 border-transparent inline-flex items-center rounded-lg"
                   onClick={() => remove(index)}
                 >
-                  {getIcon('Close', 'fill-current text-fv-charcoal h-5 w-5')}
+                  {getIcon('Close', 'fill-current text-white h-6 w-6')}
                 </button>
               </div>
             </li>
