@@ -32,7 +32,7 @@ function CategoriesBrowserPresentation({
           </div>
           <button
             type="button"
-            onClick={() => chooseDocHandler(currentCategory?.id)}
+            onClick={() => chooseDocHandler(currentCategory)}
             className="mx-auto my-4 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
           >
             {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
@@ -47,20 +47,22 @@ function CategoriesBrowserPresentation({
                 <h2 className="w-1/2">Parent Category</h2>
               </div>
               <ul className="flex-col divide-y divide-gray-200 bg-white">
-                {filteredCategories.map((category) => (
-                  <option
+                {filteredCategories?.map((category) => (
+                  <button
+                    type="button"
                     key={category.id}
                     onClick={() => setCurrentCategory(category)}
-                    onKeyUp={setCurrentCategory(category)}
                     className={`${
                       category?.id === currentCategory?.id
                         ? 'ring-2 ring-offset-2 ring-primary'
                         : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
-                    } flex justify-start p-4 cursor-pointer rounded-sm`}
+                    } flex w-full p-4 cursor-pointer rounded-sm`}
                   >
-                    <div className="w-1/2">{category.title}</div>
-                    <div className="w-1/2">{category.parentTitle}</div>
-                  </option>
+                    <div className="w-1/2 text-left">{category?.title}</div>
+                    <div className="w-1/2 text-left">
+                      {category?.parentTitle || '----------'}
+                    </div>
+                  </button>
                 ))}
               </ul>
             </section>
