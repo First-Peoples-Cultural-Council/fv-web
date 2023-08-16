@@ -2,9 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { RadioGroup } from '@headlessui/react'
 import { Controller } from 'react-hook-form'
-
-// FPCC
-import ErrorMessage from 'components/Form/ErrorMessage'
+import { ErrorMessage } from '@hookform/error-message'
 
 function RadioButtons({ errors, label, options, nameId, control }) {
   return (
@@ -60,7 +58,7 @@ function RadioButtons({ errors, label, options, nameId, control }) {
           </RadioGroup>
         )}
       />
-      <ErrorMessage errors={errors} nameId={nameId} />
+      <ErrorMessage errors={errors} name={nameId} />
     </Fragment>
   )
 }
