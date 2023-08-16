@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Languages from 'components/Languages'
+import SiteCard from 'components/Languages/SiteCard'
 import SectionTitle from 'components/SectionTitle'
 
 function LanguagesPresentation({
@@ -26,7 +26,7 @@ function LanguagesPresentation({
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList.map((site) => (
-              <Languages.SiteCard key={site.uid} site={site} />
+              <SiteCard key={site.uid} site={site} />
             ))}
           </div>
         </div>
@@ -60,7 +60,7 @@ function LanguagesPresentation({
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
                     {parentLanguage.sites.map((site) => (
-                      <Languages.SiteCard key={site.uid} site={site} />
+                      <SiteCard key={site.uid} site={site} />
                     ))}
                   </div>
                 </div>

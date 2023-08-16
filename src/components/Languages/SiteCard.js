@@ -12,8 +12,7 @@ function SiteCard({ site }) {
   const isLocked = site.visibility === MEMBERS
 
   const privateSiteModalOpenHandler = () => {
-    // temporarily diabled modal so that private sites have access. Will need to be enabled once we have built registration
-    setPrivateSiteModalOpen(false)
+    setPrivateSiteModalOpen(true)
   }
 
   return (
@@ -26,8 +25,9 @@ function SiteCard({ site }) {
           ? 'hover:bg-phrase hover:border-phrase'
           : 'hover:bg-word hover:border-word'
       }`}
-        to={`/${site?.sitename}`}
-        {...(isLocked && { onClick: privateSiteModalOpenHandler })}
+        {...(isLocked
+          ? { onClick: privateSiteModalOpenHandler }
+          : { to: `/${site?.sitename}` })}
       >
         <img
           className="absolute h-16 w-16 md:w-24 md:h-24 rounded-full ring-1 ring-gray-200 -left-8 md:-left-10"
@@ -44,7 +44,6 @@ function SiteCard({ site }) {
           )}
       </Link>
 
-      {/* Modal to display a message if the user clicks a private site. This has been temporaily diabled until we have member registration built */}
       <Modal.Presentation
         isOpen={privateSiteModalOpen}
         closeHandler={() => setPrivateSiteModalOpen(false)}
@@ -75,7 +74,7 @@ function SiteCard({ site }) {
           <button
             type="button"
             className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
-            onClick={() => setPrivateSiteModalOpen(true)}
+            onClick={() => setPrivateSiteModalOpen(false)}
           >
             Close
           </button>
