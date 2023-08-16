@@ -96,11 +96,9 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 nameId="notes"
                 register={register}
                 control={control}
+                errors={errors}
                 maxItems={1}
               />
-              {errors?.notes && (
-                <div className="text-red-500">{errors?.notes?.message}</div>
-              )}
             </div>
           </div>
 

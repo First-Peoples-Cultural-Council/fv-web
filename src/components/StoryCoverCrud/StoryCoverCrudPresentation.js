@@ -78,19 +78,15 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 )}
               </div>
               <div className="w-full">
-                <Form.TranslationArrayField
+                <Form.TextArrayField
                   label="Title Translation to English"
                   nameId="titleTranslation"
                   maxItems={1}
                   register={register}
                   control={control}
+                  errors={errors}
                   hideLabel
                 />
-                {errors?.titleTranslation && (
-                  <div className="text-red-500">
-                    {errors?.titleTranslation?.message}
-                  </div>
-                )}
               </div>
               <div className="w-full">
                 <Form.TextField
@@ -145,12 +141,8 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   nameId="acknowledgements"
                   register={register}
                   control={control}
+                  errors={errors}
                 />
-                {errors?.acknowledgments && (
-                  <div className="text-red-500">
-                    {errors?.acknowledgments?.message}
-                  </div>
-                )}
               </div>
               <div className="w-full">
                 <Form.TextArrayField
@@ -158,10 +150,8 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   nameId="notes"
                   register={register}
                   control={control}
+                  errors={errors}
                 />
-                {errors?.notes && (
-                  <div className="text-red-500">{errors?.notes?.message}</div>
-                )}
               </div>
               <div className="w-full">
                 <Form.RadioButtons
