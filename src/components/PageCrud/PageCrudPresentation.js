@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
 import getIcon from 'common/utils/getIcon'
-import VisibilitySelect from 'components/VisibilitySelect'
+// import VisibilitySelect from 'components/VisibilitySelect'
 
 function PageCrudPresentation({ dataToEdit, site }) {
   return (
@@ -33,13 +33,13 @@ function PageCrudPresentation({ dataToEdit, site }) {
               {getIcon('Link', 'fill-current -ml-1 mr-2 h-5 w-5')}
               <span>View Page</span>
             </Link>
-            <VisibilitySelect.Container
+            {/* <VisibilitySelect.Container
               id={dataToEdit?.id}
               docState={dataToEdit?.state}
-            />
+            /> */}
             <Link
               type="button"
-              to={`/${site?.sitename}/dashboard/edit/page?id=${dataToEdit?.id}&editHeader=true`}
+              to={`/${site?.sitename}/dashboard/edit/page?slug=${dataToEdit?.slug}&editHeader=true`}
               className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary-light"
             >
               {getIcon('Pencil', 'fill-current -ml-1 mr-2 h-5 w-5')}
@@ -48,7 +48,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container widgetAreaId={dataToEdit?.id} />
+      <WidgetAreaEdit.Container widgetAreaId={dataToEdit?.slug} />
     </div>
   )
 }

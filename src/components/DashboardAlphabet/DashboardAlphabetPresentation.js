@@ -22,7 +22,6 @@ function DashboardAlphabetPresentation({
     const icon = data?.length > 0 || data?.id ? 'Checkmark' : 'Minus'
     return getIcon(icon, 'fill-current w-6 h-6')
   }
-  console.log(characters)
 
   return (
     <div id="DashboardAlphabetPresentation" className="space-y-5">

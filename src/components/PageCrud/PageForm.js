@@ -7,23 +7,22 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
+import { PUBLIC } from 'common/constants/visibility'
 
-function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
+function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     subtitle: definitions.paragraph(),
-    url: definitions.latinOnly({ message: 'Please enter a URL' }),
-    imageId: definitions.uuid(),
-    videoId: definitions.uuid(),
+    slug: definitions.latinOnly({ message: 'Please enter a URL' }),
   })
 
   const defaultValues = {
     title: '',
     subtitle: '',
-    url: '',
-    imageId: '',
-    videoId: '',
-    visibility: 'public',
+    slug: '',
+    bannerImage: '',
+    bannerVideo: '',
+    visibility: PUBLIC,
     banner: {
       docId: '',
       docType: '',
@@ -61,6 +60,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
               id={dataToEdit?.id}
               label="Delete Page"
               message="Are you sure you want to delete this page from your site?"
+              deleteHandler={deleteHandler}
             />
           </div>
         )}
@@ -98,7 +98,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                 <div className="col-span-12 sm:col-span-6">
                   <Form.TextField
                     label="URL"
-                    nameId="url"
+                    nameId="slug"
                     helpText={
                       isCreateMode
                         ? 'Enter a short URL for your page with no special characters or spaces (example: our-people)'
@@ -107,8 +107,8 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler }) {
                     register={register}
                     disabled={!isCreateMode}
                   />
-                  {errors?.url && (
-                    <div className="text-red-500">{errors?.url?.message}</div>
+                  {errors?.slug && (
+                    <div className="text-red-500">{errors?.slug?.message}</div>
                   )}
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
@@ -174,6 +174,7 @@ const { func, object } = PropTypes
 PageForm.propTypes = {
   cancelHandler: func,
   submitHandler: func,
+  deleteHandler: func,
   dataToEdit: object,
 }
 
