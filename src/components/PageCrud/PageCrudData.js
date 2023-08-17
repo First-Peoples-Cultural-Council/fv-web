@@ -8,6 +8,7 @@ import {
   usePageInfoUpdate,
   usePageDelete,
 } from 'common/dataHooks/usePages'
+import { getCustomPageHref } from 'common/utils/urlHelpers'
 import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
 
 function PageCrudData() {
@@ -17,7 +18,6 @@ function PageCrudData() {
   const backHandler = () => navigate(-1)
 
   const [searchParams] = useSearchParams()
-  const pageId = searchParams.get('id') || null
   const pageSlug = searchParams.get('slug') || null
   const editHeader = new URLSearchParams(location.search).get('editHeader')
     ? new URLSearchParams(location.search).get('editHeader')
@@ -34,6 +34,10 @@ function PageCrudData() {
   const dataForForm = {
     ...data,
     banner: mediaObject,
+    href: getCustomPageHref({
+      sitename: data?.site?.slug,
+      pageSlug,
+    }),
   }
 
   const { onSubmit: create } = usePageCreate()
@@ -53,8 +57,8 @@ function PageCrudData() {
     backHandler,
     site,
     dataToEdit: dataForForm,
-    isWidgetAreaEdit: !!(pageId && !editHeader),
-    deleteHandler: () => deletePage(data?.slug),
+    isWidgetAreaEdit: !!(pageSlug && !editHeader),
+    deleteHandler: () => deletePage(pageSlug),
   }
 }
 
