@@ -1,6 +1,4 @@
 import {
-  DOC_IMAGE,
-  DOC_VIDEO,
   AUDIO,
   VIDEO,
   IMAGE,
@@ -49,9 +47,9 @@ export const selectOneMediaFormHelper = (formData, mediaObjectkey) => {
 
   const docType = formData?.[mediaObjectkey]?.docType
   switch (docType) {
-    case DOC_IMAGE:
+    case IMAGE:
       return { imageId: formData?.[mediaObjectkey]?.docId, videoId: '' }
-    case DOC_VIDEO:
+    case VIDEO:
       return { imageId: '', videoId: formData?.[mediaObjectkey]?.docId }
     default:
       return { imageId: '', videoId: '' }
@@ -63,13 +61,13 @@ export const selectOneMediaDataHelper = (imageArray, videoArray) => {
   if (imageArray?.length && (imageArray?.[0]?.id || imageArray?.[0])) {
     return {
       docId: imageArray?.[0]?.id || imageArray?.[0],
-      docType: DOC_IMAGE,
+      docType: IMAGE,
     }
   }
   if (videoArray?.length && (videoArray?.[0]?.id || videoArray?.[0])) {
     return {
       docId: videoArray?.[0]?.id || videoArray?.[0],
-      docType: DOC_VIDEO,
+      docType: VIDEO,
     }
   }
   return {}

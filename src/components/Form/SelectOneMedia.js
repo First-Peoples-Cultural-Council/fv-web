@@ -73,9 +73,10 @@ function SelectOneButton({ value, onChange }) {
     setMediaChoiceModalOpen(false)
     setAddMediaModalOpen(true)
   }
+
   return value?.docId ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      {docType === IMAGE ? (
+      {value.docType === IMAGE ? (
         <MediaThumbnail.Image
           id={value?.docId}
           imageStyles="object-cover pointer-events-none"

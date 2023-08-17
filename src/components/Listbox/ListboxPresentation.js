@@ -6,10 +6,12 @@ import { useTranslation } from 'react-i18next'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function ListboxPresentation({ selectedValue, options, setValue }) {
+function ListboxPresentation({ selectedValue, options = [], setValue }) {
   const [t] = useTranslation()
-  const selectedOption = options.find(({ value }) => value === selectedValue) ||
-    options[options.length - 1] || { label: '------', value: '' }
+  const selectedOption = options?.find(
+    ({ value }) => value === selectedValue,
+  ) ||
+    options[options?.length - 1] || { label: '------', value: '' }
   return (
     <div data-testid="ListboxPresentation">
       <Listbox value={selectedValue} onChange={setValue}>
