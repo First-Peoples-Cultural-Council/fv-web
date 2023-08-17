@@ -7,7 +7,14 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import { AUDIO, IMAGE, VIDEO, TYPE_WORD, TYPE_PHRASE } from 'common/constants'
+import {
+  AUDIO,
+  IMAGE,
+  VIDEO,
+  TYPE_WORD,
+  TYPE_PHRASE,
+  PUBLIC,
+} from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -22,7 +29,6 @@ function DictionaryCrudPresentation({
   isCreate,
   partsOfSpeech,
 }) {
-  console.log(dataToEdit)
   const [activeStep, setActiveStep] = useSearchParamsState({
     searchParamName: 'step',
     defaultValue: '0',
@@ -52,7 +58,6 @@ function DictionaryCrudPresentation({
     acknowledgements: [],
     alternateSpellings: [],
     categories: [],
-    kidFriendly: 'true',
     notes: [],
     partOfSpeech: '',
     pronunciations: [],
@@ -62,7 +67,9 @@ function DictionaryCrudPresentation({
     relatedVideos: [],
     title: '',
     translations: [],
-    visibility: 'public',
+    visibility: PUBLIC,
+    includeInKids: 'true',
+    includeInGames: 'true',
   }
 
   const { control, errors, handleSubmit, isValid, register, reset, trigger } =
@@ -71,7 +78,7 @@ function DictionaryCrudPresentation({
       validator,
       dataToEdit,
     })
-  console.log(errors)
+
   const steps = [
     { title: `Add ${getFriendlyDocType({ docType: type })} content` },
     { title: 'Add media and other info' },
@@ -278,7 +285,7 @@ function DictionaryCrudPresentation({
                 label="Include on the Kids site?"
                 control={control}
                 errors={errors}
-                nameId="kidFriendly"
+                nameId="includeInKids"
                 options={[
                   { label: 'Yes', value: 'true' },
                   { label: 'No', value: 'false' },

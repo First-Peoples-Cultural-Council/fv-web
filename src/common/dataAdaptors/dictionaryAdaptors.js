@@ -1,10 +1,15 @@
 import { relatedMediaForEditing } from 'common/dataAdaptors/relatedMediaAdaptor'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import {
+  audienceForEditing,
+  audienceForApi,
+} from 'common/dataAdaptors/audienceAdaptor'
 
 export function entryForEditing(rawEntry) {
   return {
     ...entryForViewing(rawEntry),
     ...relatedMediaForEditing(rawEntry),
+    ...audienceForEditing(rawEntry),
     partOfSpeech: rawEntry?.partOfSpeech?.id,
   }
 }
@@ -15,8 +20,8 @@ export function entryForViewing(rawEntry) {
     acknowledgements: rawEntry?.acknowledgements || [],
     alternateSpellings: rawEntry?.alternateSpellings || [],
     categories: rawEntry?.categories || [],
-    excludeFromGames: rawEntry?.excludeFromGames || false,
-    excludeFromKids: rawEntry?.excludeFromKids || false,
+    excludeFromGames: rawEntry?.excludeFromGames,
+    excludeFromKids: rawEntry?.excludeFromKids,
     notes: rawEntry?.notes || [],
     partOfSpeech: rawEntry?.partOfSpeech || '',
     pronunciations: rawEntry?.pronunciations || [],
@@ -43,12 +48,11 @@ export function entryForApi(formData) {
     translations: formData.translations || [],
     part_of_speech: formData.partOfSpeech || '',
     pronunciations: formData.pronunciations || [],
-    exclude_from_games: formData.excludeFromGames || false,
-    exclude_from_kids: formData.excludeFromKids || false,
     related_audio: formData.relatedAudio || [],
     related_images: formData.relatedImages || [],
     related_videos: formData.relatedVideos || [],
     related_dictionary_entries: objectsToIdsAdaptor(formData.relatedEntries),
+    ...audienceForApi(formData),
   }
   return formattedData
 }

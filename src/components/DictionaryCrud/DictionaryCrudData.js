@@ -9,7 +9,6 @@ import {
   useDictionaryEntryUpdate,
 } from 'common/dataHooks/useDictionaryEntry'
 import { usePartsOfSpeech } from 'common/dataHooks/usePartsOfSpeech'
-import { allRelatedMediaToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 function DictionaryCrudData() {
   const { site } = useSiteStore()
@@ -20,7 +19,10 @@ function DictionaryCrudData() {
 
   const entryId = searchParams.get('id') || null
 
-  const { data, isInitialLoading } = useDictionaryEntry({ id: entryId })
+  const { data, isInitialLoading } = useDictionaryEntry({
+    id: entryId,
+    edit: true,
+  })
   const { onSubmit: createEntry } = useDictionaryEntryCreate()
   const { onSubmit: updateEntry } = useDictionaryEntryUpdate()
   const { onSubmit: deleteEntry } = useDictionaryEntryDelete()
@@ -40,7 +42,7 @@ function DictionaryCrudData() {
     backHandler,
     deleteHandler: () => deleteEntry(data?.id),
     site,
-    dataToEdit: data ? allRelatedMediaToIdsAdaptor(data) : null,
+    dataToEdit: data?.id ? data : null,
     partsOfSpeech: partsOfSpeechData,
     isLoading: isInitialLoading,
   }
