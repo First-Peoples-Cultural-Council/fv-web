@@ -4,7 +4,6 @@ import {
   getWidgetTypeLabel,
 } from 'common/utils/widgetHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
-import { makeTitleCase } from 'common/utils/stringHelpers'
 
 export function widgetAdaptor({ widgetData, sitename }) {
   const widgetSettings = getObjectFromSettingsArray(widgetData?.settings)
@@ -12,7 +11,7 @@ export function widgetAdaptor({ widgetData, sitename }) {
     sitename,
     id: widgetData?.id,
     nickname: widgetData?.title,
-    visibility: widgetData?.visibility?.toLowerCase(),
+    visibility: widgetData?.visibility,
     format: widgetData?.format,
     type: widgetData?.type,
     typeLabel: getWidgetTypeLabel(widgetData?.type),
@@ -32,13 +31,13 @@ export function widgetListAdaptor({ widgetList, sitename }) {
 
 export function widgetFormDataAdaptor({ formData }) {
   const { getJsonFromWysiwygState } = wysiwygStateHelpers()
-  const formattedFormData = {}
-
-  formattedFormData.id = formData?.id
-  formattedFormData.title = formData?.nickname
-  formattedFormData.type = formData?.type
-  formattedFormData.format = formData?.format
-  formattedFormData.visibility = makeTitleCase(formData?.visibility)
+  const formattedFormData = {
+    id: formData?.id,
+    title: formData?.nickname,
+    type: formData?.type,
+    format: formData?.format,
+    visibility: formData?.visibility,
+  }
 
   const settings = []
   Object.entries(formData).forEach(([key, value]) => {

@@ -13,7 +13,7 @@ const widgets = {
   }),
   create: async ({ sitename, formData }) =>
     apiBase.post(`${SITES}/${sitename}/${WIDGETS}/`, { json: formData }).json(),
-  updateCompleteWidget: async ({ sitename, widgetId, formData }) =>
+  update: async ({ sitename, widgetId, formData }) =>
     apiBase
       .put(`${SITES}/${sitename}/${WIDGETS}/${widgetId}/`, { json: formData })
       .json(),
