@@ -49,6 +49,7 @@ function WidgetFormBase({
         {isEditableWidgetType(type) && (
           <div className="col-span-12">
             <Form.Visibility
+              nameId="visibility"
               control={control}
               errors={errors}
               label="Who can see this widget?"

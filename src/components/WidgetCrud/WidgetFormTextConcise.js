@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
 import {
-  DOC_AUDIO,
+  AUDIO,
   WIDGET_TEXTCONCISE,
   FORMAT_DEFAULT,
   PUBLIC,
@@ -84,7 +84,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.AddMedia
               label="Audio"
               nameId="audio"
-              docType={DOC_AUDIO}
+              docType={AUDIO}
               control={control}
             />
             {errors?.audio && (
