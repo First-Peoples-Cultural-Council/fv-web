@@ -3,7 +3,6 @@ import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
 import EntryArrayField from 'components/Form/EntryArrayField'
-import ErrorMessage from 'components/Form/ErrorMessage'
 import FileUploadField from 'components/Form/FileUploadField'
 import Header from 'components/Form/Header'
 import MediaArrayField from 'components/Form/MediaArrayField'
@@ -16,6 +15,7 @@ import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
 import TextAreaField from 'components/Form/TextAreaField'
 import TextArrayField from 'components/Form/TextArrayField'
+import ValidationError from 'components/Form/ValidationError'
 import Visibility from 'components/Form/Visibility'
 import WysiwygField from 'components/Form/WysiwygField'
 
@@ -25,7 +25,6 @@ export default {
   AutocompleteMultiple,
   CategoryArrayField,
   EntryArrayField,
-  ErrorMessage,
   FileUploadField,
   Header,
   MediaArrayField,
@@ -38,6 +37,7 @@ export default {
   TextField,
   TextAreaField,
   TextArrayField,
+  ValidationError,
   Visibility,
   WysiwygField,
 }
