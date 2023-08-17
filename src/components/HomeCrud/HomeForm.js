@@ -3,22 +3,23 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import { DOC_IMAGE } from 'common/constants'
+import { IMAGE } from 'common/constants'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
 function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
+  // console.log({dataToEdit})
   const validator = yup.object().shape({
-    logoId: definitions.uuid(),
-    topBackgroundImageId: definitions.uuid(),
-    videoId: definitions.uuid(),
+    logo: definitions.uuid(),
+    topBackgroundImage: definitions.uuid(),
+    video: definitions.uuid(),
   })
 
   const defaultValues = {
-    logoId: '',
-    topBackgroundImageId: '',
-    topBackgroundVideoId: '',
+    logo: '',
+    bannerImage: '',
+    bannerVideo: '',
     banner: {
       docId: '',
       docType: '',
@@ -40,13 +41,13 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
             <div className="col-span-6">
               <Form.AddMedia
                 label="Add Logo"
-                nameId="logoId"
-                docType={DOC_IMAGE}
+                nameId="logo"
+                docType={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
               />
-              {errors?.logoId && (
-                <div className="text-red-500">{errors?.logoId?.message}</div>
+              {errors?.logo && (
+                <div className="text-red-500">{errors?.logo?.message}</div>
               )}
             </div>
             <div className="col-span-12 flex items-center justify-start">

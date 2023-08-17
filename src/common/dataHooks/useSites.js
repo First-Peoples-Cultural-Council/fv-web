@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { SITES } from 'common/constants'
 import api from 'services/api'
-
+import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 import { siteAdaptor, languagesListAdaptor } from 'common/dataAdaptors'
 
 export function useSite() {
@@ -17,8 +18,8 @@ export function useSite() {
       enabled: !!sitename,
     },
   )
-
   const formattedSiteData = siteAdaptor({ siteData: response?.data || [] })
+  // console.log({formattedSiteData})
 
   return { ...response, data: formattedSiteData }
 }
@@ -33,4 +34,36 @@ export function useSites() {
     ...allSitesResponse,
     allSitesData: formattedSitesData,
   }
+}
+
+export function useSiteUpdate() {
+  const { sitename } = useParams()
+  const updatePage = async (formData) => {
+    const bannerObject = selectOneMediaFormHelper(formData, 'banner')
+    const properties = {
+      id: formData.id,
+      logo: formData.logo || null,
+      bannerImage: bannerObject.imageId || null,
+      bannerVideo: bannerObject.videoId || null,
+      homepage: formData.homepage || [],
+    }
+    return api.site.update({
+      slug: formData?.slug,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updatePage,
+    redirectTo: `/${sitename}/dashboard/edit/pages`,
+    queryKeyToInvalidate: [SITES, sitename],
+    actionWord: 'updated',
+    type: 'site',
+  })
+
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
 }

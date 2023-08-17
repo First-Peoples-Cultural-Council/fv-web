@@ -1,9 +1,7 @@
 import {
-  DOC_IMAGE,
-  DOC_VIDEO,
-  AUDIO,
-  VIDEO,
   IMAGE,
+  VIDEO,
+  AUDIO,
   ORIGINAL,
   SMALL,
   MEDIUM,
@@ -49,27 +47,27 @@ export const selectOneMediaFormHelper = (formData, mediaObjectkey) => {
 
   const docType = formData?.[mediaObjectkey]?.docType
   switch (docType) {
-    case DOC_IMAGE:
+    case IMAGE:
       return { imageId: formData?.[mediaObjectkey]?.docId, videoId: '' }
-    case DOC_VIDEO:
+    case VIDEO:
       return { imageId: '', videoId: formData?.[mediaObjectkey]?.docId }
     default:
       return { imageId: '', videoId: '' }
   }
 }
 
-export const selectOneMediaDataHelper = (imageArray, videoArray) => {
-  // allow for array of media objects or array of media ids
-  if (imageArray?.length && (imageArray?.[0]?.id || imageArray?.[0])) {
+export const selectOneMediaDataHelper = (imageObj, videoObj) => {
+  // allow for either image or video
+  if (imageObj?.id) {
     return {
-      docId: imageArray?.[0]?.id || imageArray?.[0],
-      docType: DOC_IMAGE,
+      docId: imageObj?.id,
+      docType: IMAGE,
     }
   }
-  if (videoArray?.length && (videoArray?.[0]?.id || videoArray?.[0])) {
+  if (videoObj?.id) {
     return {
-      docId: videoArray?.[0]?.id || videoArray?.[0],
-      docType: DOC_VIDEO,
+      docId: videoObj?.id,
+      docType: VIDEO,
     }
   }
   return {}

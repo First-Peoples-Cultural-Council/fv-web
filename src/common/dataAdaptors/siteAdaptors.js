@@ -9,7 +9,10 @@ import {
   THUMBNAIL,
 } from 'common/constants'
 import { widgetListAdaptor } from 'common/dataAdaptors/widgetAdaptors'
-import { getMediaPath } from 'common/utils/mediaHelpers'
+import {
+  getMediaPath,
+  selectOneMediaDataHelper,
+} from 'common/utils/mediaHelpers'
 import placeholder from 'images/cover-thumbnail.png'
 
 export function languagesListAdaptor({ languagesData }) {
@@ -34,7 +37,11 @@ export function sitesListAdaptor({ sitesData }) {
 }
 
 export function siteAdaptor({ siteData }) {
+  const videoObj = siteData.bannerVideo
+  const imageObj = siteData.bannerImage
+  const banner = selectOneMediaDataHelper(imageObj, videoObj)
   return {
+    banner,
     path: siteData?.url,
     uid: siteData?.id,
     roles: [],
