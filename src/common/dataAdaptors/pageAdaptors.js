@@ -14,3 +14,10 @@ export function pageInfoAdaptor({ formData, sitename }) {
     sitename,
   }
 }
+
+export function pageCreateAdaptor({ formData, sitename }) {
+  return {
+    ...pageInfoAdaptor({ formData, sitename }),
+    widgets: [],
+  }
+}
