@@ -67,7 +67,7 @@ export function usePageCreate() {
   const mutation = useMutationWithNotification({
     mutationFn: createPage,
     redirectTo: `/${sitename}/dashboard/edit/pages`,
-    queryKey: [PAGES, sitename],
+    queryKeyToInvalidate: [PAGES, sitename],
     actionWord: 'created',
     type: 'page',
   })
