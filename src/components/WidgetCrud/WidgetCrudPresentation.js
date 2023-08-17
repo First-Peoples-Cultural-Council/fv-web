@@ -38,6 +38,7 @@ function WidgetCrudPresentation({
   backHandler,
   dataToEdit,
   submitHandler,
+  deleteHandler,
   widgetTypes,
 }) {
   const [selectedType, setSelectedType] = useState(null)
@@ -105,7 +106,7 @@ function WidgetCrudPresentation({
           <div className="w-full flex justify-end mt-6 px-6">
             {dataToEdit?.id && (
               <DeleteButton.Presentation
-                id={dataToEdit?.id}
+                deleteHandler={deleteHandler}
                 label="Delete Widget"
                 message="Are you sure you want to delete this Widget from your site?"
               />
@@ -253,6 +254,7 @@ const { array, func, object } = PropTypes
 WidgetCrudPresentation.propTypes = {
   backHandler: func,
   submitHandler: func,
+  deleteHandler: func,
   widgetTypes: array,
   dataToEdit: object,
 }

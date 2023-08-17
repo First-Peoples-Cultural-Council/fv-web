@@ -65,3 +65,46 @@ export function useWidgetsCreate() {
 
   return { onSubmit }
 }
+
+export function useWidgetsUpdate() {
+  const { sitename } = useParams()
+
+  const updateWidget = async (formData) => {
+    api.widgets.updateCompleteWidget({
+      sitename,
+      widgetId: formData?.id,
+      formData,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateWidget,
+    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    queryKeyToInvalidate: [WIDGETS, sitename],
+    actionWord: 'updated',
+    type: 'widget',
+  })
+
+  const onSubmit = (formData) => mutation.mutate(formData)
+
+  return { onSubmit }
+}
+
+export function useWidgetsDelete() {
+  const { sitename } = useParams()
+
+  const deleteWidget = async (widgetId) =>
+    api.widgets.delete({ sitename, widgetId })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: deleteWidget,
+    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    queryKeyToInvalidate: [WIDGETS, sitename],
+    actionWord: 'deleted',
+    type: 'widget',
+  })
+
+  const onSubmit = (widgetId) => mutation.mutate(widgetId)
+
+  return { onSubmit }
+}
