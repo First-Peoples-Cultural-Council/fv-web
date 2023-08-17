@@ -7,6 +7,7 @@ import api from 'services/api'
 import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { useUserStore } from 'context/UserContext'
 import { widgetAdaptor } from 'common/dataAdaptors'
+import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
 export function useWidget({ id }) {
   const { sitename } = useParams()
@@ -44,4 +45,66 @@ export function useWidgets() {
     ...response,
     widgets: formattedWidgets,
   }
+}
+
+export function useWidgetsCreate() {
+  const { sitename } = useParams()
+
+  const createWidget = async (formData) =>
+    api.widgets.create({ sitename, formData })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: createWidget,
+    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    queryKeyToInvalidate: [WIDGETS, sitename],
+    actionWord: 'created',
+    type: 'widget',
+  })
+
+  const onSubmit = (formData) => mutation.mutate(formData)
+
+  return { onSubmit }
+}
+
+export function useWidgetsUpdate() {
+  const { sitename } = useParams()
+
+  const updateWidget = async (formData) => {
+    api.widgets.updateCompleteWidget({
+      sitename,
+      widgetId: formData?.id,
+      formData,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateWidget,
+    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    queryKeyToInvalidate: [WIDGETS, sitename],
+    actionWord: 'updated',
+    type: 'widget',
+  })
+
+  const onSubmit = (formData) => mutation.mutate(formData)
+
+  return { onSubmit }
+}
+
+export function useWidgetsDelete() {
+  const { sitename } = useParams()
+
+  const deleteWidget = async (widgetId) =>
+    api.widgets.delete({ sitename, widgetId })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: deleteWidget,
+    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    queryKeyToInvalidate: [WIDGETS, sitename],
+    actionWord: 'deleted',
+    type: 'widget',
+  })
+
+  const onSubmit = (widgetId) => mutation.mutate(widgetId)
+
+  return { onSubmit }
 }

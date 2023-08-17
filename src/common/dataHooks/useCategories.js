@@ -66,14 +66,13 @@ export function useCategoryCreate() {
   const mutation = useMutationWithNotification({
     mutationFn: createCategory,
     redirectTo: `/${sitename}/dashboard/edit/categories`,
-    queryKey: [CATEGORIES, sitename],
+    queryKeyToInvalidate: [CATEGORIES, sitename],
     actionWord: 'created',
     type: 'category',
   })
 
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
-  }
+  const onSubmit = (formData) => mutation.mutate(formData)
+
   return { onSubmit }
 }
 
