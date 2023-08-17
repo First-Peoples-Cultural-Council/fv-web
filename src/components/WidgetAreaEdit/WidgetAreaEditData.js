@@ -1,115 +1,61 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 
 // FPCC
 import { DOC_SITE } from 'common/constants'
-import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
-import { useNotification } from 'context/NotificationContext'
+import { usePage, usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 
 function WidgetAreaEditData({ widgetAreaId }) {
   const [widgetIds, setWidgetIds] = useState([])
   const { site } = useSiteStore()
-  const { setNotification } = useNotification()
   const queryClient = useQueryClient()
   const [currentWidget, setCurrentWidget] = useState(null)
 
-  const { data, error, isInitialLoading, refetch } = useQuery(
-    ['widget-area', widgetAreaId],
-    () =>
-      api.document.get({
-        id: widgetAreaId,
-        properties: '*',
-        contextParameters: 'widgets',
-      }),
-    {
-      // The query will not execute until the id exists
-      enabled: !!widgetAreaId,
-    },
-  )
+  const { data, error, isInitialLoading, refetch } = usePage({
+    pageSlug: widgetAreaId,
+  })
 
+  // get list of widget IDs
   useEffect(() => {
     if (isInitialLoading === false && error === null) {
-      setWidgetIds(data?.properties?.['widgets:active'])
+      const ids = data?.widgets?.map((w) => w.id)
+      setWidgetIds(ids)
     }
-  }, [data, site, isInitialLoading, error])
+  }, [isInitialLoading, error])
+
+  // get map of widget values
+  const widgetValues = {}
+
+  data?.widgets?.forEach((w) => {
+    if (w?.id) {
+      widgetValues[w.id] = w
+    }
+  })
+
+  console.log('WidgetAreaEditData: ', widgetIds, widgetValues)
+
+  // event handlers
+  const { onSubmit } = usePageWidgetsUpdate()
 
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
-    return api.document.update({
-      id: widgetAreaId,
-      properties: { 'widgets:active': idArray },
-    })
+    onSubmit({ widgets: idArray })
   }
-
-  const { mutate } = useMutation(saveWidgetOrder, {
-    onSuccess: () => {
-      setNotification({
-        type: 'SUCCESS',
-        message: 'Success! Your Widget order has been saved.',
-      })
-    },
-    onError: () => {
-      setNotification({
-        type: 'ERROR',
-        message:
-          'ERROR: There was a problem saving your Widget order. Please try again. If the error persists please contact FirstVoices Support.',
-      })
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries(['widget-area', widgetAreaId])
-      refetch()
-    },
-  })
-
-  const { mutate: removeWidgetMutate } = useMutation(saveWidgetOrder, {
-    onSuccess: () => {
-      setNotification({
-        type: 'SUCCESS',
-        message: 'Success! Your Widget has been removed from the page.',
-      })
-      setCurrentWidget(null)
-    },
-    onError: () => {
-      setNotification({
-        type: 'ERROR',
-        message:
-          'ERROR: There was a problem removing your Widget. Please try again. If the error persists please contact FirstVoices Support.',
-      })
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries(['widget-area', widgetAreaId])
-      refetch()
-    },
-  })
 
   const updateWidgetOrder = (idArray) => {
     const values = [...idArray]
-    mutate(values)
+    saveWidgetOrder(values)
   }
-  // Add widget to active
+
   const handleRemoveWidget = () => {
     const filteredIds = widgetIds?.filter((e) => e !== currentWidget?.uid)
-    removeWidgetMutate(filteredIds)
+    saveWidgetOrder(filteredIds)
   }
 
   // Adding editable field to widgets
-  const widgetDataToUse = data?.contextParameters?.widgets || []
-
-  const widgetDataAdaptor = (_data) => {
-    const widgetMap = {}
-    _data.forEach((widget) => {
-      if (widget?.uid) {
-        widgetMap[widget.uid] = widget
-      }
-    })
-    return widgetMap
-  }
-
-  let destinationTitle = data?.properties?.['dc:title']
-    ? data?.properties?.['dc:title']
-    : ''
+  let destinationTitle = data?.title
   const isHomePage = data?.type === DOC_SITE
   if (isHomePage) {
     destinationTitle = 'Home'
@@ -121,7 +67,7 @@ function WidgetAreaEditData({ widgetAreaId }) {
     destination: { title: destinationTitle, uid: widgetAreaId },
     handleRemoveWidget,
     isLoading: isInitialLoading,
-    widgetData: widgetDataAdaptor(widgetDataToUse),
+    widgetData: widgetValues,
     widgetIds,
     setWidgetIds: updateWidgetOrder,
     site,

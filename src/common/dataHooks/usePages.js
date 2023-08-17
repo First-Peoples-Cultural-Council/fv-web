@@ -9,6 +9,7 @@ import {
   widgetListAdaptor,
   pageInfoAdaptor,
   pageCreateAdaptor,
+  pageWidgetsAdaptor,
 } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
@@ -99,6 +100,30 @@ export function usePageInfoUpdate() {
     type: 'page',
   })
 
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
+}
+
+export function usePageWidgetsUpdate() {
+  // update the widget list but not the other page details
+  const { sitename } = useParams()
+  const updatePage = async (formData) => {
+    const properties = pageWidgetsAdaptor({ formData })
+    return api.pages.partialUpdate({
+      slug: formData?.slug,
+      sitename,
+      properties,
+    })
+  }
+  const mutation = useMutationWithNotification({
+    mutationFn: updatePage,
+    redirectTo: `/${sitename}/dashboard/edit/pages`,
+    queryKeyToInvalidate: [PAGES, sitename],
+    actionWord: 'updated',
+    type: 'widget list',
+  })
   const onSubmit = (formData) => {
     mutation.mutate(formData)
   }
