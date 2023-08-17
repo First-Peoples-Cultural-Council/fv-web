@@ -8,7 +8,7 @@ import {
   usePageInfoUpdate,
   usePageDelete,
 } from 'common/dataHooks/usePages'
-import { IMAGE, VIDEO } from 'common/constants'
+import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
 
 function PageCrudData() {
   const { site } = useSiteStore()
@@ -26,12 +26,14 @@ function PageCrudData() {
   // retrieve data
   const { data } = usePage({ pageSlug })
 
+  const mediaObject = selectOneMediaDataHelper(
+    [data?.bannerImage],
+    [data?.bannerVideo],
+  )
+
   const dataForForm = {
     ...data,
-    banner: {
-      docId: data?.bannerImage ? data?.bannerImage?.id : data?.bannerVideo?.id,
-      docType: (data?.bannerImage && IMAGE) || (data?.bannerVideo?.id && VIDEO),
-    },
+    banner: mediaObject,
   }
 
   const { onSubmit: create } = usePageCreate()
