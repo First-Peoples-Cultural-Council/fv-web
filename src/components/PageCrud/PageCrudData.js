@@ -1,105 +1,64 @@
-import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 
 // FPCC
-import { DOC_PAGE } from 'common/constants'
-import api from 'services/api'
 import { useSiteStore } from 'context/SiteContext'
-import pageCrudDataAdaptor from 'components/PageCrud/pageCrudDataAdaptor'
-import { useNotification } from 'context/NotificationContext'
-import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
+import {
+  usePage,
+  usePageCreate,
+  usePageInfoUpdate,
+  usePageDelete,
+} from 'common/dataHooks/usePages'
+import { getCustomPageHref } from 'common/utils/urlHelpers'
+import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
 
 function PageCrudData() {
   const { site } = useSiteStore()
   const navigate = useNavigate()
   const location = useLocation()
-  const queryClient = useQueryClient()
-
-  const { setNotification } = useNotification()
-
   const backHandler = () => navigate(-1)
 
-  const _pageId = new URLSearchParams(location.search).get('id')
-    ? new URLSearchParams(location.search).get('id')
-    : null
+  const [searchParams] = useSearchParams()
+  const pageSlug = searchParams.get('slug') || null
   const editHeader = new URLSearchParams(location.search).get('editHeader')
     ? new URLSearchParams(location.search).get('editHeader')
     : null
 
-  let dataToEdit = null
+  // retrieve data
+  const { data } = usePage({ pageSlug })
 
-  const { data } = useQuery(
-    [_pageId],
-    () => api.document.get({ id: _pageId, properties: '*' }),
-    {
-      enabled: !!_pageId,
-    },
+  const mediaObject = selectOneMediaDataHelper(
+    [data?.bannerImage],
+    [data?.bannerVideo],
   )
 
-  dataToEdit = pageCrudDataAdaptor({ data, sitename: site?.sitename })
-
-  const formDataAdaptor = (_formData) => {
-    const mediaObject = selectOneMediaFormHelper(_formData, 'banner')
-
-    return {
-      'dc:title': _formData?.title,
-      'dc:description': _formData?.subtitle,
-      'fvpage:url': _formData?.url,
-      'fvpage:background_top_image': mediaObject?.imageId,
-      'fvpage:background_top_video': mediaObject?.videoId,
-    }
+  const dataForForm = {
+    ...data,
+    banner: mediaObject,
+    href: getCustomPageHref({
+      sitename: data?.site?.slug,
+      pageSlug,
+    }),
   }
 
-  const savePage = async (formData) => {
-    if (_pageId && dataToEdit) {
-      return api.document.updateAndSetVisibility({
-        id: _pageId,
-        properties: formDataAdaptor(formData),
-        visibility: formData?.visibility,
-      })
-    }
-    return api.document.createAndSetVisibility({
-      parentId: site?.children?.Pages,
-      name: formData?.url,
-      docType: DOC_PAGE,
-      properties: formDataAdaptor(formData),
-      visibility: formData?.visibility,
-    })
-  }
-
-  const { mutate } = useMutation(savePage, {
-    onSuccess: (response) => {
-      setNotification({
-        type: 'SUCCESS',
-        message: 'Success! The page has been saved.',
-      })
-      setTimeout(() => {
-        window.location.href = `/${site?.sitename}/dashboard/edit/page?id=${response?.uid}`
-      }, 1000)
-    },
-    onError: () => {
-      setNotification({
-        type: 'ERROR',
-        message:
-          'ERROR: There was a problem creating your page. Please try again. If the error persists please contact FirstVoices Support.',
-      })
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [_pageId] })
-    },
-  })
+  const { onSubmit: create } = usePageCreate()
+  const { onSubmit: update } = usePageInfoUpdate()
+  const { onSubmit: deletePage } = usePageDelete()
 
   const submitHandler = (formData) => {
-    const values = { ...formData }
-    mutate(values)
+    if (pageSlug && data?.slug) {
+      update(formData)
+    } else {
+      create(formData)
+    }
   }
 
   return {
     submitHandler,
     backHandler,
     site,
-    dataToEdit,
-    isWidgetAreaEdit: !!(_pageId && !editHeader),
+    dataToEdit: dataForForm,
+    isWidgetAreaEdit: !!(pageSlug && !editHeader),
+    deleteHandler: () => deletePage(pageSlug),
   }
 }
 

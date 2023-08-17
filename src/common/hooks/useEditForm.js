@@ -27,12 +27,12 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
     if (isEditMode) {
       // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
       Object.keys(dataToEdit).forEach((property) => {
-        if (Object.prototype.hasOwnProperty.call(dataToEdit, property)) {
+        if (Object.hasOwn(dataToEdit, property)) {
           setValue(property, dataToEdit[property])
         }
       })
     }
-  }, [dataToEdit])
+  }, [dataToEdit, isEditMode, setValue])
 
   return {
     control,

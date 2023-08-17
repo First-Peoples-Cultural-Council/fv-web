@@ -5,10 +5,11 @@ import { Controller } from 'react-hook-form'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import MediaCrud from 'components/MediaCrud'
+import MediaThumbnail from 'components/MediaThumbnail'
 import DocumentThumbnail from 'components/DocumentThumbnail'
 import Modal from 'components/Modal'
 import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
-import { DOC_IMAGE } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function AddMedia({ label, nameId, helpText, control, docType }) {
   return (
@@ -52,7 +53,18 @@ function AddMediaButton({ value, onChange, docType }) {
   }
   return value ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <DocumentThumbnail.Container docId={value} />
+      {docType === AUDIO && <MediaThumbnail.Audio id={value} />}
+      {docType === IMAGE && (
+        <MediaThumbnail.Image
+          id={value}
+          imageStyles="object-cover pointer-events-none"
+        />
+      )}
+      {docType === VIDEO && <MediaThumbnail.Video id={value} />}
+      {/* For all other types of documents. */}
+      {![AUDIO, IMAGE, VIDEO].includes(docType) && (
+        <DocumentThumbnail.Container docId={value} />
+      )}
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove
@@ -108,7 +120,7 @@ AddMedia.propTypes = {
 }
 
 AddMedia.defaultProps = {
-  docType: DOC_IMAGE,
+  docType: IMAGE,
   label: '',
 }
 
