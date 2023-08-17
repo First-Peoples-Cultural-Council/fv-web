@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import AudioNative from 'components/AudioNative'
 import Modal from 'components/Modal'
-import VisibilitySelect from 'components/VisibilitySelect'
+// import VisibilitySelect from 'components/VisibilitySelect'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
 
@@ -24,7 +24,7 @@ function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
   handleRemoveWidget,
   site,
-  triggerWidgetDataRefresh,
+  // triggerWidgetDataRefresh,
 }) {
   const [removeModalOpen, setRemoveModalOpen] = useState(false)
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
@@ -143,11 +143,11 @@ function WidgetAreaEditPresentationSettingsPane({
             <div className="flex justify-stretch flex-row space-x-4">
               {isEditableWidgetType(currentWidget?.type) ? (
                 <>
-                  <VisibilitySelect.Container
+                  {/* <VisibilitySelect.Container
                     id={currentWidget?.uid}
                     docState={currentWidget?.visibility}
                     successCallback={() => triggerWidgetDataRefresh()}
-                  />
+                  /> */}
                   <Link
                     to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.uid}`}
                     className={buttonClass}
@@ -254,7 +254,7 @@ WidgetAreaEditPresentationSettingsPane.propTypes = {
   currentWidget: object,
   handleRemoveWidget: func,
   site: object,
-  triggerWidgetDataRefresh: func,
+  // triggerWidgetDataRefresh: func,
 }
 
 export default WidgetAreaEditPresentationSettingsPane
