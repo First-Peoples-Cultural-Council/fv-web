@@ -12,6 +12,11 @@ const pages = {
       .put(`${SITES}/${sitename}/${PAGES}/${slug}`, { json: properties })
       .json()
   },
+  partialUpdate: async ({ sitename, slug, properties }) => {
+    apiBase
+      .patch(`${SITES}/${sitename}/${PAGES}/${slug}`, { json: properties })
+      .json()
+  },
   delete: async ({ sitename, slug }) =>
     apiBase.delete(`${SITES}/${sitename}/${PAGES}/${slug}`).json(),
   getPages: async ({ sitename }) =>

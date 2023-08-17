@@ -5,7 +5,7 @@ import { useSiteStore } from 'context/SiteContext'
 import {
   usePage,
   usePageCreate,
-  usePageUpdate,
+  usePageInfoUpdate,
   usePageDelete,
 } from 'common/dataHooks/usePages'
 import { IMAGE, VIDEO } from 'common/constants'
@@ -35,7 +35,7 @@ function PageCrudData() {
   }
 
   const { onSubmit: create } = usePageCreate()
-  const { onSubmit: update } = usePageUpdate()
+  const { onSubmit: update } = usePageInfoUpdate()
   const { onSubmit: deletePage } = usePageDelete()
 
   const submitHandler = (formData) => {

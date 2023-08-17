@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { PAGES } from 'common/constants'
 import api from 'services/api'
 import { getCustomPageHref } from 'common/utils/urlHelpers'
-import { widgetListAdaptor, pageAdaptor } from 'common/dataAdaptors'
+import { widgetListAdaptor, pageInfoAdaptor } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
 export function usePage({ pageSlug }) {
@@ -53,7 +53,7 @@ export function usePageCreate() {
   const { sitename } = useParams()
 
   const createPage = async (formData) => {
-    const properties = pageAdaptor({ formData })
+    const properties = pageInfoAdaptor({ formData })
     return api.pages.create({
       sitename,
       properties,
@@ -74,13 +74,14 @@ export function usePageCreate() {
   return { onSubmit }
 }
 
-export function usePageUpdate() {
+export function usePageInfoUpdate() {
+  // update the page details (title, etc) but not the widget list
   const { sitename } = useParams()
 
   const updatePage = async (formData) => {
-    const properties = pageAdaptor({ formData })
-    return api.pages.update({
-      slug: formData?.slug,
+    const properties = pageInfoAdaptor({ formData })
+    return api.pages.partialUpdate({
+      slug: formData?.slug, // note: assumes the form does not allow editing the slug
       sitename,
       properties,
     })
@@ -110,7 +111,7 @@ export function usePageDelete() {
 
   const mutation = useMutationWithNotification({
     mutationFn: deletePage,
-    redirectTo: `/${sitename}/dashboard/edit/page`,
+    redirectTo: `/${sitename}/dashboard/edit/pages`,
     queryKeyToInvalidate: [PAGES, sitename],
     actionWord: 'deleted',
     type: 'page',
