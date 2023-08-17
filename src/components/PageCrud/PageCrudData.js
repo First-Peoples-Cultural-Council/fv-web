@@ -8,6 +8,7 @@ import {
   usePageUpdate,
   usePageDelete,
 } from 'common/dataHooks/usePages'
+import { IMAGE, VIDEO } from 'common/constants'
 
 function PageCrudData() {
   const { site } = useSiteStore()
@@ -25,12 +26,19 @@ function PageCrudData() {
   // retrieve data
   const { data } = usePage({ pageSlug })
 
+  const dataForForm = {
+    ...data,
+    banner: {
+      docId: data?.bannerImage ? data?.bannerImage?.id : data?.bannerVideo?.id,
+      docType: (data?.bannerImage && IMAGE) || (data?.bannerVideo?.id && VIDEO),
+    },
+  }
+
   const { onSubmit: create } = usePageCreate()
   const { onSubmit: update } = usePageUpdate()
   const { onSubmit: deletePage } = usePageDelete()
 
   const submitHandler = (formData) => {
-    // debugger
     if (pageSlug && data?.slug) {
       update(formData)
     } else {
@@ -42,7 +50,7 @@ function PageCrudData() {
     submitHandler,
     backHandler,
     site,
-    dataToEdit: data,
+    dataToEdit: dataForForm,
     isWidgetAreaEdit: !!(pageId && !editHeader),
     deleteHandler: () => deletePage(data?.slug),
   }

@@ -80,7 +80,7 @@ export function usePageUpdate() {
   const updatePage = async (formData) => {
     const properties = pageAdaptor({ formData })
     return api.pages.update({
-      slug: formData?.url,
+      slug: formData?.slug,
       sitename,
       properties,
     })

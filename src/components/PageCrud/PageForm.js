@@ -7,14 +7,13 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
+import { PUBLIC } from 'common/constants/visibility'
 
 function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     subtitle: definitions.paragraph(),
     slug: definitions.latinOnly({ message: 'Please enter a URL' }),
-    bannerImage: definitions.uuid(),
-    bannerVideo: definitions.uuid(),
   })
 
   const defaultValues = {
@@ -23,7 +22,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
     slug: '',
     bannerImage: '',
     bannerVideo: '',
-    visibility: 'public',
+    visibility: PUBLIC,
     banner: {
       docId: '',
       docType: '',
@@ -36,7 +35,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
       validator,
       dataToEdit,
     })
-  // console.log({errors})
+
   return (
     <div
       id="PageForm"
