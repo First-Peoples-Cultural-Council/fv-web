@@ -59,9 +59,9 @@ function DictionaryDetailPresentationDrawer({
           {entry?.translations?.length > 0 && (
             <div className="py-3">
               {/* Part of Speech */}
-              {entry?.translations?.[0]?.partOfSpeech?.title && (
+              {entry?.partOfSpeech?.title && (
                 <div className="text-lg italic">
-                  {entry?.translations?.[0]?.partOfSpeech?.title?.toLowerCase()}
+                  {entry?.partOfSpeech?.title?.toLowerCase()}
                 </div>
               )}
               <ol
@@ -72,7 +72,7 @@ function DictionaryDetailPresentationDrawer({
                 } list-inside text-lg`}
               >
                 {entry?.translations?.map((translation) => (
-                  <li key={translation} className="p-0.5">
+                  <li key={translation?.id} className="p-0.5">
                     <span className={contentStyling}>{translation?.text}</span>
                   </li>
                 ))}

@@ -77,9 +77,9 @@ function DictionaryDetailPresentation({
             {entry?.translations?.length > 0 && (
               <div className="py-2 md:p-3">
                 {/* Part of Speech */}
-                {entry?.translations?.[0]?.partOfSpeech?.title && (
+                {entry?.partOfSpeech?.title && (
                   <div className="text-xl italic">
-                    {entry?.translations?.[0]?.partOfSpeech?.title?.toLowerCase()}
+                    {entry?.partOfSpeech?.title?.toLowerCase()}
                   </div>
                 )}
                 <ol
@@ -169,9 +169,9 @@ function DictionaryDetailPresentation({
                         <tr key={asset.id} className={zebraStripe}>
                           <td className="p-2 flex items-center">
                             <Link
-                              to={`/${sitename}/${makePlural(
-                                asset?.type?.toLowercase(),
-                              )}/${asset.id}`}
+                              to={`/${sitename}/${makePlural(asset?.type)}/${
+                                asset.id
+                              }`}
                             >
                               {asset?.title}
                             </Link>
