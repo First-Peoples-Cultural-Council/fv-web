@@ -5,18 +5,10 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getCategoryIcon from 'common/utils/getCategoryIcon'
 import GridListToggle from 'components/GridListToggle'
-import SearchTypeSelector from 'components/SearchTypeSelector'
 import SectionTitle from 'components/SectionTitle'
-import { TYPES } from 'common/constants'
+import { TYPES, TYPE_DICTIONARY } from 'common/constants'
 
-function CategoriesPresentation({
-  categories,
-  searchType,
-  setSearchType,
-  entryLabelPlural,
-  kids,
-  sitename,
-}) {
+function CategoriesPresentation({ categories, kids, sitename }) {
   const [isGridView, setIsGridView] = useState(true)
   return (
     <section
@@ -28,30 +20,18 @@ function CategoriesPresentation({
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="lg:px-8">
-              {!kids && (
-                <div className="block border-b border-gray-200 pb-2 lg:py-4">
-                  <h2 className="text-gray-500 text-sm p-1">
-                    SHOW CATEGORIES FOR:
-                  </h2>
-                  <div className="flex items-center">
-                    <SearchTypeSelector.Container
-                      selectedSearchType={searchType}
-                      setSearchType={setSearchType}
-                      accentColor="tertiaryB"
-                    />
-                    {window.innerWidth > 767 && (
-                      <GridListToggle.Presentation
-                        isGridView={isGridView}
-                        setIsGridView={setIsGridView}
-                        accentColor="tertiaryB"
-                      />
-                    )}
-                  </div>
+              {!kids && window.innerWidth > 767 && (
+                <div className="flex items-center justify-end">
+                  <GridListToggle.Presentation
+                    isGridView={isGridView}
+                    setIsGridView={setIsGridView}
+                    accentColor="tertiaryB"
+                  />
                 </div>
               )}
               {isGridView ? (
                 <section
-                  className="mt-3 md:mt-4 lg:mt-8 pb-16"
+                  className="mt-1 md:mt-2 lg:mt-4 pb-16"
                   aria-labelledby="gallery-heading"
                 >
                   <h2 id="gallery-heading" className="sr-only">
@@ -71,7 +51,7 @@ function CategoriesPresentation({
                                 kids ? 'kids/' : ''
                               }categories/${
                                 category.id
-                              }?${TYPES}=${searchType}`}
+                              }?${TYPES}=${TYPE_DICTIONARY}`}
                               className=" text-white text-center text-lg group w-full h-full px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                             >
                               {getCategoryIcon(
@@ -88,15 +68,14 @@ function CategoriesPresentation({
                       ))
                     ) : (
                       <div className="text-center text-lg col-span-2 md:col-span-3 lg:col-span-3 xl:col-span-4 pt-5">
-                        There are currently no categories that contain{' '}
-                        {entryLabelPlural}.
+                        There are currently no categories on this language site.
                       </div>
                     )}
                   </ul>
                 </section>
               ) : (
                 <section
-                  className="mt-3 md:mt-4 lg:mt-8 pb-16"
+                  className="mt-1 md:mt-2 lg:mt-4 pb-16"
                   aria-labelledby="gallery-heading"
                 >
                   <h2 id="gallery-heading" className="sr-only">
@@ -113,7 +92,9 @@ function CategoriesPresentation({
                             key={category.id}
                             to={`/${sitename}/${
                               kids ? 'kids/' : ''
-                            }categories/${category.id}?${TYPES}=${searchType}`}
+                            }categories/${
+                              category.id
+                            }?${TYPES}=${TYPE_DICTIONARY}`}
                             className="w-full rounded-lg inline-flex items-center hover:opacity-75"
                           >
                             <div className="inline-flex bg-white text-tertiaryB rounded-lg items-center">
@@ -135,7 +116,9 @@ function CategoriesPresentation({
                                 key={child.id}
                                 to={`/${sitename}/${
                                   kids ? 'kids/' : ''
-                                }categories/${child.id}?${TYPES}=${searchType}`}
+                                }categories/${
+                                  child.id
+                                }?${TYPES}=${TYPE_DICTIONARY}`}
                                 className="w-full rounded-lg inline-flex items-center"
                               >
                                 <div className="inline-flex font-medium text-tertiaryB hover:opacity-75 rounded-lg items-center">
@@ -148,8 +131,7 @@ function CategoriesPresentation({
                       ))
                     ) : (
                       <div className="text-center text-lg col-span-2 lg:col-span-3 pt-5">
-                        There are currently no categories that contain{' '}
-                        {entryLabelPlural}.
+                        There are currently no categories on this language site.
                       </div>
                     )}
                   </ul>
@@ -163,12 +145,9 @@ function CategoriesPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, func, string } = PropTypes
+const { array, bool, string } = PropTypes
 CategoriesPresentation.propTypes = {
   categories: array,
-  searchType: string,
-  setSearchType: func,
-  entryLabelPlural: string,
   kids: bool,
   sitename: string,
 }
