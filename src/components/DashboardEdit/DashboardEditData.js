@@ -21,7 +21,7 @@ function DashboardEditData() {
       description: 'Edit the songs on your site',
       href: `entries?${TYPES}=${TYPE_SONG}`,
       iconColor: 'songText',
-      auth: EDITOR,
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Story',
@@ -29,7 +29,7 @@ function DashboardEditData() {
       description: 'Edit the stories on your site',
       href: `entries?${TYPES}=${TYPE_STORY}`,
       iconColor: 'storyText',
-      auth: EDITOR,
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Home',
