@@ -56,6 +56,7 @@ export function siteAdaptor({ siteData }) {
     sitename: siteData?.slug,
     parentLanguageTitle: siteData?.language,
     logo: siteData?.logo,
+    logoId: siteData?.logo?.id,
     logoPathMedium: siteData?.logo
       ? getMediaPath({
           mediaObject: siteData?.logo,

@@ -9,17 +9,16 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
 function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
-  // console.log({dataToEdit})
   const validator = yup.object().shape({
-    logo: definitions.uuid(),
-    topBackgroundImage: definitions.uuid(),
-    video: definitions.uuid(),
+    logoId: definitions.uuid(),
+    bannerImageId: definitions.uuid(),
+    bannerVideoId: definitions.uuid(),
   })
 
   const defaultValues = {
-    logo: '',
-    bannerImage: '',
-    bannerVideo: '',
+    logoId: '',
+    bannerImageId: '',
+    bannerVideoId: '',
     banner: {
       docId: '',
       docType: '',
@@ -31,6 +30,8 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
     validator,
     dataToEdit,
   })
+  // console.log({errors})
+  // console.log({dataToEdit})
 
   return (
     <div id="HomeForm">
@@ -41,13 +42,13 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
             <div className="col-span-6">
               <Form.AddMedia
                 label="Add Logo"
-                nameId="logo"
+                nameId="logoId"
                 docType={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
               />
-              {errors?.logo && (
-                <div className="text-red-500">{errors?.logo?.message}</div>
+              {errors?.logoId && (
+                <div className="text-red-500">{errors?.logoId?.message}</div>
               )}
             </div>
             <div className="col-span-12 flex items-center justify-start">
