@@ -7,21 +7,11 @@ import CategoriesData from 'components/Categories/CategoriesData'
 import Loading from 'components/Loading'
 
 function CategoriesContainer({ kids }) {
-  const {
-    categories,
-    searchType,
-    setSearchTypeInUrl,
-    entryLabelPlural,
-    isLoading,
-    sitename,
-  } = CategoriesData()
+  const { categories, isLoading, sitename } = CategoriesData()
   return (
     <Loading.Container isLoading={isLoading}>
       <CategoriesPresentation
         categories={categories}
-        searchType={searchType}
-        setSearchType={setSearchTypeInUrl}
-        entryLabelPlural={entryLabelPlural}
         kids={kids}
         sitename={sitename}
       />
