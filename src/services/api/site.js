@@ -8,6 +8,9 @@ const site = {
   update: async ({ sitename, properties }) => {
     apiBase.put(`${SITES}/${sitename}/`, { json: properties }).json()
   },
+  partialUpdate: async ({ sitename, properties }) => {
+    apiBase.patch(`${SITES}/${sitename}/`, { json: properties }).json()
+  },
 }
 
 export default site

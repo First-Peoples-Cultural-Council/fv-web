@@ -67,3 +67,34 @@ export function useSiteUpdate() {
   }
   return { onSubmit }
 }
+
+export function useSiteUpdateBanner() {
+  const { sitename } = useParams()
+  const updatePage = async (formData) => {
+    const bannerObject = selectOneMediaFormHelper(formData, 'banner')
+    const properties = {
+      id: formData.id,
+      logo: formData.logoId || null,
+      bannerImage: bannerObject.imageId || null,
+      bannerVideo: bannerObject.videoId || null,
+    }
+    return api.site.partialUpdate({
+      slug: formData?.slug,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updatePage,
+    redirectTo: `/${sitename}/dashboard/edit/pages`,
+    queryKeyToInvalidate: [SITES, sitename],
+    actionWord: 'updated',
+    type: 'site',
+  })
+
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
+}

@@ -30,8 +30,8 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
     validator,
     dataToEdit,
   })
-  // console.log({errors})
-  // console.log({dataToEdit})
+  console.log({ errors })
+  console.log({ dataToEdit })
 
   return (
     <div id="HomeForm">

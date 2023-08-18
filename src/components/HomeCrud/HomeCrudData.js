@@ -11,7 +11,7 @@ import {
 // import { useNotification } from 'context/NotificationContext'
 // import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 // import homeCrudDataAdaptor from 'components/HomeCrud/homeCrudDataAdaptor'
-import { useSiteUpdate } from 'common/dataHooks/useSites'
+import { useSiteUpdateBanner } from 'common/dataHooks/useSites'
 
 function HomeCrudData() {
   const { site } = useSiteStore()
@@ -29,7 +29,7 @@ function HomeCrudData() {
     : null
   // const dataToEdit = homeCrudDataAdaptor({ data: site })
 
-  const { onSubmit: updateSite } = useSiteUpdate()
+  const { onSubmit: updateSite } = useSiteUpdateBanner()
 
   // async (formData) => {
   //   const mediaObject = selectOneMediaFormHelper(formData, 'banner')
