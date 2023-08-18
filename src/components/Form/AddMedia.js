@@ -34,7 +34,6 @@ function AddMedia({ label, nameId, helpText, control, docType }) {
 }
 
 function AddMediaButton({ value, onChange, docType }) {
-  // console.log({value})
   const [modalOpen, setModalOpen] = useState(false)
 
   const chooseMediaHandler = (id) => {

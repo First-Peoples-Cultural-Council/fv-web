@@ -7,7 +7,6 @@ import WidgetAreaEdit from 'components/WidgetAreaEdit'
 import getIcon from 'common/utils/getIcon'
 
 function HomeCrudPresentation({ site }) {
-  // console.log({site})
   return (
     <div
       data-testid="HomeCrud"

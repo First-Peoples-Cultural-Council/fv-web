@@ -19,7 +19,6 @@ export function useSite() {
     },
   )
   const formattedSiteData = siteAdaptor({ siteData: response?.data || [] })
-  // console.log({formattedSiteData})
 
   return { ...response, data: formattedSiteData }
 }
@@ -73,10 +72,10 @@ export function useSiteUpdateBanner() {
   const updatePage = async (formData) => {
     const bannerObject = selectOneMediaFormHelper(formData, 'banner')
     const properties = {
-      id: formData.id,
-      logo: formData.logoId || null,
-      bannerImage: bannerObject.imageId || null,
-      bannerVideo: bannerObject.videoId || null,
+      id: formData?.id,
+      logo: formData?.logoId || null,
+      bannerImage: bannerObject?.imageId || null,
+      bannerVideo: bannerObject?.videoId || null,
     }
     return api.site.partialUpdate({
       slug: formData?.slug,
