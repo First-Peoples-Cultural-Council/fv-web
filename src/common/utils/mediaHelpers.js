@@ -1,7 +1,7 @@
 import {
-  AUDIO,
-  VIDEO,
   IMAGE,
+  VIDEO,
+  AUDIO,
   ORIGINAL,
   SMALL,
   MEDIUM,
@@ -56,17 +56,17 @@ export const selectOneMediaFormHelper = (formData, mediaObjectkey) => {
   }
 }
 
-export const selectOneMediaDataHelper = (imageArray, videoArray) => {
-  // allow for array of media objects or array of media ids
-  if (imageArray?.length && (imageArray?.[0]?.id || imageArray?.[0])) {
+export const selectOneMediaDataHelper = (imageObj, videoObj) => {
+  // allow for either image or video
+  if (imageObj?.id) {
     return {
-      docId: imageArray?.[0]?.id || imageArray?.[0],
+      docId: imageObj?.id,
       docType: IMAGE,
     }
   }
-  if (videoArray?.length && (videoArray?.[0]?.id || videoArray?.[0])) {
+  if (videoObj?.id) {
     return {
-      docId: videoArray?.[0]?.id || videoArray?.[0],
+      docId: videoObj?.id,
       docType: VIDEO,
     }
   }
