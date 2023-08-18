@@ -4,8 +4,11 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import { useModalSelector } from 'common/hooks/useModalController'
+import Modal from 'components/Modal'
+import CategoriesBrowser from 'components/CategoriesBrowser'
 
-function TranslationArrayField({
+function CategoryArrayField({
   label,
   nameId,
   helpText,
@@ -18,39 +21,36 @@ function TranslationArrayField({
     name: nameId,
   })
 
+  const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
+    append,
+    remove,
+  )
+
   return (
-    <Fragment key={`${nameId}_TranslationArrayField`}>
+    <Fragment key={`${nameId}_CategoryArrayField`}>
       <label className="block text-sm font-medium text-fv-charcoal">
         {label}
       </label>
-      <div className="space-y-2 mt-2">
-        <ul className="space-y-2">
+      <div className="space-y-2 mt-1">
+        <ul className="space-y-2 space-x-1">
           {fields.map((item, index) => (
             <li
               key={item.id}
-              className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary"
+              className="p-1 inline-flex items-center rounded-lg shadow-md bg-tertiaryB hover:bg-tertiaryB-dark text-white space-x-1"
             >
-              <input
-                type="hidden"
-                {...register(`${nameId}.${index}.language`)}
-              />
-              <input
-                type="text"
-                className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg"
-                {...register(`${nameId}.${index}.translation`)}
-              />
+              <input type="hidden" {...register(`${nameId}.${index}`)} />
+              <div className="font-bold text-sm">{item?.title}</div>
               <div className="has-tooltip flex items-center">
                 <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
-                  Delete Translation
+                  Remove from category
                 </span>
                 <button
                   type="button"
-                  type="button"
-                  aria-label="Delete Translation"
-                  className="inline-flex"
+                  aria-label="Remove from category"
+                  className="border p-1 border-transparent inline-flex items-center rounded-lg"
                   onClick={() => remove(index)}
                 >
-                  {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
+                  {getIcon('Close', 'fill-current text-white h-6 w-6')}
                 </button>
               </div>
             </li>
@@ -60,13 +60,7 @@ function TranslationArrayField({
         {fields?.length < maxItems && (
           <button
             type="button"
-            type="button"
-            onClick={() =>
-              append({
-                language: 'english',
-                translation: '',
-              })
-            }
+            onClick={() => openModal()}
             className="bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
           >
             {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
@@ -77,13 +71,18 @@ function TranslationArrayField({
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+      <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
+        <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
+          <CategoriesBrowser.Container chooseDocHandler={selectItem} />
+        </div>
+      </Modal.Presentation>
     </Fragment>
   )
 }
 
 // PROPTYPES
 const { func, number, object, string } = PropTypes
-TranslationArrayField.propTypes = {
+CategoryArrayField.propTypes = {
   helpText: string,
   label: string,
   maxItems: number,
@@ -92,9 +91,8 @@ TranslationArrayField.propTypes = {
   register: func,
 }
 
-TranslationArrayField.defaultProps = {
+CategoryArrayField.defaultProps = {
   maxItems: 6,
-  label: '',
 }
 
-export default TranslationArrayField
+export default CategoryArrayField

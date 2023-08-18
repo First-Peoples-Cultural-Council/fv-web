@@ -134,7 +134,7 @@ function DashboardEntriesPresentationList({
         >
           {selectedItem?.type && (
             <>
-              <div className="flex justify-end mx-3 my-2">
+              <div className="flex justify-end mr-2 mt-2">
                 <Link
                   to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
                 >

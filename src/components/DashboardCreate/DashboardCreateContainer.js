@@ -12,7 +12,7 @@ import PageCrud from 'components/PageCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
-import { DOC_PHRASE, DOC_WORD } from 'common/constants'
+import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCreateContainer() {
@@ -40,7 +40,7 @@ function DashboardCreateContainer() {
           path="phrase"
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DictionaryCrud.Container docType={DOC_PHRASE} isCreate />
+              <DictionaryCrud.Container type={TYPE_PHRASE} isCreate />
             </RequireAuth>
           }
         />
@@ -72,7 +72,7 @@ function DashboardCreateContainer() {
           path="word"
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DictionaryCrud.Container docType={DOC_WORD} isCreate />
+              <DictionaryCrud.Container type={TYPE_WORD} isCreate />
             </RequireAuth>
           }
         />
