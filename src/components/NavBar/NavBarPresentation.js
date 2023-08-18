@@ -49,7 +49,7 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
               } md:flex items-center text-white`}
             >
               <span className="sr-only">FirstVoices Logo</span>
-              {fvlogo}
+              <Link to="/">{fvlogo}</Link>
             </div>
             <div className="w-16 text-white text-sm leading-tight text-center mr-2">
               Beta Version
