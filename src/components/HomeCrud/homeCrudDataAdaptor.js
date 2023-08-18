@@ -8,8 +8,8 @@ export const homeCrudDataAdaptor = ({ data }) => {
   const formattedData = {
     id: data?.uid,
     logoId: data?.logo?.id,
-    bannerImage: data?.bannerImage,
-    bannerVideo: data?.bannerVideo,
+    bannerImageId: data?.bannerImage?.id,
+    bannerVideoId: data?.bannerVideo?.id,
     banner: {},
   }
 
