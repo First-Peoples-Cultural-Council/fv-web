@@ -17,7 +17,7 @@ function AlphabetContainer({ widgetView, kids }) {
     selectedData,
     sitename,
     videoIsOpen,
-  } = AlphabetData()
+  } = AlphabetData({ widgetView })
 
   if (widgetView && isLoading) {
     return <AlphabetPlaceholder />

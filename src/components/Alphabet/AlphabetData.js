@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom'
 // FPCC
 import { useCharacters } from 'common/dataHooks/useCharacters'
 
-const AlphabetData = () => {
+const AlphabetData = ({ widgetView }) => {
   const { sitename } = useParams()
   const [selectedData, setSelectedData] = useState({})
   const [searchParams] = useSearchParams()
@@ -29,32 +29,23 @@ const AlphabetData = () => {
     }
   }
 
+  // This useEffect is to set characterData based on the url - only on ALphabet Page
   useEffect(() => {
     if (data?.characters?.length > 0) {
       if (character) {
         setCharacterDataToDisplay(character)
-      } else {
+      } else if (!widgetView) {
         setCharacterDataToDisplay(data?.characters?.[0]?.title)
       }
     }
-  }, [character, data])
+  }, [character, data, widgetView, selectedData])
 
   // Video Modal
   const [videoIsOpen, setVideoIsOpen] = useState(false)
 
   // onCharacterClick only used in Widget mode - Alphabet page is url driven
   const onCharacterClick = (clickedCharacter) => {
-    const dataForClickedCharacter = findCharacterData(clickedCharacter)
-    if (
-      dataForClickedCharacter &&
-      dataForClickedCharacter?.title !== selectedData?.title
-    ) {
-      setSelectedData(dataForClickedCharacter)
-    }
-  }
-
-  const onVideoClick = () => {
-    setVideoIsOpen(!videoIsOpen)
+    setCharacterDataToDisplay(clickedCharacter)
   }
 
   return {
@@ -63,7 +54,7 @@ const AlphabetData = () => {
     isLoading: isInitialLoading,
     sitename,
     onCharacterClick,
-    onVideoClick,
+    onVideoClick: () => setVideoIsOpen(!videoIsOpen),
     selectedData,
     videoIsOpen,
   }
