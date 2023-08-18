@@ -64,7 +64,7 @@ function SongPresentation({ entry }) {
                   <AudioNative
                     key={audio.id}
                     styling="w-full print:hidden"
-                    audioId={audio}
+                    audioObject={audio}
                   />
                 ))}
               </div>

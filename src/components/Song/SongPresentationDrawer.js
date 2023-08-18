@@ -70,11 +70,11 @@ function SongPresentationDrawer({ entry, sitename }) {
 
       <div className="flex mt-2 md:mt-6 px-6 space-y-2">
         {entry?.relatedAudio?.length > 0 &&
-          entry.relatedAudio?.map((audio) => (
+          entry?.relatedAudio?.map((audio) => (
             <AudioNative
-              key={audio.id}
+              key={audio?.id}
               styling="w-96 text-black mx-auto print:hidden"
-              audioId={audio}
+              audioObject={audio}
             />
           ))}
       </div>
