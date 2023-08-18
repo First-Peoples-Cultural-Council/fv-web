@@ -23,7 +23,7 @@ import DashboardEntries from 'components/DashboardEntries'
 import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
 import DashboardWidgets from 'components/DashboardWidgets'
-import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+import { EDITOR, LANGUAGE_ADMIN, SUPER_ADMIN } from 'common/constants/roles'
 
 function DashboardEditContainer() {
   const { tileContent, headerContent, site } = DashboardEditData()
@@ -140,7 +140,7 @@ function DashboardEditContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={SUPER_ADMIN} withMessage>
               <StoryCrud.Container />
             </RequireAuth>
           }
