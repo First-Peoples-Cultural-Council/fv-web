@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
-import { LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
+import { ASSISTANT, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 import { useMySites } from 'common/dataHooks/useMySites'
 
 function DashboardData() {
@@ -65,6 +65,22 @@ function DashboardData() {
       href: 'edit/home',
       iconColor: 'wordText',
       auth: LANGUAGE_ADMIN,
+    },
+    {
+      icon: 'Word',
+      name: 'Create a Word',
+      description: 'Add a new word to your dictionary',
+      href: 'word',
+      iconColor: 'wordText',
+      auth: ASSISTANT,
+    },
+    {
+      icon: 'Phrase',
+      name: 'Create a Phrase',
+      description: 'Add a new phrase to your dictionary',
+      href: 'phrase',
+      iconColor: 'phraseText',
+      auth: ASSISTANT,
     },
     {
       icon: 'QuestionCircleSolid',

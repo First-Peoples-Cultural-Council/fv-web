@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import { DOC_IMAGE } from 'common/constants'
+import { IMAGE } from 'common/constants'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -11,14 +11,14 @@ import useEditForm from 'common/hooks/useEditForm'
 function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     logoId: definitions.uuid(),
-    topBackgroundImageId: definitions.uuid(),
-    videoId: definitions.uuid(),
+    bannerImageId: definitions.uuid(),
+    bannerVideoId: definitions.uuid(),
   })
 
   const defaultValues = {
     logoId: '',
-    topBackgroundImageId: '',
-    topBackgroundVideoId: '',
+    bannerImageId: '',
+    bannerVideoId: '',
     banner: {
       docId: '',
       docType: '',
@@ -41,7 +41,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
               <Form.AddMedia
                 label="Add Logo"
                 nameId="logoId"
-                docType={DOC_IMAGE}
+                docType={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
               />

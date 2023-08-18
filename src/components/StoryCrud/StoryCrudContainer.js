@@ -4,12 +4,12 @@ import React from 'react'
 import StoryCrudData from 'components/StoryCrud/StoryCrudData'
 import StoryCoverCrud from 'components/StoryCoverCrud'
 import StoryPagesCrud from 'components/StoryPagesCrud'
-import VisibilitySelect from 'components/VisibilitySelect'
+// import VisibilitySelect from 'components/VisibilitySelect'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 import StoryPreviewCrud from 'components/StoryPreviewCrud'
 
 function StoryCrudContainer() {
-  const { activeStep, storyId, storyState } = StoryCrudData()
+  const { activeStep } = StoryCrudData()
 
   function getStepContent(step) {
     switch (step) {
@@ -25,7 +25,7 @@ function StoryCrudContainer() {
               >
                 Who can see this content?
               </label>
-              <VisibilitySelect.Container id={storyId} docState={storyState} />
+              {/* <VisibilitySelect.Container id={storyId} docState={storyState} /> */}
             </div>
           </StoryCrudStepWrapper>
         )

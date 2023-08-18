@@ -1,7 +1,7 @@
 import blog from 'services/api/blog'
 import categories from 'services/api/categories'
 import characters from 'services/api/characters'
-import dictionaryEntry from 'services/api/dictionaryEntry'
+import dictionary from 'services/api/dictionary'
 import document from 'services/api/document'
 import gallery from 'services/api/gallery'
 import gameContent from 'services/api/gameContent'
@@ -23,7 +23,7 @@ export default {
   blog,
   categories,
   characters,
-  dictionaryEntry,
+  dictionary,
   document,
   immersion,
   gallery,

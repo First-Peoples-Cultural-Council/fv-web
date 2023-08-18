@@ -1,27 +1,24 @@
-import { DOC_IMAGE, DOC_VIDEO } from 'common/constants'
+import { IMAGE, VIDEO } from 'common/constants'
 
-const homeCrudDataAdaptor = ({ data }) => {
+export const homeCrudDataAdaptor = ({ data }) => {
   if (!data) {
     return null
   }
 
   const formattedData = {
     id: data?.uid,
-    logoId: data?.logoId,
-    topBackgroundImageId: data?.topBackgroundImageId,
-    topBackgroundVideoId: data?.topBackgroundVideoId,
+    logoId: data?.logo?.id,
+    bannerImageId: data?.bannerImage?.id,
+    bannerVideoId: data?.bannerVideo?.id,
     banner: {},
   }
 
-  if (formattedData?.topBackgroundImageId) {
-    formattedData.banner.docId = formattedData?.topBackgroundImageId
-    formattedData.banner.docType = DOC_IMAGE
-  } else if (formattedData?.topBackgroundVideoId) {
-    formattedData.banner.docId = formattedData?.topBackgroundVideoId
-    formattedData.banner.docType = DOC_VIDEO
+  if (formattedData?.bannerImage) {
+    formattedData.banner.docId = formattedData?.bannerImage?.id
+    formattedData.banner.docType = IMAGE
+  } else if (formattedData?.bannerVideo) {
+    formattedData.banner.docId = formattedData?.bannerVideo?.id
+    formattedData.banner.docType = VIDEO
   }
-
   return formattedData
 }
-
-export default homeCrudDataAdaptor

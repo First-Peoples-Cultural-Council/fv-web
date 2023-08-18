@@ -70,7 +70,7 @@ export function useWidgetsUpdate() {
   const { sitename } = useParams()
 
   const updateWidget = async (formData) => {
-    api.widgets.updateCompleteWidget({
+    api.widgets.update({
       sitename,
       widgetId: formData?.id,
       formData,
