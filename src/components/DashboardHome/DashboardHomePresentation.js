@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardTiles from 'components/DashboardTiles'
-import getIcon from 'common/utils/getIcon'
 import DashboardLocator from 'components/DashboardLocator'
 
 function DashboardHomePresentation({ site, tiles, currentUser }) {
@@ -44,32 +43,6 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                 </div>
               </div>
             </section>
-            {site?.features?.includes('version2') ? (
-              ''
-            ) : (
-              <div className="bg-white p-6 rounded-lg space-y-2">
-                <div className="text-primary rounded-lg inline-flex ring-4 ring-white">
-                  {getIcon('InfoCircleSolid', 'h-12 w-12 fill-current')}
-                </div>
-                <div className=" text-fv-charcoal text-sm">
-                  Editing in the new Dashboard has not been enabled for some
-                  content on this site. For now, you can edit that content in
-                  the old FirstVoices view, and it will be updated in the new
-                  FirstVoices. To go to the old site click{' '}
-                  <a
-                    href={`https://www.firstvoices.com/explore${
-                      site?.path || ''
-                    }`}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-blue-600 visited:text-purple-600 underline"
-                  >
-                    here
-                  </a>
-                  .
-                </div>
-              </div>
-            )}
             <DashboardTiles.Presentation tileContent={tiles} />
           </div>
         </div>
