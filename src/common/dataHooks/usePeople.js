@@ -43,7 +43,7 @@ export function usePersonCreate() {
   const mutation = useMutationWithNotification({
     mutationFn: createPerson,
     redirectTo: `/${sitename}/dashboard/edit/speakers`,
-    queryKey: [PEOPLE, sitename],
+    queryKeyToInvalidate: [PEOPLE, sitename],
     actionWord: 'created',
     type: 'speaker',
   })

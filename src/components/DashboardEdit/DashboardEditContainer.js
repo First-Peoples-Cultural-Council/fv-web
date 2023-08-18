@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import RequireAuth from 'common/RequireAuth'
 import DashboardEditPresentation from 'components/DashboardEdit/DashboardEditPresentation'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
-import { DOC_WORD, DOC_PHRASE } from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 
 import CategoryCrud from 'components/CategoryCrud'
 import CharacterCrud from 'components/CharacterCrud'
@@ -125,7 +125,7 @@ function DashboardEditContainer() {
           path="phrase"
           element={
             <RequireAuth siteMembership={EDITOR} withMessage>
-              <DictionaryCrud.Container docType={DOC_PHRASE} />
+              <DictionaryCrud.Container type={TYPE_PHRASE} />
             </RequireAuth>
           }
         />
@@ -157,7 +157,7 @@ function DashboardEditContainer() {
           path="word"
           element={
             <RequireAuth siteMembership={EDITOR} withMessage>
-              <DictionaryCrud.Container docType={DOC_WORD} />
+              <DictionaryCrud.Container type={TYPE_WORD} />
             </RequireAuth>
           }
         />

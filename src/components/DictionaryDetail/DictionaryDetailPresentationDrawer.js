@@ -21,7 +21,9 @@ function DictionaryDetailPresentationDrawer({
   const lableStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
-  const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
+  const noMedia = !(
+    entry?.relatedImages?.length > 0 || entry?.relatedVideos?.length > 0
+  )
   const shortTitle = entry?.title.length < 16
   return (
     <div data-testid="DictionaryDetailPresentationDrawer">
@@ -57,9 +59,9 @@ function DictionaryDetailPresentationDrawer({
           {entry?.translations?.length > 0 && (
             <div className="py-3">
               {/* Part of Speech */}
-              {entry?.translations?.[0]?.partOfSpeech?.title && (
+              {entry?.partOfSpeech?.title && (
                 <div className="text-lg italic">
-                  {entry?.translations?.[0]?.partOfSpeech?.title?.toLowerCase()}
+                  {entry?.partOfSpeech?.title?.toLowerCase()}
                 </div>
               )}
               <ol
@@ -70,7 +72,7 @@ function DictionaryDetailPresentationDrawer({
                 } list-inside text-lg`}
               >
                 {entry?.translations?.map((translation) => (
-                  <li key={translation} className="p-0.5">
+                  <li key={translation?.id} className="p-0.5">
                     <span className={contentStyling}>{translation?.text}</span>
                   </li>
                 ))}
@@ -78,10 +80,10 @@ function DictionaryDetailPresentationDrawer({
             </div>
           )}
           {/* Audio */}
-          {entry?.audio?.length > 0 && (
+          {entry?.relatedAudio?.length > 0 && (
             <div className="py-3">
-              {entry?.audio?.length > 0 &&
-                entry?.audio.map((audioObject) => (
+              {entry?.relatedAudio?.length > 0 &&
+                entry?.relatedAudio?.map((audioObject) => (
                   <AudioMinimal.Container
                     key={audioObject?.id}
                     icons={{
@@ -125,7 +127,7 @@ function DictionaryDetailPresentationDrawer({
             </div>
           )}
           {/* Related Content */}
-          {entry?.relatedAssets?.length > 0 && (
+          {entry?.relatedEntries?.length > 0 && (
             <div className="py-3">
               <table className="w-full">
                 <thead>
@@ -140,7 +142,7 @@ function DictionaryDetailPresentationDrawer({
                   </tr>
                 </thead>
                 <tbody className="py-2 px-10">
-                  {entry?.relatedAssets?.map((asset, index) => {
+                  {entry?.relatedEntries?.map((asset, index) => {
                     const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
                     return (
                       <tr key={asset?.id} className={zebraStripe}>
@@ -184,8 +186,8 @@ function DictionaryDetailPresentationDrawer({
         {noMedia ? null : (
           <section id="WordMedia" className="py-3">
             <div className="grid grid-cols-2 gap-2">
-              {entry?.images
-                ? entry?.images?.map((image) => (
+              {entry?.relatedImages
+                ? entry?.relatedImages?.map((image) => (
                     <div key={image?.id}>
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
@@ -200,8 +202,8 @@ function DictionaryDetailPresentationDrawer({
                     </div>
                   ))
                 : null}
-              {entry?.videos
-                ? entry?.videos?.map((video) => (
+              {entry?.relatedVideos
+                ? entry?.relatedVideos?.map((video) => (
                     <div key={video?.id}>
                       <Disclosure>
                         <Disclosure.Button>

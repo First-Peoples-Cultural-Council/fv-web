@@ -1,13 +1,12 @@
-import React, { Fragment, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 
 // FPCC
 import Form from 'components/Form'
 import { DOC_AUDIO } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
+import useEditForm from 'common/hooks/useEditForm'
 
 function ImmersionCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -24,29 +23,11 @@ function ImmersionCrudPresentation({ dataToEdit, submitHandler }) {
     relatedAudio: [],
   }
 
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-    register,
-    reset,
-    setValue,
-  } = useForm({
+  const { control, errors, handleSubmit, register, reset } = useEditForm({
     defaultValues,
-    mode: 'onChange',
-    resolver: yupResolver(validator),
+    validator,
+    dataToEdit,
   })
-
-  // NB Always set existing data on load (transkey provided for new labels and needs to be set)
-  useEffect(() => {
-    if (dataToEdit?.transKey) {
-      for (const property in dataToEdit) {
-        if (Object.prototype.hasOwnProperty.call(dataToEdit, property)) {
-          setValue(property, dataToEdit[property])
-        }
-      }
-    }
-  }, [dataToEdit])
 
   return (
     <div id="ImmersionCrudPresentation" className="max-w-5xl p-8">
@@ -76,12 +57,12 @@ function ImmersionCrudPresentation({ dataToEdit, submitHandler }) {
                 )}
               </div>
               <div className="col-span-12">
-                <Form.DocumentArrayField
+                <Form.MediaArrayField
                   label="Audio"
                   nameId="relatedAudio"
                   control={control}
-                  docType={DOC_AUDIO}
-                  docCountLimit={1}
+                  type={DOC_AUDIO}
+                  maxItems={1}
                 />
                 {errors?.relatedAudio && (
                   <div className="text-red-500">

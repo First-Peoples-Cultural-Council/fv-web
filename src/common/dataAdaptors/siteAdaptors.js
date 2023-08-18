@@ -73,9 +73,7 @@ export function siteAdaptor({ siteData }) {
     bannerImage: siteData?.bannerImage,
     bannerVideo: siteData?.bannerVideo,
     visibility: siteData?.visibility?.toLowerCase(),
-    visibilityOptions: constructVisibilityOptions(
-      siteData?.visibility?.toLowerCase(),
-    ),
+    visibilityOptions: constructVisibilityOptions(siteData?.visibility),
     features: siteData?.features,
     homepageWidgets: widgetListAdaptor({
       widgetList: siteData?.homepage,
@@ -92,7 +90,7 @@ const constructVisibilityOptions = (siteVisibility) => {
     optionsArray.map((option) => ({
       icon: option,
       value: option,
-      transKey: `visibility.${option}`,
+      transKey: `visibility.${option?.toLowerCase()}`,
     }))
   switch (siteVisibility) {
     case PUBLIC:

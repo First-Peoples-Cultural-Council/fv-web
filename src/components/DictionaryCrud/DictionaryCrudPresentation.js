@@ -9,12 +9,11 @@ import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
   AUDIO,
-  DOC_CATEGORY,
   IMAGE,
   VIDEO,
-  DOC_WORD,
   TYPE_WORD,
   TYPE_PHRASE,
+  PUBLIC,
 } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
@@ -25,7 +24,8 @@ function DictionaryCrudPresentation({
   backHandler,
   dataToEdit,
   submitHandler,
-  docType,
+  deleteHandler,
+  type,
   isCreate,
   partsOfSpeech,
 }) {
@@ -36,36 +36,40 @@ function DictionaryCrudPresentation({
   const activeStepNumber = Number(activeStep)
 
   const validator = yup.object().shape({
+    acknowledgments: definitions.textArray(),
+    alternateSpellings: definitions.textArray(),
+    categories: definitions.objectArray(),
+    notes: definitions.textArray(),
+    partOfSpeech: definitions.uuid(),
+    pronunciations: definitions.textArray(),
+    relatedAudio: definitions.idArray(),
+    relatedEntries: definitions.objectArray(),
+    relatedImages: definitions.idArray(),
+    relatedVideos: definitions.idArray(),
     title: yup
       .string()
       .min(1)
       .max(120)
       .required('You must enter at least 1 character in this field.'),
-    translations: definitions.translations(),
-    pronunciation: yup.string().max(30).trim(),
-    relatedAssets: definitions.idArray(),
-    categories: definitions.idArray(),
-    audio: definitions.idArray(),
-    images: definitions.idArray(),
-    videos: definitions.idArray(),
-    acknowledgments: definitions.stringArray(),
-    notes: definitions.stringArray(),
+    translations: definitions.textArray(),
   })
 
   const defaultValues = {
-    title: '',
-    translations: [{ language: 'english', translation: '' }],
-    pronunciation: '',
-    categories: [],
-    audio: [],
-    relatedAssets: [],
-    images: [],
-    videos: [],
-    notes: [],
     acknowledgements: [],
-    kidFriendly: 'true',
-    visibility: 'public',
-    partOfSpeech: null,
+    alternateSpellings: [],
+    categories: [],
+    notes: [],
+    partOfSpeech: '',
+    pronunciations: [],
+    relatedAudio: [],
+    relatedEntries: [],
+    relatedImages: [],
+    relatedVideos: [],
+    title: '',
+    translations: [],
+    visibility: PUBLIC,
+    includeInKids: 'true',
+    includeInGames: 'true',
   }
 
   const { control, errors, handleSubmit, isValid, register, reset, trigger } =
@@ -76,7 +80,7 @@ function DictionaryCrudPresentation({
     })
 
   const steps = [
-    { title: `Add ${getFriendlyDocType({ docType })} content` },
+    { title: `Add ${getFriendlyDocType({ docType: type })} content` },
     { title: 'Add media and other info' },
     { title: 'Save and finish' },
   ]
@@ -84,7 +88,9 @@ function DictionaryCrudPresentation({
 
   const stepHandle = (step) => {
     trigger()
-    if (isValid) return setActiveStep(String(step))
+    if (isValid) {
+      setActiveStep(String(step))
+    }
   }
 
   const forwardStep = () => {
@@ -94,9 +100,8 @@ function DictionaryCrudPresentation({
   const backStep = () => {
     if (activeStep > 0) {
       const stepToGoTo = activeStepNumber - 1
-      return setActiveStep(String(stepToGoTo))
-    }
-    backHandler()
+      setActiveStep(String(stepToGoTo))
+    } else backHandler()
   }
 
   const onFinishClick = () => {
@@ -110,7 +115,7 @@ function DictionaryCrudPresentation({
           <Fragment key={step}>
             <div className="col-span-12">
               <Form.TextField
-                label={getFriendlyDocType({ docType, titleCase: true })}
+                label={getFriendlyDocType({ docType: type, titleCase: true })}
                 nameId="title"
                 register={register}
               />
@@ -119,37 +124,36 @@ function DictionaryCrudPresentation({
               )}
             </div>
             <div className="col-span-12">
-              <Form.TranslationArrayField
+              <Form.TextArrayField
                 label="Translations"
                 nameId="translations"
                 register={register}
                 control={control}
+                errors={errors}
                 hideLabel
               />
-              {errors?.translations && (
+            </div>
+            <div className="col-span-12">
+              <Form.MediaArrayField
+                label="Audio"
+                nameId="relatedAudio"
+                control={control}
+                register={register}
+                type={AUDIO}
+                maxItems={10}
+              />
+              {errors?.relatedAudio && (
                 <div className="text-red-500">
-                  {errors?.translations?.message}
+                  {errors?.relatedAudio?.message}
                 </div>
               )}
             </div>
             <div className="col-span-12">
-              <Form.DocumentArrayField
-                label="Audio"
-                nameId="audio"
-                control={control}
-                docType={AUDIO}
-                docCountLimit={10}
-              />
-              {errors?.audio && (
-                <div className="text-red-500">{errors?.audio?.message}</div>
-              )}
-            </div>
-            <div className="col-span-12">
-              <Form.DocumentArrayField
+              <Form.CategoryArrayField
                 label="Categories"
                 nameId="categories"
                 control={control}
-                docType={DOC_CATEGORY}
+                register={register}
                 docCountLimit={8}
               />
               {errors?.categories && (
@@ -161,18 +165,18 @@ function DictionaryCrudPresentation({
             <div className="col-span-12">
               <Form.EntryArrayField
                 label="Related Content"
-                nameId="relatedAssets"
+                nameId="relatedEntries"
                 control={control}
                 register={register}
                 helpText={`Words and phrases related to your ${getFriendlyDocType(
-                  { docType },
+                  { docType: type },
                 )}`}
                 maxItems={10}
                 types={[TYPE_WORD, TYPE_PHRASE]}
               />
-              {errors?.relatedAssets && (
+              {errors?.relatedEntries && (
                 <div className="text-red-500">
-                  {errors?.relatedAssets?.message}
+                  {errors?.relatedEntries?.message}
                 </div>
               )}
             </div>
@@ -182,11 +186,9 @@ function DictionaryCrudPresentation({
                 nameId="notes"
                 register={register}
                 control={control}
+                errors={errors}
                 maxItems={6}
               />
-              {errors?.notes && (
-                <div className="text-red-500">{errors?.notes?.message}</div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.TextArrayField
@@ -194,13 +196,9 @@ function DictionaryCrudPresentation({
                 nameId="acknowledgements"
                 register={register}
                 control={control}
+                errors={errors}
                 maxItems={6}
               />
-              {errors?.acknowledgments && (
-                <div className="text-red-500">
-                  {errors?.acknowledgments?.message}
-                </div>
-              )}
             </div>
           </Fragment>
         )
@@ -208,43 +206,37 @@ function DictionaryCrudPresentation({
         return (
           <Fragment key={step}>
             <div className="col-span-12">
-              <Form.DocumentArrayField
+              <Form.MediaArrayField
                 label="Images"
-                nameId="images"
+                nameId="relatedImages"
                 control={control}
-                docType={IMAGE}
-                docCountLimit={10}
+                register={register}
+                type={IMAGE}
+                maxItems={10}
               />
-              {errors?.images && (
-                <div className="text-red-500">{errors?.images?.message}</div>
+              {errors?.relatedImages && (
+                <div className="text-red-500">
+                  {errors?.relatedImages?.message}
+                </div>
               )}
             </div>
             <div className="col-span-12">
-              <Form.DocumentArrayField
+              <Form.MediaArrayField
                 label="Videos"
-                nameId="videos"
+                nameId="relatedVideos"
                 control={control}
-                docType={VIDEO}
-                docCountLimit={10}
+                register={register}
+                type={VIDEO}
+                maxItems={10}
               />
-              {errors?.videos && (
-                <div className="text-red-500">{errors?.videos?.message}</div>
+              {errors?.relatedVideos && (
+                <div className="text-red-500">
+                  {errors?.relatedVideos?.message}
+                </div>
               )}
             </div>
-            {docType === DOC_WORD && (
+            {type === TYPE_WORD && (
               <>
-                <div className="col-span-6">
-                  <Form.TextField
-                    label="Pronunciation"
-                    nameId="pronunciation"
-                    register={register}
-                  />
-                  {errors?.pronunciation && (
-                    <div className="text-red-500">
-                      {errors?.pronunciation?.message}
-                    </div>
-                  )}
-                </div>
                 <div className="col-span-6">
                   <Form.Autocomplete
                     label="Part of speech"
@@ -257,6 +249,26 @@ function DictionaryCrudPresentation({
                       {errors?.partOfSpeech?.message}
                     </div>
                   )}
+                </div>
+                <div className="col-span-12">
+                  <Form.TextArrayField
+                    label="Pronunciations"
+                    nameId="pronunciations"
+                    register={register}
+                    control={control}
+                    errors={errors}
+                    maxItems={3}
+                  />
+                </div>
+                <div className="col-span-12">
+                  <Form.TextArrayField
+                    label="Alternate spellings"
+                    nameId="alternateSpellings"
+                    register={register}
+                    control={control}
+                    errors={errors}
+                    maxItems={3}
+                  />
                 </div>
               </>
             )}
@@ -273,7 +285,7 @@ function DictionaryCrudPresentation({
                 label="Include on the Kids site?"
                 control={control}
                 errors={errors}
-                nameId="kidFriendly"
+                nameId="includeInKids"
                 options={[
                   { label: 'Yes', value: 'true' },
                   { label: 'No', value: 'false' },
@@ -293,7 +305,9 @@ function DictionaryCrudPresentation({
       className="flex flex-col max-w-5xl p-8 space-y-4 min-h-screen"
     >
       <div className="w-full flex justify-center">
-        <Form.Header title={`Create ${getFriendlyDocType({ docType })}`} />
+        <Form.Header
+          title={`Create ${getFriendlyDocType({ docType: type })}`}
+        />
       </div>
       <Form.Stepper onClickCallback={stepHandle} steps={steps} />
       <form
@@ -357,17 +371,17 @@ function DictionaryCrudPresentation({
       <div>
         <div className="w-full flex justify-center">
           <Form.Header
-            title={`Edit ${getFriendlyDocType({ docType })}: ${
+            title={`Edit ${getFriendlyDocType({ docType: type })}: ${
               dataToEdit?.title
             }`}
           />
         </div>
         <div className="flex w-full justify-end">
           <DeleteButton.Presentation
-            id={dataToEdit?.id}
-            label={`Delete ${getFriendlyDocType({ docType })}`}
+            deleteHandler={deleteHandler}
+            label={`Delete ${getFriendlyDocType({ docType: type })}`}
             message={`Are you sure you want to delete this ${getFriendlyDocType(
-              { docType },
+              { docType: type },
             )} from your site?`}
           />
         </div>
@@ -391,7 +405,7 @@ function DictionaryCrudPresentation({
             <Form.SubmitButtons
               submitLabel={
                 isCreate
-                  ? `Add ${getFriendlyDocType({ docType })}`
+                  ? `Add ${getFriendlyDocType({ docType: type })}`
                   : 'Save Changes'
               }
               submitIcon={isCreate ? 'Add' : 'Save'}
@@ -413,8 +427,9 @@ const { array, bool, func, object, string } = PropTypes
 DictionaryCrudPresentation.propTypes = {
   backHandler: func,
   submitHandler: func,
+  deleteHandler: func,
   dataToEdit: object,
-  docType: string,
+  type: string,
   isCreate: bool,
   partsOfSpeech: array,
 }

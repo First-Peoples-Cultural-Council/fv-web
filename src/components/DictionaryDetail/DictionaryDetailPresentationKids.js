@@ -7,9 +7,9 @@ import AudioMinimal from 'components/AudioMinimal'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 
 function DictionaryDetailPresentationKids({ entry, backHandler }) {
-  const images =
-    entry?.images?.length > 0
-      ? entry?.images?.map((image) => (
+  const relatedImages =
+    entry?.relatedImages?.length > 0
+      ? entry?.relatedImages?.map((image) => (
           <div key={image.id} className="w-full inline-flex p-2">
             <ImageWithLightbox.Presentation
               imgStyling="object-contain rounded-lg w-full h-auto"
@@ -38,12 +38,12 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
             id="media"
             className="hidden lg:block col-span-6 lg:col-span-3"
           >
-            {images}
+            {relatedImages}
           </section>
           <section
             id="EntryDetails"
             className={`${
-              images
+              relatedImages
                 ? 'text-center lg:text-left col-span-6 lg:col-span-3'
                 : 'col-span-6 text-center'
             } flex items-center`}
@@ -60,9 +60,9 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                   {entry.title}
                 </div>
                 {/* Audio */}
-                {entry?.audio?.length > 0 && (
+                {entry?.relatedAudio?.length > 0 && (
                   <div className="ml-4 inline-flex text-fv-charcoal">
-                    {entry?.audio.map((audioObject) => (
+                    {entry?.relatedAudio?.map((audioObject) => (
                       <AudioMinimal.Container
                         key={audioObject?.id}
                         icons={{
@@ -106,7 +106,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
             id="media"
             className="block lg:hidden col-span-6 lg:col-span-3"
           >
-            {images}
+            {relatedImages}
           </section>
         </div>
       </div>

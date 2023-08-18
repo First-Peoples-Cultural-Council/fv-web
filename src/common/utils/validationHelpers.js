@@ -16,7 +16,7 @@ const uuid = yup
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
-  objectArray: () => yup.array().of(yup.object({ id: uuid })),
+  objectArray: () => yup.array().of(yup.object()),
   label: () => yup.string().max(35).trim(),
   latinOnly: ({ message = 'This is a required field' } = {}) =>
     yup
@@ -32,13 +32,10 @@ export const definitions = {
   title: () => yup.string().max(90).min(1).trim(),
   paragraph: ({ charCount = 250 } = {}) =>
     yup.string().max(charCount).nullable().trim(),
-  translations: () =>
+  textArray: () =>
     yup.array().of(
       yup.object({
-        language: yup
-          .string()
-          .matches(/(english|french)/, { excludeEmptyString: true }),
-        translation: yup.string().trim(),
+        text: yup.string().trim(),
       }),
     ),
   url: ({ required = false } = {}) =>

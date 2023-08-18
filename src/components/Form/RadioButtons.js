@@ -4,7 +4,7 @@ import { RadioGroup } from '@headlessui/react'
 import { Controller } from 'react-hook-form'
 
 // FPCC
-import ErrorMessage from 'components/Form/ErrorMessage'
+import ValidationError from 'components/Form/ValidationError'
 
 function RadioButtons({ errors, label, options, nameId, control }) {
   return (
@@ -60,7 +60,7 @@ function RadioButtons({ errors, label, options, nameId, control }) {
           </RadioGroup>
         )}
       />
-      <ErrorMessage errors={errors} nameId={nameId} />
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }

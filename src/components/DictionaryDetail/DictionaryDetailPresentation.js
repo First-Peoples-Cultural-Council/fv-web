@@ -21,7 +21,9 @@ function DictionaryDetailPresentation({
   const lableStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
-  const noMedia = !(entry?.images?.length > 0 || entry?.videos?.length > 0)
+  const noMedia = !(
+    entry?.relatedImages?.length > 0 || entry?.relatedVideos?.length > 0
+  )
   const shortTitle = entry?.title.length < 20
 
   return (
@@ -75,9 +77,9 @@ function DictionaryDetailPresentation({
             {entry?.translations?.length > 0 && (
               <div className="py-2 md:p-3">
                 {/* Part of Speech */}
-                {entry?.translations?.[0]?.partOfSpeech?.title && (
+                {entry?.partOfSpeech?.title && (
                   <div className="text-xl italic">
-                    {entry?.translations?.[0]?.partOfSpeech?.title?.toLowerCase()}
+                    {entry?.partOfSpeech?.title?.toLowerCase()}
                   </div>
                 )}
                 <ol
@@ -100,9 +102,9 @@ function DictionaryDetailPresentation({
               </div>
             )}
             {/* Audio */}
-            {entry?.audio?.length > 0 && (
+            {entry?.relatedAudio?.length > 0 && (
               <div className="py-2 md:p-3">
-                {entry?.audio?.map((audioObject) => (
+                {entry?.relatedAudio?.map((audioObject) => (
                   <AudioMinimal.Container
                     key={audioObject?.id}
                     icons={{
@@ -146,7 +148,7 @@ function DictionaryDetailPresentation({
               </div>
             )}
             {/* Related Content */}
-            {entry?.relatedAssets?.length > 0 && (
+            {entry?.relatedEntries?.length > 0 && (
               <div className="py-2 md:p-4">
                 <table className="w-full">
                   <thead>
@@ -161,19 +163,19 @@ function DictionaryDetailPresentation({
                     </tr>
                   </thead>
                   <tbody className="py-2 px-10">
-                    {entry?.relatedAssets?.map((asset, index) => {
+                    {entry?.relatedEntries?.map((asset, index) => {
                       const zebraStripe = index % 2 === 1 ? '' : 'bg-gray-100'
                       return (
                         <tr key={asset.id} className={zebraStripe}>
                           <td className="p-2 flex items-center">
                             <Link
-                              to={`/${sitename}/${makePlural(
-                                asset?.type?.toLowercase(),
-                              )}/${asset.id}`}
+                              to={`/${sitename}/${makePlural(asset?.type)}/${
+                                asset.id
+                              }`}
                             >
                               {asset?.title}
                             </Link>
-                            {asset?.audio?.map((audioObject) => (
+                            {asset?.relatedAudio?.map((audioObject) => (
                               <AudioMinimal.Container
                                 key={audioObject?.id}
                                 icons={{
@@ -251,8 +253,8 @@ function DictionaryDetailPresentation({
             className="col-span-8 md:col-span-3 py-2 md:p-5 md:mt-5"
           >
             <ul>
-              {entry?.images
-                ? entry?.images?.map((image) => (
+              {entry?.relatedImages
+                ? entry?.relatedImages?.map((image) => (
                     <li key={image.id} className="my-2">
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
@@ -267,8 +269,8 @@ function DictionaryDetailPresentation({
                     </li>
                   ))
                 : null}
-              {entry?.videos
-                ? entry?.videos?.map((video) => (
+              {entry?.relatedVideos
+                ? entry?.relatedVideos?.map((video) => (
                     <li key={video.id} className="my-2">
                       <div className="inline-flex rounded-lg overflow-hidden">
                         <video

@@ -56,12 +56,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             )}
           </div>
           <div className="col-span-12">
-            <Form.DocumentArrayField
+            <Form.MediaArrayField
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              docType={AUDIO}
-              docCountLimit={3}
+              type={AUDIO}
+              maxItems={3}
             />
             {errors?.relatedAudio && (
               <div className="text-red-500">
@@ -70,12 +70,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.DocumentArrayField
+            <Form.MediaArrayField
               label="Image"
               nameId="relatedImages"
               control={control}
-              docType={IMAGE}
-              docCountLimit={1}
+              type={IMAGE}
+              maxItems={1}
             />
             {errors?.relatedImages && (
               <div className="text-red-500">
@@ -84,12 +84,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.DocumentArrayField
+            <Form.MediaArrayField
               label="Video"
               nameId="relatedVideos"
               control={control}
-              docType={VIDEO}
-              docCountLimit={1}
+              type={VIDEO}
+              maxItems={1}
             />
             {errors?.relatedVideos && (
               <div className="text-red-500">
