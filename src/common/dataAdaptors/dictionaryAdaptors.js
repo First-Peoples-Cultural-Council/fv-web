@@ -4,6 +4,7 @@ import {
   audienceForEditing,
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptor'
+import { PUBLIC, TYPE_WORD } from 'common/constants'
 
 export function entryForEditing(rawEntry) {
   return {
@@ -31,16 +32,16 @@ export function entryForViewing(rawEntry) {
     relatedVideos: rawEntry?.relatedVideos || [],
     title: rawEntry?.title,
     translations: rawEntry?.translations || [],
-    type: rawEntry?.type || 'word',
-    visibility: rawEntry?.visibility || 'Public',
+    type: rawEntry?.type || TYPE_WORD,
+    visibility: rawEntry?.visibility || PUBLIC,
   }
 }
 
 export function entryForApi(formData) {
   const formattedData = {
     title: formData.title || '',
-    type: formData.type || 'word',
-    visibility: formData.visibility || 'Public',
+    type: formData.type || TYPE_WORD,
+    visibility: formData.visibility || PUBLIC,
     categories: objectsToIdsAdaptor(formData.categories),
     acknowledgements: formData.acknowledgements || [],
     alternate_spellings: formData.alternateSpellings || [],
