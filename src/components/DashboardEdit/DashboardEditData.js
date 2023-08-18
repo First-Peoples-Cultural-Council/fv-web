@@ -1,7 +1,7 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { TYPES, TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
-import { EDITOR, SUPER_ADMIN, LANGUAGE_ADMIN } from 'common/constants/roles'
+import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditData() {
   const { site } = useSiteStore()
@@ -37,7 +37,7 @@ function DashboardEditData() {
       description: 'Edit the main homepage for your site',
       href: 'home',
       iconColor: 'wordText',
-      auth: SUPER_ADMIN,
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'WebPages',
@@ -88,7 +88,7 @@ function DashboardEditData() {
     //   description: 'Update the labels used in immersion mode on your site',
     //   href: 'immersion',
     //   iconColor: 'tertiaryA',
-    //   auth: SUPER_ADMIN,
+    //   auth: LANGUAGE_ADMIN,
     // },
   ]
   const headerContent = {
