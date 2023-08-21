@@ -74,7 +74,7 @@ function SongPresentationDrawer({ entry, sitename }) {
             <AudioNative
               key={audio.id}
               styling="w-96 text-black mx-auto print:hidden"
-              audioId={audio}
+              audioObject={audio}
             />
           ))}
       </div>

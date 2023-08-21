@@ -245,12 +245,12 @@ function SongsAndStoriesPresentation({
   )
 }
 // PROPTYPES
-const { bool, object, string, array } = PropTypes
+const { bool, object, string } = PropTypes
 SongsAndStoriesPresentation.propTypes = {
   searchType: string,
   infiniteScroll: object,
   isLoading: bool,
-  items: array,
+  items: object,
   kids: bool,
   loadRef: object,
   sitename: string,
