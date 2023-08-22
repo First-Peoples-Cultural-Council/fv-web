@@ -34,7 +34,7 @@ function HomeCrudPresentation({ site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container widgetAreaId={site?.uid} />
+      <WidgetAreaEdit.Container home />
     </div>
   )
 }

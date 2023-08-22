@@ -24,7 +24,6 @@ function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
   handleRemoveWidget,
   site,
-  // triggerWidgetDataRefresh,
 }) {
   const [removeModalOpen, setRemoveModalOpen] = useState(false)
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
@@ -146,7 +145,6 @@ function WidgetAreaEditPresentationSettingsPane({
                   {/* <VisibilitySelect.Container
                     id={currentWidget?.uid}
                     docState={currentWidget?.visibility}
-                    successCallback={() => triggerWidgetDataRefresh()}
                   /> */}
                   <Link
                     to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.uid}`}

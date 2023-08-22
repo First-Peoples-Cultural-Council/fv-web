@@ -18,9 +18,9 @@ function WidgetAreaEditPresentation({
   widgetIds,
   setWidgetIds,
   destination,
+  handleAddWidget,
 }) {
   const [addModalOpen, setAddModalOpen] = useState(false)
-  const [insertIndex] = useState(0)
 
   return (
     <div data-testid="WidgetAreaEdit">
@@ -66,7 +66,7 @@ function WidgetAreaEditPresentation({
                         type="button"
                         onClick={() => setCurrentWidget(widgetData?.[id])}
                         className={`${
-                          currentWidget?.uid === widgetData?.[id]?.uid
+                          currentWidget?.id === widgetData?.[id]?.id
                             ? 'border-4 border-primary'
                             : 'hover:bg-gray-50'
                         } bg-white flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
@@ -98,7 +98,7 @@ function WidgetAreaEditPresentation({
                       </button>
                       <div
                         className={`inline-flex ${
-                          currentWidget?.uid === widgetData?.[id]?.uid
+                          currentWidget?.id === widgetData?.[id]?.id
                             ? 'opacity-100'
                             : 'opacity-0'
                         }`}
@@ -149,8 +149,7 @@ function WidgetAreaEditPresentation({
       >
         <WidgetAddToDoc.Container
           closeHandler={() => setAddModalOpen(false)}
-          destinationId={destination?.uid}
-          insertIndex={insertIndex}
+          handleAddWidget={handleAddWidget}
         />
       </Modal.Presentation>
     </div>
@@ -166,6 +165,7 @@ WidgetAreaEditPresentation.propTypes = {
   setWidgetIds: func,
   currentWidget: object,
   setCurrentWidget: func,
+  handleAddWidget: func,
 }
 
 export default WidgetAreaEditPresentation

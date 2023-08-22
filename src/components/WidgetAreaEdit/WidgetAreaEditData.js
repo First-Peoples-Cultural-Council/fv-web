@@ -1,47 +1,58 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
 
 // FPCC
-import { DOC_SITE } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
 import { usePage, usePageWidgetsUpdate } from 'common/dataHooks/usePages'
+import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
 
-function WidgetAreaEditData({ widgetAreaId }) {
+function WidgetAreaEditData({ pageSlug, home }) {
   const [widgetIds, setWidgetIds] = useState([])
+  const [widgetValues, setWidgetValues] = useState([])
   const { site } = useSiteStore()
-  const queryClient = useQueryClient()
   const [currentWidget, setCurrentWidget] = useState(null)
 
-  const { data, error, isInitialLoading, refetch } = usePage({
-    pageSlug: widgetAreaId,
+  const { data, error, isInitialLoading } = usePage({
+    pageSlug,
   })
 
   // get list of widget IDs
   useEffect(() => {
     if (isInitialLoading === false && error === null) {
       const ids = data?.widgets?.map((w) => w.id)
+      const values = widgetDataAdaptor(data?.widgets)
       setWidgetIds(ids)
+      setWidgetValues(values)
     }
   }, [isInitialLoading, error])
 
-  // get map of widget values
-  const widgetValues = {}
-
-  data?.widgets?.forEach((w) => {
-    if (w?.id) {
-      widgetValues[w.id] = w
+  useEffect(() => {
+    if (home) {
+      const ids = site?.homepage?.map((w) => w.id)
+      const values = widgetDataAdaptor(site?.homepage)
+      setWidgetIds(ids)
+      setWidgetValues(values)
     }
-  })
+  }, [home, site])
 
-  console.log('WidgetAreaEditData: ', widgetIds, widgetValues)
+  const widgetDataAdaptor = (widgetsArray) => {
+    const widgetsObject = {}
+    widgetsArray?.forEach((w) => {
+      if (w?.id) {
+        widgetsObject[w.id] = w
+      }
+    })
+    return widgetsObject
+  }
 
   // event handlers
-  const { onSubmit } = usePageWidgetsUpdate()
+  const { onSubmit: pageWidgetsUpdate } = usePageWidgetsUpdate()
+  const { onSubmit: homepageWidgetsUpdate } = useSiteUpdateWidgets()
 
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
-    onSubmit({ widgets: idArray })
+    if (pageSlug) pageWidgetsUpdate({ widgets: idArray })
+    if (home) homepageWidgetsUpdate({ widgets: idArray })
   }
 
   const updateWidgetOrder = (idArray) => {
@@ -50,39 +61,34 @@ function WidgetAreaEditData({ widgetAreaId }) {
   }
 
   const handleRemoveWidget = () => {
-    const filteredIds = widgetIds?.filter((e) => e !== currentWidget?.uid)
+    const filteredIds = widgetIds?.filter((e) => e !== currentWidget?.id)
     saveWidgetOrder(filteredIds)
   }
 
-  // Adding editable field to widgets
-  let destinationTitle = data?.title
-  const isHomePage = data?.type === DOC_SITE
-  if (isHomePage) {
-    destinationTitle = 'Home'
+  const handleAddWidget = (id) => {
+    const filteredIds = [id, ...widgetIds]
+    saveWidgetOrder(filteredIds)
   }
 
   return {
     currentWidget,
     setCurrentWidget,
-    destination: { title: destinationTitle, uid: widgetAreaId },
+    destinationTitle: home ? 'Home' : data?.title,
     handleRemoveWidget,
+    handleAddWidget,
     isLoading: isInitialLoading,
     widgetData: widgetValues,
     widgetIds,
     setWidgetIds: updateWidgetOrder,
     site,
-    triggerWidgetDataRefresh: () => {
-      // Used to refresh data after changing visibility with visibility select
-      queryClient.invalidateQueries(['widget-area', widgetAreaId])
-      refetch()
-    },
   }
 }
 
 // PROPTYPES
-const { string } = PropTypes
+const { bool, string } = PropTypes
 WidgetAreaEditData.propTypes = {
   widgetAreaId: string,
+  home: bool,
 }
 
 export default WidgetAreaEditData

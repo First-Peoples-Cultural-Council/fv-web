@@ -7,45 +7,47 @@ import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/Wi
 import WidgetAreaEditData from 'components/WidgetAreaEdit/WidgetAreaEditData'
 import Loading from 'components/Loading'
 
-function WidgetAreaEditContainer({ widgetAreaId }) {
+function WidgetAreaEditContainer({ pageSlug, home = false }) {
   const {
     currentWidget,
     setCurrentWidget,
-    destination,
+    destinationTitle,
+    handleAddWidget,
     handleRemoveWidget,
     widgetData,
     widgetIds,
     setWidgetIds,
     site,
     isLoading,
-    triggerWidgetDataRefresh,
   } = WidgetAreaEditData({
-    widgetAreaId,
+    pageSlug,
+    home,
   })
   return (
     <Loading.Container isLoading={isLoading}>
       <WidgetAreaEditPresentation
-        destination={destination}
+        destinationTitle={destinationTitle}
         widgetData={widgetData}
         widgetIds={widgetIds}
         setWidgetIds={setWidgetIds}
         currentWidget={currentWidget}
         setCurrentWidget={setCurrentWidget}
+        handleAddWidget={handleAddWidget}
       >
         <WidgetAreaEditPresentationSettingsPane
           handleRemoveWidget={handleRemoveWidget}
           currentWidget={currentWidget}
           site={site}
-          triggerWidgetDataRefresh={triggerWidgetDataRefresh}
         />
       </WidgetAreaEditPresentation>
     </Loading.Container>
   )
 }
 // PROPTYPES
-const { string } = PropTypes
+const { bool, string } = PropTypes
 WidgetAreaEditContainer.propTypes = {
-  widgetAreaId: string.isRequired,
+  pageSlug: string.isRequired,
+  home: bool,
 }
 
 export default WidgetAreaEditContainer
