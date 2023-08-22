@@ -49,7 +49,7 @@ function WidgetAreaEditPresentation({
 
           <div className="grid grid-cols-8">
             <section
-              className="col-span-4 xl:col-span-3 h-4/5-screen overflow-y-auto space-y-3 px-3  pb-2"
+              className="col-span-4 xl:col-span-3 space-y-3 px-3  pb-2"
               aria-label="Widget List"
             >
               <SortableContainer.Presentation
@@ -115,7 +115,7 @@ function WidgetAreaEditPresentation({
               </SortableContainer.Presentation>
             </section>
 
-            <section className="col-span-4 xl:col-span-5 mr-5 h-4/5-screen overflow-y-auto px-2 pb-2">
+            <section className="col-span-4 xl:col-span-5 mr-5 px-2 pb-2">
               {/* Settings Pane rendered here */}
               {children}
             </section>
