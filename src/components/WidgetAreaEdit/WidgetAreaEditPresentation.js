@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import WidgetAddToDoc from 'components/WidgetAddToDoc'
+import WidgetBrowser from 'components/WidgetBrowser'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import SortableContainer from 'components/SortableContainer'
@@ -19,6 +19,7 @@ function WidgetAreaEditPresentation({
   setWidgetIds,
   destination,
   handleAddWidget,
+  isHomepage,
 }) {
   const [addModalOpen, setAddModalOpen] = useState(false)
 
@@ -147,16 +148,17 @@ function WidgetAreaEditPresentation({
         isOpen={addModalOpen}
         closeHandler={() => setAddModalOpen(false)}
       >
-        <WidgetAddToDoc.Container
-          closeHandler={() => setAddModalOpen(false)}
-          handleAddWidget={handleAddWidget}
+        <WidgetBrowser.Container
+          chooseWidgetHandler={handleAddWidget}
+          currentWidgets={widgetIds}
+          isHomepage={isHomepage}
         />
       </Modal.Presentation>
     </div>
   )
 }
 // PROPTYPES
-const { array, func, node, object } = PropTypes
+const { array, bool, func, node, object } = PropTypes
 WidgetAreaEditPresentation.propTypes = {
   children: node,
   widgetData: object,
@@ -166,6 +168,7 @@ WidgetAreaEditPresentation.propTypes = {
   currentWidget: object,
   setCurrentWidget: func,
   handleAddWidget: func,
+  isHomepage: bool,
 }
 
 export default WidgetAreaEditPresentation

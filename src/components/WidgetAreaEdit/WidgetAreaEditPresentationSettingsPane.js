@@ -3,14 +3,12 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import AudioNative from 'components/AudioNative'
 import Modal from 'components/Modal'
 // import VisibilitySelect from 'components/VisibilitySelect'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
 
 import getIcon from 'common/utils/getIcon'
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import { isUUID } from 'common/utils/stringHelpers'
 import {
   getWidgetLabel,
@@ -18,7 +16,13 @@ import {
   isEditableWidgetType,
 } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
-import { WIDGET_WOTD } from 'common/constants'
+import {
+  WIDGET_WOTD,
+  SETTING_WYSIWYG,
+  SETTING_AUDIO,
+  SETTING_IMAGE,
+} from 'common/constants'
+import MediaThumbnail from 'components/MediaThumbnail'
 
 function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
@@ -34,10 +38,7 @@ function WidgetAreaEditPresentationSettingsPane({
   }
 
   const getSettings = () => {
-    if (
-      currentWidget?.settings?.length <= 0 &&
-      currentWidget?.type === WIDGET_WOTD
-    ) {
+    if (currentWidget?.type === WIDGET_WOTD) {
       return (
         <div className="col-span-3">
           <dd className="text-fv-charcoal text-lg">
@@ -50,7 +51,7 @@ function WidgetAreaEditPresentationSettingsPane({
         </div>
       )
     }
-    if (currentWidget?.settings?.length <= 0) {
+    if (!isEditableWidgetType(currentWidget?.type)) {
       return (
         <div className="col-span-3">
           <dd className="text-fv-charcoal text-lg">
@@ -60,40 +61,41 @@ function WidgetAreaEditPresentationSettingsPane({
       )
     }
 
-    return currentWidget?.settings.map((setting) => {
-      if (setting?.key === 'audio' && isUUID(setting?.value)) {
+    const settingsArray = Object.keys(currentWidget?.settings).map((key) => {
+      const setting = { key, value: currentWidget?.settings[key] }
+      return setting
+    })
+
+    return settingsArray.map((setting) => {
+      if (
+        setting?.key?.toLowerCase().includes(SETTING_AUDIO) &&
+        isUUID(setting?.value)
+      ) {
         return (
           <div key={setting.key} className="col-span-3">
             <div className="mb-1 text-sm font-bold text-primary-light">
               Audio
             </div>
-            <AudioNative
-              key={setting?.value}
-              styling="lg:w-96 print:hidden"
-              audioId={setting?.value}
-            />
+            <MediaThumbnail.Audio key={setting?.value} id={setting?.value} />
           </div>
         )
       }
-      if (setting?.key === 'image' && isUUID(setting?.value)) {
+      if (
+        setting?.key?.toLowerCase().includes(SETTING_IMAGE) &&
+        isUUID(setting?.value)
+      ) {
         return (
           <div key={setting.key} className="col-span-1">
             <div className="mb-1 text-sm font-bold text-primary-light">
               Image
             </div>
             <div className="rounded-lg overflow-hidden">
-              <img
-                src={getMediaUrl({
-                  type: 'image',
-                  id: setting?.value,
-                  viewName: 'Small',
-                })}
-              />
+              <MediaThumbnail.Image key={setting?.value} id={setting?.value} />
             </div>
           </div>
         )
       }
-      if (setting?.key === 'textWithFormatting') {
+      if (setting?.key === SETTING_WYSIWYG) {
         return (
           <div key={setting.key} className="col-span-3">
             <div className="mb-2 text-sm font-bold text-primary-light">

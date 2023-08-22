@@ -19,3 +19,8 @@ export const WIDGET_WOTD = 'WIDGET_WOTD'
 export const FORMAT_DEFAULT = 'Default'
 export const FORMAT_LEFT = 'Left'
 export const FORMAT_RIGHT = 'Right'
+
+/* ---- Widget Setting Keys ---- */
+export const SETTING_WYSIWYG = 'textWithFormatting'
+export const SETTING_AUDIO = 'audio'
+export const SETTING_IMAGE = 'image'

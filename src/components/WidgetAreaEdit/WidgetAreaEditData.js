@@ -6,11 +6,11 @@ import { useSiteStore } from 'context/SiteContext'
 import { usePage, usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
 
-function WidgetAreaEditData({ pageSlug, home }) {
+function WidgetAreaEditData({ pageSlug, isHomepage }) {
   const [widgetIds, setWidgetIds] = useState([])
-  const [widgetValues, setWidgetValues] = useState([])
+  const [widgetValues, setWidgetValues] = useState()
   const { site } = useSiteStore()
-  const [currentWidget, setCurrentWidget] = useState(null)
+  const [currentWidget, setCurrentWidget] = useState()
 
   const { data, error, isInitialLoading } = usePage({
     pageSlug,
@@ -27,13 +27,13 @@ function WidgetAreaEditData({ pageSlug, home }) {
   }, [isInitialLoading, error])
 
   useEffect(() => {
-    if (home) {
-      const ids = site?.homepage?.map((w) => w.id)
-      const values = widgetDataAdaptor(site?.homepage)
+    if (isHomepage) {
+      const ids = site?.homepageWidgets?.map((w) => w.id)
+      const values = widgetDataAdaptor(site?.homepageWidgets)
       setWidgetIds(ids)
       setWidgetValues(values)
     }
-  }, [home, site])
+  }, [isHomepage, site])
 
   const widgetDataAdaptor = (widgetsArray) => {
     const widgetsObject = {}
@@ -52,7 +52,7 @@ function WidgetAreaEditData({ pageSlug, home }) {
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
     if (pageSlug) pageWidgetsUpdate({ widgets: idArray })
-    if (home) homepageWidgetsUpdate({ widgets: idArray })
+    if (isHomepage) homepageWidgetsUpdate({ widgets: idArray })
   }
 
   const updateWidgetOrder = (idArray) => {
@@ -73,7 +73,7 @@ function WidgetAreaEditData({ pageSlug, home }) {
   return {
     currentWidget,
     setCurrentWidget,
-    destinationTitle: home ? 'Home' : data?.title,
+    destinationTitle: isHomepage ? 'Home' : data?.title,
     handleRemoveWidget,
     handleAddWidget,
     isLoading: isInitialLoading,
@@ -88,7 +88,7 @@ function WidgetAreaEditData({ pageSlug, home }) {
 const { bool, string } = PropTypes
 WidgetAreaEditData.propTypes = {
   widgetAreaId: string,
-  home: bool,
+  isHomepage: bool,
 }
 
 export default WidgetAreaEditData

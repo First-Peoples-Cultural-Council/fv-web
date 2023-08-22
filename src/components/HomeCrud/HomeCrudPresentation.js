@@ -34,7 +34,7 @@ function HomeCrudPresentation({ site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container home />
+      <WidgetAreaEdit.Container isHomepage />
     </div>
   )
 }

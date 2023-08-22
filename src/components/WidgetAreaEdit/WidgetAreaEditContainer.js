@@ -7,7 +7,7 @@ import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/Wi
 import WidgetAreaEditData from 'components/WidgetAreaEdit/WidgetAreaEditData'
 import Loading from 'components/Loading'
 
-function WidgetAreaEditContainer({ pageSlug, home = false }) {
+function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
   const {
     currentWidget,
     setCurrentWidget,
@@ -21,8 +21,9 @@ function WidgetAreaEditContainer({ pageSlug, home = false }) {
     isLoading,
   } = WidgetAreaEditData({
     pageSlug,
-    home,
+    isHomepage,
   })
+
   return (
     <Loading.Container isLoading={isLoading}>
       <WidgetAreaEditPresentation
@@ -33,6 +34,7 @@ function WidgetAreaEditContainer({ pageSlug, home = false }) {
         currentWidget={currentWidget}
         setCurrentWidget={setCurrentWidget}
         handleAddWidget={handleAddWidget}
+        isHomepage={isHomepage}
       >
         <WidgetAreaEditPresentationSettingsPane
           handleRemoveWidget={handleRemoveWidget}
@@ -46,8 +48,8 @@ function WidgetAreaEditContainer({ pageSlug, home = false }) {
 // PROPTYPES
 const { bool, string } = PropTypes
 WidgetAreaEditContainer.propTypes = {
-  pageSlug: string.isRequired,
-  home: bool,
+  pageSlug: string,
+  isHomepage: bool,
 }
 
 export default WidgetAreaEditContainer
