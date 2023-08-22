@@ -9,6 +9,7 @@ import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
+  console.log({ entry })
   const hasMedia = !!(
     entry?.relatedImages.length > 0 || entry?.relatedVideos?.length > 0
   )
@@ -41,11 +42,12 @@ function SongPresentation({ entry }) {
             <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl">
               {entry?.titleTranslation}
             </h2>
-            <div className="text-fv-charcoal-light">
+            <span className="font-bold text-fv-charcoal">By: </span>
+            <span className="text-fv-charcoal-light">
               {entry?.acknowledgement?.length > 0
-                ? ` acknowledgement: ${entry.acknowledgement}`
+                ? `${entry.acknowledgement}`
                 : ''}
-            </div>
+            </span>
           </div>
           <div>
             {(entry?.introduction?.length > 0 ||
