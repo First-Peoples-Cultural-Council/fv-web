@@ -17,7 +17,7 @@ function WidgetAreaEditPresentation({
   widgetData,
   widgetIds,
   setWidgetIds,
-  destination,
+  destinationTitle,
   handleAddWidget,
   isHomepage,
 }) {
@@ -32,7 +32,7 @@ function WidgetAreaEditPresentation({
               <div>
                 <p className="text-fv-charcoal-light">
                   The Widgets that appear on your{' '}
-                  <span className="italic font-bold">{destination?.title}</span>{' '}
+                  <span className="italic font-bold">{destinationTitle}</span>{' '}
                   page
                 </p>
               </div>
@@ -158,12 +158,12 @@ function WidgetAreaEditPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, func, node, object } = PropTypes
+const { array, bool, func, node, object, string } = PropTypes
 WidgetAreaEditPresentation.propTypes = {
   children: node,
   widgetData: object,
   widgetIds: array,
-  destination: object,
+  destinationTitle: string,
   setWidgetIds: func,
   currentWidget: object,
   setCurrentWidget: func,
