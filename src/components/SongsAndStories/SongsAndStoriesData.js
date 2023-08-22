@@ -14,7 +14,7 @@ function SongsAndStoriesData({ searchType, kids }) {
     useSearchLoader({ searchParams: _searchParams })
 
   return {
-    items: data || [],
+    items: data || {},
     isLoading: isInitialLoading || isError,
     infiniteScroll,
     sitename,
