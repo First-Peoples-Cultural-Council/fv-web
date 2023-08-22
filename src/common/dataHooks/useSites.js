@@ -35,19 +35,16 @@ export function useSites() {
   }
 }
 
-export function useSiteUpdate() {
+export function useSiteUpdateBanner() {
   const { sitename } = useParams()
   const updatePage = async (formData) => {
     const bannerObject = selectOneMediaFormHelper(formData, 'banner')
     const properties = {
-      id: formData.id,
-      logo: formData.logo || null,
-      bannerImage: bannerObject.imageId || null,
-      bannerVideo: bannerObject.videoId || null,
-      homepage: formData.homepage || [],
+      logo: formData?.logoId || null,
+      bannerImage: bannerObject?.imageId || null,
+      bannerVideo: bannerObject?.videoId || null,
     }
-    return api.site.update({
-      slug: formData?.slug,
+    return api.site.partialUpdate({
       sitename,
       properties,
     })
@@ -67,18 +64,13 @@ export function useSiteUpdate() {
   return { onSubmit }
 }
 
-export function useSiteUpdateBanner() {
+export function useSiteUpdateWidgets() {
   const { sitename } = useParams()
   const updatePage = async (formData) => {
-    const bannerObject = selectOneMediaFormHelper(formData, 'banner')
     const properties = {
-      id: formData?.id,
-      logo: formData?.logoId || null,
-      bannerImage: bannerObject?.imageId || null,
-      bannerVideo: bannerObject?.videoId || null,
+      homepage: formData?.widgets || [],
     }
     return api.site.partialUpdate({
-      slug: formData?.slug,
       sitename,
       properties,
     })
@@ -89,7 +81,7 @@ export function useSiteUpdateBanner() {
     redirectTo: `/${sitename}/dashboard/edit/pages`,
     queryKeyToInvalidate: [SITES, sitename],
     actionWord: 'updated',
-    type: 'site',
+    type: 'Home page widgets',
   })
 
   const onSubmit = (formData) => {
