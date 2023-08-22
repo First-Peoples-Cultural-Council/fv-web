@@ -5,20 +5,19 @@ import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function WidgetBrowserData({ isHomepage, currentWidgets }) {
   const { site } = useSiteStore()
+
+  // Fetch all widgets for this site
   const { widgets, isInitialLoading } = useWidgets()
 
   // Don't include widgets that are already active on the page
-  let otherWidgets = widgets?.filter(
+  const widgetsNotOnThisPage = widgets?.filter(
     (widget) => !currentWidgets?.includes(widget?.id),
   )
 
-  // Only include widgets that are editable by the user
-  otherWidgets = otherWidgets?.filter((widget) => widget?.editable)
-
   // Don't include Page Text Widget on the Home page
   const widgetsToShow = isHomepage
-    ? otherWidgets?.filter((widget) => widget?.type !== WIDGET_TEXTFULL)
-    : otherWidgets
+    ? widgetsNotOnThisPage?.filter((widget) => widget?.type !== WIDGET_TEXTFULL)
+    : widgetsNotOnThisPage
 
   return {
     isLoading: isInitialLoading,

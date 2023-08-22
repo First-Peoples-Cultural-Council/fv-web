@@ -20,11 +20,3 @@ export function pageCreateAdaptor({ formData, sitename }) {
     widgets: [],
   }
 }
-
-export function pageWidgetsAdaptor({ formData }) {
-  // Returns appropriate request body for updating page info (not widget list)
-  return {
-    widgets: formData?.widgets || [],
-    slug: formData?.slug || null,
-  }
-}

@@ -46,7 +46,7 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   }
 
   // event handlers
-  const { onSubmit: pageWidgetsUpdate } = usePageWidgetsUpdate()
+  const { onSubmit: pageWidgetsUpdate } = usePageWidgetsUpdate({ pageSlug })
   const { onSubmit: homepageWidgetsUpdate } = useSiteUpdateWidgets()
 
   const saveWidgetOrder = async (idArray) => {
