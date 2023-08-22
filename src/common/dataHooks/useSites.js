@@ -37,7 +37,7 @@ export function useSites() {
 
 export function useSiteUpdateBanner() {
   const { sitename } = useParams()
-  const updatePage = async (formData) => {
+  const updateBanner = async (formData) => {
     const bannerObject = selectOneMediaFormHelper(formData, 'banner')
     const properties = {
       logo: formData?.logoId || null,
@@ -51,8 +51,8 @@ export function useSiteUpdateBanner() {
   }
 
   const mutation = useMutationWithNotification({
-    mutationFn: updatePage,
-    redirectTo: `/${sitename}/dashboard/edit/pages`,
+    mutationFn: updateBanner,
+    redirectTo: `/${sitename}/dashboard/edit/home`,
     queryKeyToInvalidate: [SITES, sitename],
     actionWord: 'updated',
     type: 'site',
@@ -66,7 +66,7 @@ export function useSiteUpdateBanner() {
 
 export function useSiteUpdateWidgets() {
   const { sitename } = useParams()
-  const updatePage = async (formData) => {
+  const updateWidgets = async (formData) => {
     const properties = {
       homepage: formData?.widgets || [],
     }
@@ -77,8 +77,8 @@ export function useSiteUpdateWidgets() {
   }
 
   const mutation = useMutationWithNotification({
-    mutationFn: updatePage,
-    redirectTo: `/${sitename}/dashboard/edit/pages`,
+    mutationFn: updateWidgets,
+    redirectTo: `/${sitename}/dashboard/edit/home`,
     queryKeyToInvalidate: [SITES, sitename],
     actionWord: 'updated',
     type: 'Home page widgets',

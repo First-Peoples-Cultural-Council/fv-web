@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 
-function WidgetBrowserPresentation({ site, submitHandler, widgets }) {
+function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
   const [selectedWidget, setSelectedWidget] = useState()
   return (
     <div
@@ -53,7 +53,7 @@ function WidgetBrowserPresentation({ site, submitHandler, widgets }) {
               type="button"
               disabled={!selectedWidget}
               className="disabled:opacity-40 inline-flex justify-center rounded-lg shadow-lg px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
-              onClick={() => submitHandler(selectedWidget)}
+              onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK
             </button>
@@ -85,7 +85,7 @@ function WidgetBrowserPresentation({ site, submitHandler, widgets }) {
 const { array, func, object } = PropTypes
 
 WidgetBrowserPresentation.propTypes = {
-  submitHandler: func,
+  chooseWidgetHandler: func,
   widgets: array,
   site: object,
 }

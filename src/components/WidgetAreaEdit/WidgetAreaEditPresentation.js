@@ -79,7 +79,7 @@ function WidgetAreaEditPresentation({
                               'w-12 h-12 fill-current text-primary',
                             )}
                           </div>
-                          <div className="flex items-center text-left col-span-3">
+                          <div className="flex items-center text-left col-span-5">
                             <div className="truncate">
                               <p className="text-lg font-bold text-primary">
                                 {getWidgetTypeLabel(widgetData?.[id]?.type)}

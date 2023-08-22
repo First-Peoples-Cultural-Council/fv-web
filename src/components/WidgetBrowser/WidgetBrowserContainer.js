@@ -11,7 +11,7 @@ function WidgetBrowserContainer({
   currentWidgets,
   isHomepage,
 }) {
-  const { isLoading, site, submitHandler, widgets } = WidgetBrowserData({
+  const { isLoading, site, widgets } = WidgetBrowserData({
     isHomepage,
     currentWidgets,
   })
@@ -19,7 +19,6 @@ function WidgetBrowserContainer({
     <Loading.Container isLoading={isLoading}>
       <WidgetBrowserPresentation
         chooseWidgetHandler={chooseWidgetHandler}
-        submitHandler={submitHandler}
         widgets={widgets}
         site={site}
       />
