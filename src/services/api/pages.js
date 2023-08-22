@@ -2,8 +2,8 @@ import { apiBase } from 'services/config'
 import { SITES, PAGES } from 'common/constants'
 
 const pages = {
-  getPage: async ({ sitename, pageSlug }) =>
-    apiBase.get(`${SITES}/${sitename}/${PAGES}/${pageSlug}`).json(),
+  getPage: async ({ sitename, slug }) =>
+    apiBase.get(`${SITES}/${sitename}/${PAGES}/${slug}`).json(),
   create: async ({ sitename, properties }) => {
     apiBase.post(`${SITES}/${sitename}/${PAGES}/`, { json: properties }).json()
   },

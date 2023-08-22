@@ -1,7 +1,7 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { TYPES, TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
-import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+import { EDITOR, LANGUAGE_ADMIN, SUPER_ADMIN } from 'common/constants/roles'
 
 function DashboardEditData() {
   const { site } = useSiteStore()

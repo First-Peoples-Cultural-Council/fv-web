@@ -8,10 +8,7 @@ import getIcon from 'common/utils/getIcon'
 
 function HomeCrudPresentation({ site }) {
   return (
-    <div
-      data-testid="HomeCrud"
-      className="bg-gray-100 h-screen overflow-hidden"
-    >
+    <div data-testid="HomeCrud" className="bg-gray-100 min-h-screen">
       {/* Page header */}
       <div className="w-full shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between space-x-5 p-5">
@@ -34,7 +31,7 @@ function HomeCrudPresentation({ site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container widgetAreaId={site?.uid} />
+      <WidgetAreaEdit.Container isHomepage />
     </div>
   )
 }
