@@ -31,59 +31,46 @@ function LandingBannerPresentation({ data }) {
       </p>
       <div className="md:flex justify-center">
         <ul className="md:flex md:-mt-20 justify-center md:w-11/12">
-          {links &&
-            links.map((link) => {
-              const {
-                id,
-                backgroundColor,
-                backgroundImage,
-                icon,
-                url,
-                extUrl,
-                urlLabel,
-                info,
-              } = link
-              return (
-                <li
-                  key={id}
-                  className={`bg-${backgroundColor} px-4 py-2 text-white text-center z-10 md:pt-8 md:pb-12 md:w-1/3`}
-                  style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'top left',
-                    backgroundSize: 'cover',
-                  }}
+          {links?.map((link) => (
+            <li
+              key={link?.id}
+              className={`bg-${link?.backgroundColor} px-4 py-2 text-white text-center z-10 md:pt-8 md:pb-12 md:w-1/3`}
+              style={{
+                backgroundImage: `url(${link?.backgroundImage})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'top left',
+                backgroundSize: 'cover',
+              }}
+            >
+              {link?.url && (
+                <Link to={link?.url} className="flex-col items-center">
+                  <p className="flex justify-center">
+                    {getIcon(`${link?.icon}`, 'fill-current h-12 w-12')}
+                  </p>
+                  <p className="p-2 md:text-2xl">{link?.urlLabel}</p>
+                  <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
+                    {link?.info}
+                  </p>
+                </Link>
+              )}
+              {link?.extUrl && (
+                <a
+                  href={link?.extUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-col items-center"
                 >
-                  {url && (
-                    <Link to={url} className="flex-col items-center">
-                      <p className="flex justify-center">
-                        {getIcon(`${icon}`, 'fill-current h-12 w-12')}
-                      </p>
-                      <p className="p-2 md:text-2xl">{urlLabel}</p>
-                      <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
-                        {info}
-                      </p>
-                    </Link>
-                  )}
-                  {extUrl && (
-                    <a
-                      href={extUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-col items-center"
-                    >
-                      <p className="flex justify-center">
-                        {getIcon(`${icon}`, 'fill-current h-12 w-12')}
-                      </p>
-                      <p className="p-2 md:text-2xl">{urlLabel}</p>
-                      <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
-                        {info}
-                      </p>
-                    </a>
-                  )}
-                </li>
-              )
-            })}
+                  <p className="flex justify-center">
+                    {getIcon(`${link?.icon}`, 'fill-current h-12 w-12')}
+                  </p>
+                  <p className="p-2 md:text-2xl">{link?.urlLabel}</p>
+                  <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
+                    {link?.info}
+                  </p>
+                </a>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </section>

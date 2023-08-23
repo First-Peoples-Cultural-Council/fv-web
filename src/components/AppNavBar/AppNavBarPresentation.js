@@ -78,9 +78,9 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
         onClick={onClick}
         onKeyDown={onClick}
       >
-        <div className="h-8 xl:h-10 group p-1 inline-flex items-center text-base font-medium text-white hover:text-gray-300">
+        <div className="h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-300">
           {getIcon(iconName, 'fill-current h-full w-auto')}
-          <p className="ml-1 xl:ml-3 xl:mr-2">{title}</p>
+          <p className="ml-1 xl:ml-3 xl:mr-2 whitespace-nowrap">{title}</p>
         </div>
       </a>
     </li>
@@ -118,7 +118,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               <li>
                 <Link
                   to="/languages"
-                  className="flex bg-bgRed px-8 py-2 rounded-full"
+                  className="flex bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
                 >
                   Explore Languages{getIcon('ChevronRight', 'fill-current h-6')}
                 </Link>
