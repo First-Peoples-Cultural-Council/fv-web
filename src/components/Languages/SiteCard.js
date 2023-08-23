@@ -7,9 +7,9 @@ import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import { MEMBERS } from 'common/constants'
 
-function SiteCard({ site }) {
+function SiteCard({ site, member = false }) {
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
-  const isLocked = site.visibility === MEMBERS
+  const isLocked = member ? false : site.visibility === MEMBERS.toLowerCase()
 
   const privateSiteModalOpenHandler = () => {
     setPrivateSiteModalOpen(true)
@@ -54,21 +54,10 @@ function SiteCard({ site }) {
         sm:align-middle sm:max-w-sm sm:w-full md:max-w-lg md:w-full"
         >
           <div className="text-l font-medium text-fv-charcoal">
-            <p className="text-xl">
-              Private sites are currently unavailable on the new FirstVoices.
-              Please try again later!
-            </p>
+            <p className="text-xl">{site.title} is Private</p>
             <p className="pt-2">
-              To view this site now, you can find it by visiting{' '}
-              <a
-                href="https://www.firstvoices.com/explore/FV/sections/Data/"
-                className="underline"
-              >
-                the old FirstVoices Explore Languages page
-              </a>{' '}
-              and clicking on the site name. You will need to be logged in as a
-              site member to see its private content. If you are not a member,
-              you can request to join on that page.
+              You need to be logged in and a registered member of this site to
+              see its content.
             </p>
           </div>
           <button
@@ -85,8 +74,9 @@ function SiteCard({ site }) {
 }
 
 // PROPTYPES
-const { any } = PropTypes
+const { bool, object } = PropTypes
 SiteCard.propTypes = {
-  site: any,
+  site: object,
+  member: bool,
 }
 export default SiteCard

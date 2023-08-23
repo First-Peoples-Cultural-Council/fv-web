@@ -16,7 +16,7 @@ function LanguagesPresentation({
       className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
       {/* USER SITES LANGUAGES SECTION */}
-      {userSitesList && userSitesList.length > 0 && (
+      {userSitesList?.length > 0 && (
         <div>
           <div className="mt-4 py-8 items-center">
             <SectionTitle.Presentation
@@ -25,15 +25,15 @@ function LanguagesPresentation({
             />
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
-            {userSitesList.map((site) => (
-              <SiteCard key={site.uid} site={site} />
+            {userSitesList?.map((site) => (
+              <SiteCard key={site.uid} site={site} member />
             ))}
           </div>
         </div>
       )}
 
       {/* EXPLORE LANGUAGES SECTION */}
-      {allSitesList && Object.keys(allSitesList).length > 0 && (
+      {allSitesList?.length > 0 && (
         <div>
           <div className="mt-4 py-8 items-center">
             <SectionTitle.Presentation
