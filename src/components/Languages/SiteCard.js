@@ -9,7 +9,7 @@ import { MEMBERS } from 'common/constants'
 
 function SiteCard({ site }) {
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
-  const isLocked = site.visibility === MEMBERS
+  const isLocked = site?.visibility === MEMBERS
 
   const privateSiteModalOpenHandler = () => {
     setPrivateSiteModalOpen(true)
