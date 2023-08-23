@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom'
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
-import SanitizedHtml from 'components/SanitizedHtml'
+import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, SMALL } from 'common/constants'
 
 function SongPresentationDrawer({ entry, sitename }) {
+  console.log({ entry })
   return (
     <div data-testid="SongPresentationDrawer">
       <div className="px-4 sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
@@ -86,8 +87,8 @@ function SongPresentationDrawer({ entry, sitename }) {
               INTRODUCTION
             </h4>
             <div className="text-fv-charcoal sm:col-span-2">
-              <SanitizedHtml className="mb-2" text={entry?.introduction} />
-              <SanitizedHtml text={entry?.introductionTranslation} />
+              <WysiwygBlock className="mb-2" jsonString={entry?.introduction} />
+              <WysiwygBlock jsonString={entry?.introductionTranslation} />
             </div>
           </div>
         )}

@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
 import SanitizedHtml from 'components/SanitizedHtml'
+import WysiwygBlock from 'components/WysiwygBlock'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
-  console.log({ entry })
   const hasMedia = !!(
     entry?.relatedImages.length > 0 || entry?.relatedVideos?.length > 0
   )
@@ -55,8 +55,11 @@ function SongPresentation({ entry }) {
               <div className="bg-gray-100 p-2 space-y-2 sm:space-y-4 lg:my-2">
                 <h4 className="font-bold text-fv-charcoal">INTRODUCTION</h4>
                 <div className="text-fv-charcoal">
-                  <SanitizedHtml className="mb-2" text={entry?.introduction} />
-                  <SanitizedHtml text={entry?.introductionTranslation} />
+                  <WysiwygBlock
+                    className="mb-2"
+                    jsonString={entry?.introduction}
+                  />
+                  <WysiwygBlock jsongString={entry?.introductionTranslation} />
                 </div>
               </div>
             )}
@@ -80,11 +83,11 @@ function SongPresentation({ entry }) {
                   key={lyric.id}
                   className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
                 >
-                  <SanitizedHtml text={lyric?.text} />
+                  <WysiwygBlock jsonString={lyric?.text} />
                   <div className="pl-5">
-                    <SanitizedHtml
+                    <WysiwygBlock
                       // eslint-disable-next-line react/no-array-index-key
-                      text={lyric.translation}
+                      jsonString={lyric.translation}
                     />
                   </div>
                 </div>
