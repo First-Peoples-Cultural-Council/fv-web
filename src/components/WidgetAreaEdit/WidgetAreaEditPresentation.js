@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import WidgetAddToDoc from 'components/WidgetAddToDoc'
+import WidgetBrowser from 'components/WidgetBrowser'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import SortableContainer from 'components/SortableContainer'
@@ -17,10 +17,11 @@ function WidgetAreaEditPresentation({
   widgetData,
   widgetIds,
   setWidgetIds,
-  destination,
+  destinationTitle,
+  handleAddWidget,
+  isHomepage,
 }) {
   const [addModalOpen, setAddModalOpen] = useState(false)
-  const [insertIndex] = useState(0)
 
   return (
     <div data-testid="WidgetAreaEdit">
@@ -31,7 +32,7 @@ function WidgetAreaEditPresentation({
               <div>
                 <p className="text-fv-charcoal-light">
                   The Widgets that appear on your{' '}
-                  <span className="italic font-bold">{destination?.title}</span>{' '}
+                  <span className="italic font-bold">{destinationTitle}</span>{' '}
                   page
                 </p>
               </div>
@@ -48,7 +49,7 @@ function WidgetAreaEditPresentation({
 
           <div className="grid grid-cols-8">
             <section
-              className="col-span-4 xl:col-span-3 h-4/5-screen overflow-y-auto space-y-3 px-3  pb-2"
+              className="col-span-4 xl:col-span-3 space-y-3 px-3  pb-2"
               aria-label="Widget List"
             >
               <SortableContainer.Presentation
@@ -66,7 +67,7 @@ function WidgetAreaEditPresentation({
                         type="button"
                         onClick={() => setCurrentWidget(widgetData?.[id])}
                         className={`${
-                          currentWidget?.uid === widgetData?.[id]?.uid
+                          currentWidget?.id === widgetData?.[id]?.id
                             ? 'border-4 border-primary'
                             : 'hover:bg-gray-50'
                         } bg-white flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
@@ -78,7 +79,7 @@ function WidgetAreaEditPresentation({
                               'w-12 h-12 fill-current text-primary',
                             )}
                           </div>
-                          <div className="flex items-center text-left col-span-3">
+                          <div className="flex items-center text-left col-span-5">
                             <div className="truncate">
                               <p className="text-lg font-bold text-primary">
                                 {getWidgetTypeLabel(widgetData?.[id]?.type)}
@@ -98,7 +99,7 @@ function WidgetAreaEditPresentation({
                       </button>
                       <div
                         className={`inline-flex ${
-                          currentWidget?.uid === widgetData?.[id]?.uid
+                          currentWidget?.id === widgetData?.[id]?.id
                             ? 'opacity-100'
                             : 'opacity-0'
                         }`}
@@ -114,7 +115,7 @@ function WidgetAreaEditPresentation({
               </SortableContainer.Presentation>
             </section>
 
-            <section className="col-span-4 xl:col-span-5 mr-5 h-4/5-screen overflow-y-auto px-2 pb-2">
+            <section className="col-span-4 xl:col-span-5 mr-5 px-2 pb-2">
               {/* Settings Pane rendered here */}
               {children}
             </section>
@@ -147,25 +148,27 @@ function WidgetAreaEditPresentation({
         isOpen={addModalOpen}
         closeHandler={() => setAddModalOpen(false)}
       >
-        <WidgetAddToDoc.Container
-          closeHandler={() => setAddModalOpen(false)}
-          destinationId={destination?.uid}
-          insertIndex={insertIndex}
+        <WidgetBrowser.Container
+          chooseWidgetHandler={handleAddWidget}
+          currentWidgets={widgetIds}
+          isHomepage={isHomepage}
         />
       </Modal.Presentation>
     </div>
   )
 }
 // PROPTYPES
-const { array, func, node, object } = PropTypes
+const { array, bool, func, node, object, string } = PropTypes
 WidgetAreaEditPresentation.propTypes = {
   children: node,
   widgetData: object,
   widgetIds: array,
-  destination: object,
+  destinationTitle: string,
   setWidgetIds: func,
   currentWidget: object,
   setCurrentWidget: func,
+  handleAddWidget: func,
+  isHomepage: bool,
 }
 
 export default WidgetAreaEditPresentation

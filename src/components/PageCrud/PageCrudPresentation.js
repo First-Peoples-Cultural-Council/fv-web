@@ -11,7 +11,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
   return (
     <div
       data-testid="PageCrudPresentation"
-      className="bg-gray-100 h-screen overflow-hidden"
+      className="bg-gray-100 min-h-screen"
     >
       {/* Page header */}
       <div className="w-full shadow-md">
@@ -48,7 +48,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container widgetAreaId={dataToEdit?.slug} />
+      <WidgetAreaEdit.Container pageSlug={dataToEdit?.slug} />
     </div>
   )
 }

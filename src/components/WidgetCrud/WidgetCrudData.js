@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -46,20 +45,6 @@ function WidgetCrudData() {
     deleteHandler: () => deleteWidget(data?.id),
     isLoading: !(!_widgetId || data),
   }
-}
-
-// PROPTYPES
-const { func, number, string } = PropTypes
-WidgetCrudData.propTypes = {
-  closeHandler: func,
-  insertIndex: number,
-  destinationId: string,
-}
-
-WidgetCrudData.defaultProps = {
-  closeHandler: () => {},
-  insertIndex: 0,
-  destinationId: '',
 }
 
 export default WidgetCrudData

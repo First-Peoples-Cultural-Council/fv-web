@@ -16,7 +16,7 @@ export function usePage({ pageSlug }) {
   const { sitename } = useParams()
   const response = useQuery(
     [PAGES, sitename, pageSlug],
-    () => api.pages.getPage({ sitename, pageSlug }),
+    () => api.pages.getPage({ sitename, slug: pageSlug }),
     { enabled: !!pageSlug },
   )
 
@@ -105,6 +105,32 @@ export function usePageInfoUpdate() {
   return { onSubmit }
 }
 
+export function usePageWidgetsUpdate({ pageSlug }) {
+  // update the widget list but not the other page details
+  const { sitename } = useParams()
+  const updatePage = async (formData) => {
+    const properties = {
+      widgets: formData?.widgets,
+    }
+    return api.pages.partialUpdate({
+      slug: pageSlug,
+      sitename,
+      properties,
+    })
+  }
+  const mutation = useMutationWithNotification({
+    mutationFn: updatePage,
+    redirectTo: `/${sitename}/dashboard/edit/page?slug=${pageSlug}`,
+    queryKeyToInvalidate: [PAGES, sitename],
+    actionWord: 'updated',
+    type: 'widget list',
+  })
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
+}
+
 export function usePageDelete() {
   const { sitename } = useParams()
   const deletePage = async (slug) =>
@@ -120,8 +146,8 @@ export function usePageDelete() {
     actionWord: 'deleted',
     type: 'page',
   })
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
+  const onSubmit = (pageSlug) => {
+    mutation.mutate(pageSlug)
   }
   return { onSubmit }
 }
