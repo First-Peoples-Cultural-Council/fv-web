@@ -6,7 +6,6 @@ import { Controller } from 'react-hook-form'
 import getIcon from 'common/utils/getIcon'
 import MediaCrud from 'components/MediaCrud'
 import MediaThumbnail from 'components/MediaThumbnail'
-import DocumentThumbnail from 'components/DocumentThumbnail'
 import Modal from 'components/Modal'
 import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
@@ -61,10 +60,6 @@ function AddMediaButton({ value, onChange, docType }) {
         />
       )}
       {docType === VIDEO && <MediaThumbnail.Video id={value} />}
-      {/* For all other types of documents. */}
-      {![AUDIO, IMAGE, VIDEO].includes(docType) && (
-        <DocumentThumbnail.Container docId={value} />
-      )}
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove

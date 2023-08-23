@@ -23,7 +23,7 @@ function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
         {label}
       </label>
       <div className="space-y-2 mt-2">
-        <div id="DocumentThumbnailGallery">
+        <div id="MediaThumbnailGallery">
           {value?.length > 0 &&
             value?.map((docId) => (
               <div
