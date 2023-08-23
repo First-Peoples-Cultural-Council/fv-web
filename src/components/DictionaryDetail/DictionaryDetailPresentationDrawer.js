@@ -205,25 +205,30 @@ function DictionaryDetailPresentationDrawer({
               {entry?.relatedVideos
                 ? entry?.relatedVideos?.map((video) => (
                     <div key={video?.id}>
+                      <div className="inline-flex rounded-lg overflow-hidden">
+                        <video
+                          className="shrink-0 w-full h-auto"
+                          src={getMediaPath({
+                            mediaObject: video,
+                            type: VIDEO,
+                            size: ORIGINAL,
+                          })}
+                          controls
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
                       <Disclosure>
-                        <Disclosure.Button>
-                          <div className="inline-flex rounded-lg overflow-hidden">
-                            <video
-                              className="shrink-0 w-full h-auto"
-                              src={getMediaPath({
-                                mediaObject: video,
-                                type: VIDEO,
-                                size: ORIGINAL,
-                              })}
-                              controls
-                            >
-                              Your browser does not support the video tag.
-                            </video>
+                        <div className="flex justify-end">
+                          <div className="border-2 z-10 bg-white w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full">
+                            <Disclosure.Button>
+                              <span>i</span>
+                            </Disclosure.Button>
                           </div>
-                        </Disclosure.Button>
+                        </div>
                         <Disclosure.Panel>
-                          {video?.['dc:title'] && (
-                            <div className="text-fv-charcoal">
+                          {video?.title && (
+                            <div className="text-fv-charcoal font-bold">
                               {video?.title}
                               {video?.description && (
                                 <span className="font-medium">
@@ -233,10 +238,10 @@ function DictionaryDetailPresentationDrawer({
                               )}
                             </div>
                           )}
-                          {video?.acknowledgment && (
+                          {video?.acknowledgement && (
                             <div className="text-fv-charcoal">
                               <span className="font-medium">
-                                Acknowledgement: {video?.acknowledgment}
+                                Acknowledgement: {video?.acknowledgement}
                               </span>
                             </div>
                           )}
