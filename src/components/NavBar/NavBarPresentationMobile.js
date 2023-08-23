@@ -41,7 +41,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
         ) : (
           <Link
             className="w-full my-3 p-1 flex items-center rounded"
-            to={`/${sitename + menuItem?.href}`}
+            to={`/${sitename + menuItem.href}`}
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
             <span className="ml-3 font-medium">{menuItem.title}</span>
@@ -119,9 +119,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
               ? selectedSubMenu?.itemsData.map((item) => generateMenuItem(item))
               : null}
             <li key="BackButton_id">
-              onClick={() => setIsSubMenuOpen(false)}
-              {/* eslint-disable-next-line */}
-              <a
+              <button
                 type="button"
                 onClick={() => setIsSubMenuOpen(false)}
                 onKeyDown={() => setIsSubMenuOpen(false)}
@@ -129,7 +127,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
               >
                 {getIcon('ChevronLeft', 'fill-current h-12 w-8')}
                 <span className="ml-3 font-medium">Back</span>
-              </a>
+              </button>
             </li>
           </ul>
         </div>
