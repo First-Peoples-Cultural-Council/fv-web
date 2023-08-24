@@ -6,17 +6,17 @@ import { useSiteStore } from 'context/SiteContext'
 import { usePage } from 'common/dataHooks/usePages'
 import { IMAGE, VIDEO } from 'common/constants'
 
-function PageData({ url }) {
+function PageData({ pageSlug }) {
   const { site } = useSiteStore()
   const { logoPathMedium } = site
-  const { pageUrl, sitename } = useParams()
+  const { slug, sitename } = useParams()
   const navigate = useNavigate()
 
-  const urlToUse = url || pageUrl
+  const slugToUse = pageSlug || slug
 
   // Data fetch
   const { data, error, isError, isFetched } = usePage({
-    pageSlug: pageUrl,
+    pageSlug: slugToUse,
   })
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function PageData({ url }) {
       background,
       backgroundType,
       logoPath:
-        urlToUse === 'our-language' || urlToUse === 'our-people'
+        slugToUse === 'our-language' || slugToUse === 'our-people'
           ? logoPathMedium
           : null,
     },
