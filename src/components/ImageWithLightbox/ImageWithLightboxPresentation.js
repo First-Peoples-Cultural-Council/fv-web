@@ -68,7 +68,7 @@ ImageWithLightboxPresentation.propTypes = {
 }
 
 ImageWithLightboxPresentation.defaultProps = {
-  imgStyling: 'h-auto w-full',
+  imgStyling: 'h-auto w-full object-cover object-center',
 }
 
 export default ImageWithLightboxPresentation
