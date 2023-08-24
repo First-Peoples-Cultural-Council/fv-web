@@ -192,10 +192,7 @@ function DictionaryDetailPresentationDrawer({
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
                           <div className="inline-flex rounded-lg overflow-hidden cursor-pointer">
-                            <ImageWithLightbox.Presentation
-                              maxWidth={560}
-                              image={image}
-                            />
+                            <ImageWithLightbox.Presentation image={image} />
                           </div>
                         </div>
                       </div>

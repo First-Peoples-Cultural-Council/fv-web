@@ -17,10 +17,7 @@ function StoryPresentation({ entry }) {
       {entry?.coverVisual?.type === IMAGE && (
         <div className="grid grid-cols-2 md:gap-4 bg-white overflow-hidden shadow-lg">
           <div className="col-span-2 md:col-span-1 flex max-h-screen">
-            <ImageWithLightbox.Presentation
-              maxWidth={1000}
-              image={coverMedia}
-            />
+            <ImageWithLightbox.Presentation image={coverMedia} />
           </div>
           <div className="col-span-2 md:col-span-1 flex items-center ">
             <div className="px-4 py-2 md:p-6 space-y-4">

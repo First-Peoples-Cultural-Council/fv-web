@@ -11,7 +11,7 @@ function ImageThumbnail(props) {
   const { id, size, alt, containerStyles, imageStyles, ...other } = props
 
   const { sitename } = useParams()
-  const [src, setSrc] = useState('')
+  const [src, setSrc] = useState()
 
   const mediaObject = useImageObject({ sitename, id })
 
@@ -29,7 +29,7 @@ function ImageThumbnail(props) {
   }, [src, setSrc, mediaObject, size])
 
   return (
-    <div className={containerStyles}>
+    <div id="MediaThumbnailImage" className={containerStyles}>
       <img
         src={src}
         alt={alt || mediaObject?.title}

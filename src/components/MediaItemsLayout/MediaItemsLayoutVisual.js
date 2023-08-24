@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { IMAGE, VIDEO } from 'common/constants'
-import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
+import { mediaAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 import getIcon from 'common/utils/getIcon'
 function MediaItemsLayoutVisual({
   data,
@@ -29,7 +29,7 @@ function MediaItemsLayoutVisual({
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
                 {page.results.map((rawDocument) => {
-                  const doc = mediaDataAdaptor({
+                  const doc = mediaAdaptor({
                     type: docType,
                     data: rawDocument,
                   })
@@ -48,8 +48,8 @@ function MediaItemsLayoutVisual({
                         } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden`}
                       >
                         <img
-                          src={`${doc?.thumbnail}`}
-                          alt={`${doc?.title}`}
+                          src={doc?.thumbnail}
+                          alt={doc?.title}
                           className={`${
                             doc?.id === currentFile?.id
                               ? ''
