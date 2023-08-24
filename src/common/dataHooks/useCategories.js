@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { CATEGORIES } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { categoryForApi } from 'common/dataAdaptors/categoriesAdaptors'
 
 export function useCategory({ id }) {
   const { sitename } = useParams()
@@ -52,11 +53,7 @@ export function useCategoryCreate() {
   const { sitename } = useParams()
 
   const createCategory = async (formData) => {
-    const properties = {
-      title: formData?.title || null,
-      description: formData?.description || null,
-      parentId: formData?.parentId || null,
-    }
+    const properties = categoryForApi(formData)
     return api.categories.create({
       sitename,
       properties,
@@ -80,11 +77,7 @@ export function useCategoryUpdate() {
   const { sitename } = useParams()
 
   const updateCategory = async (formData) => {
-    const properties = {
-      title: formData?.title || null,
-      description: formData?.description || null,
-      parentId: formData?.parentId || null,
-    }
+    const properties = categoryForApi(formData)
     return api.categories.update({
       id: formData?.id,
       sitename,
@@ -100,9 +93,7 @@ export function useCategoryUpdate() {
     type: 'category',
   })
 
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
-  }
+  const onSubmit = (formData) => mutation.mutate(formData)
   return { onSubmit }
 }
 
