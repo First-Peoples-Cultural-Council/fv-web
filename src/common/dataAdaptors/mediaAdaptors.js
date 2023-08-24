@@ -1,6 +1,6 @@
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
-const mediaDataAdaptor = ({ type, data }) => {
+export const mediaAdaptor = ({ type, data }) => {
   if (!data) {
     return null
   }
@@ -46,5 +46,3 @@ const mediaDataAdaptor = ({ type, data }) => {
 
   return { ...data, message: 'NOT a media document' }
 }
-
-export default mediaDataAdaptor
