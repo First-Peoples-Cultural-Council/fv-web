@@ -101,13 +101,13 @@ function SiteFrame({ siteLoading }) {
             <Route path="disclaimer" element={<Disclaimer />} />
             <Route
               path="our-language"
-              element={<Page.Container url="our-language" />}
+              element={<Page.Container pageSlug="our-language" />}
             />
             <Route
               path="our-people"
-              element={<Page.Container url="our-people" />}
+              element={<Page.Container pageSlug="our-people" />}
             />
-            <Route path="custom/:pageUrl" element={<Page.Container />} />
+            <Route path="custom/:slug" element={<Page.Container />} />
             <Route path="error" element={<ErrorHandler.Container />} />
             <Route path="" element={<Home.Container />} />
             <Route
