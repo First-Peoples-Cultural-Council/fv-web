@@ -6,16 +6,7 @@ import simpleSvgPlaceholder from 'common/utils/simpleSvgPlaceholder'
 import { IMAGE, MEDIUM, ORIGINAL, SMALL, THUMBNAIL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
-function LazyImage({
-  alt,
-  imageObject,
-  bgColor,
-  height,
-  width,
-  imgStyling,
-  onClick,
-  label,
-}) {
+function LazyImage({ alt, imageObject, bgColor, height, width, imgStyling }) {
   const [loaded, setLoaded] = useState(false)
   const imgRef = useRef()
 
@@ -67,11 +58,7 @@ function LazyImage({
   const aspectRatio = width / height
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`relative overflow-hidden ${imgStyling}`}
-    >
+    <div className={`relative overflow-hidden ${imgStyling}`}>
       <div style={{ paddingBottom: `${100 / aspectRatio}%` }} />
       <img src={placeholder} alt="Placeholder" aria-hidden="true" />
       <img
@@ -84,27 +71,16 @@ function LazyImage({
           loaded ? 'opacity-1' : 'opacity-0'
         }`}
       />
-      {label && (
-        <button
-          type="button"
-          onClick={onClick}
-          className="absolute border-2 z-10 bg-white w-4 h-4 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full"
-        >
-          {label}
-        </button>
-      )}
-    </button>
+    </div>
   )
 }
 
 // PROPTYPES
-const { func, number, object, string } = PropTypes
+const { number, object, string } = PropTypes
 LazyImage.propTypes = {
   alt: string,
-  label: string,
   imageObject: object,
   imgStyling: string,
-  onClick: func,
   height: number,
   width: number,
   bgColor: string,
@@ -113,7 +89,6 @@ LazyImage.propTypes = {
 LazyImage.defaultProps = {
   alt: '',
   imgStyling: 'w-full h-auto',
-  onClick: null,
 }
 
 export default LazyImage
