@@ -79,7 +79,7 @@ function PageBannerPresentation({
               } hidden md:flex`}
             >
               <img
-                className="h-16 w-auto xl:h-28 xl:w-auto rounded-full mx-auto"
+                className="w-24 md:w-32 lg:w-44 h-24 md:h-32 lg:h-44 rounded-full"
                 src={logoPath}
                 alt={`${site?.title} Logo`}
                 loading="lazy"
