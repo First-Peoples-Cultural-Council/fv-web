@@ -48,8 +48,8 @@ function MediaItemsLayoutVisual({
                         } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden`}
                       >
                         <img
-                          src={`${doc?.thumbnail}`}
-                          alt={`${doc?.title}`}
+                          src={doc?.thumbnail}
+                          alt={doc?.title}
                           className={`${
                             doc?.id === currentFile?.id
                               ? ''
