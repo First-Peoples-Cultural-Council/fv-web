@@ -72,9 +72,8 @@ export function usePageCreate() {
     type: 'page',
   })
 
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
-  }
+  const onSubmit = (formData) => mutation.mutate(formData)
+
   return { onSubmit }
 }
 
@@ -125,9 +124,7 @@ export function usePageWidgetsUpdate({ pageSlug }) {
     actionWord: 'updated',
     type: 'widget list',
   })
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
-  }
+  const onSubmit = (formData) => mutation.mutate(formData)
   return { onSubmit }
 }
 
