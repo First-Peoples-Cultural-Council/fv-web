@@ -13,7 +13,6 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
           <div key={image.id} className="w-full inline-flex p-2">
             <ImageWithLightbox.Presentation
               imgStyling="object-contain rounded-lg w-full h-auto"
-              maxWidth={1000}
               image={image}
             />
           </div>
