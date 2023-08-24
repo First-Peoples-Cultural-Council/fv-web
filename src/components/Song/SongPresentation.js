@@ -109,15 +109,11 @@ function SongPresentation({ entry }) {
 }
 
 const getMedia = ({ pictures, videos }) => (
-  <div>
+  <div className="space-y-4">
     {pictures.length > 0 && (
       <div className="space-y-4">
         {pictures?.map((picture) => (
-          <ImageWithLightbox.Presentation
-            maxWidth={1000}
-            image={picture}
-            key={picture.id}
-          />
+          <ImageWithLightbox.Presentation image={picture} key={picture.id} />
         ))}
       </div>
     )}

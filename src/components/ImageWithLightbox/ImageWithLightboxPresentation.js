@@ -3,23 +3,29 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Modal from 'components/Modal'
-import LazyImage from 'components/LazyImage'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { IMAGE, ORIGINAL } from 'common/constants'
+import { IMAGE, ORIGINAL, SMALL } from 'common/constants'
 
-function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
+function ImageWithLightboxPresentation({ image, imgStyling }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   return (
     <>
-      <LazyImage
-        imgStyling={imgStyling}
-        width={maxWidth}
-        onClick={() => setLightboxOpen(true)}
-        imageObject={image}
-        label="i"
-        forceLoad
+      <img
+        className={imgStyling}
+        src={getMediaPath({
+          mediaObject: image,
+          type: IMAGE,
+          size: SMALL,
+        })}
         alt={image?.title}
       />
+      <button
+        type="button"
+        onClick={() => setLightboxOpen(true)}
+        className="absolute border-2 z-10 bg-white w-6 h-6 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full"
+      >
+        i
+      </button>
       {/* Lightbox Modal */}
       <Modal.Presentation
         isOpen={lightboxOpen}
@@ -55,15 +61,13 @@ function ImageWithLightboxPresentation({ image, maxWidth, imgStyling }) {
   )
 }
 // PROPTYPES
-const { object, string, number } = PropTypes
+const { object, string } = PropTypes
 ImageWithLightboxPresentation.propTypes = {
-  maxWidth: number,
   imgStyling: string,
   image: object,
 }
 
 ImageWithLightboxPresentation.defaultProps = {
-  maxWidth: 1920,
   imgStyling: 'h-auto w-full',
 }
 
