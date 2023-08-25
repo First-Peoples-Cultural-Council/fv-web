@@ -7,8 +7,8 @@ import WidgetArea from 'components/WidgetArea'
 import PageBanner from 'components/PageBanner'
 import ErrorHandler from 'components/ErrorHandler'
 
-function PageContainer({ url }) {
-  const { banner, title, subtitle, widgets, notFound } = PageData({ url })
+function PageContainer({ pageSlug }) {
+  const { banner, title, subtitle, widgets, notFound } = PageData({ pageSlug })
   const { background, backgroundType, logoPath } = banner
   return notFound ? (
     <ErrorHandler.Container
@@ -42,7 +42,7 @@ function PageContainer({ url }) {
 // PROPTYPES
 const { string } = PropTypes
 PageContainer.propTypes = {
-  url: string,
+  pageSlug: string,
 }
 
 export default PageContainer
