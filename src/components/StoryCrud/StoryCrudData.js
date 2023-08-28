@@ -1,10 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
 
 // FPCC
-import api from 'services/api'
-import { isUUID } from 'common/utils/stringHelpers'
-import { DOC_STORY } from 'common/constants'
+import { useStory } from 'common/dataHooks/useStories'
 
 function StoryCrudData() {
   const [searchParams] = useSearchParams()
@@ -13,18 +10,9 @@ function StoryCrudData() {
     : 0
   const storyId = searchParams.get('id') || null
 
-  const { data } = useQuery(
-    [DOC_STORY, storyId],
-    () =>
-      api.document.get({
-        id: storyId,
-        properties: '*',
-        contextParameters: 'ancestry,permissions,book',
-      }),
-    {
-      enabled: isUUID(storyId),
-    },
-  )
+  const { data } = useStory({
+    id: storyId,
+  })
 
   return {
     activeStep: Number(activeStep),
