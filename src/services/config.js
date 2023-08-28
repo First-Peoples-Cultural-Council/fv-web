@@ -9,11 +9,13 @@ export const apiV1 = ky.create({
   timeout: 60000,
 })
 
-export const apiBase = ky.create({
-  prefixUrl: GlobalConfiguration.API_URL,
-  timeout: 60000,
-  headers: getAuthHeaderIfTokenExists(),
-})
+export function apiBase() {
+  return ky.create({
+    prefixUrl: GlobalConfiguration.API_URL,
+    timeout: 60000,
+    headers: getAuthHeaderIfTokenExists(),
+  })
+}
 
 export const externalApi = ky.create({
   timeout: 60000,

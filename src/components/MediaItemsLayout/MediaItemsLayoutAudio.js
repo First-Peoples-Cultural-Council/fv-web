@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
+import { mediaAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
 import { AUDIO } from 'common/constants'
@@ -50,7 +50,7 @@ function MediaItemsLayoutAudio({
               {data?.pages?.map((page) => (
                 <React.Fragment key={page?.nextPage}>
                   {page.results.map((rawAudioDoc) => {
-                    const audioFile = mediaDataAdaptor({
+                    const audioFile = mediaAdaptor({
                       type: AUDIO,
                       data: rawAudioDoc,
                     })

@@ -8,7 +8,7 @@ import { useSiteStore } from 'context/SiteContext'
 import api from 'services/api'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import mediaDataAdaptor from 'common/utils/mediaDataAdaptor'
+import { mediaAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function MediaBrowserData({ docType }) {
@@ -78,7 +78,7 @@ function MediaBrowserData({ docType }) {
 
   useEffect(() => {
     if (!currentFile && data?.pages?.[0]?.results) {
-      const firstFile = mediaDataAdaptor({
+      const firstFile = mediaAdaptor({
         type: docType,
         data: data?.pages?.[0]?.results?.[0],
       })

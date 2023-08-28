@@ -19,10 +19,10 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   switch (type) {
     case AUDIO:
       return mediaObject?.original?.path
-
     case VIDEO:
-    case IMAGE:
       return mediaObject?.[size]?.path
+    case IMAGE:
+      return mediaObject?.[size]?.path || mediaObject?.original?.path
 
     default:
       return 'The media type supplied is not recognised by the getMediaPath helper'
