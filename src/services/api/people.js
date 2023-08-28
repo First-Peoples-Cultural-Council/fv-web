@@ -3,13 +3,13 @@ import { SITES, PEOPLE } from 'common/constants'
 
 const people = {
   get: async ({ sitename, id }) =>
-    apiBase.get(`${SITES}/${sitename}/${PEOPLE}/${id}`).json(),
+    apiBase().get(`${SITES}/${sitename}/${PEOPLE}/${id}`).json(),
   create: async ({ sitename, properties }) => {
     const body = {
       name: properties?.name,
       bio: properties?.bio,
     }
-    return apiBase
+    return apiBase()
       .post(`${SITES}/${sitename}/${PEOPLE}/`, { json: body })
       .json()
   },
@@ -18,14 +18,14 @@ const people = {
       name: properties?.name || null,
       bio: properties?.bio || null,
     }
-    return apiBase
+    return apiBase()
       .put(`${SITES}/${sitename}/${PEOPLE}/${id}`, { json: body })
       .json()
   },
   delete: async ({ sitename, id }) =>
-    apiBase.delete(`${SITES}/${sitename}/${PEOPLE}/${id}`).json(),
+    apiBase().delete(`${SITES}/${sitename}/${PEOPLE}/${id}`).json(),
   getAll: async ({ sitename }) =>
-    apiBase.get(`${SITES}/${sitename}/${PEOPLE}/`).json(),
+    apiBase().get(`${SITES}/${sitename}/${PEOPLE}/`).json(),
 }
 
 export default people
