@@ -21,7 +21,7 @@ import {
 
 import Alphabet from 'components/Alphabet'
 import WidgetApps from 'components/WidgetApps'
-import WidgetContactUs from 'components/WidgetContactUs'
+// import WidgetContactUs from 'components/WidgetContactUs'
 import Gallery from 'components/Gallery'
 import WidgetIframe from 'components/WidgetIframe'
 import WidgetKeyboards from 'components/WidgetKeyboards'
@@ -31,7 +31,7 @@ import WidgetText from 'components/WidgetText'
 import WidgetTextConcise from 'components/WidgetTextConcise'
 import WidgetTextFull from 'components/WidgetTextFull'
 import WidgetTextIcons from 'components/WidgetTextIcons'
-import WidgetStats from 'components/WidgetStats'
+// import WidgetStats from 'components/WidgetStats'
 import WidgetWordOfTheDay from 'components/WidgetWordOfTheDay'
 
 function WidgetPresentation({ data, type }) {
@@ -42,8 +42,9 @@ function WidgetPresentation({ data, type }) {
     case WIDGET_APPS:
       return <WidgetApps.Container widgetData={data} />
 
-    case WIDGET_CONTACT:
-      return <WidgetContactUs.Container widgetData={data} />
+    // hiding for FW-4713
+    // case WIDGET_CONTACT:
+    //   return <WidgetContactUs.Container widgetData={data} />
 
     case WIDGET_GALLERY:
       return <Gallery.Container widgetData={data} />
@@ -60,8 +61,9 @@ function WidgetPresentation({ data, type }) {
     case WIDGET_QUOTES:
       return <WidgetQuotes.Presentation widgetData={data} />
 
-    case WIDGET_STATS:
-      return <WidgetStats.Container />
+    // hiding for FW-4712
+    // case WIDGET_STATS:
+    //   return <WidgetStats.Container />
 
     case WIDGET_TEXT:
       return <WidgetText.Presentation widgetData={data} />
