@@ -3,7 +3,7 @@ import { CHARACTERS, SITES } from 'common/constants'
 
 const characters = {
   get: async ({ sitename, id }) =>
-    apiBase.get(`${SITES}/${sitename}/${CHARACTERS}/${id}`).json(),
+    apiBase().get(`${SITES}/${sitename}/${CHARACTERS}/${id}`).json(),
   partialUpdate: async ({ sitename, id, properties }) => {
     const body = {
       related_audio: properties?.relatedAudio,
@@ -12,12 +12,12 @@ const characters = {
       note: properties?.note,
       related_dictionary_entries: properties?.relatedDictionaryEntries,
     }
-    return apiBase
+    return apiBase()
       .patch(`${SITES}/${sitename}/${CHARACTERS}/${id}`, { json: body })
       .json()
   },
   getAll: async ({ sitename }) =>
-    apiBase.get(`${SITES}/${sitename}/${CHARACTERS}/`).json(),
+    apiBase().get(`${SITES}/${sitename}/${CHARACTERS}/`).json(),
 }
 
 export default characters
