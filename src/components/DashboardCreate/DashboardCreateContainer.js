@@ -13,12 +13,7 @@ import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
 import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
-import {
-  ASSISTANT,
-  EDITOR,
-  LANGUAGE_ADMIN,
-  SUPER_ADMIN,
-} from 'common/constants/roles'
+import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCreateContainer() {
   const { tileContent, headerContent, site } = DashboardCreateData()
@@ -60,7 +55,7 @@ function DashboardCreateContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth siteMembership={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <StoryCrud.Container />
             </RequireAuth>
           }
