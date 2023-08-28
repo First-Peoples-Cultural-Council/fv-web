@@ -3,7 +3,7 @@ import { SEARCH, SITES } from 'common/constants'
 
 const search = {
   get: async ({ sitename, searchParams, page, perPage = 48 }) =>
-    apiBase
+    apiBase()
       .get(
         `${SITES}/${sitename}/${SEARCH}/?${searchParams}&page=${page}&pageSize=${perPage}`,
       )

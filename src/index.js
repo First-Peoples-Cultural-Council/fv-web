@@ -37,6 +37,7 @@ const oidcConfig = {
   client_id: GlobalConfiguration.AWS_CLIENT_ID,
   redirect_uri: GlobalConfiguration.OAUTH2_REDIRECT_URL,
   userStore: new WebStorageStateStore({ store: window.localStorage }),
+  automaticSilentRenew: true,
   onSigninCallback: () => {
     // redirect to original location
     const url = window.sessionStorage.getItem(ORIGINAL_DESTINATION)

@@ -1,16 +1,18 @@
 import makeStore from 'context/makeStore'
 import { LANGUAGE_ADMIN, EDITOR, ASSISTANT } from 'common/constants/roles'
 
+const anonymousUser = {
+  isAnonymous: true,
+  userInitials: '',
+  displayName: 'Guest',
+  isTeam: false,
+  isLanguageAdmin: false,
+  isSuperAdmin: false,
+  roles: [],
+}
+
 export const userInitialState = {
-  user: {
-    firstName: 'Guest',
-    lastName: 'User',
-    username: 'Guest',
-    userInitials: 'GU',
-    displayName: 'Guest User',
-    groups: [],
-    roles: {},
-  },
+  user: anonymousUser,
   isLoading: true,
 }
 
@@ -60,17 +62,8 @@ function getRoles(memberships) {
 }
 
 const userDataAdaptor = (data) => {
-  if (!data?.profile) {
-    // anonymous user
-    return {
-      isAnonymous: true,
-      userInitials: '',
-      displayName: 'Guest',
-      isTeam: false,
-      isLanguageAdmin: false,
-      isSuperAdmin: false,
-      roles: [],
-    }
+  if (!data?.auth?.isAuthenticated) {
+    return anonymousUser
   }
 
   // authenticated user
@@ -82,7 +75,7 @@ const userDataAdaptor = (data) => {
     Object.values(roles).some((r) => r === ASSISTANT || r === EDITOR)
 
   // pull names from standard oidc claims in the user profile
-  const userProfile = data?.profile
+  const userProfile = data?.auth?.user?.profile
   const firstName = userProfile?.given_name || ''
   const lastName = userProfile?.family_name || ''
   const fullName = userProfile?.name || [firstName, lastName].join(' ') || ''

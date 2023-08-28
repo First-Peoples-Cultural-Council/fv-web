@@ -21,7 +21,7 @@ function getUser() {
 export const getAuthHeaderIfTokenExists = () => {
   const user = getUser()
 
-  if (user != null) {
+  if (user != null && !user?.expired) {
     return {
       Authorization: `Bearer ${user.access_token}`,
     }
