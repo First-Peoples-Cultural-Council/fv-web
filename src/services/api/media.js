@@ -26,7 +26,7 @@ const media = {
       .get(`${SITES}/${sitename}/${AUDIO_PATH}/${id}`)
       .json(),
   getImage: async ({ sitename, id }) =>
-    apiBase()().get(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
+    apiBase().get(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
   getVideo: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
   getMediaDocument: async ({ sitename, docId, docType }) =>

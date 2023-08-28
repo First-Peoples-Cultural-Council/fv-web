@@ -16,18 +16,24 @@ function AppData() {
   } = useMySites()
 
   useEffect(() => {
-    if (
-      auth.isLoading === false &&
-      !auth.error &&
-      userRolesIsLoading === false &&
-      userRolesError === null
-    ) {
-      userDispatch({
-        type: 'SET',
-        data: { profile: auth?.user?.profile, memberships: mySitesData },
-      })
+    if (auth.isLoading === false && !auth.error) {
+      if (auth.user?.expired) {
+        auth.removeUser()
+      }
+      if (userRolesIsLoading === false && userRolesError === null) {
+        userDispatch({
+          type: 'SET',
+          data: { auth, memberships: mySitesData },
+        })
+      }
     }
-  }, [auth.isLoading, auth.error, userRolesIsLoading, userRolesError])
+  }, [
+    auth.isLoading,
+    auth.error,
+    auth.user?.expired,
+    userRolesIsLoading,
+    userRolesError,
+  ])
 
   return {
     appIsLoading: auth.isLoading,
