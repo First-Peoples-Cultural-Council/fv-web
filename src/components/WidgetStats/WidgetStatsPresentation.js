@@ -13,7 +13,7 @@ function WidgetStatsPresentation({ data }) {
     : 'text-4xl md:text-5xl lg:text-6xl font-medium opacity-0'
   const labelStyling = 'text-base font-thin'
   return (
-    <section className="bg-tertiaryA pt-3 md:pt-6 hidden">
+    <section className="bg-tertiaryA pt-3 md:pt-6">
       <div className="mx-5 lg:mx-10 mb-2 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation
           title={data?.header}
