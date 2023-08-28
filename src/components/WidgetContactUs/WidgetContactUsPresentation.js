@@ -81,7 +81,7 @@ function ContactUsPresentation({
 
   return (
     <section
-      className="py-3 md:py-6 bg-white"
+      className="py-3 md:py-6 bg-white hidden"
       data-testid="ContactUsPresentationWidget"
     >
       <div className="mx-5 lg:mx-10 mb-1 md:mb-4">
