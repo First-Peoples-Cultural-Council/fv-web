@@ -75,11 +75,11 @@ function useSearchLoader({ searchParams }) {
   // Fetch search results
   const response = useInfiniteQuery(
     [SEARCH, sitename, searchParamString],
-    ({ page = 1 }) =>
+    ({ pageParam = 1 }) =>
       api.search.get({
         sitename,
         searchParams: searchParamString,
-        page,
+        pageParam,
       }),
     {
       enabled: !!sitename,

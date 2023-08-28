@@ -15,7 +15,7 @@ function DictionaryCrudData() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  const backHandler = () => navigate(-1)
+  const backHandler = () => navigate('..')
 
   const entryId = searchParams.get('id') || null
 

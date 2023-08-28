@@ -23,8 +23,8 @@ function CategoryCrudData() {
     useCategory({ id: categoryId })
 
   const getParentCategoryOptions = () => {
-    // If a category with no children allow assigning/changing a parent
-    if (categoryData?.children?.length < 1) {
+    // If a category with no children or a new category allow assigning/changing a parent
+    if (categoryData?.children?.length < 1 || !categoryId) {
       const categories = data?.results
         ? data?.results?.map((result) => {
             const category = { label: result?.title, value: result?.id }
