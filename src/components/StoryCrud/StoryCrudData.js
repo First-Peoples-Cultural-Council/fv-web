@@ -16,8 +16,7 @@ function StoryCrudData() {
 
   return {
     activeStep: Number(activeStep),
-    storyId,
-    storyState: data?.state || 'New',
+    storyData: data,
   }
 }
 

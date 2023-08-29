@@ -9,7 +9,11 @@ import useEditForm from 'common/hooks/useEditForm'
 import { DOC_AUDIO } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 
-function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
+function StoryCoverCrudPresentation({
+  dataToEdit,
+  onNextClick,
+  submitHandler,
+}) {
   const validator = yup.object().shape({
     title: definitions
       .paragraph({ charCount: 120 })
@@ -42,19 +46,28 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     kidFriendly: 'true',
   }
 
-  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  // pageOrder
+
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isDirty,
+    isValid,
+    register,
+    reset,
+    trigger,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   const stepCallback = () => {
     trigger()
     if (isValid) {
-      // For now, always save before moving to Story Pages ensuring that the cover has been converted to V2
-      // otherwise reordering pages will set the cover to modifiedv2 without the cover having been converted
-      handleSubmit(submitHandler)()
+      if (isDirty) handleSubmit(submitHandler)()
+      else onNextClick()
     }
   }
 
@@ -189,6 +202,7 @@ const { func, object } = PropTypes
 StoryCoverCrudPresentation.propTypes = {
   submitHandler: func,
   dataToEdit: object,
+  onNextClick: func,
 }
 
 export default StoryCoverCrudPresentation

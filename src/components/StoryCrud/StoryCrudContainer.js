@@ -9,7 +9,7 @@ import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 import StoryPreviewCrud from 'components/StoryPreviewCrud'
 
 function StoryCrudContainer() {
-  const { activeStep } = StoryCrudData()
+  const { activeStep, storyData } = StoryCrudData()
 
   function getStepContent(step) {
     switch (step) {
@@ -37,7 +37,7 @@ function StoryCrudContainer() {
         )
       case 0:
       default:
-        return <StoryCoverCrud.Container />
+        return <StoryCoverCrud.Container storyData={storyData} />
     }
   }
 
