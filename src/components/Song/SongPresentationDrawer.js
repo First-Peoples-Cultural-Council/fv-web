@@ -6,10 +6,9 @@ import { Link } from 'react-router-dom'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
 import WysiwygBlock from 'components/WysiwygBlock'
-import { IMAGE, VIDEO, SMALL } from 'common/constants'
+import { IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 
 function SongPresentationDrawer({ entry, sitename }) {
-  console.log({ entry })
   return (
     <div data-testid="SongPresentationDrawer">
       <div className="px-4 sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
@@ -41,14 +40,14 @@ function SongPresentationDrawer({ entry, sitename }) {
           />
         </div>
       )}
-      {entry.coverVisual?.type === 'video' && (
+      {entry.relatedVideos && (
         <div className="my-2 md:my-6 flex mx-auto px-4">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
             src={getMediaPath({
               type: VIDEO,
-              mediaObject: entry?.coverVisual,
-              size: SMALL,
+              mediaObject: entry?.relatedVideos[0],
+              size: ORIGINAL,
             })}
             controls
           >
