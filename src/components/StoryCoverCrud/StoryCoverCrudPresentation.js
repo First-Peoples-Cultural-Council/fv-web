@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { DOC_AUDIO } from 'common/constants'
+import { AUDIO, VIDEO, IMAGE } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 
 function StoryCoverCrudPresentation({
@@ -22,9 +22,9 @@ function StoryCoverCrudPresentation({
     author: yup.string(),
     intro: definitions.wysiwyg({ charCount: 1200 }),
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
-    audio: definitions.idArray(),
-    images: definitions.idArray(),
-    videos: definitions.idArray(),
+    relatedAudio: definitions.idArray(),
+    relatedImages: definitions.idArray(),
+    relatedVideos: definitions.idArray(),
     acknowledgments: yup.array().of(yup.string()),
   })
 
@@ -34,15 +34,14 @@ function StoryCoverCrudPresentation({
     title: '',
     titleTranslation: [],
     author: '',
-    videos: [],
-    images: [],
-    cover: {},
+    relatedVideos: [],
+    relatedImages: [],
     // Introduction
     intro: '',
     introTranslation: '',
     acknowledgements: [],
     notes: [],
-    audio: [],
+    relatedAudio: [],
     kidFriendly: 'true',
   }
 
@@ -138,13 +137,43 @@ function StoryCoverCrudPresentation({
               <div className="w-full">
                 <Form.MediaArrayField
                   label="Audio"
-                  nameId="audio"
+                  nameId="relatedAudio"
                   control={control}
-                  type={DOC_AUDIO}
+                  type={AUDIO}
                   maxItems={3}
                 />
                 {errors?.relatedAudio && (
-                  <div className="text-red-500">{errors?.audio?.message}</div>
+                  <div className="text-red-500">
+                    {errors?.relatedAudio?.message}
+                  </div>
+                )}
+              </div>
+              <div className="w-full">
+                <Form.MediaArrayField
+                  label="Videos"
+                  nameId="relatedVideos"
+                  control={control}
+                  type={VIDEO}
+                  maxItems={1}
+                />
+                {errors?.relatedVideos && (
+                  <div className="text-red-500">
+                    {errors?.relatedVideos?.message}
+                  </div>
+                )}
+              </div>
+              <div className="w-full">
+                <Form.MediaArrayField
+                  label="Images"
+                  nameId="relatedImages"
+                  control={control}
+                  type={IMAGE}
+                  maxItems={1}
+                />
+                {errors?.relatedImages && (
+                  <div className="text-red-500">
+                    {errors?.relatedImages?.message}
+                  </div>
                 )}
               </div>
 
@@ -178,16 +207,6 @@ function StoryCoverCrudPresentation({
                   ]}
                 />
               </div>
-            </div>
-            <div className="col-span-5 space-y-4">
-              <Form.SelectOneMedia
-                label="Add a Cover Media"
-                nameId="cover"
-                control={control}
-              />
-              {errors?.cover && (
-                <div className="text-red-500">{errors?.cover?.message}</div>
-              )}
             </div>
           </div>
         </form>
