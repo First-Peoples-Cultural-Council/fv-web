@@ -31,8 +31,13 @@ const media = {
     apiBase().get(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
   getMediaDocument: async ({ sitename, docId, docType }) =>
     apiBase().get(`${SITES}/${sitename}/${docType}/${docId}`).json(),
-  getUploadEndpoint: (sitename, docType) =>
-    `${GlobalConfiguration.API_URL}${SITES}/${sitename}/${docType}`,
+  getUploadEndpoint: (sitename, docType) => {
+    const url = new URL(
+      `${SITES}/${sitename}/${docType}`,
+      GlobalConfiguration.API_URL,
+    )
+    return url.href
+  },
   uploadAudio: async ({ sitename, data }) =>
     apiBase().post(`${SITES}/${sitename}/${AUDIO}`, { body: data }).json(),
 }
