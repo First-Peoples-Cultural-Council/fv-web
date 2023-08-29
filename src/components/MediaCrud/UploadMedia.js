@@ -60,6 +60,13 @@ function UploadMedia({
       },
     })
 
+    _uppy.on('file-added', (file) => {
+      uppy.setFileMeta(file.id, {
+        ...file.meta,
+        title: file.name,
+      })
+    })
+
     _uppy.use(ImageEditor, {
       id: 'ImageEditor',
       quality: 0.8,
