@@ -53,7 +53,7 @@ export function useCategoryCreate() {
   const { sitename } = useParams()
 
   const createCategory = async (formData) => {
-    const properties = categoryForApi(formData)
+    const properties = categoryForApi({ formData })
     return api.categories.create({
       sitename,
       properties,
@@ -77,7 +77,7 @@ export function useCategoryUpdate() {
   const { sitename } = useParams()
 
   const updateCategory = async (formData) => {
-    const properties = categoryForApi(formData)
+    const properties = categoryForApi({ formData })
     return api.categories.update({
       id: formData?.id,
       sitename,

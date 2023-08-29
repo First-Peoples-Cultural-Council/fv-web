@@ -32,7 +32,7 @@ function CharacterCrudData() {
   return {
     submitHandler,
     backHandler,
-    dataToEdit: data ? allRelatedMediaToIdsAdaptor(data) : null,
+    dataToEdit: data ? allRelatedMediaToIdsAdaptor({ item: data }) : null,
     isLoading: isInitialLoading,
   }
 }

@@ -1,4 +1,4 @@
-import { relatedMediaForEditing } from 'common/dataAdaptors/relatedMediaAdaptor'
+import { relatedMediaForEditing } from 'common/dataAdaptors/relatedMediaAdaptors'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 import {
   audienceForEditing,
@@ -6,38 +6,38 @@ import {
 } from 'common/dataAdaptors/audienceAdaptors'
 import { PUBLIC, TYPE_WORD } from 'common/constants'
 
-export function entryForEditing(rawEntry) {
+export function entryForEditing({ item }) {
   return {
-    ...entryForViewing(rawEntry),
-    ...relatedMediaForEditing(rawEntry),
-    ...audienceForEditing(rawEntry),
-    partOfSpeech: rawEntry?.partOfSpeech?.id,
+    ...entryForViewing({ item }),
+    ...relatedMediaForEditing({ item }),
+    ...audienceForEditing({ item }),
+    partOfSpeech: item?.partOfSpeech?.id,
   }
 }
 
-export function entryForViewing(rawEntry) {
+export function entryForViewing({ item }) {
   return {
-    id: rawEntry?.id || '',
-    acknowledgements: rawEntry?.acknowledgements || [],
-    alternateSpellings: rawEntry?.alternateSpellings || [],
-    categories: rawEntry?.categories || [],
-    excludeFromGames: rawEntry?.excludeFromGames,
-    excludeFromKids: rawEntry?.excludeFromKids,
-    notes: rawEntry?.notes || [],
-    partOfSpeech: rawEntry?.partOfSpeech || '',
-    pronunciations: rawEntry?.pronunciations || [],
-    relatedEntries: rawEntry?.relatedDictionaryEntries || [],
-    relatedAudio: rawEntry?.relatedAudio || [],
-    relatedImages: rawEntry?.relatedImages || [],
-    relatedVideos: rawEntry?.relatedVideos || [],
-    title: rawEntry?.title,
-    translations: rawEntry?.translations || [],
-    type: rawEntry?.type || TYPE_WORD,
-    visibility: rawEntry?.visibility || PUBLIC,
+    id: item?.id || '',
+    acknowledgements: item?.acknowledgements || [],
+    alternateSpellings: item?.alternateSpellings || [],
+    categories: item?.categories || [],
+    excludeFromGames: item?.excludeFromGames,
+    excludeFromKids: item?.excludeFromKids,
+    notes: item?.notes || [],
+    partOfSpeech: item?.partOfSpeech || '',
+    pronunciations: item?.pronunciations || [],
+    relatedEntries: item?.relatedDictionaryEntries || [],
+    relatedAudio: item?.relatedAudio || [],
+    relatedImages: item?.relatedImages || [],
+    relatedVideos: item?.relatedVideos || [],
+    title: item?.title,
+    translations: item?.translations || [],
+    type: item?.type || TYPE_WORD,
+    visibility: item?.visibility || PUBLIC,
   }
 }
 
-export function entryForApi(formData) {
+export function entryForApi({ formData }) {
   const formattedData = {
     title: formData.title || '',
     type: formData.type || TYPE_WORD,
@@ -53,7 +53,7 @@ export function entryForApi(formData) {
     related_images: formData.relatedImages || [],
     related_videos: formData.relatedVideos || [],
     related_dictionary_entries: objectsToIdsAdaptor(formData.relatedEntries),
-    ...audienceForApi(formData),
+    ...audienceForApi({ formData }),
   }
   return formattedData
 }

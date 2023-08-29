@@ -20,8 +20,8 @@ export function useDictionaryEntry({ id, edit = false }) {
     { enabled: !!id },
   )
   const formattedEntry = edit
-    ? entryForEditing(response?.data)
-    : entryForViewing(response?.data)
+    ? entryForEditing({ item: response?.data })
+    : entryForViewing({ item: response?.data })
 
   return {
     ...response,
@@ -33,7 +33,7 @@ export function useDictionaryEntryCreate() {
   const { sitename } = useParams()
 
   const createDictionaryEntry = async (formData) => {
-    const properties = entryForApi(formData)
+    const properties = entryForApi({ formData })
     return api.dictionary.create({
       sitename,
       properties,
@@ -58,7 +58,7 @@ export function useDictionaryEntryUpdate() {
   const { sitename } = useParams()
 
   const updateDictionaryEntry = async (formData) => {
-    const properties = entryForApi(formData)
+    const properties = entryForApi({ formData })
     return api.dictionary.update({
       id: formData?.id,
       sitename,

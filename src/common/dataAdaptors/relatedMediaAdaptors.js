@@ -1,6 +1,6 @@
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
-export function relatedMediaAdaptor({ item }) {
+export function relatedMediaForViewing({ item }) {
   return {
     relatedAudio: item?.relatedAudio || [],
     relatedImages: item?.relatedImages || [],
@@ -8,7 +8,7 @@ export function relatedMediaAdaptor({ item }) {
   }
 }
 
-export function relatedMediaForEditing(item) {
+export function relatedMediaForEditing({ item }) {
   return {
     relatedAudio: objectsToIdsAdaptor(item?.relatedAudio),
     relatedImages: objectsToIdsAdaptor(item?.relatedImages),
@@ -16,7 +16,7 @@ export function relatedMediaForEditing(item) {
   }
 }
 
-export function relatedMediaForApi(formData) {
+export function relatedMediaForApi({ formData }) {
   return {
     related_audio: formData?.relatedAudio,
     related_images: formData?.relatedImages,

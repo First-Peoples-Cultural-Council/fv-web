@@ -1,4 +1,4 @@
-export function categoryForApi(formData) {
+export function categoryForApi({ formData }) {
   return {
     title: formData?.title || null,
     description: formData?.description || '',
