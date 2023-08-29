@@ -1,6 +1,6 @@
 import { relatedMediaAdaptor } from 'common/dataAdaptors/relatedMediaAdaptor'
 import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
-import { audienceAdaptor } from 'common/dataAdaptors/audienceAdaptor'
+import { audienceForEditing } from 'common/dataAdaptors/audienceAdaptors'
 import { selectCoverMedia } from 'common/utils/mediaHelpers'
 
 export function coverAdaptor({ item }) {
@@ -13,6 +13,6 @@ export function coverAdaptor({ item }) {
     hideOverlay: !!item?.hideOverlay,
     ...relatedMediaAdaptor({ item }),
     ...visibilityAdaptor({ item }),
-    ...audienceAdaptor({ item }),
+    ...audienceForEditing({ item }),
   }
 }

@@ -1,9 +1,3 @@
-export function audienceAdaptor({ item }) {
-  return {
-    kidFriendly: !item?.excludeFromKids,
-  }
-}
-
 // hook-form requires boolean as a string
 export function audienceForEditing(rawItem) {
   return {

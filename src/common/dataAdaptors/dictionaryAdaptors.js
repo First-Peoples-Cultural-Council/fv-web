@@ -3,7 +3,7 @@ import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 import {
   audienceForEditing,
   audienceForApi,
-} from 'common/dataAdaptors/audienceAdaptor'
+} from 'common/dataAdaptors/audienceAdaptors'
 import { PUBLIC, TYPE_WORD } from 'common/constants'
 
 export function entryForEditing(rawEntry) {
