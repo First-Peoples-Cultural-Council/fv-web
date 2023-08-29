@@ -45,7 +45,7 @@ export function useStoryCreate() {
   const { sitename } = useParams()
 
   const createStory = async (formData) => {
-    const properties = storyForApi(formData)
+    const properties = storyForApi({ formData })
     return api.stories.create({
       sitename,
       properties,
@@ -69,7 +69,7 @@ export function useStoryUpdate() {
   const { sitename } = useParams()
 
   const updateStory = async (formData) => {
-    const properties = storyForApi(formData)
+    const properties = storyForApi({ formData })
     return api.stories.update({
       id: formData?.id,
       sitename,

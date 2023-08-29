@@ -1,10 +1,21 @@
-import { relatedMediaAdaptor } from 'common/dataAdaptors/relatedMediaAdaptor'
+import {
+  relatedMediaForViewing,
+  relatedMediaForEditing,
+  relatedMediaForApi,
+} from 'common/dataAdaptors/relatedMediaAdaptors'
+import {
+  audienceForEditing,
+  audienceForApi,
+} from 'common/dataAdaptors/audienceAdaptors'
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
-import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
-import { selectCoverMedia } from 'common/utils/mediaHelpers'
 import { coverAdaptor } from 'common/dataAdaptors/coverAdaptor'
+import { introAdaptor, introForApi } from 'common/dataAdaptors/introAdaptors'
+import { titleForEditing, titleForApi } from 'common/dataAdaptors/titleAdaptors'
+
 import { TYPE_STORY } from 'common/constants'
+import { selectCoverMedia } from 'common/utils/mediaHelpers'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 
 export function storySummaryAdaptor({ item }) {
   return {
@@ -21,12 +32,8 @@ export function storyDetailAdaptor({ item }) {
     ...storySummaryAdaptor({ item }),
     ...basicDatesAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
+    ...introAdaptor({ item }),
     site: item?.site,
-
-    // intro
-    intro: item?.introduction || '',
-    introTranslation: item?.introductionTranslation || '',
-
     // pages
     pageOrder: item?.pages?.map((p) => p.id),
     pages: item?.pages?.map((page) => storyPageAdaptor({ page })),
@@ -47,6 +54,33 @@ export function storyPageAdaptor({ page }) {
     notes: page?.notes,
     visualMedia: selectCoverMedia(page?.relatedImages, page?.relatedVideos),
     order: page?.ordering,
-    ...relatedMediaAdaptor({ item: page }),
+    ...relatedMediaForViewing({ item: page }),
+  }
+}
+
+export function storyForApi({ formData }) {
+  return {
+    author: formData?.author,
+    visibility: formData?.visibility,
+    hide_overlay: formData?.hideOverlay === 'true',
+    ...titleForApi({ formData }),
+    ...notesAcknowledgementsAdaptor({ item: formData }),
+    ...relatedMediaForApi({ formData }),
+    ...introForApi({ formData }),
+    ...audienceForApi({ formData }),
+  }
+}
+
+export function storyForEditing({ item }) {
+  return {
+    author: item?.author,
+    visibility: item?.visibility,
+    // hook-form requires boolean as a string
+    hideOverlay: item?.hideOverlay ? 'true' : 'false',
+    ...titleForEditing({ item }),
+    ...introAdaptor({ item }),
+    ...notesAcknowledgementsAdaptor({ item }),
+    ...relatedMediaForEditing({ item }),
+    ...audienceForEditing({ item }),
   }
 }
