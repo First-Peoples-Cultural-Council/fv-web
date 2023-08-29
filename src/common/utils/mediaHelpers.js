@@ -38,19 +38,18 @@ export const isDisplayablePropMedia = (property, value) =>
   (typeof value === 'string' || value instanceof String) &&
   DISPLAYABLE_PROPS_MEDIA.includes(property)
 
-export const selectOneMediaFormHelper = (formData, mediaObjectkey) => {
+export const selectOneMediaFormHelper = (formMediaObject) => {
   // Helper function to be used where a choice between
   // an image or video is given to add to a form
 
-  // Accepts formData along with the following 3 params
-  // mediaObjectkey: key representing the control value for field which contains docId and docType
+  // Accepts an object with the properties docId and docType
 
-  const docType = formData?.[mediaObjectkey]?.docType
+  const docType = formMediaObject?.docType
   switch (docType) {
     case IMAGE:
-      return { imageId: formData?.[mediaObjectkey]?.docId, videoId: '' }
+      return { imageId: formMediaObject?.docId, videoId: '' }
     case VIDEO:
-      return { imageId: '', videoId: formData?.[mediaObjectkey]?.docId }
+      return { imageId: '', videoId: formMediaObject?.docId }
     default:
       return { imageId: '', videoId: '' }
   }
