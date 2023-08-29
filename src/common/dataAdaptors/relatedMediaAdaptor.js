@@ -15,3 +15,11 @@ export function relatedMediaForEditing(item) {
     relatedVideos: objectsToIdsAdaptor(item?.relatedVideos),
   }
 }
+
+export function relatedMediaForApi(formData) {
+  return {
+    related_audio: formData?.relatedAudio,
+    related_images: formData?.relatedImages,
+    related_videos: formData?.relatedVideos,
+  }
+}
