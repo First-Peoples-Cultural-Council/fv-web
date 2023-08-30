@@ -1,58 +1,63 @@
-import { relatedMediaForEditing } from 'common/dataAdaptors/relatedMediaAdaptors'
+import {
+  relatedMediaForViewing,
+  relatedMediaForEditing,
+  relatedMediaForApi,
+} from 'common/dataAdaptors/relatedMediaAdaptors'
+import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 import {
+  audienceForViewing,
   audienceForEditing,
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
-import { PUBLIC, TYPE_WORD } from 'common/constants'
+import { TYPE_WORD } from 'common/constants'
+
+function coreEntry({ item }) {
+  return {
+    id: item?.id || '',
+    alternateSpellings: item?.alternateSpellings || [],
+    categories: item?.categories || [],
+    pronunciations: item?.pronunciations || [],
+    relatedEntries: item?.relatedDictionaryEntries || [],
+    title: item?.title || '',
+    translations: item?.translations || [],
+    type: item?.type || TYPE_WORD,
+    visibility: item?.visibility,
+    ...notesAcknowledgementsAdaptor({ item }),
+  }
+}
 
 export function entryForEditing({ item }) {
   return {
-    ...entryForViewing({ item }),
+    partOfSpeech: item?.partOfSpeech?.id,
+    ...coreEntry({ item }),
     ...relatedMediaForEditing({ item }),
     ...audienceForEditing({ item }),
-    partOfSpeech: item?.partOfSpeech?.id,
   }
 }
 
 export function entryForViewing({ item }) {
   return {
-    id: item?.id || '',
-    acknowledgements: item?.acknowledgements || [],
-    alternateSpellings: item?.alternateSpellings || [],
-    categories: item?.categories || [],
-    excludeFromGames: item?.excludeFromGames,
-    excludeFromKids: item?.excludeFromKids,
-    notes: item?.notes || [],
     partOfSpeech: item?.partOfSpeech || '',
-    pronunciations: item?.pronunciations || [],
-    relatedEntries: item?.relatedDictionaryEntries || [],
-    relatedAudio: item?.relatedAudio || [],
-    relatedImages: item?.relatedImages || [],
-    relatedVideos: item?.relatedVideos || [],
-    title: item?.title,
-    translations: item?.translations || [],
-    type: item?.type || TYPE_WORD,
-    visibility: item?.visibility || PUBLIC,
+    ...coreEntry({ item }),
+    ...audienceForViewing({ item }),
+    ...relatedMediaForViewing({ item }),
   }
 }
 
 export function entryForApi({ formData }) {
   const formattedData = {
-    title: formData.title || '',
-    type: formData.type || TYPE_WORD,
-    visibility: formData.visibility || PUBLIC,
-    categories: objectsToIdsAdaptor(formData.categories),
-    acknowledgements: formData.acknowledgements || [],
-    alternate_spellings: formData.alternateSpellings || [],
-    notes: formData.notes || [],
-    translations: formData.translations || [],
-    part_of_speech: formData.partOfSpeech || '',
-    pronunciations: formData.pronunciations || [],
-    related_audio: formData.relatedAudio || [],
-    related_images: formData.relatedImages || [],
-    related_videos: formData.relatedVideos || [],
-    related_dictionary_entries: objectsToIdsAdaptor(formData.relatedEntries),
+    title: formData?.title || '',
+    type: formData?.type || TYPE_WORD,
+    visibility: formData?.visibility,
+    categories: objectsToIdsAdaptor(formData?.categories),
+    alternate_spellings: formData?.alternateSpellings || [],
+    translations: formData?.translations || [],
+    part_of_speech: formData?.partOfSpeech || '',
+    pronunciations: formData?.pronunciations || [],
+    related_dictionary_entries: objectsToIdsAdaptor(formData?.relatedEntries),
+    ...notesAcknowledgementsAdaptor({ item: formData }),
+    ...relatedMediaForApi({ formData }),
     ...audienceForApi({ formData }),
   }
   return formattedData

@@ -18,8 +18,8 @@ export function relatedMediaForEditing({ item }) {
 
 export function relatedMediaForApi({ formData }) {
   return {
-    related_audio: formData?.relatedAudio,
-    related_images: formData?.relatedImages,
-    related_videos: formData?.relatedVideos,
+    related_audio: formData?.relatedAudio || [],
+    related_images: formData?.relatedImages || [],
+    related_videos: formData?.relatedVideos || [],
   }
 }

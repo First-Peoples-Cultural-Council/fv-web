@@ -1,16 +1,16 @@
 import {
-  relatedMediaForViewing,
-  relatedMediaForEditing,
-  relatedMediaForApi,
-} from 'common/dataAdaptors/relatedMediaAdaptors'
-import {
   audienceForEditing,
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
-import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { coverAdaptor } from 'common/dataAdaptors/coverAdaptor'
+import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { introAdaptor, introForApi } from 'common/dataAdaptors/introAdaptors'
+import {
+  relatedMediaForViewing,
+  relatedMediaForEditing,
+  relatedMediaForApi,
+} from 'common/dataAdaptors/relatedMediaAdaptors'
 import { titleForEditing, titleForApi } from 'common/dataAdaptors/titleAdaptors'
 
 import { TYPE_STORY } from 'common/constants'
