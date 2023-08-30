@@ -12,6 +12,7 @@ function StoryCrudData() {
 
   const { data } = useStory({
     id: storyId,
+    edit: true,
   })
 
   return {

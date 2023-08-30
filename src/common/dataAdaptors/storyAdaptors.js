@@ -26,7 +26,7 @@ export function storySummaryAdaptor({ item }) {
   }
 }
 
-export function storyDetailAdaptor({ item }) {
+export function storyForViewing({ item }) {
   return {
     // cover
     ...storySummaryAdaptor({ item }),
@@ -73,6 +73,7 @@ export function storyForApi({ formData }) {
 
 export function storyForEditing({ item }) {
   return {
+    id: item?.id || '',
     author: item?.author,
     visibility: item?.visibility,
     // hook-form requires boolean as a string

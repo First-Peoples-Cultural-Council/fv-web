@@ -6,7 +6,8 @@ import { STORIES } from 'common/constants'
 import api from 'services/api'
 import {
   storySummaryAdaptor,
-  storyDetailAdaptor,
+  storyForViewing,
+  storyForEditing,
   storyForApi,
 } from 'common/dataAdaptors/storyAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
@@ -27,7 +28,7 @@ export function useStories() {
   return { ...response, data: { ...response?.data, results: formatted } }
 }
 
-export function useStory({ id }) {
+export function useStory({ id, edit = false }) {
   const { sitename } = useParams()
 
   const response = useQuery(
@@ -36,7 +37,9 @@ export function useStory({ id }) {
     { enabled: !!id },
   )
 
-  const formatted = storyDetailAdaptor({ item: response?.data })
+  const formatted = edit
+    ? storyForEditing({ item: response?.data })
+    : storyForViewing({ item: response?.data })
 
   return { ...response, data: formatted }
 }
