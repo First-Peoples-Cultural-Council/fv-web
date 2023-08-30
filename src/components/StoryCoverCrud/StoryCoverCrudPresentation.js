@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { AUDIO, VIDEO, IMAGE } from 'common/constants'
+import { AUDIO, VIDEO, IMAGE, PUBLIC } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 
 function StoryCoverCrudPresentation({
@@ -29,10 +29,10 @@ function StoryCoverCrudPresentation({
   })
 
   const defaultValues = {
-    visibility: 'public',
+    visibility: PUBLIC,
     // Cover
     title: '',
-    titleTranslation: [],
+    titleTranslation: '',
     author: '',
     relatedVideos: [],
     relatedImages: [],
@@ -42,7 +42,8 @@ function StoryCoverCrudPresentation({
     acknowledgements: [],
     notes: [],
     relatedAudio: [],
-    kidFriendly: 'true',
+    includeInKids: 'true',
+    includeInGames: 'true',
   }
 
   // pageOrder
@@ -90,15 +91,16 @@ function StoryCoverCrudPresentation({
                 )}
               </div>
               <div className="w-full">
-                <Form.TextArrayField
+                <Form.TextField
                   label="Title Translation to English"
                   nameId="titleTranslation"
-                  maxItems={1}
                   register={register}
-                  control={control}
-                  errors={errors}
-                  hideLabel
                 />
+                {errors?.titleTranslation && (
+                  <div className="text-red-500">
+                    {errors?.titleTranslation?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full">
                 <Form.TextField
@@ -200,7 +202,7 @@ function StoryCoverCrudPresentation({
                   label="Include on the Kids site?"
                   control={control}
                   errors={errors}
-                  nameId="kidFriendly"
+                  nameId="includeInKids"
                   options={[
                     { label: 'Yes', value: 'true' },
                     { label: 'No', value: 'false' },
