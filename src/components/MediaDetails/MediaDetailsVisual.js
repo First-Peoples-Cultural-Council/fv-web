@@ -43,13 +43,16 @@ function MediaDetailsVisual({ file, docType }) {
         <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
           {file?.id &&
             Object.keys(file).map((key) => {
+              console.log({ key })
               if (isDisplayablePropMedia(key, file[key])) {
                 return (
                   <div
                     key={key}
                     className="py-3 flex justify-between text-sm font-medium"
                   >
-                    <dt className="text-fv-charcoal-light">{key}</dt>
+                    <dt className="text-fv-charcoal-light">
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </dt>
                     <dd className="text-fv-charcoal">{file[key]}</dd>
                   </div>
                 )

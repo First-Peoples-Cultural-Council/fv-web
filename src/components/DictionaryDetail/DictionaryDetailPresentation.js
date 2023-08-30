@@ -284,11 +284,11 @@ function DictionaryDetailPresentation({
                       </div>
                       <Disclosure>
                         <div className="flex justify-end">
-                          <div className="border-2 z-10 bg-white w-6 h-6 text-sm flex items-center justify-center p-1 rounded-full">
-                            <Disclosure.Button>
+                          <Disclosure.Button>
+                            <div className="border-2 z-10 bg-white w-6 h-6 text-sm flex items-center justify-center p-1 rounded-full">
                               <span>i</span>
-                            </Disclosure.Button>
-                          </div>
+                            </div>
+                          </Disclosure.Button>
                         </div>
                         <Disclosure.Panel>
                           {video?.title && (
