@@ -27,8 +27,8 @@ function PageCrudData() {
   const { data } = usePage({ pageSlug })
 
   const mediaObject = selectOneMediaDataHelper(
-    [data?.bannerImage],
-    [data?.bannerVideo],
+    data?.bannerImage,
+    data?.bannerVideo,
   )
 
   const dataForForm = {
