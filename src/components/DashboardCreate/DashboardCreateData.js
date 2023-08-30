@@ -1,6 +1,11 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+import {
+  ASSISTANT,
+  EDITOR,
+  LANGUAGE_ADMIN,
+  SUPER_ADMIN,
+} from 'common/constants/roles'
 
 function DashboardCreateData() {
   const { site } = useSiteStore()
@@ -44,7 +49,7 @@ function DashboardCreateData() {
       description: 'Add a new story to your site',
       href: 'story',
       iconColor: 'storyText',
-      auth: LANGUAGE_ADMIN,
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Category',

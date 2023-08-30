@@ -29,7 +29,7 @@ function DashboardEditData() {
       description: 'Edit the stories on your site',
       href: `entries?${TYPES}=${TYPE_STORY}`,
       iconColor: 'storyText',
-      auth: LANGUAGE_ADMIN,
+      auth: SUPER_ADMIN,
     },
     {
       icon: 'Home',
