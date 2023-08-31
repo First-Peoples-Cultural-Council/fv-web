@@ -66,6 +66,7 @@ function DictionaryCrudPresentation({
     relatedImages: [],
     relatedVideos: [],
     title: '',
+    type: type || TYPE_WORD,
     translations: [],
     visibility: PUBLIC,
     includeInKids: 'true',
