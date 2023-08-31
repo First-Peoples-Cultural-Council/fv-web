@@ -69,19 +69,27 @@ function CategoryCrudPresentation({
               <div className="text-red-500">{errors?.description?.message}</div>
             )}
           </div>
-          {parentCategoryOptions?.length > 0 && (
-            <div className="col-span-12">
-              <Form.Select
-                label="Parent Category"
-                nameId="parentId"
-                control={control}
-                options={parentCategoryOptions}
-              />
-              {errors?.parentId && (
-                <div className="text-red-500">{errors?.parentId?.message}</div>
-              )}
-            </div>
-          )}
+          <div className="col-span-12">
+            {parentCategoryOptions?.length > 0 ? (
+              <>
+                <Form.Select
+                  label="Parent Category"
+                  nameId="parentId"
+                  control={control}
+                  options={parentCategoryOptions}
+                />
+                {errors?.parentId && (
+                  <div className="text-red-500">
+                    {errors?.parentId?.message}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-fv-charcoal text-sm">
+                NB: A parent category cannot be assigned a parent
+              </div>
+            )}
+          </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons
               submitLabel={isCreateMode ? 'Create Category' : 'Save Changes'}
