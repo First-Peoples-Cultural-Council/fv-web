@@ -241,10 +241,13 @@ function getIcon(iconName, iconStyling, title) {
       case 'words':
         return 'Word'
       case TEAM:
+      case 'team':
         return 'Team'
       case MEMBERS:
+      case 'members':
         return 'Members'
       case PUBLIC:
+      case 'public':
         return 'Public'
       default:
         return string
