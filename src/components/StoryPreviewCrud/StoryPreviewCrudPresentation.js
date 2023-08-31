@@ -19,7 +19,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
     pageOrder,
     pages,
     visibility,
-    kidFriendly,
+    includeInKids,
   } = entry
 
   const [translate, setTranslate] = useState(true)
@@ -85,7 +85,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
           <h2 className="pt-8 font-semibold">
             Want this included in the Kids site?
           </h2>
-          <p>{kidFriendly === 'true' ? 'Yes' : 'No'}</p>
+          <p>{includeInKids === 'true' ? 'Yes' : 'No'}</p>
           <h2 className="pt-8 pb-2 font-semibold">Featured Image</h2>
           {getCoverMedia()}
         </div>

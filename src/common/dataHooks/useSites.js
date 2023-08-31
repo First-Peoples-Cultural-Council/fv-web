@@ -38,7 +38,7 @@ export function useSites() {
 export function useSiteUpdateBanner() {
   const { sitename } = useParams()
   const updateBanner = async (formData) => {
-    const bannerObject = selectOneMediaFormHelper(formData, 'banner')
+    const bannerObject = selectOneMediaFormHelper(formData?.banner)
     const properties = {
       logo: formData?.logoId || null,
       bannerImage: bannerObject?.imageId || null,

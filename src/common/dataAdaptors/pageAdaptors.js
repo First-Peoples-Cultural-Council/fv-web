@@ -2,7 +2,7 @@ import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 
 export function pageInfoAdaptor({ formData }) {
   // Returns appropriate request body for updating page info (not widget list)
-  const mediaObject = selectOneMediaFormHelper(formData, 'banner')
+  const mediaObject = selectOneMediaFormHelper(formData?.banner)
 
   return {
     title: formData?.title || null,

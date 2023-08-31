@@ -6,10 +6,14 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { DOC_AUDIO } from 'common/constants'
+import { AUDIO, VIDEO, IMAGE, PUBLIC } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 
-function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
+function StoryCoverCrudPresentation({
+  dataToEdit,
+  onNextClick,
+  submitHandler,
+}) {
   const validator = yup.object().shape({
     title: definitions
       .paragraph({ charCount: 120 })
@@ -18,43 +22,52 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     author: yup.string(),
     intro: definitions.wysiwyg({ charCount: 1200 }),
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
-    audio: definitions.idArray(),
-    images: definitions.idArray(),
-    videos: definitions.idArray(),
+    relatedAudio: definitions.idArray(),
+    relatedImages: definitions.idArray(),
+    relatedVideos: definitions.idArray(),
     acknowledgments: yup.array().of(yup.string()),
   })
 
   const defaultValues = {
-    visibility: 'public',
+    visibility: PUBLIC,
     // Cover
     title: '',
-    titleTranslation: [],
+    titleTranslation: '',
     author: '',
-    videos: [],
-    images: [],
-    cover: {},
+    relatedVideos: [],
+    relatedImages: [],
     // Introduction
     intro: '',
     introTranslation: '',
     acknowledgements: [],
     notes: [],
-    audio: [],
-    kidFriendly: 'true',
+    relatedAudio: [],
+    includeInKids: 'true',
+    includeInGames: 'true',
   }
 
-  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  // pageOrder
+
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isDirty,
+    isValid,
+    register,
+    reset,
+    trigger,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   const stepCallback = () => {
     trigger()
     if (isValid) {
-      // For now, always save before moving to Story Pages ensuring that the cover has been converted to V2
-      // otherwise reordering pages will set the cover to modifiedv2 without the cover having been converted
-      handleSubmit(submitHandler)()
+      if (isDirty) handleSubmit(submitHandler)()
+      else onNextClick()
     }
   }
 
@@ -78,15 +91,16 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 )}
               </div>
               <div className="w-full">
-                <Form.TextArrayField
+                <Form.TextField
                   label="Title Translation to English"
                   nameId="titleTranslation"
-                  maxItems={1}
                   register={register}
-                  control={control}
-                  errors={errors}
-                  hideLabel
                 />
+                {errors?.titleTranslation && (
+                  <div className="text-red-500">
+                    {errors?.titleTranslation?.message}
+                  </div>
+                )}
               </div>
               <div className="w-full">
                 <Form.TextField
@@ -125,13 +139,43 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
               <div className="w-full">
                 <Form.MediaArrayField
                   label="Audio"
-                  nameId="audio"
+                  nameId="relatedAudio"
                   control={control}
-                  type={DOC_AUDIO}
+                  type={AUDIO}
                   maxItems={3}
                 />
                 {errors?.relatedAudio && (
-                  <div className="text-red-500">{errors?.audio?.message}</div>
+                  <div className="text-red-500">
+                    {errors?.relatedAudio?.message}
+                  </div>
+                )}
+              </div>
+              <div className="w-full">
+                <Form.MediaArrayField
+                  label="Videos"
+                  nameId="relatedVideos"
+                  control={control}
+                  type={VIDEO}
+                  maxItems={1}
+                />
+                {errors?.relatedVideos && (
+                  <div className="text-red-500">
+                    {errors?.relatedVideos?.message}
+                  </div>
+                )}
+              </div>
+              <div className="w-full">
+                <Form.MediaArrayField
+                  label="Images"
+                  nameId="relatedImages"
+                  control={control}
+                  type={IMAGE}
+                  maxItems={1}
+                />
+                {errors?.relatedImages && (
+                  <div className="text-red-500">
+                    {errors?.relatedImages?.message}
+                  </div>
                 )}
               </div>
 
@@ -158,23 +202,13 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                   label="Include on the Kids site?"
                   control={control}
                   errors={errors}
-                  nameId="kidFriendly"
+                  nameId="includeInKids"
                   options={[
                     { label: 'Yes', value: 'true' },
                     { label: 'No', value: 'false' },
                   ]}
                 />
               </div>
-            </div>
-            <div className="col-span-5 space-y-4">
-              <Form.SelectOneMedia
-                label="Add a Cover Media"
-                nameId="cover"
-                control={control}
-              />
-              {errors?.cover && (
-                <div className="text-red-500">{errors?.cover?.message}</div>
-              )}
             </div>
           </div>
         </form>
@@ -189,6 +223,7 @@ const { func, object } = PropTypes
 StoryCoverCrudPresentation.propTypes = {
   submitHandler: func,
   dataToEdit: object,
+  onNextClick: func,
 }
 
 export default StoryCoverCrudPresentation

@@ -7,7 +7,6 @@ function StoryData({ docId }) {
 
   // Data fetch
   const { data, isError, isInitialLoading, isFetched, error } = useStory({
-    sitename,
     id: idToSend,
   })
   const entry = data?.title ? data : {}

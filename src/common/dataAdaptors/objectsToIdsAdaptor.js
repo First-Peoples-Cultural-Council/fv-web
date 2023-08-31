@@ -3,7 +3,7 @@ export function objectsToIdsAdaptor(arrayOfObjects) {
   return arrayOfIds || []
 }
 
-export function allRelatedMediaToIdsAdaptor(item) {
+export function allRelatedMediaToIdsAdaptor({ item }) {
   return {
     ...item,
     relatedAudio: objectsToIdsAdaptor(item?.relatedAudio),

@@ -1,59 +1,64 @@
-import { relatedMediaForEditing } from 'common/dataAdaptors/relatedMediaAdaptor'
+import {
+  relatedMediaForViewing,
+  relatedMediaForEditing,
+  relatedMediaForApi,
+} from 'common/dataAdaptors/relatedMediaAdaptors'
+import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 import {
+  audienceForViewing,
   audienceForEditing,
   audienceForApi,
-} from 'common/dataAdaptors/audienceAdaptor'
-import { PUBLIC, TYPE_WORD } from 'common/constants'
+} from 'common/dataAdaptors/audienceAdaptors'
+import { TYPE_WORD } from 'common/constants'
 
-export function entryForEditing(rawEntry) {
+function coreEntry({ item }) {
   return {
-    ...entryForViewing(rawEntry),
-    ...relatedMediaForEditing(rawEntry),
-    ...audienceForEditing(rawEntry),
-    partOfSpeech: rawEntry?.partOfSpeech?.id,
+    id: item?.id || '',
+    alternateSpellings: item?.alternateSpellings || [],
+    categories: item?.categories || [],
+    pronunciations: item?.pronunciations || [],
+    relatedEntries: item?.relatedDictionaryEntries || [],
+    title: item?.title || '',
+    translations: item?.translations || [],
+    type: item?.type || TYPE_WORD,
+    visibility: item?.visibility,
+    ...notesAcknowledgementsAdaptor({ item }),
   }
 }
 
-export function entryForViewing(rawEntry) {
+export function entryForEditing({ item }) {
   return {
-    id: rawEntry?.id || '',
-    acknowledgements: rawEntry?.acknowledgements || [],
-    alternateSpellings: rawEntry?.alternateSpellings || [],
-    categories: rawEntry?.categories || [],
-    excludeFromGames: rawEntry?.excludeFromGames,
-    excludeFromKids: rawEntry?.excludeFromKids,
-    notes: rawEntry?.notes || [],
-    partOfSpeech: rawEntry?.partOfSpeech || '',
-    pronunciations: rawEntry?.pronunciations || [],
-    relatedEntries: rawEntry?.relatedDictionaryEntries || [],
-    relatedAudio: rawEntry?.relatedAudio || [],
-    relatedImages: rawEntry?.relatedImages || [],
-    relatedVideos: rawEntry?.relatedVideos || [],
-    title: rawEntry?.title,
-    translations: rawEntry?.translations || [],
-    type: rawEntry?.type || TYPE_WORD,
-    visibility: rawEntry?.visibility || PUBLIC,
+    partOfSpeech: item?.partOfSpeech?.id,
+    ...coreEntry({ item }),
+    ...relatedMediaForEditing({ item }),
+    ...audienceForEditing({ item }),
   }
 }
 
-export function entryForApi(formData) {
+export function entryForViewing({ item }) {
+  return {
+    partOfSpeech: item?.partOfSpeech || '',
+    ...coreEntry({ item }),
+    ...audienceForViewing({ item }),
+    ...relatedMediaForViewing({ item }),
+  }
+}
+
+export function entryForApi({ formData }) {
   const formattedData = {
-    title: formData.title || '',
-    type: formData.type || TYPE_WORD,
-    visibility: formData.visibility || PUBLIC,
-    categories: objectsToIdsAdaptor(formData.categories),
-    acknowledgements: formData.acknowledgements || [],
-    alternate_spellings: formData.alternateSpellings || [],
-    notes: formData.notes || [],
-    translations: formData.translations || [],
-    part_of_speech: formData.partOfSpeech || '',
-    pronunciations: formData.pronunciations || [],
-    related_audio: formData.relatedAudio || [],
-    related_images: formData.relatedImages || [],
-    related_videos: formData.relatedVideos || [],
-    related_dictionary_entries: objectsToIdsAdaptor(formData.relatedEntries),
-    ...audienceForApi(formData),
+    title: formData?.title || '',
+    type: formData?.type || TYPE_WORD,
+    visibility: formData?.visibility,
+    categories: objectsToIdsAdaptor(formData?.categories),
+    alternate_spellings: formData?.alternateSpellings || [],
+    translations: formData?.translations || [],
+    part_of_speech: formData?.partOfSpeech || '',
+    pronunciations: formData?.pronunciations || [],
+    related_dictionary_entries: objectsToIdsAdaptor(formData?.relatedEntries),
+    ...notesAcknowledgementsAdaptor({ item: formData }),
+    ...relatedMediaForApi({ formData }),
+    ...audienceForApi({ formData }),
   }
   return formattedData
 }

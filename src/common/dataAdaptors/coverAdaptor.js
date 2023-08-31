@@ -1,6 +1,6 @@
-import { relatedMediaAdaptor } from 'common/dataAdaptors/relatedMediaAdaptor'
+import { relatedMediaForViewing } from 'common/dataAdaptors/relatedMediaAdaptors'
 import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
-import { audienceAdaptor } from 'common/dataAdaptors/audienceAdaptor'
+import { audienceForEditing } from 'common/dataAdaptors/audienceAdaptors'
 import { selectCoverMedia } from 'common/utils/mediaHelpers'
 
 export function coverAdaptor({ item }) {
@@ -11,8 +11,8 @@ export function coverAdaptor({ item }) {
     titleTranslation: item?.titleTranslation || '',
     coverVisual: selectCoverMedia(item?.relatedImages, item?.relatedVideos),
     hideOverlay: !!item?.hideOverlay,
-    ...relatedMediaAdaptor({ item }),
+    ...relatedMediaForViewing({ item }),
     ...visibilityAdaptor({ item }),
-    ...audienceAdaptor({ item }),
+    ...audienceForEditing({ item }),
   }
 }

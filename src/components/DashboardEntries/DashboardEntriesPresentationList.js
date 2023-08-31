@@ -79,7 +79,8 @@ function DashboardEntriesPresentationList({
                                 {entry?.title}
                               </td>
                               <td className="px-6 py-4">
-                                {entry?.translations ? (
+                                {/* For Dictionary Entries */}
+                                {entry?.translations && (
                                   <ol className="text-fv-charcoal">
                                     {entry?.translations.map(
                                       (translation, i) => (
@@ -92,7 +93,13 @@ function DashboardEntriesPresentationList({
                                       ),
                                     )}
                                   </ol>
-                                ) : null}
+                                )}
+                                {/* For Songs and Stories */}
+                                {entry?.titleTranslation && (
+                                  <div className="text-fv-charcoal">
+                                    {entry?.titleTranslation}
+                                  </div>
+                                )}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span

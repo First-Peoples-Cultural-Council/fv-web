@@ -96,7 +96,7 @@ export const pageFormDataAdaptor = ({ formData }) => {
   const textTranslation = formData?.textTranslation?.getCurrentContent()
     ? getJsonFromWysiwygState(formData?.textTranslation?.getCurrentContent())
     : ''
-  const mediaObject = selectOneMediaFormHelper(formData, 'visualMedia')
+  const mediaObject = selectOneMediaFormHelper(formData?.visualMedia)
   return {
     'fvbookentry:text': text,
     'fvbookentry:text_translation': textTranslation,

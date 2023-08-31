@@ -19,11 +19,10 @@ function DashboardEntriesPresentation({
 }) {
   return (
     <div id="DashboardEntriesPresentation">
-      <section className="p-5 print:hidden flex justify-between">
-        <div className="w-1/2">
+      <section className="inline-flex w-full p-5 space-x-5 items-center justify-between print:hidden">
+        <div className="w-2/3">
           <SearchDictionaryForm.Container searchType={initialSearchType} />
         </div>
-
         {showTypeSelector && (
           <SearchTypeSelector.Container
             accentColor="tertiaryB"
