@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 // FPCC
@@ -16,21 +15,8 @@ function DashboardData() {
   // Get user sites
   // --------------------------------
 
-  const {
-    isInitialLoading: userSitesIsLoading,
-    error: userSitesError,
-    mySitesData: userSitesData,
-  } = useMySites()
-
-  useEffect(() => {
-    if (user && userSitesIsLoading === false && userSitesError === null) {
-      const defaultSite = userSitesData?.[0] ? userSitesData?.[0] : null
-      const isMember = !!(user?.roles?.[sitename] || user?.isSuperAdmin)
-      if (!sitename || !isMember) {
-        window.location.href = `/${defaultSite?.sitename}/dashboard`
-      }
-    }
-  }, [user, userSitesIsLoading, userSitesError, userSitesData, sitename])
+  const { isInitialLoading: userSitesIsLoading, mySitesData: userSitesData } =
+    useMySites()
 
   const { roles } = user
 
