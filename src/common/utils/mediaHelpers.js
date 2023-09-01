@@ -41,7 +41,6 @@ export const isDisplayablePropMedia = (property, value) =>
 export const selectOneMediaFormHelper = (formMediaObject) => {
   // Helper function to be used where a choice between
   // an image or video is given to add to a form
-
   // Accepts an object with the properties docId and docType
 
   const docType = formMediaObject?.docType
