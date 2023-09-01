@@ -20,7 +20,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
             <span className="flex min-w-0 items-center justify-between space-x-3">
               {site?.logoPathThumbnail ? (
                 <img
-                  className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0"
+                  className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0 object-cover object-center"
                   src={site?.logoPathThumbnail}
                   alt={`${site?.title} Logo`}
                 />

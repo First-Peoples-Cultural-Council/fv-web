@@ -16,6 +16,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
 
   const logoWidth = 'w-24 sm:w-32  md:w-44 lg:w-60'
   const logoHeight = 'h-24 sm:h-32 md:h-44 lg:h-60'
+  const logoPosition = 'items-center justify-center'
   const titleStyling = 'hidden md:block w-full text-center text-white text-2xl'
 
   function getContents(type) {
@@ -35,13 +36,15 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
               />
             </div>
             <div className="z-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-word to-word-dark">
-              <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
+              <div
+                className={`flex flex-col md:flex-row ${logoPosition} mx-auto p-3 md:p-5`}
+              >
                 <div
-                  className={`${logoWidth} md:-mt-24 lg:-mt-44 flex flex-col items-center justify-center mr-4`}
+                  className={`${logoWidth} md:-mt-24 lg:-mt-44 flex flex-col ${logoPosition} mr-4`}
                 >
                   <div className="flex flex-col w-full mb-2">
                     <LazyImage
-                      imgStyling={`${logoHeight} w-full rounded-full`}
+                      imgStyling={`${logoHeight} ${logoWidth} rounded-full`}
                       height={175}
                       width={175}
                       bgColor="none"
@@ -50,7 +53,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
                   </div>
                   <div className={titleStyling}>{site?.title}</div>
                 </div>
-                <div className="flex items-center justify-center w-full md:w-2/3">
+                <div className={`flex ${logoPosition} w-full md:w-2/3`}>
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
                     <SearchSiteForm.Container />
                   </div>
@@ -73,13 +76,15 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
               src={bgSrc}
             />
             <div className="w-full z-20 px-4 sm:px-6 lg:px-8">
-              <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
+              <div
+                className={`flex flex-col md:flex-row ${logoPosition} mx-auto p-3 md:p-5`}
+              >
                 <div
-                  className={`${logoWidth} flex flex-col items-center justify-center mr-4`}
+                  className={`${logoWidth} flex flex-col ${logoPosition} mr-4`}
                 >
                   <div className="flex w-full mb-2">
                     <LazyImage
-                      imgStyling={`${logoHeight} z-30 w-full rounded-full`}
+                      imgStyling={`${logoHeight} ${logoWidth} z-30 rounded-full`}
                       height={175}
                       width={175}
                       bgColor="none"
@@ -88,7 +93,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
                   </div>
                   <div className={titleStyling}>{site?.title}</div>
                 </div>
-                <div className="flex items-center justify-center w-full md:w-2/3">
+                <div className={`flex ${logoPosition} w-full md:w-2/3`}>
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
                     <SearchSiteForm.Container />
                   </div>
@@ -103,13 +108,13 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
             id="HomeBannerNoMedia"
             className="bg-gradient-to-b from-word to-word-dark"
           >
-            <div className="flex flex-col md:flex-row items-center justify-center mx-auto max-w-7xl p-3 md:p-5">
-              <div
-                className={`${logoWidth} flex flex-col items-center justify-center`}
-              >
+            <div
+              className={`flex flex-col md:flex-row ${logoPosition} mx-auto max-w-7xl p-3 md:p-5`}
+            >
+              <div className={`${logoWidth} flex flex-col ${logoPosition}`}>
                 <div className="flex mb-2">
                   <LazyImage
-                    imgStyling={`${logoHeight} w-full rounded-full`}
+                    imgStyling={`${logoHeight} ${logoWidth} rounded-full`}
                     height={175}
                     width={175}
                     bgColor="none"
@@ -118,7 +123,9 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
                 </div>
                 <div className={titleStyling}>{site?.title}</div>
               </div>
-              <div className="flex items-center justify-center w-full md:w-2/3 xl:w-3/4 md:h-24">
+              <div
+                className={`flex ${logoPosition} w-full md:w-2/3 xl:w-3/4 md:h-24`}
+              >
                 <div className="w-11/12 md:w-5/6 xl:w-3/4">
                   <SearchSiteForm.Container />
                 </div>

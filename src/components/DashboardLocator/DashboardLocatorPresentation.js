@@ -15,7 +15,7 @@ function DashboardLocatorPresentation({ site }) {
       <div className="flex-shrink-0">
         {site?.logoPathSmall ? (
           <img
-            className="flex max-w-xs bg-gray-300 rounded-full h-20 w-20 items-center justify-center"
+            className="flex max-w-xs bg-gray-300 rounded-full h-20 w-20 object-cover object-center"
             src={site?.logoPathSmall}
             alt={`${site?.title} Logo`}
           />
