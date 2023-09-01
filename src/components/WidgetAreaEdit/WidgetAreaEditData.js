@@ -28,7 +28,6 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   useEffect(() => {
     if (pageSlug && isInitialLoading === false && error === null) {
       const ids = data?.widgets?.map((w) => w.id) || []
-      console.log({ pageIds: ids })
       setWidgetIds(ids)
     }
   }, [isInitialLoading, error])
