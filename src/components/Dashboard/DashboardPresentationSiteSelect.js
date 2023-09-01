@@ -17,10 +17,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
       <div>
         <Menu.Button className="group w-full bg-fv-charcoal text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-fv-charcoal-light">
           <span className="flex w-full justify-between items-center">
-            <span className="flex min-w-0 items-center justify-between space-x-3">
+            <span className="flex min-w-0 items-center justify- between space-x-3">
               {site?.logoPathThumbnail ? (
                 <img
-                  className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0"
+                  className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0 object-cover object-center"
                   src={site?.logoPathThumbnail}
                   alt={`${site?.title} Logo`}
                 />
