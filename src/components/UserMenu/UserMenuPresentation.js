@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
 function UserMenuPresentation({ currentUser, login, logout }) {
   // const { i18n } = useTranslation()
-  const { sitename } = useParams()
 
   // hasImmersion as a prop is being removed for FW-4514, can be added back later
   // when enabling immersion again
@@ -57,7 +56,7 @@ function UserMenuPresentation({ currentUser, login, logout }) {
             {currentUser?.isTeam && (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
-                  <Link to={sitename ? `/${sitename}/dashboard` : '/dashboard'}>
+                  <Link to={currentUser?.dashboardLink}>
                     <div
                       className={`${
                         active ? menuItemActiveClass : menuItemInactiveClass
@@ -103,32 +102,20 @@ function UserMenuPresentation({ currentUser, login, logout }) {
               </Menu.Item>
             )} */}
             {currentUser?.isAnonymous ? (
-              <>
-                <Menu.Item className="w-full flex">
-                  {({ active }) => (
-                    // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
-                    <a type="button" onClick={login} onKeyDown={login}>
-                      <div
-                        className={`${
-                          active ? menuItemActiveClass : menuItemInactiveClass
-                        } ${menuItemBaseClass}`}
-                      >
-                        Sign In
-                      </div>
-                    </a>
-                  )}
-                </Menu.Item>
-                {/* // Hide Register button until v2 version is built
-                <Menu.Item className="w-full flex">
-                  {({ active }) => (
-                    <a href="/register?requestedUrl=/register">
-                      <div className={`${active ? menuItemActiveClass : menuItemInactiveClass} ${menuItemBaseClass}`}>
-                        Register
-                      </div>
-                    </a>
-                  )}
-                </Menu.Item> */}
-              </>
+              <Menu.Item className="w-full flex">
+                {({ active }) => (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
+                  <a type="button" onClick={login} onKeyDown={login}>
+                    <div
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass}`}
+                    >
+                      Sign In / Register
+                    </div>
+                  </a>
+                )}
+              </Menu.Item>
             ) : (
               <Menu.Item className="w-full flex">
                 {({ active }) => (

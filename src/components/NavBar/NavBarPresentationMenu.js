@@ -71,17 +71,10 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
 }
 
 // PROPTYPES
-const { object, string, func } = PropTypes
+const { object, string } = PropTypes
 NavBarPresentationMenu.propTypes = {
   menuItemData: object,
-  onMenuClick: func,
-  openMenu: string,
-  onClickOutside: func,
   sitename: string,
-}
-NavBarPresentationMenu.defaultProps = {
-  onMenuClick: () => {},
-  onClickOutside: () => {},
 }
 
 export default NavBarPresentationMenu

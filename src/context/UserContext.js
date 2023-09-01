@@ -95,6 +95,7 @@ const userDataAdaptor = (data) => {
     isLanguageAdmin,
     isTeam,
     isSuperAdmin: false, // until fw-4694
+    isStaff: false, // until fw-4694
     roles,
   }
 }

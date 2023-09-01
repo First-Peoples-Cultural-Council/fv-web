@@ -43,7 +43,6 @@ function MediaDetailsVisual({ file, docType }) {
         <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
           {file?.id &&
             Object.keys(file).map((key) => {
-              console.log({ key })
               if (isDisplayablePropMedia(key, file[key])) {
                 return (
                   <div

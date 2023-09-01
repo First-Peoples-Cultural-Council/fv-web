@@ -31,3 +31,6 @@ export const atLeastEditor = new RegExp(
 export const atLeastLanguageAdmin = new RegExp(
   `^(${[LANGUAGE_ADMIN, SUPER_ADMIN, STAFF_ADMIN].join('|')})$`,
 )
+export const atLeastStaff = new RegExp(
+  `^(${[SUPER_ADMIN, STAFF_ADMIN].join('|')})$`,
+)

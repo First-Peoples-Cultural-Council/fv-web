@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 // FPCC
@@ -16,9 +16,7 @@ import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
 import Site from 'components/Site'
-import { ASSISTANT, GENERAL } from 'common/constants/roles'
-
-const Dashboard = lazy(() => import('components/Dashboard/DashboardContainer'))
+import { GENERAL } from 'common/constants/roles'
 
 function AppContainer() {
   const { appIsLoading } = AppData()
@@ -45,14 +43,6 @@ function AppContainer() {
                 <AppWrapper>
                   <ConditionsOfUse />
                 </AppWrapper>
-              }
-            />
-            <Route
-              path="dashboard/*"
-              element={
-                <RequireAuth siteMembership={ASSISTANT} withMessage>
-                  <Dashboard />
-                </RequireAuth>
               }
             />
             <Route
