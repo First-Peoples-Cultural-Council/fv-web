@@ -78,7 +78,6 @@ export function useSiteUpdateWidgets() {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateWidgets,
-    redirectTo: `/${sitename}/dashboard/edit/home`,
     queryKeyToInvalidate: [SITES, sitename],
     actionWord: 'updated',
     type: 'Home page widgets',

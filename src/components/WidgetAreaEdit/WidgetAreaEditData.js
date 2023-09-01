@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react'
 import { useSiteStore } from 'context/SiteContext'
 import { usePage, usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
+import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function WidgetAreaEditData({ pageSlug, isHomepage }) {
   const [widgetIds, setWidgetIds] = useState([])
-  const [widgetValues, setWidgetValues] = useState()
+  const [widgetValues, setWidgetValues] = useState({})
   const { site } = useSiteStore()
   const [currentWidget, setCurrentWidget] = useState()
 
@@ -16,22 +17,34 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
     pageSlug,
   })
 
-  // get list of widget IDs
+  // Fetch all widgets for this site
+  const {
+    widgets,
+    isInitialLoading: widgetsIsInitialLoading,
+    error: widgetsError,
+  } = useWidgets()
+
+  // If custom page set list of widget IDs in state
   useEffect(() => {
-    if (isInitialLoading === false && error === null) {
-      const ids = data?.widgets?.map((w) => w.id)
-      const values = widgetDataAdaptor(data?.widgets)
+    if (pageSlug && isInitialLoading === false && error === null) {
+      const ids = data?.widgets?.map((w) => w.id) || []
       setWidgetIds(ids)
-      setWidgetValues(values)
     }
   }, [isInitialLoading, error])
 
+  // Set widget objects in state
+  useEffect(() => {
+    if (widgetsIsInitialLoading === false && widgetsError === null) {
+      const values = widgetDataAdaptor(widgets)
+      setWidgetValues(values)
+    }
+  }, [widgetsIsInitialLoading, widgetsError])
+
+  // If homepage set list of widget IDs in state
   useEffect(() => {
     if (isHomepage) {
       const ids = site?.homepageWidgets?.map((w) => w.id)
-      const values = widgetDataAdaptor(site?.homepageWidgets)
       setWidgetIds(ids)
-      setWidgetValues(values)
     }
   }, [isHomepage, site])
 
@@ -66,7 +79,8 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   }
 
   const handleAddWidget = (id) => {
-    const filteredIds = [id, ...widgetIds]
+    // must supply array for sites with no widgets
+    const filteredIds = widgetIds?.length > 0 ? [id, ...widgetIds] : [id]
     saveWidgetOrder(filteredIds)
   }
 
@@ -76,7 +90,7 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
     destinationTitle: isHomepage ? 'Home' : data?.title,
     handleRemoveWidget,
     handleAddWidget,
-    isLoading: isInitialLoading,
+    isLoading: isInitialLoading || widgetsIsInitialLoading,
     widgetData: widgetValues,
     widgetIds,
     setWidgetIds: updateWidgetOrder,

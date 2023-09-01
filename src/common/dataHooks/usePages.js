@@ -119,7 +119,6 @@ export function usePageWidgetsUpdate({ pageSlug }) {
   }
   const mutation = useMutationWithNotification({
     mutationFn: updatePage,
-    redirectTo: `/${sitename}/dashboard/edit/page?slug=${pageSlug}`,
     queryKeyToInvalidate: [PAGES, sitename],
     actionWord: 'updated',
     type: 'widget list',
