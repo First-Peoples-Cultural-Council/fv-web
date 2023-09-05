@@ -40,13 +40,13 @@ function SongPresentationDrawer({ entry, sitename }) {
           />
         </div>
       )}
-      {entry.relatedVideos && (
+      {entry.coverVisual?.type === VIDEO && (
         <div className="my-2 md:my-6 flex mx-auto px-4">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
             src={getMediaPath({
               type: VIDEO,
-              mediaObject: entry?.relatedVideos[0],
+              mediaObject: entry?.coverVisual?.entry,
               size: ORIGINAL,
             })}
             controls

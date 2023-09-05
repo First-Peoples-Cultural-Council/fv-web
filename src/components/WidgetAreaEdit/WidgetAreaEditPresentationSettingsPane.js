@@ -145,11 +145,11 @@ function WidgetAreaEditPresentationSettingsPane({
               {isEditableWidgetType(currentWidget?.type) ? (
                 <>
                   {/* <VisibilitySelect.Container
-                    id={currentWidget?.uid}
+                    id={currentWidget?.id}
                     docState={currentWidget?.visibility}
                   /> */}
                   <Link
-                    to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.uid}`}
+                    to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.id}`}
                     className={buttonClass}
                   >
                     {getIcon('Pencil', buttonIconClass)}

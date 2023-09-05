@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
+import { FORMAT_RIGHT } from 'common/constants'
 
 function WidgetLogoPresentation({ widgetData }) {
   const { site } = useSiteStore()
   const { text, id } = widgetData?.settings || {}
-  const format = widgetData?.format ? widgetData?.format : 'right'
-  return format === 'right' ? (
+  const format = widgetData?.format ? widgetData?.format : FORMAT_RIGHT
+  return format === FORMAT_RIGHT ? (
     <section className="w-full bg-white" data-testid="WidgetLogoPresentation">
       <div className="my-2 sm:m-10 py-6 sm:py-10 px-2 lg:px-4 bg-tertiaryB sm:rounded-lg">
         <div className="max-w-2xl mx-auto px-4 lg:max-w-7xl border-t border-b border-white">

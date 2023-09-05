@@ -80,28 +80,38 @@ function AlphabetPresentationSelected({
                 key={word?.id}
                 className={`grid grid-cols-5 w-full py-2 px-4 ${zebraStripe}`}
               >
-                <div className="col-span-2 sm:flex-col sm:place-content-center md:flex-row md:text-center p-2">
-                  <Link
-                    to={`/${sitename}/${kids ? 'kids/' : ''}words/${word?.id}`}
-                    className="text-center m-2"
-                  >
-                    {word?.title}
-                  </Link>
-                  {word?.relatedAudio?.length > 0 && (
-                    <AudioButton
-                      audioArray={word?.relatedAudio}
-                      iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
-                      hoverTooltip
-                    />
-                  )}
+                <div className="col-span-2">
+                  <div className="justify-center flex items-center p-2">
+                    <Link
+                      to={`/${sitename}/${kids ? 'kids/' : ''}words/${
+                        word?.id
+                      }`}
+                      className="text-center"
+                    >
+                      {word?.title}
+                    </Link>
+                    {word?.relatedAudio?.length > 0 && (
+                      <AudioButton
+                        audioArray={word?.relatedAudio}
+                        iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
+                        hoverTooltip
+                      />
+                    )}
+                  </div>
                 </div>
                 <div className="col-span-3 flex items-center p-2">
-                  {word?.translations?.length > 0 &&
-                    word?.translations.map((translation) => (
-                      <span key={translation.id}>
-                        {translation?.text};&nbsp;
-                      </span>
-                    ))}
+                  <ul
+                    className={
+                      word?.translations?.length === 1
+                        ? ''
+                        : 'list-disc list-inside'
+                    }
+                  >
+                    {word?.translations?.length > 0 &&
+                      word?.translations.map((translation) => (
+                        <li key={translation.id}>{translation?.text}</li>
+                      ))}
+                  </ul>
                 </div>
               </div>
             )
