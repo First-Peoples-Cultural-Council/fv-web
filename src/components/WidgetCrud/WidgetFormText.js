@@ -37,7 +37,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_RIGHT,
     visibility: PUBLIC,
     title: '',
-    textWithFormatting: '',
+    textWithFormatting: null,
     audio: '',
     image: '',
     bg: '',
