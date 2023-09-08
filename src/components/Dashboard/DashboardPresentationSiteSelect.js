@@ -5,7 +5,6 @@ import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { getMediaUrl } from 'common/utils/urlHelpers'
 
 function DashboardPresentationSiteSelect({ sites, site }) {
   return sites?.length > 1 ? (
@@ -68,14 +67,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                       >
                         <span className="flex w-full justify-between items-center">
                           <span className="flex min-w-0 items-center justify-between space-x-3">
-                            {sitesListItem?.logoId ? (
+                            {sitesListItem?.logoPathThumbnail ? (
                               <img
                                 className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0"
-                                src={getMediaUrl({
-                                  type: 'image',
-                                  id: sitesListItem?.logoId,
-                                  viewName: 'Thumbnail',
-                                })}
+                                src={sitesListItem?.logoPathThumbnail}
                                 alt={`${sitesListItem?.title} Logo`}
                               />
                             ) : (
@@ -106,14 +101,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
       <div className="w-full bg-fv-charcoal text-white rounded-lg px-2 py-2 text-sm text-left font-medium">
         <span className="flex w-full justify-between items-center">
           <span className="flex min-w-0 items-center justify-between space-x-3">
-            {site?.logoId ? (
+            {site?.logoPathThumbnail ? (
               <img
                 className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0"
-                src={getMediaUrl({
-                  type: 'image',
-                  id: site?.logoId,
-                  viewName: 'Thumbnail',
-                })}
+                src={site?.logoPathThumbnail}
                 alt={`${site?.title} Logo`}
               />
             ) : (
