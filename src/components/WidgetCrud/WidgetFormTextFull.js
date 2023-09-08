@@ -23,7 +23,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     type: WIDGET_TEXTFULL,
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
-    textWithFormatting: '',
+    textWithFormatting: null,
   }
 
   const { register, handleSubmit, control, reset, errors, isCreateMode } =

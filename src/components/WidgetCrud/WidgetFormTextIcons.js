@@ -31,7 +31,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
     title: '',
-    textWithFormatting: '',
+    textWithFormatting: null,
     image: '',
   }
 
