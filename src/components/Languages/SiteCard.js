@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import { MEMBERS } from 'common/constants'
+import placeholder from 'images/cover-thumbnail.png'
 
 function SiteCard({ site, member = false }) {
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
@@ -31,9 +32,9 @@ function SiteCard({ site, member = false }) {
       >
         <img
           className="absolute h-16 w-16 md:w-24 md:h-24 rounded-full ring-1 ring-gray-200 -left-8 md:-left-10"
-          src={site.logoPath}
+          src={site.logoPathSmall || placeholder}
           alt={`${site.title} - Logo`}
-        ></img>
+        />
         <p className="w-full ml-24 mr-8 md:mr-4 tracking-tight text-center break-word">
           {site.title}
         </p>
