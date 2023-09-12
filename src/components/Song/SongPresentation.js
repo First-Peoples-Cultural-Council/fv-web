@@ -13,6 +13,8 @@ function SongPresentation({ entry }) {
   const hasMedia = !!(
     entry?.relatedImages.length > 0 || entry?.relatedVideos?.length > 0
   )
+  const labelStyling = 'font-bold text-fv-charcoal uppercase'
+  const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6'
   return (
     <div
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2 md:my-10 bg-white"
@@ -53,7 +55,7 @@ function SongPresentation({ entry }) {
             {(entry?.introduction?.length > 0 ||
               entry?.introductionTranslation?.length > 0) && (
               <div className="bg-gray-100 p-2 space-y-2 sm:space-y-4 lg:my-2">
-                <h4 className="font-bold text-fv-charcoal">INTRODUCTION</h4>
+                <h4 className={labelStyling}>Introduction</h4>
                 <div className="text-fv-charcoal">
                   <WysiwygBlock
                     className="mb-2"
@@ -74,10 +76,8 @@ function SongPresentation({ entry }) {
                 ))}
               </div>
             )}
-            <div className="space-y-2 sm:space-y-4">
-              {entry.hasLyrics && (
-                <h4 className="font-bold text-fv-charcoal">LYRICS</h4>
-              )}
+            <div className="space-y-2 py-5">
+              {entry.lyrics.length && <h4 className={labelStyling}>Lyrics</h4>}
               {entry.lyrics.map((lyric) => (
                 <div
                   key={lyric.id}
@@ -93,6 +93,18 @@ function SongPresentation({ entry }) {
                 </div>
               ))}
             </div>
+
+            {/* Notes */}
+            {entry?.notes?.length > 0 && (
+              <div className="space-y-2 py-5">
+                <h4 className={labelStyling}>Notes</h4>
+                <ul className="list-none md:list-disc space-y-1">
+                  {entry?.notes?.map((note) => (
+                    <li className={contentStyling}>{note}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {hasMedia && (
               <div className="flex md:hidden mt-2">
                 {getMedia({
