@@ -100,7 +100,9 @@ function SongPresentation({ entry }) {
                 <h4 className={labelStyling}>Notes</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.notes?.map((note) => (
-                    <li className={contentStyling}>{note}</li>
+                    <li key={note?.slice(0, 20)} className={contentStyling}>
+                      {note}
+                    </li>
                   ))}
                 </ul>
               </div>
