@@ -44,12 +44,6 @@ function SongPresentation({ entry }) {
             <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl">
               {entry?.titleTranslation}
             </h2>
-            <span className="font-bold text-fv-charcoal">By: </span>
-            <span className="text-fv-charcoal-light">
-              {entry?.acknowledgement?.length > 0
-                ? `${entry.acknowledgement}`
-                : ''}
-            </span>
           </div>
           <div>
             {(entry?.introduction?.length > 0 ||
@@ -94,7 +88,19 @@ function SongPresentation({ entry }) {
               ))}
             </div>
 
-            {/* Notes */}
+            {/* Notes and Acknowledgements */}
+            {entry?.acknowledgements?.length > 0 && (
+              <div className="space-y-2 py-5">
+                <h4 className={labelStyling}>Acknowledgements</h4>
+                <ul className="list-none md:list-disc space-y-1">
+                  {entry?.acknowledgements?.map((ack) => (
+                    <li key={ack?.slice(0, 20)} className={contentStyling}>
+                      {ack}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {entry?.notes?.length > 0 && (
               <div className="space-y-2 py-5">
                 <h4 className={labelStyling}>Notes</h4>

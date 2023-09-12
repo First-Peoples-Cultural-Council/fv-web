@@ -16,7 +16,7 @@ export function songDetailAdaptor({ item }) {
     ...basicDatesAdaptor({ item }),
 
     // single acknowledgement
-    acknowledgement: item?.acknowledgements || [],
+    acknowledgements: item?.acknowledgements || [],
     notes: item?.notes || [],
 
     // intro
