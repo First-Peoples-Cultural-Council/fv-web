@@ -6,6 +6,10 @@ import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import {
+  relatedMediaForApi,
+  relatedMediaForViewing,
+} from 'common/dataAdaptors/relatedMediaAdaptors'
 
 export function useCharacter({ id }) {
   const { sitename } = useParams()
@@ -18,10 +22,8 @@ export function useCharacter({ id }) {
     id: response?.data?.id,
     title: response?.data?.title,
     relatedDictionaryEntries: response?.data?.relatedDictionaryEntries,
-    relatedAudio: response?.data?.relatedAudio,
-    relatedVideos: response?.data?.relatedVideos,
-    relatedImages: response?.data?.relatedImages,
     generalNote: response?.data?.note,
+    ...relatedMediaForViewing({ item: response?.data }),
   }
   return {
     ...response,
@@ -56,11 +58,9 @@ export function useCharacterPartialUpdate() {
 
   const partialUpdateCharacter = async (formData) => {
     const properties = {
-      relatedAudio: formData?.relatedAudio || [],
-      relatedImages: formData?.relatedImages || [],
-      relatedVideos: formData?.relatedVideos || [],
+      ...relatedMediaForApi({ formData }),
       note: formData?.generalNote || '',
-      relatedDictionaryEntries:
+      related_dictionary_entries:
         objectsToIdsAdaptor(formData?.relatedDictionaryEntries) || [],
     }
 

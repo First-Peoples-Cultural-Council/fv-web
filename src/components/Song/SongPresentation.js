@@ -59,7 +59,7 @@ function SongPresentation({ entry }) {
                     className="mb-2"
                     jsonString={entry?.introduction}
                   />
-                  <WysiwygBlock jsongString={entry?.introductionTranslation} />
+                  <WysiwygBlock jsonString={entry?.introductionTranslation} />
                 </div>
               </div>
             )}

@@ -13,7 +13,6 @@ import {
   getMediaPath,
   selectOneMediaDataHelper,
 } from 'common/utils/mediaHelpers'
-import placeholder from 'images/cover-thumbnail.png'
 
 export function languagesListAdaptor({ languagesData }) {
   return languagesData?.map((language) => ({
@@ -29,7 +28,7 @@ export function sitesListAdaptor({ sitesData }) {
     title: site?.title,
     sitename: site?.slug,
     visibility: site?.visibility?.toLowerCase(),
-    logoPath: site?.logo?.small?.path || placeholder,
+    ...logoAdaptor({ item: site }),
     parentLanguageTitle: site?.language,
     features: site?.features,
     role: site?.role, // Data for this will only be included in the my-sites response
@@ -55,29 +54,7 @@ export function siteAdaptor({ siteData }) {
     title: siteData?.title,
     sitename: siteData?.slug,
     parentLanguageTitle: siteData?.language,
-    logo: siteData?.logo,
-    logoId: siteData?.logo?.id,
-    logoPathMedium: siteData?.logo
-      ? getMediaPath({
-          mediaObject: siteData?.logo,
-          type: IMAGE,
-          size: MEDIUM,
-        })
-      : null,
-    logoPathSmall: siteData?.logo
-      ? getMediaPath({
-          mediaObject: siteData?.logo,
-          type: IMAGE,
-          size: SMALL,
-        })
-      : null,
-    logoPathThumbnail: siteData?.logo
-      ? getMediaPath({
-          mediaObject: siteData?.logo,
-          type: IMAGE,
-          size: THUMBNAIL,
-        })
-      : null,
+    ...logoAdaptor({ item: siteData }),
     bannerImage: siteData?.bannerImage,
     bannerVideo: siteData?.bannerVideo,
     visibility: siteData?.visibility?.toLowerCase(),
@@ -109,4 +86,33 @@ const constructVisibilityOptions = (siteVisibility) => {
     default:
       return formattedVisibilityOptions([TEAM])
   }
+}
+
+const logoAdaptor = ({ item }) => {
+  const logoObject = {
+    logo: item?.logo,
+    logoId: item?.logo?.id,
+    logoPathMedium: item?.logo
+      ? getMediaPath({
+          mediaObject: item?.logo,
+          type: IMAGE,
+          size: MEDIUM,
+        })
+      : null,
+    logoPathSmall: item?.logo
+      ? getMediaPath({
+          mediaObject: item?.logo,
+          type: IMAGE,
+          size: SMALL,
+        })
+      : null,
+    logoPathThumbnail: item?.logo
+      ? getMediaPath({
+          mediaObject: item?.logo,
+          type: IMAGE,
+          size: THUMBNAIL,
+        })
+      : null,
+  }
+  return logoObject
 }
