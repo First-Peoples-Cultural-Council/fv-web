@@ -1,6 +1,8 @@
 import { coverAdaptor } from 'common/dataAdaptors/coverAdaptor'
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
 import { TYPE_SONG } from 'common/constants'
+import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
+import { introAdaptor } from 'common/dataAdaptors/introAdaptors'
 
 export function songSummaryAdaptor({ item }) {
   return {
@@ -14,14 +16,8 @@ export function songDetailAdaptor({ item }) {
   return {
     ...songSummaryAdaptor({ item }),
     ...basicDatesAdaptor({ item }),
-
-    // single acknowledgement
-    acknowledgements: item?.acknowledgements || [],
-    notes: item?.notes || [],
-
-    // intro
-    introduction: item?.introduction || '',
-    introductionTranslation: item?.introductionTranslation || '',
+    ...notesAcknowledgementsAdaptor({ item }),
+    ...introAdaptor({ item }),
 
     // lyrics
     lyrics: item?.lyrics || [],
