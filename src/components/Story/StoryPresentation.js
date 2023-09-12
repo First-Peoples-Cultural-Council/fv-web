@@ -13,12 +13,15 @@ function StoryPresentation({ entry }) {
   const coverMedia = entry?.coverVisual?.entry
   const labelStyling = 'font-bold text-fv-charcoal uppercase'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6'
+  const headerStyling = 'bg-white overflow-hidden shadow-lg'
+  const blockBgStyling = 'bg-white overflow-hidden lg:shadow-lg'
+  const blockStyling = `${blockBgStyling} block md:flex h-full p-4 lg:p-0 lg:mt-5 lg:rounded-lg`
 
   return (
     <div data-testid="StoryPresentation" className="bg-gray-200">
       {/* Cover with image */}
       {entry?.coverVisual?.type === IMAGE && (
-        <div className="grid grid-cols-2 md:gap-4 bg-white overflow-hidden shadow-lg">
+        <div className={`grid grid-cols-2 md:gap-4 ${headerStyling}`}>
           <div className="col-span-2 md:col-span-1 flex max-h-screen">
             <ImageWithLightbox.Presentation image={coverMedia} />
           </div>
@@ -39,7 +42,7 @@ function StoryPresentation({ entry }) {
       )}
       {/* Cover with video */}
       {entry?.coverVisual?.type === VIDEO && (
-        <div className="bg-white overflow-hidden shadow-lg">
+        <div className={headerStyling}>
           <div className="flex justify-center items-center ">
             <div className="flex max-h-screen">
               <video
@@ -70,7 +73,7 @@ function StoryPresentation({ entry }) {
       )}
       {/* Cover no media */}
       {!entry?.coverVisual?.type && (
-        <div className="bg-white overflow-hidden shadow-lg">
+        <div className={headerStyling}>
           <div className="flex justify-center">
             <div className="p-10 space-y-4">
               <h1 className="font-medium text-2xl md:text-4xl lg:text-5xl xl:text-7xl text-fv-charcoal">
@@ -87,26 +90,28 @@ function StoryPresentation({ entry }) {
         </div>
       )}
 
-      <div className="container max-w-4xl xl:max-w-7xl mx-auto pb-4 divide-y-2">
+      <div className="container max-w-4xl xl:max-w-7xl mx-auto pb-4 divide-y-2 md:text-lg">
         {/* Introduction */}
         {(entry?.intro?.length > 0 ||
           entry?.introTranslation?.length > 0 ||
           coverMedia ||
           entry?.relatedAudio?.length > 0) && (
           <LazyLoader>
-            <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg mt-5 p-4 lg:p-0">
+            <div className={blockStyling}>
               {coverMedia &&
                 getMedia({
                   images: entry?.relatedImages,
                   videos: entry?.relatedVideos,
                 })}
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
-                <div className="flex-1 bg-white rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
-                  <h2 className={labelStyling}>Introduction</h2>
-                  <div className="w-full font-medium md:text-lg text-fv-charcoal">
+                <div
+                  className={`${blockBgStyling} flex-1 rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
+                >
+                  <h4 className={labelStyling}>Introduction</h4>
+                  <div className="w-full font-medium text-fv-charcoal">
                     <WysiwygBlock jsonString={entry?.intro} />
                   </div>
-                  <div className="w-full md:text-lg text-fv-charcoal-light">
+                  <div className="w-full text-fv-charcoal-light">
                     <WysiwygBlock jsonString={entry?.introTranslation} />
                   </div>
                   {entry?.relatedAudio?.length > 0 && (
@@ -121,7 +126,9 @@ function StoryPresentation({ entry }) {
                     </div>
                   )}
                 </div>
-                <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden lg:shadow-lg p-4 lg:p-6">
+                <div
+                  className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
+                >
                   <div className="flex items-center justify-end">
                     <p className="text-fv-charcoal-light text-xs md:text-sm">
                       INTRO
@@ -133,17 +140,20 @@ function StoryPresentation({ entry }) {
             <div className="breakAfter" />
           </LazyLoader>
         )}
+
         {/* Pages */}
         {entry?.pages?.length > 0
           ? entry.pages.map((page) => (
               <LazyLoader key={page.id}>
-                <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg p-4 lg:p-0 lg:mt-5">
+                <div className={blockStyling}>
                   {getMedia({
                     images: page?.relatedImages,
                     videos: page?.relatedVideos,
                   })}
                   <div className="w-full md:w-6/12 flex flex-col grow shrink">
-                    <div className="flex-1 bg-white text-fv-charcoal md:text-lg rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
+                    <div
+                      className={`${blockBgStyling} flex-1 text-fv-charcoal rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
+                    >
                       <div className="w-full font-medium">
                         <WysiwygBlock jsonString={page?.text} />
                       </div>
@@ -162,7 +172,9 @@ function StoryPresentation({ entry }) {
                         </div>
                       )}
                     </div>
-                    <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden lg:shadow-lg p-4 lg:p-6">
+                    <div
+                      className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
+                    >
                       <div className="flex items-center justify-end">
                         <p className="text-fv-charcoal-light text-xs md:text-sm">
                           {page.order}
@@ -179,9 +191,11 @@ function StoryPresentation({ entry }) {
         {/* Notes and Acknowledgements */}
         {(entry?.notes?.length || entry?.acknowledgements?.length) && (
           <LazyLoader key="notes">
-            <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg p-4 lg:p-0 lg:mt-5">
+            <div className={blockStyling}>
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
-                <div className="flex-1 bg-white text-fv-charcoal md:text-lg rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
+                <div
+                  className={`${blockBgStyling} flex-1 text-fv-charcoal rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
+                >
                   <div className="space-y-2 py-5">
                     <h4 className={labelStyling}>Acknowledgements</h4>
                     <ul className="list-none md:list-disc space-y-1">
