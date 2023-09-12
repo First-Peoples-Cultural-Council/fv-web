@@ -11,6 +11,9 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function StoryPresentation({ entry }) {
   const coverMedia = entry?.coverVisual?.entry
+  const labelStyling = 'font-bold text-fv-charcoal uppercase'
+  const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6'
+
   return (
     <div data-testid="StoryPresentation" className="bg-gray-200">
       {/* Cover with image */}
@@ -99,9 +102,7 @@ function StoryPresentation({ entry }) {
                 })}
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
                 <div className="flex-1 bg-white rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
-                  <h2 className="w-full text-fv-charcoal-light text-xs md:text-sm">
-                    INTRODUCTION
-                  </h2>
+                  <h2 className={labelStyling}>Introduction</h2>
                   <div className="w-full font-medium md:text-lg text-fv-charcoal">
                     <WysiwygBlock jsonString={entry?.intro} />
                   </div>
@@ -174,6 +175,39 @@ function StoryPresentation({ entry }) {
               </LazyLoader>
             ))
           : null}
+
+        {/* Notes and Acknowledgements */}
+        {(entry?.notes?.length || entry?.acknowledgements?.length) && (
+          <LazyLoader key="notes">
+            <div className="block md:flex h-full bg-white lg:rounded-lg overflow-hidden lg:shadow-lg p-4 lg:p-0 lg:mt-5">
+              <div className="w-full md:w-6/12 flex flex-col grow shrink">
+                <div className="flex-1 bg-white text-fv-charcoal md:text-lg rounded-t-lg rounded-b-none overflow-hidden lg:shadow-lg p-4 lg:p-10 space-y-5">
+                  <div className="space-y-2 py-5">
+                    <h4 className={labelStyling}>Acknowledgements</h4>
+                    <ul className="list-none md:list-disc space-y-1">
+                      {entry?.acknowledgements?.map((ack) => (
+                        <li key={ack?.id} className={contentStyling}>
+                          {ack?.text}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="space-y-2 py-5">
+                    <h4 className={labelStyling}>Notes</h4>
+                    <ul className="list-none md:list-disc space-y-1">
+                      {entry?.notes?.map((note) => (
+                        <li key={note?.id} className={contentStyling}>
+                          {note?.text}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </LazyLoader>
+        )}
       </div>
     </div>
   )
