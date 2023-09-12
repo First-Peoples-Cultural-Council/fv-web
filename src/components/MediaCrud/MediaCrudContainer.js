@@ -62,7 +62,12 @@ function MediaCrudContainer({
   }
 
   return (
-    <div id="MediaCrudContainer" className="h-full flex flex-col">
+    <div
+      id="MediaCrudContainer"
+      className={`h-full flex flex-col ${
+        selectedTab === 'Upload Files' ? 'overflow-y-scroll' : ''
+      }`}
+    >
       <div>
         <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
           {selectedTab}
