@@ -4,6 +4,12 @@ import PropTypes from 'prop-types'
 // FPCC
 
 function TextField({ label, nameId, helpText, disabled, register }) {
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <Fragment key={`${nameId}_TextField`}>
       <label
@@ -19,6 +25,7 @@ function TextField({ label, nameId, helpText, disabled, register }) {
           {...register(nameId)}
           type="text"
           disabled={disabled}
+          onKeyDown={handleKeyDown}
           className={`${
             disabled ? 'opacity-50' : ''
           } mt-1 block w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
