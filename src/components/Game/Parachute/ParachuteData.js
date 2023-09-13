@@ -21,15 +21,15 @@ function ParachuteData() {
   const [pageParam, setPageParam] = useState(0)
 
   const { data } = useQuery(
-    ['gameContent', site?.uid + pageParam],
+    ['gameContent', site?.id + pageParam],
     () =>
       api.gameContent.get({
-        siteId: site?.uid,
+        siteId: site?.id,
         pageParam,
         perPage: PUZZLES,
       }),
     {
-      enabled: !!site?.uid,
+      enabled: !!site?.id,
     },
   )
 

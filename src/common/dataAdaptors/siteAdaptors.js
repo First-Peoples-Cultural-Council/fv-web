@@ -24,7 +24,7 @@ export function languagesListAdaptor({ languagesData }) {
 
 export function sitesListAdaptor({ sitesData }) {
   return sitesData?.map((site) => ({
-    uid: site?.id,
+    id: site?.id,
     title: site?.title,
     sitename: site?.slug,
     visibility: site?.visibility?.toLowerCase(),
@@ -42,7 +42,7 @@ export function siteAdaptor({ siteData }) {
   return {
     banner,
     path: siteData?.url,
-    uid: siteData?.id,
+    id: siteData?.id,
     roles: [],
     children: {
       Alphabet: siteData?.characters,

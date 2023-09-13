@@ -5,7 +5,7 @@ import { useNotification } from 'context/NotificationContext'
 
 function ContactUsData({ widgetData }) {
   const { site } = useSiteStore()
-  const { title, uid } = site
+  const { title, id } = site
   const { setNotification } = useNotification()
 
   let links = []
@@ -23,7 +23,7 @@ function ContactUsData({ widgetData }) {
   const sendMessage = async (formData) => {
     try {
       const response = await api.mail.post({
-        siteId: uid,
+        siteId: id,
         name: formData.name,
         from: formData.email,
         message: formData.message,

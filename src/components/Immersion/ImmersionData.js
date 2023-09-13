@@ -9,7 +9,7 @@ import immersionDataAdaptor from 'components/Immersion/immersionDataAdaptor'
 
 function ImmersionData() {
   const { site } = useSiteStore()
-  const { title, children, sitename, uid } = site
+  const { title, children, sitename, id } = site
   const navigate = useNavigate()
   const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
@@ -19,7 +19,7 @@ function ImmersionData() {
   }, [children])
 
   const { isInitialLoading, error, isError, data } = useQuery(
-    ['immersion', uid],
+    ['immersion', id],
     () => api.immersion.get(labelDictionaryId),
     {
       // The query will not execute until the labelDictionaryId exists

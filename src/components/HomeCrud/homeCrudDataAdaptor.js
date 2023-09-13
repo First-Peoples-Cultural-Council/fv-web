@@ -6,7 +6,7 @@ export const homeCrudDataAdaptor = ({ data }) => {
   }
 
   const formattedData = {
-    id: data?.uid,
+    id: data?.id,
     logoId: data?.logo?.id,
     bannerImageId: data?.bannerImage?.id,
     bannerVideoId: data?.bannerVideo?.id,

@@ -3,7 +3,7 @@ import makeStore from 'context/makeStore'
 export const siteInitialState = {
   site: {
     path: '',
-    uid: '',
+    id: '',
     roles: [],
     children: {},
     menu: {},
