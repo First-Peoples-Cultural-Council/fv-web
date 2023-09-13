@@ -1,13 +1,12 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchBox from 'common/hooks/useSearchBox'
+import useSearchTerm from 'common/hooks/useSearchTerm'
 import useSearchLanguage from 'common/hooks/useSearchLanguage'
 import useSearchType from 'common/hooks/useSearchType'
-import { DOMAIN, DOMAIN_BOTH, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
+import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
@@ -21,8 +20,6 @@ function useSearchBoxNavigation({
 }) {
   // initial search settings
   const { site } = useSiteStore()
-  // update search settings when url changes
-  const [searchParams] = useSearchParams()
 
   // State and methods from other hooks
   const {
@@ -31,12 +28,11 @@ function useSearchBoxNavigation({
     setDisplayedSearchTerm,
     submittedSearchTerm,
     setSubmittedSearchTerm,
-  } = useSearchBox()
+  } = useSearchTerm()
 
   const {
     getSearchTypeLabel,
     searchType: _searchType,
-    setSearchType,
     setSearchTypeInUrl,
   } = useSearchType({
     initialSearchType,
@@ -59,25 +55,6 @@ function useSearchBoxNavigation({
           plural: true,
         })} in ${site.title}`
       : `Search ${site.title}`
-
-  useEffect(() => {
-    const query = searchParams.get('q') || ''
-    if (query !== submittedSearchTerm) {
-      setSubmittedSearchTerm(query)
-    }
-    if (!displayedSearchTerm) {
-      setDisplayedSearchTerm(query)
-    }
-
-    setSearchLanguage(searchParams.get(DOMAIN) || DOMAIN_BOTH)
-
-    setSearchType(searchParams.get(TYPES) || initialSearchType)
-  }, [
-    searchParams,
-    initialSearchType,
-    displayedSearchTerm,
-    submittedSearchTerm,
-  ])
 
   // provide navigation functions for search urls
   const { pathname } = useLocation()
@@ -138,7 +115,7 @@ function useSearchBoxNavigation({
     searchLanguageInUrl,
     setSearchLanguageInUrl,
     searchLanguageOptions,
-    // from useSearchBox
+    // from useSearchTerm
     displayedSearchTerm,
     handleSearchTermChange,
     setDisplayedSearchTerm,
