@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, useLocation } from 'react-router-dom'
 
-function useSearchBox() {
+function useSearchTerm() {
   const location = useLocation()
   // update search settings when url changes
   const [searchParams] = useSearchParams()
@@ -52,4 +52,4 @@ function useSearchBox() {
   }
 }
 
-export default useSearchBox
+export default useSearchTerm

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import useSearchBox from 'common/hooks/useSearchBox'
+import useSearchTerm from 'common/hooks/useSearchTerm'
 import useSearchLanguage from 'common/hooks/useSearchLanguage'
 import useSearchType from 'common/hooks/useSearchType'
 import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
@@ -28,7 +28,7 @@ function useSearchBoxNavigation({
     setDisplayedSearchTerm,
     submittedSearchTerm,
     setSubmittedSearchTerm,
-  } = useSearchBox()
+  } = useSearchTerm()
 
   const {
     getSearchTypeLabel,
@@ -115,7 +115,7 @@ function useSearchBoxNavigation({
     searchLanguageInUrl,
     setSearchLanguageInUrl,
     searchLanguageOptions,
-    // from useSearchBox
+    // from useSearchTerm
     displayedSearchTerm,
     handleSearchTermChange,
     setDisplayedSearchTerm,
