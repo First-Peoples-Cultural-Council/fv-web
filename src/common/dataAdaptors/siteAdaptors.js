@@ -36,9 +36,9 @@ export function sitesListAdaptor({ sitesData }) {
 }
 
 export function siteAdaptor({ siteData }) {
-  const videoObj = siteData.bannerVideo
-  const imageObj = siteData.bannerImage
-  const banner = selectOneMediaDataHelper(imageObj, videoObj)
+  const bannerVideo = siteData?.bannerVideo
+  const bannerImage = siteData?.bannerImage
+  const banner = selectOneMediaDataHelper(bannerImage, bannerVideo)
   return {
     banner,
     path: siteData?.url,
@@ -55,8 +55,8 @@ export function siteAdaptor({ siteData }) {
     sitename: siteData?.slug,
     parentLanguageTitle: siteData?.language,
     ...logoAdaptor({ item: siteData }),
-    bannerImage: siteData?.bannerImage,
-    bannerVideo: siteData?.bannerVideo,
+    bannerImage,
+    bannerVideo,
     visibility: siteData?.visibility?.toLowerCase(),
     visibilityOptions: constructVisibilityOptions(siteData?.visibility),
     features: siteData?.features,

@@ -6,8 +6,9 @@ import { useNotification } from 'context/NotificationContext'
 
 export default function useMutationWithNotification({
   mutationFn,
-  redirectTo,
+  onSuccessCallback,
   queryKeyToInvalidate,
+  redirectTo,
   type,
   actionWord = 'saved',
 }) {
@@ -16,11 +17,14 @@ export default function useMutationWithNotification({
 
   const mutation = useMutation({
     mutationFn,
-    onSuccess: () => {
+    onSuccess: (response) => {
       setNotification({
         type: SUCCESS,
         message: `Success! The ${type} has been ${actionWord}.`,
       })
+      if (onSuccessCallback) {
+        onSuccessCallback(response)
+      }
       if (redirectTo) {
         setTimeout(() => {
           window.location.href = redirectTo
