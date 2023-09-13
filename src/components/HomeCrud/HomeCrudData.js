@@ -1,21 +1,14 @@
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { homeCrudDataAdaptor } from 'components/HomeCrud/homeCrudDataAdaptor'
 import { useSiteUpdateBanner } from 'common/dataHooks/useSites'
 
 function HomeCrudData() {
   const { site } = useSiteStore()
   const navigate = useNavigate()
-  const location = useLocation()
-
-  const backHandler = () => navigate(`/${site?.sitename}/dashboard/edit/home`)
-
-  const editHeader = new URLSearchParams(location.search).get('editHeader')
-    ? new URLSearchParams(location.search).get('editHeader')
-    : null
-  const dataToEdit = homeCrudDataAdaptor({ data: site })
+  const [searchParams] = useSearchParams()
+  const editHeader = searchParams.get('editHeader') || null
 
   const { onSubmit: updateSite } = useSiteUpdateBanner()
 
@@ -26,9 +19,9 @@ function HomeCrudData() {
 
   return {
     submitHandler,
-    backHandler,
+    backHandler: () => navigate(`/${site?.sitename}/dashboard/edit/home`),
     site,
-    dataToEdit,
+    dataToEdit: site,
     isWidgetAreaEdit: !editHeader,
   }
 }

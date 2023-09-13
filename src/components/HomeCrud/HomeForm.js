@@ -11,14 +11,10 @@ import useEditForm from 'common/hooks/useEditForm'
 function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     logoId: definitions.uuid(),
-    bannerImageId: definitions.uuid(),
-    bannerVideoId: definitions.uuid(),
   })
 
   const defaultValues = {
     logoId: '',
-    bannerImageId: '',
-    bannerVideoId: '',
     banner: {
       docId: '',
       docType: '',
