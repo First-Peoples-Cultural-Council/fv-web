@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -36,6 +36,13 @@ function useSearchType({ initialSearchType = TYPE_ENTRY }) {
   const handleSearchTypeChange = (event, key) => {
     setSelectedSearchType(key)
   }
+
+  // This is to keep selectedSearchType and searchTypeInUrl in sync when on url driven pages
+  useEffect(() => {
+    if (searchTypeInUrl && searchTypeInUrl !== selectedSearchType) {
+      setSelectedSearchTypeWithDefaults(searchTypeInUrl)
+    }
+  }, [selectedSearchType, searchTypeInUrl])
 
   return {
     searchType: selectedSearchType,

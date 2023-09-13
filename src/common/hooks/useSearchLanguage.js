@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -15,12 +15,19 @@ import {
 } from 'common/utils/stringHelpers'
 
 function useSearchLanguage({ searchType }) {
-  const [searchLanguage, setSearchLanguage] = useState()
-
   const [searchLanguageInUrl, setSearchLanguageInUrl] = useSearchParamsState({
     searchParamName: DOMAIN,
     defaultValue: DOMAIN_BOTH,
   })
+
+  const [searchLanguage, setSearchLanguage] = useState(DOMAIN_BOTH)
+
+  // This is to keep searchLanguage and searchLanguageInUrl in sync when on url driven pages
+  useEffect(() => {
+    if (searchLanguageInUrl && searchLanguageInUrl !== searchLanguage) {
+      setSearchLanguage(searchLanguageInUrl)
+    }
+  }, [searchLanguage, searchLanguageInUrl])
 
   const labels = getPresentationPropertiesForType(searchType)
 
