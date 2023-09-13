@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -21,8 +20,6 @@ function useSearchBoxNavigation({
 }) {
   // initial search settings
   const { site } = useSiteStore()
-  // update search settings when url changes
-  const [searchParams] = useSearchParams()
 
   // State and methods from other hooks
   const {
@@ -58,20 +55,6 @@ function useSearchBoxNavigation({
           plural: true,
         })} in ${site.title}`
       : `Search ${site.title}`
-
-  useEffect(() => {
-    const searchParamQuery = searchParams.get('q') || ''
-    if (searchParamQuery !== submittedSearchTerm) {
-      setSubmittedSearchTerm(searchParamQuery)
-    }
-  }, [searchParams, submittedSearchTerm, setSubmittedSearchTerm])
-
-  useEffect(() => {
-    const searchParamQuery = searchParams.get('q') || ''
-    if (searchParamQuery) {
-      setDisplayedSearchTerm(searchParamQuery)
-    }
-  }, [searchParams, setDisplayedSearchTerm])
 
   // provide navigation functions for search urls
   const { pathname } = useLocation()
