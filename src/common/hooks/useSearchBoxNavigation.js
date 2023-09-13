@@ -7,7 +7,7 @@ import { useSiteStore } from 'context/SiteContext'
 import useSearchBox from 'common/hooks/useSearchBox'
 import useSearchLanguage from 'common/hooks/useSearchLanguage'
 import useSearchType from 'common/hooks/useSearchType'
-import { DOMAIN, DOMAIN_BOTH, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
+import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
@@ -36,7 +36,6 @@ function useSearchBoxNavigation({
   const {
     getSearchTypeLabel,
     searchType: _searchType,
-    setSearchType,
     setSearchTypeInUrl,
   } = useSearchType({
     initialSearchType,
@@ -61,23 +60,18 @@ function useSearchBoxNavigation({
       : `Search ${site.title}`
 
   useEffect(() => {
-    const query = searchParams.get('q') || ''
-    if (query !== submittedSearchTerm) {
-      setSubmittedSearchTerm(query)
+    const searchParamQuery = searchParams.get('q') || ''
+    if (searchParamQuery !== submittedSearchTerm) {
+      setSubmittedSearchTerm(searchParamQuery)
     }
-    if (!displayedSearchTerm) {
-      setDisplayedSearchTerm(query)
+  }, [searchParams, submittedSearchTerm, setSubmittedSearchTerm])
+
+  useEffect(() => {
+    const searchParamQuery = searchParams.get('q') || ''
+    if (searchParamQuery) {
+      setDisplayedSearchTerm(searchParamQuery)
     }
-
-    setSearchLanguage(searchParams.get(DOMAIN) || DOMAIN_BOTH)
-
-    setSearchType(searchParams.get(TYPES) || initialSearchType)
-  }, [
-    searchParams,
-    initialSearchType,
-    displayedSearchTerm,
-    submittedSearchTerm,
-  ])
+  }, [searchParams, setDisplayedSearchTerm])
 
   // provide navigation functions for search urls
   const { pathname } = useLocation()
