@@ -189,34 +189,38 @@ function StoryPresentation({ entry }) {
           : null}
 
         {/* Notes and Acknowledgements */}
-        {(entry?.notes?.length || entry?.acknowledgements?.length) && (
+        {(entry?.notes?.length > 0 || entry?.acknowledgements?.length > 0) && (
           <LazyLoader key="notes">
             <div className={blockStyling}>
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
                 <div
                   className={`${blockBgStyling} flex-1 text-fv-charcoal rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
                 >
-                  <div className="space-y-2 py-5">
-                    <h4 className={labelStyling}>Acknowledgements</h4>
-                    <ul className="list-none md:list-disc space-y-1">
-                      {entry?.acknowledgements?.map((ack) => (
-                        <li key={ack?.id} className={contentStyling}>
-                          {ack?.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {entry?.acknowledgements?.length > 0 && (
+                    <div className="space-y-2 py-5">
+                      <h4 className={labelStyling}>Acknowledgements</h4>
+                      <ul className="list-none md:list-disc space-y-1">
+                        {entry?.acknowledgements?.map((ack) => (
+                          <li key={ack?.id} className={contentStyling}>
+                            {ack?.text}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
-                  <div className="space-y-2 py-5">
-                    <h4 className={labelStyling}>Notes</h4>
-                    <ul className="list-none md:list-disc space-y-1">
-                      {entry?.notes?.map((note) => (
-                        <li key={note?.id} className={contentStyling}>
-                          {note?.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {entry?.notes?.length > 0 && (
+                    <div className="space-y-2 py-5">
+                      <h4 className={labelStyling}>Notes</h4>
+                      <ul className="list-none md:list-disc space-y-1">
+                        {entry?.notes?.map((note) => (
+                          <li key={note?.id} className={contentStyling}>
+                            {note?.text}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
