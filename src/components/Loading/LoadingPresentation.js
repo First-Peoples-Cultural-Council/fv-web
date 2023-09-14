@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 function LoadingPresentation({ height }) {
   return (
     <div
+      id="LoadingPresentation"
       className={`flex items-center justify-center mx-auto w-full ${height}`}
     >
       <div>

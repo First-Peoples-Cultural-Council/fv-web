@@ -69,7 +69,7 @@ function MediaBrowserData({ docType }) {
       }),
     {
       // The query will not execute until the siteId exists
-      enabled: !!site?.uid,
+      enabled: !!site?.id,
       getNextPageParam: (lastPage) => lastPage.nextPage,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,

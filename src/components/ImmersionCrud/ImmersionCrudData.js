@@ -35,7 +35,7 @@ function ImmersionCrudData({ label }) {
         type: 'SUCCESS',
         message: 'Success! A new immersion label has been created.',
       })
-      queryClient.invalidateQueries(['immersion', site?.uid])
+      queryClient.invalidateQueries(['immersion', site?.id])
       setTimeout(() => {
         window.location.href = `/${site?.sitename}/dashboard/edit/immersion`
       }, 1000)
@@ -61,7 +61,7 @@ function ImmersionCrudData({ label }) {
         type: 'SUCCESS',
         message: 'Success! Your immersion label has been saved.',
       })
-      queryClient.invalidateQueries(['immersion', site?.uid])
+      queryClient.invalidateQueries(['immersion', site?.id])
     } else {
       setNotification({
         type: 'ERROR',

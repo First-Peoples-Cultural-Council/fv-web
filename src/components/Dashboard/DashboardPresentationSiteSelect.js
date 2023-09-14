@@ -53,7 +53,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
         <Menu.Items className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
           {sites?.length > 1 &&
             sites.map((sitesListItem) => (
-              <div key={sitesListItem?.uid} className="py-1">
+              <div key={sitesListItem?.id} className="py-1">
                 <Menu.Item>
                   {({ active }) => (
                     <div

@@ -7,11 +7,11 @@ import api from 'services/api'
 function WidgetStatsData() {
   const { site } = useSiteStore()
   const { data } = useQuery(
-    ['stats', site?.uid],
-    () => api.widgets.getStats({ siteId: site?.uid }),
+    ['stats', site?.id],
+    () => api.widgets.getStats({ siteId: site?.id }),
     {
-      // The query will not execute until the site?.uid exists
-      enabled: !!site?.uid,
+      // The query will not execute until the site?.id exists
+      enabled: !!site?.id,
     },
   )
 

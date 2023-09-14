@@ -76,6 +76,7 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   const handleRemoveWidget = () => {
     const filteredIds = widgetIds?.filter((e) => e !== currentWidget?.id)
     saveWidgetOrder(filteredIds)
+    setCurrentWidget(null)
   }
 
   const handleAddWidget = (id) => {

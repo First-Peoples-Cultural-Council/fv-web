@@ -24,7 +24,7 @@ export function languagesListAdaptor({ languagesData }) {
 
 export function sitesListAdaptor({ sitesData }) {
   return sitesData?.map((site) => ({
-    uid: site?.id,
+    id: site?.id,
     title: site?.title,
     sitename: site?.slug,
     visibility: site?.visibility?.toLowerCase(),
@@ -36,13 +36,13 @@ export function sitesListAdaptor({ sitesData }) {
 }
 
 export function siteAdaptor({ siteData }) {
-  const videoObj = siteData.bannerVideo
-  const imageObj = siteData.bannerImage
-  const banner = selectOneMediaDataHelper(imageObj, videoObj)
+  const bannerVideo = siteData?.bannerVideo
+  const bannerImage = siteData?.bannerImage
+  const banner = selectOneMediaDataHelper(bannerImage, bannerVideo)
   return {
     banner,
     path: siteData?.url,
-    uid: siteData?.id,
+    id: siteData?.id,
     roles: [],
     children: {
       Alphabet: siteData?.characters,
@@ -55,8 +55,8 @@ export function siteAdaptor({ siteData }) {
     sitename: siteData?.slug,
     parentLanguageTitle: siteData?.language,
     ...logoAdaptor({ item: siteData }),
-    bannerImage: siteData?.bannerImage,
-    bannerVideo: siteData?.bannerVideo,
+    bannerImage,
+    bannerVideo,
     visibility: siteData?.visibility?.toLowerCase(),
     visibilityOptions: constructVisibilityOptions(siteData?.visibility),
     features: siteData?.features,

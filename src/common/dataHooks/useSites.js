@@ -7,6 +7,7 @@ import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
 import { siteAdaptor, languagesListAdaptor } from 'common/dataAdaptors'
+import { useSiteDispatch } from 'context/SiteContext'
 
 export function useSite() {
   const { sitename } = useParams()
@@ -18,7 +19,7 @@ export function useSite() {
       enabled: !!sitename,
     },
   )
-  const formattedSiteData = siteAdaptor({ siteData: response?.data || [] })
+  const formattedSiteData = siteAdaptor({ siteData: response?.data })
 
   return { ...response, data: formattedSiteData }
 }
@@ -37,6 +38,8 @@ export function useSites() {
 
 export function useSiteUpdateBanner() {
   const { sitename } = useParams()
+  const siteDispatch = useSiteDispatch()
+
   const updateBanner = async (formData) => {
     const bannerObject = selectOneMediaFormHelper(formData?.banner)
     const properties = {
@@ -56,6 +59,13 @@ export function useSiteUpdateBanner() {
     queryKeyToInvalidate: [SITES, sitename],
     actionWord: 'updated',
     type: 'site',
+    onSuccessCallback: (response) => {
+      const formattedSiteData = siteAdaptor({ siteData: response })
+      siteDispatch({
+        type: 'SET',
+        data: formattedSiteData,
+      })
+    },
   })
 
   const onSubmit = (formData) => {
@@ -66,6 +76,8 @@ export function useSiteUpdateBanner() {
 
 export function useSiteUpdateWidgets() {
   const { sitename } = useParams()
+  const siteDispatch = useSiteDispatch()
+
   const updateWidgets = async (formData) => {
     const properties = {
       homepage: formData?.widgets || [],
@@ -81,6 +93,13 @@ export function useSiteUpdateWidgets() {
     queryKeyToInvalidate: [SITES, sitename],
     actionWord: 'updated',
     type: 'Home page widgets',
+    onSuccessCallback: (response) => {
+      const formattedSiteData = siteAdaptor({ siteData: response })
+      siteDispatch({
+        type: 'SET',
+        data: formattedSiteData,
+      })
+    },
   })
 
   const onSubmit = (formData) => {

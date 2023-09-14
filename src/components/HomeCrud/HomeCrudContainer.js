@@ -10,7 +10,7 @@ function HomeCrudContainer() {
   const { backHandler, dataToEdit, isWidgetAreaEdit, site, submitHandler } =
     HomeCrudData()
   return isWidgetAreaEdit ? (
-    <Loading.Container isLoading={!site?.uid}>
+    <Loading.Container isLoading={!site?.id}>
       <HomeCrudPresentation site={site} />
     </Loading.Container>
   ) : (

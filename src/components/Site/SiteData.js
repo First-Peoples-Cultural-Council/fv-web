@@ -61,7 +61,7 @@ function SiteData() {
   }, [immersionIsLoading, immersionError, immersionData])
 
   return {
-    siteLoading: isLoading || data?.uid?.length < 1,
+    siteLoading: isLoading || data?.id?.length < 1,
   }
 }
 

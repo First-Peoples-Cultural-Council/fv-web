@@ -26,7 +26,7 @@ function LanguagesPresentation({
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList?.map((site) => (
-              <SiteCard key={site.uid} site={site} member />
+              <SiteCard key={site?.id} site={site} member />
             ))}
           </div>
         </div>
@@ -60,7 +60,7 @@ function LanguagesPresentation({
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
                     {parentLanguage.sites.map((site) => (
-                      <SiteCard key={site.uid} site={site} />
+                      <SiteCard key={site?.id} site={site} />
                     ))}
                   </div>
                 </div>
