@@ -22,7 +22,7 @@ function ImageWithLightboxPresentation({ image, imgStyling }) {
       <button
         type="button"
         onClick={() => setLightboxOpen(true)}
-        className="absolute border-2 z-10 bg-white w-6 h-6 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full"
+        className="absolute border-2 bg-white w-6 h-6 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full"
       >
         i
       </button>

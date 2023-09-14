@@ -50,8 +50,13 @@ export const definitions = {
           .required('At least one URL is required')
       : yup.string().url('URL must be valid').trim(),
   uuid: () => uuid,
-  nickname: () =>
-    stringWithMax(90).min(5).required('A unique nickname is required'),
+  nickname: ({ charCount = 45 } = {}) =>
+    yup
+      .string()
+      .min(5)
+      .max(charCount)
+      .required('A unique nickname is required')
+      .trim(),
   visibility: () => yup.string().required().oneOf([PUBLIC, MEMBERS, TEAM]),
   wysiwyg: ({ charCount = 500 } = {}) =>
     yup
