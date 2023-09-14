@@ -28,7 +28,7 @@ function AppContainer() {
         <title>FirstVoices</title>
         <meta
           name="description"
-          content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture and linguistic history."
+          content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture, and linguistic history."
         />
       </Helmet>
       <NotificationProvider>
