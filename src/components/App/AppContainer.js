@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 // FPCC
 import AppData from 'components/App/AppData'
@@ -23,6 +24,13 @@ function AppContainer() {
 
   return (
     <Loading.Container isLoading={appIsLoading}>
+      <Helmet>
+        <title>FirstVoices</title>
+        <meta
+          name="description"
+          content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture and linguistic history."
+        />
+      </Helmet>
       <NotificationProvider>
         <AudiobarProvider>
           <NotificationBanner />
