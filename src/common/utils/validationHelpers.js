@@ -13,29 +13,32 @@ const uuid = yup
   })
   .nullable()
 
+const stringWithMax = (charCount) =>
+  yup
+    .string()
+    .max(charCount, `Maximum length for this field is ${charCount} characters`)
+    .trim()
+
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
   objectArray: () => yup.array().of(yup.object()),
   label: () => yup.string().max(35).trim(),
   latinOnly: ({ message = 'This is a required field' } = {}) =>
-    yup
-      .string()
-      .max(20)
+    stringWithMax(20)
       .required(message)
-      .trim()
       .matches(
         /^[aA-zZ-]+$/,
         'Only Latin alphabet characters and hyphens are allowed in this field (e.g. our-people)',
       ),
   stringArray: () => yup.array().of(yup.string()),
-  title: () => yup.string().max(90).min(1).trim(),
-  paragraph: ({ charCount = 250 } = {}) =>
-    yup.string().max(charCount).nullable().trim(),
-  textArray: () =>
+  title: ({ charCount = 90 } = {}) => stringWithMax(charCount).min(1),
+  paragraph: ({ charCount = 250 } = {}) => stringWithMax(charCount).nullable(),
+
+  textArray: ({ charCount = 225 } = {}) =>
     yup.array().of(
       yup.object({
-        text: yup.string().trim(),
+        text: stringWithMax(charCount),
       }),
     ),
   url: ({ required = false } = {}) =>
@@ -48,7 +51,7 @@ export const definitions = {
       : yup.string().url('URL must be valid').trim(),
   uuid: () => uuid,
   nickname: () =>
-    yup.string().min(5).required('A unique nickname is required').trim(),
+    stringWithMax(90).min(5).required('A unique nickname is required'),
   visibility: () => yup.string().required().oneOf([PUBLIC, MEMBERS, TEAM]),
   wysiwyg: ({ charCount = 500 } = {}) =>
     yup
