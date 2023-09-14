@@ -46,16 +46,13 @@ function SongPresentation({ entry }) {
             </h2>
           </div>
           <div>
-            {(entry?.introduction?.length > 0 ||
-              entry?.introductionTranslation?.length > 0) && (
+            {(entry?.intro?.length > 0 ||
+              entry?.introTranslation?.length > 0) && (
               <div className="bg-gray-100 p-2 space-y-2 sm:space-y-4 lg:my-2">
                 <h4 className={labelStyling}>Introduction</h4>
                 <div className="text-fv-charcoal">
-                  <WysiwygBlock
-                    className="mb-2"
-                    jsonString={entry?.introduction}
-                  />
-                  <WysiwygBlock jsonString={entry?.introductionTranslation} />
+                  <WysiwygBlock className="mb-2" jsonString={entry?.intro} />
+                  <WysiwygBlock jsonString={entry?.introTranslation} />
                 </div>
               </div>
             )}
@@ -71,7 +68,9 @@ function SongPresentation({ entry }) {
               </div>
             )}
             <div className="space-y-2 py-5">
-              {entry.lyrics.length && <h4 className={labelStyling}>Lyrics</h4>}
+              {entry.lyrics.length > 0 && (
+                <h4 className={labelStyling}>Lyrics</h4>
+              )}
               {entry.lyrics.map((lyric) => (
                 <div
                   key={lyric.id}

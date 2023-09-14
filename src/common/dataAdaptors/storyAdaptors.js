@@ -44,12 +44,19 @@ export function storyPageAdaptor({ page }) {
   const { getWysiwygStateFromJson } = wysiwygStateHelpers()
 
   const textJson = page?.text || ''
-  const textState = getWysiwygStateFromJson(textJson)
+  let textPreview = ''
+
+  try {
+    const textState = getWysiwygStateFromJson(textJson)
+    textPreview = `${textState?.getPlainText()?.slice(0, 150)}...`
+  } catch (e) {
+    // Problem parsing text to get a preview; just leave the preview blank
+  }
 
   return {
     id: page?.id || '',
     text: textJson,
-    textPreview: `${textState?.getPlainText().slice(0, 150)}...`,
+    textPreview,
     textTranslation: page?.translation,
     notes: page?.notes,
     visualMedia: selectCoverMedia(page?.relatedImages, page?.relatedVideos),
