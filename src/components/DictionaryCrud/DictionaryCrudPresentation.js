@@ -36,20 +36,18 @@ function DictionaryCrudPresentation({
   const activeStepNumber = Number(activeStep)
 
   const validator = yup.object().shape({
-    acknowledgments: definitions.textArray(),
+    acknowledgments: definitions.textArray({ charCount: 500 }),
     alternateSpellings: definitions.textArray(),
     categories: definitions.objectArray(),
-    notes: definitions.textArray(),
+    notes: definitions.textArray({ charCount: 500 }),
     partOfSpeech: definitions.uuid(),
     pronunciations: definitions.textArray(),
     relatedAudio: definitions.idArray(),
     relatedEntries: definitions.objectArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
-    title: yup
-      .string()
-      .min(1)
-      .max(120)
+    title: definitions
+      .title({ charCount: 225 })
       .required('You must enter at least 1 character in this field.'),
     translations: definitions.textArray(),
   })

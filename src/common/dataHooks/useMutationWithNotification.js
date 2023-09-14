@@ -31,10 +31,12 @@ export default function useMutationWithNotification({
         }, 1000)
       }
     },
-    onError: () => {
+    onError: (error) => {
       setNotification({
         type: ERROR,
-        message: `ERROR: Your ${type} was NOT ${actionWord}. Please try again. If the error persists please contact FirstVoices Support.`,
+        message: `ERROR: Your ${type} was NOT ${actionWord}. Please try again. If the error persists please contact FirstVoices Support. ${
+          error?.message ? `Server message: ${error?.message}` : ''
+        }`,
       })
     },
     onSettled: () => {

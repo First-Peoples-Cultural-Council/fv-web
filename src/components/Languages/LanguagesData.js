@@ -4,11 +4,13 @@ import { useMySites } from 'common/dataHooks/useMySites'
 import { parentLanguageColors } from 'assets/parentLanguageColors'
 
 function LanguagesData() {
-  const { allSitesData } = useSites()
+  const { allSitesData, isInitialLoading } = useSites()
 
-  const { mySitesData } = useMySites()
+  const { mySitesData, isInitialLoading: mySitesIsInitialLoading } =
+    useMySites()
 
   return {
+    isLoading: isInitialLoading || mySitesIsInitialLoading,
     // sites
     allSitesList: allSitesData,
     // mySites
