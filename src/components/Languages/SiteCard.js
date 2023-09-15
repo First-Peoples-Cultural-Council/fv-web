@@ -10,7 +10,7 @@ import placeholder from 'images/cover-thumbnail.png'
 
 function SiteCard({ site, member = false }) {
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
-  const isLocked = member ? false : site.visibility === MEMBERS.toLowerCase()
+  const isLocked = member ? false : site.visibility === MEMBERS
 
   const privateSiteModalOpenHandler = () => {
     setPrivateSiteModalOpen(true)

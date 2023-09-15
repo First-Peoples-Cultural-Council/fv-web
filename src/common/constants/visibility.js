@@ -1,3 +1,3 @@
-export const PUBLIC = 'Public'
-export const MEMBERS = 'Members'
-export const TEAM = 'Team'
+export const PUBLIC = 'public'
+export const MEMBERS = 'members'
+export const TEAM = 'team'
