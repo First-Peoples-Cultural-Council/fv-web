@@ -19,25 +19,23 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty())
 
-  const parsedValue = safeJsonParse(value)
-  if (Object.prototype.hasOwnProperty.call(parsedValue, 'blocks')) {
-    const initialState = EditorState.createWithContent(
-      convertFromRaw(parsedValue),
-    )
-    setEditorState(initialState)
-    onChange(initialState)
-  }
-
   const onEditorChange = (e) => {
     setEditorState(e)
     onChange(e)
   }
 
+  const parsedValue = safeJsonParse(value)
+  if (Object.prototype.hasOwnProperty.call(parsedValue, 'blocks')) {
+    const initialState = EditorState.createWithContent(
+      convertFromRaw(parsedValue),
+    )
+    onEditorChange(initialState)
+  }
+
   const handleKeyCommand = (command) => {
     const newState = RichUtils.handleKeyCommand(editorState, command)
     if (newState) {
-      setEditorState(newState)
-      onChange(newState)
+      onEditorChange(newState)
     }
   }
 
@@ -65,14 +63,14 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
           <div className="flex w-full border-b border-gray-200 text-xl text-gray-600">
             {toolbar?.includes('INLINESTYLES') && (
               <WysiwygControls.InlineStyleToolbar
-                onChange={setEditorState}
+                onChange={onEditorChange}
                 editorState={editorState}
                 toolbar={toolbar}
               />
             )}
             {toolbar?.includes('BLOCKSTYLES') && (
               <WysiwygControls.BlockStyleToolbar
-                onChange={setEditorState}
+                onChange={onEditorChange}
                 editorState={editorState}
                 toolbar={toolbar}
               />
