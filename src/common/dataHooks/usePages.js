@@ -121,7 +121,7 @@ export function usePageWidgetsUpdate({ pageSlug }) {
     mutationFn: updatePage,
     queryKeyToInvalidate: [PAGES, sitename],
     actionWord: 'updated',
-    type: 'widget list',
+    type: 'page widget list',
   })
   const onSubmit = (formData) => mutation.mutate(formData)
   return { onSubmit }

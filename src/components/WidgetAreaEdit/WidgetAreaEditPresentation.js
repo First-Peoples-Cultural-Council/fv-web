@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -12,6 +12,8 @@ import SortableItem from 'components/SortableItem'
 
 function WidgetAreaEditPresentation({
   children,
+  addModalOpen,
+  setAddModalOpen,
   currentWidget,
   setCurrentWidget,
   widgetData,
@@ -21,8 +23,6 @@ function WidgetAreaEditPresentation({
   handleAddWidget,
   isHomepage,
 }) {
-  const [addModalOpen, setAddModalOpen] = useState(false)
-
   return (
     <div data-testid="WidgetAreaEdit">
       {widgetIds?.length > 0 ? (
@@ -161,6 +161,8 @@ function WidgetAreaEditPresentation({
 const { array, bool, func, node, object, string } = PropTypes
 WidgetAreaEditPresentation.propTypes = {
   children: node,
+  addModalOpen: bool,
+  setAddModalOpen: func,
   widgetData: object,
   widgetIds: array,
   destinationTitle: string,
