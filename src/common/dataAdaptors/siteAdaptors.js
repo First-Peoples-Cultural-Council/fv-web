@@ -27,7 +27,7 @@ export function sitesListAdaptor({ sitesData }) {
     id: site?.id,
     title: site?.title,
     sitename: site?.slug,
-    visibility: site?.visibility?.toLowerCase(),
+    visibility: site?.visibility,
     ...logoAdaptor({ item: site }),
     parentLanguageTitle: site?.language,
     features: site?.features,
@@ -57,7 +57,7 @@ export function siteAdaptor({ siteData }) {
     ...logoAdaptor({ item: siteData }),
     bannerImage,
     bannerVideo,
-    visibility: siteData?.visibility?.toLowerCase(),
+    visibility: siteData?.visibility,
     visibilityOptions: constructVisibilityOptions(siteData?.visibility),
     features: siteData?.features,
     homepageWidgets: widgetListAdaptor({
@@ -75,7 +75,7 @@ const constructVisibilityOptions = (siteVisibility) => {
     optionsArray.map((option) => ({
       icon: option,
       value: option,
-      transKey: `visibility.${option?.toLowerCase()}`,
+      transKey: `visibility.${option}`,
     }))
   switch (siteVisibility) {
     case PUBLIC:
