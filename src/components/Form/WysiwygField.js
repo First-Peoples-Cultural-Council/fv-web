@@ -25,7 +25,7 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
   }
 
   const parsedValue = safeJsonParse(value)
-  if (Object.prototype.hasOwnProperty.call(parsedValue, 'blocks')) {
+  if (Object.hasOwn(parsedValue, 'blocks')) {
     const initialState = EditorState.createWithContent(
       convertFromRaw(parsedValue),
     )

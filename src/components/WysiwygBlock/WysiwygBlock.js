@@ -8,7 +8,7 @@ import { safeJsonParse } from 'common/utils/stringHelpers'
 
 function WysiwygBlock({ jsonString }) {
   const content = safeJsonParse(jsonString)
-  const editorState = Object.prototype.hasOwnProperty.call(content, 'blocks')
+  const editorState = Object.hasOwn(content, 'blocks')
     ? EditorState.createWithContent(convertFromRaw(content))
     : null
 
