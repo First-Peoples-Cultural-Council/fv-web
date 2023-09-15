@@ -12,6 +12,7 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   const [widgetValues, setWidgetValues] = useState({})
   const { site } = useSiteStore()
   const [currentWidget, setCurrentWidget] = useState()
+  const [addModalOpen, setAddModalOpen] = useState(false)
 
   const { data, error, isInitialLoading } = usePage({
     pageSlug,
@@ -83,9 +84,12 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
     // must supply array for sites with no widgets
     const filteredIds = widgetIds?.length > 0 ? [id, ...widgetIds] : [id]
     saveWidgetOrder(filteredIds)
+    setAddModalOpen(false)
   }
 
   return {
+    addModalOpen,
+    setAddModalOpen,
     currentWidget,
     setCurrentWidget,
     destinationTitle: isHomepage ? 'Home' : data?.title,

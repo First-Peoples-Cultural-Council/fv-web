@@ -1,51 +1,56 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useCharacters } from 'common/dataHooks/useCharacters'
 
-const AlphabetData = ({ widgetView }) => {
+const AlphabetData = () => {
   const { sitename } = useParams()
-  const [selectedData, setSelectedData] = useState({})
+  const [selectedData, setSelectedData] = useState()
   const [searchParams] = useSearchParams()
 
   const character = searchParams.get('char') || null
 
   const { isInitialLoading, data } = useCharacters()
 
-  // Find slected character data
-  const findCharacterData = (selectedCharacter) => {
-    const characters = Object.assign([], data?.characters)
-    const found = characters.filter(
-      (char) => char.title === selectedCharacter,
-    )[0]
-    return found
-  }
+  const getCharacterDataToDisplay = useCallback(
+    (selectedCharacter) => {
+      const characters = Object.assign([], data?.characters)
+      const found = characters.filter(
+        (char) => char.title === selectedCharacter,
+      )[0]
 
-  const setCharacterDataToDisplay = (characterTitle) => {
-    const dataForCharacter = findCharacterData(characterTitle)
-    if (dataForCharacter && dataForCharacter?.title !== selectedData?.title) {
-      setSelectedData(dataForCharacter)
-    }
-  }
+      return found?.title ? found : null
+    },
+    [data],
+  )
 
-  // This useEffect is to set characterData based on the url - only on ALphabet Page
+  // Set selected character data based on the url - only relevant to Alphabet Page
   useEffect(() => {
     if (data?.characters?.length > 0) {
-      if (character) {
-        setCharacterDataToDisplay(character)
-      } else if (!widgetView) {
-        setCharacterDataToDisplay(data?.characters?.[0]?.title)
+      if (character && character !== selectedData?.title) {
+        const dataToDisplay = getCharacterDataToDisplay(character)
+        if (dataToDisplay) setSelectedData(dataToDisplay)
       }
     }
-  }, [character, data, widgetView, selectedData])
+  }, [character, data, selectedData, getCharacterDataToDisplay])
+
+  // If no character selected then select the first character
+  useEffect(() => {
+    if (data?.characters?.length > 0 && !selectedData) {
+      setSelectedData(data?.characters?.[0])
+    }
+  }, [data, selectedData])
 
   // Video Modal
   const [videoIsOpen, setVideoIsOpen] = useState(false)
 
-  // onCharacterClick only used in Widget mode - Alphabet page is url driven
+  // onCharacterClick is only used in Widget mode - Alphabet page is url driven
   const onCharacterClick = (clickedCharacter) => {
-    setCharacterDataToDisplay(clickedCharacter)
+    if (clickedCharacter !== selectedData?.title) {
+      const dataToDisplay = getCharacterDataToDisplay(clickedCharacter)
+      if (dataToDisplay) setSelectedData(dataToDisplay)
+    }
   }
 
   return {

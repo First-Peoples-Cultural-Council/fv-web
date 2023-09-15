@@ -9,6 +9,8 @@ import Loading from 'components/Loading'
 
 function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
   const {
+    addModalOpen,
+    setAddModalOpen,
     currentWidget,
     setCurrentWidget,
     destinationTitle,
@@ -35,6 +37,8 @@ function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
         setCurrentWidget={setCurrentWidget}
         handleAddWidget={handleAddWidget}
         isHomepage={isHomepage}
+        addModalOpen={addModalOpen}
+        setAddModalOpen={setAddModalOpen}
       >
         <WidgetAreaEditPresentationSettingsPane
           handleRemoveWidget={handleRemoveWidget}
