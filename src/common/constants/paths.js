@@ -1,3 +1,5 @@
+/* Paths for APIs */
+
 export const CATEGORIES = 'categories'
 export const CHARACTERS = 'characters'
 export const DICTIONARY = 'dictionary'

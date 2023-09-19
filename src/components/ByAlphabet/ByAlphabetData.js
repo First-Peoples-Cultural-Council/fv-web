@@ -7,6 +7,7 @@ import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { useCharacters } from 'common/dataHooks/useCharacters'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import {
+  CHAR,
   KIDS,
   STARTS_WITH_CHAR,
   TYPES,
@@ -15,10 +16,11 @@ import {
 
 function ByAlphabetData({ kids }) {
   const navigate = useNavigate()
-  const { sitename, character } = useParams()
+  const { sitename } = useParams()
   const [searchParams] = useSearchParams()
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
+  const character = searchParams.get(CHAR)
   const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
       initialSearchType: urlSearchType,

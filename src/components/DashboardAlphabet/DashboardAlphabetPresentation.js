@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
+import { CHAR } from 'common/constants'
 
 function DashboardAlphabetPresentation({
   headerContent,
@@ -89,7 +90,7 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
-                  to={`/${sitename}/alphabet/${character?.title}`}
+                  to={`/${sitename}/alphabet?${CHAR}=${character?.title}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-secondary hover:text-secondary-dark flex items-center"

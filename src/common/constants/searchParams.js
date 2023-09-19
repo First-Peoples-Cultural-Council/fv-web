@@ -28,3 +28,6 @@ export const TYPE_STORY = 'story'
 export const TYPE_WORD = 'word'
 export const TYPE_ENTRY = 'word,phrase,song,story'
 export const TYPE_DICTIONARY = 'word,phrase'
+
+/* Param Keys Frontend ONLY */
+export const CHAR = 'char'
