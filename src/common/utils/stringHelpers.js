@@ -315,6 +315,12 @@ export const safeJsonParse = (str) => {
   return false // default return case
 }
 
+// Converts JSON to a string and removes curly brackets, square brackets, and double quotes
+export const convertJsonToReadableString = (json) => {
+  const message = JSON.stringify(json)
+  return message?.replace(/[{}[\]"]+/g, ' ') || ''
+}
+
 export const makeTypeSingular = (plural) => {
   switch (plural) {
     case 'audio':
