@@ -121,7 +121,7 @@ function DictionaryDetailPresentation({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2"
+                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-1"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />

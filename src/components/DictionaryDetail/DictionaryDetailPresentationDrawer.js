@@ -81,7 +81,7 @@ function DictionaryDetailPresentationDrawer({
           )}
           {/* Audio */}
           {entry?.relatedAudio?.length > 0 && (
-            <div className="py-3">
+            <div className="my-3">
               {entry?.relatedAudio?.length > 0 &&
                 entry?.relatedAudio?.map((audioObject) => (
                   <AudioMinimal.Container
@@ -100,7 +100,7 @@ function DictionaryDetailPresentationDrawer({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2"
+                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-2"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />
