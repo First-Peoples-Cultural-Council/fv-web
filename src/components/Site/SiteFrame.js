@@ -66,7 +66,7 @@ function SiteFrame({ siteLoading }) {
               element={<Dictionary.Container searchType={TYPE_PHRASE} />}
             />
             <Route
-              path="alphabet/:character"
+              path="alphabet/startsWith"
               element={<ByAlphabet.Container />}
             />
             <Route path="alphabet" element={<Alphabet.Container />} />

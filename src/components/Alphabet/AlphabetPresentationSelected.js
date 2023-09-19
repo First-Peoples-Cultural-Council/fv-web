@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
 import { Copy } from 'components/Actions'
-import { IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
+import { CHAR, IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 function AlphabetPresentationSelected({
   kids,
@@ -128,7 +128,9 @@ function AlphabetPresentationSelected({
       )}
       <div className="flex justify-center">
         <Link
-          to={`/${sitename}/${kids ? 'kids/' : ''}alphabet/${title}`}
+          to={`/${sitename}/${
+            kids ? 'kids/' : ''
+          }alphabet/startsWith?${CHAR}=${title}`}
           className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
         >
           <span>See all words starting with</span>
