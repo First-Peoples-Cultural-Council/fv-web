@@ -38,7 +38,10 @@ export const definitions = {
   textArray: ({ charCount = 225 } = {}) =>
     yup.array().of(
       yup.object({
-        text: stringWithMax(charCount),
+        text: stringWithMax(charCount).min(
+          1,
+          'This field cannot be empty. Remove it if you do not want to inlcude it.',
+        ),
       }),
     ),
   url: ({ required = false } = {}) =>
