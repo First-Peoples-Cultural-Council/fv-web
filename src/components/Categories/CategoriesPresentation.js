@@ -42,7 +42,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                       categories.map((category) => (
                         <li
                           key={category.id}
-                          className="flex items-center h-48 lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryB group w-full rounded-lg bg-tertiaryB overflow-hidden"
+                          className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryB group w-full rounded-lg bg-tertiaryB overflow-hidden"
                         >
                           <div>
                             <Link
@@ -52,13 +52,13 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                               }categories/${
                                 category.id
                               }?${TYPES}=${TYPE_DICTIONARY}`}
-                              className=" text-white text-center text-lg group w-full h-full px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
+                              className=" text-white text-center text-lg group w-full h-full md:px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                             >
                               {getCategoryIcon(
                                 category.title,
                                 'fill-current h-auto w-3/5',
                               )}
-                              <span className="mt-2">{category.title}</span>
+                              <span className="my-2">{category.title}</span>
                               <span className="sr-only">
                                 Go to {category.title}
                               </span>
