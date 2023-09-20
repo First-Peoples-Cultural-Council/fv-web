@@ -3,13 +3,14 @@ import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useCharacters } from 'common/dataHooks/useCharacters'
+import { CHAR } from 'common/constants'
 
 const AlphabetData = () => {
   const { sitename } = useParams()
   const [selectedData, setSelectedData] = useState()
   const [searchParams] = useSearchParams()
 
-  const character = searchParams.get('char') || null
+  const character = searchParams.get(CHAR) || null
 
   const { isInitialLoading, data } = useCharacters()
 

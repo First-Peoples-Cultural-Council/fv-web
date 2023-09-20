@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 // FPCC
 import { ERROR, SUCCESS } from 'common/constants'
 import { useNotification } from 'context/NotificationContext'
+import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 
 export default function useMutationWithNotification({
   mutationFn,
@@ -31,12 +32,15 @@ export default function useMutationWithNotification({
         }, 1000)
       }
     },
-    onError: (error) => {
+    onError: async (error) => {
+      const response = await error?.response?.json()
+      const readableMessage = convertJsonToReadableString(response)
+
       setNotification({
         type: ERROR,
-        message: `ERROR: Your ${type} was NOT ${actionWord}. Please try again. If the error persists please contact FirstVoices Support. ${
-          error?.message ? `Server message: ${error?.message}` : ''
-        }`,
+        message: `ERROR: Your ${type} was NOT ${actionWord}. ${
+          readableMessage || ''
+        }Please try again. If the error persists please contact FirstVoices Support.`,
       })
     },
     onSettled: () => {

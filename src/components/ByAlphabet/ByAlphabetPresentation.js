@@ -7,7 +7,7 @@ import DictionaryGrid from 'components/DictionaryGrid'
 import AudioButton from 'components/AudioButton'
 import SearchTypeSelector from 'components/SearchTypeSelector'
 import getIcon from 'common/utils/getIcon'
-import { TYPES, TYPE_DICTIONARY } from 'common/constants'
+import { CHAR, TYPES, TYPE_DICTIONARY } from 'common/constants'
 
 function ByAlphabetPresentation({
   actions,
@@ -34,7 +34,7 @@ function ByAlphabetPresentation({
         key={id}
         to={`/${sitename}/${
           kids ? 'kids/' : ''
-        }alphabet/${title}?${TYPES}=${searchType}`}
+        }alphabet/startsWith?${CHAR}=${title}&${TYPES}=${searchType}`}
       >
         {title}
       </Link>
@@ -144,7 +144,7 @@ function ByAlphabetPresentation({
 
         {kids ? (
           <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8">
-            <div className="bg-gray-100 p-4">
+            <div className="bg-gray-100 p-4 min-h-screen">
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
