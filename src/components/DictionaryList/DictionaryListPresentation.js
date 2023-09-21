@@ -65,6 +65,9 @@ function DictionaryListPresentation({
     }
   }
 
+  const tableHeaderStyling =
+    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal-light uppercase tracking-wider'
+
   return (
     <Loading.Container isLoading={isLoading}>
       {items?.pages !== undefined && items?.pages?.[0]?.results?.length > 0 ? (
@@ -95,30 +98,23 @@ function DictionaryListPresentation({
                         </div>
                       )}
                     </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-fv-charcoal-light uppercase tracking-wider"
-                    >
-                      TRANSLATION
+                    <th scope="col" className={tableHeaderStyling}>
+                      <span className="sr-only">Audio</span>
+                    </th>
+                    <th scope="col" className={tableHeaderStyling}>
+                      Translation
                     </th>
                     {showType && (
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-fv-charcoal-light uppercase tracking-wider"
-                      >
+                      <th scope="col" className={tableHeaderStyling}>
                         Type
                       </th>
                     )}
                     {wholeDomain && (
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-fv-charcoal-light uppercase tracking-wider"
-                      >
+                      <th scope="col" className={tableHeaderStyling}>
                         Language Site
                       </th>
                     )}
-
-                    <th scope="col" className="relative px-6 py-3">
+                    <th scope="col" className={tableHeaderStyling}>
                       <span className="sr-only">Actions</span>
                     </th>
                   </tr>
@@ -128,7 +124,7 @@ function DictionaryListPresentation({
                     <Fragment key={page.pageNumber}>
                       {page.results.map((entry) => (
                         <tr key={entry?.id}>
-                          <td className="px-6 py-4 flex justify-between">
+                          <td className="px-6 py-4">
                             <button
                               type="button"
                               className="text-left font-medium text-fv-charcoal lg:mr-2"
@@ -136,7 +132,9 @@ function DictionaryListPresentation({
                             >
                               {entry?.title}
                             </button>
-                            <div className="w-32">
+                          </td>
+                          <td className="py-4">
+                            <div className="inline-flex items-center">
                               <AudioButton
                                 audioArray={entry?.audio}
                                 iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
@@ -177,7 +175,7 @@ function DictionaryListPresentation({
                               </Link>
                             </td>
                           )}
-                          <td className="text-right px-6">
+                          <td className="text-right px-6 py-4">
                             <ActionsMenu.Presentation
                               docId={entry?.id}
                               docTitle={entry?.title}
