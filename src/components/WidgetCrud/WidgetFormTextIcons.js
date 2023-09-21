@@ -13,6 +13,7 @@ import {
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
+import { EditorState } from 'draft-js'
 
 function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -20,7 +21,9 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     type: yup.string().required().oneOf([WIDGET_TEXTICONS]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     title: definitions.title(),
-    textWithFormatting: definitions.wysiwyg({ charCount: 1200 }),
+    textWithFormatting: definitions
+      .wysiwyg({ charCount: 1200 })
+      .required('This field is required.'),
     image: definitions.uuid(),
     visibility: definitions.visibility(),
   })
@@ -31,7 +34,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
     title: '',
-    textWithFormatting: null,
+    textWithFormatting: EditorState.createEmpty(),
     image: '',
   }
 
