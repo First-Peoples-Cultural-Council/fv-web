@@ -88,7 +88,7 @@ function DictionaryDetailPresentationDrawer({
                     key={audioObject?.id}
                     icons={{
                       Play: getIcon(
-                        'Play',
+                        'Audio',
                         `fill-current h-6 w-6 md:w-4 md:h-4 ${
                           audioObject?.speakers?.length > 0 ? 'mr-2' : ''
                         }`,
