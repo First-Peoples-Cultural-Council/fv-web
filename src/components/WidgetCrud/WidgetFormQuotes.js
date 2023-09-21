@@ -14,11 +14,17 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_QUOTES]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
-    quote1: definitions.paragraph({ charCount: 225 }),
+    quote1: definitions
+      .paragraph({ charCount: 225 })
+      .required('This field is required.'),
     quote1By: definitions.paragraph({ charCount: 50 }),
-    quote2: definitions.paragraph({ charCount: 225 }),
+    quote2: definitions
+      .paragraph({ charCount: 225 })
+      .required('This field is required.'),
     quote2By: definitions.paragraph({ charCount: 50 }),
-    quote3: definitions.paragraph({ charCount: 225 }),
+    quote3: definitions
+      .paragraph({ charCount: 225 })
+      .required('This field is required.'),
     quote3By: definitions.paragraph({ charCount: 50 }),
     visibility: definitions.visibility(),
   })
