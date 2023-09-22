@@ -7,6 +7,7 @@ import Form from 'components/Form'
 import { DOC_AUDIO } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
+import { EditorState } from 'draft-js'
 
 function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
   const validator = yup.object().shape({
@@ -18,8 +19,8 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
 
   const defaultValues = {
     id: '',
-    text: '',
-    textTranslation: '',
+    text: EditorState.createEmpty(),
+    textTranslation: EditorState.createEmpty(),
     notes: [],
     audio: [],
     images: [],

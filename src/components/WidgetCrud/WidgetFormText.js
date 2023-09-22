@@ -15,6 +15,7 @@ import {
 } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
+import { EditorState } from 'draft-js'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -22,7 +23,9 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     type: yup.string().required().oneOf([WIDGET_TEXT]),
     format: yup.string().required().oneOf([FORMAT_LEFT, FORMAT_RIGHT]),
     title: definitions.title(),
-    textWithFormatting: definitions.wysiwyg({ charCount: 1200 }),
+    textWithFormatting: definitions
+      .wysiwyg({ charCount: 1200 })
+      .required('This field is required.'),
     audio: definitions.uuid(),
     image: definitions.uuid(),
     bg: yup.string().nullable(),
@@ -37,7 +40,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_RIGHT,
     visibility: PUBLIC,
     title: '',
-    textWithFormatting: null,
+    textWithFormatting: EditorState.createEmpty(),
     audio: '',
     image: '',
     bg: '',
