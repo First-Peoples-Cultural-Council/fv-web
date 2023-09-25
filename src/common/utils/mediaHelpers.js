@@ -29,10 +29,8 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   }
 }
 
-export const getReadableFileSize = (size) => {
-  const e = Math.log(size) / Math.log(1e3) || 0
-  return `${+(size / 1e3 ** e).toFixed(2)} ${'kMGTPEZY'[e - 1] || ''}B`
-}
+export const getReadableFileSize = (size) =>
+  `${(size / (1024 * 1024)).toFixed(2)} MB`
 
 export const isDisplayablePropMedia = (property, value) =>
   (typeof value === 'string' || value instanceof String) &&

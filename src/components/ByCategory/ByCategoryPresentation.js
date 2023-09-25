@@ -39,7 +39,7 @@ function ByCategoryPresentation({
         >
           {getCategoryIcon(
             category.title,
-            'inline-flex p-2 rounded-lg fill-current h-14 w-14',
+            'inline-flex p-2 rounded-lg fill-current h-10 w-14',
           )}
           <div className="inline-flex text-lg font-medium">
             {category.title}
@@ -91,7 +91,7 @@ function ByCategoryPresentation({
                 >
                   {getCategoryIcon(
                     currentParentCategory.title,
-                    'inline-flex p-2 rounded-lg fill-current h-14 w-14',
+                    'inline-flex p-2 rounded-lg fill-current h-10 w-14',
                   )}
                   <div className="inline-flex text-lg font-medium">
                     {currentParentCategory.title}
@@ -119,7 +119,7 @@ function ByCategoryPresentation({
                       >
                         {getIcon(
                           'Placeholder',
-                          'inline-flex p-2 rounded-lg fill-current h-14 w-0',
+                          'inline-flex p-2 rounded-lg fill-current h-10 w-0',
                         )}
                         <div className="inline-flex text-lg font-medium">
                           {child.title}
