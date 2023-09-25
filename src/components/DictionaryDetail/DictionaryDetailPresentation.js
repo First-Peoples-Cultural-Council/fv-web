@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import { Disclosure } from '@headlessui/react'
 
 // FPCC
-import { makePlural } from 'common/utils/stringHelpers'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
+import RelatedEntriesTable from 'components/RelatedEntriesTable'
 
 function DictionaryDetailPresentation({
   actions,
@@ -18,7 +18,7 @@ function DictionaryDetailPresentation({
   entry,
   sitename,
 }) {
-  const lableStyling =
+  const labelStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
   const noMedia = !(
@@ -134,7 +134,7 @@ function DictionaryDetailPresentation({
             {/* Categories */}
             {entry?.categories?.length > 0 && (
               <div className="py-2 md:p-4">
-                <h4 className={lableStyling}>Categories</h4>
+                <h4 className={labelStyling}>Categories</h4>
                 {entry?.categories?.map((category) => (
                   <Link
                     key={category.id}
@@ -148,67 +148,20 @@ function DictionaryDetailPresentation({
               </div>
             )}
             {/* Related Content */}
-            {entry?.relatedEntries?.length > 0 && (
-              <div className="py-2 md:p-4">
-                <table className="w-full">
-                  <thead>
-                    <tr>
-                      <th colSpan="2" className={`${lableStyling}pb-2`}>
-                        Related Content
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="hidden">Title</th>
-                      <th className="hidden">Definitions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="py-2 px-10">
-                    {entry?.relatedEntries?.map((asset, index) => {
-                      const zebraStripe = index % 2 === 1 ? '' : 'bg-gray-100'
-                      return (
-                        <tr key={asset.id} className={zebraStripe}>
-                          <td className="p-2 flex items-center">
-                            <Link
-                              to={`/${sitename}/${makePlural(asset?.type)}/${
-                                asset.id
-                              }`}
-                            >
-                              {asset?.title}
-                            </Link>
-                            {asset?.relatedAudio?.map((audioObject) => (
-                              <AudioMinimal.Container
-                                key={audioObject?.id}
-                                icons={{
-                                  Play: getIcon(
-                                    'Audio',
-                                    'fill-current h-8 w-8 ml-2',
-                                  ),
-                                  Stop: getIcon(
-                                    'StopCircle',
-                                    'fill-current h-8 w-8 ml-2',
-                                  ),
-                                }}
-                                audioObject={audioObject}
-                              />
-                            ))}
-                          </td>
-                          <td className="p-2">
-                            <span>{asset?.translations?.[0]?.text}</span>
-                          </td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
+            <div className="py-2 md:p-4">
+              <RelatedEntriesTable.Presentation
+                entries={entry?.relatedEntries || []}
+                sitename={sitename}
+                labelStyling={labelStyling}
+              />
+            </div>
           </section>
           {/* Other Information */}
           <section>
             {/* Acknowledgements */}
             {entry?.acknowledgements?.length > 0 && (
               <div className="py-2 md:p-4">
-                <h4 className={lableStyling}>Acknowledgement</h4>
+                <h4 className={labelStyling}>Acknowledgement</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.acknowledgements?.map((acknowledgement) => (
                     <li key={acknowledgement?.id} className={contentStyling}>
@@ -221,7 +174,7 @@ function DictionaryDetailPresentation({
             {/* Notes */}
             {entry?.notes?.length > 0 && (
               <div className="py-2 md:p-4">
-                <h4 className={lableStyling}>Notes</h4>
+                <h4 className={labelStyling}>Notes</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.notes?.map((note) => (
                     <li key={note?.id} className={contentStyling}>
@@ -234,7 +187,7 @@ function DictionaryDetailPresentation({
             {/* Pronunciations */}
             {entry?.pronunciations?.length > 0 && (
               <div className="py-2 md:p-4">
-                <h4 className={lableStyling}>Pronunciation</h4>
+                <h4 className={labelStyling}>Pronunciation</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.pronunciations?.map((pronunciation) => (
                     <li key={pronunciation?.id} className={contentStyling}>

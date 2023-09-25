@@ -18,7 +18,7 @@ function AudiobarPresentation({
   return (
     <nav
       id="Audiobar"
-      className="transition-all transform fixed inset-x-0 bottom-0 z-10 h-24 bg-fv-charcoal shadow-xl print:hidden"
+      className="transition-all transform fixed inset-x-0 bottom-0 h-24 bg-fv-charcoal shadow-xl print:hidden"
     >
       {/* Infobar */}
       <section

@@ -8,7 +8,6 @@ export function pageInfoAdaptor({ formData }) {
     title: formData?.title || null,
     visibility: formData?.visibility,
     subtitle: formData?.subtitle || null,
-    slug: formData?.slug || null,
     bannerImage: mediaObject?.imageId,
     bannerVideo: mediaObject?.videoId,
   }
@@ -17,6 +16,7 @@ export function pageInfoAdaptor({ formData }) {
 export function pageCreateAdaptor({ formData, sitename }) {
   return {
     ...pageInfoAdaptor({ formData, sitename }),
+    slug: formData?.slug,
     widgets: [],
   }
 }

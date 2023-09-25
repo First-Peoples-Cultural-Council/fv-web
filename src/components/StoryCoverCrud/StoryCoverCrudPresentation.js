@@ -8,6 +8,7 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import { AUDIO, VIDEO, IMAGE, PUBLIC } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
+import { EditorState } from 'draft-js'
 
 function StoryCoverCrudPresentation({
   dataToEdit,
@@ -37,8 +38,8 @@ function StoryCoverCrudPresentation({
     relatedVideos: [],
     relatedImages: [],
     // Introduction
-    intro: '',
-    introTranslation: '',
+    intro: EditorState.createEmpty(),
+    introTranslation: EditorState.createEmpty(),
     acknowledgements: [],
     notes: [],
     relatedAudio: [],

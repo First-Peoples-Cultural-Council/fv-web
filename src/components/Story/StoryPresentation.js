@@ -5,8 +5,7 @@ import PropTypes from 'prop-types'
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'
-import ImageWithLightbox from 'components/ImageWithLightbox'
-import { IMAGE, VIDEO } from 'common/constants'
+import { IMAGE, VIDEO, MEDIUM, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function StoryPresentation({ entry }) {
@@ -23,7 +22,16 @@ function StoryPresentation({ entry }) {
       {entry?.coverVisual?.type === IMAGE && (
         <div className={`grid grid-cols-2 md:gap-4 ${headerStyling}`}>
           <div className="col-span-2 md:col-span-1 flex max-h-screen">
-            <ImageWithLightbox.Presentation image={coverMedia} />
+            <img
+              className="h-auto w-full object-cover object-center"
+              src={getMediaPath({
+                type: IMAGE,
+                mediaObject: coverMedia,
+                size: MEDIUM,
+              })}
+              loading="lazy"
+              alt={`${entry?.title} Cover`}
+            />
           </div>
           <div className="col-span-2 md:col-span-1 flex items-center ">
             <div className="px-4 py-2 md:p-6 space-y-4">
@@ -50,7 +58,7 @@ function StoryPresentation({ entry }) {
                 src={getMediaPath({
                   type: entry?.coverVisual.type,
                   mediaObject: entry?.coverVisual.entry,
-                  viewName: 'Small',
+                  size: ORIGINAL,
                 })}
                 controls
               >
@@ -240,7 +248,7 @@ const getMedia = ({ images = [], videos = [] }) => {
       src={getMediaPath({
         type: IMAGE,
         mediaObject: image,
-        viewName: 'Medium',
+        size: MEDIUM,
       })}
       loading="lazy"
       alt="Story"
@@ -253,6 +261,7 @@ const getMedia = ({ images = [], videos = [] }) => {
       src={getMediaPath({
         type: VIDEO,
         mediaObject: video,
+        size: ORIGINAL,
       })}
       controls
     >

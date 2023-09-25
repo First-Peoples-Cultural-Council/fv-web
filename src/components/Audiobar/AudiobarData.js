@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Howl, Howler } from 'howler'
 
 // FPCC
@@ -28,44 +28,47 @@ function AudiobarData() {
     return function cleanup() {
       setCurrentAudio()
     }
-  }, [currentAudio])
+  }, [currentAudio, generateSound, setCurrentAudio, sound])
 
-  const generateSound = (object) => {
-    const src = getMediaPath({ mediaObject: object, type: AUDIO })
-    const newHowl = new Howl({
-      src: [src],
-      rate,
-      html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
-      onload() {
-        setDuration(formatTime(Math.round(newHowl.duration())))
-      },
-      onplay() {
-        setIsPlaying(true)
-        requestAnimationFrame(step)
-      },
-      onpause() {
-        setIsPlaying(false)
-      },
-      onend() {
-        setIsPlaying(false)
-      },
-    })
+  const generateSound = useCallback(
+    (object) => {
+      const src = getMediaPath({ mediaObject: object, type: AUDIO })
+      const newHowl = new Howl({
+        src: [src],
+        rate,
+        html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
+        onload() {
+          setDuration(formatTime(Math.round(newHowl.duration())))
+        },
+        onplay() {
+          setIsPlaying(true)
+          requestAnimationFrame(step)
+        },
+        onpause() {
+          setIsPlaying(false)
+        },
+        onend() {
+          setIsPlaying(false)
+        },
+      })
 
-    const step = () => {
-      // Determine our current seek position.
-      const seek = newHowl?.seek() || 0
-      const currentTime = formatTime(Math.round(seek))
-      setCurTime(currentTime)
+      const step = () => {
+        // Determine our current seek position.
+        const seek = newHowl?.seek() || 0
+        const currentTime = formatTime(Math.round(seek))
+        setCurTime(currentTime)
 
-      // If the sound is still playing, continue stepping.
-      if (newHowl?.playing()) {
-        window.requestAnimationFrame(step)
+        // If the sound is still playing, continue stepping.
+        if (newHowl?.playing()) {
+          window.requestAnimationFrame(step)
+        }
       }
-    }
 
-    setSound({ id: object?.id, howl: newHowl })
-    newHowl.play()
-  }
+      setSound({ id: object?.id, howl: newHowl })
+      newHowl.play()
+    },
+    [rate],
+  )
 
   const formatTime = (secs) => {
     const minutes = Math.floor(secs / 60) || 0
