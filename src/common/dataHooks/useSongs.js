@@ -3,8 +3,13 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import api from 'services/api'
-import { SONGS } from 'common/constants'
-import { songDetailAdaptor } from 'common/dataAdaptors/songAdaptors'
+import { SONGS, TYPE_SONG } from 'common/constants'
+import {
+  songForViewing,
+  songForEditing,
+  songForApi,
+} from 'common/dataAdaptors/songAdaptors'
+import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
 export function useSongs() {
   const { sitename } = useParams()
@@ -22,9 +27,7 @@ export function useSongs() {
     },
   )
   const formattedResponse = allSongsResponse?.data?.pages?.map((page) => ({
-    results: page?.results?.map((result) =>
-      songDetailAdaptor({ item: result }),
-    ),
+    results: page?.results?.map((result) => songForViewing({ item: result })),
   }))
 
   return {
@@ -33,7 +36,7 @@ export function useSongs() {
   }
 }
 
-export function useSong({ id }) {
+export function useSong({ id, edit = false }) {
   const { sitename } = useParams()
   const response = useQuery(
     [SONGS, sitename, id],
@@ -43,9 +46,85 @@ export function useSong({ id }) {
       enabled: !!id,
     },
   )
-  const formattedSong = songDetailAdaptor({ item: response?.data })
+
+  const formattedSong = edit
+    ? songForEditing({ item: response?.data })
+    : songForViewing({ item: response?.data })
+
   return {
     ...response,
     data: formattedSong,
   }
+}
+
+export function useSongCreate() {
+  const { sitename } = useParams()
+
+  const createSong = async (formData) => {
+    const properties = songForApi({ formData })
+    return api.dictionary.create({
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: createSong,
+    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    queryKeyToInvalidate: [SONGS, sitename],
+    actionWord: 'created',
+    type: 'song',
+  })
+
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
+}
+
+export function useSongUpdate() {
+  const { sitename } = useParams()
+
+  const updateSong = async (formData) => {
+    const properties = songForApi({ formData })
+    return api.dictionary.update({
+      id: formData?.id,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateSong,
+    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    queryKeyToInvalidate: [SONGS, sitename],
+    actionWord: 'updated',
+    type: 'song',
+  })
+
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+  return { onSubmit }
+}
+
+export function useSongDelete() {
+  const { sitename } = useParams()
+  const deleteSong = async (id) =>
+    api.dictionary.delete({
+      id,
+      sitename,
+    })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: deleteSong,
+    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    queryKeyToInvalidate: [SONGS, sitename],
+    actionWord: 'deleted',
+    type: 'song',
+  })
+  const onSubmit = (id) => {
+    mutation.mutate(id)
+  }
+  return { onSubmit }
 }

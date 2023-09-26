@@ -12,7 +12,31 @@ export function songSummaryAdaptor({ item }) {
   }
 }
 
-export function songDetailAdaptor({ item }) {
+export function songForViewing({ item }) {
+  return {
+    ...songSummaryAdaptor({ item }),
+    ...basicDatesAdaptor({ item }),
+    ...notesAcknowledgementsAdaptor({ item }),
+    ...introAdaptor({ item }),
+
+    // lyrics
+    lyrics: item?.lyrics || [],
+  }
+}
+
+export function songForEditing({ item }) {
+  return {
+    ...songSummaryAdaptor({ item }),
+    ...basicDatesAdaptor({ item }),
+    ...notesAcknowledgementsAdaptor({ item }),
+    ...introAdaptor({ item }),
+
+    // lyrics
+    lyrics: item?.lyrics || [],
+  }
+}
+
+export function songForApi({ item }) {
   return {
     ...songSummaryAdaptor({ item }),
     ...basicDatesAdaptor({ item }),
