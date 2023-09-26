@@ -12,7 +12,7 @@ export function useSongs() {
   const allSongsResponse = useInfiniteQuery(
     [SONGS, sitename],
     ({ pageParam = 1 }) =>
-      api.song.getSongs({
+      api.songs.getSongs({
         sitename,
         pageParam,
       }),
@@ -37,7 +37,7 @@ export function useSong({ id }) {
   const { sitename } = useParams()
   const response = useQuery(
     [SONGS, sitename, id],
-    () => api.song.getSong({ sitename, id }),
+    () => api.songs.get({ sitename, id }),
     {
       // The query will not execute until the sitename exists
       enabled: !!id,
