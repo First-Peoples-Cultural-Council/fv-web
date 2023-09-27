@@ -1,23 +1,37 @@
-import { coverAdaptor } from 'common/dataAdaptors/coverAdaptor'
+import {
+  coverForViewing,
+  coverForEditing,
+  coverForApi,
+} from 'common/dataAdaptors/coverAdaptors'
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
 import { TYPE_SONG } from 'common/constants'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { introAdaptor } from 'common/dataAdaptors/introAdaptors'
+import {
+  audienceForEditing,
+  audienceForApi,
+} from 'common/dataAdaptors/audienceAdaptors'
+import {
+  relatedMediaForViewing,
+  relatedMediaForEditing,
+  relatedMediaForApi,
+} from 'common/dataAdaptors/relatedMediaAdaptors'
 
 export function songSummaryAdaptor({ item }) {
   return {
     // cover
-    ...coverAdaptor({ item }),
+    ...coverForViewing({ item }),
     type: TYPE_SONG,
   }
 }
 
 export function songForViewing({ item }) {
   return {
-    ...songSummaryAdaptor({ item }),
+    ...coverForViewing({ item }),
     ...basicDatesAdaptor({ item }),
-    ...notesAcknowledgementsAdaptor({ item }),
     ...introAdaptor({ item }),
+    ...notesAcknowledgementsAdaptor({ item }),
+    ...relatedMediaForViewing({ item }),
 
     // lyrics
     lyrics: item?.lyrics || [],
@@ -26,24 +40,26 @@ export function songForViewing({ item }) {
 
 export function songForEditing({ item }) {
   return {
-    ...songSummaryAdaptor({ item }),
-    ...basicDatesAdaptor({ item }),
-    ...notesAcknowledgementsAdaptor({ item }),
+    ...coverForEditing({ item }),
     ...introAdaptor({ item }),
+    ...notesAcknowledgementsAdaptor({ item }),
+    ...relatedMediaForEditing({ item }),
+    ...audienceForEditing({ item }),
 
     // lyrics
     lyrics: item?.lyrics || [],
   }
 }
 
-export function songForApi({ item }) {
+export function songForApi({ formData }) {
   return {
-    ...songSummaryAdaptor({ item }),
-    ...basicDatesAdaptor({ item }),
-    ...notesAcknowledgementsAdaptor({ item }),
-    ...introAdaptor({ item }),
+    ...coverForApi({ formData }),
+    ...introAdaptor({ item: formData }),
+    ...notesAcknowledgementsAdaptor({ item: formData }),
+    ...relatedMediaForApi({ item: formData }),
+    ...audienceForApi({ item: formData }),
 
     // lyrics
-    lyrics: item?.lyrics || [],
+    lyrics: formData?.lyrics || [],
   }
 }
