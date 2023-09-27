@@ -78,10 +78,7 @@ function SongPresentation({ entry }) {
                 >
                   <WysiwygBlock jsonString={lyric?.text} />
                   <div className="pl-5">
-                    <WysiwygBlock
-                      // eslint-disable-next-line react/no-array-index-key
-                      jsonString={lyric.translation}
-                    />
+                    <WysiwygBlock jsonString={lyric?.translation} />
                   </div>
                 </div>
               ))}
@@ -93,8 +90,8 @@ function SongPresentation({ entry }) {
                 <h4 className={labelStyling}>Acknowledgements</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.acknowledgements?.map((ack) => (
-                    <li key={ack?.slice(0, 20)} className={contentStyling}>
-                      {ack}
+                    <li key={ack?.id} className={contentStyling}>
+                      {ack?.text}
                     </li>
                   ))}
                 </ul>
@@ -105,8 +102,8 @@ function SongPresentation({ entry }) {
                 <h4 className={labelStyling}>Notes</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.notes?.map((note) => (
-                    <li key={note?.slice(0, 20)} className={contentStyling}>
-                      {note}
+                    <li key={note?.id} className={contentStyling}>
+                      {note?.text}
                     </li>
                   ))}
                 </ul>
