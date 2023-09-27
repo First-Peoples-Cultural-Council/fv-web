@@ -70,10 +70,12 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
       >
         <>
           <div className="col-span-12">
-            <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="col-span-12">
             <Form.WysiwygField
@@ -140,10 +142,8 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="url"
               helpText="Enter a URL you would like to link to (e.g. https://www.firstvoices.com/smalgyax-beta/words)"
               register={register}
+              errors={errors}
             />
-            {errors?.url && (
-              <div className="text-red-500">{errors?.url?.message}</div>
-            )}
           </div>
           <div className="col-span-6">
             <Form.TextField
@@ -151,10 +151,8 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="urlLabel"
               helpText="Enter a label for the URL button."
               register={register}
+              errors={errors}
             />
-            {errors?.urlLabel && (
-              <div className="text-red-500">{errors?.urlLabel?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

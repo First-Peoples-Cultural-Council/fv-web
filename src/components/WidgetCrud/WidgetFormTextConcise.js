@@ -65,20 +65,16 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               label="Title Text"
               nameId="title"
               register={register}
+              errors={errors}
             />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
               label="Subtitle Text"
               nameId="text"
               register={register}
+              errors={errors}
             />
-            {errors?.text && (
-              <div className="text-red-500">{errors?.text?.message}</div>
-            )}
           </div>
           <div className="col-span-6">
             <Form.AddMedia
@@ -97,10 +93,8 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="url"
               helpText="Enter any URL you would like to link to."
               register={register}
+              errors={errors}
             />
-            {errors?.url && (
-              <div className="text-red-500">{errors?.url?.message}</div>
-            )}
           </div>
           <div className="col-span-6">
             <Form.TextField
@@ -108,10 +102,8 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="urlLabel"
               helpText="Enter a label for the URL button."
               register={register}
+              errors={errors}
             />
-            {errors?.urlLabel && (
-              <div className="text-red-500">{errors?.urlLabel?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

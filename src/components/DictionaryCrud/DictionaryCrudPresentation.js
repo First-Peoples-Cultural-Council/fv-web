@@ -117,10 +117,8 @@ function DictionaryCrudPresentation({
                 label={getFriendlyDocType({ docType: type, titleCase: true })}
                 nameId="title"
                 register={register}
+                errors={errors}
               />
-              {errors?.title && (
-                <div className="text-red-500">{errors?.title?.message}</div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.TextArrayField

@@ -40,10 +40,8 @@ function WidgetFormBase({
                 : ''
             }
             disabled={!isCreateMode}
+            errors={errors}
           />
-          {errors?.nickname && (
-            <div className="text-red-500">{errors?.nickname?.message}</div>
-          )}
         </div>
         {children}
         {isEditableWidgetType(type) && (

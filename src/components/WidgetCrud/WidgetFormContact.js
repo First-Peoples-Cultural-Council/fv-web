@@ -55,10 +55,12 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
       >
         <>
           <div className="col-span-12 sm:col-span-6">
-            <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.TextAreaField
@@ -89,10 +91,8 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="urls"
               helpText="Enter any URLs you would like to include separated by commas."
               register={register}
+              errors={errors}
             />
-            {errors?.urls && (
-              <div className="text-red-500">{errors?.urls?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

@@ -75,60 +75,48 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Quote 1"
               nameId="quote1"
               register={register}
+              errors={errors}
             />
-            {errors?.quote1 && (
-              <div className="text-red-500">{errors?.quote1?.message}</div>
-            )}
           </div>
           <div className="col-span-6 -mt-4">
             <Form.TextField
               label="Attributed to"
               nameId="quote1By"
               register={register}
+              errors={errors}
             />
-            {errors?.quote1By && (
-              <div className="text-red-500">{errors?.quote1By?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
               label="Quote 2"
               nameId="quote2"
               register={register}
+              errors={errors}
             />
-            {errors?.quote2 && (
-              <div className="text-red-500">{errors?.quote2?.message}</div>
-            )}
           </div>
           <div className="col-span-6 -mt-4">
             <Form.TextField
               label="Attributed to"
               nameId="quote2By"
               register={register}
+              errors={errors}
             />
-            {errors?.quote2By && (
-              <div className="text-red-500">{errors?.quote2By?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
               label="Quote 3"
               nameId="quote3"
               register={register}
+              errors={errors}
             />
-            {errors?.quote3 && (
-              <div className="text-red-500">{errors?.quote3?.message}</div>
-            )}
           </div>
           <div className="col-span-6 -mt-4">
             <Form.TextField
               label="Attributed to"
               nameId="quote3By"
               register={register}
+              errors={errors}
             />
-            {errors?.quote3By && (
-              <div className="text-red-500">{errors?.quote3By?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

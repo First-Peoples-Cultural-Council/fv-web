@@ -60,10 +60,12 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
       >
         <>
           <div className="col-span-12">
-            <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="col-span-12">
             <Form.WysiwygField

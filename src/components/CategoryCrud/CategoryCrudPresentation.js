@@ -54,20 +54,20 @@ function CategoryCrudPresentation({
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
-            <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="col-span-12">
             <Form.TextField
               label="Description"
               nameId="description"
               register={register}
+              errors={errors}
             />
-            {errors?.description && (
-              <div className="text-red-500">{errors?.description?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             {parentCategoryOptions?.length > 0 ? (
