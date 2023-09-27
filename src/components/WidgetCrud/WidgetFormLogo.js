@@ -69,10 +69,8 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
               label="Text"
               nameId="text"
               register={register}
+              errors={errors}
             />
-            {errors?.text && (
-              <div className="text-red-500">{errors?.text?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>
