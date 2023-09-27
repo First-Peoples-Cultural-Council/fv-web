@@ -71,19 +71,13 @@ function CategoryCrudPresentation({
           </div>
           <div className="col-span-12">
             {parentCategoryOptions?.length > 0 ? (
-              <>
-                <Form.Select
-                  label="Parent Category"
-                  nameId="parentId"
-                  control={control}
-                  options={parentCategoryOptions}
-                />
-                {errors?.parentId && (
-                  <div className="text-red-500">
-                    {errors?.parentId?.message}
-                  </div>
-                )}
-              </>
+              <Form.Select
+                label="Parent Category"
+                nameId="parentId"
+                control={control}
+                options={parentCategoryOptions}
+                errors={errors}
+              />
             ) : (
               <div className="text-fv-charcoal text-sm">
                 NB: A parent category cannot be assigned a parent
