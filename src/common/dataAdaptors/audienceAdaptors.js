@@ -13,9 +13,9 @@ export function audienceForEditing({ item }) {
   }
 }
 
-export function audienceForApi({ formData }) {
+export function audienceForApi({ item }) {
   return {
-    exclude_from_kids: formData?.includeInKids === 'false',
-    exclude_from_games: formData?.includeInGames === 'false',
+    exclude_from_kids: item?.includeInKids === 'false',
+    exclude_from_games: item?.includeInGames === 'false',
   }
 }

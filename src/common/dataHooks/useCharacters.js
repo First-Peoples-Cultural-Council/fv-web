@@ -58,7 +58,7 @@ export function useCharacterPartialUpdate() {
 
   const partialUpdateCharacter = async (formData) => {
     const properties = {
-      ...relatedMediaForApi({ formData }),
+      ...relatedMediaForApi({ item: formData }),
       note: formData?.generalNote || '',
       related_dictionary_entries:
         objectsToIdsAdaptor(formData?.relatedDictionaryEntries) || [],

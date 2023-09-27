@@ -3,7 +3,7 @@ import {
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
-import { coverAdaptor } from 'common/dataAdaptors/coverAdaptor'
+import { coverForViewing } from 'common/dataAdaptors/coverAdaptors'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { introAdaptor, introForApi } from 'common/dataAdaptors/introAdaptors'
 import {
@@ -20,7 +20,7 @@ import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 export function storySummaryAdaptor({ item }) {
   return {
     // cover
-    ...coverAdaptor({ item }),
+    ...coverForViewing({ item }),
     type: TYPE_STORY,
     author: item?.author || '',
   }
@@ -72,9 +72,9 @@ export function storyForApi({ formData }) {
     hide_overlay: formData?.hideOverlay === 'true',
     ...titleForApi({ formData }),
     ...notesAcknowledgementsAdaptor({ item: formData }),
-    ...relatedMediaForApi({ formData }),
+    ...relatedMediaForApi({ item: formData }),
     ...introForApi({ formData }),
-    ...audienceForApi({ formData }),
+    ...audienceForApi({ item: formData }),
   }
 }
 
