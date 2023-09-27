@@ -108,6 +108,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                     label="Add Banner Background"
                     nameId="banner"
                     control={control}
+                    errors={errors}
                     helpText={
                       <div>
                         Choose between adding an image or a silent video.
@@ -126,11 +127,6 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                       </div>
                     }
                   />
-                  {errors?.banner && (
-                    <div className="text-red-500">
-                      {errors?.banner?.message}
-                    </div>
-                  )}
                 </div>
                 <div className="col-span-12">
                   <Form.Visibility

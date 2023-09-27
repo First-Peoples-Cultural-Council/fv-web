@@ -50,6 +50,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 label="Add Banner"
                 nameId="banner"
                 control={control}
+                errors={errors}
                 helpText={
                   <div>
                     Choose between adding an image or a silent video.
@@ -68,9 +69,6 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                   </div>
                 }
               />
-              {errors?.banner && (
-                <div className="text-red-500">{errors?.banner?.message}</div>
-              )}
             </div>
           </div>
           <div className="mt-4 flex justify-end px-6">
