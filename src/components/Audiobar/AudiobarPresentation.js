@@ -15,6 +15,7 @@ function AudiobarPresentation({
   onRateChange,
 }) {
   const [infoOpen, setInfoOpen] = useState(false)
+  const title = data?.title
   return (
     <nav
       id="Audiobar"
@@ -125,16 +126,20 @@ function AudiobarPresentation({
                 {data?.label?.length > 0 && (
                   <span className="mr-3 truncate">{data?.label}</span>
                 )}
-                <button
-                  type="button"
-                  onClick={() => setInfoOpen(!infoOpen)}
-                  aria-label="Open Audio Info"
-                >
-                  {getIcon(
-                    'InfoCircleSolid',
-                    'w-4 h-4 mb-1 fill-current inline-flex',
-                  )}
-                </button>
+                {title ? (
+                  <button
+                    type="button"
+                    onClick={() => setInfoOpen(!infoOpen)}
+                    aria-label="Open Audio Info"
+                  >
+                    {getIcon(
+                      'InfoCircleSolid',
+                      'w-4 h-4 mb-1 fill-current inline-flex',
+                    )}
+                  </button>
+                ) : (
+                  ''
+                )}
               </div>
               <div className="text-center text-sm text-white">{`${curTime} / ${duration}`}</div>
             </div>
