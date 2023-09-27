@@ -61,10 +61,8 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 nameId="text"
                 control={control}
                 toolbar="none"
+                errors={errors}
               />
-              {errors?.text && (
-                <div className="text-red-500">{errors?.text?.message}</div>
-              )}
             </div>
             <div className="w-full">
               <Form.WysiwygField
@@ -72,12 +70,8 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 nameId="textTranslation"
                 control={control}
                 toolbar="none"
+                errors={errors}
               />
-              {errors?.textTranslation && (
-                <div className="text-red-500">
-                  {errors?.textTranslation?.message}
-                </div>
-              )}
             </div>
             <div className="w-full">
               <Form.MediaArrayField

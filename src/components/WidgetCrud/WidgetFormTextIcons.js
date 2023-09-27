@@ -73,12 +73,8 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="textWithFormatting"
               control={control}
               toolbar="none"
+              errors={errors}
             />
-            {errors?.textWithFormatting && (
-              <div className="text-red-500">
-                {errors?.textWithFormatting?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-6">
             <Form.AddMedia

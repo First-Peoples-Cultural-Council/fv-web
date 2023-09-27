@@ -111,10 +111,8 @@ function StoryCoverCrudPresentation({
                   nameId="intro"
                   control={control}
                   toolbar="none"
+                  errors={errors}
                 />
-                {errors?.intro && (
-                  <div className="text-red-500">{errors?.intro?.message}</div>
-                )}
               </div>
               <div className="w-full">
                 <Form.WysiwygField
@@ -122,12 +120,8 @@ function StoryCoverCrudPresentation({
                   nameId="introTranslation"
                   control={control}
                   toolbar="none"
+                  errors={errors}
                 />
-                {errors?.introTranslation && (
-                  <div className="text-red-500">
-                    {errors?.introTranslation?.message}
-                  </div>
-                )}
               </div>
               <div className="w-full">
                 <Form.MediaArrayField
