@@ -67,22 +67,20 @@ function SongCrudPresentation({
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
-            <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
               label="Title Translation"
               nameId="titleTranslation"
               register={register}
+              errors={errors}
             />
-            {errors?.titleTranslation && (
-              <div className="text-red-500">
-                {errors?.titleTranslation?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.WysiwygField
