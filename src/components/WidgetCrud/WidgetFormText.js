@@ -92,10 +92,8 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="image"
               docType={IMAGE}
               control={control}
+              errors={errors}
             />
-            {errors?.image && (
-              <div className="text-red-500">{errors?.image?.message}</div>
-            )}
           </div>
           <div className="col-span-6">
             <Form.AddMedia
@@ -103,10 +101,8 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="audio"
               docType={AUDIO}
               control={control}
+              errors={errors}
             />
-            {errors?.audio && (
-              <div className="text-red-500">{errors?.audio?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.RadioButtons

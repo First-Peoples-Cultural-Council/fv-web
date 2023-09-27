@@ -40,10 +40,8 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 docType={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
+                errors={errors}
               />
-              {errors?.logoId && (
-                <div className="text-red-500">{errors?.logoId?.message}</div>
-              )}
             </div>
             <div className="col-span-12 flex items-center justify-start">
               <Form.SelectOneMedia

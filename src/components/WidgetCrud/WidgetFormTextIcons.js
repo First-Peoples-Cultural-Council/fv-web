@@ -82,10 +82,8 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="image"
               docType={DOC_IMAGE}
               control={control}
+              errors={errors}
             />
-            {errors?.image && (
-              <div className="text-red-500">{errors?.image?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

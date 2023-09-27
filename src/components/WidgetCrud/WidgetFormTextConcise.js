@@ -82,10 +82,8 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="audio"
               docType={AUDIO}
               control={control}
+              errors={errors}
             />
-            {errors?.audio && (
-              <div className="text-red-500">{errors?.audio?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
