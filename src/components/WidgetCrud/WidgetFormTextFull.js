@@ -54,12 +54,8 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             label="Text"
             nameId="textWithFormatting"
             control={control}
+            errors={errors}
           />
-          {errors?.textWithFormatting && (
-            <div className="text-red-500">
-              {errors?.textWithFormatting?.message}
-            </div>
-          )}
         </div>
       </WidgetFormBase>
     </div>

@@ -52,10 +52,8 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
             nameId="galleryId"
             helpText="Enter the UID for the gallery (e.g. f0083daa-2988-4144-be17-34cd8fb288c9)."
             register={register}
+            errors={errors}
           />
-          {errors?.galleryId && (
-            <div className="text-red-500">{errors?.galleryId?.message}</div>
-          )}
         </div>
       </WidgetFormBase>
     </div>

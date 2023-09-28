@@ -6,11 +6,15 @@ import ResourcePresentation from 'components/Resource/ResourcePresentation'
 import ResourceData from 'components/Resource/ResourceData'
 
 function ResourceContainer({ pageSlug }) {
-  const { blocks, widgets } = ResourceData({ pageSlug })
+  const { title, widgets } = ResourceData({ pageSlug })
 
   return (
     <div>
-      <ResourcePresentation blocks={blocks} widgets={widgets} />
+      <ResourcePresentation
+        title={title}
+        widgets={widgets}
+        pageSlug={pageSlug}
+      />
     </div>
   )
 }

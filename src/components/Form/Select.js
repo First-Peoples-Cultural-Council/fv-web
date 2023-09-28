@@ -4,8 +4,9 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Listbox from 'components/Listbox'
+import ValidationError from 'components/Form/ValidationError'
 
-function Select({ control, helpText, label, nameId, options }) {
+function Select({ control, helpText, label, nameId, options, errors }) {
   return (
     <Fragment key="FormSelect">
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -29,6 +30,7 @@ function Select({ control, helpText, label, nameId, options }) {
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
@@ -40,10 +42,10 @@ Select.propTypes = {
   options: arrayOf(shape({ label: string, value: any })).isRequired,
   control: object,
   helpText: string,
+  errors: object,
 }
 
 Select.defaultProps = {
-  disabled: false,
   label: '',
 }
 

@@ -9,6 +9,7 @@ import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
 import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
+import ValidationError from 'components/Form/ValidationError'
 
 const DEFAULT_MEDIA_VALUE = {
   docId: '',
@@ -19,7 +20,7 @@ const FRAGMENT_BUTTON_STYLES =
   'mt-1 mr-4 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex ' +
   'justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
 
-function SelectOneMedia({ label, nameId, control, helpText }) {
+function SelectOneMedia({ label, nameId, control, errors, helpText }) {
   return (
     <div>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -38,6 +39,7 @@ function SelectOneMedia({ label, nameId, control, helpText }) {
       {helpText && (
         <div className="mt-2 text-sm text-fv-charcoal-light">{helpText}</div>
       )}
+      <ValidationError errors={errors} nameId={nameId} />
     </div>
   )
 }
@@ -163,6 +165,7 @@ SelectOneMedia.propTypes = {
   label: string,
   nameId: string,
   control: object,
+  errors: object,
   helpText: object,
 }
 
