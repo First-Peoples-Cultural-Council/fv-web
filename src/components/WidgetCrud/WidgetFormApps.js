@@ -55,10 +55,8 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="androidUrl"
               register={register}
               helpText="e.g. https://play.google.com/store/apps/details?id=..."
+              errors={errors}
             />
-            {errors?.androidUrl && (
-              <div className="text-red-500">{errors?.androidUrl?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -66,10 +64,8 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="iosUrl"
               register={register}
               helpText="e.g. https://apps.apple.com/ca/app/..."
+              errors={errors}
             />
-            {errors?.iosUrl && (
-              <div className="text-red-500">{errors?.iosUrl?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

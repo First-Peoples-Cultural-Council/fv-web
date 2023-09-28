@@ -9,8 +9,9 @@ import MediaThumbnail from 'components/MediaThumbnail'
 import Modal from 'components/Modal'
 import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import ValidationError from 'components/Form/ValidationError'
 
-function AddMedia({ label, nameId, helpText, control, docType }) {
+function AddMedia({ label, nameId, helpText, control, docType, errors }) {
   return (
     <Fragment key={`${nameId}_AddMedia`}>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -28,6 +29,7 @@ function AddMedia({ label, nameId, helpText, control, docType }) {
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
@@ -112,6 +114,7 @@ AddMedia.propTypes = {
   docType: string,
   nameId: string.isRequired,
   control: object,
+  errors: object,
 }
 
 AddMedia.defaultProps = {

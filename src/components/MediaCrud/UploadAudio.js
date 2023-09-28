@@ -89,10 +89,12 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
       <form onReset={reset}>
         <div className="mt-2 grid grid-cols-12">
           <div className="col-span-12">
-            <TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
 
           <div className="col-span-12">
@@ -100,10 +102,8 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
               label="Description"
               nameId="description"
               register={register}
+              errors={errors}
             />
-            {errors?.description && (
-              <div className="text-red-500">{errors?.description?.message}</div>
-            )}
           </div>
 
           <div className="col-span-12">
@@ -111,12 +111,8 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
               label="Acknowledgements"
               nameId="acknowledgement"
               register={register}
+              errors={errors}
             />
-            {errors?.acknowledgement && (
-              <div className="text-red-500">
-                {errors?.acknowledgement?.message}
-              </div>
-            )}
           </div>
 
           <div className="col-span-12">
@@ -150,10 +146,8 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
               label="Audio File"
               nameId="audioFile"
               register={register}
+              errors={errors}
             />
-            {errors?.audioFile && (
-              <div className="text-red-500">{errors?.audioFile?.message}</div>
-            )}
           </div>
 
           <div className="col-span-12">

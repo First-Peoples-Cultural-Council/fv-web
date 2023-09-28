@@ -49,12 +49,8 @@ function ImmersionCrudPresentation({ dataToEdit, submitHandler }) {
                   label={`Immersion Label for "${dataToEdit?.english}"`}
                   nameId="immersionLabel"
                   register={register}
+                  errors={errors}
                 />
-                {errors?.immersionLabel && (
-                  <div className="text-red-500">
-                    {errors?.immersionLabel?.message}
-                  </div>
-                )}
               </div>
               <div className="col-span-12">
                 <Form.MediaArrayField

@@ -102,10 +102,8 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Notes"
               nameId="generalNote"
               register={register}
+              errors={errors}
             />
-            {errors?.generalNote && (
-              <div className="text-red-500">{errors?.generalNote?.message}</div>
-            )}
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons

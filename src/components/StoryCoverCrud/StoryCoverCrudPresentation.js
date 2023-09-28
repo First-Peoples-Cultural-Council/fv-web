@@ -86,32 +86,24 @@ function StoryCoverCrudPresentation({
                   label="Title"
                   nameId="title"
                   register={register}
+                  errors={errors}
                 />
-                {errors?.title && (
-                  <div className="text-red-500">{errors?.title?.message}</div>
-                )}
               </div>
               <div className="w-full">
                 <Form.TextField
                   label="Title Translation to English"
                   nameId="titleTranslation"
                   register={register}
+                  errors={errors}
                 />
-                {errors?.titleTranslation && (
-                  <div className="text-red-500">
-                    {errors?.titleTranslation?.message}
-                  </div>
-                )}
               </div>
               <div className="w-full">
                 <Form.TextField
                   label="Author"
                   nameId="author"
                   register={register}
+                  errors={errors}
                 />
-                {errors?.author && (
-                  <div className="text-red-500">{errors?.author?.message}</div>
-                )}
               </div>
               <div className="col-span-12">
                 <Form.WysiwygField
@@ -119,10 +111,8 @@ function StoryCoverCrudPresentation({
                   nameId="intro"
                   control={control}
                   toolbar="none"
+                  errors={errors}
                 />
-                {errors?.intro && (
-                  <div className="text-red-500">{errors?.intro?.message}</div>
-                )}
               </div>
               <div className="w-full">
                 <Form.WysiwygField
@@ -130,12 +120,8 @@ function StoryCoverCrudPresentation({
                   nameId="introTranslation"
                   control={control}
                   toolbar="none"
+                  errors={errors}
                 />
-                {errors?.introTranslation && (
-                  <div className="text-red-500">
-                    {errors?.introTranslation?.message}
-                  </div>
-                )}
               </div>
               <div className="w-full">
                 <Form.MediaArrayField
