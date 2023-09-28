@@ -89,17 +89,19 @@ function DictionaryGridTilePresentationKids({ entry }) {
               </ol>
             )}
             {/* Entry Audio */}
-            {entry?.audio?.length > 0 &&
-              entry?.audio.map((audioObject) => (
-                <AudioMinimal.Container
-                  key={audioObject?.id}
-                  icons={{
-                    Play: getIcon('Audio', 'fill-current h-10 w-10'),
-                    Stop: getIcon('StopCircle', 'fill-current h-10 w-10'),
-                  }}
-                  audioObject={audioObject}
-                />
-              ))}
+            <div>
+              {entry?.audio?.length > 0 &&
+                entry?.audio.map((audioObject) => (
+                  <AudioMinimal.Container
+                    key={audioObject?.id}
+                    icons={{
+                      Play: getIcon('Audio', 'fill-current h-10 w-10'),
+                      Stop: getIcon('StopCircle', 'fill-current h-10 w-10'),
+                    }}
+                    audioObject={audioObject}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>
