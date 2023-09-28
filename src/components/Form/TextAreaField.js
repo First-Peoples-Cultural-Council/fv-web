@@ -2,9 +2,11 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import ValidationError from 'components/Form/ValidationError'
 
 function TextAreaField({
   defaultValue,
+  errors,
   label,
   nameId,
   helpText,
@@ -32,13 +34,16 @@ function TextAreaField({
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
 // PROPTYPES
-const { func, number, string } = PropTypes
+const { func, number, object, string } = PropTypes
 TextAreaField.propTypes = {
   defaultValue: string,
+  errors: object,
   helpText: string,
   label: string,
   nameId: string.isRequired,

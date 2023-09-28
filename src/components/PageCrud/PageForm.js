@@ -78,22 +78,16 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                     label="Title"
                     nameId="title"
                     register={register}
+                    errors={errors}
                   />
-                  {errors?.title && (
-                    <div className="text-red-500">{errors?.title?.message}</div>
-                  )}
                 </div>
                 <div className="col-span-12">
                   <Form.TextField
                     label="Subtitle"
                     nameId="subtitle"
                     register={register}
+                    errors={errors}
                   />
-                  {errors?.subtitle && (
-                    <div className="text-red-500">
-                      {errors?.subtitle?.message}
-                    </div>
-                  )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <Form.TextField
@@ -106,16 +100,15 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                     }
                     register={register}
                     disabled={!isCreateMode}
+                    errors={errors}
                   />
-                  {errors?.slug && (
-                    <div className="text-red-500">{errors?.slug?.message}</div>
-                  )}
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
                   <Form.SelectOneMedia
                     label="Add Banner Background"
                     nameId="banner"
                     control={control}
+                    errors={errors}
                     helpText={
                       <div>
                         Choose between adding an image or a silent video.
@@ -134,11 +127,6 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                       </div>
                     }
                   />
-                  {errors?.banner && (
-                    <div className="text-red-500">
-                      {errors?.banner?.message}
-                    </div>
-                  )}
                 </div>
                 <div className="col-span-12">
                   <Form.Visibility

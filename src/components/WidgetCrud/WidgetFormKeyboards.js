@@ -55,10 +55,8 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="macUrl"
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
+              errors={errors}
             />
-            {errors?.macUrl && (
-              <div className="text-red-500">{errors?.macUrl?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -66,10 +64,8 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="windowsUrl"
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
+              errors={errors}
             />
-            {errors?.windowsUrl && (
-              <div className="text-red-500">{errors?.windowsUrl?.message}</div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField
@@ -77,12 +73,8 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="chromebookUrl"
               register={register}
               helpText="e.g. https://chrome.google.com/webstore/detail/firstvoices-keyboards/..."
+              errors={errors}
             />
-            {errors?.chromebookUrl && (
-              <div className="text-red-500">
-                {errors?.chromebookUrl?.message}
-              </div>
-            )}
           </div>
         </>
       </WidgetFormBase>

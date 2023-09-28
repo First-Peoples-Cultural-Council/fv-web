@@ -40,10 +40,8 @@ function WidgetFormBase({
                 : ''
             }
             disabled={!isCreateMode}
+            errors={errors}
           />
-          {errors?.nickname && (
-            <div className="text-red-500">{errors?.nickname?.message}</div>
-          )}
         </div>
         {children}
         {isEditableWidgetType(type) && (
@@ -54,9 +52,6 @@ function WidgetFormBase({
               errors={errors}
               label="Who can see this widget?"
             />
-            {errors?.visibility && (
-              <div className="text-red-500">{errors?.visibility?.message}</div>
-            )}
           </div>
         )}
       </div>

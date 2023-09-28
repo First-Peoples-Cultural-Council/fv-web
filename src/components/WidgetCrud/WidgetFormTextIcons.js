@@ -60,10 +60,12 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
       >
         <>
           <div className="col-span-12">
-            <Form.TextField label="Title" nameId="title" register={register} />
-            {errors?.title && (
-              <div className="text-red-500">{errors?.title?.message}</div>
-            )}
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
           </div>
           <div className="col-span-12">
             <Form.WysiwygField
@@ -71,12 +73,8 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="textWithFormatting"
               control={control}
               toolbar="none"
+              errors={errors}
             />
-            {errors?.textWithFormatting && (
-              <div className="text-red-500">
-                {errors?.textWithFormatting?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-6">
             <Form.AddMedia
@@ -84,10 +82,8 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="image"
               docType={DOC_IMAGE}
               control={control}
+              errors={errors}
             />
-            {errors?.image && (
-              <div className="text-red-500">{errors?.image?.message}</div>
-            )}
           </div>
         </>
       </WidgetFormBase>

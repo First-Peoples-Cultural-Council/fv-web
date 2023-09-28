@@ -2,8 +2,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import ValidationError from 'components/Form/ValidationError'
 
-function TextField({ label, nameId, helpText, disabled, register }) {
+function TextField({ label, nameId, helpText, disabled, errors, register }) {
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault()
@@ -34,13 +35,15 @@ function TextField({ label, nameId, helpText, disabled, register }) {
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
 // PROPTYPES
-const { bool, func, string } = PropTypes
+const { bool, func, object, string } = PropTypes
 TextField.propTypes = {
   disabled: bool,
+  errors: object,
   helpText: string,
   label: string,
   nameId: string.isRequired,

@@ -49,10 +49,8 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
               label="Add Media"
               nameId="visualMedia"
               control={control}
+              errors={errors}
             />
-            {errors?.visualMedia && (
-              <div className="text-red-500">{errors?.visualMedia?.message}</div>
-            )}
           </div>
           <div className="col-span-7 space-y-4">
             <div className="w-full">
@@ -61,10 +59,8 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 nameId="text"
                 control={control}
                 toolbar="none"
+                errors={errors}
               />
-              {errors?.text && (
-                <div className="text-red-500">{errors?.text?.message}</div>
-              )}
             </div>
             <div className="w-full">
               <Form.WysiwygField
@@ -72,12 +68,8 @@ function StoryPageForm({ cancelHandler, page, pageNumber, submitHandler }) {
                 nameId="textTranslation"
                 control={control}
                 toolbar="none"
+                errors={errors}
               />
-              {errors?.textTranslation && (
-                <div className="text-red-500">
-                  {errors?.textTranslation?.message}
-                </div>
-              )}
             </div>
             <div className="w-full">
               <Form.MediaArrayField

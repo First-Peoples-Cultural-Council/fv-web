@@ -40,16 +40,15 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 docType={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
+                errors={errors}
               />
-              {errors?.logoId && (
-                <div className="text-red-500">{errors?.logoId?.message}</div>
-              )}
             </div>
             <div className="col-span-12 flex items-center justify-start">
               <Form.SelectOneMedia
                 label="Add Banner"
                 nameId="banner"
                 control={control}
+                errors={errors}
                 helpText={
                   <div>
                     Choose between adding an image or a silent video.
@@ -68,9 +67,6 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                   </div>
                 }
               />
-              {errors?.banner && (
-                <div className="text-red-500">{errors?.banner?.message}</div>
-              )}
             </div>
           </div>
           <div className="mt-4 flex justify-end px-6">

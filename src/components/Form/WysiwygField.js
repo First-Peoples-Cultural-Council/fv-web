@@ -7,8 +7,9 @@ import 'draft-js/dist/Draft.css'
 // FPCC
 import WysiwygControls from 'components/Form/WysiwygControls'
 import { safeJsonParse } from 'common/utils/stringHelpers'
+import ValidationError from 'components/Form/ValidationError'
 
-function WysiwygField({ label, nameId, helpText, control, toolbar }) {
+function WysiwygField({ label, nameId, errors, helpText, control, toolbar }) {
   const {
     field: { onChange, value, ref },
   } = useController({
@@ -90,6 +91,8 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
@@ -97,6 +100,7 @@ function WysiwygField({ label, nameId, helpText, control, toolbar }) {
 const { array, object, oneOfType, string } = PropTypes
 WysiwygField.propTypes = {
   helpText: string,
+  errors: object,
   label: string,
   nameId: string.isRequired,
   control: object,
