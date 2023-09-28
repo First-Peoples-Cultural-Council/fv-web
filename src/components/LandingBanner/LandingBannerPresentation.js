@@ -19,9 +19,9 @@ function LandingBannerPresentation({ data }) {
           backgroundSize: 'cover',
         }}
       >
-        <p className="text-white text-5xl md:text-9xl font-BlackDiamond leading-tight w-1/2 py-16 md:pt-32 px-2 md:px-12">
-          {title}
-        </p>
+        <div className="text-white text-5xl md:text-9xl font-BlackDiamond leading-tight w-1/2 py-16 md:pt-32 px-2 md:px-12">
+          <img src={title} alt="Live Your Language" className="h-1/2" />
+        </div>
         <p className="hidden md:block bg-transparent text-white text-xs md:text-3xl px-12 pt-24 md:px-20 md:pt-0 text-center md:text-left lg:w-4/5">
           {text}
         </p>

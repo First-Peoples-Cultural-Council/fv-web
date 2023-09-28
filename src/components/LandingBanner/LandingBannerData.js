@@ -1,4 +1,5 @@
 import hero from 'assets/images/hero-background.png'
+import landingTitle from 'assets/images/landing-title.svg'
 // import laptop from 'assets/images/landing-banner-blue.png'
 import languages from 'assets/images/languages-background.png'
 import map from 'assets/images/landing-banner-brown.png'
@@ -7,7 +8,7 @@ function LandingBannerData() {
   const data = {
     settings: {
       image: hero,
-      title: 'Live Your Language!',
+      title: landingTitle,
       text: 'FirstVoices is a collaborative platform where Indigenous communities manage, curate and share their languages',
       links: [
         // hiding until site search page is created
