@@ -34,7 +34,7 @@ function DrawerPresentation({
               leaveTo="translate-x-full"
             >
               <div className={`w-screen ${maxWidth}`}>
-                <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
+                <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll touch-auto">
                   <div className="flex justify-end items-center mt-12 mr-2 space-x-2">
                     {fullScreenPath && (
                       <Link
