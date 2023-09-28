@@ -52,9 +52,6 @@ function WidgetFormBase({
               errors={errors}
               label="Who can see this widget?"
             />
-            {errors?.visibility && (
-              <div className="text-red-500">{errors?.visibility?.message}</div>
-            )}
           </div>
         )}
       </div>
