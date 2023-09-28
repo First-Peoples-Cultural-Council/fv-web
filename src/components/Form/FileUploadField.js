@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-function FileUploadField({ label, nameId, disabled, register }) {
+// FPCC
+import ValidationError from 'components/Form/ValidationError'
+
+function FileUploadField({ label, nameId, disabled, register, errors }) {
   return (
     <Fragment key={`${nameId}_FileUploadField`}>
       <label
@@ -22,17 +25,19 @@ function FileUploadField({ label, nameId, disabled, register }) {
           focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
         />
       </div>
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
 
-const { bool, func, string } = PropTypes
+const { bool, func, object, string } = PropTypes
 
 FileUploadField.propTypes = {
   label: string,
   nameId: string.isRequired,
   disabled: bool,
   register: func,
+  errors: object,
 }
 
 FileUploadField.defaultProps = {

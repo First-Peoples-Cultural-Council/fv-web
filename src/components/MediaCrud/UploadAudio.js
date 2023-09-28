@@ -150,6 +150,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
               label="Audio File"
               nameId="audioFile"
               register={register}
+              errors={errors}
             />
             {errors?.audioFile && (
               <div className="text-red-500">{errors?.audioFile?.message}</div>
