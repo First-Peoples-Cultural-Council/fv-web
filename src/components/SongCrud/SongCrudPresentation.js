@@ -21,6 +21,12 @@ function SongCrudPresentation({
     titleTranslation: definitions.paragraph(),
     intro: definitions.wysiwyg({ charCount: 1200 }),
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
+    lyrics: yup.array().of(
+      yup.object().shape({
+        text: definitions.paragraph(),
+        translation: definitions.paragraph(),
+      }),
+    ),
     acknowledgments: definitions.textArray({ charCount: 500 }),
     notes: definitions.textArray({ charCount: 500 }),
     relatedAudio: definitions.idArray(),
@@ -33,6 +39,12 @@ function SongCrudPresentation({
     titleTranslation: '',
     intro: EditorState.createEmpty(),
     introTranslation: EditorState.createEmpty(),
+    lyrics: [
+      {
+        text: '',
+        translation: '',
+      },
+    ],
     acknowledgements: [],
     notes: [],
     relatedAudio: [],
@@ -68,7 +80,7 @@ function SongCrudPresentation({
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
-              label="Title"
+              label="Title in your language"
               nameId="title"
               register={register}
               errors={errors}
@@ -82,29 +94,23 @@ function SongCrudPresentation({
               errors={errors}
             />
           </div>
-          <div className="col-span-12">
+          <div className="col-span-6">
             <Form.WysiwygField
-              label="Introduction"
+              label="Introduction in your language"
               nameId="intro"
               control={control}
               toolbar="none"
+              errors={errors}
             />
-            {errors?.intro && (
-              <div className="text-red-500">{errors?.intro?.message}</div>
-            )}
           </div>
-          <div className="col-span-12">
+          <div className="col-span-6">
             <Form.WysiwygField
               label="Introduction Translation"
               nameId="introTranslation"
               control={control}
               toolbar="none"
+              errors={errors}
             />
-            {errors?.introTranslation && (
-              <div className="text-red-500">
-                {errors?.introTranslation?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.MediaArrayField
@@ -122,6 +128,16 @@ function SongCrudPresentation({
             )}
           </div>
           <div className="col-span-12">
+            <Form.TextTranslationArrayField
+              label="Lyrics"
+              nameId="lyrics"
+              register={register}
+              control={control}
+              errors={errors}
+              maxItems={25}
+            />
+          </div>
+          <div className="col-span-6">
             <Form.MediaArrayField
               label="Images"
               nameId="relatedImages"
@@ -136,7 +152,7 @@ function SongCrudPresentation({
               </div>
             )}
           </div>
-          <div className="col-span-12">
+          <div className="col-span-6">
             <Form.MediaArrayField
               label="Videos"
               nameId="relatedVideos"

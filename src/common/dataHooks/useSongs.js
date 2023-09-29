@@ -62,7 +62,7 @@ export function useSongCreate() {
 
   const createSong = async (formData) => {
     const properties = songForApi({ formData })
-    return api.dictionary.create({
+    return api.songs.create({
       sitename,
       properties,
     })
@@ -87,7 +87,7 @@ export function useSongUpdate() {
 
   const updateSong = async (formData) => {
     const properties = songForApi({ formData })
-    return api.dictionary.update({
+    return api.songs.update({
       id: formData?.id,
       sitename,
       properties,
@@ -111,7 +111,7 @@ export function useSongUpdate() {
 export function useSongDelete() {
   const { sitename } = useParams()
   const deleteSong = async (id) =>
-    api.dictionary.delete({
+    api.songs.delete({
       id,
       sitename,
     })
