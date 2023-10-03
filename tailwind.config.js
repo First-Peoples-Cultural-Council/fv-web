@@ -48,9 +48,6 @@ module.exports = {
       borderWidth: {
         12: '12px',
       },
-      fontFamily: {
-        BlackDiamond: ['BlackDiamond'],
-      },
       fontSize: {
         xxs: '.5rem',
       },
