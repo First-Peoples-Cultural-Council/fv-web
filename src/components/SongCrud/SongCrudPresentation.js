@@ -8,7 +8,7 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, PUBLIC } from 'common/constants'
 
 function SongCrudPresentation({
   backHandler,
@@ -39,12 +39,7 @@ function SongCrudPresentation({
     titleTranslation: '',
     intro: EditorState.createEmpty(),
     introTranslation: EditorState.createEmpty(),
-    lyrics: [
-      {
-        text: '',
-        translation: '',
-      },
-    ],
+    lyrics: [],
     acknowledgements: [],
     notes: [],
     relatedAudio: [],
@@ -52,6 +47,7 @@ function SongCrudPresentation({
     relatedVideos: [],
     includeInKids: 'true',
     includeInGames: 'true',
+    visibility: PUBLIC,
   }
 
   const { control, errors, handleSubmit, isCreateMode, register, reset } =

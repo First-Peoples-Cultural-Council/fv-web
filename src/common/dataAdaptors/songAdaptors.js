@@ -53,7 +53,7 @@ export function songForEditing({ item }) {
 
 export function songForApi({ formData }) {
   return {
-    ...coverForApi({ formData }),
+    ...coverForApi({ item: formData }),
     ...introAdaptor({ item: formData }),
     ...notesAcknowledgementsAdaptor({ item: formData }),
     ...relatedMediaForApi({ item: formData }),

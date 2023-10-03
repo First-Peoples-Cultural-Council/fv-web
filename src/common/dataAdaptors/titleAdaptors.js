@@ -5,9 +5,9 @@ export function titleForEditing({ item }) {
   }
 }
 
-export function titleForApi({ formData }) {
+export function titleForApi({ item }) {
   return {
-    title: formData?.title || '',
-    title_translation: formData?.titleTranslation || '',
+    title: item?.title || '',
+    title_translation: item?.titleTranslation || '',
   }
 }
