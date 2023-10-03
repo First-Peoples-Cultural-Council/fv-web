@@ -11,7 +11,7 @@ function LandingBannerPresentation({ data }) {
   return (
     <section id="LandingBannerPresentation" className="md:min-h-screen md:pb-4">
       <div
-        className="h-72 md:h-screen md:bg-right"
+        className="h-72 md:h-screen md:bg-right flex flex-col justify-end"
         style={{
           backgroundImage: `url(${image})`,
           backgroundRepeat: 'no-repeat',
@@ -19,10 +19,10 @@ function LandingBannerPresentation({ data }) {
           backgroundSize: 'cover',
         }}
       >
-        <p className="text-white text-5xl md:text-9xl font-BlackDiamond leading-tight w-1/2 py-16 md:pt-32 px-2 md:px-12">
-          {title}
-        </p>
-        <p className="hidden md:block bg-transparent text-white text-xs md:text-3xl px-12 pt-24 md:px-20 md:pt-0 text-center md:text-left lg:w-4/5">
+        <div className="pt-12 pb-8 px-12 md:px-20">
+          <img src={title} alt="Live Your Language" />
+        </div>
+        <p className="hidden md:block bg-transparent text-white text-xs md:text-3xl px-12 md:px-20 pb-24 text-center md:text-left lg:w-4/5">
           {text}
         </p>
       </div>
