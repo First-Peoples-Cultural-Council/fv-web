@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // FPCC / FPCF
-import fpccLogo from 'images/fpccLogoWhite.png'
+import fpccLogo from 'images/fpccLogoWhite.svg'
 import fpcfLogo from 'images/fpcfLogoWhite.svg'
 
 function FooterPresentation() {
