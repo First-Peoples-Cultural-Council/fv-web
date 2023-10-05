@@ -130,7 +130,7 @@ function AlphabetPresentationSelected({
         <Link
           to={`/${sitename}/${
             kids ? 'kids/' : ''
-          }alphabet/startsWith?${CHAR}=${title}`}
+          }alphabet/startsWith?${CHAR}=${title}&types=word`}
           className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
         >
           <span>See all words starting with</span>
