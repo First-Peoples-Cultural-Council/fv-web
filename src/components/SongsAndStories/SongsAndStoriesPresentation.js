@@ -30,7 +30,7 @@ function SongsAndStoriesPresentation({
   const [isGridView, setIsGridView] = useState(true)
 
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [selectedItem, setselectedItem] = useState({})
+  const [selectedItem, setSelectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage, loadButtonLabel } =
     infiniteScroll
   const navigate = useNavigate()
@@ -54,7 +54,7 @@ function SongsAndStoriesPresentation({
         }`,
       )
     }
-    setselectedItem(item)
+    setSelectedItem(item)
     setDrawerOpen(true)
   }
 
