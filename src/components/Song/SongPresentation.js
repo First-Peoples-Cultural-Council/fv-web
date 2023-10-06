@@ -66,15 +66,15 @@ function SongPresentation({ entry }) {
               </div>
             )}
             {entry.lyrics.length > 0 && (
-              <div className="space-y-2 py-5">
+              <div className="space-y-4 py-5">
                 <h4 className={labelStyling}>Lyrics</h4>
                 {entry.lyrics.map((lyric) => (
                   <div
                     key={lyric?.id}
-                    className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
+                    className="text-fv-charcoal grid grid-cols-2 gap-2 whitespace-pre-wrap"
                   >
-                    {lyric?.text}
-                    <div className="pl-5">{lyric?.translation}</div>
+                    <div className="col-span-1">{lyric?.text}</div>
+                    <div className="col-span-1">{lyric?.translation}</div>
                   </div>
                 ))}
               </div>
