@@ -9,11 +9,7 @@ import {
   coverForApi,
 } from 'common/dataAdaptors/coverAdaptors'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
-import {
-  introForViewing,
-  introForEditing,
-  introForApi,
-} from 'common/dataAdaptors/introAdaptors'
+import { introAdaptor, introForApi } from 'common/dataAdaptors/introAdaptors'
 import {
   relatedMediaForViewing,
   relatedMediaForEditing,
@@ -39,7 +35,7 @@ export function storyForViewing({ item }) {
     ...storySummaryAdaptor({ item }),
     ...basicDatesAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
-    ...introForViewing({ item }),
+    ...introAdaptor({ item }),
     site: item?.site,
     // pages
     pageOrder: item?.pages?.map((p) => p.id),
@@ -77,7 +73,7 @@ export function storyForEditing({ item }) {
     id: item?.id || '',
     author: item?.author,
     ...coverForEditing({ item }),
-    ...introForEditing({ item }),
+    ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
     ...audienceForEditing({ item }),
