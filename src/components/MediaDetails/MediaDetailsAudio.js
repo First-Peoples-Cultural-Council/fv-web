@@ -8,7 +8,7 @@ import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
 
 function MediaDetailsAudio({ file }) {
   return (
-    <div id="MediaDetailsAudio" className="mpb-16 space-y-6">
+    <div id="MediaDetailsAudio" className="mpb-16 space-y-6 sticky top-0">
       <div>
         <div className="block w-full rounded-lg overflow-hidden">
           <AudioNative styling="w-full" audioObject={file} />

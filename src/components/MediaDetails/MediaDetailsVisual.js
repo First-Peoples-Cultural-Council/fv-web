@@ -8,7 +8,7 @@ import { IMAGE, VIDEO } from 'common/constants'
 
 function MediaDetailsVisual({ file, docType }) {
   return (
-    <div id="MediaDetailsVisual" className="mpb-16 space-y-6">
+    <div id="MediaDetailsVisual" className="mpb-16 space-y-6 sticky top-0">
       <div>
         <div className="block w-full h-120 rounded-lg overflow-hidden">
           {docType === IMAGE && (
