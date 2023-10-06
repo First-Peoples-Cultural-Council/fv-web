@@ -5,7 +5,6 @@ import {
   useCharacter,
   useCharacterPartialUpdate,
 } from 'common/dataHooks/useCharacters'
-import { allRelatedMediaToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 function CharacterCrudData() {
   const { sitename } = useParams()
@@ -17,7 +16,10 @@ function CharacterCrudData() {
     window.location.href = `/${sitename}/dashboard/edit/alphabet`
   }
 
-  const { isInitialLoading, data } = useCharacter({ id: characterId })
+  const { isInitialLoading, data } = useCharacter({
+    id: characterId,
+    edit: true,
+  })
 
   const { onSubmit } = useCharacterPartialUpdate()
 
@@ -32,7 +34,7 @@ function CharacterCrudData() {
   return {
     submitHandler,
     backHandler,
-    dataToEdit: data ? allRelatedMediaToIdsAdaptor({ item: data }) : null,
+    dataToEdit: data || null,
     isLoading: isInitialLoading,
   }
 }

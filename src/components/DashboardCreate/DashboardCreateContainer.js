@@ -9,6 +9,7 @@ import DashboardCreatePresentation from 'components/DashboardCreate/DashboardCre
 import CategoryCrud from 'components/CategoryCrud'
 import DictionaryCrud from 'components/DictionaryCrud'
 import PageCrud from 'components/PageCrud'
+import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
@@ -46,6 +47,14 @@ function DashboardCreateContainer() {
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DictionaryCrud.Container type={TYPE_PHRASE} isCreate />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="song"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <SongCrud.Container />
             </RequireAuth>
           }
         />

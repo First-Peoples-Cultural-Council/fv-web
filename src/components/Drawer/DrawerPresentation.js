@@ -20,7 +20,10 @@ function DrawerPresentation({
         open={isOpen}
         onClose={closeHandler}
       >
-        <div className="absolute inset-0 overflow-hidden">
+        <div
+          data-testid="DrawerPresentation"
+          className="absolute inset-0 overflow-hidden"
+        >
           <Dialog.Overlay className="absolute inset-0" />
 
           <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16">

@@ -12,6 +12,7 @@ import CharacterCrud from 'components/CharacterCrud'
 import DictionaryCrud from 'components/DictionaryCrud'
 import HomeCrud from 'components/HomeCrud'
 import PageCrud from 'components/PageCrud'
+import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
@@ -126,6 +127,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={EDITOR} withMessage>
               <DictionaryCrud.Container type={TYPE_PHRASE} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="song"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <SongCrud.Container />
             </RequireAuth>
           }
         />

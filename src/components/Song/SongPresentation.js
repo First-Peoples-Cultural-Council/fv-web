@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
-import SanitizedHtml from 'components/SanitizedHtml'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
@@ -37,10 +36,9 @@ function SongPresentation({ entry }) {
           }`}
         >
           <div className="py-2 space-y-1">
-            <SanitizedHtml
-              className="font-medium text-2xl md:text-3xl lg:text-4xl  text-fv-charcoal"
-              text={entry?.title}
-            />
+            <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl  text-fv-charcoal">
+              {entry?.title}
+            </h1>
             <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl">
               {entry?.titleTranslation}
             </h2>
@@ -67,25 +65,20 @@ function SongPresentation({ entry }) {
                 ))}
               </div>
             )}
-            <div className="space-y-2 py-5">
-              {entry.lyrics.length > 0 && (
+            {entry.lyrics.length > 0 && (
+              <div className="space-y-4 py-5">
                 <h4 className={labelStyling}>Lyrics</h4>
-              )}
-              {entry.lyrics.map((lyric) => (
-                <div
-                  key={lyric.id}
-                  className="text-fv-charcoal grid grid-cols-2 gap-4 divide-x"
-                >
-                  <WysiwygBlock jsonString={lyric?.text} />
-                  <div className="pl-5">
-                    <WysiwygBlock
-                      // eslint-disable-next-line react/no-array-index-key
-                      jsonString={lyric.translation}
-                    />
+                {entry.lyrics.map((lyric) => (
+                  <div
+                    key={lyric?.id}
+                    className="text-fv-charcoal grid grid-cols-2 gap-2 whitespace-pre-wrap"
+                  >
+                    <div className="col-span-1">{lyric?.text}</div>
+                    <div className="col-span-1">{lyric?.translation}</div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* Notes and Acknowledgements */}
             {entry?.acknowledgements?.length > 0 && (
@@ -93,8 +86,8 @@ function SongPresentation({ entry }) {
                 <h4 className={labelStyling}>Acknowledgements</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.acknowledgements?.map((ack) => (
-                    <li key={ack?.slice(0, 20)} className={contentStyling}>
-                      {ack}
+                    <li key={ack?.id} className={contentStyling}>
+                      {ack?.text}
                     </li>
                   ))}
                 </ul>
@@ -105,8 +98,8 @@ function SongPresentation({ entry }) {
                 <h4 className={labelStyling}>Notes</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.notes?.map((note) => (
-                    <li key={note?.slice(0, 20)} className={contentStyling}>
-                      {note}
+                    <li key={note?.id} className={contentStyling}>
+                      {note?.text}
                     </li>
                   ))}
                 </ul>

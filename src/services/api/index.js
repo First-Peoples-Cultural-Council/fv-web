@@ -14,7 +14,7 @@ import partsOfSpeech from 'services/api/partsOfSpeech'
 import people from 'services/api/people'
 import search from 'services/api/search'
 import site from 'services/api/site'
-import song from 'services/api/song'
+import songs from 'services/api/songs'
 import stories from 'services/api/stories'
 import visibility from 'services/api/visibility'
 import widgets from 'services/api/widgets'
@@ -36,7 +36,7 @@ export default {
   people,
   search,
   site,
-  song,
+  songs,
   stories,
   visibility,
   widgets,

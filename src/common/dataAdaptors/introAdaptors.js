@@ -7,15 +7,11 @@ export function introAdaptor({ item }) {
   }
 }
 
-export function introForApi({ formData }) {
+export function introForApi({ item }) {
   const { getJsonFromWysiwygState } = wysiwygStateHelpers()
+  const intro = getJsonFromWysiwygState(item?.intro)
+  const introTranslation = getJsonFromWysiwygState(item?.introTranslation)
 
-  const intro = formData?.intro?.getCurrentContent()
-    ? getJsonFromWysiwygState(formData?.intro?.getCurrentContent())
-    : ''
-  const introTranslation = formData?.introTranslation?.getCurrentContent()
-    ? getJsonFromWysiwygState(formData?.introTranslation?.getCurrentContent())
-    : ''
   return {
     introduction: intro,
     introduction_translation: introTranslation,

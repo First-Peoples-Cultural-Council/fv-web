@@ -27,7 +27,7 @@ function DictionaryListPresentation({
   entryLabel,
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [selectedItem, setselectedItem] = useState({})
+  const [selectedItem, setSelectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
   const navigate = useNavigate()
   const { setCurrentAudio } = useAudiobar()
@@ -60,7 +60,7 @@ function DictionaryListPresentation({
       navigate(`/${item?.sitename}/${makePlural(item?.type)}/${item?.id}`)
     } else {
       setCurrentAudio()
-      setselectedItem(item)
+      setSelectedItem(item)
       setDrawerOpen(true)
     }
   }

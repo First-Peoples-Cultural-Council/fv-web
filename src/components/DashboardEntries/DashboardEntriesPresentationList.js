@@ -16,7 +16,7 @@ function DashboardEntriesPresentationList({
   entryLabel,
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [selectedItem, setselectedItem] = useState({})
+  const [selectedItem, setSelectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
   const { sitename } = useParams()
 
@@ -30,7 +30,7 @@ function DashboardEntriesPresentationList({
     return 'End of results.'
   }
   function handleItemClick(item) {
-    setselectedItem(item)
+    setSelectedItem(item)
     setDrawerOpen(true)
   }
 

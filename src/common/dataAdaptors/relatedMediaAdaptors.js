@@ -16,10 +16,10 @@ export function relatedMediaForEditing({ item }) {
   }
 }
 
-export function relatedMediaForApi({ formData }) {
+export function relatedMediaForApi({ item }) {
   return {
-    related_audio: formData?.relatedAudio || [],
-    related_images: formData?.relatedImages || [],
-    related_videos: formData?.relatedVideos || [],
+    related_audio: item?.relatedAudio || [],
+    related_images: item?.relatedImages || [],
+    related_videos: item?.relatedVideos || [],
   }
 }
