@@ -21,7 +21,7 @@ function DashboardEditData() {
       description: 'Edit the songs on your site',
       href: `entries?${TYPES}=${TYPE_SONG}`,
       iconColor: 'songText',
-      auth: SUPER_ADMIN,
+      auth: EDITOR,
     },
     {
       icon: 'Story',

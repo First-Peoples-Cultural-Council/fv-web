@@ -10,7 +10,7 @@ import { MEMBER } from 'common/constants/roles'
 function DashboardTilesPresentation({ tileContent }) {
   const tileClass = (index) => {
     const baseClass =
-      'relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-secondary'
+      'relative group bg-white p-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-secondary'
     if (tileContent?.length === 1) {
       return `${baseClass} rounded-lg`
     }
@@ -40,13 +40,12 @@ function DashboardTilesPresentation({ tileContent }) {
     switch (numberOfTiles) {
       case 1:
         return 'max-w-lg rounded-lg bg-gray-200 overflow-hidden shadow'
+      case 2:
+        return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
       case 3:
-      case 6:
-      case 9:
-      case 12:
         return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-3 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
       default:
-        return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
+        return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-4 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
     }
   }
   return (
