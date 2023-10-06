@@ -9,7 +9,11 @@ import {
   coverForApi,
 } from 'common/dataAdaptors/coverAdaptors'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
-import { introAdaptor, introForApi } from 'common/dataAdaptors/introAdaptors'
+import {
+  introForViewing,
+  introForEditing,
+  introForApi,
+} from 'common/dataAdaptors/introAdaptors'
 import {
   relatedMediaForViewing,
   relatedMediaForEditing,
@@ -35,7 +39,7 @@ export function storyForViewing({ item }) {
     ...storySummaryAdaptor({ item }),
     ...basicDatesAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
-    ...introAdaptor({ item }),
+    ...introForViewing({ item }),
     site: item?.site,
     // pages
     pageOrder: item?.pages?.map((p) => p.id),
@@ -68,25 +72,25 @@ export function storyPageAdaptor({ page }) {
   }
 }
 
-export function storyForApi({ formData }) {
-  return {
-    author: formData?.author,
-    ...coverForApi({ formData }),
-    ...notesAcknowledgementsAdaptor({ item: formData }),
-    ...relatedMediaForApi({ item: formData }),
-    ...introForApi({ formData }),
-    ...audienceForApi({ item: formData }),
-  }
-}
-
 export function storyForEditing({ item }) {
   return {
     id: item?.id || '',
     author: item?.author,
     ...coverForEditing({ item }),
-    ...introAdaptor({ item }),
+    ...introForEditing({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
     ...audienceForEditing({ item }),
+  }
+}
+
+export function storyForApi({ formData }) {
+  return {
+    author: formData?.author,
+    ...coverForApi({ item: formData }),
+    ...notesAcknowledgementsAdaptor({ item: formData }),
+    ...relatedMediaForApi({ item: formData }),
+    ...introForApi({ item: formData }),
+    ...audienceForApi({ item: formData }),
   }
 }

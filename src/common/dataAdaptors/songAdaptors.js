@@ -6,7 +6,11 @@ import {
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
 import { TYPE_SONG } from 'common/constants'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
-import { introAdaptor } from 'common/dataAdaptors/introAdaptors'
+import {
+  introForViewing,
+  introForEditing,
+  introForApi,
+} from 'common/dataAdaptors/introAdaptors'
 import {
   audienceForEditing,
   audienceForApi,
@@ -29,7 +33,7 @@ export function songForViewing({ item }) {
   return {
     ...coverForViewing({ item }),
     ...basicDatesAdaptor({ item }),
-    ...introAdaptor({ item }),
+    ...introForViewing({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForViewing({ item }),
 
@@ -41,7 +45,7 @@ export function songForViewing({ item }) {
 export function songForEditing({ item }) {
   return {
     ...coverForEditing({ item }),
-    ...introAdaptor({ item }),
+    ...introForEditing({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
     ...audienceForEditing({ item }),
@@ -54,7 +58,7 @@ export function songForEditing({ item }) {
 export function songForApi({ formData }) {
   return {
     ...coverForApi({ item: formData }),
-    ...introAdaptor({ item: formData }),
+    ...introForApi({ item: formData }),
     ...notesAcknowledgementsAdaptor({ item: formData }),
     ...relatedMediaForApi({ item: formData }),
     ...audienceForApi({ item: formData }),
