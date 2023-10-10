@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPresentationSiteSelect'
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
-import { ASSISTANT, MEMBER } from 'common/constants/roles'
+import { ASSISTANT, MEMBER, EDITOR } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site }) {
   return (
@@ -59,7 +59,7 @@ const primaryNavigationItems = (currentSitename) => {
       name: 'Edit',
       href: 'edit',
       icon: 'Pencil',
-      auth: ASSISTANT,
+      auth: EDITOR,
     },
     {
       name: 'Media',
