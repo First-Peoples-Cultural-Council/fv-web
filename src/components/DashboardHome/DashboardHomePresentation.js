@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import DashboardTiles from 'components/DashboardTiles'
 import DashboardLocator from 'components/DashboardLocator'
 
-function DashboardHomePresentation({ site, tiles, currentUser }) {
+function DashboardHomePresentation({ site, tiles, currentUser, logout }) {
   return (
     <main id="DashboardHome">
       <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:max-w-7xl lg:p-8">
@@ -38,7 +38,19 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                         </p>
                       </div>
                     </div>
-                    <DashboardLocator.Presentation site={site} />
+                    <DashboardLocator.Presentation
+                      site={site}
+                      logout={logout}
+                    />
+                    {/* <div>
+                      <button
+                        type="button"
+                        onClick={logout}
+                        className="ml-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+                      >
+                        LOGOUT
+                      </button>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -51,11 +63,12 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
   )
 }
 // PROPTYPES
-const { array, object } = PropTypes
+const { array, object, func } = PropTypes
 DashboardHomePresentation.propTypes = {
   currentUser: object,
   site: object,
   tiles: array,
+  logout: func,
 }
 
 export default DashboardHomePresentation

@@ -11,9 +11,11 @@ import DashboardCreate from 'components/DashboardCreate'
 import DashboardMedia from 'components/DashboardMedia'
 import Loading from 'components/Loading'
 import { ASSISTANT } from 'common/constants/roles'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function DashboardContainer() {
   const { currentUser, site, homeTiles, isLoading } = DashboardData()
+  const { logout } = useLoginLogout()
   return (
     <Loading.Container isLoading={isLoading}>
       <DashboardPresentation currentUser={currentUser} site={site}>
@@ -70,6 +72,7 @@ function DashboardContainer() {
                 tiles={homeTiles}
                 currentUser={currentUser}
                 site={site}
+                logout={logout}
               />
             }
           />
