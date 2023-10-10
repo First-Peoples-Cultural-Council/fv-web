@@ -47,7 +47,7 @@ export function widgetFormDataAdaptor({ formData }) {
       if (key === 'textWithFormatting') {
         settings.push({
           key,
-          value: getJsonFromWysiwygState(validValue?.getCurrentContent()),
+          value: getJsonFromWysiwygState(validValue),
           category: 'general',
         })
       } else if (!widgetProperties.includes(key)) {

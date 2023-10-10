@@ -9,21 +9,26 @@ import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 import {
   relatedMediaForApi,
   relatedMediaForViewing,
+  relatedMediaForEditing,
 } from 'common/dataAdaptors/relatedMediaAdaptors'
 
-export function useCharacter({ id }) {
+export function useCharacter({ id, edit = false }) {
   const { sitename } = useParams()
   const response = useQuery(
     [CHARACTERS, sitename],
     () => api.characters.get({ sitename, id }),
     { enabled: !!id },
   )
+  const relatedMedia = edit
+    ? relatedMediaForEditing({ item: response?.data })
+    : relatedMediaForViewing({ item: response?.data })
+
   const formattedData = {
     id: response?.data?.id,
     title: response?.data?.title,
     relatedDictionaryEntries: response?.data?.relatedDictionaryEntries,
     generalNote: response?.data?.note,
-    ...relatedMediaForViewing({ item: response?.data }),
+    ...relatedMedia,
   }
   return {
     ...response,
@@ -58,7 +63,7 @@ export function useCharacterPartialUpdate() {
 
   const partialUpdateCharacter = async (formData) => {
     const properties = {
-      ...relatedMediaForApi({ formData }),
+      ...relatedMediaForApi({ item: formData }),
       note: formData?.generalNote || '',
       related_dictionary_entries:
         objectsToIdsAdaptor(formData?.relatedDictionaryEntries) || [],

@@ -32,10 +32,11 @@ function wysiwygStateHelpers() {
 
   // Converts Draft-js ContentState into raw JSON format
   const getJsonFromWysiwygState = (wysiwygState) => {
-    const hasText = wysiwygState ? wysiwygState?.hasText() : false
-    if (hasText) {
-      return JSON.stringify(convertToRaw(wysiwygState))
+    const content = wysiwygState?.getCurrentContent()
+    if (content?.hasText()) {
+      return JSON.stringify(convertToRaw(content))
     }
+
     return ''
   }
 
@@ -48,16 +49,9 @@ function wysiwygStateHelpers() {
     return convertFromRaw(content)
   }
 
-  // Converts an HTML string into Draft-js ContentState in raw JSON format
-  const getWysiwygJsonFromHtml = (htmlString) => {
-    const wysiwygState = getWysiwygStateFromHtml(htmlString)
-    return getJsonFromWysiwygState(wysiwygState)
-  }
-
   return {
     getJsonFromWysiwygState,
     getWysiwygStateFromHtml,
-    getWysiwygJsonFromHtml,
     getWysiwygStateFromJson,
   }
 }

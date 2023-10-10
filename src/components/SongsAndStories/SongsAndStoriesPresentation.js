@@ -30,7 +30,7 @@ function SongsAndStoriesPresentation({
   const [isGridView, setIsGridView] = useState(true)
 
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [selectedItem, setselectedItem] = useState({})
+  const [selectedItem, setSelectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage, loadButtonLabel } =
     infiniteScroll
   const navigate = useNavigate()
@@ -54,7 +54,7 @@ function SongsAndStoriesPresentation({
         }`,
       )
     }
-    setselectedItem(item)
+    setSelectedItem(item)
     setDrawerOpen(true)
   }
 
@@ -83,16 +83,16 @@ function SongsAndStoriesPresentation({
               {page.results.map((item) => {
                 let conditionalClass = 'text-fv-charcoal-light bg-gray-100'
                 let conditionalStyle = {}
-                let opacityClass = ''
+                let opacityClass = 'group-hover:opacity-75'
 
-                if (item.coverVisual?.type === IMAGE) {
+                if (item?.coverVisual?.type === IMAGE) {
                   const imageUrl = `url(${getMediaPath({
                     type: item.coverVisual?.type,
                     mediaObject: item.coverVisual?.entry,
                     size: SMALL,
                   })})`
 
-                  if (item.hideOverlay) {
+                  if (item?.hideOverlay) {
                     opacityClass = 'opacity-0'
                     conditionalClass = 'bg-center bg-cover'
                     conditionalStyle = {
@@ -114,7 +114,7 @@ function SongsAndStoriesPresentation({
                       onClick={() => handleItemClick(item)}
                     >
                       <div
-                        className={`${opacityClass} w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center group-hover:opacity-75`}
+                        className={`${opacityClass} w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center`}
                       >
                         <div className="text-lg lg:text-2xl font-medium mb-2">
                           {item.title}{' '}

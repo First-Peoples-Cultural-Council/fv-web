@@ -12,47 +12,25 @@ export const storyPagesDataAdaptor = ({ data }) => {
     return {}
   }
 
-  const {
-    getJsonFromWysiwygState,
-    getWysiwygStateFromHtml,
-    getWysiwygJsonFromHtml,
-    getWysiwygStateFromJson,
-  } = wysiwygStateHelpers()
+  const { getWysiwygStateFromJson } = wysiwygStateHelpers()
 
   function formatPage(page) {
-    const modifiedV2 = !!page.modifiedv2
     let formattedData = null
 
     const videos = page.related_videos || []
     const images = page.related_pictures || []
 
-    if (modifiedV2) {
-      const textJson = page.text || ''
-      const textState = getWysiwygStateFromJson(textJson)
+    const textJson = page.text || ''
+    const textState = getWysiwygStateFromJson(textJson)
 
-      formattedData = {
-        id: page?.uid || '',
-        text: textJson,
-        textPreview: `${textState?.getPlainText().slice(0, 150)}...`,
-        textTranslation: page.textTranslation,
-        audio: page.related_audio || [],
-        notes: page?.notes,
-        visualMedia: selectOneMediaDataHelper(images, videos),
-      }
-    } else {
-      // V1_FUDGE
-      const translations = page.contentTranslation
-      const textState = getWysiwygStateFromHtml(page.content)
-
-      formattedData = {
-        id: page?.uid || '',
-        text: getJsonFromWysiwygState(textState),
-        textPreview: `${textState?.getPlainText().slice(0, 150)}...`,
-        textTranslation: getWysiwygJsonFromHtml(translations?.join('')),
-        audio: page.related_audio || [],
-        notes: [page?.cultural_note?.join(', ')],
-        visualMedia: selectOneMediaDataHelper(images, videos),
-      }
+    formattedData = {
+      id: page?.uid || '',
+      text: textJson,
+      textPreview: `${textState?.getPlainText().slice(0, 150)}...`,
+      textTranslation: page.textTranslation,
+      audio: page.related_audio || [],
+      notes: page?.notes,
+      visualMedia: selectOneMediaDataHelper(images, videos),
     }
 
     return formattedData
@@ -90,13 +68,10 @@ export const pageOrderDataAdaptor = ({ data }) => {
 
 export const pageFormDataAdaptor = ({ formData }) => {
   const { getJsonFromWysiwygState } = wysiwygStateHelpers()
-  const text = formData?.text?.getCurrentContent()
-    ? getJsonFromWysiwygState(formData?.text?.getCurrentContent())
-    : ''
-  const textTranslation = formData?.textTranslation?.getCurrentContent()
-    ? getJsonFromWysiwygState(formData?.textTranslation?.getCurrentContent())
-    : ''
+  const text = getJsonFromWysiwygState(formData?.text)
+  const textTranslation = getJsonFromWysiwygState(formData?.textTranslation)
   const mediaObject = selectOneMediaFormHelper(formData?.visualMedia)
+
   return {
     'fvbookentry:text': text,
     'fvbookentry:text_translation': textTranslation,

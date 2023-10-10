@@ -15,6 +15,7 @@ import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
 import TextAreaField from 'components/Form/TextAreaField'
 import TextArrayField from 'components/Form/TextArrayField'
+import TextTranslationArrayField from 'components/Form/TextTranslationArrayField'
 import ValidationError from 'components/Form/ValidationError'
 import Visibility from 'components/Form/Visibility'
 import WysiwygField from 'components/Form/WysiwygField'
@@ -37,6 +38,7 @@ export default {
   TextField,
   TextAreaField,
   TextArrayField,
+  TextTranslationArrayField,
   ValidationError,
   Visibility,
   WysiwygField,

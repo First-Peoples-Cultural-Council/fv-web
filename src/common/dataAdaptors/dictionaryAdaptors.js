@@ -57,8 +57,8 @@ export function entryForApi({ formData }) {
     pronunciations: formData?.pronunciations || [],
     related_dictionary_entries: objectsToIdsAdaptor(formData?.relatedEntries),
     ...notesAcknowledgementsAdaptor({ item: formData }),
-    ...relatedMediaForApi({ formData }),
-    ...audienceForApi({ formData }),
+    ...relatedMediaForApi({ item: formData }),
+    ...audienceForApi({ item: formData }),
   }
   return formattedData
 }

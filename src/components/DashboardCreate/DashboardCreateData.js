@@ -44,6 +44,14 @@ function DashboardCreateData() {
       auth: LANGUAGE_ADMIN,
     },
     {
+      icon: 'Song',
+      name: 'Create a Song',
+      description: 'Add a new song to your site',
+      href: 'song',
+      iconColor: 'songText',
+      auth: ASSISTANT,
+    },
+    {
       icon: 'Story',
       name: 'Create a Story',
       description: 'Add a new story to your site',
