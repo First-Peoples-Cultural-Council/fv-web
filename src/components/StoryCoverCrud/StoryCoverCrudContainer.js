@@ -6,14 +6,13 @@ import StoryCoverCrudPresentation from 'components/StoryCoverCrud/StoryCoverCrud
 import StoryCoverCrudData from 'components/StoryCoverCrud/StoryCoverCrudData'
 
 function StoryCoverCrudContainer({ storyData }) {
-  const { dataToEdit, onNextClick, submitHandler } = StoryCoverCrudData({
+  const { dataToEdit, submitHandler } = StoryCoverCrudData({
     storyData,
   })
   return (
     <StoryCoverCrudPresentation
       dataToEdit={dataToEdit}
       submitHandler={submitHandler}
-      onNextClick={onNextClick}
     />
   )
 }

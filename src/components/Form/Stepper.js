@@ -15,21 +15,17 @@ function Stepper({ steps, onClickCallback }) {
   const onStepClick = (step) => {
     if (onClickCallback) {
       onClickCallback(String(step))
-    } else return setActiveStep(String(step))
+    } else setActiveStep(String(step))
   }
 
   const buttonClass = 'flex w-full items-center group'
   return (
     <nav aria-label="Progress">
-      <ol
-        role="list"
-        className="bg-white divide-y divide-gray-300 rounded-lg border border-gray-300 md:flex md:divide-y-0"
-      >
+      <ol className="bg-white divide-y divide-gray-300 rounded-lg border border-gray-300 md:flex md:divide-y-0">
         {steps.map((step, stepIdx) => (
           <li key={step.title} className="relative md:flex md:flex-1">
             {activeStepNumber > stepIdx && (
               <button
-                type="button"
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
@@ -47,7 +43,6 @@ function Stepper({ steps, onClickCallback }) {
             {activeStepNumber === stepIdx && (
               <button
                 type="button"
-                type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
                 aria-current="step"
@@ -64,7 +59,6 @@ function Stepper({ steps, onClickCallback }) {
             )}
             {activeStepNumber < stepIdx && (
               <button
-                type="button"
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}

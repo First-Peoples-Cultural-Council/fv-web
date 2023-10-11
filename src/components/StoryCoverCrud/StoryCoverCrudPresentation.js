@@ -10,11 +10,7 @@ import { AUDIO, VIDEO, IMAGE, PUBLIC } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 import { EditorState } from 'draft-js'
 
-function StoryCoverCrudPresentation({
-  dataToEdit,
-  onNextClick,
-  submitHandler,
-}) {
+function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     title: definitions
       .paragraph({ charCount: 120 })
@@ -45,30 +41,22 @@ function StoryCoverCrudPresentation({
     relatedAudio: [],
     includeInKids: 'true',
     includeInGames: 'true',
+    hideOverlay: 'false',
   }
 
   // pageOrder
 
-  const {
-    control,
-    errors,
-    handleSubmit,
-    isDirty,
-    isValid,
-    register,
-    reset,
-    trigger,
-  } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   const stepCallback = () => {
     trigger()
     if (isValid) {
-      if (isDirty) handleSubmit(submitHandler)()
-      else onNextClick()
+      handleSubmit(submitHandler)()
     }
   }
 
@@ -80,122 +68,133 @@ function StoryCoverCrudPresentation({
       >
         <form onReset={reset}>
           <div className="grid grid-cols-12 gap-8 p-8">
-            <div className="col-span-7 space-y-4">
-              <div className="w-full">
-                <Form.TextField
-                  label="Title"
-                  nameId="title"
-                  register={register}
-                  errors={errors}
-                />
-              </div>
-              <div className="w-full">
-                <Form.TextField
-                  label="Title Translation to English"
-                  nameId="titleTranslation"
-                  register={register}
-                  errors={errors}
-                />
-              </div>
-              <div className="w-full">
-                <Form.TextField
-                  label="Author"
-                  nameId="author"
-                  register={register}
-                  errors={errors}
-                />
-              </div>
-              <div className="col-span-12">
-                <Form.WysiwygField
-                  label="Story Introduction"
-                  nameId="intro"
-                  control={control}
-                  toolbar="none"
-                  errors={errors}
-                />
-              </div>
-              <div className="w-full">
-                <Form.WysiwygField
-                  label="Story Introduction Translation to English"
-                  nameId="introTranslation"
-                  control={control}
-                  toolbar="none"
-                  errors={errors}
-                />
-              </div>
-              <div className="w-full">
-                <Form.MediaArrayField
-                  label="Audio"
-                  nameId="relatedAudio"
-                  control={control}
-                  type={AUDIO}
-                  maxItems={3}
-                />
-                {errors?.relatedAudio && (
-                  <div className="text-red-500">
-                    {errors?.relatedAudio?.message}
-                  </div>
-                )}
-              </div>
-              <div className="w-full">
-                <Form.MediaArrayField
-                  label="Videos"
-                  nameId="relatedVideos"
-                  control={control}
-                  type={VIDEO}
-                  maxItems={1}
-                />
-                {errors?.relatedVideos && (
-                  <div className="text-red-500">
-                    {errors?.relatedVideos?.message}
-                  </div>
-                )}
-              </div>
-              <div className="w-full">
-                <Form.MediaArrayField
-                  label="Images"
-                  nameId="relatedImages"
-                  control={control}
-                  type={IMAGE}
-                  maxItems={1}
-                />
-                {errors?.relatedImages && (
-                  <div className="text-red-500">
-                    {errors?.relatedImages?.message}
-                  </div>
-                )}
-              </div>
+            <div className="col-span-6">
+              <Form.TextField
+                label="Title in your language"
+                nameId="title"
+                register={register}
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-6">
+              <Form.TextField
+                label="Title Translated to English"
+                nameId="titleTranslation"
+                register={register}
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextField
+                label="Author"
+                nameId="author"
+                register={register}
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-6">
+              <Form.WysiwygField
+                label="Story Introduction in your language"
+                nameId="intro"
+                control={control}
+                toolbar="none"
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-6">
+              <Form.WysiwygField
+                label="Introduction Translated to English"
+                nameId="introTranslation"
+                control={control}
+                toolbar="none"
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.MediaArrayField
+                label="Audio"
+                nameId="relatedAudio"
+                control={control}
+                type={AUDIO}
+                maxItems={3}
+              />
+              {errors?.relatedAudio && (
+                <div className="text-red-500">
+                  {errors?.relatedAudio?.message}
+                </div>
+              )}
+            </div>
+            <div className="col-span-12">
+              <Form.MediaArrayField
+                label="Videos"
+                nameId="relatedVideos"
+                control={control}
+                type={VIDEO}
+                maxItems={1}
+              />
+              {errors?.relatedVideos && (
+                <div className="text-red-500">
+                  {errors?.relatedVideos?.message}
+                </div>
+              )}
+            </div>
+            <div className="col-span-12">
+              <Form.MediaArrayField
+                label="Images"
+                nameId="relatedImages"
+                control={control}
+                type={IMAGE}
+                maxItems={1}
+              />
+              {errors?.relatedImages && (
+                <div className="text-red-500">
+                  {errors?.relatedImages?.message}
+                </div>
+              )}
+            </div>
 
-              <div className="w-full">
-                <Form.TextArrayField
-                  label="Acknowledgements"
-                  nameId="acknowledgements"
-                  register={register}
-                  control={control}
-                  errors={errors}
-                />
-              </div>
-              <div className="w-full">
-                <Form.TextArrayField
-                  label="Notes"
-                  nameId="notes"
-                  register={register}
-                  control={control}
-                  errors={errors}
-                />
-              </div>
-              <div className="w-full">
-                <Form.RadioButtons
-                  label="Include on the Kids site?"
-                  control={control}
-                  errors={errors}
-                  nameId="includeInKids"
-                  options={[
-                    { label: 'Yes', value: 'true' },
-                    { label: 'No', value: 'false' },
-                  ]}
-                />
-              </div>
+            <div className="col-span-12">
+              <Form.TextArrayField
+                label="Acknowledgements"
+                nameId="acknowledgements"
+                register={register}
+                control={control}
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextArrayField
+                label="Notes"
+                nameId="notes"
+                register={register}
+                control={control}
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-6">
+              <Form.RadioButtons
+                label="Include on the Kids site?"
+                control={control}
+                errors={errors}
+                nameId="includeInKids"
+                options={[
+                  { label: 'Yes', value: 'true' },
+                  { label: 'No', value: 'false' },
+                ]}
+              />
+            </div>
+            <div className="col-span-6">
+              <Form.RadioButtons
+                label="Does the cover image include the title?"
+                helpText="Selecting 'Yes' will hide the title overlay in the story list"
+                control={control}
+                errors={errors}
+                nameId="hideOverlay"
+                options={[
+                  { label: 'Yes', value: 'true' },
+                  { label: 'No', value: 'false' },
+                ]}
+              />
             </div>
           </div>
         </form>
@@ -210,7 +209,6 @@ const { func, object } = PropTypes
 StoryCoverCrudPresentation.propTypes = {
   submitHandler: func,
   dataToEdit: object,
-  onNextClick: func,
 }
 
 export default StoryCoverCrudPresentation
