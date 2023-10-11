@@ -13,7 +13,7 @@ import Loading from 'components/Loading'
 import { ASSISTANT } from 'common/constants/roles'
 
 function DashboardContainer() {
-  const { currentUser, site, homeTiles, isLoading } = DashboardData()
+  const { currentUser, site, homeTiles, isLoading, logout } = DashboardData()
   return (
     <Loading.Container isLoading={isLoading}>
       <DashboardPresentation currentUser={currentUser} site={site}>
@@ -70,6 +70,7 @@ function DashboardContainer() {
                 tiles={homeTiles}
                 currentUser={currentUser}
                 site={site}
+                logout={logout}
               />
             }
           />

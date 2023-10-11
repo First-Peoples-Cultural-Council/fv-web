@@ -3,7 +3,16 @@ import PropTypes from 'prop-types'
 
 // FPCC
 
-function DashboardLocatorPresentation({ site }) {
+function DashboardLocatorPresentation({ site, logout }) {
+  const logoutButton = (
+    <button
+      type="button"
+      onClick={logout}
+      className="mt-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+    >
+      LOGOUT
+    </button>
+  )
   return (
     <div id="DashboardLocator" className="flex items-center space-x-5">
       <div className="pt-1 text-right">
@@ -14,14 +23,20 @@ function DashboardLocatorPresentation({ site }) {
       </div>
       <div className="flex-shrink-0">
         {site?.logoPathSmall ? (
-          <img
-            className="flex max-w-xs bg-gray-300 rounded-full h-20 w-20 object-cover object-center"
-            src={site?.logoPathSmall}
-            alt={`${site?.title} Logo`}
-          />
+          <div>
+            <img
+              className="flex max-w-xs bg-gray-300 rounded-full h-20 w-20 object-cover object-center"
+              src={site?.logoPathSmall}
+              alt={`${site?.title} Logo`}
+            />
+            {logoutButton}
+          </div>
         ) : (
-          <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
-            <span className="text-center">{site?.title?.charAt(0)}</span>
+          <div>
+            <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
+              <span className="text-center">{site?.title?.charAt(0)}</span>
+            </div>
+            {logoutButton}
           </div>
         )}
       </div>
@@ -29,9 +44,10 @@ function DashboardLocatorPresentation({ site }) {
   )
 }
 // PROPTYPES
-const { object } = PropTypes
+const { object, func } = PropTypes
 DashboardLocatorPresentation.propTypes = {
   site: object,
+  logout: func,
 }
 
 export default DashboardLocatorPresentation
