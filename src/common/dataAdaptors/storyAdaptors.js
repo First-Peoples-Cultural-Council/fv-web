@@ -19,6 +19,7 @@ import {
 import { TYPE_STORY } from 'common/constants'
 import { selectCoverMedia } from 'common/utils/mediaHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 export function storySummaryAdaptor({ item }) {
   return {
@@ -38,33 +39,8 @@ export function storyForViewing({ item }) {
     ...introAdaptor({ item }),
     site: item?.site,
     // pages
-    pageOrder: item?.pages?.map((p) => p.id),
-    pages: item?.pages?.map((page) => storyPageAdaptor({ page })),
-  }
-}
-
-export function storyPageAdaptor({ page }) {
-  const { getWysiwygStateFromJson } = wysiwygStateHelpers()
-
-  const textJson = page?.text || ''
-  let textPreview = ''
-
-  try {
-    const textState = getWysiwygStateFromJson(textJson)
-    textPreview = `${textState?.getPlainText()?.slice(0, 150)}...`
-  } catch (e) {
-    // Problem parsing text to get a preview; just leave the preview blank
-  }
-
-  return {
-    id: page?.id || '',
-    text: textJson,
-    textPreview,
-    textTranslation: page?.translation,
-    notes: page?.notes,
-    visualMedia: selectCoverMedia(page?.relatedImages, page?.relatedVideos),
-    order: page?.ordering,
-    ...relatedMediaForViewing({ item: page }),
+    pageOrder: objectsToIdsAdaptor(item?.pages),
+    ...storyPagesForViewing({ item }),
   }
 }
 
@@ -77,6 +53,7 @@ export function storyForEditing({ item }) {
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
     ...audienceForEditing({ item }),
+    pages: objectsToIdsAdaptor(item?.pages),
   }
 }
 
@@ -88,5 +65,34 @@ export function storyForApi({ formData }) {
     ...relatedMediaForApi({ item: formData }),
     ...introForApi({ item: formData }),
     ...audienceForApi({ item: formData }),
+    pages: formData?.pages,
   }
+}
+
+const storyPagesForViewing = ({ item }) => {
+  const { getWysiwygStateFromJson } = wysiwygStateHelpers()
+
+  const formattedPages = item?.pages?.map((page) => {
+    const textJson = page?.text || ''
+    let textPreview = ''
+
+    try {
+      const textState = getWysiwygStateFromJson(textJson)
+      textPreview = `${textState?.getPlainText()?.slice(0, 150)}...`
+    } catch (e) {
+      // Problem parsing text to get a preview; just leave the preview blank
+    }
+
+    return {
+      id: page?.id || '',
+      text: textJson,
+      textPreview,
+      textTranslation: page?.translation,
+      notes: page?.notes,
+      visualMedia: selectCoverMedia(page?.relatedImages, page?.relatedVideos),
+      order: page?.ordering,
+      ...relatedMediaForViewing({ item: page }),
+    }
+  })
+  return { pages: formattedPages }
 }

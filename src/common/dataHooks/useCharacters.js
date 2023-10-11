@@ -65,8 +65,9 @@ export function useCharacterPartialUpdate() {
     const properties = {
       ...relatedMediaForApi({ item: formData }),
       note: formData?.generalNote || '',
-      related_dictionary_entries:
-        objectsToIdsAdaptor(formData?.relatedDictionaryEntries) || [],
+      related_dictionary_entries: objectsToIdsAdaptor(
+        formData?.relatedDictionaryEntries,
+      ),
     }
 
     return api.characters.partialUpdate({
