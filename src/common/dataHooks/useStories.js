@@ -98,6 +98,31 @@ export function useStoryUpdate() {
   return { onSubmit }
 }
 
+export function useStoryUpdatePageOrder({ storyId }) {
+  const { sitename } = useParams()
+
+  const updateStory = async (pageOrderArray) => {
+    const properties = {
+      pages: pageOrderArray || [],
+    }
+    return api.stories.partialUpdate({
+      id: storyId,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateStory,
+    queryKeyToInvalidate: [STORIES, sitename, storyId],
+    actionWord: 'updated',
+    type: 'story order',
+  })
+
+  const onSubmit = (pageOrderArray) => mutation.mutate(pageOrderArray)
+  return { onSubmit }
+}
+
 export function useStoryDelete() {
   const { sitename } = useParams()
   const deleteStory = async (id) =>
