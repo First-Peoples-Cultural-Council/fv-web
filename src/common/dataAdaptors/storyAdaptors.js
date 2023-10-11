@@ -11,14 +11,12 @@ import {
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
 import { introAdaptor, introForApi } from 'common/dataAdaptors/introAdaptors'
 import {
-  relatedMediaForViewing,
   relatedMediaForEditing,
   relatedMediaForApi,
 } from 'common/dataAdaptors/relatedMediaAdaptors'
 
 import { TYPE_STORY } from 'common/constants'
-import { selectCoverMedia } from 'common/utils/mediaHelpers'
-import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
+import { storyPageForViewing } from 'common/dataAdaptors/storyPageAdaptors'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 export function storySummaryAdaptor({ item }) {
@@ -35,11 +33,10 @@ export function storyForViewing({ item }) {
     // cover
     ...storySummaryAdaptor({ item }),
     ...basicDatesAdaptor({ item }),
-    ...notesAcknowledgementsAdaptor({ item }),
     ...introAdaptor({ item }),
+    ...notesAcknowledgementsAdaptor({ item }),
     site: item?.site,
     // pages
-    pageOrder: objectsToIdsAdaptor(item?.pages),
     ...storyPagesForViewing({ item }),
   }
 }
@@ -48,11 +45,11 @@ export function storyForEditing({ item }) {
   return {
     id: item?.id || '',
     author: item?.author,
+    ...audienceForEditing({ item }),
     ...coverForEditing({ item }),
     ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
-    ...audienceForEditing({ item }),
     pages: objectsToIdsAdaptor(item?.pages),
   }
 }
@@ -60,39 +57,19 @@ export function storyForEditing({ item }) {
 export function storyForApi({ formData }) {
   return {
     author: formData?.author,
+    ...audienceForApi({ item: formData }),
     ...coverForApi({ item: formData }),
+    ...introForApi({ item: formData }),
     ...notesAcknowledgementsAdaptor({ item: formData }),
     ...relatedMediaForApi({ item: formData }),
-    ...introForApi({ item: formData }),
-    ...audienceForApi({ item: formData }),
     pages: formData?.pages,
   }
 }
 
 const storyPagesForViewing = ({ item }) => {
-  const { getWysiwygStateFromJson } = wysiwygStateHelpers()
-
   const formattedPages = item?.pages?.map((page) => {
-    const textJson = page?.text || ''
-    let textPreview = ''
-
-    try {
-      const textState = getWysiwygStateFromJson(textJson)
-      textPreview = `${textState?.getPlainText()?.slice(0, 150)}...`
-    } catch (e) {
-      // Problem parsing text to get a preview; just leave the preview blank
-    }
-
-    return {
-      id: page?.id || '',
-      text: textJson,
-      textPreview,
-      textTranslation: page?.translation,
-      notes: page?.notes,
-      visualMedia: selectCoverMedia(page?.relatedImages, page?.relatedVideos),
-      order: page?.ordering,
-      ...relatedMediaForViewing({ item: page }),
-    }
+    const formattedPage = storyPageForViewing({ item: page })
+    return formattedPage
   })
   return { pages: formattedPages }
 }
