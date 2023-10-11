@@ -4,6 +4,15 @@ import PropTypes from 'prop-types'
 // FPCC
 
 function DashboardLocatorPresentation({ site, logout }) {
+  const logoutButton = (
+    <button
+      type="button"
+      onClick={logout}
+      className="mt-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+    >
+      LOGOUT
+    </button>
+  )
   return (
     <div id="DashboardLocator" className="flex items-center space-x-5">
       <div className="pt-1 text-right">
@@ -20,26 +29,14 @@ function DashboardLocatorPresentation({ site, logout }) {
               src={site?.logoPathSmall}
               alt={`${site?.title} Logo`}
             />
-            <button
-              type="button"
-              onClick={logout}
-              className="mt-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-            >
-              LOGOUT
-            </button>
+            {logoutButton}
           </div>
         ) : (
           <div>
             <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
               <span className="text-center">{site?.title?.charAt(0)}</span>
             </div>
-            <button
-              type="button"
-              onClick={logout}
-              className="mt-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-            >
-              LOGOUT
-            </button>
+            {logoutButton}
           </div>
         )}
       </div>
