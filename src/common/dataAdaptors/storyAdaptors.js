@@ -16,7 +16,10 @@ import {
 } from 'common/dataAdaptors/relatedMediaAdaptors'
 
 import { TYPE_STORY } from 'common/constants'
-import { storyPageForViewing } from 'common/dataAdaptors/storyPageAdaptors'
+import {
+  storyPageForViewing,
+  storyPageForEditing,
+} from 'common/dataAdaptors/storyPageAdaptors'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 export function storySummaryAdaptor({ item }) {
@@ -36,21 +39,20 @@ export function storyForViewing({ item }) {
     ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     site: item?.site,
-    // pages
     ...storyPagesForViewing({ item }),
   }
 }
 
 export function storyForEditing({ item }) {
   return {
-    id: item?.id || '',
+    id: item?.id,
     author: item?.author,
     ...audienceForEditing({ item }),
     ...coverForEditing({ item }),
     ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
-    pages: objectsToIdsAdaptor(item?.pages),
+    ...storyPagesForEditing({ item }),
   }
 }
 
@@ -72,4 +74,15 @@ const storyPagesForViewing = ({ item }) => {
     return formattedPage
   })
   return { pages: formattedPages }
+}
+
+const storyPagesForEditing = ({ item }) => {
+  const formattedPages = item?.pages?.map((page) => {
+    const formattedPage = storyPageForEditing({ item: page })
+    return formattedPage
+  })
+  return {
+    pages: objectsToIdsAdaptor(item?.pages),
+    pagesData: formattedPages,
+  }
 }
