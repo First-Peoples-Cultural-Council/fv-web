@@ -5,11 +5,13 @@ import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
 import { ASSISTANT, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 import { useMySites } from 'common/dataHooks/useMySites'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function DashboardData() {
   const { user } = useUserStore()
   const { site } = useSiteStore()
   const { sitename } = useParams()
+  const { logout } = useLoginLogout()
 
   // --------------------------------
   // Get user sites
@@ -85,6 +87,7 @@ function DashboardData() {
     site,
     homeTiles,
     isLoading: userSitesIsLoading || !site,
+    logout,
   }
 }
 
