@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { STORIES } from 'common/constants'
@@ -46,6 +46,8 @@ export function useStory({ id, edit = false }) {
 
 export function useStoryCreate() {
   const { sitename } = useParams()
+  // eslint-disable-next-line no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const createStory = async (formData) => {
     const properties = storyForApi({ formData })
@@ -57,10 +59,11 @@ export function useStoryCreate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: createStory,
-    redirectTo: `/${sitename}/dashboard/edit/stories`,
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'created',
     type: 'story',
+    onSuccessCallback: (response) =>
+      setSearchParams({ step: 1, id: response?.id }),
   })
 
   const onSubmit = (formData) => mutation.mutate(formData)
@@ -70,6 +73,8 @@ export function useStoryCreate() {
 
 export function useStoryUpdate() {
   const { sitename } = useParams()
+  // eslint-disable-next-line no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const updateStory = async (formData) => {
     const properties = storyForApi({ formData })
@@ -82,10 +87,11 @@ export function useStoryUpdate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateStory,
-    redirectTo: `/${sitename}/dashboard/edit/stories`,
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'updated',
     type: 'story',
+    onSuccessCallback: (response) =>
+      setSearchParams({ step: 1, id: response?.id }),
   })
 
   const onSubmit = (formData) => mutation.mutate(formData)
