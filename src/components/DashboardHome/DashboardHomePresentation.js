@@ -37,15 +37,6 @@ function DashboardHomePresentation({ site, tiles, currentUser, logout }) {
                   </div>
                 </div>
                 <DashboardLocator.Presentation site={site} logout={logout} />
-                {/* <div>
-                      <button
-                        type="button"
-                        onClick={logout}
-                        className="ml-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-                      >
-                        LOGOUT
-                      </button>
-                    </div> */}
               </div>
             </div>
           </div>
