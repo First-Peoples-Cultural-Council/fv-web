@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { AUDIO, VIDEO, IMAGE, PUBLIC } from 'common/constants'
+import { AUDIO, VIDEO, IMAGE, TEAM } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 import { EditorState } from 'draft-js'
 
@@ -26,7 +26,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
   })
 
   const defaultValues = {
-    visibility: PUBLIC,
+    visibility: TEAM, // Default for new stories should be team only - visibility can be changed after the user has had an opportunity to add pages
     // Cover
     title: '',
     titleTranslation: '',
@@ -68,6 +68,20 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
       >
         <form onReset={reset}>
           <div className="grid grid-cols-12 gap-8 p-8">
+            <div className="hidden">
+              <input
+                id="includeInKids"
+                name="includeInKids"
+                type="hidden"
+                {...register('includeInKids')}
+              />
+              <input
+                id="visibility"
+                name="visibility"
+                type="hidden"
+                {...register('visibility')}
+              />
+            </div>
             <div className="col-span-6">
               <Form.TextField
                 label="Title in your language"
@@ -169,18 +183,6 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 register={register}
                 control={control}
                 errors={errors}
-              />
-            </div>
-            <div className="col-span-6">
-              <Form.RadioButtons
-                label="Include on the Kids site?"
-                control={control}
-                errors={errors}
-                nameId="includeInKids"
-                options={[
-                  { label: 'Yes', value: 'true' },
-                  { label: 'No', value: 'false' },
-                ]}
               />
             </div>
             <div className="col-span-6">
