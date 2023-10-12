@@ -7,7 +7,7 @@ import StoryPageForm from 'components/StoryPagesCrud/StoryPageForm'
 import getIcon from 'common/utils/getIcon'
 import Form from 'components/Form'
 import ExpandablePreview from 'components/ExpandablePreview'
-import StoryPagePreview from 'components/StoryPagePreview'
+import StoryPagesCrudPreview from 'components/StoryPagesCrud/StoryPagesCrudPreview'
 import SortableContainer from 'components/SortableContainer'
 import SortableItem from 'components/SortableItem'
 import { useNotification } from 'context/NotificationContext'
@@ -16,10 +16,11 @@ import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 function StoryPagesCrudPresentation({
   addPageOpen,
   goToStep,
+  nextPageOrderNumber,
   pageIds,
   pages,
   setAddPageOpen,
-  setPageIds,
+  submitPageOrder,
   submitHandler,
 }) {
   const { setNotification } = useNotification()
@@ -47,7 +48,10 @@ function StoryPagesCrudPresentation({
     <StoryCrudStepWrapper onClickCallback={stepHandle}>
       <div data-testid="StoryPagesCrudPresentation" className="mx-auto">
         {pageIds?.length > 0 && (
-          <SortableContainer.Presentation items={pageIds} setItems={setPageIds}>
+          <SortableContainer.Presentation
+            items={pageIds}
+            setItems={submitPageOrder}
+          >
             {pageIds?.map((id, i) => (
               <SortableItem.Presentation key={`sortable-${id}`} id={id} handle>
                 <Disclosure
@@ -59,14 +63,14 @@ function StoryPagesCrudPresentation({
                     <ExpandablePreview.Presentation
                       open={open}
                       preview={
-                        <StoryPagePreview.Presentation
+                        <StoryPagesCrudPreview
                           page={pages[id]}
                           pageNumber={getPageNumber(i)}
                         />
                       }
                       full={
                         <StoryPageForm
-                          page={pages[id]}
+                          dataToEdit={pages[id]}
                           pageNumber={getPageNumber(i)}
                           submitHandler={(event) =>
                             submitAndClose(event, close)
@@ -91,7 +95,10 @@ function StoryPagesCrudPresentation({
             <div className="w-full">
               <StoryPageForm
                 pageNumber={getPageNumber(pageIds?.length)}
-                submitHandler={submitHandler}
+                submitHandler={(event) =>
+                  submitAndClose(event, () => setAddPageOpen(false))
+                }
+                nextPageOrderNumber={nextPageOrderNumber}
                 cancelHandler={() => setAddPageOpen(false)}
               />
             </div>
@@ -100,7 +107,7 @@ function StoryPagesCrudPresentation({
           <div className="flex w-full justify-center">
             <button
               type="button"
-              className="bg-primary hover:bg-primary-light text-white border border-transparent rounded-lg shadow-sm my-1 py-2 px-4 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
+              className="bg-secondary hover:bg-secondary-light text-white border border-transparent rounded-lg shadow-sm my-1 py-2 px-4 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
               onClick={() => setAddPageOpen(true)}
             >
               {getIcon('Add', 'fill-current h-5 mr-2')}
@@ -114,15 +121,16 @@ function StoryPagesCrudPresentation({
 }
 
 // PROPTYPES
-const { array, bool, func, object } = PropTypes
+const { number, array, bool, func, object } = PropTypes
 
 StoryPagesCrudPresentation.propTypes = {
   addPageOpen: bool,
   goToStep: func,
+  nextPageOrderNumber: number,
   pageIds: array,
   pages: object,
   setAddPageOpen: func,
-  setPageIds: func,
+  submitPageOrder: func,
   submitHandler: func,
 }
 

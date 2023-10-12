@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
 import MediaThumbnail from 'components/MediaThumbnail'
 
-function StoryPreviewCrudPresentation({ storyData }) {
+function StoryCrudPreview({ storyData }) {
   const {
     title,
     titleTranslation,
@@ -23,10 +23,7 @@ function StoryPreviewCrudPresentation({ storyData }) {
   } = storyData
 
   const [translate, setTranslate] = useState(true)
-
   const [currentPageId, setCurrentPageId] = useState()
-
-  console.log({ storyData: pagesData?.[currentPageId], currentPageId })
 
   useEffect(() => {
     if (!currentPageId) {
@@ -35,7 +32,7 @@ function StoryPreviewCrudPresentation({ storyData }) {
   }, [currentPageId, pages])
 
   return (
-    <div id="StoryPreviewCrudPresentation">
+    <div id="StoryCrudPreview">
       <div className="bg-white p-10 rounded">
         <h1 className="font-bold pb-8 text-xl">Story Info</h1>
         <div className="text-fv-charcoal-light">
@@ -192,8 +189,8 @@ function StoryPreviewCrudPresentation({ storyData }) {
 // PROPTYPES
 const { object } = PropTypes
 
-StoryPreviewCrudPresentation.propTypes = {
+StoryCrudPreview.propTypes = {
   storyData: object,
 }
 
-export default StoryPreviewCrudPresentation
+export default StoryCrudPreview
