@@ -2,11 +2,11 @@ import React from 'react'
 
 // FPCC
 import StoryCrudData from 'components/StoryCrud/StoryCrudData'
+import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
+import StoryCrudPreview from 'components/StoryCrud/StoryCrudPreview'
+import StoryAudienceCrud from 'components/StoryAudienceCrud'
 import StoryCoverCrud from 'components/StoryCoverCrud'
 import StoryPagesCrud from 'components/StoryPagesCrud'
-// import VisibilitySelect from 'components/VisibilitySelect'
-import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
-import StoryPreviewCrud from 'components/StoryPreviewCrud'
 
 function StoryCrudContainer() {
   const { activeStep, storyData } = StoryCrudData()
@@ -14,25 +14,13 @@ function StoryCrudContainer() {
   function getStepContent(step) {
     switch (step) {
       case 1:
-        return <StoryPagesCrud.Container />
+        return <StoryPagesCrud.Container storyData={storyData} />
       case 2:
-        return (
-          <StoryCrudStepWrapper>
-            <div className="bg-white p-8 rounded-lg w-full space-y-2">
-              <label
-                htmlFor="first-name"
-                className="block text-sm font-medium text-fv-charcoal"
-              >
-                Who can see this content?
-              </label>
-              {/* <VisibilitySelect.Container id={storyId} docState={storyState} /> */}
-            </div>
-          </StoryCrudStepWrapper>
-        )
+        return <StoryAudienceCrud.Container storyData={storyData} />
       case 3:
         return (
           <StoryCrudStepWrapper>
-            <StoryPreviewCrud.Container />
+            <StoryCrudPreview storyData={storyData} />
           </StoryCrudStepWrapper>
         )
       case 0:

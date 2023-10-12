@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
-// import Story from 'components/Story'
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
-import { getMediaUrl } from 'common/utils/urlHelpers'
+import MediaThumbnail from 'components/MediaThumbnail'
 
-function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
+function StoryPreviewCrudPresentation({ storyData }) {
   const {
     title,
     titleTranslation,
@@ -15,50 +14,25 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
     intro,
     introTranslation,
     acknowledgements,
-    coverVisual,
-    pageOrder,
+    notes,
+    pagesData,
     pages,
+    sitename,
     visibility,
     includeInKids,
-  } = entry
+  } = storyData
 
   const [translate, setTranslate] = useState(true)
 
-  const [currentPageId, setCurrentPageId] = useState(pageOrder?.[0])
+  const [currentPageId, setCurrentPageId] = useState()
 
-  const getCoverMedia = () => {
-    if (coverVisual.type === 'image') {
-      return (
-        <div className="w-1/2">
-          <img
-            src={getMediaUrl({
-              type: 'image',
-              id: coverVisual.id,
-              viewName: 'Medium',
-            })}
-          />
-        </div>
-      )
+  console.log({ storyData: pagesData?.[currentPageId], currentPageId })
+
+  useEffect(() => {
+    if (!currentPageId) {
+      setCurrentPageId(pages?.[0])
     }
-    if (coverVisual.type === 'video') {
-      return (
-        <video
-          src={getMediaUrl({
-            type: 'video',
-            id: coverVisual.id,
-          })}
-          controls
-        >
-          Your browser does not support the video tag
-        </video>
-      )
-    }
-    return (
-      <div>
-        <p>No cover media selected</p>
-      </div>
-    )
-  }
+  }, [currentPageId, pages])
 
   return (
     <div id="StoryPreviewCrudPresentation">
@@ -66,7 +40,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
         <h1 className="font-bold pb-8 text-xl">Story Info</h1>
         <div className="text-fv-charcoal-light">
           <h2 className="font-semibold">Story Title</h2>
-          <p>{translate ? title : titleTranslation?.[0]?.translation}</p>
+          <p>{translate ? title : titleTranslation}</p>
           <h2 className="pt-8 font-semibold">Author</h2>
           <p>{author}</p>
           <h2 className="pt-8 font-semibold">Story Introduction</h2>
@@ -80,45 +54,69 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
           >
             View Translation
           </button>
-          <h2 className="pt-8 font-semibold">Acknowledgements</h2>
-          <p>{acknowledgements}</p>
-          <h2 className="pt-8 font-semibold">
-            Want this included in the Kids site?
-          </h2>
-          <p>{includeInKids === 'true' ? 'Yes' : 'No'}</p>
+          {acknowledgements?.length > 0 && (
+            <section>
+              <h2 className="pt-8 font-semibold">Acknowledgements</h2>
+              <ul>
+                {acknowledgements?.map((ack) => (
+                  <li key={ack?.id} className="text-sm">
+                    {ack?.text}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+          {acknowledgements?.length > 0 && (
+            <section>
+              <h2 className="pt-8 font-semibold">Notes</h2>
+              <ul>
+                {notes?.map((note) => (
+                  <li key={note?.id} className="text-sm">
+                    {note?.text}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           <h2 className="pt-8 pb-2 font-semibold">Featured Image</h2>
-          {getCoverMedia()}
         </div>
         <div className="flex justify-end">
-          <Link to={`/${sitename}/dashboard/edit/story?step=0&id=${storyId}`}>
+          <Link
+            to={`/${sitename}/dashboard/edit/story?step=0&id=${storyData?.id}`}
+          >
             EDIT
           </Link>
         </div>
       </div>
-      {pages?.[currentPageId] && (
+      {pagesData?.[currentPageId] && (
         <div className="relative">
           <div className="bg-white mt-10 p-10 rounded">
             <h1 className="font-bold pb-8 text-xl">Story Pages</h1>
             <div className="text-fv-charcoal-light flex">
-              {pages?.[currentPageId]?.images?.length > 0 && (
+              {pagesData?.[currentPageId]?.relatedImages?.length > 0 && (
                 <div className="w-1/2 pr-10">
-                  <img
-                    src={getMediaUrl({
-                      type: 'image',
-                      id: pages?.[currentPageId]?.images[0]?.uid,
-                      viewName: 'Medium',
-                    })}
+                  <MediaThumbnail.Image
+                    id={pagesData?.[currentPageId]?.relatedImages?.[0]}
+                    imageStyles="object-cover rounded-md"
+                  />
+                </div>
+              )}
+              {pagesData?.[currentPageId]?.relatedVideos?.length > 0 && (
+                <div className="w-1/2 pr-10">
+                  <MediaThumbnail.Video
+                    id={pagesData?.[currentPageId]?.relatedVideos?.[0]}
                   />
                 </div>
               )}
               <div>
-                {pages?.[currentPageId].text && (
+                {pagesData?.[currentPageId].text && (
                   <div>
                     <WysiwygBlock
                       jsonString={
                         translate
-                          ? pages?.[currentPageId]?.text
-                          : pages?.[currentPageId]?.textTranslation
+                          ? pagesData?.[currentPageId]?.text
+                          : pagesData?.[currentPageId]?.textTranslation
                       }
                     />
                   </div>
@@ -134,7 +132,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
             </div>
             <div className="flex top-4 justify-center py-2 gap-x-2 text-fv-charcoal-light">
               Pages
-              {pageOrder?.map((pageId, pageIndex) => (
+              {pages?.map((pageId, pageIndex) => (
                 <button
                   type="button"
                   key={pageId}
@@ -151,7 +149,7 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
             </div>
             <div className="flex justify-end">
               <Link
-                to={`/${sitename}/dashboard/edit/story?step=1&id=${storyId}`}
+                to={`/${sitename}/dashboard/edit/story?step=1&id=${storyData?.id}`}
               >
                 EDIT
               </Link>
@@ -159,14 +157,22 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
           </div>
         </div>
       )}
-      <div className="bg-white mt-10 p-10">
+      <div className="bg-white mt-10 p-10 space-y-4">
+        <h1 className="font-bold text-xl">Privacy</h1>
         <div className="text-fv-charcoal-light">
-          <h1 className="font-bold pb-8 text-xl">Privacy</h1>
           <p className="font-semibold">Who can view your Content?</p>
-          <p className="pb-8">{visibility}</p>
+          <p>{visibility}</p>
+        </div>
+        <div className="text-fv-charcoal-light">
+          <h2 className="font-semibold">
+            Want this included in the Kids site?
+          </h2>
+          <p>{includeInKids === 'true' ? 'Yes' : 'No'}</p>
         </div>
         <div className="flex justify-end">
-          <Link to={`/${sitename}/dashboard/edit/story?step=2&id=${storyId}`}>
+          <Link
+            to={`/${sitename}/dashboard/edit/story?step=2&id=${storyData?.id}`}
+          >
             EDIT
           </Link>
         </div>
@@ -184,12 +190,10 @@ function StoryPreviewCrudPresentation({ sitename, storyId, entry }) {
 }
 
 // PROPTYPES
-const { string, object } = PropTypes
+const { object } = PropTypes
 
 StoryPreviewCrudPresentation.propTypes = {
-  entry: object,
-  storyId: string,
-  sitename: string,
+  storyData: object,
 }
 
 export default StoryPreviewCrudPresentation
