@@ -10,8 +10,8 @@ export function storyPageForViewing({ item }) {
   return {
     id: item?.id || '',
     notes: item?.notes || [],
-    order: item?.ordering,
-    ...pageTextForViewing({ item }),
+    ordering: item?.ordering,
+    ...pageTextAdaptor({ item }),
     ...relatedMediaForViewing({ item }),
   }
 }
@@ -20,8 +20,8 @@ export function storyPageForEditing({ item }) {
   return {
     id: item?.id || '',
     notes: item?.notes || [],
-    order: item?.ordering,
-    ...pageTextForEditing({ item }),
+    ordering: item?.ordering,
+    ...pageTextAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
   }
 }
@@ -30,13 +30,13 @@ export function storyPageForApi({ item }) {
   return {
     id: item?.id || '',
     notes: item?.notes || [],
-    order: item?.ordering,
+    ordering: item?.ordering,
     ...pageTextForApi({ item }),
     ...relatedMediaForApi({ item }),
   }
 }
 
-export function pageTextForViewing({ item }) {
+export function pageTextAdaptor({ item }) {
   const { getWysiwygStateFromJson } = wysiwygStateHelpers()
 
   const textJson = item?.text || ''
@@ -51,13 +51,6 @@ export function pageTextForViewing({ item }) {
   return {
     text: textJson,
     textPreview,
-    textTranslation: item?.translation || '',
-  }
-}
-
-export function pageTextForEditing({ item }) {
-  return {
-    text: item?.introduction || '',
     textTranslation: item?.translation || '',
   }
 }

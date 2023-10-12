@@ -44,15 +44,21 @@ export function storyForViewing({ item }) {
 }
 
 export function storyForEditing({ item }) {
+  const pages = item?.pages ? [...item.pages] : []
+  const lastPage = pages?.pop()
+  const nextPageOrderNumber = lastPage?.ordering ? lastPage.ordering + 1 : 0
+
   return {
     id: item?.id,
     author: item?.author,
+    sitename: item?.site?.slug,
     ...audienceForEditing({ item }),
     ...coverForEditing({ item }),
     ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForEditing({ item }),
     ...storyPagesForEditing({ item }),
+    nextPageOrderNumber,
   }
 }
 
@@ -77,12 +83,14 @@ const storyPagesForViewing = ({ item }) => {
 }
 
 const storyPagesForEditing = ({ item }) => {
-  const formattedPages = item?.pages?.map((page) => {
-    const formattedPage = storyPageForEditing({ item: page })
-    return formattedPage
+  const pageMap = {}
+  item?.pages?.forEach((page) => {
+    if (page?.id) {
+      pageMap[page.id] = storyPageForEditing({ item: page })
+    }
   })
   return {
     pages: objectsToIdsAdaptor(item?.pages),
-    pagesData: formattedPages,
+    pagesData: pageMap,
   }
 }
