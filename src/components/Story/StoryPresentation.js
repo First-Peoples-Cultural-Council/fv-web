@@ -151,7 +151,7 @@ function StoryPresentation({ entry }) {
 
         {/* Pages */}
         {entry?.pages?.length > 0
-          ? entry.pages.map((page) => (
+          ? entry.pages.map((page, index) => (
               <LazyLoader key={page.id}>
                 <div className={blockStyling}>
                   {getMedia({
@@ -185,7 +185,7 @@ function StoryPresentation({ entry }) {
                     >
                       <div className="flex items-center justify-end">
                         <p className="text-fv-charcoal-light text-xs md:text-sm">
-                          {page.order}
+                          {index + 1}
                         </p>
                       </div>
                     </div>
