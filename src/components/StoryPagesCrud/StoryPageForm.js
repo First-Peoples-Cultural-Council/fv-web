@@ -17,9 +17,9 @@ function StoryPageForm({
   submitHandler,
 }) {
   const validator = yup.object().shape({
-    text: definitions.wysiwyg({ charCount: 1200 }),
-    textTranslation: definitions.wysiwyg({ charCount: 1200 }),
-    notes: yup.array().of(yup.string()),
+    text: definitions.wysiwyg({ charCount: 5000 }),
+    textTranslation: definitions.wysiwyg({ charCount: 5000 }),
+    notes: definitions.textArray({ charCount: 500 }),
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),

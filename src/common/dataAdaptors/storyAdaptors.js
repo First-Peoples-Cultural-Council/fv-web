@@ -46,7 +46,7 @@ export function storyForViewing({ item }) {
 export function storyForEditing({ item }) {
   const pages = item?.pages ? [...item.pages] : []
   const lastPage = pages?.pop()
-  const nextPageOrderNumber = lastPage?.ordering ? lastPage.ordering + 1 : 0
+  const nextPageOrderNumber = lastPage?.ordering ? lastPage.ordering + 1 : 1
 
   return {
     id: item?.id,
