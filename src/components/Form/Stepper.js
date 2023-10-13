@@ -69,9 +69,9 @@ function Stepper({ steps, onClickCallback }) {
                       stepIdx + 1
                     }`}</span>
                   </span>
-                  <span className="ml-4 text-sm font-medium text-fv-charcoal-light group-hover:text-fv-charcoal">
-                    {step.title}
-                  </span>
+                </span>
+                <span className="ml-4 text-sm font-medium text-fv-charcoal-light group-hover:text-fv-charcoal">
+                  {step.title}
                 </span>
               </button>
             )}
