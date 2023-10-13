@@ -89,7 +89,7 @@ function StoryPagesCrudPresentation({
         {addPageOpen ? (
           <div
             id="AddNewPageForm"
-            className="pt-5 bg-white rounded-lg  shadow-xl transform transition-all"
+            className="ml-10 mt-1 pt-5 bg-white rounded-lg  shadow-xl transform transition-all"
           >
             <Form.Header title="Add A New Page" />
             <div className="w-full">
