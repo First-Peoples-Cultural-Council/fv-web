@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import Form from 'components/Form'
-import DeleteButton from 'components/DeleteButton'
 
 function StoryCrudStepWrapper({ children, onClickCallback }) {
   const [searchParams] = useSearchParams()
@@ -23,15 +22,6 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
     >
       <div className="w-full flex justify-center">
         <Form.Header title={id ? 'Edit Your Story' : 'Add A New Story'} />
-      </div>
-      <div className="flex w-full justify-end">
-        {id ? (
-          <DeleteButton.Presentation
-            id={id}
-            label="Delete Story"
-            message="Are you sure you want to delete this story from your site?"
-          />
-        ) : null}
       </div>
       <div className="my-5">
         <Form.Stepper
