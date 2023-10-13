@@ -141,7 +141,7 @@ const secondaryNavigationItems = (sites) => {
 
 const userProfile = (user) => (
   <div className="flex-shrink-0 flex bg-fv-charcoal-light p-4">
-    <Link to="profile" className="flex-shrink-0 w-full group block">
+    <div className="flex-shrink-0 w-full group block">
       <div className="flex items-center">
         <div className="inline-flex">
           <div className="inline-block text-left">
@@ -152,12 +152,10 @@ const userProfile = (user) => (
         </div>
         <div className="ml-3">
           <p className="text-sm font-medium text-white">{user?.fullName}</p>
-          <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200">
-            View profile
-          </p>
+          <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200"></p>
         </div>
       </div>
-    </Link>
+    </div>
   </div>
 )
 
