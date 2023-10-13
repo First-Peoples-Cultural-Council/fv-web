@@ -127,8 +127,6 @@ export function useStoryUpdatePageOrder({ storyId }) {
 
 export function useStoryUpdateAudience({ storyId }) {
   const { sitename } = useParams()
-  // eslint-disable-next-line no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams()
 
   const updateStory = async (formData) => {
     const properties = {
@@ -147,8 +145,6 @@ export function useStoryUpdateAudience({ storyId }) {
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'updated',
     type: 'story order',
-    onSuccessCallback: (response) =>
-      setSearchParams({ step: 3, id: response?.id }),
   })
 
   const onSubmit = (formData) => mutation.mutate(formData)

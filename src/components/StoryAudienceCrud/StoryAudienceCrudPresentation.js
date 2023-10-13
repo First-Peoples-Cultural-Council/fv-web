@@ -22,22 +22,14 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
 
   // pageOrder
 
-  const { control, errors, handleSubmit, isValid, reset, trigger } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
-
-  const stepCallback = () => {
-    trigger()
-    if (isValid) {
-      handleSubmit(submitHandler)()
-    }
-  }
+  const { control, errors, handleSubmit, reset } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
-    <StoryCrudStepWrapper onClickCallback={stepCallback}>
+    <StoryCrudStepWrapper>
       <div
         id="StoryAudienceCrudPresentation"
         className="shadow rounded-md overflow-hidden bg-white"
@@ -57,6 +49,13 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
                   { label: 'Yes', value: 'true' },
                   { label: 'No', value: 'false' },
                 ]}
+              />
+            </div>
+            <div className="col-span-12 flex justify-end mt-6 px-6">
+              <Form.SubmitButtons
+                submitLabel="Save"
+                submitIcon="Save"
+                onSubmitClick={handleSubmit(submitHandler)}
               />
             </div>
           </div>

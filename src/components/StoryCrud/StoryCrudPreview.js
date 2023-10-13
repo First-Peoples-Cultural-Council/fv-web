@@ -152,7 +152,7 @@ function StoryCrudPreview({ storyData }) {
         <section className="relative bg-white p-8 rounded">
           <h2 className={headingStyle}>Story Pages</h2>
           <div className="text-fv-charcoal-light grid grid-cols-2">
-            <div className="col-span-1">
+            <div className="col-span-1 inline-flex">
               {relatedVisualMediaThumbnails({
                 images: currentPage?.relatedImages,
                 videos: currentPage?.relatedVideos,
