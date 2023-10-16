@@ -1,20 +1,48 @@
-import { useEffect } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { useParams, useNavigate } from 'react-router-dom'
-
 // FPCC
-import api from 'services/api'
+import Elders from 'assets/images/elders-landing.png'
+import Img from 'assets/images/landing-about.png'
+import bgImage from 'assets/images/landing-about-bg.png'
+import languages from 'assets/images/languages-background.png'
 
 function LandingPageData() {
-  const { sitename } = useParams()
-  const navigate = useNavigate()
+  const whyData = {
+    settings: {
+      mockData: true,
+      image: Elders,
+      title: 'WHY FIRSTVOICES?',
+      textWithFormatting:
+        '{"blocks":[{"key":"b2jgo","text":"FirstVoices is an internationally recognized online platform for Indigenous communities to share and promote their languages, oral cultures and linguistic histories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"djfju","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"87kbs","text":"FirstVoices provides state-of-the-art technologies, training and technical support to community language champions.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"frreb","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"faghd","text":"Language champions collaborate with Indigenous Elders, youth and speakers to create and share language resources like words, phrases, songs and stories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+    },
+  }
 
-  const { data, error, isError } = useQuery(['landingPage'], () =>
-    api.landingPage.getPage(),
-  )
+  const aboutData = {
+    settings: {
+      mockData: true,
+      bg: 'bgGreen',
+      bgImage,
+      image: Img,
+      title: 'ABOUT FIRSTVOICES',
+      url: 'https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704813/About+FirstVoices',
+      urlLabel: 'Learn more',
+      textWithFormatting:
+        '{"blocks":[{"key":"3euvg","text":"On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cfr7r","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cnh18","text":"Any content available on FirstVoices is gathered, uploaded, and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c7437","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"40rem","text":"FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+    },
+  }
 
-  const landingPageUid = data?.entries?.[0]?.uid
-
+  const quotesData = {
+    settings: {
+      quote1:
+        'This past year has proven to be... a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost of not for FirstVoices',
+      quote1By: '-Gitanyow Language Team Member',
+      quote2:
+        'FirstVoices allows is to support the legacy of those that paved the way for out language by us being able to share what they left us with so many more learners and teachers',
+      quote2By: '-Tseshaht Language Team Member',
+      quote3:
+        'This past year has proven to be... a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost of not for FirstVoices',
+      quote3By: '-Gitanyow Language Team Member',
+      backgroundImage: languages,
+    },
+  }
   // const rssFeed =
   //   'https://firstvoices.atlassian.net/wiki/createrssfeed.action?types=blogpost&blogpostSubTypes=attachment&spaces=conf_all&title=FirstVoices+Blog+RSS+Feed&labelString%3D&excludedSpaceKeys%3D&sort=modified&maxResults=10&timeSpan=1000&showContent=true&confirm=Create+RSS+Feed'
 
@@ -24,17 +52,10 @@ function LandingPageData() {
   //   const loadArticles = api.blog.get(rssFeed)
   // })
 
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
-
   return {
-    landingPageUid,
+    whyData,
+    aboutData,
+    quotesData,
   }
 }
 
