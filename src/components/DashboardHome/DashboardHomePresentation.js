@@ -8,7 +8,7 @@ import DashboardLocator from 'components/DashboardLocator'
 function DashboardHomePresentation({ site, tiles, currentUser, logout }) {
   return (
     <main id="DashboardHome">
-      <div className="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
+      <div className="mx-auto p-4 sm:p-6 lg:p-8">
         <h1 className="sr-only">Dashboard Landing Page</h1>
 
         <section className="mb-6">

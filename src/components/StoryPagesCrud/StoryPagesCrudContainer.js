@@ -1,19 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import StoryPagesCrudPresentation from 'components/StoryPagesCrud/StoryPagesCrudPresentation'
 import StoryPagesCrudData from 'components/StoryPagesCrud/StoryPagesCrudData'
 
-function StoryPagesCrudContainer() {
+function StoryPagesCrudContainer({ storyData }) {
   const {
     addPageOpen,
     setAddPageOpen,
     pageIds,
-    setPageIds,
+    submitPageOrder,
     goToStep,
     pages,
     submitHandler,
-  } = StoryPagesCrudData()
+  } = StoryPagesCrudData({ storyData })
 
   return (
     <StoryPagesCrudPresentation
@@ -22,10 +23,17 @@ function StoryPagesCrudContainer() {
       pageIds={pageIds}
       pages={pages}
       setAddPageOpen={setAddPageOpen}
-      setPageIds={setPageIds}
+      submitPageOrder={submitPageOrder}
       submitHandler={submitHandler}
+      nextPageOrderNumber={storyData?.nextPageOrderNumber}
     />
   )
+}
+
+// PROPTYPES
+const { object } = PropTypes
+StoryPagesCrudContainer.propTypes = {
+  storyData: object,
 }
 
 export default StoryPagesCrudContainer

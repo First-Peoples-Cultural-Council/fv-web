@@ -23,8 +23,8 @@ function SongCrudPresentation({
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
     lyrics: yup.array().of(
       yup.object().shape({
-        text: definitions.paragraph(),
-        translation: definitions.paragraph(),
+        text: definitions.paragraph({ charCount: 5000 }),
+        translation: definitions.paragraph({ charCount: 5000 }),
       }),
     ),
     acknowledgments: definitions.textArray({ charCount: 500 }),
@@ -48,6 +48,7 @@ function SongCrudPresentation({
     includeInKids: 'true',
     includeInGames: 'true',
     visibility: PUBLIC,
+    hideOverlay: 'false',
   }
 
   const { control, errors, handleSubmit, isCreateMode, register, reset } =
@@ -186,12 +187,25 @@ function SongCrudPresentation({
           <div className="col-span-12">
             <Form.Visibility control={control} errors={errors} />
           </div>
-          <div className="col-span-12">
+          <div className="col-span-6">
             <Form.RadioButtons
               label="Include on the Kids site?"
               control={control}
               errors={errors}
               nameId="includeInKids"
+              options={[
+                { label: 'Yes', value: 'true' },
+                { label: 'No', value: 'false' },
+              ]}
+            />
+          </div>
+          <div className="col-span-6">
+            <Form.RadioButtons
+              label="Does the cover image include the title?"
+              helpText="Selecting 'Yes' will hide the title overlay in the story list"
+              control={control}
+              errors={errors}
+              nameId="hideOverlay"
               options={[
                 { label: 'Yes', value: 'true' },
                 { label: 'No', value: 'false' },

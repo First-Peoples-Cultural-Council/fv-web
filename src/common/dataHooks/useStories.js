@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { STORIES } from 'common/constants'
@@ -11,6 +11,8 @@ import {
   storyForApi,
 } from 'common/dataAdaptors/storyAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { audienceForApi } from 'common/dataAdaptors/audienceAdaptors'
+import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
 
 export function useStories() {
   const { sitename } = useParams()
@@ -46,6 +48,8 @@ export function useStory({ id, edit = false }) {
 
 export function useStoryCreate() {
   const { sitename } = useParams()
+  // eslint-disable-next-line no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const createStory = async (formData) => {
     const properties = storyForApi({ formData })
@@ -57,10 +61,11 @@ export function useStoryCreate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: createStory,
-    redirectTo: `/${sitename}/dashboard/edit/stories`,
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'created',
     type: 'story',
+    onSuccessCallback: (response) =>
+      setSearchParams({ step: 1, id: response?.id }),
   })
 
   const onSubmit = (formData) => mutation.mutate(formData)
@@ -70,6 +75,8 @@ export function useStoryCreate() {
 
 export function useStoryUpdate() {
   const { sitename } = useParams()
+  // eslint-disable-next-line no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const updateStory = async (formData) => {
     const properties = storyForApi({ formData })
@@ -82,10 +89,62 @@ export function useStoryUpdate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateStory,
-    redirectTo: `/${sitename}/dashboard/edit/stories`,
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'updated',
     type: 'story',
+    onSuccessCallback: (response) =>
+      setSearchParams({ step: 1, id: response?.id }),
+  })
+
+  const onSubmit = (formData) => mutation.mutate(formData)
+  return { onSubmit }
+}
+
+export function useStoryUpdatePageOrder({ storyId }) {
+  const { sitename } = useParams()
+
+  const updateStory = async (pageOrderArray) => {
+    const properties = {
+      pages: pageOrderArray || [],
+    }
+    return api.stories.partialUpdate({
+      id: storyId,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateStory,
+    queryKeyToInvalidate: [STORIES, sitename],
+    actionWord: 'updated',
+    type: 'story order',
+  })
+
+  const onSubmit = (pageOrderArray) => mutation.mutate(pageOrderArray)
+  return { onSubmit }
+}
+
+export function useStoryUpdateAudience({ storyId }) {
+  const { sitename } = useParams()
+
+  const updateStory = async (formData) => {
+    const properties = {
+      ...audienceForApi({ item: formData }),
+      ...visibilityAdaptor({ item: formData }),
+    }
+    return api.stories.partialUpdate({
+      id: storyId,
+      sitename,
+      properties,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateStory,
+    queryKeyToInvalidate: [STORIES, sitename],
+    actionWord: 'updated',
+    type: 'story order',
   })
 
   const onSubmit = (formData) => mutation.mutate(formData)

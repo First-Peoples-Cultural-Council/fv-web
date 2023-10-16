@@ -1,5 +1,3 @@
-import { useSearchParams } from 'react-router-dom'
-
 // FPCC
 import {
   useStoryCreate,
@@ -8,8 +6,6 @@ import {
 } from 'common/dataHooks/useStories'
 
 function StoryCoverCrudData({ storyData }) {
-  const [setSearchParams] = useSearchParams()
-
   const { onSubmit: create } = useStoryCreate()
   const { onSubmit: update } = useStoryUpdate()
   const { onSubmit: deleteStory } = useStoryDelete()
@@ -26,7 +22,6 @@ function StoryCoverCrudData({ storyData }) {
     dataToEdit: storyData,
     submitHandler,
     deleteHandler: () => deleteStory(storyData?.id),
-    onNextClick: () => setSearchParams({ step: 1, id: storyData?.id }),
   }
 }
 

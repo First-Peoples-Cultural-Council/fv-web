@@ -10,7 +10,7 @@ import DashboardEdit from 'components/DashboardEdit'
 import DashboardCreate from 'components/DashboardCreate'
 import DashboardMedia from 'components/DashboardMedia'
 import Loading from 'components/Loading'
-import { ASSISTANT } from 'common/constants/roles'
+import { ASSISTANT, EDITOR } from 'common/constants/roles'
 
 function DashboardContainer() {
   const { currentUser, site, homeTiles, isLoading, logout } = DashboardData()
@@ -50,7 +50,7 @@ function DashboardContainer() {
           <Route
             path="edit/*"
             element={
-              <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <RequireAuth siteMembership={EDITOR} withMessage>
                 <DashboardEdit.Container />
               </RequireAuth>
             }
