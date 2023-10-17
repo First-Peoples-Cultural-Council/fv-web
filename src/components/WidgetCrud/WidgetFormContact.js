@@ -9,6 +9,7 @@ import { WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 import { EditorState } from 'draft-js'
+import { useContactUsEmailList } from 'common/dataHooks/useContactUs'
 
 function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -39,6 +40,8 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
       validator,
       dataToEdit,
     })
+
+  const { emailListAsString } = useContactUsEmailList()
 
   return (
     <div data-testid="WidgetFormContact">
@@ -88,6 +91,34 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               errors={errors}
             />
           </div>
+          {emailListAsString?.length > 0 ? (
+            <div className="col-span-12 mt-2 text-sm text-fv-charcoal-light">
+              <div className="block text-sm font-medium text-fv-charcoal">
+                Contact List
+              </div>
+              <div className="mt-2 text-xs text-fv-charcoal-light italic">
+                (Please contact support at hello@firstvoices.com to update this
+                list)
+              </div>
+              <div className="mt-2 text-sm text-fv-charcoal-light">
+                Contact us emails will be sent to the following addresses:
+              </div>
+              <div>{emailListAsString}</div>
+            </div>
+          ) : (
+            <div className="col-span-12">
+              <div className="block text-sm font-medium text-fv-charcoal">
+                Contact List
+              </div>
+              <div className="mt-2 text-xs text-fv-charcoal-light italic">
+                (Please contact support at hello@firstvoices.com to update this
+                list)
+              </div>
+              <div className="mt-2 text-sm text-fv-charcoal-light">
+                Could not find any emails to send contact messages to.
+              </div>
+            </div>
+          )}
         </>
       </WidgetFormBase>
     </div>

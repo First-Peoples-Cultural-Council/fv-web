@@ -2,6 +2,7 @@
 
 export const CATEGORIES = 'categories'
 export const CHARACTERS = 'characters'
+export const CONTACT_US = 'contact-us'
 export const DICTIONARY = 'dictionary'
 export const PAGES = 'pages'
 export const PARTS_OF_SPEECH = 'parts-of-speech'
