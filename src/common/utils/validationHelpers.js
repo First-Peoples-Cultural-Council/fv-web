@@ -74,7 +74,9 @@ export const definitions = {
           return plainText?.length < charCount
         },
       )
-      .nullable(),
+      .notRequired()
+      .nullable()
+      .transform((value) => value || null),
   file: ({ extensionList = [] } = {}) =>
     yup.mixed().test({
       message: 'Unsupported file type',

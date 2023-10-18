@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
-import { useStory } from 'common/dataHooks/useStories'
+import { useStory, useStoryDelete } from 'common/dataHooks/useStories'
 
 function StoryCrudData() {
   const [searchParams] = useSearchParams()
@@ -9,6 +9,8 @@ function StoryCrudData() {
     ? parseInt(searchParams.get('step'), 10)
     : 0
   const storyId = searchParams.get('id') || null
+
+  const { onSubmit: deleteStory } = useStoryDelete()
 
   const { data } = useStory({
     id: storyId,
@@ -18,6 +20,7 @@ function StoryCrudData() {
   return {
     activeStep: Number(activeStep),
     storyData: data,
+    deleteHandler: () => deleteStory(storyId),
   }
 }
 

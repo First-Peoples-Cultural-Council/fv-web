@@ -16,7 +16,7 @@ function CategoryCrudPresentation({
   submitHandler,
 }) {
   const validator = yup.object().shape({
-    title: definitions.title().required('A title is required'),
+    title: definitions.title({ charCount: 75 }).required('A title is required'),
     description: definitions.paragraph(),
     parentId: definitions.uuid(),
   })

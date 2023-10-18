@@ -4,10 +4,9 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import Form from 'components/Form'
-import DeleteButton from 'components/DeleteButton'
 
 function StoryCrudStepWrapper({ children, onClickCallback }) {
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const storyFormSteps = [
     { title: 'Cover Page' },
     { title: 'Pages' },
@@ -15,6 +14,12 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
     { title: 'Preview' },
   ]
   const id = searchParams.get('id')
+
+  const defaultOnClick = (step) => {
+    if (id) {
+      setSearchParams({ step, id })
+    }
+  }
 
   return (
     <div
@@ -24,25 +29,16 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
       <div className="w-full flex justify-center">
         <Form.Header title={id ? 'Edit Your Story' : 'Add A New Story'} />
       </div>
-      <div className="flex w-full justify-end">
-        {id ? (
-          <DeleteButton.Presentation
-            id={id}
-            label="Delete Story"
-            message="Are you sure you want to delete this story from your site?"
-          />
-        ) : null}
-      </div>
       <div className="my-5">
         <Form.Stepper
           steps={storyFormSteps}
-          onClickCallback={onClickCallback}
+          onClickCallback={onClickCallback || defaultOnClick}
         />
       </div>
       <section>{children}</section>
       <Form.NextPrevious
         numberOfSteps={storyFormSteps?.length}
-        onClickCallback={onClickCallback}
+        onClickCallback={onClickCallback || defaultOnClick}
       />
     </div>
   )

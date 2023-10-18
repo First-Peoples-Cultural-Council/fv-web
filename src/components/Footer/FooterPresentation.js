@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // FPCC / FPCF
-import fpccLogo from 'images/fpccLogoWhite.svg'
+import fpccLogo from 'images/fpccLogoColorWhite.svg'
 import fpcfLogo from 'images/fpcfLogoWhite.svg'
 
 function FooterPresentation() {
@@ -16,7 +16,7 @@ function FooterPresentation() {
           </h4>
           <a href="https://www.fpcc.ca/" target="_blank" rel="noreferrer">
             <img
-              className="h-14 inline mr-5"
+              className="h-14 inline mr-5 mb-2 md:mb-0"
               src={fpccLogo}
               alt="First People's Cultural Council Logo"
               loading="lazy"

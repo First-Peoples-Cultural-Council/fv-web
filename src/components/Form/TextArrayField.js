@@ -4,6 +4,7 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 
 function TextArrayField({
   label,
@@ -48,9 +49,9 @@ function TextArrayField({
                   </button>
                 </div>
               </div>
-              {errors?.[nameId]?.[index]?.text?.message && (
+              {errors?.[nameId]?.[index] && (
                 <div className="text-red-500">
-                  {errors?.[nameId]?.[index]?.text?.message}
+                  {convertJsonToReadableString(errors?.[nameId]?.[index])}
                 </div>
               )}
             </li>

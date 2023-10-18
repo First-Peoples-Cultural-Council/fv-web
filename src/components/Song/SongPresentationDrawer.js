@@ -11,7 +11,7 @@ import { IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 function SongPresentationDrawer({ entry, sitename }) {
   return (
     <div data-testid="SongPresentationDrawer">
-      <div className="px-4 sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
+      <div className="sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
         <div className="sm:flex-1">
           <div>
             <div className="flex items-center">
@@ -29,7 +29,7 @@ function SongPresentationDrawer({ entry, sitename }) {
       {entry.coverVisual?.type === IMAGE && (
         <div className="my-2 md:my-4 relative h-40 md:h-96 px-4">
           <img
-            className="absolute h-full w-full object-contain"
+            className="absolute h-full w-11/12 object-contain"
             src={getMediaPath({
               type: IMAGE,
               mediaObject: entry?.coverVisual?.entry,
