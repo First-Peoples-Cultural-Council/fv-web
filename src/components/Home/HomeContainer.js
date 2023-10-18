@@ -7,6 +7,7 @@ import WidgetArea from 'components/WidgetArea'
 
 function HomeContainer() {
   const { bannerMedia, bannerType, site, widgetData } = HomeData()
+  console.log({ widgetData })
 
   return (
     <div data-testid="Home">

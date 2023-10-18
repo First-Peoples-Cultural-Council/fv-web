@@ -3,9 +3,15 @@ import Elders from 'assets/images/elders-landing.png'
 import Img from 'assets/images/landing-about.png'
 import bgImage from 'assets/images/landing-about-bg.png'
 import languages from 'assets/images/languages-background.png'
+import {
+  WIDGET_TEXT,
+  WIDGET_TEXTICONS,
+  WIDGET_QUOTES,
+} from 'src/common/constants'
 
 function LandingPageData() {
   const whyData = {
+    type: WIDGET_TEXTICONS,
     settings: {
       mockData: true,
       image: Elders,
@@ -16,6 +22,7 @@ function LandingPageData() {
   }
 
   const aboutData = {
+    type: WIDGET_TEXT,
     settings: {
       mockData: true,
       bg: 'bgGreen',
@@ -30,6 +37,7 @@ function LandingPageData() {
   }
 
   const quotesData = {
+    type: WIDGET_QUOTES,
     settings: {
       quote1:
         'This past year has proven to be... a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost of not for FirstVoices',

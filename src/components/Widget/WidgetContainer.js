@@ -7,9 +7,12 @@ import WidgetData from 'components/Widget/WidgetData'
 import WidgetPlaceholder from 'components/Widget/WidgetPlaceholder'
 
 function WidgetContainer({ data }) {
+  console.log({ data })
   const { type, formattedData } = WidgetData({
     widgetData: data,
   })
+  console.log({ type })
+  console.log({ formattedData })
   if (!formattedData) {
     return <WidgetPlaceholder />
   }
