@@ -194,38 +194,29 @@ function WidgetAreaEditPresentationSettingsPane({
               {getSettings()}
             </div>
             {currentWidget?.type === WIDGET_CONTACT && (
-              <div>
-                {emailListAsString?.length > 0 ? (
-                  <div className="mt-6">
-                    <dt className="mb-1 text-sm font-bold text-primary-light">
-                      Contact List
-                    </dt>
-                    <div className="col-span-12">
-                      <div className="mt-2 text-xs text-fv-charcoal-light italic">
-                        (Please contact support at hello@firstvoices.com to
-                        update this list)
-                      </div>
+              <div className="mt-6">
+                <dt className="mb-1 text-sm font-bold text-primary-light">
+                  Contact List
+                </dt>
+                <div className="col-span-12">
+                  <div className="mt-2 text-xs text-fv-charcoal-light italic">
+                    (Please contact support at hello@firstvoices.com to update
+                    this list)
+                  </div>
+                  {emailListAsString?.length > 0 ? (
+                    <div>
                       <div>
                         Contact us emails will be sent to the following
                         addresses:
                       </div>
                       <div>{emailListAsString}</div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="mt-6">
-                    <dt className="mb-1 text-sm font-bold text-primary-light">
-                      Contact List
-                    </dt>
-                    <div className="mt-2 text-xs text-fv-charcoal-light italic">
-                      (Please contact support at hello@firstvoices.com to update
-                      this list)
-                    </div>
-                    <div className="col-span-12">
+                  ) : (
+                    <div>
                       Could not find any emails to send contact messages to.
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             )}
           </div>
