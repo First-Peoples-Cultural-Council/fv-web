@@ -6,7 +6,6 @@ import Widget from 'components/Widget'
 import LazyLoader from 'components/LazyLoader'
 
 function WidgetAreaContainer({ widgetData }) {
-  console.log({ widgetData })
   return (
     <section>
       {widgetData?.length > 0 &&

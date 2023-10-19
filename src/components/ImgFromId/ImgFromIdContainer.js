@@ -7,7 +7,7 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, MEDIUM } from 'common/constants'
 
 function ImgFromIdContainer(props) {
-  const { id, size, alt, className, ...other } = props
+  const { mockData, id, size, alt, className, ...other } = props
   const [src, setSrc] = useState('')
 
   const imageObject = useImageObject({ id })
@@ -27,7 +27,7 @@ function ImgFromIdContainer(props) {
 
   return (
     <img
-      src={src}
+      src={mockData ? id : src}
       alt={alt || imageObject?.title}
       className={className}
       {...other}
@@ -36,12 +36,13 @@ function ImgFromIdContainer(props) {
 }
 
 // PROPTYPES
-const { string } = PropTypes
+const { string, bool } = PropTypes
 ImgFromIdContainer.propTypes = {
   id: string,
   size: string,
   alt: string,
   className: string,
+  mockData: bool,
 }
 
 ImgFromIdContainer.defaultProps = {
