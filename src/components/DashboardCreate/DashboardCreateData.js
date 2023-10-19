@@ -27,7 +27,7 @@ function DashboardCreateData() {
       name: 'Add a Speaker',
       description: 'Add a new speaker to your site',
       href: 'speaker',
-      iconColor: 'wordText',
+      iconColor: 'storyText',
       auth: EDITOR,
     },
     {
@@ -35,7 +35,7 @@ function DashboardCreateData() {
       name: 'Add a Category',
       description: 'Add a new category to your dictionary',
       href: 'category',
-      iconColor: 'wordText',
+      iconColor: 'tertiaryB',
       auth: LANGUAGE_ADMIN,
     },
     {
@@ -59,7 +59,7 @@ function DashboardCreateData() {
       name: 'Create a Custom Page',
       description: 'Add a new page to your site',
       href: 'page',
-      iconColor: 'wordText',
+      iconColor: 'tertiaryA',
       auth: LANGUAGE_ADMIN,
     },
     {
@@ -67,7 +67,7 @@ function DashboardCreateData() {
       name: 'Create a Widget',
       description: "Add a new Widget to your site's collection",
       href: 'widget',
-      iconColor: 'wordText',
+      iconColor: 'songText',
       auth: LANGUAGE_ADMIN,
     },
   ]
