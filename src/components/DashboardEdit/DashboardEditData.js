@@ -1,6 +1,12 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { TYPES, TYPE_DICTIONARY, TYPE_SONG, TYPE_STORY } from 'common/constants'
+import {
+  TYPES,
+  TYPE_WORD,
+  TYPE_PHRASE,
+  TYPE_SONG,
+  TYPE_STORY,
+} from 'common/constants'
 import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditData() {
@@ -8,12 +14,37 @@ function DashboardEditData() {
 
   const tileContent = [
     {
+      icon: 'Word',
+      name: 'Edit Words',
+      description: 'Edit the words in your dictionary',
+      href: `entries?${TYPES}=${TYPE_WORD}`,
+      iconColor: 'wordText',
+      auth: EDITOR,
+    },
+    {
       icon: 'Phrase',
-      name: 'Edit Words and Phrases',
-      description: 'Edit the words and phrases in your dictionary',
-      href: `entries?${TYPES}=${TYPE_DICTIONARY}`,
+      name: 'Edit Phrases',
+      description: 'Edit the phrases in your dictionary',
+      href: `entries?${TYPES}=${TYPE_PHRASE}`,
       iconColor: 'phraseText',
       auth: EDITOR,
+    },
+    {
+      icon: 'Speak',
+      name: 'Edit Speakers',
+      description: 'Edit the speakers on your site',
+      href: 'speakers',
+      iconColor: 'storyText',
+      auth: EDITOR,
+    },
+    {
+      icon: 'Categories',
+      name: 'Edit Categories',
+      description:
+        'Edit the categories for words and phrases in your dictionary',
+      href: 'categories',
+      iconColor: 'tertiaryB',
+      auth: LANGUAGE_ADMIN,
     },
     {
       icon: 'Song',
@@ -32,14 +63,6 @@ function DashboardEditData() {
       auth: EDITOR,
     },
     {
-      icon: 'Home',
-      name: 'Edit Homepage',
-      description: 'Edit the main homepage for your site',
-      href: 'home',
-      iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
       icon: 'WebPages',
       name: 'Edit Custom Pages',
       description: 'Manage and edit the custom pages on your site',
@@ -56,21 +79,12 @@ function DashboardEditData() {
       auth: LANGUAGE_ADMIN,
     },
     {
-      icon: 'Categories',
-      name: 'Edit Categories',
-      description:
-        'Edit the categories for words and phrases in your dictionary',
-      href: 'categories',
-      iconColor: 'tertiaryB',
+      icon: 'Home',
+      name: 'Edit Homepage',
+      description: 'Edit the main homepage for your site',
+      href: 'home',
+      iconColor: 'wordText',
       auth: LANGUAGE_ADMIN,
-    },
-    {
-      icon: 'Speak',
-      name: 'Edit Speakers',
-      description: 'Edit the speakers on your site',
-      href: 'speakers',
-      iconColor: 'storyText',
-      auth: EDITOR,
     },
     {
       icon: 'Alphabet',
