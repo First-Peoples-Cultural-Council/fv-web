@@ -21,7 +21,7 @@ import {
 
 import Alphabet from 'components/Alphabet'
 import WidgetApps from 'components/WidgetApps'
-// import WidgetContactUs from 'components/WidgetContactUs'
+import WidgetContactUs from 'components/WidgetContactUs'
 import Gallery from 'components/Gallery'
 import WidgetIframe from 'components/WidgetIframe'
 import WidgetKeyboards from 'components/WidgetKeyboards'
@@ -42,9 +42,8 @@ function WidgetPresentation({ data, type }) {
     case WIDGET_APPS:
       return <WidgetApps.Container widgetData={data} />
 
-    // hiding for FW-4713
-    // case WIDGET_CONTACT:
-    //   return <WidgetContactUs.Container widgetData={data} />
+    case WIDGET_CONTACT:
+      return <WidgetContactUs.Container widgetData={data} />
 
     case WIDGET_GALLERY:
       return <Gallery.Container widgetData={data} />

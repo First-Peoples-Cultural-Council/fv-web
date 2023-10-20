@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 // FPCC
 import WidgetContactUsPresentation from 'components/WidgetContactUs/WidgetContactUsPresentation'
 import WidgetContactUsData from 'components/WidgetContactUs/WidgetContactUsData'
+import { useUserStore } from 'context/UserContext'
 
 function WidgetContactUsContainer({ widgetData }) {
   const { title, text, textWithFormatting } = widgetData?.settings
   const { siteTitle, links, submitHandler } = WidgetContactUsData({
     widgetData,
   })
+
+  const { user } = useUserStore()
 
   return (
     <WidgetContactUsPresentation
@@ -19,6 +22,7 @@ function WidgetContactUsContainer({ widgetData }) {
       textWithFormatting={textWithFormatting}
       links={links}
       submitHandler={submitHandler}
+      user={user}
     />
   )
 }

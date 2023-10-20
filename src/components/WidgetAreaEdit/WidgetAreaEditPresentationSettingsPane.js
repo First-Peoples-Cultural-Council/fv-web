@@ -17,12 +17,14 @@ import {
 } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import {
+  WIDGET_CONTACT,
   WIDGET_WOTD,
   SETTING_WYSIWYG,
   SETTING_AUDIO,
   SETTING_IMAGE,
 } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
+import { useContactUsEmailList } from 'common/dataHooks/useContactUs'
 
 function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
@@ -36,6 +38,8 @@ function WidgetAreaEditPresentationSettingsPane({
     handleRemoveWidget()
     setRemoveModalOpen(false)
   }
+
+  const { emailListAsString } = useContactUsEmailList()
 
   const getSettings = () => {
     if (currentWidget?.type === WIDGET_WOTD) {
@@ -189,6 +193,32 @@ function WidgetAreaEditPresentationSettingsPane({
               </div>
               {getSettings()}
             </div>
+            {currentWidget?.type === WIDGET_CONTACT && (
+              <div className="mt-6">
+                <dt className="mb-1 text-sm font-bold text-primary-light">
+                  Contact List
+                </dt>
+                <div className="col-span-12">
+                  <div className="mt-2 text-xs text-fv-charcoal-light italic">
+                    (Please contact support at hello@firstvoices.com to update
+                    this list)
+                  </div>
+                  {emailListAsString?.length > 0 ? (
+                    <div>
+                      <div>
+                        Contact us emails will be sent to the following
+                        addresses:
+                      </div>
+                      <div>{emailListAsString}</div>
+                    </div>
+                  ) : (
+                    <div>
+                      Could not find any emails to send contact messages to.
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ) : (
