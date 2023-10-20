@@ -26,6 +26,7 @@ function WidgetTextPresentation({ widgetData }) {
     audio,
     bg,
     bgImage,
+    mockData,
   } = widgetData.settings
   const format = widgetData?.format || FORMAT_LEFT
 
@@ -44,6 +45,7 @@ function WidgetTextPresentation({ widgetData }) {
           className="w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover"
           id={image}
           alt={title}
+          mockData={mockData}
         />
       </div>
     ) : null

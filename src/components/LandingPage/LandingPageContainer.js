@@ -7,11 +7,11 @@ import LandingKeyboards from 'components/LandingKeyboards'
 import WidgetArea from '../WidgetArea/index'
 
 function LandingPageContainer() {
-  const { landingPageUid } = LandingPageData()
+  const { whyData, aboutData, quotesData } = LandingPageData()
   return (
     <div id="LandingPageContainer">
       <LandingBanner.Container />
-      <WidgetArea.Container id={landingPageUid} />
+      <WidgetArea.Container widgetData={[whyData, aboutData, quotesData]} />
       <LandingKeyboards.Container />
     </div>
   )
