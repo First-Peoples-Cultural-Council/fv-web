@@ -16,14 +16,18 @@ const joinRequests = {
       .json(),
   approve: async ({ sitename, id, properties }) =>
     apiBase()
-      .put(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/approve/`, {
+      .post(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/approve/`, {
         json: properties,
       })
       .json(),
   ignore: async ({ sitename, id }) =>
-    apiBase().put(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/ignore/`).json(),
+    apiBase()
+      .post(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/ignore/`)
+      .json(),
   reject: async ({ sitename, id }) =>
-    apiBase().put(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/reject/`).json(),
+    apiBase()
+      .post(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/reject/`)
+      .json(),
   delete: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}`).json(),
 }
