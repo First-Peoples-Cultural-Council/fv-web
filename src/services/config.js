@@ -4,11 +4,6 @@ import ky from 'ky'
 import GlobalConfiguration from 'src/GlobalConfiguration'
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 
-export const apiV1 = ky.create({
-  prefixUrl: GlobalConfiguration.V1_API_URL,
-  timeout: 60000,
-})
-
 export function apiBase() {
   return ky.create({
     prefixUrl: GlobalConfiguration.API_URL,

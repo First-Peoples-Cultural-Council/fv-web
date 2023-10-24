@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>FirstVoices</title>
-    <base href="/">
+    <base href="/" />
     <meta
       name="description"
       content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture and linguistic history."
@@ -59,6 +59,23 @@
         background-color: rgb(49, 49, 51);
       }
     </style>
+    
+    <!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://analytics.firstvoices.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '4']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
   </head>
 
   <body class="h-full">
@@ -68,18 +85,15 @@
 
     <% if (CONFIGURATION_SOURCE === 'SSI') { %>
     <script type="text/javascript">
-      let SSI_V1_API_URL = '<!--#echo var="V1_API_URL" -->'
       let SSI_API_URL = '<!--#echo var="API_URL" -->'
     </script>
-    <% } %>
-    <% if (CONFIGURATION_SOURCE === 'Caddy') { %>
+    <% } %> <% if (CONFIGURATION_SOURCE === 'Caddy') { %>
     <script type="text/javascript">
-      let SSI_V1_API_URL = '{{env "V1_API_URL"}}';
-      let SSI_API_URL = '{{env "API_URL"}}';
-      let SSI_AWS_CLIENT_ID = '{{env "AWS_CLIENT_ID"}}';
-      let SSI_OIDC_AUTHORITY_URL = '{{env "OIDC_AUTHORITY_URL"}}';
-      let SSI_OAUTH2_REDIRECT_URL = '{{env "OAUTH2_REDIRECT_URL"}}';
-      let SSI_END_SESSION_URL = '{{env "END_SESSION_URL"}}';
+      let SSI_API_URL = '{{env "API_URL"}}'
+      let SSI_AWS_CLIENT_ID = '{{env "AWS_CLIENT_ID"}}'
+      let SSI_OIDC_AUTHORITY_URL = '{{env "OIDC_AUTHORITY_URL"}}'
+      let SSI_OAUTH2_REDIRECT_URL = '{{env "OAUTH2_REDIRECT_URL"}}'
+      let SSI_END_SESSION_URL = '{{env "END_SESSION_URL"}}'
     </script>
     <% } %>
 

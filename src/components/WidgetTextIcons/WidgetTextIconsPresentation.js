@@ -10,12 +10,17 @@ import ImgFromId from 'components/ImgFromId'
 import Elders from 'assets/images/elders-landing.png'
 
 function WidgetTextIconsPresentation({ widgetData }) {
-  const { title, textWithFormatting, image } = widgetData.settings
+  const { title, textWithFormatting, image, mockData } = widgetData.settings
   const imageStyling =
     'hidden lg:inline object-cover object-center overflow-hidden md:w-7/12 pt-4 md:rounded-r-[78px]'
   const getImage = () =>
     image ? (
-      <ImgFromId.Container className={imageStyling} id={image} alt={title} />
+      <ImgFromId.Container
+        className={imageStyling}
+        id={image}
+        alt={title}
+        mockData={mockData}
+      />
     ) : (
       <img className={imageStyling} src={Elders} alt={title} />
     )

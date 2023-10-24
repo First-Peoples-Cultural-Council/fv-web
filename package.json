@@ -22,10 +22,9 @@
     "node": "^18.16.0"
   },
   "scripts": {
-    "start": "webpack serve --env API_URL=https://fv-be-dev.eks.firstvoices.io/api/1.0/ --config webpack/webpack.development.js",
-    "startDev": "webpack serve --env NUXEO_URL=https://dev.firstvoices.com/nuxeo V1_API_URL=https://v2.dev.firstvoices.com/nuxeo/api/v1/ API_URL=https://fv-be-dev.eks.firstvoices.io/api/1.0/ --config webpack/webpack.development.js",
-    "startPreprod": "webpack serve --env NUXEO_URL=https://preprod.firstvoices.com V1_API_URL=https://preprod.firstvoices.com/nuxeo/api/v1/ API_URL=https://fv-be-dev.eks.firstvoices.io/api/1.0/ --config webpack/webpack.development.js",
-    "startProxiedPreprod": "webpack serve --env NUXEO_URL=https://preprod.firstvoices.com V1_API_URL=https://localhost:3000/nuxeo/api/v1/ API_URL=https://fv-be-dev.eks.firstvoices.io/api/1.0/ --config webpack/webpack.proxied.preprod.js",
+    "start": "webpack serve --env API_URL=http://localhost:8000/api/1.0/ --config webpack/webpack.development.js",
+    "startDev": "webpack serve --env API_URL=https://fv-be-dev.eks.firstvoices.io/api/1.0/ --config webpack/webpack.development.js",
+    "startPreprod": "webpack serve --env API_URL=https://fv-be-preprod.eks.firstvoices.io/api/1.0/ --config webpack/webpack.development.js",
     "startInSkaffold": "webpack serve --progress --config webpack/webpack.skaffold.js --disable-host-check",
     "build:production": "webpack --color --progress --config webpack/webpack.production.js",
     "prepare": "husky install",
