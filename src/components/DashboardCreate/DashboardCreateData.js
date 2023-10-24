@@ -2,74 +2,93 @@
 import { useSiteStore } from 'context/SiteContext'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
-function DashboardCreateData() {
+function DashboardCreateData({ urlPrefix = '' }) {
   const { site } = useSiteStore()
 
-  const tileContent = [
-    {
+  function addUrlPrefix(href) {
+    if (!urlPrefix) {
+      return href
+    }
+
+    return [urlPrefix, href].join('/')
+  }
+
+  const createTiles = {
+    WORD: {
       icon: 'Word',
       name: 'Create a Word',
       description: 'Add a new word to your dictionary',
-      href: 'word',
+      href: addUrlPrefix('word'),
       iconColor: 'wordText',
       auth: ASSISTANT,
     },
-    {
+    PHRASE: {
       icon: 'Phrase',
       name: 'Create a Phrase',
       description: 'Add a new phrase to your dictionary',
-      href: 'phrase',
+      href: addUrlPrefix('phrase'),
       iconColor: 'phraseText',
       auth: ASSISTANT,
     },
-    {
-      icon: 'WebPages',
-      name: 'Create a Custom Page',
-      description: 'Add a new page to your site',
-      href: 'page',
-      iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
-      icon: 'Widget',
-      name: 'Create a Widget',
-      description: "Add a new Widget to your site's collection",
-      href: 'widget',
-      iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
+    SONG: {
       icon: 'Song',
       name: 'Create a Song',
       description: 'Add a new song to your site',
-      href: 'song',
+      href: addUrlPrefix('song'),
       iconColor: 'songText',
       auth: ASSISTANT,
     },
-    {
+    STORY: {
       icon: 'Story',
       name: 'Create a Story',
       description: 'Add a new story to your site',
-      href: 'story',
+      href: addUrlPrefix('story'),
       iconColor: 'storyText',
       auth: ASSISTANT,
     },
-    {
-      icon: 'Category',
-      name: 'Add a Category',
-      description: 'Add a new category to your dictionary',
-      href: 'category',
-      iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
+    SPEAKER: {
       icon: 'Speak',
       name: 'Add a Speaker',
       description: 'Add a new speaker to your site',
-      href: 'speaker',
-      iconColor: 'wordText',
+      href: addUrlPrefix('speaker'),
+      iconColor: 'storyText',
       auth: EDITOR,
     },
+    CATEGORY: {
+      icon: 'Category',
+      name: 'Add a Category',
+      description: 'Add a new category to your dictionary',
+      href: addUrlPrefix('category'),
+      iconColor: 'tertiaryB',
+      auth: LANGUAGE_ADMIN,
+    },
+    WIDGET: {
+      icon: 'Widget',
+      name: 'Create a Widget',
+      description: "Add a new Widget to your site's collection",
+      href: addUrlPrefix('widget'),
+      iconColor: 'songText',
+      auth: LANGUAGE_ADMIN,
+    },
+    PAGE: {
+      icon: 'WebPages',
+      name: 'Create a Custom Page',
+      description: 'Add a new page to your site',
+      href: addUrlPrefix('page'),
+      iconColor: 'tertiaryA',
+      auth: LANGUAGE_ADMIN,
+    },
+  }
+
+  const tileContent = [
+    createTiles.WORD,
+    createTiles.PHRASE,
+    createTiles.SONG,
+    createTiles.STORY,
+    createTiles.SPEAKER,
+    createTiles.CATEGORY,
+    createTiles.WIDGET,
+    createTiles.PAGE,
   ]
   const headerContent = {
     title: 'Create',
@@ -81,6 +100,7 @@ function DashboardCreateData() {
     headerContent,
     site,
     tileContent,
+    createTiles,
   }
 }
 
