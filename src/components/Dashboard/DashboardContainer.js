@@ -16,7 +16,11 @@ function DashboardContainer() {
   const { currentUser, site, homeTiles, isLoading, logout } = DashboardData()
   return (
     <Loading.Container isLoading={isLoading}>
-      <DashboardPresentation currentUser={currentUser} site={site}>
+      <DashboardPresentation
+        currentUser={currentUser}
+        site={site}
+        logout={logout}
+      >
         <Routes>
           <Route
             path="profile"

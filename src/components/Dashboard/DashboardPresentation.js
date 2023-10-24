@@ -8,12 +8,28 @@ import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 import { ASSISTANT, MEMBER, EDITOR } from 'common/constants/roles'
 
-function DashboardPresentation({ children, currentUser, site }) {
+function DashboardPresentation({ children, currentUser, site, logout }) {
+  const logoutButton = (
+    <div className="flex content-end p-2 text-sm font-medium text-gray-300 hover:bg-fv-charcoal-light hover:text-white">
+      <button
+        type="button"
+        onClick={logout}
+        className="space-y-1 flex w-full block py-4 px-2 "
+      >
+        {getIcon(
+          'LogOut',
+          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+        )}
+        <span>SIGN OUT</span>
+      </button>
+    </div>
+  )
+
   return (
     <div data-testid="DashboardPresentation">
       {/* Sidebar */}
       <div className="flex w-64 flex-col fixed inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal">
+        <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4 mb-5">
               {getIcon('FVLogo', 'fill-current text-white h-8 w-auto')}
@@ -30,7 +46,10 @@ function DashboardPresentation({ children, currentUser, site }) {
               </div>
             </nav>
           </div>
-          {userProfile(currentUser)}
+          <div>
+            {logoutButton}
+            {userProfile(currentUser)}
+          </div>
         </div>
       </div>
       <div className="bg-gray-200 pl-64 flex flex-col min-h-screen">
@@ -160,11 +179,12 @@ const userProfile = (user) => (
 )
 
 // PROPTYPES
-const { node, object } = PropTypes
+const { node, object, func } = PropTypes
 DashboardPresentation.propTypes = {
   children: node,
   currentUser: object,
   site: object,
+  logout: func,
 }
 
 export default DashboardPresentation
