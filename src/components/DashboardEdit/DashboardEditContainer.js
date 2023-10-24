@@ -27,7 +27,9 @@ import DashboardWidgets from 'components/DashboardWidgets'
 import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditContainer() {
-  const { tileContent, headerContent, site } = DashboardEditData()
+  const { tileContent, headerContent, site } = DashboardEditData({
+    urlPrefix: '',
+  })
   return (
     <div id="DashboardEditContainer">
       <Routes>
