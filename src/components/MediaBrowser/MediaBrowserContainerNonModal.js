@@ -52,7 +52,6 @@ function MediaBrowserContainerNonModal({ docType }) {
               </h1>
               <BrowserComponent
                 data={media}
-                docType={docType}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
                 setCurrentFile={setCurrentFile}

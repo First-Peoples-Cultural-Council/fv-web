@@ -2,12 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { IMAGE, VIDEO } from 'common/constants'
-import { mediaAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 import getIcon from 'common/utils/getIcon'
 function MediaItemsLayoutVisual({
   data,
-  docType,
   infiniteScroll,
   currentFile,
   setCurrentFile,
@@ -28,11 +25,7 @@ function MediaItemsLayoutVisual({
             data?.pages?.map((page, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
-                {page.results.map((rawDocument) => {
-                  const doc = mediaAdaptor({
-                    type: docType,
-                    data: rawDocument,
-                  })
+                {page.results.map((doc) => {
                   if (savedMedia?.some((elemId) => elemId === doc?.id)) {
                     // If a media file is already attached to the document
                     // it will not be presented as a choice in the selectMedia dialog box
@@ -100,10 +93,9 @@ function MediaItemsLayoutVisual({
   )
 }
 // PROPTYPES
-const { func, array, object, oneOf, string, bool } = PropTypes
+const { func, array, object, string, bool } = PropTypes
 MediaItemsLayoutVisual.propTypes = {
   data: object,
-  docType: oneOf([IMAGE, VIDEO]),
   infiniteScroll: object,
   currentFile: object,
   setCurrentFile: func,

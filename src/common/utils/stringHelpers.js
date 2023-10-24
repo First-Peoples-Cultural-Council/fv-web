@@ -20,6 +20,10 @@ import {
   TYPE_WORD,
   TYPE_STORY,
   TYPE_SONG,
+  TYPE_MEDIA,
+  AUDIO,
+  IMAGE,
+  VIDEO,
   UUID_REGEX,
 } from 'common/constants'
 
@@ -234,6 +238,38 @@ export const getPresentationPropertiesForType = (type) => {
         plural: 'words and phrases',
         slug: 'dictionary',
         color: 'word',
+      }
+    case TYPE_MEDIA:
+      return {
+        uppercase: 'MEDIA',
+        singular: 'media',
+        plural: 'media',
+        slug: 'search',
+        color: 'primary',
+      }
+    case AUDIO:
+      return {
+        uppercase: 'AUDIO',
+        singular: 'audio',
+        plural: 'audio',
+        slug: 'audio',
+        color: 'primary',
+      }
+    case IMAGE:
+      return {
+        uppercase: 'IMAGE',
+        singular: 'image',
+        plural: 'images',
+        slug: 'image',
+        color: 'primary',
+      }
+    case VIDEO:
+      return {
+        uppercase: 'VIDEO',
+        singular: 'video',
+        plural: 'videos',
+        slug: 'video',
+        color: 'primary',
       }
     case TYPE_ENTRY:
     default:

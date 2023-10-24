@@ -2,36 +2,33 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
 function DashboardMediaData() {
   const { site } = useSiteStore()
   const [searchParams] = useSearchParams()
 
-  const docType = searchParams.get('type')
-    ? getFriendlyDocType({ docType: searchParams.get('type') })
-    : null
+  const docType = searchParams.get('types') || null
 
   const tileContent = [
     {
       icon: 'Microphone',
       name: 'Audio',
       description: 'Manage your audio files',
-      href: 'browser?type=audio',
+      href: 'browser?types=audio',
       iconColor: 'songText',
     },
     {
       icon: 'Images',
       name: 'Images',
       description: 'Manage your images',
-      href: 'browser?type=images',
+      href: 'browser?types=image',
       iconColor: 'wordText',
     },
     {
       icon: 'Video',
       name: 'Videos',
       description: 'Manage your videos',
-      href: 'browser?type=videos',
+      href: 'browser?types=video',
       iconColor: 'storyText',
     },
   ]

@@ -2,10 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { mediaAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
-import { AUDIO } from 'common/constants'
 
 function MediaItemsLayoutAudio({
   data,
@@ -48,12 +46,8 @@ function MediaItemsLayoutAudio({
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {data?.pages?.map((page) => (
-                <React.Fragment key={page?.nextPage}>
-                  {page.results.map((rawAudioDoc) => {
-                    const audioFile = mediaAdaptor({
-                      type: AUDIO,
-                      data: rawAudioDoc,
-                    })
+                <React.Fragment key={page?.pageNumber}>
+                  {page.results.map((audioFile) => {
                     if (
                       savedMedia?.some((elemId) => elemId === audioFile?.id)
                     ) {
@@ -63,7 +57,7 @@ function MediaItemsLayoutAudio({
                     }
                     return (
                       <tr
-                        key={audioFile.id}
+                        key={audioFile?.id}
                         className={`${
                           audioFile?.id === currentFile?.id
                             ? 'ring-2 ring-offset-2 ring-primary'

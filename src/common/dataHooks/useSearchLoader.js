@@ -7,13 +7,20 @@ import PropTypes from 'prop-types'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import api from 'services/api'
 import {
+  AUDIO,
+  IMAGE,
+  VIDEO,
   SEARCH,
   TYPE_PHRASE,
   TYPE_SONG,
   TYPE_STORY,
   TYPE_WORD,
 } from 'common/constants'
-import { storySummaryAdaptor, songSummaryAdaptor } from 'common/dataAdaptors'
+import {
+  storySummaryAdaptor,
+  songSummaryAdaptor,
+  mediaAdaptor,
+} from 'common/dataAdaptors'
 
 /**
  * Calls search API and provides search results and infinite scroll info.
@@ -62,6 +69,13 @@ function useSearchLoader({ searchParams }) {
       case TYPE_STORY:
         return {
           ...storySummaryAdaptor({ item: result?.entry }),
+          ...baseObject,
+        }
+      case AUDIO:
+      case IMAGE:
+      case VIDEO:
+        return {
+          ...mediaAdaptor({ type: result?.type, data: result?.entry }),
           ...baseObject,
         }
       default:
