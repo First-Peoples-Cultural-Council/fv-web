@@ -23,29 +23,29 @@ function MediaItemsLayoutAudio({
 
   return (
     <div id="MediaItemsLayoutAudio">
-      {data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0 && (
-        <div>
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                {selection && (
-                  <th scope="col" className={headerClass}>
-                    {selection}
-                  </th>
-                )}
+      <div>
+        <table className="w-full table-fixed divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              {selection && (
                 <th scope="col" className={headerClass}>
-                  Audio
+                  {selection}
                 </th>
-                <th scope="col" className={headerClass}>
-                  Title
-                </th>
-                <th scope="col" className={headerClass}>
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {data?.pages?.map((page) => (
+              )}
+              <th scope="col" className={headerClass}>
+                Audio
+              </th>
+              <th scope="col" className={headerClass}>
+                Title
+              </th>
+              <th scope="col" className={headerClass}>
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {data?.pages?.[0]?.results?.length &&
+              data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>
                   {page.results.map((audioFile) => {
                     if (
@@ -84,7 +84,7 @@ function MediaItemsLayoutAudio({
                             audioObject={audioFile}
                           />
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+                        <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal">
                           {audioFile.title}
                         </td>
                         <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left">
@@ -95,20 +95,19 @@ function MediaItemsLayoutAudio({
                   })}
                 </React.Fragment>
               ))}
-            </tbody>
-          </table>
-          <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
-            <button
-              type="button"
-              className={!hasNextPage ? 'cursor-text' : ''}
-              onClick={() => fetchNextPage()}
-              disabled={!hasNextPage || isFetchingNextPage}
-            >
-              {loadLabel}
-            </button>
-          </div>
+          </tbody>
+        </table>
+        <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
+          <button
+            type="button"
+            className={!hasNextPage ? 'cursor-text' : ''}
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}
+          >
+            {loadLabel}
+          </button>
         </div>
-      )}
+      </div>
     </div>
   )
 }

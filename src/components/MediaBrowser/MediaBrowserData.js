@@ -18,20 +18,18 @@ function MediaBrowserData({ docType }) {
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_MEDIA
 
-  // eslint-disable-next-line no-unused-vars
-  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
-    useSearchBoxNavigation({
-      initialSearchType: urlSearchType,
-    })
+  const { searchType } = useSearchBoxNavigation({
+    initialSearchType: urlSearchType,
+  })
 
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
-  // eslint-disable-next-line no-unused-vars
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
   const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
 
   // Add search Term
   const _searchParams = new URLSearchParams({
+    q: searchTerm,
     [TYPES]: searchType,
   })
 
@@ -48,10 +46,10 @@ function MediaBrowserData({ docType }) {
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
       navigate(
-        `/${sitename}/dashboard/media/browser?type=${docType}&q=${searchInputValue}`,
+        `/${sitename}/dashboard/media/browser?types=${docType}&q=${searchInputValue}`,
       )
     } else {
-      navigate(`/${sitename}/dashboard/media/browser?type=${docType}`)
+      navigate(`/${sitename}/dashboard/media/browser?types=${docType}`)
     }
   }
 
