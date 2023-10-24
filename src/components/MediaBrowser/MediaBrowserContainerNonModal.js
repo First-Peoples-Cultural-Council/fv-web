@@ -20,7 +20,7 @@ function MediaBrowserContainerNonModal({ docType }) {
     isLoadingEntries,
     loadRef,
     loadLabel,
-    friendlyDocTypeLabel,
+    docTypePlural,
   } = MediaBrowserData({ docType })
 
   const hasResults = !!(
@@ -36,7 +36,7 @@ function MediaBrowserContainerNonModal({ docType }) {
   return (
     <SearchSelector.Presentation
       searchQuery={searchValue}
-      searchPromptText={`Search all ${friendlyDocTypeLabel}`}
+      searchPromptText={`Search all ${docTypePlural}`}
       setSearchQuery={handleTextFieldChange}
       search={handleSearchSubmit}
       headerSection=""
@@ -48,7 +48,7 @@ function MediaBrowserContainerNonModal({ docType }) {
                 id="results-header"
                 className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
               >
-                {friendlyDocTypeLabel}
+                {docTypePlural}
               </h1>
               <BrowserComponent
                 data={media}

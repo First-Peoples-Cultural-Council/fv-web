@@ -7,11 +7,14 @@ import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import { AUDIO, IMAGE, VIDEO, TYPES, TYPE_MEDIA } from 'common/constants'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
 function MediaBrowserData({ docType }) {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
+
+  const docTypePlural = getFriendlyDocType({ docType, plural: true })
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_MEDIA
 
@@ -87,6 +90,7 @@ function MediaBrowserData({ docType }) {
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
+    docTypePlural,
   }
 }
 
