@@ -3,9 +3,15 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
-import { ASSISTANT, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
+import {
+  ASSISTANT,
+  EDITOR,
+  LANGUAGE_ADMIN,
+  MEMBER,
+} from 'common/constants/roles'
 import { useMySites } from 'common/dataHooks/useMySites'
 import useLoginLogout from 'common/hooks/useLoginLogout'
+import { TYPES, TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 
 function DashboardData() {
   const { user } = useUserStore()
@@ -31,6 +37,30 @@ function DashboardData() {
 
   const homeTiles = [
     {
+      icon: 'Word',
+      name: 'Create a Word',
+      description: 'Add a new word to your dictionary',
+      href: 'create/word',
+      iconColor: 'wordText',
+      auth: ASSISTANT,
+    },
+    {
+      icon: 'Phrase',
+      name: 'Create a Phrase',
+      description: 'Add a new phrase to your dictionary',
+      href: 'create/phrase',
+      iconColor: 'phraseText',
+      auth: ASSISTANT,
+    },
+    {
+      icon: 'Phrase',
+      name: 'Edit Words and Phrases',
+      description: 'Edit the words and phrases in your dictionary',
+      href: `entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
+      iconColor: 'storyText',
+      auth: EDITOR,
+    },
+    {
       icon: 'Widget',
       name: 'Create a Widget',
       description: "Add a new Widget to your site's collection",
@@ -53,22 +83,6 @@ function DashboardData() {
       href: 'edit/home',
       iconColor: 'wordText',
       auth: LANGUAGE_ADMIN,
-    },
-    {
-      icon: 'Word',
-      name: 'Create a Word',
-      description: 'Add a new word to your dictionary',
-      href: 'create/word',
-      iconColor: 'wordText',
-      auth: ASSISTANT,
-    },
-    {
-      icon: 'Phrase',
-      name: 'Create a Phrase',
-      description: 'Add a new phrase to your dictionary',
-      href: 'create/phrase',
-      iconColor: 'phraseText',
-      auth: ASSISTANT,
     },
     {
       icon: 'QuestionCircleSolid',
