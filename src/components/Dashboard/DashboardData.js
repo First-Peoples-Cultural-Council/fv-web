@@ -56,7 +56,7 @@ function DashboardData() {
       icon: 'Phrase',
       name: 'Edit Words and Phrases',
       description: 'Edit the words and phrases in your dictionary',
-      href: `entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
+      href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
       iconColor: 'storyText',
       auth: EDITOR,
     },
