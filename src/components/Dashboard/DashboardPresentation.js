@@ -10,17 +10,17 @@ import { ASSISTANT, MEMBER, EDITOR } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site, logout }) {
   const logoutButton = (
-    <div className="flex content-end p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white">
+    <div className="flex content-end p-2 text-sm font-medium text-gray-300 hover:bg-fv-charcoal-light hover:text-white">
       <button
         type="button"
         onClick={logout}
-        className="px-2 py-4 space-y-1 flex"
+        className="space-y-1 flex w-full block py-4 px-2 "
       >
         {getIcon(
           'LogOut',
           'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
         )}
-        <span>LOGOUT</span>
+        <span>SIGN OUT</span>
       </button>
     </div>
   )
@@ -29,7 +29,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
     <div data-testid="DashboardPresentation">
       {/* Sidebar */}
       <div className="flex w-64 flex-col fixed inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal">
+        <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4 mb-5">
               {getIcon('FVLogo', 'fill-current text-white h-8 w-auto')}
@@ -43,11 +43,13 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
               <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
                 {primaryNavigationItems(site?.sitename)}
                 {secondaryNavigationItems(currentUser?.sites)}
-                {logoutButton}
               </div>
             </nav>
           </div>
-          {userProfile(currentUser)}
+          <div>
+            {logoutButton}
+            {userProfile(currentUser)}
+          </div>
         </div>
       </div>
       <div className="bg-gray-200 pl-64 flex flex-col min-h-screen">
