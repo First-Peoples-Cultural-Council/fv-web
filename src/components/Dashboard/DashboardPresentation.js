@@ -8,7 +8,23 @@ import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 import { ASSISTANT, MEMBER, EDITOR } from 'common/constants/roles'
 
-function DashboardPresentation({ children, currentUser, site }) {
+function DashboardPresentation({ children, currentUser, site, logout }) {
+  const logoutButton = (
+    <div className="flex content-end p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white">
+      <button
+        type="button"
+        onClick={logout}
+        className="px-2 py-4 space-y-1 flex"
+      >
+        {getIcon(
+          'LogOut',
+          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+        )}
+        <span>LOGOUT</span>
+      </button>
+    </div>
+  )
+
   return (
     <div data-testid="DashboardPresentation">
       {/* Sidebar */}
@@ -27,6 +43,7 @@ function DashboardPresentation({ children, currentUser, site }) {
               <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
                 {primaryNavigationItems(site?.sitename)}
                 {secondaryNavigationItems(currentUser?.sites)}
+                {logoutButton}
               </div>
             </nav>
           </div>
@@ -160,11 +177,12 @@ const userProfile = (user) => (
 )
 
 // PROPTYPES
-const { node, object } = PropTypes
+const { node, object, func } = PropTypes
 DashboardPresentation.propTypes = {
   children: node,
   currentUser: object,
   site: object,
+  logout: func,
 }
 
 export default DashboardPresentation

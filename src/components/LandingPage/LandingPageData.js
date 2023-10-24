@@ -11,6 +11,7 @@ import {
 
 function LandingPageData() {
   const whyData = {
+    id: 1,
     type: WIDGET_TEXTICONS,
     settings: {
       mockData: true,
@@ -22,6 +23,7 @@ function LandingPageData() {
   }
 
   const aboutData = {
+    id: 2,
     type: WIDGET_TEXT,
     settings: {
       mockData: true,
@@ -37,6 +39,7 @@ function LandingPageData() {
   }
 
   const quotesData = {
+    id: 3,
     type: WIDGET_QUOTES,
     settings: {
       quote1:
