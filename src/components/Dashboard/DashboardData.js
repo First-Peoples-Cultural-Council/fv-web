@@ -3,9 +3,12 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
-import { ASSISTANT, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
+import { EDITOR, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 import { useMySites } from 'common/dataHooks/useMySites'
 import useLoginLogout from 'common/hooks/useLoginLogout'
+import { TYPES, TYPE_WORD, TYPE_PHRASE } from 'common/constants'
+import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
+import DashboardCreateData from 'components/DashboardCreate/DashboardCreateData'
 
 function DashboardData() {
   const { user } = useUserStore()
@@ -29,47 +32,23 @@ function DashboardData() {
     sites: userSitesData,
   }
 
+  const { createTiles } = DashboardCreateData({ urlPrefix: 'create' })
+  const { editTiles } = DashboardEditData({ urlPrefix: 'edit' })
+
   const homeTiles = [
-    {
-      icon: 'Widget',
-      name: 'Create a Widget',
-      description: "Add a new Widget to your site's collection",
-      href: 'create/widget',
-      iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
-      icon: 'WebPages',
-      name: 'Custom Pages',
-      description: 'Manage all custom pages on your site',
-      href: 'edit/pages',
-      iconColor: 'phraseText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
-      icon: 'Home',
-      name: 'Edit Your Homepage',
-      description: 'Edit the main homepage for your site',
-      href: 'edit/home',
-      iconColor: 'wordText',
-      auth: LANGUAGE_ADMIN,
-    },
-    {
-      icon: 'Word',
-      name: 'Create a Word',
-      description: 'Add a new word to your dictionary',
-      href: 'create/word',
-      iconColor: 'wordText',
-      auth: ASSISTANT,
-    },
+    createTiles.WORD,
+    createTiles.PHRASE,
     {
       icon: 'Phrase',
-      name: 'Create a Phrase',
-      description: 'Add a new phrase to your dictionary',
-      href: 'create/phrase',
-      iconColor: 'phraseText',
-      auth: ASSISTANT,
+      name: 'Edit Words and Phrases',
+      description: 'Edit the words and phrases in your dictionary',
+      href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
+      iconColor: 'storyText',
+      auth: EDITOR,
     },
+    createTiles.WIDGET,
+    editTiles.PAGES,
+    editTiles.HOMEPAGE,
     {
       icon: 'QuestionCircleSolid',
       name: 'Support',
