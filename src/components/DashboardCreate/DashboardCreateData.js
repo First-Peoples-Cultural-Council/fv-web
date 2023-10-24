@@ -2,7 +2,7 @@
 import { useSiteStore } from 'context/SiteContext'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
-function DashboardCreateData(urlPrefix = '') {
+function DashboardCreateData({ urlPrefix = '' }) {
   const { site } = useSiteStore()
 
   function addUrlPrefix(href) {

@@ -32,8 +32,8 @@ function DashboardData() {
     sites: userSitesData,
   }
 
-  const { createTiles } = DashboardCreateData('create')
-  const { editTiles } = DashboardEditData('edit')
+  const { createTiles } = DashboardCreateData({ urlPrefix: 'create' })
+  const { editTiles } = DashboardEditData({ urlPrefix: 'edit' })
 
   const homeTiles = [
     createTiles.WORD,

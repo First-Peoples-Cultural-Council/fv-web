@@ -9,7 +9,7 @@ import {
 } from 'common/constants'
 import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
-function DashboardEditData(urlPrefix = '') {
+function DashboardEditData({ urlPrefix = '' }) {
   const { site } = useSiteStore()
 
   function addUrlPrefix(href) {
