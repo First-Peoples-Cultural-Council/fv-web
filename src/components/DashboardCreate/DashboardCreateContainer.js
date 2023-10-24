@@ -17,7 +17,7 @@ import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCreateContainer() {
-  const { tileContent, headerContent, site } = DashboardCreateData()
+  const { tileContent, headerContent, site } = DashboardCreateData('')
   return (
     <div id="DashboardCreateContainer">
       <Routes>
