@@ -52,7 +52,9 @@ function MediaDetailsVisual({ file, docType }) {
                     <dt className="text-fv-charcoal-light">
                       {key.charAt(0).toUpperCase() + key.slice(1)}
                     </dt>
-                    <dd className="text-fv-charcoal">{file[key]}</dd>
+                    <dd className="text-fv-charcoal truncate pl-8">
+                      {file[key]}
+                    </dd>
                   </div>
                 )
               }

@@ -84,10 +84,10 @@ function MediaItemsLayoutAudio({
                             audioObject={audioFile}
                           />
                         </td>
-                        <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal">
+                        <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal truncate">
                           {audioFile.title}
                         </td>
-                        <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left">
+                        <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left truncate">
                           {audioFile?.description}
                         </td>
                       </tr>
