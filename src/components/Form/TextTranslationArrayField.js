@@ -37,6 +37,7 @@ function TextTranslationArrayField({
                     </label>
                     <textarea
                       type="text"
+                      rows={6}
                       className="w-full py-2 border border-gray-300 bg-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg shadow-sm"
                       {...register(`${nameId}.${index}.text`)}
                     />
@@ -55,12 +56,13 @@ function TextTranslationArrayField({
                     </label>
                     <textarea
                       type="text"
+                      rows={6}
                       className="w-full py-2 border border-gray-300 bg-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg shadow-sm"
                       {...register(`${nameId}.${index}.translation`)}
                     />
                     {errors?.[nameId]?.[index]?.translation?.message && (
                       <div className="text-red-500">
-                        {errors?.[nameId]?.[index]?.text?.message}
+                        {errors?.[nameId]?.[index]?.translation?.message}
                       </div>
                     )}
                   </div>
