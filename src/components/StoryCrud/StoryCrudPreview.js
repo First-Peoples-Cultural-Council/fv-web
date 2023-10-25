@@ -165,8 +165,8 @@ function StoryCrudPreview({ storyData }) {
                   <WysiwygBlock
                     jsonString={
                       translate
-                        ? currentPage?.text
-                        : currentPage?.textTranslation
+                        ? currentPage?.textTranslation
+                        : currentPage?.text
                     }
                   />
                   {translateButton()}

@@ -144,7 +144,7 @@ export function useStoryUpdateAudience({ storyId }) {
     mutationFn: updateStory,
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'updated',
-    type: 'story order',
+    type: 'story',
   })
 
   const onSubmit = (formData) => mutation.mutate(formData)

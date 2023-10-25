@@ -8,46 +8,38 @@ import RequireAuth from 'common/RequireAuth'
 import { MEMBER } from 'common/constants/roles'
 
 function DashboardTilesPresentation({ tileContent }) {
+  const tileCount = tileContent.length
+  const rowSize = Math.min(tileCount, 4)
+  const topLeft = 0
+  const topRight = Math.min(rowSize - 1, tileCount - 1)
+  const bottomLeft = Math.floor(tileCount / rowSize - 1 / rowSize) * rowSize
+  const bottomRight = tileCount - 1
+
   const tileClass = (index) => {
     const baseClass =
       'relative group bg-white p-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-secondary'
-    if (tileContent?.length === 1) {
-      return `${baseClass} rounded-lg`
+
+    let tileStyle = baseClass
+    if (index === topLeft) {
+      tileStyle += ' rounded-tl-lg'
     }
-    if (
-      (tileContent.length % 3 === 0 && index === 1) ||
-      (tileContent.length % 3 === 0 && index === tileContent.length - 2)
-    ) {
-      return baseClass
+    if (index === topRight) {
+      tileStyle += ' rounded-tr-lg'
     }
-    if (index === tileContent.length - 2) {
-      return `${baseClass} rounded-bl-lg`
+    if (index === bottomLeft) {
+      tileStyle += ' rounded-bl-lg'
     }
-    if (index === tileContent.length - 1) {
-      return `${baseClass} rounded-br-lg`
+    if (index === bottomRight) {
+      tileStyle += ' rounded-br-lg'
     }
-    if (index === 0) {
-      return `${baseClass} rounded-tl-lg`
-    }
-    if (index === 1) {
-      return `${baseClass} rounded-tr-lg`
-    }
-    return baseClass
+
+    return tileStyle
   }
 
-  const gridClass = () => {
-    const numberOfTiles = tileContent?.length
-    switch (numberOfTiles) {
-      case 1:
-        return 'max-w-lg rounded-lg bg-gray-200 overflow-hidden shadow'
-      case 2:
-        return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
-      case 3:
-        return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-3 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
-      default:
-        return 'divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-4 sm:gap-px rounded-lg bg-gray-200 overflow-hidden shadow'
-    }
-  }
+  const gridClass = () =>
+    tileCount === 1
+      ? 'max-w-lg rounded-lg bg-gray-200 overflow-hidden shadow'
+      : `divide-y divide-gray-200 divide-y-0 grid grid-cols-${rowSize} gap-px rounded-lg bg-gray-200 overflow-hidden shadow`
   return (
     <section id="DashboardTilesPresentation">
       <div className={gridClass()}>
