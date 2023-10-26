@@ -1,12 +1,8 @@
-import { useState, useRef } from 'react'
-import { useNavigate, useLocation, useParams } from 'react-router-dom'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
-import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import api from 'services/api'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
   SUPPORTED_IMAGE_EXTENSIONS,
@@ -15,89 +11,38 @@ import {
   AUDIO,
   IMAGE,
   VIDEO,
+  TYPES,
 } from 'common/constants'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import { useSiteStore } from 'context/SiteContext'
 
 function MediaCrudData({ docType, maxFiles }) {
   const { site } = useSiteStore()
-  const { search } = useLocation()
-  const { sitename } = useParams()
-  const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
 
-  const searchParamsQuery = new URLSearchParams(search).get('q')
-    ? new URLSearchParams(search).get('q')
-    : ''
-  const pluralDocTypeLabel = getFriendlyDocType({
-    docType,
-    plural: true,
-  })
+  const docTypePlural = getFriendlyDocType({ docType, plural: true })
 
   const [selectedMedia, setSelectedMedia] = useState([])
+  const searchParamsQuery = searchParams.get('q') || ''
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
   const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
 
-  // Data Fetch
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isInitialLoading,
-    refetch,
-  } = useInfiniteQuery(
-    [`${pluralDocTypeLabel}-search`, searchTerm],
-    ({ pageParam = 1 }) =>
-      api.media.get({
-        sitename,
-        docType: pluralDocTypeLabel,
-        pageParam,
-      }),
-    {
-      // The query will not execute until the siteId exists
-      enabled: !!site?.id,
-      getNextPageParam: (lastPage) => lastPage.nextPage,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
-
-  const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage }
-
-  const loadRef = useRef(null)
-  useIntersectionObserver({
-    target: loadRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage,
+  const _searchParams = new URLSearchParams({
+    q: searchTerm,
+    [TYPES]: docType,
   })
-
-  const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
+  const { data, infiniteScroll, isInitialLoading, loadRef } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const handleTextFieldChange = (event) => {
     event.preventDefault()
     setSearchInputValue(event.target.value)
   }
+
   const handleSearchSubmit = (event) => {
     event.preventDefault()
     setSearchTerm(searchInputValue)
-    if (docType) {
-      // If in modal trigger refetch NOT navigate
-      refetch()
-    } else if (searchInputValue) {
-      navigate(
-        `/${sitename}/dashboard/media/browser?type=${pluralDocTypeLabel}&q=${searchInputValue}`,
-      )
-    } else if (!searchInputValue) {
-      navigate(
-        `/${sitename}/dashboard/media/browser?type=${pluralDocTypeLabel}`,
-      )
-    }
   }
 
   const mediaSelectHandler = (docId) => {
@@ -135,18 +80,21 @@ function MediaCrudData({ docType, maxFiles }) {
     }
   })()
 
-  const docTypeLabelPlural = getFriendlyDocType({
-    docType,
-    plural: true,
-    isAnd: true,
-  })
+  const getLoadLabel = () => {
+    if (infiniteScroll?.isFetchingNextPage) {
+      return 'Loading more...'
+    }
+    if (infiniteScroll?.hasNextPage) {
+      return 'Load more'
+    }
+    return 'End of results.'
+  }
 
   return {
     site,
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoadingEntries: isInitialLoading,
     loadRef,
     fetchedMedia: data,
     searchValue: searchInputValue,
@@ -155,7 +103,8 @@ function MediaCrudData({ docType, maxFiles }) {
     setSelectedMedia,
     mediaSelectHandler,
     clearSelectedMedia,
-    docTypeLabelPlural,
+    docTypeLabelPlural: docTypePlural,
+    isLoadingEntries: isInitialLoading,
     extensionList,
   }
 }
