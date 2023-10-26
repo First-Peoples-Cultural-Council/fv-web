@@ -1,36 +1,40 @@
-import { useEffect, useRef, useState } from 'react'
-import { useNavigate, useLocation, useParams } from 'react-router-dom'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
+import { AUDIO, IMAGE, VIDEO, TYPES, TYPE_MEDIA } from 'common/constants'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import { mediaAdaptor } from 'common/dataAdaptors/mediaAdaptors'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function MediaBrowserData({ docType }) {
-  const { site } = useSiteStore()
-  const { search } = useLocation()
-  const { sitename } = useParams()
   const navigate = useNavigate()
+  const { sitename } = useParams()
+  const [searchParams] = useSearchParams()
 
-  // Extract search term from URL search params
-  const searchParamsQuery = new URLSearchParams(search).get('q')
-    ? new URLSearchParams(search).get('q')
-    : ''
-  // Friendly Doc Type Label to use in document search
-  const friendlyDocTypeLabel = getFriendlyDocType({
-    docType,
-    plural: true,
+  const docTypePlural = getFriendlyDocType({ docType, plural: true })
+
+  const urlSearchType = searchParams.get(TYPES) || TYPE_MEDIA
+
+  const { searchType } = useSearchBoxNavigation({
+    initialSearchType: urlSearchType,
   })
 
-  const loadRef = useRef(null)
+  const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
   const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
+
+  // Add search Term
+  const _searchParams = new URLSearchParams({
+    q: searchTerm,
+    [TYPES]: searchType,
+  })
+
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
+    useSearchLoader({ searchParams: _searchParams })
 
   const handleTextFieldChange = (event) => {
     event.preventDefault()
@@ -42,55 +46,24 @@ function MediaBrowserData({ docType }) {
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
       navigate(
-        `/${sitename}/dashboard/media/browser?type=${friendlyDocTypeLabel}&q=${searchInputValue}`,
+        `/${sitename}/dashboard/media/browser?types=${docType}&q=${searchInputValue}`,
       )
     } else {
-      navigate(
-        `/${sitename}/dashboard/media/browser?type=${friendlyDocTypeLabel}`,
-      )
+      navigate(`/${sitename}/dashboard/media/browser?types=${docType}`)
     }
   }
 
-  // Data fetch
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isError,
-    isFetchingNextPage,
-    isInitialLoading,
-  } = useInfiniteQuery(
-    [`${docType}-search`, searchTerm],
-    ({ pageParam = 1 }) =>
-      api.media.get({
-        sitename: site?.sitename,
-        docType: friendlyDocTypeLabel,
-        pageParam,
-      }),
-    {
-      // The query will not execute until the siteId exists
-      enabled: !!site?.id,
-      getNextPageParam: (lastPage) => lastPage.nextPage,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-    },
-  )
-
   useEffect(() => {
     if (!currentFile && data?.pages?.[0]?.results) {
-      const firstFile = mediaAdaptor({
-        type: docType,
-        data: data?.pages?.[0]?.results?.[0],
-      })
+      const firstFile = data?.pages?.[0]?.results?.[0]
       setCurrentFile(firstFile)
     }
   }, [currentFile, data, docType])
 
-  const infiniteScroll = { fetchNextPage, hasNextPage, isFetchingNextPage }
   useIntersectionObserver({
     target: loadRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage,
+    onIntersect: infiniteScroll?.fetchNextPage,
+    enabled: infiniteScroll?.hasNextPage,
   })
 
   const getLoadLabel = () => {
@@ -115,7 +88,7 @@ function MediaBrowserData({ docType }) {
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
-    friendlyDocTypeLabel,
+    docTypePlural,
   }
 }
 
