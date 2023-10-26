@@ -20,6 +20,12 @@ function TextArrayField({
     name: nameId,
   })
 
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <Fragment key={`${nameId}_TextArrayField`}>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -34,6 +40,7 @@ function TextArrayField({
                   type="text"
                   className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg"
                   {...register(`${nameId}.${index}.text`)}
+                  onKeyDown={handleKeyDown}
                 />
                 <div className="has-tooltip flex items-center">
                   <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
@@ -41,7 +48,7 @@ function TextArrayField({
                   </span>
                   <button
                     type="button"
-                    aria-label="Delete Translation"
+                    aria-label={`Delete ${label.slice(0, -1)}`}
                     className="inline-flex"
                     onClick={() => remove(index)}
                   >
