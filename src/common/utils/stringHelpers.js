@@ -353,8 +353,12 @@ export const safeJsonParse = (str) => {
 
 // Converts JSON to a string and removes curly brackets, square brackets, and double quotes
 export const convertJsonToReadableString = (json) => {
-  const message = JSON.stringify(json)
-  return message?.replace(/[{}[\]"]+/g, ' ') || ''
+  try {
+    const message = JSON.stringify(json)
+    return message?.replace(/[{}[\]"]+/g, ' ') || ''
+  } catch (e) {
+    return 'Error'
+  }
 }
 
 export const makeTypeSingular = (plural) => {
