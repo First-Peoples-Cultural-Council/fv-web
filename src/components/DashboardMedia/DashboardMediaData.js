@@ -2,33 +2,39 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
+import {
+  TYPE_AUDIO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+  TYPES,
+} from 'common/constants/searchParams'
 
 function DashboardMediaData() {
   const { site } = useSiteStore()
   const [searchParams] = useSearchParams()
 
-  const docType = searchParams.get('types') || null
+  const docType = searchParams.get(`${TYPES}`) || null
 
   const tileContent = [
     {
       icon: 'Microphone',
       name: 'Audio',
       description: 'Manage your audio files',
-      href: 'browser?types=audio',
+      href: `browser?${TYPES}=${TYPE_AUDIO}`,
       iconColor: 'songText',
     },
     {
       icon: 'Images',
       name: 'Images',
       description: 'Manage your images',
-      href: 'browser?types=image',
+      href: `browser?${TYPES}=${TYPE_IMAGE}`,
       iconColor: 'wordText',
     },
     {
       icon: 'Video',
       name: 'Videos',
       description: 'Manage your videos',
-      href: 'browser?types=video',
+      href: `browser?${TYPES}=${TYPE_VIDEO}`,
       iconColor: 'storyText',
     },
   ]

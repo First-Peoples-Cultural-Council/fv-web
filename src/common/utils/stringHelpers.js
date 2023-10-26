@@ -21,9 +21,9 @@ import {
   TYPE_STORY,
   TYPE_SONG,
   TYPE_MEDIA,
-  AUDIO,
-  IMAGE,
-  VIDEO,
+  TYPE_AUDIO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
   UUID_REGEX,
 } from 'common/constants'
 
@@ -247,7 +247,7 @@ export const getPresentationPropertiesForType = (type) => {
         slug: 'search',
         color: 'primary',
       }
-    case AUDIO:
+    case TYPE_AUDIO:
       return {
         uppercase: 'AUDIO',
         singular: 'audio',
@@ -255,7 +255,7 @@ export const getPresentationPropertiesForType = (type) => {
         slug: 'audio',
         color: 'primary',
       }
-    case IMAGE:
+    case TYPE_IMAGE:
       return {
         uppercase: 'IMAGE',
         singular: 'image',
@@ -263,7 +263,7 @@ export const getPresentationPropertiesForType = (type) => {
         slug: 'image',
         color: 'primary',
       }
-    case VIDEO:
+    case TYPE_VIDEO:
       return {
         uppercase: 'VIDEO',
         singular: 'video',
