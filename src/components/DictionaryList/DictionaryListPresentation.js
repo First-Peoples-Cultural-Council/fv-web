@@ -32,6 +32,8 @@ function DictionaryListPresentation({
   const navigate = useNavigate()
   const { setCurrentAudio } = useAudiobar()
 
+  console.log({ items })
+
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
@@ -181,6 +183,7 @@ function DictionaryListPresentation({
                               docTitle={entry?.title}
                               docType={entry?.type}
                               docVisibility={entry?.visibility}
+                              siteVisibility={entry?.siteVisibility}
                               actions={actions}
                               moreActions={moreActions}
                               withConfirmation
