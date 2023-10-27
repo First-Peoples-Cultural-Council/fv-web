@@ -19,7 +19,7 @@ function ShareButton({
   iconStyling,
   withLabels,
 }) {
-  const [shareModelOpen, setShareModalOpen] = useState(false)
+  const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
     <Menu.Item>
       {({ active }) => (
@@ -38,7 +38,7 @@ function ShareButton({
           </button>
           {/* Share Modal */}
           <Modal.Presentation
-            isOpen={shareModelOpen}
+            isOpen={shareModalOpen}
             closeHandler={() => setShareModalOpen(false)}
           >
             <div
