@@ -32,8 +32,6 @@ function DictionaryListPresentation({
   const navigate = useNavigate()
   const { setCurrentAudio } = useAudiobar()
 
-  console.log({ items })
-
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
