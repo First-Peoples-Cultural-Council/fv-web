@@ -51,6 +51,7 @@ function useSearchLoader({ searchParams }) {
       sitename: result?.entry?.site?.slug,
       siteTitle: result?.entry?.site?.title,
       visibility: result?.entry?.visibility,
+      siteVisibility: result?.entry?.site.visibility,
     }
     switch (result?.type) {
       case TYPE_WORD:

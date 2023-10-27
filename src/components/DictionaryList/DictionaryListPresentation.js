@@ -181,6 +181,7 @@ function DictionaryListPresentation({
                               docTitle={entry?.title}
                               docType={entry?.type}
                               docVisibility={entry?.visibility}
+                              siteVisibility={entry?.siteVisibility}
                               actions={actions}
                               moreActions={moreActions}
                               withConfirmation
