@@ -12,8 +12,15 @@ import {
   TYPE_SONG,
   TYPE_STORY,
   TYPE_WORD,
+  TYPE_AUDIO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
 } from 'common/constants'
-import { storySummaryAdaptor, songSummaryAdaptor } from 'common/dataAdaptors'
+import {
+  storySummaryAdaptor,
+  songSummaryAdaptor,
+  mediaAdaptor,
+} from 'common/dataAdaptors'
 
 /**
  * Calls search API and provides search results and infinite scroll info.
@@ -63,6 +70,13 @@ function useSearchLoader({ searchParams }) {
       case TYPE_STORY:
         return {
           ...storySummaryAdaptor({ item: result?.entry }),
+          ...baseObject,
+        }
+      case TYPE_AUDIO:
+      case TYPE_IMAGE:
+      case TYPE_VIDEO:
+        return {
+          ...mediaAdaptor({ type: result?.type, data: result?.entry }),
           ...baseObject,
         }
       default:

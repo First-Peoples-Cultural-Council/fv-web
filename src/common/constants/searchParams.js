@@ -28,6 +28,10 @@ export const TYPE_STORY = 'story'
 export const TYPE_WORD = 'word'
 export const TYPE_ENTRY = 'word,phrase,song,story'
 export const TYPE_DICTIONARY = 'word,phrase'
+export const TYPE_MEDIA = 'audio,image,video'
+export const TYPE_AUDIO = 'audio'
+export const TYPE_IMAGE = 'image'
+export const TYPE_VIDEO = 'video'
 
 /* Param Keys Frontend ONLY */
 export const CHAR = 'char'
