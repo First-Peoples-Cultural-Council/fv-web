@@ -10,20 +10,21 @@ function randomString(length, chars) {
 describe('page tests', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
-    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+    cy.visit(`${Cypress.env('baseUrl')}`)
+    cy.contains('Sign in').click()
     cy.login(
       Cypress.env('CYPRESS_FV_USERNAME'),
       Cypress.env('CYPRESS_FV_PASSWORD'),
     )
     cy.wait(3000)
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.wait(500)
   })
 
   it('View Create Page', () => {
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.wait(500)
-    cy.contains('cn').click()
+    cy.contains('cc').click()
     cy.contains('Dashboard').click()
     cy.contains('Custom Pages').click()
     cy.contains('Create a Custom Page').click()
@@ -31,9 +32,9 @@ describe('page tests', () => {
     // })
 
     // it('View Create Page - check vaidation', () => {
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.wait(500)
-    cy.contains('cn').click()
+    cy.contains('cc').click()
     cy.contains('Dashboard').click()
     cy.contains('Custom Pages').click()
     cy.contains('Create a Custom Page').click()
@@ -48,9 +49,9 @@ describe('page tests', () => {
       17,
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
     )
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.wait(500)
-    cy.contains('cn').click()
+    cy.contains('cc').click()
     cy.contains('Dashboard').click()
     cy.contains('Custom Pages').click()
     cy.contains('Create a Custom Page').click()
@@ -58,10 +59,10 @@ describe('page tests', () => {
     cy.get('#title').type(Cypress._.uniqueId('Title_'))
     cy.get('#subtitle').type(Cypress._.uniqueId('Subtitle_'))
 
-    cy.get('#url').type(rString)
+    cy.get('#slug').type(rString)
 
     cy.contains('Create Page').click()
 
-    cy.contains('View Page').click()
+    // cy.contains('View Page').click()
   })
 })

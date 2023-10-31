@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 function middlestuff() {
+  cy.contains('Add Translation').click()
   cy.get('.justify-between > .w-full').type(
     'an individual who fought for a warrior challenging a ruling of the Klingon High Council',
   )
@@ -9,13 +10,14 @@ function middlestuff() {
   cy.get('.min-w-full > .bg-white > :nth-child(1) > :nth-child(1)').click()
   cy.contains('Insert 1 Audio').click()
 
-  cy.contains('Add category').click()
+  cy.contains('Add Categories').click()
+  cy.wait(4000)
   cy.get('.text-left > .flex-col > :nth-child(1) > :nth-child(1)').click()
   cy.contains('Add Category to document').click()
 
-  cy.contains('Add Notes').click()
+  cy.contains('Add Note').click()
   cy.get(
-    ':nth-child(6) > .mt-2 > .space-y-2 > .justify-between > .w-full',
+    ':nth-child(6) > .mt-2 > .space-y-2 > li > .justify-between > .w-full',
   ).type('this is so note worthy!!!')
 
   cy.contains('Next Step').click()
@@ -25,7 +27,7 @@ function middlestuff() {
   cy.wait(2000)
   cy.contains('Edit').click()
   cy.wait(1000)
-  cy.contains('Edit Words and Phrases').click()
+  cy.contains('Edit Words').click()
 }
 function deletePage(name) {
   cy.contains('Edit Page Header').click()
@@ -38,16 +40,17 @@ describe('word Test', () => {
   beforeEach(() => {
     cy.on('uncaught:exception', () => false)
     cy.viewport(1024, 768)
-    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+    cy.visit(`${Cypress.env('baseUrl')}`)
+    cy.contains('Sign in').click()
     cy.wait(2000)
     cy.login(
       Cypress.env('CYPRESS_FV_USERNAME'),
       Cypress.env('CYPRESS_FV_PASSWORD'),
     )
     cy.wait(3000)
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.wait(2000)
-    cy.contains('cn').click()
+    cy.contains('cc').click()
     cy.contains('Dashboard').click()
     cy.contains('Create').click()
   })
@@ -57,7 +60,22 @@ describe('word Test', () => {
     cy.contains('Finish').click()
   })
 
-  it('create word - i can do better!', () => {
+  it('7.1 - create word', () => {
+    cy.on('uncaught:exception', () => false)
+    cy.viewport(1024, 768)
+    cy.visit(`${Cypress.env('baseUrl')}`)
+    cy.contains('Sign in').click()
+    cy.wait(2000)
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
+    cy.wait(3000)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+    cy.wait(2000)
+    cy.contains('cc').click()
+    cy.contains('Dashboard').click()
+    cy.contains('Create').click()
     const name = `cha'Dich${new Date().getTime()}`
     cy.contains('Create a Word').click()
     cy.contains('Finish').click()
@@ -70,12 +88,28 @@ describe('word Test', () => {
     cy.get('#RemoveWidgetModalContent').contains('Delete').click()
   })
 
-  it('create phrase - i can do better!', () => {
+  it('8.1 - create phrase', () => {
+    cy.on('uncaught:exception', () => false)
+    cy.viewport(1024, 768)
+    cy.visit(`${Cypress.env('baseUrl')}`)
+    cy.contains('Sign in').click()
+    cy.wait(2000)
+    cy.login(
+      Cypress.env('CYPRESS_FV_USERNAME'),
+      Cypress.env('CYPRESS_FV_PASSWORD'),
+    )
+    cy.wait(3000)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+    cy.wait(2000)
+    cy.contains('cc').click()
+    cy.contains('Dashboard').click()
+    cy.contains('Create').click()
     const name = `cha'DIch${new Date().getTime()}`
     cy.contains('Create a Phrase').click()
     cy.contains('Finish').click()
     cy.get('#title').type(name)
     middlestuff()
+    cy.contains('PHRASES').click()
     cy.get('#SearchInput').type(`${name}{enter}`)
     cy.contains(name).click()
     cy.get('a > .inline-flex > span').click()

@@ -31,4 +31,17 @@ describe('log in/out', () => {
     cy.wait(1500)
     cy.contains('Sign out', { timeout: 12000 }).click()
   }) // end of log in
+
+  it('Test login button', () => {
+    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+    cy.contains('Log In').click()
+    cy.contains('Log In').should('exist')
+  })
+
+  it('Test login validation', () => {
+    cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+    cy.get('#username').type('asdfasdfasfafasad')
+    cy.contains('Log In').click()
+    cy.contains('Invalid username or password').should('exist')
+  })
 }) // end of describe

@@ -1,7 +1,7 @@
 describe('Test stories', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.contains('Learn').click()
     cy.contains('Stories').click()
     cy.on('uncaught:exception', () => false)
@@ -11,7 +11,7 @@ describe('Test stories', () => {
 
   it('Click on stories grid view', () => {
     cy.wait(2000)
-    cy.get('[role="list"] li', { timeout: 10000 }).each((_song) => {
+    cy.get('ul li', { timeout: 10000 }).each((_song) => {
       cy.wait(1500)
       cy.wrap(_song).click()
       cy.wait(1500)

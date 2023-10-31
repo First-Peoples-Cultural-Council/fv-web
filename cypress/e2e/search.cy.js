@@ -7,7 +7,7 @@ describe('V2 Search Home Page', () => {
     // i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
     cy.on('uncaught:exception', () => false)
 
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     cy.get('[data-testid=SearchInput]').type('a{enter}')
     cy.wait(1000)
@@ -15,10 +15,11 @@ describe('V2 Search Home Page', () => {
   })
 
   it('Grab a song name and search', () => {
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.contains('Learn').click()
     cy.contains('Songs').click()
-    cy.get(':nth-child(1) > .text-fv-charcoal-light')
+    cy.wait(2000)
+    cy.get('.bg-center > .group-hover:opacity-75 > .text-lg')
       .invoke('text')
       .then((_text) => {
         cy.log(_text)
@@ -26,7 +27,7 @@ describe('V2 Search Home Page', () => {
         cy.get('[data-testid=SearchInput]').type(`${_text}{enter}`)
 
         cy.contains('Resources').click()
-        cy.contains('Mobile App').click()
+        // cy.contains('Mobile App').click()
 
         cy.get('[data-testid="SearchInput"]').type(`${_text}{enter}`)
       })

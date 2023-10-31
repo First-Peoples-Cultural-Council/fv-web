@@ -4,7 +4,7 @@ describe('Browser Sizes', () => {
   it('rotate between view ports ', () => {
     cy.on('uncaught:exception', () => false)
 
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     cy.viewport('macbook-15')
     cy.wait(200)
