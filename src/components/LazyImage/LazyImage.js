@@ -16,38 +16,17 @@ function LazyImage({ alt, imageObject, bgColor, height, width, imgStyling }) {
     }
   }, [])
 
-  let src = ''
-
-  switch (width) {
-    case width <= 100:
-      src = getMediaPath({
-        mediaObject: imageObject,
-        type: IMAGE,
-        size: THUMBNAIL,
-      })
-      break
-    case width > 100 && width <= 560:
-      src = getMediaPath({
-        mediaObject: imageObject,
-        type: IMAGE,
-        size: SMALL,
-      })
-      break
-    case width > 1000:
-      src = getMediaPath({
-        mediaObject: imageObject,
-        type: IMAGE,
-        size: ORIGINAL,
-      })
-      break
-    case width > 560 && width <= 1000:
-    default:
-      src = getMediaPath({
-        mediaObject: imageObject,
-        type: IMAGE,
-        size: MEDIUM,
-      })
-      break
+  const getSize = () => {
+    if (width <= 100) {
+      return THUMBNAIL
+    }
+    if (width <= 560) {
+      return SMALL
+    }
+    if (width <= 1000) {
+      return MEDIUM
+    }
+    return ORIGINAL
   }
 
   const placeholder =
@@ -56,6 +35,12 @@ function LazyImage({ alt, imageObject, bgColor, height, width, imgStyling }) {
       : simpleSvgPlaceholder()
 
   const aspectRatio = width / height
+
+  const src = getMediaPath({
+    mediaObject: imageObject,
+    type: IMAGE,
+    size: getSize(),
+  })
 
   return (
     <div className={`relative overflow-hidden ${imgStyling}`}>

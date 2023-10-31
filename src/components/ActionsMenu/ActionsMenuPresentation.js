@@ -13,6 +13,7 @@ function ActionsMenuPresentation({
   docTitle,
   docType,
   docVisibility,
+  siteVisibility,
   actions,
   moreActions,
   iconStyling,
@@ -73,6 +74,7 @@ function ActionsMenuPresentation({
                         docTitle={docTitle}
                         docType={docType}
                         docVisibility={docVisibility}
+                        siteVisibility={siteVisibility}
                         sitename={sitename}
                       />
                     )}
@@ -104,6 +106,7 @@ ActionsMenuPresentation.propTypes = {
   docTitle: string,
   docType: string,
   docVisibility: string,
+  siteVisibility: string,
   actions: array,
   moreActions: array,
   iconStyling: string,

@@ -20,6 +20,10 @@ import {
   TYPE_WORD,
   TYPE_STORY,
   TYPE_SONG,
+  TYPE_MEDIA,
+  TYPE_AUDIO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
   UUID_REGEX,
 } from 'common/constants'
 
@@ -235,6 +239,38 @@ export const getPresentationPropertiesForType = (type) => {
         slug: 'dictionary',
         color: 'word',
       }
+    case TYPE_MEDIA:
+      return {
+        uppercase: 'MEDIA',
+        singular: 'media',
+        plural: 'media',
+        slug: 'search',
+        color: 'primary',
+      }
+    case TYPE_AUDIO:
+      return {
+        uppercase: 'AUDIO',
+        singular: 'audio',
+        plural: 'audio',
+        slug: 'audio',
+        color: 'primary',
+      }
+    case TYPE_IMAGE:
+      return {
+        uppercase: 'IMAGE',
+        singular: 'image',
+        plural: 'images',
+        slug: 'image',
+        color: 'primary',
+      }
+    case TYPE_VIDEO:
+      return {
+        uppercase: 'VIDEO',
+        singular: 'video',
+        plural: 'videos',
+        slug: 'video',
+        color: 'primary',
+      }
     case TYPE_ENTRY:
     default:
       return {
@@ -317,8 +353,12 @@ export const safeJsonParse = (str) => {
 
 // Converts JSON to a string and removes curly brackets, square brackets, and double quotes
 export const convertJsonToReadableString = (json) => {
-  const message = JSON.stringify(json)
-  return message?.replace(/[{}[\]"]+/g, ' ') || ''
+  try {
+    const message = JSON.stringify(json)
+    return message?.replace(/[{}[\]"]+/g, ' ') || ''
+  } catch (e) {
+    return 'Error'
+  }
 }
 
 export const makeTypeSingular = (plural) => {

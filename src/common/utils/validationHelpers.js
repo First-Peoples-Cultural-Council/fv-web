@@ -40,7 +40,7 @@ export const definitions = {
       yup.object({
         text: stringWithMax(charCount).min(
           1,
-          'This field cannot be empty. Remove it if you do not want to inlcude it.',
+          'This field cannot be empty. Remove it if you do not want to include it.',
         ),
       }),
     ),

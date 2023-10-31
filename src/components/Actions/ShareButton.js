@@ -14,11 +14,12 @@ function ShareButton({
   docTitle,
   docType,
   docVisibility,
+  siteVisibility,
   sitename,
   iconStyling,
   withLabels,
 }) {
-  const [shareModelOpen, setShareModalOpen] = useState(false)
+  const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
     <Menu.Item>
       {({ active }) => (
@@ -37,14 +38,17 @@ function ShareButton({
           </button>
           {/* Share Modal */}
           <Modal.Presentation
-            isOpen={shareModelOpen}
+            isOpen={shareModalOpen}
             closeHandler={() => setShareModalOpen(false)}
           >
             <div
               id="ShareModalContent"
               className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
             >
-              {docVisibility === TEAM || docVisibility === MEMBERS ? (
+              {docVisibility === TEAM ||
+              docVisibility === MEMBERS ||
+              siteVisibility === TEAM ||
+              siteVisibility === MEMBERS ? (
                 <div className="text-center font-medium">
                   <p className="text-2xl text-fv-charcoal">
                     This {docType} is visible to
@@ -99,6 +103,7 @@ ShareButton.propTypes = {
   docTitle: string,
   docType: string,
   docVisibility: string,
+  siteVisibility: string,
   sitename: string,
 }
 ShareButton.defaultProps = {

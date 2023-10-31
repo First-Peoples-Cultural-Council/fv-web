@@ -36,7 +36,7 @@ function DictionaryCrudPresentation({
   const activeStepNumber = Number(activeStep)
 
   const validator = yup.object().shape({
-    acknowledgments: definitions.textArray({ charCount: 500 }),
+    acknowledgements: definitions.textArray({ charCount: 500 }),
     alternateSpellings: definitions.textArray(),
     categories: definitions.objectArray(),
     notes: definitions.textArray({ charCount: 500 }),
