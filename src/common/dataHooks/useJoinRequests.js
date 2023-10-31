@@ -30,9 +30,8 @@ export function useJoinRequestCreate() {
 
   const createJoinRequest = async (formData) => {
     const properties = {
-      user: formData?.userEmail,
-      reason: formData?.reason,
-      reason_note: formData?.note,
+      reasons: formData?.reasons,
+      reason_note: formData?.message,
     }
     return api.joinRequests.create({
       sitename,
@@ -50,7 +49,7 @@ export function useJoinRequestCreate() {
   const onSubmit = (formData) => {
     mutation.mutate(formData)
   }
-  return { onSubmit }
+  return { ...mutation, onSubmit }
 }
 
 // APPROVE
@@ -78,7 +77,7 @@ export function useJoinRequestApprove() {
   const onSubmit = (formData) => {
     mutation.mutate(formData)
   }
-  return { onSubmit }
+  return { ...mutation, onSubmit }
 }
 
 // IGNORE
@@ -99,7 +98,7 @@ export function useJoinRequestIgnore() {
   const onSubmit = (id) => {
     mutation.mutate(id)
   }
-  return { onSubmit }
+  return { ...mutation, onSubmit }
 }
 
 // REJECT
@@ -120,7 +119,7 @@ export function useJoinRequestReject() {
   const onSubmit = (id) => {
     mutation.mutate(id)
   }
-  return { onSubmit }
+  return { ...mutation, onSubmit }
 }
 
 // DELETE
@@ -141,5 +140,5 @@ export function useJoinRequestDelete() {
   const onSubmit = (id) => {
     mutation.mutate(id)
   }
-  return { onSubmit }
+  return { ...mutation, onSubmit }
 }
