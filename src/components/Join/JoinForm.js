@@ -77,13 +77,13 @@ function JoinForm({ site, submitHandler }) {
   ]
 
   return (
-    <div className="text-left space-y-10">
-      <div className="text-center space-y-2">
-        <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
+    <div className="text-left text-fv-charcoal space-y-10">
+      <div className="space-y-2">
+        <h1 className="text-2xl leading-10 font-medium">
           Request membership to this language site: <br />{' '}
           <span className="font-bold">{site?.title}</span>
         </h1>
-        <p className="text-base text-fv-charcoal-light px-10">
+        <p className="text-base">
           By joining, you can access this community&apos;s members-only content.
         </p>
       </div>
@@ -91,10 +91,7 @@ function JoinForm({ site, submitHandler }) {
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-10">
           <div className="col-span-12 space-y-2">
-            <label
-              htmlFor="message"
-              className="block font-medium text-fv-charcoal"
-            >
+            <label htmlFor="message" className="block font-medium">
               Why do you want to join?
             </label>
             <Controller
@@ -169,12 +166,9 @@ function JoinForm({ site, submitHandler }) {
             <Form.ValidationError errors={errors} nameId="reasons" />
           </div>
           <div className="col-span-12  space-y-2">
-            <label
-              htmlFor="message"
-              className="block font-medium text-fv-charcoal"
-            >
+            <label htmlFor="message" className="block font-medium">
               Your request will be reviewed by a community language
-              administrator. Write them a message:
+              administrator. <br /> Write them a message:
             </label>
             <div className="mt-1">
               <textarea
@@ -187,7 +181,7 @@ function JoinForm({ site, submitHandler }) {
 
             <Form.ValidationError errors={errors} nameId="message" />
           </div>
-          <div className="col-span-12 flex justify-center">
+          <div className="col-span-12 flex justify-end">
             <Form.SubmitButtons
               submitLabel="Send request"
               submitIcon="Mail"

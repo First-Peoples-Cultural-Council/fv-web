@@ -7,47 +7,26 @@ import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import JoinForm from 'components/Join/JoinForm'
 
-function JoinPresentation({ site, stage, submitHandler }) {
+function JoinPresentation({ site, stage, submitHandler, errorMessage }) {
   const [joinModalOpen, setJoinModalOpen] = useState(false)
 
-  const getSubmittedMessage = () => {
-    if (stage === 'success') {
-      return (
-        <>
-          <div>
-            {getIcon(
-              'Checkmark',
-              'fill-current text-green-500 h-12 w-12 mx-auto',
-            )}
-          </div>
-          <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
-            Request has been sent
-          </h1>
-          <p className="text-base text-fv-charcoal-light">
-            The language administrator for {site?.title} will review your
-            request.
-          </p>
-        </>
-      )
-    }
+  // For Success/Error message
+  const messageHeader =
+    stage === 'success'
+      ? 'Request has been sent'
+      : 'Your request was unsuccessful'
+  const message =
+    stage === 'success'
+      ? `The language administrator for ${site?.title} will review your`
+      : `${errorMessage || 'Please try again at another time.'}`
 
-    if (stage === 'error') {
-      return (
-        <>
-          <div>
-            {getIcon('Close', 'fill-current text-red-500 h-12 w-12 mx-auto')}
-          </div>
-          <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
-            Your request was unsuccessful
-          </h1>
-          <p className="text-base text-fv-charcoal-light">
-            Please try again at another time.
-          </p>
-        </>
-      )
-    }
-    return ''
-  }
+  const icon =
+    stage === 'success'
+      ? getIcon('CheckCircleSolid', 'fill-current text-word h-12 w-12 mx-auto')
+      : getIcon(
+          'TimesCircleSolid',
+          'fill-current text-secondary h-12 w-12 mx-auto',
+        )
 
   return (
     <>
@@ -66,28 +45,37 @@ function JoinPresentation({ site, stage, submitHandler }) {
       >
         <div
           data-testid="JoinModal"
-          className="bg-white max-w-2xl rounded-lg shadow-xl p-6 lg:p-12 overflow-hidden transform transition-all"
+          className="bg-white max-w-2xl rounded-lg shadow-xl p-6 lg:p-10 overflow-hidden transform transition-all"
         >
           {stage === 'form' && (
             <JoinForm site={site} submitHandler={submitHandler} />
           )}
           {(stage === 'success' || stage === 'error') && (
-            <div className="text-center space-y-4">
-              {getSubmittedMessage()}
-              <button
-                type="button"
-                onClick={() => setJoinModalOpen(false)}
-                className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-              >
-                Close
-              </button>
-              <Link
-                type="button"
-                to="/languages"
-                className="py-2 px-4 text-sm font-medium text-primary hover:text-primary-dark"
-              >
-                Explore Languages Page
-              </Link>
+            <div className="text-center space-y-10">
+              <div>{icon}</div>
+
+              <div className="text-center space-y-2">
+                <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
+                  {messageHeader}
+                </h1>
+                <p className="text-base text-fv-charcoal-light">{message}</p>
+              </div>
+
+              <div className="text-center space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setJoinModalOpen(false)}
+                  className="bg-primary border border-gray-300 rounded-lg shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-primary-dark"
+                >
+                  Close
+                </button>
+                <Link
+                  to="/languages"
+                  className="block py-2 px-4 text-sm font-medium text-primary hover:text-primary-dark"
+                >
+                  Explore Languages Page
+                </Link>
+              </div>
             </div>
           )}
         </div>
@@ -101,6 +89,7 @@ JoinPresentation.propTypes = {
   submitHandler: func,
   site: object,
   stage: string,
+  errorMessage: string,
 }
 
 export default JoinPresentation
