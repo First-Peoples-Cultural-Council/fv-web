@@ -77,20 +77,20 @@ function JoinForm({ site, submitHandler }) {
   ]
 
   return (
-    <div className="text-left">
-      <div className="text-center space-y-4">
+    <div className="text-left space-y-10">
+      <div className="text-center space-y-2">
         <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
           Request membership to this language site: <br />{' '}
           <span className="font-bold">{site?.title}</span>
         </h1>
-        <p className="text-base text-fv-charcoal-light">
+        <p className="text-base text-fv-charcoal-light px-10">
           By joining, you can access this community&apos;s members-only content.
         </p>
       </div>
 
       <form onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-6">
-          <div className="col-span-12">
+        <div className="mt-6 grid grid-cols-12 gap-10">
+          <div className="col-span-12 space-y-2">
             <label
               htmlFor="message"
               className="block font-medium text-fv-charcoal"
@@ -105,19 +105,23 @@ function JoinForm({ site, submitHandler }) {
               render={({ field: { value, onChange } }) => (
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
                   {({ open }) => (
-                    <div className="relative w-full">
-                      <Listbox.Button className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
-                        <span className="inline-flex">
-                          {value?.length < 1
-                            ? 'Choose reason'
-                            : value?.map((reason) => reason?.label).join(', ')}
-                        </span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                          {getIcon(
-                            'ChevronUpDown',
-                            'h-5 w-5 mr-2 text-fv-charcoal fill-current',
-                          )}
-                        </span>
+                    <div className="relative w-96">
+                      <Listbox.Button className="relative w-full text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                        <div className="w-full inline-flex items-center">
+                          <span className="truncate">
+                            {value?.length < 1
+                              ? 'Choose reason'
+                              : value
+                                  ?.map((reason) => reason?.label)
+                                  .join(', ')}
+                          </span>
+                          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                            {getIcon(
+                              'ChevronUpDown',
+                              'h-5 w-5 mr-2 text-fv-charcoal fill-current',
+                            )}
+                          </span>
+                        </div>
                       </Listbox.Button>
 
                       <Transition
@@ -164,7 +168,7 @@ function JoinForm({ site, submitHandler }) {
             />
             <Form.ValidationError errors={errors} nameId="reasons" />
           </div>
-          <div className="col-span-12">
+          <div className="col-span-12  space-y-2">
             <label
               htmlFor="message"
               className="block font-medium text-fv-charcoal"
@@ -183,7 +187,7 @@ function JoinForm({ site, submitHandler }) {
 
             <Form.ValidationError errors={errors} nameId="message" />
           </div>
-          <div className="col-span-12 flex justify-end mt-6 px-6">
+          <div className="col-span-12 flex justify-center">
             <Form.SubmitButtons
               submitLabel="Send request"
               submitIcon="Mail"

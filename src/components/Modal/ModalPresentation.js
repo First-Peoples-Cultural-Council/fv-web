@@ -47,7 +47,7 @@ function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
             <div
               className={` ${
                 isDashboard ? 'w-3/4-screen' : 'mt-24'
-              } relative inline-block transform transition-all align-middle`}
+              } relative inline-block transform transition-all`}
             >
               {children}
               <button

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -9,15 +10,54 @@ import JoinForm from 'components/Join/JoinForm'
 function JoinPresentation({ site, stage, submitHandler }) {
   const [joinModalOpen, setJoinModalOpen] = useState(false)
 
+  const getSubmittedMessage = () => {
+    if (stage === 'success') {
+      return (
+        <>
+          <div>
+            {getIcon(
+              'Checkmark',
+              'fill-current text-green-500 h-12 w-12 mx-auto',
+            )}
+          </div>
+          <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
+            Request has been sent
+          </h1>
+          <p className="text-base text-fv-charcoal-light">
+            The language administrator for {site?.title} will review your
+            request.
+          </p>
+        </>
+      )
+    }
+
+    if (stage === 'error') {
+      return (
+        <>
+          <div>
+            {getIcon('Close', 'fill-current text-red-500 h-12 w-12 mx-auto')}
+          </div>
+          <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
+            Your request was unsuccessful
+          </h1>
+          <p className="text-base text-fv-charcoal-light">
+            Please try again at another time.
+          </p>
+        </>
+      )
+    }
+    return ''
+  }
+
   return (
     <>
       <button
         type="button"
         data-testid="JoinButton"
         onClick={() => setJoinModalOpen(true)}
-        className="bg-primary rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
+        className="w-full truncate rounded-lg shadow-sm py-2 px-4 text-lg font-medium text-white"
       >
-        <span>Join</span>
+        Join {site?.title}
       </button>
 
       <Modal.Presentation
@@ -26,46 +66,28 @@ function JoinPresentation({ site, stage, submitHandler }) {
       >
         <div
           data-testid="JoinModal"
-          className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-10 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-xl sm:w-full"
+          className="bg-white max-w-2xl rounded-lg shadow-xl p-6 lg:p-12 overflow-hidden transform transition-all"
         >
           {stage === 'form' && (
             <JoinForm site={site} submitHandler={submitHandler} />
           )}
-          {stage === 'success' && (
-            <div className="text-left">
-              <div className="text-center space-y-4">
-                <div>
-                  {getIcon(
-                    'Checkmark',
-                    'fill-current text-green-500 h-12 w-12 mx-auto',
-                  )}
-                </div>
-                <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
-                  Request has been sent
-                </h1>
-                <p className="text-base text-fv-charcoal-light">
-                  The language administrator for {site?.title} will review your
-                  request
-                </p>
-              </div>
-            </div>
-          )}
-          {stage === 'error' && (
-            <div className="text-left">
-              <div className="text-center space-y-4">
-                <div>
-                  {getIcon(
-                    'Close',
-                    'fill-current text-red-500 h-12 w-12 mx-auto',
-                  )}
-                </div>
-                <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
-                  Your request was unsuccessful
-                </h1>
-                <p className="text-base text-fv-charcoal-light">
-                  Please try again at another time.
-                </p>
-              </div>
+          {(stage === 'success' || stage === 'error') && (
+            <div className="text-center space-y-4">
+              {getSubmittedMessage()}
+              <button
+                type="button"
+                onClick={() => setJoinModalOpen(false)}
+                className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+              >
+                Close
+              </button>
+              <Link
+                type="button"
+                to="/languages"
+                className="py-2 px-4 text-sm font-medium text-primary hover:text-primary-dark"
+              >
+                Explore Languages Page
+              </Link>
             </div>
           )}
         </div>
