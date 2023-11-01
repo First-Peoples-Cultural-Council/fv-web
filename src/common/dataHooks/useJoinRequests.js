@@ -1,4 +1,8 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
@@ -25,8 +29,9 @@ export function useJoinRequests() {
   return allJoinRequestsResponse
 }
 
-export function useJoinRequestCreate() {
+export function useJoinRequestCreate(options = {}) {
   const { sitename } = useParams()
+  const queryClient = useQueryClient()
 
   const createJoinRequest = async (formData) => {
     const properties = {
@@ -38,18 +43,17 @@ export function useJoinRequestCreate() {
       properties,
     })
   }
-
-  const mutation = useMutationWithNotification({
+  const _options = {
+    ...options,
     mutationFn: createJoinRequest,
-    queryKeyToInvalidate: [JOIN_REQUESTS, sitename],
-    actionWord: 'created',
-    type: 'join request',
-  })
-
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [JOIN_REQUESTS, sitename] })
+    },
   }
-  return { ...mutation, onSubmit }
+
+  const mutation = useMutation(_options)
+
+  return mutation
 }
 
 // APPROVE
