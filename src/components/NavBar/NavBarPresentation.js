@@ -8,7 +8,7 @@ import NavBarPresentationMenu from 'components/NavBar/NavBarPresentationMenu'
 import NavBarPresentationMobile from 'components/NavBar/NavBarPresentationMobile'
 import SearchSiteForm from 'components/SearchSiteForm'
 import UserMenu from 'components/UserMenu'
-
+import JoinModalButton from 'components/JoinModalButton'
 import getIcon from 'common/utils/getIcon'
 
 function NavBarPresentation({
@@ -78,6 +78,9 @@ function NavBarPresentation({
               </div>
             )}
             {/* User Button and Menu */}
+            <div className="hidden lg:inline-flex">
+              <JoinModalButton.Container site={site} />
+            </div>
             <div className="hidden lg:inline-flex">
               <UserMenu.Container />
             </div>
