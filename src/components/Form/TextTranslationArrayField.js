@@ -21,7 +21,9 @@ function TextTranslationArrayField({
 
   return (
     <Fragment key={`${nameId}_TextTranslationArrayField`}>
-      <label className="block font-medium text-fv-charcoal">{label}</label>
+      <label className="block text-sm font-medium text-fv-charcoal">
+        {label}
+      </label>
       <div className="space-y-2 mt-2">
         <ul className="space-y-4">
           {fields.map((item, index) => (
