@@ -8,7 +8,7 @@ import getIcon from 'common/utils/getIcon'
 import { useUserStore } from 'context/UserContext'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 
-function NavBarPresentationMobile({ menuData, sitename }) {
+function NavBarPresentationMobile({ site }) {
   const { user } = useUserStore()
   const [selectedSubMenu, setSelectedSubMenu] = useState({})
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
@@ -21,6 +21,8 @@ function NavBarPresentationMobile({ menuData, sitename }) {
     setSelectedSubMenu(menuObject)
     setIsSubMenuOpen(!isSubMenuOpen)
   }
+
+  const menuData = site?.menu || {}
 
   function generateMenuItem(menuItem) {
     const hasItems = menuItem?.itemsData?.length > 0
@@ -41,7 +43,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
         ) : (
           <Link
             className="w-full my-3 p-1 flex items-center rounded"
-            to={`/${sitename + menuItem.href}`}
+            to={`/${site?.sitename + menuItem.href}`}
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
             <span className="ml-3 font-medium">{menuItem.title}</span>
@@ -64,9 +66,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 flex items-center rounded ml-3 font-medium">
                 Welcome
-                {user?.displayName && !user?.isAnonymous
-                  ? `, ${user?.displayName}!`
-                  : '!'}
+                {user?.displayName ? `, ${user?.displayName}!` : '!'}
               </li>
             )}
             {menuData?.dictionary && generateMenuItem(menuData?.dictionary)}
@@ -136,10 +136,9 @@ function NavBarPresentationMobile({ menuData, sitename }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { object } = PropTypes
 NavBarPresentationMobile.propTypes = {
-  menuData: object,
-  sitename: string,
+  site: object,
 }
 
 export default NavBarPresentationMobile

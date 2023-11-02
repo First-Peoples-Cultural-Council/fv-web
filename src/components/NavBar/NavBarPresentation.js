@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Transition } from '@headlessui/react'
 
@@ -11,25 +11,20 @@ import UserMenu from 'components/UserMenu'
 
 import getIcon from 'common/utils/getIcon'
 
-function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
-  const [mobileNavbarOpen, setMobileNavbarOpen] = useState(false)
-  const { sitename } = useParams()
-
-  const openCloseMobileNavbar = () => {
-    setMobileNavbarOpen(!mobileNavbarOpen)
-  }
-
-  useEffect(() => {
-    if (mobileNavbarOpen) {
-      setMobileNavbarOpen(false)
-    }
-  }, [useLocation()])
+function NavBarPresentation({
+  isHome,
+  isSearchPage,
+  mobileNavbarOpen,
+  openCloseMobileNavbar,
+  site,
+}) {
+  const menuData = site?.menu || {}
 
   const generateMenu = (menu) => (
     <NavBarPresentationMenu
       key={`NavBarMenu_${menu?.id}`}
       menuItemData={menu}
-      sitename={sitename}
+      sitename={site?.sitename}
     />
   )
 
@@ -57,9 +52,9 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
             {!isHome && (
               <Link
                 className="h-9 text-white flex items-center group bg-fv-charcoal rounded-lg text-lg font-medium hover:text-gray-100"
-                to={`/${sitename}/`}
+                to={`/${site?.sitename}/`}
               >
-                <span className="sr-only">{title}</span>
+                <span className="sr-only">{site?.title}</span>
                 {getIcon('Home', 'fill-current h-full w-auto')}
               </Link>
             )}
@@ -115,22 +110,20 @@ function NavBarPresentation({ isHome, isSearchPage, menuData, title }) {
         leaveTo="translate-x-full"
       >
         <div className="lg:hidden">
-          <NavBarPresentationMobile menuData={menuData} sitename={sitename} />
+          <NavBarPresentationMobile site={site} />
         </div>
       </Transition>
     </nav>
   )
 }
 // PROPTYPES
-const { bool, object, string } = PropTypes
+const { bool, func, object } = PropTypes
 NavBarPresentation.propTypes = {
   isHome: bool,
   isSearchPage: bool,
-  menuData: object,
-  title: string,
-}
-NavBarPresentation.defaultProps = {
-  title: '/',
+  mobileNavbarOpen: bool,
+  openCloseMobileNavbar: func,
+  site: object,
 }
 
 export default NavBarPresentation
