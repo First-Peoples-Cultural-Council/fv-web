@@ -8,9 +8,9 @@ import Modal from 'components/Modal'
 import { MEMBERS } from 'common/constants'
 import placeholder from 'images/cover-thumbnail.png'
 
-function SiteCard({ site, member = false }) {
+function SiteCard({ site, isMember = false }) {
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
-  const isLocked = member ? false : site.visibility === MEMBERS
+  const isLocked = isMember ? false : site.visibility === MEMBERS
 
   const privateSiteModalOpenHandler = () => {
     setPrivateSiteModalOpen(true)
@@ -78,6 +78,6 @@ function SiteCard({ site, member = false }) {
 const { bool, object } = PropTypes
 SiteCard.propTypes = {
   site: object,
-  member: bool,
+  isMember: bool,
 }
 export default SiteCard

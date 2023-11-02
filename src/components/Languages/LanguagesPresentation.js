@@ -23,7 +23,7 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList?.map((site) => (
-              <SiteCard key={site?.id} site={site} member />
+              <SiteCard key={site?.id} site={site} isMember />
             ))}
           </div>
         </div>
@@ -54,9 +54,19 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
                     {language.title}
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
-                    {language.sites.map((site) => (
-                      <SiteCard key={site?.id} site={site} />
-                    ))}
+                    {language.sites.map((site) => {
+                      // Checking if user is a member
+                      const isMember = userSitesList?.some(
+                        (userSite) => userSite.id === site?.id,
+                      )
+                      return (
+                        <SiteCard
+                          key={site?.id}
+                          site={site}
+                          isMember={isMember}
+                        />
+                      )
+                    })}
                   </div>
                 </div>
               )
