@@ -27,13 +27,7 @@ import Story from 'components/Story'
 
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
-import {
-  DOC_PHRASE,
-  DOC_WORD,
-  TYPE_PHRASE,
-  TYPE_WORD,
-  TYPE_DICTIONARY,
-} from 'common/constants'
+import { TYPE_PHRASE, TYPE_WORD, TYPE_DICTIONARY } from 'common/constants'
 
 function SiteFrame({ siteLoading }) {
   return (
@@ -49,17 +43,14 @@ function SiteFrame({ siteLoading }) {
               path="dictionary"
               element={<Dictionary.Container searchType={TYPE_DICTIONARY} />}
             />
-            <Route
-              path="words/:id"
-              element={<DictionaryDetail.Container docType={DOC_WORD} />}
-            />
+            <Route path="words/:id" element={<DictionaryDetail.Container />} />
             <Route
               path="words"
               element={<Dictionary.Container searchType={TYPE_WORD} />}
             />
             <Route
               path="phrases/:id"
-              element={<DictionaryDetail.Container docType={DOC_PHRASE} />}
+              element={<DictionaryDetail.Container />}
             />
             <Route
               path="phrases"

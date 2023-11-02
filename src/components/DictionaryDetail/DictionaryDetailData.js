@@ -4,11 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 // FPCC
 import { useDictionaryEntry } from 'common/dataHooks/useDictionaryEntry'
 
-function DictionaryDetailData({ docId }) {
-  const { id, sitename } = useParams()
+function DictionaryDetailData({ id }) {
+  const { id: paramsId, sitename } = useParams()
   const navigate = useNavigate()
 
-  const idToSend = docId || id
+  const idToSend = id || paramsId
 
   const backHandler = () => navigate(-1)
 
