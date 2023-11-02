@@ -16,6 +16,7 @@ import Game from 'components/Game'
 import Games from 'components/Games'
 import Home from 'components/Home'
 import Immersion from 'components/Immersion'
+import Join from 'components/Join'
 import Loading from 'components/Loading'
 import NavBar from 'components/NavBar'
 import Page from 'components/Page'
@@ -80,6 +81,7 @@ function SiteFrame({ siteLoading }) {
             <Route path="games/:id" element={<Game.Container />} />
             <Route path="games" element={<Games.Presentation />} />
             <Route path="immersion" element={<Immersion.Container />} />
+            <Route path="join" element={<Join.Container />} />
             <Route
               path="apps"
               element={<Resource.Container pageSlug="apps" />}
