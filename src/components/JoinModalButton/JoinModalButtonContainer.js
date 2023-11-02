@@ -7,7 +7,7 @@ import Join from 'components/Join'
 import JoinModalButtonData from 'components/JoinModalButton/JoinModalButtonData'
 
 function JoinModalButtonContainer({ linkStyling, site }) {
-  const { alreadyMember, isAnonymous, login, logout } = JoinModalButtonData({
+  const { alreadyMember, isAnonymous, login } = JoinModalButtonData({
     site,
   })
 
@@ -21,17 +21,7 @@ function JoinModalButtonContainer({ linkStyling, site }) {
     }
   }
 
-  return alreadyMember ? (
-    <button
-      type="button"
-      data-testid="JoinModalButton"
-      onClick={logout}
-      onKeyDown={logout}
-      className={linkStyling}
-    >
-      Sign out
-    </button>
-  ) : (
+  return alreadyMember ? null : (
     <>
       <button
         type="button"

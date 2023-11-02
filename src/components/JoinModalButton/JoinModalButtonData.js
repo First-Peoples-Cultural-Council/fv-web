@@ -5,7 +5,7 @@ import { isMember } from 'common/utils/membershipHelpers'
 
 function JoinModalButtonData({ site }) {
   const { user } = useUserStore()
-  const { login, logout } = useLoginLogout()
+  const { login } = useLoginLogout()
   const alreadyMember = isMember({ user, sitename: site?.sitename })
 
   return {
@@ -13,7 +13,6 @@ function JoinModalButtonData({ site }) {
     isAnonymous: user?.isAnonymous,
     site,
     login,
-    logout,
   }
 }
 
