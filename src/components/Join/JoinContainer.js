@@ -5,28 +5,22 @@ import PropTypes from 'prop-types'
 import JoinPresentation from 'components/Join/JoinPresentation'
 import JoinData from 'components/Join/JoinData'
 
-function JoinContainer({ linkStyling, site }) {
-  const { alreadyMember, isAnonymous, stage, submitHandler, errorMessage } =
-    JoinData({ site })
+function JoinContainer({ site }) {
+  const { siteToJoin, stage, submitHandler, errorMessage } = JoinData({ site })
 
-  return alreadyMember || isAnonymous ? (
-    ''
-  ) : (
+  return (
     <JoinPresentation
       submitHandler={submitHandler}
-      site={site}
+      site={siteToJoin}
       stage={stage}
       errorMessage={errorMessage}
-      linkStyling={linkStyling}
     />
   )
 }
-
 // PROPTYPES
-const { object, string } = PropTypes
+const { object } = PropTypes
 JoinContainer.propTypes = {
-  site: object.isRequired,
-  linkStyling: string,
+  site: object,
 }
 
 export default JoinContainer

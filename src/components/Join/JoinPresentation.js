@@ -1,21 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import Modal from 'components/Modal'
 import JoinForm from 'components/Join/JoinForm'
+import { PUBLIC } from 'common/constants'
 
-function JoinPresentation({
-  site,
-  stage,
-  submitHandler,
-  errorMessage,
-  linkStyling,
-}) {
-  const [joinModalOpen, setJoinModalOpen] = useState(false)
-
+function JoinPresentation({ site, stage, submitHandler, errorMessage }) {
   // For Success/Error message
   const messageHeader =
     stage === 'success'
@@ -35,58 +27,52 @@ function JoinPresentation({
         )
 
   return (
-    <>
-      <button
-        type="button"
-        data-testid="JoinButton"
-        onClick={() => setJoinModalOpen(true)}
-        className={linkStyling}
-      >
-        Join {site?.title}
-      </button>
+    <div
+      data-testid="JoinPresentation"
+      className="bg-white max-w-2xl mx-auto p-6 lg:p-10 overflow-hidden transform transition-all"
+    >
+      {stage === 'form' && (
+        <JoinForm site={site} submitHandler={submitHandler} />
+      )}
+      {(stage === 'success' || stage === 'error') && (
+        <div className="text-center space-y-10">
+          <div>{icon}</div>
 
-      <Modal.Presentation
-        isOpen={joinModalOpen}
-        closeHandler={() => setJoinModalOpen(false)}
-      >
-        <div
-          data-testid="JoinModal"
-          className="bg-white max-w-2xl rounded-lg shadow-xl p-6 lg:p-10 overflow-hidden transform transition-all"
-        >
-          {stage === 'form' && (
-            <JoinForm site={site} submitHandler={submitHandler} />
-          )}
-          {(stage === 'success' || stage === 'error') && (
-            <div className="text-center space-y-10">
-              <div>{icon}</div>
+          <div className="text-center space-y-2">
+            <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
+              {messageHeader}
+            </h1>
+            <p className="text-base text-fv-charcoal-light">{message}</p>
+          </div>
 
-              <div className="text-center space-y-2">
-                <h1 className="text-2xl leading-6 font-medium text-fv-charcoal">
-                  {messageHeader}
-                </h1>
-                <p className="text-base text-fv-charcoal-light">{message}</p>
-              </div>
-
-              <div className="text-center space-y-2">
-                <button
-                  type="button"
-                  onClick={() => setJoinModalOpen(false)}
+          <div className="text-center space-y-2">
+            {site?.visibility === PUBLIC ? (
+              <>
+                <Link
+                  to={`/${site?.sitename}/`}
                   className="bg-primary border border-gray-300 rounded-lg shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-primary-dark"
                 >
-                  Close
-                </button>
+                  Browse public content on the {site?.title} site
+                </Link>
                 <Link
                   to="/languages"
                   className="block py-2 px-4 text-sm font-medium text-primary hover:text-primary-dark"
                 >
-                  Explore Languages Page
+                  Explore other languages
                 </Link>
-              </div>
-            </div>
-          )}
+              </>
+            ) : (
+              <Link
+                to="/languages"
+                className="bg-primary border border-gray-300 rounded-lg shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-primary-dark"
+              >
+                Explore other languages
+              </Link>
+            )}
+          </div>
         </div>
-      </Modal.Presentation>
-    </>
+      )}
+    </div>
   )
 }
 // PROPTYPES
@@ -96,12 +82,6 @@ JoinPresentation.propTypes = {
   site: object,
   stage: string,
   errorMessage: string,
-  linkStyling: string,
-}
-
-JoinPresentation.defaultProps = {
-  linkStyling:
-    'w-full truncate rounded-lg shadow-sm py-2 px-4 text-lg font-medium text-white',
 }
 
 export default JoinPresentation

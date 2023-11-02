@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react'
 
 // FPCC
 import { useJoinRequestCreate } from 'common/dataHooks/useJoinRequests'
-import { useUserStore } from 'context/UserContext'
+import { useSiteStore } from 'context/SiteContext'
 import { convertJsonToReadableString } from 'common/utils/stringHelpers'
-import { atLeastMember } from 'common/constants/roles'
 
 function JoinData({ site }) {
-  const { user } = useUserStore()
+  const { site: currentSite } = useSiteStore()
   const [stage, setStage] = useState('form')
   const [errorMessage, setErrorMessage] = useState()
 
@@ -24,9 +23,6 @@ function JoinData({ site }) {
     },
   })
 
-  const userSiteRole = user?.roles?.[site?.sitename] || ''
-  const alreadyMember = userSiteRole.match(atLeastMember)
-
   useEffect(() => {
     if (isError) {
       setStage('error')
@@ -41,10 +37,8 @@ function JoinData({ site }) {
   }
 
   return {
-    alreadyMember,
-    isAnonymous: user?.isAnonymous,
     submitHandler,
-    site,
+    siteToJoin: site || currentSite,
     stage,
     errorMessage,
   }
