@@ -17,6 +17,7 @@ function NavBarPresentation({
   mobileNavbarOpen,
   openCloseMobileNavbar,
   site,
+  siteLoading,
 }) {
   const menuData = site?.menu || {}
 
@@ -59,47 +60,54 @@ function NavBarPresentation({
               </Link>
             )}
           </div>
-          {/* Menus */}
-          <div id="NavMenus" className="hidden lg:flex xl:space-x-6 ">
-            {menuData?.dictionary && generateMenu(menuData?.dictionary)}
-            {menuData?.learn && generateMenu(menuData?.learn)}
-            {menuData?.resources && generateMenu(menuData?.resources)}
-            {menuData?.about && generateMenu(menuData?.about)}
-            {menuData?.kids && generateMenu(menuData?.kids)}
-          </div>
-          <div className="flex items-center space-x-2 lg:space-x-4">
-            {/* Search */}
-            {!isHome && !isSearchPage && (
-              <div
-                id="NavSearch"
-                className="flex w-full md:w-auto items-center"
-              >
-                <SearchSiteForm.Container minimal />
+          {!siteLoading && (
+            <>
+              {/* Menus */}
+              <div id="NavMenus" className="hidden lg:flex xl:space-x-6 ">
+                {menuData?.dictionary && generateMenu(menuData?.dictionary)}
+                {menuData?.learn && generateMenu(menuData?.learn)}
+                {menuData?.resources && generateMenu(menuData?.resources)}
+                {menuData?.about && generateMenu(menuData?.about)}
+                {menuData?.kids && generateMenu(menuData?.kids)}
               </div>
-            )}
-            {/* User Button and Menu */}
-            <div className="hidden lg:inline-flex">
-              <JoinModalButton.Container site={site} />
-            </div>
-            <div className="hidden lg:inline-flex">
-              <UserMenu.Container />
-            </div>
-            {/* Mobile Menu Button */}
-            <div id="MobileMenuButton" className="flex items-center lg:hidden">
-              <button
-                type="button"
-                onClick={() => openCloseMobileNavbar()}
-                className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
-              >
-                <span className="sr-only">
-                  {mobileNavbarOpen ? 'Close menu' : 'Open menu'}
-                </span>
-                {mobileNavbarOpen
-                  ? getIcon('Close', 'h-6 w-6')
-                  : getIcon('HamburgerMenu', 'h-6 w-6')}
-              </button>
-            </div>
-          </div>
+              <div className="flex items-center space-x-2 lg:space-x-4">
+                {/* Search */}
+                {!isHome && !isSearchPage && (
+                  <div
+                    id="NavSearch"
+                    className="flex w-full md:w-auto items-center"
+                  >
+                    <SearchSiteForm.Container minimal />
+                  </div>
+                )}
+                {/* User Button and Menu */}
+                <div className="hidden lg:inline-flex">
+                  <JoinModalButton.Container site={site} />
+                </div>
+                <div className="hidden lg:inline-flex">
+                  <UserMenu.Container />
+                </div>
+                {/* Mobile Menu Button */}
+                <div
+                  id="MobileMenuButton"
+                  className="flex items-center lg:hidden"
+                >
+                  <button
+                    type="button"
+                    onClick={() => openCloseMobileNavbar()}
+                    className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
+                  >
+                    <span className="sr-only">
+                      {mobileNavbarOpen ? 'Close menu' : 'Open menu'}
+                    </span>
+                    {mobileNavbarOpen
+                      ? getIcon('Close', 'h-6 w-6')
+                      : getIcon('HamburgerMenu', 'h-6 w-6')}
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
       {/* -- Mobile Menu -- */}
@@ -127,6 +135,7 @@ NavBarPresentation.propTypes = {
   mobileNavbarOpen: bool,
   openCloseMobileNavbar: func,
   site: object,
+  siteLoading: bool,
 }
 
 export default NavBarPresentation

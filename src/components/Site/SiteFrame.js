@@ -33,8 +33,8 @@ import { TYPE_PHRASE, TYPE_WORD, TYPE_DICTIONARY } from 'common/constants'
 function SiteFrame({ siteLoading }) {
   return (
     <div className="overflow-hidden">
-      <header className="fixed w-full top-0 z-50 print:hidden">
-        <NavBar.Container />
+      <header className="fixed w-full top-0 z-50 print:hidden bg-fv-charcoal h-16">
+        <NavBar.Container siteLoading={siteLoading} />
       </header>
       <main role="main" className="relative pt-16 z-0 min-h-screen">
         <Loading.Container isLoading={siteLoading}>
