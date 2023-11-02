@@ -73,7 +73,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     WIDGETS: {
       icon: 'Widget',
       name: 'Edit Widgets',
-      description: 'Manage and edit the Widgets on your site',
+      description: 'Manage and edit the widgets on your site',
       href: addUrlPrefix('widgets'),
       iconColor: 'songText',
       auth: LANGUAGE_ADMIN,
