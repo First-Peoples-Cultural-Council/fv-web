@@ -4,12 +4,9 @@ import PropTypes from 'prop-types'
 // FPCC
 import SiteCard from 'components/Languages/SiteCard'
 import SectionTitle from 'components/SectionTitle'
+import { languageColors } from 'assets/languageColors'
 
-function LanguagesPresentation({
-  allSitesList,
-  userSitesList,
-  parentLanguagesData,
-}) {
+function LanguagesPresentation({ allSitesList, userSitesList }) {
   return (
     <section
       data-testid="LanguagesPresentation"
@@ -42,24 +39,22 @@ function LanguagesPresentation({
             />
           </div>
           <div className="mt-5">
-            {allSitesList.map((parentLanguage) => {
+            {allSitesList.map((language) => {
               // Generating class for border color
-              const borderColor = parentLanguagesData[
-                parentLanguage.languageCode
-              ]
-                ? `border-[${parentLanguagesData[parentLanguage.languageCode]}]`
+              const borderColor = languageColors[language.languageCode]
+                ? `border-[${languageColors[language.languageCode]}]`
                 : 'border-gray'
               return (
                 <div
                   id="LanguagesPresentation"
-                  key={parentLanguage.language}
+                  key={language.title}
                   className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
                 >
                   <h1 className="pl-4 text-xl font-extrabold text-primary">
-                    {parentLanguage.language}
+                    {language.title}
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
-                    {parentLanguage.sites.map((site) => (
+                    {language.sites.map((site) => (
                       <SiteCard key={site?.id} site={site} />
                     ))}
                   </div>
@@ -74,11 +69,10 @@ function LanguagesPresentation({
 }
 
 // PROPTYPES
-const { object, array } = PropTypes
+const { array } = PropTypes
 LanguagesPresentation.propTypes = {
   allSitesList: array,
   userSitesList: array,
-  parentLanguagesData: object,
 }
 
 export default LanguagesPresentation
