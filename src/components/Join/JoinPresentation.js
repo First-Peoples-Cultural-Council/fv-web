@@ -7,7 +7,13 @@ import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import JoinForm from 'components/Join/JoinForm'
 
-function JoinPresentation({ site, stage, submitHandler, errorMessage }) {
+function JoinPresentation({
+  site,
+  stage,
+  submitHandler,
+  errorMessage,
+  linkStyling,
+}) {
   const [joinModalOpen, setJoinModalOpen] = useState(false)
 
   // For Success/Error message
@@ -34,7 +40,7 @@ function JoinPresentation({ site, stage, submitHandler, errorMessage }) {
         type="button"
         data-testid="JoinButton"
         onClick={() => setJoinModalOpen(true)}
-        className="w-full truncate rounded-lg shadow-sm py-2 px-4 text-lg font-medium text-white"
+        className={linkStyling}
       >
         Join {site?.title}
       </button>
@@ -90,6 +96,12 @@ JoinPresentation.propTypes = {
   site: object,
   stage: string,
   errorMessage: string,
+  linkStyling: string,
+}
+
+JoinPresentation.defaultProps = {
+  linkStyling:
+    'w-full truncate rounded-lg shadow-sm py-2 px-4 text-lg font-medium text-white',
 }
 
 export default JoinPresentation

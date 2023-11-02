@@ -2,14 +2,11 @@ import { useEffect, useState } from 'react'
 
 // FPCC
 import { useJoinRequestCreate } from 'common/dataHooks/useJoinRequests'
-import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
 import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 import { atLeastMember } from 'common/constants/roles'
 
-function JoinData() {
-  const { site } = useSiteStore()
-
+function JoinData({ site }) {
   const { user } = useUserStore()
   const [stage, setStage] = useState('form')
   const [errorMessage, setErrorMessage] = useState()
