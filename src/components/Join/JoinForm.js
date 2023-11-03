@@ -51,9 +51,11 @@ function JoinForm({ site, submitHandler }) {
     message: definitions
       .paragraph()
       .required('Please include a message to the Language Administrator'),
+    sitename: yup.string().required(),
   })
 
   const defaultValues = {
+    sitename: site?.sitename,
     reasons: [],
     message: '',
   }
@@ -91,6 +93,13 @@ function JoinForm({ site, submitHandler }) {
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-10">
           <div className="col-span-12 space-y-2">
+            <input
+              id="sitename"
+              name="sitename"
+              type="hidden"
+              value="default"
+              {...register('sitename')}
+            />
             <label htmlFor="message" className="block font-medium">
               Why do you want to join?
             </label>

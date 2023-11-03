@@ -30,13 +30,14 @@ export function useJoinRequests() {
 }
 
 export function useJoinRequestCreate(options = {}) {
-  const { sitename } = useParams()
   const queryClient = useQueryClient()
 
   const createJoinRequest = async (formData) => {
+    const { sitename, reasons, message } = formData
+
     const properties = {
-      reasons: formData?.reasons,
-      reason_note: formData?.message,
+      reasons,
+      reason_note: message,
     }
     return api.joinRequests.create({
       sitename,
@@ -46,8 +47,10 @@ export function useJoinRequestCreate(options = {}) {
   const _options = {
     ...options,
     mutationFn: createJoinRequest,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [JOIN_REQUESTS, sitename] })
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({
+        queryKey: [JOIN_REQUESTS, response?.site?.slug],
+      })
     },
   }
 
