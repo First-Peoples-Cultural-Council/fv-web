@@ -2,9 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import PrivateSiteCard from 'components/Languages/PrivateSiteCard'
 import SiteCard from 'components/Languages/SiteCard'
 import SectionTitle from 'components/SectionTitle'
 import { languageColors } from 'assets/languageColors'
+import { PUBLIC } from 'common/constants'
+import { isMember } from 'common/utils/membershipHelpers'
 
 function LanguagesPresentation({ allSitesList, userSitesList, user }) {
   return (
@@ -54,9 +57,24 @@ function LanguagesPresentation({ allSitesList, userSitesList, user }) {
                     {language.title}
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
-                    {language.sites.map((site) => (
-                      <SiteCard key={site?.id} site={site} user={user} />
-                    ))}
+                    {language.sites.map((site) => {
+                      const memberOfSite = isMember({
+                        user,
+                        sitename: site?.sitename,
+                      })
+                      const isLocked = memberOfSite
+                        ? false
+                        : site.visibility !== PUBLIC
+                      return isLocked ? (
+                        <PrivateSiteCard
+                          key={site?.id}
+                          site={site}
+                          user={user}
+                        />
+                      ) : (
+                        <SiteCard key={site?.id} site={site} user={user} />
+                      )
+                    })}
                   </div>
                 </div>
               )
