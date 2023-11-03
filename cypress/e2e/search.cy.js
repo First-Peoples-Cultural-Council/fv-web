@@ -25,9 +25,7 @@ describe('V2 Search Home Page', () => {
         cy.log(_text)
         cy.get('polygon').click()
         cy.get('[data-testid=SearchInput]').type(`${_text}{enter}`)
-
         cy.contains('Resources').click()
-        // cy.contains('Mobile App').click()
 
         cy.get('[data-testid="SearchInput"]').type(`${_text}{enter}`)
       })

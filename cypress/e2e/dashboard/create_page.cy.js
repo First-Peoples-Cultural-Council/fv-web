@@ -29,9 +29,6 @@ describe('page tests', () => {
     cy.contains('Custom Pages').click()
     cy.contains('Create a Custom Page').click()
     cy.contains('Create a new custom page').should('exist')
-    // })
-
-    // it('View Create Page - check vaidation', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.wait(500)
     cy.contains('cc').click()
@@ -42,9 +39,7 @@ describe('page tests', () => {
 
     cy.contains('title must be').should('exist')
     cy.contains('Please enter a URL').should('exist')
-    // })
 
-    // it('View Create Page - create page', () => {
     const rString = randomString(
       17,
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -60,9 +55,6 @@ describe('page tests', () => {
     cy.get('#subtitle').type(Cypress._.uniqueId('Subtitle_'))
 
     cy.get('#slug').type(rString)
-
     cy.contains('Create Page').click()
-
-    // cy.contains('View Page').click()
   })
 })
