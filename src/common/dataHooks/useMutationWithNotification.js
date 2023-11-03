@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 
 // FPCC
 import { ERROR, SUCCESS } from 'common/constants'
@@ -15,6 +16,7 @@ export default function useMutationWithNotification({
 }) {
   const queryClient = useQueryClient()
   const { setNotification } = useNotification()
+  const navigate = useNavigate()
 
   const mutation = useMutation({
     mutationFn,
@@ -28,7 +30,7 @@ export default function useMutationWithNotification({
       }
       if (redirectTo) {
         setTimeout(() => {
-          window.location.href = redirectTo
+          navigate(redirectTo)
         }, 1000)
       }
     },
