@@ -1,8 +1,10 @@
 // FPCC
 import { useSites } from 'common/dataHooks/useSites'
 import { useMySites } from 'common/dataHooks/useMySites'
+import { useUserStore } from 'context/UserContext'
 
 function LanguagesData() {
+  const { user } = useUserStore()
   const { allSitesData, isInitialLoading } = useSites()
 
   const { mySitesData, isInitialLoading: mySitesIsInitialLoading } =
@@ -14,6 +16,7 @@ function LanguagesData() {
     allSitesList: allSitesData,
     // mySites
     userSitesList: mySitesData,
+    user,
   }
 }
 

@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import { MEMBERS } from 'common/constants'
+import { PUBLIC } from 'common/constants'
 import placeholder from 'images/cover-thumbnail.png'
 
-function SiteCard({ site, isMember = false }) {
+import { isMember } from 'common/utils/membershipHelpers'
+
+function SiteCard({ site, user }) {
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
-  const isLocked = isMember ? false : site.visibility === MEMBERS
+
+  const memberOfSite = isMember({ user, sitename: site?.sitename })
+  const isLocked = memberOfSite ? false : site.visibility !== PUBLIC
 
   const privateSiteModalOpenHandler = () => {
     setPrivateSiteModalOpen(true)
@@ -57,8 +61,9 @@ function SiteCard({ site, isMember = false }) {
           <div className="text-l font-medium text-fv-charcoal">
             <p className="text-xl">{site.title} is Private</p>
             <p className="pt-2">
-              You need to be logged in and a registered member of this site to
-              see its content.
+              {user?.isAnonymous
+                ? 'You need to be logged in and a registered member of this site to see its content.'
+                : 'You need to be a registered member of this site to see its content.'}
             </p>
           </div>
           <button
@@ -75,9 +80,9 @@ function SiteCard({ site, isMember = false }) {
 }
 
 // PROPTYPES
-const { bool, object } = PropTypes
+const { object } = PropTypes
 SiteCard.propTypes = {
   site: object,
-  isMember: bool,
+  user: object,
 }
 export default SiteCard

@@ -6,7 +6,7 @@ import SiteCard from 'components/Languages/SiteCard'
 import SectionTitle from 'components/SectionTitle'
 import { languageColors } from 'assets/languageColors'
 
-function LanguagesPresentation({ allSitesList, userSitesList }) {
+function LanguagesPresentation({ allSitesList, userSitesList, user }) {
   return (
     <section
       data-testid="LanguagesPresentation"
@@ -23,7 +23,7 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList?.map((site) => (
-              <SiteCard key={site?.id} site={site} isMember />
+              <SiteCard key={site?.id} site={site} user={user} />
             ))}
           </div>
         </div>
@@ -54,19 +54,9 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
                     {language.title}
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
-                    {language.sites.map((site) => {
-                      // Checking if user is a member
-                      const isMember = userSitesList?.some(
-                        (userSite) => userSite.id === site?.id,
-                      )
-                      return (
-                        <SiteCard
-                          key={site?.id}
-                          site={site}
-                          isMember={isMember}
-                        />
-                      )
-                    })}
+                    {language.sites.map((site) => (
+                      <SiteCard key={site?.id} site={site} user={user} />
+                    ))}
                   </div>
                 </div>
               )
@@ -79,10 +69,11 @@ function LanguagesPresentation({ allSitesList, userSitesList }) {
 }
 
 // PROPTYPES
-const { array } = PropTypes
+const { array, object } = PropTypes
 LanguagesPresentation.propTypes = {
   allSitesList: array,
   userSitesList: array,
+  user: object,
 }
 
 export default LanguagesPresentation
