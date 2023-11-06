@@ -48,7 +48,7 @@ function WidgetCrudPresentation({
         <div className="space-y-2 p-6">
           <Form.Header
             title="Create a new Widget"
-            subtitle={"1. Choose what type of Widget you'd like to create."}
+            subtitle={"1. Choose what type of widget you'd like to create."}
           />
           <div className="grid gap-4 grid-cols-4 place-content-center">
             {widgetTypes?.length > 0 &&
@@ -92,13 +92,13 @@ function WidgetCrudPresentation({
         <div>
           <Form.Header
             title={
-              !dataToEdit?.type ? 'Create a new Widget' : 'Edit your Widget'
+              !dataToEdit?.type ? 'Create a new widget' : 'Edit your widget'
             }
             subtitle={
               !dataToEdit?.type
                 ? `2. Enter the details for your new ${getWidgetTypeLabel(
                     dataToEdit?.type || selectedType,
-                  )} Widget.`
+                  )} widget.`
                 : ''
             }
           />
@@ -107,8 +107,8 @@ function WidgetCrudPresentation({
             {dataToEdit?.id && (
               <DeleteButton.Presentation
                 deleteHandler={deleteHandler}
-                label="Delete Widget"
-                message="Are you sure you want to delete this Widget from your site?"
+                label="Delete widget"
+                message="Are you sure you want to delete this widget from your site?"
               />
             )}
           </div>

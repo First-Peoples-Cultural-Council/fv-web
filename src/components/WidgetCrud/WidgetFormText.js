@@ -139,7 +139,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-6">
             <Form.TextField
-              label="URL Label"
+              label="URL label"
               nameId="urlLabel"
               helpText="Enter a label for the URL button."
               register={register}

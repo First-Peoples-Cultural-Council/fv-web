@@ -84,7 +84,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-12">
             <Form.TextField
-              label="Social Media Links"
+              label="Social media links"
               nameId="urls"
               helpText="Enter any URLs you would like to include separated by commas."
               register={register}
@@ -94,7 +94,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
           {emailListAsString?.length > 0 ? (
             <div className="col-span-12 mt-2 text-sm text-fv-charcoal-light">
               <div className="block text-sm font-medium text-fv-charcoal">
-                Contact List
+                Contact list
               </div>
               <div className="mt-2 text-xs text-fv-charcoal-light italic">
                 (Please contact support at hello@firstvoices.com to update this
@@ -108,7 +108,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
           ) : (
             <div className="col-span-12">
               <div className="block text-sm font-medium text-fv-charcoal">
-                Contact List
+                Contact list
               </div>
               <div className="mt-2 text-xs text-fv-charcoal-light italic">
                 (Please contact support at hello@firstvoices.com to update this

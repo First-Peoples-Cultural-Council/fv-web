@@ -31,7 +31,7 @@ function WidgetFormBase({
         </div>
         <div className="col-span-12 sm:col-span-6">
           <Form.TextField
-            label={isCreateMode ? 'A nickname for your Widget' : 'Nickname'}
+            label={isCreateMode ? 'A nickname for your widget' : 'Nickname'}
             nameId="nickname"
             register={register}
             helpText={
