@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom'
 // FPCC
 import Form from 'components/Form'
 
-function StoryCrudStepWrapper({ children, onClickCallback }) {
+function StoryCrudStepWrapper({ children, onClickCallback, sitename }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const storyFormSteps = [
     { title: 'Cover Page' },
@@ -14,7 +14,6 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
     { title: 'Preview' },
   ]
   const id = searchParams.get('id')
-
   const defaultOnClick = (step) => {
     if (id) {
       setSearchParams({ step, id })
@@ -39,17 +38,19 @@ function StoryCrudStepWrapper({ children, onClickCallback }) {
       <Form.NextPrevious
         numberOfSteps={storyFormSteps?.length}
         onClickCallback={onClickCallback || defaultOnClick}
+        sitename={sitename}
       />
     </div>
   )
 }
 
 // PROPTYPES
-const { func, node } = PropTypes
+const { func, node, string } = PropTypes
 
 StoryCrudStepWrapper.propTypes = {
   children: node,
   onClickCallback: func,
+  sitename: string,
 }
 
 export default StoryCrudStepWrapper

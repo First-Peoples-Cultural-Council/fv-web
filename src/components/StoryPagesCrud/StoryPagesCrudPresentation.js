@@ -111,7 +111,7 @@ function StoryPagesCrudPresentation({
               onClick={() => setAddPageOpen(true)}
             >
               {getIcon('Add', 'fill-current h-5 mr-2')}
-              <span>ADD PAGE</span>
+              <span>Add page</span>
             </button>
           </div>
         )}
