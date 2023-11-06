@@ -37,7 +37,10 @@ function JoinModalButtonContainer({ linkStyling, site }) {
         closeHandler={() => setJoinModalOpen(false)}
       >
         <div className="bg-white rounded-lg p-2">
-          <Join.Container site={site} />
+          <Join.Container
+            closeModalCallback={() => setJoinModalOpen(false)}
+            site={site}
+          />
         </div>
       </Modal.Presentation>
     </>
