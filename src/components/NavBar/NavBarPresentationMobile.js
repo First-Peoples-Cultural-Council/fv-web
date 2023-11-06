@@ -7,8 +7,9 @@ import { Transition } from '@headlessui/react'
 import getIcon from 'common/utils/getIcon'
 import { useUserStore } from 'context/UserContext'
 import useLoginLogout from 'common/hooks/useLoginLogout'
+import { isMember } from 'common/utils/membershipHelpers'
 
-function NavBarPresentationMobile({ menuData, sitename }) {
+function NavBarPresentationMobile({ site }) {
   const { user } = useUserStore()
   const [selectedSubMenu, setSelectedSubMenu] = useState({})
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
@@ -21,6 +22,9 @@ function NavBarPresentationMobile({ menuData, sitename }) {
     setSelectedSubMenu(menuObject)
     setIsSubMenuOpen(!isSubMenuOpen)
   }
+
+  const menuData = site?.menu || {}
+  const member = isMember({ user, sitename: site?.sitename })
 
   function generateMenuItem(menuItem) {
     const hasItems = menuItem?.itemsData?.length > 0
@@ -41,7 +45,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
         ) : (
           <Link
             className="w-full my-3 p-1 flex items-center rounded"
-            to={`/${sitename + menuItem.href}`}
+            to={`/${site?.sitename + menuItem.href}`}
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
             <span className="ml-3 font-medium">{menuItem.title}</span>
@@ -64,9 +68,7 @@ function NavBarPresentationMobile({ menuData, sitename }) {
             {!isGuest && (
               <li className="w-full my-3 p-1 flex items-center rounded ml-3 font-medium">
                 Welcome
-                {user?.displayName && !user?.isAnonymous
-                  ? `, ${user?.displayName}!`
-                  : '!'}
+                {user?.displayName ? `, ${user?.displayName}!` : '!'}
               </li>
             )}
             {menuData?.dictionary && generateMenuItem(menuData?.dictionary)}
@@ -88,18 +90,31 @@ function NavBarPresentationMobile({ menuData, sitename }) {
                 </a>
               </li>
             ) : (
-              <li key="SignOut_id">
-                {/* eslint-disable-next-line */}
-                <a
-                  className="w-full my-3 p-1 flex items-center rounded"
-                  type="button"
-                  onClick={logout}
-                  onKeyDown={logout}
-                >
-                  {getIcon('LogOut', 'fill-current h-12 w-8')}
-                  <span className="ml-3 font-medium">Sign Out</span>
-                </a>
-              </li>
+              <>
+                {!member && (
+                  <li key="Join_id">
+                    <Link
+                      className="w-full my-3 p-1 flex items-center rounded"
+                      to={`/${site?.sitename}/join`}
+                    >
+                      {getIcon('Members', 'fill-current h-12 w-8')}{' '}
+                      <span className="ml-3 font-medium">{`Join ${site?.title}`}</span>
+                    </Link>
+                  </li>
+                )}
+                <li key="SignOut_id">
+                  {/* eslint-disable-next-line */}
+                  <a
+                    className="w-full my-3 p-1 flex items-center rounded"
+                    type="button"
+                    onClick={logout}
+                    onKeyDown={logout}
+                  >
+                    {getIcon('LogOut', 'fill-current h-12 w-8')}
+                    <span className="ml-3 font-medium">Sign Out</span>
+                  </a>
+                </li>
+              </>
             )}
           </ul>
         </div>
@@ -136,10 +151,9 @@ function NavBarPresentationMobile({ menuData, sitename }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { object } = PropTypes
 NavBarPresentationMobile.propTypes = {
-  menuData: object,
-  sitename: string,
+  site: object,
 }
 
 export default NavBarPresentationMobile

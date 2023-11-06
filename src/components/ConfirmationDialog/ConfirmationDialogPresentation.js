@@ -13,7 +13,7 @@ function ConfirmationDialogPresentation({
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={closeHandler}>
       <div
-        id="RemoveWidgetModalContent"
+        data-testid="ConfirmationDialogPresentation"
         className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
       >
         <div className="text-center space-y-2">

@@ -1,4 +1,4 @@
-export const parentLanguageColors = {
+export const languageColors = {
   dtd: 'rgb(255,112,255)',
   hei: 'rgb(255,128,255)',
   kwk: 'rgb(255,176,255)',
