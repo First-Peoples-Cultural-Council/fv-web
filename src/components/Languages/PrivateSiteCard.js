@@ -16,8 +16,8 @@ function PrivateSiteCard({ site, user }) {
 
   const isAnonymous = user?.isAnonymous
 
-  const primaryButtonClick = () => {
-    if (isAnonymous) login()
+  const primaryButtonClick = (e) => {
+    if (isAnonymous) login(e)
     setShowJoinForm(true)
   }
 
