@@ -41,7 +41,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12">
             <Form.EntryArrayField
-              label="Related Content"
+              label="Related content"
               nameId="relatedDictionaryEntries"
               control={control}
               register={register}
@@ -107,7 +107,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons
-              submitLabel="Save Changes"
+              submitLabel="Save changes"
               submitIcon="Save"
               cancelIcon="Close"
               cancelLabel="Cancel"
