@@ -37,31 +37,31 @@ function NavBarPresentation({
     <nav id="NavBar" className="relative z-10" role="navigation">
       <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-2 lg:px-6 xl:px-16">
         <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
-          {/* Home Links */}
-          <div className="flex items-center">
-            <div
-              className={`${
-                isHome ? '' : 'hidden'
-              } md:flex items-center text-white`}
-            >
-              <span className="sr-only">FirstVoices Logo</span>
-              <Link to="/">{fvlogo}</Link>
-            </div>
-            <div className="w-16 text-white text-sm leading-tight text-center mr-2">
-              Beta Version
-            </div>
-            {!isHome && (
-              <Link
-                className="h-9 text-white flex items-center group bg-fv-charcoal rounded-lg text-lg font-medium hover:text-gray-100"
-                to={`/${site?.sitename}/`}
-              >
-                <span className="sr-only">{site?.title}</span>
-                {getIcon('Home', 'fill-current h-full w-auto')}
-              </Link>
-            )}
-          </div>
           {!siteLoading && (
             <>
+              {/* Home Links */}
+              <div className="flex items-center">
+                <div
+                  className={`${
+                    isHome ? '' : 'hidden'
+                  } md:flex items-center text-white`}
+                >
+                  <span className="sr-only">FirstVoices Logo</span>
+                  <Link to="/">{fvlogo}</Link>
+                </div>
+                <div className="w-16 text-white text-sm leading-tight text-center mr-2">
+                  Beta Version
+                </div>
+                {!isHome && (
+                  <Link
+                    className="h-9 text-white flex items-center group bg-fv-charcoal rounded-lg text-lg font-medium hover:text-gray-100"
+                    to={`/${site?.sitename}/`}
+                  >
+                    <span className="sr-only">{site?.title}</span>
+                    {getIcon('Home', 'fill-current h-full w-auto')}
+                  </Link>
+                )}
+              </div>
               {/* Menus */}
               <div id="NavMenus" className="hidden lg:flex xl:space-x-6 ">
                 {menuData?.dictionary && generateMenu(menuData?.dictionary)}
