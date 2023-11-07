@@ -5,7 +5,7 @@ import i18next from 'i18next'
 // FPCC
 import { useImmersion } from 'common/dataHooks/useImmersion'
 import { useSite } from 'common/dataHooks/useSites'
-import { useSiteDispatch } from 'context/SiteContext'
+import { useSiteDispatch, useSiteStore } from 'context/SiteContext'
 
 function SiteData() {
   const navigate = useNavigate()
@@ -15,7 +15,8 @@ function SiteData() {
   // --------------------------------
   // Get Language Site data
   // --------------------------------
-  const { isLoading, error, data } = useSite()
+  const { isLoading, error, data } = useSite() // site data request, to put in the site store
+  const { site } = useSiteStore() // site store, to validate when it is ready for use
 
   useEffect(() => {
     if (isLoading === false && error === null) {
@@ -61,7 +62,7 @@ function SiteData() {
   }, [immersionIsLoading, immersionError, immersionData])
 
   return {
-    siteLoading: isLoading || data?.id?.length < 1,
+    siteLoading: isLoading || site?.id?.length < 1,
   }
 }
 
