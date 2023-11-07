@@ -30,12 +30,12 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   return (
     <div id="HomeForm">
       <div className="max-w-5xl p-6">
-        <Form.Header title="Edit your Logo and Homepage banner" />
+        <Form.Header title="Edit your logo and homepage banner" />
         <form onReset={reset}>
           <div className="mt-6 grid grid-cols-12 gap-6">
             <div className="col-span-6">
               <Form.AddMedia
-                label="Add Logo"
+                label="Add logo"
                 nameId="logoId"
                 docType={IMAGE}
                 control={control}
@@ -45,7 +45,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
             </div>
             <div className="col-span-12 flex items-center justify-start">
               <Form.SelectOneMedia
-                label="Add Banner"
+                label="Add banner"
                 nameId="banner"
                 control={control}
                 errors={errors}
@@ -71,7 +71,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="mt-4 flex justify-end px-6">
             <Form.SubmitButtons
-              submitLabel="Save Changes"
+              submitLabel="Save changes"
               submitIcon="Save"
               cancelIcon="Close"
               cancelLabel="Cancel"

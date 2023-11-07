@@ -30,7 +30,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
               'BackArrow',
               'inline-flex pb-2 h-7 fill-current mr-2 h-10',
             )}
-            Go Back
+            Go back
           </button>
         </div>
         <a
@@ -39,7 +39,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Report Problem
+          Report problem
         </a>
       </div>
     </div>
