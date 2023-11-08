@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useSiteStore } from 'context/SiteContext'
 import { useJoinRequests } from 'common/dataHooks/useJoinRequests'
 
-function DashboardJoinRequestsData() {
+function DashboardJoinListData() {
   const { site } = useSiteStore()
   const { sitename } = useParams()
 
@@ -20,4 +20,4 @@ function DashboardJoinRequestsData() {
   }
 }
 
-export default DashboardJoinRequestsData
+export default DashboardJoinListData

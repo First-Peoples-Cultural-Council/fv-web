@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
-import DashboardJoinRequestCard from 'components/DashboardJoinRequests/DashboardJoinRequestCard'
+import DashboardJoinRequestCard from 'components/DashboardJoinList/DashboardJoinRequestCard'
 
-function DashboardJoinRequestsPresentation({
+function DashboardJoinListPresentation({
   isLoading,
   infiniteScroll,
   joinRequests,
@@ -24,7 +24,7 @@ function DashboardJoinRequestsPresentation({
   }
   return (
     <Loading.Container isLoading={isLoading}>
-      <div data-testid="DashboardJoinRequestsPresentation">
+      <div data-testid="DashboardJoinListPresentation">
         <div className="min-h-220 col-span-12">
           {joinRequests?.pages?.[0]?.count > 0 ? (
             <div
@@ -69,11 +69,11 @@ function DashboardJoinRequestsPresentation({
 }
 // PROPTYPES
 const { bool, object } = PropTypes
-DashboardJoinRequestsPresentation.propTypes = {
+DashboardJoinListPresentation.propTypes = {
   joinRequests: object,
   isLoading: bool,
   loadRef: object,
   infiniteScroll: object,
 }
 
-export default DashboardJoinRequestsPresentation
+export default DashboardJoinListPresentation

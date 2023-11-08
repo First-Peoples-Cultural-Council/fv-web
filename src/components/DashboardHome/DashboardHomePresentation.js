@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 import { MEMBER } from 'common/constants/roles'
 import DashboardLocator from 'components/DashboardLocator'
-import DashboardJoinRequests from 'components/DashboardJoinRequests'
+import DashboardJoinList from 'components/DashboardJoinList'
 
 function DashboardHomePresentation({ site, tiles, currentUser }) {
   return (
@@ -100,7 +100,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
           <h2 className="mb-3 mx-2 text-sm font-medium text-fv-charcoal-light">
             Requests to join {site?.title}
           </h2>
-          <DashboardJoinRequests.Container />
+          <DashboardJoinList.Container />
         </section>
       </div>
     </main>
