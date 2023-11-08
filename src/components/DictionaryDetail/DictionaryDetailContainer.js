@@ -6,9 +6,9 @@ import DictionaryDetailPresentationDrawer from 'components/DictionaryDetail/Dict
 import DictionaryDetailPresentationKids from 'components/DictionaryDetail/DictionaryDetailPresentationKids'
 import Loading from 'components/Loading'
 
-function DictionaryDetailContainer({ docId, docType, isDrawer, kids }) {
+function DictionaryDetailContainer({ id, isDrawer, kids }) {
   const { actions, entry, isLoading, moreActions, sitename, backHandler } =
-    DictionaryDetailData({ docId, docType })
+    DictionaryDetailData({ id })
   return (
     <Loading.Container isLoading={isLoading}>
       {isDrawer && (
@@ -40,8 +40,7 @@ function DictionaryDetailContainer({ docId, docType, isDrawer, kids }) {
 // PROPTYPES
 const { bool, string } = PropTypes
 DictionaryDetailContainer.propTypes = {
-  docId: string,
-  docType: string.isRequired,
+  id: string,
   isDrawer: bool,
   kids: bool,
 }

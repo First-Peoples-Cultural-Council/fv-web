@@ -16,6 +16,7 @@ import Game from 'components/Game'
 import Games from 'components/Games'
 import Home from 'components/Home'
 import Immersion from 'components/Immersion'
+import Join from 'components/Join'
 import Loading from 'components/Loading'
 import NavBar from 'components/NavBar'
 import Page from 'components/Page'
@@ -27,19 +28,13 @@ import Story from 'components/Story'
 
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
-import {
-  DOC_PHRASE,
-  DOC_WORD,
-  TYPE_PHRASE,
-  TYPE_WORD,
-  TYPE_DICTIONARY,
-} from 'common/constants'
+import { TYPE_PHRASE, TYPE_WORD, TYPE_DICTIONARY } from 'common/constants'
 
 function SiteFrame({ siteLoading }) {
   return (
     <div className="overflow-hidden">
-      <header className="fixed w-full top-0 z-50 print:hidden">
-        <NavBar.Container />
+      <header className="fixed w-full top-0 z-50 print:hidden bg-fv-charcoal h-16">
+        <NavBar.Container siteLoading={siteLoading} />
       </header>
       <main role="main" className="relative pt-16 z-0 min-h-screen">
         <Loading.Container isLoading={siteLoading}>
@@ -49,17 +44,14 @@ function SiteFrame({ siteLoading }) {
               path="dictionary"
               element={<Dictionary.Container searchType={TYPE_DICTIONARY} />}
             />
-            <Route
-              path="words/:id"
-              element={<DictionaryDetail.Container docType={DOC_WORD} />}
-            />
+            <Route path="words/:id" element={<DictionaryDetail.Container />} />
             <Route
               path="words"
               element={<Dictionary.Container searchType={TYPE_WORD} />}
             />
             <Route
               path="phrases/:id"
-              element={<DictionaryDetail.Container docType={DOC_PHRASE} />}
+              element={<DictionaryDetail.Container />}
             />
             <Route
               path="phrases"
@@ -89,6 +81,7 @@ function SiteFrame({ siteLoading }) {
             <Route path="games/:id" element={<Game.Container />} />
             <Route path="games" element={<Games.Presentation />} />
             <Route path="immersion" element={<Immersion.Container />} />
+            <Route path="join" element={<Join.Container />} />
             <Route
               path="apps"
               element={<Resource.Container pageSlug="apps" />}

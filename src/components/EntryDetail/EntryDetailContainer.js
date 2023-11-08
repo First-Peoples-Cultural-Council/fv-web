@@ -11,13 +11,7 @@ function EntryDetailContainer({ id, type, isDrawer }) {
   switch (type) {
     case TYPE_PHRASE:
     case TYPE_WORD:
-      return (
-        <DictionaryDetail.Container
-          docId={id}
-          docType={type}
-          isDrawer={isDrawer}
-        />
-      )
+      return <DictionaryDetail.Container id={id} isDrawer={isDrawer} />
     case TYPE_SONG:
       return <Song.Container docId={id} isDrawer={isDrawer} />
     case TYPE_STORY:

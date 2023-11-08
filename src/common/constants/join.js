@@ -1,0 +1,11 @@
+// Join Request Reason Keys for API
+export const OTHER = 'OTHER'
+export const LANGUAGE_LEARNER = 'LANGUAGE_LEARNER'
+export const LANGUAGE_TEACHER = 'LANGUAGE_TEACHER'
+export const FLUENT_SPEAKER = 'FLUENT_SPEAKER'
+export const LANGUAGE_INTEREST = 'LANGUAGE_INTEREST'
+export const HERITAGE = 'HERITAGE'
+export const COMMUNITY_MEMBER = 'COMMUNITY_MEMBER'
+export const COMMUNITY_STAFF = 'COMMUNITY_STAFF'
+export const RECONCILIATION = 'RECONCILIATION'
+export const FV_TEAM = 'FV_TEAM'

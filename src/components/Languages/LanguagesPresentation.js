@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import PrivateSiteCard from 'components/Languages/PrivateSiteCard'
 import SiteCard from 'components/Languages/SiteCard'
 import SectionTitle from 'components/SectionTitle'
+import { languageColors } from 'assets/languageColors'
+import { PUBLIC } from 'common/constants'
+import { isMember } from 'common/utils/membershipHelpers'
 
-function LanguagesPresentation({
-  allSitesList,
-  userSitesList,
-  parentLanguagesData,
-}) {
+function LanguagesPresentation({ allSitesList, userSitesList, user }) {
   return (
     <section
       data-testid="LanguagesPresentation"
@@ -26,7 +26,7 @@ function LanguagesPresentation({
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList?.map((site) => (
-              <SiteCard key={site?.id} site={site} member />
+              <SiteCard key={site?.id} site={site} user={user} />
             ))}
           </div>
         </div>
@@ -42,26 +42,39 @@ function LanguagesPresentation({
             />
           </div>
           <div className="mt-5">
-            {allSitesList.map((parentLanguage) => {
+            {allSitesList.map((language) => {
               // Generating class for border color
-              const borderColor = parentLanguagesData[
-                parentLanguage.languageCode
-              ]
-                ? `border-[${parentLanguagesData[parentLanguage.languageCode]}]`
+              const borderColor = languageColors[language.languageCode]
+                ? `border-[${languageColors[language.languageCode]}]`
                 : 'border-gray'
               return (
                 <div
                   id="LanguagesPresentation"
-                  key={parentLanguage.language}
+                  key={language.title}
                   className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
                 >
                   <h1 className="pl-4 text-xl font-extrabold text-primary">
-                    {parentLanguage.language}
+                    {language.title}
                   </h1>
                   <div className="flex flex-wrap justify-start pl-10">
-                    {parentLanguage.sites.map((site) => (
-                      <SiteCard key={site?.id} site={site} />
-                    ))}
+                    {language.sites.map((site) => {
+                      const memberOfSite = isMember({
+                        user,
+                        sitename: site?.sitename,
+                      })
+                      const isLocked = memberOfSite
+                        ? false
+                        : site.visibility !== PUBLIC
+                      return isLocked ? (
+                        <PrivateSiteCard
+                          key={site?.id}
+                          site={site}
+                          user={user}
+                        />
+                      ) : (
+                        <SiteCard key={site?.id} site={site} user={user} />
+                      )
+                    })}
                   </div>
                 </div>
               )
@@ -74,11 +87,11 @@ function LanguagesPresentation({
 }
 
 // PROPTYPES
-const { object, array } = PropTypes
+const { array, object } = PropTypes
 LanguagesPresentation.propTypes = {
   allSitesList: array,
   userSitesList: array,
-  parentLanguagesData: object,
+  user: object,
 }
 
 export default LanguagesPresentation

@@ -2,7 +2,7 @@ const colors = require('tailwindcss/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 const tailwindAspectRatio = require('@tailwindcss/aspect-ratio')
 const tailwindForms = require('@tailwindcss/forms')
-const parentLanguageColorConfig = require('./src/assets/parentLanguageColorConfig')
+const languageColorsConfig = require('./src/assets/languageColorsConfig')
 
 module.exports = {
   content: ['./src/**/*.{html,js}', './public/index.html'],
@@ -19,7 +19,7 @@ module.exports = {
         /(bg|border|from|to|text)-(word|phrase|song|story|tertiaryA|tertiaryB|tertiaryC|wordText|phraseText|songText|storyText|bgGreen)/,
       variants: ['hover'],
     },
-    ...parentLanguageColorConfig.colors,
+    ...languageColorsConfig.colors,
   ],
   theme: {
     fontFamily: {

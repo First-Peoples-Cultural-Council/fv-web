@@ -244,7 +244,7 @@ function WidgetAreaEditPresentationSettingsPane({
         closeHandler={() => setRemoveModalOpen(false)}
       >
         <div
-          id="RemoveWidgetModalContent"
+          data-testid="RemoveWidgetModalContent"
           className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-md sm:w-full"
         >
           <div className="text-center font-medium space-y-2">

@@ -8,23 +8,24 @@ import getIcon from 'common/utils/getIcon'
 function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
   const { setCurrentAudio } = useAudiobar()
 
-  const audioButtons = audioArray?.map((audioObject) => (
-    <button
-      type="button"
-      key={audioObject?.id}
-      className="print:hidden relative group"
-      onClick={() => setCurrentAudio(audioObject)}
-    >
-      <div className="sr-only">Play audio</div>
-      {getIcon('Audio', iconStyling)}
-      {hoverTooltip ? (
-        <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-fv-charcoal-light text-white text-center rounded-lg whitespace-nowrap">
-          Play audio
-        </div>
-      ) : null}
-    </button>
-  ))
-  return audioArray?.length > 0 ? audioButtons : ''
+  return audioArray?.map((audioObject) =>
+    audioObject?.id ? (
+      <button
+        type="button"
+        key={audioObject?.id}
+        className="print:hidden relative group"
+        onClick={() => setCurrentAudio(audioObject)}
+      >
+        <div className="sr-only">Play audio</div>
+        {getIcon('Audio', iconStyling)}
+        {hoverTooltip ? (
+          <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-fv-charcoal-light text-white text-center rounded-lg whitespace-nowrap">
+            Play audio
+          </div>
+        ) : null}
+      </button>
+    ) : null,
+  )
 }
 // PROPTYPES
 const { array, string, bool } = PropTypes

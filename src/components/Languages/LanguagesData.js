@@ -1,9 +1,10 @@
 // FPCC
 import { useSites } from 'common/dataHooks/useSites'
 import { useMySites } from 'common/dataHooks/useMySites'
-import { parentLanguageColors } from 'assets/parentLanguageColors'
+import { useUserStore } from 'context/UserContext'
 
 function LanguagesData() {
+  const { user } = useUserStore()
   const { allSitesData, isInitialLoading } = useSites()
 
   const { mySitesData, isInitialLoading: mySitesIsInitialLoading } =
@@ -15,7 +16,7 @@ function LanguagesData() {
     allSitesList: allSitesData,
     // mySites
     userSitesList: mySitesData,
-    parentLanguagesData: parentLanguageColors,
+    user,
   }
 }
 
