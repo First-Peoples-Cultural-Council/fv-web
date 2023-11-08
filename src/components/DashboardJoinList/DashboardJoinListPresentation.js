@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
-import DashboardJoinRequestCard from 'components/DashboardJoinList/DashboardJoinRequestCard'
+import DashboardJoinCard from 'components/DashboardJoinCard'
 
 function DashboardJoinListPresentation({
   isLoading,
@@ -35,7 +35,7 @@ function DashboardJoinListPresentation({
                 {joinRequests?.pages.map((page) => (
                   <Fragment key={page?.pageNumber}>
                     {page.results.map((request) => (
-                      <DashboardJoinRequestCard
+                      <DashboardJoinCard.Container
                         key={request?.id}
                         joinRequest={request}
                       />
