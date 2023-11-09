@@ -8,13 +8,11 @@ import DashboardJoinCardPresentation from 'components/DashboardJoinCard/Dashboar
 function DashboardJoinCardContainer({ joinRequest }) {
   const { handleIgnore, handleApprove } = DashboardJoinCardData({ joinRequest })
   return (
-    <div id="DashboardJoinCardContainer">
-      <DashboardJoinCardPresentation
-        joinRequest={joinRequest}
-        handleIgnore={handleIgnore}
-        handleApprove={handleApprove}
-      />
-    </div>
+    <DashboardJoinCardPresentation
+      joinRequest={joinRequest}
+      handleIgnore={handleIgnore}
+      handleApprove={handleApprove}
+    />
   )
 }
 

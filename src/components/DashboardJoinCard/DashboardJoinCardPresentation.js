@@ -23,8 +23,13 @@ function DashboardJoinCardPresentation({
     joinRequest?.user?.firstName || joinRequest?.user?.lastName
       ? `${joinRequest?.user?.firstName} ${joinRequest?.user?.lastName}`
       : null
+
   return (
-    <li key={joinRequest?.id} className="flex justify-between gap-x-6">
+    <li
+      data-testid="DashboardJoinCard"
+      key={joinRequest?.id}
+      className="flex justify-between gap-x-6"
+    >
       <div className="p-5">
         <div className="flex gap-x-3">
           <p className="font-semibold leading-6 text-fv-charcoal">
@@ -74,12 +79,12 @@ function DashboardJoinCardPresentation({
             id="role-to-assign"
             name="role-to-assign"
             onChange={(e) => setSelectedRole(e.target.value)}
-            className="rounded-lg py-1.5 pl-3 pr-9 text-sm text-primary border border-primary shadow-sm hover:bg-gray-50"
+            className="rounded-lg py-1.5 pl-3 pr-7 text-sm text-primary border border-primary shadow-sm hover:bg-gray-50"
           >
-            <option value={MEMBER}>Member</option>
-            <option value={ASSISTANT}>Assistant</option>
-            <option value={EDITOR}>Editor</option>
-            <option value={LANGUAGE_ADMIN}>Language Admin</option>
+            <option value={MEMBER}>Approve as Member</option>
+            <option value={ASSISTANT}>Approve as Assistant</option>
+            <option value={EDITOR}>Approve as Editor</option>
+            <option value={LANGUAGE_ADMIN}>Approve as Language Admin</option>
           </select>
 
           <label htmlFor="approve-request" className="sr-only">
@@ -92,12 +97,12 @@ function DashboardJoinCardPresentation({
             onClick={() => handleApprove(selectedRole)}
             className="inline-flex items-center gap-x-2 rounded-lg px-2.5 py-1.5 text-sm bg-primary text-white shadow-sm hover:bg-primary-dark"
           >
-            Approve
+            OK
             <span className="sr-only">, {nameOfUser}</span>
             {getIcon('CheckCircleSolid', 'h-4 w-4 fill-current')}
           </button>
         </div>
-        <div className="ml-5">
+        <div className="ml-14">
           <label htmlFor="igore-request" className="sr-only">
             Ignore request
           </label>

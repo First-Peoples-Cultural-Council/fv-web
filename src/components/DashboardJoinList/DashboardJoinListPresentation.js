@@ -20,7 +20,7 @@ function DashboardJoinListPresentation({
     if (infiniteScroll?.hasNextPage) {
       return 'Load more'
     }
-    return 'End of requests.'
+    return ''
   }
   return (
     <Loading.Container isLoading={isLoading}>
@@ -42,11 +42,11 @@ function DashboardJoinListPresentation({
                     ))}
                   </Fragment>
                 ))}
-              </div>
-              <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
                 <button
                   type="button"
-                  className={!hasNextPage ? 'cursor-text' : ''}
+                  className={`${
+                    !hasNextPage ? 'cursor-text' : ''
+                  } text-primary font-semibold w-full text-center p-2 print:hidden`}
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}
                 >
