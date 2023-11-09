@@ -49,7 +49,7 @@ function DashboardLandingPresentation({
             <DashboardTiles.Presentation tileContent={tileContent} />
           </div>
         )}
-        {children}
+        <div className="px-8">{children}</div>
       </main>
       <DashboardFooter.Presentation />
     </div>

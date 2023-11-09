@@ -13,8 +13,8 @@ function DashboardTablePresentation({
   return (
     <Loading.Container isLoading={isLoading}>
       <section
-        id="DashboardTablePresentation"
-        className="mx-auto max-w-7xl h-full px-8"
+        data-testid="DashboardTablePresentation"
+        className="mx-auto h-full"
       >
         <div className="bg-white shadow rounded-md overflow-hidden">
           {title && (

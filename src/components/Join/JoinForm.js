@@ -49,7 +49,7 @@ function JoinForm({ site, submitHandler }) {
       .min(1, 'At least one reason must be selected')
       .required(),
     message: definitions
-      .paragraph()
+      .paragraph({ charCount: 2500 })
       .required('Please include a message to the Language Administrator'),
     sitename: yup.string().required(),
   })
