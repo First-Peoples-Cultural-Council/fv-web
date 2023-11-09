@@ -87,7 +87,6 @@ function DashboardJoinCardPresentation({
                 className="mt-1 lg:mt-0 inline-flex items-center gap-x-2 rounded-lg px-2.5 py-1.5 text-sm bg-primary text-white shadow-sm hover:bg-primary-dark"
               >
                 OK
-                <span className="sr-only">, {nameOfUser}</span>
                 {getIcon('CheckCircleSolid', 'h-4 w-4 fill-current')}
               </button>
             </div>
@@ -103,7 +102,6 @@ function DashboardJoinCardPresentation({
                 className="inline-flex items-center gap-x-2 rounded-lg px-2.5 py-1.5 text-sm text-secondary border border-secondary shadow-sm hover:bg-gray-50"
               >
                 Ignore
-                <span className="sr-only">, {nameOfUser}</span>
                 {getIcon('TimesCircleSolid', 'h-4 w-4 fill-current')}
               </button>
             </div>
