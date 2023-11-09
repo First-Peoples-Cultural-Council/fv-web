@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
-import { MEMBER } from 'common/constants/roles'
+import { LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 import DashboardLocator from 'components/DashboardLocator'
 import DashboardJoinList from 'components/DashboardJoinList'
 
@@ -13,7 +13,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
   return (
     <main id="DashboardHome">
       <h1 className="sr-only">Dashboard Landing Page</h1>
-      <div className="mx-auto p-4 sm:p-6 lg:p-8 space-y-10">
+      <div className="mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
         <section>
           <div className="rounded-lg bg-white overflow-hidden shadow">
             <div className="bg-white p-6">
@@ -96,12 +96,14 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
             ))}
           </ul>
         </section>
-        <section className="rounded-lg overflow-hidden">
-          <h2 className="mb-3 mx-2 text-sm font-medium text-fv-charcoal-light">
-            Requests to join {site?.title}
-          </h2>
-          <DashboardJoinList.Container />
-        </section>
+        <RequireAuth siteMembership={LANGUAGE_ADMIN}>
+          <section className="rounded-lg overflow-hidden">
+            <h2 className="mb-3 mx-2 text-sm font-medium text-fv-charcoal-light">
+              Requests to join {site?.title}
+            </h2>
+            <DashboardJoinList.Container />
+          </section>
+        </RequireAuth>
       </div>
     </main>
   )
