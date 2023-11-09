@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import CategoriesBrowser from 'components/CategoriesBrowser'
-
+import FieldButton from 'components/Form/FieldButton'
 function CategoryArrayField({
   label,
   nameId,
@@ -56,16 +56,13 @@ function CategoryArrayField({
             </li>
           ))}
         </ul>
-
         {fields?.length < maxItems && (
-          <button
-            type="button"
-            onClick={() => openModal()}
-            className="bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-          >
-            {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
-            <span>Add {label.toLowerCase()}</span>
-          </button>
+          <FieldButton
+            fields={fields}
+            maxItems={maxItems}
+            label={label}
+            openModal={openModal}
+          />
         )}
       </div>
       {helpText && (
