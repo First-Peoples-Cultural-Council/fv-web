@@ -21,7 +21,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
   }
 
   return (
-    <div role="list" className="flex w-full justify-between p-2">
+    <ul className="flex w-full justify-between p-2">
       {activeStepNumber > 0 ? (
         <button
           type="button"
@@ -52,7 +52,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
           </Link>
         </div>
       )}
-    </div>
+    </ul>
   )
 }
 
