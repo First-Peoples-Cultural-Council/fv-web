@@ -31,7 +31,7 @@ function DashboardJoinListPresentation({
               id="EntriesListPresentation"
               className="flex flex-col w-full bg-white rounded-lg"
             >
-              <div className="divide-y divide-gray-100">
+              <div className="divide-y divide-gray-200">
                 {joinRequests?.pages.map((page) => (
                   <Fragment key={page?.pageNumber}>
                     {page.results.map((request) => (
