@@ -67,12 +67,7 @@ function TextArrayField({
           ))}
         </ul>
         {fields?.length < maxItems && (
-          <FieldButton
-            fields={fields}
-            maxItems={maxItems}
-            label={label}
-            append={append}
-          />
+          <FieldButton label={label} append={append} />
         )}
       </div>
       {helpText && (

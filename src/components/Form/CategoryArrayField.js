@@ -57,12 +57,7 @@ function CategoryArrayField({
           ))}
         </ul>
         {fields?.length < maxItems && (
-          <FieldButton
-            fields={fields}
-            maxItems={maxItems}
-            label={label}
-            openModal={openModal}
-          />
+          <FieldButton label={label} openModal={openModal} />
         )}
       </div>
       {helpText && (
