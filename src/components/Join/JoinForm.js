@@ -79,20 +79,23 @@ function JoinForm({ site, submitHandler }) {
   ]
 
   return (
-    <div className="text-left text-fv-charcoal space-y-10">
+    <div
+      data-testid="JoinForm"
+      className="text-left text-fv-charcoal space-y-5 md:space-y-10"
+    >
       <div className="space-y-2">
-        <h1 className="text-2xl leading-10 font-medium">
+        <h1 className="text-xl md:text-2xl leading-10 font-medium">
           Request membership to this language site: <br />{' '}
           <span className="font-bold">{site?.title}</span>
         </h1>
-        <p className="text-base">
+        <p className="text-sm md:text-base">
           By joining, you can access this community&apos;s members-only content.
         </p>
       </div>
 
       <form onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-10">
-          <div className="col-span-12 space-y-2">
+        <div className="mt-6 space-y-5 md:space-y-10">
+          <div className="w-full space-y-2">
             <input
               id="sitename"
               name="sitename"
@@ -100,7 +103,11 @@ function JoinForm({ site, submitHandler }) {
               value="default"
               {...register('sitename')}
             />
-            <label htmlFor="message" className="block font-medium">
+            <Form.ValidationError errors={errors} nameId="sitename" />
+            <label
+              htmlFor="message"
+              className="block font-medium text-sm md:text-base"
+            >
               Why do you want to join?
             </label>
             <Controller
@@ -111,7 +118,7 @@ function JoinForm({ site, submitHandler }) {
               render={({ field: { value, onChange } }) => (
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
                   {({ open }) => (
-                    <div className="relative w-96">
+                    <div className="relative max-w-xs">
                       <Listbox.Button className="relative w-full text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
                         <div className="w-full inline-flex items-center">
                           <span className="truncate">
@@ -174,8 +181,11 @@ function JoinForm({ site, submitHandler }) {
             />
             <Form.ValidationError errors={errors} nameId="reasons" />
           </div>
-          <div className="col-span-12  space-y-2">
-            <label htmlFor="message" className="block font-medium">
+          <div className="w-full space-y-2">
+            <label
+              htmlFor="message"
+              className="block font-medium text-sm md:text-base"
+            >
               Your request will be reviewed by a community language
               administrator. <br /> Write them a message:
             </label>
@@ -190,7 +200,7 @@ function JoinForm({ site, submitHandler }) {
 
             <Form.ValidationError errors={errors} nameId="message" />
           </div>
-          <div className="col-span-12 flex justify-end">
+          <div className="w-full flex justify-end">
             <Form.SubmitButtons
               submitLabel="Send request"
               submitIcon="Mail"
