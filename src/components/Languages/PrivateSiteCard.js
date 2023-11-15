@@ -58,18 +58,18 @@ function PrivateSiteCard({ site, user }) {
               site={site}
             />
           ) : (
-            <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
+            <div className="p-4 sm:px-6 sm:py-32 lg:px-8">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
                   {site.title} <br />
                   is Private
                 </h2>
 
-                <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
                   You need to be {isAnonymous && 'logged in and '}a registered
                   member of this site to see its content.
                 </p>
-                <div className="mt-10 flex items-center justify-center gap-x-6">
+                <div className="mt-5 md:mt-10 flex items-center justify-center gap-x-3 md:gap-x-6">
                   <button
                     type="button"
                     onClick={primaryButtonClick}

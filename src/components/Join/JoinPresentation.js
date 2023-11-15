@@ -49,53 +49,55 @@ function JoinPresentation({
   return (
     <div
       data-testid="JoinPresentation"
-      className="bg-white max-w-2xl mx-auto p-6 lg:p-10 overflow-hidden transform transition-all"
+      className="bg-white p-6 lg:p-10 transform transition-all"
     >
-      {stage === 'form' && (
-        <JoinForm site={site} submitHandler={submitHandler} />
-      )}
-      {(stage === 'success' || stage === 'error') && (
-        <div
-          data-testid="PrivateSiteModalContent"
-          className="px-6 py-14 lg:px-8"
-        >
-          <div>{icon}</div>
-          <div className="mt-6 mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
-              {messageHeader}
-            </h2>
+      <div className="mx-auto max-w-2xl">
+        {stage === 'form' && (
+          <JoinForm site={site} submitHandler={submitHandler} />
+        )}
+        {(stage === 'success' || stage === 'error') && (
+          <div
+            data-testid="JoinPresentation-message"
+            className="px-6 py-14 lg:px-8"
+          >
+            <div>{icon}</div>
+            <div className="mt-6 mx-auto text-center">
+              <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
+                {messageHeader}
+              </h2>
 
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
-              {message}
-            </p>
-            <div className="mt-10 space-y-6">
-              {site?.visibility === PUBLIC && (
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                {message}
+              </p>
+              <div className="mt-10 space-y-6">
+                {site?.visibility === PUBLIC && (
+                  <button
+                    type="button"
+                    onClick={() => linkAndClose(`/${site?.sitename}/`)}
+                    className={primaryBtnStyling}
+                  >
+                    Browse public content on the {site?.title} site
+                  </button>
+                )}
                 <button
                   type="button"
-                  onClick={() => linkAndClose(`/${site?.sitename}/`)}
-                  className={primaryBtnStyling}
+                  onClick={() => linkAndClose('/languages')}
+                  className={
+                    site?.visibility === PUBLIC
+                      ? 'text-sm font-semibold leading-6 text-fv-charcoal'
+                      : primaryBtnStyling
+                  }
                 >
-                  Browse public content on the {site?.title} site
+                  Explore other languages{' '}
+                  <span className="text-lg ml-2" aria-hidden="true">
+                    →
+                  </span>
                 </button>
-              )}
-              <button
-                type="button"
-                onClick={() => linkAndClose('/languages')}
-                className={
-                  site?.visibility === PUBLIC
-                    ? 'text-sm font-semibold leading-6 text-fv-charcoal'
-                    : primaryBtnStyling
-                }
-              >
-                Explore other languages{' '}
-                <span className="text-lg ml-2" aria-hidden="true">
-                  →
-                </span>
-              </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
