@@ -12,6 +12,12 @@ function CategoriesBrowserPresentation({
   filteredCategories,
   setQuery,
 }) {
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault()
+    }
+  }
+
   return (
     <main id="CategoriesBrowserPresentation">
       <div className="h-full w-full bg-white p-4 min-h-screen">
@@ -26,6 +32,7 @@ function CategoriesBrowserPresentation({
                   className="h-full w-full border-transparent px-4 py-2 pl-8 pr-3 bg-gray-100 rounded text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
                   placeholder="Search all Categories"
                   onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={handleKeyDown}
                 />
               </div>
             </form>
