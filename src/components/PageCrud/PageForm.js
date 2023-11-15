@@ -105,7 +105,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                 </div>
                 <div className="col-span-12 flex items-center justify-start">
                   <Form.SelectOneMedia
-                    label="Add Banner Background"
+                    label="Add banner background"
                     nameId="banner"
                     control={control}
                     errors={errors}
@@ -142,10 +142,10 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
         <section className="flex w-full justify-end">
           <div>
             <Form.SubmitButtons
-              submitLabel={isCreateMode ? 'Create Page' : 'Save Changes'}
+              submitLabel={isCreateMode ? 'Create page' : 'Save changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
               cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
+              cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
               onCancelClick={cancelHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />

@@ -86,10 +86,10 @@ function CategoryCrudPresentation({
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons
-              submitLabel={isCreateMode ? 'Create Category' : 'Save Changes'}
+              submitLabel={isCreateMode ? 'Create category' : 'Save changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
               cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
+              cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
               onCancelClick={backHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />

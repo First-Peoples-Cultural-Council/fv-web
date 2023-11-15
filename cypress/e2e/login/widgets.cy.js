@@ -2,9 +2,9 @@
 
 function checkValidation(widgetName) {
   cy.contains(widgetName).click()
-  cy.contains('Create Widget').click()
+  cy.contains('Create widget').click()
   cy.get('.text-red-500').should('exist')
-  cy.contains('Go Back').click()
+  cy.contains('Go back').click()
 }
 
 function createwidget(name) {
@@ -14,11 +14,11 @@ function createwidget(name) {
 }
 
 function throughme(name) {
-  cy.contains('Create Widget').click()
+  cy.contains('Create widget').click()
   cy.wait(1000)
   cy.get('[href="/lilwat/dashboard/edit"]').click()
   cy.wait(1000)
-  cy.contains('Edit Widgets').click()
+  cy.contains('Edit widgets').click()
 
   cy.contains(name)
     .scrollIntoView()
@@ -30,7 +30,7 @@ function throughme(name) {
 
   cy.get('#widgetName').should('contain.value', name)
   cy.wait(1500)
-  cy.contains('Delete Widget').click()
+  cy.contains('Delete widget').click()
   cy.get('#RemoveWidgetModalContent').contains('Delete').click()
 }
 

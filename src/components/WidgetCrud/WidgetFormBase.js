@@ -31,7 +31,7 @@ function WidgetFormBase({
         </div>
         <div className="col-span-12 sm:col-span-6">
           <Form.TextField
-            label={isCreateMode ? 'A nickname for your Widget' : 'Nickname'}
+            label={isCreateMode ? 'A nickname for your widget' : 'Nickname'}
             nameId="nickname"
             register={register}
             helpText={
@@ -57,10 +57,10 @@ function WidgetFormBase({
       </div>
       <div className="mt-4 flex justify-end px-6">
         <Form.SubmitButtons
-          submitLabel={isCreateMode ? 'Create Widget' : 'Save Changes'}
+          submitLabel={isCreateMode ? 'Create widget' : 'Save changes'}
           submitIcon={isCreateMode ? 'Add' : 'Save'}
           cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-          cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
+          cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
           onCancelClick={cancelHandler}
           onSubmitClick={handleSubmit(submitHandler)}
         />

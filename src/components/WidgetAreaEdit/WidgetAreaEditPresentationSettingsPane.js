@@ -196,7 +196,7 @@ function WidgetAreaEditPresentationSettingsPane({
             {currentWidget?.type === WIDGET_CONTACT && (
               <div className="mt-6">
                 <dt className="mb-1 text-sm font-bold text-primary-light">
-                  Contact List
+                  Contact list
                 </dt>
                 <div className="col-span-12">
                   <div className="mt-2 text-xs text-fv-charcoal-light italic">

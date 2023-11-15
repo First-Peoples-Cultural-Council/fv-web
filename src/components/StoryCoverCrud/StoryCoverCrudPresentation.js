@@ -92,7 +92,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
             </div>
             <div className="col-span-6">
               <Form.TextField
-                label="Title Translated to English"
+                label="Title translation"
                 nameId="titleTranslation"
                 register={register}
                 errors={errors}
@@ -108,7 +108,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
             </div>
             <div className="col-span-6">
               <Form.WysiwygField
-                label="Story Introduction in your language"
+                label="Introduction in your language"
                 nameId="intro"
                 control={control}
                 toolbar="none"
@@ -117,7 +117,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
             </div>
             <div className="col-span-6">
               <Form.WysiwygField
-                label="Introduction Translated to English"
+                label="Introduction translation"
                 nameId="introTranslation"
                 control={control}
                 toolbar="none"
@@ -185,7 +185,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 errors={errors}
               />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-8">
               <Form.RadioButtons
                 label="Does the cover image include the title?"
                 helpText="Selecting 'Yes' will hide the title overlay in the story list"

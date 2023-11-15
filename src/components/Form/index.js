@@ -3,6 +3,7 @@ import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
 import EntryArrayField from 'components/Form/EntryArrayField'
+import FieldButton from 'components/Form/FieldButton'
 import FileUploadField from 'components/Form/FileUploadField'
 import Header from 'components/Form/Header'
 import MediaArrayField from 'components/Form/MediaArrayField'
@@ -26,6 +27,7 @@ export default {
   AutocompleteMultiple,
   CategoryArrayField,
   EntryArrayField,
+  FieldButton,
   FileUploadField,
   Header,
   MediaArrayField,

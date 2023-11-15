@@ -68,7 +68,7 @@ function SpeakerCrudPresentation({
               submitLabel={isCreateMode ? 'Add Speaker' : 'Save Changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
               cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
+              cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
               onCancelClick={backHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />

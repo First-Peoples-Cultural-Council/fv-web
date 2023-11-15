@@ -41,7 +41,7 @@ function StoryCrudPreview({ storyData }) {
       className="text-primary-light text-sm font-semibold"
       onClick={() => setTranslate(!translate)}
     >
-      View {translate ? 'Language' : 'Translation'}
+      View {translate ? 'language' : 'translation'}
     </button>
   )
 
@@ -87,7 +87,7 @@ function StoryCrudPreview({ storyData }) {
         <h2 className={headingStyle}>Story Info</h2>
         <div className="text-fv-charcoal space-y-6">
           <div className={detailStyle}>
-            <h3 className={labelStyle}>Story Title</h3>
+            <h3 className={labelStyle}>Story title</h3>
             <p>{translate ? titleTranslation : title}</p>
             {translateButton()}
           </div>
@@ -96,7 +96,7 @@ function StoryCrudPreview({ storyData }) {
             <p>{author}</p>
           </div>
           <div className={detailStyle}>
-            <h3 className={`${labelStyle} -mb-3`}>Story Introduction</h3>
+            <h3 className={`${labelStyle} -mb-3`}>Story introduction</h3>
 
             <WysiwygBlock jsonString={translate ? introTranslation : intro} />
             {translateButton()}
@@ -131,7 +131,7 @@ function StoryCrudPreview({ storyData }) {
             {audioThumbnails(currentPage?.relatedAudio)}
           </div>
           <div className={detailStyle}>
-            <h3 className={labelStyle}>Visual Media</h3>
+            <h3 className={labelStyle}>Visual media</h3>
             <div className="inline-flex">
               {relatedVisualMediaThumbnails({
                 images: storyData?.relatedImages,
@@ -143,8 +143,9 @@ function StoryCrudPreview({ storyData }) {
         <div className="flex justify-end">
           <Link
             to={`/${sitename}/dashboard/edit/story?step=0&id=${storyData?.id}`}
+            className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
           >
-            EDIT
+            Edit
           </Link>
         </div>
       </section>
@@ -161,7 +162,7 @@ function StoryCrudPreview({ storyData }) {
             <div className="col-span-1 space-y-4">
               {currentPage?.text && (
                 <div className={detailStyle}>
-                  <h3 className={`${labelStyle} -mb-3`}>Page Text</h3>
+                  <h3 className={`${labelStyle} -mb-3`}>Page text</h3>
                   <WysiwygBlock
                     jsonString={
                       translate
@@ -176,7 +177,7 @@ function StoryCrudPreview({ storyData }) {
             </div>
           </div>
           <div className="flex top-4 justify-center py-2 gap-x-2 text-fv-charcoal-light">
-            Pages
+            Page
             {pages?.map((pageId, pageIndex) => (
               <button
                 type="button"
@@ -195,8 +196,9 @@ function StoryCrudPreview({ storyData }) {
           <div className="flex justify-end">
             <Link
               to={`/${sitename}/dashboard/edit/story?step=1&id=${storyData?.id}`}
+              className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
-              EDIT
+              Edit
             </Link>
           </div>
         </section>
@@ -205,7 +207,7 @@ function StoryCrudPreview({ storyData }) {
         <h2 className={headingStyle}>Privacy</h2>
         <div className="text-fv-charcoal space-y-6">
           <div className={detailStyle}>
-            <h3 className={labelStyle}>Who can view your Content?</h3>
+            <h3 className={labelStyle}>Who can view your content?</h3>
             <p>{visibility}</p>
           </div>
           <div className={detailStyle}>
@@ -216,19 +218,12 @@ function StoryCrudPreview({ storyData }) {
         <div className="flex justify-end">
           <Link
             to={`/${sitename}/dashboard/edit/story?step=2&id=${storyData?.id}`}
+            className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
           >
-            EDIT
+            Edit
           </Link>
         </div>
       </section>
-      <div className="flex w-full justify-end">
-        <Link
-          to={`/${sitename}/dashboard/edit/entries?types=story`}
-          className="bg-secondary hover:bg-secondary-light text-white border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-        >
-          <span>FINISH</span>
-        </Link>
-      </div>
     </div>
   )
 }

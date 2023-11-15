@@ -11,6 +11,7 @@ import DeleteButton from 'components/DeleteButton'
 
 function StoryCrudContainer() {
   const { activeStep, storyData, deleteHandler } = StoryCrudData()
+  const { sitename } = storyData
 
   function getStepContent(step) {
     switch (step) {
@@ -20,7 +21,7 @@ function StoryCrudContainer() {
         return <StoryAudienceCrud.Container storyData={storyData} />
       case 3:
         return (
-          <StoryCrudStepWrapper>
+          <StoryCrudStepWrapper sitename={sitename}>
             <StoryCrudPreview storyData={storyData} />
           </StoryCrudStepWrapper>
         )

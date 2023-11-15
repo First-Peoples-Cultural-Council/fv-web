@@ -85,7 +85,7 @@ function SongCrudPresentation({
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
-              label="Title Translation"
+              label="Title translation"
               nameId="titleTranslation"
               register={register}
               errors={errors}
@@ -102,7 +102,7 @@ function SongCrudPresentation({
           </div>
           <div className="col-span-6">
             <Form.WysiwygField
-              label="Introduction Translation"
+              label="Introduction translation"
               nameId="introTranslation"
               control={control}
               toolbar="none"
@@ -214,10 +214,10 @@ function SongCrudPresentation({
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons
-              submitLabel={isCreateMode ? 'Create Song' : 'Save Changes'}
+              submitLabel={isCreateMode ? 'Create song' : 'Save changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
               cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreateMode ? 'Go Back' : 'Cancel'}
+              cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
               onCancelClick={backHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />

@@ -26,7 +26,7 @@ function HomeCrudPresentation({ site }) {
               className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary-light"
             >
               {getIcon('Pencil', 'fill-current -ml-1 mr-2 h-5 w-5')}
-              <span>Edit Banner and Logo</span>
+              <span>Edit banner and logo</span>
             </Link>
           </div>
         </div>

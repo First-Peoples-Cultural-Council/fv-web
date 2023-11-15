@@ -49,8 +49,8 @@ function MediaDetailsVisual({ file, docType }) {
                     key={key}
                     className="py-3 flex justify-between text-sm font-medium"
                   >
-                    <dt className="text-fv-charcoal-light">
-                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    <dt className="text-fv-charcoal-light capitalize">
+                      {key === 'mimeType' ? 'File Type' : key}
                     </dt>
                     <dd className="text-fv-charcoal truncate pl-8">
                       {file[key]}

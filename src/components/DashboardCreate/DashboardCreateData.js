@@ -65,7 +65,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     WIDGET: {
       icon: 'Widget',
       name: 'Create a Widget',
-      description: "Add a new Widget to your site's collection",
+      description: "Add a new widget to your site's collection",
       href: addUrlPrefix('widget'),
       iconColor: 'songText',
       auth: LANGUAGE_ADMIN,

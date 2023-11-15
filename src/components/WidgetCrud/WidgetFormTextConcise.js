@@ -62,7 +62,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
         <>
           <div className="col-span-12">
             <Form.TextField
-              label="Title Text"
+              label="Title text"
               nameId="title"
               register={register}
               errors={errors}
@@ -70,7 +70,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-12">
             <Form.TextField
-              label="Subtitle Text"
+              label="Subtitle text"
               nameId="text"
               register={register}
               errors={errors}
@@ -96,7 +96,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-6">
             <Form.TextField
-              label="URL Label"
+              label="URL label"
               nameId="urlLabel"
               helpText="Enter a label for the URL button."
               register={register}

@@ -60,7 +60,7 @@ function StoryPageForm({
           <div className="col-span-7 space-y-4">
             <div className="w-full">
               <Form.WysiwygField
-                label="Page Text"
+                label="Page text"
                 nameId="text"
                 control={control}
                 toolbar="none"
@@ -69,7 +69,7 @@ function StoryPageForm({
             </div>
             <div className="w-full">
               <Form.WysiwygField
-                label="Translation to English"
+                label="Page translation"
                 nameId="textTranslation"
                 control={control}
                 toolbar="none"
