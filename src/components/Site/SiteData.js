@@ -15,11 +15,11 @@ function SiteData() {
   // --------------------------------
   // Get Language Site data
   // --------------------------------
-  const { isLoading, error, data } = useSite() // site data request, to put in the site store
+  const { isInitialLoading, error, data } = useSite() // site data request, to put in the site store
   const { site } = useSiteStore() // site store, to validate when it is ready for use
 
   useEffect(() => {
-    if (isLoading === false && error === null) {
+    if (isInitialLoading === false && error === null) {
       siteDispatch({ type: 'SET', data })
     }
     if (error) {
@@ -28,7 +28,7 @@ function SiteData() {
         { replace: true },
       )
     }
-  }, [sitename, isLoading, error])
+  }, [sitename, isInitialLoading, error])
 
   // --------------------------------
   // Get immersion data
@@ -62,7 +62,7 @@ function SiteData() {
   }, [immersionIsLoading, immersionError, immersionData])
 
   return {
-    siteLoading: isLoading || site?.id?.length < 1,
+    siteLoading: isInitialLoading || site?.id?.length < 1,
   }
 }
 
