@@ -119,15 +119,31 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           >
             <div
               data-testid="BetaModalContent"
-              className="bg-white rounded-lg shadow-lg p-9"
+              className="bg-white rounded-lg shadow-lg px-6 py-32"
             >
+              <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
+                Welcome to the new FirstVoices!
+              </h2>
               <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
-                Welcome to the new FirstVoices! The beta version of FirstVoices
-                v3 is now live. If you are looking for the old version of
-                FirstVoices, please click
-                <a href="www.archive.firstvoices.com">here</a>. Having issues
-                with the new version? Please contact us{' '}
-                <a href="mailto:hello@firstvoices.com">here</a>.
+                The beta version of FirstVoices v3 is now live.
+                <br /> If you are looking for the old version of FirstVoices,{' '}
+                <br />
+                please click{' '}
+                <a
+                  href="www.archive.firstvoices.com"
+                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                >
+                  here
+                </a>
+                . Having issues with the new version? <br />
+                Please contact us{' '}
+                <a
+                  href="mailto:hello@firstvoices.com"
+                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                >
+                  here
+                </a>
+                .
               </p>
             </div>
           </Modal.Presentation>
