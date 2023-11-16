@@ -8,12 +8,14 @@ import getIcon from 'common/utils/getIcon'
 import UserMenu from 'components/UserMenu'
 import { ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
+import Modal from 'components/Modal'
 
 function AppNavBarPresentation({ isHome = false, login, logout }) {
   let listener = null
   const { user } = useUserStore()
   const [scrollAtTop, setscrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
+  const [betaModalOpen, setBetaModalOpen] = useState(false)
 
   useEffect(() => {
     listener = document.addEventListener('scroll', () => {
@@ -102,10 +104,33 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 {getIcon('FVLogo', 'fill-current h-10')}
               </span>
             </a>
-            <div className="w-16 text-white text-sm leading-tight text-center mr-2">
+            <button
+              className="w-16 text-white text-sm leading-tight text-center mr-2"
+              onClick={() => setBetaModalOpen(true)}
+              type="button"
+            >
               Beta Version
-            </div>
+            </button>
           </div>
+
+          <Modal.Presentation
+            isOpen={betaModalOpen}
+            closeHandler={() => setBetaModalOpen(false)}
+          >
+            <div
+              data-testid="BetaModalContent"
+              className="bg-white rounded-lg shadow-lg p-9"
+            >
+              <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                Welcome to the new FirstVoices! The beta version of FirstVoices
+                v3 is now live. If you are looking for the old version of
+                FirstVoices, please click
+                <a href="www.archive.firstvoices.com">here</a>. Having issues
+                with the new version? Please contact us{' '}
+                <a href="mailto:hello@firstvoices.com">here</a>.
+              </p>
+            </div>
+          </Modal.Presentation>
 
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
