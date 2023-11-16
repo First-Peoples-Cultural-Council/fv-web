@@ -8,20 +8,22 @@ import getIcon from 'common/utils/getIcon'
 import UserMenu from 'components/UserMenu'
 import { ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
+import Modal from 'components/Modal'
 
 function AppNavBarPresentation({ isHome = false, login, logout }) {
   let listener = null
   const { user } = useUserStore()
-  const [scrollAtTop, setscrollAtTop] = useState(true)
+  const [scrollAtTop, setScrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
+  const [betaModalOpen, setBetaModalOpen] = useState(false)
 
   useEffect(() => {
     listener = document.addEventListener('scroll', () => {
       const scrolled = document.scrollingElement.scrollTop
       if (scrolled >= 60) {
-        setscrollAtTop(false)
+        setScrollAtTop(false)
       } else {
-        setscrollAtTop(true)
+        setScrollAtTop(true)
       }
     })
     return () => {
@@ -102,10 +104,53 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 {getIcon('FVLogo', 'fill-current h-10')}
               </span>
             </a>
-            <div className="w-16 text-white text-sm leading-tight text-center mr-2">
+            <button
+              className="w-16 text-white text-sm leading-tight text-center mr-2"
+              onClick={() => setBetaModalOpen(true)}
+              type="button"
+            >
               Beta Version
-            </div>
+            </button>
           </div>
+
+          <Modal.Presentation
+            isOpen={betaModalOpen}
+            closeHandler={() => setBetaModalOpen(false)}
+          >
+            <div
+              data-testid="BetaModalContent"
+              className="bg-white rounded-lg shadow-lg px-6 py-32"
+            >
+              <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
+                Welcome to the new FirstVoices!
+              </h2>
+              <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                The beta version of FirstVoices v3 is now live.
+                <br /> If you are looking for the old version of FirstVoices,{' '}
+                <br />
+                please click{' '}
+                <a
+                  href="www.archive.firstvoices.com"
+                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                >
+                  here
+                </a>
+                {/*
+                 */}
+                . Having issues with the new version? <br />
+                Please contact us{' '}
+                <a
+                  href="mailto:hello@firstvoices.com"
+                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                >
+                  here
+                </a>
+                {/*
+                 */}
+                .
+              </p>
+            </div>
+          </Modal.Presentation>
 
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
