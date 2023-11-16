@@ -130,7 +130,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 <br />
                 please click{' '}
                 <a
-                  href="www.archive.firstvoices.com"
+                  href="https://www.archive.firstvoices.com"
                   className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
                 >
                   here

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Transition } from '@headlessui/react'
@@ -10,6 +10,7 @@ import SearchSiteForm from 'components/SearchSiteForm'
 import UserMenu from 'components/UserMenu'
 import JoinModalButton from 'components/JoinModalButton'
 import getIcon from 'common/utils/getIcon'
+import Modal from 'components/Modal'
 
 function NavBarPresentation({
   isHome,
@@ -20,6 +21,7 @@ function NavBarPresentation({
   siteLoading,
 }) {
   const menuData = site?.menu || {}
+  const [betaModalOpen, setBetaModalOpen] = useState(false)
 
   const generateMenu = (menu) => (
     <NavBarPresentationMenu
@@ -49,9 +51,54 @@ function NavBarPresentation({
                   <span className="sr-only">FirstVoices Logo</span>
                   <Link to="/">{fvlogo}</Link>
                 </div>
-                <div className="w-16 text-white text-sm leading-tight text-center mr-2">
+                <button
+                  className="w-16 text-white text-sm leading-tight text-center mr-2"
+                  onClick={() => setBetaModalOpen(true)}
+                  type="button"
+                >
                   Beta Version
-                </div>
+                </button>
+
+                <Modal.Presentation
+                  isOpen={betaModalOpen}
+                  closeHandler={() => setBetaModalOpen(false)}
+                >
+                  <div
+                    data-testid="BetaModalContent"
+                    className="bg-white rounded-lg shadow-lg px-6 py-32"
+                  >
+                    <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
+                      Welcome to the new FirstVoices!
+                    </h2>
+                    <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                      The beta version of FirstVoices v3 is now live.
+                      <br /> If you are looking for the old version of
+                      FirstVoices, <br />
+                      please click{' '}
+                      <a
+                        href="https://www.archive.firstvoices.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                      >
+                        here
+                      </a>
+                      {/*
+                       */}
+                      . Having issues with the new version? <br />
+                      Please contact us{' '}
+                      <a
+                        href="mailto:hello@firstvoices.com"
+                        className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                      >
+                        here
+                      </a>
+                      {/*
+                       */}
+                      .
+                    </p>
+                  </div>
+                </Modal.Presentation>
                 {!isHome && (
                   <Link
                     className="h-9 text-white flex items-center group bg-fv-charcoal rounded-lg text-lg font-medium hover:text-gray-100"
