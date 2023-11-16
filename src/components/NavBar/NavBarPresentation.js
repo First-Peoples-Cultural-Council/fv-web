@@ -77,6 +77,8 @@ function NavBarPresentation({
                       please click{' '}
                       <a
                         href="https://www.archive.firstvoices.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
                       >
                         here
