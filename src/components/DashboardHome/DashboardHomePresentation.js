@@ -43,7 +43,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
         </section>
         <section>
           <h2 className="mb-3 mx-2 text-sm font-medium text-fv-charcoal-light">
-            Quick Links
+            Quick links
           </h2>
           <ul className="grid grid-cols-3 lg:grid-cols-4  gap-3">
             {tiles.map((tile) => (
@@ -71,7 +71,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                         >
                           {/* Extend touch target to entire panel */}
                           <span
-                            className="absolute inset-0"
+                            className="absolute inset-0 capitalize"
                             aria-hidden="true"
                           />
                           {tile?.name}
@@ -83,7 +83,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                         >
                           {/* Extend touch target to entire panel */}
                           <span
-                            className="absolute inset-0"
+                            className="absolute inset-0 capitalize"
                             aria-hidden="true"
                           />
                           {tile?.name}
