@@ -13,7 +13,7 @@ import Modal from 'components/Modal'
 function AppNavBarPresentation({ isHome = false, login, logout }) {
   let listener = null
   const { user } = useUserStore()
-  const [scrollAtTop, setscrollAtTop] = useState(true)
+  const [scrollAtTop, setScrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
   const [betaModalOpen, setBetaModalOpen] = useState(false)
 
@@ -21,9 +21,9 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
     listener = document.addEventListener('scroll', () => {
       const scrolled = document.scrollingElement.scrollTop
       if (scrolled >= 60) {
-        setscrollAtTop(false)
+        setScrollAtTop(false)
       } else {
-        setscrollAtTop(true)
+        setScrollAtTop(true)
       }
     })
     return () => {
@@ -135,6 +135,8 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 >
                   here
                 </a>
+                {/*
+                 */}
                 . Having issues with the new version? <br />
                 Please contact us{' '}
                 <a
@@ -143,6 +145,8 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 >
                   here
                 </a>
+                {/*
+                 */}
                 .
               </p>
             </div>
