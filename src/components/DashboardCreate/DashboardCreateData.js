@@ -16,7 +16,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
   const createTiles = {
     WORD: {
       icon: 'Word',
-      name: 'Create a Word',
+      name: 'Create a word',
       description: 'Add a new word to your dictionary',
       href: addUrlPrefix('word'),
       iconColor: 'wordText',
@@ -24,7 +24,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     PHRASE: {
       icon: 'Phrase',
-      name: 'Create a Phrase',
+      name: 'Create a phrase',
       description: 'Add a new phrase to your dictionary',
       href: addUrlPrefix('phrase'),
       iconColor: 'phraseText',
@@ -32,7 +32,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     SONG: {
       icon: 'Song',
-      name: 'Create a Song',
+      name: 'Create a song',
       description: 'Add a new song to your site',
       href: addUrlPrefix('song'),
       iconColor: 'songText',
@@ -40,7 +40,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     STORY: {
       icon: 'Story',
-      name: 'Create a Story',
+      name: 'Create a story',
       description: 'Add a new story to your site',
       href: addUrlPrefix('story'),
       iconColor: 'storyText',
@@ -48,7 +48,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     SPEAKER: {
       icon: 'Speak',
-      name: 'Add a Speaker',
+      name: 'Add a speaker',
       description: 'Add a new speaker to your site',
       href: addUrlPrefix('speaker'),
       iconColor: 'storyText',
@@ -56,7 +56,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     CATEGORY: {
       icon: 'Category',
-      name: 'Add a Category',
+      name: 'Add a category',
       description: 'Add a new category to your dictionary',
       href: addUrlPrefix('category'),
       iconColor: 'tertiaryB',
@@ -64,7 +64,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     WIDGET: {
       icon: 'Widget',
-      name: 'Create a Widget',
+      name: 'Create a widget',
       description: "Add a new widget to your site's collection",
       href: addUrlPrefix('widget'),
       iconColor: 'songText',
@@ -72,7 +72,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     },
     PAGE: {
       icon: 'WebPages',
-      name: 'Create a Custom Page',
+      name: 'Create a custom page',
       description: 'Add a new page to your site',
       href: addUrlPrefix('page'),
       iconColor: 'tertiaryA',

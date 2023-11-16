@@ -37,7 +37,7 @@ function MediaDetailsAudio({ file }) {
                     className="py-3 flex justify-between text-sm font-medium"
                   >
                     <dt className="text-fv-charcoal-light capitalize">
-                      {key === 'mimeType' ? 'File Type' : key}
+                      {key === 'mimeType' ? 'File type' : key}
                     </dt>
                     <dd className="text-fv-charcoal max-w-1/2 truncate">
                       {file[key]}

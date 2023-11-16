@@ -23,7 +23,7 @@ function DashboardEditData({ urlPrefix = '' }) {
   const editTiles = {
     WORDS: {
       icon: 'Word',
-      name: 'Edit Words',
+      name: 'Edit words',
       description: 'Edit the words in your dictionary',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_WORD}`),
       iconColor: 'wordText',
@@ -31,7 +31,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     PHRASES: {
       icon: 'Phrase',
-      name: 'Edit Phrases',
+      name: 'Edit phrases',
       description: 'Edit the phrases in your dictionary',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_PHRASE}`),
       iconColor: 'phraseText',
@@ -39,7 +39,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     SONGS: {
       icon: 'Song',
-      name: 'Edit Songs',
+      name: 'Edit songs',
       description: 'Edit the songs on your site',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_SONG}`),
       iconColor: 'songText',
@@ -47,7 +47,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     STORIES: {
       icon: 'Story',
-      name: 'Edit Stories',
+      name: 'Edit stories',
       description: 'Edit the stories on your site',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_STORY}`),
       iconColor: 'storyText',
@@ -55,7 +55,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     SPEAKERS: {
       icon: 'Speak',
-      name: 'Edit Speakers',
+      name: 'Edit speakers',
       description: 'Edit the speakers on your site',
       href: addUrlPrefix('speakers'),
       iconColor: 'storyText',
@@ -63,7 +63,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     CATEGORIES: {
       icon: 'Categories',
-      name: 'Edit Categories',
+      name: 'Edit categories',
       description:
         'Edit the categories for words and phrases in your dictionary',
       href: addUrlPrefix('categories'),
@@ -72,7 +72,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     WIDGETS: {
       icon: 'Widget',
-      name: 'Edit Widgets',
+      name: 'Edit widgets',
       description: 'Manage and edit the widgets on your site',
       href: addUrlPrefix('widgets'),
       iconColor: 'songText',
@@ -80,7 +80,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     PAGES: {
       icon: 'WebPages',
-      name: 'Edit Custom Pages',
+      name: 'Edit custom pages',
       description: 'Manage and edit the custom pages on your site',
       href: addUrlPrefix('pages'),
       iconColor: 'tertiaryA',
@@ -88,7 +88,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     HOMEPAGE: {
       icon: 'Home',
-      name: 'Edit Homepage',
+      name: 'Edit homepage',
       description: 'Edit the main homepage for your site',
       href: addUrlPrefix('home'),
       iconColor: 'wordText',
@@ -96,7 +96,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     ALPHABET: {
       icon: 'Alphabet',
-      name: 'Edit your Alphabet',
+      name: 'Edit your alphabet',
       description:
         'Update media and linked content for your alphabet characters',
       href: addUrlPrefix('alphabet'),

@@ -40,7 +40,7 @@ function DashboardData() {
     createTiles.PHRASE,
     {
       icon: 'Phrase',
-      name: 'Edit Words and Phrases',
+      name: 'Edit words and phrases',
       description: 'Edit the words and phrases in your dictionary',
       href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
       iconColor: 'storyText',
