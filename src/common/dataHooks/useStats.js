@@ -42,12 +42,12 @@ export function useStats() {
   }
 
   const formattedStats = () => {
-    const weekTotal = getPeriodTotal('last7Days')
+    const weekTotal = getPeriodTotal('lastWeek')
     const monthTotal = getPeriodTotal('lastMonth')
 
     if (weekTotal > 4) {
       return {
-        ...getPeriodTotalsForAllTypes('last7Days'),
+        ...getPeriodTotalsForAllTypes('lastWeek'),
         header: 'NEW THIS WEEK',
       }
     }
