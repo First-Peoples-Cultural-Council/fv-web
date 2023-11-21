@@ -43,14 +43,14 @@ function LandingPageData() {
     type: WIDGET_QUOTES,
     settings: {
       quote1:
-        'This past year has proven to be... a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost of not for FirstVoices',
-      quote1By: '-Gitanyow Language Team Member',
+        'This past year has proven to be a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost if not for FirstVoices.',
+      quote1By: '- Gitanyow Language Team Member',
       quote2:
-        'FirstVoices allows is to support the legacy of those that paved the way for out language by us being able to share what they left us with so many more learners and teachers',
-      quote2By: '-Tseshaht Language Team Member',
+        'FirstVoices allows us to support the legacy of those that paved the way for our language, by being able to share what they left us with so many more learners and teachers.',
+      quote2By: '- c̕išaa?atḥ Language Team Member',
       quote3:
-        'This past year has proven to be... a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost of not for FirstVoices',
-      quote3By: '-Gitanyow Language Team Member',
+        "To work with FirstVoices has been a blessing. ... Language is so important, it's at the fundamental core of our existence, of our being. It's who we are.",
+      quote3By: '- Sḵwx̱wú7mesh Language Team Member',
       backgroundImage: languages,
     },
   }
