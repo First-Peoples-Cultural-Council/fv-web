@@ -15,6 +15,7 @@ import people from 'services/api/people'
 import search from 'services/api/search'
 import site from 'services/api/site'
 import songs from 'services/api/songs'
+import stats from 'services/api/stats'
 import stories from 'services/api/stories'
 import storyPages from 'services/api/storyPages'
 import visibility from 'services/api/visibility'
@@ -38,6 +39,7 @@ export default {
   search,
   site,
   songs,
+  stats,
   stories,
   storyPages,
   visibility,
