@@ -1,5 +1,5 @@
 // FPCC
-import { useStats } from '../../common/dataHooks/useStats'
+import { useStats } from 'common/dataHooks/useStats'
 
 function WidgetStatsData() {
   return {
