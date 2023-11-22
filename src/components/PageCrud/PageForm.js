@@ -12,7 +12,7 @@ import { PUBLIC } from 'common/constants/visibility'
 function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
-    subtitle: definitions.paragraph(),
+    subtitle: definitions.paragraph({ charCount: 225 }),
     slug: definitions.latinOnly({ message: 'Please enter a URL' }),
   })
 
