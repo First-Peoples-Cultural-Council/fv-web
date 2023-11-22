@@ -6,11 +6,8 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 // import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { PUBLIC, TEAM } from 'common/constants'
+import { PUBLIC } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
-import { useParams } from 'react-router-dom'
-import { useUserStore } from 'context/UserContext'
-import { ASSISTANT } from '../../common/constants/roles'
 
 function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -18,14 +15,8 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
     includeInKids: yup.string(),
   })
 
-  const { sitename } = useParams()
-  const { user } = useUserStore()
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[sitename] || ''
-  const isAssistant = userSiteRole === ASSISTANT
-
   const defaultValues = {
-    visibility: isAssistant ? TEAM : PUBLIC,
+    visibility: PUBLIC,
     includeInKids: 'true',
   }
 
@@ -46,11 +37,7 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
         <form onReset={reset}>
           <div className="grid grid-cols-12 gap-8 p-8">
             <div className="col-span-12">
-              <Form.Visibility
-                control={control}
-                errors={errors}
-                reduceAssistantOptions={isAssistant}
-              />
+              <Form.Visibility control={control} errors={errors} />
             </div>
             <div className="col-span-6">
               <Form.RadioButtons

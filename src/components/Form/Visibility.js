@@ -4,17 +4,22 @@ import PropTypes from 'prop-types'
 // FPCC
 import Select from 'components/Form/Select'
 import { useSiteStore } from 'context/SiteContext'
+import { useUserStore } from 'context/UserContext'
+import { ASSISTANT } from '../../common/constants/roles'
 
 function Visibility({
   control,
   errors,
   label = 'Who can see this entry?',
-  reduceAssistantOptions = false,
 } = {}) {
   const { site } = useSiteStore()
+  const { user } = useUserStore()
+  const userRoles = user?.roles || {}
+  const userSiteRole = userRoles?.[site?.sitename] || ''
+  const isAssistant = userSiteRole === ASSISTANT
 
   const options = (function _() {
-    if (reduceAssistantOptions) {
+    if (isAssistant) {
       const optionsLen = site?.visibilityOptions.length
       for (let i = 0; i < optionsLen; i += 1) {
         if (site?.visibilityOptions[i]?.value !== 'team') {
@@ -42,12 +47,11 @@ function Visibility({
   )
 }
 // PROPTYPES
-const { object, string, bool } = PropTypes
+const { object, string } = PropTypes
 Visibility.propTypes = {
   label: string,
   control: object,
   errors: object,
-  reduceAssistantOptions: bool,
 }
 
 export default Visibility

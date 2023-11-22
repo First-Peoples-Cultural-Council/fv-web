@@ -14,15 +14,11 @@ import {
   TYPE_WORD,
   TYPE_PHRASE,
   PUBLIC,
-  TEAM,
 } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import { useParams } from 'react-router-dom'
-import { useUserStore } from 'context/UserContext'
-import { ASSISTANT } from '../../common/constants/roles'
 
 function DictionaryCrudPresentation({
   backHandler,
@@ -56,12 +52,6 @@ function DictionaryCrudPresentation({
     translations: definitions.textArray(),
   })
 
-  const { sitename } = useParams()
-  const { user } = useUserStore()
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[sitename] || ''
-  const isAssistant = userSiteRole === ASSISTANT
-
   const defaultValues = {
     acknowledgements: [],
     alternateSpellings: [],
@@ -76,7 +66,7 @@ function DictionaryCrudPresentation({
     title: '',
     type: type || TYPE_WORD,
     translations: [],
-    visibility: isAssistant ? TEAM : PUBLIC,
+    visibility: PUBLIC,
     includeInKids: 'true',
     includeInGames: 'true',
   }
@@ -291,11 +281,7 @@ function DictionaryCrudPresentation({
         return (
           <Fragment key={step}>
             <div className="col-span-12">
-              <Form.Visibility
-                control={control}
-                errors={errors}
-                reduceAssistantOptions={isAssistant}
-              />
+              <Form.Visibility control={control} errors={errors} />
             </div>
             <div className="col-span-12">
               <Form.RadioButtons
