@@ -8,7 +8,10 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { AUDIO, IMAGE, VIDEO, PUBLIC } from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, PUBLIC, TEAM } from 'common/constants'
+import { useParams } from 'react-router-dom'
+import { useUserStore } from 'context/UserContext'
+import { ASSISTANT } from '../../common/constants/roles'
 
 function SongCrudPresentation({
   backHandler,
@@ -34,6 +37,12 @@ function SongCrudPresentation({
     relatedVideos: definitions.idArray(),
   })
 
+  const { sitename } = useParams()
+  const { user } = useUserStore()
+  const userRoles = user?.roles || {}
+  const userSiteRole = userRoles?.[sitename] || ''
+  const isAssistant = userSiteRole === ASSISTANT
+
   const defaultValues = {
     title: '',
     titleTranslation: '',
@@ -47,7 +56,7 @@ function SongCrudPresentation({
     relatedVideos: [],
     includeInKids: 'true',
     includeInGames: 'true',
-    visibility: PUBLIC,
+    visibility: isAssistant ? TEAM : PUBLIC,
     hideOverlay: 'false',
   }
 
@@ -185,7 +194,11 @@ function SongCrudPresentation({
             />
           </div>
           <div className="col-span-12">
-            <Form.Visibility control={control} errors={errors} />
+            <Form.Visibility
+              control={control}
+              errors={errors}
+              reduceAssistantOptions={isAssistant}
+            />
           </div>
           <div className="col-span-6">
             <Form.RadioButtons
