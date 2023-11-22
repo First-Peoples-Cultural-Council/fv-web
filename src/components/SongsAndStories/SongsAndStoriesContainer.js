@@ -29,7 +29,7 @@ SongsAndStoriesContainer.propTypes = {
 }
 
 SongsAndStoriesContainer.defaultProps = {
-  kids: false,
+  kids: null,
 }
 
 export default SongsAndStoriesContainer

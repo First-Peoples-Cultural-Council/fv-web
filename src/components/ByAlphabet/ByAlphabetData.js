@@ -90,7 +90,7 @@ ByAlphabetData.propTypes = {
 }
 
 ByAlphabetData.defaultProps = {
-  kids: false,
+  kids: null,
 }
 
 export default ByAlphabetData
