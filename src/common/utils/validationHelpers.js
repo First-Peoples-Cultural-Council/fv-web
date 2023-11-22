@@ -33,7 +33,7 @@ export const definitions = {
       ),
   stringArray: () => yup.array().of(yup.string()),
   title: ({ charCount = 90 } = {}) => stringWithMax(charCount).min(1),
-  paragraph: ({ charCount = 225 } = {}) => stringWithMax(charCount).nullable(),
+  paragraph: ({ charCount = 250 } = {}) => stringWithMax(charCount).nullable(),
 
   textArray: ({ charCount = 225 } = {}) =>
     yup.array().of(
