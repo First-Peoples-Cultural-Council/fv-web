@@ -79,9 +79,9 @@ const constructVisibilityOptions = (siteVisibility) => {
     }))
   switch (siteVisibility) {
     case PUBLIC:
-      return formattedVisibilityOptions([TEAM, MEMBERS, PUBLIC])
+      return formattedVisibilityOptions([PUBLIC, MEMBERS, TEAM])
     case MEMBERS:
-      return formattedVisibilityOptions([TEAM, MEMBERS])
+      return formattedVisibilityOptions([MEMBERS, TEAM])
     case TEAM:
     default:
       return formattedVisibilityOptions([TEAM])
