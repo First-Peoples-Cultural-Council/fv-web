@@ -10,6 +10,8 @@ import {
   songForApi,
 } from 'common/dataAdaptors/songAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { useUserStore } from 'context/UserContext'
+import { ASSISTANT } from 'common/constants/roles'
 
 export function useSongs() {
   const { sitename } = useParams()
@@ -68,9 +70,16 @@ export function useSongCreate() {
     })
   }
 
+  const { user } = useUserStore()
+  const userRoles = user?.roles || {}
+  const userSiteRole = userRoles?.[sitename] || ''
+  const isAssistant = userSiteRole === ASSISTANT
+
   const mutation = useMutationWithNotification({
     mutationFn: createSong,
-    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    redirectTo: isAssistant // Redirect to the create page for assistants to be removed when assistants can access the edit pages (FW-4828)
+      ? `/${sitename}/dashboard/create`
+      : `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
     queryKeyToInvalidate: [SONGS, sitename],
     actionWord: 'created',
     type: 'song',
