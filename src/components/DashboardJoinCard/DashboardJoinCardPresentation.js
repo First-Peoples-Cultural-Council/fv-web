@@ -65,7 +65,9 @@ function DashboardJoinCardPresentation({
               <select
                 id="role-to-assign"
                 name="role-to-assign"
-                onChange={(e) => setSelectedRole(e.target.value)}
+                onChange={(e) =>
+                  setSelectedRole(e.target.value.split(' ').join('_'))
+                }
                 className="inline-flex rounded-lg py-1.5 text-sm text-primary border border-primary shadow-sm hover:bg-gray-50"
               >
                 <option value={MEMBER}>Approve as Member</option>

@@ -16,6 +16,7 @@ export const STORIES = 'stories'
 export const STORY_PAGES = 'pages'
 export const WIDGETS = 'widgets'
 export const WORD_OF_THE_DAY = 'word-of-the-day'
+export const STATS = 'stats'
 
 // MEDIA
 export const AUDIO_PATH = 'audio'
