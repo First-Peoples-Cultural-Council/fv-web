@@ -31,7 +31,7 @@ import WidgetText from 'components/WidgetText'
 import WidgetTextConcise from 'components/WidgetTextConcise'
 import WidgetTextFull from 'components/WidgetTextFull'
 import WidgetTextIcons from 'components/WidgetTextIcons'
-// import WidgetStats from 'components/WidgetStats'
+import WidgetStats from 'components/WidgetStats'
 import WidgetWordOfTheDay from 'components/WidgetWordOfTheDay'
 
 function WidgetPresentation({ data, type }) {
@@ -60,9 +60,8 @@ function WidgetPresentation({ data, type }) {
     case WIDGET_QUOTES:
       return <WidgetQuotes.Presentation widgetData={data} />
 
-    // hiding for FW-4712
-    // case WIDGET_STATS:
-    //   return <WidgetStats.Container />
+    case WIDGET_STATS:
+      return <WidgetStats.Container widgetData={data} />
 
     case WIDGET_TEXT:
       return <WidgetText.Presentation widgetData={data} />
