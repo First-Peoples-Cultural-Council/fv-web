@@ -14,13 +14,13 @@ export default function useLoginLogout() {
   }
 
   function logout(e) {
-    e.preventDefault()
+    e?.preventDefault()
     saveOriginalLocation()
     auth.signoutRedirect()
   }
 
   function login(e) {
-    e.preventDefault()
+    e?.preventDefault()
     saveOriginalLocation()
     auth.signinRedirect()
   }
