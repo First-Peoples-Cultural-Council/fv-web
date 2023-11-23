@@ -55,7 +55,7 @@ ByCategoryContainer.propTypes = {
 }
 
 ByCategoryContainer.defaultProps = {
-  kids: false,
+  kids: null,
 }
 
 export default ByCategoryContainer

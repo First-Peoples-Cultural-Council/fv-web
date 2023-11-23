@@ -54,7 +54,7 @@ ByAlphabetContainer.propTypes = {
 }
 
 ByAlphabetContainer.defaultProps = {
-  kids: false,
+  kids: null,
 }
 
 export default ByAlphabetContainer

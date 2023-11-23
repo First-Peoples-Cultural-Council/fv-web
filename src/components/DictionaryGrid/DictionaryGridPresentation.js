@@ -107,7 +107,7 @@ DictionaryGridPresentation.propTypes = {
 
 DictionaryGridPresentation.defaultProps = {
   noResultsMessage: 'Sorry, no results were found for this search.',
-  kids: false,
+  kids: null,
   actions: [],
   moreActions: [],
 }

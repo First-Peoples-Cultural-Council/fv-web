@@ -6,7 +6,7 @@ import { useSiteStore } from 'context/SiteContext'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
 
-function SiteSearchContainer({ kids = false, minimal = false }) {
+function SiteSearchContainer({ kids, minimal }) {
   const { site } = useSiteStore()
   const customBaseUrl = `/${site.sitename}/search`
 
@@ -41,6 +41,11 @@ const { bool } = PropTypes
 SiteSearchContainer.propTypes = {
   minimal: bool,
   kids: bool,
+}
+
+SiteSearchContainer.defaultProps = {
+  minimal: false,
+  kids: null,
 }
 
 export default SiteSearchContainer
