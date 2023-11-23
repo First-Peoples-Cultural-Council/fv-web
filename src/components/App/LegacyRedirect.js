@@ -6,7 +6,7 @@ import ErrorHandler from 'components/ErrorHandler'
 import LEGACY_SITE_MAPPING from 'common/constants/legacySiteMapping'
 
 function LegacyRedirect() {
-  // family and string are also available if desired for more precise matching
+  // family and language are also available if desired for more precise matching
   const { dialect } = useParams()
   const navigate = useNavigate()
 
