@@ -40,18 +40,16 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                   <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
                     {categories?.length > 0 ? (
                       categories.map((category) => (
-                        <li
+                        <Link
                           key={category.id}
+                          to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
+                            category.id
+                          }?${TYPES}=${TYPE_DICTIONARY}`}
                           className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryB group w-full rounded-lg bg-tertiaryB overflow-hidden"
                         >
                           <div>
-                            <Link
+                            <li
                               key={category.id}
-                              to={`/${sitename}/${
-                                kids ? 'kids/' : ''
-                              }categories/${
-                                category.id
-                              }?${TYPES}=${TYPE_DICTIONARY}`}
                               className=" text-white text-center text-lg group w-full h-full md:px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                             >
                               {getCategoryIcon(
@@ -62,9 +60,9 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                               <span className="sr-only">
                                 Go to {category.title}
                               </span>
-                            </Link>
+                            </li>
                           </div>
-                        </li>
+                        </Link>
                       ))
                     ) : (
                       <div className="text-center text-lg col-span-2 md:col-span-3 lg:col-span-3 xl:col-span-4 pt-5">
