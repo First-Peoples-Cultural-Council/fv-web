@@ -12,8 +12,5 @@ export const hasWordleEnabled = (sitename) => {
     'wuikala',
   ]
 
-  if (WORDLE_ENABLED_SITES.includes(sitename)) {
-    return true
-  }
-  return false
+  return WORDLE_ENABLED_SITES.includes(sitename)
 }
