@@ -66,7 +66,6 @@ function JoinForm({ site, submitHandler }) {
   })
 
   const reasonOptions = [
-    { reason: OTHER, label: 'Other' },
     { reason: LANGUAGE_LEARNER, label: 'Learning the language' },
     { reason: LANGUAGE_TEACHER, label: 'Teaching the language' },
     { reason: FLUENT_SPEAKER, label: 'Fluent speaker' },
@@ -76,6 +75,7 @@ function JoinForm({ site, submitHandler }) {
     { reason: COMMUNITY_STAFF, label: 'Working with this community/nation' },
     { reason: RECONCILIATION, label: 'Reconciliation' },
     { reason: FV_TEAM, label: 'Part of this FirstVoices Language Team' },
+    { reason: OTHER, label: 'Other' },
   ]
 
   return (
