@@ -13,11 +13,7 @@ import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
  * Search parameters are pulled from URL parameters. Search type can also be set by passing in a
  * parameter, if it is not present as a URL query parameter.
  */
-function useSearchBoxNavigation({
-  customBaseUrl,
-  initialSearchType,
-  kids = false,
-}) {
+function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
   // initial search settings
   const { site } = useSiteStore()
 
@@ -79,7 +75,9 @@ function useSearchBoxNavigation({
       q: searchTerm,
       [DOMAIN]: searchLanguage,
       [TYPES]: searchType,
-      [KIDS]: kidFlag,
+    }
+    if (kidFlag) {
+      params[KIDS] = kidFlag
     }
     _doSearchNavigation(params)
   }
@@ -129,6 +127,10 @@ useSearchBoxNavigation.propTypes = {
   customBaseUrl: string,
   kids: bool,
   searchType: string,
+}
+
+useSearchBoxNavigation.defaultProps = {
+  kids: null,
 }
 
 export default useSearchBoxNavigation
