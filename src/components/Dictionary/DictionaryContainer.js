@@ -47,7 +47,7 @@ DictionaryContainer.propTypes = {
 
 DictionaryContainer.defaultProps = {
   searchType: TYPE_DICTIONARY,
-  kids: false,
+  kids: null,
 }
 
 export default DictionaryContainer

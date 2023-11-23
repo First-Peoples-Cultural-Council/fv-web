@@ -86,7 +86,7 @@ ByCategoryData.propTypes = {
 }
 
 ByCategoryData.defaultProps = {
-  kids: false,
+  kids: null,
 }
 
 export default ByCategoryData
