@@ -58,7 +58,7 @@ AlphabetContainer.propTypes = {
 
 AlphabetContainer.defaultProps = {
   widgetView: false,
-  kids: false,
+  kids: null,
 }
 
 export default AlphabetContainer

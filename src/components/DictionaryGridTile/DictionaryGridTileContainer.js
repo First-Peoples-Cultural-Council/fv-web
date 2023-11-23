@@ -27,7 +27,7 @@ DictionaryGridTileContainer.propTypes = {
 }
 
 DictionaryGridTileContainer.defaultProps = {
-  kids: false,
+  kids: null,
   actions: [],
   moreActions: [],
 }

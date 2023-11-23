@@ -26,7 +26,7 @@ CategoriesContainer.propTypes = {
 }
 
 CategoriesContainer.defaultProps = {
-  kids: false,
+  kids: null,
 }
 
 export default CategoriesContainer
