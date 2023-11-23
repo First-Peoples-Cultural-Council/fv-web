@@ -25,6 +25,12 @@ module.exports = (env) => {
     ENV_END_SESSION_URL: process.env.END_SESSION_URL
       ? JSON.stringify(process.env.END_SESSION_URL)
       : JSON.stringify(''),
+    ENV_SENTRY_FE_DSN: process.env.SENTRY_FE_DSN
+      ? JSON.stringify(process.env.SENTRY_FE_DSN)
+      : JSON.stringify(''),
+    ENV_SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT
+      ? JSON.stringify(process.env.SENTRY_ENVIRONMENT)
+      : JSON.stringify(''),
   }
 
   return merge(common(env, definitions), {
