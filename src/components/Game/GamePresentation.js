@@ -45,7 +45,7 @@ function GamePresentation({ sitename, gameId }) {
           {/* Message to be updated after confirmation. Ref: FW-3510 */}
           <div>{icon}</div>
           <h2 className="text-2xl font-bold tracking-tight text-fv-charcoal sm:text-3xl mt-4">
-            This firstvoices language site has not been set up for WORDLE yet.
+            This FirstVoices language site has not been set up for WORDLE yet.
           </h2>
           <button
             type="button"
