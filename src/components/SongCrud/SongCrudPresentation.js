@@ -51,12 +51,19 @@ function SongCrudPresentation({
     hideOverlay: 'false',
   }
 
-  const { control, errors, handleSubmit, isCreateMode, register, reset } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isCreateMode,
+    register,
+    reset,
+    resetField,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div id="SongCrudPresentation" className="max-w-5xl p-8">
@@ -185,7 +192,11 @@ function SongCrudPresentation({
             />
           </div>
           <div className="col-span-12">
-            <Form.Visibility control={control} errors={errors} />
+            <Form.Visibility
+              control={control}
+              errors={errors}
+              resetField={resetField}
+            />
           </div>
           <div className="col-span-6">
             <Form.RadioButtons

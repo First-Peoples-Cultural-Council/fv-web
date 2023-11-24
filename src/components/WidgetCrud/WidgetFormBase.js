@@ -13,6 +13,7 @@ function WidgetFormBase({
   errors,
   register,
   reset,
+  resetField,
   handleSubmit,
   submitHandler,
   type,
@@ -50,6 +51,7 @@ function WidgetFormBase({
               nameId="visibility"
               control={control}
               errors={errors}
+              resetField={resetField}
               label="Who can see this widget?"
             />
           </div>
@@ -81,6 +83,7 @@ WidgetFormBase.propTypes = {
   errors: object,
   register: func,
   reset: func,
+  resetField: func,
   handleSubmit: func,
 }
 

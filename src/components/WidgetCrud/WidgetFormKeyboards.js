@@ -28,12 +28,19 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
     windowsUrl: '',
     chromebookUrl: '',
   }
-  const { control, register, handleSubmit, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div data-testid="WidgetFormKeyboards">
@@ -43,6 +50,7 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}

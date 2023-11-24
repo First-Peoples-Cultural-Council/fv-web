@@ -22,7 +22,7 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
 
   // pageOrder
 
-  const { control, errors, handleSubmit, reset } = useEditForm({
+  const { control, errors, handleSubmit, reset, resetField } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -37,7 +37,11 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
         <form onReset={reset}>
           <div className="grid grid-cols-12 gap-8 p-8">
             <div className="col-span-12">
-              <Form.Visibility control={control} errors={errors} />
+              <Form.Visibility
+                control={control}
+                errors={errors}
+                resetField={resetField}
+              />
             </div>
             <div className="col-span-6">
               <Form.RadioButtons

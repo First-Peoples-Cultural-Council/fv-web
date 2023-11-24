@@ -39,12 +39,19 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
     urlLabel: '',
   }
 
-  const { register, control, handleSubmit, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div data-testid="WidgetFormTextConcise">
@@ -54,6 +61,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}

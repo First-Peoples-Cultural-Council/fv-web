@@ -38,12 +38,19 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     image: '',
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div data-testid="WidgetFormTextIcons">
@@ -53,6 +60,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
