@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 import Parachute from 'components/Game/Parachute'
+import WordScramble from 'components/Game/WordScramble'
 import { hasWordleEnabled } from 'common/utils/gameHelpers'
 import getIcon from 'common/utils/getIcon'
 
@@ -19,6 +20,8 @@ function GamePresentation({ sitename, gameId }) {
   switch (gameId) {
     case 'parachute':
       return <Parachute.Container />
+    case 'wordscramble':
+      return <WordScramble.Container />
     case 'wordle':
       if (hasWordleEnabled(sitename)) {
         return (

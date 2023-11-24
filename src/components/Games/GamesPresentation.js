@@ -11,7 +11,7 @@ function GamesPresentation({ kids }) {
     // { pathname: 'jigsaw', title: 'Jigsaw', icon: 'Jigsaw' },
     // { pathname: 'parachute', title: 'Parachute', icon: 'Parachute' },
     // { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
-    // { pathname: 'wordscramble', title: 'Word Scramble', icon: 'WordScramble' },
+    { pathname: 'wordscramble', title: 'Word Scramble', icon: 'WordScramble' },
     // { pathname: 'wordsearch', title: 'Word Search', icon: 'WordSearch' },
     { pathname: 'wordle', title: 'wordle', icon: 'Wordle' },
   ]
