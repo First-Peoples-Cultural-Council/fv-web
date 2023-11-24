@@ -8,7 +8,7 @@ const definitions = {
   ENV_OIDC_AUTHORITY_URL: '',
   ENV_OAUTH2_REDIRECT_URL: '',
   ENV_END_SESSION_URL: '',
-  ENV_SENTRY_FE_DSN: '',
+  ENV_SENTRY_DSN: '',
   ENV_SENTRY_ENVIRONMENT: '',
 }
 
