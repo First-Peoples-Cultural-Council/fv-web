@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import Select from 'components/Form/Select'
 import { useSiteStore } from 'context/SiteContext'
 import { useUserStore } from 'context/UserContext'
-import { ASSISTANT } from '../../common/constants/roles'
+import { TEAM, ASSISTANT } from 'common/constants'
+import { formattedVisibilityOptions } from 'common/dataAdaptors/siteAdaptors'
 
 function Visibility({
   control,
@@ -20,12 +21,7 @@ function Visibility({
 
   const options = (function _() {
     if (isAssistant) {
-      const optionsLen = site?.visibilityOptions.length
-      for (let i = 0; i < optionsLen; i += 1) {
-        if (site?.visibilityOptions[i]?.value !== 'team') {
-          site?.visibilityOptions.splice(i, 1)
-        }
-      }
+      return formattedVisibilityOptions([TEAM])
     }
     return site?.visibilityOptions
   })()

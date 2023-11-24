@@ -70,13 +70,14 @@ export function siteAdaptor({ siteData }) {
   }
 }
 
+export const formattedVisibilityOptions = (optionsArray) =>
+  optionsArray.map((option) => ({
+    icon: option,
+    value: option,
+    transKey: `visibility.${option}`,
+  }))
+
 const constructVisibilityOptions = (siteVisibility) => {
-  const formattedVisibilityOptions = (optionsArray) =>
-    optionsArray.map((option) => ({
-      icon: option,
-      value: option,
-      transKey: `visibility.${option}`,
-    }))
   switch (siteVisibility) {
     case PUBLIC:
       return formattedVisibilityOptions([PUBLIC, MEMBERS, TEAM])
