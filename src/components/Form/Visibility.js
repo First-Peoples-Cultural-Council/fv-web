@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -12,6 +12,7 @@ function Visibility({
   control,
   errors,
   label = 'Who can see this entry?',
+  resetField,
 } = {}) {
   const { site } = useSiteStore()
   const { user } = useUserStore()
@@ -26,8 +27,14 @@ function Visibility({
     return site?.visibilityOptions
   })()
 
+  useEffect(() => {
+    // set default value to match visibility options
+    resetField('visibility', { defaultValue: options[0]?.value })
+  }, [options, resetField])
+
   return (
-    site?.visibilityOptions && (
+    site?.visibilityOptions &&
+    userSiteRole && (
       <Fragment key="FormVisibility">
         <Select
           label={label}
@@ -43,11 +50,12 @@ function Visibility({
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { func, object, string } = PropTypes
 Visibility.propTypes = {
   label: string,
   control: object,
   errors: object,
+  resetField: func,
 }
 
 export default Visibility

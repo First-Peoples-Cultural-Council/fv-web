@@ -28,12 +28,19 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
     androidUrl: '',
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div data-testid="WidgetFormApps">
@@ -43,6 +50,7 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}

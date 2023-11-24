@@ -71,12 +71,20 @@ function DictionaryCrudPresentation({
     includeInGames: 'true',
   }
 
-  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isValid,
+    register,
+    reset,
+    resetField,
+    trigger,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   const steps = [
     { title: `Add ${getFriendlyDocType({ docType: type })} content` },
@@ -281,7 +289,11 @@ function DictionaryCrudPresentation({
         return (
           <Fragment key={step}>
             <div className="col-span-12">
-              <Form.Visibility control={control} errors={errors} />
+              <Form.Visibility
+                control={control}
+                errors={errors}
+                resetField={resetField}
+              />
             </div>
             <div className="col-span-12">
               <Form.RadioButtons
