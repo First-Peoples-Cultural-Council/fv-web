@@ -31,6 +31,12 @@ module.exports = (env) => {
     ENV_SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT
       ? JSON.stringify(process.env.SENTRY_ENVIRONMENT)
       : JSON.stringify(''),
+    ENV_SENTRY_TRACES_SAMPLE_RATE: process.env.SENTRY_TRACES_SAMPLE_RATE
+      ? JSON.stringify(process.env.SENTRY_TRACES_SAMPLE_RATE)
+      : JSON.stringify(1.0),
+    ENV_SENTRY_ERROR_SAMPLE_RATE: process.env.SENTRY_ERROR_SAMPLE_RATE
+      ? JSON.stringify(process.env.SENTRY_ERROR_SAMPLE_RATE)
+      : JSON.stringify(1.0),
   }
 
   return merge(common(env, definitions), {
