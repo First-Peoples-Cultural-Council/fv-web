@@ -18,7 +18,7 @@ function LandingPageData() {
       image: Elders,
       title: 'WHY FIRSTVOICES?',
       textWithFormatting:
-        '{"blocks":[{"key":"b2jgo","text":"FirstVoices is an internationally recognized online platform for Indigenous communities to share and promote their languages, oral cultures and linguistic histories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"djfju","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"87kbs","text":"FirstVoices provides state-of-the-art technologies, training and technical support to community language champions.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"frreb","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"faghd","text":"Language champions collaborate with Indigenous Elders, youth and speakers to create and share language resources like words, phrases, songs and stories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+        '{"blocks":[{"key":"","text":"FirstVoices is an internationally recognized online platform for Indigenous communities to share and promote their languages, oral cultures and linguistic histories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"","text":"FirstVoices provides state-of-the-art technologies, training and technical support to community language champions.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"frreb","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"faghd","text":"Language champions collaborate with Indigenous Elders, youth and speakers to create and share language resources like words, phrases, songs and stories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
     },
   }
 
@@ -34,7 +34,7 @@ function LandingPageData() {
       url: 'https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704813/About+FirstVoices',
       urlLabel: 'Learn more',
       textWithFormatting:
-        '{"blocks":[{"key":"3euvg","text":"On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cfr7r","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cnh18","text":"Any content available on FirstVoices is gathered, uploaded, and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c7437","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"40rem","text":"FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+        '{"blocks":[{"key":"3euvg","text":"On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cfr7r","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cnh18","text":"Any content available on FirstVoices is gathered, uploaded and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c7437","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"40rem","text":"FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
     },
   }
 
@@ -43,10 +43,10 @@ function LandingPageData() {
     type: WIDGET_QUOTES,
     settings: {
       quote1:
-        'This past year has proven to be a year of eternal gratitude. We have been able to add to the archives invaluable pieces that may have been lost if not for FirstVoices.',
+        "This past year has proven to be a year of eternal gratitude. We have been able to add to the archive's invaluable pieces that may have been lost if not for FirstVoices.",
       quote1By: '- Gitanyow Language Team Member',
       quote2:
-        'FirstVoices allows us to support the legacy of those that paved the way for our language, by being able to share what they left us with so many more learners and teachers.',
+        'FirstVoices helps us to support the legacy of those that paved the way for our language. We are able to share what they left us with so many more learners and teachers.',
       quote2By: '- c̕išaa?atḥ Language Team Member',
       quote3:
         "To work with FirstVoices has been a blessing. ... Language is so important, it's at the fundamental core of our existence, of our being. It's who we are.",
