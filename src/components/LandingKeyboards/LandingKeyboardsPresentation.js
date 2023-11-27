@@ -71,7 +71,7 @@ function LandingKeyboardsPresentation({ data }) {
         }}
       >
         <img src={image} alt="computer monitor" className="w-1/3" />
-        <div className="text-white text-sm w-1/2 px-4 pt-4 flex flex-col items-center">
+        <div className="text-white text-bold text-base md:text-lg w-1/2 px-4 pt-4 flex flex-col items-center">
           <h2 className="text-4xl text-center font-semibold">{title}</h2>
           <p className="pt-8 pb-4 m-4 text-center">{text}</p>
           <a
