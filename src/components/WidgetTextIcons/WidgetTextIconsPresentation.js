@@ -34,7 +34,7 @@ function WidgetTextIconsPresentation({ widgetData }) {
         <SectionTitle.Presentation title={title} />
       </div>
       <div className="md:flex md:flex-row-reverse">
-        <div className="px-8 lg:pt-12 lg:pb-8 text-xs md:text-base">
+        <div className="px-8 lg:pt-12 lg:pb-8 text-base md:text-lg">
           <div className="wysiwyg">
             <WysiwygBlock jsonString={textWithFormatting} />
           </div>

@@ -29,12 +29,19 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     textWithFormatting: EditorState.createEmpty(),
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div data-testid="WidgetFormText">
@@ -44,6 +51,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}

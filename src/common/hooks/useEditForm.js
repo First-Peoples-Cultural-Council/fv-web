@@ -16,6 +16,7 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
     reset,
     setValue,
     trigger,
+    resetField,
   } = useForm({
     defaultValues,
     mode: 'onChange',
@@ -44,6 +45,7 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
     isValid,
     register,
     reset,
+    resetField,
     setValue,
     trigger,
   }

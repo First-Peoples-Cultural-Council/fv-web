@@ -18,6 +18,7 @@ import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
 import Site from 'components/Site'
 import { GENERAL } from 'common/constants/roles'
+import LegacyRedirect from './LegacyRedirect'
 
 function AppContainer() {
   const { appIsLoading } = AppData()
@@ -78,6 +79,16 @@ function AppContainer() {
                   <Languages.Container />
                 </AppWrapper>
               }
+            />
+            <Route
+              path="explore/FV/workspaces/Data/:family/:langage/:dialect/*"
+              caseSensitive={false}
+              element={<LegacyRedirect />}
+            />
+            <Route
+              path="explore/FV/sections/Data/:family/:langage/:dialect/*"
+              caseSensitive={false}
+              element={<LegacyRedirect />}
             />
             <Route path=":sitename/*" element={<Site.Container />} />
           </Routes>

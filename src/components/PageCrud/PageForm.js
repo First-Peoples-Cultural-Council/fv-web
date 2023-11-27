@@ -29,12 +29,19 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
     },
   }
 
-  const { control, errors, handleSubmit, isCreateMode, register, reset } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isCreateMode,
+    register,
+    reset,
+    resetField,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div
@@ -133,6 +140,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                     control={control}
                     errors={errors}
                     label="Who can see this page?"
+                    resetField={resetField}
                   />
                 </div>
               </div>
