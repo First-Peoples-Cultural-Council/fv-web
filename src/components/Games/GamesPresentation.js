@@ -13,7 +13,7 @@ function GamesPresentation({ kids }) {
     // { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
     // { pathname: 'wordscramble', title: 'Word Scramble', icon: 'WordScramble' },
     // { pathname: 'wordsearch', title: 'Word Search', icon: 'WordSearch' },
-    { pathname: 'wordle', title: 'wordle', icon: 'Wordle' },
+    { pathname: 'wordle', title: 'Wordle', icon: 'Wordle' },
   ]
   const { sitename } = useParams()
   return (
