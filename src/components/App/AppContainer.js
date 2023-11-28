@@ -81,6 +81,11 @@ function AppContainer() {
               }
             />
             <Route
+              path="explore/FV/sections/Data"
+              caseSensitive={false}
+              element={<LegacyRedirect />}
+            />
+            <Route
               path="explore/FV/Workspaces/Data/:family/:language/:dialect/*"
               caseSensitive={false}
               element={<LegacyRedirect />}
