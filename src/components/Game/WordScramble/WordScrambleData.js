@@ -21,7 +21,7 @@ function WordScrambleData() {
   const [jumbledWords, setJumbledWords] = useState([])
   const [selectedWords, setSelectedWords] = useState([])
   const [gameCompleted, setGameCompleted] = useState(false)
-  const [validAnswer, setValidAsnwer] = useState(false)
+  const [validAnswer, setValidAnswer] = useState(false)
 
   useEffect(() => {
     const correctAnswer = inputData?.title.split(' ')
@@ -48,7 +48,7 @@ function WordScrambleData() {
     const selectedAnswer = selectedWords.join(' ')
 
     if (selectedAnswer === inputData?.title) {
-      setValidAsnwer(true)
+      setValidAnswer(true)
     }
     setGameCompleted(true)
   }
@@ -61,7 +61,7 @@ function WordScrambleData() {
     const correctAnswer = inputData?.title.split(' ')
     setJumbledWords(shuffleWords([...correctAnswer]))
 
-    setValidAsnwer(false)
+    setValidAnswer(false)
     setGameCompleted(false)
   }
 
