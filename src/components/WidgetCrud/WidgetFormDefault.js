@@ -31,12 +31,19 @@ function WidgetFormDefault({ cancelHandler, dataToEdit, submitHandler, type }) {
     visibility: PUBLIC,
   }
 
-  const { control, register, handleSubmit, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div data-testid="WidgetFormDefault">
@@ -46,6 +53,7 @@ function WidgetFormDefault({ cancelHandler, dataToEdit, submitHandler, type }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}

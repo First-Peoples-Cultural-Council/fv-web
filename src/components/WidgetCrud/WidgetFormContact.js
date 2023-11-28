@@ -34,12 +34,19 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     urls: '',
   }
 
-  const { register, handleSubmit, control, reset, errors, isCreateMode } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    resetField,
+    errors,
+    isCreateMode,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   const { emailListAsString } = useContactUsEmailList()
 
@@ -51,6 +58,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
         errors={errors}
         register={register}
         reset={reset}
+        resetField={resetField}
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}

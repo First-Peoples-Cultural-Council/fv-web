@@ -44,7 +44,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                           key={category.id}
                           className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryB group w-full rounded-lg bg-tertiaryB overflow-hidden"
                         >
-                          <div>
+                          <div className="h-full w-full">
                             <Link
                               key={category.id}
                               to={`/${sitename}/${
@@ -52,7 +52,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                               }categories/${
                                 category.id
                               }?${TYPES}=${TYPE_DICTIONARY}`}
-                              className=" text-white text-center text-lg group w-full h-full md:px-5 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
+                              className=" text-white text-center text-lg group w-full h-full md:px-5 md:py-6 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                             >
                               {getCategoryIcon(
                                 category.title,

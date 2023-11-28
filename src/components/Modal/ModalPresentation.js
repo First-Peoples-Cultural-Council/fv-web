@@ -29,10 +29,7 @@ function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
           </Transition.Child>
 
           {/* This element is to 'trick' the browser into centering the modal contents. */}
-          <span
-            className="inline-block align-middle h-screen"
-            aria-hidden="true"
-          >
+          <span className="inline-block align-middle" aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
