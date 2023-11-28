@@ -32,7 +32,9 @@ function AudiobarPresentationMobile({
           <div className="flex justify-center items-center text-center overflow-x-auto">
             {data?.title}
             {data?.speakers?.length > 0 &&
-              ` | Speakers: ${data?.speakers?.join(', ')}`}
+              ` | Speakers: ${data?.speakers
+                ?.map((speaker) => speaker.name)
+                .join(', ')}`}
           </div>
           <div className="flex justify-center items-center space-x-5">
             <button
