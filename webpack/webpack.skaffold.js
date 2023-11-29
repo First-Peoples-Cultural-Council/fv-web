@@ -8,6 +8,11 @@ const definitions = {
   ENV_OIDC_AUTHORITY_URL: '',
   ENV_OAUTH2_REDIRECT_URL: '',
   ENV_END_SESSION_URL: '',
+  ENV_SENTRY_DSN: '',
+  ENV_SENTRY_ENVIRONMENT: '',
+  ENV_SENTRY_RELEASE: '',
+  ENV_SENTRY_TRACES_SAMPLE_RATE: '',
+  ENV_SENTRY_ERROR_SAMPLE_RATE: '',
 }
 
 module.exports = (env) =>

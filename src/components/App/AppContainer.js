@@ -1,4 +1,5 @@
 import React from 'react'
+import * as Sentry from '@sentry/react'
 import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
@@ -32,68 +33,76 @@ function AppContainer() {
           content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture, and linguistic history."
         />
       </Helmet>
-      <NotificationProvider>
-        <AudiobarProvider>
-          <NotificationBanner />
-          <Routes>
-            <Route
-              path=""
-              element={
-                <AppWrapper isHome>
-                  <RequireAuth siteMembership={GENERAL} withMessage>
-                    <LandingPage.Container />
-                  </RequireAuth>
-                </AppWrapper>
-              }
-            />
-            <Route
-              path="conditions-of-use"
-              element={
-                <AppWrapper>
-                  <ConditionsOfUse />
-                </AppWrapper>
-              }
-            />
-            <Route
-              path="disclaimer"
-              element={
-                <AppWrapper>
-                  <Disclaimer />
-                </AppWrapper>
-              }
-            />
-            <Route
-              path="error"
-              element={
-                <AppWrapper>
-                  <ErrorHandler.Container
-                    error={{ status: 404, statusText: 'Page not found' }}
-                  />
-                </AppWrapper>
-              }
-            />
-            <Route
-              path="languages"
-              element={
-                <AppWrapper>
-                  <Languages.Container />
-                </AppWrapper>
-              }
-            />
-            <Route
-              path="explore/FV/Workspaces/Data/:family/:language/:dialect/*"
-              caseSensitive={false}
-              element={<LegacyRedirect />}
-            />
-            <Route
-              path="explore/FV/sections/Data/:family/:language/:dialect/*"
-              caseSensitive={false}
-              element={<LegacyRedirect />}
-            />
-            <Route path=":sitename/*" element={<Site.Container />} />
-          </Routes>
-        </AudiobarProvider>
-      </NotificationProvider>
+      <Sentry.ErrorBoundary
+        fallback={
+          <AppWrapper isHome>
+            <ErrorHandler.Container />
+          </AppWrapper>
+        }
+      >
+        <NotificationProvider>
+          <AudiobarProvider>
+            <NotificationBanner />
+            <Routes>
+              <Route
+                path=""
+                element={
+                  <AppWrapper isHome>
+                    <RequireAuth siteMembership={GENERAL} withMessage>
+                      <LandingPage.Container />
+                    </RequireAuth>
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="conditions-of-use"
+                element={
+                  <AppWrapper>
+                    <ConditionsOfUse />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="disclaimer"
+                element={
+                  <AppWrapper>
+                    <Disclaimer />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="error"
+                element={
+                  <AppWrapper>
+                    <ErrorHandler.Container
+                      error={{ status: 404, statusText: 'Page not found' }}
+                    />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="languages"
+                element={
+                  <AppWrapper>
+                    <Languages.Container />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="explore/FV/Workspaces/Data/:family/:language/:dialect/*"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
+              <Route
+                path="explore/FV/sections/Data/:family/:language/:dialect/*"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
+              <Route path=":sitename/*" element={<Site.Container />} />
+            </Routes>
+          </AudiobarProvider>
+        </NotificationProvider>
+      </Sentry.ErrorBoundary>
     </Loading.Container>
   )
 }

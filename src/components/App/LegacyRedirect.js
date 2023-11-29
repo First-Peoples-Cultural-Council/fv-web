@@ -10,6 +10,12 @@ function LegacyRedirect() {
   const { dialect } = useParams()
   const navigate = useNavigate()
 
+  if (!dialect) {
+    // old explore languages page
+    navigate(`/languages/`, { replace: true })
+    return null
+  }
+
   // best match
   let found = LEGACY_SITE_MAPPING.find((s) => s.oldSitename === dialect)
   if (found) {
