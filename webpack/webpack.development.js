@@ -25,6 +25,21 @@ module.exports = (env) => {
     ENV_END_SESSION_URL: process.env.END_SESSION_URL
       ? JSON.stringify(process.env.END_SESSION_URL)
       : JSON.stringify(''),
+    ENV_SENTRY_DSN: process.env.SENTRY_DSN
+      ? JSON.stringify(process.env.SENTRY_DSN)
+      : JSON.stringify(''),
+    ENV_SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT
+      ? JSON.stringify(process.env.SENTRY_ENVIRONMENT)
+      : JSON.stringify(''),
+    ENV_SENTRY_RELEASE: process.env.SENTRY_RELEASE
+      ? JSON.stringify(process.env.SENTRY_RELEASE)
+      : JSON.stringify(''),
+    ENV_SENTRY_TRACES_SAMPLE_RATE: process.env.SENTRY_TRACES_SAMPLE_RATE
+      ? JSON.stringify(process.env.SENTRY_TRACES_SAMPLE_RATE)
+      : JSON.stringify(1.0),
+    ENV_SENTRY_ERROR_SAMPLE_RATE: process.env.SENTRY_ERROR_SAMPLE_RATE
+      ? JSON.stringify(process.env.SENTRY_ERROR_SAMPLE_RATE)
+      : JSON.stringify(1.0),
   }
 
   return merge(common(env, definitions), {
