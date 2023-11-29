@@ -71,6 +71,7 @@ if (GlobalConfiguration.END_SESSION_URL) {
 Sentry.init({
   dsn: GlobalConfiguration.SENTRY_DSN,
   environment: GlobalConfiguration.SENTRY_ENVIRONMENT,
+  release: GlobalConfiguration.SENTRY_RELEASE,
   integrations: [
     new Sentry.BrowserTracing({
       // See docs for support of different versions of variation of react router
