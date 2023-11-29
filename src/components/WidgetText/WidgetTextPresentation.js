@@ -57,12 +57,13 @@ function WidgetTextPresentation({ widgetData }) {
       } inline-flex items-center`}
       style={{
         backgroundImage: `url(${
-          bgImage &&
-          getMediaPath({
-            mediaObject: bgImageObject,
-            type: IMAGE,
-            size: MEDIUM,
-          })
+          bgImage
+            ? getMediaPath({
+                mediaObject: bgImageObject,
+                type: IMAGE,
+                size: MEDIUM,
+              })
+            : ''
         })`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right 20% top',
