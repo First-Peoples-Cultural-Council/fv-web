@@ -6,13 +6,14 @@ import { Disclosure } from '@headlessui/react'
 import getIcon from 'common/utils/getIcon'
 function ExpandablePreviewPresentation({ open, preview, full }) {
   return (
-    <div className="rounded-md shadow overflow-hidden bg-white">
-      <div className="inline-flex w-full p-4">
+    <div className="rounded-lg shadow overflow-hidden bg-white p-4 w-full">
+      <Disclosure.Button as="div" className="flex w-full justify-between">
         <div className="w-full">{open ? '' : preview}</div>
-        <Disclosure.Button as="div" className="ml-2">
-          {getIcon(open ? 'ChevronUp' : 'ChevronDown', 'fill-current w-8 h-8')}
-        </Disclosure.Button>
-      </div>
+        {getIcon(
+          open ? 'ChevronUp' : 'ChevronDown',
+          'fill-current w-8 h-8 ml-2',
+        )}
+      </Disclosure.Button>
       <Disclosure.Panel className="w-full">{full}</Disclosure.Panel>
     </div>
   )

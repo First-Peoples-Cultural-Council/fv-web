@@ -23,10 +23,10 @@ function StoryPagesCrudPreview({ page, pageNumber }) {
   return (
     <div
       data-testid="StoryPagesCrudPreview"
-      className="w-full grid grid-cols-11 gap-8 p-4"
+      className="w-full grid grid-cols-11 gap-8"
     >
       <div className="col-span-1">{pageNumber}</div>
-      <div className="col-span-4 h-50 overflow-hidden">
+      <div className="col-span-4 h-48 overflow-hidden">
         {getVisualThumbnail()}
       </div>
       <div className="col-span-5">
