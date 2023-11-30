@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
 import MediaThumbnail from 'components/MediaThumbnail'
 import getIcon from 'common/utils/getIcon'
+import { SECONDARY_BUTTON_STYLE } from 'common/constants'
 
 function StoryCrudPreview({ storyData }) {
   const {
@@ -47,10 +48,7 @@ function StoryCrudPreview({ storyData }) {
   )
 
   const editButton = (link) => (
-    <Link
-      to={link}
-      className="bg-white border border-fv-charcoal-light rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-    >
+    <Link to={link} className={SECONDARY_BUTTON_STYLE}>
       {getIcon('Pencil', 'fill-current -ml-1 mr-2 h-5 w-5')} <span>Edit</span>
     </Link>
   )
