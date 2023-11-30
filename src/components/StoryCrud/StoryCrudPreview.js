@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
 import MediaThumbnail from 'components/MediaThumbnail'
+import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function StoryCrudPreview({ storyData }) {
   const {
@@ -143,7 +144,7 @@ function StoryCrudPreview({ storyData }) {
         <div className="flex justify-end">
           <Link
             to={`/${sitename}/dashboard/edit/story?step=0&id=${storyData?.id}`}
-            className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+            className={SECONDARY_BUTTON_STYLE}
           >
             Edit
           </Link>
@@ -196,7 +197,7 @@ function StoryCrudPreview({ storyData }) {
           <div className="flex justify-end">
             <Link
               to={`/${sitename}/dashboard/edit/story?step=1&id=${storyData?.id}`}
-              className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+              className={SECONDARY_BUTTON_STYLE}
             >
               Edit
             </Link>
@@ -218,7 +219,7 @@ function StoryCrudPreview({ storyData }) {
         <div className="flex justify-end">
           <Link
             to={`/${sitename}/dashboard/edit/story?step=2&id=${storyData?.id}`}
-            className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+            className={SECONDARY_BUTTON_STYLE}
           >
             Edit
           </Link>
