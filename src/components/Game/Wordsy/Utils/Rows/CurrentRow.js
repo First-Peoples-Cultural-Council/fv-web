@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Cell from 'components/Game/Wordsy/WordsyControls/Rows/Cell'
+import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 
 function CurrentRow({ guess, wordLength }) {
   const emptyCells = Array.from(Array(wordLength - guess.length))
@@ -12,12 +12,12 @@ function CurrentRow({ guess, wordLength }) {
       {guess.map((letter, index) => (
         // non-unique cells for non-unique guesses, using index in the key
         // eslint-disable-next-line react/no-array-index-key
-        <Cell key={`guessedCell-${index}`} value={letter} />
+        <Cell key={`guessedCell-${index}`} value={letter} /> // NOSONAR
       ))}
       {emptyCells.map((_, index) => (
         // non-unique empty cells, using index in the key
         // eslint-disable-next-line react/no-array-index-key
-        <Cell key={`emptyCell-${index}`} />
+        <Cell key={`emptyCell-${index}`} /> // NOSONAR
       ))}
     </div>
   )

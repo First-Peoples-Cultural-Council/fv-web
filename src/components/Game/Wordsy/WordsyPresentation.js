@@ -1,88 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import Cell from 'components/Game/Wordsy/WordsyControls/Rows/Cell'
-import Grid from 'components/Game/Wordsy/WordsyControls/Grid'
-import Keyboard from 'components/Game/Wordsy/WordsyControls/Keyboard/Keyboard'
-
-// From settings
-const TRIES = 6
+import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
+import Grid from 'components/Game/Wordsy/Utils/Grid'
+import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
 
 function WordsyPresentation({
+  tries,
   solution,
-  orthography,
-  orthographyPattern,
   languageConfig,
+  guesses,
+  currentGuess,
+  onChar,
+  onEnter,
+  onDelete,
+  infoModalOpen,
+  setInfoModalOpen,
+  notEnoughLettersModalOpen,
+  setNotEnoughLettersModalOpen,
+  wordNotFoundModalOpen,
+  setWordNotFoundModalOpen,
+  isWinModalOpen,
+  setIsWinModalOpen,
+  isLostModalOpen,
+  setIsLostModalOpen,
 }) {
-  const [isGameWon, setIsGameWon] = useState(false)
-  const [isGameLost, setIsGameLost] = useState(false)
-  const [guesses, setGuesses] = useState([])
-  const [currentGuess, setCurrentGuess] = useState([])
-  const [infoModalOpen, setInfoModalOpen] = useState(false)
-
-  const isWordInWordList = (words, validGuesses, word) =>
-    words.includes(word) || validGuesses.includes(word)
-
-  const onChar = (value) => {
-    if (
-      currentGuess.length < languageConfig?.wordLength &&
-      guesses.length < TRIES &&
-      !isGameWon
-    ) {
-      const newGuess = currentGuess.concat([value])
-      setCurrentGuess(newGuess)
-    }
-  }
-
-  const onDelete = () => {
-    let updatedCurrentGuess = [...currentGuess]
-    updatedCurrentGuess = updatedCurrentGuess.slice(0, -1)
-    setCurrentGuess(updatedCurrentGuess)
-  }
-
-  const onEnter = () => {
-    if (isGameWon || isGameLost) {
-      return null
-    }
-
-    if (!(currentGuess.length === languageConfig?.wordLength)) {
-      // Not enough letters dialog should pop up
-    }
-
-    if (
-      !isWordInWordList(
-        languageConfig.words,
-        languageConfig.validGuesses,
-        currentGuess.join(''),
-      )
-    ) {
-      // Word not found dialog should pop up
-    }
-
-    const winningWord = currentGuess.join('') === solution
-    if (
-      currentGuess.length === languageConfig?.wordLength &&
-      guesses.length < TRIES &&
-      !isGameWon
-    ) {
-      setGuesses([...guesses, currentGuess])
-      setCurrentGuess([])
-
-      if (winningWord) {
-        setIsGameWon(true)
-        return null
-      }
-
-      if (guesses.length === TRIES - 1) {
-        setIsGameLost(true)
-      }
-    }
-    return null
-  }
-
   return (
     <section
       className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white"
@@ -100,21 +45,22 @@ function WordsyPresentation({
       </div>
 
       <Grid
+        tries={tries}
         guesses={guesses}
         solution={solution}
         currentGuess={currentGuess}
-        orthographyPattern={orthographyPattern}
+        orthographyPattern={languageConfig?.orthographyPattern}
         wordLength={languageConfig?.wordLength}
       />
 
       <Keyboard
-        orthography={orthography}
+        orthography={languageConfig?.orthography}
         onChar={onChar}
         onEnter={onEnter}
         onDelete={onDelete}
         solution={solution}
         guesses={guesses}
-        orthographyPattern={orthographyPattern}
+        orthographyPattern={languageConfig?.orthographyPattern}
       />
 
       {/* Info modal */}
@@ -168,6 +114,54 @@ function WordsyPresentation({
           </div>
         </div>
       </Modal.Presentation>
+
+      {/* Not enough letters modal */}
+      <Modal.Presentation
+        isOpen={notEnoughLettersModalOpen}
+        closeHandler={() => setNotEnoughLettersModalOpen(false)}
+      >
+        <div className="bg-rose-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
+          <h3 className="text-sm text-center font-medium text-gray-900">
+            Not Enough Letters
+          </h3>
+        </div>
+      </Modal.Presentation>
+
+      {/* Word not found modal */}
+      <Modal.Presentation
+        isOpen={wordNotFoundModalOpen}
+        closeHandler={() => setWordNotFoundModalOpen(false)}
+      >
+        <div className="bg-rose-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
+          <h3 className="text-sm text-center font-medium text-gray-900">
+            Word not found
+          </h3>
+        </div>
+      </Modal.Presentation>
+
+      {/* Win modal */}
+      <Modal.Presentation
+        isOpen={isWinModalOpen}
+        closeHandler={() => setIsWinModalOpen(false)}
+      >
+        <div className="bg-green-200 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
+          <h3 className="text-sm text-center font-medium text-gray-900">
+            Well done!
+          </h3>
+        </div>
+      </Modal.Presentation>
+
+      {/* Lost modal */}
+      <Modal.Presentation
+        isOpen={isLostModalOpen}
+        closeHandler={() => setIsLostModalOpen(false)}
+      >
+        <div className="bg-red-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
+          <h3 className="text-sm text-center font-medium text-gray-900">
+            All tries exhausted. Please reset and try again.
+          </h3>
+        </div>
+      </Modal.Presentation>
     </section>
   )
 }
@@ -175,10 +169,24 @@ function WordsyPresentation({
 const { any } = PropTypes
 
 WordsyPresentation.propTypes = {
+  tries: any,
   solution: any,
-  orthography: any,
-  orthographyPattern: any,
+  guesses: any,
+  currentGuess: any,
   languageConfig: any,
+  onChar: any,
+  onEnter: any,
+  onDelete: any,
+  infoModalOpen: any,
+  setInfoModalOpen: any,
+  notEnoughLettersModalOpen: any,
+  setNotEnoughLettersModalOpen: any,
+  wordNotFoundModalOpen: any,
+  setWordNotFoundModalOpen: any,
+  isWinModalOpen: any,
+  setIsWinModalOpen: any,
+  isLostModalOpen: any,
+  setIsLostModalOpen: any,
 }
 
 export default WordsyPresentation

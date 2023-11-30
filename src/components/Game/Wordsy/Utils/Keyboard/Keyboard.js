@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Key from 'components/Game/Wordsy/WordsyControls/Keyboard/Key'
+import Key from 'components/Game/Wordsy/Utils/Keyboard/Key'
 
 export const getStatuses = (solution, guesses, orthographyPattern) => {
   const charObj = {}
@@ -65,7 +65,6 @@ function Keyboard({
       } else if (e.code === 'Backspace') {
         onDelete()
       }
-      // Take away key event listener for now
       // else {
       //   const key = e.key.toUpperCase()
       //   if (key.length === 1 && key >= 'A' && key <= 'Z') {

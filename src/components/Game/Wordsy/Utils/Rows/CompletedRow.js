@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Cell from 'components/Game/Wordsy/WordsyControls/Rows/Cell'
+import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 
 function getGuessStatuses(solution, guess, orthographyPattern) {
   // Utility function to get status for each guess
@@ -53,7 +53,7 @@ function CompletedRow({ solution, guess, orthographyPattern }) {
       {guess.map((letter, index) => (
         // Non-unique cells for non-unique guesses, using index in the key
         // eslint-disable-next-line react/no-array-index-key
-        <Cell key={`guess-${index}`} value={letter} status={statuses[index]} />
+        <Cell key={`guess-${index}`} value={letter} status={statuses[index]} /> // NOSONAR
       ))}
     </div>
   )
