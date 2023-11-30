@@ -44,7 +44,7 @@ export function pageTextAdaptor({ item }) {
 
   try {
     const textState = getWysiwygStateFromJson(textJson)
-    textPreview = `${textState?.getPlainText()?.slice(0, 150)}...`
+    textPreview = `${textState?.getPlainText()?.slice(0, 250)}...`
   } catch (e) {
     // Problem parsing text to get a preview; just leave the preview blank
   }
