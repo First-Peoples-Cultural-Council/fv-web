@@ -70,19 +70,19 @@ const primaryNavigationItems = (currentSitename) => {
     },
     {
       name: 'Create',
-      href: 'create',
+      href: `/${currentSitename}/dashboard/create`,
       icon: 'Create',
       auth: ASSISTANT,
     },
     {
       name: 'Edit',
-      href: 'edit',
+      href: `/${currentSitename}/dashboard/edit`,
       icon: 'Pencil',
       auth: EDITOR,
     },
     {
       name: 'Media',
-      href: 'media',
+      href: `/${currentSitename}/dashboard/media`,
       icon: 'Microphone',
       auth: ASSISTANT,
     },
