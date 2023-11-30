@@ -15,6 +15,7 @@ import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 
 function StoryPagesCrudPresentation({
   addPageOpen,
+  deleteHandler,
   goToStep,
   nextPageOrderNumber,
   pageIds,
@@ -75,6 +76,7 @@ function StoryPagesCrudPresentation({
                           submitHandler={(event) =>
                             submitAndClose(event, close)
                           }
+                          deleteHandler={deleteHandler}
                           cancelHandler={close}
                         />
                       }
@@ -125,6 +127,7 @@ const { number, array, bool, func, object } = PropTypes
 
 StoryPagesCrudPresentation.propTypes = {
   addPageOpen: bool,
+  deleteHandler: func,
   goToStep: func,
   nextPageOrderNumber: number,
   pageIds: array,
