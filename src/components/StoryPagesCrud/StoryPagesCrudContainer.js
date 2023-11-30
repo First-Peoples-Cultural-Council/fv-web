@@ -9,6 +9,7 @@ function StoryPagesCrudContainer({ storyData }) {
   const {
     addPageOpen,
     setAddPageOpen,
+    deleteHandler,
     pageIds,
     submitPageOrder,
     goToStep,
@@ -19,6 +20,7 @@ function StoryPagesCrudContainer({ storyData }) {
   return (
     <StoryPagesCrudPresentation
       addPageOpen={addPageOpen}
+      deleteHandler={deleteHandler}
       goToStep={goToStep}
       pageIds={pageIds}
       pages={pages}
