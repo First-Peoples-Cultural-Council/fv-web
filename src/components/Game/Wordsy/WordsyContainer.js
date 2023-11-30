@@ -5,11 +5,12 @@ import WordsyData from 'components/Game/Wordsy/WordsyData'
 import WordsyPresentation from 'components/Game/Wordsy/WordsyPresentation'
 
 function WordsyContainer() {
-  const { solution, orthography, orthographyPattern, wordLength } = WordsyData()
+  const { solution, orthography, orthographyPattern, languageConfig } =
+    WordsyData()
   return (
     <WordsyPresentation
       solution={solution}
-      wordLength={wordLength}
+      languageConfig={languageConfig}
       orthography={orthography}
       orthographyPattern={orthographyPattern}
     />

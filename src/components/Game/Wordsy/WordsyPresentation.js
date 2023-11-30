@@ -8,21 +8,80 @@ import Cell from 'components/Game/Wordsy/WordsyControls/Rows/Cell'
 import Grid from 'components/Game/Wordsy/WordsyControls/Grid'
 import Keyboard from 'components/Game/Wordsy/WordsyControls/Keyboard/Keyboard'
 
+// From settings
+const TRIES = 6
+
 function WordsyPresentation({
   solution,
   orthography,
   orthographyPattern,
-  wordLength,
+  languageConfig,
 }) {
-  const [guesses] = useState([])
-  const [currentGuess] = useState([])
+  const [isGameWon, setIsGameWon] = useState(false)
+  const [isGameLost, setIsGameLost] = useState(false)
+  const [guesses, setGuesses] = useState([])
+  const [currentGuess, setCurrentGuess] = useState([])
   const [infoModalOpen, setInfoModalOpen] = useState(false)
 
-  const onChar = (value) => value
+  const isWordInWordList = (words, validGuesses, word) =>
+    words.includes(word) || validGuesses.includes(word)
 
-  const onDelete = () => null
+  const onChar = (value) => {
+    if (
+      currentGuess.length < languageConfig?.wordLength &&
+      guesses.length < TRIES &&
+      !isGameWon
+    ) {
+      const newGuess = currentGuess.concat([value])
+      setCurrentGuess(newGuess)
+    }
+  }
 
-  const onEnter = () => null
+  const onDelete = () => {
+    let updatedCurrentGuess = [...currentGuess]
+    updatedCurrentGuess = updatedCurrentGuess.slice(0, -1)
+    setCurrentGuess(updatedCurrentGuess)
+  }
+
+  const onEnter = () => {
+    if (isGameWon || isGameLost) {
+      return null
+    }
+
+    if (!(currentGuess.length === languageConfig?.wordLength)) {
+      // Not enough letters dialog should pop up
+    }
+
+    if (
+      !isWordInWordList(
+        languageConfig.words,
+        languageConfig.validGuesses,
+        currentGuess.join(''),
+      )
+    ) {
+      // Word not found dialog should pop up
+    }
+
+    const winningWord = currentGuess.join('') === solution
+    if (
+      currentGuess.length === languageConfig?.wordLength &&
+      guesses.length < TRIES &&
+      !isGameWon
+    ) {
+      setGuesses([...guesses, currentGuess])
+      setCurrentGuess([])
+
+      if (winningWord) {
+        setIsGameWon(true)
+        return null
+      }
+
+      if (guesses.length === TRIES - 1) {
+        setIsGameLost(true)
+      }
+    }
+    return null
+  }
 
   return (
     <section
@@ -45,7 +104,7 @@ function WordsyPresentation({
         solution={solution}
         currentGuess={currentGuess}
         orthographyPattern={orthographyPattern}
-        wordLength={wordLength}
+        wordLength={languageConfig?.wordLength}
       />
 
       <Keyboard
@@ -119,7 +178,7 @@ WordsyPresentation.propTypes = {
   solution: any,
   orthography: any,
   orthographyPattern: any,
-  wordLength: any,
+  languageConfig: any,
 }
 
 export default WordsyPresentation

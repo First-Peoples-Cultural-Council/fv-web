@@ -1418,7 +1418,6 @@ function WordsyData() {
 
   return {
     solution: 's̲ps̲os̲',
-    wordLength: processedData?.wordLength,
     orthography: processedData?.orthography,
     orthographyPattern: processedData?.orthographyPattern,
     languageConfig: processedData,
