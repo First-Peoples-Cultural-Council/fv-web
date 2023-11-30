@@ -40,7 +40,7 @@ function StoryCrudContainer() {
             deleteHandler={deleteHandler}
             label="Delete Story"
             message="Are you sure you want to delete this story from your site?"
-            styling={`${SECONDARY_BUTTON_STYLE} z-20`}
+            styling={`${SECONDARY_BUTTON_STYLE} z-10`}
           />
         </div>
       ) : null}
