@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
+import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
@@ -70,8 +71,7 @@ DeleteButtonPresentation.propTypes = {
 DeleteButtonPresentation.defaultProps = {
   label: 'Delete',
   message: 'Are you sure you want to delete this?',
-  styling:
-    'bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light',
+  styling: SECONDARY_BUTTON_STYLE,
 }
 
 export default DeleteButtonPresentation

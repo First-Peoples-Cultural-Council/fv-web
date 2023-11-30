@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import {
+  PRIMARY_BUTTON_STYLE,
+  SECONDARY_BUTTON_STYLE,
+} from 'common/constants/styles'
 
 function SubmitButtons({
   cancelIcon,
@@ -18,7 +22,7 @@ function SubmitButtons({
         <button
           type="button"
           onClick={() => onCancelClick()}
-          className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+          className={SECONDARY_BUTTON_STYLE}
         >
           {cancelIcon && getIcon(cancelIcon, 'fill-current -ml-1 mr-2 h-5 w-5')}
           <span>{cancelLabel}</span>
@@ -27,7 +31,7 @@ function SubmitButtons({
       <button
         type="button"
         onClick={onSubmitClick}
-        className="ml-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+        className={PRIMARY_BUTTON_STYLE}
       >
         {submitIcon && getIcon(submitIcon, 'fill-current -ml-1 mr-2 h-5 w-5')}
         <span>{submitLabel}</span>
