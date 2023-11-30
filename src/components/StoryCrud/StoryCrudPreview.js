@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
 import MediaThumbnail from 'components/MediaThumbnail'
+import getIcon from 'common/utils/getIcon'
 
 function StoryCrudPreview({ storyData }) {
   const {
@@ -43,6 +44,15 @@ function StoryCrudPreview({ storyData }) {
     >
       View {translate ? 'language' : 'translation'}
     </button>
+  )
+
+  const editButton = (link) => (
+    <Link
+      to={link}
+      className="bg-white border border-fv-charcoal-light rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+    >
+      {getIcon('Pencil', 'fill-current -ml-1 mr-2 h-5 w-5')} <span>Edit</span>
+    </Link>
   )
 
   const relatedVisualMediaThumbnails = ({ images, videos }) => {
@@ -141,12 +151,9 @@ function StoryCrudPreview({ storyData }) {
           </div>
         </div>
         <div className="flex justify-end">
-          <Link
-            to={`/${sitename}/dashboard/edit/story?step=0&id=${storyData?.id}`}
-            className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-          >
-            Edit
-          </Link>
+          {editButton(
+            `/${sitename}/dashboard/edit/story?step=0&id=${storyData?.id}`,
+          )}
         </div>
       </section>
       {currentPage && (
@@ -194,12 +201,9 @@ function StoryCrudPreview({ storyData }) {
             ))}
           </div>
           <div className="flex justify-end">
-            <Link
-              to={`/${sitename}/dashboard/edit/story?step=1&id=${storyData?.id}`}
-              className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-            >
-              Edit
-            </Link>
+            {editButton(
+              `/${sitename}/dashboard/edit/story?step=1&id=${storyData?.id}`,
+            )}
           </div>
         </section>
       )}
@@ -216,12 +220,9 @@ function StoryCrudPreview({ storyData }) {
           </div>
         </div>
         <div className="flex justify-end">
-          <Link
-            to={`/${sitename}/dashboard/edit/story?step=2&id=${storyData?.id}`}
-            className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
-          >
-            Edit
-          </Link>
+          {editButton(
+            `/${sitename}/dashboard/edit/story?step=2&id=${storyData?.id}`,
+          )}
         </div>
       </section>
     </div>
