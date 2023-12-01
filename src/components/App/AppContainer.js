@@ -88,6 +88,17 @@ function AppContainer() {
                   </AppWrapper>
                 }
               />
+              {/* Redirect legacy URLs */}
+              <Route
+                path="t/sections/:dialect/*"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
+              <Route
+                path="explore/FV/Workspaces/Data"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
               <Route
                 path="explore/FV/Workspaces/Data/:family/:language/:dialect/*"
                 caseSensitive={false}
@@ -98,6 +109,8 @@ function AppContainer() {
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
+              {/* End of legacy URLs */}
+
               <Route path=":sitename/*" element={<Site.Container />} />
             </Routes>
           </AudiobarProvider>
