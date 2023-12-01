@@ -49,6 +49,13 @@ const LEGACY_SITE_MAPPING = [
     newSiteName: 'kanienkeha-mohawk-en',
   },
   {
+    family: 'Kanehsatà:ke',
+    language: 'Mohawk',
+    dialect: "Kanien'kéha (Mohawk) [Eng]",
+    oldSitename: 'Kanienkeha-Mohawk-EN',
+    newSiteName: 'kanienkeha-mohawk-en',
+  },
+  {
     family: 'Secwepemc',
     language: 'Secwepemctsin',
     dialect: 'Splatsin (Eastern dialect)',
