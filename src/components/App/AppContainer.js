@@ -90,22 +90,17 @@ function AppContainer() {
               />
               {/* Redirect legacy URLs */}
               <Route
-                path="t/sections/:dialect/*"
+                path="t/:area/:dialect/*"
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
               <Route
-                path="explore/FV/sections/Data"
+                path="explore/FV/:area/Data"
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
               <Route
-                path="explore/FV/Workspaces/Data/:family/:language/:dialect/*"
-                caseSensitive={false}
-                element={<LegacyRedirect />}
-              />
-              <Route
-                path="explore/FV/sections/Data/:family/:language/:dialect/*"
+                path=":exploreOrKids/FV/:area/Data/:family/:language/:dialect/*"
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
