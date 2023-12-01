@@ -51,12 +51,16 @@ function WordsyData() {
   }
 
   const onEnter = () => {
+    // The return text is not used anywhere, adding that as placeholders to prevent sonar
+    // from raising warning about not having different returns in different conditionals
     if (isGameWon || isGameLost) {
-      return null
+      return 'game-over'
     }
 
     if (currentGuess.length !== languageConfig?.wordLength) {
       setNotEnoughLettersModalOpen(true)
+      setTimeout(() => setNotEnoughLettersModalOpen(false), 1000)
+      return 'not-enough-letters'
     }
 
     if (
@@ -67,7 +71,8 @@ function WordsyData() {
       )
     ) {
       setWordNotFoundModalOpen(true)
-      setTimeout(() => setWordNotFoundModalOpen(false), 2000)
+      setTimeout(() => setWordNotFoundModalOpen(false), 1000)
+      return 'word-not-found'
     }
 
     const winningWord = currentGuess.join('') === solution
@@ -82,12 +87,13 @@ function WordsyData() {
       if (winningWord) {
         setIsGameWon(true)
         setIsWinModalOpen(true)
-        return null
+        return 'game-won'
       }
 
       if (guesses.length === GAME_SETTINS.tries - 1) {
         setIsGameLost(true)
         setIsLostModalOpen(true)
+        return 'game-lost'
       }
     }
     return null
