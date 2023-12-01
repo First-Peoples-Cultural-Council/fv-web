@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 
 function EmptyRow({ wordLength }) {
-  // Comes from language config
   const emptyCells = Array.from(Array(wordLength))
 
   return (

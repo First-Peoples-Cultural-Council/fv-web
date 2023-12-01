@@ -101,7 +101,7 @@ function WordsyData() {
 
   return {
     tries: GAME_SETTINS.tries,
-    solution, // Should be coming from languageConfig ?
+    solution,
     languageConfig,
     guesses,
     currentGuess,

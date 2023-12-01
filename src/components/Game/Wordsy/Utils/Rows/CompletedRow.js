@@ -30,7 +30,7 @@ function getGuessStatuses(solution, guess, orthographyPattern) {
       return
     }
 
-    // now we are left with "present"s
+    // handles the present's case
     const indexOfPresentChar = splitSolution.findIndex(
       (x, index) => x === letter && !solutionCharsTaken[index],
     )

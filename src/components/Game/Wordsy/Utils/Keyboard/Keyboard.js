@@ -10,17 +10,14 @@ export const getStatuses = (solution, guesses, orthographyPattern) => {
   guesses.forEach((word) => {
     word.forEach((letter, i) => {
       if (!solutionChars.includes(letter)) {
-        // make status absent
         charObj[letter] = 'absent'
       }
 
       if (letter === solutionChars[i]) {
-        // make status correct
         charObj[letter] = 'correct'
       }
 
       if (charObj[letter] !== 'correct') {
-        // make status present
         charObj[letter] = 'present'
       }
     })
@@ -65,6 +62,7 @@ function Keyboard({
       } else if (e.code === 'Backspace') {
         onDelete()
       }
+      // To be confirmed if we want to accept input from keyboard
       // else {
       //   const key = e.key.toUpperCase()
       //   if (key.length === 1 && key >= 'A' && key <= 'Z') {
