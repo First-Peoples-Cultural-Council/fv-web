@@ -95,7 +95,7 @@ function AppContainer() {
                 element={<LegacyRedirect />}
               />
               <Route
-                path="explore/FV/Workspaces/Data"
+                path="explore/FV/sections/Data"
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
