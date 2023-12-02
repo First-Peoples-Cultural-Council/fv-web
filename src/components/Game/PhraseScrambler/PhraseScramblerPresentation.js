@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
 
-function WordScramblePresentation({
+function PhraseScramblerPresentation({
   translation,
   jumbledWords,
   selectedWords,
@@ -26,13 +26,13 @@ function WordScramblePresentation({
 
   return (
     <section
-      data-testid="WordScramblePresentation"
+      data-testid="PhraseScramblerPresentation"
       className="mt-4 py-2 md:py-4 lg:py-8 bg-white"
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
         <div>
           <SectionTitle.Presentation
-            title="WORD SCRAMBLE"
+            title="PHRASE SCRAMBLER"
             accentColor="primary"
           />
           <p className="text-fv-charcoal mt-2">Unscramble to win !!</p>
@@ -134,7 +134,7 @@ function WordScramblePresentation({
 // PROPTYPES
 const { array, bool, func, string } = PropTypes
 
-WordScramblePresentation.propTypes = {
+PhraseScramblerPresentation.propTypes = {
   translation: string,
   jumbledWords: array,
   selectedWords: array,
@@ -145,4 +145,4 @@ WordScramblePresentation.propTypes = {
   resetGame: func,
 }
 
-export default WordScramblePresentation
+export default PhraseScramblerPresentation

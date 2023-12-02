@@ -100,7 +100,7 @@ import Jigsaw from 'common/icons/Jigsaw'
 import Memory from 'common/icons/Memory'
 import Parachute from 'common/icons/Parachute'
 import Quiz from 'common/icons/Quiz'
-import WordScramble from 'common/icons/WordScramble'
+import PhraseScrambler from 'common/icons/PhraseScrambler'
 import WordSearch from 'common/icons/WordSearch'
 import Wordle from 'common/icons/Wordle'
 
@@ -216,7 +216,7 @@ function getIcon(iconName, iconStyling, title) {
     Widget,
     Word,
     Wordle,
-    WordScramble,
+    PhraseScrambler,
     WordSearch,
     Youtube,
   }
