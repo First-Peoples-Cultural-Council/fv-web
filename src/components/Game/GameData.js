@@ -19,8 +19,8 @@ function GameData() {
         return 'quiz'
       case 'wordle':
         return 'wordle'
-      case 'wordscramble':
-        return 'wordscramble'
+      case 'phrasescrambler':
+        return 'phrasescrambler'
       case 'wordsearch':
         return 'wordsearch'
       default:

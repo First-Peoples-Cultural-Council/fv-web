@@ -11,7 +11,7 @@ function shuffleWords(array) {
   return shuffledArray
 }
 
-function WordScrambleData() {
+function PhraseScramblerData() {
   // Mock data
   const inputData = {
     translation: 'A B C D',
@@ -77,4 +77,4 @@ function WordScrambleData() {
   }
 }
 
-export default WordScrambleData
+export default PhraseScramblerData

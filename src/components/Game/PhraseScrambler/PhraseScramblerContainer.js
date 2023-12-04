@@ -2,10 +2,10 @@ import React from 'react'
 
 // FPCC
 import Loading from 'components/Loading'
-import WordScramblePresentation from 'components/Game/WordScramble/WordScramblePresentation'
-import WordScrambleData from 'components/Game/WordScramble/WordScrambleData'
+import PhraseScramblerPresentation from 'components/Game/PhraseScrambler/PhraseScramblerPresentation'
+import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScramblerData'
 
-function WordScrambleContainer() {
+function PhraseScramblerContainer() {
   const {
     translation,
     jumbledWords,
@@ -15,11 +15,11 @@ function WordScrambleContainer() {
     wordClicked,
     checkAnswer,
     resetGame,
-  } = WordScrambleData()
+  } = PhraseScramblerData()
 
   return (
     <Loading.Container isLoading={false}>
-      <WordScramblePresentation
+      <PhraseScramblerPresentation
         translation={translation}
         jumbledWords={jumbledWords}
         selectedWords={selectedWords}
@@ -33,4 +33,4 @@ function WordScrambleContainer() {
   )
 }
 
-export default WordScrambleContainer
+export default PhraseScramblerContainer
