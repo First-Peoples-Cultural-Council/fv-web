@@ -42,6 +42,7 @@ function SpeakerCrudPresentation({
             deleteHandler={deleteHandler}
             label="Delete Speaker"
             message="Are you sure you want to delete this speaker from your site?"
+            note="This will remove the speaker from all associated audio files."
           />
         </div>
       )}

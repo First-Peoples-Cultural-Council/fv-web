@@ -6,7 +6,13 @@ import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
-function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
+function DeleteButtonPresentation({
+  deleteHandler,
+  label,
+  message,
+  note,
+  styling,
+}) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
   return (
@@ -31,6 +37,7 @@ function DeleteButtonPresentation({ deleteHandler, label, message, styling }) {
         >
           <div className="text-center space-y-2">
             <p className="text-2xl text-fv-charcoal">{message}</p>
+            {note && <p className="text-fv-charcoal-light">{note}</p>}
             <p className="text-fv-charcoal-light">
               You can&apos;t undo this action.
             </p>
@@ -65,12 +72,14 @@ DeleteButtonPresentation.propTypes = {
   deleteHandler: func,
   label: string,
   message: string,
+  note: string,
   styling: string,
 }
 
 DeleteButtonPresentation.defaultProps = {
   label: 'Delete',
   message: 'Are you sure you want to delete this?',
+  note: null,
   styling: SECONDARY_BUTTON_STYLE,
 }
 
