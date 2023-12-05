@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import DashboardEntriesPresentationList from 'components/DashboardEntries/DashboardEntriesPresentationList'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import SearchTypeSelector from 'components/SearchTypeSelector'
+import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
 
 function DashboardEntriesPresentation({
   infiniteScroll,
@@ -11,26 +12,52 @@ function DashboardEntriesPresentation({
   isLoadingEntries,
   items,
   emptyListMessage,
-  showTypeSelector,
+  isDictionary,
   initialSearchType,
   entryLabel,
+  resetSearch,
   searchType,
   setSearchType,
 }) {
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false)
   return (
     <div id="DashboardEntriesPresentation">
       <section className="inline-flex w-full p-5 space-x-5 items-center justify-between print:hidden">
-        <div className="w-2/3">
+        <div className="w-1/2">
           <SearchDictionaryForm.Container searchType={initialSearchType} />
         </div>
-        {showTypeSelector && (
-          <SearchTypeSelector.Container
-            accentColor="tertiaryB"
-            selectedSearchType={searchType}
-            setSearchType={setSearchType}
-          />
+        {isDictionary && (
+          <div className="w-1/2 flex items-center justify-between space-x-2">
+            {!showAdvancedSearch ? (
+              <button
+                type="button"
+                className="text-sm underline"
+                onClick={() => setShowAdvancedSearch(true)}
+              >
+                Advanced search
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="text-sm underline"
+                onClick={() => resetSearch()}
+              >
+                Reset
+              </button>
+            )}
+            <SearchTypeSelector.Container
+              accentColor="tertiaryB"
+              selectedSearchType={searchType}
+              setSearchType={setSearchType}
+            />
+          </div>
         )}
       </section>
+      {showAdvancedSearch && (
+        <section className="w-full print:hidden border-b">
+          <AdvancedSearchOptions.Presentation />
+        </section>
+      )}
       <section>
         <DashboardEntriesPresentationList
           infiniteScroll={infiniteScroll}
@@ -51,11 +78,12 @@ DashboardEntriesPresentation.propTypes = {
   loadRef: object,
   isLoadingEntries: bool,
   items: object,
+  resetSearch: func,
   searchType: string,
   setSearchType: func,
   entryLabel: string,
   emptyListMessage: string,
-  showTypeSelector: bool,
+  isDictionary: bool,
   initialSearchType: string,
 }
 

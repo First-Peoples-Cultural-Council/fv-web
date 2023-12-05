@@ -11,14 +11,14 @@ import {
 } from 'common/constants'
 
 function DashboardEntriesData() {
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
   const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
       initialSearchType: urlSearchType,
     })
-  const showTypeSelector =
+  const isDictionary =
     urlSearchType === TYPE_WORD ||
     urlSearchType === TYPE_PHRASE ||
     urlSearchType === TYPE_DICTIONARY
@@ -29,18 +29,21 @@ function DashboardEntriesData() {
   })
 
   return {
-    isLoadingEntries: isInitialLoading,
-    items: data,
-    infiniteScroll,
-    loadRef: searchTerm ? loadRef : null,
-    searchType,
-    setSearchType: setSearchTypeInUrl,
-    entryLabel: getSearchTypeLabel({ searchType }),
     emptyListMessage: searchTerm
       ? 'Sorry, there are no results for this search.'
       : 'Please enter your search above.',
-    showTypeSelector,
+    entryLabel: getSearchTypeLabel({ searchType }),
+    infiniteScroll,
     initialSearchType: urlSearchType,
+    isDictionary,
+    isLoadingEntries: isInitialLoading,
+    items: data,
+    loadRef: searchTerm ? loadRef : null,
+    resetSearch: () => {
+      setSearchParams({ [TYPES]: urlSearchType })
+    },
+    searchType,
+    setSearchType: setSearchTypeInUrl,
   }
 }
 
