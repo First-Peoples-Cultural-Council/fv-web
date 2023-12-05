@@ -8,6 +8,12 @@ const search = {
         `${SITES}/${sitename}/${SEARCH}/?${searchParams}&page=${pageParam}&pageSize=${perPage}`,
       )
       .json(),
+  getParachute: async ({ sitename, searchParams, perPage }) =>
+    apiBase()
+      .get(
+        `${SITES}/${sitename}/${SEARCH}/?${searchParams}&pageSize=${perPage}`,
+      )
+      .json(),
 }
 
 export default search
