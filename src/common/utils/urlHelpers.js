@@ -27,6 +27,7 @@ export const isFileType = (file, type) =>
 
 // Very basic function for making strings plural - does NOT account for variations in pluralization e.g. mouse -> mice
 export const makePlural = (string) => {
+  if (typeof string !== 'string' || string?.length < 1) return ''
   const lastCharacter = string.slice(-1)
   if (lastCharacter === 'y') {
     const plural = string.slice(0, -1)
