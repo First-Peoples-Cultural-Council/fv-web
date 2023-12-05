@@ -10,6 +10,7 @@ import {
   HAS_TRANSLATION,
   GAMES,
   SORT,
+  HAS_UNRECOGNIZED_CHARS,
 } from 'common/constants'
 import { useCharacters } from 'common/dataHooks/useCharacters'
 import { useParachuteSearch } from 'common/dataHooks/useGamesSearch'
@@ -33,6 +34,7 @@ function ParachuteData() {
         [HAS_AUDIO]: true,
         [HAS_TRANSLATION]: true,
         [SORT]: 'random',
+        [HAS_UNRECOGNIZED_CHARS]: false,
       })
 
   const { data, refetch: getNextPage } = useParachuteSearch({
