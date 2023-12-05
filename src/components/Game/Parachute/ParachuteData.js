@@ -15,11 +15,13 @@ import { useCharacters } from 'common/dataHooks/useCharacters'
 import { useParachuteSearch } from 'common/dataHooks/useGamesSearch'
 
 const PUZZLES = 100
+const MAXPAGESWITHOUTUSABLEPUZZLE = 10
 
 function ParachuteData() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [pageSize, setPageSize] = useState()
   const [puzzle, setPuzzle] = useState()
+  const [pagesWithoutUsablePuzzle, setPagesWithoutUsablePuzzle] = useState(0)
 
   const [searchParams] = useSearchParams()
   const _searchParams = searchParams.get(TYPES)
@@ -48,6 +50,7 @@ function ParachuteData() {
       // If we run out of puzzles trigger a fetch for another page
       getNextPage()
       setCurrentWordIndex(0)
+      setPagesWithoutUsablePuzzle(pagesWithoutUsablePuzzle + 1)
     }
   }
 
@@ -64,10 +67,14 @@ function ParachuteData() {
           }
         })
 
+        setPagesWithoutUsablePuzzle(0)
         return puzzleParts
       }
-      // If the splitCharsBase is empty then go to the next word
-      nextWord()
+      // If we have already fetched the max number of pages and still not found a usable puzzle return an empty array to prevent possible infinite requests
+      if (pagesWithoutUsablePuzzle < MAXPAGESWITHOUTUSABLEPUZZLE) {
+        // If the splitCharsBase is empty then go to the next word
+        nextWord()
+      }
       return []
     }
 

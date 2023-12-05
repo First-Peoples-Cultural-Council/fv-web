@@ -137,69 +137,88 @@ function ParachutePresentation({
       data-testid="SongsAndStoriesPresentation"
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
-        <div>
-          <SectionTitle.Presentation title="PARACHUTE" accentColor="primary" />
-          <p className="text-fv-charcoal mt-2">
-            Guess the puzzle to make it to the beach
-          </p>
-        </div>
+        {/* If the puzzle length is zero then render an error message, else render the puzzle. */}
+        {puzzle.length === 0 ? (
+          <div>
+            <SectionTitle.Presentation
+              title="PARACHUTE"
+              accentColor="primary"
+            />
+            <p className="text-fv-charcoal mt-2">
+              Could not generate a parachute game using the current dictionary.
+              <br />
+              Please contact the help desk.
+            </p>
+          </div>
+        ) : (
+          <div>
+            <div>
+              <SectionTitle.Presentation
+                title="PARACHUTE"
+                accentColor="primary"
+              />
+              <p className="text-fv-charcoal mt-2">
+                Guess the puzzle to make it to the beach
+              </p>
+            </div>
+            <img
+              src={gameImages[`${guessesRemaining}.png`]}
+              className="max-w-3xl mx-auto object-cover h-96 w-full"
+              alt={`You have ${guessesRemaining} guesses remaining.`}
+            />
 
-        <img
-          src={gameImages[`${guessesRemaining}.png`]}
-          className="max-w-3xl mx-auto object-cover h-96 w-full"
-          alt={`You have ${guessesRemaining} guesses remaining.`}
-        />
+            <div className="inline-block">
+              {currentPuzzle.map((piece) =>
+                piece?.letter === ' ' ? (
+                  <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
+                ) : (
+                  <div
+                    key={piece.id}
+                    className={`${
+                      piece?.found ? 'text-primary' : 'text-white'
+                    } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
+                  >
+                    <div>{piece?.found ? piece?.letter : '_'}</div>
+                  </div>
+                ),
+              )}
+            </div>
 
-        <div className="inline-block">
-          {currentPuzzle.map((piece) =>
-            piece?.letter === ' ' ? (
-              <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
-            ) : (
-              <div
-                key={piece.id}
-                className={`${
-                  piece?.found ? 'text-primary' : 'text-white'
-                } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
+            <audio
+              className="max-w-md mx-auto my-4"
+              src={getMediaPath({
+                mediaObject: audio,
+                type: AUDIO,
+                size: ORIGINAL,
+              })}
+              controls
+            />
+            <div>Hint: {translation}</div>
+
+            <div className="w-full m-auto max-w-lg my-4">
+              {gameStatus === 'IN-PROGRESS' && renderKeyboard()}
+              {gameStatus === 'SUCCESS' && renderSuccess()}
+              {gameStatus === 'FAIL' && renderFail()}
+            </div>
+
+            <div className="mx-2.5">
+              <button
+                type="button"
+                onClick={startNewGame}
+                className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white mr-2.5"
               >
-                <div>{piece?.found ? piece?.letter : '_'}</div>
-              </div>
-            ),
-          )}
-        </div>
-
-        <audio
-          className="max-w-md mx-auto my-4"
-          src={getMediaPath({
-            mediaObject: audio,
-            type: AUDIO,
-            size: ORIGINAL,
-          })}
-          controls
-        />
-        <div>Hint: {translation}</div>
-
-        <div className="w-full m-auto max-w-lg my-4">
-          {gameStatus === 'IN-PROGRESS' && renderKeyboard()}
-          {gameStatus === 'SUCCESS' && renderSuccess()}
-          {gameStatus === 'FAIL' && renderFail()}
-        </div>
-
-        <div className="mx-2.5">
-          <button
-            type="button"
-            onClick={startNewGame}
-            className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white mr-2.5"
-          >
-            New Puzzle
-          </button>
-          <button
-            type="button"
-            className="inline-flex items-center bg-secondary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
-            onClick={restart}
-          >
-            Restart
-          </button>
-        </div>
+                New Puzzle
+              </button>
+              <button
+                type="button"
+                className="inline-flex items-center bg-secondary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
+                onClick={restart}
+              >
+                Restart
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
