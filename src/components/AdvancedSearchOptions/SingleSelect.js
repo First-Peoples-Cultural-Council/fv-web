@@ -66,22 +66,22 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
               <Listbox.Option
                 key={option.value}
                 className={({ active }) =>
-                  `flex items-center cursor-default p-4 text-sm font-medium ${
-                    active ? 'bg-gray-100 text-secondary' : 'text-fv-charcoal'
+                  `flex items-center cursor-default p-2 text-sm font-medium ${
+                    active ? 'bg-gray-50 text-secondary' : 'text-fv-charcoal'
                   }`
                 }
                 value={option}
               >
                 {({ selected }) => (
-                  <>
+                  <div className="px-4 space-x-4 flex items-center">
                     {getIcon(
                       selected ? 'Checkmark' : '',
                       'h-4 w-4 fill-current text-secondary',
                     )}
-                    <span className="ml-3 whitespace-nowrap pr-6">
+                    <span className="whitespace-nowrap">
                       {option?.value ? option?.label : '--------'}
                     </span>
-                  </>
+                  </div>
                 )}
               </Listbox.Option>
             ))}
