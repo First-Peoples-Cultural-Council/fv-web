@@ -11,13 +11,9 @@ export const getStatuses = (solution, guesses, orthographyPattern) => {
     word.forEach((letter, i) => {
       if (!solutionChars.includes(letter)) {
         charObj[letter] = 'absent'
-      }
-
-      if (letter === solutionChars[i]) {
+      } else if (letter === solutionChars[i]) {
         charObj[letter] = 'correct'
-      }
-
-      if (charObj[letter] !== 'correct') {
+      } else if (charObj[letter] !== 'correct') {
         charObj[letter] = 'present'
       }
     })
