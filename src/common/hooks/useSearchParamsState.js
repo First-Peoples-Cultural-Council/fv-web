@@ -8,9 +8,9 @@ function useSearchParamsState({ searchParamName, defaultValue }) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const acquiredSearchParam = searchParams.get(searchParamName)
-  const searchParamsState = acquiredSearchParam || defaultValue
+  const searchParamState = acquiredSearchParam || defaultValue
 
-  const setSearchParamsState = (newState) => {
+  const setSearchParamState = (newState) => {
     const next = {
       ...[...searchParams.entries()].reduce(
         (o, [key, value]) => ({ ...o, [key]: value }),
@@ -28,7 +28,7 @@ function useSearchParamsState({ searchParamName, defaultValue }) {
     }
   }
 
-  return [searchParamsState, setSearchParamsState, removeSearchParams]
+  return [searchParamState, setSearchParamState, removeSearchParams]
 }
 
 // PROPTYPES
