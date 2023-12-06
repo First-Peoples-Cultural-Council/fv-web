@@ -33,13 +33,7 @@ function AppContainer() {
           content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture, and linguistic history."
         />
       </Helmet>
-      <Sentry.ErrorBoundary
-        fallback={
-          <AppWrapper isHome>
-            <ErrorHandler.Container />
-          </AppWrapper>
-        }
-      >
+      <Sentry.ErrorBoundary fallback={<ErrorHandler.Container />}>
         <NotificationProvider>
           <AudiobarProvider>
             <NotificationBanner />
