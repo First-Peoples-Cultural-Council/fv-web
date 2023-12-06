@@ -17,11 +17,11 @@ import {
 
 function AdvancedSearchOptionsPresentation() {
   return (
-    <div data-testid="AdvancedSearchOptionsPresentation" className="bg-gray-50">
+    <div data-testid="AdvancedSearchOptionsPresentation" className="bg-white">
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:max-w-7xl lg:px-8">
         <section
           aria-labelledby="filter-heading"
-          className="border-t border-gray-200 py-6"
+          className="border-t border-gray-200 pt-2 pb-4"
         >
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
@@ -31,9 +31,8 @@ function AdvancedSearchOptionsPresentation() {
             <div className="flex items-baseline space-x-8">
               <SingleSelect
                 id={SORT}
-                label="Sort"
                 options={[
-                  { value: 'any', label: null },
+                  { value: null, label: 'Sort' },
                   { value: SORT_ALPHABETICAL, label: 'Alphabetical' },
                   { value: SORT_MODIFIED, label: 'Recently modified' },
                   { value: SORT_CREATED, label: 'Recently created' },
@@ -45,36 +44,32 @@ function AdvancedSearchOptionsPresentation() {
             <div className="flex items-baseline space-x-8">
               <SingleSelect
                 id={HAS_AUDIO}
-                label="Audio"
                 options={[
-                  { value: 'any', label: null },
+                  { value: null, label: 'Audio' },
                   { value: TRUE, label: 'Has audio' },
                   { value: FALSE, label: 'Has no audio' },
                 ]}
               />
               <SingleSelect
                 id={HAS_IMAGE}
-                label="Image"
                 options={[
-                  { value: 'any', label: null },
+                  { value: null, label: 'Image' },
                   { value: TRUE, label: 'Has image' },
                   { value: FALSE, label: 'Has no image' },
                 ]}
               />
               <SingleSelect
                 id={HAS_VIDEO}
-                label="Video"
                 options={[
-                  { value: 'any', label: null },
+                  { value: null, label: 'Video' },
                   { value: TRUE, label: 'Has video' },
                   { value: FALSE, label: 'Has no video' },
                 ]}
               />
               <SingleSelect
                 id={HAS_TRANSLATION}
-                label="Translation"
                 options={[
-                  { value: 'any', label: null },
+                  { value: null, label: 'Translation' },
                   { value: TRUE, label: 'Has translation' },
                   { value: FALSE, label: 'Has no translation' },
                 ]}

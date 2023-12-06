@@ -6,8 +6,8 @@ import { Listbox, Transition } from '@headlessui/react'
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
-function SingleSelect({ id, label, options, menuAlignment = 'right' }) {
-  const [paramValue, setParamValue] = useSearchParamsState({
+function SingleSelect({ id, options, menuAlignment = 'right' }) {
+  const [paramValue, setParamValue, removeParamValue] = useSearchParamsState({
     searchParamName: id,
     defaultValue: options?.[0]?.value,
   })
@@ -16,7 +16,9 @@ function SingleSelect({ id, label, options, menuAlignment = 'right' }) {
     options?.find(({ value }) => value === paramValue) || options?.[0]
 
   const handleChange = (option) => {
-    if (option?.value !== paramValue) {
+    if (!option?.value) {
+      removeParamValue()
+    } else if (option?.value !== paramValue) {
       setParamValue(option?.value)
     }
   }
@@ -31,12 +33,18 @@ function SingleSelect({ id, label, options, menuAlignment = 'right' }) {
       onChange={handleChange}
     >
       <div>
-        <Listbox.Button className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-fv-charcoal">
-          <span>{selectedOption?.label || label}</span>
+        <Listbox.Button
+          className={`group inline-flex items-center justify-center text-sm  hover:text-fv-charcoal ${
+            selectedOption?.value
+              ? 'font-bold text-fv-charcoal'
+              : 'font-medium text-fv-charcoal-light'
+          }`}
+        >
+          <span>{selectedOption?.label}</span>
 
           {getIcon(
             'ChevronDown',
-            '-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500',
+            '-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-fv-charcoal-light group-hover:text-fv-charcoal',
           )}
         </Listbox.Button>
       </div>
@@ -51,15 +59,15 @@ function SingleSelect({ id, label, options, menuAlignment = 'right' }) {
         leaveTo="transform opacity-0 scale-95"
       >
         <Listbox.Options
-          className={`absolute ${menuAlignment}-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          className={`absolute ${menuAlignment}-0 z-10 mt-2 origin-top-right rounded-md bg-white py-1 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
-          <div className="space-y-4">
+          <div className="space-y-2">
             {options?.map((option) => (
               <Listbox.Option
                 key={option.value}
                 className={({ active }) =>
-                  `flex items-center ${
-                    active ? 'text-secondary' : 'text-fv-charcoal'
+                  `flex items-center cursor-default p-4 text-sm font-medium ${
+                    active ? 'bg-gray-100 text-secondary' : 'text-fv-charcoal'
                   }`
                 }
                 value={option}
@@ -70,8 +78,8 @@ function SingleSelect({ id, label, options, menuAlignment = 'right' }) {
                       selected ? 'Checkmark' : '',
                       'h-4 w-4 fill-current text-secondary',
                     )}
-                    <span className="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-fv-charcoal">
-                      {option?.label || '--------'}
+                    <span className="ml-3 whitespace-nowrap pr-6">
+                      {option?.value ? option?.label : '--------'}
                     </span>
                   </>
                 )}
@@ -88,7 +96,6 @@ function SingleSelect({ id, label, options, menuAlignment = 'right' }) {
 const { array, string } = PropTypes
 SingleSelect.propTypes = {
   id: string,
-  label: string,
   options: array,
   menuAlignment: string,
 }

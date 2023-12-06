@@ -20,7 +20,15 @@ function useSearchParamsState({ searchParamName, defaultValue }) {
     }
     setSearchParams(next)
   }
-  return [searchParamsState, setSearchParamsState]
+
+  const removeSearchParams = () => {
+    if (useSearchParamsState) {
+      searchParams.delete(searchParamName)
+      setSearchParams(searchParams)
+    }
+  }
+
+  return [searchParamsState, setSearchParamsState, removeSearchParams]
 }
 
 // PROPTYPES
