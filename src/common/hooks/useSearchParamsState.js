@@ -22,7 +22,7 @@ function useSearchParamsState({ searchParamName, defaultValue }) {
   }
 
   const removeSearchParams = () => {
-    if (useSearchParamsState) {
+    if (acquiredSearchParam && searchParams) {
       searchParams.delete(searchParamName)
       setSearchParams(searchParams)
     }
