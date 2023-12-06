@@ -13,15 +13,19 @@ import {
   SORT_MODIFIED,
   TRUE,
   FALSE,
+  VISIBILITY,
+  PUBLIC,
+  MEMBERS,
+  TEAM,
 } from 'common/constants'
 
 function AdvancedSearchOptionsPresentation() {
   return (
     <div data-testid="AdvancedSearchOptionsPresentation" className="bg-white">
-      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto px-4 text-center sm:px-6 lg:px-8">
         <section
           aria-labelledby="filter-heading"
-          className="border-t border-gray-200 pt-2 pb-4"
+          className="border-t border-gray-200 p-4"
         >
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
@@ -72,6 +76,15 @@ function AdvancedSearchOptionsPresentation() {
                   { value: null, label: 'Translation' },
                   { value: TRUE, label: 'Has translation' },
                   { value: FALSE, label: 'Has no translation' },
+                ]}
+              />
+              <SingleSelect
+                id={VISIBILITY}
+                options={[
+                  { value: null, label: 'Visibility' },
+                  { value: PUBLIC, label: 'Public' },
+                  { value: MEMBERS, label: 'Members Only' },
+                  { value: TEAM, label: 'Team Only' },
                 ]}
               />
             </div>
