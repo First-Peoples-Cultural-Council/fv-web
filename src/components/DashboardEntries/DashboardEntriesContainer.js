@@ -6,31 +6,37 @@ import DashboardEntriesPresentation from 'components/DashboardEntries/DashboardE
 
 function DashboardEntriesContainer() {
   const {
+    emptyListMessage,
+    entryLabel,
     infiniteScroll,
+    initialSearchType,
+    isDictionary,
     isLoadingEntries,
     items,
     loadRef,
+    resetSearch,
     searchType,
     setSearchType,
-    entryLabel,
-    emptyListMessage,
-    showTypeSelector,
-    initialSearchType,
+    setShowAdvancedSearch,
+    showAdvancedSearch,
   } = DashboardEntriesData()
 
   return (
     <div id="DashboardEntriesContainer">
       <DashboardEntriesPresentation
+        emptyListMessage={emptyListMessage}
+        entryLabel={entryLabel}
         infiniteScroll={infiniteScroll}
+        initialSearchType={initialSearchType}
+        isDictionary={isDictionary}
         isLoadingEntries={isLoadingEntries}
         items={items}
         loadRef={loadRef}
+        resetSearch={resetSearch}
         searchType={searchType}
-        emptyListMessage={emptyListMessage}
         setSearchType={setSearchType}
-        showTypeSelector={showTypeSelector}
-        initialSearchType={initialSearchType}
-        entryLabel={entryLabel}
+        setShowAdvancedSearch={setShowAdvancedSearch}
+        showAdvancedSearch={showAdvancedSearch}
       />
     </div>
   )
