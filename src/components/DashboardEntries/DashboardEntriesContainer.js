@@ -17,6 +17,8 @@ function DashboardEntriesContainer() {
     resetSearch,
     searchType,
     setSearchType,
+    setShowAdvancedSearch,
+    showAdvancedSearch,
   } = DashboardEntriesData()
 
   return (
@@ -33,6 +35,8 @@ function DashboardEntriesContainer() {
         resetSearch={resetSearch}
         searchType={searchType}
         setSearchType={setSearchType}
+        setShowAdvancedSearch={setShowAdvancedSearch}
+        showAdvancedSearch={showAdvancedSearch}
       />
     </div>
   )

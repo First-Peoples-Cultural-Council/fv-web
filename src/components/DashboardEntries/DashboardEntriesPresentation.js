@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
+// FPCC
+import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
 import DashboardEntriesPresentationList from 'components/DashboardEntries/DashboardEntriesPresentationList'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import SearchTypeSelector from 'components/SearchTypeSelector'
-import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
 
 function DashboardEntriesPresentation({
+  emptyListMessage,
+  entryLabel,
   infiniteScroll,
-  loadRef,
+  initialSearchType,
+  isDictionary,
   isLoadingEntries,
   items,
-  emptyListMessage,
-  isDictionary,
-  initialSearchType,
-  entryLabel,
+  loadRef,
   resetSearch,
   searchType,
   setSearchType,
+  setShowAdvancedSearch,
+  showAdvancedSearch,
 }) {
-  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false)
   return (
     <div id="DashboardEntriesPresentation">
       <section className="inline-flex w-full p-5 space-x-5 items-center justify-between print:hidden">
@@ -74,17 +76,19 @@ function DashboardEntriesPresentation({
 // PROPTYPES
 const { bool, func, object, string } = PropTypes
 DashboardEntriesPresentation.propTypes = {
+  entryLabel: string,
+  emptyListMessage: string,
   infiniteScroll: object,
-  loadRef: object,
+  initialSearchType: string,
+  isDictionary: bool,
   isLoadingEntries: bool,
   items: object,
+  loadRef: object,
   resetSearch: func,
   searchType: string,
   setSearchType: func,
-  entryLabel: string,
-  emptyListMessage: string,
-  isDictionary: bool,
-  initialSearchType: string,
+  setShowAdvancedSearch: func,
+  showAdvancedSearch: bool,
 }
 
 export default DashboardEntriesPresentation

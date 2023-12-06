@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -28,6 +29,14 @@ function DashboardEntriesData() {
     searchParams,
   })
 
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false)
+
+  useEffect(() => {
+    if (Array.from(searchParams).length > 1 && !showAdvancedSearch) {
+      setShowAdvancedSearch(true)
+    }
+  }, [searchParams, showAdvancedSearch])
+
   return {
     emptyListMessage: searchTerm
       ? 'Sorry, there are no results for this search.'
@@ -44,6 +53,8 @@ function DashboardEntriesData() {
     },
     searchType,
     setSearchType: setSearchTypeInUrl,
+    setShowAdvancedSearch,
+    showAdvancedSearch,
   }
 }
 
