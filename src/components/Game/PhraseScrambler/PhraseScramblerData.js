@@ -1,38 +1,32 @@
 import { useState, useEffect } from 'react'
+import { navigate, useParams } from 'react-router-dom'
 
-function shuffleWords(array) {
-  const shuffledArray = array.slice()
-  for (let current = shuffledArray.length - 1; current > 0; current -= 1) {
-    const randomIndex = Math.floor(Math.random() * (current + 1))
-    const temp = shuffledArray[current]
-    shuffledArray[current] = shuffledArray[randomIndex]
-    shuffledArray[randomIndex] = temp
-  }
-  return shuffledArray
-}
+// FPCC
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import {
+  TYPES,
+  KIDS,
+  GAMES,
+  TYPE_PHRASE,
+  HAS_TRANSLATION,
+} from 'common/constants'
+import { shuffleWords } from 'common/utils/gameHelpers'
 
 function PhraseScramblerData() {
-  // Mock data
-  const inputData = {
-    translation: 'A B C D',
-    title: 'A B C D',
-  }
-
+  const { sitename } = useParams()
   const [jumbledWords, setJumbledWords] = useState([])
   const [selectedWords, setSelectedWords] = useState([])
   const [gameCompleted, setGameCompleted] = useState(false)
   const [validAnswer, setValidAnswer] = useState(false)
-
-  useEffect(() => {
-    const correctAnswer = inputData?.title.split(' ')
-    setJumbledWords(shuffleWords([...correctAnswer]))
-  }, [inputData?.title])
+  const [inputData, setInputData] = useState({
+    translation: '',
+    title: '',
+  })
 
   const wordClicked = (word) => {
     if (gameCompleted && !validAnswer) {
       setGameCompleted(false)
     }
-
     if (selectedWords.includes(word)) {
       // Removing word from selected words list
       setSelectedWords(
@@ -46,7 +40,6 @@ function PhraseScramblerData() {
 
   const checkAnswer = () => {
     const selectedAnswer = selectedWords.join(' ')
-
     if (selectedAnswer === inputData?.title) {
       setValidAnswer(true)
     }
@@ -56,16 +49,52 @@ function PhraseScramblerData() {
   const resetGame = () => {
     // Reset game state
     setSelectedWords([])
-
     // Should we also reset the jumbled words here ?
     const correctAnswer = inputData?.title.split(' ')
     setJumbledWords(shuffleWords([...correctAnswer]))
-
     setValidAnswer(false)
     setGameCompleted(false)
   }
 
+  const _searchParams = new URLSearchParams({
+    [TYPES]: TYPE_PHRASE,
+    [KIDS]: true,
+    [GAMES]: true,
+    [HAS_TRANSLATION]: true,
+    // random parameter to be added
+  })
+
+  const { data, isInitialLoading, isError, error } = useSearchLoader({
+    searchParams: _searchParams,
+  })
+
+  useEffect(() => {
+    if (isError) {
+      navigate(
+        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
+        { replace: true },
+      )
+    }
+  }, [isError])
+
+  useEffect(() => {
+    if (data?.pages?.[0]?.count > 0) {
+      const newPhrase = data?.pages?.[0]?.results?.[0]
+
+      setInputData({
+        translation: newPhrase?.translations?.[0]?.text,
+        title: newPhrase?.title,
+      })
+    }
+  }, [data])
+
+  useEffect(() => {
+    const correctAnswer = inputData?.title.split(' ')
+    setJumbledWords(shuffleWords([...correctAnswer]))
+  }, [inputData?.title])
+
   return {
+    isInitialLoading,
     translation: inputData?.translation,
     jumbledWords,
     selectedWords,

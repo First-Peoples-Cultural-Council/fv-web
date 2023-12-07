@@ -7,6 +7,7 @@ import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScrambler
 
 function PhraseScramblerContainer() {
   const {
+    isInitialLoading,
     translation,
     jumbledWords,
     selectedWords,
@@ -18,7 +19,7 @@ function PhraseScramblerContainer() {
   } = PhraseScramblerData()
 
   return (
-    <Loading.Container isLoading={false}>
+    <Loading.Container isLoading={isInitialLoading}>
       <PhraseScramblerPresentation
         translation={translation}
         jumbledWords={jumbledWords}
