@@ -14,9 +14,9 @@ import {
   TRUE,
   FALSE,
   VISIBILITY,
-  PUBLIC,
-  MEMBERS,
-  TEAM,
+  VISIBILITY_PUBLIC,
+  VISIBILITY_MEMBERS,
+  VISIBILITY_TEAM,
 } from 'common/constants'
 
 function AdvancedSearchOptionsPresentation() {
@@ -82,9 +82,9 @@ function AdvancedSearchOptionsPresentation() {
                 id={VISIBILITY}
                 options={[
                   { value: null, label: 'Visibility' },
-                  { value: PUBLIC, label: 'Public' },
-                  { value: MEMBERS, label: 'Members Only' },
-                  { value: TEAM, label: 'Team Only' },
+                  { value: VISIBILITY_PUBLIC, label: 'Public' },
+                  { value: VISIBILITY_MEMBERS, label: 'Members Only' },
+                  { value: VISIBILITY_TEAM, label: 'Team Only' },
                 ]}
               />
             </div>
