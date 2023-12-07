@@ -1,12 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import Parachute from 'components/Game/Parachute'
 import Loading from 'components/Loading'
 
-function ParachuteContainer() {
+function ParachuteContainer({ kids }) {
   const { isLoading, puzzle, translation, audio, alphabet, newPuzzle } =
-    Parachute.Data()
+    Parachute.Data({ kids })
   return (
     <Loading.Container isLoading={isLoading}>
       <Parachute.Presentation
@@ -18,6 +19,11 @@ function ParachuteContainer() {
       />
     </Loading.Container>
   )
+}
+
+const { bool } = PropTypes
+ParachuteContainer.propTypes = {
+  kids: bool,
 }
 
 export default ParachuteContainer
