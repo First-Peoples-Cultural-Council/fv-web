@@ -21,12 +21,12 @@ import {
 
 function AdvancedSearchOptionsPresentation() {
   return (
-    <div data-testid="AdvancedSearchOptionsPresentation" className="bg-white">
-      <div className="mx-auto px-4 text-center sm:px-6 lg:px-8">
-        <section
-          aria-labelledby="filter-heading"
-          className="border-t border-gray-200 p-4"
-        >
+    <div
+      data-testid="AdvancedSearchOptionsPresentation"
+      className="bg-white rounded-lg"
+    >
+      <div className="mx-auto px-6 py-3 text-center">
+        <section aria-labelledby="filter-heading">
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
           </h2>
