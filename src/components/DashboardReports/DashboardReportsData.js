@@ -25,7 +25,7 @@ function DashboardReportsData() {
       name: 'Recently created',
       description: 'New words and phrases at the top',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_CREATED_DESC}`,
-      iconColor: 'wordText',
+      iconColor: 'story',
       auth: EDITOR,
     },
     {
@@ -33,7 +33,7 @@ function DashboardReportsData() {
       name: 'Recently modified',
       description: 'Recently edited words and phrases at the top',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_MODIFIED_DESC}`,
-      iconColor: 'phraseText',
+      iconColor: 'word',
       auth: EDITOR,
     },
     {
@@ -41,7 +41,7 @@ function DashboardReportsData() {
       name: 'No audio',
       description: 'Words and phrases without audio files',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${HAS_AUDIO}=${FALSE}`,
-      iconColor: 'songText',
+      iconColor: 'song',
       auth: EDITOR,
     },
     {
@@ -49,7 +49,7 @@ function DashboardReportsData() {
       name: 'No images',
       description: 'Words and phrases without images',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${HAS_IMAGE}=${FALSE}`,
-      iconColor: 'storyText',
+      iconColor: 'phrase',
       auth: EDITOR,
     },
     {
@@ -57,7 +57,7 @@ function DashboardReportsData() {
       name: 'Team content',
       description: 'Content only available to the language team',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_TEAM}`,
-      iconColor: 'storyText',
+      iconColor: 'phraseText',
       auth: EDITOR,
     },
     {
@@ -65,7 +65,7 @@ function DashboardReportsData() {
       name: 'Members only content',
       description: 'Content only available to site members',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_MEMBERS}`,
-      iconColor: 'tertiaryB',
+      iconColor: 'tertiaryA',
       auth: EDITOR,
     },
     {
@@ -73,7 +73,7 @@ function DashboardReportsData() {
       name: 'Public content',
       description: 'Content available to the general public',
       href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${VISIBILITY_PUBLIC}`,
-      iconColor: 'songText',
+      iconColor: 'tertiaryB',
       auth: EDITOR,
     },
   ]
@@ -81,7 +81,7 @@ function DashboardReportsData() {
   const headerContent = {
     title: 'Reports',
     subtitle:
-      'Quicklinks to saved searches to help you manage dictionary content on your site.',
+      'Saved searches to help you manage dictionary content on your site.',
     icon: 'Reports',
   }
 

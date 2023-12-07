@@ -87,6 +87,12 @@ const primaryNavigationItems = (currentSitename) => {
       icon: 'Microphone',
       auth: ASSISTANT,
     },
+    {
+      name: 'Reports',
+      href: `/${currentSitename}/dashboard/reports`,
+      icon: 'Reports',
+      auth: EDITOR,
+    },
   ]
   return (
     <div className="pl-14 pr-2 pb-4 space-y-1">
