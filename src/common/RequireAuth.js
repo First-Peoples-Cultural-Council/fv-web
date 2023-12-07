@@ -35,7 +35,10 @@ function RequireAuth({ children, siteMembership, withMessage }) {
   const unauthorised = withMessage ? (
     <Loading.Container isLoading={isLoading}>
       <ErrorHandler.Container
-        error={{ status: 401, statusText: statusTextUnauthorized }}
+        error={{
+          status: user?.isAnonymous ? 401 : 403,
+          statusText: statusTextUnauthorized,
+        }}
       />
     </Loading.Container>
   ) : (
