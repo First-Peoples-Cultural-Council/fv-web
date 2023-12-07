@@ -162,12 +162,13 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             {createMenuItem('About', 'About', ABOUT_LINK)}
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
             {isHome && (
-              <li>
+              <li className="mr-4">
                 <Link
                   to="/languages"
-                  className="flex bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
+                  className="inline-flex items-center bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
                 >
-                  Explore Languages{getIcon('ChevronRight', 'fill-current h-6')}
+                  Explore Languages
+                  {getIcon('ChevronRight', 'fill-current h-6 w-6 ml-2')}
                 </Link>
               </li>
             )}
