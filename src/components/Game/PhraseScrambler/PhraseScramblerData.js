@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { navigate, useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
@@ -12,7 +13,7 @@ import {
 } from 'common/constants'
 import { shuffleWords } from 'common/utils/gameHelpers'
 
-function PhraseScramblerData() {
+function PhraseScramblerData({ kids }) {
   const { sitename } = useParams()
   const [jumbledWords, setJumbledWords] = useState([])
   const [selectedWords, setSelectedWords] = useState([])
@@ -58,11 +59,13 @@ function PhraseScramblerData() {
 
   const _searchParams = new URLSearchParams({
     [TYPES]: TYPE_PHRASE,
-    [KIDS]: true,
     [GAMES]: true,
     [HAS_TRANSLATION]: true,
     // random parameter to be added
   })
+  if (kids) {
+    _searchParams.append(KIDS, kids)
+  }
 
   const { data, isInitialLoading, isError, error } = useSearchLoader({
     searchParams: _searchParams,
@@ -104,6 +107,11 @@ function PhraseScramblerData() {
     checkAnswer,
     resetGame,
   }
+}
+
+const { bool } = PropTypes
+PhraseScramblerData.propTypes = {
+  kids: bool,
 }
 
 export default PhraseScramblerData

@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
 import PhraseScramblerPresentation from 'components/Game/PhraseScrambler/PhraseScramblerPresentation'
 import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScramblerData'
 
-function PhraseScramblerContainer() {
+function PhraseScramblerContainer({ kids }) {
   const {
     isInitialLoading,
     translation,
@@ -16,7 +17,7 @@ function PhraseScramblerContainer() {
     wordClicked,
     checkAnswer,
     resetGame,
-  } = PhraseScramblerData()
+  } = PhraseScramblerData({ kids })
 
   return (
     <Loading.Container isLoading={isInitialLoading}>
@@ -32,6 +33,11 @@ function PhraseScramblerContainer() {
       />
     </Loading.Container>
   )
+}
+
+const { bool } = PropTypes
+PhraseScramblerContainer.propTypes = {
+  kids: bool,
 }
 
 export default PhraseScramblerContainer
