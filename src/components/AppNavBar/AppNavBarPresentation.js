@@ -119,7 +119,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           >
             <div
               data-testid="BetaModalContent"
-              className="bg-white rounded-lg shadow-lg px-6 py-32"
+              className="bg-white rounded-lg shadow-lg p-6 sm:p-14"
             >
               <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
                 Welcome to the new FirstVoices!
@@ -139,7 +139,10 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 </a>
                 {/*
                  */}
-                . Having issues with the new version? <br />
+                .
+              </p>
+              <p className="mx-auto mt-2 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                Having issues with the new version? <br />
                 Please contact us{' '}
                 <a
                   href="mailto:hello@firstvoices.com"
@@ -158,10 +161,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
             {createMenuItem('About', 'About', ABOUT_LINK)}
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
-            {isHome &&
-              isGuest &&
-              createMenuItem('Sign in / Register', 'Login', '', false, login)}
-            {isHome ? (
+            {isHome && (
               <li>
                 <Link
                   to="/languages"
@@ -170,6 +170,10 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                   Explore Languages{getIcon('ChevronRight', 'fill-current h-6')}
                 </Link>
               </li>
+            )}
+
+            {isGuest ? (
+              createMenuItem('Sign in / Register', 'Login', '', false, login)
             ) : (
               <UserMenu.Container />
             )}
