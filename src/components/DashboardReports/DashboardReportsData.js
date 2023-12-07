@@ -3,6 +3,7 @@ import { useSiteStore } from 'context/SiteContext'
 import {
   TYPES,
   TYPE_DICTIONARY,
+  TYPE_WORD,
   HAS_AUDIO,
   HAS_IMAGE,
   SORT,
@@ -21,10 +22,21 @@ function DashboardReportsData() {
 
   const tileContent = [
     {
+      icon: 'Wrench',
+      name: 'Build your own',
+      description: 'Use the advanced search filters to create your own report',
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_WORD}`,
+      iconColor: 'wordText',
+      auth: EDITOR,
+    },
+  ]
+
+  const reportTiles = [
+    {
       icon: 'Star',
       name: 'Recently created',
       description: 'New words and phrases at the top',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_CREATED_DESC}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_CREATED_DESC}`,
       iconColor: 'story',
       auth: EDITOR,
     },
@@ -32,7 +44,7 @@ function DashboardReportsData() {
       icon: 'Pencil',
       name: 'Recently modified',
       description: 'Recently edited words and phrases at the top',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_MODIFIED_DESC}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_MODIFIED_DESC}`,
       iconColor: 'word',
       auth: EDITOR,
     },
@@ -40,7 +52,7 @@ function DashboardReportsData() {
       icon: 'MicrophoneOff',
       name: 'No audio',
       description: 'Words and phrases without audio files',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${HAS_AUDIO}=${FALSE}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${HAS_AUDIO}=${FALSE}`,
       iconColor: 'song',
       auth: EDITOR,
     },
@@ -48,7 +60,7 @@ function DashboardReportsData() {
       icon: 'ImagesNone',
       name: 'No images',
       description: 'Words and phrases without images',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${HAS_IMAGE}=${FALSE}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${HAS_IMAGE}=${FALSE}`,
       iconColor: 'phrase',
       auth: EDITOR,
     },
@@ -56,7 +68,7 @@ function DashboardReportsData() {
       icon: 'Team',
       name: 'Team content',
       description: 'Content only available to the language team',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_TEAM}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_TEAM}`,
       iconColor: 'phraseText',
       auth: EDITOR,
     },
@@ -64,7 +76,7 @@ function DashboardReportsData() {
       icon: 'Members',
       name: 'Members only content',
       description: 'Content only available to site members',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_MEMBERS}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_MEMBERS}`,
       iconColor: 'tertiaryA',
       auth: EDITOR,
     },
@@ -72,7 +84,7 @@ function DashboardReportsData() {
       icon: 'Public',
       name: 'Public content',
       description: 'Content available to the general public',
-      href: `/${site?.sitename}/dashboard/edit/entries?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${VISIBILITY_PUBLIC}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${VISIBILITY_PUBLIC}`,
       iconColor: 'tertiaryB',
       auth: EDITOR,
     },
@@ -88,6 +100,7 @@ function DashboardReportsData() {
   return {
     headerContent,
     site,
+    reportTiles,
     tileContent,
   }
 }
