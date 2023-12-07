@@ -50,9 +50,6 @@ function PhraseScramblerData({ kids }) {
   const resetGame = () => {
     // Reset game state
     setSelectedWords([])
-    // Should we also reset the jumbled words here ?
-    const correctAnswer = inputData?.title.split(' ')
-    setJumbledWords(arrayShuffle([...correctAnswer]))
     setValidAnswer(false)
     setGameCompleted(false)
   }

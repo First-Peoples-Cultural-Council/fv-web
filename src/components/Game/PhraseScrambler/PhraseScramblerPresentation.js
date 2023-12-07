@@ -57,12 +57,9 @@ function PhraseScramblerPresentation({
             <div data-testid="selected-option-boxes" className="flex flex-row">
               {/* Placeholder till a user selects does any action to maintain styling. */}
               {selectedWords?.length === 0 && (
-                <button
-                  type="button"
-                  className={`${selectedOptionBoxesStyling} bg-white`}
-                >
+                <div className={`${selectedOptionBoxesStyling} bg-white`}>
                   {' '}
-                </button>
+                </div>
               )}
               {/* Selected words */}
               {selectedWords?.map((word) => (
