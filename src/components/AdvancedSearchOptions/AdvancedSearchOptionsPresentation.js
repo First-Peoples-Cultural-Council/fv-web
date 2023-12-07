@@ -9,8 +9,8 @@ import {
   HAS_TRANSLATION,
   SORT,
   SORT_ALPHABETICAL,
-  SORT_CREATED,
-  SORT_MODIFIED,
+  SORT_CREATED_DESC,
+  SORT_MODIFIED_DESC,
   TRUE,
   FALSE,
   VISIBILITY,
@@ -38,8 +38,8 @@ function AdvancedSearchOptionsPresentation() {
                 options={[
                   { value: null, label: 'Sort' },
                   { value: SORT_ALPHABETICAL, label: 'Alphabetical' },
-                  { value: SORT_MODIFIED, label: 'Recently modified' },
-                  { value: SORT_CREATED, label: 'Recently created' },
+                  { value: SORT_MODIFIED_DESC, label: 'Recently modified' },
+                  { value: SORT_CREATED_DESC, label: 'Recently created' },
                 ]}
                 menuAlignment="left"
               />
