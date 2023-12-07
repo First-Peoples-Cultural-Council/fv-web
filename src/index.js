@@ -86,12 +86,13 @@ Sentry.init({
     }),
     new Sentry.Replay(),
   ],
-
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-  tracesSampleRate: GlobalConfiguration.SENTRY_TRACES_SAMPLE_RATE,
+  tracesSampleRate: parseFloat(GlobalConfiguration.SENTRY_TRACES_SAMPLE_RATE),
   // Capture Replay for 10% of all sessions
   replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: GlobalConfiguration.SENTRY_ERROR_SAMPLE_RATE,
+  replaysOnErrorSampleRate: parseFloat(
+    GlobalConfiguration.SENTRY_ERROR_SAMPLE_RATE,
+  ),
 })
 
 const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes)
