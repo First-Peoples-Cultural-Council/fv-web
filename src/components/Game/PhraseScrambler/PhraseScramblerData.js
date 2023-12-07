@@ -11,7 +11,7 @@ import {
   TYPE_PHRASE,
   HAS_TRANSLATION,
 } from 'common/constants'
-import { shuffleWords } from 'common/utils/gameHelpers'
+import { arrayShuffle } from 'common/utils/functionHelpers'
 
 function PhraseScramblerData({ kids }) {
   const { sitename } = useParams()
@@ -52,7 +52,7 @@ function PhraseScramblerData({ kids }) {
     setSelectedWords([])
     // Should we also reset the jumbled words here ?
     const correctAnswer = inputData?.title.split(' ')
-    setJumbledWords(shuffleWords([...correctAnswer]))
+    setJumbledWords(arrayShuffle([...correctAnswer]))
     setValidAnswer(false)
     setGameCompleted(false)
   }
@@ -93,7 +93,7 @@ function PhraseScramblerData({ kids }) {
 
   useEffect(() => {
     const correctAnswer = inputData?.title.split(' ')
-    setJumbledWords(shuffleWords([...correctAnswer]))
+    setJumbledWords(arrayShuffle([...correctAnswer]))
   }, [inputData?.title])
 
   return {
