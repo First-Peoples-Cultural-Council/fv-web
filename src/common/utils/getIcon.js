@@ -91,6 +91,7 @@ import Video from 'common/icons/Video'
 import WebPages from 'common/icons/WebPages'
 import WebShare from 'common/icons/WebShare'
 import Widget from 'common/icons/Widget'
+import Wrench from 'common/icons/Wrench'
 import Youtube from 'common/icons/Youtube'
 
 // Doc Types
@@ -224,6 +225,7 @@ function getIcon(iconName, iconStyling, title) {
     Widget,
     Word,
     Wordle,
+    Wrench,
     PhraseScrambler,
     WordSearch,
     Youtube,
