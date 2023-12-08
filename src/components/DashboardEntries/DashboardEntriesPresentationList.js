@@ -7,6 +7,8 @@ import Loading from 'components/Loading'
 import EntryDetail from 'components/EntryDetail'
 import getIcon from 'common/utils/getIcon'
 import Drawer from 'components/Drawer'
+import { makePlural } from 'common/utils/urlHelpers'
+import { SECONDARY_BUTTON_STYLE } from 'common/constants'
 
 function DashboardEntriesPresentationList({
   infiniteScroll,
@@ -60,10 +62,10 @@ function DashboardEntriesPresentationList({
                       Type
                     </th>
                     <th scope="col" className={`relative ${tableHeaderClass}`}>
-                      <span className="sr-only">Edit</span>
+                      Edit
                     </th>
                     <th scope="col" className={`relative ${tableHeaderClass}`}>
-                      <span className="sr-only">Preview</span>
+                      Preview
                     </th>
                   </tr>
                 </thead>
@@ -73,12 +75,18 @@ function DashboardEntriesPresentationList({
                       {page.results.map((entry) => (
                         <tr
                           key={entry?.id}
-                          className="cursor-pointer hover:bg-gray-100"
+                          className="w-full hover:bg-gray-100"
                         >
-                          <td className="px-6 py-4 flex items-center text-left font-medium text-fv-charcoal lg:mr-2">
+                          <td
+                            onClick={() => handleItemClick(entry)}
+                            className="cursor-pointer px-6 py-4 flex items-center text-left font-medium text-fv-charcoal lg:mr-2"
+                          >
                             {entry?.title}
                           </td>
-                          <td className="px-6 py-4">
+                          <td
+                            className="px-6 py-4 cursor-pointer"
+                            onClick={() => handleItemClick(entry)}
+                          >
                             {/* For Dictionary Entries */}
                             {entry?.translations && (
                               <ol className="text-fv-charcoal">
@@ -99,30 +107,30 @@ function DashboardEntriesPresentationList({
                               </div>
                             )}
                           </td>
-                          <td className="px-1 py-4 whitespace-nowrap">
+                          <td className="px-6 py-4 whitespace-nowrap">
                             <span
-                              className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry?.type} capitalize text-white`}
+                              className={`px-2 inline-flex text-xs font-medium rounded-full bg-${entry?.type} capitalize text-white`}
                             >
                               {entry?.type}
                             </span>
                           </td>
-                          <td className="px-1 py-4 whitespace-nowrap">
+                          <td>
                             <Link
                               to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
-                              className="text-primary hover:text-primary-dark flex items-center"
+                              className="px-6 py-4 text-primary hover:text-primary-dark flex items-center"
                             >
                               {getIcon('Pencil', 'fill-current w-6 h-6')}
                             </Link>
                           </td>
-                          <td className="pl-1 pr-6 py-4 whitespace-nowrap">
+                          <td>
                             <button
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="text-primary hover:text-primary-dark flex items-center"
+                              className="px-6 py-4 text-primary hover:text-primary-dark flex items-center"
                             >
                               {getIcon(
-                                'Fullscreen',
-                                'fill-current w-5 h-5',
+                                'Preview',
+                                'fill-current w-6 h-6',
                                 'Preview',
                               )}
                             </button>
@@ -160,20 +168,26 @@ function DashboardEntriesPresentationList({
       >
         {selectedItem?.type && (
           <>
-            <div className="flex justify-end mr-2 mt-2">
+            <div className="flex justify-end mr-5 mt-2 space-x-2">
               <Link
                 to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
               >
-                <button
-                  type="button"
-                  className="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                >
-                  {getIcon(
-                    'Pencil',
-                    'fill-current -ml-1 mr-2 h-5 w-5 text-fv-charcoal-light',
-                  )}
+                <button type="button" className={SECONDARY_BUTTON_STYLE}>
+                  {getIcon('Pencil', 'fill-current mr-2 h-5 w-5')}
                   <span>Edit</span>
                 </button>
+              </Link>
+
+              <Link
+                to={`/${sitename}/${makePlural(selectedItem?.type)}/${
+                  selectedItem?.id
+                }`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={SECONDARY_BUTTON_STYLE}
+              >
+                {getIcon('Fullscreen', 'fill-current mr-2 w-5 h-5')}
+                View on site
               </Link>
             </div>
             <EntryDetail.Container
