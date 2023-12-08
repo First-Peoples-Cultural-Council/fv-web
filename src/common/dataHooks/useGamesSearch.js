@@ -24,7 +24,6 @@ export function useParachuteSearch({ perPage, kids }) {
     : new URLSearchParams({
         [GAMES]: true,
         [TYPES]: TYPE_WORD,
-        [KIDS]: true,
         [HAS_AUDIO]: true,
         [HAS_TRANSLATION]: true,
         [SORT]: 'random',

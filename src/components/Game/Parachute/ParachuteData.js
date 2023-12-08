@@ -40,7 +40,7 @@ function ParachuteData({ kids }) {
 
   useEffect(() => {
     const getPuzzle = () => {
-      if (puzzles[currentWordIndex].length > 0) {
+      if (puzzles[currentWordIndex]?.length > 0) {
         setPagesWithoutUsablePuzzle(0)
         return puzzles[currentWordIndex]
       }
@@ -57,7 +57,7 @@ function ParachuteData({ kids }) {
     }
   }, [currentWordIndex, data])
 
-  return !!currentPuzzle && characters?.length > 0
+  return !!currentPuzzle && characters
     ? {
         isLoading: false,
         puzzle: currentPuzzle,
