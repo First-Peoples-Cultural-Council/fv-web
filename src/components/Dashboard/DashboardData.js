@@ -43,12 +43,21 @@ function DashboardData() {
       name: 'Edit words and phrases',
       description: 'Edit the words and phrases in your dictionary',
       href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
-      iconColor: 'storyText',
+      iconColor: 'phraseText',
       auth: EDITOR,
     },
     createTiles.WIDGET,
     editTiles.PAGES,
     editTiles.HOMEPAGE,
+    {
+      icon: 'Reports',
+      name: 'Reports',
+      description:
+        'Saved searches to help you manage dictionary content on your site.',
+      href: `reports`,
+      iconColor: 'tertiaryB',
+      auth: EDITOR,
+    },
     {
       icon: 'QuestionCircleSolid',
       name: 'Support',

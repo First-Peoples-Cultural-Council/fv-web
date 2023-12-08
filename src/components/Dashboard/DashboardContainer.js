@@ -7,8 +7,10 @@ import DashboardData from 'components/Dashboard/DashboardData'
 import RequireAuth from 'common/RequireAuth'
 import DashboardHome from 'components/DashboardHome'
 import DashboardEdit from 'components/DashboardEdit'
+import DashboardEntries from 'components/DashboardEntries'
 import DashboardCreate from 'components/DashboardCreate'
 import DashboardMedia from 'components/DashboardMedia'
+import DashboardReports from 'components/DashboardReports'
 import Loading from 'components/Loading'
 import { ASSISTANT, EDITOR } from 'common/constants/roles'
 
@@ -64,6 +66,22 @@ function DashboardContainer() {
             element={
               <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardMedia.Container />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="reports/*"
+            element={
+              <RequireAuth siteMembership={EDITOR} withMessage>
+                <DashboardReports.Container />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="advanced-search/*"
+            element={
+              <RequireAuth siteMembership={EDITOR} withMessage>
+                <DashboardEntries.Container advancedSearch />
               </RequireAuth>
             }
           />

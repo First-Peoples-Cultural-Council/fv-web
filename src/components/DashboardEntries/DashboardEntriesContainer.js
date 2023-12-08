@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardEntriesData from 'components/DashboardEntries/DashboardEntriesData'
 import DashboardEntriesPresentation from 'components/DashboardEntries/DashboardEntriesPresentation'
 
-function DashboardEntriesContainer() {
+function DashboardEntriesContainer({ advancedSearch = false }) {
   const {
     emptyListMessage,
     entryLabel,
@@ -19,7 +20,7 @@ function DashboardEntriesContainer() {
     setSearchType,
     setShowAdvancedSearch,
     showAdvancedSearch,
-  } = DashboardEntriesData()
+  } = DashboardEntriesData({ advancedSearch })
 
   return (
     <div id="DashboardEntriesContainer">
@@ -40,6 +41,13 @@ function DashboardEntriesContainer() {
       />
     </div>
   )
+}
+
+// PROPTYPES
+const { bool } = PropTypes
+
+DashboardEntriesContainer.propTypes = {
+  advancedSearch: bool,
 }
 
 export default DashboardEntriesContainer

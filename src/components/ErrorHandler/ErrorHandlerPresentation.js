@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
   return (
@@ -18,23 +19,34 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
           <h1 className="font-black uppercase text-3xl lg:text-5xl text-tertiaryA mb-5">
             {status} {heading}
           </h1>
-          <div className="text-lg text-fv-charcoal">{content}</div>
+          <div className="text-xl text-fv-charcoal">{content}</div>
         </div>
         <div className="mb-5 md:mb-10">
-          <button
-            type="button"
-            className="text-lg font-light outline-none focus:outline-none transform transition-all hover:scale-110 text-tertiaryA hover:text-tertiaryA-dark"
-            onClick={() => backHandler()}
-          >
-            {getIcon(
-              'BackArrow',
-              'inline-flex pb-2 h-7 fill-current mr-2 h-10',
-            )}
-            Go back
-          </button>
+          {status === 401 ? (
+            <button
+              type="button"
+              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
+              onClick={() => backHandler()}
+            >
+              {getIcon('Login', 'inline-flex fill-current mr-2 h-8 w-8')}
+              Sign in
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
+              onClick={() => backHandler()}
+            >
+              {getIcon(
+                'BackArrow',
+                'inline-flex pb-2 h-7 fill-current mr-2 h-10',
+              )}
+              Go back
+            </button>
+          )}
         </div>
         <a
-          className="bg-primary hover:bg-primary-dark text-white font-medium px-6 py-3 rounded-lg"
+          className={SECONDARY_BUTTON_STYLE}
           href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
           target="_blank"
           rel="noopener noreferrer"

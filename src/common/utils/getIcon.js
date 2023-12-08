@@ -36,6 +36,7 @@ import Grid from 'common/icons/Grid'
 import HamburgerMenu from 'common/icons/HamburgerMenu'
 import Home from 'common/icons/Home'
 import Images from 'common/icons/Images'
+import ImagesNone from 'common/icons/ImagesNone'
 import InfoCircleSolid from 'common/icons/InfoCircleSolid'
 import Instagram from 'common/icons/Instagram'
 import Kids from 'common/icons/Kids'
@@ -49,6 +50,7 @@ import LogOut from 'common/icons/LogOut'
 import Mail from 'common/icons/Mail'
 import MapLocation from 'common/icons/MapLocation'
 import Microphone from 'common/icons/Microphone'
+import MicrophoneOff from 'common/icons/MicrophoneOff'
 import Minus from 'common/icons/Minus'
 import More from 'common/icons/More'
 import Mute from 'common/icons/Mute'
@@ -60,18 +62,21 @@ import Pencil from 'common/icons/Pencil'
 import PlaceHolder from 'common/icons/PlaceHolder'
 import Play from 'common/icons/Play'
 import PlayCircle from 'common/icons/PlayCircle'
+import Preview from 'common/icons/Preview'
 import Previous from 'common/icons/Previous'
 import Print from 'common/icons/Print'
 import Qrcode from 'common/icons/Qrcode'
 import Question from 'common/icons/Question'
 import QuestionCircleSolid from 'common/icons/QuestionCircleSolid'
 import Quotation from 'common/icons/Quotation'
+import Reports from 'common/icons/Reports'
 import RightArrow from 'common/icons/RightArrow'
 import RightArrowCircle from 'common/icons/RightArrowCircle'
 import Save from 'common/icons/Save'
 import Search from 'common/icons/Search'
 import Speak from 'common/icons/Speak'
 import Spinner from 'common/icons/Spinner'
+import Star from 'common/icons/Star'
 import Stop from 'common/icons/Stop'
 import StopCircle from 'common/icons/StopCircle'
 import Resources from 'common/icons/Resources'
@@ -87,6 +92,7 @@ import Video from 'common/icons/Video'
 import WebPages from 'common/icons/WebPages'
 import WebShare from 'common/icons/WebShare'
 import Widget from 'common/icons/Widget'
+import Wrench from 'common/icons/Wrench'
 import Youtube from 'common/icons/Youtube'
 
 // Doc Types
@@ -153,6 +159,7 @@ function getIcon(iconName, iconStyling, title) {
     HamburgerMenu,
     Home,
     Images,
+    ImagesNone,
     InfoCircleSolid,
     Instagram,
     Jigsaw,
@@ -169,6 +176,7 @@ function getIcon(iconName, iconStyling, title) {
     Members,
     Memory,
     Microphone,
+    MicrophoneOff,
     Minus,
     More,
     Mute,
@@ -182,6 +190,7 @@ function getIcon(iconName, iconStyling, title) {
     PlaceHolder,
     Play,
     PlayCircle,
+    Preview,
     Previous,
     Print,
     Public,
@@ -190,6 +199,7 @@ function getIcon(iconName, iconStyling, title) {
     QuestionCircleSolid,
     Quiz,
     Quotation,
+    Reports,
     Resources,
     RightArrow,
     RightArrowCircle,
@@ -198,6 +208,7 @@ function getIcon(iconName, iconStyling, title) {
     Song,
     Speak,
     Spinner,
+    Star,
     Stop,
     StopCircle,
     Story,
@@ -216,6 +227,7 @@ function getIcon(iconName, iconStyling, title) {
     Widget,
     Word,
     Wordle,
+    Wrench,
     PhraseScrambler,
     WordSearch,
     Youtube,

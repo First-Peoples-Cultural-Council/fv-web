@@ -75,11 +75,7 @@ function DashboardWidgetsPresentation({
                   }}
                   className="text-secondary hover:text-secondary-dark flex items-center"
                 >
-                  {getIcon(
-                    'Fullscreen',
-                    'fill-current w-6 h-6 mr-2',
-                    'Preview',
-                  )}
+                  {getIcon('Preview', 'fill-current w-6 h-6 mr-2', 'Preview')}
                 </button>
               </td>
             </tr>
