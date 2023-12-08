@@ -39,17 +39,14 @@ function DashboardAlphabetPresentation({
               <th scope="col" className={`${tableHeaderClass} text-left`}>
                 Character
               </th>
-              {/* <th scope="col" className={`${tableHeaderClass} text-center`}>
-              Example words
-            </th> */}
               <th scope="col" className={`${tableHeaderClass} text-center`}>
-                audio
+                Audio
               </th>
               <th scope="col" className={`${tableHeaderClass} text-center`}>
-                video
+                Video
               </th>
               <th scope="col" className={`${tableHeaderClass} text-center`}>
-                image
+                Image
               </th>
               {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
               <th scope="col" className={`relative ${tableHeaderClass}`}>
@@ -83,7 +80,7 @@ function DashboardAlphabetPresentation({
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   to={`/${sitename}/dashboard/edit/character?id=${character?.id}`}
-                  className="text-secondary hover:text-secondary-dark flex items-center"
+                  className="text-primary hover:text-primary-dark flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                 </Link>
@@ -93,7 +90,7 @@ function DashboardAlphabetPresentation({
                   to={`/${sitename}/alphabet?${CHAR}=${character?.title}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-secondary hover:text-secondary-dark flex items-center"
+                  className="text-primary hover:text-primary-dark flex items-center"
                 >
                   {getIcon('Link', 'fill-current w-6 h-6 mr-2')}
                 </Link>
