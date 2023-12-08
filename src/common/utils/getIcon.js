@@ -62,6 +62,7 @@ import Pencil from 'common/icons/Pencil'
 import PlaceHolder from 'common/icons/PlaceHolder'
 import Play from 'common/icons/Play'
 import PlayCircle from 'common/icons/PlayCircle'
+import Preview from 'common/icons/Preview'
 import Previous from 'common/icons/Previous'
 import Print from 'common/icons/Print'
 import Qrcode from 'common/icons/Qrcode'
@@ -189,6 +190,7 @@ function getIcon(iconName, iconStyling, title) {
     PlaceHolder,
     Play,
     PlayCircle,
+    Preview,
     Previous,
     Print,
     Public,
