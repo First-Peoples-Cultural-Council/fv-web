@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import { useCharacters } from 'common/dataHooks/useCharacters'
@@ -7,7 +8,7 @@ import { useParachuteSearch } from 'common/dataHooks/useGamesSearch'
 const PUZZLES_PER_PAGE = 100
 const MAX_PAGES_WITHOUT_USABLE_PUZZLE = 10
 
-function ParachuteData() {
+function ParachuteData({ kids }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentPuzzle, setCurrentPuzzle] = useState()
   const [pagesWithoutUsablePuzzle, setPagesWithoutUsablePuzzle] = useState(1)
@@ -18,6 +19,7 @@ function ParachuteData() {
     refetch: getNextPage,
   } = useParachuteSearch({
     perPage: PUZZLES_PER_PAGE,
+    kids,
   })
 
   const { data: characterData } = useCharacters()
@@ -68,6 +70,11 @@ function ParachuteData() {
     : {
         isLoading: true,
       }
+}
+
+const { bool } = PropTypes
+ParachuteData.propTypes = {
+  kids: bool,
 }
 
 export default ParachuteData

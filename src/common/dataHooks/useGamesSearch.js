@@ -15,7 +15,7 @@ import {
   HAS_UNRECOGNIZED_CHARS,
 } from 'common/constants'
 
-export function useParachuteSearch({ perPage }) {
+export function useParachuteSearch({ perPage, kids }) {
   const { sitename } = useParams()
 
   const [searchParams] = useSearchParams()
@@ -30,6 +30,9 @@ export function useParachuteSearch({ perPage }) {
         [SORT]: 'random',
         [HAS_UNRECOGNIZED_CHARS]: false,
       })
+  if (kids) {
+    _searchParams.append(KIDS, kids)
+  }
   const searchParamString = _searchParams.toString()
 
   const { data, refetch } = useQuery(

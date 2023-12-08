@@ -8,7 +8,7 @@ import Wordsy from 'components/Game/Wordsy'
 import { hasWordleEnabled } from 'common/utils/gameHelpers'
 import getIcon from 'common/utils/getIcon'
 
-function GamePresentation({ sitename, gameId }) {
+function GamePresentation({ sitename, gameId, kids }) {
   const icon = getIcon(
     'InfoCircleSolid',
     'fill-current text-word h-12 w-12 md:h-20 md:w-20 mx-auto',
@@ -18,9 +18,9 @@ function GamePresentation({ sitename, gameId }) {
 
   switch (gameId) {
     case 'parachute':
-      return <Parachute.Container />
+      return <Parachute.Container kids={kids} />
     case 'phrasescrambler':
-      return <PhraseScrambler.Container />
+      return <PhraseScrambler.Container kids={kids} />
     case 'wordsy':
       if (hasWordleEnabled(sitename)) {
         return <Wordsy.Container />
@@ -51,10 +51,11 @@ function GamePresentation({ sitename, gameId }) {
 }
 
 // PROPTYPES
-const { string } = PropTypes
+const { string, bool } = PropTypes
 GamePresentation.propTypes = {
   sitename: string,
   gameId: string,
+  kids: bool,
 }
 
 export default GamePresentation
