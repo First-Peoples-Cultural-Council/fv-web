@@ -11,7 +11,7 @@ import {
   TYPE_WORD,
 } from 'common/constants'
 
-function DashboardEntriesData() {
+function DashboardEntriesData({ advancedSearch }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
@@ -29,7 +29,7 @@ function DashboardEntriesData() {
     searchParams,
   })
 
-  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false)
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(advancedSearch)
 
   useEffect(() => {
     if (Array.from(searchParams).length > 1 && !showAdvancedSearch) {

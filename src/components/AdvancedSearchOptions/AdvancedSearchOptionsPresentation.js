@@ -9,20 +9,24 @@ import {
   HAS_TRANSLATION,
   SORT,
   SORT_ALPHABETICAL,
-  SORT_CREATED,
-  SORT_MODIFIED,
+  SORT_CREATED_DESC,
+  SORT_MODIFIED_DESC,
   TRUE,
   FALSE,
+  VISIBILITY,
+  VISIBILITY_PUBLIC,
+  VISIBILITY_MEMBERS,
+  VISIBILITY_TEAM,
 } from 'common/constants'
 
 function AdvancedSearchOptionsPresentation() {
   return (
-    <div data-testid="AdvancedSearchOptionsPresentation" className="bg-white">
-      <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:max-w-7xl lg:px-8">
-        <section
-          aria-labelledby="filter-heading"
-          className="border-t border-gray-200 pt-2 pb-4"
-        >
+    <div
+      data-testid="AdvancedSearchOptionsPresentation"
+      className="bg-white rounded-lg"
+    >
+      <div className="mx-auto px-6 py-3 text-center">
+        <section aria-labelledby="filter-heading">
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
           </h2>
@@ -34,8 +38,8 @@ function AdvancedSearchOptionsPresentation() {
                 options={[
                   { value: null, label: 'Sort' },
                   { value: SORT_ALPHABETICAL, label: 'Alphabetical' },
-                  { value: SORT_MODIFIED, label: 'Recently modified' },
-                  { value: SORT_CREATED, label: 'Recently created' },
+                  { value: SORT_MODIFIED_DESC, label: 'Recently modified' },
+                  { value: SORT_CREATED_DESC, label: 'Recently created' },
                 ]}
                 menuAlignment="left"
               />
@@ -72,6 +76,15 @@ function AdvancedSearchOptionsPresentation() {
                   { value: null, label: 'Translation' },
                   { value: TRUE, label: 'Has translation' },
                   { value: FALSE, label: 'Has no translation' },
+                ]}
+              />
+              <SingleSelect
+                id={VISIBILITY}
+                options={[
+                  { value: null, label: 'Visibility' },
+                  { value: VISIBILITY_PUBLIC, label: 'Public' },
+                  { value: VISIBILITY_MEMBERS, label: 'Members Only' },
+                  { value: VISIBILITY_TEAM, label: 'Team Only' },
                 ]}
               />
             </div>

@@ -23,8 +23,8 @@ function DashboardEntriesPresentation({
   showAdvancedSearch,
 }) {
   return (
-    <div id="DashboardEntriesPresentation">
-      <section className="inline-flex w-full p-5 space-x-5 items-center justify-between print:hidden">
+    <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
+      <section className="inline-flex w-full space-x-5 items-center justify-between print:hidden">
         <div className="w-1/2">
           <SearchDictionaryForm.Container searchType={initialSearchType} />
         </div>
@@ -56,11 +56,11 @@ function DashboardEntriesPresentation({
         )}
       </section>
       {showAdvancedSearch && (
-        <section className="w-full print:hidden border-b">
+        <section className="w-full">
           <AdvancedSearchOptions.Presentation />
         </section>
       )}
-      <section>
+      <section className="w-full">
         <DashboardEntriesPresentationList
           infiniteScroll={infiniteScroll}
           isLoading={isLoadingEntries}
