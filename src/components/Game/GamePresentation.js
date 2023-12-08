@@ -18,7 +18,7 @@ function GamePresentation({ sitename, gameId, kids }) {
 
   switch (gameId) {
     case 'parachute':
-      return <Parachute.Container />
+      return <Parachute.Container kids={kids} />
     case 'phrasescrambler':
       return <PhraseScrambler.Container kids={kids} />
     case 'wordsy':
