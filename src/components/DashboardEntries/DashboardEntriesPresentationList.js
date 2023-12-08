@@ -53,10 +53,10 @@ function DashboardEntriesPresentationList({
                 <thead className="bg-gray-100">
                   <tr>
                     <th scope="col" className={tableHeaderClass}>
-                      {entryLabel?.toUpperCase()}
+                      {entryLabel}
                     </th>
                     <th scope="col" className={tableHeaderClass}>
-                      TRANSLATION
+                      Translation
                     </th>
                     <th scope="col" className={tableHeaderClass}>
                       Type
