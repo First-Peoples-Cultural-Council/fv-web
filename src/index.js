@@ -94,6 +94,9 @@ Sentry.init({
   replaysOnErrorSampleRate: GlobalConfiguration.SENTRY_ERROR_SAMPLE_RATE,
 })
 
+// Debugging sentry issues. To be removed once fixed.
+console.log(GlobalConfiguration)
+
 const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes)
 
 const container = document.getElementById('root')
