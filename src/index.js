@@ -95,9 +95,6 @@ Sentry.init({
   ),
 })
 
-// Debugging sentry issues. To be removed once fixed.
-console.log(GlobalConfiguration)
-
 const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes)
 
 const container = document.getElementById('root')
