@@ -10,6 +10,7 @@ import {
   GAMES,
   TYPE_PHRASE,
   HAS_TRANSLATION,
+  SORT,
 } from 'common/constants'
 import { arrayShuffle } from 'common/utils/functionHelpers'
 
@@ -58,7 +59,7 @@ function PhraseScramblerData({ kids }) {
     [TYPES]: TYPE_PHRASE,
     [GAMES]: true,
     [HAS_TRANSLATION]: true,
-    // random parameter to be added
+    [SORT]: 'random',
   })
   if (kids) {
     _searchParams.append(KIDS, kids)
