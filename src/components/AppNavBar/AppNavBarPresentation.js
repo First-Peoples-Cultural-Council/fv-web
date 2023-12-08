@@ -161,6 +161,8 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
             {createMenuItem('About', 'About', ABOUT_LINK)}
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
+            {isGuest &&
+              createMenuItem('Sign in / Register', 'Login', '', false, login)}
             {isHome && (
               <li className="mr-4">
                 <Link
@@ -173,11 +175,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               </li>
             )}
 
-            {isGuest ? (
-              createMenuItem('Sign in / Register', 'Login', '', false, login)
-            ) : (
-              <UserMenu.Container />
-            )}
+            {!isGuest && <UserMenu.Container />}
           </ul>
           {/* Landing Mobile Menu Button */}
           <div

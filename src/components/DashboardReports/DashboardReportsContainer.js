@@ -14,7 +14,9 @@ function DashboardReportsContainer() {
       headerContent={headerContent}
       site={site}
     >
-      <DashboardTiles.Presentation tileContent={reportTiles} />
+      <div className="mx-auto max-w-7xl px-8">
+        <DashboardTiles.Presentation tileContent={reportTiles} />
+      </div>
     </DashboardLanding.Presentation>
   )
 }
