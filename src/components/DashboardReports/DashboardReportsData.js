@@ -84,7 +84,7 @@ function DashboardReportsData() {
       icon: 'Public',
       name: 'Public content',
       description: 'Content available to the general public',
-      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${VISIBILITY_PUBLIC}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_PUBLIC}`,
       iconColor: 'tertiaryB',
       auth: EDITOR,
     },
