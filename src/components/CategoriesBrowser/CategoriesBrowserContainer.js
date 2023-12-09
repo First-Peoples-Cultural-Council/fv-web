@@ -4,13 +4,21 @@ import PropTypes from 'prop-types'
 // FPCC
 import CategoriesBrowserData from 'components/CategoriesBrowser/CategoriesBrowserData'
 import CategoriesBrowserPresentation from 'components/CategoriesBrowser/CategoriesBrowserPresentation'
-function CategoriesBrowserContainer({ chooseDocHandler }) {
+function CategoriesBrowserContainer({
+  chooseDocHandler,
+  nameId,
+  control,
+  append,
+  remove,
+  fields,
+  closeModal,
+}) {
   const {
     isLoading,
     site,
     sitename,
     currentCategory,
-    setCurrentCategory,
+    setCurrentCategories,
     filteredCategories,
     setQuery,
   } = CategoriesBrowserData()
@@ -21,17 +29,29 @@ function CategoriesBrowserContainer({ chooseDocHandler }) {
       sitename={sitename}
       chooseDocHandler={chooseDocHandler}
       currentCategory={currentCategory}
-      setCurrentCategory={setCurrentCategory}
+      setCurrentCategories={setCurrentCategories}
       filteredCategories={filteredCategories}
       setQuery={setQuery}
+      nameId={nameId}
+      control={control}
+      append={append}
+      remove={remove}
+      fields={fields}
+      closeModal={closeModal}
     />
   )
 }
 
 // PROPTYPES
-const { func } = PropTypes
+const { func, string, object, array } = PropTypes
 CategoriesBrowserContainer.propTypes = {
   chooseDocHandler: func,
+  nameId: string,
+  control: object,
+  append: func,
+  remove: func,
+  fields: array,
+  closeModal: func,
 }
 
 export default CategoriesBrowserContainer

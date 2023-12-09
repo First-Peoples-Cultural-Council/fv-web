@@ -21,6 +21,8 @@ function CategoryArrayField({
     name: nameId,
   })
 
+  // const { value, addItems, removeItem } = useIdArrayField(nameId, control)
+
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
     append,
     remove,
@@ -65,7 +67,15 @@ function CategoryArrayField({
       )}
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
-          <CategoriesBrowser.Container chooseDocHandler={selectItem} />
+          <CategoriesBrowser.Container
+            chooseDocHandler={selectItem}
+            control={control}
+            nameId={nameId}
+            append={append}
+            remove={remove}
+            fields={fields}
+            closeModal={closeModal}
+          />
         </div>
       </Modal.Presentation>
     </Fragment>

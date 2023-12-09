@@ -12,7 +12,8 @@ function CategoriesBrowserData() {
   // Data fetch
   const { isInitialLoading, allCategories } = useCategories()
 
-  const [currentCategory, setCurrentCategory] = useState()
+  // default state is an empty set
+  const [currentCategories, setCurrentCategories] = useState()
 
   const [query, setQuery] = useState('')
 
@@ -30,8 +31,8 @@ function CategoriesBrowserData() {
     isLoading: isInitialLoading,
     site,
     sitename,
-    currentCategory,
-    setCurrentCategory,
+    currentCategories,
+    setCurrentCategories,
     filteredCategories: filteredCategories || [],
     setQuery,
   }

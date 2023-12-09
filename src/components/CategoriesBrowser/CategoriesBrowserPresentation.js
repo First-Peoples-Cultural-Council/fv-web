@@ -4,14 +4,18 @@ import PropTypes from 'prop-types'
 // FPCC
 import Loading from 'components/Loading'
 import getIcon from 'common/utils/getIcon'
+
 function CategoriesBrowserPresentation({
   isLoading,
-  chooseDocHandler,
-  currentCategory,
-  setCurrentCategory,
   filteredCategories,
   setQuery,
+  append,
+  // remove,
+  // fields,
+  closeModal,
 }) {
+  // console.log({ fields })
+
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault()
@@ -39,7 +43,7 @@ function CategoriesBrowserPresentation({
           </div>
           <button
             type="button"
-            onClick={() => chooseDocHandler(currentCategory)}
+            onClick={() => closeModal()}
             className="mx-auto my-4 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
           >
             {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
@@ -58,9 +62,9 @@ function CategoriesBrowserPresentation({
                   <button
                     type="button"
                     key={category.id}
-                    onClick={() => setCurrentCategory(category)}
+                    onClick={() => append(category)}
                     className={`${
-                      category?.id === currentCategory?.id
+                      category?.id === 111
                         ? 'ring-2 ring-offset-2 ring-primary'
                         : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
                     } flex w-full p-4 cursor-pointer rounded-sm`}
@@ -84,14 +88,15 @@ function CategoriesBrowserPresentation({
 }
 
 // PROPTYPES
-const { array, bool, object, func } = PropTypes
+const { array, bool, func } = PropTypes
 CategoriesBrowserPresentation.propTypes = {
   isLoading: bool,
-  chooseDocHandler: func,
-  currentCategory: object,
-  setCurrentCategory: func,
   filteredCategories: array,
   setQuery: func,
+  append: func,
+  // remove: func,
+  // fields: array,
+  closeModal: func,
 }
 
 export default CategoriesBrowserPresentation
