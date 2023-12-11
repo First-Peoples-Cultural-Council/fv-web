@@ -6,7 +6,7 @@ import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
 
 function PhraseScramblerPresentation({
-  translation,
+  translations,
   jumbledWords,
   selectedWords,
   gameCompleted,
@@ -47,13 +47,17 @@ function PhraseScramblerPresentation({
           <p className="italic text-fv-charcoal mt-2">Unscramble to win !!</p>
         </div>
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
-        {translation && jumbledWords.length ? (
+        {translations?.length && jumbledWords.length ? (
           <div className="mx-auto mt-16 w-1/2 md:w-2/3 sm:w-full rounded-lg bg-white shadow-md border-2 border-gray-50">
             <div className="px-4 py-5 sm:p-6" data-testid="card-content">
               <div className="header" data-testid="translations">
-                <p className="my-2 text-left text-xl">
-                  {translation || 'No translation available'}
-                </p>
+                {translations?.map((translation, index) => (
+                  <p key={translation} className="my-2 text-left text-xl">
+                    {/* Show ordered list if more than one translation is available, else just show one translation. */}
+                    {translations?.length > 1 && `${index + 1}.`}
+                    {translation || 'No translation available'}
+                  </p>
+                ))}
               </div>
               <div
                 data-testid="selected-boxes"
@@ -118,7 +122,7 @@ function PhraseScramblerPresentation({
                   <button
                     type="button"
                     onClick={() => resetGame()}
-                    className="inline"
+                    className="inline underline underline-offset-2"
                   >
                     {getIcon(
                       'CheckCircleSolid',
@@ -175,10 +179,10 @@ function PhraseScramblerPresentation({
 }
 
 // PROPTYPES
-const { array, bool, func, string } = PropTypes
+const { array, bool, func } = PropTypes
 
 PhraseScramblerPresentation.propTypes = {
-  translation: string,
+  translations: array,
   jumbledWords: array,
   selectedWords: array,
   gameCompleted: bool,

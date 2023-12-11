@@ -21,7 +21,7 @@ function PhraseScramblerData({ kids }) {
   const [gameCompleted, setGameCompleted] = useState(false)
   const [validAnswer, setValidAnswer] = useState(false)
   const [inputData, setInputData] = useState({
-    translation: '',
+    translations: [],
     title: '',
   })
 
@@ -81,9 +81,11 @@ function PhraseScramblerData({ kids }) {
   useEffect(() => {
     if (data?.pages?.[0]?.count > 0) {
       const newPhrase = data?.pages?.[0]?.results?.[0]
-
+      const translations = newPhrase?.translations?.map(
+        (translation) => translation?.text,
+      )
       setInputData({
-        translation: newPhrase?.translations?.[0]?.text,
+        translations,
         title: newPhrase?.title,
       })
     }
@@ -96,7 +98,7 @@ function PhraseScramblerData({ kids }) {
 
   return {
     isInitialLoading,
-    translation: inputData?.translation,
+    translations: inputData?.translations,
     jumbledWords,
     selectedWords,
     gameCompleted,
