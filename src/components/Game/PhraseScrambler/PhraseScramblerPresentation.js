@@ -2,11 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import AudioButton from 'components/AudioButton'
 import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
 
 function PhraseScramblerPresentation({
   translations,
+  relatedAudio,
   jumbledWords,
   selectedWords,
   gameCompleted,
@@ -65,7 +67,9 @@ function PhraseScramblerPresentation({
               >
                 {/* Placeholder till a user selects does any action to maintain styling. */}
                 {selectedWords?.length === 0 && (
-                  <div className={`${baseTextBlockStyling} bg-gray-100`}> </div>
+                  <div className={`${baseTextBlockStyling} bg-transparent`}>
+                    {' '}
+                  </div>
                 )}
                 {/* Selected words */}
                 {selectedWords?.map((word) => (
@@ -122,15 +126,26 @@ function PhraseScramblerPresentation({
                   <button
                     type="button"
                     onClick={() => resetGame()}
-                    className="inline underline underline-offset-2"
+                    className="inline font-bold py-2 pl-4 pr-6 border-gray-200 shadow-md rounded-md"
                   >
                     {getIcon(
-                      'CheckCircleSolid',
-                      'h-8 w-8 inline fill-word mx-2',
+                      'TryAgain',
+                      'h-8 w-8 inline fill-story mx-2 stroke-2',
                     )}
                     Try again!
                   </button>
-                  <p>Need a hint? Listen to the phrase:</p>
+                  {relatedAudio?.length > 0 && (
+                    <div className="mt-4">
+                      <p className="inline align-center">
+                        Need a hint? Listen to the phrase:
+                      </p>
+                      <AudioButton
+                        audioArray={relatedAudio}
+                        iconStyling="inline fill-current text-fv-charcoal-light hover:text-fv-charcoal h-6 w-6"
+                        hoverTooltip
+                      />
+                    </div>
+                  )}
                 </div>
               )}
               {!gameCompleted && (
@@ -183,6 +198,7 @@ const { array, bool, func } = PropTypes
 
 PhraseScramblerPresentation.propTypes = {
   translations: array,
+  relatedAudio: array,
   jumbledWords: array,
   selectedWords: array,
   gameCompleted: bool,

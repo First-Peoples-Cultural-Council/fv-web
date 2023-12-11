@@ -10,6 +10,7 @@ function PhraseScramblerContainer({ kids }) {
   const {
     isInitialLoading,
     translations,
+    relatedAudio,
     jumbledWords,
     selectedWords,
     gameCompleted,
@@ -23,6 +24,7 @@ function PhraseScramblerContainer({ kids }) {
     <Loading.Container isLoading={isInitialLoading}>
       <PhraseScramblerPresentation
         translations={translations}
+        relatedAudio={relatedAudio}
         jumbledWords={jumbledWords}
         selectedWords={selectedWords}
         gameCompleted={gameCompleted}
