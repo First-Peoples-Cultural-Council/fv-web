@@ -18,6 +18,7 @@ function PhraseScramblerContainer({ kids }) {
     wordClicked,
     checkAnswer,
     resetGame,
+    newGame,
   } = PhraseScramblerData({ kids })
 
   return (
@@ -32,6 +33,7 @@ function PhraseScramblerContainer({ kids }) {
         wordClicked={wordClicked}
         checkAnswer={checkAnswer}
         resetGame={resetGame}
+        newGame={newGame}
       />
     </Loading.Container>
   )

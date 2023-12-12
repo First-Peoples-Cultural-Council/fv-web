@@ -16,6 +16,7 @@ function PhraseScramblerPresentation({
   wordClicked,
   checkAnswer,
   resetGame,
+  newGame,
 }) {
   let gameStatus = ''
   if (gameCompleted) {
@@ -27,7 +28,7 @@ function PhraseScramblerPresentation({
     'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
   const baseButtonStyling =
     'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-fv-charcoal hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
-  const checkAnswerButtonStyling = `${baseButtonStyling} bg-secondary text-white hover:bg-secondary-light`
+  const checkAnswerButtonStyling = `${baseButtonStyling} bg-song text-white hover:bg-song-light`
   let selectedBoxAdditionalStyling = 'bg-gray-100'
   if (gameStatus === 'Won') {
     selectedBoxAdditionalStyling = 'bg-word'
@@ -116,10 +117,22 @@ function PhraseScramblerPresentation({
               }`}
             >
               {gameStatus === 'Won' && (
-                <p>
-                  {getIcon('CheckCircleSolid', 'h-8 w-8 inline fill-word mx-2')}
-                  Great Job!
-                </p>
+                <div>
+                  <p className="inline">
+                    {getIcon(
+                      'CheckCircleSolid',
+                      'h-8 w-8 inline fill-word mx-2',
+                    )}
+                    Great Job!
+                  </p>
+                  {relatedAudio?.length > 0 && (
+                    <AudioButton
+                      audioArray={relatedAudio}
+                      iconStyling="inline fill-current text-fv-charcoal-light hover:text-fv-charcoal h-6 w-6 ml-2"
+                      hoverTooltip
+                    />
+                  )}
+                </div>
               )}
               {gameStatus === 'Lost' && (
                 <div className="flex flex-row justify-around w-3/4">
@@ -152,13 +165,8 @@ function PhraseScramblerPresentation({
                 <div data-testid="action-buttons">
                   <button
                     type="button"
-                    disabled={gameCompleted && validAnswer}
                     onClick={() => checkAnswer()}
-                    className={
-                      gameCompleted && validAnswer
-                        ? `${checkAnswerButtonStyling} bg-gray-100 text-black cursor-not-allowed`
-                        : checkAnswerButtonStyling
-                    }
+                    className={checkAnswerButtonStyling}
                   >
                     Check
                   </button>
@@ -188,6 +196,13 @@ function PhraseScramblerPresentation({
             for more information.
           </p>
         )}
+        <button
+          type="button"
+          onClick={() => newGame()}
+          className={`${checkAnswerButtonStyling} mt-4 py-4 px-8`}
+        >
+          Load a new phrase
+        </button>
       </div>
     </section>
   )
@@ -206,6 +221,7 @@ PhraseScramblerPresentation.propTypes = {
   wordClicked: func,
   checkAnswer: func,
   resetGame: func,
+  newGame: func,
 }
 
 export default PhraseScramblerPresentation
