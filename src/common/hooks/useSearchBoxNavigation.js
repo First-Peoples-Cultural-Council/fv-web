@@ -7,7 +7,7 @@ import useSearchTerm from 'common/hooks/useSearchTerm'
 import useSearchLanguage from 'common/hooks/useSearchLanguage'
 import useSearchType from 'common/hooks/useSearchType'
 import { updateSearchParams } from 'common/utils/urlHelpers'
-import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
+import { DOMAIN, TYPES, TYPE_ENTRY, KIDS, SORT } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
@@ -77,6 +77,7 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
       q: searchTerm,
       [DOMAIN]: searchLanguage,
       [TYPES]: searchType,
+      [SORT]: '',
     }
     if (kidFlag) {
       newParams[KIDS] = kidFlag
