@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -6,6 +6,7 @@ import { useSiteStore } from 'context/SiteContext'
 import useSearchTerm from 'common/hooks/useSearchTerm'
 import useSearchLanguage from 'common/hooks/useSearchLanguage'
 import useSearchType from 'common/hooks/useSearchType'
+import { updateSearchParams } from 'common/utils/urlHelpers'
 import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 
 /**
@@ -16,6 +17,7 @@ import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
   // initial search settings
   const { site } = useSiteStore()
+  const [searchParams] = useSearchParams()
 
   // State and methods from other hooks
   const {
@@ -71,15 +73,16 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
     searchType,
     kidFlag,
   }) => {
-    const params = {
+    const newParams = {
       q: searchTerm,
       [DOMAIN]: searchLanguage,
       [TYPES]: searchType,
     }
     if (kidFlag) {
-      params[KIDS] = kidFlag
+      newParams[KIDS] = kidFlag
     }
-    _doSearchNavigation(params)
+    const fullParams = updateSearchParams(searchParams, newParams)
+    _doSearchNavigation(fullParams)
   }
 
   const handleSearchNavigation = (event) => {
