@@ -51,3 +51,17 @@ export const makePlural = (string) => {
   }
   return `${string}s`
 }
+
+export const updateSearchParams = (originalParams, newParams) => {
+  // maintains any existing url parameters, and updates the provided ones
+  // originalParams - a searchParams object from useSearchParams
+  // newParams - a dictionary of params to update, like { key: value }
+  const updatedParams = {
+    ...[...originalParams.entries()].reduce(
+      (o, [key, value]) => ({ ...o, [key]: value }),
+      {},
+    ),
+    ...newParams,
+  }
+  return updatedParams
+}

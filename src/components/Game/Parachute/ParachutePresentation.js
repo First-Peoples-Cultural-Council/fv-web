@@ -145,9 +145,17 @@ function ParachutePresentation({
               accentColor="primary"
             />
             <p className="text-fv-charcoal mt-2">
-              Could not generate a parachute game using the current dictionary.
+              This site does not currently have enough dictionary content for
+              the parachute game.
               <br />
-              Please contact the help desk.
+              Please contact{' '}
+              <a
+                href="mailto:hello@firstvoices.com"
+                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              >
+                hello@firstvoices.com
+              </a>{' '}
+              for more information.
             </p>
           </div>
         ) : (

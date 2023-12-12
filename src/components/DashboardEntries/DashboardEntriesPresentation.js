@@ -16,7 +16,7 @@ function DashboardEntriesPresentation({
   isLoadingEntries,
   items,
   loadRef,
-  resetSearch,
+  removeFilters,
   searchType,
   setSearchType,
   setShowAdvancedSearch,
@@ -42,9 +42,9 @@ function DashboardEntriesPresentation({
               <button
                 type="button"
                 className="text-sm underline"
-                onClick={() => resetSearch()}
+                onClick={() => removeFilters()}
               >
-                Reset
+                Remove Filters
               </button>
             )}
             <SearchTypeSelector.Container
@@ -84,7 +84,7 @@ DashboardEntriesPresentation.propTypes = {
   isLoadingEntries: bool,
   items: object,
   loadRef: object,
-  resetSearch: func,
+  removeFilters: func,
   searchType: string,
   setSearchType: func,
   setShowAdvancedSearch: func,

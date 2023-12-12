@@ -3,7 +3,6 @@ import { useSiteStore } from 'context/SiteContext'
 import {
   TYPES,
   TYPE_DICTIONARY,
-  TYPE_WORD,
   HAS_AUDIO,
   HAS_IMAGE,
   SORT,
@@ -25,7 +24,7 @@ function DashboardReportsData() {
       icon: 'Wrench',
       name: 'Build your own',
       description: 'Use the advanced search filters to create your own report',
-      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_WORD}`,
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}`,
       iconColor: 'wordText',
       auth: EDITOR,
     },

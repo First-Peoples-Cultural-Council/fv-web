@@ -15,7 +15,7 @@ function DashboardEntriesContainer({ advancedSearch = false }) {
     isLoadingEntries,
     items,
     loadRef,
-    resetSearch,
+    removeFilters,
     searchType,
     setSearchType,
     setShowAdvancedSearch,
@@ -33,7 +33,7 @@ function DashboardEntriesContainer({ advancedSearch = false }) {
         isLoadingEntries={isLoadingEntries}
         items={items}
         loadRef={loadRef}
-        resetSearch={resetSearch}
+        removeFilters={removeFilters}
         searchType={searchType}
         setSearchType={setSearchType}
         setShowAdvancedSearch={setShowAdvancedSearch}
