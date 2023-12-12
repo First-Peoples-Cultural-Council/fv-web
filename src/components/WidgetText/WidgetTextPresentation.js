@@ -30,6 +30,8 @@ function WidgetTextPresentation({ widgetData }) {
   } = widgetData.settings
   const format = widgetData?.format || FORMAT_LEFT
 
+  console.log(url)
+
   const bgImageObject = useImageObject({
     id: bgImage,
   })
