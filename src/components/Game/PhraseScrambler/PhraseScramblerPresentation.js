@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 import AudioButton from 'components/AudioButton'
 import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
+import { isWordInNestedArray } from 'common/utils/functionHelpers'
 
 function PhraseScramblerPresentation({
   translations,
@@ -68,7 +69,7 @@ function PhraseScramblerPresentation({
               </div>
               <div
                 data-testid="selected-boxes"
-                className={`flex flex-row shadow my-4 border-thin border-gray-300 rounded px-2 ${selectedBoxAdditionalStyling}`}
+                className={`shadow my-4 border-thin border-gray-300 rounded px-2 ${selectedBoxAdditionalStyling}`}
               >
                 {/* Placeholder till a user selects does any action to maintain styling. */}
                 {selectedWords?.length === 0 && (
@@ -77,41 +78,55 @@ function PhraseScramblerPresentation({
                   </div>
                 )}
                 {/* Selected words */}
-                {selectedWords?.map((word, _idx) => (
-                  <button
-                    type="button"
-                    key={`selectedWords-${word}-${_idx}`}
-                    className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
-                    onClick={() => wordClicked(word)}
-                    disabled={gameCompleted && validAnswer}
+                {selectedWords?.map((row, _rowIdx) => (
+                  <div
+                    key={`selectedWordsRow-${_rowIdx}`}
+                    className="flex flex-row "
                   >
-                    {word}
-                  </button>
+                    {row?.map((word, _idx) => (
+                      <button
+                        type="button"
+                        key={`selectedWords-${word}-${_rowIdx}-${_idx}`} // NOSONAR
+                        className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
+                        onClick={() => wordClicked(word)}
+                        disabled={gameCompleted && validAnswer}
+                      >
+                        {word}
+                      </button>
+                    ))}
+                  </div>
                 ))}
               </div>
-              <div data-testid="jumbled-words" className="flex flex-row">
+              <div data-testid="jumbled-words">
                 {/* Jumbled words, turns invisible if selected. */}
-                {jumbledWords?.map((word, _idx) =>
-                  selectedWords?.includes(word) ? (
-                    <div
-                      key={`disabledWords-${word}-${_idx}`}
-                      className={`${baseTextBlockStyling} invisible`}
-                    >
-                      {word}
-                    </div>
-                  ) : (
-                    <button
-                      type="button"
-                      key={`jumbledWords-${word}-${_idx}`}
-                      className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
-                      onClick={() => wordClicked(word)}
-                      onKeyDown={() => wordClicked(word)}
-                      disabled={gameCompleted && validAnswer}
-                    >
-                      {word}
-                    </button>
-                  ),
-                )}
+                {jumbledWords?.map((row, _rowIdx) => (
+                  <div
+                    key={`jumbledWordsRow-${_rowIdx}`}
+                    className="flex flex-row"
+                  >
+                    {row?.map((word, _idx) =>
+                      isWordInNestedArray(selectedWords, word) ? (
+                        <div
+                          key={`disabledWords-${word}-${_rowIdx}-${_idx}`} // NOSONAR
+                          className={`${baseTextBlockStyling} invisible`}
+                        >
+                          {word}
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          key={`jumbledWords-${word}-${_rowIdx}-${_idx}`} // NOSONAR
+                          className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
+                          onClick={() => wordClicked(word)}
+                          onKeyDown={() => wordClicked(word)}
+                          disabled={gameCompleted && validAnswer}
+                        >
+                          {word}
+                        </button>
+                      ),
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
             <div

@@ -14,7 +14,9 @@ import {
   HAS_TRANSLATION,
   SORT,
 } from 'common/constants'
-import { arrayShuffle } from 'common/utils/functionHelpers'
+import { arrayShuffle, partitionArray } from 'common/utils/functionHelpers'
+
+const MAX_ROW_LENGTH = 6 // max number of buttons to display in one row
 
 function PhraseScramblerData({ kids }) {
   const { sitename } = useParams()
@@ -74,7 +76,7 @@ function PhraseScramblerData({ kids }) {
   }
 
   const { data, isFetching, refetch } = useQuery(
-    // Fetching only phrase word at a time
+    // Fetching only phrase at a time
     [SEARCH, sitename],
     () =>
       api.search.get({
@@ -96,10 +98,12 @@ function PhraseScramblerData({ kids }) {
     setInputData({
       translations,
       title: newPhrase?.title,
-      relatedAudio: newPhrase?.relatedAudio,
+      relatedAudio: newPhrase?.relatedAudio.slice(0, 3), // take at max 3 audio files for hints
     })
     const correctAnswer = newPhrase?.title.split(' ')
-    setJumbledWords(arrayShuffle([...correctAnswer]))
+    const shuffledWords = arrayShuffle([...correctAnswer])
+    const partitionedWords = partitionArray(shuffledWords, MAX_ROW_LENGTH)
+    setJumbledWords(partitionedWords)
   }
 
   useEffect(() => {
@@ -113,7 +117,7 @@ function PhraseScramblerData({ kids }) {
     translations: inputData?.translations,
     relatedAudio: inputData?.relatedAudio,
     jumbledWords,
-    selectedWords,
+    selectedWords: partitionArray(selectedWords, MAX_ROW_LENGTH),
     gameCompleted,
     validAnswer,
     wordClicked,
