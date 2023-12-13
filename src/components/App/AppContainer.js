@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 // FPCC
+import AboutFV from 'components/AboutFV'
 import AppData from 'components/App/AppData'
 import { AudiobarProvider } from 'context/AudiobarContext'
 import { NotificationProvider } from 'context/NotificationContext'
@@ -45,6 +46,14 @@ function AppContainer() {
                     <RequireAuth siteMembership={GENERAL} withMessage>
                       <LandingPage.Container />
                     </RequireAuth>
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="about"
+                element={
+                  <AppWrapper>
+                    <AboutFV />
                   </AppWrapper>
                 }
               />

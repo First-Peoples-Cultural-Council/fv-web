@@ -159,7 +159,9 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
 
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
-            {createMenuItem('About', 'About', ABOUT_LINK)}
+            <Link to="/about" className="inline-flex items-center px-8 py-2">
+              {getIcon('About', 'fill-current h-full w-6 mr-2')}About
+            </Link>
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
             {isGuest &&
               createMenuItem('Sign in / Register', 'Login', '', false, login)}

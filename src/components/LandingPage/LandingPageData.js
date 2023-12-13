@@ -7,6 +7,7 @@ import {
   WIDGET_TEXT,
   WIDGET_TEXTICONS,
   WIDGET_QUOTES,
+  FIRSTVOICESLINK,
 } from 'src/common/constants'
 
 function LandingPageData() {
@@ -31,7 +32,7 @@ function LandingPageData() {
       bgImage,
       image: Img,
       title: 'ABOUT FIRSTVOICES',
-      url: 'https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704813/About+FirstVoices',
+      url: `https://${FIRSTVOICESLINK}/about`,
       urlLabel: 'Learn more',
       textWithFormatting:
         '{"blocks":[{"key":"3euvg","text":"On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cnh18","text":"Any content available on FirstVoices is gathered, uploaded and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"40rem","text":"FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
