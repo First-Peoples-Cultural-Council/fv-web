@@ -1,3 +1,7 @@
+/* eslint-disable react/no-array-index-key */
+// May contain duplicate elements such as same word repeated in a phrase twice,
+// which requires to use index in the key to get unique keys
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -50,7 +54,7 @@ function PhraseScramblerPresentation({
           <p className="italic text-fv-charcoal mt-2">Unscramble to win !!</p>
         </div>
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
-        {translations?.length && jumbledWords.length ? (
+        {translations?.length && jumbledWords?.length ? (
           <div className="mx-auto mt-16 w-1/2 md:w-2/3 sm:w-full rounded-lg bg-white shadow-md border-2 border-gray-50">
             <div className="px-4 py-5 sm:p-6" data-testid="card-content">
               <div className="header" data-testid="translations">
@@ -73,10 +77,10 @@ function PhraseScramblerPresentation({
                   </div>
                 )}
                 {/* Selected words */}
-                {selectedWords?.map((word) => (
+                {selectedWords?.map((word, _idx) => (
                   <button
                     type="button"
-                    key={`selectedWords-${word}`}
+                    key={`selectedWords-${word}-${_idx}`}
                     className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
                     onClick={() => wordClicked(word)}
                     disabled={gameCompleted && validAnswer}
@@ -87,10 +91,10 @@ function PhraseScramblerPresentation({
               </div>
               <div data-testid="jumbled-words" className="flex flex-row">
                 {/* Jumbled words, turns invisible if selected. */}
-                {jumbledWords?.map((word) =>
+                {jumbledWords?.map((word, _idx) =>
                   selectedWords?.includes(word) ? (
                     <div
-                      key={`disabledWords-${word}`}
+                      key={`disabledWords-${word}-${_idx}`}
                       className={`${baseTextBlockStyling} invisible`}
                     >
                       {word}
@@ -98,7 +102,7 @@ function PhraseScramblerPresentation({
                   ) : (
                     <button
                       type="button"
-                      key={`jumbledWords-${word}`}
+                      key={`jumbledWords-${word}-${_idx}`}
                       className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
                       onClick={() => wordClicked(word)}
                       onKeyDown={() => wordClicked(word)}

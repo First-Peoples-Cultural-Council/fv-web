@@ -8,7 +8,7 @@ import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScrambler
 
 function PhraseScramblerContainer({ kids }) {
   const {
-    isInitialLoading,
+    isLoading,
     translations,
     relatedAudio,
     jumbledWords,
@@ -22,7 +22,7 @@ function PhraseScramblerContainer({ kids }) {
   } = PhraseScramblerData({ kids })
 
   return (
-    <Loading.Container isLoading={isInitialLoading}>
+    <Loading.Container isLoading={isLoading}>
       <PhraseScramblerPresentation
         translations={translations}
         relatedAudio={relatedAudio}
