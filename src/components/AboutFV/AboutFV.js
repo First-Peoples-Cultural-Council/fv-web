@@ -2,7 +2,7 @@ import React from 'react'
 import SectionTitle from 'components/SectionTitle'
 
 function AboutFV() {
-  const headerStyle = 'text-xl font-bold mb-1 mt-4 text-center'
+  const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
   return (
     <section
@@ -11,10 +11,10 @@ function AboutFV() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="About First Voices"
+          title="About FirstVoices"
           accentColor="primary"
         />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 text-center py-8">
+        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
           <p className={paraStyle}>
             FirstVoices.com is an online space for communities to share and
             promote their language, oral culture and linguistic history.
