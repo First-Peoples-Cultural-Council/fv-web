@@ -36,12 +36,12 @@ describe('log in/out', () => {
       `${Cypress.env('CYPRESS_FV_PASSWORD')}{enter}`,
       { force: true },
     )
-    cy.wait(3000)
+
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(1000)
+
     cy.reload()
-    cy.contains('cf').click()
-    cy.wait(1500)
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+
     cy.contains('Sign out', { timeout: 12000 }).click()
   }) // end of log in
 

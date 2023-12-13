@@ -33,8 +33,6 @@ module.exports = {
     'jsx-a11y/alt-text': ['warn'],
     'jsx-a11y/aria-role': ['warn'],
     'jsx-a11y/media-has-caption': ['off'],
-    'cypress/no-unnecessary-waiting': ['off'],
-    'cypress/unsafe-to-chain-command': ['warn'],
   },
   settings: {
     react: {

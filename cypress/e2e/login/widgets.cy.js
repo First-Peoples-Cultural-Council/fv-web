@@ -12,33 +12,23 @@ function createwidget(name) {
   cy.contains('Create').click()
   cy.contains('Create a Widget').click()
   cy.contains(name).click()
-  cy.wait(3000)
   cy.get('#nickname').type(widgetname)
 }
 
 function throughme(name) {
   cy.contains('Create widget').click()
-  cy.wait(1000)
+
   cy.contains('Create Widget').should('be.visible')
   cy.contains('Create Widget').click({ force: true })
-  cy.wait(4000)
+
   cy.get('[href="/lilwat/dashboard/edit"]').click()
-  cy.wait(1000)
   cy.contains('Edit widgets').click()
 
-  cy.contains(name)
-    .scrollIntoView()
-    .parent()
-    .children()
-    .eq(2)
-    .children()
-    .click()
+  cy.contains(name).parent().children().eq(2).children().click()
 
   cy.get('#nickname').should('contain.value', name)
-  cy.wait(1500)
   cy.contains('Delete widget').click()
   cy.get('#RemoveWidgetModalContent').contains('Delete').click()
-  cy.wait(3000)
 }
 
 describe('Widget tests', () => {
@@ -47,19 +37,16 @@ describe('Widget tests', () => {
     cy.viewport(1024, 768)
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
-    cy.wait(2000)
     cy.login(
       Cypress.env('CYPRESS_FV_USERNAME'),
       Cypress.env('CYPRESS_FV_PASSWORD'),
     )
-    cy.wait(3000)
+
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(4000)
+
     cy.contains('cc').click()
-    cy.wait(500)
+
     cy.contains('Dashboard').click()
-    cy.wait(1000)
-    //  cy.contains('Create a Widget').click()
   })
 
   it('Check widget validation', () => {

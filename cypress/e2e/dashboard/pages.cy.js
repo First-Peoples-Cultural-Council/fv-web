@@ -1,18 +1,13 @@
 /// <reference types="cypress" />
 
 function deletePage(name) {
-  cy.wait(3000)
-  cy.contains(name)
-    .scrollIntoView()
-    .parent()
-    .children()
-    .eq(3)
-    .children()
-    .click()
+  cy.log('ECP clicked')
+  cy.contains(name).as('pagename')
+  cy.get('@pagename').parent().get('td').eq(3).click() // need to fix: not always grabbing correct page name
   cy.contains('Edit Page Header').click()
   cy.get('#title').should('contain.value', name)
   cy.contains('Delete Page').click()
-  cy.get('#RemoveWidgetModalContent').contains('Delete').click()
+  cy.contains('Delete').click()
 }
 
 describe('Page Test', () => {
@@ -25,9 +20,8 @@ describe('Page Test', () => {
       Cypress.env('CYPRESS_FV_USERNAME'),
       Cypress.env('CYPRESS_FV_PASSWORD'),
     )
-    cy.wait(2000)
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.contains('cc').click()
+    cy.contains('Explore Languages').click()
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Custom Pages').click()
     cy.contains('Create a Custom Page').click()
@@ -40,9 +34,10 @@ describe('Page Test', () => {
     cy.contains('Please enter a URL')
   })
 
-  it('Create page', () => {
+  it.only('Create page', () => {
     const name = 'testpage11111'
     cy.get('#title').type(name)
+    cy.get('#subtitle').type('randomasdfasdfaf')
     cy.get('#slug').type('testcreatepage')
     cy.contains('Create Page').click()
 
@@ -52,15 +47,12 @@ describe('Page Test', () => {
   it('Create n edit page', () => {
     const name = 'testpage11111'
     cy.get('#title').type(name)
+    cy.get('#subtitle').type('randomasdfasdfaf')
     cy.get('#slug').type('testcreatepage')
     cy.contains('Create Page').click()
-    cy.contains(name)
-      .scrollIntoView()
-      .parent()
-      .children()
-      .eq(3)
-      .children()
-      .click()
+    cy.contains(name).as('pagename')
+    cy.get('@pagename').scrollIntoView()
+    cy.get('@pagename').parent().children().eq(3).children().click()
     cy.contains('Widget').click()
     cy.contains('Alphabet').click()
     cy.contains('OK').click()

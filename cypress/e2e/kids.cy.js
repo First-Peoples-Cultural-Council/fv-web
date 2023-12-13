@@ -1,18 +1,15 @@
 describe('V2 tests, word and phrase', () => {
   beforeEach(() => {
+    cy.viewport(1024, 768)
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
   })
 
   it.skip('14.1 - Visit kids dictionary', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
-    cy.wait(1000)
     cy.contains('Dictionary').click()
     cy.contains('404').should('not.exist')
-    cy.wait(1000)
     cy.get(
       '[data-testid="DictionaryGridTilePresentationKids"]  > .grid > #EntryDetails',
     ).each((_words) => {
@@ -27,25 +24,21 @@ describe('V2 tests, word and phrase', () => {
 
   it('14.2 - visit kids alphabet', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
-    cy.wait(1000)
     cy.contains('Alphabet').click()
     cy.contains(' 404').should('not.exist')
     cy.contains('See all words').click()
     cy.contains(' 404').should('not.exist')
-    cy.wait(2000)
 
     cy.get('a[data-testid^="SearchFilter"]').each((letter) => {
       cy.get(letter).click()
-      cy.wait(3000)
       cy.contains(' 404').should('not.exist')
+      cy.contains('Loading...').should('not.exist')
     })
   })
 
   it('14.3 - visit kids categories', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
     cy.contains('Categories').click()
     cy.contains(' 404').should('not.exist')
@@ -53,7 +46,6 @@ describe('V2 tests, word and phrase', () => {
 
   it('14.4 - visit kids games', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
     cy.contains('Games').click()
     cy.contains(' 404').should('not.exist')
@@ -61,7 +53,6 @@ describe('V2 tests, word and phrase', () => {
 
   it('14.5 - visit kids songs', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
     cy.contains('Songs').click()
     cy.contains(' 404').should('not.exist')
@@ -69,7 +60,6 @@ describe('V2 tests, word and phrase', () => {
 
   it('14.6 - visit kids stories', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
     cy.contains('Stories').click()
     cy.contains(' 404').should('not.exist')
@@ -77,7 +67,6 @@ describe('V2 tests, word and phrase', () => {
 
   it('14.7 kids search', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(2000)
     cy.contains('Kids').click()
     cy.contains('Dictionary').click()
     cy.get(

@@ -10,7 +10,6 @@ describe('V2 Search Home Page', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     cy.get('[data-testid=SearchInput]').type('a{enter}')
-    cy.wait(1000)
     cy.contains('Not Found').should('not.exist')
   })
 
@@ -18,7 +17,6 @@ describe('V2 Search Home Page', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.contains('Learn').click()
     cy.contains('Songs').click()
-    cy.wait(2000)
     cy.get('.bg-center > .group-hover:opacity-75 > .text-lg')
       .invoke('text')
       .then((_text) => {

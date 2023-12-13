@@ -16,26 +16,22 @@ describe('page tests', () => {
       Cypress.env('CYPRESS_FV_USERNAME'),
       Cypress.env('CYPRESS_FV_PASSWORD'),
     )
-    cy.wait(3000)
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(500)
   })
 
   it('View Create Page', () => {
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(500)
-    cy.contains('cc').click()
+    cy.contains('Explore Languages').click()
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
-    cy.contains('Custom Pages').click()
+    cy.contains('Edit custom pages').click()
     cy.contains('Create a Custom Page').click()
     cy.contains('Create a new custom page').should('exist')
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(500)
-    cy.contains('cc').click()
+
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
-    cy.contains('Custom Pages').click()
+    cy.contains('Edit custom pages').click()
     cy.contains('Create a Custom Page').click()
-    cy.contains('Create Page').click()
+    cy.contains('Create page').click()
 
     cy.contains('title must be').should('exist')
     cy.contains('Please enter a URL').should('exist')
@@ -45,16 +41,16 @@ describe('page tests', () => {
       'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
     )
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(500)
-    cy.contains('cc').click()
+
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
-    cy.contains('Custom Pages').click()
+    cy.contains('Edit custom pages').click()
     cy.contains('Create a Custom Page').click()
 
     cy.get('#title').type(Cypress._.uniqueId('Title_'))
     cy.get('#subtitle').type(Cypress._.uniqueId('Subtitle_'))
 
     cy.get('#slug').type(rString)
-    cy.contains('Create Page').click()
+    cy.contains('Create page').click()
   })
 })

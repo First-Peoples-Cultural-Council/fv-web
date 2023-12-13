@@ -43,10 +43,10 @@ describe('Phrase testing', () => {
     cy.on('uncaught:exception', () => false)
 
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-    cy.wait(1000)
+
     cy.contains('Dictionary', { timeout: 12000 }).click()
     cy.contains('Phrases', { timeout: 12000 }).click()
-    cy.wait(1000)
+
     cy.get('table tr td button')
       .first()
       .invoke('text')
@@ -60,7 +60,6 @@ describe('Phrase testing', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     _menunav()
-    cy.wait(2000)
 
     cy.get('table tr td button').first().click()
     cy.get('[data-testid=DictionaryDetailPresentationDrawer]').should(
@@ -81,7 +80,6 @@ describe('Phrase testing', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     _menunav()
-    cy.wait(2000)
 
     cy.contains('Categories').click()
     cy.contains('CATEGORIES').should('exist')
@@ -91,7 +89,6 @@ describe('Phrase testing', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     _menunav()
-    cy.wait(2000)
 
     cy.contains('Alphabet').click()
     cy.contains('ALPHABET').should('exist')
@@ -101,7 +98,6 @@ describe('Phrase testing', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
 
     _menunav()
-    cy.wait(2000)
 
     cy.contains('Words').click()
     cy.contains('WORDS').should('exist')
