@@ -30,23 +30,25 @@ function PhraseScramblerData({ kids }) {
     relatedAudio: [],
   })
 
-  const wordClicked = (word) => {
+  const wordClicked = (wordObj) => {
     if (gameCompleted && !validAnswer) {
       setGameCompleted(false)
     }
-    if (selectedWords.includes(word)) {
-      // Removing word from selected words list
+    if (selectedWords.some((obj) => obj.id === wordObj?.id)) {
+      // if word is already selected, removing word from selected words list
       setSelectedWords(
-        selectedWords.filter((selectedWord) => selectedWord !== word),
+        selectedWords.filter((selectedWord) => selectedWord.id !== wordObj?.id),
       )
     } else {
       // Adding word to the selected words list
-      setSelectedWords([...selectedWords, word])
+      setSelectedWords([...selectedWords, wordObj])
     }
   }
 
   const checkAnswer = () => {
-    const selectedAnswer = selectedWords.join(' ')
+    const selectedAnswer = selectedWords
+      .map((wordObj) => wordObj?.text)
+      .join(' ')
     if (selectedAnswer === inputData?.title) {
       setValidAnswer(true)
     }
@@ -100,10 +102,14 @@ function PhraseScramblerData({ kids }) {
       title: newPhrase?.title,
       relatedAudio: newPhrase?.relatedAudio.slice(0, 3), // take at max 3 audio files for hints
     })
-    const correctAnswer = newPhrase?.title.split(' ')
-    const shuffledWords = arrayShuffle([...correctAnswer])
-    const partitionedWords = partitionArray(shuffledWords, MAX_ROW_LENGTH)
-    setJumbledWords(partitionedWords)
+    let correctAnswer = newPhrase?.title.split(' ')
+    correctAnswer = correctAnswer.map((text, index) => ({
+      id: index,
+      text,
+    }))
+    let shuffledWords = arrayShuffle([...correctAnswer])
+    shuffledWords = partitionArray(shuffledWords, MAX_ROW_LENGTH)
+    setJumbledWords(shuffledWords)
   }
 
   useEffect(() => {

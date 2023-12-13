@@ -30,6 +30,3 @@ export const partitionArray = (array, maxSize) => {
   }
   return partitionedArray
 }
-
-export const isWordInNestedArray = (array, word) =>
-  array.some((subArray) => subArray.includes(word))
