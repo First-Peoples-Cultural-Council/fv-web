@@ -21,7 +21,7 @@ function middlestuff(_translationwp) {
 
   cy.contains('Next step').click()
   cy.contains('Finish').click()
-
+  cy.contains('Dismiss').click()
   cy.contains('Edit').click()
 
   cy.contains('Edit words').click()
