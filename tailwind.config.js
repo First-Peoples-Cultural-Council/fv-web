@@ -46,6 +46,7 @@ module.exports = {
         'pulse-blur': 'pulse-blur 2.5s linear infinite',
       },
       borderWidth: {
+        thin: '0.5px',
         12: '12px',
       },
       fontSize: {

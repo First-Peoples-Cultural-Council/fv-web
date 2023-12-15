@@ -8,8 +8,9 @@ import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScrambler
 
 function PhraseScramblerContainer({ kids }) {
   const {
-    isInitialLoading,
-    translation,
+    isLoading,
+    translations,
+    relatedAudio,
     jumbledWords,
     selectedWords,
     gameCompleted,
@@ -17,12 +18,14 @@ function PhraseScramblerContainer({ kids }) {
     wordClicked,
     checkAnswer,
     resetGame,
+    newGame,
   } = PhraseScramblerData({ kids })
 
   return (
-    <Loading.Container isLoading={isInitialLoading}>
+    <Loading.Container isLoading={isLoading}>
       <PhraseScramblerPresentation
-        translation={translation}
+        translations={translations}
+        relatedAudio={relatedAudio}
         jumbledWords={jumbledWords}
         selectedWords={selectedWords}
         gameCompleted={gameCompleted}
@@ -30,6 +33,7 @@ function PhraseScramblerContainer({ kids }) {
         wordClicked={wordClicked}
         checkAnswer={checkAnswer}
         resetGame={resetGame}
+        newGame={newGame}
       />
     </Loading.Container>
   )

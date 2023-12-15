@@ -84,6 +84,7 @@ import TimesCircle from 'common/icons/TimesCircle'
 import TimesCircleSolid from 'common/icons/TimesCircleSolid'
 import Translate from 'common/icons/Translate'
 import Trash from 'common/icons/Trash'
+import TryAgain from 'common/icons/TryAgain'
 import Twitter from 'common/icons/Twitter'
 import UnorderedList from 'common/icons/UnorderedList'
 import UnfoldMore from 'common/icons/UnfoldMore'
@@ -217,6 +218,7 @@ function getIcon(iconName, iconStyling, title) {
     TimesCircleSolid,
     Translate,
     Trash,
+    TryAgain,
     Twitter,
     UnorderedList,
     UnfoldMore,
