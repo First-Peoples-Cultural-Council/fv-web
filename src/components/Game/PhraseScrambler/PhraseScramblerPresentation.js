@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import AudioButton from 'components/AudioButton'
 import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
+import { isWordInNestedArray } from 'common/utils/gameHelpers'
 
 function PhraseScramblerPresentation({
-  translation,
+  translations,
+  relatedAudio,
   jumbledWords,
   selectedWords,
   gameCompleted,
@@ -14,15 +17,25 @@ function PhraseScramblerPresentation({
   wordClicked,
   checkAnswer,
   resetGame,
+  newGame,
 }) {
-  const baseTextBlockStyling =
-    'border-black flex items-center justify-center m-2 px-4 py-2 rounded h-12 w-min-12'
-  const selectedOptionBoxesStyling = `${baseTextBlockStyling} bg-lime-200`
+  let gameStatus = ''
+  if (gameCompleted) {
+    gameStatus = validAnswer ? 'Won' : 'Lost'
+  }
 
+  // Conditional styling
+  const baseTextBlockStyling =
+    'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
   const baseButtonStyling =
-    'text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none'
-  const checkAnswerButtonStyling = `${baseButtonStyling} bg-blue-700 hover:bg-blue-800 focus:ring-blue-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`
-  const resetGameButtonStyling = `${baseButtonStyling} bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900`
+    'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-fv-charcoal hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
+  const checkAnswerButtonStyling = `${baseButtonStyling} bg-song text-white hover:bg-song-light`
+  let selectedBoxAdditionalStyling = 'bg-gray-100'
+  if (gameStatus === 'Won') {
+    selectedBoxAdditionalStyling = 'bg-word'
+  } else if (gameStatus === 'Lost') {
+    selectedBoxAdditionalStyling = 'bg-story'
+  }
 
   return (
     <section
@@ -38,97 +51,161 @@ function PhraseScramblerPresentation({
           <p className="italic text-fv-charcoal mt-2">Unscramble to win !!</p>
         </div>
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
-        {translation && jumbledWords.length ? (
-          <div className="mx-auto mt-16 border-solid border-2 w-1/2 md:w-2/3 sm:w-full rounded-md p-4 shadow-md">
-            <div className="header flex flex-row justify-between">
-              <div data-testid="translation">
-                <p className="my-2 text-left font-semibold">
-                  {translation || 'No translation available'}
-                </p>
-              </div>
-              <div>
-                {gameCompleted &&
-                  (validAnswer
-                    ? getIcon('CheckCircleSolid', 'h-6 w-6 fill-green')
-                    : getIcon('Exclamation', 'h-6 w-6 fill-red'))}
-              </div>
-            </div>
-            <hr />
-            <div data-testid="selected-option-boxes" className="flex flex-row">
-              {/* Placeholder till a user selects does any action to maintain styling. */}
-              {selectedWords?.length === 0 && (
-                <div className={`${selectedOptionBoxesStyling} bg-white`}>
-                  {' '}
+        {translations?.length && jumbledWords?.length ? (
+          <div>
+            <div className="mx-auto mt-16 w-1/2 md:w-2/3 sm:w-full rounded-lg bg-white shadow-md border-2 border-gray-50">
+              <div className="px-4 py-5 sm:p-6" data-testid="card-content">
+                <div className="header" data-testid="translations">
+                  {translations?.map((translation, index) => (
+                    <p key={translation} className="my-2 text-left text-xl">
+                      {/* Show ordered list if more than one translation is available, else just show one translation. */}
+                      {translations?.length > 1 && `${index + 1}.`}
+                      {translation || 'No translation available'}
+                    </p>
+                  ))}
                 </div>
-              )}
-              {/* Selected words */}
-              {selectedWords?.map((word) => (
-                <button
-                  type="button"
-                  key={`selectedWords-${word}`}
-                  className={selectedOptionBoxesStyling}
-                  onClick={() => wordClicked(word)}
-                  disabled={gameCompleted && validAnswer}
+                <div
+                  data-testid="selected-boxes"
+                  className={`shadow my-4 border-thin border-gray-300 rounded px-2 ${selectedBoxAdditionalStyling}`}
                 >
-                  {word}
-                </button>
-              ))}
-            </div>
-            <hr className="my-4" />
-            <div
-              data-testid="actions"
-              className="flex flex-row justify-between"
-            >
+                  {/* Placeholder till a user selects does any action to maintain styling. */}
+                  {selectedWords?.length === 0 && (
+                    <div className={`${baseTextBlockStyling} bg-transparent`}>
+                      {' '}
+                    </div>
+                  )}
+                  {/* Selected words */}
+                  {selectedWords?.map((row, _rowIdx) => (
+                    <div
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`selectedWordsRow-${_rowIdx}`} // NOSONAR
+                      className="flex flex-row "
+                    >
+                      {row?.map((wordObj) => (
+                        <button
+                          type="button"
+                          key={`selectedWords-${wordObj?.id}`}
+                          className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
+                          onClick={() => wordClicked(wordObj)}
+                          disabled={gameCompleted && validAnswer}
+                        >
+                          {wordObj?.text}
+                        </button>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                <div data-testid="jumbled-words">
+                  {/* Jumbled words, turns invisible if selected. */}
+                  {jumbledWords?.map((row, _rowIdx) => (
+                    <div
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`jumbledWordsRow-${_rowIdx}`} // NOSONAR
+                      className="flex flex-row"
+                    >
+                      {row?.map((wordObj) =>
+                        isWordInNestedArray(selectedWords, wordObj) ? (
+                          <div
+                            key={`disabledWords-${wordObj?.id}`}
+                            className={`${baseTextBlockStyling} invisible`}
+                          >
+                            {wordObj?.text}
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            key={`jumbledWords-${wordObj?.id}`}
+                            className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
+                            onClick={() => wordClicked(wordObj)}
+                            onKeyDown={() => wordClicked(wordObj)}
+                            disabled={gameCompleted && validAnswer}
+                          >
+                            {wordObj?.text}
+                          </button>
+                        ),
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
               <div
-                data-testid="available-option-boxes"
-                className="flex flex-row"
+                data-testid="card-footer"
+                className={`flex flex-row bg-gray-50 px-4 py-4 sm:px-6 ${
+                  !gameCompleted ? 'justify-end' : 'justify-center'
+                }`}
               >
-                {/* Jumbled words with different styling to denote if they have been added to the selectedWords list. */}
-                {jumbledWords?.map((word) =>
-                  selectedWords?.includes(word) ? (
+                {gameStatus === 'Won' && (
+                  <div>
+                    <p className="inline">
+                      {getIcon(
+                        'CheckCircleSolid',
+                        'h-8 w-8 inline fill-word mx-2',
+                      )}
+                      Great Job!
+                    </p>
+                    {relatedAudio?.length > 0 && (
+                      <AudioButton
+                        audioArray={relatedAudio}
+                        iconStyling="inline fill-current text-fv-charcoal-light hover:text-fv-charcoal h-6 w-6 ml-2"
+                        hoverTooltip
+                      />
+                    )}
+                  </div>
+                )}
+                {gameStatus === 'Lost' && (
+                  <div className="flex flex-row justify-around w-3/4">
                     <button
                       type="button"
-                      key={`disabledWords-${word}`}
-                      className={`${baseTextBlockStyling} bg-gray-700 text-white disabled cursor-default`}
+                      onClick={() => resetGame()}
+                      className="inline font-bold py-2 pl-4 pr-6 border-gray-200 shadow-md rounded-md"
                     >
-                      {word}
+                      {getIcon(
+                        'TryAgain',
+                        'h-8 w-8 inline fill-story mx-2 stroke-2',
+                      )}
+                      Try again!
                     </button>
-                  ) : (
+                    {relatedAudio?.length > 0 && (
+                      <div className="mt-4">
+                        <p className="inline align-center">
+                          Need a hint? Listen to the phrase:
+                        </p>
+                        <AudioButton
+                          audioArray={relatedAudio}
+                          iconStyling="inline fill-current text-fv-charcoal-light hover:text-fv-charcoal h-6 w-6"
+                          hoverTooltip
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+                {!gameCompleted && (
+                  <div data-testid="action-buttons">
                     <button
                       type="button"
-                      key={`jumbledWords-${word}`}
-                      className={`${baseTextBlockStyling} bg-gray-300`}
-                      onClick={() => wordClicked(word)}
-                      onKeyDown={() => wordClicked(word)}
-                      disabled={gameCompleted && validAnswer}
+                      onClick={() => checkAnswer()}
+                      className={checkAnswerButtonStyling}
                     >
-                      {word}
+                      Check
                     </button>
-                  ),
+                    <button
+                      type="button"
+                      onClick={() => resetGame()}
+                      className={baseButtonStyling}
+                    >
+                      Reset
+                    </button>
+                  </div>
                 )}
               </div>
-              <div data-testid="action-buttons" className="mt-2">
-                <button
-                  type="button"
-                  disabled={gameCompleted && validAnswer}
-                  onClick={() => checkAnswer()}
-                  className={
-                    gameCompleted && validAnswer
-                      ? `${checkAnswerButtonStyling} bg-gray-100 text-black cursor-not-allowed`
-                      : checkAnswerButtonStyling
-                  }
-                >
-                  Check
-                </button>
-                <button
-                  type="button"
-                  onClick={() => resetGame()}
-                  className={resetGameButtonStyling}
-                >
-                  Reset
-                </button>
-              </div>
             </div>
+            <button
+              type="button"
+              onClick={() => newGame()}
+              className={`${checkAnswerButtonStyling} mt-4 py-4 px-8`}
+            >
+              Load a new phrase
+            </button>
           </div>
         ) : (
           <p className="text-fv-charcoal mt-2">
@@ -151,10 +228,11 @@ function PhraseScramblerPresentation({
 }
 
 // PROPTYPES
-const { array, bool, func, string } = PropTypes
+const { array, bool, func } = PropTypes
 
 PhraseScramblerPresentation.propTypes = {
-  translation: string,
+  translations: array,
+  relatedAudio: array,
   jumbledWords: array,
   selectedWords: array,
   gameCompleted: bool,
@@ -162,6 +240,7 @@ PhraseScramblerPresentation.propTypes = {
   wordClicked: func,
   checkAnswer: func,
   resetGame: func,
+  newGame: func,
 }
 
 export default PhraseScramblerPresentation

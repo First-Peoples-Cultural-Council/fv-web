@@ -21,3 +21,12 @@ export const importAll = (required) => {
   })
   return imports
 }
+
+// Partition a large array into smaller arrays
+export const partitionArray = (array, maxSize) => {
+  const partitionedArray = []
+  for (let i = 0; i < array.length; i += maxSize) {
+    partitionedArray.push(array.slice(i, i + maxSize))
+  }
+  return partitionedArray
+}
