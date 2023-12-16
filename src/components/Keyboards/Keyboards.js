@@ -263,9 +263,15 @@ function Keyboards() {
             If you are interested in the keyboard for a particular FirstVoices
             language site, click on your language site name in the list below to
             go to the page for your keyboard on Keyman. You can install directly
-            from these pages. List of keyboards corresponding to FirstVoices
-            language sites If you are looking for another keyboard, you can go
-            directly to{' '}
+            from these pages.
+          </p>
+          <p className={paraStyle}>
+            {' '}
+            List of keyboards corresponding to FirstVoices language sites
+          </p>
+          <p className={paraStyle}>
+            {' '}
+            If you are looking for another keyboard, you can go directly to{' '}
             <a
               href="http://keyman.com/"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
