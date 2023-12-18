@@ -12,6 +12,7 @@ function LandingKeyboardsPresentation({ data }) {
     fvKeyboards,
     image,
     text,
+    url,
     urlLabel,
     bg,
   } = data?.settings
@@ -75,10 +76,8 @@ function LandingKeyboardsPresentation({ data }) {
           <h2 className="text-4xl text-center font-semibold">{title}</h2>
           <p className="pt-8 pb-4 m-4 text-center">{text}</p>
           <a
-            href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705752/Install+fonts+and+keyboards+for+Indigenous+languages"
+            href={url}
             className="bg-phrase rounded-full text-center py-4 w-32"
-            rel="noopener noreferrer"
-            target="_blank"
           >
             {urlLabel}
           </a>
