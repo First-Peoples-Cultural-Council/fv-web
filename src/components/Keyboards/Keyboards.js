@@ -66,8 +66,10 @@ function Keyboards() {
             <li>
               Click here to download the{' '}
               <a
-                href="mailto:hello@firstvoices.com"
+                href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/bc-visual-identity/bc-sans"
                 className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                target="_blank"
+                rel="noreferrer noopener"
               >
                 BC Sans
               </a>{' '}
@@ -121,6 +123,8 @@ function Keyboards() {
             <a
               href="mailto:hello@firstvoices.com"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              target="_blank"
+              rel="noreferrer noopener"
             >
               hello@firstvoices.com
             </a>
