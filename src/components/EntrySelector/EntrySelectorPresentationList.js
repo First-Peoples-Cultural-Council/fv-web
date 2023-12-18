@@ -75,7 +75,10 @@ function EntrySelectorPresentationList({
                         <td className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal">
                           {item.title}
                         </td>
-                        <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left">
+                        <td
+                          className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left"
+                          data-testid="DashboardEntrySelectorRow"
+                        >
                           {item?.translations ? (
                             <ol className="text-fv-charcoal">
                               {item.translations.map((translation, i) => (
