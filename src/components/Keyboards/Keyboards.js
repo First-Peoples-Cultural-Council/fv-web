@@ -128,6 +128,8 @@ function Keyboards() {
             >
               hello@firstvoices.com
             </a>
+            {/*
+             */}
             .
           </p>
           <h2 className={headerStyle}>
@@ -169,14 +171,13 @@ function Keyboards() {
           </h2>
           <p className={paraStyle}>
             Installing the FirstVoices keyboard for your language on a computer
-            will be done through a keyboard software called Keyman. Go to
+            will be done through a keyboard software called Keyman. Go to{' '}
             <a
               href="http://keyman.com/"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
               target="_blank"
               rel="noreferrer noopener"
             >
-              {' '}
               keyman.com
             </a>{' '}
             and follow along with the instructions in the following videos. If
@@ -219,6 +220,8 @@ function Keyboards() {
             >
               hello@firstvoices.com
             </a>
+            {/*
+             */}
             .
           </p>
           <iframe
@@ -308,6 +311,8 @@ function Keyboards() {
             >
               Contribute to FirstVoices keyboards
             </a>
+            {/*
+             */}
             .
           </p>
         </div>
