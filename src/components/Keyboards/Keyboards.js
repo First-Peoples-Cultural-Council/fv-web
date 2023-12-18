@@ -173,7 +173,7 @@ function Keyboards() {
             Installing the FirstVoices keyboard for your language on a computer
             will be done through a keyboard software called Keyman. Go to{' '}
             <a
-              href="http://keyman.com/"
+              href="https://keyman.com/"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
               target="_blank"
               rel="noreferrer noopener"
@@ -280,7 +280,7 @@ function Keyboards() {
             {' '}
             If you are looking for another keyboard, you can go directly to{' '}
             <a
-              href="http://keyman.com/"
+              href="https://keyman.com/"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
               target="_blank"
               rel="noreferrer noopener"
