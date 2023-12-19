@@ -102,6 +102,7 @@ const primaryNavigationItems = (currentSitename) => {
         return (
           <RequireAuth key={item.name} siteMembership={item.auth}>
             <Link
+              data-testid={`DashboardPresentation${item.name}`}
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
                 match

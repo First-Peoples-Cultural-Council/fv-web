@@ -342,6 +342,7 @@ function DictionaryCrudPresentation({
         <section className="flex w-full justify-end">
           <div className="space-x-2 flex items-center h-10">
             <button
+              data-testid="DashboardPreviousCancelButton"
               type="button"
               onClick={backStep}
               className="bg-white h-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
@@ -353,6 +354,7 @@ function DictionaryCrudPresentation({
               <span>{activeStep < 1 ? 'Cancel' : 'Previous step'}</span>
             </button>
             <button
+              data-testid="DashboardFinishButton"
               type="button"
               onClick={
                 activeStepNumber !== lastStep
@@ -365,6 +367,7 @@ function DictionaryCrudPresentation({
               <span>Finish</span>
             </button>
             <button
+              data-testid="DashboardNextStepButton"
               type="button"
               onClick={forwardStep}
               className={`${

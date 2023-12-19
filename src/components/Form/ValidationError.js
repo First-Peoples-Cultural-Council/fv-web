@@ -7,7 +7,7 @@ import { ErrorMessage } from '@hookform/error-message'
 function ValidationError({ errors, nameId }) {
   return (
     errors?.[nameId] && (
-      <div className="text-red-500">
+      <div className="text-red-500" data-testid="DashboardFormErrorMessage">
         <ErrorMessage errors={errors} name={nameId} />
       </div>
     )

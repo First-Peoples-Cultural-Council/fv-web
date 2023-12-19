@@ -56,6 +56,7 @@ function CategoriesBrowserPresentation({
               <ul className="flex-col divide-y divide-gray-200 bg-white">
                 {filteredCategories?.map((category) => (
                   <button
+                    data-testid="DashboardCategoryRow"
                     type="button"
                     key={category.id}
                     onClick={() => setCurrentCategory(category)}
