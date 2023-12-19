@@ -156,17 +156,19 @@ function SongsAndStoriesPresentation({
           {items?.pages?.map((page) => (
             <React.Fragment key={page.pageNumber}>
               {page.results.map((item, index) => (
-                <div
+                <button
                   key={item.id}
-                  role="button"
+                  type="button"
                   tabIndex={index}
-                  className="cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
+                  className="w-full cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
                   onClick={() => handleItemClick(item)}
                   onKeyDown={() => handleItemClick(item)}
                   data-testid="SongAndStoriesListRow"
                 >
-                  <div className="text-xl">{item?.title}</div>
-                  <div className="text-base text-fv-charcoal-light">
+                  <div className="text-xl flex justify-start">
+                    {item?.title}
+                  </div>
+                  <div className="text-base text-fv-charcoal-light flex justify-start">
                     {item?.titleTranslation}
                   </div>
                   {item?.author?.length > 0 && (
@@ -174,7 +176,7 @@ function SongsAndStoriesPresentation({
                       by {item?.author}
                     </div>
                   )}
-                </div>
+                </button>
               ))}
 
               {showNoResultsMessage(page)}
