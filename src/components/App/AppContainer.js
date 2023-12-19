@@ -13,6 +13,7 @@ import AppWrapper from 'components/App/AppWrapper'
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
 import ErrorHandler from 'components/ErrorHandler'
+import Keyboards from 'components/Keyboards'
 import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
 import Loading from 'components/Loading'
@@ -54,6 +55,14 @@ function AppContainer() {
                 element={
                   <AppWrapper>
                     <AboutFV />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="keyboards"
+                element={
+                  <AppWrapper>
+                    <Keyboards />
                   </AppWrapper>
                 }
               />
