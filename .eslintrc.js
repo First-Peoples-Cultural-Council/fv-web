@@ -22,7 +22,14 @@ module.exports = {
       presets: ['@babel/preset-react'],
     },
   },
-  plugins: ['prettier', 'react', '@babel', 'cypress', 'testcafe'],
+  plugins: [
+    'prettier',
+    'react',
+    '@babel',
+    'cypress',
+    'testcafe',
+    'custom-rules',
+  ],
   ignorePatterns: ['webpack/*.js', 'testcafe/*.js'],
   rules: {
     'consistent-return': ['warn'],
@@ -33,6 +40,7 @@ module.exports = {
     'jsx-a11y/alt-text': ['warn'],
     'jsx-a11y/aria-role': ['warn'],
     'jsx-a11y/media-has-caption': ['off'],
+    'custom-rules/require-data-testid': ['error'],
   },
   settings: {
     react: {
