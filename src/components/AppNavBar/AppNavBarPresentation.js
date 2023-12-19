@@ -119,7 +119,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           >
             <div
               data-testid="BetaModalContent"
-              className="bg-white rounded-lg shadow-lg px-6 py-32"
+              className="bg-white rounded-lg shadow-lg p-6 sm:p-14"
             >
               <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
                 Welcome to the new FirstVoices!
@@ -139,7 +139,10 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 </a>
                 {/*
                  */}
-                . Having issues with the new version? <br />
+                .
+              </p>
+              <p className="mx-auto mt-2 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                Having issues with the new version? <br />
                 Please contact us{' '}
                 <a
                   href="mailto:hello@firstvoices.com"
@@ -156,23 +159,25 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
 
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
-            {createMenuItem('About', 'About', ABOUT_LINK)}
+            <Link to="/about" className="inline-flex items-center px-8 py-2">
+              {getIcon('About', 'fill-current h-full w-6 mr-2')}About
+            </Link>
             {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
-            {isHome &&
-              isGuest &&
+            {isGuest &&
               createMenuItem('Sign in / Register', 'Login', '', false, login)}
-            {isHome ? (
-              <li>
+            {isHome && (
+              <li className="mr-4">
                 <Link
                   to="/languages"
-                  className="flex bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
+                  className="inline-flex items-center bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
                 >
-                  Explore Languages{getIcon('ChevronRight', 'fill-current h-6')}
+                  Explore Languages
+                  {getIcon('ChevronRight', 'fill-current h-6 w-6 ml-2')}
                 </Link>
               </li>
-            ) : (
-              <UserMenu.Container />
             )}
+
+            {!isGuest && <UserMenu.Container />}
           </ul>
           {/* Landing Mobile Menu Button */}
           <div

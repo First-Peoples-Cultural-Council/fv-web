@@ -10,17 +10,18 @@ import { ASSISTANT, MEMBER, EDITOR } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site, logout }) {
   const logoutButton = (
-    <div className="flex content-end p-2 text-sm font-medium text-gray-300 hover:bg-fv-charcoal-light hover:text-white">
+    <div className="px-2 py-4 space-y-1">
       <button
         type="button"
         onClick={logout}
-        className="space-y-1 flex w-full block py-4 px-2 "
+        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
       >
         {getIcon(
           'LogOut',
+
           'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
         )}
-        <span>SIGN OUT</span>
+        <span>Sign Out</span>
       </button>
     </div>
   )
@@ -70,21 +71,27 @@ const primaryNavigationItems = (currentSitename) => {
     },
     {
       name: 'Create',
-      href: 'create',
+      href: `/${currentSitename}/dashboard/create`,
       icon: 'Create',
       auth: ASSISTANT,
     },
     {
       name: 'Edit',
-      href: 'edit',
+      href: `/${currentSitename}/dashboard/edit`,
       icon: 'Pencil',
       auth: EDITOR,
     },
     {
       name: 'Media',
-      href: 'media',
+      href: `/${currentSitename}/dashboard/media`,
       icon: 'Microphone',
       auth: ASSISTANT,
+    },
+    {
+      name: 'Reports',
+      href: `/${currentSitename}/dashboard/reports`,
+      icon: 'Reports',
+      auth: EDITOR,
     },
   ]
   return (
@@ -95,6 +102,7 @@ const primaryNavigationItems = (currentSitename) => {
         return (
           <RequireAuth key={item.name} siteMembership={item.auth}>
             <Link
+              data-testid={`DashboardPresentation${item.name}`}
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
                 match

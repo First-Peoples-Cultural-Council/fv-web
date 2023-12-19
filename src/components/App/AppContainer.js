@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 // FPCC
+import AboutFV from 'components/AboutFV'
 import AppData from 'components/App/AppData'
 import { AudiobarProvider } from 'context/AudiobarContext'
 import { NotificationProvider } from 'context/NotificationContext'
@@ -12,6 +13,7 @@ import AppWrapper from 'components/App/AppWrapper'
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
 import ErrorHandler from 'components/ErrorHandler'
+import Keyboards from 'components/Keyboards'
 import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
 import Loading from 'components/Loading'
@@ -33,13 +35,7 @@ function AppContainer() {
           content="Indigenous Language Revitalization Platform. An online space for Indigenous communities to share and promote language, oral culture, and linguistic history."
         />
       </Helmet>
-      <Sentry.ErrorBoundary
-        fallback={
-          <AppWrapper isHome>
-            <ErrorHandler.Container />
-          </AppWrapper>
-        }
-      >
+      <Sentry.ErrorBoundary fallback={<ErrorHandler.Container />}>
         <NotificationProvider>
           <AudiobarProvider>
             <NotificationBanner />
@@ -51,6 +47,22 @@ function AppContainer() {
                     <RequireAuth siteMembership={GENERAL} withMessage>
                       <LandingPage.Container />
                     </RequireAuth>
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="about"
+                element={
+                  <AppWrapper>
+                    <AboutFV />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="keyboards"
+                element={
+                  <AppWrapper>
+                    <Keyboards />
                   </AppWrapper>
                 }
               />
@@ -88,16 +100,24 @@ function AppContainer() {
                   </AppWrapper>
                 }
               />
+              {/* Redirect legacy URLs */}
               <Route
-                path="explore/FV/Workspaces/Data/:family/:language/:dialect/*"
+                path="t/:area/:dialect/*"
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
               <Route
-                path="explore/FV/sections/Data/:family/:language/:dialect/*"
+                path="explore/FV/:area/Data"
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
+              <Route
+                path=":exploreOrKids/FV/:area/Data/:family/:language/:dialect/*"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
+              {/* End of legacy URLs */}
+
               <Route path=":sitename/*" element={<Site.Container />} />
             </Routes>
           </AudiobarProvider>

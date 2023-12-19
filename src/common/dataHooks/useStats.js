@@ -10,15 +10,7 @@ export function useStats() {
   const response = useQuery([STATS, sitename], () =>
     api.stats.get({ sitename }),
   )
-  const types = [
-    'words',
-    'phrases',
-    'songs',
-    'stories',
-    'images',
-    'audio',
-    'video',
-  ]
+  const types = ['words', 'phrases', 'songs', 'stories']
   const temporal = response?.data?.temporal
   const aggregate = response?.data?.aggregate
 

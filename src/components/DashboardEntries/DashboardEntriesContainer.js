@@ -1,39 +1,53 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardEntriesData from 'components/DashboardEntries/DashboardEntriesData'
 import DashboardEntriesPresentation from 'components/DashboardEntries/DashboardEntriesPresentation'
 
-function DashboardEntriesContainer() {
+function DashboardEntriesContainer({ advancedSearch = false }) {
   const {
+    emptyListMessage,
+    entryLabel,
     infiniteScroll,
+    initialSearchType,
+    isDictionary,
     isLoadingEntries,
     items,
     loadRef,
+    removeFilters,
     searchType,
     setSearchType,
-    entryLabel,
-    emptyListMessage,
-    showTypeSelector,
-    initialSearchType,
-  } = DashboardEntriesData()
+    setShowAdvancedSearch,
+    showAdvancedSearch,
+  } = DashboardEntriesData({ advancedSearch })
 
   return (
     <div id="DashboardEntriesContainer">
       <DashboardEntriesPresentation
+        emptyListMessage={emptyListMessage}
+        entryLabel={entryLabel}
         infiniteScroll={infiniteScroll}
+        initialSearchType={initialSearchType}
+        isDictionary={isDictionary}
         isLoadingEntries={isLoadingEntries}
         items={items}
         loadRef={loadRef}
+        removeFilters={removeFilters}
         searchType={searchType}
-        emptyListMessage={emptyListMessage}
         setSearchType={setSearchType}
-        showTypeSelector={showTypeSelector}
-        initialSearchType={initialSearchType}
-        entryLabel={entryLabel}
+        setShowAdvancedSearch={setShowAdvancedSearch}
+        showAdvancedSearch={showAdvancedSearch}
       />
     </div>
   )
+}
+
+// PROPTYPES
+const { bool } = PropTypes
+
+DashboardEntriesContainer.propTypes = {
+  advancedSearch: bool,
 }
 
 export default DashboardEntriesContainer

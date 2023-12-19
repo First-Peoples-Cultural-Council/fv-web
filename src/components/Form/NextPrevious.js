@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import { useUserStore } from 'context/UserContext'
-import { ASSISTANT } from '../../common/constants/roles'
+import {
+  PRIMARY_BUTTON_STYLE,
+  SECONDARY_BUTTON_STYLE,
+} from 'common/constants/styles'
+import { ASSISTANT } from 'common/constants/roles'
 
 function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
   const [activeStep, setActiveStep] = useSearchParamsState({
@@ -32,7 +36,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
       {activeStepNumber > 0 ? (
         <button
           type="button"
-          className="bg-white border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+          className={SECONDARY_BUTTON_STYLE}
           onClick={() => onStepClick({ forward: false })}
         >
           {getIcon('Next', 'fill-current rotate-180 h-5 mr-2')}{' '}
@@ -44,7 +48,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
       {activeStepNumber !== numberOfSteps - 1 ? (
         <button
           type="button"
-          className="ml-5 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+          className={PRIMARY_BUTTON_STYLE}
           onClick={() => onStepClick({ forward: true })}
         >
           <span>Next step</span> {getIcon('Next', 'fill-current h-5 ml-2')}

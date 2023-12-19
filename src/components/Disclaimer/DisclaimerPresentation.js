@@ -13,7 +13,7 @@ function DisclaimerPresentation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="Disclaimer" accentColor="primary" />
-        <div className="max-w-5xl mx-auto text-fv-charcoal text-center space-y-4 py-8">
+        <div className="max-w-5xl mx-auto text-fv-charcoal space-y-4 py-8">
           <div>
             <h2 className={headerStyle}>Liability and Warranty Disclaimer</h2>
             <p className={paraStyle}>
@@ -21,8 +21,8 @@ function DisclaimerPresentation() {
               language data or multimedia published on the FirstVoices web site.
               The linguistic information and supporting multimedia is deemed
               reliable, but not guaranteed. Everything on this site is provided
-              "As Is" without warranty of any kind including all implied
-              warranties, fitness for a particular purpose, title and
+              &ldquo;As Is&ldquo; without warranty of any kind including all
+              implied warranties, fitness for a particular purpose, title and
               non-infringement. Neither FirstVoices nor FPCC/FPHLCC/FPCF nor any
               of its associated Indigenous language community partners shall be
               liable for any direct, incidental, consequential, indirect or

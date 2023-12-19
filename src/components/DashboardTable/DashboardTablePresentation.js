@@ -14,7 +14,7 @@ function DashboardTablePresentation({
     <Loading.Container isLoading={isLoading}>
       <section
         data-testid="DashboardTablePresentation"
-        className="mx-auto h-full"
+        className="mx-auto h-full px-8"
       >
         <div className="bg-white shadow rounded-md overflow-hidden">
           {title && (

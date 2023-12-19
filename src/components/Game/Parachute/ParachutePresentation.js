@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getMediaUrl } from 'common/utils/urlHelpers'
 import { convertMsToTimeWords } from 'common/utils/stringHelpers'
 import { importAll } from 'common/utils/functionHelpers'
 import SectionTitle from 'components/SectionTitle'
+import { AUDIO, ORIGINAL } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function ParachutePresentation({
   alphabet,
@@ -19,6 +20,14 @@ function ParachutePresentation({
   const [guessesRemaining, setGuessesRemaining] = useState(7)
   const [startTime, setStartTime] = useState(Date.now())
   const [currentPuzzle, setCurrentPuzzle] = useState(puzzle)
+
+  const startNewGame = () => {
+    newPuzzle()
+    setGuessedLetters([])
+    setGameStatus('IN-PROGRESS')
+    setGuessesRemaining(7)
+    setStartTime(Date.now())
+  }
 
   /**
    * Restart with the same puzzle
@@ -45,7 +54,6 @@ function ParachutePresentation({
           letterFound = true
           return { ...piece, found: true }
         }
-        // If there are any remaining pieces to find set isComplete to false
         if (piece.found === false) {
           newGameStatus = 'IN-PROGRESS'
         }
@@ -66,11 +74,12 @@ function ParachutePresentation({
   }
 
   const renderKeyboard = () =>
-    alphabet.map((letter, index) => {
+    alphabet.map((letter) => {
       const guessed = guessedLetters.includes(letter)
       return (
-        <div
-          key={letter + index}
+        <button
+          type="button"
+          key={letter.id}
           className={`${
             guessed
               ? 'bg-secondary text-white'
@@ -79,7 +88,7 @@ function ParachutePresentation({
           onClick={() => guessLetter(letter)}
         >
           {letter}
-        </div>
+        </button>
       )
     })
 
@@ -99,12 +108,13 @@ function ParachutePresentation({
       <p>Oh no! You&apos;re out of guesses.</p>
       <div>
         Don&apos;t quit now.{' '}
-        <span
+        <button
+          type="button"
           className="inline-flex underline cursor-pointer"
           onClick={restart}
         >
           Try again.
-        </span>
+        </button>
       </div>
     </h4>
   )
@@ -117,81 +127,117 @@ function ParachutePresentation({
     ),
   )
 
+  useEffect(() => {
+    setCurrentPuzzle(puzzle)
+  }, [puzzle, newPuzzle])
+
   return (
     <section
       className="py-2 md:py-4 lg:py-8 bg-white"
       data-testid="SongsAndStoriesPresentation"
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
-        <div>
-          <SectionTitle.Presentation title="PARACHUTE" accentColor="primary" />
-          <p className="text-fv-charcoal mt-2">
-            Guess the puzzle to make it to the beach
-          </p>
-        </div>
-
-        <img
-          src={gameImages[`${guessesRemaining}.png`]}
-          className="max-w-3xl mx-auto object-cover h-96 w-full"
-        />
-
-        <div className="inline-block">
-          {currentPuzzle.map((piece, index) =>
-            piece?.letter === ' ' ? (
-              <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
-            ) : (
-              <div
-                key={index}
-                className={`${
-                  piece?.found ? 'text-primary' : 'text-white'
-                } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
+        {/* If the puzzle length is zero then render an error message, else render the puzzle. */}
+        {puzzle.length === 0 ? (
+          <div>
+            <SectionTitle.Presentation
+              title="PARACHUTE"
+              accentColor="primary"
+            />
+            <p className="text-fv-charcoal mt-2">
+              This site does not currently have enough dictionary content for
+              the parachute game.
+              <br />
+              Please contact{' '}
+              <a
+                href="mailto:hello@firstvoices.com"
+                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
               >
-                <div>{piece?.found ? piece?.letter : '_'}</div>
-              </div>
-            ),
-          )}
-        </div>
+                hello@firstvoices.com
+              </a>{' '}
+              for more information.
+            </p>
+          </div>
+        ) : (
+          <div>
+            <div>
+              <SectionTitle.Presentation
+                title="PARACHUTE"
+                accentColor="primary"
+              />
+              <p className="text-fv-charcoal mt-2">
+                Guess the puzzle to make it to the beach
+              </p>
+            </div>
+            <img
+              src={gameImages[`${guessesRemaining}.png`]}
+              className="max-w-3xl mx-auto object-cover h-96 w-full"
+              alt={`You have ${guessesRemaining} guesses remaining.`}
+            />
 
-        <audio
-          className="max-w-md mx-auto my-4"
-          src={getMediaUrl({ id: audio, type: 'audio' })}
-          controls
-        />
-        <div>Hint: {translation}</div>
+            <div className="inline-block">
+              {currentPuzzle.map((piece) =>
+                piece?.letter === ' ' ? (
+                  <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
+                ) : (
+                  <div
+                    key={piece.id}
+                    className={`${
+                      piece?.found ? 'text-primary' : 'text-white'
+                    } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
+                  >
+                    <div>{piece?.found ? piece?.letter : '_'}</div>
+                  </div>
+                ),
+              )}
+            </div>
 
-        <div className="w-full m-auto max-w-lg my-4">
-          {gameStatus === 'IN-PROGRESS' && renderKeyboard()}
-          {gameStatus === 'SUCCESS' && renderSuccess()}
-          {gameStatus === 'FAIL' && renderFail()}
-        </div>
+            <audio
+              className="max-w-md mx-auto my-4"
+              src={getMediaPath({
+                mediaObject: audio,
+                type: AUDIO,
+                size: ORIGINAL,
+              })}
+              controls
+            />
+            <div>Hint: {translation}</div>
 
-        <div className="mx-2.5">
-          <button
-            type="button"
-            onClick={newPuzzle}
-            className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white mr-2.5"
-          >
-            New Puzzle
-          </button>
-          <button
-            type="button"
-            className="inline-flex items-center bg-secondary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
-            onClick={restart}
-          >
-            Restart
-          </button>
-        </div>
+            <div className="w-full m-auto max-w-lg my-4">
+              {gameStatus === 'IN-PROGRESS' && renderKeyboard()}
+              {gameStatus === 'SUCCESS' && renderSuccess()}
+              {gameStatus === 'FAIL' && renderFail()}
+            </div>
+
+            <div className="mx-2.5">
+              <button
+                type="button"
+                onClick={startNewGame}
+                className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white mr-2.5"
+              >
+                New Puzzle
+              </button>
+              <button
+                type="button"
+                className="inline-flex items-center bg-secondary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
+                onClick={restart}
+              >
+                Restart
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
 }
 
 // PROPTYPES
-const { any, array, func, string } = PropTypes
+const { any, array, func, object } = PropTypes
 ParachutePresentation.propTypes = {
   puzzle: array,
   translation: any,
-  audio: string,
+  audio: object,
   newPuzzle: func,
   alphabet: array,
 }

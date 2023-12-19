@@ -27,6 +27,7 @@ export const isFileType = (file, type) =>
 
 // Very basic function for making strings plural - does NOT account for variations in pluralization e.g. mouse -> mice
 export const makePlural = (string) => {
+  if (typeof string !== 'string' || string?.length < 1) return ''
   const lastCharacter = string.slice(-1)
   if (lastCharacter === 'y') {
     const plural = string.slice(0, -1)
@@ -49,4 +50,18 @@ export const makePlural = (string) => {
     return `${string}S`
   }
   return `${string}s`
+}
+
+export const updateSearchParams = (originalParams, newParams) => {
+  // maintains any existing url parameters, and updates the provided ones
+  // originalParams - a searchParams object from useSearchParams
+  // newParams - a dictionary of params to update, like { key: value }
+  const updatedParams = {
+    ...[...originalParams.entries()].reduce(
+      (o, [key, value]) => ({ ...o, [key]: value }),
+      {},
+    ),
+    ...newParams,
+  }
+  return updatedParams
 }

@@ -1,24 +1,28 @@
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import {
+  DOMAIN,
+  DOMAIN_BOTH,
   TYPES,
   TYPE_DICTIONARY,
   TYPE_PHRASE,
   TYPE_WORD,
 } from 'common/constants'
 
-function DashboardEntriesData() {
-  const [searchParams] = useSearchParams()
+function DashboardEntriesData({ advancedSearch }) {
+  const [searchParams, setSearchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
+  const domain = searchParams.get([DOMAIN]) || DOMAIN_BOTH
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
   const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
       initialSearchType: urlSearchType,
     })
-  const showTypeSelector =
+  const isDictionary =
     urlSearchType === TYPE_WORD ||
     urlSearchType === TYPE_PHRASE ||
     urlSearchType === TYPE_DICTIONARY
@@ -28,19 +32,36 @@ function DashboardEntriesData() {
     searchParams,
   })
 
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(advancedSearch)
+
+  useEffect(() => {
+    if (Array.from(searchParams).length > 1 && !showAdvancedSearch) {
+      setShowAdvancedSearch(true)
+    }
+  }, [searchParams, showAdvancedSearch])
+
   return {
-    isLoadingEntries: isInitialLoading,
-    items: data,
-    infiniteScroll,
-    loadRef: searchTerm ? loadRef : null,
-    searchType,
-    setSearchType: setSearchTypeInUrl,
-    entryLabel: getSearchTypeLabel({ searchType }),
     emptyListMessage: searchTerm
       ? 'Sorry, there are no results for this search.'
       : 'Please enter your search above.',
-    showTypeSelector,
+    entryLabel: getSearchTypeLabel({ searchType }),
+    infiniteScroll,
     initialSearchType: urlSearchType,
+    isDictionary,
+    isLoadingEntries: isInitialLoading,
+    items: data,
+    loadRef: searchTerm ? loadRef : null,
+    removeFilters: () => {
+      setSearchParams({
+        q: searchTerm,
+        [TYPES]: urlSearchType,
+        [DOMAIN]: domain,
+      })
+    },
+    searchType,
+    setSearchType: setSearchTypeInUrl,
+    setShowAdvancedSearch,
+    showAdvancedSearch,
   }
 }
 

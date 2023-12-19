@@ -9,7 +9,7 @@ import AudioMinimal from 'components/AudioMinimal'
 import LazyImage from 'components/LazyImage'
 
 function DictionaryGridTilePresentationKids({ entry }) {
-  const shortTitle = entry?.title.length < 18
+  const shortTitle = entry?.title?.length < 18
   return (
     <div
       className="w-full bg-white rounded-lg mx-auto flex justify-center relative overflow-hidden"
@@ -19,7 +19,9 @@ function DictionaryGridTilePresentationKids({ entry }) {
       <div className="absolute top-2 right-2 print:hidden">
         <Link
           className="text-fv-charcoal"
-          to={`/${entry?.sitename}/kids/${makePlural(entry.type)}/${entry.id}`}
+          to={`/${entry?.sitename}/kids/${makePlural(entry?.type)}/${
+            entry?.id
+          }`}
         >
           <span className="sr-only">Full screen</span>
           {getIcon('Fullscreen', 'fill-current h-4 w-4 hover:cursor-pointer')}
@@ -37,10 +39,10 @@ function DictionaryGridTilePresentationKids({ entry }) {
             }`}
           >
             <Link
-              key={entry.id}
+              key={entry?.id}
               className="flex items-center justify-center h-72 w-full rounded-l-lg"
-              to={`/${entry?.sitename}/kids/${makePlural(entry.type)}/${
-                entry.id
+              to={`/${entry?.sitename}/kids/${makePlural(entry?.type)}/${
+                entry?.id
               }`}
             >
               <LazyImage
@@ -66,12 +68,13 @@ function DictionaryGridTilePresentationKids({ entry }) {
               }`}
             >
               <Link
-                key={entry.id}
-                to={`/${entry?.sitename}/kids/${makePlural(entry.type)}/${
-                  entry.id
+                data-testid="DictionaryGridTileKids"
+                key={entry?.id}
+                to={`/${entry?.sitename}/kids/${makePlural(entry?.type)}/${
+                  entry?.id
                 }`}
               >
-                {entry.title}
+                {entry?.title}
               </Link>
             </div>
             {/* Translations/Definitions */}

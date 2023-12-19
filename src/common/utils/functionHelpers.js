@@ -1,18 +1,13 @@
-// Based on Fisher–Yates shuffle
+// Based on Durstenfeld shuffle
 export const arrayShuffle = (array) => {
-  if (array?.length < 1) return
-  let m = array.length
-  let t = 0
-  let i = 0
-  while (m) {
-    m -= 1
-    i = Math.floor(Math.random() * m)
-    t = array[m]
-    // eslint-disable-next-line no-param-reassign
-    array[m] = array[i]
-    // eslint-disable-next-line no-param-reassign
-    array[i] = t
+  const shuffledArray = array.slice()
+  for (let current = shuffledArray.length - 1; current > 0; current -= 1) {
+    const randomIndex = Math.floor(Math.random() * (current + 1))
+    const temp = shuffledArray[current]
+    shuffledArray[current] = shuffledArray[randomIndex]
+    shuffledArray[randomIndex] = temp
   }
+  return shuffledArray
 }
 
 /*
@@ -25,4 +20,13 @@ export const importAll = (required) => {
     imports[item.replace('./', '')] = required(item)
   })
   return imports
+}
+
+// Partition a large array into smaller arrays
+export const partitionArray = (array, maxSize) => {
+  const partitionedArray = []
+  for (let i = 0; i < array.length; i += maxSize) {
+    partitionedArray.push(array.slice(i, i + maxSize))
+  }
+  return partitionedArray
 }

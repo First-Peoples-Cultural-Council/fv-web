@@ -47,6 +47,7 @@ function TextArrayField({
                     Delete {label.slice(0, -1)}
                   </span>
                   <button
+                    data-testid={`Delete ${label.slice(0, -1)}`}
                     type="button"
                     aria-label={`Delete ${label.slice(0, -1)}`}
                     className="inline-flex"

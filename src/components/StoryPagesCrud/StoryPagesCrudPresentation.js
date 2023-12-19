@@ -12,9 +12,11 @@ import SortableContainer from 'components/SortableContainer'
 import SortableItem from 'components/SortableItem'
 import { useNotification } from 'context/NotificationContext'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
+import { PRIMARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function StoryPagesCrudPresentation({
   addPageOpen,
+  deleteHandler,
   goToStep,
   nextPageOrderNumber,
   pageIds,
@@ -75,6 +77,7 @@ function StoryPagesCrudPresentation({
                           submitHandler={(event) =>
                             submitAndClose(event, close)
                           }
+                          deleteHandler={deleteHandler}
                           cancelHandler={close}
                         />
                       }
@@ -107,7 +110,7 @@ function StoryPagesCrudPresentation({
           <div className="flex w-full justify-center">
             <button
               type="button"
-              className="bg-secondary hover:bg-secondary-light text-white border border-transparent rounded-lg shadow-sm my-1 py-2 px-4 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
+              className={`${PRIMARY_BUTTON_STYLE} my-1 focus:ring-primary-light`}
               onClick={() => setAddPageOpen(true)}
             >
               {getIcon('Add', 'fill-current h-5 mr-2')}
@@ -125,6 +128,7 @@ const { number, array, bool, func, object } = PropTypes
 
 StoryPagesCrudPresentation.propTypes = {
   addPageOpen: bool,
+  deleteHandler: func,
   goToStep: func,
   nextPageOrderNumber: number,
   pageIds: array,

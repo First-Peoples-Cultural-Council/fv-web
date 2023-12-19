@@ -2,7 +2,7 @@ import React from 'react'
 import SectionTitle from 'components/SectionTitle'
 
 function ConditionsOfUsePresentation() {
-  const headerStyle = 'text-xl font-bold mb-1 text-center'
+  const headerStyle = 'text-xl font-bold mb-1'
   const paraStyle = 'mb-2'
   return (
     <section
@@ -14,7 +14,7 @@ function ConditionsOfUsePresentation() {
           title="Conditions of Use"
           accentColor="primary"
         />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 text-center py-8">
+        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
           <p className={paraStyle}>
             By accessing this site, or by downloading the language data, the
             user confirms agreement with and acceptance of the <br />

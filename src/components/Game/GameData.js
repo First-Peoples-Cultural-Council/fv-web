@@ -15,12 +15,12 @@ function GameData() {
         return 'jigsaw'
       case 'parachute':
         return 'parachute'
+      case 'phrasescrambler':
+        return 'phrasescrambler'
       case 'quiz':
         return 'quiz'
-      case 'wordle':
-        return 'wordle'
-      case 'wordscramble':
-        return 'wordscramble'
+      case 'wordsy':
+        return 'wordsy'
       case 'wordsearch':
         return 'wordsearch'
       default:

@@ -161,7 +161,7 @@ export function useStoryDelete() {
 
   const mutation = useMutationWithNotification({
     mutationFn: deleteStory,
-    redirectTo: `/${sitename}/dashboard/edit/stories`,
+    redirectTo: `/${sitename}/dashboard/edit/entries?types=story`,
     queryKeyToInvalidate: [STORIES, sitename],
     actionWord: 'deleted',
     type: 'story',
