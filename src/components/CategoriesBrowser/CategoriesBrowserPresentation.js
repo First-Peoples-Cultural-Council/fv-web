@@ -11,10 +11,11 @@ function CategoriesBrowserPresentation({
   setQuery,
   append,
   // remove,
-  // fields,
+  fields,
   closeModal,
 }) {
   // console.log({ fields })
+  // console.log({ filteredCategories })
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
@@ -22,6 +23,11 @@ function CategoriesBrowserPresentation({
     }
   }
 
+  // const selectedCategories = fields?.find(
+  //   (obj) => obj.id === filteredCategories?.id,
+  // )
+
+  // console.log({selectedCategories})
   return (
     <main id="CategoriesBrowserPresentation">
       <div className="h-full w-full bg-white p-4 min-h-screen">
@@ -65,7 +71,8 @@ function CategoriesBrowserPresentation({
                     key={category.id}
                     onClick={() => append(category)}
                     className={`${
-                      category?.id === 111
+                      // category?.id ===
+                      fields?.some((obj) => obj.id === category?.id)
                         ? 'ring-2 ring-offset-2 ring-primary'
                         : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
                     } flex w-full p-4 cursor-pointer rounded-sm`}
@@ -96,7 +103,7 @@ CategoriesBrowserPresentation.propTypes = {
   setQuery: func,
   append: func,
   // remove: func,
-  // fields: array,
+  fields: array,
   closeModal: func,
 }
 
