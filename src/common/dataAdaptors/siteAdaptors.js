@@ -30,7 +30,7 @@ export function sitesListAdaptor({ sitesData }) {
     visibility: site?.visibility,
     ...logoAdaptor({ item: site }),
     parentLanguageTitle: site?.language,
-    features: site?.features,
+    features: site?.enabledFeatures,
     role: site?.role, // Data for this will only be included in the my-sites response
   }))
 }
@@ -59,7 +59,7 @@ export function siteAdaptor({ siteData }) {
     bannerVideo,
     visibility: siteData?.visibility,
     visibilityOptions: constructVisibilityOptions(siteData?.visibility),
-    features: siteData?.features,
+    features: siteData?.enabledFeatures,
     homepageWidgets: widgetListAdaptor({
       widgetList: siteData?.homepage,
       sitename: siteData?.slug,
