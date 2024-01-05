@@ -71,7 +71,7 @@ function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
               closeHandler={closeModal}
               isDashboard
             >
-              <div className="h-9/10-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50">
+              <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50">
                 <div className="h-full p-4">
                   <MediaCrud.Container
                     savedMedia={value}
