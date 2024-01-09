@@ -19,6 +19,17 @@ const stringWithMax = (charCount) =>
     .max(charCount, `Maximum length for this field is ${charCount} characters`)
     .trim()
 
+const relatedVideoLinksUrls = yup
+  .string()
+  .trim()
+  .matches(
+    /(^(https?:\/\/)?|^)(?:www.)?(?:((vimeo)\.com\/(.+))|((youtube)\.com\/watch\?v=(.+)))/,
+    {
+      message: 'Only YouTube and Vimeo links are currently supported',
+      excludeEmptyString: true,
+    },
+  )
+
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
@@ -98,4 +109,13 @@ export const definitions = {
         return isValid
       },
     }),
+  relatedVideoUrlsArray: () =>
+    yup.array().of(
+      yup.object({
+        text: relatedVideoLinksUrls.min(
+          1,
+          'This field cannot be empty. Remove it if you do not want to include it.',
+        ),
+      }),
+    ),
 }

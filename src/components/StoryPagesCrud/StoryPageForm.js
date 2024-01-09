@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 import { EditorState } from 'draft-js'
@@ -18,6 +18,10 @@ function StoryPageForm({
   pageNumber,
   submitHandler,
 }) {
+  const [currentLinks, setCurrentLinks] = useState(
+    dataToEdit?.relatedVideoLinks,
+  )
+
   const validator = yup.object().shape({
     text: definitions.wysiwyg({ charCount: 5000 }),
     textTranslation: definitions.wysiwyg({ charCount: 5000 }),
@@ -25,6 +29,7 @@ function StoryPageForm({
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
   })
 
   const defaultValues = {
@@ -35,14 +40,20 @@ function StoryPageForm({
     relatedAudio: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     ordering: nextPageOrderNumber,
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { control, errors, handleSubmit, register, reset, setValue } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
+
+  useEffect(() => {
+    setValue('relatedVideoLinks', currentLinks)
+  }, [currentLinks])
 
   return (
     <div id="StoryPageForm" className="p-4 bg-white text-fv-charcoal">
@@ -103,6 +114,9 @@ function StoryPageForm({
             control={control}
             type={VIDEO}
             maxItems={1}
+            relatedVideoLinks={dataToEdit?.relatedVideoLinks}
+            currentLinks={currentLinks}
+            setCurrentLinks={setCurrentLinks}
           />
           {errors?.relatedVideos && (
             <div className="text-red-500">{errors?.relatedVideos?.message}</div>

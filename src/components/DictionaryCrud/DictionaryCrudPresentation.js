@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
@@ -31,6 +31,10 @@ function DictionaryCrudPresentation({
   isCreate,
   partsOfSpeech,
 }) {
+  const [currentLinks, setCurrentLinks] = useState(
+    dataToEdit?.relatedVideoLinks,
+  )
+
   const [activeStep, setActiveStep] = useSearchParamsState({
     searchParamName: 'step',
     defaultValue: '0',
@@ -48,6 +52,7 @@ function DictionaryCrudPresentation({
     relatedEntries: definitions.objectArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     title: definitions
       .title({ charCount: 225 })
       .required('You must enter at least 1 character in this field.'),
@@ -65,6 +70,7 @@ function DictionaryCrudPresentation({
     relatedEntries: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     title: '',
     type: type || TYPE_WORD,
     translations: [],
@@ -81,6 +87,7 @@ function DictionaryCrudPresentation({
     register,
     reset,
     resetField,
+    setValue,
     trigger,
   } = useEditForm({
     defaultValues,
@@ -116,6 +123,10 @@ function DictionaryCrudPresentation({
   const onFinishClick = () => {
     if (activeStepNumber !== lastStep) stepHandle(lastStep)
   }
+
+  useEffect(() => {
+    setValue('relatedVideoLinks', currentLinks)
+  }, [currentLinks])
 
   function getStepContent(step) {
     switch (Number(step)) {
@@ -241,6 +252,9 @@ function DictionaryCrudPresentation({
                 register={register}
                 type={VIDEO}
                 maxItems={10}
+                relatedVideoLinks={dataToEdit?.relatedVideoLinks}
+                currentLinks={currentLinks}
+                setCurrentLinks={setCurrentLinks}
               />
               {errors?.relatedVideos && (
                 <div className="text-red-500">
