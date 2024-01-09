@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
@@ -11,6 +11,10 @@ import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 import { EditorState } from 'draft-js'
 
 function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
+  const [currentLinks, setCurrentLinks] = useState(
+    dataToEdit?.relatedVideoLinks,
+  )
+
   const validator = yup.object().shape({
     title: definitions
       .paragraph({ charCount: 120 })
@@ -22,6 +26,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     acknowledgments: yup.array().of(yup.string()),
   })
 
@@ -32,6 +37,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     titleTranslation: '',
     author: '',
     relatedVideos: [],
+    relatedVideoLinks: [],
     relatedImages: [],
     // Introduction
     intro: EditorState.createEmpty(),
@@ -46,12 +52,20 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
 
   // pageOrder
 
-  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
+  const {
+    control,
+    errors,
+    handleSubmit,
+    isValid,
+    register,
+    reset,
+    setValue,
+    trigger,
+  } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   const stepCallback = () => {
     trigger()
@@ -59,6 +73,10 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
       handleSubmit(submitHandler)()
     }
   }
+
+  useEffect(() => {
+    setValue('relatedVideoLinks', currentLinks)
+  }, [currentLinks])
 
   return (
     <StoryCrudStepWrapper onClickCallback={stepCallback}>
@@ -145,6 +163,9 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 control={control}
                 type={VIDEO}
                 maxItems={1}
+                relatedVideoLinks={dataToEdit?.relatedVideoLinks}
+                currentLinks={currentLinks}
+                setCurrentLinks={setCurrentLinks}
               />
               {errors?.relatedVideos && (
                 <div className="text-red-500">

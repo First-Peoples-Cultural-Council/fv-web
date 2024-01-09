@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import MediaCrudData from 'components/MediaCrud/MediaCrudData'
 import UploadMedia from 'components/MediaCrud/UploadMedia'
 import SelectMedia from 'components/MediaCrud/SelectMedia'
+import VideoLinks from 'components/MediaCrud/VideoLinks'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import { makeTitleCase } from 'common/utils/stringHelpers'
 
@@ -13,6 +14,9 @@ function MediaCrudContainer({
   updateSavedMedia,
   docType,
   maxFiles,
+  currentLinks,
+  setCurrentLinks,
+  closeModal,
 }) {
   const {
     searchValue,
@@ -60,7 +64,6 @@ function MediaCrudContainer({
       </button>
     )
   }
-
   return (
     <div
       id="MediaCrudContainer"
@@ -91,17 +94,28 @@ function MediaCrudContainer({
             {makeTitleCase(docTypeLabelPlural)}
           </button>
         )}
+        {docType === VIDEO && (
+          <button
+            type="button"
+            className={`${buttonStyles} ml-2 hover:bg-primary-light`}
+            onClick={() => setSelectedTab(`Video Links`)}
+          >
+            Video Links
+          </button>
+        )}
         <button
           type="button"
           className={`${buttonStyles} mx-2 hover:bg-fv-warning-red`}
           onClick={() => clearSelectedMedia()}
-          disabled={selectedTab === 'Upload Files'}
+          disabled={
+            selectedTab === 'Upload Files' || selectedTab === 'Video Links'
+          }
         >
           Clear Selection
         </button>
       </div>
       <div className="grow mt-2">
-        {selectedTab === 'Media Library' ? (
+        {selectedTab === 'Media Library' && (
           <SelectMedia
             docType={docType}
             searchValue={searchValue}
@@ -117,13 +131,22 @@ function MediaCrudContainer({
             loadLabel={loadLabel}
             docTypeLabelPlural={docTypeLabelPlural}
           />
-        ) : (
+        )}
+        {selectedTab === 'Upload Files' && (
           <UploadMedia
             docType={docType}
             site={site}
             extensionList={extensionList}
             setSelectedMedia={setSelectedMedia}
             maxFiles={maxFiles}
+          />
+        )}
+        {selectedTab === 'Video Links' && (
+          <VideoLinks
+            currentLinks={currentLinks}
+            setCurrentLinks={setCurrentLinks}
+            closeModal={closeModal}
+            maxLinks={maxFiles}
           />
         )}
       </div>
@@ -138,6 +161,9 @@ MediaCrudContainer.propTypes = {
   updateSavedMedia: func,
   docType: oneOf([AUDIO, IMAGE, VIDEO]),
   maxFiles: number,
+  currentLinks: array,
+  setCurrentLinks: func,
+  closeModal: func,
 }
 
 export default MediaCrudContainer

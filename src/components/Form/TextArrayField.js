@@ -14,6 +14,7 @@ function TextArrayField({
   register,
   control,
   errors,
+  hideLabel,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -28,9 +29,11 @@ function TextArrayField({
 
   return (
     <Fragment key={`${nameId}_TextArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
+      {!hideLabel && (
+        <label className="block text-sm font-medium text-fv-charcoal">
+          {label}
+        </label>
+      )}
       <div className="space-y-2 mt-2">
         <ul className="space-y-2">
           {fields.map((item, index) => (
@@ -43,7 +46,7 @@ function TextArrayField({
                   onKeyDown={handleKeyDown}
                 />
                 <div className="has-tooltip flex items-center">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
+                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-24">
                     Delete {label.slice(0, -1)}
                   </span>
                   <button
@@ -79,7 +82,7 @@ function TextArrayField({
 }
 
 // PROPTYPES
-const { func, number, object, string } = PropTypes
+const { func, number, object, string, bool } = PropTypes
 TextArrayField.propTypes = {
   helpText: string,
   label: string,
@@ -88,6 +91,7 @@ TextArrayField.propTypes = {
   maxItems: number,
   register: func,
   errors: object,
+  hideLabel: bool,
 }
 
 TextArrayField.defaultProps = {
