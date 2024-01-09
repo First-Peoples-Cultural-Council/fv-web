@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
 import WordsyData from 'components/Game/Wordsy/WordsyData'
 import WordsyPresentation from 'components/Game/Wordsy/WordsyPresentation'
 
-function WordsyContainer() {
+function WordsyContainer({ kids }) {
   const {
     isFetching,
     tries,
@@ -27,7 +28,7 @@ function WordsyContainer() {
     setIsWinModalOpen,
     isLostModalOpen,
     setIsLostModalOpen,
-  } = WordsyData()
+  } = WordsyData({ kids })
   return (
     <Loading.Container isLoading={isFetching}>
       <WordsyPresentation
@@ -53,6 +54,11 @@ function WordsyContainer() {
       />
     </Loading.Container>
   )
+}
+
+const { bool } = PropTypes
+WordsyContainer.propTypes = {
+  kids: bool,
 }
 
 export default WordsyContainer

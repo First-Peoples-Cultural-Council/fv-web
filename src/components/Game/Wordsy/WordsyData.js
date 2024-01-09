@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import PropTypes from 'prop-types'
 
 // FPCC
 import api from 'services/api'
-import { WORDSY } from 'common/constants/paths'
+import { KIDS, WORDSY } from 'common/constants'
 import {
   getOrthographyPattern,
   isWordInWordList,
@@ -13,7 +14,7 @@ import {
 const MAX_TRIES = 6
 const WORD_LENGTH = 5
 
-function WordsyData() {
+function WordsyData({ kids }) {
   const [languageConfig, setLanguageConfig] = useState({
     orthography: [],
     orthographyPattern: [],
@@ -23,9 +24,19 @@ function WordsyData() {
   const [solution, setSolution] = useState('')
 
   const { sitename } = useParams()
+
+  const _searchParams = new URLSearchParams()
+  if (kids) {
+    _searchParams.append(KIDS, kids)
+  }
+
   const { data, isFetching } = useQuery(
     [WORDSY, sitename],
-    () => api.gameContent.getWordsyConfig({ sitename }),
+    () =>
+      api.gameContent.getWordsyConfig({
+        sitename,
+        searchParams: _searchParams.toString(),
+      }),
     { enabled: !!sitename },
   )
 
@@ -40,7 +51,7 @@ function WordsyData() {
     setSolution(data?.solution)
   }, [data])
 
-  // // Game controls
+  // Game controls
   const [isGameWon, setIsGameWon] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [guesses, setGuesses] = useState([])
@@ -140,6 +151,11 @@ function WordsyData() {
     isLostModalOpen,
     setIsLostModalOpen,
   }
+}
+
+const { bool } = PropTypes
+WordsyData.propTypes = {
+  kids: bool,
 }
 
 export default WordsyData

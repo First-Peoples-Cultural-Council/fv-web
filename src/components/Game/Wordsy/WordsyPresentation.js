@@ -7,6 +7,9 @@ import Modal from 'components/Modal'
 import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 import Grid from 'components/Game/Wordsy/Utils/Grid'
 import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
+import SectionTitle from 'components/SectionTitle'
+
+const MIN_VALID_WORDS = 30
 
 function WordsyPresentation({
   tries,
@@ -35,7 +38,7 @@ function WordsyPresentation({
       data-testid="WordsyContainer"
     >
       <div className="flex w-80 mx-auto items-center mb-8">
-        <h1 className="text-xl grow font-bold">Wordsy</h1>
+        <SectionTitle.Presentation title="WORDSY" accentColor="primary" />
         <button
           type="button"
           onClick={() => setInfoModalOpen(true)}
@@ -45,24 +48,44 @@ function WordsyPresentation({
         </button>
       </div>
 
-      <Grid
-        tries={tries}
-        guesses={guesses}
-        solution={solution}
-        currentGuess={currentGuess}
-        orthographyPattern={languageConfig?.orthographyPattern}
-        wordLength={wordLength}
-      />
+      {/* If less than 30 words or valid guesses present, display error message */}
+      {languageConfig?.words?.length >= MIN_VALID_WORDS &&
+      languageConfig?.validGuesses?.length >= MIN_VALID_WORDS ? (
+        <div>
+          <Grid
+            tries={tries}
+            guesses={guesses}
+            solution={solution}
+            currentGuess={currentGuess}
+            orthographyPattern={languageConfig?.orthographyPattern}
+            wordLength={wordLength}
+          />
 
-      <Keyboard
-        orthography={languageConfig?.orthography}
-        onChar={onChar}
-        onEnter={onEnter}
-        onDelete={onDelete}
-        solution={solution}
-        guesses={guesses}
-        orthographyPattern={languageConfig?.orthographyPattern}
-      />
+          <Keyboard
+            orthography={languageConfig?.orthography}
+            onChar={onChar}
+            onEnter={onEnter}
+            onDelete={onDelete}
+            solution={solution}
+            guesses={guesses}
+            orthographyPattern={languageConfig?.orthographyPattern}
+          />
+        </div>
+      ) : (
+        <p className="text-fv-charcoal mt-2 text-center">
+          This site does not currently have enough dictionary content for the
+          wordsy game.
+          <br />
+          Please contact{' '}
+          <a
+            href="mailto:hello@firstvoices.com"
+            className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+          >
+            hello@firstvoices.com
+          </a>{' '}
+          for more information.
+        </p>
+      )}
 
       {/* Info modal */}
       <Modal.Presentation
