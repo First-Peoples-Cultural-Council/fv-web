@@ -1,27 +1,46 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 
 // FPCC
+import api from 'services/api'
+import { WORDSY } from 'common/constants/paths'
 import {
-  setOrthographyPattern,
+  getOrthographyPattern,
   isWordInWordList,
 } from 'components/Game/Wordsy/Utils/helpers'
 
-const GAME_SETTINS = {
-  tries: 6,
-}
-const SOLUTION = 's̲ps̲os̲'
+const MAX_TRIES = 6
+const WORD_LENGTH = 5
 
 function WordsyData() {
-  const solution = SOLUTION
+  const [languageConfig, setLanguageConfig] = useState({
+    orthography: [],
+    orthographyPattern: [],
+    words: [],
+    validGuesses: [],
+  })
+  const [solution, setSolution] = useState('')
 
-  const languageConfig = {}
-
-  // Set orthography pattern
-  languageConfig.orthographyPattern = setOrthographyPattern(
-    languageConfig.orthography,
+  const { sitename } = useParams()
+  const { data, isFetching } = useQuery(
+    [WORDSY, sitename],
+    () => api.gameContent.getWordsyConfig({ sitename }),
+    { enabled: !!sitename },
   )
 
-  // Game controls
+  useEffect(() => {
+    const updatedLanguageConfig = {
+      orthography: data?.orthography,
+      orthographyPattern: getOrthographyPattern(data?.orthography),
+      words: data?.words,
+      validGuesses: data?.validGuesses,
+    }
+    setLanguageConfig(updatedLanguageConfig)
+    setSolution(data?.solution)
+  }, [data])
+
+  // // Game controls
   const [isGameWon, setIsGameWon] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [guesses, setGuesses] = useState([])
@@ -35,8 +54,8 @@ function WordsyData() {
 
   const onChar = (value) => {
     if (
-      currentGuess.length < languageConfig?.wordLength &&
-      guesses.length < GAME_SETTINS.tries &&
+      currentGuess.length < WORD_LENGTH &&
+      guesses.length < MAX_TRIES &&
       !isGameWon
     ) {
       const newGuess = currentGuess.concat([value])
@@ -57,7 +76,7 @@ function WordsyData() {
       return 'game-over'
     }
 
-    if (currentGuess.length !== languageConfig?.wordLength) {
+    if (currentGuess.length !== WORD_LENGTH) {
       setNotEnoughLettersModalOpen(true)
       setTimeout(() => setNotEnoughLettersModalOpen(false), 1000)
       return 'not-enough-letters'
@@ -77,8 +96,8 @@ function WordsyData() {
 
     const winningWord = currentGuess.join('') === solution
     if (
-      currentGuess.length === languageConfig?.wordLength &&
-      guesses.length < GAME_SETTINS.tries &&
+      currentGuess.length === WORD_LENGTH &&
+      guesses.length < MAX_TRIES &&
       !isGameWon
     ) {
       setGuesses([...guesses, currentGuess])
@@ -90,7 +109,7 @@ function WordsyData() {
         return 'game-won'
       }
 
-      if (guesses.length === GAME_SETTINS.tries - 1) {
+      if (guesses.length === MAX_TRIES - 1) {
         setIsGameLost(true)
         setIsLostModalOpen(true)
         return 'game-lost'
@@ -100,11 +119,13 @@ function WordsyData() {
   }
 
   return {
-    tries: GAME_SETTINS.tries,
+    isFetching,
+    tries: MAX_TRIES,
     solution,
     languageConfig,
     guesses,
     currentGuess,
+    wordLength: WORD_LENGTH,
     onChar,
     onEnter,
     onDelete,

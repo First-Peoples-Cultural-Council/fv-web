@@ -14,6 +14,7 @@ function WordsyPresentation({
   languageConfig,
   guesses,
   currentGuess,
+  wordLength,
   onChar,
   onEnter,
   onDelete,
@@ -50,7 +51,7 @@ function WordsyPresentation({
         solution={solution}
         currentGuess={currentGuess}
         orthographyPattern={languageConfig?.orthographyPattern}
-        wordLength={languageConfig?.wordLength}
+        wordLength={wordLength}
       />
 
       <Keyboard
@@ -166,27 +167,28 @@ function WordsyPresentation({
   )
 }
 
-const { any } = PropTypes
+const { array, bool, func, number, object, string } = PropTypes
 
 WordsyPresentation.propTypes = {
-  tries: any,
-  solution: any,
-  guesses: any,
-  currentGuess: any,
-  languageConfig: any,
-  onChar: any,
-  onEnter: any,
-  onDelete: any,
-  infoModalOpen: any,
-  setInfoModalOpen: any,
-  notEnoughLettersModalOpen: any,
-  setNotEnoughLettersModalOpen: any,
-  wordNotFoundModalOpen: any,
-  setWordNotFoundModalOpen: any,
-  isWinModalOpen: any,
-  setIsWinModalOpen: any,
-  isLostModalOpen: any,
-  setIsLostModalOpen: any,
+  tries: number,
+  solution: string,
+  guesses: array,
+  currentGuess: array,
+  languageConfig: object,
+  wordLength: number,
+  onChar: func,
+  onEnter: func,
+  onDelete: func,
+  infoModalOpen: bool,
+  setInfoModalOpen: func,
+  notEnoughLettersModalOpen: bool,
+  setNotEnoughLettersModalOpen: func,
+  wordNotFoundModalOpen: bool,
+  setWordNotFoundModalOpen: func,
+  isWinModalOpen: bool,
+  setIsWinModalOpen: func,
+  isLostModalOpen: bool,
+  setIsLostModalOpen: func,
 }
 
 export default WordsyPresentation
