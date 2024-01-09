@@ -74,6 +74,7 @@ function DashboardEntriesPresentationList({
                     <Fragment key={page?.pageNumber}>
                       {page.results.map((entry) => (
                         <tr
+                          data-testid="EntryRow"
                           key={entry?.id}
                           className="w-full hover:bg-gray-100"
                         >
@@ -171,6 +172,7 @@ function DashboardEntriesPresentationList({
             <div className="flex justify-center my-2 space-x-2">
               <Link
                 to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
+                data-testid="EntryDrawerEdit"
               >
                 <button type="button" className={SECONDARY_BUTTON_STYLE}>
                   {getIcon('Pencil', 'fill-current mr-2 h-5 w-5')}

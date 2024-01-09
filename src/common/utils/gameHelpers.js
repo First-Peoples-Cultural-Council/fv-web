@@ -14,3 +14,10 @@ export const hasWordleEnabled = (sitename) => {
 
   return WORDLE_ENABLED_SITES.includes(sitename)
 }
+
+export const isWordInNestedArray = (array, wordObj) => {
+  const id = wordObj?.id
+  return array.some((subArray) =>
+    subArray.some((nestedWordObj) => nestedWordObj.id === id),
+  )
+}

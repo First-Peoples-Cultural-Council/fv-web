@@ -129,11 +129,12 @@ function DictionaryListPresentation({
                               type="button"
                               className="text-left font-medium text-fv-charcoal lg:mr-2"
                               onClick={() => handleItemClick(entry)}
+                              data-testid="DictionaryListEntry"
                             >
                               {entry?.title}
                             </button>
                           </td>
-                          <td className="py-4">
+                          <td className="py-4" aria-label="list">
                             <div className="inline-flex items-center">
                               <AudioButton
                                 audioArray={entry?.audio}
@@ -175,7 +176,10 @@ function DictionaryListPresentation({
                               </Link>
                             </td>
                           )}
-                          <td className="text-right px-6 py-4">
+                          <td
+                            className="text-right px-6 py-4"
+                            aria-label="list"
+                          >
                             <ActionsMenu.Presentation
                               docId={entry?.id}
                               docTitle={entry?.title}
