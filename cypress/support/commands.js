@@ -11,13 +11,11 @@
 //
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, password) => {
-  cy.on('uncaught:exception', (err, runnable) => {
-    return false
-  })
+  cy.on('uncaught:exception', () => false)
 
-  cy.get('#username').type(email)
-  //lets try an incorrect password
-  cy.get('input[name=user_password]').type(password + '{enter}')
+  cy.get('#signInFormUsername').type(email, { force: true })
+  // lets try an incorrect password
+  cy.get('#signInFormPassword').type(`${password}{enter}`, { force: true })
 })
 
 Cypress.Commands.add('quickLogin', (email, password) => {
@@ -38,16 +36,12 @@ Cypress.Commands.add('quickLogin', (email, password) => {
 })
 
 Cypress.Commands.add('checkLinks', (links, section) => {
-  for (var i = 0; i < links.length; i++) {
-    //loop through the dictionary menu from the array above here.
-    //cy.get('#MobileMenuButton').click()
-    cy.wait(1000)
-    cy.contains(section, { timeout: 12000 }).click()
-    cy.wait(1000)
-    cy.contains(links[i], { timeout: 10000 }).click()
-    cy.wait(1000)
-    // cy.contains('Bad Request').should('not.exist')
-    cy.wait(1000)
+  for (let i = 0; i < links.length; i += 1) {
+    // loop through the dictionary menu from the array above here.
+
+    cy.contains(section).click()
+
+    cy.contains(links[i]).click()
   }
 })
 //
