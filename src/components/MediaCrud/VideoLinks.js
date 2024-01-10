@@ -7,7 +7,13 @@ import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
-function VideoLinks({ currentLinks, setCurrentLinks, closeModal, maxLinks }) {
+function VideoLinks({
+  currentLinks,
+  setCurrentLinks,
+  closeModal,
+  maxLinks,
+  setDisableMediaLibraryButton,
+}) {
   const relatedVideoLinks = currentLinks
   const dataToEdit = {
     relatedVideoLinks,
@@ -63,13 +69,14 @@ function VideoLinks({ currentLinks, setCurrentLinks, closeModal, maxLinks }) {
           errors={errors}
           maxItems={maxLinks}
           hideLabel
+          setDisableMediaLibraryButton={setDisableMediaLibraryButton}
         />
         <button
           type="button"
           className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
           onClick={handleSubmit(submitHandler)}
         >
-          Insert Video Links
+          Update Linked Videos
         </button>
       </div>
     </form>
@@ -83,6 +90,7 @@ VideoLinks.propTypes = {
   setCurrentLinks: func,
   closeModal: func,
   maxLinks: number,
+  setDisableMediaLibraryButton: func,
 }
 
 export default VideoLinks
