@@ -27,10 +27,9 @@ function WordsyPresentation({
   setNotEnoughLettersModalOpen,
   wordNotFoundModalOpen,
   setWordNotFoundModalOpen,
-  isWinModalOpen,
-  setIsWinModalOpen,
-  isLostModalOpen,
-  setIsLostModalOpen,
+  isEndGameModalOpen,
+  setIsEndGameModalOpen,
+  endGameModalContent,
 }) {
   return (
     <section
@@ -163,26 +162,20 @@ function WordsyPresentation({
         </div>
       </Modal.Presentation>
 
-      {/* Win modal */}
+      {/* End Game Modal */}
       <Modal.Presentation
-        isOpen={isWinModalOpen}
-        closeHandler={() => setIsWinModalOpen(false)}
+        isOpen={isEndGameModalOpen}
+        closeHandler={() => setIsEndGameModalOpen(false)}
       >
-        <div className="bg-green-200 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
+        <div
+          className={`${
+            endGameModalContent.status === 'win'
+              ? 'bg-green-200'
+              : 'bg-red-200 text-white'
+          } rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full`}
+        >
           <h3 className="text-sm text-center font-medium text-gray-900">
-            Well done!
-          </h3>
-        </div>
-      </Modal.Presentation>
-
-      {/* Lost modal */}
-      <Modal.Presentation
-        isOpen={isLostModalOpen}
-        closeHandler={() => setIsLostModalOpen(false)}
-      >
-        <div className="bg-red-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
-          <h3 className="text-sm text-center font-medium text-gray-900">
-            All tries exhausted. Please reset and try again.
+            {endGameModalContent.text}
           </h3>
         </div>
       </Modal.Presentation>
@@ -208,10 +201,9 @@ WordsyPresentation.propTypes = {
   setNotEnoughLettersModalOpen: func,
   wordNotFoundModalOpen: bool,
   setWordNotFoundModalOpen: func,
-  isWinModalOpen: bool,
-  setIsWinModalOpen: func,
-  isLostModalOpen: bool,
-  setIsLostModalOpen: func,
+  isEndGameModalOpen: bool,
+  setIsEndGameModalOpen: func,
+  endGameModalContent: object,
 }
 
 export default WordsyPresentation

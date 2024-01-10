@@ -24,10 +24,9 @@ function WordsyContainer({ kids }) {
     setNotEnoughLettersModalOpen,
     wordNotFoundModalOpen,
     setWordNotFoundModalOpen,
-    isWinModalOpen,
-    setIsWinModalOpen,
-    isLostModalOpen,
-    setIsLostModalOpen,
+    isEndGameModalOpen,
+    setIsEndGameModalOpen,
+    endGameModalContent,
   } = WordsyData({ kids })
   return (
     <Loading.Container isLoading={isFetching}>
@@ -47,10 +46,9 @@ function WordsyContainer({ kids }) {
         setNotEnoughLettersModalOpen={setNotEnoughLettersModalOpen}
         wordNotFoundModalOpen={wordNotFoundModalOpen}
         setWordNotFoundModalOpen={setWordNotFoundModalOpen}
-        isWinModalOpen={isWinModalOpen}
-        setIsWinModalOpen={setIsWinModalOpen}
-        isLostModalOpen={isLostModalOpen}
-        setIsLostModalOpen={setIsLostModalOpen}
+        isEndGameModalOpen={isEndGameModalOpen}
+        setIsEndGameModalOpen={setIsEndGameModalOpen}
+        endGameModalContent={endGameModalContent}
       />
     </Loading.Container>
   )

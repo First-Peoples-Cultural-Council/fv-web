@@ -60,8 +60,9 @@ function WordsyData({ kids }) {
   const [notEnoughLettersModalOpen, setNotEnoughLettersModalOpen] =
     useState(false)
   const [wordNotFoundModalOpen, setWordNotFoundModalOpen] = useState(false)
-  const [isWinModalOpen, setIsWinModalOpen] = useState(false)
-  const [isLostModalOpen, setIsLostModalOpen] = useState(false)
+
+  const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false)
+  const [endGameModalContent, setEndGameModalContent] = useState({})
 
   const onChar = (value) => {
     if (
@@ -116,13 +117,21 @@ function WordsyData({ kids }) {
 
       if (winningWord) {
         setIsGameWon(true)
-        setIsWinModalOpen(true)
+        setIsEndGameModalOpen(true)
+        setEndGameModalContent({
+          status: 'win',
+          text: 'Well done!',
+        })
         return 'game-won'
       }
 
       if (guesses.length === MAX_TRIES - 1) {
         setIsGameLost(true)
-        setIsLostModalOpen(true)
+        setIsEndGameModalOpen(true)
+        setEndGameModalContent({
+          status: 'lost',
+          text: 'All tries exhausted. Please reset and try again.',
+        })
         return 'game-lost'
       }
     }
@@ -146,10 +155,9 @@ function WordsyData({ kids }) {
     setNotEnoughLettersModalOpen,
     wordNotFoundModalOpen,
     setWordNotFoundModalOpen,
-    isWinModalOpen,
-    setIsWinModalOpen,
-    isLostModalOpen,
-    setIsLostModalOpen,
+    isEndGameModalOpen,
+    setIsEndGameModalOpen,
+    endGameModalContent,
   }
 }
 
