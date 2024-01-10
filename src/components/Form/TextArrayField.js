@@ -15,6 +15,7 @@ function TextArrayField({
   control,
   errors,
   hideLabel,
+  setDisableMediaLibraryButton,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -54,7 +55,10 @@ function TextArrayField({
                     type="button"
                     aria-label={`Delete ${label.slice(0, -1)}`}
                     className="inline-flex"
-                    onClick={() => remove(index)}
+                    onClick={() => {
+                      remove(index)
+                      setDisableMediaLibraryButton(true)
+                    }}
                   >
                     {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
                   </button>
@@ -71,7 +75,11 @@ function TextArrayField({
           ))}
         </ul>
         {fields?.length < maxItems && (
-          <FieldButton label={label} append={append} />
+          <FieldButton
+            label={label}
+            append={append}
+            setDisableMediaLibraryButton={setDisableMediaLibraryButton}
+          />
         )}
       </div>
       {helpText && (
@@ -92,11 +100,13 @@ TextArrayField.propTypes = {
   register: func,
   errors: object,
   hideLabel: bool,
+  setDisableMediaLibraryButton: func,
 }
 
 TextArrayField.defaultProps = {
   label: '',
   maxItems: 10,
+  setDisableMediaLibraryButton: () => {},
 }
 
 export default TextArrayField

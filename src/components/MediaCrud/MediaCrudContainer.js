@@ -51,6 +51,9 @@ function MediaCrudContainer({
     }
   }, [selectedMedia])
 
+  const [disableMediaLibraryButton, setDisableMediaLibraryButton] =
+    useState(false)
+
   const switchTabButton = () => {
     const switchToTab =
       selectedTab === 'Media Library' ? 'Upload Files' : 'Media Library'
@@ -59,6 +62,7 @@ function MediaCrudContainer({
         type="button"
         className={`${buttonStyles} hover:bg-primary-light`}
         onClick={() => setSelectedTab(`${switchToTab}`)}
+        disabled={disableMediaLibraryButton}
       >
         {switchToTab}
       </button>
@@ -99,8 +103,9 @@ function MediaCrudContainer({
             type="button"
             className={`${buttonStyles} ml-2 hover:bg-primary-light`}
             onClick={() => setSelectedTab(`Video Links`)}
+            disabled={!allowSwitchTab}
           >
-            Video Links
+            Link a Video
           </button>
         )}
         <button
@@ -147,6 +152,7 @@ function MediaCrudContainer({
             setCurrentLinks={setCurrentLinks}
             closeModal={closeModal}
             maxLinks={maxFiles}
+            setDisableMediaLibraryButton={setDisableMediaLibraryButton}
           />
         )}
       </div>

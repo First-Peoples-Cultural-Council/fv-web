@@ -49,7 +49,7 @@ function MediaArrayField({
         {label}
       </label>
       <div className="space-y-2 mt-2">
-        {type === VIDEO && value?.length > 0 && (
+        {type === VIDEO && value?.length > 0 && currentLinks?.length > 0 && (
           <p className="block text-sm font-small text-fv-charcoal italic">
             Uploaded Videos
           </p>
@@ -87,7 +87,7 @@ function MediaArrayField({
         </div>
         {type === VIDEO && currentLinks?.length > 0 && (
           <p className="block text-sm font-small text-fv-charcoal italic">
-            Video Links
+            Linked Videos
           </p>
         )}
         {type === VIDEO &&
@@ -130,14 +130,12 @@ function MediaArrayField({
               })}
               {numNewLinks === 1 && (
                 <p className="block text-sm font-small text-fv-charcoal italic">
-                  Plus {numNewLinks} new link (thumbnails will be generated on
-                  save).
+                  {numNewLinks} new link will be added when you save.
                 </p>
               )}
               {numNewLinks > 1 && (
                 <p className="block text-sm font-small text-fv-charcoal italic">
-                  Plus {numNewLinks} new links (thumbnails will be generated on
-                  save).
+                  {numNewLinks} new links will be added when you save.
                 </p>
               )}
             </div>
