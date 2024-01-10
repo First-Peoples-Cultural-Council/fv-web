@@ -70,6 +70,7 @@ function VideoLinks({
           maxItems={maxLinks}
           hideLabel
           setDisableMediaLibraryButton={setDisableMediaLibraryButton}
+          placeholder="Example links: https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
         />
         <button
           type="button"
