@@ -16,6 +16,7 @@ function TextArrayField({
   errors,
   hideLabel,
   setDisableMediaLibraryButton,
+  placeholder,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -42,9 +43,10 @@ function TextArrayField({
               <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
                 <input
                   type="text"
-                  className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg"
+                  className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg placeholder:italic"
                   {...register(`${nameId}.${index}.text`)}
                   onKeyDown={handleKeyDown}
+                  placeholder={placeholder}
                 />
                 <div className="has-tooltip flex items-center">
                   <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-24">
@@ -101,12 +103,14 @@ TextArrayField.propTypes = {
   errors: object,
   hideLabel: bool,
   setDisableMediaLibraryButton: func,
+  placeholder: string,
 }
 
 TextArrayField.defaultProps = {
   label: '',
   maxItems: 10,
   setDisableMediaLibraryButton: () => {},
+  placeholder: null,
 }
 
 export default TextArrayField
