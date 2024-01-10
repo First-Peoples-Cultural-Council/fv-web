@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import get from 'lodash.get'
 
 // FPCC
 import { UUID_REGEX, PUBLIC, MEMBERS, TEAM } from 'common/constants'
@@ -18,6 +19,45 @@ const stringWithMax = (charCount) =>
     .string()
     .max(charCount, `Maximum length for this field is ${charCount} characters`)
     .trim()
+
+const uniquePropertyTest = function (value, propertyName, message) {
+  if (
+    this.parent
+      .filter((v) => v !== value)
+      .some((v) => get(v, propertyName) === get(value, propertyName))
+  ) {
+    throw this.createError({
+      path: `${this.path}.${propertyName}`,
+      message,
+    })
+  }
+
+  return true
+}
+yup.addMethod(yup.object, 'uniqueProperty', function (propertyName, message) {
+  return this.test('unique', message, function (value) {
+    return uniquePropertyTest.call(this, value, propertyName, message)
+  })
+})
+yup.addMethod(yup.object, 'uniqueProperties', function (propertyNames) {
+  return this.test('unique', '', function (value) {
+    const errors = propertyNames
+      .map(([propertyName, message]) => {
+        try {
+          return uniquePropertyTest.call(this, value, propertyName, message)
+        } catch (error) {
+          return error
+        }
+      })
+      .filter((error) => error instanceof yup.ValidationError)
+
+    if (errors?.length > 0) {
+      throw new yup.ValidationError(errors)
+    }
+
+    return true
+  })
+})
 
 const relatedVideoLinksUrls = yup
   .string()
@@ -111,11 +151,13 @@ export const definitions = {
     }),
   relatedVideoUrlsArray: () =>
     yup.array().of(
-      yup.object({
-        text: relatedVideoLinksUrls.min(
-          1,
-          'This field cannot be empty. Remove it if you do not want to include it.',
-        ),
-      }),
+      yup
+        .object({
+          text: relatedVideoLinksUrls.min(
+            1,
+            'This field cannot be empty. Remove it if you do not want to include it.',
+          ),
+        })
+        .uniqueProperties([['text', 'Duplicate links are not allowed.']]),
     ),
 }
