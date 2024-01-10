@@ -64,6 +64,34 @@ function WordsyData({ kids }) {
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false)
   const [endGameModalContent, setEndGameModalContent] = useState({})
 
+  const checkAnswer = () => {
+    const winningWord = currentGuess.join('') === solution
+    if (
+      currentGuess.length === WORD_LENGTH &&
+      guesses.length < MAX_TRIES &&
+      !isGameWon
+    ) {
+      setGuesses([...guesses, currentGuess])
+      setCurrentGuess([])
+
+      if (winningWord) {
+        setIsGameWon(true)
+        setIsEndGameModalOpen(true)
+        setEndGameModalContent({
+          status: 'win',
+          text: 'Well done!',
+        })
+      } else if (guesses.length === MAX_TRIES - 1) {
+        setIsGameLost(true)
+        setIsEndGameModalOpen(true)
+        setEndGameModalContent({
+          status: 'lost',
+          text: 'All tries exhausted. Please reset and try again.',
+        })
+      }
+    }
+  }
+
   const onChar = (value) => {
     if (
       currentGuess.length < WORD_LENGTH &&
@@ -82,16 +110,14 @@ function WordsyData({ kids }) {
   }
 
   const onEnter = () => {
-    // The return text is not used anywhere, adding that as placeholders to prevent sonar
-    // from raising warning about not having different returns in different conditionals
     if (isGameWon || isGameLost) {
-      return 'game-over'
+      return
     }
 
     if (currentGuess.length !== WORD_LENGTH) {
       setNotEnoughLettersModalOpen(true)
       setTimeout(() => setNotEnoughLettersModalOpen(false), 1000)
-      return 'not-enough-letters'
+      return
     }
 
     if (
@@ -103,39 +129,10 @@ function WordsyData({ kids }) {
     ) {
       setWordNotFoundModalOpen(true)
       setTimeout(() => setWordNotFoundModalOpen(false), 1000)
-      return 'word-not-found'
+      return
     }
 
-    const winningWord = currentGuess.join('') === solution
-    if (
-      currentGuess.length === WORD_LENGTH &&
-      guesses.length < MAX_TRIES &&
-      !isGameWon
-    ) {
-      setGuesses([...guesses, currentGuess])
-      setCurrentGuess([])
-
-      if (winningWord) {
-        setIsGameWon(true)
-        setIsEndGameModalOpen(true)
-        setEndGameModalContent({
-          status: 'win',
-          text: 'Well done!',
-        })
-        return 'game-won'
-      }
-
-      if (guesses.length === MAX_TRIES - 1) {
-        setIsGameLost(true)
-        setIsEndGameModalOpen(true)
-        setEndGameModalContent({
-          status: 'lost',
-          text: 'All tries exhausted. Please reset and try again.',
-        })
-        return 'game-lost'
-      }
-    }
-    return null
+    checkAnswer()
   }
 
   return {
