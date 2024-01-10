@@ -60,7 +60,11 @@ function SearchPresentation({
 
   return (
     <>
-      <section className="bg-gradient-to-b from-word to-word-dark p-5">
+      <section
+        className={`${
+          wholeDomain ? 'bg-bgRed' : 'bg-gradient-to-b from-word to-word-dark'
+        } p-5`}
+      >
         <div className="mx-auto lg:w-3/5">
           <SearchSiteForm.Container />
         </div>

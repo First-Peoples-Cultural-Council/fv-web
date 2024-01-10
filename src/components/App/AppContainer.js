@@ -19,6 +19,7 @@ import Languages from 'components/Languages'
 import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
+import Search from 'components/Search'
 import Site from 'components/Site'
 import { GENERAL } from 'common/constants/roles'
 import LegacyRedirect from './LegacyRedirect'
@@ -97,6 +98,14 @@ function AppContainer() {
                 element={
                   <AppWrapper>
                     <Languages.Container />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="search"
+                element={
+                  <AppWrapper>
+                    <Search.Container />
                   </AppWrapper>
                 }
               />
