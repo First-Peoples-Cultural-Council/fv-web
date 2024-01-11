@@ -57,7 +57,8 @@ function ImmersionCrudForm({ dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-12">
             <Form.EntryField
-              label={`Immersion Label for "${dataToEdit?.english}"`}
+              label={`Immersion label for "${dataToEdit?.english}"`}
+              buttonLabel={`Select a dictionary entry to use as a label for "${dataToEdit?.english}"`}
               nameId="dictionaryEntry"
               control={control}
               errors={errors}

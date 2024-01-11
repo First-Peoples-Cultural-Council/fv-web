@@ -7,10 +7,17 @@ import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import EntrySelector from 'components/EntrySelector'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
-import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 
-function EntryField({ errors, label, nameId, helpText, control, types }) {
+function EntryField({
+  errors,
+  label,
+  buttonLabel,
+  nameId,
+  helpText,
+  control,
+  types,
+}) {
   return (
     <div data-testid={`${nameId}_EntryField`}>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -25,7 +32,7 @@ function EntryField({ errors, label, nameId, helpText, control, types }) {
             render={({ field: { value, onChange } }) => (
               <EntryButton
                 value={value}
-                label={label}
+                buttonLabel={buttonLabel}
                 onChange={onChange}
                 types={types}
               />
@@ -41,7 +48,7 @@ function EntryField({ errors, label, nameId, helpText, control, types }) {
   )
 }
 
-function EntryButton({ label, onChange, types, value }) {
+function EntryButton({ buttonLabel, onChange, types, value }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const add = (entry) => {
     onChange(entry)
@@ -71,10 +78,14 @@ function EntryButton({ label, onChange, types, value }) {
           </div>
         </div>
       ) : (
-        <FieldButton
-          label={label}
-          openModal={() => setIsModalOpen(!isModalOpen)}
-        />
+        <button
+          type="button"
+          onClick={() => setIsModalOpen(!isModalOpen)}
+          className="bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light"
+        >
+          {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+          <span>{buttonLabel}</span>
+        </button>
       )}
       <Modal.Presentation
         isOpen={isModalOpen}
@@ -95,6 +106,7 @@ function EntryButton({ label, onChange, types, value }) {
 // PROPTYPES
 const { array, func, object, string } = PropTypes
 EntryField.propTypes = {
+  buttonLabel: string,
   errors: object,
   helpText: string,
   label: string,
@@ -105,11 +117,12 @@ EntryField.propTypes = {
 
 EntryField.defaultProps = {
   label: 'Dictionary Entry',
+  buttonLabel: 'Add a dictionary entry',
   types: [TYPE_PHRASE, TYPE_WORD],
 }
 
 EntryButton.propTypes = {
-  label: string,
+  buttonLabel: string,
   value: object,
   onChange: func,
   types: array,
