@@ -64,31 +64,33 @@ function WordsyData({ kids }) {
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false)
   const [endGameModalContent, setEndGameModalContent] = useState({})
 
-  const checkAnswer = () => {
-    const winningWord = currentGuess.join('') === solution
-    if (
-      currentGuess.length === WORD_LENGTH &&
-      guesses.length < MAX_TRIES &&
-      !isGameWon
-    ) {
-      setGuesses([...guesses, currentGuess])
-      setCurrentGuess([])
+  const validGuess = () =>
+    currentGuess.length === WORD_LENGTH &&
+    guesses.length < MAX_TRIES &&
+    !isGameWon
 
-      if (winningWord) {
-        setIsGameWon(true)
-        setIsEndGameModalOpen(true)
-        setEndGameModalContent({
-          status: 'win',
-          text: 'Well done!',
-        })
-      } else if (guesses.length === MAX_TRIES - 1) {
-        setIsGameLost(true)
-        setIsEndGameModalOpen(true)
-        setEndGameModalContent({
-          status: 'lost',
-          text: 'All tries exhausted. Please reset and try again.',
-        })
-      }
+  const checkAnswer = () => {
+    if (!validGuess()) {
+      return
+    }
+
+    setGuesses([...guesses, currentGuess])
+    setCurrentGuess([])
+
+    if (currentGuess.join('') === solution) {
+      setIsGameWon(true)
+      setIsEndGameModalOpen(true)
+      setEndGameModalContent({
+        status: 'win',
+        text: 'Well done!',
+      })
+    } else if (guesses.length === MAX_TRIES - 1) {
+      setIsGameLost(true)
+      setIsEndGameModalOpen(true)
+      setEndGameModalContent({
+        status: 'lost',
+        text: 'All tries exhausted. Please reset and try again.',
+      })
     }
   }
 
