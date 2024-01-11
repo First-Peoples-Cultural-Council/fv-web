@@ -156,7 +156,7 @@ const getMedia = ({ pictures, videos, videoLinks, videoLinksClassname }) => (
     {videoLinks?.length > 0 && (
       <div className="space-y-4">
         {videoLinks?.map((video) => (
-          <div className={videoLinksClassname}>
+          <div key={video.id} className={videoLinksClassname}>
             <div className="relative pb-[56.25%] h-0">
               <iframe
                 className="absolute t-0 l-0 w-full h-full"

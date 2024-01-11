@@ -205,7 +205,10 @@ function DictionaryDetailPresentationDrawer({
                 : null}
               {entry?.relatedVideoLinks
                 ? entry?.relatedVideoLinks?.map((video) => (
-                    <div className="rounded-lg relative pb-[56.25%] h-0">
+                    <div
+                      key={video?.id}
+                      className="rounded-lg relative pb-[56.25%] h-0"
+                    >
                       <iframe
                         className="rounded-lg absolute t-0 l-0 w-full h-full"
                         src={video?.embedLink}
