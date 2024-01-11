@@ -166,7 +166,6 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               {getIcon('QuestionCircleSolid', 'fill-current h-full w-6 mr-2')}
               Support
             </Link>
-            {/* {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)} */}
             {isGuest &&
               createMenuItem('Sign in / Register', 'Login', '', false, login)}
             {isHome && (
