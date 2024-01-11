@@ -54,7 +54,7 @@ function StoryCrudPreview({ storyData }) {
   )
 
   const relatedVisualMediaThumbnails = ({ images, videos, videoLinks }) => {
-    if (!images?.length > 0 && !videos?.length > 0) {
+    if (!images?.length > 0 && !videos?.length > 0 && !videoLinks?.length > 0) {
       return null
     }
     return (
@@ -79,6 +79,7 @@ function StoryCrudPreview({ storyData }) {
         {videoLinks?.length > 0 &&
           videoLinks?.map((videoLink) => (
             <MediaThumbnail.VideoLink
+              key={videoLink?.id}
               link={videoLink}
               containerStyles="w-40 h-40 mr-2"
             />
