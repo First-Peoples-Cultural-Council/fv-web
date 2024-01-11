@@ -20,7 +20,6 @@ function DictionaryListPresentation({
   moreActions,
   noResultsMessage,
   onSortByClick,
-  sitename,
   showType,
   sorting,
   wholeDomain,
@@ -223,7 +222,7 @@ function DictionaryListPresentation({
         closeHandler={() => setDrawerOpen(false)}
         fullScreenPath={
           selectedItem?.type
-            ? `/${sitename}/${makePlural(selectedItem?.type)}/${
+            ? `/${selectedItem?.sitename}/${makePlural(selectedItem?.type)}/${
                 selectedItem?.id
               }`
             : null
@@ -250,7 +249,6 @@ DictionaryListPresentation.propTypes = {
   noResultsMessage: node,
   onSortByClick: func,
   showType: bool,
-  sitename: string,
   sorting: object,
   wholeDomain: bool,
   entryLabel: string,
