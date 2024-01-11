@@ -22,9 +22,8 @@ function middlestuff(_translationwp) {
   cy.contains('Next step').click()
   cy.contains('Finish').click()
   cy.contains('Dismiss').click()
-  cy.contains('Edit').click()
-
-  cy.contains('Edit words').click()
+  // cy.get('[data-testid="DashboardPresentationEdit"]').click()
+  // cy.contains('Edit words').click()
 }
 
 function _login() {
@@ -73,8 +72,8 @@ function throughme(name) {
   cy.contains('Create widget').should('be.visible')
   cy.contains('Create widget').click({ force: true })
   cy.contains('Dismiss').click()
-  cy.get('[href="/lilwat/dashboard/edit"]').click()
-  cy.contains('Edit widgets').click()
+  // cy.get('[data-testid="DashboardPresentationEdit"]').click()
+  // cy.contains('Edit widgets').click()
 
   cy.contains(name).parent().children().eq(2).children().click()
 
@@ -364,6 +363,7 @@ describe('log in/out', () => {
 
     cy.contains('SHARE').click()
     cy.contains('Cancel').click()
+    cy.contains('MORE').scrollIntoView()
     cy.contains('MORE').click()
 
     cy.contains('QR CODE').click()
@@ -476,6 +476,7 @@ describe('log in/out', () => {
     cy.contains('Stories').click()
     cy.contains('Use list view').click()
     cy.get('.pb-16 > .w-full >', { timeout: 10000 }).each((_song) => {
+      cy.wrap(_song).should('be.enabled')
       cy.wrap(_song).click()
       cy.contains('Go to Story')
       cy.get('#CloseDrawerBtn').click()
@@ -500,7 +501,9 @@ describe('log in/out', () => {
     cy.contains('Songs').click()
     cy.contains('Use list view').click()
     cy.get('.pb-16 > .w-full >').each((_song) => {
+      cy.wrap(_song).scrollIntoView()
       cy.wrap(_song).click()
+      cy.wrap(_song).should('be.enabled')
       cy.contains('Go to Song')
       cy.get('#CloseDrawerBtn').click()
     })
