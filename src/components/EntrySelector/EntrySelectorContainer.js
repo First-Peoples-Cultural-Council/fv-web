@@ -9,7 +9,7 @@ import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SearchSelector from 'components/SearchSelector'
 import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'
 
-function EntrySelectorContainer({ types, addItem }) {
+function EntrySelectorContainer({ types, visibility, addItem }) {
   const {
     searchQuery,
     setSearchQuery,
@@ -19,7 +19,7 @@ function EntrySelectorContainer({ types, addItem }) {
     infiniteScroll,
     isLoadingEntries,
     loadRef,
-  } = useSearchModal({ types })
+  } = useSearchModal({ types, visibility })
 
   const { selectedItem, setSelectedItem } = useSearchResultSelector({
     searchResults,
@@ -74,6 +74,7 @@ function EntrySelectorContainer({ types, addItem }) {
 const { arrayOf, func, string } = PropTypes
 EntrySelectorContainer.propTypes = {
   types: arrayOf(string),
+  visibility: string,
   addItem: func,
 }
 

@@ -9,7 +9,7 @@ import Form from 'components/Form'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 
-function ImmersionCrudForm({ dataToEdit, submitHandler }) {
+function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
   const validator = yup.object().shape({
     dictionaryEntry: yup.object().required('A label is required'),
     transKey: definitions.paragraph({ charCount: 100 }),
@@ -59,10 +59,12 @@ function ImmersionCrudForm({ dataToEdit, submitHandler }) {
             <Form.EntryField
               label={`Immersion label for "${dataToEdit?.english}"`}
               buttonLabel={`Select a dictionary entry to use as a label for "${dataToEdit?.english}"`}
+              helpText="NB: Only dictionary entries that match the visibility of your site can be used as immersion labels."
               nameId="dictionaryEntry"
               control={control}
               errors={errors}
               types={[TYPE_WORD, TYPE_PHRASE]}
+              visibility={site?.visibility}
             />
           </div>
           <div className="col-span-12 flex justify-end mt-6">
@@ -84,6 +86,7 @@ const { func, object } = PropTypes
 ImmersionCrudForm.propTypes = {
   submitHandler: func,
   dataToEdit: object,
+  site: object,
 }
 
 export default ImmersionCrudForm

@@ -17,6 +17,7 @@ function EntryField({
   helpText,
   control,
   types,
+  visibility,
 }) {
   return (
     <div data-testid={`${nameId}_EntryField`}>
@@ -35,6 +36,7 @@ function EntryField({
                 buttonLabel={buttonLabel}
                 onChange={onChange}
                 types={types}
+                visibility={visibility}
               />
             )}
           />
@@ -48,7 +50,7 @@ function EntryField({
   )
 }
 
-function EntryButton({ buttonLabel, onChange, types, value }) {
+function EntryButton({ buttonLabel, onChange, types, visibility, value }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const add = (entry) => {
     onChange(entry)
@@ -94,6 +96,7 @@ function EntryButton({ buttonLabel, onChange, types, value }) {
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
           <EntrySelector.Container
             types={types}
+            visibility={visibility}
             addItem={add}
             removeItem={remove}
           />
@@ -113,6 +116,7 @@ EntryField.propTypes = {
   nameId: string.isRequired,
   control: object,
   types: array,
+  visibility: string,
 }
 
 EntryField.defaultProps = {
@@ -126,6 +130,7 @@ EntryButton.propTypes = {
   value: object,
   onChange: func,
   types: array,
+  visibility: string,
 }
 
 export default EntryField

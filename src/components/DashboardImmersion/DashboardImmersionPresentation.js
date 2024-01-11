@@ -87,6 +87,7 @@ function DashboardImmersionPresentation({
                 <ImmersionCrudForm
                   dataToEdit={currentLabel}
                   submitHandler={submitHandler}
+                  site={site}
                 />
               ) : (
                 <Form.Header title="Select a label to edit" />
