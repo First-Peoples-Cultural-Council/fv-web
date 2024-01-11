@@ -23,3 +23,6 @@ export const STATS = 'stats'
 export const AUDIO_PATH = 'audio'
 export const IMAGE_PATH = 'images'
 export const VIDEO_PATH = 'videos'
+
+// GAMES
+export const WORDSY = 'wordsy'

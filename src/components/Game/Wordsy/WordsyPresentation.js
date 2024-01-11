@@ -7,6 +7,9 @@ import Modal from 'components/Modal'
 import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 import Grid from 'components/Game/Wordsy/Utils/Grid'
 import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
+import SectionTitle from 'components/SectionTitle'
+
+const MIN_VALID_WORDS = 30
 
 function WordsyPresentation({
   tries,
@@ -14,6 +17,7 @@ function WordsyPresentation({
   languageConfig,
   guesses,
   currentGuess,
+  wordLength,
   onChar,
   onEnter,
   onDelete,
@@ -23,10 +27,9 @@ function WordsyPresentation({
   setNotEnoughLettersModalOpen,
   wordNotFoundModalOpen,
   setWordNotFoundModalOpen,
-  isWinModalOpen,
-  setIsWinModalOpen,
-  isLostModalOpen,
-  setIsLostModalOpen,
+  isEndGameModalOpen,
+  setIsEndGameModalOpen,
+  endGameModalContent,
 }) {
   return (
     <section
@@ -34,7 +37,7 @@ function WordsyPresentation({
       data-testid="WordsyContainer"
     >
       <div className="flex w-80 mx-auto items-center mb-8">
-        <h1 className="text-xl grow font-bold">Wordsy</h1>
+        <SectionTitle.Presentation title="WORDSY" accentColor="primary" />
         <button
           type="button"
           onClick={() => setInfoModalOpen(true)}
@@ -44,24 +47,44 @@ function WordsyPresentation({
         </button>
       </div>
 
-      <Grid
-        tries={tries}
-        guesses={guesses}
-        solution={solution}
-        currentGuess={currentGuess}
-        orthographyPattern={languageConfig?.orthographyPattern}
-        wordLength={languageConfig?.wordLength}
-      />
+      {/* If less than 30 words or valid guesses present, display error message */}
+      {languageConfig?.words?.length >= MIN_VALID_WORDS &&
+      languageConfig?.validGuesses?.length >= MIN_VALID_WORDS ? (
+        <div>
+          <Grid
+            tries={tries}
+            guesses={guesses}
+            solution={solution}
+            currentGuess={currentGuess}
+            orthographyPattern={languageConfig?.orthographyPattern}
+            wordLength={wordLength}
+          />
 
-      <Keyboard
-        orthography={languageConfig?.orthography}
-        onChar={onChar}
-        onEnter={onEnter}
-        onDelete={onDelete}
-        solution={solution}
-        guesses={guesses}
-        orthographyPattern={languageConfig?.orthographyPattern}
-      />
+          <Keyboard
+            orthography={languageConfig?.orthography}
+            onChar={onChar}
+            onEnter={onEnter}
+            onDelete={onDelete}
+            solution={solution}
+            guesses={guesses}
+            orthographyPattern={languageConfig?.orthographyPattern}
+          />
+        </div>
+      ) : (
+        <p className="text-fv-charcoal mt-2 text-center">
+          This site does not currently have enough dictionary content for the
+          wordsy game.
+          <br />
+          Please contact{' '}
+          <a
+            href="mailto:hello@firstvoices.com"
+            className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+          >
+            hello@firstvoices.com
+          </a>{' '}
+          for more information.
+        </p>
+      )}
 
       {/* Info modal */}
       <Modal.Presentation
@@ -139,26 +162,20 @@ function WordsyPresentation({
         </div>
       </Modal.Presentation>
 
-      {/* Win modal */}
+      {/* End Game Modal */}
       <Modal.Presentation
-        isOpen={isWinModalOpen}
-        closeHandler={() => setIsWinModalOpen(false)}
+        isOpen={isEndGameModalOpen}
+        closeHandler={() => setIsEndGameModalOpen(false)}
       >
-        <div className="bg-green-200 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
+        <div
+          className={`${
+            endGameModalContent.status === 'win'
+              ? 'bg-green-200'
+              : 'bg-red-200 text-white'
+          } rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full`}
+        >
           <h3 className="text-sm text-center font-medium text-gray-900">
-            Well done!
-          </h3>
-        </div>
-      </Modal.Presentation>
-
-      {/* Lost modal */}
-      <Modal.Presentation
-        isOpen={isLostModalOpen}
-        closeHandler={() => setIsLostModalOpen(false)}
-      >
-        <div className="bg-red-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
-          <h3 className="text-sm text-center font-medium text-gray-900">
-            All tries exhausted. Please reset and try again.
+            {endGameModalContent.text}
           </h3>
         </div>
       </Modal.Presentation>
@@ -166,27 +183,27 @@ function WordsyPresentation({
   )
 }
 
-const { any } = PropTypes
+const { array, bool, func, number, object, string } = PropTypes
 
 WordsyPresentation.propTypes = {
-  tries: any,
-  solution: any,
-  guesses: any,
-  currentGuess: any,
-  languageConfig: any,
-  onChar: any,
-  onEnter: any,
-  onDelete: any,
-  infoModalOpen: any,
-  setInfoModalOpen: any,
-  notEnoughLettersModalOpen: any,
-  setNotEnoughLettersModalOpen: any,
-  wordNotFoundModalOpen: any,
-  setWordNotFoundModalOpen: any,
-  isWinModalOpen: any,
-  setIsWinModalOpen: any,
-  isLostModalOpen: any,
-  setIsLostModalOpen: any,
+  tries: number,
+  solution: string,
+  guesses: array,
+  currentGuess: array,
+  languageConfig: object,
+  wordLength: number,
+  onChar: func,
+  onEnter: func,
+  onDelete: func,
+  infoModalOpen: bool,
+  setInfoModalOpen: func,
+  notEnoughLettersModalOpen: bool,
+  setNotEnoughLettersModalOpen: func,
+  wordNotFoundModalOpen: bool,
+  setWordNotFoundModalOpen: func,
+  isEndGameModalOpen: bool,
+  setIsEndGameModalOpen: func,
+  endGameModalContent: object,
 }
 
 export default WordsyPresentation

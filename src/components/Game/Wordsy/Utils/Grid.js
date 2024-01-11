@@ -17,13 +17,13 @@ function Grid({
   wordLength,
 }) {
   const empties =
-    guesses.length < tries - 1
+    guesses?.length < tries - 1
       ? Array.from(Array(tries - 1 - guesses.length))
       : []
 
   return (
     <div className="pb-6">
-      {guesses.map((guess, index) => (
+      {guesses?.map((guess, index) => (
         <CompletedRow
           solution={solution}
           // guesses are not unique, using index in the key
@@ -33,10 +33,10 @@ function Grid({
           orthographyPattern={orthographyPattern}
         />
       ))}
-      {guesses.length < tries && (
+      {guesses?.length < tries && (
         <CurrentRow guess={currentGuess} wordLength={wordLength} />
       )}
-      {empties.map((_, index) => (
+      {empties?.map((_, index) => (
         // An array of non-unique empty cells, using index in the key
         // eslint-disable-next-line react/no-array-index-key
         <EmptyRow key={`emptyRow-${index}`} wordLength={wordLength} /> // NOSONAR
