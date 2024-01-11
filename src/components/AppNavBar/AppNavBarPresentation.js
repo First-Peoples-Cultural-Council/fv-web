@@ -162,7 +162,11 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             <Link to="/about" className="inline-flex items-center px-8 py-2">
               {getIcon('About', 'fill-current h-full w-6 mr-2')}About
             </Link>
-            {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)}
+            <Link to="/support" className="inline-flex items-center px-8 py-2">
+              {getIcon('QuestionCircleSolid', 'fill-current h-full w-6 mr-2')}
+              Support
+            </Link>
+            {/* {createMenuItem('Support', 'QuestionCircleSolid', SUPPORT_LINK)} */}
             {isGuest &&
               createMenuItem('Sign in / Register', 'Login', '', false, login)}
             {isHome && (
