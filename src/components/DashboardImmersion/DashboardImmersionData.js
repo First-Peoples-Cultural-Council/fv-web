@@ -1,40 +1,19 @@
-import { useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
-import immersionDataAdaptor from 'components/Immersion/immersionDataAdaptor'
+import {
+  useImmersionLabels,
+  useImmersionLabelCreate,
+  useImmersionLabelUpdateEntry,
+} from 'common/dataHooks/useImmersionLabels'
 
 function DashboardImmersionData() {
   const { site } = useSiteStore()
-  const { sitename, children, id } = site
-  const navigate = useNavigate()
-  const [labelDictionaryId, setLabelDictionaryId] = useState(null)
 
-  useEffect(() => {
-    if (children?.['Label Dictionary'])
-      setLabelDictionaryId(children['Label Dictionary'])
-  }, [children])
+  const [currentLabel, setCurrentLabel] = useState()
 
-  const { isInitialLoading, error, isError, data } = useQuery(
-    ['immersion', id],
-    () => api.immersion.get(labelDictionaryId),
-    {
-      // The query will not execute until the labelDictionaryId exists
-      enabled: !!labelDictionaryId,
-    },
-  )
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
+  const { isInitialLoading, isError, labels } = useImmersionLabels()
 
   const tileContent = []
 
@@ -45,12 +24,27 @@ function DashboardImmersionData() {
     iconColor: 'tertiaryA',
   }
 
+  const { onSubmit: createLabel } = useImmersionLabelCreate()
+  const { onSubmit: updateLabel } = useImmersionLabelUpdateEntry()
+
+  const submitHandler = (formData) => {
+    if (currentLabel?.id) {
+      updateLabel(formData)
+    } else {
+      createLabel(formData)
+    }
+    setCurrentLabel()
+  }
+
   return {
     headerContent,
     isLoading: isInitialLoading || isError,
     site,
     tileContent,
-    labels: immersionDataAdaptor(data) || [],
+    labels,
+    submitHandler,
+    currentLabel,
+    setCurrentLabel,
   }
 }
 

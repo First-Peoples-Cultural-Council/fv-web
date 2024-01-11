@@ -1,0 +1,88 @@
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+// FPCC
+import Form from 'components/Form'
+import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
+import { definitions } from 'common/utils/validationHelpers'
+
+function ImmersionCrudForm({ dataToEdit, submitHandler }) {
+  const validator = yup.object().shape({
+    dictionaryEntry: yup.object().required('A label is required'),
+    transKey: definitions.paragraph({ charCount: 100 }),
+  })
+
+  const defaultValues = {
+    dictionaryEntry: null,
+    transKey: '',
+  }
+
+  // NB: Not using useEditForm as we need to load the transkey value even when there is no id
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+    setValue,
+  } = useForm({
+    defaultValues,
+    mode: 'onChange',
+    resolver: yupResolver(validator),
+  })
+
+  useEffect(() => {
+    Object.keys(dataToEdit).forEach((property) => {
+      if (Object.hasOwn(dataToEdit, property)) {
+        setValue(property, dataToEdit[property])
+      }
+    })
+  }, [dataToEdit, setValue])
+
+  return (
+    <div id="ImmersionCrudForm" className="max-w-5xl p-8">
+      <Form.Header title="Edit Immersion Label" />
+      <form onReset={reset}>
+        <div className="mt-6 grid grid-cols-12 gap-6">
+          <div className="hidden">
+            <input
+              id="transKey"
+              name="transKey"
+              type="hidden"
+              {...register('transKey')}
+            />
+          </div>
+          <div className="col-span-12">
+            <Form.EntryField
+              label={`Immersion Label for "${dataToEdit?.english}"`}
+              nameId="dictionaryEntry"
+              control={control}
+              errors={errors}
+              types={[TYPE_WORD, TYPE_PHRASE]}
+            />
+          </div>
+          <div className="col-span-12 flex justify-end mt-6">
+            <Form.SubmitButtons
+              submitLabel="Save Changes"
+              submitIcon="Save"
+              onSubmitClick={handleSubmit(submitHandler)}
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+// PROPTYPES
+const { func, object } = PropTypes
+
+ImmersionCrudForm.propTypes = {
+  submitHandler: func,
+  dataToEdit: object,
+}
+
+export default ImmersionCrudForm

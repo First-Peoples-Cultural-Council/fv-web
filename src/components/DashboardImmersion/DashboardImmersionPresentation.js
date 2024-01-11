@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
-import ImmersionCrud from 'components/ImmersionCrud'
+import ImmersionCrudForm from 'components/DashboardImmersion/ImmersionCrudForm'
 import getIcon from 'common/utils/getIcon'
-// import en from 'assets/locale/en'
+import Form from 'components/Form'
 
 function DashboardImmersionPresentation({
   headerContent,
@@ -14,8 +14,10 @@ function DashboardImmersionPresentation({
   tileContent,
   labels,
   site,
+  currentLabel,
+  setCurrentLabel,
+  submitHandler,
 }) {
-  const [currentLabel, setCurrentLabel] = useState()
   const tableHeaderClass =
     'px-6 py-3 text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
@@ -80,7 +82,16 @@ function DashboardImmersionPresentation({
             />
           </div>
           <div className="col-span-2">
-            <ImmersionCrud.Container label={currentLabel} />
+            {currentLabel ? (
+              <ImmersionCrudForm
+                dataToEdit={currentLabel}
+                submitHandler={submitHandler}
+              />
+            ) : (
+              <div className="pt-5">
+                <Form.Header title="Select a label to edit" />
+              </div>
+            )}
           </div>
         </div>
       </DashboardLanding.Presentation>
@@ -88,14 +99,16 @@ function DashboardImmersionPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { array, bool, func, object } = PropTypes
 DashboardImmersionPresentation.propTypes = {
   labels: array,
   headerContent: object,
   isLoading: bool,
   site: object,
-  sitename: string,
   tileContent: array,
+  currentLabel: bool,
+  setCurrentLabel: func,
+  submitHandler: func,
 }
 
 export default DashboardImmersionPresentation
