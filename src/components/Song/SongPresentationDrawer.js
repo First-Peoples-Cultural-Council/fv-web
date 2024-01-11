@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioNative from 'components/AudioNative'
 import WysiwygBlock from 'components/WysiwygBlock'
-import { IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
+import { IMAGE, VIDEO, VIDEO_LINK, SMALL, ORIGINAL } from 'common/constants'
 
 function SongPresentationDrawer({ entry, sitename }) {
   return (
@@ -53,6 +53,18 @@ function SongPresentationDrawer({ entry, sitename }) {
           >
             Your browser does not support the video tag.
           </video>
+        </div>
+      )}
+      {entry.coverVisual?.type === VIDEO_LINK && (
+        <div className="my-2 md:my-6 mx-auto px-4 relative pb-[56.25%] h-0">
+          <iframe
+            className="pr-8 absolute t-0 l-0 w-full h-full mx-auto"
+            src={entry?.coverVisual?.entry?.embedLink}
+            title="video"
+            allowFullScreen
+          >
+            Your browser does not support the iframe tag.
+          </iframe>
         </div>
       )}
       <div className="flex px-6 mt-2 md:mt-6">

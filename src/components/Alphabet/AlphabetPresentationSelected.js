@@ -15,6 +15,7 @@ function AlphabetPresentationSelected({
   relatedDictionaryEntries,
   relatedAudio,
   relatedVideo,
+  relatedVideoLink,
   relatedImage,
   generalNote,
   videoIsOpen,
@@ -145,7 +146,7 @@ function AlphabetPresentationSelected({
             <div className="-mr-1 ml-2 mb-1 text-3xl font-bold">{title}</div>
           </Link>
         )}
-        {relatedVideo && (
+        {(relatedVideo || relatedVideoLink?.length > 0) && (
           <button
             type="button"
             onClick={onVideoClick}
@@ -177,19 +178,33 @@ function AlphabetPresentationSelected({
                 </div>
                 {/* body */}
                 <div className="p-2">
-                  <video
-                    height="50"
-                    width="auto"
-                    src={getMediaPath({
-                      mediaObject: relatedVideo,
-                      type: VIDEO,
-                      size: ORIGINAL,
-                    })}
-                    controls
-                    autoPlay
-                  >
-                    Your browser does not support the video tag.
-                  </video>
+                  {relatedVideo && (
+                    <video
+                      height="50"
+                      width="auto"
+                      src={getMediaPath({
+                        mediaObject: relatedVideo,
+                        type: VIDEO,
+                        size: ORIGINAL,
+                      })}
+                      controls
+                      autoPlay
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
+                  {relatedVideoLink?.length > 0 && (
+                    <div className="w-[55vw] max-w-[46rem] min-w-[10rem] relative pb-[56.25%]">
+                      <iframe
+                        className="absolute t-0 l-0 w-full h-full"
+                        src={relatedVideoLink?.[0]?.embedLink}
+                        title="video"
+                        allowFullScreen
+                      >
+                        Your browser does not support the iframe tag.
+                      </iframe>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -210,6 +225,7 @@ AlphabetPresentationSelected.propTypes = {
   generalNote: string,
   relatedAudio: array,
   relatedVideo: object,
+  relatedVideoLink: object,
   relatedDictionaryEntries: array,
   onVideoClick: func,
   videoIsOpen: bool,

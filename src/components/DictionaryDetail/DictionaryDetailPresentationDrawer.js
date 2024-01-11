@@ -22,7 +22,9 @@ function DictionaryDetailPresentationDrawer({
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
   const noMedia = !(
-    entry?.relatedImages?.length > 0 || entry?.relatedVideos?.length > 0
+    entry?.relatedImages?.length > 0 ||
+    entry?.relatedVideos?.length > 0 ||
+    entry?.relatedVideoLinks?.length > 0
   )
   const shortTitle = entry?.title.length < 16
   return (
@@ -198,6 +200,20 @@ function DictionaryDetailPresentationDrawer({
                           )}
                         </Disclosure.Panel>
                       </Disclosure>
+                    </div>
+                  ))
+                : null}
+              {entry?.relatedVideoLinks
+                ? entry?.relatedVideoLinks?.map((video) => (
+                    <div className="rounded-lg relative pb-[56.25%] h-0">
+                      <iframe
+                        className="rounded-lg absolute t-0 l-0 w-full h-full"
+                        src={video?.embedLink}
+                        title="video"
+                        allowFullScreen
+                      >
+                        Your browser does not support the iframe tag.
+                      </iframe>
                     </div>
                   ))
                 : null}
