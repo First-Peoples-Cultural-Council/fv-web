@@ -82,16 +82,16 @@ function DashboardImmersionPresentation({
             />
           </div>
           <div className="col-span-2">
-            {currentLabel ? (
-              <ImmersionCrudForm
-                dataToEdit={currentLabel}
-                submitHandler={submitHandler}
-              />
-            ) : (
-              <div className="pt-5">
+            <div className="p-8">
+              {currentLabel?.transKey ? (
+                <ImmersionCrudForm
+                  dataToEdit={currentLabel}
+                  submitHandler={submitHandler}
+                />
+              ) : (
                 <Form.Header title="Select a label to edit" />
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </DashboardLanding.Presentation>
@@ -106,7 +106,7 @@ DashboardImmersionPresentation.propTypes = {
   isLoading: bool,
   site: object,
   tileContent: array,
-  currentLabel: bool,
+  currentLabel: object,
   setCurrentLabel: func,
   submitHandler: func,
 }

@@ -43,7 +43,7 @@ function ImmersionCrudForm({ dataToEdit, submitHandler }) {
   }, [dataToEdit, setValue])
 
   return (
-    <div id="ImmersionCrudForm" className="max-w-5xl p-8">
+    <div id="ImmersionCrudForm">
       <Form.Header title="Edit Immersion Label" />
       <form onReset={reset}>
         <div className="mt-6 grid grid-cols-12 gap-6">
