@@ -64,12 +64,12 @@ function WordsyData({ kids }) {
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false)
   const [endGameModalContent, setEndGameModalContent] = useState({})
 
+  const isGameOver = () => isGameWon || isGameLost
+
   const isValidInput = () =>
     currentGuess.length === WORD_LENGTH &&
     guesses.length < MAX_TRIES &&
     !isGameWon
-
-  const isGameOver = () => isGameWon || isGameLost
 
   const isValidGuess = () =>
     isWordInWordList(
@@ -77,6 +77,18 @@ function WordsyData({ kids }) {
       languageConfig.validGuesses,
       currentGuess.join(''),
     )
+
+  const isMoveAllowed = () => {
+    if (currentGuess.length !== WORD_LENGTH) {
+      openNotEnoughLettersModal()
+      return false
+    }
+    if (!isValidGuess()) {
+      openNotFoundModal()
+      return false
+    }
+    return true
+  }
 
   const openNotEnoughLettersModal = () => {
     setNotEnoughLettersModalOpen(true)
@@ -126,15 +138,7 @@ function WordsyData({ kids }) {
   }
 
   const onEnter = () => {
-    if (isGameOver()) {
-      return
-    }
-    if (currentGuess.length !== WORD_LENGTH) {
-      openNotEnoughLettersModal()
-      return
-    }
-    if (!isValidGuess()) {
-      openNotFoundModal()
+    if (isGameOver() || !isMoveAllowed()) {
       return
     }
     checkAnswer()
