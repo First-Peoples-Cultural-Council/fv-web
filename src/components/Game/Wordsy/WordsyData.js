@@ -64,16 +64,34 @@ function WordsyData({ kids }) {
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false)
   const [endGameModalContent, setEndGameModalContent] = useState({})
 
-  const validGuess = () =>
+  const isValidInput = () =>
     currentGuess.length === WORD_LENGTH &&
     guesses.length < MAX_TRIES &&
     !isGameWon
 
+  const isGameOver = () => isGameWon || isGameLost
+
+  const isValidGuess = () =>
+    isWordInWordList(
+      languageConfig.words,
+      languageConfig.validGuesses,
+      currentGuess.join(''),
+    )
+
+  const openNotEnoughLettersModal = () => {
+    setNotEnoughLettersModalOpen(true)
+    setTimeout(() => setNotEnoughLettersModalOpen(false), 1000)
+  }
+
+  const openNotFoundModal = () => {
+    setWordNotFoundModalOpen(true)
+    setTimeout(() => setWordNotFoundModalOpen(false), 1000)
+  }
+
   const checkAnswer = () => {
-    if (!validGuess()) {
+    if (!isValidInput()) {
       return
     }
-
     setGuesses([...guesses, currentGuess])
     setCurrentGuess([])
 
@@ -95,11 +113,7 @@ function WordsyData({ kids }) {
   }
 
   const onChar = (value) => {
-    if (
-      currentGuess.length < WORD_LENGTH &&
-      guesses.length < MAX_TRIES &&
-      !isGameWon
-    ) {
+    if (!isValidInput()) {
       const newGuess = currentGuess.concat([value])
       setCurrentGuess(newGuess)
     }
@@ -112,28 +126,17 @@ function WordsyData({ kids }) {
   }
 
   const onEnter = () => {
-    if (isGameWon || isGameLost) {
+    if (isGameOver()) {
       return
     }
-
     if (currentGuess.length !== WORD_LENGTH) {
-      setNotEnoughLettersModalOpen(true)
-      setTimeout(() => setNotEnoughLettersModalOpen(false), 1000)
+      openNotEnoughLettersModal()
       return
     }
-
-    if (
-      !isWordInWordList(
-        languageConfig.words,
-        languageConfig.validGuesses,
-        currentGuess.join(''),
-      )
-    ) {
-      setWordNotFoundModalOpen(true)
-      setTimeout(() => setWordNotFoundModalOpen(false), 1000)
+    if (!isValidGuess()) {
+      openNotFoundModal()
       return
     }
-
     checkAnswer()
   }
 
