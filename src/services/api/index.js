@@ -3,6 +3,7 @@ import categories from 'services/api/categories'
 import characters from 'services/api/characters'
 import dictionary from 'services/api/dictionary'
 import gallery from 'services/api/gallery'
+import gameContent from 'services/api/gameContent'
 import immersionLabels from 'services/api/immersionLabels'
 import joinRequests from 'services/api/joinRequests'
 import landingPage from 'services/api/landingpage'
@@ -26,6 +27,7 @@ export default {
   characters,
   dictionary,
   gallery,
+  gameContent,
   immersionLabels,
   joinRequests,
   landingPage,

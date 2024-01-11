@@ -307,6 +307,18 @@ function DictionaryCrudPresentation({
                 ]}
               />
             </div>
+            <div className="col-span-12">
+              <Form.RadioButtons
+                label="Include in games?"
+                control={control}
+                errors={errors}
+                nameId="includeInGames"
+                options={[
+                  { label: 'Yes', value: 'true' },
+                  { label: 'No', value: 'false' },
+                ]}
+              />
+            </div>
           </Fragment>
         )
       default:
