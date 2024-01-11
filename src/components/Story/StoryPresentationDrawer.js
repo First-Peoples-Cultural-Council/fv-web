@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import WysiwygBlock from 'components/WysiwygBlock'
-import { IMAGE, VIDEO } from 'common/constants'
+import { IMAGE, VIDEO, VIDEO_LINK } from 'common/constants'
 
 function StoryPresentationDrawer({ entry, sitename }) {
   return (
@@ -52,6 +52,18 @@ function StoryPresentationDrawer({ entry, sitename }) {
           >
             Your browser does not support the video tag.
           </video>
+        </div>
+      )}
+      {entry.coverVisual?.type === VIDEO_LINK && (
+        <div className="my-2 md:my-6 mx-auto px-4 relative pb-[56.25%] h-0">
+          <iframe
+            className="pr-8 absolute t-0 l-0 w-full h-full mx-auto"
+            src={entry?.coverVisual?.entry?.embedLink}
+            title="video"
+            allowFullScreen
+          >
+            Your browser does not support the iframe tag.
+          </iframe>
         </div>
       )}
 
