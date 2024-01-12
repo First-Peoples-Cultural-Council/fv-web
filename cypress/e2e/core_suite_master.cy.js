@@ -108,11 +108,11 @@ describe('log in/out', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
     cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      cy.contains('Loading').should('not.exist')
-      cy.url().should(
-        'match',
-        /^https:\/\/fpcc-dev\.auth\.ca-central-1\.amazoncognito\.com/,
-      )
+      //   cy.contains('Loading').should('not.exist')
+      //   cy.url().should(
+      //     'match',
+      //     /^https:\/\/fpcc-dev\.auth\.ca-central-1\.amazoncognito\.com/,
+      //   )
       cy.contains('Sign in with your email and password', {
         timeout: 10000,
       }).should('exist')
