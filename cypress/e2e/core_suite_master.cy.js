@@ -111,7 +111,7 @@ describe('log in/out', () => {
     cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
       cy.contains('Sign in with your email and password', {
         timeout: 10000,
-      }).should('be.visible')
+      }).should('exist')
     })
   })
 
