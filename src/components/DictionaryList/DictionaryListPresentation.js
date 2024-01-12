@@ -231,6 +231,7 @@ function DictionaryListPresentation({
         <EntryDetail.Container
           id={selectedItem?.id}
           type={selectedItem?.type}
+          sitename={selectedItem?.sitename}
           isDrawer
         />
       </Drawer.Presentation>
