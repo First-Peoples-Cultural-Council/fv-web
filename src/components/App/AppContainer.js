@@ -13,6 +13,7 @@ import AppWrapper from 'components/App/AppWrapper'
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
 import ErrorHandler from 'components/ErrorHandler'
+import FVApps from 'components/FVApps'
 import Keyboards from 'components/Keyboards'
 import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
@@ -55,6 +56,14 @@ function AppContainer() {
                 element={
                   <AppWrapper>
                     <AboutFV />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="apps"
+                element={
+                  <AppWrapper>
+                    <FVApps />
                   </AppWrapper>
                 }
               />
