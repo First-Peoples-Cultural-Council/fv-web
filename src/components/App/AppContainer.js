@@ -21,6 +21,7 @@ import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
 import Site from 'components/Site'
+import Support from 'components/Support'
 import { GENERAL } from 'common/constants/roles'
 import LegacyRedirect from './LegacyRedirect'
 
@@ -64,6 +65,14 @@ function AppContainer() {
                 element={
                   <AppWrapper>
                     <FVApps />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="support"
+                element={
+                  <AppWrapper>
+                    <Support />
                   </AppWrapper>
                 }
               />
