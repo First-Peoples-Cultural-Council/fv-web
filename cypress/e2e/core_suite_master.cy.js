@@ -115,7 +115,7 @@ describe('log in/out', () => {
       //   )
       cy.contains('Sign in with your email and password', {
         timeout: 10000,
-      }).should('exist')
+      }).should('be.visible')
     })
   })
 
