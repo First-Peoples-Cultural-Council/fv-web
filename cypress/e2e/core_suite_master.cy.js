@@ -113,10 +113,10 @@ describe('log in/out', () => {
       //     'match',
       //     /^https:\/\/fpcc-dev\.auth\.ca-central-1\.amazoncognito\.com/,
       //   )
-      cy.contains('Sign in with your email and password', {
-        timeout: 10000,
-      }).should('be.visible')
     })
+    cy.contains('Sign in with your email and password', {
+      timeout: 10000,
+    }).should('be.visible')
   })
 
   it('1.3 - signin - browser back', () => {
