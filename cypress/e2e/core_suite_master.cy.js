@@ -107,6 +107,7 @@ describe('log in/out', () => {
   it('1.2 - signin - no redirect', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
+    cy.contains('Loading').should('not.exist')
     cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
       cy.url().should(
         'match',
