@@ -272,7 +272,7 @@ function StoryPresentation({ entry }) {
 }
 
 const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
-  const media = images.length + videos.length + videoLinks.length
+  const mediaLength = images.length + videos.length + videoLinks.length
 
   const getImageTag = ({ image, className }) => (
     <img
@@ -316,90 +316,92 @@ const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
     </div>
   )
 
-  if (images.length === 1 && media === 1) {
-    return (
-      <div className="w-full md:w-6/12">
-        {getImageTag({
-          image: images?.[0],
-          className: 'h-auto w-full',
-        })}
-      </div>
-    )
-  }
-  if (videos.length === 1 && media === 1) {
-    return (
-      <div className="w-full md:w-6/12 flex-none">
-        {getVideoTag({ video: videos?.[0], className: 'h-auto w-full' })}
-      </div>
-    )
-  }
-  if (videoLinks.length === 1 && media === 1) {
-    return (
-      <div className="w-full md:w-6/12 flex-none">
-        {getVideoLinkTag({
-          videoLink: videoLinks?.[0],
-          className: 'h-auto w-full',
-        })}
-      </div>
-    )
-  }
-  if (media === 2) {
-    return (
-      <div className="w-full md:w-6/12">
-        <div className="grid grid-cols-2 gap-4 m-4">
-          {images.length > 0
-            ? images?.map((image) =>
-                getImageTag({ image, className: 'h-auto w-auto' }),
-              )
-            : null}
-          {videos.length > 0
-            ? videos?.map((video) =>
-                getVideoTag({ video, className: 'h-auto w-full' }),
-              )
-            : null}
-          {videoLinks.length > 0
-            ? videoLinks?.map((videoLink) =>
-                getVideoLinkTag({ videoLink, className: 'h-auto w-full' }),
-              )
-            : null}
-        </div>
-      </div>
-    )
-  }
+  switch (true) {
+    case mediaLength === 1:
+      return (
+        <>
+          {images.length > 0 && (
+            <div className="w-full md:w-6/12">
+              {getImageTag({
+                image: images?.[0],
+                className: 'h-auto w-full',
+              })}
+            </div>
+          )}
+          {videos.length === 1 && (
+            <div className="w-full md:w-6/12 flex-none">
+              {getVideoTag({ video: videos?.[0], className: 'h-auto w-full' })}
+            </div>
+          )}
+          {videoLinks.length === 1 && (
+            <div className="w-full md:w-6/12 flex-none">
+              {getVideoLinkTag({
+                videoLink: videoLinks?.[0],
+                className: 'h-auto w-full',
+              })}
+            </div>
+          )}
+        </>
+      )
 
-  if (media > 2) {
-    return (
-      <div className="w-full md:w-6/12">
-        <div className="masonry-cols-2 p-4">
-          {images.length > 0
-            ? images?.map((image) => (
-                <div key={image.id} className="mb-4">
-                  {getImageTag({
-                    image,
-                    className: 'h-auto w-full',
-                  })}
-                </div>
-              ))
-            : null}
-          {videos.length > 0
-            ? videos?.map((video) => (
-                <div key={video.id} className="mb-4">
-                  {getVideoTag({ video, className: 'h-auto w-full' })}
-                </div>
-              ))
-            : null}
-          {videoLinks.length > 0
-            ? videoLinks?.map((videoLink) => (
-                <div key={videoLink.id} className="mb-4">
-                  {getVideoLinkTag({ videoLink, className: 'h-auto w-full' })}
-                </div>
-              ))
-            : null}
+    case mediaLength === 2:
+      return (
+        <div className="w-full md:w-6/12">
+          <div className="grid grid-cols-2 gap-4 m-4">
+            {images.length > 0
+              ? images?.map((image) =>
+                  getImageTag({ image, className: 'h-auto w-auto' }),
+                )
+              : null}
+            {videos.length > 0
+              ? videos?.map((video) =>
+                  getVideoTag({ video, className: 'h-auto w-full' }),
+                )
+              : null}
+            {videoLinks.length > 0
+              ? videoLinks?.map((videoLink) =>
+                  getVideoLinkTag({ videoLink, className: 'h-auto w-full' }),
+                )
+              : null}
+          </div>
         </div>
-      </div>
-    )
+      )
+
+    case mediaLength > 2:
+      return (
+        <div className="w-full md:w-6/12">
+          <div className="masonry-cols-2 p-4">
+            {images.length > 0
+              ? images?.map((image) => (
+                  <div key={image.id} className="mb-4">
+                    {getImageTag({
+                      image,
+                      className: 'h-auto w-full',
+                    })}
+                  </div>
+                ))
+              : null}
+            {videos.length > 0
+              ? videos?.map((video) => (
+                  <div key={video.id} className="mb-4">
+                    {getVideoTag({ video, className: 'h-auto w-full' })}
+                  </div>
+                ))
+              : null}
+            {videoLinks.length > 0
+              ? videoLinks?.map((videoLink) => (
+                  <div key={videoLink.id} className="mb-4">
+                    {getVideoLinkTag({ videoLink, className: 'h-auto w-full' })}
+                  </div>
+                ))
+              : null}
+          </div>
+        </div>
+      )
+
+    default:
+      return null
   }
-  return null
 }
 
 // PROPTYPES
