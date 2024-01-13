@@ -30,12 +30,13 @@ export function useStories() {
   return { ...response, data: { ...response?.data, results: formatted } }
 }
 
-export function useStory({ id, edit = false }) {
-  const { sitename } = useParams()
+export function useStory({ id, sitename, edit = false }) {
+  const { paramsSitename } = useParams()
+  const sitenameToSend = sitename || paramsSitename
 
   const response = useQuery(
-    [STORIES, sitename, id],
-    () => api.stories.get({ sitename, id }),
+    [STORIES, sitenameToSend, id],
+    () => api.stories.get({ sitename: sitenameToSend, id }),
     { enabled: !!id },
   )
 
