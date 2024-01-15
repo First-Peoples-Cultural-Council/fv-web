@@ -5,15 +5,16 @@ export function immersionLabelsAdaptor(data) {
 
   const entries = data?.results
 
-  Object.keys(en.translation.general).forEach((key) => {
-    const found = entries?.find((entry) => entry?.key === `general-${key}`)
+  Object.keys(en.translation).forEach((key) => {
+    const found = entries?.find((entry) => entry?.key === key)
     if (!found) {
+      if (key === 'general' || key === 'visibility') return
       allLabels.push({
         id: null,
         immersionLabel: '',
         dictionaryEntry: null,
-        transKey: `general-${key}`,
-        english: en?.translation?.general?.[key],
+        transKey: key,
+        english: en?.translation?.[key],
         relatedAudio: [],
       })
     } else {
@@ -22,7 +23,7 @@ export function immersionLabelsAdaptor(data) {
         immersionLabel: found?.dictionaryEntry?.title || '',
         dictionaryEntry: found?.dictionaryEntry || {},
         transKey: found?.key || '',
-        english: en?.translation?.general?.[key],
+        english: en?.translation?.[key],
         relatedAudio: found?.dictionaryEntry?.related_audio || [],
       })
     }
