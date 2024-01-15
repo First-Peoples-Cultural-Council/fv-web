@@ -74,7 +74,6 @@ export const formattedVisibilityOptions = (optionsArray) =>
   optionsArray.map((option) => ({
     icon: option,
     value: option,
-    transKey: `visibility.${option}`,
   }))
 
 const constructVisibilityOptions = (siteVisibility) => {
