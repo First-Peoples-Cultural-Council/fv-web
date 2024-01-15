@@ -68,6 +68,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
               }`}
             >
               <Link
+                data-testid="DictionaryGridTileKids"
                 key={entry?.id}
                 to={`/${entry?.sitename}/kids/${makePlural(entry?.type)}/${
                   entry?.id

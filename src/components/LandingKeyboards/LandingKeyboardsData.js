@@ -16,7 +16,7 @@ function LandingKeyboardsData() {
       title: 'FIRSTVOICES KEYBOARDS',
       text: 'FirstVoices keyboards have been developed for both desktop and mobile devices, with over 100 Indigenous language keyboards currently available. Users are able to select their keyboard(s) of choice within their email, social media, word processing or other apps, enabling unlimited communication in their mother language.',
       url: '/keyboards',
-      urlLabel: 'LEARN MORE',
+      urlLabel: 'Learn more',
     },
   }
   return data
