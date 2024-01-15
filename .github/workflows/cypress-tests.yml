@@ -27,4 +27,3 @@ jobs:
           CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
           CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
           CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
-          experimentalOriginDependencies: true
