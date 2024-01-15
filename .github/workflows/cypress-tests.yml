@@ -19,9 +19,9 @@ jobs:
 
       - name: Run tests
         run: |
-          npx  cypress run --config projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://fvweb-dev.eks.firstvoices.io',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}} -s "cypress/e2e/core_suite_master.cy.js"
+          npx  cypress run --config projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://fvweb-dev.eks.firstvoices.io/',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}} -s "cypress/e2e/core_suite_master.cy.js"
         env:
-          baseUrl: 'https://fvweb-dev.eks.firstvoices.io'
+          baseUrl: 'https://fvweb-dev.eks.firstvoices.io/'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}

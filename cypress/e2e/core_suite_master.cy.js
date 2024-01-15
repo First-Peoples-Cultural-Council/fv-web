@@ -119,12 +119,11 @@ describe('log in/out', () => {
   it('1.3 - signin - browser back', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {})
     cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      cy.contains('Sign in with your email and password')
+      cy.contains('Sign in with your email and password').should('exist')
+      cy.go('back')
     })
 
-    cy.go('back')
     cy.contains('Sign in')
   })
 
