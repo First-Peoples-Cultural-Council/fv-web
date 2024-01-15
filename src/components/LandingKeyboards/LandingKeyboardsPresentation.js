@@ -12,6 +12,7 @@ function LandingKeyboardsPresentation({ data }) {
     fvKeyboards,
     image,
     text,
+    url,
     urlLabel,
     bg,
   } = data?.settings
@@ -66,19 +67,16 @@ function LandingKeyboardsPresentation({ data }) {
         style={{
           backgroundImage: `url(${bg})`,
           backgroundRepeat: 'no-repeat',
-          // backgroundPosition: 'right 20% top',
           backgroundSize: 'cover',
         }}
       >
         <img src={image} alt="computer monitor" className="w-1/3" />
-        <div className="text-white text-bold text-base md:text-lg w-1/2 px-4 pt-4 flex flex-col items-center">
-          <h2 className="text-4xl text-center font-semibold">{title}</h2>
-          <p className="pt-8 pb-4 m-4 text-center">{text}</p>
+        <div className="text-white text-bold text-base md:text-lg w-1/2 px-4 pt-4 flex flex-col">
+          <h2 className="text-4xl font-semibold m-4">{title}</h2>
+          <p className="pt-8 pb-4 m-4">{text}</p>
           <a
-            href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705752/Install+fonts+and+keyboards+for+Indigenous+languages"
-            className="bg-phrase rounded-full text-center py-4 w-32"
-            rel="noopener noreferrer"
-            target="_blank"
+            href={url}
+            className="bg-phrase rounded-full text-center py-2 px-5 w-36 hover:font-bold m-4"
           >
             {urlLabel}
           </a>

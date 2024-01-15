@@ -6,8 +6,8 @@ import Key from 'components/Game/Wordsy/Utils/Keyboard/Key'
 
 export const getStatuses = (solution, guesses, orthographyPattern) => {
   const charObj = {}
-  const solutionChars = solution.split(orthographyPattern).filter((i) => i)
-  guesses.forEach((word) => {
+  const solutionChars = solution?.split(orthographyPattern).filter((i) => i)
+  guesses?.forEach((word) => {
     word.forEach((letter, i) => {
       if (!solutionChars.includes(letter)) {
         charObj[letter] = 'absent'
@@ -31,12 +31,12 @@ function Keyboard({
   guesses,
   orthographyPattern,
 }) {
-  const firstRow = orthography.slice(0, Math.floor(orthography.length * 0.4))
-  const secondRow = orthography.slice(
+  const firstRow = orthography?.slice(0, Math.floor(orthography.length * 0.4))
+  const secondRow = orthography?.slice(
     Math.floor(orthography.length * 0.4),
     Math.floor(orthography.length * 0.7),
   )
-  const thirdRow = orthography.slice(
+  const thirdRow = orthography?.slice(
     Math.floor(orthography.length * 0.7),
     orthography.length,
   )
@@ -77,7 +77,7 @@ function Keyboard({
   return (
     <div>
       <div className="flex justify-center mb-1">
-        {firstRow.map((char) => (
+        {firstRow?.map((char) => (
           <Key
             value={char}
             key={`key-${char}`}
@@ -87,7 +87,7 @@ function Keyboard({
         ))}
       </div>
       <div className="flex justify-center mb-1">
-        {secondRow.map((char) => (
+        {secondRow?.map((char) => (
           <Key
             value={char}
             key={`key-${char}`}
@@ -100,7 +100,7 @@ function Keyboard({
         <Key width={65.4} value="ENTER" onClick={onClick}>
           Enter
         </Key>
-        {thirdRow.map((char) => (
+        {thirdRow?.map((char) => (
           <Key
             value={char}
             key={`key-${char}`}

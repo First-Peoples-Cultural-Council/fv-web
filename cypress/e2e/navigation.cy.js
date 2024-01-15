@@ -1,7 +1,7 @@
 describe('V2 tests, word and phrase', () => {
   beforeEach(() => {
     cy.viewport(1200, 1200)
-    cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
   })
 
   it('Check Dictionary Menu ', () => {
@@ -31,7 +31,6 @@ describe('V2 tests, word and phrase', () => {
     cy.on('uncaught:exception', () => true)
     // Used to be login code here like in the above it function. add back here if needed.  and the first visit should be put back to beforeEach
     const aboutMenu = ['Our Language', 'Our People']
-    cy.wait(1000)
     cy.checkLinks(aboutMenu, 'About')
   })
 
@@ -41,5 +40,20 @@ describe('V2 tests, word and phrase', () => {
 
   it('check Donate', () => {
     //  cy.contains('Donate').click()
+  })
+
+  it.only('check categories', () => {
+    cy.contains('Dictionary').click()
+    cy.contains('Categories').click()
+    let elCount = 0
+
+    cy.get('ul li').each(() => {
+      elCount += 1
+    })
+
+    for (let a = 2; a < elCount; a += 1) {
+      cy.get(`.grid :nth-child(${a})`).click()
+      cy.go('back')
+    }
   })
 }) // end of describe

@@ -68,7 +68,7 @@ function MediaItemsLayoutAudio({
                           : { onClick: () => setCurrentFile(audioFile) })}
                       >
                         {selection && (
-                          <td>
+                          <td data-testid="DashboardMediaItemsRow">
                             {selectedMedia?.some(
                               (elemId) => elemId === audioFile?.id,
                             ) && // Add a small checkIcon on the top-right if it is selected
@@ -78,7 +78,10 @@ function MediaItemsLayoutAudio({
                               )}
                           </td>
                         )}
-                        <td className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal">
+                        <td
+                          className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
+                          aria-label="list"
+                        >
                           <AudioNative
                             styling="w-full "
                             audioObject={audioFile}

@@ -13,12 +13,14 @@ import AppWrapper from 'components/App/AppWrapper'
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
 import ErrorHandler from 'components/ErrorHandler'
+import Keyboards from 'components/Keyboards'
 import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
 import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
 import RequireAuth from 'common/RequireAuth'
 import Site from 'components/Site'
+import Support from 'components/Support'
 import { GENERAL } from 'common/constants/roles'
 import LegacyRedirect from './LegacyRedirect'
 
@@ -54,6 +56,22 @@ function AppContainer() {
                 element={
                   <AppWrapper>
                     <AboutFV />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="support"
+                element={
+                  <AppWrapper>
+                    <Support />
+                  </AppWrapper>
+                }
+              />
+              <Route
+                path="keyboards"
+                element={
+                  <AppWrapper>
+                    <Keyboards />
                   </AppWrapper>
                 }
               />

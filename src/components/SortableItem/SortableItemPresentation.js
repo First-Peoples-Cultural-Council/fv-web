@@ -24,7 +24,12 @@ export function SortableItemPresentation({ id, children }) {
   return (
     <div ref={setNodeRef} style={style} className="flex items-center">
       <div className="p-2">
-        <button type="button" {...attributes} {...listeners}>
+        <button
+          data-testid="DashboardWidgetMoveButton"
+          type="button"
+          {...attributes}
+          {...listeners}
+        >
           {getIcon('ChevronUpDown', 'fill-current h-6')}
         </button>
       </div>
