@@ -99,14 +99,11 @@ describe('log in/out', () => {
   })
 
   it('1.1 - signin/signout', () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-
-      cy.reload()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').should('exist')
-      cy.contains('Sign out', { timeout: 12000 }).click()
-    })
+    _login()
+    cy.reload()
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.contains('Dashboard').should('exist')
+    cy.contains('Sign out', { timeout: 12000 }).click()
   })
 
   it('1.2 - signin - no redirect', () => {
@@ -132,10 +129,8 @@ describe('log in/out', () => {
   })
 
   it('2.0/2.1 - Check widget validation', () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-      cy.reload()
-    })
+    _login()
+    cy.reload()
 
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
@@ -157,10 +152,7 @@ describe('log in/out', () => {
   })
 
   it('2.2 - Create Page', () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-    })
-
+    _login()
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
@@ -191,9 +183,8 @@ describe('log in/out', () => {
 
   const subwidgets = ['Logo', 'Page Text', 'Text With Image', 'Short Text']
   it(`2.3 - Create widgets`, () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-    })
+    _login()
+
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     subwidgets.forEach((_widget) => {
@@ -225,9 +216,8 @@ describe('log in/out', () => {
   })
 
   it.skip('2.4 - view new page, widget', () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-    })
+    _login()
+
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Create a widget').click()
@@ -282,9 +272,7 @@ describe('log in/out', () => {
   })
 
   it('2.6 - view media', () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-    })
+    _login()
 
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
@@ -301,9 +289,7 @@ describe('log in/out', () => {
   })
 
   it('3.0 edit words phrases', () => {
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      _login()
-    })
+    _login()
 
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
