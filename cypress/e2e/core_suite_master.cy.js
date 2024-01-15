@@ -93,7 +93,9 @@ describe('log in/out', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
     cy.on('uncaught:exception', () => false)
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {})
+    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+      Cypress.require('../support/commands')
+    })
   })
 
   it('1.1 - signin/signout', () => {
