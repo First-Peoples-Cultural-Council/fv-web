@@ -9,7 +9,6 @@ import { TYPE_ENTRY } from 'common/constants'
 
 function SearchPresentation({
   searchType,
-  siteTitle,
   filters,
   handleFilter,
   isLoading,
@@ -21,7 +20,7 @@ function SearchPresentation({
   sitename,
   entryLabel,
 }) {
-  const wholeDomain = siteTitle === 'FirstVoices'
+  const wholeDomain = !sitename
 
   const getFilterListItems = () =>
     filters.map((filter) => {
@@ -118,7 +117,6 @@ SearchPresentation.propTypes = {
   loadRef: object,
   moreActions: array,
   sitename: string,
-  siteTitle: string,
   entryLabel: string,
 }
 
