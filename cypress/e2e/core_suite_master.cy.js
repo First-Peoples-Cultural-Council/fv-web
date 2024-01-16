@@ -65,8 +65,11 @@ function deletePage(name) {
 function createwidget(name) {
   cy.log(name)
   const widgetname = 'testwidgetcypress'
-  cy.get('[href="/lilwat/dashboard/create"]').click()
-  cy.contains('Create a widget').click()
+  cy.visit(
+    `${Cypress.env('baseUrl')}${Cypress.env(
+      'DIALECT',
+    )}/dashboard/create/widget`,
+  )
   cy.contains(name).click()
   cy.get('#nickname').type(widgetname)
 }
@@ -75,9 +78,6 @@ function throughme(name) {
   cy.contains('Create widget').should('be.visible')
   cy.contains('Create widget').click({ force: true })
   cy.contains('Dismiss').click()
-  // cy.get('[data-testid="DashboardPresentationEdit"]').click()
-  // cy.contains('Edit widgets').click()
-
   cy.contains(name).parent().children().eq(2).children().click()
 
   cy.get('#nickname').should('contain.value', name)
@@ -94,7 +94,7 @@ describe('log in/out', () => {
     cy.viewport(1024, 768)
     cy.on('uncaught:exception', () => false)
     cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
-      Cypress.require('../support/commands')
+      Cypress.require('/cypress/support/commands')
     })
   })
 
