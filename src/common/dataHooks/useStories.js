@@ -50,7 +50,7 @@ export function useStory({ id, sitename, edit = false }) {
 export function useStoryCreate() {
   const { sitename } = useParams()
   // eslint-disable-next-line no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams() // NOSONAR
 
   const createStory = async (formData) => {
     const properties = storyForApi({ formData })
@@ -77,7 +77,7 @@ export function useStoryCreate() {
 export function useStoryUpdate() {
   const { sitename } = useParams()
   // eslint-disable-next-line no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams() // NOSONAR
 
   const updateStory = async (formData) => {
     const properties = storyForApi({ formData })
