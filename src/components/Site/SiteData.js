@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import i18next from 'i18next'
 
 // FPCC
-import { useImmersion } from 'common/dataHooks/useImmersion'
+import { useImmersionMap } from 'common/dataHooks/useImmersionLabels'
 import { useSite } from 'common/dataHooks/useSites'
 import { useSiteDispatch, useSiteStore } from 'context/SiteContext'
 
@@ -28,7 +28,7 @@ function SiteData() {
         { replace: true },
       )
     }
-  }, [sitename, isInitialLoading, error])
+  }, [data, error, isInitialLoading, navigate, siteDispatch, sitename])
 
   // --------------------------------
   // Get immersion data
@@ -37,7 +37,7 @@ function SiteData() {
     isLoading: immersionIsLoading,
     error: immersionError,
     data: immersionData,
-  } = useImmersion()
+  } = useImmersionMap()
 
   useEffect(() => {
     if (
@@ -45,46 +45,12 @@ function SiteData() {
       immersionIsLoading === false &&
       immersionError === null
     ) {
-      let translations = {}
-      const ids = {}
-      immersionData?.results?.forEach((label) => {
-        const output = updateLabels(
-          label?.id,
-          label?.label,
-          label?.labelPath,
-          translations,
-          ids,
-        )
-        translations = output?.locales
-      })
-      i18next.addResourceBundle('language', 'translation', translations)
+      i18next.addResourceBundle('language', 'translation', immersionData)
     }
   }, [immersionIsLoading, immersionError, immersionData])
 
   return {
     siteLoading: isInitialLoading || site?.id?.length < 1,
-  }
-}
-
-function updateLabels(id, label, labelPath, locales, ids) {
-  let translationTargetRef = locales || {}
-  let idsTargetRef = ids
-  const path = labelPath.split('.')
-
-  path.slice(0, -1).forEach((step) => {
-    if (!translationTargetRef[step]) {
-      translationTargetRef[step] = {}
-      idsTargetRef[step] = {}
-    }
-    translationTargetRef = translationTargetRef[step]
-    idsTargetRef = idsTargetRef[step]
-  })
-  translationTargetRef[path[path.length - 1]] = label
-  idsTargetRef[path[path.length - 1]] = id
-
-  return {
-    locales,
-    ids,
   }
 }
 
