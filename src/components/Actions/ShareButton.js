@@ -9,16 +9,7 @@ import ShareLinks from 'components/ShareLinks'
 import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
 
-function ShareButton({
-  docId,
-  docTitle,
-  docType,
-  docVisibility,
-  siteVisibility,
-  sitename,
-  iconStyling,
-  withLabels,
-}) {
+function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
     <Menu.Item>
@@ -45,22 +36,24 @@ function ShareButton({
               id="ShareModalContent"
               className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
             >
-              {docVisibility === TEAM ||
-              docVisibility === MEMBERS ||
+              {entry?.visibility === TEAM ||
+              entry?.visibility === MEMBERS ||
               siteVisibility === TEAM ||
               siteVisibility === MEMBERS ? (
                 <div className="text-center font-medium">
                   <p className="text-2xl text-fv-charcoal">
-                    This {docType} is visible to
+                    This {entry.type} is visible to
                   </p>
                   <p className="text-2xl text-fv-charcoal font-bold">
-                    {docVisibility} only!
+                    {entry?.visibility} only!
                   </p>
                   <a
                     className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-secondary"
-                    href={`mailto:?subject=${docTitle}&body=${window.location.origin.toString()}/${sitename}/${makePlural(
-                      docType,
-                    )}/${docId}`}
+                    href={`mailto:?subject=${
+                      entry.title
+                    }&body=${window.location.origin.toString()}/${
+                      entry.sitename
+                    }/${makePlural(entry.type)}/${entry.id}`}
                   >
                     {getIcon('Mail', 'fill-current h-7 w-7')}
                   </a>
@@ -68,13 +61,13 @@ function ShareButton({
               ) : (
                 <>
                   <h3 className="text-center text-xl font-medium text-fv-charcoal">
-                    Share <em>{docTitle}</em> on:
+                    Share <em>{entry.title}</em> on:
                   </h3>
                   <ShareLinks.Presentation
-                    url={`${window.location.origin.toString()}/${sitename}/${makePlural(
-                      docType,
-                    )}/${docId}`}
-                    title={docTitle}
+                    url={`${window.location.origin.toString()}/${
+                      entry.sitename
+                    }/${makePlural(entry.type)}/${entry.id}`}
+                    title={entry.title}
                     modalCloseHandler={() => setShareModalOpen(false)}
                   />
                 </>
@@ -95,16 +88,12 @@ function ShareButton({
 }
 
 // PROPTYPES
-const { bool, string } = PropTypes
+const { bool, object, string } = PropTypes
 ShareButton.propTypes = {
+  entry: object,
   iconStyling: string,
   withLabels: bool,
-  docId: string,
-  docTitle: string,
-  docType: string,
-  docVisibility: string,
   siteVisibility: string,
-  sitename: string,
 }
 ShareButton.defaultProps = {
   iconStyling: 'h-8 w-8 md:h-6 md:w-6',

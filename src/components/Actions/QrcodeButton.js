@@ -13,13 +13,7 @@ const QrcodeModalContent = lazy(() =>
   import('components/Actions/QrcodeModalContent'),
 )
 
-function QrcodeButton({
-  docType,
-  docVisibility,
-  iconStyling,
-  url,
-  withLabels,
-}) {
+function QrcodeButton({ entry, iconStyling, url, withLabels }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <Menu.Item>
@@ -42,13 +36,13 @@ function QrcodeButton({
             isOpen={isModalOpen}
             closeHandler={() => setIsModalOpen(false)}
           >
-            {docVisibility === TEAM || docVisibility === MEMBERS ? (
+            {entry?.visibility === TEAM || entry?.visibility === MEMBERS ? (
               <div
                 id="ShareModalContent"
                 className="inline-block text-center align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
               >
                 <p className="text-2xl text-fv-charcoal font-bold">
-                  This {docType} is visible to {docVisibility} only!
+                  This {entry.type} is visible to {entry?.visibility} only!
                 </p>
                 <p className="text-lg text-fv-charcoal">
                   QR Codes can only be generated for public content.
@@ -70,10 +64,9 @@ function QrcodeButton({
 }
 
 // PROPTYPES
-const { bool, string } = PropTypes
+const { bool, object, string } = PropTypes
 QrcodeButton.propTypes = {
-  docType: string,
-  docVisibility: string,
+  entry: object,
   iconStyling: string,
   withLabels: bool,
   url: string,

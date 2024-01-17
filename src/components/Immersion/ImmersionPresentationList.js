@@ -51,11 +51,13 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                           <td className="px-6 py-4 text-fv-charcoal">
                             {english}
                           </td>
-                          <td className="text-right px-6">
+                          <td className="text-right px-6" aria-label="list">
                             <ActionsMenu.Presentation
-                              docId={id}
-                              docTitle={immersionLabel}
-                              docType="label"
+                              entry={{
+                                docId: id,
+                                docTitle: immersionLabel,
+                                docType: 'label',
+                              }}
                               actions={actions}
                               withConfirmation
                               withTooltip
@@ -79,12 +81,11 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
 }
 
 // PROPTYPES
-const { array, bool, string } = PropTypes
+const { array, bool } = PropTypes
 ImmersionPresentationList.propTypes = {
   actions: array,
   isLoading: bool,
   items: array,
-  sitename: string,
 }
 
 ImmersionPresentationList.defaultProps = {

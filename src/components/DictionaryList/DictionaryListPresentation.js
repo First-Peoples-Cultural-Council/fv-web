@@ -180,10 +180,7 @@ function DictionaryListPresentation({
                             aria-label="list"
                           >
                             <ActionsMenu.Presentation
-                              docId={entry?.id}
-                              docTitle={entry?.title}
-                              docType={entry?.type}
-                              docVisibility={entry?.visibility}
+                              entry={entry}
                               siteVisibility={entry?.siteVisibility}
                               actions={actions}
                               moreActions={moreActions}
