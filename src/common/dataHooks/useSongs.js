@@ -39,7 +39,7 @@ export function useSongs() {
 }
 
 export function useSong({ id, sitename, edit = false }) {
-  const { paramsSitename } = useParams()
+  const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
   const response = useQuery(

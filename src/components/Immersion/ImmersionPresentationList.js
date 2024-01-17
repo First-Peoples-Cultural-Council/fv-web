@@ -54,9 +54,9 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                           <td className="text-right px-6" aria-label="list">
                             <ActionsMenu.Presentation
                               entry={{
-                                docId: id,
-                                docTitle: immersionLabel,
-                                docType: 'label',
+                                id,
+                                title: immersionLabel,
+                                type: 'label',
                               }}
                               actions={actions}
                               withConfirmation

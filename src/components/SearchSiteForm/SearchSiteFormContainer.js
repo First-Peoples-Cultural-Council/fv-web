@@ -8,7 +8,7 @@ import SearchInputPresentation from 'components/SearchInput/SearchInputPresentat
 
 function SiteSearchContainer({ kids, minimal }) {
   const { site } = useSiteStore()
-  const customBaseUrl = site.sitename ? `/${site.sitename}/search` : '/search'
+  const customBaseUrl = site?.sitename ? `/${site.sitename}/search` : '/search'
 
   const {
     handleSearchNavigation,

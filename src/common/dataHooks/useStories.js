@@ -31,7 +31,7 @@ export function useStories() {
 }
 
 export function useStory({ id, sitename, edit = false }) {
-  const { paramsSitename } = useParams()
+  const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
   const response = useQuery(
