@@ -22,8 +22,8 @@ function ActionsMenuPresentation({
       {/* Pinned Action Buttons */}
       {actions.includes('copy') ? (
         <Copy
-          docId={entry.id}
-          docTitle={entry.title}
+          docId={entry?.id}
+          docTitle={entry?.title}
           iconStyling={iconStyling}
           withLabels={withLabels}
           withConfirmation={withConfirmation}
@@ -74,8 +74,8 @@ function ActionsMenuPresentation({
                         iconStyling={iconStyling}
                         entry={entry}
                         url={`${window.location.origin.toString()}/${
-                          entry.sitename
-                        }/${makePlural(entry.type)}/${entry.id}`}
+                          entry?.sitename
+                        }/${makePlural(entry?.type)}/${entry?.id}`}
                       />
                     )}
                   </div>

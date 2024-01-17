@@ -42,7 +42,7 @@ function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
               siteVisibility === MEMBERS ? (
                 <div className="text-center font-medium">
                   <p className="text-2xl text-fv-charcoal">
-                    This {entry.type} is visible to
+                    This {entry?.type} is visible to
                   </p>
                   <p className="text-2xl text-fv-charcoal font-bold">
                     {entry?.visibility} only!
@@ -50,10 +50,10 @@ function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
                   <a
                     className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-secondary"
                     href={`mailto:?subject=${
-                      entry.title
+                      entry?.title
                     }&body=${window.location.origin.toString()}/${
-                      entry.sitename
-                    }/${makePlural(entry.type)}/${entry.id}`}
+                      entry?.sitename
+                    }/${makePlural(entry?.type)}/${entry?.id}`}
                   >
                     {getIcon('Mail', 'fill-current h-7 w-7')}
                   </a>
@@ -61,13 +61,13 @@ function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
               ) : (
                 <>
                   <h3 className="text-center text-xl font-medium text-fv-charcoal">
-                    Share <em>{entry.title}</em> on:
+                    Share <em>{entry?.title}</em> on:
                   </h3>
                   <ShareLinks.Presentation
                     url={`${window.location.origin.toString()}/${
-                      entry.sitename
-                    }/${makePlural(entry.type)}/${entry.id}`}
-                    title={entry.title}
+                      entry?.sitename
+                    }/${makePlural(entry?.type)}/${entry?.id}`}
+                    title={entry?.title}
                     modalCloseHandler={() => setShareModalOpen(false)}
                   />
                 </>
