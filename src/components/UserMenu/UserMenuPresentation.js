@@ -132,6 +132,9 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                 )}
               </Menu.Item>
             )}
+            <Menu.Item className="text-fv-charcoal px-2 py-1 w-full flex text-lg whitespace-nowrap font-medium hover:bg-gray-200 rounded">
+              <Link to="/support">Support</Link>
+            </Menu.Item>
           </Menu.Items>
         </Transition>
       </Menu>
