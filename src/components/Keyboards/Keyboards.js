@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import SectionTitle from 'components/SectionTitle'
 import FVKeyboards from 'assets/images/fv-keyboards-border.png'
 
@@ -314,6 +315,23 @@ function Keyboards() {
             {/*
              */}
             .
+          </p>
+          <h2 className={headerStyle}>FirstVoices Apps</h2>
+          <p className={paraStyle}>
+            The wealth of language data uploaded by Indigenous communities onto
+            their FirstVoices language sites can now also be accessed through{' '}
+            <Link
+              to="/apps"
+              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+            >
+              mobile apps
+            </Link>
+            {/*
+             */}
+            . The app pulls content directly from entries on FirstVoices and
+            functions with offline capabilities. The apps are updated throughout
+            the year in order to ensure that the latest content that has been
+            added to a language site also appears on the app.
           </p>
         </div>
       </div>
