@@ -80,6 +80,7 @@ export const formattedVisibilityOptions = (optionsArray) =>
   optionsArray.map((option) => ({
     icon: option,
     value: option,
+    label: option,
   }))
 
 const constructVisibilityOptions = (siteVisibility) => {

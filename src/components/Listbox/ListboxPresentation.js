@@ -11,13 +11,13 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
   const selectedOption = options?.find(
     ({ value }) => value === selectedValue,
   ) ||
-    options[options?.length - 1] || { label: '------', value: '' }
+    options?.slice(-1) || { label: '------', value: '' }
   return (
     <div data-testid="ListboxPresentation">
       <Listbox value={selectedValue} onChange={setValue}>
         <div className="relative w-full">
           <Listbox.Button className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
-            <span className="inline-flex items-center">
+            <span className="inline-flex items-center capitalize">
               {getIcon(selectedOption?.icon, 'h-5 w-5 mr-2 fill-current')}
               {selectedOption?.transKey
                 ? t(selectedOption?.transKey)
@@ -50,7 +50,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
                   {({ selected }) => (
                     <>
                       <div
-                        className={`inline-flex truncate items-center ${
+                        className={`inline-flex truncate items-center capitalize ${
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
