@@ -46,13 +46,17 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
 
   const placeholderSearchType = initialSearchType || _searchType
 
+  const searchBoxPlaceholderSuffix = site.title
+    ? `${site.title}`
+    : 'all languages on FirstVoices'
+
   const searchBoxPlaceholder =
     placeholderSearchType && placeholderSearchType !== TYPE_ENTRY
       ? `Search ${getSearchTypeLabel({
           searchType: placeholderSearchType,
           plural: true,
-        })} in ${site.title}`
-      : `Search ${site.title}`
+        })} in ${searchBoxPlaceholderSuffix}`
+      : `Search ${searchBoxPlaceholderSuffix}`
 
   // provide navigation functions for search urls
   const { pathname } = useLocation()
