@@ -1,22 +1,26 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-// import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
-function UserMenuPresentation({ currentUser, login, logout }) {
-  // const { i18n } = useTranslation()
+// FPCC
+import Toggle from 'components/Toggle'
+import getIcon from 'common/utils/getIcon'
+import { IMMERSION } from 'common/constants'
 
-  // hasImmersion as a prop is being removed for FW-4514, can be added back later
-  // when enabling immersion again
+function UserMenuPresentation({ currentUser, site, login, logout }) {
+  const { i18n } = useTranslation()
 
-  // const changeLanguage = (setToLanguage) => {
-  //   if (setToLanguage) {
-  //     i18n.changeLanguage('language')
-  //   } else {
-  //     i18n.changeLanguage('en')
-  //   }
-  // }
+  const hasImmersion = site?.checkForEnabledFeature(IMMERSION)
+
+  const changeLanguage = (setToLanguage) => {
+    if (setToLanguage) {
+      i18n.changeLanguage('language')
+    } else {
+      i18n.changeLanguage('en')
+    }
+  }
 
   const menuItemActiveClass = 'bg-gray-200 text-black rounded ring-black'
   const menuItemInactiveClass = 'text-fv-charcoal'
@@ -68,8 +72,7 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                 )}
               </Menu.Item>
             )}
-            {/* Temp. hiding for FW-4514. */}
-            {/* {hasImmersion && (
+            {hasImmersion && (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
                   <div className="w-full flex justify-between items-center">
@@ -87,7 +90,7 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                         label="Immersion Mode"
                       />
                       <Link
-                        to={`/${sitename}/immersion`}
+                        to={`/${site?.sitename}/immersion`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -100,7 +103,7 @@ function UserMenuPresentation({ currentUser, login, logout }) {
                   </div>
                 )}
               </Menu.Item>
-            )} */}
+            )}
             {currentUser?.isAnonymous ? (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
@@ -142,7 +145,7 @@ function UserMenuPresentation({ currentUser, login, logout }) {
 const { object, func } = PropTypes
 UserMenuPresentation.propTypes = {
   currentUser: object,
-  // hasImmersion: bool,
+  site: object,
   login: func,
   logout: func,
 }

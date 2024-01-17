@@ -64,6 +64,12 @@ export function siteAdaptor({ siteData }) {
       widgetList: siteData?.homepage,
       sitename: siteData?.slug,
     }),
+    checkForEnabledFeature: (featureKey) => {
+      const feature = siteData?.enabledFeatures?.find(
+        (e) => e?.key === featureKey,
+      )
+      return feature?.isEnabled || false
+    },
     // The following are missing from the current API response - to be added at a later date
     joinText: null,
     hasContactUs: true,

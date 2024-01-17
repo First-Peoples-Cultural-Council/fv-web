@@ -5,11 +5,11 @@ import UserMenuData from 'components/UserMenu/UserMenuData'
 import UserMenuPresentation from 'components/UserMenu/UserMenuPresentation'
 
 function UserMenuContainer() {
-  const { currentUser, hasImmersion, login, logout } = UserMenuData()
+  const { currentUser, site, login, logout } = UserMenuData()
   return (
     <UserMenuPresentation
       currentUser={currentUser}
-      hasImmersion={hasImmersion}
+      site={site}
       login={login}
       logout={logout}
     />
