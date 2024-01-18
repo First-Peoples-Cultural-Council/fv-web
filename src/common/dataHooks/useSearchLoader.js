@@ -91,7 +91,7 @@ function useSearchLoader({ searchParams }) {
   const response = useInfiniteQuery(
     [SEARCH, sitename, searchParamString],
     ({ pageParam = 1 }) =>
-      api.search.get({
+      api.search[sitename ? 'get' : 'getFVWideSearch']({
         sitename,
         searchParams: searchParamString,
         pageParam,

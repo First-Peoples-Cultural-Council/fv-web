@@ -37,10 +37,7 @@ function DictionaryDetailPresentationDrawer({
             </div>
             <div className="ml-5">
               <ActionsMenu.Presentation
-                docId={entry?.id}
-                docTitle={entry?.title}
-                docType={entry?.type}
-                docVisibility={entry?.visibility}
+                entry={entry}
                 actions={actions}
                 moreActions={moreActions}
                 withLabels
