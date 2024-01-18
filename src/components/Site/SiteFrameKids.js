@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Alphabet from 'components/Alphabet'
+import Audiobar from 'components/Audiobar'
 import ByAlphabet from 'components/ByAlphabet'
 import ByCategory from 'components/ByCategory'
 import Categories from 'components/Categories'
@@ -83,6 +84,7 @@ function SiteFrameKids({ siteLoading }) {
       <footer>
         <KidsFooter.Presentation />
       </footer>
+      <Audiobar.Container />
     </div>
   )
 }
