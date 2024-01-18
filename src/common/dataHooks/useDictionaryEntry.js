@@ -14,11 +14,13 @@ import {
   entryForApi,
 } from 'common/dataAdaptors/dictionaryAdaptors'
 
-export function useDictionaryEntry({ id, edit = false }) {
-  const { sitename } = useParams()
+export function useDictionaryEntry({ id, sitename, edit = false }) {
+  const { sitename: paramsSitename } = useParams()
+  const sitenameToSend = sitename || paramsSitename
+
   const response = useQuery(
-    [DICTIONARY, sitename, id],
-    () => api.dictionary.get({ sitename, id }),
+    [DICTIONARY, sitenameToSend, id],
+    () => api.dictionary.get({ sitename: sitenameToSend, id }),
     { enabled: !!id },
   )
   const formattedEntry = edit

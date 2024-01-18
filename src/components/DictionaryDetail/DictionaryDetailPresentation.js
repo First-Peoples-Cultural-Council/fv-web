@@ -50,10 +50,7 @@ function DictionaryDetailPresentation({
 
               <div className="mt-4 md:mt-1 md:ml-4">
                 <ActionsMenu.Presentation
-                  docId={entry.id}
-                  docTitle={entry.title}
-                  docType={entry.type}
-                  docVisibility={entry?.visibility}
+                  entry={entry}
                   actions={actions}
                   moreActions={moreActions}
                   iconStyling="w-6 h-6"

@@ -5,10 +5,15 @@ import DictionaryDetailPresentation from 'components/DictionaryDetail/Dictionary
 import DictionaryDetailPresentationDrawer from 'components/DictionaryDetail/DictionaryDetailPresentationDrawer'
 import DictionaryDetailPresentationKids from 'components/DictionaryDetail/DictionaryDetailPresentationKids'
 import Loading from 'components/Loading'
+import { useParams } from 'react-router-dom'
 
-function DictionaryDetailContainer({ id, isDrawer, kids }) {
-  const { actions, entry, isLoading, moreActions, sitename, backHandler } =
-    DictionaryDetailData({ id })
+function DictionaryDetailContainer({ id, sitename, isDrawer, kids }) {
+  const { sitename: sitenameParams } = useParams()
+  const sitenameToSend = sitename || sitenameParams
+
+  const { actions, entry, isLoading, moreActions, backHandler } =
+    DictionaryDetailData({ id, sitename: sitenameToSend })
+
   return (
     <Loading.Container isLoading={isLoading}>
       {isDrawer && (
@@ -16,7 +21,7 @@ function DictionaryDetailContainer({ id, isDrawer, kids }) {
           actions={actions}
           entry={entry}
           moreActions={moreActions}
-          sitename={sitename}
+          sitename={sitenameToSend}
         />
       )}
       {kids && (
@@ -30,7 +35,7 @@ function DictionaryDetailContainer({ id, isDrawer, kids }) {
           actions={actions}
           entry={entry}
           moreActions={moreActions}
-          sitename={sitename}
+          sitename={sitenameToSend}
         />
       )}
     </Loading.Container>
@@ -41,6 +46,7 @@ function DictionaryDetailContainer({ id, isDrawer, kids }) {
 const { bool, string } = PropTypes
 DictionaryDetailContainer.propTypes = {
   id: string,
+  sitename: string,
   isDrawer: bool,
   kids: bool,
 }
