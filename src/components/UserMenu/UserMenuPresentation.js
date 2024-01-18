@@ -105,15 +105,15 @@ function UserMenuPresentation({ currentUser, login, logout }) {
               <Menu.Item className="w-full flex">
                 {({ active }) => (
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
-                  <a type="button" onClick={login} onKeyDown={login}>
+                  <button type="button" onClick={login} onKeyDown={login}>
                     <div
                       className={`${
                         active ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass}`}
+                      } ${menuItemBaseClass} flex justify-start`}
                     >
                       Sign In / Register
                     </div>
-                  </a>
+                  </button>
                 )}
               </Menu.Item>
             ) : (
