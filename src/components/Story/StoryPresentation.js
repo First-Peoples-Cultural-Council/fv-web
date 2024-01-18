@@ -133,17 +133,6 @@ function StoryPresentation({ entry }) {
                   <div className="w-full text-fv-charcoal-light">
                     <WysiwygBlock jsonString={entry?.introTranslation} />
                   </div>
-                  {/* {entry?.relatedAudio?.length > 0 && (
-                    <div className="space-y-5">
-                      {entry?.relatedAudio?.map((audio) => (
-                        <AudioNative
-                          key={`${audio}}`}
-                          styling="lg:w-96 print:hidden"
-                          audioObject={audio}
-                        />
-                      ))}
-                    </div>
-                  )} */}
                 </div>
                 <div
                   className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
@@ -190,17 +179,6 @@ function StoryPresentation({ entry }) {
                       <div className="text-fv-charcoal-light">
                         <WysiwygBlock jsonString={page?.textTranslation} />
                       </div>
-                      {/* {page?.relatedAudio?.length > 0 && (
-                        <div className="space-y-5">
-                          {page?.relatedAudio?.map((audio) => (
-                            <AudioNative
-                              key={audio.id}
-                              styling="lg:w-96 print:hidden"
-                              audioObject={audio}
-                            />
-                          ))}
-                        </div>
-                      )} */}
                     </div>
                     <div
                       className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
