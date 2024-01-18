@@ -116,12 +116,6 @@ function StoryPresentation({ entry }) {
                   className={`${blockBgStyling} flex-1 rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
                 >
                   <h4 className={labelStyling}>Introduction</h4>
-                  <div className="w-full font-medium text-fv-charcoal">
-                    <WysiwygBlock jsonString={entry?.intro} />
-                  </div>
-                  <div className="w-full text-fv-charcoal-light">
-                    <WysiwygBlock jsonString={entry?.introTranslation} />
-                  </div>
                   {entry?.relatedAudio?.length > 0 && (
                     <div className="space-y-5">
                       {entry?.relatedAudio?.map((audio) => (
@@ -133,6 +127,23 @@ function StoryPresentation({ entry }) {
                       ))}
                     </div>
                   )}
+                  <div className="w-full font-medium text-fv-charcoal">
+                    <WysiwygBlock jsonString={entry?.intro} />
+                  </div>
+                  <div className="w-full text-fv-charcoal-light">
+                    <WysiwygBlock jsonString={entry?.introTranslation} />
+                  </div>
+                  {/* {entry?.relatedAudio?.length > 0 && (
+                    <div className="space-y-5">
+                      {entry?.relatedAudio?.map((audio) => (
+                        <AudioNative
+                          key={`${audio}}`}
+                          styling="lg:w-96 print:hidden"
+                          audioObject={audio}
+                        />
+                      ))}
+                    </div>
+                  )} */}
                 </div>
                 <div
                   className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
@@ -162,12 +173,6 @@ function StoryPresentation({ entry }) {
                     <div
                       className={`${blockBgStyling} flex-1 text-fv-charcoal rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
                     >
-                      <div className="w-full font-medium">
-                        <WysiwygBlock jsonString={page?.text} />
-                      </div>
-                      <div className="text-fv-charcoal-light">
-                        <WysiwygBlock jsonString={page?.textTranslation} />
-                      </div>
                       {page?.relatedAudio?.length > 0 && (
                         <div className="space-y-5">
                           {page?.relatedAudio?.map((audio) => (
@@ -179,6 +184,23 @@ function StoryPresentation({ entry }) {
                           ))}
                         </div>
                       )}
+                      <div className="w-full font-medium">
+                        <WysiwygBlock jsonString={page?.text} />
+                      </div>
+                      <div className="text-fv-charcoal-light">
+                        <WysiwygBlock jsonString={page?.textTranslation} />
+                      </div>
+                      {/* {page?.relatedAudio?.length > 0 && (
+                        <div className="space-y-5">
+                          {page?.relatedAudio?.map((audio) => (
+                            <AudioNative
+                              key={audio.id}
+                              styling="lg:w-96 print:hidden"
+                              audioObject={audio}
+                            />
+                          ))}
+                        </div>
+                      )} */}
                     </div>
                     <div
                       className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
