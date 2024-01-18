@@ -104,7 +104,6 @@ function UserMenuPresentation({ currentUser, login, logout }) {
             {currentUser?.isAnonymous ? (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
                   <button type="button" onClick={login} onKeyDown={login}>
                     <div
                       className={`${
@@ -119,7 +118,6 @@ function UserMenuPresentation({ currentUser, login, logout }) {
             ) : (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/no-static-element-interactions
                   <button type="button" onClick={logout} onKeyDown={logout}>
                     <div
                       className={`${
