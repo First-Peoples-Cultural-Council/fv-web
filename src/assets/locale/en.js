@@ -1,5 +1,6 @@
 const en = {
   translation: {
+    // FUDGE - keep old transkeys until FW-5419 is launched
     general: {
       about: 'About',
       alphabet: 'Alphabet',
@@ -18,6 +19,7 @@ const en = {
       stories: 'Stories',
       words: 'Words',
     },
+    // New Transkeys
     'navigation-about': 'About',
     'navigation-alphabet': 'Alphabet',
     'navigation-apps': 'Mobile App',

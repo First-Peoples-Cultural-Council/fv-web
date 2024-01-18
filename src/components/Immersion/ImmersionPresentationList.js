@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 // FPCC
 import AudioButton from 'components/AudioButton'
@@ -33,13 +34,23 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-300">
                   {items.map(
-                    ({ id, immersionLabel, english, transKey, relatedAudio }) =>
+                    ({
+                      id,
+                      immersionLabel,
+                      english,
+                      transKey,
+                      relatedAudio,
+                      link,
+                    }) =>
                       immersionLabel ? (
                         <tr key={transKey}>
-                          <td className="px-6 py-4 flex items-center">
-                            <div className="font-medium text-fv-charcoal mr-2">
-                              {immersionLabel || '-'}
-                            </div>
+                          <div className="px-6 py-4 flex items-center">
+                            <Link
+                              to={link}
+                              className="font-medium text-fv-charcoal mr-2"
+                            >
+                              {immersionLabel}
+                            </Link>
                             {relatedAudio?.length > 0 && (
                               <AudioButton
                                 audioArray={relatedAudio}
@@ -47,11 +58,11 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                                 hoverTooltip
                               />
                             )}
-                          </td>
+                          </div>
                           <td className="px-6 py-4 text-fv-charcoal">
                             {english}
                           </td>
-                          <td className="text-right px-6">
+                          <div className="text-right px-6">
                             <ActionsMenu.Presentation
                               docId={id}
                               docTitle={immersionLabel}
@@ -60,7 +71,7 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                               withConfirmation
                               withTooltip
                             />
-                          </td>
+                          </div>
                         </tr>
                       ) : null,
                   )}
@@ -79,12 +90,11 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
 }
 
 // PROPTYPES
-const { array, bool, string } = PropTypes
+const { array, bool } = PropTypes
 ImmersionPresentationList.propTypes = {
   actions: array,
   isLoading: bool,
   items: array,
-  sitename: string,
 }
 
 ImmersionPresentationList.defaultProps = {

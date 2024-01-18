@@ -1,45 +1,15 @@
-import { useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
-
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import api from 'services/api'
-import immersionDataAdaptor from 'components/Immersion/immersionDataAdaptor'
+import { useImmersionLabels } from 'common/dataHooks/useImmersionLabels'
 
 function ImmersionData() {
   const { site } = useSiteStore()
-  const { title, children, sitename, id } = site
-  const navigate = useNavigate()
-  const [labelDictionaryId, setLabelDictionaryId] = useState(null)
-
-  useEffect(() => {
-    if (children?.['Label Dictionary'])
-      setLabelDictionaryId(children['Label Dictionary'])
-  }, [children])
-
-  const { isInitialLoading, error, isError, data } = useQuery(
-    ['immersion', id],
-    () => api.immersion.get(labelDictionaryId),
-    {
-      // The query will not execute until the labelDictionaryId exists
-      enabled: !!labelDictionaryId,
-    },
-  )
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
+  const { isInitialLoading, isError, labels } = useImmersionLabels()
 
   return {
-    isLoading: !title,
+    isLoading: !site?.id,
     isLoadingEntries: isInitialLoading || isError,
-    items: data?.entries?.length > 0 ? immersionDataAdaptor(data) : [],
+    items: labels || [],
     actions: ['copy'],
   }
 }
