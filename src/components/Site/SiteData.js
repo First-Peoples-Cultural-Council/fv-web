@@ -28,7 +28,7 @@ function SiteData() {
         { replace: true },
       )
     }
-  }, [data, error, isInitialLoading, navigate, siteDispatch, sitename])
+  }, [error, isInitialLoading, sitename])
 
   // --------------------------------
   // Get immersion data
