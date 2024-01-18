@@ -38,11 +38,13 @@ export function useSongs() {
   }
 }
 
-export function useSong({ id, edit = false }) {
-  const { sitename } = useParams()
+export function useSong({ id, sitename, edit = false }) {
+  const { sitename: paramsSitename } = useParams()
+  const sitenameToSend = sitename || paramsSitename
+
   const response = useQuery(
-    [SONGS, sitename, id],
-    () => api.songs.get({ sitename, id }),
+    [SONGS, sitenameToSend, id],
+    () => api.songs.get({ sitename: sitenameToSend, id }),
     {
       // The query will not execute until the sitename exists
       enabled: !!id,

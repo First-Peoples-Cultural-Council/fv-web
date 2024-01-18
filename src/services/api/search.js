@@ -8,6 +8,10 @@ const search = {
         `${SITES}/${sitename}/${SEARCH}/?${searchParams}&page=${pageParam}&pageSize=${perPage}`,
       )
       .json(),
+  getFVWideSearch: async ({ searchParams, pageParam, perPage = 48 }) =>
+    apiBase()
+      .get(`${SEARCH}/?${searchParams}&page=${pageParam}&pageSize=${perPage}`)
+      .json(),
   getParachute: async ({ sitename, searchParams, perPage }) =>
     apiBase()
       .get(

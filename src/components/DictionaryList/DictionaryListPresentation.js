@@ -20,7 +20,6 @@ function DictionaryListPresentation({
   moreActions,
   noResultsMessage,
   onSortByClick,
-  sitename,
   showType,
   sorting,
   wholeDomain,
@@ -181,10 +180,7 @@ function DictionaryListPresentation({
                             aria-label="list"
                           >
                             <ActionsMenu.Presentation
-                              docId={entry?.id}
-                              docTitle={entry?.title}
-                              docType={entry?.type}
-                              docVisibility={entry?.visibility}
+                              entry={entry}
                               siteVisibility={entry?.siteVisibility}
                               actions={actions}
                               moreActions={moreActions}
@@ -223,7 +219,7 @@ function DictionaryListPresentation({
         closeHandler={() => setDrawerOpen(false)}
         fullScreenPath={
           selectedItem?.type
-            ? `/${sitename}/${makePlural(selectedItem?.type)}/${
+            ? `/${selectedItem?.sitename}/${makePlural(selectedItem?.type)}/${
                 selectedItem?.id
               }`
             : null
@@ -232,6 +228,7 @@ function DictionaryListPresentation({
         <EntryDetail.Container
           id={selectedItem?.id}
           type={selectedItem?.type}
+          sitename={selectedItem?.sitename}
           isDrawer
         />
       </Drawer.Presentation>
@@ -250,7 +247,6 @@ DictionaryListPresentation.propTypes = {
   noResultsMessage: node,
   onSortByClick: func,
   showType: bool,
-  sitename: string,
   sorting: object,
   wholeDomain: bool,
   entryLabel: string,

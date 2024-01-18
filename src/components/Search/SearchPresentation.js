@@ -9,7 +9,6 @@ import { TYPE_ENTRY } from 'common/constants'
 
 function SearchPresentation({
   searchType,
-  siteTitle,
   filters,
   handleFilter,
   isLoading,
@@ -21,7 +20,7 @@ function SearchPresentation({
   sitename,
   entryLabel,
 }) {
-  const wholeDomain = siteTitle === 'FirstVoices'
+  const wholeDomain = !sitename
 
   const getFilterListItems = () =>
     filters.map((filter) => {
@@ -60,7 +59,11 @@ function SearchPresentation({
 
   return (
     <>
-      <section className="bg-gradient-to-b from-word to-word-dark p-5">
+      <section
+        className={`${
+          wholeDomain ? 'bg-bgRed' : 'bg-gradient-to-b from-word to-word-dark'
+        } p-5`}
+      >
         <div className="mx-auto lg:w-3/5">
           <SearchSiteForm.Container />
         </div>
@@ -114,7 +117,6 @@ SearchPresentation.propTypes = {
   loadRef: object,
   moreActions: array,
   sitename: string,
-  siteTitle: string,
   entryLabel: string,
 }
 

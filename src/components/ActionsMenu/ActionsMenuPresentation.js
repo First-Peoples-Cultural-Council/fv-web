@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Menu, Transition } from '@headlessui/react'
 
@@ -9,10 +8,7 @@ import { Copy, ShareButton, QrcodeButton } from 'components/Actions'
 import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
-  docId,
-  docTitle,
-  docType,
-  docVisibility,
+  entry,
   siteVisibility,
   actions,
   moreActions,
@@ -21,15 +17,13 @@ function ActionsMenuPresentation({
   withConfirmation,
   withTooltip,
 }) {
-  const { sitename } = useParams()
-
   return (
     <div id="ActionsMenuPresentation" className="inline-flex print:hidden">
       {/* Pinned Action Buttons */}
       {actions.includes('copy') ? (
         <Copy
-          docId={docId}
-          docTitle={docTitle}
+          docId={entry?.id}
+          docTitle={entry?.title}
           iconStyling={iconStyling}
           withLabels={withLabels}
           withConfirmation={withConfirmation}
@@ -69,24 +63,19 @@ function ActionsMenuPresentation({
                     {moreActions.includes('share') && (
                       <ShareButton
                         withLabels
+                        entry={entry}
                         iconStyling={iconStyling}
-                        docId={docId}
-                        docTitle={docTitle}
-                        docType={docType}
-                        docVisibility={docVisibility}
                         siteVisibility={siteVisibility}
-                        sitename={sitename}
                       />
                     )}
                     {moreActions.includes('qrcode') && (
                       <QrcodeButton
                         withLabels
                         iconStyling={iconStyling}
-                        docType={docType}
-                        docVisibility={docVisibility}
-                        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
-                          docType,
-                        )}/${docId}`}
+                        entry={entry}
+                        url={`${window.location.origin.toString()}/${
+                          entry?.sitename
+                        }/${makePlural(entry?.type)}/${entry?.id}`}
                       />
                     )}
                   </div>
@@ -100,12 +89,9 @@ function ActionsMenuPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, string } = PropTypes
+const { array, bool, object, string } = PropTypes
 ActionsMenuPresentation.propTypes = {
-  docId: string,
-  docTitle: string,
-  docType: string,
-  docVisibility: string,
+  entry: object,
   siteVisibility: string,
   actions: array,
   moreActions: array,

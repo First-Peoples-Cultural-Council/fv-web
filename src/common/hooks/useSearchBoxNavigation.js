@@ -1,4 +1,9 @@
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -15,7 +20,7 @@ import { DOMAIN, TYPES, TYPE_ENTRY, KIDS, SORT } from 'common/constants'
  * parameter, if it is not present as a URL query parameter.
  */
 function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
-  // initial search settings
+  const { sitename } = useParams()
   const { site } = useSiteStore()
   const [searchParams] = useSearchParams()
 
@@ -46,13 +51,17 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
 
   const placeholderSearchType = initialSearchType || _searchType
 
+  const searchBoxPlaceholderSuffix = sitename
+    ? `${site.title}`
+    : 'all languages on FirstVoices'
+
   const searchBoxPlaceholder =
     placeholderSearchType && placeholderSearchType !== TYPE_ENTRY
       ? `Search ${getSearchTypeLabel({
           searchType: placeholderSearchType,
           plural: true,
-        })} in ${site.title}`
-      : `Search ${site.title}`
+        })} in ${searchBoxPlaceholderSuffix}`
+      : `Search ${searchBoxPlaceholderSuffix}`
 
   // provide navigation functions for search urls
   const { pathname } = useLocation()
