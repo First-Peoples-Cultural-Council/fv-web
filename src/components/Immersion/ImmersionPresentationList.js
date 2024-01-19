@@ -35,16 +35,16 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                 <tbody className="bg-white divide-y divide-gray-300">
                   {items.map(
                     ({
-                      id,
                       immersionLabel,
                       english,
                       transKey,
                       relatedAudio,
                       link,
+                      dictionaryEntry,
                     }) =>
                       immersionLabel ? (
                         <tr key={transKey}>
-                          <div className="px-6 py-4 flex items-center">
+                          <td className="px-6 py-4 flex items-center">
                             <Link
                               to={link}
                               className="font-medium text-fv-charcoal mr-2"
@@ -58,17 +58,13 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                                 hoverTooltip
                               />
                             )}
-                          </div>
+                          </td>
                           <td className="px-6 py-4 text-fv-charcoal">
                             {english}
                           </td>
                           <td className="text-right px-6" aria-label="list">
                             <ActionsMenu.Presentation
-                              entry={{
-                                id,
-                                title: immersionLabel,
-                                type: 'label',
-                              }}
+                              entry={dictionaryEntry?.[0]}
                               actions={actions}
                               withConfirmation
                               withTooltip
