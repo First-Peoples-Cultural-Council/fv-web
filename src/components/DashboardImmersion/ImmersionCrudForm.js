@@ -12,7 +12,7 @@ import { definitions } from 'common/utils/validationHelpers'
 function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
   const validator = yup.object().shape({
     dictionaryEntry: definitions
-      .stringArray()
+      .objectArray()
       .min(1, 'An entry is required for this label.'),
     transKey: definitions.paragraph({ charCount: 100 }),
   })
