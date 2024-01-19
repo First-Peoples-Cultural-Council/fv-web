@@ -5,6 +5,7 @@ export const siteInitialState = {
     path: '',
     id: '',
     roles: [],
+    checkForEnabledFeature: () => {},
     children: {},
     menu: {},
     title: '',

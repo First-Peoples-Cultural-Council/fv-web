@@ -31,7 +31,7 @@ function UserMenuData() {
 
   return {
     currentUser: { ...user, dashboardLink },
-    hasImmersion: site?.features?.includes('immersion'),
+    site,
     login,
     logout,
   }

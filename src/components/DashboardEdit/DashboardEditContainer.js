@@ -20,7 +20,7 @@ import WidgetCrud from 'components/WidgetCrud'
 import DashboardAlphabet from 'components/DashboardAlphabet'
 import DashboardCategories from 'components/DashboardCategories'
 import DashboardEntries from 'components/DashboardEntries'
-// import DashboardImmersiom from 'components/DashboardImmersion'
+import DashboardImmersiom from 'components/DashboardImmersion'
 import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
 import DashboardWidgets from 'components/DashboardWidgets'
@@ -58,15 +58,14 @@ function DashboardEditContainer() {
             </RequireAuth>
           }
         />
-        {/* Temp. hiding for FW-4514. */}
-        {/* <Route
+        <Route
           path="immersion"
           element={
-            <RequireAuth siteMembership={SUPER_ADMIN} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardImmersiom.Container />
             </RequireAuth>
           }
-        /> */}
+        />
         <Route
           path="pages"
           element={

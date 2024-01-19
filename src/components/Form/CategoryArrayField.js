@@ -57,7 +57,7 @@ function CategoryArrayField({
           ))}
         </ul>
         {fields?.length < maxItems && (
-          <FieldButton label={label} openModal={openModal} />
+          <FieldButton label="Add category" onClickHandler={openModal} />
         )}
       </div>
       {helpText && (
