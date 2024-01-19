@@ -62,16 +62,18 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                           <td className="px-6 py-4 text-fv-charcoal">
                             {english}
                           </td>
-                          <div className="text-right px-6">
+                          <td className="text-right px-6" aria-label="list">
                             <ActionsMenu.Presentation
-                              docId={id}
-                              docTitle={immersionLabel}
-                              docType="label"
+                              entry={{
+                                id,
+                                title: immersionLabel,
+                                type: 'label',
+                              }}
                               actions={actions}
                               withConfirmation
                               withTooltip
                             />
-                          </div>
+                          </td>
                         </tr>
                       ) : null,
                   )}

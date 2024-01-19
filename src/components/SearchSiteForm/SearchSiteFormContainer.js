@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
+import { useParams } from 'react-router-dom'
 
 function SiteSearchContainer({ kids, minimal }) {
-  const { site } = useSiteStore()
-  const customBaseUrl = `/${site.sitename}/search`
+  const { sitename } = useParams()
+  const customBaseUrl = sitename ? `/${sitename}/search` : '/search'
 
   const {
     handleSearchNavigation,

@@ -4,20 +4,21 @@ import { useParams } from 'react-router-dom'
 
 import { useSong } from 'common/dataHooks/useSongs'
 
-function SongData({ docId }) {
-  const { id, sitename } = useParams()
+function SongData({ docId, sitename }) {
+  const { id, sitename: paramsSitename } = useParams()
 
   const idToSend = docId || id
+  const sitenameToSend = sitename || paramsSitename
 
   // Data fetch
-  const response = useSong({ id: idToSend })
+  const response = useSong({ id: idToSend, sitename: sitenameToSend })
 
   const { data, isError, isInitialLoading } = response
 
   return {
     isLoading: isInitialLoading || isError,
     entry: data?.title ? data : {},
-    sitename,
+    sitename: sitenameToSend,
   }
 }
 
