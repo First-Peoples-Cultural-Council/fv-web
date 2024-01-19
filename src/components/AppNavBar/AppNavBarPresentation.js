@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import SearchSiteForm from 'components/SearchSiteForm'
 import UserMenu from 'components/UserMenu'
 import { ABOUT_LINK, SUPPORT_LINK } from 'common/constants'
 import { useUserStore } from 'context/UserContext'
@@ -166,6 +167,15 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               {getIcon('QuestionCircleSolid', 'fill-current h-full w-6 mr-2')}
               Support
             </Link>
+            {/* Search */}
+            {!isHome && (
+              <div
+                id="AppNavSearch"
+                className="inline-flex items-center px-8 py-2"
+              >
+                <SearchSiteForm.Container minimal />
+              </div>
+            )}
             {isGuest &&
               createMenuItem('Sign in / Register', 'Login', '', false, login)}
             {isHome && (
