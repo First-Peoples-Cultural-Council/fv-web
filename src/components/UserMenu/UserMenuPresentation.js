@@ -12,7 +12,10 @@ import { IMMERSION } from 'common/constants'
 function UserMenuPresentation({ currentUser, site, login, logout }) {
   const { i18n } = useTranslation()
 
-  const hasImmersion = site?.checkForEnabledFeature(IMMERSION)
+  const hasImmersion =
+    typeof site?.checkForEnabledFeature === 'function'
+      ? site?.checkForEnabledFeature(IMMERSION)
+      : false
 
   const changeLanguage = (setToLanguage) => {
     if (setToLanguage) {
