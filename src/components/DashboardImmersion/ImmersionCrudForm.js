@@ -11,12 +11,14 @@ import { definitions } from 'common/utils/validationHelpers'
 
 function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
   const validator = yup.object().shape({
-    dictionaryEntry: yup.object().required('A label is required'),
+    dictionaryEntry: definitions
+      .stringArray()
+      .min(1, 'An entry is required for this label.'),
     transKey: definitions.paragraph({ charCount: 100 }),
   })
 
   const defaultValues = {
-    dictionaryEntry: null,
+    dictionaryEntry: [],
     transKey: '',
   }
 
@@ -56,13 +58,15 @@ function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
             />
           </div>
           <div className="col-span-12">
-            <Form.EntryField
+            <Form.EntryArrayField
+              nameId="dictionaryEntry"
+              control={control}
+              register={register}
+              errors={errors}
               label={`Immersion label for "${dataToEdit?.english}"`}
               buttonLabel={`Select a dictionary entry to use as a label for "${dataToEdit?.english}"`}
               helpText="NB: Only dictionary entries that match the visibility of your site can be used as immersion labels."
-              nameId="dictionaryEntry"
-              control={control}
-              errors={errors}
+              maxItems={1}
               types={[TYPE_WORD, TYPE_PHRASE]}
               visibility={site?.visibility}
             />

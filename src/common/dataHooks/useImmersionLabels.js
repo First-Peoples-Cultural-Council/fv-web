@@ -50,7 +50,7 @@ export function useImmersionLabelCreate() {
 
   const createImmersionLabel = async (formData) => {
     const properties = {
-      dictionary_entry: formData?.dictionaryEntry?.id,
+      dictionary_entry: formData?.dictionaryEntry?.[0]?.id,
       key: formData?.transKey,
     }
     return api.immersionLabels.create({
@@ -76,7 +76,7 @@ export function useImmersionLabelUpdateEntry() {
 
   const updateImmersionLabel = async (formData) => {
     const properties = {
-      dictionary_entry: formData?.dictionaryEntry?.id,
+      dictionary_entry: formData?.dictionaryEntry?.[0]?.id,
     }
     return api.immersionLabels.partialUpdate({
       key: formData?.transKey,
