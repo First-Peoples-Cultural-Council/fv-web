@@ -159,7 +159,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           </Modal.Presentation>
 
           {/* Menu Items */}
-          <ul className="hidden md:flex md:text-white md:items-center md:w-1/2 2xl:w-1/4 justify-end">
+          <ul className="hidden md:flex md:text-white md:items-center justify-end">
             <Link to="/about" className="inline-flex items-center px-8 py-2">
               {getIcon('About', 'fill-current h-full w-6 mr-2')}About
             </Link>
