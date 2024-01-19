@@ -26,7 +26,7 @@ export function immersionLabelsAdaptor(data) {
       allLabels.push({
         id: found?.id || '',
         immersionLabel: found?.dictionaryEntry?.title || '',
-        dictionaryEntry: [found?.dictionaryEntry] || [],
+        dictionaryEntry: found?.dictionaryEntry ? [found?.dictionaryEntry] : [],
         link: `/${found?.site?.slug}/${makePlural(
           found?.dictionaryEntry?.type,
         )}/${found?.dictionaryEntry?.id}`,
