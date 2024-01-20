@@ -30,7 +30,7 @@ export function sitesListAdaptor({ sitesData }) {
     visibility: site?.visibility,
     ...logoAdaptor({ item: site }),
     parentLanguageTitle: site?.language,
-    features: site?.features,
+    features: site?.enabledFeatures,
     role: site?.role, // Data for this will only be included in the my-sites response
   }))
 }
@@ -59,11 +59,17 @@ export function siteAdaptor({ siteData }) {
     bannerVideo,
     visibility: siteData?.visibility,
     visibilityOptions: constructVisibilityOptions(siteData?.visibility),
-    features: siteData?.features,
+    features: siteData?.enabledFeatures,
     homepageWidgets: widgetListAdaptor({
       widgetList: siteData?.homepage,
       sitename: siteData?.slug,
     }),
+    checkForEnabledFeature: (featureKey) => {
+      const feature = siteData?.enabledFeatures?.find(
+        (e) => e?.key === featureKey,
+      )
+      return feature?.isEnabled || false
+    },
     // The following are missing from the current API response - to be added at a later date
     joinText: null,
     hasContactUs: true,
@@ -74,7 +80,7 @@ export const formattedVisibilityOptions = (optionsArray) =>
   optionsArray.map((option) => ({
     icon: option,
     value: option,
-    transKey: `visibility.${option}`,
+    label: option,
   }))
 
 const constructVisibilityOptions = (siteVisibility) => {

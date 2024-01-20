@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { IMMERSION_LABELS } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { immersionLabelsAdaptor } from 'common/dataAdaptors/immersionAdaptors'
 
 export function useImmersionLabels() {
   const { sitename } = useParams()
@@ -15,7 +16,9 @@ export function useImmersionLabels() {
     { enabled: !!sitename },
   )
 
-  return response
+  const formattedLabels = immersionLabelsAdaptor(response?.data)
+
+  return { ...response, labels: formattedLabels }
 }
 
 export function useImmersionMap() {
@@ -47,8 +50,8 @@ export function useImmersionLabelCreate() {
 
   const createImmersionLabel = async (formData) => {
     const properties = {
-      dictionary_entry: formData?.entryId,
-      key: formData?.key,
+      dictionary_entry: formData?.dictionaryEntry?.[0]?.id,
+      key: formData?.transKey,
     }
     return api.immersionLabels.create({
       sitename,
@@ -73,10 +76,10 @@ export function useImmersionLabelUpdateEntry() {
 
   const updateImmersionLabel = async (formData) => {
     const properties = {
-      dictionary_entry: formData?.entryId,
+      dictionary_entry: formData?.dictionaryEntry?.[0]?.id,
     }
     return api.immersionLabels.partialUpdate({
-      key: formData?.key,
+      key: formData?.transKey,
       sitename,
       properties,
     })

@@ -68,7 +68,10 @@ function TextArrayField({
           ))}
         </ul>
         {fields?.length < maxItems && (
-          <FieldButton label={label} append={append} />
+          <FieldButton
+            label={`Add ${label?.toLowerCase()}`}
+            onClickHandler={() => append({ text: '' })}
+          />
         )}
       </div>
       {helpText && (

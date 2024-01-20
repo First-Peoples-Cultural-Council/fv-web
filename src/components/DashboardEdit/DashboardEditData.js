@@ -103,6 +103,14 @@ function DashboardEditData({ urlPrefix = '' }) {
       iconColor: 'primary',
       auth: LANGUAGE_ADMIN,
     },
+    IMMERSION: {
+      icon: 'Translate',
+      name: 'Edit your Immersion Labels',
+      description: 'Update the labels used in immersion mode on your site',
+      href: addUrlPrefix('immersion'),
+      iconColor: 'tertiaryA',
+      auth: LANGUAGE_ADMIN,
+    },
   }
 
   const tileContent = [
@@ -116,15 +124,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     editTiles.PAGES,
     editTiles.HOMEPAGE,
     editTiles.ALPHABET,
-    // Temp. hiding for FW-4514.
-    // {
-    //   icon: 'Translate',
-    //   name: 'Edit your Immersion Labels',
-    //   description: 'Update the labels used in immersion mode on your site',
-    //   href: 'immersion',
-    //   iconColor: 'tertiaryA',
-    //   auth: LANGUAGE_ADMIN,
-    // },
+    editTiles.IMMERSION,
   ]
   const headerContent = {
     title: 'Edit',

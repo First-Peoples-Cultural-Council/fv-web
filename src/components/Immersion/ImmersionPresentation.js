@@ -14,10 +14,11 @@ function ImmersionPresentation({ actions, isLoadingEntries, items }) {
           accentColor="primary"
         />
         <div className="text-center text-fv-charcoal-light px-20 py-5 space-y-4">
-          Your language team has added translations for the buttons and headers
-          on FirstVoices, so that you can use Immersion Mode to navigate through
-          the site in your language. When Immersion Mode is turned on, many of
-          the English labels will be replaced by labels in your language.
+          The language team for this site has added translations for the buttons
+          and headers on FirstVoices, so that you can use Immersion Mode to
+          navigate through their site in the language. When Immersion Mode is
+          turned on, many of the English labels will be replaced by labels in
+          the language.
         </div>
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
