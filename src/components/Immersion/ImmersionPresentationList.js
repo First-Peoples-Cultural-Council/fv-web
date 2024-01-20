@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 // FPCC
 import AudioButton from 'components/AudioButton'
@@ -33,13 +34,23 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-300">
                   {items.map(
-                    ({ id, immersionLabel, english, transKey, relatedAudio }) =>
+                    ({
+                      immersionLabel,
+                      english,
+                      transKey,
+                      relatedAudio,
+                      link,
+                      dictionaryEntry,
+                    }) =>
                       immersionLabel ? (
                         <tr key={transKey}>
                           <td className="px-6 py-4 flex items-center">
-                            <div className="font-medium text-fv-charcoal mr-2">
-                              {immersionLabel || '-'}
-                            </div>
+                            <Link
+                              to={link}
+                              className="font-medium text-fv-charcoal mr-2"
+                            >
+                              {immersionLabel}
+                            </Link>
                             {relatedAudio?.length > 0 && (
                               <AudioButton
                                 audioArray={relatedAudio}
@@ -53,11 +64,7 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                           </td>
                           <td className="text-right px-6" aria-label="list">
                             <ActionsMenu.Presentation
-                              entry={{
-                                id,
-                                title: immersionLabel,
-                                type: 'label',
-                              }}
+                              entry={dictionaryEntry?.[0]}
                               actions={actions}
                               withConfirmation
                               withTooltip

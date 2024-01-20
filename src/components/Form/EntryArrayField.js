@@ -9,6 +9,7 @@ import Modal from 'components/Modal'
 import EntrySelector from 'components/EntrySelector'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import FieldButton from 'components/Form/FieldButton'
+import ValidationError from 'components/Form/ValidationError'
 
 function EntryArrayField({
   label,
@@ -18,6 +19,9 @@ function EntryArrayField({
   register,
   control,
   types,
+  buttonLabel,
+  visibility,
+  errors,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -34,42 +38,54 @@ function EntryArrayField({
       </label>
       <div className="space-y-2 mt-2">
         <ul className="space-y-2 space-x-1">
-          {fields.map((item, index) => (
+          {fields.map((field, index) => (
             <li
-              key={item.id}
+              key={field.id}
               className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1"
             >
-              <input type="hidden" {...register(`${nameId}.${index}`)} />
-              <div className="font-bold text-lg">{item?.title}</div>
+              <input
+                key={field.id}
+                type="hidden"
+                {...register(`${nameId}.${index}.value`)}
+              />
+              <div className="font-bold text-lg">{field?.title}</div>
               <div className="has-tooltip flex items-center">
                 <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
-                  Delete Translation
+                  Remove
                 </span>
                 <button
                   type="button"
-                  aria-label="Delete Translation"
+                  aria-label="Remove"
                   className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
                   onClick={() => remove(index)}
                 >
                   {getIcon('Close', 'fill-current text-fv-charcoal h-5 w-5')}
                 </button>
               </div>
+              {/* <ValidationError errors={errors} nameId={nameId} /> */}
             </li>
           ))}
         </ul>
         {fields?.length < maxItems && (
-          <FieldButton label={label} openModal={openModal} />
+          <FieldButton
+            label={buttonLabel || 'Add a related dictionary entry'}
+            onClickHandler={openModal}
+          />
         )}
       </div>
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+
+      <ValidationError errors={errors} nameId={nameId} />
+
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
           <EntrySelector.Container
             types={types}
             addItem={selectItem}
             removeItem={unselectItem}
+            visibility={visibility}
           />
         </div>
       </Modal.Presentation>
@@ -81,16 +97,21 @@ function EntryArrayField({
 const { array, func, number, object, string } = PropTypes
 EntryArrayField.propTypes = {
   helpText: string,
+  errors: object,
   label: string,
   maxItems: number,
+  minItems: number,
   nameId: string.isRequired,
   control: object,
   register: func,
   types: array,
+  buttonLabel: string,
+  visibility: string,
 }
 
 EntryArrayField.defaultProps = {
   maxItems: 6,
+  minItems: 0,
   label: '',
   types: [TYPE_PHRASE, TYPE_WORD],
 }

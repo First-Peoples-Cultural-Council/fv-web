@@ -22,7 +22,16 @@ const stringWithMax = (charCount) =>
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
-  objectArray: () => yup.array().of(yup.object()),
+  objectArray: () =>
+    yup
+      .array()
+      .of(
+        yup
+          .object()
+          .typeError(
+            'Field object error. If this error persists please contact FirstVoices support',
+          ),
+      ),
   label: () => yup.string().max(35).trim(),
   latinOnly: ({ message = 'This is a required field' } = {}) =>
     stringWithMax(20)
@@ -31,7 +40,8 @@ export const definitions = {
         /^[aA-zZ-]+$/,
         'Only Latin alphabet characters and hyphens are allowed in this field (e.g. our-people)',
       ),
-  stringArray: () => yup.array().of(yup.string()),
+  stringArray: () =>
+    yup.array().of(yup.string().typeError('This field is text only.')),
   title: ({ charCount = 90 } = {}) => stringWithMax(charCount).min(1),
   paragraph: ({ charCount = 250 } = {}) => stringWithMax(charCount).nullable(),
 
