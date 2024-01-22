@@ -10,7 +10,7 @@ function middlestuff(_translationwp) {
   cy.get('.table-fixed > .bg-white > :nth-child(1) > :nth-child(1)').click() // FW-5205
   cy.contains('Insert 1 Audio').click()
 
-  cy.contains('Add categories').click()
+  cy.contains('Add category').click()
   cy.get('.text-left > .flex-col > :nth-child(1) > :nth-child(1)').click() // FW-5205
   cy.contains('Add Category to document').click()
 
@@ -22,8 +22,6 @@ function middlestuff(_translationwp) {
   cy.contains('Next step').click()
   cy.contains('Finish').click()
   cy.contains('Dismiss').click()
-  // cy.get('[data-testid="DashboardPresentationEdit"]').click()
-  // cy.contains('Edit words').click()
 }
 
 function _login() {
@@ -311,17 +309,6 @@ describe('log in/out', () => {
     cy.scrollTo('top')
     cy.get(':nth-child(1) > .p-2 >').trigger('dragstart', { force: true })
     cy.get(':nth-child(2) > .p-2 >').trigger('drop', { force: true })
-    //   .trigger('mouseover')
-    //   .trigger('mousedown', { which: 1, force: true })
-    //   .trigger('mousemove', {
-    //     clientX: 276,
-    //     clientY: 339,
-    //     screenX: 276,
-    //     screenY: 339,
-    //     pageX: 276,
-    //     pageY: 339,
-    //   })
-    //   .trigger('mouseup', { force: true, which: 1 })
   })
 
   it('4.0 - site nav - dictionary', () => {
