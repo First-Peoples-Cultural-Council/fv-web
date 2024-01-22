@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Wordle({ styling }) {
+function Wordsy({ styling }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,8 +15,8 @@ function Wordle({ styling }) {
 }
 // PROPTYPES
 const { string } = PropTypes
-Wordle.propTypes = {
+Wordsy.propTypes = {
   styling: string,
 }
 
-export default Wordle
+export default Wordsy
