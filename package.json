@@ -62,7 +62,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "prettier": "^2.8.8",
-    "testcafe": "^3.4.0",
+    "testcafe": "^3.5.0",
     "testcafe-blink-diff": "^0.5.5",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.3"
