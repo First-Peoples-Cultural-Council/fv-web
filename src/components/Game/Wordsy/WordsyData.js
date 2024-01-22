@@ -148,6 +148,7 @@ function WordsyData({ kids }) {
     guesses,
     currentGuess,
     wordLength: WORD_LENGTH,
+    sitename,
     onChar,
     onEnter,
     onDelete,

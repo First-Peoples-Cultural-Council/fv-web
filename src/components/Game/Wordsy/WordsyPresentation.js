@@ -8,6 +8,7 @@ import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 import Grid from 'components/Game/Wordsy/Utils/Grid'
 import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
 import SectionTitle from 'components/SectionTitle'
+import EndGameModal from 'components/Game/Wordsy/Utils/Modals/EndGameModal'
 
 const MIN_VALID_WORDS = 30
 
@@ -18,6 +19,7 @@ function WordsyPresentation({
   guesses,
   currentGuess,
   wordLength,
+  sitename,
   onChar,
   onEnter,
   onDelete,
@@ -163,22 +165,14 @@ function WordsyPresentation({
       </Modal.Presentation>
 
       {/* End Game Modal */}
-      <Modal.Presentation
-        isOpen={isEndGameModalOpen}
-        closeHandler={() => setIsEndGameModalOpen(false)}
-      >
-        <div
-          className={`${
-            endGameModalContent.status === 'win'
-              ? 'bg-green-200'
-              : 'bg-red-200 text-white'
-          } rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full`}
-        >
-          <h3 className="text-sm text-center font-medium text-gray-900">
-            {endGameModalContent.text}
-          </h3>
-        </div>
-      </Modal.Presentation>
+      <EndGameModal
+        isModalOpen={isEndGameModalOpen}
+        setIsModalOpen={setIsEndGameModalOpen}
+        status={endGameModalContent?.status}
+        text={endGameModalContent?.text}
+        solution={solution}
+        sitename={sitename}
+      />
     </section>
   )
 }
@@ -192,6 +186,7 @@ WordsyPresentation.propTypes = {
   currentGuess: array,
   languageConfig: object,
   wordLength: number,
+  sitename: string,
   onChar: func,
   onEnter: func,
   onDelete: func,
