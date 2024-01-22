@@ -4,8 +4,9 @@ import SectionTitle from 'components/SectionTitle'
 function Support() {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
-  const divStyle = 'py-4'
-  const buttonStyle = 'ring ring-bgRed rounded-lg p-2 text-white bg-bgRed'
+  const divStyle = 'py-4 w-72 m-4'
+  const buttonStyle =
+    'flex ring ring-bgRed rounded-lg p-2 text-white bg-bgRed w-full'
 
   return (
     <section
@@ -63,7 +64,7 @@ function Support() {
                     rel="noreferrer noopener"
                     className={buttonStyle}
                   >
-                    Suggested feature or update
+                    Suggest a feature or update
                   </a>
                 </div>
               </div>
@@ -90,7 +91,7 @@ function Support() {
                 </div>
                 <div className={divStyle}>
                   <a
-                    href="https://firstvoices.atlassian.net/wiki/spaces/DIGI/overview)"
+                    href="https://firstvoices.atlassian.net/wiki/spaces/DIGI/overview"
                     target="_blank"
                     rel="noreferrer noopener"
                     className={buttonStyle}
@@ -100,12 +101,12 @@ function Support() {
                 </div>
                 <div className={divStyle}>
                   <a
-                    href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
+                    href="mailto:hello@firstvoices.com"
                     target="_blank"
                     rel="noreferrer noopener"
                     className={buttonStyle}
                   >
-                    Message FirstVoices support team
+                    Email FirstVoices
                   </a>
                 </div>
               </div>
