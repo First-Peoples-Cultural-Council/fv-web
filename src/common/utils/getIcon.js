@@ -109,7 +109,7 @@ import Parachute from 'common/icons/Parachute'
 import Quiz from 'common/icons/Quiz'
 import PhraseScrambler from 'common/icons/PhraseScrambler'
 import WordSearch from 'common/icons/WordSearch'
-import Wordle from 'common/icons/Wordle'
+import Wordsy from 'common/icons/Wordsy'
 
 // Visibility
 import Members from 'common/icons/Members'
@@ -228,7 +228,7 @@ function getIcon(iconName, iconStyling, title) {
     WebShare,
     Widget,
     Word,
-    Wordle,
+    Wordsy,
     Wrench,
     PhraseScrambler,
     WordSearch,

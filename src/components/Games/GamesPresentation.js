@@ -1,20 +1,32 @@
 import React from 'react'
 
 // FPCC
+import getIcon from 'common/utils/getIcon'
+import PropTypes from 'prop-types'
+import { Link, useParams } from 'react-router-dom'
 
-function GamesPresentation() {
+function GamesPresentation({ kids }) {
+  const { sitename } = useParams()
+  const games = [
+    // { pathname: 'memory', title: 'Memory', icon: 'Memory' },
+    // { pathname: 'jigsaw', title: 'Jigsaw', icon: 'Jigsaw' },
+    { pathname: 'parachute', title: 'Parachute', icon: 'Parachute' },
+    // { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
+    {
+      pathname: 'phrasescrambler',
+      title: 'Phrase Scrambler',
+      icon: 'PhraseScrambler',
+    },
+    // { pathname: 'wordsearch', title: 'Word Search', icon: 'WordSearch' },
+    { pathname: 'wordsy', title: 'Wordsy', icon: 'Wordsy' },
+  ]
   return (
     <main
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="GamesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full flex-1 min-h-full min-w-full p-10 lg:p-20 text-gray-800 relative items-center text-center">
-          <h1 className="font-black text-3xl lg:text-5xl text-fv-charcoal mb-10">
-            FirstVoices Games will return soon!
-          </h1>
-        </div>
-        {/* <div className="flex-1 flex items-stretch overflow-hidden">
+        <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="px-4 sm:px-6 lg:px-8">
               <section className="mt-8 pb-16" aria-labelledby="gallery-heading">
@@ -32,7 +44,7 @@ function GamesPresentation() {
                           className="bg-tertiaryA text-white text-4xl group w-full px-5 py-10 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                         >
                           {getIcon(game.icon, 'fill-current h-28')}
-                          <span className="m-5">{game.title}</span>
+                          <span className="m-2">{game.title}</span>
                           <span className="sr-only">Go to {game.title}</span>
                         </Link>
                       </div>
@@ -42,10 +54,20 @@ function GamesPresentation() {
               </section>
             </div>
           </main>
-        </div> */}
+        </div>
       </div>
     </main>
   )
+}
+
+const { bool } = PropTypes
+
+GamesPresentation.propTypes = {
+  kids: bool,
+}
+
+GamesPresentation.defaultProps = {
+  kids: null,
 }
 
 export default GamesPresentation
