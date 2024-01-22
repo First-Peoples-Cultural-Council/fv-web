@@ -75,7 +75,7 @@
     "@babel/preset-env": "^7.23.5",
     "@babel/preset-react": "^7.23.3",
     "@babel/runtime": "^7.23.5",
-    "@babel/runtime-corejs3": "^7.23.5",
+    "@babel/runtime-corejs3": "^7.23.8",
     "@bcgov/bc-sans": "^2.0.0",
     "@dnd-kit/core": "^6.0.6",
     "@dnd-kit/modifiers": "^7.0.0",
