@@ -13,9 +13,9 @@ function CountdownTimer() {
 
   const [countDown, setCountDown] = useState(endTime - new Date().time)
 
-  const [hours, setHours] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [seconds, setSeconds] = useState(0)
+  const [hours, setHours] = useState('')
+  const [minutes, setMinutes] = useState('')
+  const [seconds, setSeconds] = useState('')
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,14 +26,22 @@ function CountdownTimer() {
   })
 
   useEffect(() => {
-    setHours(Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)))
-    setMinutes(Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60)))
-    setSeconds(Math.floor((countDown % (1000 * 60)) / 1000))
+    setHours(
+      convertTimeToLocalString(
+        Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      ),
+    )
+    setMinutes(
+      convertTimeToLocalString(
+        Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60)),
+      ),
+    )
+    setSeconds(
+      convertTimeToLocalString(Math.floor((countDown % (1000 * 60)) / 1000)),
+    )
   }, [countDown])
 
-  return `${convertTimeToLocalString(hours)}:${convertTimeToLocalString(
-    minutes,
-  )}:${convertTimeToLocalString(seconds)}`
+  return `${hours}:${minutes}:${seconds}`
 }
 
 export default CountdownTimer
