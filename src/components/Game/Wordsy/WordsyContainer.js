@@ -15,7 +15,6 @@ function WordsyContainer({ kids }) {
     guesses,
     currentGuess,
     wordLength,
-    sitename,
     onChar,
     onEnter,
     onDelete,
@@ -38,7 +37,6 @@ function WordsyContainer({ kids }) {
         guesses={guesses}
         currentGuess={currentGuess}
         wordLength={wordLength}
-        sitename={sitename}
         onChar={onChar}
         onEnter={onEnter}
         onDelete={onDelete}

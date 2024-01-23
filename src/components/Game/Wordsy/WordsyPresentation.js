@@ -19,7 +19,6 @@ function WordsyPresentation({
   guesses,
   currentGuess,
   wordLength,
-  sitename,
   onChar,
   onEnter,
   onDelete,
@@ -171,7 +170,6 @@ function WordsyPresentation({
         status={endGameModalContent?.status}
         text={endGameModalContent?.text}
         solution={solution}
-        sitename={sitename}
       />
     </section>
   )
@@ -186,7 +184,6 @@ WordsyPresentation.propTypes = {
   currentGuess: array,
   languageConfig: object,
   wordLength: number,
-  sitename: string,
   onChar: func,
   onEnter: func,
   onDelete: func,
