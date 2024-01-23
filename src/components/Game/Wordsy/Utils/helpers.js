@@ -1,5 +1,7 @@
 export const getOrthographyPattern = (orthography) => {
-  const SORTED_ORTHOGRAPHY = orthography?.sort((a, b) => b.length - a.length)
+  const SORTED_ORTHOGRAPHY = orthography
+    ?.slice()
+    .sort((a, b) => b.length - a.length)
 
   return new RegExp(`(${SORTED_ORTHOGRAPHY?.join('|')})`, 'g')
 }
