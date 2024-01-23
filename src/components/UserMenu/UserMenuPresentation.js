@@ -107,35 +107,6 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
                 )}
               </Menu.Item>
             )}
-            {currentUser?.isAnonymous ? (
-              <Menu.Item className="w-full flex">
-                {({ active }) => (
-                  <button type="button" onClick={login} onKeyDown={login}>
-                    <div
-                      className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass} flex justify-start`}
-                    >
-                      Sign In / Register
-                    </div>
-                  </button>
-                )}
-              </Menu.Item>
-            ) : (
-              <Menu.Item className="w-full flex">
-                {({ active }) => (
-                  <button type="button" onClick={logout} onKeyDown={logout}>
-                    <div
-                      className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass} flex justify-start`}
-                    >
-                      Sign out
-                    </div>
-                  </button>
-                )}
-              </Menu.Item>
-            )}
             <Menu.Item className="w-full flex">
               {({ active }) => (
                 <Link to="/support">
@@ -149,6 +120,35 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
                 </Link>
               )}
             </Menu.Item>
+            {currentUser?.isAnonymous ? (
+              <Menu.Item className="w-full flex border-t-2">
+                {({ active }) => (
+                  <button type="button" onClick={login} onKeyDown={login}>
+                    <div
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass} flex justify-start`}
+                    >
+                      Sign In / Register
+                    </div>
+                  </button>
+                )}
+              </Menu.Item>
+            ) : (
+              <Menu.Item className="w-full flex border-t-2">
+                {({ active }) => (
+                  <button type="button" onClick={logout} onKeyDown={logout}>
+                    <div
+                      className={`${
+                        active ? menuItemActiveClass : menuItemInactiveClass
+                      } ${menuItemBaseClass} flex justify-start`}
+                    >
+                      Sign out
+                    </div>
+                  </button>
+                )}
+              </Menu.Item>
+            )}
           </Menu.Items>
         </Transition>
       </Menu>
