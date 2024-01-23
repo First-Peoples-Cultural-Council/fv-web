@@ -8,7 +8,7 @@ import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 import Grid from 'components/Game/Wordsy/Utils/Grid'
 import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
 import SectionTitle from 'components/SectionTitle'
-import EndGameModal from 'components/Game/Wordsy/Utils/Modals/EndGameModal'
+import EndGameModal from 'components/Game/Wordsy/EndGameModal'
 
 const MIN_VALID_WORDS = 30
 
