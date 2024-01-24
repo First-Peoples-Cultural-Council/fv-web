@@ -4,6 +4,7 @@ import React from 'react'
 import getIcon from 'common/utils/getIcon'
 import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
+import SectionTitle from 'components/SectionTitle'
 
 function GamesPresentation({ kids }) {
   const { sitename } = useParams()
@@ -26,6 +27,7 @@ function GamesPresentation({ kids }) {
       data-testid="GamesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionTitle.Presentation title="Games" accentColor="tertiaryA" />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="px-4 sm:px-6 lg:px-8">
