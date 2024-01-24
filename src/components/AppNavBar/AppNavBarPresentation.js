@@ -220,7 +220,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             {!isGuest && (
               <li className={mobileMenuItemStyling}>
                 Welcome
-                {`, ${user?.displayName}` || ''}!
+                {user?.displayName && `, ${user?.displayName}`}!
               </li>
             )}
 
