@@ -182,6 +182,12 @@ module.exports = {
         'fv-warning-red': {
           DEFAULT: '#D64A4A',
         },
+        'wordsy-green': {
+          DEFAULT: '#dcfce7',
+        },
+        'wordsy-red': {
+          DEFAULT: '#fee2e2',
+        },
         gray: colors.stone,
       },
     },
