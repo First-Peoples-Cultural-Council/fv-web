@@ -107,7 +107,7 @@ function WordsyData({ kids }) {
       setIsEndGameModalOpen(true)
       setEndGameModalContent({
         status: 'lost',
-        text: 'All tries exhausted. Please reset and try again.',
+        text: 'Maybe next time!',
       })
     }
   }
