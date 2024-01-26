@@ -10,9 +10,6 @@ export function immersionLabelsAdaptor(data) {
   Object.keys(en.translation).forEach((key) => {
     const found = entries?.find((entry) => entry?.key === key)
     if (!found) {
-      // FUDGE - skip old transkeys
-      if (key === 'general' || key === 'visibility') return
-
       allLabels.push({
         id: null,
         immersionLabel: '',
