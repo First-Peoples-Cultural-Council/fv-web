@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
@@ -9,10 +9,6 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
-  const [currentLinks, setCurrentLinks] = useState(
-    dataToEdit?.relatedVideoLinks,
-  )
-
   const validator = yup.object().shape({
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
@@ -31,20 +27,11 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     generalNote: '',
   }
 
-  const { control, errors, handleSubmit, register, reset, setValue } =
-    useEditForm({
-      defaultValues,
-      validator,
-      dataToEdit,
-    })
-
-  useEffect(() => {
-    setCurrentLinks(dataToEdit?.relatedVideoLinks)
-  }, [dataToEdit?.relatedVideoLinks])
-
-  useEffect(() => {
-    setValue('relatedVideoLinks', currentLinks)
-  }, [currentLinks])
+  const { control, errors, handleSubmit, register, reset } = useEditForm({
+    defaultValues,
+    validator,
+    dataToEdit,
+  })
 
   return (
     <div id="CharacterCrudPresentation" className="max-w-5xl p-8">
@@ -105,9 +92,6 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               control={control}
               type={VIDEO}
               maxItems={1}
-              relatedVideoLinks={dataToEdit?.relatedVideoLinks}
-              currentLinks={currentLinks}
-              setCurrentLinks={setCurrentLinks}
             />
             {errors?.relatedVideos && (
               <div className="text-red-500">

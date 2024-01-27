@@ -1,5 +1,4 @@
 import * as yup from 'yup'
-import get from 'lodash.get'
 
 // FPCC
 import { UUID_REGEX, PUBLIC, MEMBERS, TEAM } from 'common/constants'
@@ -24,7 +23,7 @@ const uniquePropertyTest = function (value, propertyName, message) {
   if (
     this.parent
       .filter((v) => v !== value)
-      .some((v) => get(v, propertyName) === get(value, propertyName))
+      .some((v) => v?.[propertyName] === value?.[propertyName])
   ) {
     throw this.createError({
       path: `${this.path}.${propertyName}`,
@@ -153,11 +152,13 @@ export const definitions = {
     yup.array().of(
       yup
         .object({
-          text: relatedVideoLinksUrls.min(
-            1,
-            'This field cannot be empty. Remove it if you do not want to include it.',
-          ),
+          text: relatedVideoLinksUrls.min(1, 'This field cannot be empty.'),
         })
-        .uniqueProperties([['text', 'Duplicate links are not allowed.']]),
+        .uniqueProperties([
+          [
+            'text',
+            'Duplicate links are not allowed. The URL you entered matches a link you have already added to the entry.',
+          ],
+        ]),
     ),
 }

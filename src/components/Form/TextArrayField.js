@@ -14,9 +14,8 @@ function TextArrayField({
   register,
   control,
   errors,
-  hideLabel,
-  setDisableMediaLibraryButton,
   placeholder,
+  disableExistingEdits,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -31,58 +30,78 @@ function TextArrayField({
 
   return (
     <Fragment key={`${nameId}_TextArrayField`}>
-      {!hideLabel && (
+      {label && (
         <label className="block text-sm font-medium text-fv-charcoal">
           {label}
         </label>
       )}
-      <div className="space-y-2 mt-2">
-        <ul className="space-y-2">
-          {fields.map((item, index) => (
-            <li key={item.id}>
-              <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
-                <input
-                  type="text"
-                  className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg placeholder:italic"
-                  {...register(`${nameId}.${index}.text`)}
-                  onKeyDown={handleKeyDown}
-                  placeholder={placeholder}
-                />
-                <div className="has-tooltip flex items-center">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-24">
-                    Delete {label.slice(0, -1)}
-                  </span>
-                  <button
-                    data-testid={`Delete ${label.slice(0, -1)}`}
-                    type="button"
-                    aria-label={`Delete ${label.slice(0, -1)}`}
-                    className="inline-flex"
-                    onClick={() => {
-                      remove(index)
-                      setDisableMediaLibraryButton(true)
-                    }}
-                  >
-                    {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
-                  </button>
+      {!disableExistingEdits ? (
+        <div className="space-y-2 mt-2">
+          <ul className="space-y-2">
+            {fields.map((item, index) => (
+              <li key={item.id}>
+                <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
+                  <input
+                    type="text"
+                    className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg placeholder:italic"
+                    {...register(`${nameId}.${index}.text`)}
+                    onKeyDown={handleKeyDown}
+                    placeholder={placeholder}
+                  />
+                  <div className="has-tooltip flex items-center">
+                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-24">
+                      Delete {label.slice(0, -1)}
+                    </span>
+                    <button
+                      data-testid={`Delete ${label.slice(0, -1)}`}
+                      type="button"
+                      aria-label={`Delete ${label.slice(0, -1)}`}
+                      className="inline-flex"
+                      onClick={() => {
+                        remove(index)
+                      }}
+                    >
+                      {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
+                    </button>
+                  </div>
                 </div>
-              </div>
-              {errors?.[nameId]?.[index] && (
-                <div className="text-red-500">
-                  {convertJsonToReadableString(
-                    errors?.[nameId]?.[index]?.text?.message,
-                  )}
-                </div>
+                {errors?.[nameId]?.[index] && (
+                  <div className="text-red-500">
+                    {convertJsonToReadableString(
+                      errors?.[nameId]?.[index]?.text?.message,
+                    )}
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+          {fields?.length < maxItems && (
+            <FieldButton
+              label={`Add ${label?.toLowerCase()}`}
+              onClick={() => append({ text: '' })}
+            />
+          )}
+        </div>
+      ) : (
+        <div className="space-y-2 mt-2">
+          <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
+            <input
+              type="text"
+              className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg placeholder:italic"
+              {...register(`${nameId}.${fields?.length}.text`)}
+              onKeyDown={handleKeyDown}
+              placeholder={placeholder}
+            />
+          </div>
+          {errors?.[nameId]?.[fields?.length] && (
+            <div className="text-red-500">
+              {convertJsonToReadableString(
+                errors?.[nameId]?.[fields?.length]?.text?.message,
               )}
-            </li>
-          ))}
-        </ul>
-        {fields?.length < maxItems && (
-          <FieldButton
-            label={`Add ${label?.toLowerCase()}`}
-            onClickHandler={() => append({ text: '' })}
-          />
-        )}
-      </div>
+            </div>
+          )}
+        </div>
+      )}
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
@@ -100,16 +119,15 @@ TextArrayField.propTypes = {
   maxItems: number,
   register: func,
   errors: object,
-  hideLabel: bool,
-  setDisableMediaLibraryButton: func,
   placeholder: string,
+  disableExistingEdits: bool,
 }
 
 TextArrayField.defaultProps = {
   label: '',
   maxItems: 10,
-  setDisableMediaLibraryButton: () => {},
   placeholder: null,
+  disableExistingEdits: false,
 }
 
 export default TextArrayField

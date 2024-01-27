@@ -3,19 +3,17 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import Form from 'components/Form'
+import TextArrayField from 'components/Form/TextArrayField'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
 function VideoLinks({
-  currentLinks,
-  setCurrentLinks,
+  relatedVideoLinks,
+  appendVideoLinks,
   closeModal,
   maxLinks,
-  setDisableMediaLibraryButton,
 }) {
-  const relatedVideoLinks = currentLinks
-  const dataToEdit = {
+  const defaultValues = {
     relatedVideoLinks,
   }
 
@@ -23,23 +21,17 @@ function VideoLinks({
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
   })
 
-  const defaultValues = {
-    relatedVideoLinks,
-  }
-
   const { control, errors, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
-    dataToEdit,
   })
 
   const submitHandler = (formData) => {
-    const relatedMediaLinks = formData?.relatedVideoLinks
-    if (!relatedMediaLinks) {
-      return
-    }
-
-    setCurrentLinks(relatedMediaLinks)
+    const newLink =
+      formData?.relatedVideoLinks?.[
+        (formData?.relatedVideoLinks?.length || 1) - 1
+      ]
+    appendVideoLinks(newLink)
     closeModal()
   }
 
@@ -49,36 +41,35 @@ function VideoLinks({
   return (
     <form onReset={reset}>
       <div className="col-span-12">
-        {maxLinks === 1 && (
+        {relatedVideoLinks?.length < maxLinks ? (
+          <div>
+            <p className="block text-sm font-small text-fv-charcoal italic">
+              Add a link to a video below (currently YouTube and Vimeo links are
+              supported).
+            </p>
+            <TextArrayField
+              nameId="relatedVideoLinks"
+              register={register}
+              control={control}
+              errors={errors}
+              maxItems={maxLinks}
+              placeholder="Example links: https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
+              disableExistingEdits
+            />
+            <button
+              type="button"
+              className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
+              onClick={handleSubmit(submitHandler)}
+            >
+              Add Linked Video
+            </button>
+          </div>
+        ) : (
           <p className="block text-sm font-small text-fv-charcoal italic">
-            Add up to {maxLinks} video link below (currently YouTube and Vimeo
-            links are supported).
+            You have reached the maximum number of video links. Please remove
+            existing videos to add new ones.
           </p>
         )}
-        {maxLinks > 1 && (
-          <p className="block text-sm font-small text-fv-charcoal italic">
-            Add up to {maxLinks} video links below (currently YouTube and Vimeo
-            links are supported).
-          </p>
-        )}
-        <Form.TextArrayField
-          label="Video links"
-          nameId="relatedVideoLinks"
-          register={register}
-          control={control}
-          errors={errors}
-          maxItems={maxLinks}
-          hideLabel
-          setDisableMediaLibraryButton={setDisableMediaLibraryButton}
-          placeholder="Example links: https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
-        />
-        <button
-          type="button"
-          className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
-          onClick={handleSubmit(submitHandler)}
-        >
-          Update Linked Videos
-        </button>
       </div>
     </form>
   )
@@ -87,11 +78,10 @@ function VideoLinks({
 const { array, func, number } = PropTypes
 
 VideoLinks.propTypes = {
-  currentLinks: array,
-  setCurrentLinks: func,
+  relatedVideoLinks: array,
+  appendVideoLinks: func,
   closeModal: func,
   maxLinks: number,
-  setDisableMediaLibraryButton: func,
 }
 
 export default VideoLinks

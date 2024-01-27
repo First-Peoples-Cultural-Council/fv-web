@@ -6,7 +6,7 @@ function VideoLinkThumbnail(props) {
   return (
     <div className={containerStyles}>
       <img
-        src={link?.thumbnail}
+        src={link}
         alt="video thumbnail"
         className="group-hover:opacity-75 object-cover pointer-events-none"
       />
@@ -14,9 +14,9 @@ function VideoLinkThumbnail(props) {
   )
 }
 
-const { object, string } = PropTypes
+const { string } = PropTypes
 VideoLinkThumbnail.propTypes = {
-  link: object,
+  link: string,
   containerStyles: string,
 }
 

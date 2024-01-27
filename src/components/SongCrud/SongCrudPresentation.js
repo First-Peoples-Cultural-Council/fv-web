@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 import { EditorState } from 'draft-js'
@@ -16,10 +16,6 @@ function SongCrudPresentation({
   deleteHandler,
   submitHandler,
 }) {
-  const [currentLinks, setCurrentLinks] = useState(
-    dataToEdit?.relatedVideoLinks,
-  )
-
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     titleTranslation: definitions.paragraph(),
@@ -65,16 +61,11 @@ function SongCrudPresentation({
     register,
     reset,
     resetField,
-    setValue,
   } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
   })
-
-  useEffect(() => {
-    setValue('relatedVideoLinks', currentLinks)
-  }, [currentLinks])
 
   return (
     <div id="SongCrudPresentation" className="max-w-5xl p-8">
@@ -175,9 +166,6 @@ function SongCrudPresentation({
               register={register}
               type={VIDEO}
               maxItems={10}
-              relatedVideoLinks={dataToEdit?.relatedVideoLinks}
-              currentLinks={currentLinks}
-              setCurrentLinks={setCurrentLinks}
             />
             {errors?.relatedVideos && (
               <div className="text-red-500">

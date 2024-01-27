@@ -194,7 +194,7 @@ function AlphabetPresentationSelected({
                     </video>
                   )}
                   {relatedVideoLink?.length > 0 && (
-                    <div className="w-[55vw] max-w-[46rem] min-w-[10rem] relative pb-[56.25%]">
+                    <div className="w-[55vw] max-w-[46rem] min-w-[10rem] relative pb-videoAspect">
                       <iframe
                         className="absolute t-0 l-0 w-full h-full"
                         src={relatedVideoLink?.[0]?.embedLink}

@@ -69,6 +69,7 @@ import Qrcode from 'common/icons/Qrcode'
 import Question from 'common/icons/Question'
 import QuestionCircleSolid from 'common/icons/QuestionCircleSolid'
 import Quotation from 'common/icons/Quotation'
+import Remove from 'common/icons/Remove'
 import Reports from 'common/icons/Reports'
 import RightArrow from 'common/icons/RightArrow'
 import RightArrowCircle from 'common/icons/RightArrowCircle'
@@ -200,6 +201,7 @@ function getIcon(iconName, iconStyling, title) {
     QuestionCircleSolid,
     Quiz,
     Quotation,
+    Remove,
     Reports,
     Resources,
     RightArrow,

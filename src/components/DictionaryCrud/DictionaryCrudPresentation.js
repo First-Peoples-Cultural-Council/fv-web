@@ -1,5 +1,5 @@
 /* eslint-disable max-lines */
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
@@ -31,10 +31,6 @@ function DictionaryCrudPresentation({
   isCreate,
   partsOfSpeech,
 }) {
-  const [currentLinks, setCurrentLinks] = useState(
-    dataToEdit?.relatedVideoLinks,
-  )
-
   const [activeStep, setActiveStep] = useSearchParamsState({
     searchParamName: 'step',
     defaultValue: '0',
@@ -87,7 +83,6 @@ function DictionaryCrudPresentation({
     register,
     reset,
     resetField,
-    setValue,
     trigger,
   } = useEditForm({
     defaultValues,
@@ -123,10 +118,6 @@ function DictionaryCrudPresentation({
   const onFinishClick = () => {
     if (activeStepNumber !== lastStep) stepHandle(lastStep)
   }
-
-  useEffect(() => {
-    setValue('relatedVideoLinks', currentLinks)
-  }, [currentLinks])
 
   function getStepContent(step) {
     switch (Number(step)) {
@@ -252,9 +243,6 @@ function DictionaryCrudPresentation({
                 register={register}
                 type={VIDEO}
                 maxItems={10}
-                relatedVideoLinks={dataToEdit?.relatedVideoLinks}
-                currentLinks={currentLinks}
-                setCurrentLinks={setCurrentLinks}
               />
               {errors?.relatedVideos && (
                 <div className="text-red-500">

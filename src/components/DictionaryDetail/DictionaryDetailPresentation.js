@@ -269,7 +269,7 @@ function DictionaryDetailPresentation({
               {entry?.relatedVideoLinks
                 ? entry?.relatedVideoLinks?.map((video) => (
                     <li key={video.id} className="my-2 p-3">
-                      <div className="rounded-lg relative pb-[56.25%] h-0">
+                      <div className="rounded-lg relative pb-videoAspect h-0">
                         <iframe
                           className="rounded-lg absolute t-0 l-0 w-full h-full"
                           src={video?.embedLink}

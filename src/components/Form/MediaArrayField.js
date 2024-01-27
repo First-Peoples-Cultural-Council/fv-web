@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
@@ -10,38 +11,55 @@ import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
+import api from 'services/api'
 
-function MediaArrayField({
-  label,
-  nameId,
-  helpText,
-  control,
-  type,
-  maxItems,
-  relatedVideoLinks,
-  currentLinks,
-  setCurrentLinks,
-}) {
+function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
   const { value, addItems, removeItem } = useIdArrayField(nameId, control)
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
     addItems,
     removeItem,
   )
-  const [numNewLinks, setNumNewLinks] = useState(0)
+
+  const {
+    fields,
+    append: appendVideoLinks,
+    remove: removeVideoLinks,
+  } = useFieldArray({
+    control,
+    name: 'relatedVideoLinks',
+  })
+
+  const [relatedVideoLinks, setRelatedVideoLinks] = useState(fields)
+
   useEffect(() => {
-    let numRemovedLinks = 0
-    const linksList = currentLinks?.map((link) => link.text)
-    relatedVideoLinks?.forEach((link) => {
-      if (!linksList.includes(link?.text)) {
-        numRemovedLinks += 1
+    setRelatedVideoLinks(fields)
+
+    const getThumbnailFromLink = ({ link, index }) => {
+      if (link.toLowerCase().includes('youtube')) {
+        const updatedRelatedVideoLinks = [...relatedVideoLinks]
+        const id = link.match(/.*watch\?v=(.+)/)[1]
+        updatedRelatedVideoLinks[
+          index
+        ].thumbnail = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+        setRelatedVideoLinks(updatedRelatedVideoLinks)
+      }
+      if (link.toLowerCase().includes('vimeo')) {
+        const response = api.vimeoThumbnail.get(link)
+        response.then((data) => {
+          const updatedRelatedVideoLinks = [...relatedVideoLinks]
+          updatedRelatedVideoLinks[index].thumbnail = data?.thumbnail_url
+          setRelatedVideoLinks(updatedRelatedVideoLinks)
+        })
+      }
+    }
+
+    const updatedRelatedVideoLinks = [...relatedVideoLinks]
+    updatedRelatedVideoLinks.forEach((item, index) => {
+      if (!item.thumbnail) {
+        getThumbnailFromLink({ link: item.text, index })
       }
     })
-    setNumNewLinks(
-      (currentLinks?.length || 0) -
-        (relatedVideoLinks?.length || 0) +
-        numRemovedLinks,
-    )
-  }, [currentLinks, relatedVideoLinks?.length, numNewLinks, relatedVideoLinks])
+  }, [control, fields, relatedVideoLinks])
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
@@ -49,7 +67,7 @@ function MediaArrayField({
         {label}
       </label>
       <div className="space-y-2 mt-2">
-        {type === VIDEO && value?.length > 0 && currentLinks?.length > 0 && (
+        {type === VIDEO && value?.length > 0 && (
           <p className="block text-sm font-small text-fv-charcoal italic">
             Uploaded Videos
           </p>
@@ -85,65 +103,43 @@ function MediaArrayField({
               </div>
             ))}
         </div>
-        {type === VIDEO && currentLinks?.length > 0 && (
-          <p className="block text-sm font-small text-fv-charcoal italic">
-            Linked Videos
-          </p>
-        )}
-        {type === VIDEO &&
-          (relatedVideoLinks?.length > 0 || numNewLinks > 0) && (
+        {type === VIDEO && relatedVideoLinks?.length > 0 && (
+          <div>
+            <p className="block text-sm font-small text-fv-charcoal italic">
+              Linked Videos
+            </p>
             <div id="MediaThumbnailGallery">
-              {relatedVideoLinks?.map((mediaLink) => {
-                const linksList = currentLinks.map((link) => link.text)
-                if (linksList.includes(mediaLink?.text)) {
-                  return (
-                    <div
-                      key={`${mediaLink?.text}`}
-                      className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+              {relatedVideoLinks?.map((mediaLink, index) => (
+                <div
+                  key={`${mediaLink?.text}`}
+                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+                >
+                  <MediaThumbnail.VideoLink link={mediaLink?.thumbnail} />
+                  <div className="has-tooltip">
+                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">
+                      Remove
+                    </span>
+                    <button
+                      type="button"
+                      aria-label="Remove"
+                      className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
+                      onClick={() => {
+                        removeVideoLinks(index)
+                      }}
                     >
-                      {type === VIDEO && (
-                        <MediaThumbnail.VideoLink link={mediaLink} />
-                      )}
-                      <div className="has-tooltip">
-                        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">
-                          Remove
-                        </span>
-                        <button
-                          type="button"
-                          aria-label="Remove"
-                          className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-                          onClick={() => {
-                            setCurrentLinks(
-                              currentLinks.filter(
-                                (link) => link.text !== mediaLink?.text,
-                              ),
-                            )
-                          }}
-                        >
-                          {getIcon('Close', 'fill-current h-5 w-5')}
-                        </button>
-                      </div>
-                    </div>
-                  )
-                }
-                return null
-              })}
-              {numNewLinks === 1 && (
-                <p className="block text-sm font-small text-fv-charcoal italic">
-                  {numNewLinks} new link will be added when you save.
-                </p>
-              )}
-              {numNewLinks > 1 && (
-                <p className="block text-sm font-small text-fv-charcoal italic">
-                  {numNewLinks} new links will be added when you save.
-                </p>
-              )}
+                      {getIcon('Close', 'fill-current h-5 w-5')}
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
+        )}
 
         {value?.length >= maxItems ||
         (type === VIDEO &&
-          (value?.length || 0) + (currentLinks?.length || 0) >= maxItems) ? (
+          (value?.length || 0) + (relatedVideoLinks?.length || 0) >=
+            maxItems) ? (
           ''
         ) : (
           <div>
@@ -166,8 +162,8 @@ function MediaArrayField({
                     savedMedia={value}
                     updateSavedMedia={selectItem}
                     docType={type}
-                    currentLinks={currentLinks}
-                    setCurrentLinks={setCurrentLinks}
+                    relatedVideoLinks={relatedVideoLinks}
+                    appendVideoLinks={appendVideoLinks}
                     closeModal={closeModal}
                     maxFiles={maxItems}
                   />
@@ -185,7 +181,7 @@ function MediaArrayField({
 }
 
 // PROPTYPES
-const { object, number, string, array, func } = PropTypes
+const { object, number, string } = PropTypes
 MediaArrayField.propTypes = {
   helpText: string,
   label: string,
@@ -193,9 +189,6 @@ MediaArrayField.propTypes = {
   nameId: string.isRequired,
   control: object,
   maxItems: number,
-  relatedVideoLinks: array,
-  currentLinks: array,
-  setCurrentLinks: func,
 }
 
 MediaArrayField.defaultProps = {

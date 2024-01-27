@@ -67,11 +67,17 @@ function MediaItemsLayoutVisual({
                       {doc?.width && doc?.height && (
                         <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
                       )}
-                      {selectedMedia?.some((elemId) => elemId === doc?.id) && // Add a small checkIcon on the top-right if it is selected
-                        getIcon(
-                          'CheckCircleSolid',
-                          'absolute top-0 right-0 h-8 w-8 fill-green-700',
-                        )}
+                      {selectedMedia?.some((elemId) => elemId === doc?.id) && (
+                        <button
+                          type="button"
+                          onClick={() => mediaSelectHandler(doc?.id)}
+                        >
+                          {getIcon(
+                            'Remove',
+                            'absolute top-0 right-0 h-8 w-8 fill-red-700',
+                          )}
+                        </button>
+                      )}
                     </li>
                   )
                 })}

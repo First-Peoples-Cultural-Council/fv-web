@@ -14,8 +14,8 @@ function MediaCrudContainer({
   updateSavedMedia,
   docType,
   maxFiles,
-  currentLinks,
-  setCurrentLinks,
+  relatedVideoLinks,
+  appendVideoLinks,
   closeModal,
 }) {
   const {
@@ -26,7 +26,6 @@ function MediaCrudContainer({
     selectedMedia,
     setSelectedMedia,
     mediaSelectHandler,
-    clearSelectedMedia,
     infiniteScroll,
     isLoadingEntries,
     loadRef,
@@ -39,7 +38,18 @@ function MediaCrudContainer({
   const [selectedTab, setSelectedTab] = useState('Media Library')
   const [allowSwitchTab, setAllowSwitchTab] = useState(true)
   const buttonStyles =
-    'w-1/5 border-2 border-wordText rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
+    'mx-2 w-1/5 border-2 border-wordText rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
+
+  const insertMediaButton = () => (
+    <button
+      type="button"
+      className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
+      onClick={() => updateSavedMedia(selectedMedia)}
+    >
+      Insert {selectedMedia.length ? selectedMedia.length : ''}{' '}
+      {makeTitleCase(docTypeLabelPlural)}
+    </button>
+  )
 
   useEffect(() => {
     // This checks if a user has selected/uploade any file
@@ -51,75 +61,65 @@ function MediaCrudContainer({
     }
   }, [selectedMedia])
 
-  const [disableMediaLibraryButton, setDisableMediaLibraryButton] =
-    useState(false)
-
-  const switchTabButton = () => {
-    const switchToTab =
-      selectedTab === 'Media Library' ? 'Upload Files' : 'Media Library'
-    return (
-      <button
-        type="button"
-        className={`${buttonStyles} hover:bg-primary-light`}
-        onClick={() => setSelectedTab(`${switchToTab}`)}
-        disabled={disableMediaLibraryButton}
-      >
-        {switchToTab}
-      </button>
-    )
-  }
   return (
-    <div
-      id="MediaCrudContainer"
-      className={`h-full flex flex-col ${
-        selectedTab === 'Upload Files' ? 'overflow-y-scroll' : ''
-      }`}
-    >
+    <div id="MediaCrudContainer" className="h-full flex flex-col">
       <div>
         <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
           {selectedTab}
         </h2>
       </div>
-      <div className="w-full bg-gray-50 flex justify-start">
+      <div className="w-full bg-gray-50 flex justify-center">
         {/*
-        If no file is selected/uploaded, allow the user to switch tabs
-        If a file is uploaded/selected, this button will switch to Insert Media button
+        If no file is uploaded, allow the user to switch tabs
+        If a file is uploaded, this button will switch to Insert Media button
         allowing user to attach the selected/uploaded files to the document.
          */}
-        {allowSwitchTab ? (
-          switchTabButton()
-        ) : (
+        {allowSwitchTab || selectedTab !== 'Upload Files' ? (
           <button
             type="button"
-            className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
-            onClick={() => updateSavedMedia(selectedMedia)}
+            className={`${buttonStyles} ${
+              selectedTab === 'Upload Files' && 'bg-primary-light text-white'
+            } hover:bg-primary-light`}
+            onClick={() => setSelectedTab(`Upload Files`)}
+            disabled={!allowSwitchTab}
           >
-            Insert {selectedMedia.length ? selectedMedia.length : ''}{' '}
-            {makeTitleCase(docTypeLabelPlural)}
+            Upload New {docType.charAt(0).toUpperCase() + docType.slice(1)}
           </button>
+        ) : (
+          insertMediaButton()
+        )}
+        {allowSwitchTab || selectedTab !== 'Media Library' ? (
+          <button
+            type="button"
+            className={`${buttonStyles} ${
+              selectedTab === 'Media Library' && 'bg-primary-light text-white'
+            } hover:bg-primary-light`}
+            onClick={() => setSelectedTab(`Media Library`)}
+            disabled={!allowSwitchTab}
+          >
+            Search {docType.charAt(0).toUpperCase() + docType.slice(1)} Files
+          </button>
+        ) : (
+          insertMediaButton()
         )}
         {docType === VIDEO && (
           <button
             type="button"
-            className={`${buttonStyles} ml-2 hover:bg-primary-light`}
+            className={`${buttonStyles} ${
+              selectedTab === 'Video Links' && 'bg-primary-light text-white'
+            } mx-2 hover:bg-primary-light`}
             onClick={() => setSelectedTab(`Video Links`)}
-            disabled={!allowSwitchTab}
+            disabled={!allowSwitchTab && selectedTab !== 'Video Links'}
           >
             Link a Video
           </button>
         )}
-        <button
-          type="button"
-          className={`${buttonStyles} mx-2 hover:bg-fv-warning-red`}
-          onClick={() => clearSelectedMedia()}
-          disabled={
-            selectedTab === 'Upload Files' || selectedTab === 'Video Links'
-          }
-        >
-          Clear Selection
-        </button>
       </div>
-      <div className="grow mt-2">
+      <div
+        className={`grow mt-2 ${
+          selectedTab === 'Upload Files' ? 'overflow-y-scroll' : ''
+        }`}
+      >
         {selectedTab === 'Media Library' && (
           <SelectMedia
             docType={docType}
@@ -148,11 +148,10 @@ function MediaCrudContainer({
         )}
         {selectedTab === 'Video Links' && (
           <VideoLinks
-            currentLinks={currentLinks}
-            setCurrentLinks={setCurrentLinks}
+            relatedVideoLinks={relatedVideoLinks}
+            appendVideoLinks={appendVideoLinks}
             closeModal={closeModal}
             maxLinks={maxFiles}
-            setDisableMediaLibraryButton={setDisableMediaLibraryButton}
           />
         )}
       </div>
@@ -167,8 +166,8 @@ MediaCrudContainer.propTypes = {
   updateSavedMedia: func,
   docType: oneOf([AUDIO, IMAGE, VIDEO]),
   maxFiles: number,
-  currentLinks: array,
-  setCurrentLinks: func,
+  relatedVideoLinks: array,
+  appendVideoLinks: func,
   closeModal: func,
 }
 

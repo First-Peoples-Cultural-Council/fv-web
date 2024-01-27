@@ -56,7 +56,7 @@ function SongPresentationDrawer({ entry, sitename }) {
         </div>
       )}
       {entry.coverVisual?.type === VIDEO_LINK && (
-        <div className="my-2 md:my-6 mx-auto px-4 relative pb-[56.25%] h-0">
+        <div className="my-2 md:my-6 mx-auto px-4 relative pb-videoAspect h-0">
           <iframe
             className="pr-8 absolute t-0 l-0 w-full h-full mx-auto"
             src={entry?.coverVisual?.entry?.embedLink}
