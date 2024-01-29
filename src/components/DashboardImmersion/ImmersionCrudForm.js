@@ -11,9 +11,7 @@ import { definitions } from 'common/utils/validationHelpers'
 
 function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
   const validator = yup.object().shape({
-    dictionaryEntry: definitions
-      .objectArray()
-      .min(1, 'An entry is required for this label.'),
+    dictionaryEntry: definitions.objectArray(),
     transKey: definitions.paragraph({ charCount: 100 }),
   })
 
