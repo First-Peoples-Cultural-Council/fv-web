@@ -42,7 +42,7 @@ function VideoLinks({
     <form onReset={reset}>
       <div className="col-span-12">
         {relatedVideoLinks?.length < maxLinks ? (
-          <div>
+          <div className="max-w-screen-lg mx-auto">
             <p className="block text-sm font-small text-fv-charcoal italic">
               Add a link to a video below (currently YouTube and Vimeo links are
               supported).
@@ -58,7 +58,7 @@ function VideoLinks({
             />
             <button
               type="button"
-              className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
+              className={`${buttonStyles} bg-secondary hover:bg-secondary-dark text-white`}
               onClick={handleSubmit(submitHandler)}
             >
               Add Linked Video
