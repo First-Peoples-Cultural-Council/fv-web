@@ -37,7 +37,9 @@ function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
     const getThumbnailFromLink = ({ link, index }) => {
       if (link.toLowerCase().includes('youtube')) {
         const updatedRelatedVideoLinks = [...relatedVideoLinks]
-        const id = link.match(/.*watch\?v=(.+)/)[1]
+        const id = link.match(
+          /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:youtube)\.com\/watch\?v=(.{11}?)$))/,
+        )[1]
         updatedRelatedVideoLinks[
           index
         ].thumbnail = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
