@@ -64,7 +64,7 @@ function CategoryArrayField({
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
-        <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
+        <div className="w-1/2-screen h-screen mx-auto rounded-lg overflow-y-scroll">
           <CategoriesBrowser.Container chooseDocHandler={selectItem} />
         </div>
       </Modal.Presentation>

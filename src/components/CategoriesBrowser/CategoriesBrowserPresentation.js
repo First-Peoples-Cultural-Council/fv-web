@@ -19,9 +19,9 @@ function CategoriesBrowserPresentation({
   }
 
   return (
-    <main id="CategoriesBrowserPresentation">
-      <div className="h-full w-full bg-white p-4 min-h-screen">
-        <header className="p-2">
+    <section id="CategoriesBrowserPresentation" className="h-full">
+      <div className="w-full bg-white p-4">
+        <header className="p-2 sticky">
           <div className="flex-1 flex">
             <form className="w-full flex">
               <div className="relative w-full text-gray-400 focus-within:text-gray-600">
@@ -80,7 +80,7 @@ function CategoriesBrowserPresentation({
           )}
         </Loading.Container>
       </div>
-    </main>
+    </section>
   )
 }
 
