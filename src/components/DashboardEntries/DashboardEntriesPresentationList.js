@@ -119,6 +119,8 @@ function DashboardEntriesPresentationList({
                             <Link
                               to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
                               className="px-6 py-4 text-primary hover:text-primary-dark flex items-center"
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
                               {getIcon('Pencil', 'fill-current w-6 h-6')}
                             </Link>
@@ -173,6 +175,8 @@ function DashboardEntriesPresentationList({
               <Link
                 to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
                 data-testid="EntryDrawerEdit"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <button type="button" className={SECONDARY_BUTTON_STYLE}>
                   {getIcon('Pencil', 'fill-current mr-2 h-5 w-5')}
