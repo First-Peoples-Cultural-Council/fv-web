@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Transition } from '@headlessui/react'
@@ -10,7 +10,6 @@ import SearchSiteForm from 'components/SearchSiteForm'
 import UserMenu from 'components/UserMenu'
 import JoinModalButton from 'components/JoinModalButton'
 import getIcon from 'common/utils/getIcon'
-import Modal from 'components/Modal'
 
 function NavBarPresentation({
   isHome,
@@ -21,7 +20,6 @@ function NavBarPresentation({
   siteLoading,
 }) {
   const menuData = site?.menu || {}
-  const [betaModalOpen, setBetaModalOpen] = useState(false)
 
   const generateMenu = (menu) => (
     <NavBarPresentationMenu
@@ -32,132 +30,57 @@ function NavBarPresentation({
   )
 
   const fvlogo = isHome
-    ? getIcon('FVLogo', 'fill-current h-10')
+    ? getIcon('FVLogo', 'text-white fill-current h-10')
     : getIcon('FVShortLogo', 'text-fv-charcoal-light fill-current h-7')
 
   return (
     <nav id="NavBar" className="relative z-10" role="navigation">
       <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-2 lg:px-6 xl:px-16">
-        <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
-          {!siteLoading && (
-            <>
-              {/* Home Links */}
-              <div className="flex items-center">
-                <div
-                  className={`${
-                    isHome ? '' : 'hidden'
-                  } md:flex items-center text-white`}
-                >
-                  <span className="sr-only">FirstVoices Logo</span>
-                  <Link to="/">{fvlogo}</Link>
-                </div>
-                <button
-                  className="w-16 text-white text-sm leading-tight text-center mr-2"
-                  onClick={() => setBetaModalOpen(true)}
-                  type="button"
-                >
-                  Beta Version
-                </button>
-
-                <Modal.Presentation
-                  isOpen={betaModalOpen}
-                  closeHandler={() => setBetaModalOpen(false)}
-                >
-                  <div
-                    data-testid="BetaModalContent"
-                    className="bg-white rounded-lg shadow-lg px-6 py-32"
-                  >
-                    <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
-                      Welcome to the new FirstVoices!
-                    </h2>
-                    <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
-                      The beta version of FirstVoices v3 is now live.
-                      <br /> If you are looking for the old version of
-                      FirstVoices, <br />
-                      please click{' '}
-                      <a
-                        href="https://archive.firstvoices.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-                      >
-                        here
-                      </a>
-                      {/*
-                       */}
-                      . Having issues with the new version? <br />
-                      Please contact us{' '}
-                      <a
-                        href="mailto:hello@firstvoices.com"
-                        className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-                      >
-                        here
-                      </a>
-                      {/*
-                       */}
-                      .
-                    </p>
-                  </div>
-                </Modal.Presentation>
-                {!isHome && (
-                  <Link
-                    className="h-9 text-white flex items-center group bg-fv-charcoal rounded-lg text-lg font-medium hover:text-gray-100"
-                    to={`/${site?.sitename}/`}
-                  >
-                    <span className="sr-only">{site?.title}</span>
-                    {getIcon('Home', 'fill-current h-full w-auto')}
-                  </Link>
-                )}
-              </div>
-              {/* Menus */}
-              <div id="NavMenus" className="hidden lg:flex xl:space-x-6 ">
-                {menuData?.dictionary && generateMenu(menuData?.dictionary)}
-                {menuData?.learn && generateMenu(menuData?.learn)}
-                {menuData?.resources && generateMenu(menuData?.resources)}
-                {menuData?.about && generateMenu(menuData?.about)}
-                {menuData?.kids && generateMenu(menuData?.kids)}
-              </div>
-              <div className="flex items-center space-x-2 lg:space-x-4">
-                {/* Search */}
-                {!isHome && !isSearchPage && (
-                  <div
-                    id="NavSearch"
-                    className="flex w-full md:w-auto items-center"
-                  >
-                    <SearchSiteForm.Container minimal />
-                  </div>
-                )}
-                {/* User Button and Menu */}
-                {isHome && (
-                  <div className="hidden lg:inline-flex">
-                    <JoinModalButton.Container site={site} />
-                  </div>
-                )}
-                <div className="hidden lg:inline-flex">
-                  <UserMenu.Container />
-                </div>
-                {/* Mobile Menu Button */}
-                <div
-                  id="MobileMenuButton"
-                  className="flex items-center lg:hidden"
-                >
-                  <button
-                    type="button"
-                    onClick={() => openCloseMobileNavbar()}
-                    className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
-                  >
-                    <span className="sr-only">
-                      {mobileNavbarOpen ? 'Close menu' : 'Open menu'}
-                    </span>
-                    {mobileNavbarOpen
-                      ? getIcon('Close', 'h-6 w-6')
-                      : getIcon('HamburgerMenu', 'h-6 w-6')}
-                  </button>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+        {!siteLoading && (
+          <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
+            {/* Home Links */}
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center">
+                <span className="sr-only">FirstVoices Logo</span>
+                {fvlogo}
+              </Link>
+              {!isHome && (
+                <Link className="flex items-center" to={`/${site?.sitename}/`}>
+                  <span className="sr-only">{site?.title}</span>
+                  {getIcon('Home', 'text-white fill-current h-8 w-auto')}
+                </Link>
+              )}
+            </div>
+            {/* Menus */}
+            <div className="hidden lg:flex lg:space-x-4 ">
+              {menuData?.dictionary && generateMenu(menuData?.dictionary)}
+              {menuData?.learn && generateMenu(menuData?.learn)}
+              {menuData?.resources && generateMenu(menuData?.resources)}
+              {menuData?.about && generateMenu(menuData?.about)}
+              {menuData?.kids && generateMenu(menuData?.kids)}
+            </div>
+            <div className="hidden lg:flex lg:justify-end lg:items-center lg:space-x-4">
+              {!isHome && !isSearchPage && <SearchSiteForm.Container minimal />}
+              {isHome && <JoinModalButton.Container site={site} />}
+              <UserMenu.Container />
+            </div>
+            <div className="flex items-center lg:hidden">
+              <button
+                data-testid="MobileMenu-button"
+                type="button"
+                onClick={() => openCloseMobileNavbar()}
+                className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
+              >
+                <span className="sr-only">
+                  {mobileNavbarOpen ? 'Close menu' : 'Open menu'}
+                </span>
+                {mobileNavbarOpen
+                  ? getIcon('Close', 'h-6 w-6')
+                  : getIcon('HamburgerMenu', 'h-6 w-6')}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       {/* -- Mobile Menu -- */}
       <Transition
