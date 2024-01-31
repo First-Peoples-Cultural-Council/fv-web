@@ -35,9 +35,9 @@ function NavBarPresentation({
 
   return (
     <nav id="NavBar" className="relative z-10" role="navigation">
-      <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-2 lg:px-6 xl:px-16">
+      <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-1 lg:px-2 xl:px-16">
         {!siteLoading && (
-          <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
+          <div className="h-16 flex justify-between items-center py-1 space-x-1 lg:space-x-2 xl:space-x-4">
             {/* Home Links */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
@@ -52,14 +52,14 @@ function NavBarPresentation({
               )}
             </div>
             {/* Menus */}
-            <div className="hidden lg:flex lg:space-x-4 ">
+            <div className="hidden lg:flex lg:space-x-1 xl:space-x-4">
               {menuData?.dictionary && generateMenu(menuData?.dictionary)}
               {menuData?.learn && generateMenu(menuData?.learn)}
               {menuData?.resources && generateMenu(menuData?.resources)}
               {menuData?.about && generateMenu(menuData?.about)}
               {menuData?.kids && generateMenu(menuData?.kids)}
             </div>
-            <div className="hidden lg:flex lg:justify-end lg:items-center lg:space-x-4">
+            <div className="hidden lg:flex lg:justify-end lg:items-center lg:space-x-1 xl:space-x-4">
               {!isHome && !isSearchPage && <SearchSiteForm.Container minimal />}
               {isHome && <JoinModalButton.Container site={site} />}
               <UserMenu.Container />
