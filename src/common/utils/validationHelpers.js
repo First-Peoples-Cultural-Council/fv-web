@@ -148,6 +148,15 @@ export const definitions = {
         return isValid
       },
     }),
+  mapsURL: () =>
+    yup
+      .string()
+      .trim()
+      .matches(/(^(https:\/\/)?|^)maps\.fpcc\.ca\/(.*)/, {
+        message:
+          'Only FPCC Maps links are currently supported (e.g. https://maps.fpcc.ca/languages/my-language)',
+        excludeEmptyString: true,
+      }),
   relatedVideoUrlsArray: () =>
     yup.array().of(
       yup
