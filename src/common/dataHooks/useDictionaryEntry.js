@@ -61,7 +61,7 @@ export function useDictionaryEntryCreate() {
   return { onSubmit }
 }
 
-export function useDictionaryEntryUpdate(entryId, type) {
+export function useDictionaryEntryUpdate() {
   const { sitename } = useParams()
 
   const updateDictionaryEntry = async (formData) => {
@@ -73,9 +73,14 @@ export function useDictionaryEntryUpdate(entryId, type) {
     })
   }
 
+  const getPathType = (type) => (type === 'phrase' ? 'phrases' : 'words')
+
+  const getRedirectFromResponse = (response) =>
+    `/${sitename}/${getPathType(response?.type)}/${response?.id}`
+
   const mutation = useMutationWithNotification({
     mutationFn: updateDictionaryEntry,
-    redirectTo: `/${sitename}/${type}/${entryId}`,
+    responseRedirectFn: getRedirectFromResponse,
     queryKeyToInvalidate: [DICTIONARY, sitename],
     actionWord: 'updated',
     type: 'dictionary entry',
