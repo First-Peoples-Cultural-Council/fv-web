@@ -23,6 +23,7 @@ import WidgetFormContact from 'components/WidgetCrud/WidgetFormContact'
 import WidgetFormGallery from 'components/WidgetCrud/WidgetFormGallery'
 import WidgetFormKeyboards from 'components/WidgetCrud/WidgetFormKeyboards'
 import WidgetFormLogo from 'components/WidgetCrud/WidgetFormLogo'
+import WidgetFormMaps from 'components/WidgetCrud/WidgetFormMaps'
 import WidgetFormQuotes from 'components/WidgetCrud/WidgetFormQuotes'
 import WidgetFormText from 'components/WidgetCrud/WidgetFormText'
 import WidgetFormTextConcise from 'components/WidgetCrud/WidgetFormTextConcise'
@@ -232,9 +233,11 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
 
     case WIDGET_IFRAME:
       return (
-        <div className="text-xs">
-          <h2>Widget Form Placeholder for {type}</h2>
-        </div>
+        <WidgetFormMaps
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
       )
     default:
       return (
