@@ -43,13 +43,12 @@ function TextArrayField({
                 <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
                   <input
                     type="text"
-                    className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg placeholder:italic"
+                    className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg"
                     {...register(`${nameId}.${index}.text`)}
                     onKeyDown={handleKeyDown}
-                    placeholder={placeholder}
                   />
                   <div className="has-tooltip flex items-center">
-                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-24">
+                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
                       Delete {label.slice(0, -1)}
                     </span>
                     <button
@@ -57,9 +56,7 @@ function TextArrayField({
                       type="button"
                       aria-label={`Delete ${label.slice(0, -1)}`}
                       className="inline-flex"
-                      onClick={() => {
-                        remove(index)
-                      }}
+                      onClick={() => remove(index)}
                     >
                       {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
                     </button>
@@ -78,7 +75,7 @@ function TextArrayField({
           {fields?.length < maxItems && (
             <FieldButton
               label={`Add ${label?.toLowerCase()}`}
-              onClick={() => append({ text: '' })}
+              onClickHandler={() => append({ text: '' })}
             />
           )}
         </div>
