@@ -37,7 +37,7 @@ function NavBarPresentation({
     <nav id="NavBar" className="relative z-10" role="navigation">
       <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-1 lg:px-2 xl:px-16">
         {!siteLoading && (
-          <div className="h-16 flex justify-between items-center py-1 space-x-1 lg:space-x-2 xl:space-x-4">
+          <div className="h-16 flex justify-between items-center">
             {/* Home Links */}
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
@@ -52,7 +52,7 @@ function NavBarPresentation({
               )}
             </div>
             {/* Menus */}
-            <div className="hidden lg:flex lg:space-x-1 xl:space-x-4">
+            <div className="hidden lg:flex">
               {menuData?.dictionary && generateMenu(menuData?.dictionary)}
               {menuData?.learn && generateMenu(menuData?.learn)}
               {menuData?.resources && generateMenu(menuData?.resources)}
