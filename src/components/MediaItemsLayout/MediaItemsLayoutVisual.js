@@ -97,7 +97,7 @@ function MediaItemsLayoutVisual({
                         >
                           {hoverArray.includes(elementIndex)
                             ? getIcon(
-                                'Remove',
+                                'TimesCircleSolid',
                                 'absolute top-0 right-0 h-8 w-8 fill-red-700',
                               )
                             : getIcon(
