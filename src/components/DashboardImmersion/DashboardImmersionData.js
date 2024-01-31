@@ -6,6 +6,7 @@ import {
   useImmersionLabels,
   useImmersionLabelCreate,
   useImmersionLabelUpdateEntry,
+  useImmersionLabelDelete,
 } from 'common/dataHooks/useImmersionLabels'
 
 function DashboardImmersionData() {
@@ -13,7 +14,7 @@ function DashboardImmersionData() {
 
   const [currentLabel, setCurrentLabel] = useState()
 
-  const { isInitialLoading, isError, labels } = useImmersionLabels()
+  const { isInitialLoading, isFetching, labels } = useImmersionLabels()
 
   const tileContent = []
 
@@ -26,19 +27,21 @@ function DashboardImmersionData() {
 
   const { onSubmit: createLabel } = useImmersionLabelCreate()
   const { onSubmit: updateLabel } = useImmersionLabelUpdateEntry()
+  const { onSubmit: deleteLabel } = useImmersionLabelDelete()
 
   const submitHandler = (formData) => {
     if (currentLabel?.id) {
-      updateLabel(formData)
-    } else {
+      if (formData?.dictionaryEntry?.length > 0) updateLabel(formData)
+      else deleteLabel(formData?.transKey)
+      setCurrentLabel()
+    } else if (formData?.dictionaryEntry?.length > 0) {
       createLabel(formData)
     }
-    setCurrentLabel()
   }
 
   return {
     headerContent,
-    isLoading: isInitialLoading || isError,
+    isLoading: isInitialLoading || isFetching,
     site,
     tileContent,
     labels,

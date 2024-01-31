@@ -61,7 +61,7 @@ function NotificationBanner() {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="max-w-7xl mx-auto ">
+            <div className="max-w-4xl mx-auto ">
               <AlertBanner.Presentation
                 alertType={notification?.type}
                 message={notification?.message}

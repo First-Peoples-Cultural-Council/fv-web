@@ -23,6 +23,7 @@ function coreEntry({ item }) {
     translations: item?.translations || [],
     type: item?.type || TYPE_WORD,
     visibility: item?.visibility,
+    isImmersionLabel: item?.isImmersionLabel,
     ...notesAcknowledgementsAdaptor({ item }),
   }
 }
