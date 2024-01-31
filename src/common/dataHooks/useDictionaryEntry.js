@@ -5,8 +5,6 @@ import { useParams } from 'react-router-dom'
 import { DICTIONARY, TYPE_DICTIONARY } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import { useUserStore } from 'context/UserContext'
-import { ASSISTANT } from 'common/constants/roles'
 
 import {
   entryForEditing,
@@ -44,16 +42,14 @@ export function useDictionaryEntryCreate() {
     })
   }
 
-  const { user } = useUserStore()
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[sitename] || ''
-  const isAssistant = userSiteRole === ASSISTANT
+  const getPathType = (type) => (type === 'phrase' ? 'phrases' : 'words')
+
+  const getRedirectFromResponse = (response) =>
+    `/${sitename}/${getPathType(response?.type)}/${response?.id}`
 
   const mutation = useMutationWithNotification({
     mutationFn: createDictionaryEntry,
-    redirectTo: isAssistant // Redirect to the create page for assistants to be removed when assistants can access the edit pages (FW-4828)
-      ? `/${sitename}/dashboard/create/`
-      : `/${sitename}/dashboard/edit/entries?types=${TYPE_DICTIONARY}`,
+    responseRedirectFn: getRedirectFromResponse,
     queryKeyToInvalidate: [DICTIONARY, sitename],
     actionWord: 'created',
     type: 'dictionary entry',
@@ -65,7 +61,7 @@ export function useDictionaryEntryCreate() {
   return { onSubmit }
 }
 
-export function useDictionaryEntryUpdate() {
+export function useDictionaryEntryUpdate(entryId, type) {
   const { sitename } = useParams()
 
   const updateDictionaryEntry = async (formData) => {
@@ -79,7 +75,7 @@ export function useDictionaryEntryUpdate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateDictionaryEntry,
-    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_DICTIONARY}`,
+    redirectTo: `/${sitename}/${type}/${entryId}`,
     queryKeyToInvalidate: [DICTIONARY, sitename],
     actionWord: 'updated',
     type: 'dictionary entry',
