@@ -14,6 +14,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   const [scrollAtTop, setScrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
   const location = useLocation()
+  const isSearchPage = location.pathname.startsWith(`/search`)
 
   useEffect(() => {
     const listener = document.addEventListener('scroll', () => {
@@ -98,7 +99,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               </Link>
             </li>
             {/* Search */}
-            {!isHome && (
+            {!isHome && !isSearchPage && (
               <li id="AppNavSearch">
                 <SearchSiteForm.Container minimal />
               </li>
