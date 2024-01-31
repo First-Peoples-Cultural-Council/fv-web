@@ -42,7 +42,7 @@ function NavBarPresentationMobile({ site }) {
             className="w-full my-2 p-1 flex items-center rounded"
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}
-            <span className="ml-3 font-medium">
+            <span className="truncate ml-3 font-medium">
               {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
             </span>
             {getIcon('ChevronRight', 'absolute right-3 fill-current w-10')}
@@ -54,7 +54,7 @@ function NavBarPresentationMobile({ site }) {
             to={`/${site.sitename + menuItem.href}`}
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
-            <span className="ml-3 font-medium">
+            <span className="truncate ml-3 font-medium">
               {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
             </span>
           </Link>
