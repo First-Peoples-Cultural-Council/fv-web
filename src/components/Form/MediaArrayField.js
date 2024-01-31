@@ -38,7 +38,7 @@ function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
       if (link.toLowerCase().includes('youtube')) {
         const updatedRelatedVideoLinks = [...relatedVideoLinks]
         const id = link.match(
-          /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:youtube)\.com\/watch\?v=(.{11}?)$))/,
+          /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:youtube)\.com\/watch\?v=(.{11}?)))/,
         )[1]
         updatedRelatedVideoLinks[
           index
