@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
+// FPCC
 import getIcon from 'common/utils/getIcon'
 
 function NavBarPresentationMenu({ menuItemData, sitename }) {
   const { href, title, itemsData, transKey } = menuItemData
-  const [t] = useTranslation()
+  const [t, i18n] = useTranslation()
   const hasItems = itemsData?.length > 0
-
   const generateMenuItems = (items) =>
     items.map((menuItem) => (
       <Menu.Item key={`HeaderMenu_${menuItem.title}`}>
@@ -21,7 +21,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
               active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
             } flex w-full rounded-lg`}
           >
-            <div className="px-2 py-1 w-full text-lg whitespace-nowrap font-medium">
+            <div className="px-2 py-1 w-full text-lg font-medium">
               {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
             </div>
           </Link>
@@ -29,18 +29,42 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       </Menu.Item>
     ))
 
-  return hasItems ? (
-    <Menu id="NavBarPresentationMenu" as="div" className="relative">
-      <Menu.Button>
-        <div className="h-8 xl:h-10 group p-1 bg-fv-charcoal rounded-lg  inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-100">
-          {getIcon(title, 'fill-current h-full w-auto')}
-          <p className="ml-1 xl:ml-3 xl:mr-2">
-            {transKey ? t(transKey) : title}
-          </p>
-          {getIcon('ChevronDown', 'fill-current h-8')}
-        </div>
-      </Menu.Button>
+  const generateButtonContents = () => (
+    <>
+      {getIcon(title, 'fill-current h-6 xl:h-8 w-auto flex-none')}
+      <p className="group relative truncate ml-1 xl:ml-2">
+        {transKey ? t(transKey) : title}
+      </p>
+      {i18n?.language !== 'en' && (
+        // Tooltip
+        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded text-fv-charcoal p-2 text-sm bg-white">
+          {transKey ? t(transKey) : title}
+        </span>
+      )}
+      {getIcon(
+        hasItems ? 'ChevronDown' : 'Placeholder',
+        'fill-current h-6 xl:h-8 flex-none',
+      )}
+    </>
+  )
 
+  const buttonStyling =
+    'h-8 xl:h-10 group p-1 rounded-lg inline-flex w-full justify-center items-center text-base xl:text-lg font-medium text-white hover:text-gray-100'
+
+  return hasItems ? (
+    <Menu
+      data-testid="NavBar-Menu"
+      as="div"
+      className="relative inline-block w-40 xl:w-44"
+    >
+      <div>
+        <Menu.Button
+          data-testid={`${transKey}-button`}
+          className={buttonStyling}
+        >
+          {generateButtonContents()}
+        </Menu.Button>
+      </div>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -58,13 +82,16 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       </Transition>
     </Menu>
   ) : (
-    <div id="NavBarPresentationMenu">
+    <div
+      data-testid="NavBar-link"
+      className="relative inline-block w-40 xl:w-44"
+    >
       <Link
+        data-testid={`${transKey}-button`}
         to={`/${sitename + href}`}
-        className="h-8 xl:h-10 group p-1 bg-fv-charcoal rounded-lg  inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-100"
+        className={buttonStyling}
       >
-        {getIcon(title, 'fill-current h-full w-auto')}
-        <p className="ml-3">{transKey ? t(transKey) : title}</p>
+        {generateButtonContents()}
       </Link>
     </div>
   )

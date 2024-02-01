@@ -33,8 +33,8 @@ function DashboardImmersionPresentation({
         headerContent={headerContent}
         site={site}
       >
-        <div className="grid grid-cols-5">
-          <div className="col-span-3">
+        <div className="grid grid-cols-6">
+          <div className="col-span-4">
             <DashboardTable.Presentation
               isLoading={isLoading}
               title="Immersion Labels"
@@ -61,7 +61,7 @@ function DashboardImmersionPresentation({
                   onClick={() => setCurrentLabel(label)}
                   className="hover:bg-gray-100 cursor-pointer"
                 >
-                  <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+                  <td className="px-6 py-4 text-fv-charcoal">
                     {label?.immersionLabel || '-'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
@@ -82,7 +82,7 @@ function DashboardImmersionPresentation({
             />
           </div>
           <div className="col-span-2">
-            <div className="p-8">
+            <div className="py-8 pr-8">
               {currentLabel?.transKey ? (
                 <ImmersionCrudForm
                   dataToEdit={currentLabel}
