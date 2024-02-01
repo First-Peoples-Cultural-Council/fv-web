@@ -16,7 +16,6 @@ export const SONGS = 'songs'
 export const STORIES = 'stories'
 export const STORY_PAGES = 'pages'
 export const WIDGETS = 'widgets'
-export const WORDS = 'words'
 export const WORD_OF_THE_DAY = 'word-of-the-day'
 export const STATS = 'stats'
 
@@ -30,3 +29,4 @@ export const WORDSY = 'wordsy'
 
 // FRONTEND PATHS
 export const PHRASES = 'phrases'
+export const WORDS = 'words'
