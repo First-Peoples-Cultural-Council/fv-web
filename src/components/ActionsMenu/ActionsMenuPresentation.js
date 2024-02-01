@@ -9,6 +9,7 @@ import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
   entry,
+  sitename,
   siteVisibility,
   actions,
   moreActions,
@@ -64,6 +65,7 @@ function ActionsMenuPresentation({
                       <ShareButton
                         withLabels
                         entry={entry}
+                        sitename={sitename}
                         iconStyling={iconStyling}
                         siteVisibility={siteVisibility}
                       />
@@ -73,9 +75,9 @@ function ActionsMenuPresentation({
                         withLabels
                         iconStyling={iconStyling}
                         entry={entry}
-                        url={`${window.location.origin.toString()}/${
-                          entry?.sitename
-                        }/${makePlural(entry?.type)}/${entry?.id}`}
+                        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+                          entry?.type,
+                        )}/${entry?.id}`}
                       />
                     )}
                   </div>
@@ -92,6 +94,7 @@ function ActionsMenuPresentation({
 const { array, bool, object, string } = PropTypes
 ActionsMenuPresentation.propTypes = {
   entry: object,
+  sitename: string,
   siteVisibility: string,
   actions: array,
   moreActions: array,
