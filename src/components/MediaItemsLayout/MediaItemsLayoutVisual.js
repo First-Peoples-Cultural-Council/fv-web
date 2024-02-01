@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -16,6 +16,17 @@ function MediaItemsLayoutVisual({
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
+  const [hoverArray, setHoverArray] = useState([])
+
+  function handleHover(elementIndex, isLeaving) {
+    setHoverArray((previousArray) => {
+      if (isLeaving) {
+        return previousArray.filter((item) => item !== elementIndex)
+      }
+      return [...previousArray, elementIndex]
+    })
+  }
+
   return (
     <div id="MediaItemsLayoutVisual" className="overflow-y-auto h-full">
       <div className={selection ? 'h-3/4 overflow-y-auto' : ''}>
@@ -25,7 +36,7 @@ function MediaItemsLayoutVisual({
             data?.pages?.map((page, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
-                {page.results.map((doc) => {
+                {page.results.map((doc, elementIndex) => {
                   if (savedMedia?.some((elemId) => elemId === doc?.id)) {
                     // If a media file is already attached to the document
                     // it will not be presented as a choice in the selectMedia dialog box
@@ -55,6 +66,12 @@ function MediaItemsLayoutVisual({
                           {...(selection
                             ? { onClick: () => mediaSelectHandler(doc?.id) } // Selecting a file from the dialogBox to attach to document
                             : { onClick: () => setCurrentFile(doc) })} // For MediaBrowser, this presents the mediaDetails in the sidebar
+                          onMouseEnter={() => {
+                            handleHover(elementIndex, false)
+                          }}
+                          onMouseLeave={() => {
+                            handleHover(elementIndex, true)
+                          }}
                         >
                           <span className="sr-only">
                             View details for {doc?.title}
@@ -67,11 +84,28 @@ function MediaItemsLayoutVisual({
                       {doc?.width && doc?.height && (
                         <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
                       )}
-                      {selectedMedia?.some((elemId) => elemId === doc?.id) && // Add a small checkIcon on the top-right if it is selected
-                        getIcon(
-                          'CheckCircleSolid',
-                          'absolute top-0 right-0 h-8 w-8 fill-green-700',
-                        )}
+                      {selectedMedia?.some((elemId) => elemId === doc?.id) && (
+                        <button
+                          type="button"
+                          onClick={() => mediaSelectHandler(doc?.id)}
+                          onMouseEnter={() => {
+                            handleHover(elementIndex, false)
+                          }}
+                          onMouseLeave={() => {
+                            handleHover(elementIndex, true)
+                          }}
+                        >
+                          {hoverArray.includes(elementIndex)
+                            ? getIcon(
+                                'TimesCircleSolid',
+                                'absolute top-0 right-0 h-8 w-8 fill-red-700',
+                              )
+                            : getIcon(
+                                'CheckCircleSolid',
+                                'absolute top-0 right-0 h-8 w-8 fill-green-700',
+                              )}
+                        </button>
+                      )}
                     </li>
                   )
                 })}

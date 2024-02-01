@@ -22,6 +22,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     acknowledgments: yup.array().of(yup.string()),
   })
 
@@ -32,6 +33,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     titleTranslation: '',
     author: '',
     relatedVideos: [],
+    relatedVideoLinks: [],
     relatedImages: [],
     // Introduction
     intro: EditorState.createEmpty(),

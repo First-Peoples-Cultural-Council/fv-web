@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'
-import { IMAGE, VIDEO, MEDIUM, ORIGINAL } from 'common/constants'
+import { IMAGE, VIDEO, VIDEO_LINK, MEDIUM, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function StoryPresentation({ entry }) {
@@ -79,6 +79,36 @@ function StoryPresentation({ entry }) {
           </div>
         </div>
       )}
+      {/* Cover with linked video */}
+      {entry?.coverVisual?.type === VIDEO_LINK && (
+        <div className={headerStyling}>
+          <div className="flex justify-center items-center">
+            <div className="flex w-full max-h-screen">
+              <div className="relative pb-videoAspect w-full h-0">
+                <iframe
+                  className="absolute t-0 l-0 w-full h-full"
+                  src={entry?.coverVisual?.entry?.embedLink}
+                  title="video"
+                  allowFullScreen
+                >
+                  Your browser does not support the iframe tag.
+                </iframe>
+              </div>
+            </div>
+            <div className="p-6 space-y-4 max-w-lg">
+              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-fv-charcoal">
+                {entry?.title}
+              </h1>
+              <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
+                {entry?.titleTranslation}
+              </h2>
+              <div className="text-fv-charcoal-light">
+                {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Cover no media */}
       {!entry?.coverVisual?.type && (
         <div className={headerStyling}>
@@ -110,6 +140,7 @@ function StoryPresentation({ entry }) {
                 getMedia({
                   images: entry?.relatedImages,
                   videos: entry?.relatedVideos,
+                  videoLinks: entry?.relatedVideoLinks,
                 })}
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
                 <div
@@ -157,6 +188,7 @@ function StoryPresentation({ entry }) {
                   {getMedia({
                     images: page?.relatedImages,
                     videos: page?.relatedVideos,
+                    videoLinks: page?.relatedVideoLinks,
                   })}
                   <div className="w-full md:w-6/12 flex flex-col grow shrink">
                     <div
@@ -239,8 +271,8 @@ function StoryPresentation({ entry }) {
   )
 }
 
-const getMedia = ({ images = [], videos = [] }) => {
-  const media = images.length + videos.length
+const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
+  const mediaLength = images.length + videos.length + videoLinks.length
 
   const getImageTag = ({ image, className }) => (
     <img
@@ -269,68 +301,107 @@ const getMedia = ({ images = [], videos = [] }) => {
     </video>
   )
 
-  if (images.length === 1 && media === 1) {
-    return (
-      <div className="w-full md:w-6/12">
-        {getImageTag({
-          image: images?.[0],
-          className: 'h-auto w-full',
-        })}
+  const getVideoLinkTag = ({ videoLink, className }) => (
+    <div className={className}>
+      <div className="rounded-lg relative pb-videoAspect h-0">
+        <iframe
+          className="rounded-lg absolute t-0 l-0 w-full h-full"
+          src={videoLink?.embedLink}
+          title="video"
+          allowFullScreen
+        >
+          Your browser does not support the iframe tag.
+        </iframe>
       </div>
-    )
-  }
-  if (videos.length === 1 && media === 1) {
-    return (
-      <div className="w-full md:w-6/12 flex-none">
-        {getVideoTag({ video: videos?.[0], className: 'h-auto w-full' })}
-      </div>
-    )
-  }
-  if (media === 2) {
-    return (
-      <div className="w-full md:w-6/12">
-        <div className="grid grid-cols-2 gap-4 m-4">
-          {images.length > 0
-            ? images?.map((image) =>
-                getImageTag({ image, className: 'h-auto w-auto' }),
-              )
-            : null}
-          {videos.length > 0
-            ? videos?.map((video) =>
-                getVideoTag({ video, className: 'h-auto w-full' }),
-              )
-            : null}
-        </div>
-      </div>
-    )
-  }
+    </div>
+  )
 
-  if (media > 2) {
-    return (
-      <div className="w-full md:w-6/12">
-        <div className="masonry-cols-2 p-4">
-          {images.length > 0
-            ? images?.map((image) => (
-                <div key={image.id} className="mb-4">
-                  {getImageTag({
-                    image,
-                    className: 'h-auto w-full',
-                  })}
-                </div>
-              ))
-            : null}
-          {videos.length > 0
-            ? videos?.map((video) => (
-                <div key={video.id} className="mb-4">
-                  {getVideoTag({ video, className: 'h-auto w-full' })}
-                </div>
-              ))
-            : null}
+  switch (true) {
+    case mediaLength === 1:
+      return (
+        <>
+          {images.length > 0 && (
+            <div className="w-full md:w-6/12">
+              {getImageTag({
+                image: images?.[0],
+                className: 'h-auto w-full',
+              })}
+            </div>
+          )}
+          {videos.length === 1 && (
+            <div className="w-full md:w-6/12 flex-none">
+              {getVideoTag({ video: videos?.[0], className: 'h-auto w-full' })}
+            </div>
+          )}
+          {videoLinks.length === 1 && (
+            <div className="w-full md:w-6/12 flex-none">
+              {getVideoLinkTag({
+                videoLink: videoLinks?.[0],
+                className: 'h-auto w-full',
+              })}
+            </div>
+          )}
+        </>
+      )
+
+    case mediaLength === 2:
+      return (
+        <div className="w-full md:w-6/12">
+          <div className="grid grid-cols-2 gap-4 m-4">
+            {images.length > 0
+              ? images?.map((image) =>
+                  getImageTag({ image, className: 'h-auto w-auto' }),
+                )
+              : null}
+            {videos.length > 0
+              ? videos?.map((video) =>
+                  getVideoTag({ video, className: 'h-auto w-full' }),
+                )
+              : null}
+            {videoLinks.length > 0
+              ? videoLinks?.map((videoLink) =>
+                  getVideoLinkTag({ videoLink, className: 'h-auto w-full' }),
+                )
+              : null}
+          </div>
         </div>
-      </div>
-    )
+      )
+
+    case mediaLength > 2:
+      return (
+        <div className="w-full md:w-6/12">
+          <div className="masonry-cols-2 p-4">
+            {images.length > 0
+              ? images?.map((image) => (
+                  <div key={image.id} className="mb-4">
+                    {getImageTag({
+                      image,
+                      className: 'h-auto w-full',
+                    })}
+                  </div>
+                ))
+              : null}
+            {videos.length > 0
+              ? videos?.map((video) => (
+                  <div key={video.id} className="mb-4">
+                    {getVideoTag({ video, className: 'h-auto w-full' })}
+                  </div>
+                ))
+              : null}
+            {videoLinks.length > 0
+              ? videoLinks?.map((videoLink) => (
+                  <div key={videoLink.id} className="mb-4">
+                    {getVideoLinkTag({ videoLink, className: 'h-auto w-full' })}
+                  </div>
+                ))
+              : null}
+          </div>
+        </div>
+      )
+
+    default:
+      return null
   }
-  return null
 }
 
 // PROPTYPES
