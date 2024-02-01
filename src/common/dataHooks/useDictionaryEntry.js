@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 // FPCC
 import { DICTIONARY, TYPE_DICTIONARY } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { getDictionaryEntryUrl } from 'common/utils/urlHelpers'
 
 import {
   entryForEditing,
@@ -31,8 +32,20 @@ export function useDictionaryEntry({ id, sitename, edit = false }) {
   }
 }
 
+const getRedirectFromResponse = ({ response, navigate }) => {
+  const urlToUse = getDictionaryEntryUrl({
+    sitename: response?.site?.slug,
+    type: response?.type,
+    id: response?.id,
+  })
+  setTimeout(() => {
+    navigate(urlToUse)
+  }, 1000)
+}
+
 export function useDictionaryEntryCreate() {
   const { sitename } = useParams()
+  const navigate = useNavigate()
 
   const createDictionaryEntry = async (formData) => {
     const properties = entryForApi({ formData })
@@ -42,14 +55,10 @@ export function useDictionaryEntryCreate() {
     })
   }
 
-  const getPathType = (type) => (type === 'phrase' ? 'phrases' : 'words')
-
-  const getRedirectFromResponse = (response) =>
-    `/${sitename}/${getPathType(response?.type)}/${response?.id}`
-
   const mutation = useMutationWithNotification({
     mutationFn: createDictionaryEntry,
-    responseRedirectFn: getRedirectFromResponse,
+    onSuccessCallback: (response) =>
+      getRedirectFromResponse({ response, navigate }),
     queryKeyToInvalidate: [DICTIONARY, sitename],
     actionWord: 'created',
     type: 'dictionary entry',
@@ -63,6 +72,7 @@ export function useDictionaryEntryCreate() {
 
 export function useDictionaryEntryUpdate() {
   const { sitename } = useParams()
+  const navigate = useNavigate()
 
   const updateDictionaryEntry = async (formData) => {
     const properties = entryForApi({ formData })
@@ -73,14 +83,10 @@ export function useDictionaryEntryUpdate() {
     })
   }
 
-  const getPathType = (type) => (type === 'phrase' ? 'phrases' : 'words')
-
-  const getRedirectFromResponse = (response) =>
-    `/${sitename}/${getPathType(response?.type)}/${response?.id}`
-
   const mutation = useMutationWithNotification({
     mutationFn: updateDictionaryEntry,
-    responseRedirectFn: getRedirectFromResponse,
+    onSuccessCallback: (response) =>
+      getRedirectFromResponse({ response, navigate }),
     queryKeyToInvalidate: [DICTIONARY, sitename],
     actionWord: 'updated',
     type: 'dictionary entry',

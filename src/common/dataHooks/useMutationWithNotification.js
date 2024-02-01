@@ -13,7 +13,6 @@ export default function useMutationWithNotification({
   redirectTo,
   type,
   actionWord = 'saved',
-  responseRedirectFn,
 }) {
   const queryClient = useQueryClient()
   const { setNotification } = useNotification()
@@ -33,10 +32,7 @@ export default function useMutationWithNotification({
         setTimeout(() => {
           navigate(redirectTo)
         }, 1000)
-      } else if (responseRedirectFn)
-        setTimeout(() => {
-          navigate(responseRedirectFn(response))
-        }, 1000)
+      }
     },
     onError: async (error) => {
       const response = await error?.response?.json()

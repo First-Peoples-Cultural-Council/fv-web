@@ -9,7 +9,6 @@ export const JOIN_REQUESTS = 'join-requests'
 export const PAGES = 'pages'
 export const PARTS_OF_SPEECH = 'parts-of-speech'
 export const PEOPLE = 'people'
-export const PHRASES = 'phrases'
 export const MY_SITES = 'my-sites'
 export const SEARCH = 'search'
 export const SITES = 'sites'
@@ -28,3 +27,6 @@ export const VIDEO_PATH = 'videos'
 
 // GAMES
 export const WORDSY = 'wordsy'
+
+// FRONTEND PATHS
+export const PHRASES = 'phrases'
