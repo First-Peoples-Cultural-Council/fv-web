@@ -9,7 +9,6 @@ import {
   useDictionaryEntryUpdate,
 } from 'common/dataHooks/useDictionaryEntry'
 import { usePartsOfSpeech } from 'common/dataHooks/usePartsOfSpeech'
-import { TYPE_PHRASE, PHRASES, WORDS } from 'common/constants'
 
 function DictionaryCrudData() {
   const { site } = useSiteStore()
@@ -24,10 +23,9 @@ function DictionaryCrudData() {
     id: entryId,
     edit: true,
   })
-  const type = data?.type === TYPE_PHRASE ? PHRASES : WORDS
 
   const { onSubmit: createEntry } = useDictionaryEntryCreate()
-  const { onSubmit: updateEntry } = useDictionaryEntryUpdate(entryId, type)
+  const { onSubmit: updateEntry } = useDictionaryEntryUpdate()
   const { onSubmit: deleteEntry } = useDictionaryEntryDelete()
 
   const { data: partsOfSpeechData } = usePartsOfSpeech()
