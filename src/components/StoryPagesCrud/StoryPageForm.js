@@ -25,6 +25,7 @@ function StoryPageForm({
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
   })
 
   const defaultValues = {
@@ -35,6 +36,7 @@ function StoryPageForm({
     relatedAudio: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     ordering: nextPageOrderNumber,
   }
 

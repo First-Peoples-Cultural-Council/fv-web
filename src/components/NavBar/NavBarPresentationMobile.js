@@ -8,6 +8,7 @@ import getIcon from 'common/utils/getIcon'
 import { useUserStore } from 'context/UserContext'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 import { isMember } from 'common/utils/membershipHelpers'
+import { useTranslation } from 'react-i18next'
 
 function NavBarPresentationMobile({ site }) {
   const { user } = useUserStore()
@@ -15,6 +16,7 @@ function NavBarPresentationMobile({ site }) {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const isGuest = user.isAnonymous
   const { login, logout } = useLoginLogout()
+  const [t] = useTranslation()
 
   const onMenuClick = (event, menuObject) => {
     event.stopPropagation()
@@ -32,6 +34,7 @@ function NavBarPresentationMobile({ site }) {
       <li key={`${menuItem.title}_id`}>
         {hasItems ? (
           <button
+            data-testid={`${menuItem.title}-button`}
             type="button"
             onClick={(e) => {
               onMenuClick(e, menuItem)
@@ -39,16 +42,21 @@ function NavBarPresentationMobile({ site }) {
             className="w-full my-2 p-1 flex items-center rounded"
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}
-            <span className="ml-3 font-medium">{menuItem.title}</span>
+            <span className="truncate ml-3 font-medium">
+              {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
+            </span>
             {getIcon('ChevronRight', 'absolute right-3 fill-current w-10')}
           </button>
         ) : (
           <Link
+            data-testid={`${menuItem.title}-link`}
             className="w-full my-2 p-1 flex items-center rounded"
             to={`/${site.sitename + menuItem.href}`}
           >
             {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
-            <span className="ml-3 font-medium">{menuItem.title}</span>
+            <span className="truncate ml-3 font-medium">
+              {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
+            </span>
           </Link>
         )}
       </li>
@@ -76,9 +84,9 @@ function NavBarPresentationMobile({ site }) {
           {menuData?.about && generateMenuItem(menuData?.about)}
           {menuData?.kids && generateMenuItem(menuData?.kids)}
           {isGuest ? (
-            <li key="SignIn_id">
-              {/* eslint-disable-next-line */}
-              <a
+            <li>
+              <button
+                data-testid="login-button"
                 className="w-full my-3 p-1 flex items-center rounded"
                 type="button"
                 onClick={login}
@@ -86,13 +94,14 @@ function NavBarPresentationMobile({ site }) {
               >
                 {getIcon('Login', 'fill-current h-12 w-8')}
                 <span className="ml-3 font-medium">Sign in / Register</span>
-              </a>
+              </button>
             </li>
           ) : (
             <>
               {!member && (
-                <li key="Join_id">
+                <li>
                   <Link
+                    data-testid="join-link"
                     className="w-full my-3 p-1 flex items-center rounded"
                     to={`/${site?.sitename}/join`}
                   >
@@ -102,8 +111,8 @@ function NavBarPresentationMobile({ site }) {
                 </li>
               )}
               <li key="SignOut_id">
-                {/* eslint-disable-next-line */}
-                <a
+                <button
+                  data-testid="logout-button"
                   className="w-full my-3 p-1 flex items-center rounded"
                   type="button"
                   onClick={logout}
@@ -111,7 +120,7 @@ function NavBarPresentationMobile({ site }) {
                 >
                   {getIcon('LogOut', 'fill-current h-12 w-8')}
                   <span className="ml-3 font-medium">Sign Out</span>
-                </a>
+                </button>
               </li>
             </>
           )}
@@ -131,8 +140,9 @@ function NavBarPresentationMobile({ site }) {
             {selectedSubMenu?.itemsData?.length > 0
               ? selectedSubMenu?.itemsData.map((item) => generateMenuItem(item))
               : null}
-            <li key="BackButton_id">
+            <li>
               <button
+                data-testid="close-button"
                 type="button"
                 onClick={() => setIsSubMenuOpen(false)}
                 onKeyDown={() => setIsSubMenuOpen(false)}

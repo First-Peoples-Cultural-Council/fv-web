@@ -48,6 +48,7 @@ function DictionaryCrudPresentation({
     relatedEntries: definitions.objectArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     title: definitions
       .title({ charCount: 225 })
       .required('You must enter at least 1 character in this field.'),
@@ -65,6 +66,7 @@ function DictionaryCrudPresentation({
     relatedEntries: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     title: '',
     type: type || TYPE_WORD,
     translations: [],

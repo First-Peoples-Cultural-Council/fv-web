@@ -17,6 +17,9 @@ function StoryPagesCrudPreview({ page, pageNumber }) {
     if (page?.relatedVideos?.length > 0) {
       return <MediaThumbnail.Video id={page?.relatedVideos?.[0]} />
     }
+    if (page?.relatedVideoLinks?.length > 0) {
+      return <MediaThumbnail.VideoLink link={page?.relatedVideoLinks?.[0]} />
+    }
     return ''
   }
 

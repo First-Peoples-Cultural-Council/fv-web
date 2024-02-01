@@ -55,7 +55,7 @@ JoinModalButtonContainer.propTypes = {
 }
 
 JoinModalButtonContainer.defaultProps = {
-  linkStyling: 'flex rounded-lg text-white bg-phrase py-1 px-3',
+  linkStyling: 'rounded-lg text-white bg-phrase py-1 px-3',
 }
 
 export default JoinModalButtonContainer
