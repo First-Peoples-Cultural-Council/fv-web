@@ -65,3 +65,7 @@ export const updateSearchParams = (originalParams, newParams) => {
   }
   return updatedParams
 }
+
+// creates url for redirect after editing or creating a word or phrase
+export const getDictionaryEntryUrl = ({ sitename, type, id }) =>
+  `/${sitename}/${makePlural(type)}/${id}`
