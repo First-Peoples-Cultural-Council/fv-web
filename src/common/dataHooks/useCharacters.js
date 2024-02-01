@@ -50,6 +50,7 @@ export function useCharacters() {
     relatedAudio: character?.relatedAudio,
     relatedVideo: character?.relatedVideos?.[0] || null,
     relatedImage: character?.relatedImages?.[0] || null,
+    relatedVideoLinks: character?.relatedVideoLinks || null,
     generalNote: character?.note,
   }))
   return {

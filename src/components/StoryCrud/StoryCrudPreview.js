@@ -53,8 +53,8 @@ function StoryCrudPreview({ storyData }) {
     </Link>
   )
 
-  const relatedVisualMediaThumbnails = ({ images, videos }) => {
-    if (!images?.length > 0 && !videos?.length > 0) {
+  const relatedVisualMediaThumbnails = ({ images, videos, videoLinks }) => {
+    if (!images?.length > 0 && !videos?.length > 0 && !videoLinks?.length > 0) {
       return null
     }
     return (
@@ -73,6 +73,14 @@ function StoryCrudPreview({ storyData }) {
             <MediaThumbnail.Video
               key={videoId}
               id={videoId}
+              containerStyles="w-40 h-40 mr-2"
+            />
+          ))}
+        {videoLinks?.length > 0 &&
+          videoLinks?.map((videoLink) => (
+            <MediaThumbnail.VideoLink
+              key={videoLink?.id}
+              link={videoLink}
               containerStyles="w-40 h-40 mr-2"
             />
           ))}
@@ -144,6 +152,7 @@ function StoryCrudPreview({ storyData }) {
               {relatedVisualMediaThumbnails({
                 images: storyData?.relatedImages,
                 videos: storyData?.relatedVideos,
+                videoLinks: storyData?.relatedVideoLinks,
               })}
             </div>
           </div>
@@ -162,6 +171,7 @@ function StoryCrudPreview({ storyData }) {
               {relatedVisualMediaThumbnails({
                 images: currentPage?.relatedImages,
                 videos: currentPage?.relatedVideos,
+                videoLinks: currentPage?.relatedVideoLinks,
               })}
             </div>
             <div className="col-span-1 space-y-4">

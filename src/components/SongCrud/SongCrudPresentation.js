@@ -32,6 +32,7 @@ function SongCrudPresentation({
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
   })
 
   const defaultValues = {
@@ -45,6 +46,7 @@ function SongCrudPresentation({
     relatedAudio: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     includeInKids: 'true',
     includeInGames: 'true',
     visibility: PUBLIC,
