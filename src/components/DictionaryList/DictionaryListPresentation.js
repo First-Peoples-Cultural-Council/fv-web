@@ -181,6 +181,7 @@ function DictionaryListPresentation({
                           >
                             <ActionsMenu.Presentation
                               entry={entry}
+                              sitename={entry?.sitename}
                               siteVisibility={entry?.siteVisibility}
                               actions={actions}
                               moreActions={moreActions}

@@ -25,7 +25,7 @@ export function useImmersionMap() {
   const { sitename } = useParams()
 
   const response = useQuery(
-    [IMMERSION_LABELS, sitename],
+    [IMMERSION_LABELS, sitename, 'mapped'],
     () => api.immersionLabels.getMapped({ sitename }),
     { enabled: !!sitename },
   )

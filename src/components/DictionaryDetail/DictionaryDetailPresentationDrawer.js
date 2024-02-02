@@ -40,6 +40,7 @@ function DictionaryDetailPresentationDrawer({
             <div className="ml-5">
               <ActionsMenu.Presentation
                 entry={entry}
+                sitename={sitename}
                 actions={actions}
                 moreActions={moreActions}
                 withLabels
