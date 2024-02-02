@@ -1,29 +1,17 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
-import Toggle from 'components/Toggle'
-import getIcon from 'common/utils/getIcon'
+import ImmersionToggle from 'components/ImmersionToggle'
 import { IMMERSION } from 'common/constants'
 
 function UserMenuPresentation({ currentUser, site, login, logout }) {
-  const { i18n } = useTranslation()
-
   const hasImmersion =
     typeof site?.checkForEnabledFeature === 'function'
       ? site?.checkForEnabledFeature(IMMERSION)
       : false
-
-  const changeLanguage = (setToLanguage) => {
-    if (setToLanguage) {
-      i18n.changeLanguage('language')
-    } else {
-      i18n.changeLanguage('en')
-    }
-  }
 
   const menuItemActiveClass = 'bg-gray-200 text-black rounded ring-black'
   const menuItemInactiveClass = 'text-fv-charcoal'
@@ -78,31 +66,12 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
             {hasImmersion && (
               <Menu.Item className="w-full flex">
                 {({ active }) => (
-                  <div className="w-full flex justify-between items-center">
-                    <div
-                      className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass} flex`}
-                    >
-                      <Toggle
-                        accentColor="secondary"
-                        toggled={i18n.language === 'language'}
-                        toggleCallback={() =>
-                          changeLanguage(i18n.language !== 'language')
-                        }
-                        label="Immersion Mode"
-                      />
-                      <Link
-                        to={`/${site?.sitename}/immersion`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {getIcon(
-                          'Question',
-                          'fill-current text-secondary ml-3 h-6 w-auto',
-                        )}
-                      </Link>
-                    </div>
+                  <div
+                    className={`${
+                      active ? menuItemActiveClass : menuItemInactiveClass
+                    } ${menuItemBaseClass} flex`}
+                  >
+                    <ImmersionToggle site={site} />
                   </div>
                 )}
               </Menu.Item>
