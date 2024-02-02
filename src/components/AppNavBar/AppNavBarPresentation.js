@@ -8,14 +8,13 @@ import getIcon from 'common/utils/getIcon'
 import SearchSiteForm from 'components/SearchSiteForm'
 import UserMenu from 'components/UserMenu'
 import { useUserStore } from 'context/UserContext'
-import Modal from 'components/Modal'
 
 function AppNavBarPresentation({ isHome = false, login, logout }) {
   const { user } = useUserStore()
   const [scrollAtTop, setScrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
-  const [betaModalOpen, setBetaModalOpen] = useState(false)
   const location = useLocation()
+  const isSearchPage = location.pathname.startsWith(`/search`)
 
   useEffect(() => {
     const listener = document.addEventListener('scroll', () => {
@@ -70,65 +69,13 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
         <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/">
+            <Link to="/">
               <span className="md:flex items-center text-white">
                 <span className="sr-only">FirstVoices Logo</span>
                 {getIcon('FVLogo', 'fill-current h-10')}
               </span>
-            </a>
-            <button
-              className="w-16 text-white text-sm leading-tight text-center mr-2"
-              onClick={() => setBetaModalOpen(true)}
-              type="button"
-            >
-              Beta Version
-            </button>
+            </Link>
           </div>
-
-          <Modal.Presentation
-            isOpen={betaModalOpen}
-            closeHandler={() => setBetaModalOpen(false)}
-          >
-            <div
-              data-testid="BetaModalContent"
-              className="bg-white rounded-lg shadow-lg p-6 sm:p-14"
-            >
-              <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
-                Welcome to the new FirstVoices!
-              </h2>
-              <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
-                The beta version of FirstVoices v3 is now live.
-                <br /> If you are looking for the old version of FirstVoices,{' '}
-                <br />
-                please click{' '}
-                <a
-                  href="https://archive.firstvoices.com"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  here
-                </a>
-                {/*
-                 */}
-                .
-              </p>
-              <p className="mx-auto mt-2 max-w-xl text-lg leading-8 text-fv-charcoal-light">
-                Having issues with the new version? <br />
-                Please contact us{' '}
-                <a
-                  href="mailto:hello@firstvoices.com"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-                >
-                  here
-                </a>
-                {/*
-                 */}
-                .
-              </p>
-            </div>
-          </Modal.Presentation>
-
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center justify-end md:space-x-4">
             <li>
@@ -152,7 +99,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               </Link>
             </li>
             {/* Search */}
-            {!isHome && (
+            {!isHome && !isSearchPage && (
               <li id="AppNavSearch">
                 <SearchSiteForm.Container minimal />
               </li>

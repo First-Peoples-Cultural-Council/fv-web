@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Transition } from '@headlessui/react'
+import { useTranslation } from 'react-i18next'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { useUserStore } from 'context/UserContext'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 import { isMember } from 'common/utils/membershipHelpers'
+import { IMMERSION } from 'common/constants'
+import ImmersionToggle from 'components/ImmersionToggle'
 
 function NavBarPresentationMobile({ site }) {
   const { user } = useUserStore()
@@ -15,6 +18,12 @@ function NavBarPresentationMobile({ site }) {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const isGuest = user.isAnonymous
   const { login, logout } = useLoginLogout()
+  const [t] = useTranslation()
+
+  const hasImmersion =
+    typeof site?.checkForEnabledFeature === 'function'
+      ? site?.checkForEnabledFeature(IMMERSION)
+      : false
 
   const onMenuClick = (event, menuObject) => {
     event.stopPropagation()
@@ -25,6 +34,9 @@ function NavBarPresentationMobile({ site }) {
 
   const menuData = site?.menu || {}
   const member = isMember({ user, sitename: site.sitename })
+  const buttonStyling = 'w-full px-1 py-2 flex items-center rounded'
+  const labelStyling = 'truncate ml-3 font-medium'
+  const iconStyling = 'fill-current h-12 w-8 flex-none'
 
   function generateMenuItem(menuItem) {
     const hasItems = menuItem?.itemsData?.length > 0
@@ -32,23 +44,29 @@ function NavBarPresentationMobile({ site }) {
       <li key={`${menuItem.title}_id`}>
         {hasItems ? (
           <button
+            data-testid={`${menuItem.title}-button`}
             type="button"
             onClick={(e) => {
               onMenuClick(e, menuItem)
             }}
-            className="w-full my-2 p-1 flex items-center rounded"
+            className={buttonStyling}
           >
-            {getIcon(menuItem.title, 'fill-current h-12 w-8')}
-            <span className="ml-3 font-medium">{menuItem.title}</span>
+            {getIcon(menuItem.title, iconStyling)}
+            <span className={labelStyling}>
+              {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
+            </span>
             {getIcon('ChevronRight', 'absolute right-3 fill-current w-10')}
           </button>
         ) : (
           <Link
-            className="w-full my-2 p-1 flex items-center rounded"
+            data-testid={`${menuItem.title}-link`}
+            className={buttonStyling}
             to={`/${site.sitename + menuItem.href}`}
           >
-            {getIcon(menuItem.title, 'fill-current h-12 w-8')}{' '}
-            <span className="ml-3 font-medium">{menuItem.title}</span>
+            {getIcon(menuItem.title, iconStyling)}{' '}
+            <span className={labelStyling}>
+              {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
+            </span>
           </Link>
         )}
       </li>
@@ -65,7 +83,7 @@ function NavBarPresentationMobile({ site }) {
       >
         <ul className="divide-y-2 divide-gray-200 bg-white p-2 overflow-y-auto">
           {!isGuest && (
-            <li className="w-full my-1 p-1 flex items-center rounded ml-3 font-medium">
+            <li className={buttonStyling}>
               Welcome
               {user?.displayName ? `, ${user?.displayName}!` : '!'}
             </li>
@@ -75,45 +93,56 @@ function NavBarPresentationMobile({ site }) {
           {menuData?.resources && generateMenuItem(menuData?.resources)}
           {menuData?.about && generateMenuItem(menuData?.about)}
           {menuData?.kids && generateMenuItem(menuData?.kids)}
+
           {isGuest ? (
-            <li key="SignIn_id">
-              {/* eslint-disable-next-line */}
-              <a
-                className="w-full my-3 p-1 flex items-center rounded"
+            <li>
+              <button
+                data-testid="login-button"
+                className={buttonStyling}
                 type="button"
                 onClick={login}
                 onKeyDown={login}
               >
-                {getIcon('Login', 'fill-current h-12 w-8')}
-                <span className="ml-3 font-medium">Sign in / Register</span>
-              </a>
+                {getIcon('Login', iconStyling)}
+                <span className={labelStyling}>Sign in / Register</span>
+              </button>
             </li>
           ) : (
             <>
               {!member && (
-                <li key="Join_id">
+                <li>
                   <Link
-                    className="w-full my-3 p-1 flex items-center rounded"
+                    data-testid="join-link"
+                    className={buttonStyling}
                     to={`/${site?.sitename}/join`}
                   >
-                    {getIcon('Members', 'fill-current h-12 w-8')}{' '}
-                    <span className="ml-3 font-medium">{`Join ${site?.title}`}</span>
+                    {getIcon('Members', iconStyling)}{' '}
+                    <span
+                      className={labelStyling}
+                    >{`Join ${site?.title}`}</span>
                   </Link>
                 </li>
               )}
-              <li key="SignOut_id">
-                {/* eslint-disable-next-line */}
-                <a
-                  className="w-full my-3 p-1 flex items-center rounded"
+              <li>
+                <button
+                  data-testid="logout-button"
+                  className={buttonStyling}
                   type="button"
                   onClick={logout}
                   onKeyDown={logout}
                 >
-                  {getIcon('LogOut', 'fill-current h-12 w-8')}
-                  <span className="ml-3 font-medium">Sign Out</span>
-                </a>
+                  {getIcon('LogOut', iconStyling)}
+                  <span className={labelStyling}>Sign Out</span>
+                </button>
               </li>
             </>
+          )}
+          {hasImmersion && (
+            <li>
+              <div className={`${buttonStyling} px-2 my-2`}>
+                <ImmersionToggle site={site} />
+              </div>
+            </li>
           )}
         </ul>
       </Transition>
@@ -131,15 +160,16 @@ function NavBarPresentationMobile({ site }) {
             {selectedSubMenu?.itemsData?.length > 0
               ? selectedSubMenu?.itemsData.map((item) => generateMenuItem(item))
               : null}
-            <li key="BackButton_id">
+            <li>
               <button
+                data-testid="close-button"
                 type="button"
                 onClick={() => setIsSubMenuOpen(false)}
                 onKeyDown={() => setIsSubMenuOpen(false)}
-                className="w-full m-3 p-1 flex items-center focus:outline-none"
+                className={buttonStyling}
               >
-                {getIcon('ChevronLeft', 'fill-current h-12 w-8')}
-                <span className="ml-3 font-medium">Back</span>
+                {getIcon('ChevronLeft', iconStyling)}
+                <span className={labelStyling}>Back</span>
               </button>
             </li>
           </ul>

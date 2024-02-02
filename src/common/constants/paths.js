@@ -27,3 +27,7 @@ export const VIDEO_PATH = 'videos'
 
 // GAMES
 export const WORDSY = 'wordsy'
+
+// FRONTEND PATHS
+export const PHRASES = 'phrases'
+export const WORDS = 'words'

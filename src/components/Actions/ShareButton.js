@@ -9,7 +9,13 @@ import ShareLinks from 'components/ShareLinks'
 import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
 
-function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
+function ShareButton({
+  entry,
+  sitename,
+  siteVisibility,
+  iconStyling,
+  withLabels,
+}) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
     <Menu.Item>
@@ -51,9 +57,9 @@ function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
                     className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-secondary"
                     href={`mailto:?subject=${
                       entry?.title
-                    }&body=${window.location.origin.toString()}/${
-                      entry?.sitename
-                    }/${makePlural(entry?.type)}/${entry?.id}`}
+                    }&body=${window.location.origin.toString()}/${sitename}/${makePlural(
+                      entry?.type,
+                    )}/${entry?.id}`}
                   >
                     {getIcon('Mail', 'fill-current h-7 w-7')}
                   </a>
@@ -64,9 +70,9 @@ function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
                     Share <em>{entry?.title}</em> on:
                   </h3>
                   <ShareLinks.Presentation
-                    url={`${window.location.origin.toString()}/${
-                      entry?.sitename
-                    }/${makePlural(entry?.type)}/${entry?.id}`}
+                    url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+                      entry?.type,
+                    )}/${entry?.id}`}
                     title={entry?.title}
                     modalCloseHandler={() => setShareModalOpen(false)}
                   />
@@ -91,6 +97,7 @@ function ShareButton({ entry, siteVisibility, iconStyling, withLabels }) {
 const { bool, object, string } = PropTypes
 ShareButton.propTypes = {
   entry: object,
+  sitename: string,
   iconStyling: string,
   withLabels: bool,
   siteVisibility: string,

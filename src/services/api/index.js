@@ -19,6 +19,7 @@ import songs from 'services/api/songs'
 import stats from 'services/api/stats'
 import stories from 'services/api/stories'
 import storyPages from 'services/api/storyPages'
+import vimeoThumbnail from 'services/api/videoLinkThumbnails'
 import visibility from 'services/api/visibility'
 import widgets from 'services/api/widgets'
 
@@ -44,6 +45,7 @@ export default {
   stats,
   stories,
   storyPages,
+  vimeoThumbnail,
   visibility,
   widgets,
 }

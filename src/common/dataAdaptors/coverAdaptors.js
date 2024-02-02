@@ -21,7 +21,11 @@ export function coverForViewing({ item }) {
   return {
     id: item?.id || '',
     ...titleForEditing({ item }),
-    coverVisual: selectCoverMedia(item?.relatedImages, item?.relatedVideos),
+    coverVisual: selectCoverMedia(
+      item?.relatedImages,
+      item?.relatedVideos,
+      item?.relatedVideoLinks,
+    ),
     ...hideOverlayForViewing({ item }),
     ...relatedMediaForViewing({ item }),
     ...visibilityAdaptor({ item }),

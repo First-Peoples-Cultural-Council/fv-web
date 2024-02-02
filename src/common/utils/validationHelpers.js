@@ -19,6 +19,56 @@ const stringWithMax = (charCount) =>
     .max(charCount, `Maximum length for this field is ${charCount} characters`)
     .trim()
 
+const uniquePropertyTest = function (value, propertyName, message) {
+  if (
+    this.parent
+      .filter((v) => v !== value)
+      .some((v) => v?.[propertyName] === value?.[propertyName])
+  ) {
+    throw this.createError({
+      path: `${this.path}.${propertyName}`,
+      message,
+    })
+  }
+
+  return true
+}
+yup.addMethod(yup.object, 'uniqueProperty', function (propertyName, message) {
+  return this.test('unique', message, function (value) {
+    return uniquePropertyTest.call(this, value, propertyName, message)
+  })
+})
+yup.addMethod(yup.object, 'uniqueProperties', function (propertyNames) {
+  return this.test('unique', '', function (value) {
+    const errors = propertyNames
+      .map(([propertyName, message]) => {
+        try {
+          return uniquePropertyTest.call(this, value, propertyName, message)
+        } catch (error) {
+          return error
+        }
+      })
+      .filter((error) => error instanceof yup.ValidationError)
+
+    if (errors?.length > 0) {
+      throw new yup.ValidationError(errors)
+    }
+
+    return true
+  })
+})
+
+const relatedVideoLinksUrls = yup
+  .string()
+  .trim()
+  .matches(
+    /(^(https?:\/\/)?|^)(?:www.)?(?:((vimeo)\.com\/(.+))|((youtube)\.com\/watch\?v=(.+)))/,
+    {
+      message: 'Only YouTube and Vimeo links are currently supported',
+      excludeEmptyString: true,
+    },
+  )
+
 // Yup Validator Definition Helpers
 export const definitions = {
   idArray: () => yup.array().of(uuid),
@@ -98,4 +148,26 @@ export const definitions = {
         return isValid
       },
     }),
+  mapsURL: () =>
+    yup
+      .string()
+      .trim()
+      .matches(/(^(https:\/\/)?|^)maps\.fpcc\.ca\/(.*)/, {
+        message:
+          'Only FPCC Maps links are currently supported (e.g. https://maps.fpcc.ca/languages/my-language)',
+        excludeEmptyString: true,
+      }),
+  relatedVideoUrlsArray: () =>
+    yup.array().of(
+      yup
+        .object({
+          text: relatedVideoLinksUrls.min(1, 'This field cannot be empty.'),
+        })
+        .uniqueProperties([
+          [
+            'text',
+            'Duplicate links are not allowed. The URL you entered matches a link you have already added to the entry.',
+          ],
+        ]),
+    ),
 }

@@ -2,6 +2,7 @@
 export const AUDIO = 'audio'
 export const VIDEO = 'video'
 export const IMAGE = 'image'
+export const VIDEO_LINK = 'videoLink'
 
 // Sizes - see fv-be/firstvoices/firstvoices/settings.py
 export const ORIGINAL = 'original'

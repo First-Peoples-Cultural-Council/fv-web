@@ -1,6 +1,7 @@
 import {
   IMAGE,
   VIDEO,
+  VIDEO_LINK,
   AUDIO,
   ORIGINAL,
   SMALL,
@@ -69,7 +70,11 @@ export const selectOneMediaDataHelper = (imageObj, videoObj) => {
   return {}
 }
 
-export const selectCoverMedia = (imageArray, videoArray) => {
+export const selectCoverMedia = (
+  imageArray,
+  videoArray,
+  relatedVideoLinksArray,
+) => {
   // allow for array of media objects or array of media ids
   if (imageArray?.length && imageArray?.[0]) {
     return {
@@ -81,6 +86,12 @@ export const selectCoverMedia = (imageArray, videoArray) => {
     return {
       entry: videoArray?.[0],
       type: VIDEO,
+    }
+  }
+  if (relatedVideoLinksArray?.length && relatedVideoLinksArray?.[0]) {
+    return {
+      entry: relatedVideoLinksArray?.[0],
+      type: VIDEO_LINK,
     }
   }
   return {}

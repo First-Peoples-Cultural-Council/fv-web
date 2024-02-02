@@ -13,6 +13,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     relatedAudio: definitions.idArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     relatedDictionaryEntries: definitions.objectArray(),
     generalNote: definitions.paragraph({ charCount: 120 }),
   })
@@ -21,6 +22,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     relatedAudio: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     relatedDictionaryEntries: [],
     generalNote: '',
   }

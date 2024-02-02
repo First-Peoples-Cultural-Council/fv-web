@@ -36,6 +36,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
             </Link>
             <ActionsMenu.Presentation
               entry={entry}
+              sitename={entry?.sitename}
               actions={actions}
               moreActions={moreActions}
               iconStyling="w-8 h-8"
