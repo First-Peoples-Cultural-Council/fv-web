@@ -49,10 +49,10 @@ function LanguagesPresentation({
           />
         </div>
         <SearchLanguagesForm.Container />
-        {allSitesList?.length > 0 && (
-          <Loading.Container isLoading={isLoading}>
-            <div className="mt-5">
-              {allSitesList.map((language) => {
+        <Loading.Container isLoading={isLoading}>
+          <div className="mt-5">
+            {allSitesList?.length > 0 ? (
+              allSitesList.map((language) => {
                 // Generating class for border color
                 const borderColor = languageColors[language.languageCode]
                   ? `border-[${languageColors[language.languageCode]}]`
@@ -88,10 +88,16 @@ function LanguagesPresentation({
                     </div>
                   </div>
                 )
-              })}
-            </div>
-          </Loading.Container>
-        )}
+              })
+            ) : (
+              <div className="w-full flex">
+                <div className="mx-6 mt-4 text-center md:mx-auto md:mt-10">
+                  Sorry, no FirstVoices sites match that search.
+                </div>
+              </div>
+            )}
+          </div>
+        </Loading.Container>
       </div>
     </section>
   )
