@@ -6,6 +6,8 @@ import i18next from 'i18next'
 import { useImmersionMap } from 'common/dataHooks/useImmersionLabels'
 import { useSite } from 'common/dataHooks/useSites'
 import { useSiteDispatch, useSiteStore } from 'context/SiteContext'
+import { IMMERSION } from 'common/constants'
+import { isUUID } from 'common/utils/stringHelpers'
 
 function SiteData() {
   const navigate = useNavigate()
@@ -45,9 +47,21 @@ function SiteData() {
       immersionIsLoading === false &&
       immersionError === null
     ) {
-      i18next.addResourceBundle('language', 'translation', immersionData)
+      // addResourceBundle will not replace the labels if the object is empty (i.e. a site has no labels).
+      // To prevent labels from one site carrying over to a site with no labels we must clear the resource
+      if (JSON.stringify(immersionData) === '{}') {
+        i18next.removeResourceBundle('language', 'translation')
+      } else i18next.addResourceBundle('language', 'translation', immersionData)
     }
   }, [immersionIsLoading, immersionError, immersionData])
+
+  useEffect(() => {
+    // If on a site that doesn't have the immersion feature
+    // then make sure it is turned off (i.e. switch back to English)
+    if (isUUID(site?.id) && !site?.checkForEnabledFeature(IMMERSION)) {
+      i18next.changeLanguage('en')
+    }
+  }, [site])
 
   return {
     siteLoading: isInitialLoading || site?.id?.length < 1,
