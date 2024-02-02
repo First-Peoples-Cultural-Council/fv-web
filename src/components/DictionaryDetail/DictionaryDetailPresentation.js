@@ -53,6 +53,7 @@ function DictionaryDetailPresentation({
               <div className="mt-4 md:mt-1 md:ml-4">
                 <ActionsMenu.Presentation
                   entry={entry}
+                  sitename={sitename}
                   actions={actions}
                   moreActions={moreActions}
                   iconStyling="w-6 h-6"
