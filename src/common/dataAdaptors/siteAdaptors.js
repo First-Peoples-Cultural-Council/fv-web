@@ -15,7 +15,7 @@ import {
 } from 'common/utils/mediaHelpers'
 
 export function languagesListAdaptor({ languagesData }) {
-  return languagesData?.map((language) => ({
+  return languagesData?.results?.map((language) => ({
     title: language?.language,
     languageCode: language?.languageCode,
     sites: sitesListAdaptor({ sitesData: language?.sites }),
