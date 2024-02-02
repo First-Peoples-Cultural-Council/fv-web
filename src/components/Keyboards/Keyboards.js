@@ -275,7 +275,7 @@ function Keyboards() {
                 <li>Keyboards Support</li>
               </a>
             </ul>{' '}
-            FAQ If you need extra help installing a keyboard, please email us at{' '}
+            If you need extra help installing a keyboard, please email us at{' '}
             <a
               href="mailto:hello@firstvoices.com"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
