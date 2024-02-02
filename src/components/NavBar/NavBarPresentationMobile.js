@@ -83,7 +83,7 @@ function NavBarPresentationMobile({ site }) {
       >
         <ul className="divide-y-2 divide-gray-200 bg-white p-2 overflow-y-auto">
           {!isGuest && (
-            <li className="w-full p-1 flex items-center rounded ml-3 font-medium">
+            <li className={buttonStyling}>
               Welcome
               {user?.displayName ? `, ${user?.displayName}!` : '!'}
             </li>
@@ -139,7 +139,7 @@ function NavBarPresentationMobile({ site }) {
           )}
           {hasImmersion && (
             <li>
-              <div className={buttonStyling}>
+              <div className={`${buttonStyling} px-2 my-2`}>
                 <ImmersionToggle site={site} />
               </div>
             </li>
