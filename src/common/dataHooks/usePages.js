@@ -35,8 +35,10 @@ export function usePages() {
 
   const response = useQuery(
     [PAGES, sitename],
-    () => api.pageAll({ sitename }),
-    { enabled: !!sitename },
+    () => api.pages.getAll({ sitename }),
+    {
+      enabled: !!sitename,
+    },
   )
 
   const formattedPages = response?.data?.results?.map((page) => ({
