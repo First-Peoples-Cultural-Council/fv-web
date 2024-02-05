@@ -10,7 +10,7 @@ function WidgetWordOfTheDayData() {
 
   const { data, error, isError } = useQuery(
     [WORD_OF_THE_DAY, sitename],
-    () => api.widgets.getWordOfTheDay({ sitename }),
+    () => api.wordOfTheDay.get({ sitename }),
     {
       // The query will not execute until the uid exists
       enabled: !!sitename,
