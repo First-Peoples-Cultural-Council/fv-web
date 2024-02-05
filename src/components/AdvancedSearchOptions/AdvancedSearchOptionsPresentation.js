@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
@@ -19,7 +20,8 @@ import {
   VISIBILITY_TEAM,
 } from 'common/constants'
 
-function AdvancedSearchOptionsPresentation() {
+function AdvancedSearchOptionsPresentation({ items }) {
+  const results = items?.pages[0]?.count
   return (
     <div
       data-testid="AdvancedSearchOptionsPresentation"
@@ -43,6 +45,9 @@ function AdvancedSearchOptionsPresentation() {
                 ]}
                 menuAlignment="left"
               />
+              <p className="text-sm text-fv-charcoal-light">
+                Results : {results}{' '}
+              </p>
             </div>
 
             <div className="flex items-baseline space-x-8">
@@ -93,6 +98,12 @@ function AdvancedSearchOptionsPresentation() {
       </div>
     </div>
   )
+}
+
+// PROPTYPES
+const { object } = PropTypes
+AdvancedSearchOptionsPresentation.propTypes = {
+  items: object,
 }
 
 export default AdvancedSearchOptionsPresentation
