@@ -7,6 +7,7 @@ import gameContent from 'services/api/gameContent'
 import immersionLabels from 'services/api/immersionLabels'
 import joinRequests from 'services/api/joinRequests'
 import landingPage from 'services/api/landingpage'
+import languages from 'services/api/languages'
 import mail from 'services/api/mail'
 import media from 'services/api/media'
 import pages from 'services/api/pages'
@@ -32,6 +33,7 @@ export default {
   immersionLabels,
   joinRequests,
   landingPage,
+  languages,
   mail,
   media,
   pages,

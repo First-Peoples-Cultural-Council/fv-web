@@ -14,7 +14,9 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   const [scrollAtTop, setScrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
   const location = useLocation()
-  const isSearchPage = location.pathname.startsWith(`/search`)
+  const isSearchPage =
+    location.pathname.startsWith(`/search`) ||
+    location.pathname.startsWith(`/languages`)
 
   useEffect(() => {
     const listener = document.addEventListener('scroll', () => {

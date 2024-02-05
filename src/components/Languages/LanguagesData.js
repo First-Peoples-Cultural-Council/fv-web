@@ -1,11 +1,19 @@
+import { useSearchParams } from 'react-router-dom'
+
 // FPCC
-import { useSites } from 'common/dataHooks/useSites'
+import { useLanguages } from 'common/dataHooks/useLanguages'
 import { useMySites } from 'common/dataHooks/useMySites'
 import { useUserStore } from 'context/UserContext'
 
 function LanguagesData() {
   const { user } = useUserStore()
-  const { allSitesData, isInitialLoading } = useSites()
+
+  const [searchParams] = useSearchParams()
+  const query = searchParams.get('q') || ''
+
+  const { languagesData, isInitialLoading } = useLanguages({
+    query,
+  })
 
   const { mySitesData, isInitialLoading: mySitesIsInitialLoading } =
     useMySites()
@@ -13,7 +21,7 @@ function LanguagesData() {
   return {
     isLoading: isInitialLoading || mySitesIsInitialLoading,
     // sites
-    allSitesList: allSitesData,
+    allSitesList: languagesData,
     // mySites
     userSitesList: mySitesData,
     user,
