@@ -8,7 +8,10 @@ import ActionsMenu from 'components/ActionsMenu'
 import AudioButton from 'components/AudioButton'
 
 function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
-  const shortTitle = entry?.title.length < 12
+  const title = entry?.title || ''
+  // The string iterator that is used here iterates over characters,
+  // not mere code units
+  const shortTitle = [...title].length < 12
   return (
     <div
       className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-gray-200"
@@ -29,7 +32,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
               key={entry.id}
               to={`/${entry?.sitename}/${makePlural(entry.type)}/${entry.id}`}
             >
-              {entry.title}
+              {title}
             </Link>
             <ActionsMenu.Presentation
               entry={entry}
