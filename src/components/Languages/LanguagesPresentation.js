@@ -54,27 +54,27 @@ function LanguagesPresentation({
             {allSitesList?.length > 0 ? (
               allSitesList.map((language) => {
                 // Generating class for border color
-                const borderColor = languageColors[language.languageCode]
-                  ? `border-[${languageColors[language.languageCode]}]`
+                const borderColor = languageColors?.[language?.languageCode]
+                  ? `border-[${languageColors[language?.languageCode]}]`
                   : 'border-gray'
                 return (
                   <div
                     id="LanguagesPresentation"
-                    key={language.title}
+                    key={language?.id}
                     className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
                   >
                     <h1 className="pl-4 text-xl font-extrabold text-primary">
-                      {language.title}
+                      {language?.noLanguageAssigned ? '' : language?.title}
                     </h1>
                     <div className="flex flex-wrap justify-start pl-10">
-                      {language.sites.map((site) => {
+                      {language?.sites?.map((site) => {
                         const memberOfSite = isMember({
                           user,
                           sitename: site?.sitename,
                         })
                         const isLocked = memberOfSite
                           ? false
-                          : site.visibility !== PUBLIC
+                          : site?.visibility !== PUBLIC
                         return isLocked ? (
                           <PrivateSiteCard
                             key={site?.id}
@@ -91,7 +91,7 @@ function LanguagesPresentation({
               })
             ) : (
               <div className="w-full flex">
-                <div className="mx-6 mt-4 text-center md:mx-auto md:mt-10">
+                <div className="mx-6 my-4 text-center md:mx-auto md:my-10">
                   Sorry, no FirstVoices sites match that search.
                 </div>
               </div>

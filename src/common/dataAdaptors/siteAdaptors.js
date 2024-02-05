@@ -16,9 +16,11 @@ import {
 
 export function languagesListAdaptor({ languagesData }) {
   return languagesData?.results?.map((language) => ({
+    id: language?.id,
     title: language?.language,
     languageCode: language?.languageCode,
     sites: sitesListAdaptor({ sitesData: language?.sites }),
+    noLanguageAssigned: language?.noLanguageAssigned,
   }))
 }
 
