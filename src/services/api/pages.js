@@ -2,8 +2,10 @@ import { apiBase } from 'services/config'
 import { SITES, PAGES } from 'common/constants'
 
 const pages = {
-  getPage: async ({ sitename, slug }) =>
+  get: async ({ sitename, slug }) =>
     apiBase().get(`${SITES}/${sitename}/${PAGES}/${slug}`).json(),
+  getAll: async ({ sitename }) =>
+    apiBase().get(`${SITES}/${sitename}/${PAGES}/`).json(),
   create: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${PAGES}/`, { json: properties })
@@ -18,8 +20,6 @@ const pages = {
       .json(),
   delete: async ({ sitename, slug }) =>
     apiBase().delete(`${SITES}/${sitename}/${PAGES}/${slug}`).json(),
-  getPages: async ({ sitename }) =>
-    apiBase().get(`${SITES}/${sitename}/${PAGES}/`).json(),
 }
 
 export default pages

@@ -14,7 +14,7 @@ export function useJoinRequests() {
   const response = useInfiniteScroll({
     queryKey: [JOIN_REQUESTS, site?.sitename],
     queryFn: ({ pageParam = 1 }) =>
-      api.joinRequests.getJoinRequests({
+      api.joinRequests.getAll({
         sitename: site?.sitename,
         pageParam,
       }),

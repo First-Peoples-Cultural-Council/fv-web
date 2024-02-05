@@ -2,14 +2,14 @@ import { apiBase } from 'services/config'
 import { SITES, JOIN_REQUESTS } from 'common/constants'
 
 const joinRequests = {
-  getJoinRequests: async ({ sitename, pageParam, perPage = 48 }) =>
+  get: async ({ sitename, id }) =>
+    apiBase().get(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}`).json(),
+  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
     apiBase()
       .get(
         `${SITES}/${sitename}/${JOIN_REQUESTS}/?page=${pageParam}&pageSize=${perPage}`,
       )
       .json(),
-  get: async ({ sitename, id }) =>
-    apiBase().get(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}`).json(),
   create: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${JOIN_REQUESTS}/`, { json: properties })

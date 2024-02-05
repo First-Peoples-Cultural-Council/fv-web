@@ -16,7 +16,7 @@ export function usePage({ pageSlug }) {
   const { sitename } = useParams()
   const response = useQuery(
     [PAGES, sitename, pageSlug],
-    () => api.pages.getPage({ sitename, slug: pageSlug }),
+    () => api.pages.get({ sitename, slug: pageSlug }),
     { enabled: !!pageSlug },
   )
 
@@ -35,7 +35,7 @@ export function usePages() {
 
   const response = useQuery(
     [PAGES, sitename],
-    () => api.pages.getPages({ sitename }),
+    () => api.pageAll({ sitename }),
     { enabled: !!sitename },
   )
 
