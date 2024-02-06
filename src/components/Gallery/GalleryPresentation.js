@@ -22,11 +22,11 @@ function GalleryPresentation({ data }) {
         {data?.description}
       </div>
       <div className="px-4 masonry-cols-4 p-4 mx-auto text-center">
-        {data?.images?.length > 0 &&
-          data?.images?.map((image, index) => (
-            <LazyLoader key={`${index}_${image?.uid}`}>
+        {data?.galleryItems?.length > 0 &&
+          data?.galleryItems?.map((image) => (
+            <LazyLoader key={image?.image?.id}>
               <div className="mb-4">
-                <ImageWithLightbox.Presentation image={image} />
+                <ImageWithLightbox.Presentation image={image?.image} />
               </div>
             </LazyLoader>
           ))}
