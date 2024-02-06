@@ -14,7 +14,7 @@ export function useWidget({ id }) {
 
   const response = useQuery(
     [WIDGETS, sitename, id],
-    () => api.widgets.getWidget({ sitename, id }),
+    () => api.widgets.get({ sitename, id }),
     { enabled: !!id },
   )
   return {
@@ -31,7 +31,7 @@ export function useWidgets() {
 
   const response = useQuery(
     [WIDGETS, sitename],
-    () => api.widgets.getWidgets({ sitename }),
+    () => api.widgets.getAll({ sitename }),
     { enabled: !!sitename },
   )
   const formattedWidgets = response?.data?.results?.map((widget) => {

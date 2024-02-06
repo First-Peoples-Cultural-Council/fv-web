@@ -9,7 +9,7 @@ function GalleryData({ widgetData }) {
   const galleryId = widgetData?.settings?.galleryId || id
   const { data } = useQuery(
     ['gallery', galleryId],
-    () => api.gallery.get(galleryId),
+    () => api.galleries.get(galleryId),
     {
       // The query will not execute until the galleryId exists
       enabled: !!galleryId,

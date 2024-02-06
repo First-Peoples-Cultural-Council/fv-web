@@ -120,7 +120,19 @@ function Keyboards() {
             your text in new applications or type correctly on websites like
             Facebook. This means your font is not Unicode-compliant, and you may
             be at risk of losing your language data if the font is ever
-            corrupted or lost. For support, contact{' '}
+            corrupted or lost. To see our fonts and keyboards page on the
+            knowledge base, click{' '}
+            <a
+              href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705752/Install+fonts+and+keyboards+for+Indigenous+languages"
+              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              here
+            </a>
+            {/*
+             */}
+            . For support, contact{' '}
             <a
               href="mailto:hello@firstvoices.com"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
@@ -182,8 +194,16 @@ function Keyboards() {
               keyman.com
             </a>{' '}
             and follow along with the instructions in the following videos. If
-            you are not sure what language keyboard you are looking for, check
-            the list of FirstVoices keyboards at the bottom of this page.
+            you are not sure what language keyboard you are looking for, click{' '}
+            <a
+              href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351043612/Keyboard+Installation+Guide"
+              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              here
+            </a>{' '}
+            to see a list of desktop keyboards.
           </p>
           <h2 className={headerStyle}>Install keyboards on Mac computer</h2>
           <iframe
@@ -255,7 +275,7 @@ function Keyboards() {
                 <li>Keyboards Support</li>
               </a>
             </ul>{' '}
-            FAQ If you need extra help installing a keyboard, please email us at{' '}
+            If you need extra help installing a keyboard, please email us at{' '}
             <a
               href="mailto:hello@firstvoices.com"
               className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
@@ -269,9 +289,16 @@ function Keyboards() {
           <h2 className={headerStyle}>Finding your language keyboard</h2>
           <p className={paraStyle}>
             If you are interested in the keyboard for a particular FirstVoices
-            language site, click on your language site name in the list below to
-            go to the page for your keyboard on Keyman. You can install directly
-            from these pages.
+            language site, please visit{' '}
+            <a
+              href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/424312843/Find+FirstVoices+keyboards+for+your+language"
+              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              this
+            </a>{' '}
+            page in our FirstVoices knowledge base.
           </p>
           <p className={paraStyle}>
             {' '}

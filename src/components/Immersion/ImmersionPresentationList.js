@@ -65,6 +65,7 @@ function ImmersionPresentationList({ actions, isLoading, items }) {
                           <td className="text-right px-6" aria-label="list">
                             <ActionsMenu.Presentation
                               entry={dictionaryEntry?.[0]}
+                              sitename={dictionaryEntry?.[0]?.sitename}
                               actions={actions}
                               withConfirmation
                               withTooltip

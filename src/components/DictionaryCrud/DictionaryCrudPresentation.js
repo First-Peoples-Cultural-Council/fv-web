@@ -14,11 +14,13 @@ import {
   TYPE_WORD,
   TYPE_PHRASE,
   PUBLIC,
+  WARNING,
 } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
+import AlertBanner from 'components/AlertBanner'
 
 function DictionaryCrudPresentation({
   backHandler,
@@ -46,6 +48,7 @@ function DictionaryCrudPresentation({
     relatedEntries: definitions.objectArray(),
     relatedImages: definitions.idArray(),
     relatedVideos: definitions.idArray(),
+    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     title: definitions
       .title({ charCount: 225 })
       .required('You must enter at least 1 character in this field.'),
@@ -63,6 +66,7 @@ function DictionaryCrudPresentation({
     relatedEntries: [],
     relatedImages: [],
     relatedVideos: [],
+    relatedVideoLinks: [],
     title: '',
     type: type || TYPE_WORD,
     translations: [],
@@ -415,6 +419,16 @@ function DictionaryCrudPresentation({
             )} from your site?`}
           />
         </div>
+        {dataToEdit?.isImmersionLabel && (
+          <div className="flex w-full justify-center mt-2">
+            <AlertBanner.Presentation
+              alertType={WARNING}
+              message={`This ${getFriendlyDocType({
+                docType: type,
+              })} is being used as an immersion label for your site. Any edits to its spelling or visibility will impact the places where that label appears.`}
+            />
+          </div>
+        )}
       </div>
       <form
         id="DictionaryForm"

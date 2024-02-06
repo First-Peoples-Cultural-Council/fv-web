@@ -61,6 +61,7 @@ function AlphabetPresentation({
               relatedDictionaryEntries={selectedData?.relatedDictionaryEntries}
               relatedAudio={selectedData?.relatedAudio}
               relatedVideo={selectedData?.relatedVideo}
+              relatedVideoLink={selectedData?.relatedVideoLinks}
               relatedImage={selectedData?.relatedImage}
               generalNote={selectedData?.generalNote}
               onVideoClick={onVideoClick}

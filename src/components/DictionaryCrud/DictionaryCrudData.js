@@ -23,6 +23,7 @@ function DictionaryCrudData() {
     id: entryId,
     edit: true,
   })
+
   const { onSubmit: createEntry } = useDictionaryEntryCreate()
   const { onSubmit: updateEntry } = useDictionaryEntryUpdate()
   const { onSubmit: deleteEntry } = useDictionaryEntryDelete()

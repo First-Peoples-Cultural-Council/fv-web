@@ -57,7 +57,7 @@ function DashboardEntriesPresentation({
       </section>
       {showAdvancedSearch && (
         <section className="w-full">
-          <AdvancedSearchOptions.Presentation />
+          <AdvancedSearchOptions.Presentation items={items} />
         </section>
       )}
       <section className="w-full">

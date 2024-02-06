@@ -69,7 +69,9 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
                 <div className="flex justify-center">
-                  {getIndicatorIcon(character?.relatedVideo)}
+                  {character?.relatedVideo
+                    ? getIndicatorIcon(character?.relatedVideo)
+                    : getIndicatorIcon(character?.relatedVideoLinks)}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">

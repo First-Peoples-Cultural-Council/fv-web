@@ -2,14 +2,14 @@ import { apiBase } from 'services/config'
 import { SITES, SONGS } from 'common/constants'
 
 const songs = {
-  getSongs: async ({ sitename, pageParam, perPage = 48 }) =>
+  get: async ({ sitename, id }) =>
+    apiBase().get(`${SITES}/${sitename}/${SONGS}/${id}`).json(),
+  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
     apiBase()
       .get(
         `${SITES}/${sitename}/${SONGS}/?page=${pageParam}&pageSize=${perPage}`,
       )
       .json(),
-  get: async ({ sitename, id }) =>
-    apiBase().get(`${SITES}/${sitename}/${SONGS}/${id}`).json(),
   create: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${SONGS}/`, { json: properties })

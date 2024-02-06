@@ -4,6 +4,8 @@ import { SITES, PEOPLE } from 'common/constants'
 const people = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${PEOPLE}/${id}`).json(),
+  getAll: async ({ sitename }) =>
+    apiBase().get(`${SITES}/${sitename}/${PEOPLE}/`).json(),
   create: async ({ sitename, properties }) => {
     const body = {
       name: properties?.name,
@@ -24,8 +26,6 @@ const people = {
   },
   delete: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${PEOPLE}/${id}`).json(),
-  getAll: async ({ sitename }) =>
-    apiBase().get(`${SITES}/${sitename}/${PEOPLE}/`).json(),
 }
 
 export default people

@@ -10,7 +10,9 @@ import { VIDEO, ORIGINAL } from 'common/constants'
 
 function SongPresentation({ entry }) {
   const hasMedia = !!(
-    entry?.relatedImages.length > 0 || entry?.relatedVideos?.length > 0
+    entry?.relatedImages.length > 0 ||
+    entry?.relatedVideos?.length > 0 ||
+    entry?.relatedVideoLinks?.length > 0
   )
   const labelStyling = 'font-bold text-fv-charcoal uppercase'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6'
@@ -26,6 +28,8 @@ function SongPresentation({ entry }) {
               {getMedia({
                 pictures: entry?.relatedImages,
                 videos: entry?.relatedVideos,
+                videoLinks: entry?.relatedVideoLinks,
+                videoLinksClassname: 'w-[25vw] max-w-[378px]',
               })}
             </div>
           )}
@@ -110,6 +114,8 @@ function SongPresentation({ entry }) {
                 {getMedia({
                   pictures: entry?.relatedImages,
                   videos: entry?.relatedVideos,
+                  videoLinks: entry?.relatedVideoLinks,
+                  videoLinksClassname: 'w-[95vw] pr-[2.5rem]',
                 })}
               </div>
             )}
@@ -120,7 +126,7 @@ function SongPresentation({ entry }) {
   )
 }
 
-const getMedia = ({ pictures, videos }) => (
+const getMedia = ({ pictures, videos, videoLinks, videoLinksClassname }) => (
   <div className="space-y-4">
     {pictures.length > 0 && (
       <div className="space-y-4">
@@ -144,6 +150,24 @@ const getMedia = ({ pictures, videos }) => (
           >
             Your browser does not support the video tag.
           </video>
+        ))}
+      </div>
+    )}
+    {videoLinks?.length > 0 && (
+      <div className="space-y-4">
+        {videoLinks?.map((video) => (
+          <div key={video.id} className={videoLinksClassname}>
+            <div className="relative pb-videoAspect h-0">
+              <iframe
+                className="absolute t-0 l-0 w-full h-full"
+                src={video?.embedLink}
+                title="video"
+                allowFullScreen
+              >
+                Your browser does not support the iframe tag.
+              </iframe>
+            </div>
+          </div>
         ))}
       </div>
     )}

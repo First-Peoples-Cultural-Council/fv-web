@@ -19,7 +19,7 @@ export function useSongs() {
   const allSongsResponse = useInfiniteQuery(
     [SONGS, sitename],
     ({ pageParam = 1 }) =>
-      api.songs.getSongs({
+      api.songs.getAll({
         sitename,
         pageParam,
       }),

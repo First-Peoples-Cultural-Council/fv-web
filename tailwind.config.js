@@ -83,6 +83,7 @@ module.exports = {
         104: '26rem',
         112: '28rem',
         120: '30rem',
+        videoAspect: '56.25%',
       },
       keyframes: {
         'pulse-blur': {
@@ -181,6 +182,12 @@ module.exports = {
         },
         'fv-warning-red': {
           DEFAULT: '#D64A4A',
+        },
+        'wordsy-green': {
+          DEFAULT: '#dcfce7',
+        },
+        'wordsy-red': {
+          DEFAULT: '#fee2e2',
         },
         gray: colors.stone,
       },

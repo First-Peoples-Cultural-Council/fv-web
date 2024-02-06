@@ -25,7 +25,7 @@ export function useImmersionMap() {
   const { sitename } = useParams()
 
   const response = useQuery(
-    [IMMERSION_LABELS, sitename],
+    [IMMERSION_LABELS, sitename, 'mapped'],
     () => api.immersionLabels.getMapped({ sitename }),
     { enabled: !!sitename },
   )
@@ -62,7 +62,7 @@ export function useImmersionLabelCreate() {
   const mutation = useMutationWithNotification({
     mutationFn: createImmersionLabel,
     queryKeyToInvalidate: [IMMERSION_LABELS, sitename],
-    actionWord: 'created',
+    actionWord: 'assigned',
     type: 'immersion label',
   })
 
@@ -107,7 +107,7 @@ export function useImmersionLabelDelete() {
   const mutation = useMutationWithNotification({
     mutationFn: deleteImmersionLabel,
     queryKeyToInvalidate: [IMMERSION_LABELS, sitename],
-    actionWord: 'deleted',
+    actionWord: 'unassigned',
     type: 'immersion label',
   })
   const onSubmit = (key) => {

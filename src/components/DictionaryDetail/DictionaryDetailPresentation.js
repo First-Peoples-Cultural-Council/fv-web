@@ -22,7 +22,9 @@ function DictionaryDetailPresentation({
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
   const noMedia = !(
-    entry?.relatedImages?.length > 0 || entry?.relatedVideos?.length > 0
+    entry?.relatedImages?.length > 0 ||
+    entry?.relatedVideos?.length > 0 ||
+    entry?.relatedVideoLinks?.length > 0
   )
   const shortTitle = entry?.title.length < 20
 
@@ -51,6 +53,7 @@ function DictionaryDetailPresentation({
               <div className="mt-4 md:mt-1 md:ml-4">
                 <ActionsMenu.Presentation
                   entry={entry}
+                  sitename={sitename}
                   actions={actions}
                   moreActions={moreActions}
                   iconStyling="w-6 h-6"
@@ -261,6 +264,22 @@ function DictionaryDetailPresentation({
                           )}
                         </Disclosure.Panel>
                       </Disclosure>
+                    </li>
+                  ))
+                : null}
+              {entry?.relatedVideoLinks
+                ? entry?.relatedVideoLinks?.map((video) => (
+                    <li key={video.id} className="my-2 p-3">
+                      <div className="rounded-lg relative pb-videoAspect h-0">
+                        <iframe
+                          className="rounded-lg absolute t-0 l-0 w-full h-full"
+                          src={video?.embedLink}
+                          title="video"
+                          allowFullScreen
+                        >
+                          Your browser does not support the iframe tag.
+                        </iframe>
+                      </div>
                     </li>
                   ))
                 : null}

@@ -13,7 +13,7 @@ export function useSite() {
   const { sitename } = useParams()
   const response = useQuery(
     [SITES, sitename],
-    () => api.site.get({ sitename }),
+    () => api.sites.get({ sitename }),
     {
       // The query will not execute until the sitename exists
       enabled: !!sitename,
@@ -25,7 +25,7 @@ export function useSite() {
 }
 
 export function useSites() {
-  const allSitesResponse = useQuery([SITES], () => api.site.getSites())
+  const allSitesResponse = useQuery([SITES], () => api.sites.getAll())
   const formattedSitesData = languagesListAdaptor({
     languagesData: allSitesResponse?.data,
   })
@@ -47,7 +47,7 @@ export function useSiteUpdateBanner() {
       bannerImage: bannerObject?.imageId || null,
       bannerVideo: bannerObject?.videoId || null,
     }
-    return api.site.partialUpdate({
+    return api.sites.partialUpdate({
       sitename,
       properties,
     })
@@ -82,7 +82,7 @@ export function useSiteUpdateWidgets() {
     const properties = {
       homepage: formData?.widgets || [],
     }
-    return api.site.partialUpdate({
+    return api.sites.partialUpdate({
       sitename,
       properties,
     })
