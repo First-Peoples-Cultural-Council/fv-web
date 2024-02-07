@@ -21,7 +21,7 @@ function CategoriesBrowserPresentation({
   return (
     <section id="CategoriesBrowserPresentation" className="h-full">
       <div className="w-full bg-white p-4">
-        <header className="p-2 sticky">
+        <header className="p-2">
           <div className="flex-1 flex">
             <form className="w-full flex">
               <div className="relative w-full text-gray-400 focus-within:text-gray-600">
@@ -53,7 +53,7 @@ function CategoriesBrowserPresentation({
                 <h2 className="w-1/2">Category</h2>
                 <h2 className="w-1/2">Parent Category</h2>
               </div>
-              <ul className="flex-col divide-y divide-gray-200 bg-white">
+              <ul className="flex-col divide-y divide-gray-200 bg-white overflow-y-scroll grow mt-2 h-72">
                 {filteredCategories?.map((category) => (
                   <button
                     data-testid="DashboardCategoryRow"
