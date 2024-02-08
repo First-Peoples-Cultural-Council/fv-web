@@ -10,6 +10,7 @@ import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import CategoryCrud from 'components/CategoryCrud'
 import CharacterCrud from 'components/CharacterCrud'
 import DictionaryCrud from 'components/DictionaryCrud'
+import GalleryCrud from 'components/GalleryCrud'
 import HomeCrud from 'components/HomeCrud'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
@@ -113,6 +114,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <CharacterCrud.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="gallery"
+          element={
+            <RequireAuth siteMembership={EDITOR} withMessage>
+              <GalleryCrud.Container />
             </RequireAuth>
           }
         />
