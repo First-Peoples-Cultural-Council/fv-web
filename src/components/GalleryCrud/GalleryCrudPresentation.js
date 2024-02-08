@@ -23,6 +23,7 @@ function GalleryCrudPresentation({
     intro: definitions.paragraph(),
     introTranslation: definitions.paragraph(),
     galleryItems: definitions.idArray(),
+    coverImage: definitions.uuid(),
   })
 
   const defaultValues = {
@@ -31,6 +32,7 @@ function GalleryCrudPresentation({
     intro: '',
     introTranslation: '',
     galleryItems: [],
+    coverImage: '',
   }
 
   const { control, errors, handleSubmit, isCreateMode, register, reset } =
@@ -74,7 +76,7 @@ function GalleryCrudPresentation({
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.TextField
+            <Form.TextAreaField
               label="Introduction in your language"
               nameId="intro"
               register={register}
@@ -82,16 +84,25 @@ function GalleryCrudPresentation({
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.TextField
+            <Form.TextAreaField
               label="Introduction translation"
               nameId="introTranslation"
               register={register}
               errors={errors}
             />
           </div>
+          <div className="col-span-6">
+            <Form.AddMedia
+              label="Cover image"
+              nameId="coverImage"
+              docType={IMAGE}
+              control={control}
+              errors={errors}
+            />
+          </div>
           <div className="col-span-12">
             <Form.MediaArrayField
-              label="Images"
+              label="Gallery Images"
               nameId="galleryItems"
               control={control}
               register={register}

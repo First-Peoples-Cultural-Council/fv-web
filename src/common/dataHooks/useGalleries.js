@@ -6,7 +6,7 @@ import { GALLERIES } from 'common/constants'
 import api from 'services/api'
 import {
   //   galleryForViewing,
-  //   galleryForEditing,
+  galleryForEditing,
   galleryForApi,
 } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
@@ -18,11 +18,11 @@ export function useGallery({ id }) {
     () => api.galleries.get({ sitename, id }),
     { enabled: !!id },
   )
-  //   const dataToEdit = galleryForEditing({
-  //     item: response?.data,
-  //   })
+  const dataToEdit = galleryForEditing({
+    item: response?.data,
+  })
 
-  return { ...response }
+  return { ...response, dataToEdit }
 }
 
 export function useGalleries() {
@@ -72,6 +72,7 @@ export function useGalleryUpdate() {
     const properties = galleryForApi({ formData })
     return api.galleries.update({
       sitename,
+      id: formData?.id,
       properties,
     })
   }
@@ -105,8 +106,8 @@ export function useGalleryDelete() {
     actionWord: 'deleted',
     type: 'gallery',
   })
-  const onSubmit = (pageId) => {
-    mutation.mutate(pageId)
+  const onSubmit = (galleryId) => {
+    mutation.mutate(galleryId)
   }
   return { onSubmit }
 }

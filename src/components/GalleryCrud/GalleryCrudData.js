@@ -17,14 +17,14 @@ function GalleryCrudData() {
   const galleryId = searchParams.get('id')
 
   // Fetch Data
-  const { data, isInitialLoading } = useGallery({ id: galleryId })
+  const { dataToEdit, isInitialLoading } = useGallery({ id: galleryId })
 
   const { onSubmit: createGallery } = useGalleryCreate()
   const { onSubmit: updateGallery } = useGalleryUpdate()
   const { onSubmit: deleteGallery } = useGalleryDelete()
 
   const submitHandler = (formData) => {
-    if (galleryId && data) {
+    if (galleryId && dataToEdit) {
       updateGallery(formData)
     } else {
       createGallery(formData)
@@ -34,8 +34,8 @@ function GalleryCrudData() {
   return {
     submitHandler,
     backHandler,
-    dataToEdit: data,
-    deleteHandler: () => deleteGallery(data?.id),
+    dataToEdit,
+    deleteHandler: () => deleteGallery(dataToEdit?.id),
     isLoading: isInitialLoading,
   }
 }
