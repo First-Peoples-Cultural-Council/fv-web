@@ -8,6 +8,7 @@ import DashboardCreatePresentation from 'components/DashboardCreate/DashboardCre
 
 import CategoryCrud from 'components/CategoryCrud'
 import DictionaryCrud from 'components/DictionaryCrud'
+import GalleryCrud from 'components/GalleryCrud'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
@@ -28,6 +29,14 @@ function DashboardCreateContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <CategoryCrud.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="gallery"
+          element={
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <GalleryCrud.Container />
             </RequireAuth>
           }
         />

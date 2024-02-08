@@ -78,6 +78,14 @@ function DashboardCreateData({ urlPrefix = '' }) {
       iconColor: 'tertiaryA',
       auth: LANGUAGE_ADMIN,
     },
+    GALLERY: {
+      icon: 'Images',
+      name: 'Create a gallery',
+      description: 'Add a new image gallery to your site',
+      href: addUrlPrefix('gallery'),
+      iconColor: 'wordText',
+      auth: ASSISTANT,
+    },
   }
 
   const tileContent = [
@@ -89,6 +97,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
     createTiles.CATEGORY,
     createTiles.WIDGET,
     createTiles.PAGE,
+    createTiles.GALLERY,
   ]
   const headerContent = {
     title: 'Create',

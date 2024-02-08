@@ -10,7 +10,6 @@ function DashboardGalleriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-
   const { data, isInitialLoading } = useGalleries()
 
   const tileContent = [
