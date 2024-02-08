@@ -24,13 +24,13 @@ function DictionaryPresentation({
   labels,
   moreActions,
   sitename,
+  count,
 }) {
   const linkStyle = {
     li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
     link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-fv-charcoal',
     icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
   }
-  const count = items?.pages[0]?.count
   return (
     <>
       <section
@@ -150,6 +150,7 @@ DictionaryPresentation.propTypes = {
   labels: object,
   moreActions: array,
   sitename: string,
+  count: object,
 }
 
 export default DictionaryPresentation
