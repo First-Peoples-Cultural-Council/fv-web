@@ -20,6 +20,7 @@ import WidgetCrud from 'components/WidgetCrud'
 import DashboardAlphabet from 'components/DashboardAlphabet'
 import DashboardCategories from 'components/DashboardCategories'
 import DashboardEntries from 'components/DashboardEntries'
+import DashboardGalleries from 'components/DashboardGalleries'
 import DashboardImmersiom from 'components/DashboardImmersion'
 import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
@@ -55,6 +56,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={EDITOR} withMessage>
               <DashboardEntries.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="galleries/*"
+          element={
+            <RequireAuth siteMembership={EDITOR} withMessage>
+              <DashboardGalleries.Container />
             </RequireAuth>
           }
         />
