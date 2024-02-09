@@ -28,6 +28,8 @@ function DictionaryDataSearch({ searchType, kids }) {
   const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
     useSearchLoader({ searchParams: _searchParams })
 
+  const count = data?.pages[0]?.count
+
   useEffect(() => {
     if (isError) {
       navigate(
@@ -49,6 +51,7 @@ function DictionaryDataSearch({ searchType, kids }) {
     sitename,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
+    count,
   }
 }
 

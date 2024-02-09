@@ -24,6 +24,7 @@ function DictionaryPresentation({
   labels,
   moreActions,
   sitename,
+  count,
 }) {
   const linkStyle = {
     li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
@@ -97,6 +98,12 @@ function DictionaryPresentation({
                   </Link>
                 </li>
               )}
+              <li
+                className={`${linkStyle.li} p-2 grow text-lg xl:text-xl text-fv-charcoal`}
+              >
+                Results: {count}{' '}
+                {searchType === TYPE_PHRASE ? `phrases` : `words`}
+              </li>
             </ul>
           </div>
           <div className="min-h-220 col-span-12 lg:col-span-10">
@@ -143,6 +150,7 @@ DictionaryPresentation.propTypes = {
   labels: object,
   moreActions: array,
   sitename: string,
+  count: object,
 }
 
 export default DictionaryPresentation
