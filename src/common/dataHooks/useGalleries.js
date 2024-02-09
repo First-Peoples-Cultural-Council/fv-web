@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { GALLERIES } from 'common/constants'
 import api from 'services/api'
 import {
-  //   galleryForViewing,
+  galleryForViewing,
   galleryForEditing,
   galleryForApi,
 } from 'common/dataAdaptors'
@@ -21,8 +21,11 @@ export function useGallery({ id }) {
   const dataToEdit = galleryForEditing({
     item: response?.data,
   })
+  const dataForViewing = galleryForViewing({
+    item: response?.data,
+  })
 
-  return { ...response, dataToEdit }
+  return { ...response, data: dataForViewing, dataToEdit }
 }
 
 export function useGalleries() {

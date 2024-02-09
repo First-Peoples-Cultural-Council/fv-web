@@ -9,8 +9,8 @@ import ImageWithLightbox from 'components/ImageWithLightbox'
 function GalleryPresentationWidget({ data, sitename }) {
   const images =
     window.innerWidth >= 1024
-      ? data?.images?.slice(0, 7)
-      : data?.images?.slice(0, 4)
+      ? data?.galleryItems?.slice(0, 7)
+      : data?.galleryItems?.slice(0, 4)
   return (
     <section
       data-testid="GalleryPresentationWidget"
@@ -21,13 +21,15 @@ function GalleryPresentationWidget({ data, sitename }) {
         bgColor="fv-charcoal"
         accentColor="white"
       />
-      <div className="text-center text-white text-xl">{data?.description}</div>
+      <div className="text-center text-white text-xl">
+        {data?.titleTranslation}
+      </div>
       <div className="mx-auto text-center">
         {images?.length > 0 &&
           images?.map((image) => (
-            <div key={image?.id} className="inline-flex m-2">
+            <div key={image?.image?.id} className="inline-flex m-2">
               <ImageWithLightbox.Presentation
-                image={image}
+                image={image?.image}
                 imgStyling="object-contain md:h-1/3-screen xl:h-2/5-screen w-full"
               />
             </div>

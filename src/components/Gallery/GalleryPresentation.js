@@ -17,10 +17,15 @@ function GalleryPresentation({ data }) {
         bgColor="white"
         accentColor="fv-charcoal"
       />
-
       <div className="text-center text-fv-charcoal text-xl">
-        {data?.description}
+        {data?.titleTranslation}
       </div>
+      {(data?.introTranslation || data?.intro) && (
+        <div className="mx-auto text-center text-fv-charcoal max-w-prose my-4">
+          <div>{data?.intro}</div>
+          <div>{data?.introTranslation}</div>
+        </div>
+      )}
       <div className="px-4 masonry-cols-4 p-4 mx-auto text-center">
         {data?.galleryItems?.length > 0 &&
           data?.galleryItems?.map((image) => (
