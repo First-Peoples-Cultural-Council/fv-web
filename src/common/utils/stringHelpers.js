@@ -405,3 +405,6 @@ export const makeTitleCase = (string) =>
 
 export const getFileExtensions = (fileName) =>
   fileName?.split('.').pop().toLowerCase()
+
+export const normalizeSpaces = (sentence) =>
+  sentence.replace(/\s+/g, ' ').trim()

@@ -15,6 +15,7 @@ import {
   SORT,
 } from 'common/constants'
 import { arrayShuffle, partitionArray } from 'common/utils/functionHelpers'
+import { normalizeSpaces } from 'common/utils/stringHelpers'
 
 const MAX_ROW_LENGTH = 6 // max number of buttons to display in one row
 
@@ -94,15 +95,16 @@ function PhraseScramblerData({ kids }) {
 
   const generateInputData = () => {
     const newPhrase = data?.results?.[0]?.entry
-    const translations = newPhrase?.translations?.map(
-      (translation) => translation?.text,
+    const translations = newPhrase?.translations?.map((translation) =>
+      normalizeSpaces(translation?.text),
     )
+    const phraseTitle = normalizeSpaces(newPhrase?.title)
     setInputData({
       translations,
-      title: newPhrase?.title,
+      title: phraseTitle,
       relatedAudio: newPhrase?.relatedAudio.slice(0, 3), // take at max 3 audio files for hints
     })
-    let correctAnswer = newPhrase?.title.split(' ')
+    let correctAnswer = phraseTitle.split(' ')
     correctAnswer = correctAnswer.map((text, index) => ({
       id: index,
       text,
