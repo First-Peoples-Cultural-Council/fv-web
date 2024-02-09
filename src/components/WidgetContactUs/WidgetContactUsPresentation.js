@@ -17,6 +17,7 @@ function ContactUsPresentation({
   submitHandler,
   user,
 }) {
+  console.log({ links })
   const validator = yup.object().shape({
     name: yup.string().min(3).required('A name is required').trim(),
     email: yup.string().email().required('A valid email is required').trim(),
@@ -188,9 +189,11 @@ function ContactUsPresentation({
                     </div>
                   </>
                 )}
-                <h3 className="block tracking-wide text-primary text-xl font-bold mb-2">
-                  FOLLOW US
-                </h3>
+                {links?.length > 0 && (
+                  <h3 className="block tracking-wide text-primary text-xl font-bold mb-2">
+                    FOLLOW US
+                  </h3>
+                )}
                 <ul className="block">{socialIcons}</ul>
               </div>
             </div>
