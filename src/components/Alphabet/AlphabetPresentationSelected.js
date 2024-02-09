@@ -82,12 +82,12 @@ function AlphabetPresentationSelected({
                 className={`grid grid-cols-5 w-full py-2 px-4 ${zebraStripe}`}
               >
                 <div className="col-span-2">
-                  <div className="justify-center flex items-center p-2">
+                  <div className="justify-center flex items-center p-2 flex-wrap">
                     <Link
                       to={`/${sitename}/${kids ? 'kids/' : ''}words/${
                         word?.id
                       }`}
-                      className="text-center"
+                      className="text-center w-full"
                     >
                       {word?.title}
                     </Link>
