@@ -17,7 +17,6 @@ function ContactUsPresentation({
   submitHandler,
   user,
 }) {
-  console.log({ links })
   const validator = yup.object().shape({
     name: yup.string().min(3).required('A name is required').trim(),
     email: yup.string().email().required('A valid email is required').trim(),
