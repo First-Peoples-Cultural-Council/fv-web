@@ -138,7 +138,7 @@ function DictionaryPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { array, bool, object, string, number } = PropTypes
 DictionaryPresentation.propTypes = {
   actions: array,
   searchType: string,
@@ -150,7 +150,7 @@ DictionaryPresentation.propTypes = {
   labels: object,
   moreActions: array,
   sitename: string,
-  count: object,
+  count: number,
 }
 
 export default DictionaryPresentation

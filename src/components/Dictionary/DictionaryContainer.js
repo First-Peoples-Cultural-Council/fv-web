@@ -18,6 +18,7 @@ function DictionaryContainer({ searchType, kids }) {
     moreActions,
     sitename,
     loadRef,
+    count,
   } = DictionaryData({ searchType, kids })
   return (
     <Loading.Container isLoading={isLoading}>
@@ -32,6 +33,7 @@ function DictionaryContainer({ searchType, kids }) {
         loadRef={loadRef}
         moreActions={moreActions}
         sitename={sitename}
+        count={count}
       />
     </Loading.Container>
   )
