@@ -11,25 +11,18 @@ import { SMALL, IMAGE } from 'common/constants'
 
 function GalleriesPresentation({ isLoading, galleries, sitename }) {
   return (
-    <section
+    <main
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="GalleriesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="Galleries" accentColor="phraseText" />
         <div className="flex-1 flex items-stretch overflow-hidden">
-          <main className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto">
             <div className="lg:px-8">
-              <section
-                className="mt-4 lg:mt-8 pb-16"
-                aria-labelledby="gallery-heading"
-              >
-                <h2 id="gallery-heading" className="sr-only">
-                  Galleries
-                </h2>
-
+              <section className="mt-4 lg:mt-8 pb-16">
                 <Loading.Container isLoading={isLoading}>
-                  <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                  <ul className="grid grid-cols-1 gap-y-6 md:grid-cols-3 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
                     {galleries?.length > 0 ? (
                       galleries?.map((item) => {
                         const imageUrl = getMediaPath({
@@ -51,7 +44,7 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
                               to={`/${sitename}/galleries/${item?.id}`}
                               data-testid="GalleryTile"
                               style={conditionalStyle}
-                              className={`${conditionalClass} group h-44 w-44 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group rounded-lg overflow-hidden`}
+                              className={`${conditionalClass} group h-44 w-44 lg:h-60 lg:w-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group rounded-lg overflow-hidden`}
                             >
                               <div className="group-hover:opacity-75 w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center">
                                 <div className="text-lg lg:text-2xl font-medium mb-2">
@@ -82,10 +75,10 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
                 </Loading.Container>
               </section>
             </div>
-          </main>
+          </div>
         </div>
       </div>
-    </section>
+    </main>
   )
 }
 // PROPTYPES
