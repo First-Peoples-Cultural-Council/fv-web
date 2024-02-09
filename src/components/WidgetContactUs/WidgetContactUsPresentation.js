@@ -188,9 +188,11 @@ function ContactUsPresentation({
                     </div>
                   </>
                 )}
-                <h3 className="block tracking-wide text-primary text-xl font-bold mb-2">
-                  FOLLOW US
-                </h3>
+                {links?.length > 0 && (
+                  <h3 className="block tracking-wide text-primary text-xl font-bold mb-2">
+                    FOLLOW US
+                  </h3>
+                )}
                 <ul className="block">{socialIcons}</ul>
               </div>
             </div>
