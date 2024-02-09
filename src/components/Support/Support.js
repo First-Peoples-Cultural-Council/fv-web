@@ -15,7 +15,7 @@ function Support() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="FirstVoices Support"
+          title="FIRSTVOICES SUPPORT"
           accentColor="primary"
         />
         <div>

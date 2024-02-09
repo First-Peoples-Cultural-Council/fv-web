@@ -10,7 +10,7 @@ function ImmersionPresentation({ actions, isLoadingEntries, items }) {
     <section className="py-12 bg-white" data-testid="ImmersionPresentation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="What is Immersion Mode?"
+          title="WHAT IS IMMERSION MODE?"
           accentColor="primary"
         />
         <div className="text-center text-fv-charcoal-light px-20 py-5 space-y-4">

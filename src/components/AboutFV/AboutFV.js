@@ -11,7 +11,7 @@ function AboutFV() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="About FirstVoices"
+          title="ABOUT FIRSTVOICES"
           accentColor="primary"
         />
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
