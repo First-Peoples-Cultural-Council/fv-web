@@ -44,7 +44,7 @@ function CategoriesBrowserPresentation({
               className="mx-auto my-4 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
               {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
-              <span>Add Category to document</span>
+              <span>Add Category</span>
             </button>
           )}
         </header>
@@ -55,7 +55,7 @@ function CategoriesBrowserPresentation({
                 <h2 className="w-1/2 ml-4">Category</h2>
                 <h2 className="w-1/2">Parent Category</h2>
               </div>
-              <ul className="flex-col divide-y divide-gray-200 bg-white overflow-y-scroll grow mt-2 h-72">
+              <ul className="flex-col divide-y divide-gray-200 bg-white overflow-y-scroll grow mt-2 pt-2 h-72">
                 {filteredCategories?.map((category) => (
                   <button
                     data-testid="DashboardCategoryRow"

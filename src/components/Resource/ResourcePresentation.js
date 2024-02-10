@@ -50,7 +50,7 @@ function ResourcePresentation({ title, widgets, pageSlug }) {
               {`${title} keyboards let you type in your language!`}
             </h2>
             <p className="pb-8">
-              {`Many languages have alphabets with letters that are not available on the standard English keyboard. To type these letters, you must install a keyboard that will render characters in your Indigenous language. When the ${title} keyboard is installed on a computer, mobile phone or tablet, you will be able to type using your language&apos;s alphabet in emails, text messages, social media, and any other application.`}
+              {`Many languages have alphabets with letters that are not available on the standard English keyboard. To type these letters, you must install a keyboard that will render characters in your Indigenous language. When the ${title} keyboard is installed on a computer, mobile phone or tablet, you will be able to type using your language's alphabet in emails, text messages, social media, and any other application.`}
             </p>
             <h2 className={headerStyle}>
               Installation Instructions for Mac computers

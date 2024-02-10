@@ -258,22 +258,26 @@ function Keyboards() {
             For a more detailed installation guide or help with a specific
             issue, check out the following pages:
             <ul className="list-outside list-disc text-left px-16">
-              <a
-                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351043612"
-                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <li>Keyboard Installation Guide</li>
-              </a>
-              <a
-                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351502346"
-                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <li>Keyboards Support</li>
-              </a>
+              <li>
+                <a
+                  href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351043612"
+                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Keyboard Installation Guide
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351502346"
+                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Keyboards Support FAQ
+                </a>
+              </li>
             </ul>{' '}
             If you need extra help installing a keyboard, please email us at{' '}
             <a
