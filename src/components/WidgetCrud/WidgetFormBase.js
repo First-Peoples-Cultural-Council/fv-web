@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Form from 'components/Form'
-import { isEditableWidgetType } from 'common/utils/widgetHelpers'
 
 function WidgetFormBase({
   children,
@@ -16,7 +15,6 @@ function WidgetFormBase({
   resetField,
   handleSubmit,
   submitHandler,
-  type,
 }) {
   return (
     <form id="WidgetForm" onReset={reset}>
@@ -45,17 +43,16 @@ function WidgetFormBase({
           />
         </div>
         {children}
-        {isEditableWidgetType(type) && (
-          <div className="col-span-12">
-            <Form.Visibility
-              nameId="visibility"
-              control={control}
-              errors={errors}
-              resetField={resetField}
-              label="Who can see this widget?"
-            />
-          </div>
-        )}
+
+        <div className="col-span-12">
+          <Form.Visibility
+            nameId="visibility"
+            control={control}
+            errors={errors}
+            resetField={resetField}
+            label="Who can see this widget?"
+          />
+        </div>
       </div>
       <div className="mt-4 flex justify-end px-6">
         <Form.SubmitButtons

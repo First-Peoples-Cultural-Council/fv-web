@@ -10,11 +10,7 @@ import WysiwygBlock from 'components/WysiwygBlock'
 
 import getIcon from 'common/utils/getIcon'
 import { isUUID } from 'common/utils/stringHelpers'
-import {
-  getWidgetLabel,
-  getWidgetTypeLabel,
-  isEditableWidgetType,
-} from 'common/utils/widgetHelpers'
+import { getWidgetLabel, getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import {
   WIDGET_CONTACT,
@@ -41,26 +37,21 @@ function WidgetAreaEditPresentationSettingsPane({
 
   const { emailListAsString } = useContactUsEmailList()
 
+  const settingLabelStyling =
+    'mb-1 text-sm font-bold text-primary-light capitalize'
+  const settingDetailStyling = 'text-fv-charcoal text-lg'
+
   const getSettings = () => {
-    if (currentWidget?.type === WIDGET_WOTD) {
+    if (!currentWidget?.editable) {
       return (
-        <div className="col-span-3">
-          <dd className="text-fv-charcoal text-lg">
-            Your site must be public and contain published words in order for
-            the Word of the Day Widget to display on your homepage.
-          </dd>
-          <dd className="text-fv-charcoal text-lg">
+        <div className="col-span-3 space-y-4">
+          <div data-testid="nickname">
+            <dt className={settingLabelStyling}>Nickname</dt>
+            <dd className={settingDetailStyling}>{currentWidget?.nickname}</dd>
+          </div>
+          <div className={settingDetailStyling}>
             <em>This Widget has no customizable settings.</em>
-          </dd>
-        </div>
-      )
-    }
-    if (!isEditableWidgetType(currentWidget?.type)) {
-      return (
-        <div className="col-span-3">
-          <dd className="text-fv-charcoal text-lg">
-            <em>This Widget has no customizable settings.</em>
-          </dd>
+          </div>
         </div>
       )
     }
@@ -77,9 +68,7 @@ function WidgetAreaEditPresentationSettingsPane({
       ) {
         return (
           <div key={setting.key} className="col-span-3">
-            <div className="mb-1 text-sm font-bold text-primary-light">
-              Audio
-            </div>
+            <div className={settingLabelStyling}>Audio</div>
             <MediaThumbnail.Audio key={setting?.value} id={setting?.value} />
           </div>
         )
@@ -90,9 +79,7 @@ function WidgetAreaEditPresentationSettingsPane({
       ) {
         return (
           <div key={setting.key} className="col-span-1">
-            <div className="mb-1 text-sm font-bold text-primary-light">
-              Image
-            </div>
+            <div className={settingLabelStyling}>Image</div>
             <div className="rounded-lg overflow-hidden">
               <MediaThumbnail.Image key={setting?.value} id={setting?.value} />
             </div>
@@ -102,9 +89,7 @@ function WidgetAreaEditPresentationSettingsPane({
       if (setting?.key === SETTING_WYSIWYG) {
         return (
           <div key={setting.key} className="col-span-3">
-            <div className="mb-2 text-sm font-bold text-primary-light">
-              Formatted Text
-            </div>
+            <div className={settingLabelStyling}>Formatted Text</div>
             <div className="wysiwyg rounded-lg flex w-full border-2 border-gray-100 p-3 overflow-hidden">
               <WysiwygBlock jsonString={setting?.value} />
             </div>
@@ -114,10 +99,10 @@ function WidgetAreaEditPresentationSettingsPane({
 
       return (
         <div key={setting.key} className="col-span-3">
-          <dt className="mb-1 text-sm font-bold text-primary-light">
+          <dt className={settingLabelStyling}>
             {getWidgetLabel(setting?.key)}
           </dt>
-          <dd className="text-fv-charcoal text-lg">{setting?.value}</dd>
+          <dd className={settingDetailStyling}>{setting?.value}</dd>
         </div>
       )
     })
@@ -146,7 +131,7 @@ function WidgetAreaEditPresentationSettingsPane({
           </div>
           <div className="my-2 col-span-3 flex items-center justify-end">
             <div className="flex justify-stretch flex-row space-x-4">
-              {isEditableWidgetType(currentWidget?.type) ? (
+              {currentWidget?.editable ? (
                 <>
                   {/* <VisibilitySelect.Container
                     id={currentWidget?.id}
@@ -183,42 +168,30 @@ function WidgetAreaEditPresentationSettingsPane({
           {/* Widget Settings */}
           <div className="mt-6">
             <div className="grid gap-x-4 gap-y-4 grid-cols-3">
-              <div id="nickname" className="col-span-3">
-                <dt className="mb-1 text-sm font-bold text-primary-light">
-                  Nickname
-                </dt>
-                <dd className="text-fv-charcoal text-lg">
-                  {currentWidget?.title}
-                </dd>
-              </div>
               {getSettings()}
-            </div>
-            {currentWidget?.type === WIDGET_CONTACT && (
-              <div className="mt-6">
-                <dt className="mb-1 text-sm font-bold text-primary-light">
-                  Contact list
-                </dt>
-                <div className="col-span-12">
-                  <div className="mt-2 text-xs text-fv-charcoal-light italic">
-                    (Please contact support at hello@firstvoices.com to update
-                    this list)
-                  </div>
-                  {emailListAsString?.length > 0 ? (
-                    <div>
-                      <div>
-                        Contact us emails will be sent to the following
-                        addresses:
-                      </div>
-                      <div>{emailListAsString}</div>
-                    </div>
-                  ) : (
-                    <div>
-                      Could not find any emails to send contact messages to.
-                    </div>
-                  )}
+              {currentWidget?.type === WIDGET_WOTD && (
+                <div className={`col-span-3 ${settingDetailStyling}`}>
+                  Your site must be public and contain published words in order
+                  for the Word of the Day Widget to display on your homepage.
                 </div>
-              </div>
-            )}
+              )}
+              {currentWidget?.type === WIDGET_CONTACT && (
+                <div className="col-span-3">
+                  <div className={settingLabelStyling}>
+                    <div>Email Addresses where messages will be sent</div>
+                    <div className="text-sm font-normal normal-case italic text-fv-charcoal-light">
+                      Please contact support at hello@firstvoices.com to update
+                      this email list.
+                    </div>
+                  </div>
+                  <div className={settingDetailStyling}>
+                    {emailListAsString?.length > 0
+                      ? emailListAsString
+                      : 'No email addresses registered. Please contact FirstVoices Support to register an email address for this form.'}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ) : (
@@ -284,7 +257,6 @@ WidgetAreaEditPresentationSettingsPane.propTypes = {
   currentWidget: object,
   handleRemoveWidget: func,
   site: object,
-  // triggerWidgetDataRefresh: func,
 }
 
 export default WidgetAreaEditPresentationSettingsPane
