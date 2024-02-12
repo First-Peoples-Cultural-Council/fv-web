@@ -100,19 +100,11 @@ function AlphabetPresentationSelected({
                     )}
                   </div>
                 </div>
-                <div className="flex items-center p-2">
-                  <ul
-                    className={
-                      word?.translations?.length === 1
-                        ? ''
-                        : 'list-disc list-inside'
-                    }
-                  >
-                    {word?.translations?.length > 0 &&
-                      word?.translations.map((translation) => (
-                        <li key={translation.id}>{translation?.text}</li>
-                      ))}
-                  </ul>
+                <div className="flex flex-col p-2 text-center">
+                  {word?.translations?.length > 0 &&
+                    word?.translations.map((translation) => (
+                      <p key={translation.id}>{translation?.text}</p>
+                    ))}
                 </div>
               </div>
             )
