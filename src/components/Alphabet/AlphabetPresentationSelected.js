@@ -79,7 +79,7 @@ function AlphabetPresentationSelected({
             return (
               <div
                 key={word?.id}
-                className={`flex flex-col w-full py-2 px-4 place-content-center ${zebraStripe}`}
+                className={`flex flex-col w-full py-2 px-4 ${zebraStripe}`}
               >
                 <div>
                   <div className="justify-center flex items-center p-2 flex-wrap">
