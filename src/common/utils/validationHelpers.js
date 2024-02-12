@@ -62,7 +62,7 @@ const relatedVideoLinksUrls = yup
   .string()
   .trim()
   .matches(
-    /(^(https?:\/\/)?|^)(?:www.)?(?:((vimeo)\.com\/(.+))|((youtube)\.com\/watch\?v=(.+)))/,
+    /(^(https?:\/\/)?|^)(?:www\.)?(?:(vimeo\.com\/([a-zA-Z0-9_-]+))|(youtu\.be\/([a-zA-Z0-9_-]+))|(youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)))/,
     {
       message: 'Only YouTube and Vimeo links are currently supported',
       excludeEmptyString: true,
