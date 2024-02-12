@@ -99,7 +99,7 @@
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "common": "^0.2.5",
-    "compression-webpack-plugin": "^10.0.0",
+    "compression-webpack-plugin": "^11.0.0",
     "core-js": "^3.35.1",
     "css-loader": "^6.10.0",
     "cssnano": "^6.0.3",
