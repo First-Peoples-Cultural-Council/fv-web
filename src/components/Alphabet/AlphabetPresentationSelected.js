@@ -79,15 +79,15 @@ function AlphabetPresentationSelected({
             return (
               <div
                 key={word?.id}
-                className={`grid grid-cols-5 w-full py-2 px-4 ${zebraStripe}`}
+                className={`flex flex-col w-full py-2 px-4 ${zebraStripe}`}
               >
-                <div className="col-span-2">
+                <div>
                   <div className="justify-center flex items-center p-2 flex-wrap">
                     <Link
                       to={`/${sitename}/${kids ? 'kids/' : ''}words/${
                         word?.id
                       }`}
-                      className="text-center w-full"
+                      className="text-center w-full pb-2 text-primary text-lg font-bold"
                     >
                       {word?.title}
                     </Link>
@@ -100,7 +100,7 @@ function AlphabetPresentationSelected({
                     )}
                   </div>
                 </div>
-                <div className="col-span-3 flex items-center p-2">
+                <div className="flex items-center p-2">
                   <ul
                     className={
                       word?.translations?.length === 1
