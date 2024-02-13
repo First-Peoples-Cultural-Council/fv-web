@@ -80,7 +80,7 @@ function StoryCrudPreview({ storyData }) {
           videoLinks?.map((videoLink) => (
             <MediaThumbnail.VideoLink
               key={videoLink?.id}
-              link={videoLink}
+              link={videoLink?.thumbnail}
               containerStyles="w-40 h-40 mr-2"
             />
           ))}
