@@ -26,7 +26,7 @@ function AlphabetPresentationSelected({
   let entriesToDisplay = relatedDictionaryEntries // To not make changes to a param variable if we get entriesCount
 
   if (entriesCount) {
-    entriesToDisplay = entriesToDisplay?.splice(0, entriesCount)
+    entriesToDisplay = entriesToDisplay?.slice(0, entriesCount)
   }
 
   return (
