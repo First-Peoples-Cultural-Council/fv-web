@@ -61,11 +61,19 @@ function DictionaryPresentation({
       ) : (
         <div className="grid grid-cols-12">
           <div className="hidden lg:block print:hidden col-span-2 mt-5">
-            <h1
-              className={`flex items-center text-3xl xl:text-4xl text-${labels.color}Text ml-4 xl:ml-7 mb-8`}
-            >
-              {labels.uppercase}
-            </h1>
+            <div className="mb-12 ml-4 xl:ml-7 space-y-2">
+              <h1 className={`text-3xl xl:text-4xl text-${labels.color}Text `}>
+                {labels.uppercase}
+              </h1>
+              <div
+                className={`${
+                  countStr ? '' : 'opacity-0'
+                } text-sm xl:text-base text-fv-charcoal`}
+              >
+                Results: {countStr}
+              </div>
+            </div>
+
             <h2 className="block text-xl xl:text-2xl font-medium text-fv-charcoal ml-4 xl:ml-7">
               BROWSE BY:
             </h2>
@@ -104,12 +112,6 @@ function DictionaryPresentation({
                   </Link>
                 </li>
               )}
-              <li
-                className={`${linkStyle.li} p-2 grow text-lg xl:text-xl text-fv-charcoal`}
-              >
-                Results: {countStr}{' '}
-                {searchType === TYPE_PHRASE ? `phrases` : `words`}
-              </li>
             </ul>
           </div>
           <div className="min-h-220 col-span-12 lg:col-span-10">
