@@ -35,10 +35,10 @@ function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
     setRelatedVideoLinks(fields)
 
     const getThumbnailFromLink = ({ link, index }) => {
-      if (link.toLowerCase().includes('youtube')) {
+      if (link.toLowerCase().includes('youtu')) {
         const updatedRelatedVideoLinks = [...relatedVideoLinks]
         const id = link.match(
-          /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:youtube)\.com\/watch\?v=(.{11}?)))/,
+          /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))(.{11}?)))/,
         )[1]
         updatedRelatedVideoLinks[
           index
