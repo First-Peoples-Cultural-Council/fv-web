@@ -20,8 +20,15 @@ function AlphabetPresentationSelected({
   generalNote,
   videoIsOpen,
   alphabetLink,
+  entriesCount,
 }) {
   const { sitename } = useParams()
+  let entriesToDisplay = relatedDictionaryEntries // To not make changes to a param variable if we get entriesCount
+
+  if (entriesCount) {
+    entriesToDisplay = entriesToDisplay?.splice(0, entriesCount)
+  }
+
   return (
     <>
       <h1
@@ -69,12 +76,12 @@ function AlphabetPresentationSelected({
           />
         </div>
       )}
-      {relatedDictionaryEntries?.length > 0 && (
+      {entriesToDisplay?.length > 0 && (
         <div className="mx-auto my-5 w-4/5">
           <h2 className="sm:text-2xl font-medium text-xl text-center text-primary p-3">
             Example words
           </h2>
-          {relatedDictionaryEntries.map((word, index) => {
+          {entriesToDisplay?.map((word, index) => {
             const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
             return (
               <div
@@ -209,7 +216,7 @@ function AlphabetPresentationSelected({
 }
 
 // PROPTYPES
-const { array, bool, func, object, string } = PropTypes
+const { array, bool, func, number, object, string } = PropTypes
 
 AlphabetPresentationSelected.propTypes = {
   title: string,
@@ -223,6 +230,7 @@ AlphabetPresentationSelected.propTypes = {
   videoIsOpen: bool,
   kids: bool,
   alphabetLink: bool,
+  entriesCount: number,
 }
 
 AlphabetPresentationSelected.defaultProps = {

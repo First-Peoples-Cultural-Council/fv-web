@@ -73,6 +73,7 @@ function AlphabetPresentationWidget({
                 }
                 relatedAudio={selectedData?.relatedAudio}
                 alphabetLink
+                entriesCount={1}
               />
             )}
             {links?.length > 0 && (

@@ -31,6 +31,12 @@ function DictionaryPresentation({
     link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-fv-charcoal',
     icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
   }
+
+  let countStr = count
+  if (count >= 10000) {
+    countStr = '10000+'
+  }
+
   return (
     <>
       <section
@@ -101,7 +107,7 @@ function DictionaryPresentation({
               <li
                 className={`${linkStyle.li} p-2 grow text-lg xl:text-xl text-fv-charcoal`}
               >
-                Results: {count}{' '}
+                Results: {countStr}{' '}
                 {searchType === TYPE_PHRASE ? `phrases` : `words`}
               </li>
             </ul>

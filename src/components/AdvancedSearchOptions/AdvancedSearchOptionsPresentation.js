@@ -21,7 +21,12 @@ import {
 } from 'common/constants'
 
 function AdvancedSearchOptionsPresentation({ items }) {
-  const results = items?.pages[0]?.count
+  const count = items?.pages[0]?.count
+  let countStr = count
+  if (count >= 10000) {
+    countStr = '10000+'
+  }
+
   return (
     <div
       data-testid="AdvancedSearchOptionsPresentation"
@@ -46,7 +51,7 @@ function AdvancedSearchOptionsPresentation({ items }) {
                 menuAlignment="left"
               />
               <p className="text-sm text-fv-charcoal-light">
-                Results : {results}{' '}
+                Results : {countStr}{' '}
               </p>
             </div>
 
