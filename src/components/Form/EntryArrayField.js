@@ -62,7 +62,6 @@ function EntryArrayField({
                   {getIcon('Close', 'fill-current text-fv-charcoal h-5 w-5')}
                 </button>
               </div>
-              {/* <ValidationError errors={errors} nameId={nameId} /> */}
             </li>
           ))}
         </ul>

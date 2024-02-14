@@ -46,7 +46,7 @@ function WidgetPresentation({ data, type }) {
       return <WidgetContactUs.Container widgetData={data} />
 
     case WIDGET_GALLERY:
-      return <Gallery.Container widgetData={data} />
+      return <Gallery.Container id={data?.settings?.galleryId} view="widget" />
 
     case WIDGET_IFRAME:
       return <WidgetIframe.Presentation widgetData={data} />

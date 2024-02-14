@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
-
 import { SMALL, IMAGE } from 'common/constants'
 
 function GalleriesPresentation({ isLoading, galleries, sitename }) {
@@ -52,9 +51,6 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
                                 </div>
                                 <div className="text-base font-light">
                                   {item.titleTranslation}
-                                </div>
-                                <div className="text-base font-light">
-                                  {item.author}
                                 </div>
                                 <span className="sr-only">
                                   Go to {item.title}
