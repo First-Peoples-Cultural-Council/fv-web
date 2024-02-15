@@ -101,9 +101,8 @@ function InfoModal({ isOpen, closeHandler }) {
               className={linksClassname}
               target="_blank"
             >
-              the words on this site
+              the words on this site.
             </a>
-            .
           </p>
         </div>
       </div>
