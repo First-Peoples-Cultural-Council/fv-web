@@ -95,7 +95,7 @@ function InfoModal({ isOpen, closeHandler }) {
             </a>
           </p>
           <p>
-            The words for this Wordle were sourced from{' '}
+            The words in this game were sourced from{' '}
             <a
               href={`/${sitename}/words`}
               className={linksClassname}
