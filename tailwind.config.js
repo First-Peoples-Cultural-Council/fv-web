@@ -176,6 +176,7 @@ module.exports = {
           DEFAULT: '#B40212',
         },
         'fv-charcoal': {
+          xlight: '#979799',
           light: '#54584A',
           DEFAULT: '#313133',
           dark: '#0f0f10',
