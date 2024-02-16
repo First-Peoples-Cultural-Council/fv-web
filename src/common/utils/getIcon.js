@@ -103,11 +103,11 @@ import Story from 'common/icons/Story'
 import Word from 'common/icons/Word'
 
 // Games
+import Canoe from 'common/icons/Canoe'
 import Jigsaw from 'common/icons/Jigsaw'
 import Memory from 'common/icons/Memory'
-import Parachute from 'common/icons/Parachute'
-import Quiz from 'common/icons/Quiz'
 import PhraseScrambler from 'common/icons/PhraseScrambler'
+import Quiz from 'common/icons/Quiz'
 import WordSearch from 'common/icons/WordSearch'
 import Wordsy from 'common/icons/Wordsy'
 
@@ -130,6 +130,7 @@ function getIcon(iconName, iconStyling, title) {
     ArrowDivider,
     Audio,
     BackArrow,
+    Canoe,
     Categories,
     CheckCircleSolid,
     Checkmark,
@@ -183,7 +184,6 @@ function getIcon(iconName, iconStyling, title) {
     Mute,
     Next,
     OrderedList,
-    Parachute,
     Pause,
     PauseCircle,
     Pencil,

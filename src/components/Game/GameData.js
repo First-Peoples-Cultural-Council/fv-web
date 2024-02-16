@@ -14,6 +14,7 @@ function GameData() {
       case 'jigsaw':
         return 'jigsaw'
       case 'parachute':
+      case 'pull-together':
         return 'parachute'
       case 'phrasescrambler':
         return 'phrasescrambler'
