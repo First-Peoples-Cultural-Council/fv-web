@@ -33,12 +33,7 @@ function WidgetFormBase({
             label={isCreateMode ? 'A nickname for your widget' : 'Nickname'}
             nameId="nickname"
             register={register}
-            helpText={
-              isCreateMode
-                ? 'This nickname will not appear on your site and cannot be changed.'
-                : ''
-            }
-            disabled={!isCreateMode}
+            helpText="The nickname is to help you and your team to identify your widgets when editing. It will not appear on your site."
             errors={errors}
           />
         </div>
