@@ -5,6 +5,7 @@ import CategoryArrayField from 'components/Form/CategoryArrayField'
 import EntryArrayField from 'components/Form/EntryArrayField'
 import FieldButton from 'components/Form/FieldButton'
 import FileUploadField from 'components/Form/FileUploadField'
+import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
 import MediaArrayField from 'components/Form/MediaArrayField'
 import NextPrevious from 'components/Form/NextPrevious'
@@ -29,6 +30,7 @@ export default {
   EntryArrayField,
   FieldButton,
   FileUploadField,
+  GalleryField,
   Header,
   MediaArrayField,
   NextPrevious,
