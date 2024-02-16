@@ -31,9 +31,9 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
       {/* Sidebar */}
       <div className="flex w-64 flex-col fixed inset-y-0">
         <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
-          <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 px-4 mb-5">
-              {getIcon('FVLogo', 'fill-current text-white h-8 w-auto')}
+          <div className="flex-1 flex flex-col overflow-y-auto">
+            <div className="flex items-center flex-shrink-0 m-4">
+              {getIcon('FVLogo', 'h-10 w-auto')}
             </div>
 
             <nav className="flex-1">
