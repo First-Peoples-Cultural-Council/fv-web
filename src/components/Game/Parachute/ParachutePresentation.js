@@ -146,7 +146,7 @@ function ParachutePresentation({
             />
             <p className="text-fv-charcoal mt-2">
               This site does not currently have enough dictionary content for
-              the parachute game.
+              the game.
               <br />
               Please contact{' '}
               <a
@@ -166,7 +166,7 @@ function ParachutePresentation({
                 accentColor="primary"
               />
               <p className="text-fv-charcoal mt-2">
-                Guess the letters to make it to the beach
+                Guess the word to make it to the beach
               </p>
             </div>
             <div className="block">
