@@ -70,14 +70,11 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
       >
         <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/">
-              <span className="md:flex items-center text-white">
-                <span className="sr-only">FirstVoices Logo</span>
-                {getIcon('FVLogo', 'fill-current h-10')}
-              </span>
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center">
+            <span className="sr-only">FirstVoices Logo</span>
+            {getIcon('FVLogo', 'h-10 w-auto')}
+          </Link>
+
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center justify-end md:space-x-4">
             <li>

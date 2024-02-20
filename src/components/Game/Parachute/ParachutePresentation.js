@@ -141,12 +141,12 @@ function ParachutePresentation({
         {puzzle.length === 0 ? (
           <div>
             <SectionTitle.Presentation
-              title="PARACHUTE"
+              title="PULL TOGETHER"
               accentColor="primary"
             />
             <p className="text-fv-charcoal mt-2">
               This site does not currently have enough dictionary content for
-              the parachute game.
+              the game.
               <br />
               Please contact{' '}
               <a
@@ -162,18 +162,23 @@ function ParachutePresentation({
           <div>
             <div>
               <SectionTitle.Presentation
-                title="PARACHUTE"
+                title="PULL TOGETHER"
                 accentColor="primary"
               />
               <p className="text-fv-charcoal mt-2">
-                Guess the puzzle to make it to the beach
+                Guess the word to make it to the beach
               </p>
             </div>
-            <img
-              src={gameImages[`${guessesRemaining}.png`]}
-              className="max-w-3xl mx-auto object-cover h-96 w-full"
-              alt={`You have ${guessesRemaining} guesses remaining.`}
-            />
+            <div className="block">
+              <img
+                src={gameImages[`${guessesRemaining}.jpg`]}
+                className="max-w-3xl mx-auto object-cover h-96 w-full"
+                alt={`You have ${guessesRemaining} guesses remaining.`}
+              />
+              <p className="text-fv-charcoal-xlight text-xs text-right mx-auto -mt-6 mb-6 max-w-[760px]">
+                Art by Chantelle Trainor-Matties
+              </p>
+            </div>
 
             <div className="inline-block">
               {currentPuzzle.map((piece) =>

@@ -11,7 +11,7 @@ function GamesPresentation({ kids }) {
   const games = [
     // { pathname: 'memory', title: 'Memory', icon: 'Memory' },
     // { pathname: 'jigsaw', title: 'Jigsaw', icon: 'Jigsaw' },
-    { pathname: 'parachute', title: 'Parachute', icon: 'Parachute' },
+    { pathname: 'pull-together', title: 'Pull Together', icon: 'Canoe' },
     // { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
     {
       pathname: 'phrasescrambler',

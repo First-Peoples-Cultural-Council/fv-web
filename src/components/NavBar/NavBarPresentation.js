@@ -30,16 +30,16 @@ function NavBarPresentation({
   )
 
   const fvlogo = isHome
-    ? getIcon('FVLogo', 'text-white fill-current h-10')
-    : getIcon('FVShortLogo', 'text-fv-charcoal-light fill-current h-7')
+    ? getIcon('FVLogo', 'h-10 w-auto')
+    : getIcon('FVShortLogo', 'h-10 w-auto')
 
   return (
     <nav id="NavBar" className="relative z-10" role="navigation">
-      <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-1 lg:px-2 xl:px-16">
+      <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-2 xl:px-16">
         {!siteLoading && (
           <div className="h-16 flex justify-between items-center">
             {/* Home Links */}
-            <div className="flex items-center">
+            <div className="flex items-center space-x-8">
               <Link to="/" className="flex items-center">
                 <span className="sr-only">FirstVoices Logo</span>
                 {fvlogo}
