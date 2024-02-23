@@ -4,27 +4,37 @@ import PropTypes from 'prop-types'
 // FPCC
 import Modal from 'components/Modal'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { IMAGE, ORIGINAL, SMALL } from 'common/constants'
+import getIcon from 'common/utils/getIcon'
+import { IMAGE, MEDIUM, SMALL } from 'common/constants'
 
-function ImageWithLightboxPresentation({ image, imgStyling }) {
+function ImageWithLightboxPresentation({
+  image,
+  imgStyling = 'h-auto w-full object-cover object-center',
+  withIcon = false,
+}) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   return (
     <>
-      <img
-        className={imgStyling}
-        src={getMediaPath({
-          mediaObject: image,
-          type: IMAGE,
-          size: SMALL,
-        })}
-        alt={image?.title}
-      />
       <button
         type="button"
         onClick={() => setLightboxOpen(true)}
-        className="absolute border-2 bg-white w-6 h-6 text-sm flex items-center justify-center bottom-3 right-2 p-1 rounded-full"
+        className="relative group flex"
       >
-        i
+        <img
+          className={imgStyling}
+          src={getMediaPath({
+            mediaObject: image,
+            type: IMAGE,
+            size: SMALL,
+          })}
+          alt={image?.title}
+        />
+
+        {withIcon &&
+          getIcon(
+            'InfoCircleSolid',
+            'absolute bottom-2 right-2 p-1 w-6 h-6 text-white fill-current opacity-60 group-hover:opacity-100',
+          )}
       </button>
       {/* Lightbox Modal */}
       <Modal.Presentation
@@ -40,7 +50,7 @@ function ImageWithLightboxPresentation({ image, imgStyling }) {
             src={getMediaPath({
               mediaObject: image,
               type: IMAGE,
-              size: ORIGINAL,
+              size: MEDIUM,
             })}
             alt={image?.title}
           />
@@ -61,14 +71,11 @@ function ImageWithLightboxPresentation({ image, imgStyling }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { bool, object, string } = PropTypes
 ImageWithLightboxPresentation.propTypes = {
   imgStyling: string,
   image: object,
-}
-
-ImageWithLightboxPresentation.defaultProps = {
-  imgStyling: 'h-auto w-full object-cover object-center',
+  withIcon: bool,
 }
 
 export default ImageWithLightboxPresentation
