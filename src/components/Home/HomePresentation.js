@@ -139,7 +139,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
   return (
     <section
       data-testid="HomePresentation"
-      className="bg-gradient-to-r from-gray-600 to-gray-700 min-h-96"
+      className="bg-gradient-to-r from-gray-600 to-gray-700 md:min-h-96"
     >
       <div>{site?.title ? getContents(bannerType) : null}</div>
     </section>
