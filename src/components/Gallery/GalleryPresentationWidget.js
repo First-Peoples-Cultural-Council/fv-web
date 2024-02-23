@@ -40,7 +40,7 @@ function GalleryPresentationWidget({ data, sitename }) {
           className="bg-secondary hover:bg-secondary-dark font-medium items-center justify-center px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
           to={`/${sitename}/galleries/${data?.id}`}
         >
-          View All
+          Go to gallery
         </Link>
       </div>
     </section>
