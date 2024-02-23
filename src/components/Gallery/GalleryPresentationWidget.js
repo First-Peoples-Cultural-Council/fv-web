@@ -27,9 +27,9 @@ function GalleryPresentationWidget({ data, sitename }) {
       <div className="mx-auto text-center">
         {images?.length > 0 &&
           images?.map((image) => (
-            <div key={image?.image?.id} className="inline-flex m-2">
+            <div key={image?.id} className="inline-flex m-2">
               <ImageWithLightbox.Presentation
-                image={image?.image}
+                image={image}
                 imgStyling="object-contain md:h-1/3-screen xl:h-2/5-screen w-full"
               />
             </div>

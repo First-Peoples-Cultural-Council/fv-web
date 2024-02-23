@@ -30,6 +30,6 @@ export function galleryForApi({ formData }) {
     introduction: formData?.intro,
     introduction_translation: formData?.introTranslation,
     cover_image: formData?.coverImage,
-    gallery_items: [],
+    gallery_items: formData?.galleryItems,
   }
 }

@@ -18,9 +18,9 @@ function GalleryContainer({ id, view }) {
 }
 
 // PROPTYPES
-const { object, string } = PropTypes
+const { string } = PropTypes
 GalleryContainer.propTypes = {
-  id: object,
+  id: string,
   view: string,
 }
 
