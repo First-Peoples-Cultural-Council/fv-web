@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Controller } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -77,23 +78,32 @@ function AddGalleryButton({ value, onChange }) {
         closeHandler={() => setModalOpen(false)}
         isDashboard
       >
-        <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-6">
+        <div className="h-4/5-screen mx-auto rounded-lg bg-gray-50 p-6">
           <h2 className="text-2xl leading-6 font-bold text-center text-primary mb-6">
             Choose a gallery
           </h2>
           {data?.results?.length > 0 ? (
-            data?.results?.map((gallery) => (
-              <button
-                key={gallery?.id}
-                type="button"
-                onClick={() => chooseGalleryHandler(gallery?.id)}
-              >
-                <span className="sr-only">{gallery?.titleTranslation}</span>
-                <Gallery.PresentationThumbnail data={gallery} />
-              </button>
-            ))
+            <div className="mx-auto space-x-4">
+              {data?.results?.map((gallery) => (
+                <button
+                  key={gallery?.id}
+                  type="button"
+                  onClick={() => chooseGalleryHandler(gallery?.id)}
+                >
+                  <span className="sr-only">{gallery?.titleTranslation}</span>
+                  <Gallery.PresentationThumbnail data={gallery} />
+                </button>
+              ))}
+            </div>
           ) : (
-            <div>There are currently no galleries on your site</div>
+            <div className="text-xl text-center text-fv-charcoal mb-6">
+              There are currently no galleries on your site. You can create a
+              gallery{' '}
+              <Link to="../gallery" className="inline-url">
+                here
+              </Link>
+              .
+            </div>
           )}
         </div>
       </Modal.Presentation>
