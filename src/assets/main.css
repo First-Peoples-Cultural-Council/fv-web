@@ -23,9 +23,18 @@
   .breakAfter {
     page-break-after: always;
   }
+  .tooltip {
+    @apply invisible absolute;
+  }
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50;
+  }
+  .inline-url {
+    @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
+  }
 }
 
-/* Changes to wysiwyg classes need to be mirrored the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
+/* Changes to wysiwyg classes need to be mirrored in the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
 @layer components {
   .ql-video {
     @apply w-full h-96;
@@ -53,12 +62,4 @@
 
 .uppy-Root .uppy-u-reset {
   font-family: 'BCSans', sans-serif;
-}
-
-.tooltip {
-  @apply invisible absolute;
-}
-
-.has-tooltip:hover .tooltip {
-  @apply visible z-50;
 }

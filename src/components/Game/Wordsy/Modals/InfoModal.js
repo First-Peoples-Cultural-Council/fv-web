@@ -8,8 +8,6 @@ import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
 
 function InfoModal({ isOpen, closeHandler }) {
   const { sitename } = useParams()
-  const linksClassname =
-    'text-blue-600 visited:text-purple-600 underline underline-offset-2'
 
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={closeHandler}>
@@ -64,7 +62,7 @@ function InfoModal({ isOpen, closeHandler }) {
             FirstVoices. Check out{' '}
             <a
               href="https://github.com/cwackerfuss/reactle"
-              className={linksClassname}
+              className="inline-url"
               target="_blank"
             >
               the original code
@@ -72,7 +70,7 @@ function InfoModal({ isOpen, closeHandler }) {
             by{' '}
             <a
               href="https://www.hannahmariepark.com/"
-              className={linksClassname}
+              className="inline-url"
               target="_blank"
             >
               Hannah Park
@@ -80,7 +78,7 @@ function InfoModal({ isOpen, closeHandler }) {
             or have a look at{' '}
             <a
               href="https://github.com/roedoejet/AnyLanguage-Wordle"
-              className={linksClassname}
+              className="inline-url"
               target="_blank"
             >
               Aidan Pine&apos;s fork
@@ -88,7 +86,7 @@ function InfoModal({ isOpen, closeHandler }) {
             and customize it for another language! Or, you can also{' '}
             <a
               href="https://www.nytimes.com/games/wordle/index.html"
-              className={linksClassname}
+              className="inline-url"
               target="_blank"
             >
               play the original here.
@@ -98,7 +96,7 @@ function InfoModal({ isOpen, closeHandler }) {
             The words in this game were sourced from{' '}
             <a
               href={`/${sitename}/words`}
-              className={linksClassname}
+              className="inline-url"
               target="_blank"
             >
               the words on this site.
