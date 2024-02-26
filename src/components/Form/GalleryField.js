@@ -47,13 +47,14 @@ function AddGalleryButton({ value, onChange }) {
 
   return value ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <Gallery.Container id={value} view="thumbnail" />
+      <Gallery.Container view="thumbnail" />
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove
         </span>
         <button
           type="button"
+          data-testid="GalleryField-btn-remove"
           aria-label="Remove"
           className="border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
           onClick={() => onChange('')}
@@ -66,6 +67,7 @@ function AddGalleryButton({ value, onChange }) {
     <Fragment key="AddGalleryButton">
       <button
         type="button"
+        data-testid="GalleryField-btn-add"
         onClick={() => setModalOpen(true)}
         className="mt-1 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
       >
@@ -83,10 +85,11 @@ function AddGalleryButton({ value, onChange }) {
             Choose a gallery
           </h2>
           {data?.results?.length > 0 ? (
-            <div className="mx-auto space-x-4">
+            <div className="mx-auto space-x-4 space-y-4">
               {data?.results?.map((gallery) => (
                 <button
                   key={gallery?.id}
+                  data-testid={`${gallery?.id}-choose`}
                   type="button"
                   onClick={() => chooseGalleryHandler(gallery?.id)}
                 >

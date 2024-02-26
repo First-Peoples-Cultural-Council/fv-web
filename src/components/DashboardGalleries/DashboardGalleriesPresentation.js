@@ -15,7 +15,7 @@ function DashboardGalleriesPresentation({ isLoading, galleries, site }) {
       className="mx-auto h-full px-8"
     >
       <Loading.Container isLoading={isLoading}>
-        <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <ul className="grid gap-5 grid-cols-3 lg:grid-cols-5">
           {galleries?.length > 0 &&
             galleries?.map((item) => {
               const imageUrl = getMediaPath({
@@ -37,16 +37,11 @@ function DashboardGalleriesPresentation({ isLoading, galleries, site }) {
                     to={`/${site?.sitename}/dashboard/edit/gallery?id=${item?.id}`}
                     data-testid="GalleryTile"
                     style={conditionalStyle}
-                    className={`${conditionalClass} group h-44 w-44 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group rounded-lg overflow-hidden`}
+                    className={`${conditionalClass} group w-full h-full flex items-center justify-center rounded-lg overflow-hidden`}
                   >
-                    <div className="group-hover:opacity-75 w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center">
-                      <div className="text-lg lg:text-2xl font-medium mb-2">
-                        {item.title}
-                      </div>
-                      <div className="text-base font-light">
-                        {item.titleTranslation}
-                      </div>
-                      <div className="text-base font-light">{item.author}</div>
+                    <div className="opacity-75 group-hover:opacity-100 px-3 lg:px-5 py-6 lg:py-10 flex flex-col text-center items-center">
+                      <div className="text-lg lg:text-2xl">{item.title}</div>
+                      <div className="text-base">{item.titleTranslation}</div>
                       <span className="sr-only">Go to {item.title}</span>
                     </div>
                   </Link>
