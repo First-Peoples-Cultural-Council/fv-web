@@ -37,7 +37,7 @@ function DashboardGalleriesPresentation({ isLoading, galleries, site }) {
                     to={`/${site?.sitename}/dashboard/edit/gallery?id=${item?.id}`}
                     data-testid="GalleryTile"
                     style={conditionalStyle}
-                    className={`${conditionalClass} group w-full h-full flex items-center justify-center rounded-lg overflow-hidden`}
+                    className={`${conditionalClass} group w-full h-full min-h-40 flex items-center justify-center rounded-lg overflow-hidden`}
                   >
                     <div className="opacity-75 group-hover:opacity-100 px-3 lg:px-5 py-6 lg:py-10 flex flex-col text-center items-center">
                       <div className="text-lg lg:text-2xl">{item.title}</div>

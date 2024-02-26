@@ -47,7 +47,7 @@ function AddGalleryButton({ value, onChange }) {
 
   return value ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <Gallery.Container view="thumbnail" />
+      <Gallery.Container view="thumbnail" id={value} />
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove
