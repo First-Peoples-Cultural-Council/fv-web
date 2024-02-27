@@ -10,7 +10,7 @@ import { AUDIO } from 'common/constants'
 import { useMediaUsageDetails, useMediaDelete } from 'common/dataHooks/useMedia'
 
 function MediaDetailsAudio({ file }) {
-  const mediaDetailObject = useMediaUsageDetails({
+  const mediaUsage = useMediaUsageDetails({
     docType: AUDIO,
     id: file?.id,
   })
@@ -81,7 +81,7 @@ function MediaDetailsAudio({ file }) {
       <div className="flex justify-around">
         <DeleteButtonMedia.Presentation
           docType={AUDIO}
-          usage={mediaDetailObject?.usage}
+          usage={mediaUsage}
           deleteHandler={deleteHandler}
         />
         <a

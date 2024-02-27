@@ -9,7 +9,7 @@ import { IMAGE, VIDEO } from 'common/constants'
 import { useMediaUsageDetails, useMediaDelete } from 'common/dataHooks/useMedia'
 
 function MediaDetailsVisual({ file, docType }) {
-  const mediaDetailObject = useMediaUsageDetails({
+  const mediaUsage = useMediaUsageDetails({
     docType,
     id: file?.id,
   })
@@ -75,7 +75,7 @@ function MediaDetailsVisual({ file, docType }) {
       <div className="flex justify-around">
         <DeleteButtonMedia.Presentation
           docType={docType}
-          usage={mediaDetailObject?.usage}
+          usage={mediaUsage}
           deleteHandler={deleteHandler}
         />
         <a

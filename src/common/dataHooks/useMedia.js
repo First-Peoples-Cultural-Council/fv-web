@@ -71,7 +71,7 @@ export function useMediaUsageDetails({ id, docType }) {
     () => mediaApi({ sitename, id }),
     { enabled: !!id },
   )
-  return response?.data
+  return response?.data?.usage
 }
 
 export function useMediaDelete({ docType }) {

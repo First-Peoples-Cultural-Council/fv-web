@@ -34,9 +34,10 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
               Are you sure you want to delete this {docType} from your site ?
             </p>
             <p>
-              This {docType} file is being used on your site in {usage?.total}{' '}
-              places. Deleting it will remove it from all of them. Are you sure
-              you want to delete it?
+              This {docType} file is being used on your site in{' '}
+              <span className="font-bold">{usage?.total}</span> places. Deleting
+              it will remove it from all of them. Are you sure you want to
+              delete it?
             </p>
             <p className="text-fv-charcoal-light">
               You can&apos;t undo this action.
