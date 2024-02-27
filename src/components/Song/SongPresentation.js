@@ -131,7 +131,11 @@ const getMedia = ({ pictures, videos, videoLinks, videoLinksClassname }) => (
     {pictures.length > 0 && (
       <div className="space-y-4">
         {pictures?.map((picture) => (
-          <ImageWithLightbox.Presentation image={picture} key={picture.id} />
+          <ImageWithLightbox.Presentation
+            key={picture?.id}
+            image={picture}
+            withIcon
+          />
         ))}
       </div>
     )}

@@ -19,10 +19,25 @@ import {
 
 export const getEditableWidgetsForUser = (isSuperAdmin) =>
   [
+    isSuperAdmin && WIDGET_APPS,
+    WIDGET_CONTACT,
+    WIDGET_GALLERY,
+    WIDGET_IFRAME,
+    isSuperAdmin && WIDGET_KEYBOARDS,
+    WIDGET_LOGO,
+    WIDGET_QUOTES,
+    WIDGET_TEXT,
+    WIDGET_TEXTCONCISE,
+    WIDGET_TEXTFULL,
+    isSuperAdmin && WIDGET_TEXTICONS,
+  ].filter(Boolean)
+
+export const getCreatableWidgetsForUser = (isSuperAdmin) =>
+  [
     isSuperAdmin && WIDGET_ALPHABET,
     isSuperAdmin && WIDGET_APPS,
     WIDGET_CONTACT,
-    // isSuperAdmin && WIDGET_GALLERY,
+    WIDGET_GALLERY,
     WIDGET_IFRAME,
     isSuperAdmin && WIDGET_KEYBOARDS,
     WIDGET_LOGO,
@@ -34,23 +49,6 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     isSuperAdmin && WIDGET_TEXTICONS,
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
-
-export const isEditableWidgetType = (widgetType) => {
-  const editableWidgetTypes = [
-    WIDGET_APPS,
-    WIDGET_CONTACT,
-    WIDGET_GALLERY,
-    WIDGET_IFRAME,
-    WIDGET_KEYBOARDS,
-    WIDGET_LOGO,
-    WIDGET_QUOTES,
-    WIDGET_TEXT,
-    WIDGET_TEXTCONCISE,
-    WIDGET_TEXTFULL,
-    WIDGET_TEXTICONS,
-  ]
-  return editableWidgetTypes.indexOf(widgetType) !== -1
-}
 
 export const getObjectFromSettingsArray = (settingsArray) => {
   const settingsObject = {}

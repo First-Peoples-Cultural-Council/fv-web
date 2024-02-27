@@ -14,7 +14,7 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_GALLERY]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
-    galleryId: definitions.uuid().required('A gallery id is required'),
+    galleryId: definitions.uuid().required('Please select a gallery.'),
     visibility: definitions.visibility(),
   })
 
@@ -55,10 +55,10 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
         type={WIDGET_GALLERY}
       >
         <div className="col-span-12">
-          <Form.TextField
-            label="Gallery Id"
+          <Form.GalleryField
+            label="Gallery"
             nameId="galleryId"
-            helpText="Enter the UID for the gallery (e.g. f0083daa-2988-4144-be17-34cd8fb288c9)."
+            control={control}
             register={register}
             errors={errors}
           />

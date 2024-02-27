@@ -85,7 +85,7 @@ function WidgetAreaEditPresentation({
                                 {getWidgetTypeLabel(widgetData?.[id]?.type)}
                               </p>
                               <p className="text-fv-charcoal-light">
-                                {widgetData?.[id]?.title}
+                                {widgetData?.[id]?.nickname}
                               </p>
                             </div>
                           </div>

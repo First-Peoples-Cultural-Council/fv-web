@@ -213,10 +213,7 @@ function PhraseScramblerPresentation({
             phrase scrambler game.
             <br />
             Please contact{' '}
-            <a
-              href="mailto:hello@firstvoices.com"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-            >
+            <a href="mailto:hello@firstvoices.com" className="inline-url">
               hello@firstvoices.com
             </a>{' '}
             for more information.

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Form from 'components/Form'
-import { isEditableWidgetType } from 'common/utils/widgetHelpers'
 
 function WidgetFormBase({
   children,
@@ -16,7 +15,6 @@ function WidgetFormBase({
   resetField,
   handleSubmit,
   submitHandler,
-  type,
 }) {
   return (
     <form id="WidgetForm" onReset={reset}>
@@ -35,27 +33,21 @@ function WidgetFormBase({
             label={isCreateMode ? 'A nickname for your widget' : 'Nickname'}
             nameId="nickname"
             register={register}
-            helpText={
-              isCreateMode
-                ? 'This nickname will not appear on your site and cannot be changed.'
-                : ''
-            }
-            disabled={!isCreateMode}
+            helpText="The nickname is to help you and your team to identify your widgets when editing. It will not appear on your site."
             errors={errors}
           />
         </div>
         {children}
-        {isEditableWidgetType(type) && (
-          <div className="col-span-12">
-            <Form.Visibility
-              nameId="visibility"
-              control={control}
-              errors={errors}
-              resetField={resetField}
-              label="Who can see this widget?"
-            />
-          </div>
-        )}
+
+        <div className="col-span-12">
+          <Form.Visibility
+            nameId="visibility"
+            control={control}
+            errors={errors}
+            resetField={resetField}
+            label="Who can see this widget?"
+          />
+        </div>
       </div>
       <div className="mt-4 flex justify-end px-6">
         <Form.SubmitButtons

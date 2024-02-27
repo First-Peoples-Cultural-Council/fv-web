@@ -11,7 +11,7 @@ function AboutFV() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="About FirstVoices"
+          title="ABOUT FIRSTVOICES"
           accentColor="primary"
         />
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
@@ -88,10 +88,7 @@ function AboutFV() {
           <p className={paraStyle}>
             We have resources and people to help you start your own language
             site, or connect with one of our existing language sites. Contact{' '}
-            <a
-              href="mailto:hello@firstvoices.com"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-            >
+            <a href="mailto:hello@firstvoices.com" className="inline-url">
               hello@firstvoices.com
             </a>{' '}
             for more information.

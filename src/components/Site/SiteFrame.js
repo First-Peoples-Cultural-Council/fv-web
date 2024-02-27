@@ -11,6 +11,7 @@ import Dictionary from 'components/Dictionary'
 import DictionaryDetail from 'components/DictionaryDetail'
 import ErrorHandler from 'components/ErrorHandler'
 import Footer from 'components/Footer'
+import Galleries from 'components/Galleries'
 import Gallery from 'components/Gallery'
 import Game from 'components/Game'
 import Games from 'components/Games'
@@ -77,7 +78,8 @@ function SiteFrame({ siteLoading }) {
               path="stories"
               element={<SongsAndStories.Container searchType="STORY" />}
             />
-            <Route path="gallery/:id" element={<Gallery.Container />} />
+            <Route path="galleries/:id" element={<Gallery.Container />} />
+            <Route path="galleries" element={<Galleries.Container />} />
             <Route path="games/:id" element={<Game.Container />} />
             <Route path="games" element={<Games.Presentation />} />
             <Route path="immersion" element={<Immersion.Container />} />

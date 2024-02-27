@@ -111,6 +111,14 @@ function DashboardEditData({ urlPrefix = '' }) {
       iconColor: 'tertiaryA',
       auth: LANGUAGE_ADMIN,
     },
+    GALLERY: {
+      icon: 'Images',
+      name: 'Edit a gallery',
+      description: 'Edit an image gallery on your site',
+      href: addUrlPrefix('galleries'),
+      iconColor: 'wordText',
+      auth: EDITOR,
+    },
   }
 
   const tileContent = [
@@ -125,6 +133,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     editTiles.HOMEPAGE,
     editTiles.ALPHABET,
     editTiles.IMMERSION,
+    editTiles.GALLERY,
   ]
   const headerContent = {
     title: 'Edit',

@@ -28,7 +28,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     type: WIDGET_CONTACT,
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
-    title: 'Contact Us',
+    title: 'CONTACT US',
     text: 'Please use the form below to contact our language team. We will try and get back to you as soon as possible.',
     textWithFormatting: EditorState.createEmpty(),
     urls: '',

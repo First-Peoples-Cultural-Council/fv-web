@@ -14,6 +14,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
             <ImageWithLightbox.Presentation
               imgStyling="object-contain rounded-lg w-full h-auto"
               image={image}
+              withIcon
             />
           </div>
         ))

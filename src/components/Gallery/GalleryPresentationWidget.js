@@ -9,8 +9,8 @@ import ImageWithLightbox from 'components/ImageWithLightbox'
 function GalleryPresentationWidget({ data, sitename }) {
   const images =
     window.innerWidth >= 1024
-      ? data?.images?.slice(0, 7)
-      : data?.images?.slice(0, 4)
+      ? data?.galleryItems?.slice(0, 7)
+      : data?.galleryItems?.slice(0, 4)
   return (
     <section
       data-testid="GalleryPresentationWidget"
@@ -21,7 +21,9 @@ function GalleryPresentationWidget({ data, sitename }) {
         bgColor="fv-charcoal"
         accentColor="white"
       />
-      <div className="text-center text-white text-xl">{data?.description}</div>
+      <div className="text-center text-white text-xl">
+        {data?.titleTranslation}
+      </div>
       <div className="mx-auto text-center">
         {images?.length > 0 &&
           images?.map((image) => (
@@ -36,9 +38,9 @@ function GalleryPresentationWidget({ data, sitename }) {
       <div className="flex justify-center">
         <Link
           className="bg-secondary hover:bg-secondary-dark font-medium items-center justify-center px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
-          to={`/${sitename}/gallery/${data?.id}`}
+          to={`/${sitename}/galleries/${data?.id}`}
         >
-          View All
+          Go to gallery
         </Link>
       </div>
     </section>

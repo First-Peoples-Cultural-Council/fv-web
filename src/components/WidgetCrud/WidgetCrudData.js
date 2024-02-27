@@ -8,7 +8,7 @@ import {
   useWidgetsUpdate,
   useWidgetsDelete,
 } from 'common/dataHooks/useWidgets'
-import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
+import { getCreatableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { widgetFormDataAdaptor } from 'common/dataAdaptors/widgetAdaptors'
 
 function WidgetCrudData() {
@@ -17,7 +17,7 @@ function WidgetCrudData() {
   const [searchParams] = useSearchParams()
   const { isSuperAdmin } = user
 
-  const widgetTypes = getEditableWidgetsForUser(isSuperAdmin)
+  const widgetTypes = getCreatableWidgetsForUser(isSuperAdmin)
 
   const backHandler = () => navigate(-1)
 

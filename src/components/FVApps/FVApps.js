@@ -11,7 +11,7 @@ function FVApps() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="FirstVoices Apps"
+          title="FIRSTVOICES APPS"
           accentColor="primary"
         />
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
@@ -32,7 +32,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/nazko-dakelh/id592978430"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -41,7 +41,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.dakelh"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -55,7 +55,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/xeni-gwetin/id592984503"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -64,7 +64,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.tsilhqotin"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -78,7 +78,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/secw%C3%A9pemc/id594400637"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -87,7 +87,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.secwepemc"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -101,7 +101,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/northern-st%C3%A1timcets/id500539220"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -110,7 +110,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.nstat"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -124,7 +124,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/sliammon/id500541180"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -133,7 +133,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.sliammon"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -147,7 +147,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/ehattesaht/id494454336"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -156,7 +156,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.ehattesaht"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -170,7 +170,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/kwakwala/id490451367"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -179,7 +179,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.kwakwala"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -193,7 +193,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/lilwat-ucwalmicwts/id1184833633"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -202,7 +202,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.lilwat"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -216,7 +216,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/sencoten/id467922659"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -225,7 +225,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.sencoten"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -239,7 +239,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/halqemeylem/id467923981"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -248,7 +248,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.stolo"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -262,7 +262,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/hlgaagilda-xaayda-kil/id474664985"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -271,7 +271,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.xaaydakil"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -285,7 +285,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/nisgaa/id490034233"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -294,7 +294,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.nisga"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -308,7 +308,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/ktunaxa/id490447781"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -317,7 +317,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.ktunaxa"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -331,7 +331,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/tseshaht/id1500219855"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -340,7 +340,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.tseshaht"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -354,7 +354,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/hai%C9%ABzaqv%E1%B8%B7a/id1503907814"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -363,7 +363,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.hailzaqvla"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -377,7 +377,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/she-shashishalhem/id1503921027"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -386,7 +386,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.sechelt"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -400,7 +400,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/tsekhene-mcleod-lake/id1503929250"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -409,7 +409,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=com.firstvoices.tsekhene"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -423,7 +423,7 @@ function FVApps() {
                 Download Now:{' '}
                 <a
                   href="https://apps.apple.com/us/app/smalgyax/id1537016219"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -432,7 +432,7 @@ function FVApps() {
                 |{' '}
                 <a
                   href="https://play.google.com/store/apps/details?id=ca.fpcc.smalgyax"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >

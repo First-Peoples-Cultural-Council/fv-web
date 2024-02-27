@@ -146,7 +146,10 @@ function DictionaryDetailPresentationDrawer({
                       <div className="inline-flex rounded-lg overflow-hidden relative ">
                         <div className="relative">
                           <div className="inline-flex rounded-lg overflow-hidden">
-                            <ImageWithLightbox.Presentation image={image} />
+                            <ImageWithLightbox.Presentation
+                              image={image}
+                              withIcon
+                            />
                           </div>
                         </div>
                       </div>

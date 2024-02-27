@@ -10,7 +10,7 @@ function Keyboards() {
     <section className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Keyboards">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
-          title="Fonts & Keyboards"
+          title="FONTS & KEYBOARDS"
           accentColor="primary"
         />
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
@@ -68,7 +68,7 @@ function Keyboards() {
               Click here to download the{' '}
               <a
                 href="https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/bc-visual-identity/bc-sans"
-                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                className="inline-url"
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -124,7 +124,7 @@ function Keyboards() {
             knowledge base, click{' '}
             <a
               href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705752/Install+fonts+and+keyboards+for+Indigenous+languages"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -135,7 +135,7 @@ function Keyboards() {
             . For support, contact{' '}
             <a
               href="mailto:hello@firstvoices.com"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -160,7 +160,7 @@ function Keyboards() {
               FirstVoices Keyboards app on for{' '}
               <a
                 href="https://itunes.apple.com/ca/app/firstvoices-keyboards/id1066651145?mt=8"
-                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                className="inline-url"
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -169,7 +169,7 @@ function Keyboards() {
               or{' '}
               <a
                 href="https://play.google.com/store/apps/details?id=com.firstvoices.keyboards"
-                className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                className="inline-url"
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -187,7 +187,7 @@ function Keyboards() {
             will be done through a keyboard software called Keyman. Go to{' '}
             <a
               href="https://keyman.com/"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -197,7 +197,7 @@ function Keyboards() {
             you are not sure what language keyboard you are looking for, click{' '}
             <a
               href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351043612/Keyboard+Installation+Guide"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -235,7 +235,7 @@ function Keyboards() {
             extension, email us at{' '}
             <a
               href="mailto:hello@firstvoices.com"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -261,7 +261,7 @@ function Keyboards() {
               <li>
                 <a
                   href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351043612"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -271,7 +271,7 @@ function Keyboards() {
               <li>
                 <a
                   href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/351502346"
-                  className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+                  className="inline-url"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -282,7 +282,7 @@ function Keyboards() {
             If you need extra help installing a keyboard, please email us at{' '}
             <a
               href="mailto:hello@firstvoices.com"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -296,7 +296,7 @@ function Keyboards() {
             language site, please visit{' '}
             <a
               href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/424312843/Find+FirstVoices+keyboards+for+your+language"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -313,7 +313,7 @@ function Keyboards() {
             If you are looking for another keyboard, you can go directly to{' '}
             <a
               href="https://keyman.com/"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -328,7 +328,7 @@ function Keyboards() {
             one for you! Click here to read about how to{' '}
             <a
               href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704409"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -337,7 +337,7 @@ function Keyboards() {
             or{' '}
             <a
               href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704231"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
+              className="inline-url"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -351,10 +351,7 @@ function Keyboards() {
           <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
             their FirstVoices language sites can now also be accessed through{' '}
-            <Link
-              to="/apps"
-              className="text-blue-600 visited:text-purple-600 underline underline-offset-2"
-            >
+            <Link to="/apps" className="inline-url">
               mobile apps
             </Link>
             {/*
