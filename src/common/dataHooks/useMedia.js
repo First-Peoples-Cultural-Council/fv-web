@@ -4,13 +4,32 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import {
-  IMAGE,
-  VIDEO,
+  AUDIO,
   AUDIO_PATH,
+  IMAGE,
   IMAGE_PATH,
+  VIDEO,
   VIDEO_PATH,
 } from 'common/constants'
 import api from 'services/api'
+
+const MEDIA_PATHS = {
+  [AUDIO]: AUDIO_PATH,
+  [IMAGE]: IMAGE_PATH,
+  [VIDEO]: VIDEO_PATH,
+}
+
+const MEDIA_APIS = {
+  [AUDIO]: api.media.getAudio,
+  [IMAGE]: api.media.getImage,
+  [VIDEO]: api.media.getVideo,
+}
+
+const MEDIA_DELETE_APIS = {
+  [AUDIO]: api.media.deleteAudio,
+  [IMAGE]: api.media.deleteImage,
+  [VIDEO]: api.media.deleteVideo,
+}
 
 export function useAudioObject({ id }) {
   const { sitename } = useParams()
@@ -44,20 +63,8 @@ export function useVideoObject({ id }) {
 
 export function useMediaUsageDetails({ id, docType }) {
   const { sitename } = useParams()
-
-  let mediaPath = ''
-  let mediaApi = null
-
-  if (docType === IMAGE) {
-    mediaApi = api.media.getImage
-    mediaPath = IMAGE_PATH
-  } else if (docType === VIDEO) {
-    mediaApi = api.media.getVideo
-    mediaPath = VIDEO_PATH
-  } else {
-    mediaApi = api.media.getAudio
-    mediaPath = AUDIO_PATH
-  }
+  const mediaPath = MEDIA_PATHS[docType]
+  const mediaApi = MEDIA_APIS[docType]
 
   const response = useQuery(
     [mediaPath, sitename, id],
@@ -69,15 +76,7 @@ export function useMediaUsageDetails({ id, docType }) {
 
 export function useMediaDelete({ docType }) {
   const { sitename } = useParams()
-  let deleteMediaApi = null
-
-  if (docType === IMAGE) {
-    deleteMediaApi = api.media.deleteImage
-  } else if (docType === VIDEO) {
-    deleteMediaApi = api.media.deleteVideo
-  } else {
-    deleteMediaApi = api.media.deleteAudio
-  }
+  const deleteMediaApi = MEDIA_DELETE_APIS[docType]
 
   const deleteMediaFile = async (id) =>
     deleteMediaApi({
