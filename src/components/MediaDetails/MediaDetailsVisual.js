@@ -2,11 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import DeleteButtonMedia from 'components/DeleteButtonMedia'
 import { isDisplayablePropMedia, getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
+import { useMediaUsageDetails, useMediaDelete } from 'common/dataHooks/useMedia'
 
 function MediaDetailsVisual({ file, docType }) {
+  const mediaDetailObject = useMediaUsageDetails({
+    docType,
+    id: file?.id,
+  })
+
+  const { onSubmit: deleteMedia } = useMediaDelete({ docType })
+  const deleteHandler = () => deleteMedia(file?.id)
+
   return (
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6 sticky top-0">
       <div>
@@ -62,10 +72,15 @@ function MediaDetailsVisual({ file, docType }) {
             })}
         </dl>
       </div>
-      <div className="flex">
+      <div className="flex justify-around">
+        <DeleteButtonMedia.Presentation
+          docType={docType}
+          usage={mediaDetailObject?.usage}
+          deleteHandler={deleteHandler}
+        />
         <a
           href={file?.downloadLink}
-          className="flex-1 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
+          className="grow ml-2 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
         >
           <div className="flex w-full h-full items-center justify-center">
             {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}{' '}

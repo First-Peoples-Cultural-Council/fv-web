@@ -11,6 +11,7 @@ export default function useMutationWithNotification({
   onSuccessCallback,
   queryKeyToInvalidate,
   redirectTo,
+  refresh,
   type,
   actionWord = 'saved',
 }) {
@@ -31,6 +32,12 @@ export default function useMutationWithNotification({
       if (redirectTo) {
         setTimeout(() => {
           navigate(redirectTo)
+        }, 1000)
+      }
+      if (refresh) {
+        // if the requirement is just to refresh the current page
+        setTimeout(() => {
+          navigate(0)
         }, 1000)
       }
     },
