@@ -1,59 +1,42 @@
-describe('V2 tests, word and phrase', () => {
+describe('navigation', () => {
   beforeEach(() => {
     cy.viewport(1200, 1200)
+  })
+  it('4.0 - site nav - dictionary', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-  })
+    cy.contains('Dictionary').click()
+    cy.contains('Words').click()
+    cy.contains('WORDS').should('exist')
 
-  it('Check Dictionary Menu ', () => {
-    // i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
-    cy.on('uncaught:exception', () => false)
-
-    const dictionaryMenu = ['Words', 'Phrases', 'Alphabet', 'Categories']
-    cy.checkLinks(dictionaryMenu, 'Dictionary')
-  })
-
-  it('Check Learn Menu ', () => {
-    cy.on('uncaught:exception', () => true)
-
-    // used to be login code here like in the above it function. add back here if needed.  and the first visit should be put back to beforeEach
-    const learnMenu = ['Songs', 'Stories', 'Games']
-    cy.checkLinks(learnMenu, 'Learn')
-  })
-
-  it('Check Resources Menu ', () => {
-    cy.on('uncaught:exception', () => true)
-
-    const resourcesMenu = ['Mobile App', 'Keyboards']
-    cy.checkLinks(resourcesMenu, 'Resources')
-  })
-
-  it('Check About Menu ', () => {
-    cy.on('uncaught:exception', () => true)
-    // Used to be login code here like in the above it function. add back here if needed.  and the first visit should be put back to beforeEach
-    const aboutMenu = ['Our Language', 'Our People']
-    cy.checkLinks(aboutMenu, 'About')
-  })
-
-  it('check Help', () => {
-    //   cy.contains('Help').click()
-  })
-
-  it('check Donate', () => {
-    //  cy.contains('Donate').click()
-  })
-
-  it.only('check categories', () => {
+    cy.contains('Dictionary').click()
+    cy.contains('Phrases').click()
+    cy.contains('PHRASES').should('exist')
     cy.contains('Dictionary').click()
     cy.contains('Categories').click()
-    let elCount = 0
+    cy.contains('CATEGORIES').should('exist')
 
-    cy.get('ul li').each(() => {
-      elCount += 1
+    cy.contains('Dictionary').click()
+    cy.contains('Alphabet').click()
+    cy.contains('ALPHABET').should('exist')
+  })
+
+  it('12.1 - alphabet', () => {
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+    cy.contains('ALPHABET').should('exist')
+    cy.get(
+      '[data-testid="AlphabetPresentationSelected__header"] button',
+    ).should('have.length', 2)
+  })
+
+  it('explore languages - search', () => {
+    cy.visit(`${Cypress.env('baseUrl')}languages`)
+    cy.get('[id="LanguagesPresentation"] a').each((_site) => {
+      let _text = _site.text()
+      _text = _text.replaceAll('  ', ' ')
+      cy.get('[data-testid="SearchInput"]').type(`${_text}{enter}`)
+      cy.contains(_text).should('be.visible')
+      cy.contains(_text).invoke('css', 'background-color', 'blue')
+      cy.contains('Clear Search').click()
     })
-
-    for (let a = 2; a < elCount; a += 1) {
-      cy.get(`.grid :nth-child(${a})`).click()
-      cy.go('back')
-    }
   })
 }) // end of describe

@@ -1,81 +1,44 @@
 /// <reference types="cypress" />
 
-function checkValidation(widgetName) {
-  cy.contains(widgetName).click()
-  cy.contains('Create widget').click()
-  cy.get('.text-red-500').should('exist')
-  cy.contains('Go back').click()
-}
-
-function createwidget(name) {
-  const widgetname = 'testwidgetcypress'
-  cy.contains('Create').click()
-  cy.contains('Create a Widget').click()
-  cy.contains(name).click()
-  cy.get('#nickname').type(widgetname)
-}
-
-function throughme(name) {
-  cy.contains('Create widget').click()
-
-  cy.contains('Create Widget').should('be.visible')
-  cy.contains('Create Widget').click({ force: true })
-
-  cy.get('[href="/lilwat/dashboard/edit"]').click()
-  cy.contains('Edit widgets').click()
-
-  cy.contains(name).parent().children().eq(2).children().click()
-
-  cy.get('#nickname').should('contain.value', name)
-  cy.contains('Delete widget').click()
-  cy.get('#RemoveWidgetModalContent').contains('Delete').click()
-}
-
 describe('Widget tests', () => {
   beforeEach(() => {
     cy.on('uncaught:exception', () => false)
+    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+      Cypress.require('/cypress/support/commands')
+    })
     cy.viewport(1024, 768)
-    cy.visit(`${Cypress.env('baseUrl')}`)
-    cy.contains('Sign in').click()
-    cy.login(
-      Cypress.env('CYPRESS_FV_USERNAME'),
-      Cypress.env('CYPRESS_FV_PASSWORD'),
-    )
-
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-
-    cy.contains('cc').click()
-
-    cy.contains('Dashboard').click()
   })
 
-  it('Check widget validation', () => {
+  it('2.0/2.1 - Check widget validation', () => {
+    cy._login()
+
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.contains('Dashboard').click()
     const widgets = [
       'Page Text',
-      'Logo',
       'Quotes',
       'Text With Image',
       'Short Text',
+      'Map',
     ]
-    cy.contains('Create a Widget').click()
-    widgets.forEach(checkValidation)
+    cy.contains('Create a widget').click()
+    widgets.forEach((_el) => cy.checkValidation(_el))
+
+    cy.contains('Cancel').click()
+    cy.contains('Edit custom pages').click()
+    cy.contains('Create a Custom Page').click()
+    cy.contains('Create page').click()
+    cy.contains('title must be at least 1 characters').should('exist')
   })
 
-  it('Check edit widgets', () => {
-    cy.contains('Edit').click()
-    cy.contains('Edit Widgets').click()
-  })
+  const subwidgets = ['Page Text', 'Text With Image', 'Short Text']
+  it(`2.3 - Create widgets`, () => {
+    cy._login()
 
-  const subwidgets = [
-    'Logo',
-    'Quotes',
-    'Page Text',
-    'Text With Image',
-    'Short Text',
-  ]
-  it.only(`Create widgets`, () => {
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.contains('Dashboard').click()
     subwidgets.forEach((_widget) => {
-      createwidget(_widget)
+      cy.createwidget(_widget)
       if (_widget === 'Mobile App') {
         cy.get('#androidUrl').type('https://www.google.ca/')
         cy.get('#iosUrl').type('https://www.google.ca/')
@@ -98,7 +61,63 @@ describe('Widget tests', () => {
       } else if (_widget === 'Page Text') {
         cy.get('.public-DraftStyleDefault-block').type('subtitle text')
       }
-      throughme('testwidgetcypress')
+      cy.throughme('testwidgetcypress')
     })
+  })
+
+  it.skip('2.4 - view new page, widget', () => {
+    cy._login()
+
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.contains('Dashboard').click()
+    cy.contains('Create a widget').click()
+    cy.contains('Logo').click()
+    cy.get('#nickname').type('qatest')
+    cy.contains('Create widget').click()
+    cy.contains('Dismiss').click()
+    cy.contains('Success').should('not.exist')
+    cy.get('[href="/lilwat/dashboard/create"]').click()
+    cy.contains('Add a new page to your site').should('exist')
+    cy.contains('Create a custom page').click()
+    cy.contains('Create page').should('exist')
+    cy.contains('Enter the details').should('exist')
+
+    cy.get('#title').should('be.enabled')
+    cy.get('#title').type('qatestpage', { force: true })
+    cy.get('#subtitle').type('qasubtitle')
+    cy.get('#slug').type('qatesturllink')
+    cy.contains('Create page').click()
+    cy.contains('qatestpage').parent().children().eq(3).children().click()
+
+    cy.contains('Widget').click()
+    cy.contains('Name: qatest').click()
+    cy.contains('OK').click()
+
+    cy.visit(
+      `${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}/custom/qatesturl`,
+    )
+    cy.get('.object-cover').should('exist')
+    cy.contains('qatestpage').should('exist')
+    cy.go(-1)
+    cy.contains('Edit Page Header').click()
+    cy.contains('Delete Page').click()
+    cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
+    cy.contains('Success').should('not.exist')
+    cy.get('[href="/lilwat/dashboard/edit"]').click()
+
+    cy.contains('Edit widgets').click()
+
+    cy.contains('qatest')
+
+      .parent()
+      .children()
+      .eq(2)
+      .children()
+      .click()
+
+    cy.get('#nickname').should('contain.value', 'qatest')
+
+    cy.contains('Delete widget').click()
+    cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
   })
 }) // end of describe
