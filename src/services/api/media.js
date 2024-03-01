@@ -40,6 +40,12 @@ const media = {
   },
   uploadAudio: async ({ sitename, data }) =>
     apiBase().post(`${SITES}/${sitename}/${AUDIO}`, { body: data }).json(),
+  deleteAudio: async ({ sitename, id }) =>
+    apiBase().delete(`${SITES}/${sitename}/${AUDIO_PATH}/${id}`).json(),
+  deleteImage: async ({ sitename, id }) =>
+    apiBase().delete(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
+  deleteVideo: async ({ sitename, id }) =>
+    apiBase().delete(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
 }
 
 export default media
