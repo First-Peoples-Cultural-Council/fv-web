@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-
 const _reportTypes = [
   'Build your own',
   'Recently created',
@@ -10,39 +9,6 @@ const _reportTypes = [
   'Members only content',
   'Public content',
 ]
-
-function checkHeaderCSS(fontWeightStrength) {
-  cy.get('[id="SingleSelect-sort"] > div > button > span').should(
-    'have.css',
-    'font-weight',
-    `${fontWeightStrength[0]}`,
-  )
-  cy.get('[id="SingleSelect-hasAudio"] > div > button > span').should(
-    'have.css',
-    'font-weight',
-    `${fontWeightStrength[1]}`,
-  )
-  cy.get('[id="SingleSelect-hasImage"] > div > button > span').should(
-    'have.css',
-    'font-weight',
-    `${fontWeightStrength[2]}`,
-  )
-  cy.get('[id="SingleSelect-hasVideo"] > div > button > span').should(
-    'have.css',
-    'font-weight',
-    `${fontWeightStrength[3]}`,
-  )
-  cy.get('[id="SingleSelect-hasTranslation"] > div > button > span').should(
-    'have.css',
-    'font-weight',
-    `${fontWeightStrength[4]}`,
-  )
-  cy.get('[id="SingleSelect-visibility"] > div > button > span').should(
-    'have.css',
-    'font-weight',
-    `${fontWeightStrength[5]}`,
-  )
-}
 
 describe('Reports testing', () => {
   beforeEach(() => {
@@ -76,41 +42,41 @@ describe('Reports testing', () => {
 
   it('check recently created', () => {
     cy.contains(_reportTypes[0]).click()
-    checkHeaderCSS([500, 500, 500, 500, 500, 500])
+    cy.checkHeaderCSS([500, 500, 500, 500, 500, 500])
     cy.go('back')
 
     cy.contains(_reportTypes[1]).click()
-    checkHeaderCSS([700, 500, 500, 500, 500, 500])
+    cy.checkHeaderCSS([700, 500, 500, 500, 500, 500])
     cy.contains('Recently created').should('be.visible')
     cy.go('back')
 
     cy.contains(_reportTypes[2]).click()
-    checkHeaderCSS([700, 500, 500, 500, 500, 500])
+    cy.checkHeaderCSS([700, 500, 500, 500, 500, 500])
     cy.contains('Recently modified').should('be.visible')
     cy.go('back')
 
     cy.contains(_reportTypes[3]).click()
-    checkHeaderCSS([500, 700, 500, 500, 500, 500])
+    cy.checkHeaderCSS([500, 700, 500, 500, 500, 500])
     cy.contains('Has no audio').should('be.visible')
     cy.go('back')
 
     cy.contains(_reportTypes[4]).click()
-    checkHeaderCSS([500, 500, 700, 500, 500, 500])
+    cy.checkHeaderCSS([500, 500, 700, 500, 500, 500])
     cy.contains('Has no image').should('be.visible')
     cy.go('back')
 
     cy.contains(_reportTypes[5]).click()
-    checkHeaderCSS([500, 500, 500, 500, 500, 700])
+    cy.checkHeaderCSS([500, 500, 500, 500, 500, 700])
     cy.contains('Team Only').should('be.visible')
     cy.go('back')
 
     cy.contains(_reportTypes[6]).click()
-    checkHeaderCSS([500, 500, 500, 500, 500, 700])
+    cy.checkHeaderCSS([500, 500, 500, 500, 500, 700])
     cy.contains('Members Only').should('be.visible')
     cy.go('back')
 
     cy.contains(_reportTypes[7]).click()
-    checkHeaderCSS([500, 500, 500, 500, 500, 700])
+    cy.checkHeaderCSS([500, 500, 500, 500, 500, 700])
     cy.contains('Public').should('be.visible')
     cy.go('back')
   })
