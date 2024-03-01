@@ -2,22 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import DeleteButtonMedia from 'components/DeleteButtonMedia'
 import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
 import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
-import { AUDIO } from 'common/constants'
-import { useMediaUsageDetails, useMediaDelete } from 'common/dataHooks/useMedia'
 
 function MediaDetailsAudio({ file }) {
-  const mediaUsage = useMediaUsageDetails({
-    docType: AUDIO,
-    id: file?.id,
-  })
-
-  const { onSubmit: deleteMedia } = useMediaDelete({ docType: AUDIO })
-  const deleteHandler = () => deleteMedia(file?.id)
-
   return (
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6 sticky top-0">
       <div>
@@ -78,15 +67,10 @@ function MediaDetailsAudio({ file }) {
           </p>
         </div>
       </div>
-      <div className="flex justify-around">
-        <DeleteButtonMedia.Presentation
-          docType={AUDIO}
-          usage={mediaUsage}
-          deleteHandler={deleteHandler}
-        />
+      <div className="flex">
         <a
           href={file?.downloadLink}
-          className="grow ml-2 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
+          className="flex-1 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
         >
           <div className="flex w-full h-full items-center justify-center">
             {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}{' '}
