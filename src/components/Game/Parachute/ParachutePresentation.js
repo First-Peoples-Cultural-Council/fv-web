@@ -168,7 +168,11 @@ function ParachutePresentation({
             </div>
             <div className="block">
               <img
-                src={gameImages[`${guessesRemaining}.jpg`]}
+                src={
+                  gameStatus === 'SUCCESS'
+                    ? gameImages['win.jpg']
+                    : gameImages[`${guessesRemaining}.jpg`]
+                }
                 className="max-w-3xl mx-auto object-cover h-96 w-full"
                 alt={`You have ${guessesRemaining} guesses remaining.`}
               />
