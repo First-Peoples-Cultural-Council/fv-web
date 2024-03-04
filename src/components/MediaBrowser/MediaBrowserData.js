@@ -36,6 +36,12 @@ function MediaBrowserData({ docType }) {
   const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
     useSearchLoader({ searchParams: _searchParams })
 
+  useEffect(() => {
+    if (isError) {
+      // This should not navigate to the error page. Instead, show the same page but with no results.
+    }
+  }, [isError])
+
   const handleTextFieldChange = (event) => {
     event.preventDefault()
     setSearchInputValue(event.target.value)
@@ -80,7 +86,6 @@ function MediaBrowserData({ docType }) {
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoading: isInitialLoading || isError,
     isLoadingEntries: isInitialLoading,
     loadRef,
     media: data,
