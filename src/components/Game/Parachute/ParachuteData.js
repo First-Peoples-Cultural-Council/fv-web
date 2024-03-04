@@ -15,12 +15,20 @@ function ParachuteData({ kids }) {
 
   const {
     data,
+    isInitialLoading,
+    isError,
     puzzles,
     refetch: getNextPage,
   } = useParachuteSearch({
     perPage: PUZZLES_PER_PAGE,
     kids,
   })
+
+  useEffect(() => {
+    if (isError) {
+      // This should not navigate to the error page. Instead, show the same page but with no results.
+    }
+  }, [isError])
 
   const { data: characterData } = useCharacters()
   const characters = characterData?.characters?.map((item) => item?.title)
@@ -57,19 +65,32 @@ function ParachuteData({ kids }) {
     }
   }, [currentWordIndex, data])
 
-  return !!currentPuzzle && characters
-    ? {
-        isLoading: false,
-        puzzle: currentPuzzle,
-        translation:
-          data?.results?.[currentWordIndex]?.entry?.translations?.[0]?.text,
-        audio: data?.results?.[currentWordIndex]?.entry?.relatedAudio?.[0],
-        alphabet: characters,
-        newPuzzle: nextWord,
-      }
-    : {
-        isLoading: true,
-      }
+  let isLoading = true
+
+  // After data has been fetched, and if we still don't have a puzzle,
+  // we will be showing the error message.
+  if (!isInitialLoading && !currentPuzzle) {
+    isLoading = false
+  }
+
+  let gameData = {
+    isLoading,
+    puzzle: [],
+  }
+
+  if (!!currentPuzzle && characters) {
+    gameData = {
+      isLoading: false,
+      puzzle: currentPuzzle,
+      translation:
+        data?.results?.[currentWordIndex]?.entry?.translations?.[0]?.text,
+      audio: data?.results?.[currentWordIndex]?.entry?.relatedAudio?.[0],
+      alphabet: characters,
+      newPuzzle: nextWord,
+    }
+  }
+
+  return gameData
 }
 
 const { bool } = PropTypes

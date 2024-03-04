@@ -74,8 +74,8 @@ function ParachutePresentation({
   }
 
   const renderKeyboard = () =>
-    alphabet.map((letter) => {
-      const guessed = guessedLetters.includes(letter)
+    alphabet?.map((letter) => {
+      const guessed = guessedLetters?.includes(letter)
       return (
         <button
           type="button"
@@ -138,7 +138,7 @@ function ParachutePresentation({
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
         {/* If the puzzle length is zero then render an error message, else render the puzzle. */}
-        {puzzle.length === 0 ? (
+        {puzzle?.length === 0 ? (
           <div>
             <SectionTitle.Presentation
               title="PULL TOGETHER"
@@ -182,7 +182,7 @@ function ParachutePresentation({
             </div>
 
             <div className="inline-block">
-              {currentPuzzle.map((piece) =>
+              {currentPuzzle?.map((piece) =>
                 piece?.letter === ' ' ? (
                   <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
                 ) : (

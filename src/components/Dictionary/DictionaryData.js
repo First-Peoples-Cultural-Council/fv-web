@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -11,7 +11,6 @@ import { DOMAIN, DOMAIN_BOTH, TYPES, KIDS } from 'common/constants'
 function DictionaryDataSearch({ searchType, kids }) {
   const { sitename } = useParams()
   const { site } = useSiteStore()
-  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
   const domain = searchParams.get(DOMAIN) || DOMAIN_BOTH
@@ -25,17 +24,14 @@ function DictionaryDataSearch({ searchType, kids }) {
       })
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
+  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
     useSearchLoader({ searchParams: _searchParams })
 
   const count = data?.pages[0]?.count
 
   useEffect(() => {
     if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
+      // This should not navigate to the error page. Instead, show the same page but with no results.
     }
   }, [isError])
 

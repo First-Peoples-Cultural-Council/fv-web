@@ -34,7 +34,7 @@ export function useParachuteSearch({ perPage, kids }) {
   }
   const searchParamString = _searchParams.toString()
 
-  const { data, refetch } = useQuery(
+  const { data, isInitialLoading, isError, refetch } = useQuery(
     [SEARCH, sitename],
     () =>
       api.search.getParachute({
@@ -75,6 +75,8 @@ export function useParachuteSearch({ perPage, kids }) {
 
   return {
     data,
+    isInitialLoading,
+    isError,
     puzzles: getPuzzles(),
     refetch,
   }

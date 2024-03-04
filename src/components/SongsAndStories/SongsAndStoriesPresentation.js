@@ -9,7 +9,6 @@ import getIcon from 'common/utils/getIcon'
 
 import Drawer from 'components/Drawer'
 import GridListToggle from 'components/GridListToggle'
-import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import Song from 'components/Song'
 import Story from 'components/Story'
@@ -19,7 +18,6 @@ import { SMALL, IMAGE } from 'common/constants'
 function SongsAndStoriesPresentation({
   searchType,
   infiniteScroll,
-  isLoading,
   items,
   kids,
   loadRef,
@@ -212,9 +210,15 @@ function SongsAndStoriesPresentation({
                     </div>
                   </div>
                 )}
-                <Loading.Container isLoading={isLoading}>
-                  {isGridView ? showGrid() : showList()}
-                </Loading.Container>
+                {(!Object.hasOwn(items, 'pages') ||
+                  items?.pages?.length === 0) && (
+                  <div className="w-full flex">
+                    <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
+                      Sorry, no results were found for this search.
+                    </div>
+                  </div>
+                )}
+                {isGridView ? showGrid() : showList()}
               </div>
               <div className="p-3 text-center text-fv-charcoal font-medium">
                 <div ref={loadRef} className="w-full h-5" />
@@ -253,7 +257,6 @@ const { bool, object, string } = PropTypes
 SongsAndStoriesPresentation.propTypes = {
   searchType: string,
   infiniteScroll: object,
-  isLoading: bool,
   items: object,
   kids: bool,
   loadRef: object,
