@@ -4,22 +4,18 @@ import { useNavigate } from 'react-router-dom'
 
 // FPCC
 import { makePlural } from 'common/utils/urlHelpers'
-import { getMediaPath } from 'common/utils/mediaHelpers'
-import getIcon from 'common/utils/getIcon'
 
 import Drawer from 'components/Drawer'
 import GridListToggle from 'components/GridListToggle'
-import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import Song from 'components/Song'
 import Story from 'components/Story'
-
-import { SMALL, IMAGE } from 'common/constants'
+import SongsAndStoriesGrid from 'components/SongsAndStories/SongsAndStoriesGrid'
+import SongsAndStoriesList from 'components/SongsAndStories/SongsAndStoriesList'
 
 function SongsAndStoriesPresentation({
   searchType,
   infiniteScroll,
-  isLoading,
   items,
   kids,
   loadRef,
@@ -70,123 +66,6 @@ function SongsAndStoriesPresentation({
     )
   }
 
-  function showGrid() {
-    return (
-      <section className="mt-4 lg:mt-8 pb-16" aria-labelledby="gallery-heading">
-        <h2 id="gallery-heading" className="sr-only">
-          {pluralDocType}
-        </h2>
-
-        <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {items?.pages?.map((page) => (
-            <React.Fragment key={page.pageNumber}>
-              {page.results.map((item) => {
-                let conditionalClass = 'text-fv-charcoal-light bg-gray-100'
-                let conditionalStyle = {}
-                let opacityClass = 'group-hover:opacity-75'
-
-                if (item?.coverVisual?.type === IMAGE) {
-                  const imageUrl = `url(${getMediaPath({
-                    type: item.coverVisual?.type,
-                    mediaObject: item.coverVisual?.entry,
-                    size: SMALL,
-                  })})`
-
-                  if (item?.hideOverlay) {
-                    opacityClass = 'opacity-0'
-                    conditionalClass = 'bg-center bg-cover'
-                    conditionalStyle = {
-                      backgroundImage: imageUrl,
-                    }
-                  } else {
-                    conditionalClass = 'bg-center bg-cover text-white'
-                    conditionalStyle = {
-                      backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), ${imageUrl}`,
-                    }
-                  }
-                }
-                return (
-                  <li key={item.id} className="relative">
-                    <button
-                      type="button"
-                      style={conditionalStyle}
-                      className={`${conditionalClass} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
-                      onClick={() => handleItemClick(item)}
-                      data-testid="SongAndStoriesGridTile"
-                    >
-                      <div
-                        className={`${opacityClass} w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center`}
-                      >
-                        <div className="text-lg lg:text-2xl font-medium mb-2">
-                          {item.title}{' '}
-                          {item.videos?.length > 0 &&
-                            getIcon(
-                              'Video',
-                              'inline-flex text-gray-400 fill-current w-6',
-                            )}
-                        </div>
-                        <div className="text-base font-light">
-                          {item.titleTranslation}
-                        </div>
-                        <div className="text-base font-light">
-                          {item.author}
-                        </div>
-                        <span className="sr-only">Go to {item.title}</span>
-                      </div>
-                    </button>
-                  </li>
-                )
-              })}
-              {showNoResultsMessage(page)}
-            </React.Fragment>
-          ))}
-        </ul>
-      </section>
-    )
-  }
-
-  function showList() {
-    return (
-      <section className="pb-16" aria-labelledby="gallery-heading">
-        <h2 id="gallery-heading" className="sr-only">
-          {pluralDocType}
-        </h2>
-
-        <div className="w-full text-left py-2 text-lg text-fv-charcoal">
-          {items?.pages?.map((page) => (
-            <React.Fragment key={page.pageNumber}>
-              {page.results.map((item, index) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  tabIndex={index}
-                  className="w-full cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
-                  onClick={() => handleItemClick(item)}
-                  onKeyDown={() => handleItemClick(item)}
-                  data-testid="SongAndStoriesListRow"
-                >
-                  <div className="text-xl flex justify-start">
-                    {item?.title}
-                  </div>
-                  <div className="text-base text-fv-charcoal-light flex justify-start">
-                    {item?.titleTranslation}
-                  </div>
-                  {item?.author?.length > 0 && (
-                    <div className="text-base text-fv-charcoal-light">
-                      by {item?.author}
-                    </div>
-                  )}
-                </button>
-              ))}
-
-              {showNoResultsMessage(page)}
-            </React.Fragment>
-          ))}
-        </div>
-      </section>
-    )
-  }
-
   return (
     <>
       <section
@@ -212,9 +91,27 @@ function SongsAndStoriesPresentation({
                     </div>
                   </div>
                 )}
-                <Loading.Container isLoading={isLoading}>
-                  {isGridView ? showGrid() : showList()}
-                </Loading.Container>
+                {(!Object.hasOwn(items, 'pages') ||
+                  items?.pages?.length === 0) && (
+                  <div className="w-full flex">
+                    <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
+                      Sorry, no results were found for this search.
+                    </div>
+                  </div>
+                )}
+                {isGridView
+                  ? SongsAndStoriesGrid({
+                      pluralDocType,
+                      items,
+                      showNoResultsMessage,
+                      handleItemClick,
+                    })
+                  : SongsAndStoriesList({
+                      pluralDocType,
+                      items,
+                      showNoResultsMessage,
+                      handleItemClick,
+                    })}
               </div>
               <div className="p-3 text-center text-fv-charcoal font-medium">
                 <div ref={loadRef} className="w-full h-5" />
@@ -253,7 +150,6 @@ const { bool, object, string } = PropTypes
 SongsAndStoriesPresentation.propTypes = {
   searchType: string,
   infiniteScroll: object,
-  isLoading: bool,
   items: object,
   kids: bool,
   loadRef: object,

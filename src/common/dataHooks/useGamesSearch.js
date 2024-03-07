@@ -34,7 +34,7 @@ export function useParachuteSearch({ perPage, kids }) {
   }
   const searchParamString = _searchParams.toString()
 
-  const { data, refetch } = useQuery(
+  const response = useQuery(
     [SEARCH, sitename],
     () =>
       api.search.getParachute({
@@ -49,10 +49,10 @@ export function useParachuteSearch({ perPage, kids }) {
 
   const getPuzzles = () => {
     // If no words are found during the search then return an array with a single empty puzzle
-    if (data?.count === 0) {
+    if (response?.data?.count === 0) {
       return [[]]
     }
-    const splitCharsBaseArray = data?.results?.map(
+    const splitCharsBaseArray = response?.data?.results?.map(
       (item) => item?.entry?.splitCharsBase,
     )
     const puzzles = splitCharsBaseArray?.map((splitCharsBase) => {
@@ -74,8 +74,7 @@ export function useParachuteSearch({ perPage, kids }) {
   }
 
   return {
-    data,
+    ...response,
     puzzles: getPuzzles(),
-    refetch,
   }
 }

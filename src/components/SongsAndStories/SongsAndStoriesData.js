@@ -10,12 +10,13 @@ function SongsAndStoriesData({ searchType, kids }) {
 
   const _searchParams = `types=${searchType}&kids=${kids}`
 
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
-    useSearchLoader({ searchParams: _searchParams })
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   return {
     items: data || {},
-    isLoading: isInitialLoading || isError,
+    isLoading: isInitialLoading,
     infiniteScroll,
     sitename,
     loadRef,
