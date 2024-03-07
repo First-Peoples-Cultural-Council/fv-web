@@ -181,14 +181,11 @@ module.exports = {
           DEFAULT: '#313133',
           dark: '#0f0f10',
         },
-        'fv-warning-red': {
-          DEFAULT: '#D64A4A',
+        'wordsy-correct': {
+          DEFAULT: '#2C876D', // as bgGreen
         },
-        'wordsy-green': {
-          DEFAULT: '#dcfce7',
-        },
-        'wordsy-red': {
-          DEFAULT: '#fee2e2',
+        'wordsy-present': {
+          DEFAULT: '#C37829', // as phrase
         },
         gray: colors.stone,
       },
