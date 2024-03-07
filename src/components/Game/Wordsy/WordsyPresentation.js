@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import Modal from 'components/Modal'
 import Grid from 'components/Game/Wordsy/Utils/Grid'
 import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
 import SectionTitle from 'components/SectionTitle'
 import InfoModal from 'components/Game/Wordsy/Modals/InfoModal'
 import EndGameModal from 'components/Game/Wordsy/Modals/EndGameModal'
+import WarningModal from 'components/Game/Wordsy/Modals/WarningModal'
 
 const MIN_VALID_WORDS = 30
 
@@ -54,7 +54,7 @@ function WordsyPresentation({
       {/* If less than 30 words or valid guesses present, display error message */}
       {languageConfig?.words?.length >= MIN_VALID_WORDS &&
       languageConfig?.validGuesses?.length >= MIN_VALID_WORDS ? (
-        <div className="space-y-2">
+        <div className="space-y-2 lg:space-y-4">
           <Grid
             tries={tries}
             guesses={guesses}
@@ -87,37 +87,23 @@ function WordsyPresentation({
         </p>
       )}
 
-      {/* Info modal */}
       <InfoModal
         isOpen={infoModalOpen}
         closeHandler={() => setInfoModalOpen(false)}
       />
 
-      {/* Not enough letters modal */}
-      <Modal.Presentation
+      <WarningModal
         isOpen={notEnoughLettersModalOpen}
         closeHandler={() => setNotEnoughLettersModalOpen(false)}
-      >
-        <div className="bg-rose-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
-          <h3 className="text-sm text-center font-medium text-gray-900">
-            Not Enough Letters
-          </h3>
-        </div>
-      </Modal.Presentation>
+        message="Not Enough Letters."
+      />
 
-      {/* Word not found modal */}
-      <Modal.Presentation
+      <WarningModal
         isOpen={wordNotFoundModalOpen}
         closeHandler={() => setWordNotFoundModalOpen(false)}
-      >
-        <div className="bg-rose-200 text-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
-          <h3 className="text-sm text-center font-medium text-gray-900">
-            Word not found
-          </h3>
-        </div>
-      </Modal.Presentation>
+        message="Word not found."
+      />
 
-      {/* End Game Modal */}
       <EndGameModal
         isModalOpen={isEndGameModalOpen}
         setIsModalOpen={setIsEndGameModalOpen}
