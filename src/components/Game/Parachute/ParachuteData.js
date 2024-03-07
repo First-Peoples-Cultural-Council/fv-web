@@ -15,6 +15,7 @@ function ParachuteData({ kids }) {
 
   const {
     data,
+    isInitialLoading,
     puzzles,
     refetch: getNextPage,
   } = useParachuteSearch({
@@ -57,19 +58,32 @@ function ParachuteData({ kids }) {
     }
   }, [currentWordIndex, data])
 
-  return !!currentPuzzle && characters
-    ? {
-        isLoading: false,
-        puzzle: currentPuzzle,
-        translation:
-          data?.results?.[currentWordIndex]?.entry?.translations?.[0]?.text,
-        audio: data?.results?.[currentWordIndex]?.entry?.relatedAudio?.[0],
-        alphabet: characters,
-        newPuzzle: nextWord,
-      }
-    : {
-        isLoading: true,
-      }
+  let isLoading = true
+
+  // After data has been fetched, and if we still don't have a puzzle,
+  // we will be showing the error message.
+  if (!isInitialLoading && !currentPuzzle) {
+    isLoading = false
+  }
+
+  let gameData = {
+    isLoading,
+    puzzle: [],
+  }
+
+  if (!!currentPuzzle && characters) {
+    gameData = {
+      isLoading: false,
+      puzzle: currentPuzzle,
+      translation:
+        data?.results?.[currentWordIndex]?.entry?.translations?.[0]?.text,
+      audio: data?.results?.[currentWordIndex]?.entry?.relatedAudio?.[0],
+      alphabet: characters,
+      newPuzzle: nextWord,
+    }
+  }
+
+  return gameData
 }
 
 const { bool } = PropTypes

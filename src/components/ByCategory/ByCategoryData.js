@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useSearchParams, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -8,7 +8,6 @@ import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { useCategories } from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
 function ByCategoryData({ kids }) {
-  const navigate = useNavigate()
   const { sitename, categoryId } = useParams()
   const [searchParams] = useSearchParams()
 
@@ -25,8 +24,9 @@ function ByCategoryData({ kids }) {
   })
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
-    useSearchLoader({ searchParams: _searchParams })
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const categoriesResponse = useCategories()
 
@@ -52,19 +52,10 @@ function ByCategoryData({ kids }) {
     }
   }, [categoriesResponse, currentCategory, categoryId])
 
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [error, isError, navigate, sitename])
-
   return {
     categories: categoriesResponse?.data?.results || [],
     categoriesAreLoading: categoriesResponse?.isLoading,
-    isLoading: isInitialLoading || isError,
+    isLoading: isInitialLoading,
     items: data || {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
