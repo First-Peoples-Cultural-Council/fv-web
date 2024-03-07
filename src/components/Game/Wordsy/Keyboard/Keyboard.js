@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Key from 'components/Game/Wordsy/Utils/Keyboard/Key'
+import Key from 'components/Game/Wordsy/Keyboard/Key'
 
 export const getStatuses = (solution, guesses, orthographyPattern) => {
   const charObj = {}

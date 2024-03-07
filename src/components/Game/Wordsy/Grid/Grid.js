@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import CurrentRow from 'components/Game/Wordsy/Utils/Grid/CurrentRow'
-import CompletedRow from 'components/Game/Wordsy/Utils/Grid/CompletedRow'
-import EmptyRow from 'components/Game/Wordsy/Utils/Grid/EmptyRow'
+import CurrentRow from 'components/Game/Wordsy/Grid/CurrentRow'
+import CompletedRow from 'components/Game/Wordsy/Grid/CompletedRow'
+import EmptyRow from 'components/Game/Wordsy/Grid/EmptyRow'
 
 const { any } = PropTypes
 

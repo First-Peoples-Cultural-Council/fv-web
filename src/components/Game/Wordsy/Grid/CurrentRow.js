@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Cell from 'components/Game/Wordsy/Utils/Grid/Cell'
+import Cell from 'components/Game/Wordsy/Grid/Cell'
 
 function CurrentRow({ guess, wordLength }) {
   const emptyCellsLength = guess?.length
