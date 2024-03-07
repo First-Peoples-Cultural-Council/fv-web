@@ -134,7 +134,7 @@ function ParachutePresentation({
   return (
     <section
       className="py-2 md:py-4 lg:py-8 bg-white"
-      data-testid="SongsAndStoriesPresentation"
+      data-testid="ParachutePresentation"
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
         {/* If the puzzle length is zero then render an error message, else render the puzzle. */}
