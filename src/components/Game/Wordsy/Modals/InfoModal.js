@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import Modal from 'components/Modal'
-import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
+import Cell from 'components/Game/Wordsy/Utils/Grid/Cell'
 
 function InfoModal({ isOpen, closeHandler }) {
   const { sitename } = useParams()

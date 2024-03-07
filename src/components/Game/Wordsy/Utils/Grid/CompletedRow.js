@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Cell from 'components/Game/Wordsy/Utils/Rows/Cell'
+import Cell from 'components/Game/Wordsy/Utils/Grid/Cell'
 
 function getGuessStatuses(solution, guess, orthographyPattern) {
   // Utility function to get status for each guess

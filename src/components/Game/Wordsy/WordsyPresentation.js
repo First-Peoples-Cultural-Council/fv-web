@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import Grid from 'components/Game/Wordsy/Utils/Grid'
+import Grid from 'components/Game/Wordsy/Utils/Grid/Grid'
 import Keyboard from 'components/Game/Wordsy/Utils/Keyboard/Keyboard'
 import SectionTitle from 'components/SectionTitle'
 import InfoModal from 'components/Game/Wordsy/Modals/InfoModal'
