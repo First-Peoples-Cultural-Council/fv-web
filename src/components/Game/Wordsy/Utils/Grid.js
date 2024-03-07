@@ -22,7 +22,7 @@ function Grid({
       : []
 
   return (
-    <div className="pb-6">
+    <div>
       {guesses?.map((guess, index) => (
         <CompletedRow
           solution={solution}

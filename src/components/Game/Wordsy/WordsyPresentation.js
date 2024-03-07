@@ -37,21 +37,24 @@ function WordsyPresentation({
       className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white"
       data-testid="WordsyContainer"
     >
-      <div className="flex w-80 mx-auto items-center mb-8">
-        <SectionTitle.Presentation title="WORDSY" accentColor="primary" />
-        <button
-          type="button"
-          onClick={() => setInfoModalOpen(true)}
-          onKeyDown={() => setInfoModalOpen(true)}
-        >
-          {getIcon('InfoCircleSolid', 'h-6 w-6 cursor-pointer')}
-        </button>
-      </div>
+      <SectionTitle.Presentation title="WORDSY" accentColor="primary" />
+
+      <button
+        type="button"
+        onClick={() => setInfoModalOpen(true)}
+        onKeyDown={() => setInfoModalOpen(true)}
+        className="flex mx-auto justify-center p-1 m-1"
+      >
+        {getIcon(
+          'InfoCircleSolid',
+          'h-5 w-5 cursor-pointer fill-current text-primary',
+        )}
+      </button>
 
       {/* If less than 30 words or valid guesses present, display error message */}
       {languageConfig?.words?.length >= MIN_VALID_WORDS &&
       languageConfig?.validGuesses?.length >= MIN_VALID_WORDS ? (
-        <div>
+        <div className="space-y-2">
           <Grid
             tries={tries}
             guesses={guesses}
