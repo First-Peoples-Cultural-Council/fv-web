@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -24,16 +23,11 @@ function DictionaryDataSearch({ searchType, kids }) {
       })
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
-    useSearchLoader({ searchParams: _searchParams })
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const count = data?.pages[0]?.count
-
-  useEffect(() => {
-    if (isError) {
-      // This should not navigate to the error page. Instead, show the same page but with no results.
-    }
-  }, [isError])
 
   const labels = getPresentationPropertiesForType(searchType)
 

@@ -24,8 +24,9 @@ function ByCategoryData({ kids }) {
   })
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
-    useSearchLoader({ searchParams: _searchParams })
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const categoriesResponse = useCategories()
 
@@ -50,12 +51,6 @@ function ByCategoryData({ kids }) {
       }
     }
   }, [categoriesResponse, currentCategory, categoryId])
-
-  useEffect(() => {
-    if (isError) {
-      // This should not navigate to the error page. Instead, show the same page but with no results.
-    }
-  }, [isError])
 
   return {
     categories: categoriesResponse?.data?.results || [],

@@ -33,14 +33,9 @@ function MediaBrowserData({ docType }) {
     [TYPES]: searchType,
   })
 
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
-    useSearchLoader({ searchParams: _searchParams })
-
-  useEffect(() => {
-    if (isError) {
-      // This should not navigate to the error page. Instead, show the same page but with no results.
-    }
-  }, [isError])
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const handleTextFieldChange = (event) => {
     event.preventDefault()

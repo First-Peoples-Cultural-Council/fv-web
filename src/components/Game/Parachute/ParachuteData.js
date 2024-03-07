@@ -16,19 +16,12 @@ function ParachuteData({ kids }) {
   const {
     data,
     isInitialLoading,
-    isError,
     puzzles,
     refetch: getNextPage,
   } = useParachuteSearch({
     perPage: PUZZLES_PER_PAGE,
     kids,
   })
-
-  useEffect(() => {
-    if (isError) {
-      // This should not navigate to the error page. Instead, show the same page but with no results.
-    }
-  }, [isError])
 
   const { data: characterData } = useCharacters()
   const characters = characterData?.characters?.map((item) => item?.title)
