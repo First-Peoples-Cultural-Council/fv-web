@@ -11,7 +11,7 @@ import {
   isWordInWordList,
 } from 'components/Game/Wordsy/Utils/helpers'
 
-const MAX_TRIES = 6
+const MAX_TRIES = 7
 const WORD_LENGTH = 5
 
 function WordsyData({ kids }) {
