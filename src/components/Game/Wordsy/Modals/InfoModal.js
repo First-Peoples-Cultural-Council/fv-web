@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 // FPCC
 import Cell from 'components/Game/Wordsy/Grid/Cell'
@@ -8,92 +8,78 @@ function InfoModal() {
   const { sitename } = useParams()
 
   return (
-    <div className="bg-white rounded-lg p-6 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">
-        How to play
-      </h3>
-      <div className="mt-2">
-        <p className="text-sm text-gray-500">
-          Guess the word of the day in 6 tries. After each guess, the color of
-          the tiles will change to show how close your guess was to the word.
-        </p>
-
-        <div className="flex justify-center mb-1 mt-4">
-          <Cell value="W" status="correct" />
-          <Cell value="E" />
-          <Cell value="A" />
-          <Cell value="R" />
-          <Cell value="Y" />
-        </div>
-        <p className="text-sm text-gray-500">
-          The letter W is in the word and in the correct spot.
-        </p>
-
-        <div className="flex justify-center mb-1 mt-4">
-          <Cell value="P" />
-          <Cell value="I" />
-          <Cell value="L" status="present" />
-          <Cell value="O" />
-          <Cell value="T" />
-        </div>
-        <p className="text-sm text-gray-500">
-          The letter L is in the word but in the wrong spot.
-        </p>
-
-        <div className="flex justify-center mb-1 mt-4">
-          <Cell value="V" />
-          <Cell value="A" />
-          <Cell value="G" />
-          <Cell value="U" status="absent" />
-          <Cell value="E" />
-        </div>
-        <p className="text-sm text-gray-500">
-          The letter U is not in the word in any spot.
+    <div className="bg-white rounded-lg p-6 space-y-6 overflow-hidden shadow-xl transform transition-all sm:align-middle md:max-w-md md:w-full">
+      {/* Rules */}
+      <div className="space-y-2">
+        <h3 className="text-xl text-fv-charcoal">What are the rules?</h3>
+        <p className="text-sm text-fv-charcoal-light">
+          You have 7 tries to guess today&apos;s word. To make a guess, use 5{' '}
+          <Link to={`/${sitename}/alphabet`} className="inline-url">
+            letters from the alphabet
+          </Link>{' '}
+          to type a word, and click ENTER to guess. After each guess, the colour
+          of the letters will show you if they are part of today&apos;s word.
         </p>
       </div>
-
-      <hr className="my-4" />
-      <div className="text-sm text-gray-500">
-        <p>
-          This is an open source clone of the game Wordle adapted by
-          FirstVoices. Check out{' '}
-          <a
-            href="https://github.com/cwackerfuss/reactle"
-            className="inline-url"
-            target="_blank"
-          >
-            the original code
-          </a>{' '}
-          by{' '}
-          <a
-            href="https://www.hannahmariepark.com/"
-            className="inline-url"
-            target="_blank"
-          >
-            Hannah Park
-          </a>{' '}
-          or have a look at{' '}
-          <a
-            href="https://github.com/roedoejet/AnyLanguage-Wordle"
-            className="inline-url"
-            target="_blank"
-          >
-            Aidan Pine&apos;s fork
-          </a>{' '}
-          and customize it for another language! Or, you can also{' '}
-          <a
-            href="https://www.nytimes.com/games/wordle/index.html"
-            className="inline-url"
-            target="_blank"
-          >
-            play the original here.
-          </a>
+      {/* Example 1 */}
+      <div className="space-y-2">
+        <div className="flex justify-center">
+          <Cell value="kw" status="absent" />
+          <Cell value="é" status="correct" />
+          <Cell value="kw" status="absent" />
+          <Cell value="a" status="absent" />
+          <Cell value="7" status="absent" />
+        </div>
+        <p className="text-sm text-fv-charcoal-light">
+          The letter <span className="font-bold">é</span> is in today&apos;s
+          word, in this position.
         </p>
-        <p>
-          The words in this game were sourced from{' '}
-          <a href={`/${sitename}/words`} className="inline-url" target="_blank">
-            the words on this site.
-          </a>
+        <p className="text-sm text-fv-charcoal-light">
+          The letters <span className="font-bold">kw</span>,{' '}
+          <span className="font-bold">a</span>, and{' '}
+          <span className="font-bold">7</span> are not in the word anywhere.
+          <br />
+          In this alphabet, <span className="font-bold">kw</span> counts as 1
+          letter.
+        </p>
+      </div>
+      {/* Example 2 */}
+      <div className="space-y-2">
+        <div className="flex justify-center">
+          <Cell value="k̓" status="present" />
+          <Cell value="ú" status="absent" />
+          <Cell value="n" status="absent" />
+          <Cell value="a" status="absent" />
+          <Cell value="7" status="absent" />
+        </div>
+        <p className="text-sm text-fv-charcoal-light">
+          The letter <span className="font-bold">k̓</span> is in today&apos;s
+          word, but is in the wrong position.
+        </p>
+        <p className="text-sm text-fv-charcoal-light">
+          The letters <span className="font-bold">ú</span>,{' '}
+          <span className="font-bold">n</span>,{' '}
+          <span className="font-bold">a</span> and{' '}
+          <span className="font-bold">7</span> are not in the word anywhere.
+        </p>
+      </div>
+      {/* Acknowledgment */}
+      <div className="space-y-2 border-t-2 pt-6">
+        <p className="text-sm text-fv-charcoal-light">
+          The words and letters used in this game are created from the
+          dictionary and alphabet on this FirstVoices language site.
+        </p>
+        <div className="grid grid-cols-1 gap-2">
+          <Link to={`/${sitename}/words`} className="inline-url">
+            Visit dictionary words
+          </Link>
+          <Link to={`/${sitename}/alphabet`} className="inline-url">
+            Visit the alphabet
+          </Link>
+        </div>
+        <p className="text-sm text-fv-charcoal-light">
+          Instructional examples are sourced with gratitude from the Líl̓wat
+          dictionary.
         </p>
       </div>
     </div>
