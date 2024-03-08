@@ -112,7 +112,7 @@
     "ky": "^1.2.0",
     "oidc-client-ts": "^2.2.4",
     "postcss": "^8.4.35",
-    "postcss-loader": "^7.3.3",
+    "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.3.0",
     "prop-types": "^15.8.1",
     "qrcode": "^1.5.3",
