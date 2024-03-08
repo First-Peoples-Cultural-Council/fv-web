@@ -12,7 +12,7 @@ module.exports = {
   create(context) {
     return {
       JSXOpeningElement(node) {
-        if (node.name.name === 'div') {
+        if (node.name.name === 'button') {
           const hasDataTestId = node.attributes.some(
             (attr) => attr.name && attr.name.name === 'data-testid',
           )
