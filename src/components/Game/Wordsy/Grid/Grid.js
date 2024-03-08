@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import CurrentRow from 'components/Game/Wordsy/Utils/Rows/CurrentRow'
-import CompletedRow from 'components/Game/Wordsy/Utils/Rows/CompletedRow'
-import EmptyRow from 'components/Game/Wordsy/Utils/Rows/EmptyRow'
+import CurrentRow from 'components/Game/Wordsy/Grid/CurrentRow'
+import CompletedRow from 'components/Game/Wordsy/Grid/CompletedRow'
+import EmptyRow from 'components/Game/Wordsy/Grid/EmptyRow'
 
 const { any } = PropTypes
 
@@ -22,7 +22,7 @@ function Grid({
       : []
 
   return (
-    <div className="pb-6">
+    <div>
       {guesses?.map((guess, index) => (
         <CompletedRow
           solution={solution}

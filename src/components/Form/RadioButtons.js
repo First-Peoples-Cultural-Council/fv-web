@@ -19,12 +19,12 @@ function RadioButtons({ errors, label, options, nameId, control, helpText }) {
               <RadioGroup.Label className="text-sm font-medium text-fv-charcoal">
                 {label}
               </RadioGroup.Label>
-              <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+              <div className="flex space-x-8">
                 {options.map((option) => (
                   <RadioGroup.Option
                     key={option?.value}
                     value={option?.value}
-                    className="flex relative cursor-pointer px-4 py-3 focus:outline-none"
+                    className="inline-flex relative cursor-pointer focus:outline-none"
                   >
                     {({ checked, active }) => (
                       <div className="flex items-center">

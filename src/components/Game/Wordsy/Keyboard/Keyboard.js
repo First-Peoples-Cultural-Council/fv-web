@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Key from 'components/Game/Wordsy/Utils/Keyboard/Key'
+import Key from 'components/Game/Wordsy/Keyboard/Key'
 
 export const getStatuses = (solution, guesses, orthographyPattern) => {
   const charObj = {}
@@ -97,8 +97,8 @@ function Keyboard({
         ))}
       </div>
       <div className="flex justify-center">
-        <Key width={65.4} value="ENTER" onClick={onClick}>
-          Enter
+        <Key width={65.4} value="DELETE" onClick={onClick}>
+          Delete
         </Key>
         {thirdRow?.map((char) => (
           <Key
@@ -108,8 +108,8 @@ function Keyboard({
             status={charStatuses[char]}
           />
         ))}
-        <Key width={65.4} value="DELETE" onClick={onClick}>
-          Delete
+        <Key width={65.4} value="ENTER" onClick={onClick}>
+          Enter
         </Key>
       </div>
     </div>
