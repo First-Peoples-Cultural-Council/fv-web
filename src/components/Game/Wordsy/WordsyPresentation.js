@@ -6,6 +6,7 @@ import getIcon from 'common/utils/getIcon'
 import Grid from 'components/Game/Wordsy/Grid/Grid'
 import Keyboard from 'components/Game/Wordsy/Keyboard/Keyboard'
 import SectionTitle from 'components/SectionTitle'
+import Modal from 'components/Modal'
 import InfoModal from 'components/Game/Wordsy/Modals/InfoModal'
 import EndGameModal from 'components/Game/Wordsy/Modals/EndGameModal'
 import WarningModal from 'components/Game/Wordsy/Modals/WarningModal'
@@ -22,16 +23,33 @@ function WordsyPresentation({
   onChar,
   onEnter,
   onDelete,
-  infoModalOpen,
-  setInfoModalOpen,
-  notEnoughLettersModalOpen,
-  setNotEnoughLettersModalOpen,
-  wordNotFoundModalOpen,
-  setWordNotFoundModalOpen,
-  isEndGameModalOpen,
-  setIsEndGameModalOpen,
-  endGameModalContent,
+  isModalOpen,
+  setIsModalOpen,
+  modalData,
+  setModalData,
 }) {
+  const getModalContent = (type) => {
+    switch (type) {
+      case 'over':
+        return (
+          <EndGameModal
+            status={modalData?.status}
+            text={modalData?.text}
+            solution={solution}
+          />
+        )
+      case 'warning':
+        return <WarningModal text={modalData?.text} />
+      default:
+        return <InfoModal />
+    }
+  }
+
+  const openInfoModal = () => {
+    setModalData(null)
+    setIsModalOpen(true)
+  }
+
   return (
     <section
       className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white"
@@ -41,8 +59,8 @@ function WordsyPresentation({
 
       <button
         type="button"
-        onClick={() => setInfoModalOpen(true)}
-        onKeyDown={() => setInfoModalOpen(true)}
+        onClick={() => openInfoModal()}
+        onKeyDown={() => openInfoModal()}
         className="flex mx-auto justify-center p-1 m-1"
       >
         {getIcon(
@@ -87,30 +105,12 @@ function WordsyPresentation({
         </p>
       )}
 
-      <InfoModal
-        isOpen={infoModalOpen}
-        closeHandler={() => setInfoModalOpen(false)}
-      />
-
-      <WarningModal
-        isOpen={notEnoughLettersModalOpen}
-        closeHandler={() => setNotEnoughLettersModalOpen(false)}
-        message="Not Enough Letters."
-      />
-
-      <WarningModal
-        isOpen={wordNotFoundModalOpen}
-        closeHandler={() => setWordNotFoundModalOpen(false)}
-        message="Word not found."
-      />
-
-      <EndGameModal
-        isModalOpen={isEndGameModalOpen}
-        setIsModalOpen={setIsEndGameModalOpen}
-        status={endGameModalContent?.status}
-        text={endGameModalContent?.text}
-        solution={solution}
-      />
+      <Modal.Presentation
+        isOpen={isModalOpen}
+        closeHandler={() => setIsModalOpen(false)}
+      >
+        {getModalContent(modalData?.type)}
+      </Modal.Presentation>
     </section>
   )
 }
@@ -127,15 +127,10 @@ WordsyPresentation.propTypes = {
   onChar: func,
   onEnter: func,
   onDelete: func,
-  infoModalOpen: bool,
-  setInfoModalOpen: func,
-  notEnoughLettersModalOpen: bool,
-  setNotEnoughLettersModalOpen: func,
-  wordNotFoundModalOpen: bool,
-  setWordNotFoundModalOpen: func,
-  isEndGameModalOpen: bool,
-  setIsEndGameModalOpen: func,
-  endGameModalContent: object,
+  isModalOpen: bool,
+  setIsModalOpen: func,
+  modalData: object,
+  setModalData: func,
 }
 
 export default WordsyPresentation
