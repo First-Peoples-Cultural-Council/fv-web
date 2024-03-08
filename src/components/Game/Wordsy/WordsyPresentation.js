@@ -28,9 +28,10 @@ function WordsyPresentation({
   modalData,
   setModalData,
 }) {
-  const getModalContent = (type) => {
-    switch (type) {
-      case 'over':
+  const getModalContent = (status) => {
+    switch (status) {
+      case 'win':
+      case 'lost':
         return (
           <EndGameModal
             status={modalData?.status}
@@ -109,7 +110,7 @@ function WordsyPresentation({
         isOpen={isModalOpen}
         closeHandler={() => setIsModalOpen(false)}
       >
-        {getModalContent(modalData?.type)}
+        {getModalContent(modalData?.status)}
       </Modal.Presentation>
     </section>
   )

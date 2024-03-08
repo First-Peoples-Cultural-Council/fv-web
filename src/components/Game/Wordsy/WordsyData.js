@@ -73,7 +73,7 @@ function WordsyData({ kids }) {
 
   const openWarningModal = (text) => {
     setModalData({
-      type: 'warning',
+      status: 'warning',
       text,
     })
     setIsModalOpen(true)
@@ -92,7 +92,6 @@ function WordsyData({ kids }) {
     if (currentGuess.join('') === solution) {
       setIsGameOver(true)
       setModalData({
-        type: 'over',
         status: 'win',
         text: 'Well done!',
       })
@@ -100,7 +99,6 @@ function WordsyData({ kids }) {
     } else if (guesses.length === MAX_TRIES - 1) {
       setIsGameOver(true)
       setModalData({
-        type: 'over',
         status: 'lost',
         text: 'Maybe next time!',
       })
