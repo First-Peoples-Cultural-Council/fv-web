@@ -8,6 +8,7 @@ import { FIRSTVOICESLINK } from 'common/constants'
 
 function WidgetTextConcisePresentation({ widgetData }) {
   const { audio, title, text, url, urlLabel } = widgetData.settings
+  const { sitename } = widgetData
 
   const audioObject = useAudioObject({
     id: audio,
@@ -36,7 +37,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
         {url && (
           <a
             href={url}
-            {...(url.includes(FIRSTVOICESLINK) || widgetData.sitename
+            {...(url.includes(FIRSTVOICESLINK) || url.startsWith(`/${sitename}`)
               ? { target: '_self' }
               : { target: '_blank' })}
             rel="noopener noreferrer"

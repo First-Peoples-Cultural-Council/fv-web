@@ -28,6 +28,7 @@ function WidgetTextPresentation({ widgetData }) {
     bgImage,
     mockData,
   } = widgetData.settings
+  const { sitename } = widgetData
   const format = widgetData?.format || FORMAT_LEFT
 
   const bgImageObject = useImageObject({
@@ -97,7 +98,8 @@ function WidgetTextPresentation({ widgetData }) {
             <div className="rounded-full shadow">
               <a
                 href={url}
-                {...(url.includes(FIRSTVOICESLINK) || widgetData.sitename
+                {...(url.includes(FIRSTVOICESLINK) ||
+                url.startsWith(`/${sitename}`)
                   ? { target: '_self' }
                   : { target: '_blank' })}
                 rel="noopener noreferrer"
