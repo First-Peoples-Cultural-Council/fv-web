@@ -11,7 +11,7 @@ import {
   isWordInWordList,
 } from 'components/Game/Wordsy/Utils/helpers'
 
-const MAX_TRIES = 6
+const MAX_TRIES = 7
 const WORD_LENGTH = 5
 
 function WordsyData({ kids }) {
@@ -52,24 +52,17 @@ function WordsyData({ kids }) {
   }, [data])
 
   // Game controls
-  const [isGameWon, setIsGameWon] = useState(false)
-  const [isGameLost, setIsGameLost] = useState(false)
+  const [isGameOver, setIsGameOver] = useState(false)
   const [guesses, setGuesses] = useState([])
   const [currentGuess, setCurrentGuess] = useState([])
-  const [infoModalOpen, setInfoModalOpen] = useState(false)
-  const [notEnoughLettersModalOpen, setNotEnoughLettersModalOpen] =
-    useState(false)
-  const [wordNotFoundModalOpen, setWordNotFoundModalOpen] = useState(false)
 
-  const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false)
-  const [endGameModalContent, setEndGameModalContent] = useState({})
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalData, setModalData] = useState({})
 
   const isValidInput = () =>
     currentGuess.length === WORD_LENGTH &&
     guesses.length < MAX_TRIES &&
-    !isGameWon
-
-  const isGameOver = () => isGameWon || isGameLost
+    !isGameOver
 
   const isValidGuess = () =>
     isWordInWordList(
@@ -78,14 +71,15 @@ function WordsyData({ kids }) {
       currentGuess.join(''),
     )
 
-  const openNotEnoughLettersModal = () => {
-    setNotEnoughLettersModalOpen(true)
-    setTimeout(() => setNotEnoughLettersModalOpen(false), 1000)
-  }
-
-  const openNotFoundModal = () => {
-    setWordNotFoundModalOpen(true)
-    setTimeout(() => setWordNotFoundModalOpen(false), 1000)
+  const openWarningModal = (text) => {
+    setModalData({
+      status: 'warning',
+      text,
+    })
+    setIsModalOpen(true)
+    setTimeout(() => {
+      setIsModalOpen(false)
+    }, 1000)
   }
 
   const checkAnswer = () => {
@@ -96,19 +90,19 @@ function WordsyData({ kids }) {
     setCurrentGuess([])
 
     if (currentGuess.join('') === solution) {
-      setIsGameWon(true)
-      setIsEndGameModalOpen(true)
-      setEndGameModalContent({
+      setIsGameOver(true)
+      setModalData({
         status: 'win',
         text: 'Well done!',
       })
+      setIsModalOpen(true)
     } else if (guesses.length === MAX_TRIES - 1) {
-      setIsGameLost(true)
-      setIsEndGameModalOpen(true)
-      setEndGameModalContent({
+      setIsGameOver(true)
+      setModalData({
         status: 'lost',
         text: 'Maybe next time!',
       })
+      setIsModalOpen(true)
     }
   }
 
@@ -126,15 +120,15 @@ function WordsyData({ kids }) {
   }
 
   const onEnter = () => {
-    if (isGameOver()) {
+    if (isGameOver) {
       return
     }
     if (currentGuess.length !== WORD_LENGTH) {
-      openNotEnoughLettersModal()
+      openWarningModal('Not Enough Letters.')
       return
     }
     if (!isValidGuess()) {
-      openNotFoundModal()
+      openWarningModal('Word not found.')
       return
     }
     checkAnswer()
@@ -151,15 +145,10 @@ function WordsyData({ kids }) {
     onChar,
     onEnter,
     onDelete,
-    infoModalOpen,
-    setInfoModalOpen,
-    notEnoughLettersModalOpen,
-    setNotEnoughLettersModalOpen,
-    wordNotFoundModalOpen,
-    setWordNotFoundModalOpen,
-    isEndGameModalOpen,
-    setIsEndGameModalOpen,
-    endGameModalContent,
+    isModalOpen,
+    setIsModalOpen,
+    modalData,
+    setModalData,
   }
 }
 

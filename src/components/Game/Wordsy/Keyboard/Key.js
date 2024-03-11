@@ -2,17 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function Key({ children, status, value, onClick, width = 40 }) {
-  const classes = `flex items-center justify-center rounded mx-0.5 text-xs font-bold cursor-pointer select-none 
-  ${!status ? 'bg-slate-200 hover:bg-slate-300 active:bg-slate-400' : ''}
-  ${status === 'absent' ? 'bg-slate-400 text-white' : ''}
+  const classes = `flex items-center justify-center rounded mx-0.5 text-base cursor-pointer select-none 
+  ${!status ? 'bg-gray-200 hover:bg-gray-300 active:bg-gray-400' : ''}
+  ${status === 'absent' ? 'bg-gray-400 text-white' : ''}
   ${
     status === 'correct'
-      ? 'bg-green-500 hover:bg-green-600 active:bg-green-700 text-white'
+      ? 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
       : ''
   }
   ${
     status === 'present'
-      ? 'bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 text-white'
+      ? 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
       : ''
   }`
 

@@ -33,8 +33,9 @@ function MediaBrowserData({ docType }) {
     [TYPES]: searchType,
   })
 
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
-    useSearchLoader({ searchParams: _searchParams })
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const handleTextFieldChange = (event) => {
     event.preventDefault()
@@ -80,7 +81,6 @@ function MediaBrowserData({ docType }) {
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoading: isInitialLoading || isError,
     isLoadingEntries: isInitialLoading,
     loadRef,
     media: data,

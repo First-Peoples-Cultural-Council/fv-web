@@ -41,7 +41,7 @@ function CountdownTimer() {
     )
   }, [countDown])
 
-  return `${hours}:${minutes}:${seconds}`
+  return hours === 'NaN' ? '' : `Next word in ${hours}:${minutes}:${seconds}`
 }
 
 export default CountdownTimer

@@ -60,6 +60,7 @@ function SearchSelectorPresentation({
                   </div>
                 )}
                 {resultsSection}
+                <div ref={loadRef} className="w-full h-10" />
               </div>
             )}
             {!hasResults && (
@@ -74,7 +75,6 @@ function SearchSelectorPresentation({
           </Loading.Container>
         </div>
       </div>
-      <div ref={loadRef} className="w-full h-10" />
     </div>
   )
 }
