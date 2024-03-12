@@ -85,6 +85,8 @@ describe('word Test', () => {
       delay: 2500,
     })
     cy.get('[id="SearchSubmit"]').click()
+    cy.contains('Reports').click()
+    cy.contains('Recently created').click()
     cy.contains(name2).click()
     cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
     cy.get('[data-testid="EntryDrawerEdit"]').click()
