@@ -72,6 +72,8 @@ describe('word Test', () => {
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('be.enabled')
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
+    // eslint-disable-next-line
+    cy.wait(5000)
     cy.contains('Edit words and phrases').click()
     cy.contains('Loading').should('be.visible')
     cy.contains('Loading').should('not.exist')
