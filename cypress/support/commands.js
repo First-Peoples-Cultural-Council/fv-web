@@ -96,7 +96,7 @@ Cypress.Commands.add('middlestuff', (_translationwp) => {
 
   cy.contains('Next step').click()
   cy.contains('Finish').click()
-  cy.contains('Dismiss').click()
+  cy.contains('Dismiss').should('not.exist')
 })
 
 Cypress.Commands.add('checkValidation', (widgetName) => {
