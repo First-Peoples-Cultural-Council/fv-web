@@ -64,10 +64,10 @@ describe('word Test', () => {
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Create').click()
-    const name = `qatestwordh${new Date().getTime()}`
+    const name2 = `qatestwordh${new Date().getTime()}`
     cy.contains('Create a phrase').click()
     cy.contains('Finish').click()
-    cy.get('#title').type(name)
+    cy.get('#title').type(name2)
     cy.middlestuff('Add phrase translation')
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('be.enabled')
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
@@ -76,11 +76,11 @@ describe('word Test', () => {
     cy.contains('Edit phrases').click()
     cy.contains('Loading').should('be.visible')
     cy.contains('Loading').should('not.exist')
-    cy.get('[data-testid="SearchInput"]').type(`${name}`, {
+    cy.get('[data-testid="SearchInput"]').type(`${name2}`, {
       delay: 2500,
     })
     cy.get('[id="SearchSubmit"]').click()
-    cy.contains(name).click()
+    cy.contains(name2).click()
     cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
     cy.get('[data-testid="EntryDrawerEdit"]').click()
     cy.contains('Delete phrase').click()
