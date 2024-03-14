@@ -2,6 +2,7 @@ import { useAuth } from 'react-oidc-context'
 
 // FPCC
 import { ORIGINAL_DESTINATION } from 'common/constants'
+import GlobalConfiguration from 'src/GlobalConfiguration'
 
 export default function useLoginLogout() {
   const auth = useAuth()
@@ -15,8 +16,8 @@ export default function useLoginLogout() {
 
   function logout(e) {
     e?.preventDefault()
-    saveOriginalLocation()
-    auth.signoutRedirect()
+    auth.removeUser()
+    window.location.href = GlobalConfiguration.END_SESSION_URL
   }
 
   function login(e) {
