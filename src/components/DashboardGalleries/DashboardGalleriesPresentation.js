@@ -12,7 +12,7 @@ function DashboardGalleriesPresentation({ isLoading, galleries, site }) {
   return (
     <div
       data-testid="DashboardGalleriesPresentation"
-      className="mx-auto h-full px-8"
+      className="mx-auto h-full max-w-7xl px-8"
     >
       <Loading.Container isLoading={isLoading}>
         <ul className="grid gap-5 grid-cols-3 lg:grid-cols-5">
