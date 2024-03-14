@@ -61,12 +61,6 @@ const oidcConfig = {
   },
 }
 
-if (GlobalConfiguration.END_SESSION_URL) {
-  oidcConfig.metadataSeed = {
-    end_session_endpoint: GlobalConfiguration.END_SESSION_URL,
-  }
-}
-
 // Sentry Config
 Sentry.init({
   dsn: GlobalConfiguration.SENTRY_DSN,
