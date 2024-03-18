@@ -41,7 +41,7 @@ function WidgetAreaEditPresentation({
                 onClick={() => setAddModalOpen(true)}
                 className="flex h-10 items-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-white bg-secondary hover:bg-secondary-dark"
               >
-                {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+                {getIcon('Add', 'btn-icon')}
                 <span className="truncate">Widget</span>
               </button>
             </div>
@@ -136,7 +136,7 @@ function WidgetAreaEditPresentation({
               onClick={() => setAddModalOpen(true)}
               className="flex mx-auto h-10 items-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-white bg-secondary hover:bg-secondary-dark"
             >
-              {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+              {getIcon('Add', 'btn-icon')}
               <span className="truncate">Widget</span>
             </button>
           </div>

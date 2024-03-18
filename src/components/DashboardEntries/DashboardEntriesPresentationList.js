@@ -8,7 +8,6 @@ import EntryDetail from 'components/EntryDetail'
 import getIcon from 'common/utils/getIcon'
 import Drawer from 'components/Drawer'
 import { makePlural } from 'common/utils/urlHelpers'
-import { SECONDARY_BUTTON_STYLE } from 'common/constants'
 
 function DashboardEntriesPresentationList({
   infiniteScroll,
@@ -177,11 +176,10 @@ function DashboardEntriesPresentationList({
                 data-testid="EntryDrawerEdit"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="btn-outlined"
               >
-                <button type="button" className={SECONDARY_BUTTON_STYLE}>
-                  {getIcon('Pencil', 'fill-current mr-2 h-5 w-5')}
-                  <span>Edit</span>
-                </button>
+                {getIcon('Pencil', 'btn-icon')}
+                <span>Edit</span>
               </Link>
 
               <Link
@@ -190,9 +188,9 @@ function DashboardEntriesPresentationList({
                 }`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={SECONDARY_BUTTON_STYLE}
+                className="btn-outlined"
               >
-                {getIcon('Fullscreen', 'fill-current mr-2 w-5 h-5')}
+                {getIcon('Fullscreen', 'btn-icon')}
                 View on site
               </Link>
             </div>

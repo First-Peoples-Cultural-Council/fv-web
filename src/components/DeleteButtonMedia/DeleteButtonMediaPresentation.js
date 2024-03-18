@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
@@ -13,11 +12,11 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
     <>
       <button
         type="button"
-        id="DeleteButton"
+        data-testid="DeleteButton"
         onClick={() => setDeleteModalOpen(true)}
-        className={`${SECONDARY_BUTTON_STYLE} grow mr-2 px-4`}
+        className="btn-outlined"
       >
-        {getIcon('Trash', 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {getIcon('Trash', 'btn-icon')}
         <span>Delete</span>
       </button>
 
@@ -45,6 +44,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
           </div>
           <div className="w-full justify-center flex space-x-2">
             <button
+              data-testid="delete-cancel"
               type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => setDeleteModalOpen(false)}
@@ -52,6 +52,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
               Cancel
             </button>
             <button
+              data-testid="delete-confirm"
               type="button"
               className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
               onClick={() => {

@@ -1,12 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import {
-  PRIMARY_BUTTON_STYLE,
-  SECONDARY_BUTTON_STYLE,
-} from 'common/constants/styles'
+import { PRIMARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function SubmitButtons({
   cancelIcon,
@@ -20,20 +17,22 @@ function SubmitButtons({
     <>
       {onCancelClick && (
         <button
+          data-testid="form-cancel"
           type="button"
           onClick={() => onCancelClick()}
-          className={SECONDARY_BUTTON_STYLE}
+          className="btn-outlined"
         >
-          {cancelIcon && getIcon(cancelIcon, 'fill-current -ml-1 mr-2 h-5 w-5')}
+          {cancelIcon && getIcon(cancelIcon, 'btn-icon')}
           <span>{cancelLabel}</span>
         </button>
       )}
       <button
+        data-testid="form-submit"
         type="button"
         onClick={onSubmitClick}
         className={PRIMARY_BUTTON_STYLE}
       >
-        {submitIcon && getIcon(submitIcon, 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {submitIcon && getIcon(submitIcon, 'btn-icon')}
         <span>{submitLabel}</span>
       </button>
     </>

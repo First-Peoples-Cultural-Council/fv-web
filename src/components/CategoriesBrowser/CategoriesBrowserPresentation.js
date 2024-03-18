@@ -39,11 +39,12 @@ function CategoriesBrowserPresentation({
           </div>
           {currentCategory && (
             <button
+              data-testid="add-category"
               type="button"
               onClick={() => chooseDocHandler(currentCategory)}
               className="mx-auto my-4 bg-secondary border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
-              {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+              {getIcon('Add', 'btn-icon')}
               <span>Add Category</span>
             </button>
           )}

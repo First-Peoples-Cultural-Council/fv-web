@@ -74,7 +74,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
         to={`/${site?.sitename}/dashboard/create/widget`}
         className="inline-flex justify-center items-center rounded-lg shadow-lg px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
       >
-        {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {getIcon('Add', 'btn-icon')}
         <span>Create a New Widget</span>
       </Link>
     </div>

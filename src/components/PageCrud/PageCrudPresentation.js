@@ -30,7 +30,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg shadow-sm text-primary border border-gray-300 bg-white hover:bg-gray-100"
             >
-              {getIcon('Link', 'fill-current -ml-1 mr-2 h-5 w-5')}
+              {getIcon('Link', 'btn-icon')}
               <span>View Page</span>
             </Link>
             {/* <VisibilitySelect.Container
@@ -42,7 +42,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
               to={`/${site?.sitename}/dashboard/edit/page?slug=${dataToEdit?.slug}&editHeader=true`}
               className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary-light"
             >
-              {getIcon('Pencil', 'fill-current -ml-1 mr-2 h-5 w-5')}
+              {getIcon('Pencil', 'btn-icon')}
               <span>Edit Page Header</span>
             </Link>
           </div>

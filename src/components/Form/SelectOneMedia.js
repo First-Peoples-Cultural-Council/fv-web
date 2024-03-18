@@ -109,7 +109,7 @@ function SelectOneButton({ value, onChange }) {
         className={FRAGMENT_BUTTON_STYLES}
         onClick={() => setMediaChoiceModalOpen(true)}
       >
-        {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {getIcon('Add', 'btn-icon')}
         <span>Add Media</span>
       </button>
 
@@ -126,7 +126,7 @@ function SelectOneButton({ value, onChange }) {
             className={FRAGMENT_BUTTON_STYLES}
             onClick={() => mediaChoiceButtonClicked(IMAGE)}
           >
-            {getIcon('Images', 'fill-current -ml-1 mr-2 h-5 w-5')}
+            {getIcon('Images', 'btn-icon')}
             <span>Add Image</span>
           </button>
           <button
@@ -134,7 +134,7 @@ function SelectOneButton({ value, onChange }) {
             className={FRAGMENT_BUTTON_STYLES}
             onClick={() => mediaChoiceButtonClicked(VIDEO)}
           >
-            {getIcon('Video', 'fill-current -ml-1 mr-2 h-5 w-5')}
+            {getIcon('Video', 'btn-icon')}
             <span>Add Video</span>
           </button>
         </div>

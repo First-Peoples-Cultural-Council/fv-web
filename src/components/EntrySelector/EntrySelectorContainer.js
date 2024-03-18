@@ -48,7 +48,7 @@ function EntrySelectorContainer({ types, visibility, addItem }) {
         justify-center text-sm font-medium text-white hover:bg-secondary-light
         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
         >
-          {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+          {getIcon('Add', 'btn-icon')}
           <span>{buttonLabel}</span>
         </button>
       }

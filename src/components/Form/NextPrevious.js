@@ -6,10 +6,7 @@ import { Link } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import { useUserStore } from 'context/UserContext'
-import {
-  PRIMARY_BUTTON_STYLE,
-  SECONDARY_BUTTON_STYLE,
-} from 'common/constants/styles'
+import { PRIMARY_BUTTON_STYLE } from 'common/constants/styles'
 import { ASSISTANT } from 'common/constants/roles'
 
 function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
@@ -35,11 +32,12 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
     <div className="flex w-full justify-between p-2">
       {activeStepNumber > 0 ? (
         <button
+          data-testid="previous"
           type="button"
-          className={SECONDARY_BUTTON_STYLE}
+          className="btn-outlined"
           onClick={() => onStepClick({ forward: false })}
         >
-          {getIcon('Next', 'fill-current rotate-180 h-5 mr-2')}{' '}
+          {getIcon('Next', 'btn-icon rotate-180')}
           <span>Previous</span>
         </button>
       ) : (
@@ -47,6 +45,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
       )}
       {activeStepNumber !== numberOfSteps - 1 ? (
         <button
+          data-testid="next"
           type="button"
           className={PRIMARY_BUTTON_STYLE}
           onClick={() => onStepClick({ forward: true })}

@@ -363,10 +363,7 @@ function DictionaryCrudPresentation({
               onClick={backStep}
               className="bg-white h-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
-              {getIcon(
-                activeStepNumber < 1 ? 'Close' : 'Previous',
-                'fill-current -ml-1 mr-2 h-5 w-5',
-              )}
+              {getIcon(activeStepNumber < 1 ? 'Close' : 'Previous', 'btn-icon')}
               <span>{activeStep < 1 ? 'Cancel' : 'Previous step'}</span>
             </button>
             <button
@@ -379,7 +376,7 @@ function DictionaryCrudPresentation({
               }
               className="bg-secondary h-full border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
             >
-              {getIcon('Save', 'fill-current -ml-1 mr-2 h-5 w-5')}
+              {getIcon('Save', 'btn-icon')}
               <span>Finish</span>
             </button>
             <button
