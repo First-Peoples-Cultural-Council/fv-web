@@ -9,6 +9,7 @@ describe('Test songs', () => {
     cy.contains('Songs').click()
     cy.get('ul li').each((_song) => {
       cy.wrap(_song).click()
+      cy.contains('Loading').should('not.exist')
 
       cy.contains('Go to Song', { timeout: 12000 })
       cy.get('#CloseDrawerBtn').click()

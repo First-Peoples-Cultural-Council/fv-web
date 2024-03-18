@@ -11,7 +11,7 @@ describe('Page Test', () => {
     )}/custom/qacustompage`
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),
@@ -43,7 +43,7 @@ describe('Page Test', () => {
   it('12.2 - Page Text', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),

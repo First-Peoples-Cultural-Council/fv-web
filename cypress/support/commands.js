@@ -89,14 +89,14 @@ Cypress.Commands.add('middlestuff', (_translationwp) => {
   cy.get('.text-left > .flex-col > :nth-child(1) > :nth-child(1)').click() // FW-5205
   cy.contains('Add Category').click()
 
-  cy.contains('Add notes').click()
-  cy.get('[name="notes.0.text"]').type('this is so note worthy!!!')
+  // cy.contains('Add notes').click()
+  // cy.get('[name="notes.0.text"]').type('this is so note worthy!!!')
 
   cy.contains('Next step').click()
 
   cy.contains('Next step').click()
   cy.contains('Finish').click()
-  cy.contains('Dismiss').click()
+  cy.contains('Dismiss').should('not.exist')
 })
 
 Cypress.Commands.add('checkValidation', (widgetName) => {

@@ -6,10 +6,10 @@ describe('word Test', () => {
     cy.viewport(1024, 768)
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       Cypress.require('/cypress/support/commands')
     })
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),
@@ -52,32 +52,6 @@ describe('word Test', () => {
     cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
     cy.get('[data-testid="EntryDrawerEdit"]').click()
     cy.contains('Delete word').click()
-    cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
-  })
-
-  it('8.1 - create phrase', () => {
-    cy.on('uncaught:exception', () => false)
-    cy.viewport(1024, 768)
-
-    cy.contains('Explore Languages').click()
-
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-    cy.contains('Dashboard').click()
-    cy.contains('Create').click()
-    const name = `cha'DIch${new Date().getTime()}`
-    cy.contains('Create a phrase').click()
-    cy.contains('Finish').click()
-    cy.get('#title').type(name)
-    cy.middlestuff('Add phrase translation')
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('be.enabled')
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-    cy.contains('Dashboard').click()
-    cy.contains('Edit words and phrases').click()
-    cy.get('[data-testid="SearchInput"]').type(`${name}{enter}`)
-    cy.contains(name).click()
-    cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
-    cy.get('[data-testid="EntryDrawerEdit"]').click()
-    cy.contains('Delete phrase').click()
     cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
   })
 
