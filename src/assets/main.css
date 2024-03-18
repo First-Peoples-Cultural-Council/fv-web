@@ -1,44 +1,12 @@
+@import '@bcgov/bc-sans/css/BCSans.css';
+
+/* See Tailwind docs for distinction between base, components, and utilities - https://tailwindcss.com/docs/adding-custom-styles#using-css-and-layer */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-@import '@bcgov/bc-sans/css/BCSans.css';
-
-@layer utilities {
-  .masonry-cols-2 {
-    column-count: 2;
-    column-gap: 1em;
-  }
-  .masonry-cols-3 {
-    column-count: 3;
-    column-gap: 1em;
-  }
-  .masonry-cols-4 {
-    column-count: 4;
-    column-gap: 1em;
-  }
-  .masonry-cols-5 {
-    column-count: 5;
-    column-gap: 1em;
-  }
-  .breakAfter {
-    page-break-after: always;
-  }
-  .tooltip {
-    @apply invisible absolute;
-  }
-  .has-tooltip:hover .tooltip {
-    @apply visible z-50;
-  }
-  .inline-url {
-    @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
-  }
-}
 
 /* Changes to wysiwyg classes need to be mirrored in the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
-@layer components {
-  .ql-video {
-    @apply w-full h-96;
-  }
+@layer base {
   .wysiwyg h2 {
     @apply border-b border-gray-500 font-bold my-6 py-5 text-2xl text-primary;
   }
@@ -56,10 +24,29 @@
   }
 }
 
-.uppy-Root label {
-  font-family: 'BCSans', sans-serif;
+@layer components {
+  .ql-video {
+    @apply w-full h-96;
+  }
+  .inline-url {
+    @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
+  }
 }
 
-.uppy-Root .uppy-u-reset {
-  font-family: 'BCSans', sans-serif;
+@layer utilities {
+  .breakAfter {
+    page-break-after: always;
+  }
+  .tooltip {
+    @apply invisible absolute;
+  }
+  .has-tooltip:hover .tooltip {
+    @apply visible z-50;
+  }
+  .uppy-Root label {
+    font-family: 'BCSans', sans-serif;
+  }
+  .uppy-Root .uppy-u-reset {
+    font-family: 'BCSans', sans-serif;
+  }
 }
