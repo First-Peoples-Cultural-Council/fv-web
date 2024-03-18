@@ -24,6 +24,8 @@
   }
 }
 
+/* These component rules can be over-ridden using utility classes. 
+For example over-ride the colour of the btn-contained backgound using bg-secondary */
 @layer components {
   .ql-video {
     @apply w-full h-96;

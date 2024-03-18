@@ -8,7 +8,6 @@ import StoryAudienceCrud from 'components/StoryAudienceCrud'
 import StoryCoverCrud from 'components/StoryCoverCrud'
 import StoryPagesCrud from 'components/StoryPagesCrud'
 import DeleteButton from 'components/DeleteButton'
-import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function StoryCrudContainer() {
   const { activeStep, storyData, deleteHandler } = StoryCrudData()
@@ -35,12 +34,11 @@ function StoryCrudContainer() {
   return (
     <section id="StoryCrudPresentation">
       {storyData?.id ? (
-        <div className="flex w-full justify-end -mb-14 pt-8 pr-8">
+        <div className="flex w-full justify-end -mb-14 pt-8 pr-8 z-10">
           <DeleteButton.Presentation
             deleteHandler={deleteHandler}
             label="Delete Story"
             message="Are you sure you want to delete this story from your site?"
-            styling={`${SECONDARY_BUTTON_STYLE} z-10`}
           />
         </div>
       ) : null}
