@@ -16,6 +16,8 @@ export const SORT = 'sort'
 export const STARTS_WITH_CHAR = 'startsWithChar'
 export const TYPES = 'types'
 export const VISIBILITY = 'visibility'
+export const MINWORDS = 'minWords'
+export const MAXWORDS = 'maxWords'
 
 /* Recognized values for params */
 

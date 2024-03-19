@@ -3,7 +3,7 @@
 describe('Widget tests', () => {
   beforeEach(() => {
     cy.on('uncaught:exception', () => false)
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       Cypress.require('/cypress/support/commands')
     })
     cy.viewport(1024, 768)

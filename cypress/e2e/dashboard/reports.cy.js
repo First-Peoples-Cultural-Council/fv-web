@@ -16,11 +16,11 @@ describe('Reports testing', () => {
     cy.viewport(1024, 768)
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       Cypress.require('/cypress/support/commands')
     })
 
-    cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),

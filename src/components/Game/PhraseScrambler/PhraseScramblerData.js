@@ -13,6 +13,7 @@ import {
   TYPE_PHRASE,
   HAS_TRANSLATION,
   SORT,
+  MINWORDS,
 } from 'common/constants'
 import { arrayShuffle, partitionArray } from 'common/utils/functionHelpers'
 import { normalizeSpaces } from 'common/utils/stringHelpers'
@@ -73,6 +74,7 @@ function PhraseScramblerData({ kids }) {
     [GAMES]: true,
     [HAS_TRANSLATION]: true,
     [SORT]: 'random',
+    [MINWORDS]: 2,
   })
   if (kids) {
     _searchParams.append(KIDS, kids)
