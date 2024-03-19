@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import RequireAuth from 'common/RequireAuth'
 import DashboardEditPresentation from 'components/DashboardEdit/DashboardEditPresentation'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
-import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE, AUDIO } from 'common/constants'
 
 import CategoryCrud from 'components/CategoryCrud'
 import CharacterCrud from 'components/CharacterCrud'
@@ -17,6 +17,7 @@ import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
+import MediaEdit from 'components/MediaEdit'
 
 import DashboardAlphabet from 'components/DashboardAlphabet'
 import DashboardCategories from 'components/DashboardCategories'
@@ -101,6 +102,14 @@ function DashboardEditContainer() {
           }
         />
         {/* Individual Edit Forms */}
+        <Route
+          path="audio"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <MediaEdit.Container type={AUDIO} />
+            </RequireAuth>
+          }
+        />
         <Route
           path="category"
           element={

@@ -1,14 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link, useParams } from 'react-router-dom'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
 import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
+import { PRIMARY_BUTTON_STYLE, SECONDARY_BUTTON_STYLE } from 'common/constants'
 
 function MediaDetailsAudio({ file }) {
+  const { sitename } = useParams()
   return (
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6 sticky top-0">
+      <div className="flex justify-center space-x-2">
+        <a
+          href={file?.downloadLink}
+          className={`flex-1 ${SECONDARY_BUTTON_STYLE}`}
+        >
+          <div className="flex w-full h-full items-center justify-center">
+            {getIcon('Download', 'fill-current mr-2 w-5 h-5')} Download
+          </div>
+        </a>
+        <Link
+          to={`/${sitename}/dashboard/edit/audio?id=${file?.id}`}
+          data-testid="EntryDrawerEdit"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex-1 ${PRIMARY_BUTTON_STYLE}`}
+        >
+          {getIcon('Pencil', 'fill-current mr-2 w-5 h-5')}
+          <span>Edit</span>
+        </Link>
+      </div>
       <div>
         <div className="block w-full rounded-lg overflow-hidden">
           <AudioNative styling="w-full" audioObject={file} />
