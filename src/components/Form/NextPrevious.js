@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import { useUserStore } from 'context/UserContext'
-import { PRIMARY_BUTTON_STYLE } from 'common/constants/styles'
 import { ASSISTANT } from 'common/constants/roles'
 
 function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
@@ -47,7 +46,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
         <button
           data-testid="next"
           type="button"
-          className={PRIMARY_BUTTON_STYLE}
+          className="btn-contained bg-secondary"
           onClick={() => onStepClick({ forward: true })}
         >
           <span>Next step</span> {getIcon('Next', 'fill-current h-5 ml-2')}

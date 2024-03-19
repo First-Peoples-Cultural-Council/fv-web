@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { PRIMARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function SubmitButtons({
   cancelIcon,
@@ -14,7 +13,7 @@ function SubmitButtons({
   onSubmitClick,
 }) {
   return (
-    <>
+    <div className="space-x-2">
       {onCancelClick && (
         <button
           data-testid="form-cancel"
@@ -30,12 +29,12 @@ function SubmitButtons({
         data-testid="form-submit"
         type="button"
         onClick={onSubmitClick}
-        className={PRIMARY_BUTTON_STYLE}
+        className="btn-contained bg-secondary"
       >
         {submitIcon && getIcon(submitIcon, 'btn-icon')}
         <span>{submitLabel}</span>
       </button>
-    </>
+    </div>
   )
 }
 
