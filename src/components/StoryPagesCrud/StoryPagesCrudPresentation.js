@@ -110,7 +110,7 @@ function StoryPagesCrudPresentation({
             <button
               data-testid="add-page"
               type="button"
-              className="btn-contained bg-secondary my-1 focus:ring-secondary-light"
+              className="btn-contained bg-secondary my-1"
               onClick={() => setAddPageOpen(true)}
             >
               {getIcon('Add', 'fill-current h-5 mr-2')}

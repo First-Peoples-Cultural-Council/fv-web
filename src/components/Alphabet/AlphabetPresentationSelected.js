@@ -147,11 +147,12 @@ function AlphabetPresentationSelected({
         )}
         {(relatedVideo || relatedVideoLink?.length > 0) && (
           <button
+            data-testid="play-video"
             type="button"
             onClick={onVideoClick}
-            className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
+            className="btn-contained"
           >
-            {getIcon('Play', 'inline-flex fill-current mr-2 -ml-1 h-8 w-8')}
+            {getIcon('Play', 'btn-icon')}
             Play Video
           </button>
         )}

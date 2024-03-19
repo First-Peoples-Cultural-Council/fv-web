@@ -168,8 +168,9 @@ function ContactUsPresentation({
 
                   <div className="col-span-7 justify-start flex">
                     <button
+                      data-testid="submit"
                       type="submit"
-                      className="text-center shadow bg-primary hover:bg-primary-dark focus:shadow-outline text-white font-bold py-2 px-4 rounded-lg"
+                      className="btn-contained"
                       onClick={handleSubmit(submitHandler)}
                     >
                       Submit

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 function Button({ onClickHandler, label, active }) {
   return (
     <button
-      type="button"
+      data-testid={`${label}-btn`}
       type="button"
       className={`${
         active ? 'bg-gray-100' : ''

@@ -46,7 +46,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
             <button
               data-testid="delete-cancel"
               type="button"
-              className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-outlined"
               onClick={() => setDeleteModalOpen(false)}
             >
               Cancel
@@ -54,7 +54,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
             <button
               data-testid="delete-confirm"
               type="button"
-              className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-contained bg-secondary"
               onClick={() => {
                 setDeleteModalOpen(false)
                 deleteHandler()

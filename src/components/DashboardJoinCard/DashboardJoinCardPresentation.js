@@ -58,7 +58,7 @@ function DashboardJoinCardPresentation({
         </div>
         <div className="p-5 col-span-1">
           <div className="lg:inline-flex justify-between w-full">
-            <div className="lg:space-x-1">
+            <div className="lg:space-x-1 lg:inline-flex items-center">
               <label htmlFor="role-to-assign" className="sr-only">
                 Select message type
               </label>
@@ -68,7 +68,7 @@ function DashboardJoinCardPresentation({
                 onChange={(e) =>
                   setSelectedRole(e.target.value.split(' ').join('_'))
                 }
-                className="inline-flex rounded-lg py-1.5 text-sm text-primary border border-primary shadow-sm hover:bg-gray-50"
+                className="btn-outlined text-primary border-primary"
               >
                 <option value={MEMBER}>Approve as Member</option>
                 <option value={ASSISTANT}>Approve as Assistant</option>
@@ -82,14 +82,14 @@ function DashboardJoinCardPresentation({
                 Approve and assign role
               </label>
               <button
-                id="approve-request"
+                data-testid="approve-request"
                 name="approve-request"
                 type="button"
                 onClick={() => handleApprove(selectedRole)}
-                className="mt-1 lg:mt-0 inline-flex items-center gap-x-2 rounded-lg px-2.5 py-1.5 text-sm bg-primary text-white shadow-sm hover:bg-primary-dark"
+                className="btn-contained"
               >
-                OK
-                {getIcon('CheckCircleSolid', 'h-4 w-4 fill-current')}
+                {getIcon('CheckCircleSolid', 'btn-icon')}
+                <span>OK</span>
               </button>
             </div>
             <div className="mt-1 lg:mt-0">
@@ -98,13 +98,13 @@ function DashboardJoinCardPresentation({
               </label>
               <button
                 type="button"
-                id="igore-request"
+                data-testid="igore-request"
                 name="igore-request"
                 onClick={() => handleIgnore()}
-                className="inline-flex items-center gap-x-2 rounded-lg px-2.5 py-1.5 text-sm text-secondary border border-secondary shadow-sm hover:bg-gray-50"
+                className="btn-outlined text-secondary border-secondary"
               >
-                Ignore
-                {getIcon('TimesCircleSolid', 'h-4 w-4 fill-current')}
+                {getIcon('TimesCircleSolid', 'btn-icon')}
+                <span>Ignore</span>
               </button>
             </div>
           </div>
@@ -131,6 +131,7 @@ function DashboardJoinCardPresentation({
             </dd>
           </div>
           <button
+            data-testid="show-less"
             type="button"
             className={`${
               isExpanded ? 'inline-block' : 'hidden'
