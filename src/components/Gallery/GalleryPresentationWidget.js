@@ -37,7 +37,7 @@ function GalleryPresentationWidget({ data, sitename }) {
       </div>
       <div className="flex justify-center">
         <Link
-          className="bg-secondary hover:bg-secondary-dark font-medium items-center justify-center px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
+          className="btn-contained bg-secondary"
           to={`/${sitename}/galleries/${data?.id}`}
         >
           Go to gallery

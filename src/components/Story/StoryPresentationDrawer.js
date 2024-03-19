@@ -85,7 +85,7 @@ function StoryPresentationDrawer({ entry, sitename }) {
           <div className="flex flex-wrap">
             <Link
               to={`/${sitename}/stories/${entry?.id}`}
-              className="shrink-0 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-lg shadow-sm font-medium text-white bg-storyText hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-storyText sm:flex-1"
+              className="btn-contained shrink-0 w-full bg-storyText sm:flex-1"
             >
               <span className="whitespace-nowrap">Go to Story</span>
             </Link>
