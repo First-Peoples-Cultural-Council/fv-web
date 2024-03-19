@@ -361,7 +361,7 @@ function DictionaryCrudPresentation({
               data-testid="DashboardPreviousCancelButton"
               type="button"
               onClick={backStep}
-              className="bg-white h-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+              className="btn-outlined"
             >
               {getIcon(activeStepNumber < 1 ? 'Close' : 'Previous', 'btn-icon')}
               <span>{activeStep < 1 ? 'Cancel' : 'Previous step'}</span>
@@ -374,7 +374,7 @@ function DictionaryCrudPresentation({
                   ? onFinishClick
                   : handleSubmit(submitHandler)
               }
-              className="bg-secondary h-full border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-white hover:bg-secondary-light focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+              className="btn-contained bg-secondary"
             >
               {getIcon('Save', 'btn-icon')}
               <span>Finish</span>
@@ -385,10 +385,10 @@ function DictionaryCrudPresentation({
               onClick={forwardStep}
               className={`${
                 activeStepNumber === lastStep ? 'opacity-0 cursor-default' : ''
-              } bg-white h-full border border-gray-300 rounded-lg shadow-sm py-2 px-4 inline-flex items-center justify-center text-sm font-medium text-fv-charcoal hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light`}
+              } btn-outlined`}
             >
               <span>Next step</span>
-              {getIcon('Next', 'fill-current ml-2 -mr-1 h-5 w-5')}
+              {getIcon('Next', 'btn-icon')}
             </button>
           </div>
         </section>

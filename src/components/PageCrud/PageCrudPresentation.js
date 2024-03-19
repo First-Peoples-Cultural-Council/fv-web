@@ -28,7 +28,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
               to={dataToEdit?.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg shadow-sm text-primary border border-gray-300 bg-white hover:bg-gray-100"
+              className="btn-outlined"
             >
               {getIcon('Link', 'btn-icon')}
               <span>View Page</span>
@@ -40,7 +40,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
             <Link
               type="button"
               to={`/${site?.sitename}/dashboard/edit/page?slug=${dataToEdit?.slug}&editHeader=true`}
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary-light"
+              className="btn-outlined"
             >
               {getIcon('Pencil', 'btn-icon')}
               <span>Edit Page Header</span>

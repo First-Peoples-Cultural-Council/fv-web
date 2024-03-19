@@ -16,10 +16,6 @@ const DEFAULT_MEDIA_VALUE = {
   docType: '',
 }
 
-const FRAGMENT_BUTTON_STYLES =
-  'mt-1 mr-4 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex ' +
-  'justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
-
 function SelectOneMedia({ label, nameId, control, errors, helpText }) {
   return (
     <div>
@@ -91,6 +87,7 @@ function SelectOneButton({ value, onChange }) {
           Remove
         </span>
         <button
+          data-testid="remove"
           type="button"
           aria-label="Remove"
           // eslint-disable-next-line react/no-unknown-property
@@ -105,8 +102,9 @@ function SelectOneButton({ value, onChange }) {
   ) : (
     <div className="block">
       <button
+        data-testid="add-media"
         type="button"
-        className={FRAGMENT_BUTTON_STYLES}
+        className="btn-outlined mt-1 mr-4"
         onClick={() => setMediaChoiceModalOpen(true)}
       >
         {getIcon('Add', 'btn-icon')}
@@ -122,16 +120,18 @@ function SelectOneButton({ value, onChange }) {
         <div className="mx-auto rounded-lg overflow-hidden bg-gray-50 p-8 m-8 mt-0">
           <h2 className="mb-4">What kind of file do you want to add?</h2>
           <button
+            data-testid="add-image"
             type="button"
-            className={FRAGMENT_BUTTON_STYLES}
+            className="btn-outlined mt-1 mr-4"
             onClick={() => mediaChoiceButtonClicked(IMAGE)}
           >
             {getIcon('Images', 'btn-icon')}
             <span>Add Image</span>
           </button>
           <button
+            data-testid="add-video"
             type="button"
-            className={FRAGMENT_BUTTON_STYLES}
+            className="btn-outlined mt-1 mr-4"
             onClick={() => mediaChoiceButtonClicked(VIDEO)}
           >
             {getIcon('Video', 'btn-icon')}

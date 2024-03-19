@@ -23,7 +23,7 @@ function HomeCrudPresentation({ site }) {
             <Link
               type="button"
               to={`/${site?.sitename}/dashboard/edit/home?editHeader=true`}
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-primary hover:bg-primary-light"
+              className="btn-contained"
             >
               {getIcon('Pencil', 'btn-icon')}
               <span>Edit banner and logo</span>

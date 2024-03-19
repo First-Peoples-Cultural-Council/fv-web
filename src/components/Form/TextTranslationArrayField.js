@@ -74,6 +74,7 @@ function TextTranslationArrayField({
                     Delete {label.slice(0, -1)}
                   </span>
                   <button
+                    data-testid="delete-btn"
                     type="button"
                     aria-label="Delete Translation"
                     className="inline-flex"
@@ -88,9 +89,10 @@ function TextTranslationArrayField({
         </ul>
         {fields?.length < maxItems && (
           <button
+            data-testid="add-translation"
             type="button"
             onClick={() => append({ text: '' })}
-            className="bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+            className="btn-outlined"
           >
             {getIcon('Add', 'btn-icon')}
             <span>Add {label.slice(0, -1).toLowerCase()}</span>
