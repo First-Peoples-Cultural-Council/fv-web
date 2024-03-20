@@ -69,9 +69,9 @@ function AddGalleryButton({ value, onChange }) {
         type="button"
         data-testid="GalleryField-btn-add"
         onClick={() => setModalOpen(true)}
-        className="mt-1 bg-white border-2 border-primary text-primary hover:bg-gray-50 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+        className="mt-1 btn-outlined"
       >
-        {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {getIcon('Add', 'btn-icon')}
         <span>Add Gallery</span>
       </button>
       {/* Add Modal */}

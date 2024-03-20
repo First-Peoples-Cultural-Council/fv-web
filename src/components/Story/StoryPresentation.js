@@ -276,6 +276,7 @@ const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
 
   const getImageTag = ({ image, className }) => (
     <img
+      key={image?.id}
       className={className}
       src={getMediaPath({
         type: IMAGE,
@@ -370,16 +371,14 @@ const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
     case mediaLength > 2:
       return (
         <div className="w-full md:w-6/12">
-          <div className="masonry-cols-2 p-4">
+          <div className="columns-2 gap-4 p-4">
             {images.length > 0
-              ? images?.map((image) => (
-                  <div key={image.id} className="mb-4">
-                    {getImageTag({
-                      image,
-                      className: 'h-auto w-full',
-                    })}
-                  </div>
-                ))
+              ? images?.map((image) =>
+                  getImageTag({
+                    image,
+                    className: 'w-full aspect-auto mb-4',
+                  }),
+                )
               : null}
             {videos.length > 0
               ? videos?.map((video) => (

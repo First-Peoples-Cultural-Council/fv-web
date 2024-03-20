@@ -215,17 +215,19 @@ function ParachutePresentation({
               {gameStatus === 'FAIL' && renderFail()}
             </div>
 
-            <div className="mx-2.5">
+            <div className="space-x-2">
               <button
+                data-testid="new"
                 type="button"
                 onClick={startNewGame}
-                className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white mr-2.5"
+                className="btn-contained bg-primary"
               >
                 New Puzzle
               </button>
               <button
+                data-testid="restart"
                 type="button"
-                className="inline-flex items-center bg-secondary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
+                className="btn-contained bg-secondary"
                 onClick={restart}
               >
                 Restart

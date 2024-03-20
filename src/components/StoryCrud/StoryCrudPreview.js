@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import WysiwygBlock from 'components/WysiwygBlock/WysiwygBlock'
 import MediaThumbnail from 'components/MediaThumbnail'
 import getIcon from 'common/utils/getIcon'
-import { SECONDARY_BUTTON_STYLE } from 'common/constants'
 
 function StoryCrudPreview({ storyData }) {
   const {
@@ -39,6 +38,7 @@ function StoryCrudPreview({ storyData }) {
 
   const translateButton = () => (
     <button
+      data-testid="translate"
       type="button"
       className="text-primary-light text-sm font-semibold"
       onClick={() => setTranslate(!translate)}
@@ -48,8 +48,8 @@ function StoryCrudPreview({ storyData }) {
   )
 
   const editButton = (link) => (
-    <Link to={link} className={SECONDARY_BUTTON_STYLE}>
-      {getIcon('Pencil', 'fill-current -ml-1 mr-2 h-5 w-5')} <span>Edit</span>
+    <Link to={link} className="btn-outlined">
+      {getIcon('Pencil', 'btn-icon')} <span>Edit</span>
     </Link>
   )
 

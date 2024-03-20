@@ -50,9 +50,10 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
           </div>
           <div className="space-y-3">
             <button
+              data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="disabled:opacity-40 inline-flex justify-center rounded-lg shadow-lg px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-contained disabled:opacity-40 bg-secondary"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK
@@ -72,9 +73,9 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
       )}
       <Link
         to={`/${site?.sitename}/dashboard/create/widget`}
-        className="inline-flex justify-center items-center rounded-lg shadow-lg px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
+        className="btn-contained"
       >
-        {getIcon('Add', 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {getIcon('Add', 'btn-icon')}
         <span>Create a New Widget</span>
       </Link>
     </div>
