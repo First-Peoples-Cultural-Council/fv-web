@@ -153,7 +153,7 @@ function AlphabetPresentationSelected({
             className="btn-contained text-base text-center"
           >
             {getIcon('Play', 'btn-icon')}
-            Play Video
+            <span>Play Video</span>
           </button>
         )}
       </div>
