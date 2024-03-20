@@ -7,6 +7,7 @@ import Form from 'components/Form'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
+import AudioNative from 'components/AudioNative'
 
 function MediaEditPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -47,6 +48,7 @@ function MediaEditPresentation({ dataToEdit, submitHandler }) {
         subtitle="Edit the details for your Audio file."
       />
       <form onReset={reset}>
+        <AudioNative styling="mt-4 w-full sm:w-1/3" audioObject={dataToEdit} />
         <div className="mt-6 grid grid-cols-12 gap-6">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
