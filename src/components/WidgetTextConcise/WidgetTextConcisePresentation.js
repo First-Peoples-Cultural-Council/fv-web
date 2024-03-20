@@ -41,7 +41,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
               ? { target: '_self' }
               : { target: '_blank' })}
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-primary hover:bg-primary-dark font-medium px-5 py-2 rounded-lg shadow-sm text-base text-center text-white"
+            className="btn-contained"
           >
             <span>{urlLabel || 'Learn More'}</span>
           </a>

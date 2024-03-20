@@ -59,7 +59,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                         href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/17662356/New+Change+your+homepage+logo+and+banner"
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="text-blue-600 visited:text-purple-600 underline"
+                        className="inline-url"
                       >
                         Read more about requirements for logos and banners.
                       </a>

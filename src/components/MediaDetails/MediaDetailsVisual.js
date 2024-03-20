@@ -65,12 +65,10 @@ function MediaDetailsVisual({ file, docType }) {
       <div className="flex">
         <a
           href={file?.downloadLink}
-          className="flex-1 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
+          className="btn-contained flex-1 bg-secondary"
         >
-          <div className="flex w-full h-full items-center justify-center">
-            {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}{' '}
-            Download
-          </div>
+          {getIcon('Download', 'btn-icon')}
+          <span>Download</span>
         </a>
       </div>
     </div>
