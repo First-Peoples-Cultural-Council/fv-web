@@ -1,15 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
 import Loading from 'components/Loading'
 import MediaEditPresentation from 'components/MediaEdit/MediaEditPresentation'
+import MediaEditData from 'components/MediaEdit/MediaEditData'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
-function MediaEditContainer() {
+function MediaEditContainer({ docType }) {
+  const { isLoading, dataToEdit } = MediaEditData({ docType })
+
   return (
-    <Loading.Container isLoading={false}>
-      <MediaEditPresentation />
+    <Loading.Container isLoading={isLoading}>
+      <MediaEditPresentation dataToEdit={dataToEdit} />
     </Loading.Container>
   )
+}
+
+const { oneOf } = PropTypes
+
+MediaEditContainer.propTypes = {
+  docType: oneOf([AUDIO, IMAGE, VIDEO]),
 }
 
 export default MediaEditContainer

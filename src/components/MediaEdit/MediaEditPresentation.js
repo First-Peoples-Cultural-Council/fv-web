@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
@@ -7,7 +8,7 @@ import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 
-function MediaEditPresentation() {
+function MediaEditPresentation({ dataToEdit }) {
   // todo: verify the char count in these validators
   const validator = yup.object().shape({
     original: null,
@@ -25,14 +26,14 @@ function MediaEditPresentation() {
     description: '',
     acknowledgement: '',
     speakers: [],
-    excludeFromGames: false,
-    excludeFromKids: false,
+    includeInGames: true,
+    includeInKids: true,
   }
 
   const { control, errors, register, reset } = useEditForm({
     defaultValues,
     validator,
-    dataToEdit: {},
+    dataToEdit,
   })
 
   const speakerOptions = speakerData?.results?.map((entry) => ({
@@ -84,26 +85,26 @@ function MediaEditPresentation() {
 
           <div className="col-span-12">
             <Form.RadioButtons
-              label="Exclude from Games?"
+              label="Include in games?"
               control={control}
               errors={errors}
-              nameId="excludeFromGames"
+              nameId="includeInGames"
               options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
+                { label: 'Yes', value: true },
+                { label: 'No', value: false },
               ]}
             />
           </div>
 
           <div className="col-span-12">
             <Form.RadioButtons
-              label="Exclude from Kids site?"
+              label="Include on the Kids site?"
               control={control}
               errors={errors}
-              nameId="excludeFromKids"
+              nameId="includeInKids"
               options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
+                { label: 'Yes', value: true },
+                { label: 'No', value: false },
               ]}
             />
           </div>
@@ -122,6 +123,11 @@ function MediaEditPresentation() {
       </form>
     </div>
   )
+}
+
+const { object } = PropTypes
+MediaEditPresentation.propTypes = {
+  dataToEdit: object,
 }
 
 export default MediaEditPresentation

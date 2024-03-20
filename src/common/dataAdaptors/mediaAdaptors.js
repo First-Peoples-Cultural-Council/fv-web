@@ -1,3 +1,4 @@
+import { audienceForViewing } from 'common/dataAdaptors/audienceAdaptors'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 export const mediaAdaptor = ({ type, data }) => {
@@ -45,4 +46,18 @@ export const mediaAdaptor = ({ type, data }) => {
   }
 
   return { ...data, message: 'NOT a media document' }
+}
+
+export const entryForViewing = ({ type, data, flatListOfSpeakers = false }) => {
+  const response = {
+    ...mediaAdaptor({ type, data }),
+    ...audienceForViewing({ item: data }),
+  }
+
+  if (flatListOfSpeakers) {
+    const speakersFlatList = response?.speakers?.map((speaker) => speaker?.id)
+    response.speakers = speakersFlatList
+  }
+
+  return response
 }

@@ -11,6 +11,7 @@ import {
   VIDEO,
   VIDEO_PATH,
 } from 'common/constants'
+import { entryForViewing } from 'common/dataAdaptors/mediaAdaptors'
 import api from 'services/api'
 
 const MEDIA_PATHS = {
@@ -61,7 +62,11 @@ export function useVideoObject({ id }) {
   return response?.data
 }
 
-export function useMediaUsageDetails({ id, docType }) {
+export function useMediaUsageDetails({
+  id,
+  docType,
+  flatListOfSpeakers = false,
+}) {
   const { sitename } = useParams()
   const mediaPath = MEDIA_PATHS[docType]
   const mediaApi = MEDIA_APIS[docType]
@@ -71,7 +76,14 @@ export function useMediaUsageDetails({ id, docType }) {
     () => mediaApi({ sitename, id }),
     { enabled: !!id },
   )
-  return response?.data?.usage
+  return {
+    ...response,
+    data: entryForViewing({
+      type: docType,
+      data: response?.data,
+      flatListOfSpeakers,
+    }),
+  }
 }
 
 export function useMediaDelete({ docType }) {
