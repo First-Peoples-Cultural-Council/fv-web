@@ -1,9 +1,10 @@
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useMediaUsageDetails, useMediaUpdate } from 'common/dataHooks/useMedia'
 
 function MediaEditData({ docType }) {
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const mediaId = searchParams.get('id')
 
@@ -15,11 +16,13 @@ function MediaEditData({ docType }) {
 
   const { onSubmit: updateEntry } = useMediaUpdate({ docType })
   const submitHandler = (FormData) => updateEntry(FormData)
+  const backHandler = () => navigate(`../../media/browser?types=${docType}`)
 
   return {
     isLoading,
     dataToEdit: data,
     submitHandler,
+    backHandler,
   }
 }
 

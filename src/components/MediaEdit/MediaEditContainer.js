@@ -8,13 +8,16 @@ import MediaEditData from 'components/MediaEdit/MediaEditData'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 function MediaEditContainer({ docType }) {
-  const { isLoading, dataToEdit, submitHandler } = MediaEditData({ docType })
+  const { isLoading, dataToEdit, submitHandler, backHandler } = MediaEditData({
+    docType,
+  })
 
   return (
     <Loading.Container isLoading={isLoading}>
       <MediaEditPresentation
         dataToEdit={dataToEdit}
         submitHandler={submitHandler}
+        backHandler={backHandler}
       />
     </Loading.Container>
   )

@@ -9,7 +9,7 @@ import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 import AudioNative from 'components/AudioNative'
 
-function MediaEditPresentation({ dataToEdit, submitHandler }) {
+function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
   const validator = yup.object().shape({
     original: null,
     title: definitions
@@ -116,7 +116,7 @@ function MediaEditPresentation({ dataToEdit, submitHandler }) {
               submitIcon="Save"
               cancelIcon="Close"
               cancelLabel="Cancel"
-              // onCancelClick={backHandler}
+              onCancelClick={backHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />
           </div>
@@ -130,6 +130,7 @@ const { func, object } = PropTypes
 MediaEditPresentation.propTypes = {
   dataToEdit: object,
   submitHandler: func,
+  backHandler: func,
 }
 
 export default MediaEditPresentation
