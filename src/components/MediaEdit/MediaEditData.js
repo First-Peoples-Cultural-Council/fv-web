@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
-import { useMediaUsageDetails } from 'common/dataHooks/useMedia'
+import { useMediaUsageDetails, useMediaUpdate } from 'common/dataHooks/useMedia'
 
 function MediaEditData({ docType }) {
   const [searchParams] = useSearchParams()
@@ -13,9 +13,13 @@ function MediaEditData({ docType }) {
     flatListOfSpeakers: true,
   })
 
+  const { onSubmit: updateEntry } = useMediaUpdate({ docType })
+  const submitHandler = (FormData) => updateEntry(FormData)
+
   return {
-    dataToEdit: data,
     isLoading,
+    dataToEdit: data,
+    submitHandler,
   }
 }
 

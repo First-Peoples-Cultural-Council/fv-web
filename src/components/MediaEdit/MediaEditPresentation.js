@@ -8,8 +8,7 @@ import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 
-function MediaEditPresentation({ dataToEdit }) {
-  // todo: verify the char count in these validators
+function MediaEditPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     original: null,
     title: definitions
@@ -30,7 +29,7 @@ function MediaEditPresentation({ dataToEdit }) {
     includeInKids: true,
   }
 
-  const { control, errors, register, reset } = useEditForm({
+  const { control, errors, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -116,7 +115,7 @@ function MediaEditPresentation({ dataToEdit }) {
               cancelIcon="Close"
               cancelLabel="Cancel"
               // onCancelClick={backHandler}
-              // onSubmitClick={handleSubmit(submitHandler)}
+              onSubmitClick={handleSubmit(submitHandler)}
             />
           </div>
         </div>
@@ -125,9 +124,10 @@ function MediaEditPresentation({ dataToEdit }) {
   )
 }
 
-const { object } = PropTypes
+const { func, object } = PropTypes
 MediaEditPresentation.propTypes = {
   dataToEdit: object,
+  submitHandler: func,
 }
 
 export default MediaEditPresentation

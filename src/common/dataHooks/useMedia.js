@@ -32,6 +32,12 @@ const MEDIA_DELETE_APIS = {
   [VIDEO]: api.media.deleteVideo,
 }
 
+const MEDIA_UPDATE_APIS = {
+  [AUDIO]: api.media.updateAudio,
+  [IMAGE]: api.media.updateImage,
+  [VIDEO]: api.media.updateVideo,
+}
+
 export function useAudioObject({ id }) {
   const { sitename } = useParams()
   const response = useQuery(
@@ -101,6 +107,31 @@ export function useMediaDelete({ docType }) {
     type: docType,
     refresh: true,
   })
+  const onSubmit = (id) => {
+    mutation.mutate(id)
+  }
+  return { onSubmit }
+}
+
+export function useMediaUpdate({ docType }) {
+  const { sitename } = useParams()
+  const updateMediaApi = MEDIA_UPDATE_APIS[docType]
+
+  const updateMediaItem = async (formData) => {
+    updateMediaApi({
+      id: formData?.id,
+      data: formData,
+      sitename,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateMediaItem,
+    redirectTo: `/${sitename}/dashboard/media/browser?types=${docType}`,
+    actionWord: 'updated',
+    type: 'media item',
+  })
+
   const onSubmit = (id) => {
     mutation.mutate(id)
   }

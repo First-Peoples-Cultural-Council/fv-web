@@ -46,6 +46,8 @@ const media = {
     apiBase().delete(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
   deleteVideo: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
+  updateAudio: async ({ id, sitename, data }) =>
+    apiBase().put(`${SITES}/${sitename}/${AUDIO}/${id}`, { json: data }).json(),
 }
 
 export default media
