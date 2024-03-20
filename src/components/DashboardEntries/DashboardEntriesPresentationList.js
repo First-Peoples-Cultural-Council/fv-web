@@ -191,7 +191,7 @@ function DashboardEntriesPresentationList({
                 className="btn-outlined"
               >
                 {getIcon('Fullscreen', 'btn-icon')}
-                View on site
+                <span>View on site</span>
               </Link>
             </div>
             <EntryDetail.Container
