@@ -6,19 +6,15 @@ import { Link, useParams } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
 import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
-import { PRIMARY_BUTTON_STYLE, SECONDARY_BUTTON_STYLE } from 'common/constants'
 
 function MediaDetailsAudio({ file }) {
   const { sitename } = useParams()
   return (
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6 sticky top-0">
       <div className="flex justify-center space-x-2">
-        <a
-          href={file?.downloadLink}
-          className={`flex-1 ${SECONDARY_BUTTON_STYLE}`}
-        >
+        <a href={file?.downloadLink} className="flex-1 btn-outlined">
           <div className="flex w-full h-full items-center justify-center">
-            {getIcon('Download', 'fill-current mr-2 w-5 h-5')} Download
+            {getIcon('Download', 'btn-icon mr-2 w-5 h-5')} Download
           </div>
         </a>
         <Link
@@ -26,9 +22,9 @@ function MediaDetailsAudio({ file }) {
           data-testid="EntryDrawerEdit"
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex-1 ${PRIMARY_BUTTON_STYLE}`}
+          className="flex-1 btn-contained bg-secondary"
         >
-          {getIcon('Pencil', 'fill-current mr-2 w-5 h-5')}
+          {getIcon('Pencil', 'btn-icon mr-2')}
           <span>Edit</span>
         </Link>
       </div>
