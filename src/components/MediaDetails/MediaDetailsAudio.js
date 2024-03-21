@@ -13,9 +13,8 @@ function MediaDetailsAudio({ file }) {
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6 sticky top-0">
       <div className="flex justify-center space-x-2">
         <a href={file?.downloadLink} className="flex-1 btn-outlined">
-          <div className="flex w-full h-full items-center justify-center">
-            {getIcon('Download', 'btn-icon mr-2 w-5 h-5')} Download
-          </div>
+          {getIcon('Download', 'btn-icon')}
+          <span>Download</span>
         </a>
         <Link
           to={`/${sitename}/dashboard/edit/audio?id=${file?.id}`}
@@ -24,7 +23,7 @@ function MediaDetailsAudio({ file }) {
           rel="noopener noreferrer"
           className="flex-1 btn-contained bg-secondary"
         >
-          {getIcon('Pencil', 'btn-icon mr-2')}
+          {getIcon('Pencil', 'btn-icon')}
           <span>Edit</span>
         </Link>
       </div>
