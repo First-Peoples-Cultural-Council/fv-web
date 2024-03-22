@@ -26,8 +26,8 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
     description: '',
     acknowledgement: '',
     speakers: [],
-    includeInGames: true,
-    includeInKids: true,
+    includeInGames: 'true',
+    includeInKids: 'true',
   }
 
   const { control, errors, handleSubmit, register, reset } = useEditForm({
@@ -91,8 +91,8 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
               errors={errors}
               nameId="includeInGames"
               options={[
-                { label: 'Yes', value: true },
-                { label: 'No', value: false },
+                { label: 'Yes', value: 'true' },
+                { label: 'No', value: 'false' },
               ]}
             />
           </div>
@@ -104,8 +104,8 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
               errors={errors}
               nameId="includeInKids"
               options={[
-                { label: 'Yes', value: true },
-                { label: 'No', value: false },
+                { label: 'Yes', value: 'true' },
+                { label: 'No', value: 'false' },
               ]}
             />
           </div>

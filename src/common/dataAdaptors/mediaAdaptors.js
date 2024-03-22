@@ -1,4 +1,7 @@
-import { audienceForViewing } from 'common/dataAdaptors/audienceAdaptors'
+import {
+  audienceForEditing,
+  audienceForApi,
+} from 'common/dataAdaptors/audienceAdaptors'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 export const mediaAdaptor = ({ type, data }) => {
@@ -51,7 +54,7 @@ export const mediaAdaptor = ({ type, data }) => {
 export const entryForViewing = ({ type, data, flatListOfSpeakers = false }) => {
   const response = {
     ...mediaAdaptor({ type, data }),
-    ...audienceForViewing({ item: data }),
+    ...audienceForEditing({ item: data }),
   }
 
   if (flatListOfSpeakers) {
@@ -61,3 +64,8 @@ export const entryForViewing = ({ type, data, flatListOfSpeakers = false }) => {
 
   return response
 }
+
+export const entryForEditing = ({ formData }) => ({
+  ...formData,
+  ...audienceForApi({ item: formData }),
+})

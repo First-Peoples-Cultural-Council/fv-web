@@ -11,7 +11,10 @@ import {
   VIDEO,
   VIDEO_PATH,
 } from 'common/constants'
-import { entryForViewing } from 'common/dataAdaptors/mediaAdaptors'
+import {
+  entryForViewing,
+  entryForEditing,
+} from 'common/dataAdaptors/mediaAdaptors'
 import api from 'services/api'
 
 const MEDIA_PATHS = {
@@ -70,12 +73,12 @@ export function useVideoObject({ id }) {
 
 export function useMediaUsageDetails({
   id,
-  docType,
+  mediaType,
   flatListOfSpeakers = false,
 }) {
   const { sitename } = useParams()
-  const mediaPath = MEDIA_PATHS[docType]
-  const mediaApi = MEDIA_APIS[docType]
+  const mediaPath = MEDIA_PATHS[mediaType]
+  const mediaApi = MEDIA_APIS[mediaType]
 
   const response = useQuery(
     [mediaPath, sitename, id],
@@ -85,16 +88,16 @@ export function useMediaUsageDetails({
   return {
     ...response,
     data: entryForViewing({
-      type: docType,
+      type: mediaType,
       data: response?.data,
       flatListOfSpeakers,
     }),
   }
 }
 
-export function useMediaDelete({ docType }) {
+export function useMediaDelete({ mediaType }) {
   const { sitename } = useParams()
-  const deleteMediaApi = MEDIA_DELETE_APIS[docType]
+  const deleteMediaApi = MEDIA_DELETE_APIS[mediaType]
 
   const deleteMediaFile = async (id) =>
     deleteMediaApi({
@@ -104,7 +107,7 @@ export function useMediaDelete({ docType }) {
   const mutation = useMutationWithNotification({
     mutationFn: deleteMediaFile,
     actionWord: 'deleted',
-    type: docType,
+    type: mediaType,
     refresh: true,
   })
   const onSubmit = (id) => {
@@ -113,21 +116,22 @@ export function useMediaDelete({ docType }) {
   return { onSubmit }
 }
 
-export function useMediaUpdate({ docType }) {
+export function useMediaUpdate({ mediaType }) {
   const { sitename } = useParams()
-  const updateMediaApi = MEDIA_UPDATE_APIS[docType]
+  const updateMediaApi = MEDIA_UPDATE_APIS[mediaType]
 
   const updateMediaItem = async (formData) => {
+    const data = entryForEditing({ formData })
     updateMediaApi({
       id: formData?.id,
-      data: formData,
+      data,
       sitename,
     })
   }
 
   const mutation = useMutationWithNotification({
     mutationFn: updateMediaItem,
-    redirectTo: `/${sitename}/dashboard/media/browser?types=${docType}`,
+    redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
     actionWord: 'updated',
     type: 'media item',
   })

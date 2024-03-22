@@ -106,7 +106,7 @@ function DashboardEditContainer() {
           path="audio"
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <MediaEdit.Container docType={AUDIO} />
+              <MediaEdit.Container mediaType={AUDIO} />
             </RequireAuth>
           }
         />
