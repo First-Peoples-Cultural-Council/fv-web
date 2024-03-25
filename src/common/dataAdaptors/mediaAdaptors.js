@@ -2,6 +2,7 @@ import {
   audienceForEditing,
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 export const mediaAdaptor = ({ type, data }) => {
@@ -51,21 +52,26 @@ export const mediaAdaptor = ({ type, data }) => {
   return { ...data, message: 'NOT a media document' }
 }
 
-export const entryForViewing = ({ type, data, flatListOfSpeakers = false }) => {
+export const entryForEditing = ({ type, data }) => {
   const response = {
     ...mediaAdaptor({ type, data }),
     ...audienceForEditing({ item: data }),
   }
 
-  if (flatListOfSpeakers) {
-    const speakersFlatList = response?.speakers?.map((speaker) => speaker?.id)
-    response.speakers = speakersFlatList
-  }
+  response.speakerIds = objectsToIdsAdaptor(response?.speakers)
 
   return response
 }
 
-export const entryForEditing = ({ formData }) => ({
-  ...formData,
-  ...audienceForApi({ item: formData }),
-})
+export const entryForApi = ({ formData, mediaType }) => {
+  const formattedEntry = {
+    ...formData,
+    ...audienceForApi({ item: formData }),
+  }
+
+  if (mediaType === AUDIO) {
+    formattedEntry.speakers = formattedEntry.speakerIds
+  }
+
+  return formattedEntry
+}

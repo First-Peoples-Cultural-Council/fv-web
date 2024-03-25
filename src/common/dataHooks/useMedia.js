@@ -11,10 +11,7 @@ import {
   VIDEO,
   VIDEO_PATH,
 } from 'common/constants'
-import {
-  entryForViewing,
-  entryForEditing,
-} from 'common/dataAdaptors/mediaAdaptors'
+import { entryForEditing, entryForApi } from 'common/dataAdaptors/mediaAdaptors'
 import api from 'services/api'
 
 const MEDIA_PATHS = {
@@ -71,11 +68,8 @@ export function useVideoObject({ id }) {
   return response?.data
 }
 
-export function useMediaUsageDetails({
-  id,
-  mediaType,
-  flatListOfSpeakers = false,
-}) {
+export function useMediaObject({ id, mediaType }) {
+  // General function to fetch details of all media types
   const { sitename } = useParams()
   const mediaPath = MEDIA_PATHS[mediaType]
   const mediaApi = MEDIA_APIS[mediaType]
@@ -85,12 +79,12 @@ export function useMediaUsageDetails({
     () => mediaApi({ sitename, id }),
     { enabled: !!id },
   )
+
   return {
     ...response,
-    data: entryForViewing({
+    data: entryForEditing({
       type: mediaType,
       data: response?.data,
-      flatListOfSpeakers,
     }),
   }
 }
@@ -121,7 +115,7 @@ export function useMediaUpdate({ mediaType }) {
   const updateMediaApi = MEDIA_UPDATE_APIS[mediaType]
 
   const updateMediaItem = async (formData) => {
-    const data = entryForEditing({ formData })
+    const data = entryForApi({ formData, mediaType })
     updateMediaApi({
       id: formData?.id,
       data,
@@ -131,7 +125,7 @@ export function useMediaUpdate({ mediaType }) {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateMediaItem,
-    redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
+    // redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
     actionWord: 'updated',
     type: 'media item',
   })

@@ -25,7 +25,7 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
     title: '',
     description: '',
     acknowledgement: '',
-    speakers: [],
+    speakerIds: [],
     includeInGames: 'true',
     includeInKids: 'true',
   }
@@ -77,7 +77,7 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
           <div className="col-span-12">
             <Form.AutocompleteMultiple
               label="Speakers"
-              nameId="speakers"
+              nameId="speakerIds"
               control={control}
               options={speakerOptions}
               placeholder="Find speakers to add.."
