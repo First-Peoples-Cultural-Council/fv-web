@@ -52,7 +52,7 @@ export const mediaAdaptor = ({ type, data }) => {
   return { ...data, message: 'NOT a media document' }
 }
 
-export const entryForEditing = ({ type, data }) => {
+export const mediaItemForEditing = ({ type, data }) => {
   const response = {
     ...mediaAdaptor({ type, data }),
     ...audienceForEditing({ item: data }),
@@ -63,7 +63,7 @@ export const entryForEditing = ({ type, data }) => {
   return response
 }
 
-export const entryForApi = ({ formData, mediaType }) => {
+export const mediaItemForApi = ({ formData, mediaType }) => {
   const formattedEntry = {
     ...formData,
     ...audienceForApi({ item: formData }),

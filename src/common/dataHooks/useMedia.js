@@ -11,7 +11,10 @@ import {
   VIDEO,
   VIDEO_PATH,
 } from 'common/constants'
-import { entryForEditing, entryForApi } from 'common/dataAdaptors/mediaAdaptors'
+import {
+  mediaItemForEditing,
+  mediaItemForApi,
+} from 'common/dataAdaptors/mediaAdaptors'
 import api from 'services/api'
 
 const MEDIA_PATHS = {
@@ -82,7 +85,7 @@ export function useMediaObject({ id, mediaType }) {
 
   return {
     ...response,
-    data: entryForEditing({
+    data: mediaItemForEditing({
       type: mediaType,
       data: response?.data,
     }),
@@ -115,7 +118,7 @@ export function useMediaUpdate({ mediaType }) {
   const updateMediaApi = MEDIA_UPDATE_APIS[mediaType]
 
   const updateMediaItem = async (formData) => {
-    const data = entryForApi({ formData, mediaType })
+    const data = mediaItemForApi({ formData, mediaType })
     updateMediaApi({
       id: formData?.id,
       data,
@@ -125,7 +128,7 @@ export function useMediaUpdate({ mediaType }) {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateMediaItem,
-    // redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
+    redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
     actionWord: 'updated',
     type: 'media item',
   })
