@@ -96,7 +96,7 @@
     "@uppy/progress-bar": "^3.0.1",
     "@uppy/react": "^3.0.2",
     "@uppy/xhr-upload": "^3.3.1",
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.19",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "common": "^0.2.5",
