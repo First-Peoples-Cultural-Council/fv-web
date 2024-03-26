@@ -34,7 +34,7 @@ function SearchData() {
   const searchType = searchParams.get(TYPES) || TYPE_ENTRY
   const labels = getPresentationPropertiesForType({ searchType })
 
-  // Dictionary fetch
+  // fetch results
   const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
     useSearchLoader({ searchParams })
 
