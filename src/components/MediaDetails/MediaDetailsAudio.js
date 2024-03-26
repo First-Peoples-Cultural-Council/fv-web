@@ -85,15 +85,6 @@ function MediaDetailsAudio({ file }) {
           </p>
         </div>
       </div>
-      <div className="flex">
-        <a
-          href={file?.downloadLink}
-          className="btn-contained flex-1 bg-secondary"
-        >
-          {getIcon('Download', 'btn-icon')}
-          <span>Download</span>
-        </a>
-      </div>
     </div>
   )
 }
