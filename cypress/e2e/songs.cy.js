@@ -23,8 +23,8 @@ describe('Test songs', () => {
     cy.contains('Use list view').click()
     cy.get('.pb-16 > .w-full >').each((_song) => {
       cy.wrap(_song).scrollIntoView()
-      cy.wrap(_song).click()
       cy.wrap(_song).should('be.enabled')
+      cy.wrap(_song).click()
       cy.contains('Go to Song').scrollIntoView()
       cy.contains('Go to Song')
       cy.get('#CloseDrawerBtn').click()

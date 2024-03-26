@@ -30,6 +30,7 @@ describe('word Test', () => {
     cy.contains('Save changes').click()
   })
 
+  const name = `cha'Dichqaqa`
   it('7.1 - create word', () => {
     cy.on('uncaught:exception', () => false)
     cy.viewport(1024, 768)
@@ -38,13 +39,18 @@ describe('word Test', () => {
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Create').click()
-    const name = `cha'Dich${new Date().getTime()}`
+
     cy.contains('Create a word').click()
     cy.contains('Finish').click()
     cy.get('#title').type(name)
     cy.middlestuff('Add word translation')
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('be.enabled')
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.get('div[id="NavUser"] button').click()
+    cy.contains('Sign out').click()
+  })
+
+  it('7.1a - delete word', () => {
+    cy.contains('Explore Languages').click()
+    cy.get('div[id="NavUser"] button').click()
     cy.contains('Dashboard').click()
     cy.contains('Edit words and phrases').click()
     cy.get('[data-testid="SearchInput"]').type(`${name}{enter}`)
@@ -56,9 +62,9 @@ describe('word Test', () => {
   })
 
   it.skip('Create n edit page', () => {
-    const name = 'testpage11111'
+    const name2 = 'testpage11111'
     cy.contains('Create a Custom Page').click()
-    cy.get('#title').type(name)
+    cy.get('#title').type(name2)
     cy.get('#subtitle').type('random12342')
     cy.get('#slug').type('testcreatepage')
     cy.contains('Create page').click()

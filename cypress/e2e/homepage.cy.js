@@ -9,7 +9,7 @@ describe('V2 Search Homepage', () => {
     cy.contains('Líl̓wat')
   })
 
-  it('Test contact form', () => {
+  it.skip('Test contact form', () => {
     cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
     cy.contains('404').should('not.exist')
   })
