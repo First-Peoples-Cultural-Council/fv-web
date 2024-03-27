@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
 
 // FPCC
+import { useUserStore } from 'context/UserContext'
 import { isDisplayablePropMedia, getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
+import { isAtLeastEditor } from 'common/utils/membershipHelpers'
 
 function MediaDetailsVisual({ file, docType }) {
   const { sitename } = useParams()
+  const { user } = useUserStore()
+  const isEditor = isAtLeastEditor({ user, sitename })
+
   return (
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6 sticky top-0">
       <div className="flex justify-center space-x-2">
@@ -16,16 +21,18 @@ function MediaDetailsVisual({ file, docType }) {
           {getIcon('Download', 'btn-icon')}
           <span>Download</span>
         </a>
-        <Link
-          to={`/${sitename}/dashboard/edit/${docType}?id=${file?.id}`}
-          data-testid="EntryDrawerEdit"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 btn-contained bg-secondary"
-        >
-          {getIcon('Pencil', 'btn-icon')}
-          <span>Edit</span>
-        </Link>
+        {isEditor && (
+          <Link
+            to={`/${sitename}/dashboard/edit/${docType}?id=${file?.id}`}
+            data-testid="EntryDrawerEdit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 btn-contained bg-secondary"
+          >
+            {getIcon('Pencil', 'btn-icon')}
+            <span>Edit</span>
+          </Link>
+        )}
       </div>
       <div>
         <div className="block w-full max-h-1/3-screen rounded-lg overflow-hidden">

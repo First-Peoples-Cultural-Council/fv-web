@@ -112,14 +112,6 @@ function MediaEditPresentation({
                 errors={errors}
               />
             </div>
-            <div className="col-span-12">
-              <Form.TextField
-                label="Acknowledgements"
-                nameId="acknowledgement"
-                register={register}
-                errors={errors}
-              />
-            </div>
 
             {mediaType === AUDIO && (
               <div className="col-span-12">
@@ -132,6 +124,15 @@ function MediaEditPresentation({
                 />
               </div>
             )}
+
+            <div className="col-span-12">
+              <Form.TextField
+                label="Acknowledgements"
+                nameId="acknowledgement"
+                register={register}
+                errors={errors}
+              />
+            </div>
 
             <div className="col-span-12">
               <Form.RadioButtons
