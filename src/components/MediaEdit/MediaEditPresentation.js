@@ -120,15 +120,18 @@ function MediaEditPresentation({
                 errors={errors}
               />
             </div>
-            <div className="col-span-12">
-              <Form.AutocompleteMultiple
-                label="Speakers"
-                nameId="speakerIds"
-                control={control}
-                options={speakerOptions}
-                placeholder="Find speakers to add.."
-              />
-            </div>
+
+            {mediaType === AUDIO && (
+              <div className="col-span-12">
+                <Form.AutocompleteMultiple
+                  label="Speakers"
+                  nameId="speakerIds"
+                  control={control}
+                  options={speakerOptions}
+                  placeholder="Find speakers to add.."
+                />
+              </div>
+            )}
 
             <div className="col-span-12">
               <Form.RadioButtons

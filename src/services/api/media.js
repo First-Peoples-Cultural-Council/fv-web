@@ -6,8 +6,6 @@ import {
   IMAGE_PATH,
   VIDEO_PATH,
   AUDIO,
-  IMAGE,
-  VIDEO,
 } from 'common/constants'
 
 const media = {
@@ -51,9 +49,13 @@ const media = {
   updateAudio: async ({ id, sitename, data }) =>
     apiBase().put(`${SITES}/${sitename}/${AUDIO}/${id}`, { json: data }).json(),
   updateImage: async ({ id, sitename, data }) =>
-    apiBase().put(`${SITES}/${sitename}/${IMAGE}/${id}`, { json: data }).json(),
+    apiBase()
+      .put(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`, { json: data })
+      .json(),
   updateVideo: async ({ id, sitename, data }) =>
-    apiBase().put(`${SITES}/${sitename}/${VIDEO}/${id}`, { json: data }).json(),
+    apiBase()
+      .put(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`, { json: data })
+      .json(),
 }
 
 export default media
