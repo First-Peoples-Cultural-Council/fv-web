@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js for use with actions
         uses: actions/setup-node@v1
         with:
-          node-version: '20.12.0'
+          node-version: '20.11.1'
 
       - name: Build frontend (includes Node package install)
         run: |
