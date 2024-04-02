@@ -20,7 +20,7 @@
   "homepage": "https://github.com/First-Peoples-Cultural-Council/fv-web#readme",
   "engines": {
     "node": "^20.11.1",
-    "npm": "^10.5.0"
+    "npm": "^10.2.4"
   },
   "scripts": {
     "start": "webpack serve --env API_URL=http://localhost:8000/api/1.0/ --config webpack/webpack.development.js",
