@@ -12,11 +12,11 @@ jobs:
         os: [ubuntu-latest]
         node: [20]
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Run TestCafe tests
         uses: DevExpress/testcafe-action@latest
         with:

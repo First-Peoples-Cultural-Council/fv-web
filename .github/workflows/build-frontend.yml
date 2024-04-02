@@ -15,13 +15,13 @@ jobs:
     steps:
       # Checkout the current working code base
       - name: Checkout working branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Installs the correct Node version for the project
       - name: Setup Node.js for use with actions
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '20.11.1'
+          node-version: 20
 
       - name: Build frontend (includes Node package install)
         run: |
