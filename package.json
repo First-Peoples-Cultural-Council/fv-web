@@ -1,6 +1,6 @@
 {
   "name": "fv-web",
-  "version": "0.5.3",
+  "version": "0.12.0",
   "description": "A React.js front-end for the FirstVoices API.",
   "main": "index.js",
   "repository": {
@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/First-Peoples-Cultural-Council/fv-web#readme",
   "engines": {
-    "node": "^18.16.0"
+    "node": "^20.11.1",
+    "npm": "^10.2.4"
   },
   "scripts": {
     "start": "webpack serve --env API_URL=http://localhost:8000/api/1.0/ --config webpack/webpack.development.js",

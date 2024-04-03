@@ -10,22 +10,20 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node: [16]
+        node: [20]
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Run TestCafe tests
         uses: DevExpress/testcafe-action@latest
-        with: 
-          args: "chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual"
+        with:
+          args: 'chrome:headless testcafe -s testcafe/screenshots --take-snapshot actual'
       - name: install testcafe-blink-diff
         run: npm i testcafe-blink-diff
       - name: Run tests
         run: |
           pwd
           npx testcafe-blink-diff testcafe/screenshots --compare base:actual --open --threshold 3.3 testcafe
-
-
