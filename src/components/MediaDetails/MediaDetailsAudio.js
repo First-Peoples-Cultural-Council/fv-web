@@ -7,12 +7,13 @@ import { useUserStore } from 'context/UserContext'
 import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
 import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
-import { isAtLeastEditor } from 'common/utils/membershipHelpers'
+import { atLeastEditor } from 'common/constants/roles'
+import { isAtLeastRole } from 'common/utils/membershipHelpers'
 
 function MediaDetailsAudio({ file }) {
   const { sitename } = useParams()
   const { user } = useUserStore()
-  const isEditor = isAtLeastEditor({ user, sitename })
+  const isEditor = isAtLeastRole({ user, sitename, role: atLeastEditor })
 
   return (
     <div id="MediaDetailsAudio" className="mpb-16 space-y-6 sticky top-0">

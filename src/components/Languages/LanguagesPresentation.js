@@ -7,7 +7,8 @@ import SiteCard from 'components/Languages/SiteCard'
 import SectionTitle from 'components/SectionTitle'
 import { languageColors } from 'assets/languageColors'
 import { PUBLIC } from 'common/constants'
-import { isMember } from 'common/utils/membershipHelpers'
+import { atLeastMember } from 'common/constants/roles'
+import { isAtLeastRole } from 'common/utils/membershipHelpers'
 import SearchLanguagesForm from 'components/SearchLanguagesForm'
 import Loading from 'components/Loading'
 
@@ -68,9 +69,10 @@ function LanguagesPresentation({
                     </h1>
                     <div className="flex flex-wrap justify-start pl-10">
                       {language?.sites?.map((site) => {
-                        const memberOfSite = isMember({
+                        const memberOfSite = isAtLeastRole({
                           user,
                           sitename: site?.sitename,
+                          role: atLeastMember,
                         })
                         const isLocked = memberOfSite
                           ? false

@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next'
 import getIcon from 'common/utils/getIcon'
 import { useUserStore } from 'context/UserContext'
 import useLoginLogout from 'common/hooks/useLoginLogout'
-import { isMember } from 'common/utils/membershipHelpers'
+import { atLeastMember } from 'common/constants/roles'
+import { isAtLeastRole } from 'common/utils/membershipHelpers'
 import { IMMERSION } from 'common/constants'
 import ImmersionToggle from 'components/ImmersionToggle'
 
@@ -33,7 +34,11 @@ function NavBarPresentationMobile({ site }) {
   }
 
   const menuData = site?.menu || {}
-  const member = isMember({ user, sitename: site.sitename })
+  const member = isAtLeastRole({
+    user,
+    sitename: site.sitename,
+    role: atLeastMember,
+  })
   const buttonStyling = 'w-full px-1 py-2 flex items-center rounded'
   const labelStyling = 'truncate ml-3 font-medium'
   const iconStyling = 'fill-current h-12 w-8 flex-none'

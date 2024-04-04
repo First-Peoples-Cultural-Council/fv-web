@@ -7,12 +7,13 @@ import { useUserStore } from 'context/UserContext'
 import { isDisplayablePropMedia, getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
-import { isAtLeastEditor } from 'common/utils/membershipHelpers'
+import { atLeastEditor } from 'common/constants/roles'
+import { isAtLeastRole } from 'common/utils/membershipHelpers'
 
 function MediaDetailsVisual({ file, docType }) {
   const { sitename } = useParams()
   const { user } = useUserStore()
-  const isEditor = isAtLeastEditor({ user, sitename })
+  const isEditor = isAtLeastRole({ user, sitename, role: atLeastEditor })
 
   return (
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6 sticky top-0">
