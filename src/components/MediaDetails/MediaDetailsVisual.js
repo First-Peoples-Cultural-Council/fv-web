@@ -13,7 +13,7 @@ import { isAtLeastRole } from 'common/utils/membershipHelpers'
 function MediaDetailsVisual({ file, docType }) {
   const { sitename } = useParams()
   const { user } = useUserStore()
-  const isEditor = isAtLeastRole({ user, sitename, role: atLeastEditor })
+  const isEditor = isAtLeastRole({ user, sitename, roleRegex: atLeastEditor })
 
   return (
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6 sticky top-0">

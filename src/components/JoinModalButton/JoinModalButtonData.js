@@ -10,7 +10,7 @@ function JoinModalButtonData({ site }) {
   const alreadyMember = isAtLeastRole({
     user,
     sitename: site?.sitename,
-    role: atLeastMember,
+    roleRegex: atLeastMember,
   })
 
   return {

@@ -1,4 +1,4 @@
-export const isAtLeastRole = ({ user, sitename, role }) => {
+export const isAtLeastRole = ({ user, sitename, roleRegex }) => {
   const userSiteRole = user?.roles?.[sitename] || ''
-  return userSiteRole.match(role)
+  return userSiteRole.match(roleRegex)
 }

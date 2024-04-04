@@ -72,7 +72,7 @@ function LanguagesPresentation({
                         const memberOfSite = isAtLeastRole({
                           user,
                           sitename: site?.sitename,
-                          role: atLeastMember,
+                          roleRegex: atLeastMember,
                         })
                         const isLocked = memberOfSite
                           ? false

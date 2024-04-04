@@ -37,7 +37,7 @@ function NavBarPresentationMobile({ site }) {
   const member = isAtLeastRole({
     user,
     sitename: site.sitename,
-    role: atLeastMember,
+    roleRegex: atLeastMember,
   })
   const buttonStyling = 'w-full px-1 py-2 flex items-center rounded'
   const labelStyling = 'truncate ml-3 font-medium'
