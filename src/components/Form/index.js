@@ -1,4 +1,5 @@
 import AddMedia from 'components/Form/AddMedia'
+import Audience from 'components/Form/Audience'
 import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
@@ -24,6 +25,7 @@ import WysiwygField from 'components/Form/WysiwygField'
 
 export default {
   AddMedia,
+  Audience,
   Autocomplete,
   AutocompleteMultiple,
   CategoryArrayField,

@@ -1,7 +1,4 @@
-// FPCC
-import { atLeastMember } from 'common/constants/roles'
-
-export const isMember = ({ user, sitename }) => {
+export const isAtLeastRole = ({ user, sitename, roleRegex }) => {
   const userSiteRole = user?.roles?.[sitename] || ''
-  return userSiteRole.match(atLeastMember)
+  return userSiteRole.match(roleRegex)
 }

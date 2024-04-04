@@ -299,30 +299,7 @@ function DictionaryCrudPresentation({
                 resetField={resetField}
               />
             </div>
-            <div className="col-span-12">
-              <Form.RadioButtons
-                label="Include on the Kids site?"
-                control={control}
-                errors={errors}
-                nameId="includeInKids"
-                options={[
-                  { label: 'Yes', value: 'true' },
-                  { label: 'No', value: 'false' },
-                ]}
-              />
-            </div>
-            <div className="col-span-12">
-              <Form.RadioButtons
-                label="Include in games?"
-                control={control}
-                errors={errors}
-                nameId="includeInGames"
-                options={[
-                  { label: 'Yes', value: 'true' },
-                  { label: 'No', value: 'false' },
-                ]}
-              />
-            </div>
+            <Form.Audience control={control} errors={errors} />
           </Fragment>
         )
       default:

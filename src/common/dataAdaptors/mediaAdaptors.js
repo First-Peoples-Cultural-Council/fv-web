@@ -17,6 +17,7 @@ export const mediaAdaptor = ({ type, data }) => {
     mimeType: data?.original?.mimetype,
     downloadLink: data?.original?.path,
     original: data?.original,
+    acknowledgement: data?.acknowledgement,
   }
 
   if (type === IMAGE) {
@@ -41,7 +42,6 @@ export const mediaAdaptor = ({ type, data }) => {
     formattedData = {
       ...formattedData,
       speakers: data?.speakers,
-      acknowledgement: data?.acknowledgement,
     }
   }
 
