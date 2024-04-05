@@ -30,6 +30,7 @@ describe('navigation', () => {
 
   it('explore languages - search', () => {
     cy.visit(`${Cypress.env('baseUrl')}languages`)
+    cy.get('[id="LanguagesPresentation"] a').should('have.length.above', 1)
     cy.get('[id="LanguagesPresentation"] a').each((_site) => {
       let _text = _site.text()
       _text = _text.replaceAll('  ', ' ')

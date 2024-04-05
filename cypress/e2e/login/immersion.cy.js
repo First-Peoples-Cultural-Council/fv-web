@@ -15,12 +15,12 @@ describe('Immersion Test', () => {
   })
 
   it('Check button exists', () => {
-    cy.contains('cn').click()
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Immersion Mode').should('exist')
   })
 
   it('enable it, check, then disable it', () => {
-    cy.contains('cn').click()
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
 
     cy.contains('Immersion Mode').click()
     cy.contains('Dictionary').click()
@@ -34,7 +34,7 @@ describe('Immersion Test', () => {
   })
 
   it('check dashboard', () => {
-    cy.contains('cn').click()
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.get('[href="/lilwat/dashboard/edit"]').click()
 

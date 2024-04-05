@@ -7,22 +7,50 @@ describe('gallery Test', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
     cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-      Cypress.require('/cypress/support/commands')
-    })
-    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      Cypress.Commands.add('login', (email, password) => {
+        cy.on('uncaught:exception', () => false)
+
+        cy.get('#signInFormUsername').type(email, { force: true })
+        // lets try an incorrect password
+        cy.get('#signInFormPassword').type(`${password}{enter}`, {
+          force: true,
+        })
+      })
+
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),
       )
     })
-  })
 
-  it.only('create gallery', () => {
     cy.contains('Explore Languages').click()
 
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
+  })
+  const _title = 'gallerytestqa'
+
+  it('create gallery', () => {
     cy.contains('Create').click()
     cy.contains('Create a gallery').click()
+
+    cy.get('#title').type(_title)
+    cy.get('#titleTranslation').type('qatestgallery')
+
+    cy.contains('Add image').click()
+    cy.get('ul > li').each((_li) => {
+      cy.wrap(_li).click()
+    })
+    cy.contains('Insert').click()
+    cy.contains('Create gallery').click()
+    cy.contains('Sign Out').click()
+  })
+
+  it('delete gallery', () => {
+    cy.contains('Edit').click()
+    cy.contains('Edit a gallery').click()
+    cy.contains(_title).click()
+    cy.contains('Delete Gallery').click()
+    cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
   })
 }) // EOF

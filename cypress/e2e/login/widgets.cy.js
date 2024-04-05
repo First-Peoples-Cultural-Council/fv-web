@@ -3,8 +3,58 @@
 describe('Widget tests', () => {
   beforeEach(() => {
     cy.on('uncaught:exception', () => false)
-    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-      Cypress.require('/cypress/support/commands')
+    Cypress.Commands.add('_login', () => {
+      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.contains('Sign in').click()
+      cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+        Cypress.Commands.add('login', (email, password) => {
+          cy.on('uncaught:exception', () => false)
+
+          cy.get('#signInFormUsername').type(email, { force: true })
+          // lets try an incorrect password
+          cy.get('#signInFormPassword').type(`${password}{enter}`, {
+            force: true,
+          })
+        })
+        cy.contains('Sign in with your email and password').should('exist')
+        cy.login(
+          Cypress.env('CYPRESS_FV_USERNAME'),
+          Cypress.env('CYPRESS_FV_PASSWORD'),
+        )
+      })
+
+      cy.contains('Explore Languages').click()
+    })
+    Cypress.Commands.add('checkValidation', (widgetName) => {
+      cy.contains(widgetName).click()
+      cy.contains('Create widget').click()
+      cy.get('.text-red-500').should('exist')
+      cy.contains('Go back').click()
+    })
+    Cypress.Commands.add('createwidget', (name) => {
+      const widgetname = 'testwidgetcypress'
+      cy.visit(
+        `${Cypress.env('baseUrl')}${Cypress.env(
+          'DIALECT',
+        )}/dashboard/create/widget`,
+      )
+      cy.contains(name).should('be.enabled')
+      cy.contains(name).click({ force: true })
+      cy.get('#nickname').type(widgetname)
+    })
+    Cypress.Commands.add('throughme', (name) => {
+      cy.contains('Create widget').should('be.visible')
+      cy.contains('Create widget').click({ force: true })
+      cy.contains('Dismiss').click()
+      cy.contains(name).parent().children().eq(2).children().click()
+
+      cy.get('#nickname').should('contain.value', name)
+
+      cy.contains('Delete widget').click()
+      cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
+
+      cy.contains('Success').should('not.exist')
+      cy.contains('Dashboard').click()
     })
     cy.viewport(1024, 768)
   })

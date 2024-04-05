@@ -2,14 +2,33 @@
 
 describe('word Test', () => {
   beforeEach(() => {
+    Cypress.Commands.add('middlestuff', (_translationwp) => {
+      cy.contains(_translationwp).click()
+      cy.get('[name="translations.0.text"]').type(
+        'an individual who fought for a warrior challenging a ruling of the Klingon High Council',
+      )
+
+      cy.contains('Next step').click()
+
+      cy.contains('Next step').click()
+      cy.contains('Finish').click()
+      cy.contains('Dismiss').should('not.exist')
+    })
     cy.on('uncaught:exception', () => false)
     cy.viewport(1024, 768)
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
     cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-      Cypress.require('/cypress/support/commands')
-    })
-    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      Cypress.Commands.add('login', (email, password) => {
+        cy.on('uncaught:exception', () => false)
+
+        cy.get('#signInFormUsername').type(email, { force: true })
+        // lets try an incorrect password
+        cy.get('#signInFormPassword').type(`${password}{enter}`, {
+          force: true,
+        })
+      })
+
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),

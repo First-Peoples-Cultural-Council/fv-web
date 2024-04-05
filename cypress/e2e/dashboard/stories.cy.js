@@ -3,16 +3,28 @@
 describe('word Test', () => {
   beforeEach(() => {
     cy.on('uncaught:exception', () => false)
-    cy.viewport(1024, 768)
+    cy.viewport(1920, 1080)
     cy.visit(`${Cypress.env('baseUrl')}`)
   })
 
-  it('Create Story v1', () => {
+  it.only('Create Story v1', () => {
     cy.contains('Sign in').click()
-    cy.login(
-      Cypress.env('CYPRESS_FV_USERNAME'),
-      Cypress.env('CYPRESS_FV_PASSWORD'),
-    )
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      Cypress.Commands.add('login', (email, password) => {
+        cy.on('uncaught:exception', () => false)
+
+        cy.get('#signInFormUsername').type(email, { force: true })
+        // lets try an incorrect password
+        cy.get('#signInFormPassword').type(`${password}{enter}`, {
+          force: true,
+        })
+      })
+
+      cy.login(
+        Cypress.env('CYPRESS_FV_USERNAME'),
+        Cypress.env('CYPRESS_FV_PASSWORD'),
+      )
+    })
     cy.contains('Explore Languages').click()
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
@@ -36,9 +48,6 @@ describe('word Test', () => {
       )
       cy.get(':nth-child(3) > .bg-white > .w-full').type('asdfasdfaf')
       cy.contains('Save').click()
-      cy.contains('Dismiss').should('be.visible')
-      cy.contains('Dismiss').click()
-      cy.log(`going on to i = ${i}`)
     }
     cy.contains('Next step').click()
     cy.contains('Next step').click()

@@ -12,6 +12,16 @@ describe('Page Test', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
     cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      Cypress.Commands.add('login', (email, password) => {
+        cy.on('uncaught:exception', () => false)
+
+        cy.get('#signInFormUsername').type(email, { force: true })
+        // lets try an incorrect password
+        cy.get('#signInFormPassword').type(`${password}{enter}`, {
+          force: true,
+        })
+      })
+
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),
@@ -44,6 +54,16 @@ describe('Page Test', () => {
     cy.visit(`${Cypress.env('baseUrl')}`)
     cy.contains('Sign in').click()
     cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      Cypress.Commands.add('login', (email, password) => {
+        cy.on('uncaught:exception', () => false)
+
+        cy.get('#signInFormUsername').type(email, { force: true })
+        // lets try an incorrect password
+        cy.get('#signInFormPassword').type(`${password}{enter}`, {
+          force: true,
+        })
+      })
+
       cy.login(
         Cypress.env('CYPRESS_FV_USERNAME'),
         Cypress.env('CYPRESS_FV_PASSWORD'),
