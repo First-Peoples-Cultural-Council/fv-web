@@ -17,6 +17,8 @@ import WidgetCrud from 'components/WidgetCrud'
 import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
+import BatchUpload from 'components/BatchUpload'
+
 function DashboardCreateContainer() {
   const { tileContent, headerContent, site } = DashboardCreateData({
     urlPrefix: '',
@@ -24,6 +26,7 @@ function DashboardCreateContainer() {
   return (
     <div id="DashboardCreateContainer">
       <Routes>
+        <Route path="batch-upload" element={<BatchUpload.Container />} />
         <Route
           path="category"
           element={
