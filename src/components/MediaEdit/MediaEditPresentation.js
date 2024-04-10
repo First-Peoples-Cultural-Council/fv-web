@@ -134,7 +134,9 @@ function MediaEditPresentation({
               />
             </div>
 
-            <Form.Audience control={control} errors={errors} />
+            {mediaType !== VIDEO && (
+              <Form.Audience control={control} errors={errors} />
+            )}
 
             <div className="col-span-12 flex justify-end mt-6 px-6">
               <Form.SubmitButtons
