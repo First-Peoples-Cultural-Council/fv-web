@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { localDateMDYT } from 'common/utils/stringHelpers'
+import { localDateMDYTwords } from 'common/utils/stringHelpers'
 import {
   MEMBER,
   ASSISTANT,
@@ -41,12 +41,13 @@ function DashboardJoinCardPresentation({
             <p className="whitespace-nowrap">
               Requested on{' '}
               <time dateTime={joinRequest?.created}>
-                {localDateMDYT(joinRequest?.created)}
+                {localDateMDYTwords(joinRequest?.created)}
               </time>
             </p>
           </div>
 
           <button
+            data-testid="expand-btn"
             type="button"
             className={`${
               isExpanded ? 'hidden' : 'inline-block'
