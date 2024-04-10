@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+    if: ${{ github.actor == 'dependabot[bot]' }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
