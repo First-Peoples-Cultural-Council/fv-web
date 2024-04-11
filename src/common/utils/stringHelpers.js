@@ -299,57 +299,24 @@ export const isUUID = (str) => {
 }
 
 export const localDateMDYTwords = (dateString) => {
-  const d = new Date(dateString)
-  const m = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
-  let hours = d.getHours()
-  let minutes = d.getMinutes()
-  const ampm = hours >= 12 ? 'PM' : 'AM'
-  hours %= 12
-  hours = hours || 12 // the hour '0' should be '12'
-  minutes = minutes < 10 ? `0${minutes}` : minutes
-  const strTime = `${hours}:${minutes} ${ampm}`
-
-  return `${m[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${strTime}`
+  const date = new Date(dateString)
+  const options = {
+    timeStyle: 'short',
+    dateStyle: 'long',
+  }
+  // defaults to local time if no timeZone is set in options
+  return new Intl.DateTimeFormat('en-CA', options).format(date)
 }
 
 export const localDateMDYT = (dateString) => {
-  const d = new Date(dateString)
-  let hours = d.getHours()
-  let minutes = d.getMinutes()
-
-  hours = hours < 10 ? `0${hours}` : hours
-  minutes = minutes < 10 ? `0${minutes}` : minutes
-  const strTime = `${hours}:${minutes}`
-
-  const endResult = `${
-    d.getMonth() + 1
-  }/${d.getDate()}/${d.getFullYear()} ${strTime}`
-
-  //   console.log({ dateString, d, endResult })
-
-  return endResult
-}
-
-export const localDateMDY = (dateString) => {
-  const d = new Date(dateString)
-  const month = d.getMonth() + 1
-  const day = d.getDate()
-  return `${month < 10 ? '0' : ''}${month}/${
-    day < 10 ? '0' : ''
-  }${day}/${d.getFullYear()}`
+  const date = new Date(dateString)
+  const options = {
+    timeStyle: 'short',
+    dateStyle: 'short',
+    hour12: false,
+  }
+  // defaults to local time if no timeZone is set in options
+  return new Intl.DateTimeFormat('en-CA', options).format(date)
 }
 
 export const safeJsonParse = (str) => {
