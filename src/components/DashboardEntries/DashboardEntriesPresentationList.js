@@ -36,7 +36,7 @@ function DashboardEntriesPresentationList({
   }
 
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'p-4 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
     <Loading.Container isLoading={isLoading}>
@@ -56,6 +56,9 @@ function DashboardEntriesPresentationList({
                     </th>
                     <th scope="col" className={tableHeaderClass}>
                       Translation
+                    </th>
+                    <th scope="col" className={tableHeaderClass}>
+                      <span className="sr-only">Dates</span>
                     </th>
                     <th scope="col" className={tableHeaderClass}>
                       Type
@@ -83,6 +86,7 @@ function DashboardEntriesPresentationList({
                           >
                             {entry?.title}
                           </td>
+
                           <td
                             className="px-6 py-4 cursor-pointer"
                             onClick={() => handleItemClick(entry)}
@@ -107,7 +111,11 @@ function DashboardEntriesPresentationList({
                               </div>
                             )}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="p-4 text-fv-charcoal text-xs whitespace-nowrap">
+                            <p>Created: {entry?.created}</p>
+                            <p>Last modified: {entry?.lastModified}</p>
+                          </td>
+                          <td className="p-4 whitespace-nowrap">
                             <span
                               className={`px-2 py-1 inline-flex text-xs font-medium rounded-full bg-${entry?.type} capitalize text-white`}
                             >
@@ -117,7 +125,7 @@ function DashboardEntriesPresentationList({
                           <td>
                             <Link
                               to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
-                              className="px-6 py-4 text-primary hover:text-primary-dark flex items-center"
+                              className="p-4 text-primary hover:text-primary-dark flex items-center"
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -126,9 +134,10 @@ function DashboardEntriesPresentationList({
                           </td>
                           <td>
                             <button
+                              data-testid={`${entry?.title}-preview`}
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="px-6 py-4 text-primary hover:text-primary-dark flex items-center"
+                              className="p-4 text-primary hover:text-primary-dark flex items-center"
                             >
                               {getIcon(
                                 'Preview',
@@ -146,6 +155,7 @@ function DashboardEntriesPresentationList({
             </div>
             <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
               <button
+                data-testid="load-btn"
                 type="button"
                 className={!hasNextPage ? 'cursor-text' : ''}
                 onClick={() => fetchNextPage()}
