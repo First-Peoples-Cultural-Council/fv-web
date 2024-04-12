@@ -298,7 +298,7 @@ export const isUUID = (str) => {
   return !!isId
 }
 
-export const localDateMDYT = (dateString) => {
+export const localDateMDYTwords = (dateString) => {
   const d = new Date(dateString)
   const m = [
     'Jan',
@@ -324,6 +324,25 @@ export const localDateMDYT = (dateString) => {
 
   return `${m[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${strTime}`
 }
+
+export const localDateMDYT = (dateString) => {
+  const d = new Date(dateString)
+  let hours = d.getHours()
+  let minutes = d.getMinutes()
+
+  hours = hours < 10 ? `0${hours}` : hours
+  minutes = minutes < 10 ? `0${minutes}` : minutes
+  const strTime = `${hours}:${minutes}`
+
+  const endResult = `${
+    d.getMonth() + 1
+  }/${d.getDate()}/${d.getFullYear()} ${strTime}`
+
+  //   console.log({ dateString, d, endResult })
+
+  return endResult
+}
+
 export const localDateMDY = (dateString) => {
   const d = new Date(dateString)
   const month = d.getMonth() + 1

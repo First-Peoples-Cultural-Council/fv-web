@@ -8,8 +8,16 @@ import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 import AudioNative from 'components/AudioNative'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
-function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
+function MediaEditPresentation({
+  mediaType,
+  dataToEdit,
+  submitHandler,
+  backHandler,
+}) {
   const validator = yup.object().shape({
     original: null,
     title: definitions
@@ -41,84 +49,105 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
     value: entry?.id,
   }))
 
+  const titleCaseDocType = getFriendlyDocType({
+    docType: mediaType,
+    titleCase: true,
+  })
+
   return (
     <div id="MediaEditPresentation" className="max-w-5xl p-8">
       <Form.Header
-        title="Edit your Audio"
-        subtitle="Edit the details for your Audio file."
+        title={`Edit your ${titleCaseDocType}`}
+        subtitle={`Edit the details for your ${mediaType} file.`}
       />
       <form onReset={reset}>
-        <AudioNative styling="mt-4 w-full sm:w-1/3" audioObject={dataToEdit} />
-        <div className="mt-6 grid grid-cols-12 gap-6">
-          <div className="col-span-12 sm:col-span-6">
-            <Form.TextField
-              label="Title"
-              nameId="title"
-              register={register}
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <Form.TextField
-              label="Description"
-              nameId="description"
-              register={register}
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <Form.TextField
-              label="Acknowledgements"
-              nameId="acknowledgement"
-              register={register}
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <Form.AutocompleteMultiple
-              label="Speakers"
-              nameId="speakerIds"
-              control={control}
-              options={speakerOptions}
-              placeholder="Find speakers to add.."
-            />
-          </div>
+        <div className="grid grid-cols-12">
+          {mediaType === AUDIO ? (
+            <div className="col-span-6">
+              <AudioNative styling="mt-4" audioObject={dataToEdit} />
+            </div>
+          ) : (
+            <div className="m-6 col-span-6 max-h-1/3-screen rounded-lg overflow-hidden">
+              {mediaType === IMAGE && (
+                <img
+                  src={getMediaPath({
+                    mediaObject: dataToEdit,
+                    type: IMAGE,
+                  })}
+                  alt={dataToEdit?.title}
+                  className="object-contain w-full"
+                />
+              )}
+              {mediaType === VIDEO && (
+                <video
+                  className="w-full aspect-video"
+                  src={getMediaPath({
+                    mediaObject: dataToEdit,
+                    type: VIDEO,
+                  })}
+                  controls
+                />
+              )}
+            </div>
+          )}
 
-          <div className="col-span-12">
-            <Form.RadioButtons
-              label="Include in games?"
-              control={control}
-              errors={errors}
-              nameId="includeInGames"
-              options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
-              ]}
-            />
-          </div>
+          <div
+            className={`mt-6 grid grid-cols-12 gap-6 ${
+              mediaType === AUDIO ? 'col-span-12' : 'col-span-6'
+            }`}
+          >
+            <div className="col-span-12 sm:col-span-6">
+              <Form.TextField
+                label="Title"
+                nameId="title"
+                register={register}
+                errors={errors}
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextField
+                label="Description"
+                nameId="description"
+                register={register}
+                errors={errors}
+              />
+            </div>
 
-          <div className="col-span-12">
-            <Form.RadioButtons
-              label="Include on the Kids site?"
-              control={control}
-              errors={errors}
-              nameId="includeInKids"
-              options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
-              ]}
-            />
-          </div>
+            {mediaType === AUDIO && (
+              <div className="col-span-12">
+                <Form.AutocompleteMultiple
+                  label="Speakers"
+                  nameId="speakerIds"
+                  control={control}
+                  options={speakerOptions}
+                  placeholder="Find speakers to add.."
+                />
+              </div>
+            )}
 
-          <div className="col-span-12 flex justify-end mt-6 px-6">
-            <Form.SubmitButtons
-              submitLabel="Save changes"
-              submitIcon="Save"
-              cancelIcon="Close"
-              cancelLabel="Cancel"
-              onCancelClick={backHandler}
-              onSubmitClick={handleSubmit(submitHandler)}
-            />
+            <div className="col-span-12">
+              <Form.TextField
+                label="Acknowledgements"
+                nameId="acknowledgement"
+                register={register}
+                errors={errors}
+              />
+            </div>
+
+            {mediaType !== VIDEO && (
+              <Form.Audience control={control} errors={errors} />
+            )}
+
+            <div className="col-span-12 flex justify-end mt-6 px-6">
+              <Form.SubmitButtons
+                submitLabel="Save changes"
+                submitIcon="Save"
+                cancelIcon="Close"
+                cancelLabel="Cancel"
+                onCancelClick={backHandler}
+                onSubmitClick={handleSubmit(submitHandler)}
+              />
+            </div>
           </div>
         </div>
       </form>
@@ -126,8 +155,9 @@ function MediaEditPresentation({ dataToEdit, submitHandler, backHandler }) {
   )
 }
 
-const { func, object } = PropTypes
+const { func, object, oneOf } = PropTypes
 MediaEditPresentation.propTypes = {
+  mediaType: oneOf([AUDIO, IMAGE, VIDEO]),
   dataToEdit: object,
   submitHandler: func,
   backHandler: func,

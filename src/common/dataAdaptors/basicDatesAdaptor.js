@@ -1,6 +1,8 @@
+import { localDateMDYT } from 'common/utils/stringHelpers'
+
 export function basicDatesAdaptor({ item }) {
   return {
-    created: item?.created || '',
-    lastModified: item?.lastModified || '',
+    created: localDateMDYT(item?.created),
+    lastModified: localDateMDYT(item?.lastModified),
   }
 }

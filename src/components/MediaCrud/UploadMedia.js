@@ -8,7 +8,7 @@ import ImageEditor from '@uppy/image-editor'
 // FPCC
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 import api from 'services/api'
-import { AUDIO } from 'common/constants'
+import { AUDIO, IMAGE } from 'common/constants'
 import UploadAudio from 'components/MediaCrud/UploadAudio'
 import {
   getFileExtensions,
@@ -120,6 +120,54 @@ function UploadMedia({
     )
   }
 
+  const baseMetaFields = [
+    {
+      id: 'title',
+      name: 'Title',
+      placeholder: 'Title for the media file.',
+    },
+    {
+      id: 'description',
+      name: 'General description',
+      placeholder: 'Description of the media file to be uploaded.',
+    },
+    {
+      id: 'acknowledgement',
+      name: 'Acknowledgement',
+      placeholder: 'Who created this media or where did you get it from?',
+    },
+  ]
+
+  const imageMetaFields = [
+    ...baseMetaFields,
+    {
+      id: 'excludeFromGames',
+      name: 'Exclude from games',
+      render({ value, onChange, required, form }, h) {
+        return h('input', {
+          type: 'checkbox',
+          required,
+          form,
+          onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+          defaultChecked: value === 'on',
+        })
+      },
+    },
+    {
+      id: 'excludeFromKids',
+      name: 'Exclude from Kids',
+      render({ value, onChange, required, form }, h) {
+        return h('input', {
+          type: 'checkbox',
+          required,
+          form,
+          onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
+          defaultChecked: value === 'on',
+        })
+      },
+    },
+  ]
+
   return (
     <div id="UploadMedia" className="h-3/4 mt-4">
       <Dashboard
@@ -131,49 +179,7 @@ function UploadMedia({
         fileManagerSelectionType="files"
         showSelectedFiles
         plugins={['ImageEditor']}
-        metaFields={[
-          {
-            id: 'title',
-            name: 'Title',
-            placeholder: 'Title for the media file.',
-          },
-          {
-            id: 'description',
-            name: 'General description',
-            placeholder: 'Description of the media file to be uploaded.',
-          },
-          {
-            id: 'acknowledgement',
-            name: 'Acknowledgement',
-            placeholder: 'Who created this media or where did you get it from?',
-          },
-          {
-            id: 'excludeFromGames',
-            name: 'Exclude from games',
-            render({ value, onChange, required, form }, h) {
-              return h('input', {
-                type: 'checkbox',
-                required,
-                form,
-                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-                defaultChecked: value === 'on',
-              })
-            },
-          },
-          {
-            id: 'excludeFromKids',
-            name: 'Exclude from Kids',
-            render({ value, onChange, required, form }, h) {
-              return h('input', {
-                type: 'checkbox',
-                required,
-                form,
-                onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-                defaultChecked: value === 'on',
-              })
-            },
-          },
-        ]}
+        metaFields={docType === IMAGE ? imageMetaFields : baseMetaFields}
       />
     </div>
   )

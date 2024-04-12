@@ -15,6 +15,7 @@ function MediaEditContainer({ mediaType }) {
   return (
     <Loading.Container isLoading={isLoading}>
       <MediaEditPresentation
+        mediaType={mediaType}
         dataToEdit={dataToEdit}
         submitHandler={submitHandler}
         backHandler={backHandler}
