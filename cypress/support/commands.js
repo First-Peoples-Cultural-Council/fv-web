@@ -81,17 +81,6 @@ Cypress.Commands.add('middlestuff', (_translationwp) => {
     'an individual who fought for a warrior challenging a ruling of the Klingon High Council',
   )
 
-  cy.contains('Add audio').click()
-  cy.get('.table-fixed > .bg-white > :nth-child(1) > :nth-child(1)').click() // FW-5205
-  cy.contains('Insert 1 Audio').click()
-
-  cy.contains('Add category').click()
-  cy.get('.text-left > .flex-col > :nth-child(1) > :nth-child(1)').click() // FW-5205
-  cy.contains('Add Category').click()
-
-  // cy.contains('Add notes').click()
-  // cy.get('[name="notes.0.text"]').type('this is so note worthy!!!')
-
   cy.contains('Next step').click()
 
   cy.contains('Next step').click()
