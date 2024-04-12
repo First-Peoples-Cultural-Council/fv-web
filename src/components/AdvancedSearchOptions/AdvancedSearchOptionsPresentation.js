@@ -8,10 +8,6 @@ import {
   HAS_IMAGE,
   HAS_VIDEO,
   HAS_TRANSLATION,
-  SORT,
-  SORT_ALPHABETICAL,
-  SORT_CREATED_DESC,
-  SORT_MODIFIED_DESC,
   TRUE,
   FALSE,
   VISIBILITY,
@@ -40,18 +36,8 @@ function AdvancedSearchOptionsPresentation({ items }) {
 
           <div className="flex items-center justify-between">
             <div className="flex items-baseline space-x-8">
-              <SingleSelect
-                id={SORT}
-                options={[
-                  { value: null, label: 'Sort' },
-                  { value: SORT_ALPHABETICAL, label: 'Alphabetical' },
-                  { value: SORT_MODIFIED_DESC, label: 'Recently modified' },
-                  { value: SORT_CREATED_DESC, label: 'Recently created' },
-                ]}
-                menuAlignment="left"
-              />
               <p className="text-sm text-fv-charcoal-light">
-                Results : {countStr}{' '}
+                Results : {countStr}
               </p>
             </div>
 
