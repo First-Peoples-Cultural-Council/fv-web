@@ -32,9 +32,10 @@ export const FALSE = 'False'
 
 // For SORT
 export const SORT_ALPHABETICAL = 'title'
+export const SORT_ALPHABETICAL_DESC = 'title_desc'
 export const SORT_CREATED = 'created'
-export const SORT_MODIFIED = 'modified'
 export const SORT_CREATED_DESC = 'created_desc'
+export const SORT_MODIFIED = 'modified'
 export const SORT_MODIFIED_DESC = 'modified_desc'
 
 // For TYPES
