@@ -6,8 +6,6 @@ import {
   DOC_PAGE,
   DOC_PHRASE,
   DOC_WORD,
-  DOC_STORY,
-  DOC_SONG,
   DOC_AUDIO,
   DOC_IMAGE,
   DOC_VIDEO,
@@ -26,24 +24,6 @@ import {
   TYPE_VIDEO,
   UUID_REGEX,
 } from 'common/constants'
-
-export const cleanNXQL = (str) => {
-  let _str
-  if (!str) return str
-  _str = decodeURIComponent(str.replace(/'/g, "\\'"))
-  _str = decodeURIComponent(_str.replace(/\[/g, '\\['))
-  _str = decodeURIComponent(_str.replace(/\]/g, '\\]'))
-  // Escape '&' operator
-  _str = _str.replace(/&/g, '%26')
-  return _str
-}
-
-export const convertMilliseconds = (millis) => {
-  if (Number.isNaN(millis)) return null
-  const minutes = Math.floor(millis / 60000)
-  const seconds = ((millis % 60000) / 1000).toFixed(0)
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-}
 
 export const convertMsToTimeWords = (milliseconds) => {
   let s = milliseconds
@@ -149,54 +129,6 @@ export const convertStateToVisibility = (state) => {
   }
 }
 
-export const getFvDocType = (string) => {
-  const cleanString =
-    typeof string === 'string' || string instanceof String
-      ? string.toLowerCase()
-      : ''
-  switch (cleanString) {
-    case 'images':
-    case 'image':
-    case 'gif':
-    case 'gifOrImg':
-      return DOC_IMAGE
-    case 'audio':
-      return DOC_AUDIO
-    case 'video':
-    case 'videos':
-      return DOC_VIDEO
-    case 'word':
-    case 'words':
-      return DOC_WORD
-    case 'phrase':
-    case 'phrases':
-      return DOC_PHRASE
-    case 'story':
-    case 'stories':
-    case 'song':
-    case 'songs':
-    case 'song/story':
-      return DOC_BOOK
-    default:
-      return 'Unrecognised doc type term.'
-  }
-}
-
-export const getSearchTypeFromDocType = (docType) => {
-  switch (docType) {
-    case DOC_PHRASE:
-      return TYPE_PHRASE
-    case DOC_SONG:
-      return TYPE_SONG
-    case DOC_STORY:
-      return TYPE_STORY
-    case DOC_WORD:
-      return TYPE_WORD
-    default:
-      return 'Unrecognised type.'
-  }
-}
-
 export const getPresentationPropertiesForType = (type) => {
   switch (type) {
     case TYPE_WORD:
@@ -299,57 +231,28 @@ export const isUUID = (str) => {
 }
 
 export const localDateMDYTwords = (dateString) => {
-  const d = new Date(dateString)
-  const m = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
-  let hours = d.getHours()
-  let minutes = d.getMinutes()
-  const ampm = hours >= 12 ? 'PM' : 'AM'
-  hours %= 12
-  hours = hours || 12 // the hour '0' should be '12'
-  minutes = minutes < 10 ? `0${minutes}` : minutes
-  const strTime = `${hours}:${minutes} ${ampm}`
-
-  return `${m[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${strTime}`
+  const date = new Date(dateString)
+  const options = {
+    timeStyle: 'short',
+    dateStyle: 'long',
+  }
+  // Only process date if it is not NaN
+  return !Number.isNaN(date)
+    ? new Intl.DateTimeFormat('en-CA', options).format(date) // defaults to local time if no timeZone is set in options
+    : ''
 }
 
 export const localDateMDYT = (dateString) => {
-  const d = new Date(dateString)
-  let hours = d.getHours()
-  let minutes = d.getMinutes()
-
-  hours = hours < 10 ? `0${hours}` : hours
-  minutes = minutes < 10 ? `0${minutes}` : minutes
-  const strTime = `${hours}:${minutes}`
-
-  const endResult = `${
-    d.getMonth() + 1
-  }/${d.getDate()}/${d.getFullYear()} ${strTime}`
-
-  //   console.log({ dateString, d, endResult })
-
-  return endResult
-}
-
-export const localDateMDY = (dateString) => {
-  const d = new Date(dateString)
-  const month = d.getMonth() + 1
-  const day = d.getDate()
-  return `${month < 10 ? '0' : ''}${month}/${
-    day < 10 ? '0' : ''
-  }${day}/${d.getFullYear()}`
+  const date = new Date(dateString)
+  const options = {
+    timeStyle: 'short',
+    dateStyle: 'short',
+    hour12: false,
+  }
+  // Only process date if it is not NaN
+  return !Number.isNaN(date)
+    ? new Intl.DateTimeFormat('en-CA', options).format(date) // defaults to local time if no timeZone is set in options
+    : ''
 }
 
 export const safeJsonParse = (str) => {

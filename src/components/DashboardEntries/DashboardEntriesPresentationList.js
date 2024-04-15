@@ -8,6 +8,15 @@ import EntryDetail from 'components/EntryDetail'
 import getIcon from 'common/utils/getIcon'
 import Drawer from 'components/Drawer'
 import { makePlural } from 'common/utils/urlHelpers'
+import SortByHeader from 'components/DashboardEntries/SortByHeader'
+import {
+  SORT_ALPHABETICAL,
+  SORT_ALPHABETICAL_DESC,
+  SORT_CREATED,
+  SORT_CREATED_DESC,
+  SORT_MODIFIED,
+  SORT_MODIFIED_DESC,
+} from 'common/constants'
 
 function DashboardEntriesPresentationList({
   infiniteScroll,
@@ -48,17 +57,47 @@ function DashboardEntriesPresentationList({
         items?.pages?.[0]?.results?.length > 0 ? (
           <div className="flex flex-col w-full">
             <div className="border-b border-gray-300">
-              <table className="w-full divide-y divide-gray-300">
+              <table className="table-auto w-full divide-y divide-gray-300">
                 <thead className="bg-gray-100">
                   <tr>
-                    <th scope="col" className={tableHeaderClass}>
-                      {entryLabel}
+                    <th
+                      scope="col"
+                      aria-labelledby={SORT_ALPHABETICAL}
+                      className="pl-6 pr-4 py-4 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider"
+                    >
+                      <SortByHeader
+                        id={SORT_ALPHABETICAL}
+                        title={entryLabel}
+                        asc={SORT_ALPHABETICAL}
+                        desc={SORT_ALPHABETICAL_DESC}
+                      />
                     </th>
                     <th scope="col" className={tableHeaderClass}>
                       Translation
                     </th>
-                    <th scope="col" className={tableHeaderClass}>
-                      <span className="sr-only">Dates</span>
+                    <th
+                      scope="col"
+                      aria-labelledby={SORT_CREATED}
+                      className={tableHeaderClass}
+                    >
+                      <SortByHeader
+                        id={SORT_CREATED}
+                        title="Created"
+                        asc={SORT_CREATED}
+                        desc={SORT_CREATED_DESC}
+                      />
+                    </th>
+                    <th
+                      scope="col"
+                      aria-labelledby={SORT_MODIFIED}
+                      className={tableHeaderClass}
+                    >
+                      <SortByHeader
+                        id={SORT_MODIFIED}
+                        title="Last modified"
+                        asc={SORT_MODIFIED}
+                        desc={SORT_MODIFIED_DESC}
+                      />
                     </th>
                     <th scope="col" className={tableHeaderClass}>
                       Type
@@ -71,7 +110,7 @@ function DashboardEntriesPresentationList({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-300">
+                <tbody className="bg-white divide-y divide-gray-300 text-fv-charcoal">
                   {items.pages.map((page) => (
                     <Fragment key={page?.pageNumber}>
                       {page.results.map((entry) => (
@@ -82,13 +121,13 @@ function DashboardEntriesPresentationList({
                         >
                           <td
                             onClick={() => handleItemClick(entry)}
-                            className="cursor-pointer px-6 py-4 flex items-center text-left font-medium text-fv-charcoal lg:mr-2"
+                            className="cursor-pointer pl-6 pr-4 py-4 text-left font-medium"
                           >
                             {entry?.title}
                           </td>
 
                           <td
-                            className="px-6 py-4 cursor-pointer"
+                            className="cursor-pointer p-4 text-left font-medium"
                             onClick={() => handleItemClick(entry)}
                           >
                             {/* For Dictionary Entries */}
@@ -112,8 +151,10 @@ function DashboardEntriesPresentationList({
                             )}
                           </td>
                           <td className="p-4 text-fv-charcoal text-xs whitespace-nowrap">
-                            <p>Created: {entry?.created}</p>
-                            <p>Last modified: {entry?.lastModified}</p>
+                            {entry?.created}
+                          </td>
+                          <td className="p-4 text-fv-charcoal text-xs whitespace-nowrap">
+                            {entry?.lastModified}
                           </td>
                           <td className="p-4 whitespace-nowrap">
                             <span
