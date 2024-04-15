@@ -4,19 +4,25 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import { SORT, SORT_ALPHABETICAL } from 'common/constants'
+import { SORT } from 'common/constants'
 
 function SortByHeader({ title, asc, desc }) {
-  const [paramValue, setParamValue] = useSearchParamsState({
+  const [paramValue, setParamValue, removeParamValue] = useSearchParamsState({
     searchParamName: SORT,
-    defaultValue: SORT_ALPHABETICAL,
+    defaultValue: '',
   })
 
   const handleClick = () => {
-    if (paramValue === asc) {
-      setParamValue(desc)
-    } else {
-      setParamValue(asc)
+    switch (paramValue) {
+      case asc:
+        setParamValue(desc)
+        break
+      case desc:
+        removeParamValue()
+        break
+      default:
+        setParamValue(asc)
+        break
     }
   }
 
