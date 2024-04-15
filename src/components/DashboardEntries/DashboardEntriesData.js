@@ -5,8 +5,6 @@ import { useSearchParams } from 'react-router-dom'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import {
-  DOMAIN,
-  DOMAIN_BOTH,
   TYPES,
   TYPE_DICTIONARY,
   TYPE_PHRASE,
@@ -16,7 +14,6 @@ import {
 function DashboardEntriesData({ advancedSearch }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
-  const domain = searchParams.get([DOMAIN]) || DOMAIN_BOTH
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
   const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
     useSearchBoxNavigation({
@@ -40,6 +37,19 @@ function DashboardEntriesData({ advancedSearch }) {
     }
   }, [searchParams, showAdvancedSearch])
 
+  const removeFilters = () => {
+    if (searchTerm) {
+      setSearchParams({
+        q: searchTerm,
+        [TYPES]: urlSearchType,
+      })
+    } else {
+      setSearchParams({
+        [TYPES]: urlSearchType,
+      })
+    }
+  }
+
   return {
     emptyListMessage: searchTerm
       ? 'Sorry, there are no results for this search.'
@@ -51,13 +61,7 @@ function DashboardEntriesData({ advancedSearch }) {
     isLoadingEntries: isInitialLoading,
     items: data,
     loadRef: searchTerm ? loadRef : null,
-    removeFilters: () => {
-      setSearchParams({
-        q: searchTerm,
-        [TYPES]: urlSearchType,
-        [DOMAIN]: domain,
-      })
-    },
+    removeFilters,
     searchType,
     setSearchType: setSearchTypeInUrl,
     setShowAdvancedSearch,
