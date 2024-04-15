@@ -236,8 +236,10 @@ export const localDateMDYTwords = (dateString) => {
     timeStyle: 'short',
     dateStyle: 'long',
   }
-  // defaults to local time if no timeZone is set in options
-  return new Intl.DateTimeFormat('en-CA', options).format(date)
+  // Only process date if it is not NaN
+  return !Number.isNaN(date)
+    ? new Intl.DateTimeFormat('en-CA', options).format(date) // defaults to local time if no timeZone is set in options
+    : ''
 }
 
 export const localDateMDYT = (dateString) => {
@@ -247,8 +249,10 @@ export const localDateMDYT = (dateString) => {
     dateStyle: 'short',
     hour12: false,
   }
-  // defaults to local time if no timeZone is set in options
-  return new Intl.DateTimeFormat('en-CA', options).format(date)
+  // Only process date if it is not NaN
+  return !Number.isNaN(date)
+    ? new Intl.DateTimeFormat('en-CA', options).format(date) // defaults to local time if no timeZone is set in options
+    : ''
 }
 
 export const safeJsonParse = (str) => {
