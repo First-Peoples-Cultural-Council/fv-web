@@ -48,7 +48,14 @@ function useSearchTerm() {
     }
   }, [location?.pathname, searchTermInUrl])
 
+  const clearSearchTerm = (event) => {
+    event.preventDefault()
+    setDisplayedSearchTerm('')
+    removeSearchTermInUrl()
+  }
+
   return {
+    clearSearchTerm,
     displayedSearchTerm,
     setDisplayedSearchTerm,
     submittedSearchTerm,

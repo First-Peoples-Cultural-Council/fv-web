@@ -28,23 +28,16 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
   const {
     displayedSearchTerm,
     handleSearchTermChange,
-    setDisplayedSearchTerm,
     submittedSearchTerm,
     setSubmittedSearchTerm,
-    removeSearchTermInUrl,
+    clearSearchTerm,
   } = useSearchTerm()
 
-  const { getSearchTypeLabel, searchType, setSearchTypeInUrl } = useSearchType({
+  const { getSearchTypeLabel, searchType } = useSearchType({
     initialSearchType,
   })
 
-  const {
-    searchLanguage,
-    setSearchLanguage,
-    searchLanguageInUrl,
-    setSearchLanguageInUrl,
-    searchLanguageOptions,
-  } = useSearchLanguage({ searchType })
+  const { searchLanguage } = useSearchLanguage({ searchType })
 
   const searchBoxPlaceholderSuffix = sitename
     ? `${site.title}`
@@ -83,35 +76,15 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
     navigate(`${baseUrl}?${new URLSearchParams(fullParams).toString()}`)
   }
 
-  const handleSearchLanguageNavigation = (event, value) => {
-    setSearchLanguage(value)
-    setSearchLanguageInUrl(value)
-  }
-
-  const clearSearchTerm = (event) => {
-    event.preventDefault()
-    setDisplayedSearchTerm('')
-    removeSearchTermInUrl()
-  }
-
   return {
     handleSearchNavigation,
-    handleSearchLanguageNavigation,
-    clearSearchTerm,
     searchBoxPlaceholder,
     // From useSearchType
     searchType,
-    setSearchTypeInUrl,
-    getSearchTypeLabel,
-    // From useSearchLanguage
-    searchLanguage,
-    searchLanguageInUrl,
-    setSearchLanguageInUrl,
-    searchLanguageOptions,
     // from useSearchTerm
+    clearSearchTerm,
     displayedSearchTerm,
     handleSearchTermChange,
-    setDisplayedSearchTerm,
     submittedSearchTerm,
   }
 }
