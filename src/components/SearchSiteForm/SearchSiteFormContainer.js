@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
-import { useParams } from 'react-router-dom'
+import { TYPE_ENTRY } from 'common/constants'
 
 function SiteSearchContainer({ kids, minimal }) {
   const { sitename } = useParams()
@@ -18,7 +19,11 @@ function SiteSearchContainer({ kids, minimal }) {
     searchLanguage,
     searchLanguageOptions,
     displayedSearchTerm,
-  } = useSearchBoxNavigation({ customBaseUrl, kids })
+  } = useSearchBoxNavigation({
+    customBaseUrl,
+    kids,
+    initialSearchType: TYPE_ENTRY,
+  })
 
   return (
     <div id="SiteSearchContainer" className="flex w-full rounded-lg">
