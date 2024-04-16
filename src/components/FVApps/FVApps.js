@@ -17,6 +17,11 @@ function FVApps() {
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
           <h2 className={headerStyle}>FirstVoices Keyboard App</h2>
           <p className={paraStyle}>
+            Notice: The apps listed on this page are no longer being maintained.
+            Please stay tuned for new and improved web apps will that launch in
+            the near future.
+          </p>
+          <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
             their FirstVoices language sites can now also be accessed through
             mobile apps. The app pulls content directly from entries on
