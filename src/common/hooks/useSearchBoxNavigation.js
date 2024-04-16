@@ -12,7 +12,7 @@ import useSearchTerm from 'common/hooks/useSearchTerm'
 import useSearchLanguage from 'common/hooks/useSearchLanguage'
 import useSearchType from 'common/hooks/useSearchType'
 import { updateSearchParams } from 'common/utils/urlHelpers'
-import { DOMAIN, TYPES, TYPE_ENTRY, KIDS, SORT } from 'common/constants'
+import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
@@ -31,34 +31,29 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
     setDisplayedSearchTerm,
     submittedSearchTerm,
     setSubmittedSearchTerm,
+    removeSearchTermInUrl,
   } = useSearchTerm()
 
-  const {
-    getSearchTypeLabel,
-    searchType: _searchType,
-    setSearchTypeInUrl,
-  } = useSearchType({
+  const { getSearchTypeLabel, searchType, setSearchTypeInUrl } = useSearchType({
     initialSearchType,
   })
 
   const {
-    searchLanguage: _searchLanguage,
+    searchLanguage,
     setSearchLanguage,
     searchLanguageInUrl,
     setSearchLanguageInUrl,
     searchLanguageOptions,
-  } = useSearchLanguage({ searchType: _searchType })
-
-  const placeholderSearchType = initialSearchType || _searchType
+  } = useSearchLanguage({ searchType })
 
   const searchBoxPlaceholderSuffix = sitename
     ? `${site.title}`
     : 'all languages on FirstVoices'
 
   const searchBoxPlaceholder =
-    placeholderSearchType && placeholderSearchType !== TYPE_ENTRY
+    searchType && searchType !== TYPE_ENTRY
       ? `Search ${getSearchTypeLabel({
-          searchType: placeholderSearchType,
+          searchType,
           plural: true,
         })} in ${searchBoxPlaceholderSuffix}`
       : `Search ${searchBoxPlaceholderSuffix}`
@@ -72,39 +67,20 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
 
   const navigate = useNavigate()
 
-  const _doSearchNavigation = (params) => {
-    navigate(`${baseUrl}?${new URLSearchParams(params).toString()}`)
-  }
-
-  const doSearchNavigation = ({
-    searchTerm,
-    searchLanguage,
-    searchType,
-    kidFlag,
-  }) => {
-    const newParams = {
-      q: searchTerm,
-      [DOMAIN]: searchLanguage,
-      [TYPES]: searchType,
-      [SORT]: '',
-    }
-    if (kidFlag) {
-      newParams[KIDS] = kidFlag
-    }
-    const fullParams = updateSearchParams(searchParams, newParams)
-    _doSearchNavigation(fullParams)
-  }
-
   const handleSearchNavigation = (event) => {
     // search with current state
     event.preventDefault()
     setSubmittedSearchTerm(displayedSearchTerm)
-    doSearchNavigation({
-      searchTerm: displayedSearchTerm,
-      searchLanguage: _searchLanguage,
-      searchType: _searchType,
-      kidFlag: kids,
-    })
+    const newParams = {
+      q: displayedSearchTerm,
+      [DOMAIN]: searchLanguage,
+      [TYPES]: searchType,
+    }
+    if (kids) {
+      newParams[KIDS] = kids
+    }
+    const fullParams = updateSearchParams(searchParams, newParams)
+    navigate(`${baseUrl}?${new URLSearchParams(fullParams).toString()}`)
   }
 
   const handleSearchLanguageNavigation = (event, value) => {
@@ -112,17 +88,23 @@ function useSearchBoxNavigation({ customBaseUrl, initialSearchType, kids }) {
     setSearchLanguageInUrl(value)
   }
 
+  const clearSearchTerm = (event) => {
+    event.preventDefault()
+    setDisplayedSearchTerm('')
+    removeSearchTermInUrl()
+  }
+
   return {
     handleSearchNavigation,
     handleSearchLanguageNavigation,
-    doSearchNavigation,
+    clearSearchTerm,
     searchBoxPlaceholder,
     // From useSearchType
-    searchType: _searchType,
+    searchType,
     setSearchTypeInUrl,
     getSearchTypeLabel,
     // From useSearchLanguage
-    searchLanguage: _searchLanguage,
+    searchLanguage,
     searchLanguageInUrl,
     setSearchLanguageInUrl,
     searchLanguageOptions,
