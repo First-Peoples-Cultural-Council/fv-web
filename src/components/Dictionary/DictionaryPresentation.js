@@ -44,7 +44,10 @@ function DictionaryPresentation({
         className={`bg-gradient-to-b from-${labels.color} to-${labels.color}-dark p-5 print:hidden`}
       >
         <div className="mx-auto lg:w-3/5">
-          <SearchDictionaryForm.Container kids={kids} searchType={searchType} />
+          <SearchDictionaryForm.Container
+            kids={kids}
+            initialSearchType={searchType}
+          />
         </div>
       </section>
       {kids ? (

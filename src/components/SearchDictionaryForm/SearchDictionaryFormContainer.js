@@ -5,34 +5,29 @@ import PropTypes from 'prop-types'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 
-function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {
+function SearchDictionaryFormContainer({ kids, initialSearchType }) {
   // basic searchbox behaviour
   const {
     handleSearchNavigation,
-    searchLanguage,
-    searchLanguageOptions,
-    handleSearchLanguageNavigation,
     displayedSearchTerm,
     submittedSearchTerm,
     handleSearchTermChange,
     searchBoxPlaceholder,
     clearSearchTerm,
+    searchType,
   } = useSearchBoxNavigation({
-    customBaseUrl,
-    initialSearchType: searchType,
+    initialSearchType,
     kids,
   })
 
   return (
     <div id="SearchDictionaryFormContainer" className="flex w-full rounded-lg">
       <SearchInputPresentation
+        displayedSearchTerm={displayedSearchTerm}
         handleSearchNavigation={handleSearchNavigation}
         handleSearchTermChange={handleSearchTermChange}
-        handleSearchLanguageNavigation={handleSearchLanguageNavigation}
-        searchLanguage={searchLanguage}
-        searchLanguageOptions={searchLanguageOptions}
-        displayedSearchTerm={displayedSearchTerm}
         searchBoxPlaceholder={searchBoxPlaceholder}
+        searchType={searchType}
       />
 
       {submittedSearchTerm && (
@@ -52,9 +47,8 @@ function SearchDictionaryFormContainer({ kids, customBaseUrl, searchType }) {
 // PROPTYPES
 const { bool, string } = PropTypes
 SearchDictionaryFormContainer.propTypes = {
-  customBaseUrl: string,
   kids: bool,
-  searchType: string,
+  initialSearchType: string,
 }
 
 export default SearchDictionaryFormContainer

@@ -13,12 +13,10 @@ function SearchSiteFormContainer({ kids, minimal }) {
 
   const {
     handleSearchNavigation,
-    handleSearchLanguageNavigation,
+    displayedSearchTerm,
     handleSearchTermChange,
     searchBoxPlaceholder,
-    searchLanguage,
-    searchLanguageOptions,
-    displayedSearchTerm,
+    searchType,
   } = useSearchBoxNavigation({
     customBaseUrl,
     kids,
@@ -28,13 +26,11 @@ function SearchSiteFormContainer({ kids, minimal }) {
   return (
     <div id="SearchSiteFormContainer" className="flex w-full rounded-lg">
       <SearchInputPresentation
+        displayedSearchTerm={displayedSearchTerm}
         handleSearchNavigation={handleSearchNavigation}
         handleSearchTermChange={handleSearchTermChange}
-        handleSearchLanguageNavigation={handleSearchLanguageNavigation}
-        searchLanguage={searchLanguage}
-        searchLanguageOptions={searchLanguageOptions}
-        displayedSearchTerm={displayedSearchTerm}
         searchBoxPlaceholder={searchBoxPlaceholder}
+        searchType={searchType}
         minimal={minimal}
       />
     </div>
