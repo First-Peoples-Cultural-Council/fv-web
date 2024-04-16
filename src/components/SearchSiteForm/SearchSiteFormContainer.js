@@ -7,7 +7,7 @@ import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
 import { TYPE_ENTRY } from 'common/constants'
 
-function SiteSearchContainer({ kids, minimal }) {
+function SearchSiteFormContainer({ kids, minimal }) {
   const { sitename } = useParams()
   const customBaseUrl = sitename ? `/${sitename}/search` : '/search'
 
@@ -26,7 +26,7 @@ function SiteSearchContainer({ kids, minimal }) {
   })
 
   return (
-    <div id="SiteSearchContainer" className="flex w-full rounded-lg">
+    <div id="SearchSiteFormContainer" className="flex w-full rounded-lg">
       <SearchInputPresentation
         handleSearchNavigation={handleSearchNavigation}
         handleSearchTermChange={handleSearchTermChange}
@@ -43,14 +43,14 @@ function SiteSearchContainer({ kids, minimal }) {
 
 // PROPTYPES
 const { bool } = PropTypes
-SiteSearchContainer.propTypes = {
+SearchSiteFormContainer.propTypes = {
   minimal: bool,
   kids: bool,
 }
 
-SiteSearchContainer.defaultProps = {
+SearchSiteFormContainer.defaultProps = {
   minimal: false,
   kids: null,
 }
 
-export default SiteSearchContainer
+export default SearchSiteFormContainer
