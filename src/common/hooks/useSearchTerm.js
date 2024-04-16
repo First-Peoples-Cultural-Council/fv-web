@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react'
-import { useSearchParams, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+
+// FPCC
+import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function useSearchTerm() {
   const location = useLocation()
   // update search settings when url changes
-  const [searchParams] = useSearchParams()
-  const searchParamQuery = searchParams.get('q') || ''
+  const [searchTermInUrl, setSearchTermInUrl, removeSearchTermInUrl] =
+    useSearchParamsState({
+      searchParamName: 'q',
+      defaultValue: '',
+    })
 
   // basic search term state
   const [displayedSearchTerm, setDisplayedSearchTerm] = useState('')
@@ -21,26 +27,26 @@ function useSearchTerm() {
     setSubmittedSearchTerm(displayedSearchTerm)
   }
 
-  // This is to keep submittedSearchTerm and searchParamQuery in sync when on url driven pages
+  // This is to keep submittedSearchTerm and searchTermInUrl in sync when on url driven pages
   useEffect(() => {
-    if (searchParamQuery && searchParamQuery !== submittedSearchTerm) {
-      setSubmittedSearchTerm(searchParamQuery)
+    if (searchTermInUrl && searchTermInUrl !== submittedSearchTerm) {
+      setSubmittedSearchTerm(searchTermInUrl)
     }
-  }, [searchParamQuery, submittedSearchTerm, setSubmittedSearchTerm])
+  }, [searchTermInUrl, submittedSearchTerm, setSubmittedSearchTerm])
 
   // If Url Query Param exists on load or if it changes, set the displayed search term
   useEffect(() => {
-    if (searchParamQuery) {
-      setDisplayedSearchTerm(searchParamQuery)
+    if (searchTermInUrl) {
+      setDisplayedSearchTerm(searchTermInUrl)
     }
-  }, [searchParamQuery, setDisplayedSearchTerm])
+  }, [searchTermInUrl, setDisplayedSearchTerm])
 
   useEffect(() => {
     // execute on path change if there is no query
-    if (!searchParamQuery) {
+    if (!searchTermInUrl) {
       setDisplayedSearchTerm('')
     }
-  }, [location?.pathname, searchParamQuery])
+  }, [location?.pathname, searchTermInUrl])
 
   return {
     displayedSearchTerm,
@@ -49,6 +55,9 @@ function useSearchTerm() {
     setSubmittedSearchTerm,
     handleSearchTermChange,
     handleSearchTermSubmit,
+    searchTermInUrl,
+    setSearchTermInUrl,
+    removeSearchTermInUrl,
   }
 }
 
