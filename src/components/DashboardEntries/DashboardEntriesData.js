@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import useSearchType from 'common/hooks/useSearchType'
 import {
   TYPES,
   TYPE_DICTIONARY,
@@ -15,10 +15,9 @@ function DashboardEntriesData({ advancedSearch }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
-  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
-    useSearchBoxNavigation({
-      initialSearchType: urlSearchType,
-    })
+  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } = useSearchType({
+    initialSearchType: urlSearchType,
+  })
   const isDictionary =
     urlSearchType === TYPE_WORD ||
     urlSearchType === TYPE_PHRASE ||
