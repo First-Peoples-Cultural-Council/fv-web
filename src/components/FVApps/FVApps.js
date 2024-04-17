@@ -15,20 +15,18 @@ function FVApps() {
           accentColor="primary"
         />
         <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
-          <h2 className={headerStyle}>FirstVoices Keyboard App</h2>
-          <p className={paraStyle}>
-            Notice: The apps listed on this page are no longer being maintained.
-            Please stay tuned for new and improved web apps will that launch in
-            the near future.
-          </p>
+          <h2 className={headerStyle}>FirstVoices Language Apps</h2>
           <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
-            their FirstVoices language sites can now also be accessed through
-            mobile apps. The app pulls content directly from entries on
-            FirstVoices and functions with offline capabilities. The apps are
-            updated throughout the year in order to ensure that the latest
-            content that has been added to a language site also appears on the
-            app.
+            their FirstVoices language sites can also be accessed through mobile
+            apps. The app pulls content directly from entries on FirstVoices and
+            functions with offline capabilities.
+          </p>
+          <p className={paraStyle}>
+            Note: The classic FirstVoices language apps are no longer being
+            updated and may not be installable on all devices. Watch out for the
+            new and improved FirstVoices language apps with automatic syncing
+            capabilities, coming soon!
           </p>
           <div className="grid grid-cols-3 gap-6">
             <div>
