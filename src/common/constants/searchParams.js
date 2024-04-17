@@ -19,6 +19,21 @@ export const VISIBILITY = 'visibility'
 export const MINWORDS = 'minWords'
 export const MAXWORDS = 'maxWords'
 
+// An Array of search param keys that FILTER results - excluding TYPES
+export const SEARCH_FILTERS = [
+  CATEGORY,
+  DOMAIN,
+  GAMES,
+  HAS_AUDIO,
+  HAS_IMAGE,
+  HAS_VIDEO,
+  HAS_TRANSLATION,
+  HAS_UNRECOGNIZED_CHARS,
+  KIDS,
+  STARTS_WITH_CHAR,
+  VISIBILITY,
+]
+
 /* Recognized values for params */
 
 // For DOMAIN

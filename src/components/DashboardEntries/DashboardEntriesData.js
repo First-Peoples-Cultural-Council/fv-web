@@ -9,6 +9,7 @@ import {
   TYPE_DICTIONARY,
   TYPE_PHRASE,
   TYPE_WORD,
+  SEARCH_FILTERS,
 } from 'common/constants'
 
 function DashboardEntriesData({ advancedSearch }) {
@@ -31,7 +32,11 @@ function DashboardEntriesData({ advancedSearch }) {
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(advancedSearch)
 
   useEffect(() => {
-    if (Array.from(searchParams).length > 1 && !showAdvancedSearch) {
+    const searchParamsString = searchParams.toString()
+    const checkForFilter = (currentValue) =>
+      searchParamsString.includes(currentValue)
+    const hasFilters = SEARCH_FILTERS.some(checkForFilter)
+    if (hasFilters && !showAdvancedSearch) {
       setShowAdvancedSearch(true)
     }
   }, [searchParams, showAdvancedSearch])
