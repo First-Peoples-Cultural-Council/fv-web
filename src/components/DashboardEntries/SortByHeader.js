@@ -31,10 +31,10 @@ function SortByHeader({ title, asc, desc }) {
   let iconName = ''
   switch (paramValue) {
     case asc:
-      iconName = 'ChevronUp'
+      iconName = 'ArrowUp'
       break
     case desc:
-      iconName = 'ChevronDown'
+      iconName = 'ArrowDown'
       break
     default:
       iconName = 'ChevronUpDown'
@@ -57,7 +57,7 @@ function SortByHeader({ title, asc, desc }) {
       </span>
       {getIcon(
         iconName,
-        'text-fv-charcoal-light ml-2 h-5 w-5 flex-none rounded fill-current group-hover:text-fv-charcoal group-focus:text-fv-charcoal',
+        'text-fv-charcoal-light ml-1 h-5 w-5 flex-none rounded fill-current group-hover:text-fv-charcoal group-focus:text-fv-charcoal',
       )}
     </button>
   )
