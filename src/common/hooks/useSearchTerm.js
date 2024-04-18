@@ -51,6 +51,7 @@ function useSearchTerm() {
   const clearSearchTerm = (event) => {
     event.preventDefault()
     setDisplayedSearchTerm('')
+    setSubmittedSearchTerm('')
     removeSearchTermInUrl()
   }
 
