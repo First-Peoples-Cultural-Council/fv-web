@@ -4,8 +4,14 @@ import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import useSearchLanguage from 'common/hooks/useSearchLanguage'
 
-function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
+function SearchLanguageSelectorPresentation({ searchType }) {
+  const {
+    searchLanguage,
+    searchLanguageOptions,
+    handleSearchLanguageNavigation,
+  } = useSearchLanguage({ searchType })
   return (
     <Menu
       id="SearchLanguageSelectorPresentation"
@@ -14,7 +20,7 @@ function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
     >
       <div aria-label="Search/Go">
         <Menu.Button className="inline-flex justify-center w-full px-2 lg:px-4 py-2 font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-          {options[selected]}
+          {searchLanguageOptions[searchLanguage]}
           {getIcon(
             'ChevronDown',
             'w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100',
@@ -32,18 +38,19 @@ function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
       >
         <Menu.Items className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1">
-            {Object.entries(options).map(([key, label]) => (
+            {Object.entries(searchLanguageOptions).map(([key, label]) => (
               <Menu.Item key={`optionlist-key-${key}`}>
                 {({ active }) => (
                   <button
+                    data-testid={`language-select-option-${key}`}
                     type="button"
-                    onClick={(event) => onSelect(event, key)}
+                    onClick={() => handleSearchLanguageNavigation(key)}
                     className={`${
                       active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
                     } font-medium group flex rounded-lg items-center w-full px-2 py-2 text-sm`}
                   >
                     {label}
-                    {selected === key
+                    {searchLanguage === key
                       ? getIcon('Checkmark', 'h-5 w-5 fill-current ml-2')
                       : ''}
                   </button>
@@ -57,11 +64,9 @@ function SearchLanguageSelectorPresentation({ selected, onSelect, options }) {
   )
 }
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { string } = PropTypes
 SearchLanguageSelectorPresentation.propTypes = {
-  selected: string,
-  onSelect: func,
-  options: object,
+  searchType: string,
 }
 
 export default SearchLanguageSelectorPresentation

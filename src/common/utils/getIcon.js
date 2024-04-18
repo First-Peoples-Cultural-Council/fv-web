@@ -4,6 +4,8 @@ import About from 'common/icons/About'
 import Add from 'common/icons/Add'
 import Alphabet from 'common/icons/Alphabet'
 import ArrowDivider from 'common/icons/ArrowDivider'
+import ArrowDown from 'common/icons/ArrowDown'
+import ArrowUp from 'common/icons/ArrowUp'
 import Audio from 'common/icons/Audio'
 import BackArrow from 'common/icons/BackArrow'
 import Categories from 'common/icons/Categories'
@@ -25,7 +27,6 @@ import Download from 'common/icons/Download'
 import Exclamation from 'common/icons/Exclamation'
 import ExclamationTriangleSolid from 'common/icons/ExclamationTriangleSolid'
 import Facebook from 'common/icons/Facebook'
-import ForwardArrow from 'common/icons/ForwardArrow'
 import ForwardSlash from 'common/icons/ForwardSlash'
 import Fullscreen from 'common/icons/Fullscreen'
 import FVLogo from 'common/icons/FVLogo'
@@ -128,6 +129,8 @@ function getIcon(iconName, iconStyling, title) {
     Add,
     Alphabet,
     ArrowDivider,
+    ArrowDown,
+    ArrowUp,
     Audio,
     BackArrow,
     Canoe,
@@ -150,7 +153,6 @@ function getIcon(iconName, iconStyling, title) {
     Exclamation,
     ExclamationTriangleSolid,
     Facebook,
-    ForwardArrow,
     ForwardSlash,
     Fullscreen,
     FVLogo,

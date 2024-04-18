@@ -8,11 +8,9 @@ import SearchBox from 'components/SearchBox'
 
 function SearchInputPresentation({
   handleSearchNavigation,
-  handleSearchLanguageNavigation,
   handleSearchTermChange,
   searchBoxPlaceholder,
-  searchLanguage,
-  searchLanguageOptions,
+  searchType,
   displayedSearchTerm,
   minimal,
 }) {
@@ -28,7 +26,7 @@ function SearchInputPresentation({
         />
         <button
           type="button"
-          id="SearchSubmit"
+          data-testid="SearchSubmit"
           aria-label="Search/Go"
           onClick={handleSearchNavigation}
           className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light rounded-r-full bg-gray-50 hover:bg-gray-100"
@@ -47,14 +45,10 @@ function SearchInputPresentation({
       />
 
       <div className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
-        <SearchLanguageSelector.Presentation
-          selected={searchLanguage}
-          options={searchLanguageOptions}
-          onSelect={handleSearchLanguageNavigation}
-        />
+        <SearchLanguageSelector.Presentation searchType={searchType} />
         <button
           type="button"
-          id="SearchSubmit"
+          data-testid="SearchSubmit"
           aria-label="Search/Go"
           onClick={handleSearchNavigation}
         >
@@ -66,14 +60,12 @@ function SearchInputPresentation({
 }
 
 // PROPTYPES
-const { bool, func, object, string } = PropTypes
+const { bool, func, string } = PropTypes
 SearchInputPresentation.propTypes = {
   handleSearchNavigation: func,
-  handleSearchLanguageNavigation: func,
   handleSearchTermChange: func,
   searchBoxPlaceholder: string,
-  searchLanguage: string,
-  searchLanguageOptions: object,
+  searchType: string,
   displayedSearchTerm: string,
   minimal: bool,
 }
