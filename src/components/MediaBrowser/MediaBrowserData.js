@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import { AUDIO, IMAGE, VIDEO, TYPES, TYPE_MEDIA } from 'common/constants'
-import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
 function MediaBrowserData({ docType }) {
@@ -16,11 +15,7 @@ function MediaBrowserData({ docType }) {
 
   const docTypePlural = getFriendlyDocType({ docType, plural: true })
 
-  const urlSearchType = searchParams.get(TYPES) || TYPE_MEDIA
-
-  const { searchType } = useSearchBoxNavigation({
-    initialSearchType: urlSearchType,
-  })
+  const searchType = searchParams.get(TYPES) || TYPE_MEDIA
 
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file

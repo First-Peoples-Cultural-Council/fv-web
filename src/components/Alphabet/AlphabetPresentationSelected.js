@@ -225,7 +225,7 @@ AlphabetPresentationSelected.propTypes = {
   generalNote: string,
   relatedAudio: array,
   relatedVideo: object,
-  relatedVideoLink: object,
+  relatedVideoLink: array,
   relatedDictionaryEntries: array,
   onVideoClick: func,
   videoIsOpen: bool,

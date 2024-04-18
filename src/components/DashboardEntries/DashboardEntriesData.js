@@ -3,25 +3,22 @@ import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import useSearchType from 'common/hooks/useSearchType'
 import {
-  DOMAIN,
-  DOMAIN_BOTH,
   TYPES,
   TYPE_DICTIONARY,
   TYPE_PHRASE,
   TYPE_WORD,
+  SEARCH_FILTERS,
 } from 'common/constants'
 
 function DashboardEntriesData({ advancedSearch }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const searchTerm = searchParams.get('q') || ''
-  const domain = searchParams.get([DOMAIN]) || DOMAIN_BOTH
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
-  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
-    useSearchBoxNavigation({
-      initialSearchType: urlSearchType,
-    })
+  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } = useSearchType({
+    initialSearchType: urlSearchType,
+  })
   const isDictionary =
     urlSearchType === TYPE_WORD ||
     urlSearchType === TYPE_PHRASE ||
@@ -35,10 +32,27 @@ function DashboardEntriesData({ advancedSearch }) {
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(advancedSearch)
 
   useEffect(() => {
-    if (Array.from(searchParams).length > 1 && !showAdvancedSearch) {
+    const searchParamsString = searchParams.toString()
+    const checkForFilter = (currentValue) =>
+      searchParamsString.includes(currentValue)
+    const hasFilters = SEARCH_FILTERS.some(checkForFilter)
+    if (hasFilters && !showAdvancedSearch) {
       setShowAdvancedSearch(true)
     }
   }, [searchParams, showAdvancedSearch])
+
+  const removeFilters = () => {
+    if (searchTerm) {
+      setSearchParams({
+        q: searchTerm,
+        [TYPES]: urlSearchType,
+      })
+    } else {
+      setSearchParams({
+        [TYPES]: urlSearchType,
+      })
+    }
+  }
 
   return {
     emptyListMessage: searchTerm
@@ -51,13 +65,7 @@ function DashboardEntriesData({ advancedSearch }) {
     isLoadingEntries: isInitialLoading,
     items: data,
     loadRef: searchTerm ? loadRef : null,
-    removeFilters: () => {
-      setSearchParams({
-        q: searchTerm,
-        [TYPES]: urlSearchType,
-        [DOMAIN]: domain,
-      })
-    },
+    removeFilters,
     searchType,
     setSearchType: setSearchTypeInUrl,
     setShowAdvancedSearch,
