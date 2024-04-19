@@ -38,7 +38,7 @@ describe(
     })
     const _title = 'gallerytestqa'
 
-    it.only('create gallery', () => {
+    it('create gallery', () => {
       cy.contains('Create').click()
       cy.contains('Create a gallery').click()
 
@@ -54,7 +54,7 @@ describe(
       cy.contains('Sign Out').click()
     })
 
-    it.only('delete gallery', () => {
+    it('delete gallery', () => {
       cy.contains('Edit').click()
       cy.contains('Edit a gallery').click()
       cy.contains(_title).click()
