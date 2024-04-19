@@ -15,12 +15,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # - name: Install Cypress
-      #   run: npm i cypress@13.7.1
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          baseUrl: 'https://localhost:3000/'
+          CYPRESS_baseUrl: 'https://localhost:3000/'
         with:
           spec: cypress/e2e/core_suite_master.cy.js
           install: npm ci --include=dev
