@@ -11,7 +11,7 @@ describe(
       cy.viewport(1200, 1200)
     })
     it.only('4.0 - site nav - dictionary', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`https://localhost:3000/${Cypress.env('DIALECT')}`)
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
       cy.contains('WORDS').should('exist')
