@@ -19,19 +19,20 @@ jobs:
         uses: cypress-io/github-action@v6
         env:
           CYPRESS_baseUrl: 'https://localhost:3000'
-          CYPRESS_CYPRESS_ORIGIN: 'https://fpcc-dev.auth.ca-central-1.amazoncognito.com'
           CYPRESS_DIALECT: 'lilwat'
+          CYPRESS_CYPRESS_ORIGIN: 'https://fpcc-dev.auth.ca-central-1.amazoncognito.com'
           CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
           CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
           CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          COMMIT_INFO_BRANCH: ${{ github.ref_name }}
         with:
+          record: true
           spec: cypress/e2e/core_suite_master.cy.js
           install: npm ci --include=dev
           build: npm run build:production
           start: npm run startDev
-
       # - name: Run tests
       #   run: |
       #     npx  cypress run --env baseUrl='https://fvweb-dev.eks.firstvoices.io/',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}} -s "cypress/e2e/core_suite_master.cy.js"
