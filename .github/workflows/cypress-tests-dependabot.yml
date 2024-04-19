@@ -18,7 +18,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_baseUrl: 'https://localhost:3000/'
+          CYPRESS_baseUrl: '/'
           CYPRESS_CYPRESS_ORIGIN: 'https://localhost:3000'
           CYPRESS_DIALECT: 'lilwat'
           CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
