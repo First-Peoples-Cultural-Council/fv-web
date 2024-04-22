@@ -231,6 +231,7 @@ export const isUUID = (str) => {
 }
 
 export const localDateMDYTwords = (dateString) => {
+  if (!isStringWithLength(dateString)) return ''
   const date = new Date(dateString)
   const options = {
     timeStyle: 'short',
@@ -243,6 +244,7 @@ export const localDateMDYTwords = (dateString) => {
 }
 
 export const localDateMDYT = (dateString) => {
+  if (!isStringWithLength(dateString)) return ''
   const date = new Date(dateString)
   const options = {
     timeStyle: 'short',
@@ -307,7 +309,7 @@ export const makeTypeSingular = (plural) => {
 }
 
 export const makePlural = (string) => {
-  if (typeof string !== 'string' || string?.length < 1) return ''
+  if (!isStringWithLength(string)) return ''
   const lastCharacter = string.slice(-1)
   if (lastCharacter === 'y') {
     const plural = string.slice(0, -1)
