@@ -37,12 +37,18 @@ function useSearchLanguage({ searchType }) {
     [DOMAIN_LANGUAGE]: makeTitleCase(labels.plural),
   }
 
+  const handleSearchLanguageNavigation = (value) => {
+    setSearchLanguage(value)
+    setSearchLanguageInUrl(value)
+  }
+
   return {
     searchLanguage,
     setSearchLanguage,
     searchLanguageInUrl,
     setSearchLanguageInUrl,
     searchLanguageOptions,
+    handleSearchLanguageNavigation,
   }
 }
 

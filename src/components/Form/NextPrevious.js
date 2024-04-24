@@ -49,7 +49,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
           className="btn-contained bg-secondary"
           onClick={() => onStepClick({ forward: true })}
         >
-          <span>Next step</span> {getIcon('Next', 'fill-current h-5 ml-2')}
+          <span>Next step</span> {getIcon('Next', 'btn-icon')}
         </button>
       ) : (
         <div className="flex w-full justify-end">
@@ -59,7 +59,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
                 ? `/${sitename}/dashboard/create`
                 : `/${sitename}/dashboard/edit/entries?types=story`
             }
-            className="bg-secondary hover:bg-secondary-light text-white border border-transparent rounded-lg shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light"
+            className="btn-contained bg-secondary"
           >
             <span>Finish</span>
           </Link>

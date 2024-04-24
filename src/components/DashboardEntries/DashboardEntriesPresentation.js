@@ -26,7 +26,9 @@ function DashboardEntriesPresentation({
     <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
       <section className="inline-flex w-full space-x-5 items-center justify-between print:hidden">
         <div className="w-1/2">
-          <SearchDictionaryForm.Container searchType={initialSearchType} />
+          <SearchDictionaryForm.Container
+            initialSearchType={initialSearchType}
+          />
         </div>
         {isDictionary && (
           <div className="w-1/2 flex items-center justify-between space-x-2">

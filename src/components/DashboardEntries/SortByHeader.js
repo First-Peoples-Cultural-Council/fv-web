@@ -4,19 +4,25 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import { SORT, SORT_ALPHABETICAL } from 'common/constants'
+import { SORT } from 'common/constants'
 
 function SortByHeader({ title, asc, desc }) {
-  const [paramValue, setParamValue] = useSearchParamsState({
+  const [paramValue, setParamValue, removeParamValue] = useSearchParamsState({
     searchParamName: SORT,
-    defaultValue: SORT_ALPHABETICAL,
+    defaultValue: '',
   })
 
   const handleClick = () => {
-    if (paramValue === asc) {
-      setParamValue(desc)
-    } else {
-      setParamValue(asc)
+    switch (paramValue) {
+      case asc:
+        setParamValue(desc)
+        break
+      case desc:
+        removeParamValue()
+        break
+      default:
+        setParamValue(asc)
+        break
     }
   }
 
@@ -25,10 +31,10 @@ function SortByHeader({ title, asc, desc }) {
   let iconName = ''
   switch (paramValue) {
     case asc:
-      iconName = 'ChevronUp'
+      iconName = 'ArrowUp'
       break
     case desc:
-      iconName = 'ChevronDown'
+      iconName = 'ArrowDown'
       break
     default:
       iconName = 'ChevronUpDown'
@@ -51,7 +57,7 @@ function SortByHeader({ title, asc, desc }) {
       </span>
       {getIcon(
         iconName,
-        'text-fv-charcoal-light ml-2 h-5 w-5 flex-none rounded fill-current group-hover:text-fv-charcoal group-focus:text-fv-charcoal',
+        'text-fv-charcoal-light ml-1 h-5 w-5 flex-none rounded fill-current group-hover:text-fv-charcoal group-focus:text-fv-charcoal',
       )}
     </button>
   )

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { useCharacters } from 'common/dataHooks/useCharacters'
-import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import useSearchType from 'common/hooks/useSearchType'
 import {
   CHAR,
   KIDS,
@@ -21,10 +21,9 @@ function ByAlphabetData({ kids }) {
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
   const character = searchParams.get(CHAR)
-  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } =
-    useSearchBoxNavigation({
-      initialSearchType: urlSearchType,
-    })
+  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } = useSearchType({
+    initialSearchType: urlSearchType,
+  })
 
   const _searchParams = new URLSearchParams({
     [TYPES]: searchType,
