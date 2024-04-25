@@ -11,7 +11,7 @@ const _reportTypes = [
 ]
 
 describe(
-  'Reports testing',
+  'Dashboard - Reports testing',
   {
     retries: {
       runMode: 2,
@@ -22,33 +22,35 @@ describe(
     beforeEach(() => {
       cy.on('uncaught:exception', () => false)
       Cypress.Commands.add('checkHeaderCSS', (fontWeightStrength) => {
-        cy.get('[id="SingleSelect-sort"] > div > button > span').should(
-          'have.css',
-          'font-weight',
-          `${fontWeightStrength[0]}`,
-        )
+        if (fontWeightStrength[0] === 'Build your own') {
+          cy.get('[data-testid="sortby-title-btn"] > span').should(
+            'have.css',
+            'font-weight',
+            `${fontWeightStrength[1]}`,
+          )
+        }
         cy.get('[id="SingleSelect-hasAudio"] > div > button > span').should(
-          'have.css',
-          'font-weight',
-          `${fontWeightStrength[1]}`,
-        )
-        cy.get('[id="SingleSelect-hasImage"] > div > button > span').should(
           'have.css',
           'font-weight',
           `${fontWeightStrength[2]}`,
         )
-        cy.get('[id="SingleSelect-hasVideo"] > div > button > span').should(
+        cy.get('[id="SingleSelect-hasImage"] > div > button > span').should(
           'have.css',
           'font-weight',
           `${fontWeightStrength[3]}`,
         )
+        cy.get('[id="SingleSelect-hasVideo"] > div > button > span').should(
+          'have.css',
+          'font-weight',
+          `${fontWeightStrength[4]}`,
+        )
         cy.get(
           '[id="SingleSelect-hasTranslation"] > div > button > span',
-        ).should('have.css', 'font-weight', `${fontWeightStrength[4]}`)
+        ).should('have.css', 'font-weight', `${fontWeightStrength[5]}`)
         cy.get('[id="SingleSelect-visibility"] > div > button > span').should(
           'have.css',
           'font-weight',
-          `${fontWeightStrength[5]}`,
+          `${fontWeightStrength[6]}`,
         )
       })
       cy.viewport(1024, 768)
@@ -87,41 +89,41 @@ describe(
 
     it('check recently created', () => {
       cy.contains(_reportTypes[0]).click()
-      cy.checkHeaderCSS([500, 500, 500, 500, 500, 500])
+      cy.checkHeaderCSS([_reportTypes[0], 500, 500, 500, 500, 500, 500])
       cy.go('back')
 
       cy.contains(_reportTypes[1]).click()
-      cy.checkHeaderCSS([700, 500, 500, 500, 500, 500])
-      cy.contains('Recently created').should('be.visible')
+      cy.checkHeaderCSS([_reportTypes[1], 700, 500, 500, 500, 500, 500])
+      cy.contains('Created').should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[2]).click()
-      cy.checkHeaderCSS([700, 500, 500, 500, 500, 500])
-      cy.contains('Recently modified').should('be.visible')
+      cy.checkHeaderCSS([_reportTypes[2], 700, 500, 500, 500, 500, 500])
+      cy.contains('Last modified').should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[3]).click()
-      cy.checkHeaderCSS([500, 700, 500, 500, 500, 500])
+      cy.checkHeaderCSS([_reportTypes[3], 500, 700, 500, 500, 500, 500])
       cy.contains('Has no audio').should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[4]).click()
-      cy.checkHeaderCSS([500, 500, 700, 500, 500, 500])
+      cy.checkHeaderCSS([_reportTypes[4], 500, 500, 700, 500, 500, 500])
       cy.contains('Has no image').should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[5]).click()
-      cy.checkHeaderCSS([500, 500, 500, 500, 500, 700])
+      cy.checkHeaderCSS([_reportTypes[5], 500, 500, 500, 500, 500, 700])
       cy.contains('Team Only').should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[6]).click()
-      cy.checkHeaderCSS([500, 500, 500, 500, 500, 700])
+      cy.checkHeaderCSS([_reportTypes[6], 500, 500, 500, 500, 500, 700])
       cy.contains('Members Only').should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[7]).click()
-      cy.checkHeaderCSS([500, 500, 500, 500, 500, 700])
+      cy.checkHeaderCSS([_reportTypes[7], 500, 500, 500, 500, 500, 700])
       cy.contains('Public').should('be.visible')
       cy.go('back')
     })

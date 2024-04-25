@@ -18,3 +18,5 @@ release.properties
 
 .idea
 dist
+
+/mochawesome-report/*

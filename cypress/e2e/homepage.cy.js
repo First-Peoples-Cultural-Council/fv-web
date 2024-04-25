@@ -17,9 +17,10 @@ describe(
       cy.contains('Líl̓wat')
     })
 
-    it.skip('Test contact form', () => {
+    it('Test contact form', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains('404').should('not.exist')
+      cy.contains('Please sign in to use the contact us form').should('exist')
     })
 
     it('check icons on alphabet widget', () => {

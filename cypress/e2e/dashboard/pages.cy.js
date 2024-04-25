@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 describe(
-  'Page Test',
+  'Dashboard - Page Test',
   {
     retries: {
       runMode: 2,
@@ -45,17 +45,31 @@ describe(
       cy.contains('403').should('exist')
     })
 
-    it.skip('3.1 edit homepage', () => {
-      cy._login()
+    it('3.1 edit homepage', () => {
+      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.contains('Sign in').click()
+      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+        Cypress.Commands.add('login', (email, password) => {
+          cy.on('uncaught:exception', () => false)
+
+          cy.get('#signInFormUsername').type(email, { force: true })
+          // lets try an incorrect password
+          cy.get('#signInFormPassword').type(`${password}{enter}`, {
+            force: true,
+          })
+        })
+
+        cy.login(
+          Cypress.env('CYPRESS_FV_USERNAME'),
+          Cypress.env('CYPRESS_FV_PASSWORD'),
+        )
+      })
+      cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit Homepage').click()
-      cy.contains('Edit Banner and Logo').click()
-      cy.contains('Save Changes').click()
-      cy.scrollTo('top')
-      cy.get(':nth-child(1) > .p-2 >').trigger('dragstart', { force: true })
-      cy.get(':nth-child(2) > .p-2 >').trigger('drop', { force: true })
+      cy.contains('Edit homepage').click()
+      cy.contains('Edit banner and logo').click()
+      cy.contains('Save changes').click()
     })
 
     it('12.2 - Page Text', () => {

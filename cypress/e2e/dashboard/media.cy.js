@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe(
-  'media tests',
+  'Dashboard - Media Tests (audio/video/images)',
   {
     retries: {
       runMode: 2,

@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe(
-  'word Test',
+  'Dashboard - Word Test',
   {
     retries: {
       runMode: 2,
@@ -51,7 +51,7 @@ describe(
       cy.contains('Edit').click()
       cy.contains('Edit words').click()
 
-      cy.get('.bg-white > :nth-child(1) > .text-left').click() // FW-5206
+      cy.get('[data-testid="EntryRow"]:first > td:first-child').click() // FW-5206
       cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
       cy.get('[data-testid="EntryDrawerEdit"]').click()
       cy.contains('Save changes').click()
@@ -86,35 +86,6 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]').click()
       cy.contains('Delete word').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
-    })
-
-    it.skip('Create n edit page', () => {
-      const name2 = 'testpage11111'
-      cy.contains('Create a Custom Page').click()
-      cy.get('#title').type(name2)
-      cy.get('#subtitle').type('random12342')
-      cy.get('#slug').type('testcreatepage')
-      cy.contains('Create page').click()
-
-      cy.contains('Widget').click()
-      cy.contains('Alphabet').click()
-      cy.contains('OK').click()
-
-      const widgets = [
-        'Mobile App',
-        'Contact Us',
-        'New This Week',
-        'Text With Image',
-        'Word of the Day',
-      ]
-
-      widgets.forEach((_widgets) => {
-        cy.get('.flex-1 > :nth-child(1) > .justify-between > .flex').click()
-        cy.contains(_widgets).click()
-        cy.contains('OK').click()
-      })
-
-      cy.deletePage(name)
     })
   },
 ) // end of describe

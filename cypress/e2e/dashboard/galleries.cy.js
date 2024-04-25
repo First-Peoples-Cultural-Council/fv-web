@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe(
-  'gallery Test',
+  'Dashboard - Gallery Widget test',
   {
     retries: {
       runMode: 2,
@@ -10,7 +10,6 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.clearAllSessionStorage()
       cy.viewport(1920, 1080)
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
@@ -38,7 +37,7 @@ describe(
     })
     const _title = 'gallerytestqa'
 
-    it('create gallery', () => {
+    it('Create Gallery', () => {
       cy.contains('Create').click()
       cy.contains('Create a gallery').click()
 
@@ -54,7 +53,7 @@ describe(
       cy.contains('Sign Out').click()
     })
 
-    it('delete gallery', () => {
+    it('Delete Gallery', () => {
       cy.contains('Edit').click()
       cy.contains('Edit a gallery').click()
       cy.contains(_title).click()

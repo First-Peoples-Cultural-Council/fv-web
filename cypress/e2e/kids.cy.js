@@ -1,5 +1,5 @@
 describe(
-  'V2 tests, word and phrase',
+  'Kids Section',
   {
     retries: {
       runMode: 2,
@@ -13,21 +13,11 @@ describe(
       cy.contains('Kids').click()
     })
 
-    it.skip('14.1 - Visit kids dictionary', () => {
+    it('14.1 - Visit kids dictionary', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains('Kids').click()
       cy.contains('Dictionary').click()
       cy.contains('404').should('not.exist')
-      cy.get(
-        '[data-testid="DictionaryGridTilePresentationKids"]  > .grid > #EntryDetails',
-      ).each((_words) => {
-        cy.request({
-          url: _words[0].lastChild.href,
-          failOnStatusCode: true,
-        }).then((resp) => {
-          expect(resp.status).to.eq(200)
-        })
-      })
     })
 
     it('14.2 - visit kids alphabet', () => {
@@ -71,7 +61,7 @@ describe(
       )
         .invoke('text')
         .then((_text) => {
-          cy.get('#SearchSubmit').click()
+          cy.get('[data-testid="SearchSubmit"]').click()
           cy.contains(_text).should('exist')
         })
       cy.log('crashes until word is found')
