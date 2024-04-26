@@ -10,7 +10,12 @@ jobs:
     runs-on: ubuntu-22.04
     # if: ${{ github.actor == 'dependabot[bot]' }}
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
+      CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
+      CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
+      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
     container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
     steps:
       - name: Checkout
@@ -18,26 +23,15 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_CYPRESS_ORIGIN: 'https://fpcc-dev.auth.ca-central-1.amazoncognito.com'
-          CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
-          CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
-          CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           COMMIT_INFO_BRANCH: ${{ github.ref_name }}
         with:
           record: true
           spec: cypress/e2e/core_suite_master.cy.js
           install: npm ci --include=dev
-          # build: npm run build:production
           start: npm run startDev
       # - name: Run tests
       #   run: |
       #     npx  cypress run --env baseUrl='https://fvweb-dev.eks.firstvoices.io/',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}} -s "cypress/e2e/core_suite_master.cy.js"
       #   env:
       #     baseUrl: 'https://fvweb-dev.eks.firstvoices.io/'
-      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-      #     CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-      #     CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
-      #     CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
-      #     CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
+

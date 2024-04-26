@@ -10,7 +10,7 @@ describe(
     beforeEach(() => {
       cy.viewport(1200, 1200)
     })
-    it.only('4.0 - site nav - dictionary', () => {
+    it('4.0 - site nav - dictionary', () => {
       cy.visit(`https://localhost:3000/${Cypress.env('DIALECT')}`)
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
