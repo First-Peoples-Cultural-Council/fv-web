@@ -42,7 +42,6 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
-      cy.visit(`${Cypress.env('baseUrl')}`)
     })
 
     it.only('3.0 edit words phrases', () => {
