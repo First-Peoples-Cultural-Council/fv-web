@@ -18,8 +18,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_baseUrl: 'https://localhost:3000/'
-          CYPRESS_DIALECT: 'lilwat'
           CYPRESS_CYPRESS_ORIGIN: 'https://fpcc-dev.auth.ca-central-1.amazoncognito.com'
           CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
           CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
