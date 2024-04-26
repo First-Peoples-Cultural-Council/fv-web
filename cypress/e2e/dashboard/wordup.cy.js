@@ -26,7 +26,7 @@ describe(
       cy.viewport(1024, 768)
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
-      cy.visit(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
           cy.on('uncaught:exception', () => false)
 
@@ -42,6 +42,7 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
+      cy.visit(`${Cypress.env('baseUrl')}`)
     })
 
     it.only('3.0 edit words phrases', () => {
