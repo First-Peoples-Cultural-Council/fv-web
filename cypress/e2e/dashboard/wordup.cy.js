@@ -26,7 +26,7 @@ describe(
       cy.viewport(1024, 768)
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      cy.visit(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
           cy.on('uncaught:exception', () => false)
 
@@ -44,7 +44,7 @@ describe(
       })
     })
 
-    it('3.0 edit words phrases', () => {
+    it.only('3.0 edit words phrases', () => {
       cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
@@ -58,7 +58,7 @@ describe(
     })
 
     const name = `cha'Dichqaqa`
-    it('7.1 - create word', () => {
+    it.only('7.1 - create word', () => {
       cy.on('uncaught:exception', () => false)
       cy.viewport(1024, 768)
 
