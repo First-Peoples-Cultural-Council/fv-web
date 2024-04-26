@@ -16,23 +16,26 @@ jobs:
       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-    container: cypress/included:cypress-13.8.1-node-22.0.0-chrome-124.0.6367.60-1-ff-125.0.2-edge-124.0.2478.51-1
+      COMMIT_INFO_BRANCH: ${{ github.ref_name }}
+    container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        env:
-          COMMIT_INFO_BRANCH: ${{ github.ref_name }}
-        with:
-          browser: chrome
-          record: true
-          spec: cypress/e2e/core_suite_master.cy.js
-          install: npm ci --include=dev
-          start: npm run startDev
-      # - name: Run tests
-      #   run: |
-      #     npx  cypress run --env baseUrl='https://fvweb-dev.eks.firstvoices.io/',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}} -s "cypress/e2e/core_suite_master.cy.js"
-      #   env:
-      #     baseUrl: 'https://fvweb-dev.eks.firstvoices.io/'
+      - name: Install Cypress
+        run: npm i cypress@3.7.1
+      # - name: Cypress run
+      #   uses: cypress-io/github-action@v6
+        # with:
+        #   browser: chrome
+        #   record: true
+        #   spec: cypress/e2e/core_suite_master.cy.js
+        #   install: npm ci --include=dev
+        #   start: npm run startDev
+      - name: Install dependencies
+        run: npm ci --include=dev
+      - name: Start server
+        run: npm run startDev
+      - name: Run tests
+        run: |
+          npx  cypress run --record -s "cypress/e2e/core_suite_master.cy.js"
 
