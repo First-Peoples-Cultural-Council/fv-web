@@ -44,7 +44,7 @@ describe(
       })
     })
 
-    it.only('3.0 edit words phrases', () => {
+    it('3.0 edit words phrases', () => {
       cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
@@ -58,7 +58,7 @@ describe(
     })
 
     const name = `cha'Dichqaqa`
-    it.only('7.1 - create word', () => {
+    it('7.1 - create word', () => {
       cy.on('uncaught:exception', () => false)
       cy.viewport(1024, 768)
 
