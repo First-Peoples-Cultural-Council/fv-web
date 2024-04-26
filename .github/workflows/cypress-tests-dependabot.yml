@@ -21,19 +21,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Cypress
-        run: npm i cypress@13.7.1
-      # - name: Cypress run
-      #   uses: cypress-io/github-action@v6
-        # with:
-        #   browser: chrome
-        #   record: true
-        #   spec: cypress/e2e/core_suite_master.cy.js
-        #   install: npm ci --include=dev
-        #   start: npm run startDev
-      - name: Install dependencies
-        run: npm ci --include=dev
-      - name: Run tests
-        run: 
-          npm run startDev && npx  cypress run --record -s "cypress/e2e/core_suite_master.cy.js"
-
+      # - name: Install Cypress
+      #   run: npm i cypress@13.7.1
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          record: true
+          spec: cypress/e2e/core_suite_master.cy.js
+          install: npm ci --include=dev
+          start: npm run startDev
+      # - name: Install dependencies
+      #   run: npm ci --include=dev
+      # - name: Run tests
+      #   run: 
+      #     npm run startDev && npx  cypress run --record -s "cypress/e2e/core_suite_master.cy.js"
