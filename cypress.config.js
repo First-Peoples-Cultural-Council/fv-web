@@ -3,6 +3,8 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   defaultCommandTimeout: 8000,
   env: {
+    experimentalOriginDependencies: true,
+    experimentalModifyObstructiveThirdPartyCode: true,
     baseUrl: 'https://localhost:3000/',
     DIALECT: 'lilwat',
     CYPRESS_ORIGIN: 'https://fpcc-dev.auth.ca-central-1.amazoncognito.com',
