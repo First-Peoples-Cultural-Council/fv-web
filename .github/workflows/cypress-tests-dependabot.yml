@@ -25,6 +25,7 @@ jobs:
         env:
           COMMIT_INFO_BRANCH: ${{ github.ref_name }}
         with:
+          browser: chrome
           record: true
           spec: cypress/e2e/core_suite_master.cy.js
           install: npm ci --include=dev
