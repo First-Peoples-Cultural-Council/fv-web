@@ -50,6 +50,7 @@ describe(
       cy.get('#name').type('qatestspeaker')
       cy.get('#bio').type('qabio test - new speaker')
       cy.contains('Add Speaker').click()
+      cy.contains('Success!').should('be.visible')
     })
 
     it('Delete Speaker', () => {
@@ -59,7 +60,11 @@ describe(
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
       cy.contains('Edit speakers').click()
-      cy.get('td:contains("qatestspeaker")').siblings().children('a').click()
+      cy.get('td:contains("qatestspeaker")')
+        .first()
+        .siblings()
+        .children('a')
+        .click()
       cy.contains('Delete Speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
