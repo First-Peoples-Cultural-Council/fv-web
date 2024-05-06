@@ -123,7 +123,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.51.0",
     "react-i18next": "^14.1.0",
-    "react-oidc-context": "^3.0.0",
+    "react-oidc-context": "^3.1.0",
     "react-router-dom": "^6.22.3",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.3.1",
