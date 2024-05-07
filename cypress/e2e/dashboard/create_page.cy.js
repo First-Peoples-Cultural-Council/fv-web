@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('page tests', () => {
+describe('Dashboard - Page testing', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
 
@@ -15,7 +15,7 @@ describe('page tests', () => {
     Cypress.Commands.add('_login', () => {
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
-      cy.origin('https://fpcc-dev.auth.ca-central-1.amazoncognito.com', () => {
+      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         cy.contains('Sign in with your email and password').should('exist')
         cy.login(
           Cypress.env('CYPRESS_FV_USERNAME'),

@@ -1,5 +1,5 @@
 describe(
-  'Phrase testing',
+  'User Side - Phrase testing',
   {
     retries: {
       runMode: 2,

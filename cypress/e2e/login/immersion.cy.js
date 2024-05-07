@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe(
-  'Immersion Test',
+  'Dashboard - Immersion Test',
   {
     retries: {
       runMode: 2,

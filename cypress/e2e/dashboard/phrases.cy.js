@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe(
-  'phrase Test',
+  'Dashboard - Phrase Test',
   {
     retries: {
       runMode: 2,
@@ -69,8 +69,7 @@ describe(
       cy.contains('Edit phrases').click()
       cy.contains('Loading').should('be.visible')
       cy.contains('Loading').should('not.exist')
-      cy.get('[data-testid="SearchInput"]').type(`${name2}`)
-      cy.get('[id="SearchSubmit"]').click()
+      cy.get('[data-testid="SearchInput"]').type(`${name2}{enter}`)
       cy.contains(name2).click()
       cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
       cy.get('[data-testid="EntryDrawerEdit"]').click()

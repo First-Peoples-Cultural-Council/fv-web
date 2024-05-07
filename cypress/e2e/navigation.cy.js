@@ -1,5 +1,5 @@
 describe(
-  'navigation',
+  'User side - navigation',
   {
     retries: {
       runMode: 2,

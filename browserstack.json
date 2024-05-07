@@ -6,40 +6,21 @@
   "browsers": [
     {
       "browser": "chrome",
-      "os": "Windows 11",
-      "versions": ["latest", "latest-1"]
-    },
-    {
-      "browser": "firefox",
       "os": "Windows 10",
-      "versions": ["latest", "latest-1"]
-    },
-    {
-      "browser": "edge",
-      "os": "Windows 10",
-      "versions": ["latest", "latest-1"]
-    },
-    {
-      "browser": "chrome",
-      "os": "OS X Mojave",
-      "versions": ["latest", "latest-1"]
-    },
-    {
-      "browser": "edge",
-      "os": "OS X Mojave",
-      "versions": ["latest", "latest-1"]
+      "versions": ["latest"]
     }
   ],
   "run_settings": {
-    "cypress_config_file": "./cypress.config.js",
+    "cypress_config_file": "cypress.env.dev.config.js",
     "project_name": "project-name",
     "build_name": "build-name 2",
-    "exclude": [],
+    "cypress_version": "12.17.0",
     "parallels": "5",
     "npm_dependencies": {},
     "package_config_options": {},
-    "headless": false,
-    "specs": ["cypress/e2e/*"]
+    "headless": true,
+    "specs": ["./cypress/e2e/core_suite_master.cy.js"],
+    "exclude": ["src/*", "github/*", "webpack/*", "package*.json"]
   },
   "connection_settings": {
     "local": false,
