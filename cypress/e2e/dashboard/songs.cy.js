@@ -45,6 +45,7 @@ describe(
       cy.get('#titleTranslation').type(_title)
 
       cy.contains('Create song').click()
+      cy.get(`td:contains(${_title})`).should('exist')
     })
 
     it('Delete Song', () => {
