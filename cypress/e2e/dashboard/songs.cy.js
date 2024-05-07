@@ -42,9 +42,7 @@ describe(
       cy.contains('Create a song').click()
 
       cy.get('#title').type(_title)
-      cy.get('#titleTranslation').type(
-        `qatesttranslation${new Date().getTime()}`,
-      )
+      cy.get('#titleTranslation').type(_title)
 
       cy.contains('Create song').click()
     })
