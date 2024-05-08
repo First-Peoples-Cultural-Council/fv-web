@@ -4,26 +4,29 @@ on:
   pull_request:
     branches:
       - main
+      - dev
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    # if: ${{ github.actor == 'dependabot[bot]' }}
     env:
+      CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
+      CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
+      CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+      COMMIT_INFO_BRANCH: ${{ github.ref_name }}
+      container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Cypress
-        run: npm i cypress@13.7.1
-      - name: Run tests
-        run: |
-          npx  cypress run --env baseUrl='https://fvweb-dev.eks.firstvoices.io/',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}} -s "cypress/e2e/core_suite_master.cy.js"
-        env:
-          baseUrl: 'https://fvweb-dev.eks.firstvoices.io/'
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
-          CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
-          CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          record: true
+          spec: cypress/e2e/core_suite_user.cy.js
+          install: npm ci --include=dev
+          start: npm run startDev
