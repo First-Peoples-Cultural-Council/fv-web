@@ -26,7 +26,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          record: true
           spec: cypress/e2e/core_suite_user.cy.js
           install: npm ci --include=dev
           start: npm run startDev
