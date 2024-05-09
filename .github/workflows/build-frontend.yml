@@ -7,11 +7,16 @@ on:
       - main
     tags:
       - 'r-*'
+  pull_request:
+    branches:
+      - dev
+      - main
 
 jobs:
   build:
     name: Build Frontend
     runs-on: ubuntu-latest
+    if: ((github.ref == 'refs/heads/dev') || (github.base_ref == 'main') || (github.base_ref == 'dev'))
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -34,7 +39,7 @@ jobs:
     name: Monitor Dev Deployment
     environment: dev
     runs-on: ubuntu-latest 
-    if: github.ref == 'refs/heads/dev'
+    if: ((github.ref == 'refs/heads/dev') && (github.event_name != 'pull_request'))
     needs: build
     steps:
       - name: Configure AWS credentials
@@ -88,7 +93,7 @@ jobs:
     name: Monitor Preprod Deployment
     environment: preprod
     runs-on: ubuntu-latest 
-    if: github.ref == 'refs/heads/main'
+    if: ((github.ref == 'refs/heads/main') && (github.event_name != 'pull_request'))
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -141,7 +146,7 @@ jobs:
     name: Monitor Prod Deployment
     environment: prod
     runs-on: ubuntu-latest 
-    if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')))
+    if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')) && (github.event_name != 'pull_request'))
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
