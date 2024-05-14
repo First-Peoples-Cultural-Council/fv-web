@@ -68,7 +68,7 @@
     "testcafe": "^3.5.0",
     "testcafe-blink-diff": "^0.5.6",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.13.3"
+    "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
