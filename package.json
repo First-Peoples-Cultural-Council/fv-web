@@ -85,7 +85,7 @@
     "@dnd-kit/sortable": "^8.0.0",
     "@headlessui/react": "^1.7.18",
     "@hookform/error-message": "^2.0.1",
-    "@hookform/resolvers": "^3.3.2",
+    "@hookform/resolvers": "^3.4.0",
     "@sentry/react": "^7.107.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.0",
