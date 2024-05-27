@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function DeleteButtonPresentation({
   deleteHandler,
@@ -18,12 +17,12 @@ function DeleteButtonPresentation({
   return (
     <>
       <button
+        data-testid="DeleteButton"
         type="button"
-        id="DeleteButton"
         onClick={() => setDeleteModalOpen(true)}
         className={styling}
       >
-        {getIcon('Trash', 'fill-current -ml-1 mr-2 h-5 w-5')}
+        {getIcon('Trash', 'btn-icon')}
         <span>{label}</span>
       </button>
 
@@ -44,15 +43,17 @@ function DeleteButtonPresentation({
           </div>
           <div className="w-full justify-center flex space-x-2">
             <button
+              data-testid="delete-cancel"
               type="button"
-              className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-outlined"
               onClick={() => setDeleteModalOpen(false)}
             >
               Cancel
             </button>
             <button
+              data-testid="delete-confirm"
               type="button"
-              className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-contained bg-secondary"
               onClick={() => {
                 setDeleteModalOpen(false)
                 deleteHandler()
@@ -80,7 +81,7 @@ DeleteButtonPresentation.defaultProps = {
   label: 'Delete',
   message: 'Are you sure you want to delete this?',
   note: null,
-  styling: SECONDARY_BUTTON_STYLE,
+  styling: 'btn-outlined',
 }
 
 export default DeleteButtonPresentation

@@ -18,10 +18,19 @@ import {
 } from 'common/dataAdaptors/relatedMediaAdaptors'
 
 export function songSummaryAdaptor({ item }) {
+  // Adding the titleTranslation as translations
+  const translations = [
+    {
+      id: 0,
+      text: item?.titleTranslation,
+    },
+  ]
+
   return {
     // cover
     ...coverForViewing({ item }),
     type: TYPE_SONG,
+    translations,
   }
 }
 

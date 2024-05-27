@@ -126,33 +126,34 @@ function AlphabetPresentationSelected({
           <p className="text-center">{generalNote}</p>
         </div>
       )}
-      <div className="flex justify-center">
+      <div className="flex justify-center space-x-2">
         <Link
           to={`/${sitename}/${
             kids ? 'kids/' : ''
           }alphabet/startsWith?${CHAR}=${title}&types=word`}
-          className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
+          className="btn-contained text-base text-center"
         >
           <span>See all words starting with</span>
-          <div className="-mr-1 ml-2 mb-1 text-3xl font-bold">{title}</div>
+          <div className="mb-1 text-3xl font-bold">{title}</div>
         </Link>
         {alphabetLink && (
           <Link
             to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
-            className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
+            className="btn-contained text-base text-center"
           >
             <span>Learn more about</span>
-            <div className="-mr-1 ml-2 mb-1 text-3xl font-bold">{title}</div>
+            <div className="mb-1 text-3xl font-bold">{title}</div>
           </Link>
         )}
         {(relatedVideo || relatedVideoLink?.length > 0) && (
           <button
+            data-testid="play-video"
             type="button"
             onClick={onVideoClick}
-            className="inline-flex bg-primary hover:bg-primary-dark font-medium items-center justify-center px-5 py-2 mx-2 rounded-lg shadow-sm text-base text-center text-white"
+            className="btn-contained text-base text-center"
           >
-            {getIcon('Play', 'inline-flex fill-current mr-2 -ml-1 h-8 w-8')}
-            Play Video
+            {getIcon('Play', 'btn-icon')}
+            <span>Play Video</span>
           </button>
         )}
       </div>
@@ -224,7 +225,7 @@ AlphabetPresentationSelected.propTypes = {
   generalNote: string,
   relatedAudio: array,
   relatedVideo: object,
-  relatedVideoLink: object,
+  relatedVideoLink: array,
   relatedDictionaryEntries: array,
   onVideoClick: func,
   videoIsOpen: bool,

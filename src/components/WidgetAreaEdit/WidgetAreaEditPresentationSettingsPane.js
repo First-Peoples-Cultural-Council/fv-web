@@ -108,11 +108,6 @@ function WidgetAreaEditPresentationSettingsPane({
     })
   }
 
-  const buttonClass =
-    'inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50'
-  const buttonIconClass =
-    'fill-current -ml-1 mr-2 h-5 w-5 text-fv-charcoal-light'
-
   return (
     <div
       data-testid="WidgetAreaSettingsPane"
@@ -139,27 +134,29 @@ function WidgetAreaEditPresentationSettingsPane({
                   /> */}
                   <Link
                     to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.id}`}
-                    className={buttonClass}
+                    className="btn-outlined"
                   >
-                    {getIcon('Pencil', buttonIconClass)}
+                    {getIcon('Pencil', 'btn-icon')}
                     <span>Edit</span>
                   </Link>
                 </>
               ) : null}
               <button
+                data-testid="preview"
                 type="button"
                 onClick={() => setPreviewModalOpen(true)}
-                className={buttonClass}
+                className="btn-outlined"
               >
-                {getIcon('Fullscreen', buttonIconClass)}
+                {getIcon('Fullscreen', 'btn-icon')}
                 <span>Preview</span>
               </button>
               <button
+                data-testid="remove"
                 type="button"
                 onClick={() => setRemoveModalOpen(true)}
-                className={buttonClass}
+                className="btn-outlined"
               >
-                {getIcon('TimesCircle', buttonIconClass)}
+                {getIcon('TimesCircle', 'btn-icon')}
                 <span>Remove</span>
               </button>
             </div>
@@ -231,15 +228,17 @@ function WidgetAreaEditPresentationSettingsPane({
           </div>
           <div className="w-full justify-center flex space-x-2">
             <button
+              data-testid="cancel"
               type="button"
-              className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-outlined"
               onClick={() => setRemoveModalOpen(false)}
             >
               Cancel
             </button>
             <button
+              data-testid="confirm"
               type="button"
-              className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+              className="btn-contained bg-secondary"
               onClick={() => onRemoveConfirmationClick()}
             >
               Remove

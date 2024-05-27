@@ -17,6 +17,7 @@ import {
   TYPE_VIDEO,
 } from 'common/constants'
 import {
+  basicDatesAdaptor,
   storySummaryAdaptor,
   songSummaryAdaptor,
   mediaAdaptor,
@@ -52,6 +53,7 @@ function useSearchLoader({ searchParams }) {
       siteTitle: result?.entry?.site?.title,
       visibility: result?.entry?.visibility,
       siteVisibility: result?.entry?.site?.visibility,
+      ...basicDatesAdaptor({ item: result?.entry }),
     }
     switch (result?.type) {
       case TYPE_WORD:

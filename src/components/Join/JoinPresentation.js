@@ -36,9 +36,6 @@ function JoinPresentation({
           'fill-current text-secondary h-12 w-12 md:h-20 md:w-20 mx-auto',
         )
 
-  const primaryBtnStyling =
-    'mx-auto flex items-center rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
-
   const navigate = useNavigate()
 
   const linkAndClose = (url) => {
@@ -74,7 +71,7 @@ function JoinPresentation({
                   <button
                     type="button"
                     onClick={() => linkAndClose(`/${site?.sitename}/`)}
-                    className={primaryBtnStyling}
+                    className="btn-contained mx-auto flex"
                   >
                     Browse public content on the {site?.title} site
                   </button>
@@ -85,10 +82,10 @@ function JoinPresentation({
                   className={
                     site?.visibility === PUBLIC
                       ? 'text-sm font-semibold leading-6 text-fv-charcoal'
-                      : primaryBtnStyling
+                      : 'btn-contained mx-auto flex'
                   }
                 >
-                  Explore other languages{' '}
+                  <span>Explore other languages</span>
                   <span className="text-lg ml-2" aria-hidden="true">
                     →
                   </span>

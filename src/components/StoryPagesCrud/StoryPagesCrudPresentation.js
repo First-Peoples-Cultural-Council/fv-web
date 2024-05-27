@@ -12,7 +12,6 @@ import SortableContainer from 'components/SortableContainer'
 import SortableItem from 'components/SortableItem'
 import { useNotification } from 'context/NotificationContext'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
-import { PRIMARY_BUTTON_STYLE } from 'common/constants/styles'
 
 function StoryPagesCrudPresentation({
   addPageOpen,
@@ -109,8 +108,9 @@ function StoryPagesCrudPresentation({
         ) : (
           <div className="flex w-full justify-center">
             <button
+              data-testid="add-page"
               type="button"
-              className={`${PRIMARY_BUTTON_STYLE} my-1 focus:ring-primary-light`}
+              className="btn-contained bg-secondary my-1"
               onClick={() => setAddPageOpen(true)}
             >
               {getIcon('Add', 'fill-current h-5 mr-2')}

@@ -26,11 +26,11 @@ function GalleryPresentation({ data }) {
           <div>{data?.introTranslation}</div>
         </div>
       )}
-      <div className="px-4 masonry-cols-4 p-4 mx-auto text-center">
+      <div className="p-4 columns-4 gap-6">
         {data?.galleryItems?.length > 0 &&
           data?.galleryItems?.map((image) => (
             <LazyLoader key={image?.id}>
-              <div className="mb-4">
+              <div className="mb-6">
                 <ImageWithLightbox.Presentation image={image} />
               </div>
             </LazyLoader>

@@ -80,8 +80,9 @@ function WidgetCrudPresentation({
           <div className="p-4">
             <div className="flex justify-center space-x-4">
               <button
+                data-testid="cancel"
                 type="button"
-                className="inline-flex justify-center rounded-lg border shadow-lg px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary-light sm:text-sm"
+                className="btn-contained"
                 onClick={backHandler}
               >
                 Cancel

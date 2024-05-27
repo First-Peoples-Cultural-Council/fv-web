@@ -24,8 +24,9 @@ function QrcodeModalContent({ closeHandler, url }) {
         <canvas className="m-2" ref={qrCodeRef} />
       </div>
       <button
+        data-testid="cancel"
         type="button"
-        className="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary-light sm:text-sm"
+        className="btn-contained bg-secondary"
         onClick={closeHandler}
       >
         Cancel

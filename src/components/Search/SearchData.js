@@ -1,16 +1,14 @@
-import { useEffect } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import {
   makeTitleCase,
   getPresentationPropertiesForType,
 } from 'common/utils/stringHelpers'
 import {
-  DOMAIN,
-  DOMAIN_BOTH,
   TYPES,
   TYPE_PHRASE,
   TYPE_SONG,
@@ -22,32 +20,21 @@ import {
 function SearchData() {
   const { site } = useSiteStore()
   const { title } = site
-  const navigate = useNavigate()
   const { sitename } = useParams()
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
 
-  const searchTerm = searchParams.get('q') || ''
-  const domain = searchParams.get(DOMAIN) || DOMAIN_BOTH
+  const [searchTypeInUrl, setSearchTypeInUrl] = useSearchParamsState({
+    searchParamName: TYPES,
+    defaultValue: TYPE_ENTRY,
+  })
 
-  const docTypesToFilterBy = [TYPE_WORD, TYPE_PHRASE, TYPE_SONG, TYPE_STORY]
+  // fetch results
+  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+    searchParams,
+  })
 
-  const searchType = searchParams.get(TYPES) || TYPE_ENTRY
-  const labels = getPresentationPropertiesForType({ searchType })
-
-  // Dictionary fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
-    useSearchLoader({ searchParams })
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
-
-  // Get Filters
+  const searchType = searchTypeInUrl || TYPE_ENTRY
+  const labels = getPresentationPropertiesForType(searchType)
 
   const filters = [
     {
@@ -55,18 +42,14 @@ function SearchData() {
       label: 'All Results',
     },
   ]
+  const typesToFilterBy = [TYPE_WORD, TYPE_PHRASE, TYPE_SONG, TYPE_STORY]
 
-  docTypesToFilterBy.forEach((type) =>
+  typesToFilterBy.forEach((type) =>
     filters.push({ type, label: makeTitleCase(type) }),
   )
 
   const handleFilter = (filter) => {
-    const params = {
-      q: searchTerm,
-      [DOMAIN]: domain,
-      [TYPES]: filter,
-    }
-    setSearchParams(params)
+    setSearchTypeInUrl(filter)
   }
 
   return {
@@ -81,7 +64,7 @@ function SearchData() {
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
-    entryLabel: labels?.plural,
+    entryLabel: labels?.singular,
   }
 }
 

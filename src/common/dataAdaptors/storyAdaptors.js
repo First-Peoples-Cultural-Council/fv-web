@@ -23,11 +23,20 @@ import {
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
 
 export function storySummaryAdaptor({ item }) {
+  // Adding the titleTranslation as translations
+  const translations = [
+    {
+      id: 0,
+      text: item?.titleTranslation,
+    },
+  ]
+
   return {
     // cover
     ...coverForViewing({ item }),
     type: TYPE_STORY,
     author: item?.author || '',
+    translations,
   }
 }
 

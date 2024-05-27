@@ -11,6 +11,10 @@ import {
   VIDEO,
   VIDEO_PATH,
 } from 'common/constants'
+import {
+  mediaItemForEditing,
+  mediaItemForApi,
+} from 'common/dataAdaptors/mediaAdaptors'
 import api from 'services/api'
 
 const MEDIA_PATHS = {
@@ -29,6 +33,12 @@ const MEDIA_DELETE_APIS = {
   [AUDIO]: api.media.deleteAudio,
   [IMAGE]: api.media.deleteImage,
   [VIDEO]: api.media.deleteVideo,
+}
+
+const MEDIA_UPDATE_APIS = {
+  [AUDIO]: api.media.updateAudio,
+  [IMAGE]: api.media.updateImage,
+  [VIDEO]: api.media.updateVideo,
 }
 
 export function useAudioObject({ id }) {
@@ -61,22 +71,30 @@ export function useVideoObject({ id }) {
   return response?.data
 }
 
-export function useMediaUsageDetails({ id, docType }) {
+export function useMediaObject({ id, mediaType }) {
+  // General function to fetch details of all media types
   const { sitename } = useParams()
-  const mediaPath = MEDIA_PATHS[docType]
-  const mediaApi = MEDIA_APIS[docType]
+  const mediaPath = MEDIA_PATHS[mediaType]
+  const mediaApi = MEDIA_APIS[mediaType]
 
   const response = useQuery(
     [mediaPath, sitename, id],
     () => mediaApi({ sitename, id }),
     { enabled: !!id },
   )
-  return response?.data?.usage
+
+  return {
+    ...response,
+    data: mediaItemForEditing({
+      type: mediaType,
+      data: response?.data,
+    }),
+  }
 }
 
-export function useMediaDelete({ docType }) {
+export function useMediaDelete({ mediaType }) {
   const { sitename } = useParams()
-  const deleteMediaApi = MEDIA_DELETE_APIS[docType]
+  const deleteMediaApi = MEDIA_DELETE_APIS[mediaType]
 
   const deleteMediaFile = async (id) =>
     deleteMediaApi({
@@ -86,9 +104,35 @@ export function useMediaDelete({ docType }) {
   const mutation = useMutationWithNotification({
     mutationFn: deleteMediaFile,
     actionWord: 'deleted',
-    type: docType,
+    type: mediaType,
     refresh: true,
   })
+  const onSubmit = (id) => {
+    mutation.mutate(id)
+  }
+  return { onSubmit }
+}
+
+export function useMediaUpdate({ mediaType }) {
+  const { sitename } = useParams()
+  const updateMediaApi = MEDIA_UPDATE_APIS[mediaType]
+
+  const updateMediaItem = async (formData) => {
+    const data = mediaItemForApi({ formData, mediaType })
+    updateMediaApi({
+      id: formData?.id,
+      data,
+      sitename,
+    })
+  }
+
+  const mutation = useMutationWithNotification({
+    mutationFn: updateMediaItem,
+    redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
+    actionWord: 'updated',
+    type: 'media item',
+  })
+
   const onSubmit = (id) => {
     mutation.mutate(id)
   }

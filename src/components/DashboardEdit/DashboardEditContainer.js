@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import RequireAuth from 'common/RequireAuth'
 import DashboardEditPresentation from 'components/DashboardEdit/DashboardEditPresentation'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
-import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE, AUDIO, IMAGE, VIDEO } from 'common/constants'
 
 import CategoryCrud from 'components/CategoryCrud'
 import CharacterCrud from 'components/CharacterCrud'
@@ -17,6 +17,7 @@ import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
+import MediaEdit from 'components/MediaEdit'
 
 import DashboardAlphabet from 'components/DashboardAlphabet'
 import DashboardCategories from 'components/DashboardCategories'
@@ -186,6 +187,32 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={EDITOR} withMessage>
               <DictionaryCrud.Container type={TYPE_WORD} />
+            </RequireAuth>
+          }
+        />
+        {/* Media edit routes */}
+        {/* Regexp not supported in v6. See: https://reactrouter.com/en/6.14.0/start/faq#what-happened-to-regexp-routes-paths */}
+        <Route
+          path={AUDIO}
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <MediaEdit.Container mediaType={AUDIO} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={IMAGE}
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <MediaEdit.Container mediaType={IMAGE} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={VIDEO}
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <MediaEdit.Container mediaType={VIDEO} />
             </RequireAuth>
           }
         />

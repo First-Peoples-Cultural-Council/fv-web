@@ -15,7 +15,7 @@ export function audienceForEditing({ item }) {
 
 export function audienceForApi({ item }) {
   return {
-    exclude_from_kids: item?.includeInKids === 'false',
-    exclude_from_games: item?.includeInGames === 'false',
+    excludeFromKids: item?.includeInKids === 'false',
+    excludeFromGames: item?.includeInGames === 'false',
   }
 }

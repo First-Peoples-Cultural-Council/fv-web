@@ -126,7 +126,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
                             href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/36012038/New+Creating+and+editing+custom+pages"
                             target="_blank"
                             rel="noreferrer noopener"
-                            className="text-blue-600 visited:text-purple-600 underline"
+                            className="inline-url"
                           >
                             Read more about requirements for page banners.
                           </a>

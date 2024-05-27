@@ -16,6 +16,23 @@ export const SORT = 'sort'
 export const STARTS_WITH_CHAR = 'startsWithChar'
 export const TYPES = 'types'
 export const VISIBILITY = 'visibility'
+export const MINWORDS = 'minWords'
+export const MAXWORDS = 'maxWords'
+
+// An Array of search param keys that FILTER results - excluding TYPES
+export const SEARCH_FILTERS = [
+  CATEGORY,
+  DOMAIN,
+  GAMES,
+  HAS_AUDIO,
+  HAS_IMAGE,
+  HAS_VIDEO,
+  HAS_TRANSLATION,
+  HAS_UNRECOGNIZED_CHARS,
+  KIDS,
+  STARTS_WITH_CHAR,
+  VISIBILITY,
+]
 
 /* Recognized values for params */
 
@@ -30,9 +47,10 @@ export const FALSE = 'False'
 
 // For SORT
 export const SORT_ALPHABETICAL = 'title'
+export const SORT_ALPHABETICAL_DESC = 'title_desc'
 export const SORT_CREATED = 'created'
-export const SORT_MODIFIED = 'modified'
 export const SORT_CREATED_DESC = 'created_desc'
+export const SORT_MODIFIED = 'modified'
 export const SORT_MODIFIED_DESC = 'modified_desc'
 
 // For TYPES

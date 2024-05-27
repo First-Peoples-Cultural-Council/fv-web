@@ -71,13 +71,15 @@ function PrivateSiteCard({ site, user }) {
                 </p>
                 <div className="mt-5 md:mt-10 flex items-center justify-center gap-x-3 md:gap-x-6">
                   <button
+                    data-testid="login-join"
                     type="button"
                     onClick={primaryButtonClick}
-                    className="rounded-md bg-secondary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-secondary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                    className="btn-contained bg-secondary"
                   >
                     {isAnonymous ? 'Sign in' : 'request to join'}
                   </button>
                   <button
+                    data-testid="explore-languages"
                     type="button"
                     onClick={() => setPrivateSiteModalOpen(false)}
                     className="text-sm font-semibold leading-6 text-fv-charcoal"

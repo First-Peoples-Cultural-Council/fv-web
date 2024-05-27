@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { SECONDARY_BUTTON_STYLE } from 'common/constants/styles'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
+  const { login } = useLoginLogout()
   return (
     <div
       id="ErrorHandler"
@@ -24,15 +25,18 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
         <div className="mb-5 md:mb-10">
           {status === 401 ? (
             <button
+              data-testid="login"
               type="button"
               className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
-              onClick={() => backHandler()}
+              onClick={login}
+              onKeyDown={login}
             >
               {getIcon('Login', 'inline-flex fill-current mr-2 h-8 w-8')}
               Sign in
             </button>
           ) : (
             <button
+              data-testid="back"
               type="button"
               className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
               onClick={() => backHandler()}
@@ -46,7 +50,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
           )}
         </div>
         <a
-          className={SECONDARY_BUTTON_STYLE}
+          className="btn-outlined"
           href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
           target="_blank"
           rel="noopener noreferrer"

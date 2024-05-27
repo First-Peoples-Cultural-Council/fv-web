@@ -1,12 +1,6 @@
 import GlobalConfiguration from 'src/GlobalConfiguration'
 import { apiBase } from 'services/config'
-import {
-  SITES,
-  AUDIO_PATH,
-  IMAGE_PATH,
-  VIDEO_PATH,
-  AUDIO,
-} from 'common/constants'
+import { SITES, AUDIO_PATH, IMAGE_PATH, VIDEO_PATH } from 'common/constants'
 
 const media = {
   get: async ({ sitename, docType, pageParam, perPage = 24 }) => {
@@ -39,13 +33,25 @@ const media = {
     return url.href
   },
   uploadAudio: async ({ sitename, data }) =>
-    apiBase().post(`${SITES}/${sitename}/${AUDIO}`, { body: data }).json(),
+    apiBase().post(`${SITES}/${sitename}/${AUDIO_PATH}`, { body: data }).json(),
   deleteAudio: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${AUDIO_PATH}/${id}`).json(),
   deleteImage: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
   deleteVideo: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
+  updateAudio: async ({ id, sitename, data }) =>
+    apiBase()
+      .put(`${SITES}/${sitename}/${AUDIO_PATH}/${id}`, { json: data })
+      .json(),
+  updateImage: async ({ id, sitename, data }) =>
+    apiBase()
+      .put(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`, { json: data })
+      .json(),
+  updateVideo: async ({ id, sitename, data }) =>
+    apiBase()
+      .put(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`, { json: data })
+      .json(),
 }
 
 export default media

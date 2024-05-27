@@ -1,26 +1,52 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link, useParams } from 'react-router-dom'
 
 // FPCC
+import { useUserStore } from 'context/UserContext'
 import { isDisplayablePropMedia, getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
+import { atLeastEditor } from 'common/constants/roles'
+import { isAtLeastRole } from 'common/utils/membershipHelpers'
 
 function MediaDetailsVisual({ file, docType }) {
+  const { sitename } = useParams()
+  const { user } = useUserStore()
+  const isEditor = isAtLeastRole({ user, sitename, roleRegex: atLeastEditor })
+
   return (
     <div id="MediaDetailsVisual" className="mpb-16 space-y-6 sticky top-0">
+      <div className="flex justify-center space-x-2">
+        <a href={file?.downloadLink} className="flex-1 btn-outlined">
+          {getIcon('Download', 'btn-icon')}
+          <span>Download</span>
+        </a>
+        {isEditor && (
+          <Link
+            to={`/${sitename}/dashboard/edit/${docType}?id=${file?.id}`}
+            data-testid="EntryDrawerEdit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 btn-contained bg-secondary"
+          >
+            {getIcon('Pencil', 'btn-icon')}
+            <span>Edit</span>
+          </Link>
+        )}
+      </div>
       <div>
-        <div className="block w-full h-120 rounded-lg overflow-hidden">
+        <div className="block w-full max-h-1/3-screen rounded-lg overflow-hidden">
           {docType === IMAGE && (
             <img
               src={getMediaPath({ mediaObject: file, type: IMAGE })}
               alt={file?.title}
-              className="object-contain w-full h-120"
+              className="object-contain w-full"
             />
           )}
           {docType === VIDEO && (
             <video
-              className="object-contain w-full h-120"
+              className="w-full aspect-video"
               src={getMediaPath({ mediaObject: file, type: VIDEO })}
               controls
             />
@@ -61,17 +87,6 @@ function MediaDetailsVisual({ file, docType }) {
               return null
             })}
         </dl>
-      </div>
-      <div className="flex">
-        <a
-          href={file?.downloadLink}
-          className="flex-1 bg-secondary py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-word"
-        >
-          <div className="flex w-full h-full items-center justify-center">
-            {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}{' '}
-            Download
-          </div>
-        </a>
       </div>
     </div>
   )
