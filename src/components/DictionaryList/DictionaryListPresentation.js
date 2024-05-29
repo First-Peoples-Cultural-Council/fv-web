@@ -143,6 +143,7 @@ function DictionaryListPresentation({
                             </div>
                           </td>
                           <td className="px-6 py-4">
+                            {/* For Dictionary Entries */}
                             {entry?.translations ? (
                               <ol className="text-fv-charcoal">
                                 {entry?.translations?.map((translation, i) => (
@@ -155,6 +156,12 @@ function DictionaryListPresentation({
                                 ))}
                               </ol>
                             ) : null}
+                            {/* For Songs and Stories */}
+                            {entry?.titleTranslation && (
+                              <div className="text-fv-charcoal">
+                                {entry?.titleTranslation}
+                              </div>
+                            )}
                           </td>
                           {showType && (
                             <td className="px-6 py-4 whitespace-nowrap">
