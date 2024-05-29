@@ -9,7 +9,10 @@ function LandingBannerPresentation({ data }) {
   const { title, image, text, links } = data?.settings
 
   return (
-    <section id="LandingBannerPresentation" className="md:min-h-screen md:pb-4">
+    <section
+      id="LandingBannerPresentation"
+      className="md:min-h-screen md:pb-4 bg-tertiaryD"
+    >
       <div
         className="h-72 md:h-screen md:bg-right flex flex-col justify-end"
         style={{
