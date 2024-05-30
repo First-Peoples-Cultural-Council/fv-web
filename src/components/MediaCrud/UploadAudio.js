@@ -62,8 +62,8 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     data.append('title', formData?.title)
     data.append('description', formData?.description)
     data.append('acknowledgement', formData?.acknowledgement)
-    data.append('includeInGames', formData?.includeInGames)
-    data.append('includeInKids', formData?.includeInKids)
+    data.append('excludeFromGames', formData?.excludeFromGames)
+    data.append('excludeFromKids', formData?.excludeFromKids)
     data.append('isShared', formData?.isShared)
     data.append('original', file)
 
