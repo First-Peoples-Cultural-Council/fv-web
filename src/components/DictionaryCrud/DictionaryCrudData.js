@@ -1,4 +1,3 @@
-import { useMemo } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -44,7 +43,7 @@ function DictionaryCrudData() {
     backHandler,
     deleteHandler: () => deleteEntry(data?.id),
     site,
-    dataToEdit: useMemo(() => (data?.id ? data : null), [data?.id]),
+    dataToEdit: data?.id ? data : null,
     partsOfSpeech: partsOfSpeechData,
     isLoading: isInitialLoading,
   }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 
@@ -7,6 +7,11 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 function useEditForm({ defaultValues, validator, dataToEdit }) {
   const isEditMode = isUUID(dataToEdit?.id)
+
+  const data = useMemo(
+    () => (dataToEdit?.id ? dataToEdit : null),
+    [dataToEdit?.id],
+  )
 
   const {
     control,
@@ -27,13 +32,13 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
   useEffect(() => {
     if (isEditMode) {
       // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
-      Object.keys(dataToEdit).forEach((property) => {
-        if (Object.hasOwn(dataToEdit, property)) {
-          setValue(property, dataToEdit[property])
+      Object.keys(data).forEach((property) => {
+        if (Object.hasOwn(data, property)) {
+          setValue(property, data[property])
         }
       })
     }
-  }, [dataToEdit, isEditMode, setValue])
+  }, [data, isEditMode, setValue])
 
   return {
     control,
