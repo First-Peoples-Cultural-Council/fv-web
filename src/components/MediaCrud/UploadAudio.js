@@ -31,8 +31,8 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     title: '',
     acknowledgement: '',
     description: '',
-    excludeFromGames: false,
-    excludeFromKids: false,
+    includeInGames: 'true',
+    includeInKids: 'true',
     isShared: false,
     audioFile: null,
     speakers: [],
@@ -58,12 +58,16 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
       return
     }
 
+    // Audience flags
+    const excludeFromGames = formData?.includeInGames === 'false'
+    const excludeFromKids = formData?.includeInKids === 'false'
+
     const data = new FormData()
     data.append('title', formData?.title)
     data.append('description', formData?.description)
     data.append('acknowledgement', formData?.acknowledgement)
-    data.append('excludeFromGames', formData?.excludeFromGames)
-    data.append('excludeFromKids', formData?.excludeFromKids)
+    data.append('excludeFromGames', excludeFromGames)
+    data.append('excludeFromKids', excludeFromKids)
     data.append('isShared', formData?.isShared)
     data.append('original', file)
 
@@ -117,10 +121,10 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
 
           <div className="col-span-12">
             <RadioButtons
-              label="Exclude from Games?"
+              label="Include on the Kids site?"
               control={control}
               errors={errors}
-              nameId="excludeFromGames"
+              nameId="includeInKids"
               options={[
                 { label: 'Yes', value: 'true' },
                 { label: 'No', value: 'false' },
@@ -130,10 +134,10 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
 
           <div className="col-span-12">
             <RadioButtons
-              label="Exclude from Kids site?"
+              label="Include in games?"
               control={control}
               errors={errors}
-              nameId="excludeFromKids"
+              nameId="includeInGames"
               options={[
                 { label: 'Yes', value: 'true' },
                 { label: 'No', value: 'false' },
