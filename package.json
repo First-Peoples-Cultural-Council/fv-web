@@ -103,7 +103,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "common": "^0.2.5",
     "compression-webpack-plugin": "^11.1.0",
-    "core-js": "^3.35.1",
+    "core-js": "^3.37.1",
     "css-loader": "^7.1.1",
     "cssnano": "^7.0.1",
     "dompurify": "^3.0.11",
