@@ -1,4 +1,4 @@
-import hero from 'assets/images/hero-background.png'
+import hero from 'assets/images/hero-background.webp'
 import landingTitle from 'assets/images/landing-title.svg'
 import laptop from 'assets/images/landing-banner-blue.png'
 import languages from 'assets/images/languages-background.png'
