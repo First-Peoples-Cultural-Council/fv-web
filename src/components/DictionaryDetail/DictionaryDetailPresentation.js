@@ -18,7 +18,6 @@ function DictionaryDetailPresentation({
   entry,
   sitename,
 }) {
-  console.log({ entry })
   const labelStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
@@ -50,18 +49,6 @@ function DictionaryDetailPresentation({
               >
                 {entry.title}
               </span>
-              {/* <tbody>
-                {entry?.alternateSpellings?.map((alt) => (
-                  <tr key={entry.id}>
-                    <td>{alt.text}</td>
-                  </tr>
-                ))}
-              </tbody> */}
-              <span
-                className={`font-bold ${
-                  shortTitle ? 'text-2xl md:text-5xl' : 'text-xl md:text-2xl'
-                }`}
-              ></span>
 
               <div className="mt-4 md:mt-1 md:ml-4">
                 <ActionsMenu.Presentation
@@ -85,15 +72,7 @@ function DictionaryDetailPresentation({
                 </div>
               )}
             </div>
-            {/* <div >
-              <tbody>
-                {entry?.alternateSpellings?.map((alt) => (
-                  <tr key={entry.id}>
-                    <td>{alt.text}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </div> */}
+
             {/* Translations/Definitions */}
             {entry?.translations?.length > 0 && (
               <div className="py-2 md:p-3">
@@ -113,7 +92,7 @@ function DictionaryDetailPresentation({
                   }`}
                 >
                   {entry?.translations?.map((translation) => (
-                    <li key={translation?.id} className="p-0.5">
+                    <li key={translation?.text} className="p-0.5">
                       <span className={contentStyling}>
                         {translation?.text}
                       </span>
@@ -152,13 +131,6 @@ function DictionaryDetailPresentation({
           </section>
 
           <section>
-            {/* <tbody>
-              {entry?.alternateSpellings?.map((alt) => (
-                <tr key={entry.id}>
-                  <td>{alt.text}</td>
-                </tr>
-              ))}
-            </tbody> */}
             {/* Other Spellings */}
             {entry?.alternateSpellings?.length > 0 && (
               <div className="py-2 md:p-4">
@@ -172,8 +144,7 @@ function DictionaryDetailPresentation({
                 </ul>
               </div>
             )}
-          </section>
-          <section>
+
             {/* Categories */}
             {entry?.categories?.length > 0 && (
               <div className="py-2 md:p-4">
@@ -207,7 +178,7 @@ function DictionaryDetailPresentation({
                 <h4 className={labelStyling}>Acknowledgement</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.acknowledgements?.map((acknowledgement) => (
-                    <li key={acknowledgement?.id} className={contentStyling}>
+                    <li key={acknowledgement?.text} className={contentStyling}>
                       {acknowledgement?.text}
                     </li>
                   ))}
@@ -233,7 +204,7 @@ function DictionaryDetailPresentation({
                 <h4 className={labelStyling}>Pronunciation</h4>
                 <ul className="list-none md:list-disc space-y-1">
                   {entry?.pronunciations?.map((pronunciation) => (
-                    <li key={pronunciation?.id} className={contentStyling}>
+                    <li key={pronunciation?.text} className={contentStyling}>
                       {pronunciation?.text}
                     </li>
                   ))}

@@ -36,15 +36,6 @@ function DictionaryDetailPresentationDrawer({
               className={`font-bold ${shortTitle ? 'text-4xl' : 'text-2xl'}`}
             >
               <span>{entry?.title}</span>
-              <span>
-                <tbody>
-                  {entry?.alternateSpellings?.map((alt) => (
-                    <tr key={entry.id}>
-                      <td>{alt.text}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </span>
             </div>
             <div className="ml-5">
               <ActionsMenu.Presentation
@@ -81,7 +72,7 @@ function DictionaryDetailPresentationDrawer({
                 } list-inside text-lg`}
               >
                 {entry?.translations?.map((translation) => (
-                  <li key={translation?.id} className="p-0.5">
+                  <li key={translation?.text} className="p-0.5">
                     <span className={contentStyling}>{translation?.text}</span>
                   </li>
                 ))}
@@ -119,6 +110,19 @@ function DictionaryDetailPresentationDrawer({
         </section>
 
         <section>
+          {/* Other Spellings */}
+          {entry?.alternateSpellings?.length > 0 && (
+            <div className="py-2 md:p-4">
+              <h4 className={labelStyling}>Other Spellings</h4>
+              <ul className="list-none md:list-disc space-y-1">
+                {entry?.alternateSpellings?.map((alt) => (
+                  <li key={alt?.text} className={contentStyling}>
+                    {alt?.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {/* Categories */}
           {entry?.categories?.length > 0 && (
             <div className="py-3">
@@ -242,7 +246,7 @@ function DictionaryDetailPresentationDrawer({
               <ul className="list-disc">
                 {entry?.acknowledgements?.length > 0 &&
                   entry?.acknowledgements?.map((acknowledgement) => (
-                    <li key={acknowledgement?.id} className={contentStyling}>
+                    <li key={acknowledgement?.text} className={contentStyling}>
                       {acknowledgement?.text}
                     </li>
                   ))}
@@ -267,7 +271,7 @@ function DictionaryDetailPresentationDrawer({
               <h4 className={labelStyling}>Pronunciations</h4>
               <ul className="list-disc">
                 {entry?.pronunciations?.map((pronunciation) => (
-                  <li key={pronunciation?.id} className={contentStyling}>
+                  <li key={pronunciation?.text} className={contentStyling}>
                     {pronunciation?.text}
                   </li>
                 ))}
