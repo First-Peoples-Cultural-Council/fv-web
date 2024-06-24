@@ -35,7 +35,16 @@ function DictionaryDetailPresentationDrawer({
             <div
               className={`font-bold ${shortTitle ? 'text-4xl' : 'text-2xl'}`}
             >
-              {entry?.title}
+              <span>{entry?.title}</span>
+              <span>
+                <tbody>
+                  {entry?.alternateSpellings?.map((alt) => (
+                    <tr key={entry.id}>
+                      <td>{alt.text}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </span>
             </div>
             <div className="ml-5">
               <ActionsMenu.Presentation
