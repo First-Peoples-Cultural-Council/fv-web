@@ -21,6 +21,7 @@ function DictionaryDetailPresentation({
   const labelStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
+  const listStyling = 'list-none md:list-disc space-y-1'
   const noMedia = !(
     entry?.relatedImages?.length > 0 ||
     entry?.relatedVideos?.length > 0 ||
@@ -135,10 +136,24 @@ function DictionaryDetailPresentation({
             {entry?.alternateSpellings?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={labelStyling}>Other Spellings</h4>
-                <ul className="list-none md:list-disc space-y-1">
+                <ul className={listStyling}>
                   {entry?.alternateSpellings?.map((alt) => (
                     <li key={alt?.text} className={contentStyling}>
                       {alt?.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Pronunciations */}
+            {entry?.pronunciations?.length > 0 && (
+              <div className="py-2 md:p-4">
+                <h4 className={labelStyling}>Pronunciation</h4>
+                <ul className={listStyling}>
+                  {entry?.pronunciations?.map((pronunciation) => (
+                    <li key={pronunciation?.text} className={contentStyling}>
+                      {pronunciation?.text}
                     </li>
                   ))}
                 </ul>
@@ -176,7 +191,7 @@ function DictionaryDetailPresentation({
             {entry?.acknowledgements?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={labelStyling}>Acknowledgement</h4>
-                <ul className="list-none md:list-disc space-y-1">
+                <ul className={listStyling}>
                   {entry?.acknowledgements?.map((acknowledgement) => (
                     <li key={acknowledgement?.text} className={contentStyling}>
                       {acknowledgement?.text}
@@ -189,23 +204,10 @@ function DictionaryDetailPresentation({
             {entry?.notes?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={labelStyling}>Notes</h4>
-                <ul className="list-none md:list-disc space-y-1">
+                <ul className={listStyling}>
                   {entry?.notes?.map((note) => (
                     <li key={note?.id} className={contentStyling}>
                       {note?.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {/* Pronunciations */}
-            {entry?.pronunciations?.length > 0 && (
-              <div className="py-2 md:p-4">
-                <h4 className={labelStyling}>Pronunciation</h4>
-                <ul className="list-none md:list-disc space-y-1">
-                  {entry?.pronunciations?.map((pronunciation) => (
-                    <li key={pronunciation?.text} className={contentStyling}>
-                      {pronunciation?.text}
                     </li>
                   ))}
                 </ul>

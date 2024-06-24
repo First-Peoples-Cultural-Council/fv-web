@@ -112,12 +112,24 @@ function DictionaryDetailPresentationDrawer({
         <section>
           {/* Other Spellings */}
           {entry?.alternateSpellings?.length > 0 && (
-            <div className="py-2 md:p-4">
+            <div className="py-3">
               <h4 className={labelStyling}>Other Spellings</h4>
               <ul className="list-none md:list-disc space-y-1">
                 {entry?.alternateSpellings?.map((alt) => (
                   <li key={alt?.text} className={contentStyling}>
                     {alt?.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {entry?.pronunciations?.length > 0 && (
+            <div className="py-3">
+              <h4 className={labelStyling}>Pronunciations</h4>
+              <ul className="list-disc">
+                {entry?.pronunciations?.map((pronunciation) => (
+                  <li key={pronunciation?.text} className={contentStyling}>
+                    {pronunciation?.text}
                   </li>
                 ))}
               </ul>
@@ -261,18 +273,6 @@ function DictionaryDetailPresentationDrawer({
                 {entry?.notes?.map((note) => (
                   <li key={note?.id} className={contentStyling}>
                     {note?.text}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {entry?.pronunciations?.length > 0 && (
-            <div className="py-3">
-              <h4 className={labelStyling}>Pronunciations</h4>
-              <ul className="list-disc">
-                {entry?.pronunciations?.map((pronunciation) => (
-                  <li key={pronunciation?.text} className={contentStyling}>
-                    {pronunciation?.text}
                   </li>
                 ))}
               </ul>
