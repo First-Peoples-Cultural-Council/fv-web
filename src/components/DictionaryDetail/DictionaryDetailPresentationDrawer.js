@@ -110,10 +110,10 @@ function DictionaryDetailPresentationDrawer({
         </section>
 
         <section>
-          {/* Other Spellings */}
+          {/* Alternate Spellings */}
           {entry?.alternateSpellings?.length > 0 && (
             <div className="py-3">
-              <h4 className={labelStyling}>Other Spellings</h4>
+              <h4 className={labelStyling}>Alternate Spellings</h4>
               <ul className="list-none md:list-disc space-y-1">
                 {entry?.alternateSpellings?.map((alt) => (
                   <li key={alt?.text} className={contentStyling}>

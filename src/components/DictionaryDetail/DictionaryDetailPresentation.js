@@ -132,10 +132,10 @@ function DictionaryDetailPresentation({
           </section>
 
           <section>
-            {/* Other Spellings */}
+            {/* Alternate Spellings */}
             {entry?.alternateSpellings?.length > 0 && (
               <div className="py-2 md:p-4">
-                <h4 className={labelStyling}>Other Spellings</h4>
+                <h4 className={labelStyling}>Alternate Spellings</h4>
                 <ul className={listStyling}>
                   {entry?.alternateSpellings?.map((alt) => (
                     <li key={alt?.text} className={contentStyling}>
