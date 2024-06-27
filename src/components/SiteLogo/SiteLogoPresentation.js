@@ -6,13 +6,7 @@ import { useSiteStore } from 'context/SiteContext'
 import { IMAGE, MEDIUM, ORIGINAL, SMALL, THUMBNAIL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
-function SiteLogoPresentation({
-  additionalStyling,
-  logo,
-  size = SMALL,
-  heightClasses = 'h-24 sm:h-32 md:h-44 lg:h-60',
-  widthClasses = 'w-24 sm:w-32  md:w-44 lg:w-60',
-}) {
+function SiteLogoPresentation({ logo, size = SMALL, additionalStyling = '' }) {
   const { site } = useSiteStore()
   const [loaded, setLoaded] = useState(false)
   const imgRef = useRef()
@@ -34,7 +28,7 @@ function SiteLogoPresentation({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-full bg-gray-300 ${heightClasses} ${widthClasses} ${additionalStyling}`}
+      className={`relative overflow-hidden aspect-w-1 aspect-h-1 rounded-full bg-gray-50 ${additionalStyling}`}
     >
       <div style={{ paddingBottom: '100%' }} />
       <img
@@ -56,8 +50,6 @@ const { object, oneOf, string } = PropTypes
 SiteLogoPresentation.propTypes = {
   additionalStyling: string,
   logo: object,
-  heightClasses: string,
-  widthClasses: string,
   size: oneOf([MEDIUM, ORIGINAL, SMALL, THUMBNAIL]),
 }
 
