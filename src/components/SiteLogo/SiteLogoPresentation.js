@@ -31,7 +31,7 @@ function SiteLogoPresentation({ logo, size = SMALL, additionalStyling = '' }) {
 
   return (
     <div
-      className={`relative overflow-hidden aspect-w-1 aspect-h-1 rounded-full bg-gray-50 ${additionalStyling}`}
+      className={`relative overflow-hidden w-full aspect-w-1 aspect-h-1 rounded-full bg-gray-50 ${additionalStyling}`}
     >
       <div style={{ paddingBottom: '100%' }} />
       <img
