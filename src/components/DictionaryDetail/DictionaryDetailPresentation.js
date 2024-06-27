@@ -21,6 +21,7 @@ function DictionaryDetailPresentation({
   const labelStyling =
     'text-left font-medium text-lg uppercase text-fv-charcoal'
   const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
+  const listStyling = 'list-none md:list-disc space-y-1'
   const noMedia = !(
     entry?.relatedImages?.length > 0 ||
     entry?.relatedVideos?.length > 0 ||
@@ -92,7 +93,7 @@ function DictionaryDetailPresentation({
                   }`}
                 >
                   {entry?.translations?.map((translation) => (
-                    <li key={translation?.id} className="p-0.5">
+                    <li key={translation?.text} className="p-0.5">
                       <span className={contentStyling}>
                         {translation?.text}
                       </span>
@@ -131,6 +132,34 @@ function DictionaryDetailPresentation({
           </section>
 
           <section>
+            {/* Alternate Spellings */}
+            {entry?.alternateSpellings?.length > 0 && (
+              <div className="py-2 md:p-4">
+                <h4 className={labelStyling}>Alternate Spellings</h4>
+                <ul className={listStyling}>
+                  {entry?.alternateSpellings?.map((alt) => (
+                    <li key={alt?.text} className={contentStyling}>
+                      {alt?.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Pronunciations */}
+            {entry?.pronunciations?.length > 0 && (
+              <div className="py-2 md:p-4">
+                <h4 className={labelStyling}>Pronunciation</h4>
+                <ul className={listStyling}>
+                  {entry?.pronunciations?.map((pronunciation) => (
+                    <li key={pronunciation?.text} className={contentStyling}>
+                      {pronunciation?.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Categories */}
             {entry?.categories?.length > 0 && (
               <div className="py-2 md:p-4">
@@ -162,9 +191,9 @@ function DictionaryDetailPresentation({
             {entry?.acknowledgements?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={labelStyling}>Acknowledgement</h4>
-                <ul className="list-none md:list-disc space-y-1">
+                <ul className={listStyling}>
                   {entry?.acknowledgements?.map((acknowledgement) => (
-                    <li key={acknowledgement?.id} className={contentStyling}>
+                    <li key={acknowledgement?.text} className={contentStyling}>
                       {acknowledgement?.text}
                     </li>
                   ))}
@@ -175,23 +204,10 @@ function DictionaryDetailPresentation({
             {entry?.notes?.length > 0 && (
               <div className="py-2 md:p-4">
                 <h4 className={labelStyling}>Notes</h4>
-                <ul className="list-none md:list-disc space-y-1">
+                <ul className={listStyling}>
                   {entry?.notes?.map((note) => (
                     <li key={note?.id} className={contentStyling}>
                       {note?.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {/* Pronunciations */}
-            {entry?.pronunciations?.length > 0 && (
-              <div className="py-2 md:p-4">
-                <h4 className={labelStyling}>Pronunciation</h4>
-                <ul className="list-none md:list-disc space-y-1">
-                  {entry?.pronunciations?.map((pronunciation) => (
-                    <li key={pronunciation?.id} className={contentStyling}>
-                      {pronunciation?.text}
                     </li>
                   ))}
                 </ul>
