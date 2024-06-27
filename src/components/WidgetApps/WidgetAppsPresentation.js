@@ -4,8 +4,10 @@ import PropTypes from 'prop-types'
 // FPCC
 import appleBadge from 'images/badge-apple.svg'
 import googleBadge from 'images/badge-google.svg'
+import { IMAGE, SMALL } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
-function WidgetAppsPresentation({ header, logoPath, subtitle, urls }) {
+function WidgetAppsPresentation({ header, appLogo, subtitle, urls }) {
   return (
     <div className="flex">
       <div className="grid grid-cols-3 gap-4 bg-tertiaryA mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
@@ -44,7 +46,11 @@ function WidgetAppsPresentation({ header, logoPath, subtitle, urls }) {
         <div className="col-span-1 flex items-center">
           <img
             className="h-32 lg:h-52 w-auto shadow-2xl rounded-lg mx-auto border-8 border-white float-right "
-            src={logoPath}
+            src={getMediaPath({
+              mediaObject: appLogo,
+              type: IMAGE,
+              size: SMALL,
+            })}
             loading="lazy"
             alt="App Logo"
           />
@@ -59,7 +65,7 @@ const { string, object } = PropTypes
 
 WidgetAppsPresentation.propTypes = {
   header: string,
-  logoPath: string,
+  appLogo: object,
   subtitle: string,
   urls: object,
 }
