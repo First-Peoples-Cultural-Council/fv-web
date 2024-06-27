@@ -32,11 +32,11 @@ function PrivateSiteCard({ site, user }) {
       >
         <img
           className="absolute h-16 w-16 md:w-24 md:h-24 rounded-full ring-1 ring-gray-200 -left-8 md:-left-10"
-          src={site.logoPathSmall || placeholder}
-          alt={`${site.title} - Logo`}
+          src={site?.logoPathSmall || placeholder}
+          alt={`${site?.title} - Logo`}
         />
         <p className="w-full ml-24 mr-8 md:mr-4 tracking-tight text-center break-word">
-          {site.title}
+          {site?.title}
         </p>
         {getIcon(
           'Lock',
@@ -61,7 +61,7 @@ function PrivateSiteCard({ site, user }) {
             <div className="p-4 sm:px-6 sm:py-32 lg:px-8">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
-                  {site.title} <br />
+                  {site?.title} <br />
                   is Private
                 </h2>
 

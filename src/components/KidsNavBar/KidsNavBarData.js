@@ -6,7 +6,6 @@ import { useSiteStore } from 'context/SiteContext'
 function KidsNavBarData() {
   const { sitename } = useParams()
   const { site } = useSiteStore()
-  const { title, logoPathMedium } = site
 
   const links = [
     {
@@ -60,9 +59,9 @@ function KidsNavBarData() {
   ]
   return {
     links,
-    logoPath: logoPathMedium,
+    logoPath: site?.logoPathMedium,
     sitename,
-    siteTitle: title,
+    siteTitle: site?.title,
   }
 }
 

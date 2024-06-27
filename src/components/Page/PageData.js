@@ -8,7 +8,6 @@ import { IMAGE, VIDEO } from 'common/constants'
 
 function PageData({ pageSlug }) {
   const { site } = useSiteStore()
-  const { logoPathMedium } = site
   const { slug, sitename } = useParams()
   const navigate = useNavigate()
 
@@ -46,7 +45,7 @@ function PageData({ pageSlug }) {
       backgroundType,
       logoPath:
         slugToUse === 'our-language' || slugToUse === 'our-people'
-          ? logoPathMedium
+          ? site?.logoPathMedium
           : null,
     },
     widgets: data?.widgets || [],

@@ -14,11 +14,11 @@ function SiteCard({ site }) {
     >
       <img
         className="absolute h-16 w-16 md:w-24 md:h-24 rounded-full ring-1 ring-gray-200 -left-8 md:-left-10"
-        src={site.logoPathSmall || placeholder}
-        alt={`${site.title} - Logo`}
+        src={site?.logoPathSmall || placeholder}
+        alt={`${site?.title} - Logo`}
       />
       <p className="w-full ml-24 mr-8 md:mr-4 tracking-tight text-center break-word">
-        {site.title}
+        {site?.title}
       </p>
     </Link>
   )
