@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, VIDEO, ORIGINAL } from 'common/constants'
+import SiteLogo from 'components/SiteLogo'
 
 function PageBannerPresentation({
   background,
   backgroundType,
   textNode,
-  logoPath,
+  showLogo,
   variant,
-  site,
 }) {
-  if (!background && !textNode && !logoPath) {
+  if (!background && !textNode && !showLogo) {
     return null
   }
 
@@ -61,7 +61,7 @@ function PageBannerPresentation({
           alt={background?.title}
         />
       )}
-      {(textNode || logoPath) && (
+      {(textNode || showLogo) && (
         <div
           data-testid="PageBannerPresentation__foreground"
           className={`flex grow flex-initial items-center text-center px-5 md:px-24 max-w-screen-xl z-10 ${
@@ -70,7 +70,7 @@ function PageBannerPresentation({
               : 'flex-row justify-start px-5'
           }`}
         >
-          {logoPath && (
+          {showLogo && (
             <div
               className={`${
                 variant === 'CENTER' || window.innerWidth < 768
@@ -78,12 +78,7 @@ function PageBannerPresentation({
                   : 'mr-1'
               } hidden md:flex`}
             >
-              <img
-                className="w-24 md:w-32 lg:w-44 h-24 md:h-32 lg:h-44 rounded-full"
-                src={logoPath}
-                alt={`${site?.title} Logo`}
-                loading="lazy"
-              />
+              <SiteLogo.Presentation additionalStyling="w-24 md:w-32 lg:w-44" />
             </div>
           )}
           {textNode}
@@ -93,13 +88,12 @@ function PageBannerPresentation({
   )
 }
 // PROPTYPES
-const { node, string, object, oneOf } = PropTypes
+const { bool, node, string, object, oneOf } = PropTypes
 PageBannerPresentation.propTypes = {
   background: object,
   backgroundType: string,
   textNode: node,
-  logoPath: string,
-  site: object,
+  showLogo: bool,
   /** Changes layout of component. Variants are: left aligned, center aligned, or search */
   variant: oneOf(['LEFT', 'CENTER']),
 }
