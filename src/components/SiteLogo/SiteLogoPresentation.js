@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { useSiteStore } from 'context/SiteContext'
 import { IMAGE, MEDIUM, ORIGINAL, SMALL, THUMBNAIL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
+import placeholder from 'images/cover-thumbnail.png'
 
 function SiteLogoPresentation({ logo, size = SMALL, additionalStyling = '' }) {
   const { site } = useSiteStore()
@@ -14,11 +15,13 @@ function SiteLogoPresentation({ logo, size = SMALL, additionalStyling = '' }) {
   const logoToUse = logo?.id ? logo : site?.logo
   const altText = `${site?.title} Logo`
 
-  const src = getMediaPath({
-    mediaObject: logoToUse,
-    type: IMAGE,
-    size,
-  })
+  const src = logoToUse?.id
+    ? getMediaPath({
+        mediaObject: logoToUse,
+        type: IMAGE,
+        size,
+      })
+    : placeholder
 
   useEffect(() => {
     if (imgRef?.current?.complete) {
