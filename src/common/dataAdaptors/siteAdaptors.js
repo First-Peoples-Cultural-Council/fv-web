@@ -1,18 +1,7 @@
 // FPCC
-import {
-  PUBLIC,
-  MEMBERS,
-  TEAM,
-  IMAGE,
-  MEDIUM,
-  SMALL,
-  THUMBNAIL,
-} from 'common/constants'
+import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
 import { widgetListAdaptor } from 'common/dataAdaptors/widgetAdaptors'
-import {
-  getMediaPath,
-  selectOneMediaDataHelper,
-} from 'common/utils/mediaHelpers'
+import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
 
 export function languagesListAdaptor({ languagesData }) {
   return languagesData?.results?.map((language) => ({
@@ -101,27 +90,6 @@ const logoAdaptor = ({ item }) => {
   const logoObject = {
     logo: item?.logo,
     logoId: item?.logo?.id,
-    logoPathMedium: item?.logo
-      ? getMediaPath({
-          mediaObject: item?.logo,
-          type: IMAGE,
-          size: MEDIUM,
-        })
-      : null,
-    logoPathSmall: item?.logo
-      ? getMediaPath({
-          mediaObject: item?.logo,
-          type: IMAGE,
-          size: SMALL,
-        })
-      : null,
-    logoPathThumbnail: item?.logo
-      ? getMediaPath({
-          mediaObject: item?.logo,
-          type: IMAGE,
-          size: THUMBNAIL,
-        })
-      : null,
   }
   return logoObject
 }
