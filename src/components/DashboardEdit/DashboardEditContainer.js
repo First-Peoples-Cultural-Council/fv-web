@@ -195,7 +195,7 @@ function DashboardEditContainer() {
         <Route
           path={AUDIO}
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <MediaEdit.Container mediaType={AUDIO} />
             </RequireAuth>
           }
@@ -203,7 +203,7 @@ function DashboardEditContainer() {
         <Route
           path={IMAGE}
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <MediaEdit.Container mediaType={IMAGE} />
             </RequireAuth>
           }
@@ -211,7 +211,7 @@ function DashboardEditContainer() {
         <Route
           path={VIDEO}
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={EDITOR} withMessage>
               <MediaEdit.Container mediaType={VIDEO} />
             </RequireAuth>
           }
