@@ -5,6 +5,8 @@ import { Menu, Transition } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import SiteLogo from 'components/SiteLogo'
+import { THUMBNAIL } from 'common/constants'
 
 function DashboardPresentationSiteSelect({ sites, site }) {
   return sites?.length > 1 ? (
@@ -17,12 +19,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
         <Menu.Button className="group w-full bg-fv-charcoal text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-fv-charcoal-light">
           <span className="flex w-full justify-between items-center">
             <span className="flex min-w-0 items-center justify-between space-x-3">
-              {site?.logoPathThumbnail ? (
-                <img
-                  className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0 object-cover object-center"
-                  src={site?.logoPathThumbnail}
-                  alt={`${site?.title} Logo`}
-                />
+              {site?.logo?.id ? (
+                <div className="h-12 w-12">
+                  <SiteLogo.Presentation logo={site?.logo} size={THUMBNAIL} />
+                </div>
               ) : (
                 <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
                   <span className="text-center">{site?.title?.charAt(0)}</span>
@@ -67,12 +67,13 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                       >
                         <span className="flex w-full justify-between items-center">
                           <span className="flex min-w-0 items-center justify-between space-x-3">
-                            {sitesListItem?.logoPathThumbnail ? (
-                              <img
-                                className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0"
-                                src={sitesListItem?.logoPathThumbnail}
-                                alt={`${sitesListItem?.title} Logo`}
-                              />
+                            {sitesListItem?.logo?.id ? (
+                              <div className="h-12 w-12">
+                                <SiteLogo.Presentation
+                                  logo={sitesListItem?.logo}
+                                  size={THUMBNAIL}
+                                />
+                              </div>
                             ) : (
                               <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
                                 <span className="text-center">
@@ -101,12 +102,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
       <div className="w-full bg-fv-charcoal text-white rounded-lg px-2 py-2 text-sm text-left font-medium">
         <span className="flex w-full justify-between items-center">
           <span className="flex min-w-0 items-center justify-between space-x-3">
-            {site?.logoPathThumbnail ? (
-              <img
-                className="h-12 w-12 bg-gray-300 rounded-full flex-shrink-0"
-                src={site?.logoPathThumbnail}
-                alt={`${site?.title} Logo`}
-              />
+            {site?.logo?.id ? (
+              <div className="h-12 w-12">
+                <SiteLogo.Presentation logo={site?.logo} size={THUMBNAIL} />
+              </div>
             ) : (
               <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
                 <span className="text-center">{site?.title?.charAt(0)}</span>
