@@ -5,38 +5,28 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import generateText from 'common/utils/generateText'
+import SiteLogo from 'components/SiteLogo'
 
-function KidsNavBarPresentation({
-  links,
-  logoPath,
-  sitename,
-  siteTitle,
-  home,
-}) {
+function KidsNavBarPresentation({ links, site, home }) {
   return home ? (
     <nav
       className="relative md:p-2 z-10 print:hidden"
       data-testid="KidsNavBarPresentation"
     >
       <div className="h-28 max-w-screen-2xl mx-auto px-2 md:mb-10 md:mt-10 lg:px-6 xl:px-16 flex justify-center items-center">
-        <div className="relative">
-          <img
-            className="h-24 w-24 md:h-32 md:w-32 xl:h-44 xl:w-44 rounded-full mx-auto"
-            src={logoPath}
-            alt={`${siteTitle} Logo`}
-            loading="lazy"
-          />
+        <div className="relative h-24 w-24 md:h-32 md:w-32 xl:h-44 xl:w-44">
+          <SiteLogo.Presentation />
           {generateText(
             'kids',
-            'hidden xl:block absolute -bottom-5 right-8 md:-bottom-3 md:right-14 transform -rotate-6 text-white fill-current w-16 md:w-24',
+            'block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16 md:w-24',
           )}
         </div>
       </div>
       <Link
         className="absolute top-5 right-5 text-fv-charcoal-light flex items-center group rounded-lg text-lg font-medium hover:text-fv-charcoal"
-        to={`/${sitename}`}
+        to={`/${site?.sitename}`}
       >
-        <span className="sr-only">Back to {siteTitle} main site</span>
+        <span className="sr-only">Back to {site?.title} main site</span>
         {getIcon(
           'Close',
           'border-gray-300 hover:border-fv-charcoal border-2 border-dotted h-8 lg:h-14 w-auto',
@@ -53,18 +43,13 @@ function KidsNavBarPresentation({
           <ul className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto">
             <li className="col-span-1 inline-flex">
               <Link
-                className="flex items-center relative"
-                to={`/${sitename}/kids`}
+                className="relative flex items-center h-24 w-24 md:h-32 md:w-32"
+                to={`/${site?.sitename}/kids`}
               >
-                <img
-                  className="h-24 w-24 md:h-32 md:w-32 rounded-full"
-                  src={logoPath}
-                  alt="site logo"
-                  loading="lazy"
-                />
+                <SiteLogo.Presentation />
                 {generateText(
                   'kids',
-                  'hidden xl:block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-16',
+                  'block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-10 sm:w-16',
                 )}
               </Link>
             </li>
@@ -74,7 +59,7 @@ function KidsNavBarPresentation({
                 className="col-span-1 inline-flex shadow-xl group rounded-lg overflow-hidden"
               >
                 <Link
-                  to={`/${sitename}/kids/${link.path}`}
+                  to={`/${site?.sitename}/kids/${link.path}`}
                   className={`bg-${link.color} group w-full flex items-center justify-center group-hover:opacity-75`}
                 >
                   <div className="w-full">
@@ -99,13 +84,11 @@ function KidsNavBarPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, string } = PropTypes
+const { array, bool, object } = PropTypes
 KidsNavBarPresentation.propTypes = {
   home: bool,
   links: array,
-  logoPath: string,
-  sitename: string,
-  siteTitle: string,
+  site: object,
 }
 
 export default KidsNavBarPresentation

@@ -1,19 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-/**
- * @summary Dictionary
- * @component
- *
- * @param {object} props
- *
- * @returns {node} jsx markup
- */
+
 function Dictionary({ styling }) {
   return (
     <svg
-      width="1200pt"
-      height="1200pt"
-      version="1.1"
       viewBox="0 0 1200 1200"
       xmlns="http://www.w3.org/2000/svg"
       className={styling}

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import SiteLogo from 'components/SiteLogo'
 
 function DashboardLocatorPresentation({ site }) {
   return (
@@ -13,13 +14,9 @@ function DashboardLocatorPresentation({ site }) {
         </p>
       </div>
       <div className="flex-shrink-0">
-        {site?.logoPathSmall ? (
-          <div>
-            <img
-              className="flex max-w-xs bg-gray-300 rounded-full h-20 w-20 object-cover object-center"
-              src={site?.logoPathSmall}
-              alt={`${site?.title} Logo`}
-            />
+        {site?.logo?.id ? (
+          <div className="h-20 w-20">
+            <SiteLogo.Presentation />
           </div>
         ) : (
           <div>

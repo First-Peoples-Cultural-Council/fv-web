@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import SearchSiteForm from 'components/SearchSiteForm'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import LazyImage from 'components/LazyImage'
+import SiteLogo from 'components/SiteLogo'
 import { ORIGINAL, IMAGE, VIDEO } from 'common/constants'
 
 function HomePresentation({ bannerMedia, bannerType, site }) {
@@ -14,9 +15,8 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
     size: ORIGINAL,
   })
 
-  const logoWidth = 'w-24 sm:w-32  md:w-44 lg:w-60'
-  const logoHeight = 'h-24 sm:h-32 md:h-44 lg:h-60'
-  const logoPosition = 'items-center justify-center'
+  const logoTitleColumnStyling =
+    'w-24 sm:w-32 md:w-44 lg:w-60 flex flex-col items-center justify-center'
   const titleStyling = 'hidden md:block w-full text-center text-white text-2xl'
 
   function getContents(type) {
@@ -36,24 +36,16 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
               />
             </div>
             <div className="z-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-word to-word-dark">
-              <div
-                className={`flex flex-col md:flex-row ${logoPosition} mx-auto p-3 md:p-5`}
-              >
+              <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
                 <div
-                  className={`${logoWidth} md:-mt-24 lg:-mt-44 flex flex-col ${logoPosition} mr-4`}
+                  className={`${logoTitleColumnStyling} md:-mt-24 lg:-mt-44 mr-4`}
                 >
                   <div className="flex flex-col w-full mb-2">
-                    <LazyImage
-                      imgStyling={`${logoHeight} ${logoWidth} rounded-full`}
-                      height={175}
-                      width={175}
-                      bgColor="none"
-                      imageObject={site?.logo}
-                    />
+                    <SiteLogo.Presentation />
                   </div>
                   <div className={titleStyling}>{site?.title}</div>
                 </div>
-                <div className={`flex ${logoPosition} w-full md:w-2/3`}>
+                <div className="flex items-center justify-center w-full md:w-2/3">
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
                     <SearchSiteForm.Container />
                   </div>
@@ -76,24 +68,15 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
               src={bgSrc}
             />
             <div className="w-full z-20 px-4 sm:px-6 lg:px-8">
-              <div
-                className={`flex flex-col md:flex-row ${logoPosition} mx-auto p-3 md:p-5`}
-              >
-                <div
-                  className={`${logoWidth} flex flex-col ${logoPosition} mr-4`}
-                >
-                  <div className="flex w-full mb-2">
-                    <LazyImage
-                      imgStyling={`${logoHeight} ${logoWidth} z-30 rounded-full`}
-                      height={175}
-                      width={175}
-                      bgColor="none"
-                      imageObject={site?.logo}
-                    />
-                  </div>
+              <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
+                <div className={`${logoTitleColumnStyling} mr-4`}>
+                  <SiteLogo.Presentation
+                    additionalStyling={`${logoTitleColumnStyling} z-30 mb-2`}
+                  />
+
                   <div className={titleStyling}>{site?.title}</div>
                 </div>
-                <div className={`flex ${logoPosition} w-full md:w-2/3`}>
+                <div className="flex items-center justify-center w-full md:w-2/3">
                   <div className="w-11/12 md:w-5/6 xl:w-3/4">
                     <SearchSiteForm.Container />
                   </div>
@@ -108,24 +91,14 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
             id="HomeBannerNoMedia"
             className="bg-gradient-to-b from-word to-word-dark"
           >
-            <div
-              className={`flex flex-col md:flex-row ${logoPosition} mx-auto max-w-7xl p-3 md:p-5`}
-            >
-              <div className={`${logoWidth} flex flex-col ${logoPosition}`}>
+            <div className="flex flex-col md:flex-row items-center justify-center mx-auto max-w-7xl p-3 md:p-5">
+              <div className={logoTitleColumnStyling}>
                 <div className="flex mb-2">
-                  <LazyImage
-                    imgStyling={`${logoHeight} ${logoWidth} rounded-full`}
-                    height={175}
-                    width={175}
-                    bgColor="none"
-                    imageObject={site?.logo}
-                  />
+                  <SiteLogo.Presentation />
                 </div>
                 <div className={titleStyling}>{site?.title}</div>
               </div>
-              <div
-                className={`flex ${logoPosition} w-full md:w-2/3 xl:w-3/4 md:h-24`}
-              >
+              <div className="flex items-center justify-center w-full md:w-2/3 xl:w-3/4 md:h-24">
                 <div className="w-11/12 md:w-5/6 xl:w-3/4">
                   <SearchSiteForm.Container />
                 </div>

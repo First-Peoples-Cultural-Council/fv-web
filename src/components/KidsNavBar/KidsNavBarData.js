@@ -1,12 +1,8 @@
-import { useParams } from 'react-router-dom'
-
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 
 function KidsNavBarData() {
-  const { sitename } = useParams()
   const { site } = useSiteStore()
-  const { title, logoPathMedium } = site
 
   const links = [
     {
@@ -60,9 +56,7 @@ function KidsNavBarData() {
   ]
   return {
     links,
-    logoPath: logoPathMedium,
-    sitename,
-    siteTitle: title,
+    site,
   }
 }
 

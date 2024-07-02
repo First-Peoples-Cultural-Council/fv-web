@@ -4,9 +4,10 @@ import { PropTypes } from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import placeholder from 'images/cover-thumbnail.png'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 import Join from 'components/Join'
+import { THUMBNAIL } from 'common/constants'
+import SiteLogo from 'components/SiteLogo'
 
 function PrivateSiteCard({ site, user }) {
   const { login } = useLoginLogout()
@@ -30,13 +31,15 @@ function PrivateSiteCard({ site, user }) {
         h-16 md:h-24 w-64 lg:w-72 m-5 md:ml-12 lg:ml-16 hover:bg-phrase hover:border-phrase"
         onClick={() => setPrivateSiteModalOpen(true)}
       >
-        <img
-          className="absolute h-16 w-16 md:w-24 md:h-24 rounded-full ring-1 ring-gray-200 -left-8 md:-left-10"
-          src={site.logoPathSmall || placeholder}
-          alt={`${site.title} - Logo`}
-        />
+        <div className="absolute h-16 w-16 md:w-24 md:h-24 -left-8 md:-left-10">
+          <SiteLogo.Presentation
+            size={THUMBNAIL}
+            logo={site?.logo || null}
+            additionalStyling="ring-1 ring-gray-200"
+          />
+        </div>
         <p className="w-full ml-24 mr-8 md:mr-4 tracking-tight text-center break-word">
-          {site.title}
+          {site?.title}
         </p>
         {getIcon(
           'Lock',
@@ -61,7 +64,7 @@ function PrivateSiteCard({ site, user }) {
             <div className="p-4 sm:px-6 sm:py-32 lg:px-8">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
-                  {site.title} <br />
+                  {site?.title} <br />
                   is Private
                 </h2>
 

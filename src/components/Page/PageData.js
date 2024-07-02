@@ -2,13 +2,10 @@ import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
 import { usePage } from 'common/dataHooks/usePages'
 import { IMAGE, VIDEO } from 'common/constants'
 
 function PageData({ pageSlug }) {
-  const { site } = useSiteStore()
-  const { logoPathMedium } = site
   const { slug, sitename } = useParams()
   const navigate = useNavigate()
 
@@ -44,10 +41,7 @@ function PageData({ pageSlug }) {
     banner: {
       background,
       backgroundType,
-      logoPath:
-        slugToUse === 'our-language' || slugToUse === 'our-people'
-          ? logoPathMedium
-          : null,
+      showLogo: slugToUse === 'our-language' || slugToUse === 'our-people',
     },
     widgets: data?.widgets || [],
     title: data?.title,

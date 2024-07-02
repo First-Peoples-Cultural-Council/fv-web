@@ -9,7 +9,7 @@ import ErrorHandler from 'components/ErrorHandler'
 
 function PageContainer({ pageSlug }) {
   const { banner, title, subtitle, widgets, notFound } = PageData({ pageSlug })
-  const { background, backgroundType, logoPath } = banner
+  const { background, backgroundType, showLogo } = banner
   return notFound ? (
     <ErrorHandler.Container
       error={{ status: 404, statusText: 'Page not found' }}
@@ -30,7 +30,7 @@ function PageContainer({ pageSlug }) {
             <p>{subtitle}</p>
           </div>
         }
-        logoPath={logoPath}
+        showLogo={showLogo}
       />
       <div className="pb-16 max-w-7xl mx-auto">
         <WidgetArea.Container widgetData={widgets} />
