@@ -75,7 +75,10 @@ Sentry.init({
       createRoutesFromChildren,
       matchRoutes,
     }),
-    Sentry.replayIntegration(),
+    Sentry.replayIntegration({
+      maskAllInputs: true,
+      blockAllMedia: true,
+    }),
   ],
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
   tracesSampleRate: parseFloat(GlobalConfiguration.SENTRY_TRACES_SAMPLE_RATE),
