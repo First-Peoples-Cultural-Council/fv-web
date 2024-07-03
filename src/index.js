@@ -67,18 +67,15 @@ Sentry.init({
   environment: GlobalConfiguration.SENTRY_ENVIRONMENT,
   release: GlobalConfiguration.SENTRY_RELEASE,
   integrations: [
-    new Sentry.BrowserTracing({
-      // See docs for support of different versions of variation of react router
-      // https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/
-      routingInstrumentation: Sentry.reactRouterV6Instrumentation(
-        useEffect,
-        useLocation,
-        useNavigationType,
-        createRoutesFromChildren,
-        matchRoutes,
-      ),
+    Sentry.browserTracingIntegration(),
+    Sentry.reactRouterV6BrowserTracingIntegration({
+      useEffect,
+      useLocation,
+      useNavigationType,
+      createRoutesFromChildren,
+      matchRoutes,
     }),
-    new Sentry.Replay(),
+    Sentry.replayIntegration(),
   ],
   // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
   tracesSampleRate: parseFloat(GlobalConfiguration.SENTRY_TRACES_SAMPLE_RATE),
