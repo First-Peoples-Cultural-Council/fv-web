@@ -225,10 +225,23 @@ function Keyboards() {
           ></iframe>
           <h2 className={headerStyle}>Using keyboards on Chromebooks</h2>
           <p className={paraStyle}>
-            If you want to install your keyboard on a Chromebook, if the model
-            of your Chromebook has Tablet Mode, then you can use the FirstVoices
-            Keyboard App from the Google Play store when the Chromebook is in
-            tablet mode.
+            If the model of your Chromebook has Tablet Mode, then you can use
+            the FirstVoices Keyboard App from the Google Play store when the
+            Chromebook is in tablet mode.
+          </p>
+          <p className={paraStyle}>
+            For Chromebooks that do not have Tablet Mode, or if you are not able
+            to install the keyboard for any other reason, you can access a
+            no-install version of the keyboard right in your web browser on{' '}
+            <a
+              href="https://keyman.com/"
+              className="inline-url"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              the Keyman website.
+            </a>{' '}
+            Go to your language and click on &quot;Use keyboard online&quot;.
           </p>
           <iframe
             width="560"
