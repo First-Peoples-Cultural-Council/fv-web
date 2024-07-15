@@ -16,7 +16,6 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     macUrl: definitions.url({ required: true }),
     windowsUrl: definitions.url({ required: true }),
-    chromebookUrl: definitions.url(),
     visibility: definitions.visibility(),
   })
   const defaultValues = {
@@ -26,7 +25,6 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
     visibility: PUBLIC,
     macUrl: '',
     windowsUrl: '',
-    chromebookUrl: '',
   }
   const {
     control,
@@ -72,15 +70,6 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="windowsUrl"
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <Form.TextField
-              label="Chromebook URL"
-              nameId="chromebookUrl"
-              register={register}
-              helpText="e.g. https://chrome.google.com/webstore/detail/firstvoices-keyboards/..."
               errors={errors}
             />
           </div>

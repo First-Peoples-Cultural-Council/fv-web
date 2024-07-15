@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import appleBadge from 'images/badge-apple.svg'
 import googleBadge from 'images/badge-google.svg'
 import macLogo from 'images/logo-mac.png'
-import chromebookLogo from 'images/logo-chromebook.png'
 import windowsLogo from 'images/logo-windows.png'
 import fvKeyboardsLogo from 'images/fv-keyboards.png'
 
@@ -90,27 +89,6 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                   <div className="mx-auto">
                     <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
                       Install on Windows
-                    </div>
-                  </div>
-                </a>
-              </div>
-            )}
-            {urls?.chromebookUrl && (
-              <div className="flex">
-                <a
-                  href={urls?.chromebookUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col space-y-5 mr-8"
-                >
-                  <img
-                    className="h-14 w-auto mx-auto shadow-xl"
-                    src={chromebookLogo}
-                    alt={urls?.chromebookUrl}
-                  />
-                  <div className="mx-auto">
-                    <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
-                      Install on Chromebook
                     </div>
                   </div>
                 </a>

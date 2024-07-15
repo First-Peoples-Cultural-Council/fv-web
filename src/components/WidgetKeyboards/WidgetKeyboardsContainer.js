@@ -18,7 +18,6 @@ WidgetKeyboardsContainer.propTypes = {
     settings: shape({
       macUrl: string,
       windowsUrl: string,
-      chromebookUrl: string,
     }),
   }),
 }
