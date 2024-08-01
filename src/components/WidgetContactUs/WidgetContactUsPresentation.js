@@ -7,6 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
 import useEditForm from 'common/hooks/useEditForm'
 import WysiwygBlock from 'components/WysiwygBlock'
+import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function ContactUsPresentation({
   title,
@@ -79,6 +80,8 @@ function ContactUsPresentation({
       ))
     : null
 
+  const { login } = useLoginLogout()
+
   return (
     <section
       className="py-3 md:py-6 bg-white"
@@ -91,7 +94,17 @@ function ContactUsPresentation({
       </div>
       {user.isAnonymous ? (
         <div className="text-primary md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
-          Please sign in to use the contact us form.
+          Please{' '}
+          <button
+            data-testid="login-button"
+            className="underline cursor-pointer"
+            type="button"
+            onClick={login}
+            onKeyDown={login}
+          >
+            sign in
+          </button>{' '}
+          to use the contact us form.
         </div>
       ) : (
         <div>
