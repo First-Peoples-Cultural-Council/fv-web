@@ -202,7 +202,7 @@ function DictionaryCrudPresentation({
                 register={register}
                 control={control}
                 errors={errors}
-                maxItems={6}
+                maxItems={10}
               />
             </div>
             <div className="col-span-12">
