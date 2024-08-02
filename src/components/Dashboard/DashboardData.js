@@ -3,7 +3,12 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
-import { EDITOR, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
+import {
+  EDITOR,
+  LANGUAGE_ADMIN,
+  MEMBER,
+  atLeastAssistant,
+} from 'common/constants/roles'
 import { useMySites } from 'common/dataHooks/useMySites'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 import { TYPES, TYPE_WORD, TYPE_PHRASE } from 'common/constants'
@@ -25,11 +30,15 @@ function DashboardData() {
 
   const { roles } = user
 
+  const teamMemberSites = userSitesData.filter((s) =>
+    s?.role.match(atLeastAssistant),
+  )
+
   const currentUser = {
     ...user,
     isAdmin: !!(roles?.[sitename] === LANGUAGE_ADMIN || user?.isSuperAdmin),
     role: `${site?.title} ${roles?.[sitename] ? roles?.[sitename] : ''}`,
-    sites: userSitesData,
+    sites: teamMemberSites,
   }
 
   const { createTiles } = DashboardCreateData({ urlPrefix: 'create' })
