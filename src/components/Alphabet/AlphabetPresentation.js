@@ -11,7 +11,7 @@ function AlphabetPresentation({
   selectedData,
   kids,
   links,
-  onVideoClick,
+  onVideoClick = () => {},
   sitename,
   videoIsOpen,
 }) {
@@ -94,10 +94,6 @@ AlphabetPresentation.propTypes = {
   links: array,
   onVideoClick: func,
   videoIsOpen: bool,
-}
-
-AlphabetPresentation.defaultProps = {
-  onVideoClick: () => {},
 }
 
 export default AlphabetPresentation

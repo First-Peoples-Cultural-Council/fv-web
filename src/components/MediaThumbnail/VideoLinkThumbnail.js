@@ -2,7 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function VideoLinkThumbnail(props) {
-  const { link, containerStyles } = props
+  const {
+    link,
+    containerStyles = 'block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
+  } = props
   return (
     <div className={containerStyles}>
       <img
@@ -18,11 +21,6 @@ const { string } = PropTypes
 VideoLinkThumbnail.propTypes = {
   link: string,
   containerStyles: string,
-}
-
-VideoLinkThumbnail.defaultProps = {
-  containerStyles:
-    'block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
 }
 
 export default VideoLinkThumbnail

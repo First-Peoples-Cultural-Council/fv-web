@@ -6,7 +6,7 @@ import CategoriesPresentation from 'components/Categories/CategoriesPresentation
 import CategoriesData from 'components/Categories/CategoriesData'
 import Loading from 'components/Loading'
 
-function CategoriesContainer({ kids }) {
+function CategoriesContainer({ kids = null }) {
   const { categories, isLoading, sitename } = CategoriesData()
   return (
     <Loading.Container isLoading={isLoading}>
@@ -23,10 +23,6 @@ function CategoriesContainer({ kids }) {
 const { bool } = PropTypes
 CategoriesContainer.propTypes = {
   kids: bool,
-}
-
-CategoriesContainer.defaultProps = {
-  kids: null,
 }
 
 export default CategoriesContainer

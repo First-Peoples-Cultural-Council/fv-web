@@ -17,7 +17,7 @@ const Sanitize = (content) =>
     ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'],
   })
 
-function SanitizedHtml({ text, className, tagName }) {
+function SanitizedHtml({ text = '', className, tagName = 'div' }) {
   const Tag = tagName
   return (
     <Tag
@@ -33,11 +33,6 @@ SanitizedHtml.propTypes = {
   text: string,
   className: string,
   tagName: string,
-}
-
-SanitizedHtml.defaultProps = {
-  text: '',
-  tagName: 'div',
 }
 
 export default SanitizedHtml

@@ -4,7 +4,14 @@ import PropTypes from 'prop-types'
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
 
-function TextField({ label, nameId, helpText, disabled, errors, register }) {
+function TextField({
+  label = '',
+  nameId,
+  helpText,
+  disabled = false,
+  errors,
+  register,
+}) {
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault()
@@ -48,11 +55,6 @@ TextField.propTypes = {
   label: string,
   nameId: string.isRequired,
   register: func,
-}
-
-TextField.defaultProps = {
-  disabled: false,
-  label: '',
 }
 
 export default TextField

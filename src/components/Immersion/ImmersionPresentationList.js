@@ -7,7 +7,7 @@ import AudioButton from 'components/AudioButton'
 import Loading from 'components/Loading'
 import ActionsMenu from 'components/ActionsMenu'
 
-function ImmersionPresentationList({ actions, isLoading, items }) {
+function ImmersionPresentationList({ actions = [], isLoading, items }) {
   return (
     <Loading.Container isLoading={isLoading}>
       {items?.length > 0 ? (
@@ -94,10 +94,6 @@ ImmersionPresentationList.propTypes = {
   actions: array,
   isLoading: bool,
   items: array,
-}
-
-ImmersionPresentationList.defaultProps = {
-  actions: [],
 }
 
 export default ImmersionPresentationList

@@ -7,7 +7,7 @@ import AlphabetData from 'components/Alphabet/AlphabetData'
 import AlphabetPresentationWidget from 'components/Alphabet/AlphabetPresentationWidget'
 import Loading from 'components/Loading'
 
-function AlphabetContainer({ widgetView, kids }) {
+function AlphabetContainer({ widgetView = false, kids = null }) {
   const {
     characters,
     isLoading,
@@ -54,11 +54,6 @@ const { bool } = PropTypes
 AlphabetContainer.propTypes = {
   widgetView: bool,
   kids: bool,
-}
-
-AlphabetContainer.defaultProps = {
-  widgetView: false,
-  kids: null,
 }
 
 export default AlphabetContainer

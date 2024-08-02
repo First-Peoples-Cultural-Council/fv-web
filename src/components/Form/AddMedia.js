@@ -11,7 +11,14 @@ import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import ValidationError from 'components/Form/ValidationError'
 
-function AddMedia({ label, nameId, helpText, control, docType, errors }) {
+function AddMedia({
+  label = '',
+  nameId,
+  helpText,
+  control,
+  docType = IMAGE,
+  errors,
+}) {
   return (
     <Fragment key={`${nameId}_AddMedia`}>
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -115,11 +122,6 @@ AddMedia.propTypes = {
   nameId: string.isRequired,
   control: object,
   errors: object,
-}
-
-AddMedia.defaultProps = {
-  docType: IMAGE,
-  label: '',
 }
 
 AddMediaButton.propTypes = {

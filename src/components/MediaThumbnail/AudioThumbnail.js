@@ -7,7 +7,13 @@ import AudioNative from 'components/AudioNative'
 import { useAudioObject } from 'common/dataHooks/useMedia'
 
 function AudioThumbnail(props) {
-  const { id, containerStyles, audioStyles, labelStyles, ...other } = props
+  const {
+    id,
+    containerStyles = 'elative w-72 block overflow-hidden',
+    audioStyles = 'w-full',
+    labelStyles = '',
+    ...other
+  } = props
 
   const { sitename } = useParams()
 
@@ -28,12 +34,6 @@ AudioThumbnail.propTypes = {
   containerStyles: string,
   audioStyles: string,
   labelStyles: string,
-}
-
-AudioThumbnail.defaultProps = {
-  containerStyles: 'elative w-72 block overflow-hidden',
-  audioStyles: 'w-full',
-  labelStyles: '',
 }
 
 export default AudioThumbnail

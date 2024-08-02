@@ -5,7 +5,11 @@ import PropTypes from 'prop-types'
 import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
 
-function AudioButton({ audioArray, iconStyling, hoverTooltip }) {
+function AudioButton({
+  audioArray,
+  iconStyling = 'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-10 w-10',
+  hoverTooltip,
+}) {
   const { setCurrentAudio } = useAudiobar()
 
   return audioArray?.map((audioObject) =>
@@ -33,11 +37,6 @@ AudioButton.propTypes = {
   audioArray: array,
   iconStyling: string,
   hoverTooltip: bool,
-}
-
-AudioButton.defaultProps = {
-  iconStyling:
-    'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-10 w-10',
 }
 
 export default AudioButton

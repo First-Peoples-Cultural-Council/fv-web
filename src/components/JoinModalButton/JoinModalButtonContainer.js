@@ -6,7 +6,10 @@ import Modal from 'components/Modal'
 import Join from 'components/Join'
 import JoinModalButtonData from 'components/JoinModalButton/JoinModalButtonData'
 
-function JoinModalButtonContainer({ linkStyling, site }) {
+function JoinModalButtonContainer({
+  linkStyling = 'rounded-lg text-white bg-phrase py-1 px-3',
+  site,
+}) {
   const { alreadyMember, isAnonymous, login } = JoinModalButtonData({
     site,
   })
@@ -52,10 +55,6 @@ const { object, string } = PropTypes
 JoinModalButtonContainer.propTypes = {
   site: object.isRequired,
   linkStyling: string,
-}
-
-JoinModalButtonContainer.defaultProps = {
-  linkStyling: 'rounded-lg text-white bg-phrase py-1 px-3',
 }
 
 export default JoinModalButtonContainer

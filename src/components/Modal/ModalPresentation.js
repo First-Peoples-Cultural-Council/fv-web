@@ -5,7 +5,12 @@ import { Dialog, Transition } from '@headlessui/react'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function ModalPresentation({ children, isOpen, closeHandler, isDashboard }) {
+function ModalPresentation({
+  children,
+  isOpen = false,
+  closeHandler,
+  isDashboard = false,
+}) {
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
@@ -68,11 +73,6 @@ ModalPresentation.propTypes = {
   isOpen: bool,
   closeHandler: func,
   isDashboard: bool,
-}
-
-ModalPresentation.defaultProps = {
-  isOpen: false,
-  isDashboard: false,
 }
 
 export default ModalPresentation

@@ -9,7 +9,7 @@ function MediaItemsLayoutVisual({
   currentFile,
   setCurrentFile,
   loadLabel,
-  selection,
+  selection = false,
   savedMedia,
   selectedMedia,
   mediaSelectHandler,
@@ -138,10 +138,6 @@ MediaItemsLayoutVisual.propTypes = {
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
-}
-
-MediaItemsLayoutVisual.defaultProps = {
-  selection: false,
 }
 
 export default MediaItemsLayoutVisual

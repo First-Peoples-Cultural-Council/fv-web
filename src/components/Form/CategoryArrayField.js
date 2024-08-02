@@ -12,7 +12,7 @@ function CategoryArrayField({
   label,
   nameId,
   helpText,
-  maxItems,
+  maxItems = 6,
   register,
   control,
 }) {
@@ -81,10 +81,6 @@ CategoryArrayField.propTypes = {
   nameId: string.isRequired,
   control: object,
   register: func,
-}
-
-CategoryArrayField.defaultProps = {
-  maxItems: 6,
 }
 
 export default CategoryArrayField

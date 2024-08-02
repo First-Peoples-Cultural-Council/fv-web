@@ -6,7 +6,14 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function Autocomplete({ control, disabled, helpText, label, nameId, options }) {
+function Autocomplete({
+  control,
+  disabled = false,
+  helpText,
+  label = '',
+  nameId,
+  options,
+}) {
   const [query, setQuery] = useState('')
   const getCurrentLabel = (currentValue) => {
     const currentOption = options?.find(({ value }) => value === currentValue)
@@ -69,9 +76,9 @@ function Autocomplete({ control, disabled, helpText, label, nameId, options }) {
                         Nothing found.
                       </div>
                     ) : (
-                      filteredOptions?.map((option, optionIndex) => (
+                      filteredOptions?.map((option) => (
                         <Combobox.Option
-                          key={optionIndex}
+                          key={option.id}
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               active
@@ -126,11 +133,6 @@ Autocomplete.propTypes = {
   options: arrayOf(shape({ label: string, value: any })),
   control: object,
   helpText: string,
-}
-
-Autocomplete.defaultProps = {
-  disabled: false,
-  label: '',
 }
 
 export default Autocomplete

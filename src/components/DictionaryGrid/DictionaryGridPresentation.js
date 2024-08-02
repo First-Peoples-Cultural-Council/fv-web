@@ -8,14 +8,14 @@ import DictionaryGridTile from 'components/DictionaryGridTile'
 import LazyLoader from 'components/LazyLoader'
 
 function DictionaryGridPresentation({
-  actions,
-  moreActions,
+  actions = [],
+  moreActions = [],
   hasSideNav,
   infiniteScroll,
   isLoading,
   items,
-  kids,
-  noResultsMessage,
+  kids = null,
+  noResultsMessage = 'Sorry, no results were found for this search.',
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
   const [loadAll, setLoadAll] = useState(false)
@@ -103,13 +103,6 @@ DictionaryGridPresentation.propTypes = {
   noResultsMessage: node,
   actions: array,
   moreActions: array,
-}
-
-DictionaryGridPresentation.defaultProps = {
-  noResultsMessage: 'Sorry, no results were found for this search.',
-  kids: null,
-  actions: [],
-  moreActions: [],
 }
 
 export default DictionaryGridPresentation

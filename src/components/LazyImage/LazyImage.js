@@ -6,7 +6,14 @@ import simpleSvgPlaceholder from 'common/utils/simpleSvgPlaceholder'
 import { IMAGE, MEDIUM, ORIGINAL, SMALL, THUMBNAIL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
-function LazyImage({ alt, imageObject, bgColor, height, width, imgStyling }) {
+function LazyImage({
+  alt = '',
+  imageObject,
+  bgColor,
+  height,
+  width,
+  imgStyling = 'w-full h-auto',
+}) {
   const [loaded, setLoaded] = useState(false)
   const imgRef = useRef()
 
@@ -69,11 +76,6 @@ LazyImage.propTypes = {
   height: number,
   width: number,
   bgColor: string,
-}
-
-LazyImage.defaultProps = {
-  alt: '',
-  imgStyling: 'w-full h-auto',
 }
 
 export default LazyImage

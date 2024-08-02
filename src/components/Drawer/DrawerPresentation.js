@@ -6,9 +6,9 @@ import getIcon from 'common/utils/getIcon'
 
 function DrawerPresentation({
   children,
-  isOpen,
+  isOpen = false,
   closeHandler,
-  maxWidth,
+  maxWidth = 'max-w-xl xl:max-w-2xl',
   fullScreenPath,
 }) {
   return (
@@ -77,11 +77,6 @@ DrawerPresentation.propTypes = {
   closeHandler: func,
   fullScreenPath: string,
   maxWidth: string,
-}
-
-DrawerPresentation.defaultProps = {
-  isOpen: false,
-  maxWidth: 'max-w-xl xl:max-w-2xl',
 }
 
 export default DrawerPresentation

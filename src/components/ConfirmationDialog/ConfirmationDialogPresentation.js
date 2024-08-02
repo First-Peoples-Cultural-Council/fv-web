@@ -6,7 +6,7 @@ import Modal from 'components/Modal'
 
 function ConfirmationDialogPresentation({
   onConfirmation,
-  message,
+  message = 'Are you sure you want to proceed?',
   isOpen,
   closeHandler,
 }) {
@@ -51,10 +51,6 @@ ConfirmationDialogPresentation.propTypes = {
   closeHandler: func,
   message: string,
   isOpen: bool,
-}
-
-ConfirmationDialogPresentation.defaultProps = {
-  message: 'Are you sure you want to proceed?',
 }
 
 export default ConfirmationDialogPresentation

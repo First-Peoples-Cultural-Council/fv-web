@@ -10,7 +10,7 @@ import { CHAR, IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 function AlphabetPresentationSelected({
   kids,
-  onVideoClick,
+  onVideoClick = () => {},
   title,
   relatedDictionaryEntries,
   relatedAudio,
@@ -18,7 +18,7 @@ function AlphabetPresentationSelected({
   relatedVideoLink,
   relatedImage,
   generalNote,
-  videoIsOpen,
+  videoIsOpen = false,
   alphabetLink,
   entriesCount,
 }) {
@@ -232,11 +232,6 @@ AlphabetPresentationSelected.propTypes = {
   kids: bool,
   alphabetLink: bool,
   entriesCount: number,
-}
-
-AlphabetPresentationSelected.defaultProps = {
-  onVideoClick: () => {},
-  videoIsOpen: false,
 }
 
 export default AlphabetPresentationSelected

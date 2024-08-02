@@ -6,7 +6,7 @@ import SongsAndStoriesPresentation from 'components/SongsAndStories/SongsAndStor
 import SongsAndStoriesData from 'components/SongsAndStories/SongsAndStoriesData'
 import Loading from 'components/Loading'
 
-function SongsAndStoriesContainer({ searchType, kids }) {
+function SongsAndStoriesContainer({ searchType, kids = null }) {
   const { infiniteScroll, items, isLoading, loadRef, sitename } =
     SongsAndStoriesData({ searchType, kids })
   return (
@@ -28,10 +28,6 @@ const { bool, string } = PropTypes
 SongsAndStoriesContainer.propTypes = {
   searchType: string.isRequired,
   kids: bool,
-}
-
-SongsAndStoriesContainer.defaultProps = {
-  kids: null,
 }
 
 export default SongsAndStoriesContainer

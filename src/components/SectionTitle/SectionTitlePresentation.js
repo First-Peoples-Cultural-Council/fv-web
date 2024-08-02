@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 function SectionTitlePresentation({
   accentColor,
-  bgColor,
+  bgColor = 'white',
   title,
-  placeholder,
+  placeholder = false,
 }) {
   return (
     <div data-testid="SectionTitlePresentation" className="relative">
@@ -37,11 +37,6 @@ SectionTitlePresentation.propTypes = {
   bgColor: string,
   title: string,
   placeholder: bool,
-}
-
-SectionTitlePresentation.defaultProps = {
-  bgColor: 'white',
-  placeholder: false,
 }
 
 export default SectionTitlePresentation

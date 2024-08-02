@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
 
-function FileUploadField({ label, nameId, disabled, register, errors }) {
+function FileUploadField({
+  label = '',
+  nameId,
+  disabled = false,
+  register,
+  errors,
+}) {
   return (
     <Fragment key={`${nameId}_FileUploadField`}>
       <label
@@ -38,11 +44,6 @@ FileUploadField.propTypes = {
   disabled: bool,
   register: func,
   errors: object,
-}
-
-FileUploadField.defaultProps = {
-  disabled: false,
-  label: '',
 }
 
 export default FileUploadField

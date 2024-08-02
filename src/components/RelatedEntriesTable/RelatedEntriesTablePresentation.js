@@ -7,7 +7,11 @@ import { makePlural } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 
-function RelatedEntriesTablePresentation({ entries, sitename, labelStyling }) {
+function RelatedEntriesTablePresentation({
+  entries,
+  sitename,
+  labelStyling = 'text-left font-medium text-lg uppercase text-fv-charcoal',
+}) {
   return (
     entries?.length > 0 && (
       <table className="w-full">
@@ -66,10 +70,6 @@ RelatedEntriesTablePresentation.propTypes = {
   entries: array,
   sitename: string,
   labelStyling: string,
-}
-
-RelatedEntriesTablePresentation.defaultProps = {
-  labelStyling: 'text-left font-medium text-lg uppercase text-fv-charcoal',
 }
 
 export default RelatedEntriesTablePresentation

@@ -7,15 +7,15 @@ import getIcon from 'common/utils/getIcon'
 import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 import FieldButton from 'components/Form/FieldButton'
 function TextArrayField({
-  label,
+  label = '',
   nameId,
   helpText,
-  maxItems,
+  maxItems = 10,
   register,
   control,
   errors,
-  placeholder,
-  disableExistingEdits,
+  placeholder = null,
+  disableExistingEdits = false,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -118,13 +118,6 @@ TextArrayField.propTypes = {
   errors: object,
   placeholder: string,
   disableExistingEdits: bool,
-}
-
-TextArrayField.defaultProps = {
-  label: '',
-  maxItems: 10,
-  placeholder: null,
-  disableExistingEdits: false,
 }
 
 export default TextArrayField

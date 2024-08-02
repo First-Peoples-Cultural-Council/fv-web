@@ -7,7 +7,7 @@ import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
 import { TYPE_ENTRY } from 'common/constants'
 
-function SearchSiteFormContainer({ kids, minimal }) {
+function SearchSiteFormContainer({ kids = null, minimal = false }) {
   const { sitename } = useParams()
   const customBaseUrl = sitename ? `/${sitename}/search` : '/search'
 
@@ -42,11 +42,6 @@ const { bool } = PropTypes
 SearchSiteFormContainer.propTypes = {
   minimal: bool,
   kids: bool,
-}
-
-SearchSiteFormContainer.defaultProps = {
-  minimal: false,
-  kids: null,
 }
 
 export default SearchSiteFormContainer

@@ -6,7 +6,14 @@ import { Controller } from 'react-hook-form'
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
 
-function RadioButtons({ errors, label, options, nameId, control, helpText }) {
+function RadioButtons({
+  errors,
+  label = '',
+  options,
+  nameId,
+  control,
+  helpText,
+}) {
   return (
     <Fragment key="FormRadioButtons">
       <Controller
@@ -76,10 +83,6 @@ RadioButtons.propTypes = {
   options: array.isRequired,
   nameId: string,
   control: object,
-}
-
-RadioButtons.defaultProps = {
-  label: '',
 }
 
 export default RadioButtons

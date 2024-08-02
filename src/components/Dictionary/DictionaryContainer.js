@@ -7,7 +7,7 @@ import DictionaryData from 'components/Dictionary/DictionaryData'
 import Loading from 'components/Loading'
 import { TYPE_DICTIONARY } from 'common/constants'
 
-function DictionaryContainer({ searchType, kids }) {
+function DictionaryContainer({ searchType = TYPE_DICTIONARY, kids = null }) {
   const {
     actions,
     infiniteScroll,
@@ -45,11 +45,6 @@ const { bool, string } = PropTypes
 DictionaryContainer.propTypes = {
   searchType: string,
   kids: bool,
-}
-
-DictionaryContainer.defaultProps = {
-  searchType: TYPE_DICTIONARY,
-  kids: null,
 }
 
 export default DictionaryContainer
