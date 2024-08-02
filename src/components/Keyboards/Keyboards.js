@@ -243,14 +243,6 @@ function Keyboards() {
             </a>{' '}
             Go to your language and click on &quot;Use keyboard online&quot;.
           </p>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/TTqvm-KO6BY?si=5bCxlDhEAjdyjiFN"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
 
           <p className={paraStyle}>
             For a more detailed installation guide or help with a specific
