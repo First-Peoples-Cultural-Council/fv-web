@@ -13,8 +13,8 @@ function ShareButton({
   entry,
   sitename,
   siteVisibility,
-  iconStyling,
-  withLabels,
+  iconStyling = 'h-8 w-8 md:h-6 md:w-6',
+  withLabels = false,
 }) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
@@ -102,10 +102,6 @@ ShareButton.propTypes = {
   iconStyling: string,
   withLabels: bool,
   siteVisibility: string,
-}
-ShareButton.defaultProps = {
-  iconStyling: 'h-8 w-8 md:h-6 md:w-6',
-  withLabels: false,
 }
 
 export default ShareButton

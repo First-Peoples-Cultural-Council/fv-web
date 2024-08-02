@@ -11,7 +11,7 @@ function PageBannerPresentation({
   backgroundType,
   textNode,
   showLogo,
-  variant,
+  variant = 'CENTER',
 }) {
   if (!background && !textNode && !showLogo) {
     return null
@@ -96,9 +96,6 @@ PageBannerPresentation.propTypes = {
   showLogo: bool,
   /** Changes layout of component. Variants are: left aligned, center aligned, or search */
   variant: oneOf(['LEFT', 'CENTER']),
-}
-PageBannerPresentation.defaultProps = {
-  variant: 'CENTER',
 }
 
 export default PageBannerPresentation

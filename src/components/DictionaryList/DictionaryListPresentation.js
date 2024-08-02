@@ -13,17 +13,17 @@ import AudioButton from 'components/AudioButton'
 import { useAudiobar } from 'context/AudiobarContext'
 
 function DictionaryListPresentation({
-  actions,
+  actions = [],
   infiniteScroll,
   isLoading,
   items,
-  moreActions,
-  noResultsMessage,
+  moreActions = [],
+  noResultsMessage = 'Sorry, no results were found for this search.',
   onSortByClick,
   showType,
   sorting,
-  wholeDomain,
-  entryLabel,
+  wholeDomain = false,
+  entryLabel = 'Language Entry',
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
@@ -258,14 +258,6 @@ DictionaryListPresentation.propTypes = {
   sorting: object,
   wholeDomain: bool,
   entryLabel: string,
-}
-
-DictionaryListPresentation.defaultProps = {
-  actions: [],
-  moreActions: [],
-  noResultsMessage: 'Sorry, no results were found for this search.',
-  wholeDomain: false,
-  entryLabel: 'Language Entry',
 }
 
 export default DictionaryListPresentation

@@ -11,9 +11,9 @@ function ActionsMenuPresentation({
   entry,
   sitename,
   siteVisibility,
-  actions,
-  moreActions,
-  iconStyling,
+  actions = [],
+  moreActions = [],
+  iconStyling = 'h-8 w-8 md:h-6 md:w-6',
   withLabels,
   withConfirmation,
   withTooltip,
@@ -102,12 +102,6 @@ ActionsMenuPresentation.propTypes = {
   withLabels: bool,
   withConfirmation: bool,
   withTooltip: bool,
-}
-
-ActionsMenuPresentation.defaultProps = {
-  actions: [],
-  moreActions: [],
-  iconStyling: 'h-8 w-8 md:h-6 md:w-6',
 }
 
 export default ActionsMenuPresentation

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import Listbox from 'components/Listbox'
 import ValidationError from 'components/Form/ValidationError'
 
-function Select({ control, helpText, label, nameId, options, errors }) {
+function Select({ control, helpText, label = '', nameId, options, errors }) {
   return (
     <Fragment key="FormSelect">
       <label className="block text-sm font-medium text-fv-charcoal">
@@ -43,10 +43,6 @@ Select.propTypes = {
   control: object,
   helpText: string,
   errors: object,
-}
-
-Select.defaultProps = {
-  label: '',
 }
 
 export default Select

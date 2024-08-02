@@ -6,7 +6,7 @@ import Loading from 'components/Loading'
 import getIcon from 'common/utils/getIcon'
 
 function SearchSelectorPresentation({
-  isSelectDialog,
+  isSelectDialog = false,
   searchQuery,
   searchPromptText,
   setSearchQuery,
@@ -92,10 +92,6 @@ SearchSelectorPresentation.propTypes = {
   isLoadingEntries: bool,
   hasResults: bool,
   loadRef: object,
-}
-
-SearchSelectorPresentation.defaultProps = {
-  isSelectDialog: false,
 }
 
 export default SearchSelectorPresentation

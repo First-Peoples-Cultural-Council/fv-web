@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import ByCategoryPresentation from 'components/ByCategory/ByCategoryPresentation'
 import ByCategoryData from 'components/ByCategory/ByCategoryData'
 import Loading from 'components/Loading'
-function ByCategoryContainer({ kids }) {
+function ByCategoryContainer({ kids = null }) {
   const {
     actions,
     categories,
@@ -52,10 +52,6 @@ function ByCategoryContainer({ kids }) {
 const { bool } = PropTypes
 ByCategoryContainer.propTypes = {
   kids: bool,
-}
-
-ByCategoryContainer.defaultProps = {
-  kids: null,
 }
 
 export default ByCategoryContainer

@@ -6,7 +6,10 @@ import { Howler } from 'howler'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { AUDIO } from 'common/constants'
 
-function AudioNativePresentation({ audioObject, styling }) {
+function AudioNativePresentation({
+  audioObject,
+  styling = 'text-black mx-auto print:hidden',
+}) {
   const src = audioObject
     ? getMediaPath({ mediaObject: audioObject, type: AUDIO })
     : ''
@@ -42,9 +45,6 @@ const { object, string } = PropTypes
 AudioNativePresentation.propTypes = {
   audioObject: object,
   styling: string,
-}
-AudioNativePresentation.defaultProps = {
-  styling: 'text-black mx-auto print:hidden',
 }
 
 export default AudioNativePresentation

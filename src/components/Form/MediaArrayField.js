@@ -13,7 +13,14 @@ import Modal from 'components/Modal'
 import MediaCrud from 'components/MediaCrud'
 import api from 'services/api'
 
-function MediaArrayField({ label, nameId, helpText, control, type, maxItems }) {
+function MediaArrayField({
+  label = '',
+  nameId,
+  helpText,
+  control,
+  type = IMAGE,
+  maxItems = 3,
+}) {
   const { value, addItems, removeItem } = useIdArrayField(nameId, control)
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
     addItems,
@@ -192,12 +199,6 @@ MediaArrayField.propTypes = {
   nameId: string.isRequired,
   control: object,
   maxItems: number,
-}
-
-MediaArrayField.defaultProps = {
-  type: IMAGE,
-  label: '',
-  maxItems: 3,
 }
 
 export default MediaArrayField

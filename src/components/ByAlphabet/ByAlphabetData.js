@@ -14,7 +14,7 @@ import {
   TYPE_DICTIONARY,
 } from 'common/constants'
 
-function ByAlphabetData({ kids }) {
+function ByAlphabetData({ kids = null }) {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
@@ -86,10 +86,6 @@ function ByAlphabetData({ kids }) {
 const { bool } = PropTypes
 ByAlphabetData.propTypes = {
   kids: bool,
-}
-
-ByAlphabetData.defaultProps = {
-  kids: null,
 }
 
 export default ByAlphabetData

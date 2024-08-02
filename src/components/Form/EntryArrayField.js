@@ -12,13 +12,13 @@ import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 
 function EntryArrayField({
-  label,
+  label = '',
   nameId,
   helpText,
-  maxItems,
+  maxItems = 6,
   register,
   control,
-  types,
+  types = [TYPE_PHRASE, TYPE_WORD],
   buttonLabel,
   visibility,
   errors,
@@ -106,13 +106,6 @@ EntryArrayField.propTypes = {
   types: array,
   buttonLabel: string,
   visibility: string,
-}
-
-EntryArrayField.defaultProps = {
-  maxItems: 6,
-  minItems: 0,
-  label: '',
-  types: [TYPE_PHRASE, TYPE_WORD],
 }
 
 export default EntryArrayField

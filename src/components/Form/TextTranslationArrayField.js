@@ -6,10 +6,10 @@ import { useFieldArray } from 'react-hook-form'
 import getIcon from 'common/utils/getIcon'
 
 function TextTranslationArrayField({
-  label,
+  label = '',
   nameId,
   helpText,
-  maxItems,
+  maxItems = 10,
   register,
   control,
   errors,
@@ -116,11 +116,6 @@ TextTranslationArrayField.propTypes = {
   maxItems: number,
   register: func,
   errors: object,
-}
-
-TextTranslationArrayField.defaultProps = {
-  label: '',
-  maxItems: 10,
 }
 
 export default TextTranslationArrayField

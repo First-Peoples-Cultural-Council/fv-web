@@ -2,7 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Switch } from '@headlessui/react'
 
-function TogglePresentation({ accentColor, toggled, toggleCallback, label }) {
+function TogglePresentation({
+  accentColor = 'primary',
+  toggled = false,
+  toggleCallback = () => {},
+  label,
+}) {
   return (
     <Switch.Group>
       <div className="flex items-center">
@@ -33,9 +38,4 @@ TogglePresentation.propTypes = {
   label: string,
 }
 
-TogglePresentation.defaultProps = {
-  accentColor: 'primary',
-  toggled: false,
-  toggleCallback: () => {},
-}
 export default TogglePresentation

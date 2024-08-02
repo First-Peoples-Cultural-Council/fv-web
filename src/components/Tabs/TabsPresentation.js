@@ -6,7 +6,12 @@ import { useTranslation } from 'react-i18next'
 import getIcon from 'common/utils/getIcon'
 import Listbox from 'components/Listbox'
 
-function TabsPresentation({ accentColor, selectedValue, tabs, setValue }) {
+function TabsPresentation({
+  accentColor = 'primary',
+  selectedValue,
+  tabs,
+  setValue,
+}) {
   const [t] = useTranslation()
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -65,10 +70,6 @@ TabsPresentation.propTypes = {
   ),
   setValue: func,
   selectedValue: string,
-}
-
-TabsPresentation.defaultProps = {
-  accentColor: 'primary',
 }
 
 export default TabsPresentation

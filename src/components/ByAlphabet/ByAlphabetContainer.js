@@ -6,7 +6,7 @@ import ByAlphabetPresentation from 'components/ByAlphabet/ByAlphabetPresentation
 import ByAlphabetData from 'components/ByAlphabet/ByAlphabetData'
 import Loading from 'components/Loading'
 
-function ByAlphabetContainer({ kids }) {
+function ByAlphabetContainer({ kids = null }) {
   const {
     actions,
     characters,
@@ -51,10 +51,6 @@ function ByAlphabetContainer({ kids }) {
 const { bool } = PropTypes
 ByAlphabetContainer.propTypes = {
   kids: bool,
-}
-
-ByAlphabetContainer.defaultProps = {
-  kids: null,
 }
 
 export default ByAlphabetContainer

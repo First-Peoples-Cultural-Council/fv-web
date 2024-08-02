@@ -8,10 +8,10 @@ import getIcon from 'common/utils/getIcon'
 
 function Autocomplete({
   control,
-  disabled,
+  disabled = false,
   placeholder,
   helpText,
-  label,
+  label = '',
   nameId,
   options,
 }) {
@@ -148,11 +148,6 @@ Autocomplete.propTypes = {
   placeholder: string,
   control: object,
   helpText: string,
-}
-
-Autocomplete.defaultProps = {
-  disabled: false,
-  label: '',
 }
 
 export default Autocomplete

@@ -6,13 +6,13 @@ import getIcon from 'common/utils/getIcon'
 
 function AudioMinimalPresentation({
   buttonRef,
-  buttonStyling,
+  buttonStyling = '',
   icons,
-  iconStyling,
-  isPlaying,
+  iconStyling = 'fill-current w-7 h-7 lg:w-8 lg:h-8 xl:w-12 xl:h-12',
+  isPlaying = false,
   label,
-  onClick,
-  onKeyPress,
+  onClick = () => {},
+  onKeyPress = () => {},
 }) {
   const iconsDefault = {
     Play: getIcon('PlayCircle', iconStyling),
@@ -50,13 +50,6 @@ AudioMinimalPresentation.propTypes = {
   buttonRef: object,
   onClick: func,
   onKeyPress: func,
-}
-AudioMinimalPresentation.defaultProps = {
-  iconStyling: 'fill-current w-7 h-7 lg:w-8 lg:h-8 xl:w-12 xl:h-12',
-  buttonStyling: '',
-  isPlaying: false,
-  onClick: () => {},
-  onKeyPress: () => {},
 }
 
 export default AudioMinimalPresentation

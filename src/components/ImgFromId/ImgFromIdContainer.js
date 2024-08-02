@@ -9,7 +9,13 @@ import { IMAGE, MEDIUM } from 'common/constants'
 function ImgFromIdContainer(props) {
   // mockData has been added to props in this component to allow for the Landing page data
   // to be stored in the FE. When we refactor for data to come from the BE again, this can be removed
-  const { mockData, id, size, alt, className, ...other } = props
+  const {
+    mockData,
+    id,
+    alt,
+    className = 'w-full h-full object-contain',
+    ...other
+  } = props
   const [src, setSrc] = useState('')
 
   const imageObject = useImageObject({ id })
@@ -45,11 +51,6 @@ ImgFromIdContainer.propTypes = {
   alt: string,
   className: string,
   mockData: bool,
-}
-
-ImgFromIdContainer.defaultProps = {
-  size: MEDIUM,
-  className: 'w-full h-full object-contain',
 }
 
 export default ImgFromIdContainer

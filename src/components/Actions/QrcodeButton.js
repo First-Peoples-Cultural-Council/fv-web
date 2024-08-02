@@ -13,7 +13,12 @@ const QrcodeModalContent = lazy(() =>
   import('components/Actions/QrcodeModalContent'),
 )
 
-function QrcodeButton({ entry, iconStyling, url, withLabels }) {
+function QrcodeButton({
+  entry,
+  iconStyling = 'h-8 w-8 md:h-6 md:w-6',
+  url,
+  withLabels = false,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   return (
     <Menu.Item>
@@ -70,10 +75,6 @@ QrcodeButton.propTypes = {
   iconStyling: string,
   withLabels: bool,
   url: string,
-}
-QrcodeButton.defaultProps = {
-  iconStyling: 'h-8 w-8 md:h-6 md:w-6',
-  withLabels: false,
 }
 
 export default QrcodeButton

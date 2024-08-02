@@ -7,10 +7,10 @@ import copyToClipboard from 'common/utils/copyToClipboard'
 function Copy({
   docId,
   docTitle,
-  iconStyling,
-  withLabels,
-  withConfirmation,
-  withTooltip,
+  iconStyling = 'h-8 w-8 md:h-6 md:w-6',
+  withLabels = false,
+  withConfirmation = false,
+  withTooltip = false,
   hoverTooltip,
 }) {
   const [confirmation, setConfirmation] = useState(false)
@@ -73,12 +73,6 @@ Copy.propTypes = {
   withConfirmation: bool,
   withTooltip: bool,
   hoverTooltip: bool,
-}
-Copy.defaultProps = {
-  iconStyling: 'h-8 w-8 md:h-6 md:w-6',
-  withLabels: false,
-  withConfirmation: false,
-  withTooltip: false,
 }
 
 export default Copy

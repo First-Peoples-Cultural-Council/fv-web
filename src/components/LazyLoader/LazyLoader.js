@@ -1,7 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-function LazyLoader({ children, tag, styling, placeholder, forceLoad }) {
+function LazyLoader({
+  children,
+  tag = 'div',
+  styling,
+  placeholder,
+  forceLoad = false,
+}) {
   const [isIntersecting, setIsIntersecting] = useState(false)
   const ref = useRef()
   const io = useRef()
@@ -53,11 +59,6 @@ LazyLoader.propTypes = {
   styling: string,
   placeholder: node,
   forceLoad: bool,
-}
-
-LazyLoader.defaultProps = {
-  tag: 'div',
-  forceLoad: false,
 }
 
 export default LazyLoader

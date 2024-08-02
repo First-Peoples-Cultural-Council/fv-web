@@ -7,10 +7,10 @@ import Modal from 'components/Modal'
 
 function DeleteButtonPresentation({
   deleteHandler,
-  label,
-  message,
-  note,
-  styling,
+  label = 'Delete',
+  message = 'Are you sure you want to delete this?',
+  note = null,
+  styling = 'btn-outlined',
 }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
@@ -75,13 +75,6 @@ DeleteButtonPresentation.propTypes = {
   message: string,
   note: string,
   styling: string,
-}
-
-DeleteButtonPresentation.defaultProps = {
-  label: 'Delete',
-  message: 'Are you sure you want to delete this?',
-  note: null,
-  styling: 'btn-outlined',
 }
 
 export default DeleteButtonPresentation

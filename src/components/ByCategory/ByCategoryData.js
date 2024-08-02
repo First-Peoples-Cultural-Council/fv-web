@@ -7,7 +7,7 @@ import useSearchType from 'common/hooks/useSearchType'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { useCategories } from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
-function ByCategoryData({ kids }) {
+function ByCategoryData({ kids = null }) {
   const { sitename, categoryId } = useParams()
   const [searchParams] = useSearchParams()
 
@@ -73,10 +73,6 @@ function ByCategoryData({ kids }) {
 const { bool } = PropTypes
 ByCategoryData.propTypes = {
   kids: bool,
-}
-
-ByCategoryData.defaultProps = {
-  kids: null,
 }
 
 export default ByCategoryData

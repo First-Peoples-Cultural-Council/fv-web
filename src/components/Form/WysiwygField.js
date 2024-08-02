@@ -9,7 +9,14 @@ import WysiwygControls from 'components/Form/WysiwygControls'
 import { safeJsonParse } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 
-function WysiwygField({ label, nameId, errors, helpText, control, toolbar }) {
+function WysiwygField({
+  label = '',
+  nameId,
+  errors,
+  helpText,
+  control,
+  toolbar = ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER'],
+}) {
   const {
     field: { onChange, value, ref },
   } = useController({
@@ -105,11 +112,6 @@ WysiwygField.propTypes = {
   nameId: string.isRequired,
   control: object,
   toolbar: oneOfType([array, string]),
-}
-
-WysiwygField.defaultProps = {
-  label: '',
-  toolbar: ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER'],
 }
 
 export default WysiwygField

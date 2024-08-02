@@ -23,7 +23,7 @@ function DashboardEntriesPresentationList({
   isLoading,
   items,
   emptyListMessage,
-  entryLabel,
+  entryLabel = 'Language Entry',
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
@@ -265,10 +265,6 @@ DashboardEntriesPresentationList.propTypes = {
   items: object,
   emptyListMessage: string,
   entryLabel: string,
-}
-
-DashboardEntriesPresentationList.defaultProps = {
-  entryLabel: 'Language Entry',
 }
 
 export default DashboardEntriesPresentationList

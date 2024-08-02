@@ -8,7 +8,14 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, SMALL } from 'common/constants'
 
 function ImageThumbnail(props) {
-  const { id, size, alt, containerStyles, imageStyles, ...other } = props
+  const {
+    id,
+    size = SMALL,
+    alt,
+    containerStyles = 'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
+    imageStyles = 'w-full h-full object-contain',
+    ...other
+  } = props
 
   const { sitename } = useParams()
   const [src, setSrc] = useState()
@@ -48,13 +55,6 @@ ImageThumbnail.propTypes = {
   alt: string,
   containerStyles: string,
   imageStyles: string,
-}
-
-ImageThumbnail.defaultProps = {
-  size: SMALL,
-  containerStyles:
-    'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
-  imageStyles: 'w-full h-full object-contain',
 }
 
 export default ImageThumbnail

@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 import ValidationError from 'components/Form/ValidationError'
 
 function TextAreaField({
-  defaultValue,
+  defaultValue = '',
   errors,
-  label,
+  label = '',
   nameId,
   helpText,
   register,
-  rows,
+  rows = 3,
 }) {
   return (
     <Fragment key={`${nameId}_TextAreaField`}>
@@ -49,12 +49,6 @@ TextAreaField.propTypes = {
   nameId: string.isRequired,
   register: func,
   rows: number,
-}
-
-TextAreaField.defaultProps = {
-  defaultValue: '',
-  label: '',
-  rows: 3,
 }
 
 export default TextAreaField

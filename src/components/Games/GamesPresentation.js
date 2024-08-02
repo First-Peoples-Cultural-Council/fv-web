@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
 import SectionTitle from 'components/SectionTitle'
 
-function GamesPresentation({ kids }) {
+function GamesPresentation({ kids = null }) {
   const { sitename } = useParams()
   const games = [
     // { pathname: 'memory', title: 'Memory', icon: 'Memory' },
@@ -66,10 +66,6 @@ const { bool } = PropTypes
 
 GamesPresentation.propTypes = {
   kids: bool,
-}
-
-GamesPresentation.defaultProps = {
-  kids: null,
 }
 
 export default GamesPresentation
