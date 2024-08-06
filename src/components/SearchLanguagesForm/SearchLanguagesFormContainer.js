@@ -1,7 +1,6 @@
 import React from 'react'
 
 // FPCC
-import SearchBox from 'components/SearchBox'
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import useSearchTerm from 'common/hooks/useSearchTerm'
@@ -29,17 +28,26 @@ function SearchLanguagesFormContainer() {
   return (
     <div id="SearchLanguagesFormContainer" className="flex w-full">
       <div className="flex w-full md:w-1/2 mx-auto border-2 p-2 rounded-lg">
-        <SearchBox.Presentation
-          onSubmit={submitHandler}
-          setSearchTerm={handleSearchTermChange}
-          searchTerm={displayedSearchTerm}
-          placeholder="Search for a language site"
-        />
+        <form onSubmit={submitHandler} className="flex items-stretch grow">
+          <label id="SearchLabel" htmlFor="SearchInput" className="sr-only">
+            Search Bar Input
+          </label>
+          <input
+            data-testid="search-languages-input"
+            id="SearchInput"
+            aria-labelledby="SearchLabel"
+            className="block w-full md:text-xl lg:text-2xl text-fv-charcoal-light rounded-none rounded-l-md pl-4 truncate border-0"
+            type="text"
+            placeholder="Search for a language site"
+            onChange={handleSearchTermChange}
+            value={displayedSearchTerm}
+          />
+        </form>
 
         <div className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
           <button
             type="button"
-            id="SearchSubmit"
+            data-testid="submit-search-btn"
             aria-label="Search/Go"
             onClick={submitHandler}
           >
@@ -48,6 +56,7 @@ function SearchLanguagesFormContainer() {
         </div>
         {query && (
           <button
+            data-testid="clear-search-btn"
             type="button"
             className="inline-flex items-center ml-4 my-1 px-2 text-fv-charcoal-light border-gray-300 text-sm font-medium rounded-lg bg-gray-100 hover:bg-gray-200"
             onClick={removeQuery}
