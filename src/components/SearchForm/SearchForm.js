@@ -3,14 +3,16 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import SearchLanguageSelector from 'components/SearchLanguageSelector'
+import SearchDomainSelector from 'components/SearchDomainSelector'
 
-function SearchInputPresentation({
+function SearchForm({
   handleSearchNavigation,
   handleSearchTermChange,
-  searchBoxPlaceholder,
-  searchType,
   displayedSearchTerm,
+  searchBoxPlaceholder,
+  searchDomain,
+  handleSearchDomainChange,
+  searchDomainOptions,
 }) {
   return (
     <div id="SearchForm" className="flex w-full rounded-lg">
@@ -34,7 +36,11 @@ function SearchInputPresentation({
       </form>
 
       <div className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
-        <SearchLanguageSelector.Presentation searchType={searchType} />
+        <SearchDomainSelector.Presentation
+          searchDomain={searchDomain}
+          handleSearchDomainChange={handleSearchDomainChange}
+          searchDomainOptions={searchDomainOptions}
+        />
         <button
           type="button"
           data-testid="SearchSubmit"
@@ -50,12 +56,14 @@ function SearchInputPresentation({
 
 // PROPTYPES
 const { func, string } = PropTypes
-SearchInputPresentation.propTypes = {
+SearchForm.propTypes = {
   handleSearchNavigation: func,
   handleSearchTermChange: func,
-  searchBoxPlaceholder: string,
-  searchType: string,
   displayedSearchTerm: string,
+  searchBoxPlaceholder: string,
+  searchDomain: string,
+  handleSearchDomainChange: func,
+  searchDomainOptions: string,
 }
 
-export default SearchInputPresentation
+export default SearchForm

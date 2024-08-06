@@ -17,7 +17,9 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
     displayedSearchTerm,
     handleSearchTermChange,
     searchBoxPlaceholder,
-    searchType,
+    searchDomain,
+    handleSearchDomainChange,
+    searchDomainOptions,
   } = useSearchBoxNavigation({
     customBaseUrl,
     kids,
@@ -38,7 +40,9 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
           handleSearchNavigation={handleSearchNavigation}
           handleSearchTermChange={handleSearchTermChange}
           searchBoxPlaceholder={searchBoxPlaceholder}
-          searchType={searchType}
+          searchDomain={searchDomain}
+          handleSearchDomainChange={handleSearchDomainChange}
+          searchDomainOptions={searchDomainOptions}
         />
       )}
     </div>

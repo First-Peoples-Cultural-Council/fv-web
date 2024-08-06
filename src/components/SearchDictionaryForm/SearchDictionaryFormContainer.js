@@ -14,7 +14,9 @@ function SearchDictionaryFormContainer({ kids, initialSearchType }) {
     handleSearchTermChange,
     searchBoxPlaceholder,
     clearSearchTerm,
-    searchType,
+    searchDomain,
+    handleSearchDomainChange,
+    searchDomainOptions,
   } = useSearchBoxNavigation({
     initialSearchType,
     kids,
@@ -27,7 +29,9 @@ function SearchDictionaryFormContainer({ kids, initialSearchType }) {
         handleSearchNavigation={handleSearchNavigation}
         handleSearchTermChange={handleSearchTermChange}
         searchBoxPlaceholder={searchBoxPlaceholder}
-        searchType={searchType}
+        searchDomain={searchDomain}
+        handleSearchDomainChange={handleSearchDomainChange}
+        searchDomainOptions={searchDomainOptions}
       />
 
       {submittedSearchTerm && (
