@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import SearchLanguageSelector from 'components/SearchLanguageSelector'
-import SearchBox from 'components/SearchBox'
 
 function SearchInputPresentation({
   handleSearchNavigation,
@@ -12,37 +11,27 @@ function SearchInputPresentation({
   searchBoxPlaceholder,
   searchType,
   displayedSearchTerm,
-  minimal,
 }) {
-  return minimal ? (
-    <div id="SearchInputPresentation-Minimal">
-      <div className="w-full flex rounded-full h-10">
-        <SearchBox.Presentation
-          onSubmit={handleSearchNavigation}
-          setSearchTerm={handleSearchTermChange}
-          searchTerm={displayedSearchTerm}
-          placeholder="Search"
-          minimal
-        />
-        <button
-          type="button"
-          data-testid="SearchSubmit"
-          aria-label="Search/Go"
-          onClick={handleSearchNavigation}
-          className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light rounded-r-full bg-gray-50 hover:bg-gray-100"
-        >
-          {getIcon('Search', 'fill-current h-5 w-5 ')}
-        </button>
-      </div>
-    </div>
-  ) : (
-    <div id="SearchInputPresentation" className="flex w-full rounded-lg">
-      <SearchBox.Presentation
+  return (
+    <div id="SearchForm" className="flex w-full rounded-lg">
+      <form
         onSubmit={handleSearchNavigation}
-        setSearchTerm={handleSearchTermChange}
-        searchTerm={displayedSearchTerm}
-        placeholder={searchBoxPlaceholder}
-      />
+        className="flex items-stretch grow"
+      >
+        <label id="SearchLabel" htmlFor="SearchInput" className="sr-only">
+          Search Bar Input
+        </label>
+        <input
+          data-testid="SearchInput"
+          id="SearchInput"
+          aria-labelledby="SearchLabel"
+          className="block w-full md:text-xl lg:text-2xl text-fv-charcoal-light rounded-none rounded-l-md pl-4 truncate border-0"
+          type="text"
+          placeholder={searchBoxPlaceholder}
+          onChange={handleSearchTermChange}
+          value={displayedSearchTerm}
+        />
+      </form>
 
       <div className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
         <SearchLanguageSelector.Presentation searchType={searchType} />
@@ -60,14 +49,13 @@ function SearchInputPresentation({
 }
 
 // PROPTYPES
-const { bool, func, string } = PropTypes
+const { func, string } = PropTypes
 SearchInputPresentation.propTypes = {
   handleSearchNavigation: func,
   handleSearchTermChange: func,
   searchBoxPlaceholder: string,
   searchType: string,
   displayedSearchTerm: string,
-  minimal: bool,
 }
 
 export default SearchInputPresentation

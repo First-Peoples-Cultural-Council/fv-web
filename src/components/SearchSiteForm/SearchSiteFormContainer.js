@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
-import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
+import SearchForm from 'components/SearchForm'
+import SearchFormMinimal from 'components/SearchFormMinimal'
 import { TYPE_ENTRY } from 'common/constants'
 
 function SearchSiteFormContainer({ kids = null, minimal = false }) {
@@ -25,14 +26,21 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
 
   return (
     <div id="SearchSiteFormContainer" className="flex w-full rounded-lg">
-      <SearchInputPresentation
-        displayedSearchTerm={displayedSearchTerm}
-        handleSearchNavigation={handleSearchNavigation}
-        handleSearchTermChange={handleSearchTermChange}
-        searchBoxPlaceholder={searchBoxPlaceholder}
-        searchType={searchType}
-        minimal={minimal}
-      />
+      {minimal ? (
+        <SearchFormMinimal
+          displayedSearchTerm={displayedSearchTerm}
+          handleSearchNavigation={handleSearchNavigation}
+          handleSearchTermChange={handleSearchTermChange}
+        />
+      ) : (
+        <SearchForm
+          displayedSearchTerm={displayedSearchTerm}
+          handleSearchNavigation={handleSearchNavigation}
+          handleSearchTermChange={handleSearchTermChange}
+          searchBoxPlaceholder={searchBoxPlaceholder}
+          searchType={searchType}
+        />
+      )}
     </div>
   )
 }
