@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import useSearchTerm from 'common/hooks/useSearchTerm'
-import useSearchLanguage from 'common/hooks/useSearchLanguage'
+import useSearchDomain from 'common/hooks/useSearchDomain'
 import useSearchType from 'common/hooks/useSearchType'
 import { updateSearchParams } from 'common/utils/urlHelpers'
 import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
@@ -41,7 +41,9 @@ function useSearchBoxNavigation({
     initialSearchType,
   })
 
-  const { searchLanguage } = useSearchLanguage({ searchType })
+  const { searchDomain, searchDomainOptions } = useSearchDomain({
+    searchType,
+  })
 
   const searchBoxPlaceholderSuffix = sitename
     ? `${site.title}`
@@ -67,10 +69,15 @@ function useSearchBoxNavigation({
   const handleSearchNavigation = (event) => {
     // search with current state
     event.preventDefault()
+    submitSearch()
+  }
+
+  const submitSearch = (newSearchDomain) => {
+    // search with current state
     setSubmittedSearchTerm(displayedSearchTerm)
     const newParams = {
       q: displayedSearchTerm,
-      [DOMAIN]: searchLanguage,
+      [DOMAIN]: newSearchDomain || searchDomain,
       [TYPES]: searchType,
     }
     if (kids) {
@@ -83,6 +90,9 @@ function useSearchBoxNavigation({
   return {
     handleSearchNavigation,
     searchBoxPlaceholder,
+    handleSearchDomainChange: (domain) => {
+      submitSearch(domain)
+    },
     // From useSearchType
     searchType,
     // from useSearchTerm
@@ -90,6 +100,9 @@ function useSearchBoxNavigation({
     displayedSearchTerm,
     handleSearchTermChange,
     submittedSearchTerm,
+    // from useSearchDomain
+    searchDomain,
+    searchDomainOptions,
   }
 }
 

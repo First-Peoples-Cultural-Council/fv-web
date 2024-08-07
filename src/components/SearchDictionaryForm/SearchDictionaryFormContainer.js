@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import SearchInputPresentation from 'components/SearchInput/SearchInputPresentation'
+import SearchForm from 'components/SearchForm'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 
 function SearchDictionaryFormContainer({ kids, initialSearchType }) {
@@ -14,7 +14,9 @@ function SearchDictionaryFormContainer({ kids, initialSearchType }) {
     handleSearchTermChange,
     searchBoxPlaceholder,
     clearSearchTerm,
-    searchType,
+    searchDomain,
+    handleSearchDomainChange,
+    searchDomainOptions,
   } = useSearchBoxNavigation({
     initialSearchType,
     kids,
@@ -22,12 +24,14 @@ function SearchDictionaryFormContainer({ kids, initialSearchType }) {
 
   return (
     <div id="SearchDictionaryFormContainer" className="flex w-full rounded-lg">
-      <SearchInputPresentation
+      <SearchForm
         displayedSearchTerm={displayedSearchTerm}
         handleSearchNavigation={handleSearchNavigation}
         handleSearchTermChange={handleSearchTermChange}
         searchBoxPlaceholder={searchBoxPlaceholder}
-        searchType={searchType}
+        searchDomain={searchDomain}
+        handleSearchDomainChange={handleSearchDomainChange}
+        searchDomainOptions={searchDomainOptions}
       />
 
       {submittedSearchTerm && (
