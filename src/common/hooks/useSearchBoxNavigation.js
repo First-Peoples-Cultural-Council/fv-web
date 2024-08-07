@@ -12,7 +12,7 @@ import useSearchTerm from 'common/hooks/useSearchTerm'
 import useSearchDomain from 'common/hooks/useSearchDomain'
 import useSearchType from 'common/hooks/useSearchType'
 import { updateSearchParams } from 'common/utils/urlHelpers'
-import { DOMAIN, TYPES, TYPE_ENTRY, KIDS } from 'common/constants'
+import { DOMAIN, TYPES, TYPE_ENTRY, KIDS, DOMAIN_BOTH } from 'common/constants'
 
 /**
  * Provides functions for navigating to search urls and managing url-based search parameter state.
@@ -69,10 +69,10 @@ function useSearchBoxNavigation({
   const handleSearchNavigation = (event) => {
     // search with current state
     event.preventDefault()
-    submitSearch()
+    submitSearchMaintainParams()
   }
 
-  const submitSearch = (newSearchDomain) => {
+  const submitSearchMaintainParams = (newSearchDomain) => {
     // search with current state
     setSubmittedSearchTerm(displayedSearchTerm)
     const newParams = {
@@ -83,16 +83,34 @@ function useSearchBoxNavigation({
     if (kids) {
       newParams[KIDS] = kids
     }
+    // Maintain any existing searchParams
     const fullParams = updateSearchParams(searchParams, newParams)
     navigate(`${baseUrl}?${new URLSearchParams(fullParams).toString()}`)
+  }
+
+  const submitSearchClearParams = (event) => {
+    event.preventDefault()
+    // search with search term and defaults - for top nav search box
+    setSubmittedSearchTerm(displayedSearchTerm)
+    const newParams = {
+      q: displayedSearchTerm,
+      [DOMAIN]: DOMAIN_BOTH,
+      [TYPES]: TYPE_ENTRY,
+    }
+    if (kids) {
+      newParams[KIDS] = kids
+    }
+    // Clear any existing searchParams
+    navigate(`${baseUrl}?${new URLSearchParams(newParams).toString()}`)
   }
 
   return {
     handleSearchNavigation,
     searchBoxPlaceholder,
     handleSearchDomainChange: (domain) => {
-      submitSearch(domain)
+      submitSearchMaintainParams(domain)
     },
+    submitSearchClearParams,
     // From useSearchType
     searchType,
     // from useSearchTerm
