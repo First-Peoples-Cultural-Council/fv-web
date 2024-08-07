@@ -20,6 +20,7 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
     searchDomain,
     handleSearchDomainChange,
     searchDomainOptions,
+    submitSearchClearParams,
   } = useSearchBoxNavigation({
     customBaseUrl,
     kids,
@@ -31,7 +32,7 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
       {minimal ? (
         <SearchFormMinimal
           displayedSearchTerm={displayedSearchTerm}
-          handleSearchNavigation={handleSearchNavigation}
+          handleSearchNavigation={submitSearchClearParams}
           handleSearchTermChange={handleSearchTermChange}
         />
       ) : (
