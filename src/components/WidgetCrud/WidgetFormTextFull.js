@@ -15,9 +15,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_TEXTFULL]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
-    textWithFormatting: definitions
-      .wysiwyg({ charCount: 4500 })
-      .required('This field is required.'),
+    textWithFormatting: definitions.wysiwygRequired({ charCount: 4500 }),
     visibility: definitions.visibility(),
   })
 

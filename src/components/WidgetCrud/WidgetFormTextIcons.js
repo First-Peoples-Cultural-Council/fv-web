@@ -21,9 +21,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     type: yup.string().required().oneOf([WIDGET_TEXTICONS]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     title: definitions.title(),
-    textWithFormatting: definitions
-      .wysiwyg({ charCount: 1200 })
-      .required('This field is required.'),
+    textWithFormatting: definitions.wysiwygRequired({ charCount: 1200 }),
     image: definitions.uuid(),
     visibility: definitions.visibility(),
   })
