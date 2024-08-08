@@ -137,6 +137,25 @@ export const definitions = {
       .notRequired()
       .nullable()
       .transform((value) => value || null),
+  wysiwygRequired: ({ charCount = 500 } = {}) =>
+    yup
+      .object()
+      .test(
+        'draftjs-length',
+        `Maximum length for this field is ${charCount} characters`,
+        (value) => {
+          const plainText = value?.getCurrentContent
+            ? value.getCurrentContent().getPlainText(' ')
+            : ''
+          return plainText?.length < charCount
+        },
+      )
+      .test('draftjs-required', `This field is required.`, (value) => {
+        const plainText = value?.getCurrentContent
+          ? value.getCurrentContent().getPlainText(' ')
+          : ''
+        return plainText?.length > 1
+      }),
   file: ({ extensionList = [] } = {}) =>
     yup.mixed().test({
       message: 'Unsupported file type',
