@@ -2,6 +2,19 @@ import { User } from 'oidc-client-ts'
 
 // FPCC
 import GlobalConfiguration from 'src/GlobalConfiguration'
+import {
+  SUPER_ADMIN,
+  STAFF_ADMIN,
+  LANGUAGE_ADMIN,
+  EDITOR,
+  ASSISTANT,
+  MEMBER,
+  atLeastMember,
+  atLeastAssistant,
+  atLeastEditor,
+  atLeastLanguageAdmin,
+  atLeastStaff,
+} from 'common/constants/roles'
 
 function getUser() {
   // Retrieves user tokens directly from local storage.
@@ -28,4 +41,40 @@ export const getAuthHeaderIfTokenExists = () => {
   }
 
   return {}
+}
+
+export const isAuthorized = ({
+  requiredMembershipRole,
+  userMembershipRole,
+}) => {
+  switch (requiredMembershipRole) {
+    case MEMBER:
+      if (userMembershipRole.match(atLeastMember)) {
+        return true
+      }
+      return false
+    case ASSISTANT:
+      if (userMembershipRole.match(atLeastAssistant)) {
+        return true
+      }
+      return false
+    case EDITOR:
+      if (userMembershipRole.match(atLeastEditor)) {
+        return true
+      }
+      return false
+    case LANGUAGE_ADMIN:
+      if (userMembershipRole.match(atLeastLanguageAdmin)) {
+        return true
+      }
+      return false
+    case SUPER_ADMIN:
+    case STAFF_ADMIN:
+      if (userMembershipRole.match(atLeastStaff)) {
+        return true
+      }
+      return false
+    default:
+      return false
+  }
 }
