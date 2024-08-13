@@ -12,7 +12,7 @@ import DashboardCreate from 'components/DashboardCreate'
 import DashboardMedia from 'components/DashboardMedia'
 import DashboardReports from 'components/DashboardReports'
 import Loading from 'components/Loading'
-import { ASSISTANT, EDITOR } from 'common/constants/roles'
+import { ASSISTANT } from 'common/constants/roles'
 
 function DashboardContainer() {
   const { currentUser, site, homeTiles, isLoading, logout } = DashboardData()
@@ -56,7 +56,7 @@ function DashboardContainer() {
           <Route
             path="edit/*"
             element={
-              <RequireAuth siteMembership={EDITOR} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardEdit.Container />
               </RequireAuth>
             }
@@ -72,7 +72,7 @@ function DashboardContainer() {
           <Route
             path="reports/*"
             element={
-              <RequireAuth siteMembership={EDITOR} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardReports.Container />
               </RequireAuth>
             }
@@ -80,7 +80,7 @@ function DashboardContainer() {
           <Route
             path="advanced-search/*"
             element={
-              <RequireAuth siteMembership={EDITOR} withMessage>
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <DashboardEntries.Container advancedSearch />
               </RequireAuth>
             }
