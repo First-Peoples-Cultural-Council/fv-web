@@ -6,12 +6,13 @@ import PropTypes from 'prop-types'
 import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPresentationSiteSelect'
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
-import { ASSISTANT, MEMBER, EDITOR } from 'common/constants/roles'
+import { ASSISTANT, MEMBER } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site, logout }) {
   const logoutButton = (
     <div className="px-2 py-4 space-y-1">
       <button
+        data-testid="logout-btn"
         type="button"
         onClick={logout}
         className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
@@ -79,7 +80,7 @@ const primaryNavigationItems = (currentSitename) => {
       name: 'Edit',
       href: `/${currentSitename}/dashboard/edit`,
       icon: 'Pencil',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     {
       name: 'Media',
@@ -91,7 +92,7 @@ const primaryNavigationItems = (currentSitename) => {
       name: 'Reports',
       href: `/${currentSitename}/dashboard/reports`,
       icon: 'Reports',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
   ]
   return (

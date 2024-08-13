@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
 import {
-  EDITOR,
+  ASSISTANT,
   LANGUAGE_ADMIN,
   MEMBER,
   atLeastAssistant,
@@ -53,7 +53,7 @@ function DashboardData() {
       description: 'Edit the words and phrases in your dictionary',
       href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
       iconColor: 'phraseText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     createTiles.WIDGET,
     editTiles.PAGES,
@@ -65,7 +65,7 @@ function DashboardData() {
         'Saved searches to help you manage dictionary content on your site.',
       href: `reports`,
       iconColor: 'tertiaryB',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     {
       icon: 'QuestionCircleSolid',

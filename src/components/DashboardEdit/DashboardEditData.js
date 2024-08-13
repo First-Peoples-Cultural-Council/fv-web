@@ -7,7 +7,7 @@ import {
   TYPE_SONG,
   TYPE_STORY,
 } from 'common/constants'
-import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditData({ urlPrefix = '' }) {
   const { site } = useSiteStore()
@@ -27,7 +27,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description: 'Edit the words in your dictionary',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_WORD}`),
       iconColor: 'wordText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     PHRASES: {
       icon: 'Phrase',
@@ -35,7 +35,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description: 'Edit the phrases in your dictionary',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_PHRASE}`),
       iconColor: 'phraseText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     SONGS: {
       icon: 'Song',
@@ -43,7 +43,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description: 'Edit the songs on your site',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_SONG}`),
       iconColor: 'songText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     STORIES: {
       icon: 'Story',
@@ -51,7 +51,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description: 'Edit the stories on your site',
       href: addUrlPrefix(`entries?${TYPES}=${TYPE_STORY}`),
       iconColor: 'storyText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
     SPEAKERS: {
       icon: 'Speak',
