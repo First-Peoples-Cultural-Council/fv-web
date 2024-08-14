@@ -1,28 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useUserStore } from 'context/UserContext'
+import useAuthCheck from 'common/hooks/useAuthCheck'
 import ErrorHandler from 'components/ErrorHandler'
-import { isAuthorized } from 'common/utils/authHelpers'
 import Loading from 'components/Loading'
 
 function RequireAuth({ children, siteMembership, withMessage }) {
   const { user, isLoading } = useUserStore()
-  const { sitename } = useParams()
-
-  if (user?.isSuperAdmin) {
-    return children
-  }
-
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[sitename] || ''
-
-  const authorized = isAuthorized({
-    requiredMembershipRole: siteMembership,
-    userMembershipRole: userSiteRole,
-  })
+  const { checkRoleAuth } = useAuthCheck()
+  const authorized = checkRoleAuth(siteMembership)
 
   const unauthorised = withMessage ? (
     <Loading.Container isLoading={isLoading}>
