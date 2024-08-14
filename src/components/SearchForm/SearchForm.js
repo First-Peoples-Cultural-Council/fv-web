@@ -55,7 +55,7 @@ function SearchForm({
 }
 
 // PROPTYPES
-const { func, string } = PropTypes
+const { func, object, string } = PropTypes
 SearchForm.propTypes = {
   handleSearchNavigation: func,
   handleSearchTermChange: func,
@@ -63,7 +63,7 @@ SearchForm.propTypes = {
   searchBoxPlaceholder: string,
   searchDomain: string,
   handleSearchDomainChange: func,
-  searchDomainOptions: string,
+  searchDomainOptions: object,
 }
 
 export default SearchForm
