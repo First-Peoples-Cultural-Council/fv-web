@@ -14,7 +14,15 @@ import {
   atLeastEditor,
   atLeastLanguageAdmin,
   atLeastStaff,
-} from 'common/constants/roles'
+  TYPE_PHRASE,
+  TYPE_SONG,
+  TYPE_STORY,
+  TYPE_WORD,
+  TYPE_AUDIO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+  TEAM,
+} from 'common/constants'
 
 function getUser() {
   // Retrieves user tokens directly from local storage.
@@ -71,6 +79,27 @@ export const isAuthorized = ({
     case SUPER_ADMIN:
     case STAFF_ADMIN:
       if (userMembershipRole.match(atLeastStaff)) {
+        return true
+      }
+      return false
+    default:
+      return false
+  }
+}
+
+export const userCanEdit = ({ type, visibility, userMembershipRole }) => {
+  switch (type) {
+    case TYPE_PHRASE:
+    case TYPE_SONG:
+    case TYPE_STORY:
+    case TYPE_WORD:
+    case TYPE_AUDIO:
+    case TYPE_IMAGE:
+    case TYPE_VIDEO:
+      if (userMembershipRole.match(atLeastAssistant) && visibility === TEAM) {
+        return true
+      }
+      if (userMembershipRole.match(atLeastEditor)) {
         return true
       }
       return false
