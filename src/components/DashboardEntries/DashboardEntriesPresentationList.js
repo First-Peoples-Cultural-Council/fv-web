@@ -134,7 +134,7 @@ function DashboardEntriesPresentationList({
                             {entry?.translations && (
                               <ol className="text-fv-charcoal">
                                 {entry?.translations.map((translation, i) => (
-                                  <li key={translation?.id}>
+                                  <li key={translation?.text}>
                                     {entry?.translations.length > 1
                                       ? `${i + 1}. `
                                       : null}{' '}
