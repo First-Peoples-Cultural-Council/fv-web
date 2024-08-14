@@ -27,7 +27,7 @@ function WidgetQuotesPresentation({ widgetData }) {
       <div className="absolute -top-16 h-32 w-32 bg-primary rounded-full flex justify-center items-center">
         {getIcon('Quotation', 'fill-white h-16 w-16')}
       </div>
-      <q className="text-center text-base md:text-lg leading-5 w-3/4 pt-32">
+      <q className="text-center text-sm lg:text-lg leading-5 w-3/4 pt-32">
         {quote}
       </q>
       <p className="text-primary text-base md:text-lg font-bold text-center leading-5 w-1/2 pb-20 pt-4">

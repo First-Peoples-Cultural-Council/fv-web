@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ErrorHandlerPresentation from 'components/ErrorHandler/ErrorHandlerPresentation'
 import ErrorHandlerData from 'components/ErrorHandler/ErrorHandlerData'
@@ -7,6 +8,9 @@ function ErrorHandlerContainer({ error }) {
   const { backHandler, errorStatusCode, errorStatusText } = ErrorHandlerData()
   let errorStatus = null
   let errorText = null
+
+  const { sitename } = useParams()
+  console.log({ sitename })
 
   if (error?.status) {
     errorStatus = error?.status
