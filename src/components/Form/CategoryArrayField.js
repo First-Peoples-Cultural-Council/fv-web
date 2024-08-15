@@ -34,10 +34,7 @@ function CategoryArrayField({
       <div className="space-y-2 mt-1">
         <ul className="space-y-2 space-x-1">
           {fields.map((item, index) => (
-            <li
-              key={item.id}
-              className="btn-contained bg-tertiaryB hover:bg-tertiaryB-dark"
-            >
+            <li key={item.id} className="btn-contained">
               <input type="hidden" {...register(`${nameId}.${index}`)} />
               <div>{item?.title}</div>
               <div className="has-tooltip flex items-center">

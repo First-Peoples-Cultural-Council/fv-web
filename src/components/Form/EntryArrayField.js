@@ -39,27 +39,25 @@ function EntryArrayField({
       <div className="space-y-2 mt-2">
         <ul className="space-y-2 space-x-1">
           {fields.map((field, index) => (
-            <li
-              key={field.id}
-              className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1"
-            >
+            <li key={field.id} className="btn-contained">
               <input
                 key={field.id}
                 type="hidden"
                 {...register(`${nameId}.${index}.value`)}
               />
-              <div className="font-bold text-lg">{field?.title}</div>
+              <div>{field?.title}</div>
               <div className="has-tooltip flex items-center">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
+                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-14">
                   Remove
                 </span>
                 <button
+                  data-testid={`remove-entry-btn-${field?.id}`}
                   type="button"
                   aria-label="Remove"
-                  className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
+                  className="border p-1 border-transparent inline-flex items-center rounded-lg"
                   onClick={() => remove(index)}
                 >
-                  {getIcon('Close', 'fill-current text-fv-charcoal h-5 w-5')}
+                  {getIcon('Close', 'btn-icon')}
                 </button>
               </div>
             </li>
