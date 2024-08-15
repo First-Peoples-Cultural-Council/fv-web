@@ -6,11 +6,18 @@ import {
   TYPE_PHRASE,
   TYPE_SONG,
   TYPE_STORY,
+  ASSISTANT,
+  EDITOR,
+  LANGUAGE_ADMIN,
+  VISIBILITY,
+  VISIBILITY_TEAM,
 } from 'common/constants'
-import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+import useAuthCheck from 'common/hooks/useAuthCheck'
 
 function DashboardEditData({ urlPrefix = '' }) {
   const { site } = useSiteStore()
+
+  const { checkIfUserAtLeastRole } = useAuthCheck()
 
   function addUrlPrefix(href) {
     if (!urlPrefix) {
@@ -25,7 +32,13 @@ function DashboardEditData({ urlPrefix = '' }) {
       icon: 'Word',
       name: 'Edit words',
       description: 'Edit the words in your dictionary',
-      href: addUrlPrefix(`entries?${TYPES}=${TYPE_WORD}`),
+      href: addUrlPrefix(
+        `entries?${TYPES}=${TYPE_WORD}${
+          checkIfUserAtLeastRole(EDITOR)
+            ? ''
+            : `&${VISIBILITY}=${VISIBILITY_TEAM}`
+        }`,
+      ),
       iconColor: 'wordText',
       auth: ASSISTANT,
     },
@@ -33,7 +46,13 @@ function DashboardEditData({ urlPrefix = '' }) {
       icon: 'Phrase',
       name: 'Edit phrases',
       description: 'Edit the phrases in your dictionary',
-      href: addUrlPrefix(`entries?${TYPES}=${TYPE_PHRASE}`),
+      href: addUrlPrefix(
+        `entries?${TYPES}=${TYPE_PHRASE}${
+          checkIfUserAtLeastRole(EDITOR)
+            ? ''
+            : `&${VISIBILITY}=${VISIBILITY_TEAM}`
+        }`,
+      ),
       iconColor: 'phraseText',
       auth: ASSISTANT,
     },
@@ -41,7 +60,13 @@ function DashboardEditData({ urlPrefix = '' }) {
       icon: 'Song',
       name: 'Edit songs',
       description: 'Edit the songs on your site',
-      href: addUrlPrefix(`entries?${TYPES}=${TYPE_SONG}`),
+      href: addUrlPrefix(
+        `entries?${TYPES}=${TYPE_SONG}${
+          checkIfUserAtLeastRole(EDITOR)
+            ? ''
+            : `&${VISIBILITY}=${VISIBILITY_TEAM}`
+        }`,
+      ),
       iconColor: 'songText',
       auth: ASSISTANT,
     },
@@ -49,7 +74,13 @@ function DashboardEditData({ urlPrefix = '' }) {
       icon: 'Story',
       name: 'Edit stories',
       description: 'Edit the stories on your site',
-      href: addUrlPrefix(`entries?${TYPES}=${TYPE_STORY}`),
+      href: addUrlPrefix(
+        `entries?${TYPES}=${TYPE_STORY}${
+          checkIfUserAtLeastRole(EDITOR)
+            ? ''
+            : `&${VISIBILITY}=${VISIBILITY_TEAM}`
+        }`,
+      ),
       iconColor: 'storyText',
       auth: ASSISTANT,
     },

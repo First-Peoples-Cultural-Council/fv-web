@@ -4,14 +4,18 @@ import { useParams } from 'react-router-dom'
 import { useUserStore } from 'context/UserContext'
 import { useSiteStore } from 'context/SiteContext'
 import {
+  TYPES,
+  TYPE_WORD,
+  TYPE_PHRASE,
   ASSISTANT,
   LANGUAGE_ADMIN,
   MEMBER,
+  VISIBILITY,
+  VISIBILITY_TEAM,
   atLeastAssistant,
-} from 'common/constants/roles'
+} from 'common/constants'
 import { useMySites } from 'common/dataHooks/useMySites'
 import useLoginLogout from 'common/hooks/useLoginLogout'
-import { TYPES, TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
 import DashboardCreateData from 'components/DashboardCreate/DashboardCreateData'
 
@@ -51,7 +55,11 @@ function DashboardData() {
       icon: 'Phrase',
       name: 'Edit words and phrases',
       description: 'Edit the words and phrases in your dictionary',
-      href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}`,
+      href: `edit/entries?${TYPES}=${TYPE_WORD},${TYPE_PHRASE}${
+        roles?.[sitename] === ASSISTANT
+          ? `&${VISIBILITY}=${VISIBILITY_TEAM}`
+          : ''
+      }`,
       iconColor: 'phraseText',
       auth: ASSISTANT,
     },
