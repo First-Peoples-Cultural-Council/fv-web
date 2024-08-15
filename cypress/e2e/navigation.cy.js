@@ -42,7 +42,7 @@ describe(
       cy.get('[id="LanguagesPresentation"] a').each((_site) => {
         let _text = _site.text()
         _text = _text.replaceAll('  ', ' ')
-        cy.get('[data-testid="SearchInput"]').type(`${_text}{enter}`)
+        cy.get('[data-testid="search-languages-input"]').type(`${_text}{enter}`)
         cy.contains(_text).should('be.visible')
         cy.contains(_text).invoke('css', 'background-color', 'blue')
         cy.contains('Clear Search').click()
