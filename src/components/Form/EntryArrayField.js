@@ -37,9 +37,9 @@ function EntryArrayField({
         {label}
       </label>
       <div className="space-y-2 mt-2">
-        <ul className="space-y-2 space-x-1">
+        <ul className="space-y-1">
           {fields.map((field, index) => (
-            <li key={field.id} className="btn-contained">
+            <li key={field.id} className="btn-contained mr-1">
               <input
                 key={field.id}
                 type="hidden"
