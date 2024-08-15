@@ -11,7 +11,7 @@ function useAuthCheck() {
   const userRoles = user?.roles || {}
   const userMembershipRole = userRoles?.[sitename] || ''
 
-  const checkRoleAuth = (requiredMembershipRole) => {
+  const checkIfUserAtLeastRole = (requiredMembershipRole) => {
     if (user?.isSuperAdmin) {
       return true
     }
@@ -21,7 +21,7 @@ function useAuthCheck() {
     })
   }
 
-  const checkRoleEditAuth = ({ objectToEdit }) =>
+  const checkIfUserCanEdit = (objectToEdit) =>
     userCanEdit({
       type: objectToEdit?.type,
       visibility: objectToEdit?.visibility,
@@ -29,8 +29,8 @@ function useAuthCheck() {
     })
 
   return {
-    checkRoleAuth,
-    checkRoleEditAuth,
+    checkIfUserAtLeastRole,
+    checkIfUserCanEdit,
   }
 }
 

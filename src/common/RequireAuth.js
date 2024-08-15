@@ -9,8 +9,8 @@ import Loading from 'components/Loading'
 
 function RequireAuth({ children, siteMembership, withMessage }) {
   const { user, isLoading } = useUserStore()
-  const { checkRoleAuth } = useAuthCheck()
-  const authorized = checkRoleAuth(siteMembership)
+  const { checkIfUserAtLeastRole } = useAuthCheck()
+  const authorized = checkIfUserAtLeastRole(siteMembership)
 
   const unauthorised = withMessage ? (
     <Loading.Container isLoading={isLoading}>
