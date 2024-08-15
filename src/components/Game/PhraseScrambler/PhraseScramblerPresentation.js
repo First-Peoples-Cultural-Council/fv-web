@@ -101,7 +101,7 @@ function PhraseScramblerPresentation({
                     <div
                       // eslint-disable-next-line react/no-array-index-key
                       key={`jumbledWordsRow-${_rowIdx}`} // NOSONAR
-                      className="flex flex-row"
+                      className="flex md:flex-row flex-col"
                     >
                       {row?.map((wordObj) =>
                         isWordInNestedArray(selectedWords, wordObj) ? (
