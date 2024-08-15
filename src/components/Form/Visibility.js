@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -29,17 +29,18 @@ function Visibility({
     : site?.visibilityOptions
 
   return (
-    <Fragment key="FormVisibility">
-      <Select
-        label={label}
-        control={control}
-        nameId="visibility"
-        options={options}
-      />
-      {errors?.visibility && (
-        <div className="text-red-500">{errors?.visibility?.message}</div>
-      )}
-    </Fragment>
+    <Select
+      label={label}
+      control={control}
+      nameId="visibility"
+      options={options}
+      errors={errors}
+      helpText={
+        isAssistant
+          ? 'Please contact an Editor or Administrator from your team to change the visibility.'
+          : ''
+      }
+    />
   )
 }
 // PROPTYPES
