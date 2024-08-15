@@ -9,6 +9,7 @@ import getIcon from 'common/utils/getIcon'
 import Drawer from 'components/Drawer'
 import { makePlural } from 'common/utils/urlHelpers'
 import SortByHeader from 'components/DashboardEntries/SortByHeader'
+import useAuthCheck from 'common/hooks/useAuthCheck'
 import {
   SORT_ALPHABETICAL,
   SORT_ALPHABETICAL_DESC,
@@ -29,6 +30,7 @@ function DashboardEntriesPresentationList({
   const [selectedItem, setSelectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
   const { sitename } = useParams()
+  const { checkIfUserCanEdit } = useAuthCheck()
 
   const getLoadLabel = () => {
     if (infiniteScroll?.isFetchingNextPage) {
@@ -164,14 +166,16 @@ function DashboardEntriesPresentationList({
                             </span>
                           </td>
                           <td>
-                            <Link
-                              to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
-                              className="p-4 text-primary hover:text-primary-dark flex items-center"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {getIcon('Pencil', 'fill-current w-6 h-6')}
-                            </Link>
+                            {checkIfUserCanEdit(entry) && (
+                              <Link
+                                to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
+                                className="p-4 text-primary hover:text-primary-dark flex items-center"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {getIcon('Pencil', 'fill-current w-6 h-6')}
+                              </Link>
+                            )}
                           </td>
                           <td>
                             <button
@@ -222,17 +226,18 @@ function DashboardEntriesPresentationList({
         {selectedItem?.type && (
           <>
             <div className="flex justify-center my-2 space-x-2">
-              <Link
-                to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
-                data-testid="EntryDrawerEdit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outlined"
-              >
-                {getIcon('Pencil', 'btn-icon')}
-                <span>Edit</span>
-              </Link>
-
+              {checkIfUserCanEdit(selectedItem) && (
+                <Link
+                  to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
+                  data-testid="EntryDrawerEdit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outlined"
+                >
+                  {getIcon('Pencil', 'btn-icon')}
+                  <span>Edit</span>
+                </Link>
+              )}
               <Link
                 to={`/${sitename}/${makePlural(selectedItem?.type)}/${
                   selectedItem?.id
