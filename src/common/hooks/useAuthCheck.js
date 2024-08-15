@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 // FPCC
 import { useUserStore } from 'context/UserContext'
 import { isAuthorized, userCanEdit } from 'common/utils/authHelpers'
+import { ASSISTANT } from 'common/constants'
 
 function useAuthCheck() {
   const { user } = useUserStore()
@@ -21,6 +22,8 @@ function useAuthCheck() {
     })
   }
 
+  const checkIfAssistant = () => userMembershipRole === ASSISTANT
+
   const checkIfUserCanEdit = (objectToEdit) =>
     userCanEdit({
       type: objectToEdit?.type,
@@ -29,6 +32,7 @@ function useAuthCheck() {
     })
 
   return {
+    checkIfAssistant,
     checkIfUserAtLeastRole,
     checkIfUserCanEdit,
   }
