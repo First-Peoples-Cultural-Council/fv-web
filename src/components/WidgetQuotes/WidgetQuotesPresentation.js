@@ -23,14 +23,14 @@ function WidgetQuotesPresentation({ widgetData }) {
   })
 
   const makeQuote = (quote, quoteBy) => (
-    <div className="relative w-4/5 md:w-[30%] h-80 mt-24 md:my-28 bg-white rounded-t-xl rounded-br-xl flex flex-col justify-center items-center">
-      <div className="absolute -top-16 h-32 w-32 bg-primary rounded-full flex justify-center items-center">
-        {getIcon('Quotation', 'fill-white h-16 w-16')}
+    <div className="relative w-4/5 md:w-[30%] h-80 mt-24 md:my-20 bg-white rounded-t-xl rounded-br-xl flex flex-col justify-center items-center">
+      <div className="absolute -top-16 h-28 w-28 bg-primary rounded-full flex justify-center items-center">
+        {getIcon('Quotation', 'fill-white h-12 w-12')}
       </div>
       <q className="text-center text-sm lg:text-lg leading-5 w-3/4 pt-32">
         {quote}
       </q>
-      <p className="text-primary text-base md:text-lg font-bold text-center leading-5 w-1/2 pb-20 pt-4">
+      <p className="text-primary text-base lg:text-lg font-bold text-center leading-5 w-2/3 pb-20 pt-4">
         {quoteBy}
       </p>
       <div className="absolute -bottom-12 left-0 w-0 h-0 border-[50px] border-l-white border-y-transparent border-r-transparent"></div>
