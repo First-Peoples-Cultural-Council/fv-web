@@ -62,11 +62,11 @@ function SearchDomainSelectorPresentation({
   )
 }
 // PROPTYPES
-const { array, func, string } = PropTypes
+const { object, func, string } = PropTypes
 SearchDomainSelectorPresentation.propTypes = {
   searchDomain: string,
   handleSearchDomainChange: func,
-  searchDomainOptions: array,
+  searchDomainOptions: object,
 }
 
 export default SearchDomainSelectorPresentation

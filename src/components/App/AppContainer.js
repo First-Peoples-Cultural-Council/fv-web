@@ -19,11 +19,9 @@ import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
 import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
-import RequireAuth from 'common/RequireAuth'
 import Search from 'components/Search'
 import Site from 'components/Site'
 import Support from 'components/Support'
-import { GENERAL } from 'common/constants/roles'
 import LegacyRedirect from './LegacyRedirect'
 
 function AppContainer() {
@@ -47,9 +45,7 @@ function AppContainer() {
                 path=""
                 element={
                   <AppWrapper isHome>
-                    <RequireAuth siteMembership={GENERAL} withMessage>
-                      <LandingPage.Container />
-                    </RequireAuth>
+                    <LandingPage.Container />
                   </AppWrapper>
                 }
               />
@@ -105,9 +101,7 @@ function AppContainer() {
                 path="error"
                 element={
                   <AppWrapper>
-                    <ErrorHandler.Container
-                      error={{ status: 404, statusText: 'Page not found' }}
-                    />
+                    <ErrorHandler.Container />
                   </AppWrapper>
                 }
               />

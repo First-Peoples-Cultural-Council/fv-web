@@ -32,25 +32,23 @@ function CategoryArrayField({
         {label}
       </label>
       <div className="space-y-2 mt-1">
-        <ul className="space-y-2 space-x-1">
+        <ul className="space-y-2">
           {fields.map((item, index) => (
-            <li
-              key={item.id}
-              className="p-1 inline-flex items-center rounded-lg shadow-md bg-tertiaryB hover:bg-tertiaryB-dark text-white space-x-1"
-            >
+            <li key={item.id} className="btn-contained mr-1">
               <input type="hidden" {...register(`${nameId}.${index}`)} />
-              <div className="font-bold text-sm">{item?.title}</div>
+              <div>{item?.title}</div>
               <div className="has-tooltip flex items-center">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
+                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-14">
                   Remove from category
                 </span>
                 <button
                   type="button"
+                  data-testid={`remove-category-btn-${item?.id}`}
                   aria-label="Remove from category"
-                  className="border p-1 border-transparent inline-flex items-center rounded-lg"
+                  className="border p-1 -m-1 border-transparent inline-flex items-center rounded-lg"
                   onClick={() => remove(index)}
                 >
-                  {getIcon('Close', 'fill-current text-white h-6 w-6')}
+                  {getIcon('Close', 'btn-icon')}
                 </button>
               </div>
             </li>
