@@ -5,6 +5,13 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
+import useAuthCheck from 'common/hooks/useAuthCheck'
+import {
+  TYPES,
+  TYPE_STORY,
+  VISIBILITY,
+  VISIBILITY_TEAM,
+} from 'common/constants'
 
 function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
   const [activeStep, setActiveStep] = useSearchParamsState({
@@ -20,6 +27,8 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
     }
     return setActiveStep(String(stepToGoTo))
   }
+
+  const { checkIfAssistant } = useAuthCheck()
 
   return (
     <div className="flex w-full justify-between p-2">
@@ -48,7 +57,9 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
       ) : (
         <div className="flex w-full justify-end">
           <Link
-            to={`/${sitename}/dashboard/edit/entries?types=story`}
+            to={`/${sitename}/dashboard/edit/entries?${TYPES}=${TYPE_STORY}${
+              checkIfAssistant() ? `&${VISIBILITY}=${VISIBILITY_TEAM}` : ''
+            }`}
             className="btn-contained bg-secondary"
           >
             <span>Finish</span>

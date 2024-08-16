@@ -3,13 +3,20 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import api from 'services/api'
-import { SONGS, TYPE_SONG } from 'common/constants'
+import {
+  SONGS,
+  TYPES,
+  TYPE_SONG,
+  VISIBILITY,
+  VISIBILITY_TEAM,
+} from 'common/constants'
 import {
   songForViewing,
   songForEditing,
   songForApi,
 } from 'common/dataAdaptors/songAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import useAuthCheck from 'common/hooks/useAuthCheck'
 
 export function useSongs() {
   const { sitename } = useParams()
@@ -70,9 +77,13 @@ export function useSongCreate() {
     })
   }
 
+  const { checkIfAssistant } = useAuthCheck()
+
   const mutation = useMutationWithNotification({
     mutationFn: createSong,
-    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    redirectTo: `/${sitename}/dashboard/edit/entries?${TYPES}=${TYPE_SONG}${
+      checkIfAssistant() ? `&${VISIBILITY}=${VISIBILITY_TEAM}` : ''
+    }`,
     queryKeyToInvalidate: [SONGS, sitename],
     actionWord: 'created',
     type: 'song',
@@ -96,9 +107,13 @@ export function useSongUpdate() {
     })
   }
 
+  const { checkIfAssistant } = useAuthCheck()
+
   const mutation = useMutationWithNotification({
     mutationFn: updateSong,
-    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    redirectTo: `/${sitename}/dashboard/edit/entries?${TYPES}=${TYPE_SONG}${
+      checkIfAssistant() ? `&${VISIBILITY}=${VISIBILITY_TEAM}` : ''
+    }`,
     queryKeyToInvalidate: [SONGS, sitename],
     actionWord: 'updated',
     type: 'song',
@@ -120,7 +135,7 @@ export function useSongDelete() {
 
   const mutation = useMutationWithNotification({
     mutationFn: deleteSong,
-    redirectTo: `/${sitename}/dashboard/edit/entries?types=${TYPE_SONG}`,
+    redirectTo: `/${sitename}/dashboard/edit/entries?${TYPES}=${TYPE_SONG}`,
     queryKeyToInvalidate: [SONGS, sitename],
     actionWord: 'deleted',
     type: 'song',
