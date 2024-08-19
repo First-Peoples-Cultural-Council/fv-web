@@ -166,7 +166,7 @@ function DashboardEntriesPresentationList({
                             </span>
                           </td>
                           <td>
-                            {checkIfUserCanEdit(entry) && (
+                            {checkIfUserCanEdit(entry) ? (
                               <Link
                                 to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
                                 className="p-4 text-primary hover:text-primary-dark flex items-center"
@@ -175,6 +175,13 @@ function DashboardEntriesPresentationList({
                               >
                                 {getIcon('Pencil', 'fill-current w-6 h-6')}
                               </Link>
+                            ) : (
+                              <div className="has-tooltip p-4 text-gray-400 flex items-center">
+                                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-fv-charcoal text-xs -mt-10 -ml-20">
+                                  You do not have access to edit this.
+                                </span>
+                                {getIcon('Pencil', 'fill-current w-6 h-6')}
+                              </div>
                             )}
                           </td>
                           <td>
@@ -226,7 +233,7 @@ function DashboardEntriesPresentationList({
         {selectedItem?.type && (
           <>
             <div className="flex justify-center my-2 space-x-2">
-              {checkIfUserCanEdit(selectedItem) && (
+              {checkIfUserCanEdit(selectedItem) ? (
                 <Link
                   to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
                   data-testid="EntryDrawerEdit"
@@ -237,6 +244,14 @@ function DashboardEntriesPresentationList({
                   {getIcon('Pencil', 'btn-icon')}
                   <span>Edit</span>
                 </Link>
+              ) : (
+                <div className="has-tooltip btn-outlined text-gray-400 border-gray-400">
+                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-fv-charcoal text-xs -mt-10 -ml-10">
+                    You do not have access to edit this.
+                  </span>
+                  {getIcon('Pencil', 'btn-icon')}
+                  <span>Edit</span>
+                </div>
               )}
               <Link
                 to={`/${sitename}/${makePlural(selectedItem?.type)}/${
