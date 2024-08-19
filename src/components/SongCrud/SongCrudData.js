@@ -12,7 +12,7 @@ function SongCrudData() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  const backHandler = () => navigate(-1)
+  const backHandler = () => navigate('..')
 
   const songId = searchParams.get('id')
 
