@@ -24,7 +24,7 @@ function ErrorHandlerData() {
   }, [goBack])
 
   return {
-    errorStatusCode: parseInt(status),
+    errorStatusCode: parseInt(status, 10),
     errorStatusText: statusText,
     backHandler,
   }

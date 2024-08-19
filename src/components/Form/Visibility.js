@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import Select from 'components/Form/Select'
 import { useSiteStore } from 'context/SiteContext'
-import { useUserStore } from 'context/UserContext'
-import { TEAM, ASSISTANT } from 'common/constants'
+import useAuthCheck from 'common/hooks/useAuthCheck'
+import { TEAM } from 'common/constants'
 import { formattedVisibilityOptions } from 'common/dataAdaptors/siteAdaptors'
 
 function Visibility({
@@ -15,38 +15,32 @@ function Visibility({
   resetField,
 } = {}) {
   const { site } = useSiteStore()
-  const { user } = useUserStore()
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[site?.sitename] || ''
-  const isAssistant = userSiteRole === ASSISTANT
-
-  const options = (function _() {
-    if (isAssistant) {
-      return formattedVisibilityOptions([TEAM])
-    }
-    return site?.visibilityOptions
-  })()
+  const { checkIfAssistant } = useAuthCheck()
+  const isAssistant = checkIfAssistant()
 
   useEffect(() => {
+    const defaultValue = isAssistant ? TEAM : site?.visibilityOptions[0]?.value
     // set default value to match visibility options
-    resetField('visibility', { defaultValue: options[0]?.value })
-  }, [options, resetField])
+    resetField('visibility', { defaultValue })
+  }, [site?.visibilityOptions, isAssistant, resetField])
+
+  const options = isAssistant
+    ? formattedVisibilityOptions([TEAM])
+    : site?.visibilityOptions
 
   return (
-    site?.visibilityOptions &&
-    userSiteRole && (
-      <Fragment key="FormVisibility">
-        <Select
-          label={label}
-          control={control}
-          nameId="visibility"
-          options={options}
-        />
-        {errors?.visibility && (
-          <div className="text-red-500">{errors?.visibility?.message}</div>
-        )}
-      </Fragment>
-    )
+    <Select
+      label={label}
+      control={control}
+      nameId="visibility"
+      options={options}
+      errors={errors}
+      helpText={
+        isAssistant
+          ? 'Please contact an Editor or Administrator from your team to change the visibility.'
+          : ''
+      }
+    />
   )
 }
 // PROPTYPES

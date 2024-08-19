@@ -27,7 +27,7 @@ import DashboardImmersiom from 'components/DashboardImmersion'
 import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
 import DashboardWidgets from 'components/DashboardWidgets'
-import { EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardEditContainer() {
   const { tileContent, headerContent, site } = DashboardEditData({
@@ -56,7 +56,7 @@ function DashboardEditContainer() {
         <Route
           path="entries/*"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DashboardEntries.Container />
             </RequireAuth>
           }
@@ -145,7 +145,7 @@ function DashboardEditContainer() {
         <Route
           path="phrase"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DictionaryCrud.Container type={TYPE_PHRASE} />
             </RequireAuth>
           }
@@ -153,7 +153,7 @@ function DashboardEditContainer() {
         <Route
           path="song"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <SongCrud.Container />
             </RequireAuth>
           }
@@ -169,7 +169,7 @@ function DashboardEditContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <StoryCrud.Container />
             </RequireAuth>
           }
@@ -185,7 +185,7 @@ function DashboardEditContainer() {
         <Route
           path="word"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DictionaryCrud.Container type={TYPE_WORD} />
             </RequireAuth>
           }

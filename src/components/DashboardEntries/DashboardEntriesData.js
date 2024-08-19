@@ -55,9 +55,7 @@ function DashboardEntriesData({ advancedSearch }) {
   }
 
   return {
-    emptyListMessage: searchTerm
-      ? 'Sorry, there are no results for this search.'
-      : 'Please enter your search above.',
+    emptyListMessage: 'Sorry, no results match your search criteria.',
     entryLabel: getSearchTypeLabel({ searchType }),
     infiniteScroll,
     initialSearchType: urlSearchType,
