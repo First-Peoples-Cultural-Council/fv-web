@@ -5,8 +5,13 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import { useUserStore } from 'context/UserContext'
-import { ASSISTANT } from 'common/constants/roles'
+import useAuthCheck from 'common/hooks/useAuthCheck'
+import {
+  TYPES,
+  TYPE_STORY,
+  VISIBILITY,
+  VISIBILITY_TEAM,
+} from 'common/constants'
 
 function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
   const [activeStep, setActiveStep] = useSearchParamsState({
@@ -18,14 +23,12 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
   const onStepClick = ({ forward }) => {
     const stepToGoTo = forward ? activeStepNumber + 1 : activeStepNumber - 1
     if (onClickCallback) {
-      onClickCallback(String(stepToGoTo))
-    } else return setActiveStep(String(stepToGoTo))
+      return onClickCallback(String(stepToGoTo))
+    }
+    return setActiveStep(String(stepToGoTo))
   }
 
-  const { user } = useUserStore()
-  const userRoles = user?.roles || {}
-  const userSiteRole = userRoles?.[sitename] || ''
-  const isAssistant = userSiteRole === ASSISTANT
+  const { checkIfAssistant } = useAuthCheck()
 
   return (
     <div className="flex w-full justify-between p-2">
@@ -54,11 +57,9 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
       ) : (
         <div className="flex w-full justify-end">
           <Link
-            to={
-              isAssistant // Redirect to the create page for assistants to be removed when assistants can access the edit pages (FW-4828)
-                ? `/${sitename}/dashboard/create`
-                : `/${sitename}/dashboard/edit/entries?types=story`
-            }
+            to={`/${sitename}/dashboard/edit/entries?${TYPES}=${TYPE_STORY}${
+              checkIfAssistant() ? `&${VISIBILITY}=${VISIBILITY_TEAM}` : ''
+            }`}
             className="btn-contained bg-secondary"
           >
             <span>Finish</span>
