@@ -84,7 +84,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       description: 'Add a new image gallery to your site',
       href: addUrlPrefix('gallery'),
       iconColor: 'wordText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
   }
 
