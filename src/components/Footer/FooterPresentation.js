@@ -56,7 +56,7 @@ function FooterPresentation() {
               Donate
             </a>
           </div>
-          <div className="block md:flex  px-2">
+          <div className="block md:flex  px-2 md:px-0">
             <div className="block md:inline-flex leading-7 text-white md:px-2 whitespace-nowrap">
               Phone : +1-250-652-5952
             </div>
