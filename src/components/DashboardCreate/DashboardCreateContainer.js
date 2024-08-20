@@ -35,7 +35,7 @@ function DashboardCreateContainer() {
         <Route
           path="gallery"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <GalleryCrud.Container />
             </RequireAuth>
           }
