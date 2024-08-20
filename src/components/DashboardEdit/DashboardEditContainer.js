@@ -64,7 +64,7 @@ function DashboardEditContainer() {
         <Route
           path="galleries/*"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DashboardGalleries.Container />
             </RequireAuth>
           }
@@ -121,7 +121,7 @@ function DashboardEditContainer() {
         <Route
           path="gallery"
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <GalleryCrud.Container />
             </RequireAuth>
           }
@@ -195,7 +195,7 @@ function DashboardEditContainer() {
         <Route
           path={AUDIO}
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <MediaEdit.Container mediaType={AUDIO} />
             </RequireAuth>
           }
@@ -203,7 +203,7 @@ function DashboardEditContainer() {
         <Route
           path={IMAGE}
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <MediaEdit.Container mediaType={IMAGE} />
             </RequireAuth>
           }
@@ -211,7 +211,7 @@ function DashboardEditContainer() {
         <Route
           path={VIDEO}
           element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <MediaEdit.Container mediaType={VIDEO} />
             </RequireAuth>
           }

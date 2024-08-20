@@ -110,7 +110,7 @@ function AlphabetPresentationSelected({
                 <div className="flex flex-col p-2 text-center">
                   {word?.translations?.length > 0 &&
                     word?.translations.map((translation) => (
-                      <p key={translation.id}>{translation?.text}</p>
+                      <p key={translation?.text}>{translation?.text}</p>
                     ))}
                 </div>
               </div>

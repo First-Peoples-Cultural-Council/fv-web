@@ -148,7 +148,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description: 'Edit an image gallery on your site',
       href: addUrlPrefix('galleries'),
       iconColor: 'wordText',
-      auth: EDITOR,
+      auth: ASSISTANT,
     },
   }
 
