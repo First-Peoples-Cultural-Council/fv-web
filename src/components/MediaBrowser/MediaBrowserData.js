@@ -26,6 +26,7 @@ function MediaBrowserData({ docType }) {
   const _searchParams = new URLSearchParams({
     q: searchTerm,
     [TYPES]: searchType,
+    sort: searchTerm ? null : 'created_desc',
   })
 
   const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({

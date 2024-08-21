@@ -30,6 +30,7 @@ function MediaCrudData({ docType, maxFiles }) {
   const _searchParams = new URLSearchParams({
     q: searchTerm,
     [TYPES]: docType,
+    sort: searchTerm ? '' : 'created_desc',
   })
   const { data, infiniteScroll, isInitialLoading, loadRef } = useSearchLoader({
     searchParams: _searchParams,
