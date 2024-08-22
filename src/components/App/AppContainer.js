@@ -133,6 +133,16 @@ function AppContainer() {
                 element={<LegacyRedirect />}
               />
               <Route
+                path=":exploreOrKids/FV/:area/Data/:family/:language/:dialect/learn/:type/:uuid"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
+              <Route
+                path=":exploreOrKids/FV/:area/Data/:family/:language/:dialect/learn/:type"
+                caseSensitive={false}
+                element={<LegacyRedirect />}
+              />
+              <Route
                 path=":exploreOrKids/FV/:area/Data/:family/:language/:dialect/*"
                 caseSensitive={false}
                 element={<LegacyRedirect />}

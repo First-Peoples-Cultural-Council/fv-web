@@ -4,36 +4,38 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import ErrorHandler from 'components/ErrorHandler'
 import LEGACY_SITE_MAPPING from 'common/constants/legacySiteMapping'
+import { isUUID } from 'common/utils/stringHelpers'
 
 function LegacyRedirect() {
   // family and language are also available if desired for more precise matching
-  const { dialect, exploreOrKids } = useParams()
+  const { dialect, exploreOrKids, type, uuid } = useParams()
   const navigate = useNavigate()
 
   if (!dialect) {
     // old explore languages page
-    navigate(`/languages/`, { replace: true })
-    return null
+    return navigate(`/languages/`, { replace: true })
   }
 
   const isKids = exploreOrKids === 'kids'
 
-  // best match
-  let found = LEGACY_SITE_MAPPING.find((s) => s.oldSitename === dialect)
-  if (found) {
-    navigate(`/${found.newSiteName}/${isKids ? 'kids/' : ''}`, {
-      replace: true,
-    })
-    return null
-  }
+  const bestMatch = LEGACY_SITE_MAPPING.find((s) => s.oldSitename === dialect)
+  const backupMatch = LEGACY_SITE_MAPPING.find((s) => s.dialect === dialect)
+  const found = bestMatch || backupMatch
 
-  // second best
-  found = LEGACY_SITE_MAPPING.find((s) => s.dialect === dialect)
   if (found) {
-    navigate(`/${found.newSiteName}/${isKids ? 'kids/' : ''}`, {
+    if (type) {
+      return navigate(
+        `/${found.newSiteName}/${isKids ? 'kids/' : ''}${type}/${
+          isUUID(uuid) ? uuid : ''
+        }`,
+        {
+          replace: true,
+        },
+      )
+    }
+    return navigate(`/${found.newSiteName}/${isKids ? 'kids/' : ''}`, {
       replace: true,
     })
-    return null
   }
 
   // no match
