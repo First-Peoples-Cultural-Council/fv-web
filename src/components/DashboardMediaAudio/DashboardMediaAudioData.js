@@ -4,15 +4,18 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { AUDIO, TYPES, SORT, SORT_CREATED_DESC } from 'common/constants'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import {
+  TYPE_AUDIO,
+  AUDIO_PATH,
+  TYPES,
+  SORT,
+  SORT_CREATED_DESC,
+} from 'common/constants'
 
 function DashboardMediaAudioData() {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
-
-  const typePlural = getFriendlyDocType({ AUDIO, plural: true })
 
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
@@ -22,7 +25,7 @@ function DashboardMediaAudioData() {
   // Add search Term
   const _searchParams = new URLSearchParams({
     q: searchTerm,
-    [TYPES]: AUDIO,
+    [TYPES]: TYPE_AUDIO,
     [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
@@ -40,10 +43,10 @@ function DashboardMediaAudioData() {
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
       navigate(
-        `/${sitename}/dashboard/media/${typePlural}?q=${searchInputValue}`,
+        `/${sitename}/dashboard/media/${AUDIO_PATH}?q=${searchInputValue}`,
       )
     } else {
-      navigate(`/${sitename}/dashboard/media/${typePlural}`)
+      navigate(`/${sitename}/dashboard/media/${AUDIO_PATH}`)
     }
   }
 
@@ -81,7 +84,6 @@ function DashboardMediaAudioData() {
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
-    typePlural,
   }
 }
 

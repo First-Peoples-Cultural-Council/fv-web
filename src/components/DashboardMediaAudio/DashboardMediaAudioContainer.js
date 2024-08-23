@@ -19,7 +19,6 @@ function DashboardMediaAudioContainer() {
     isLoadingEntries,
     loadRef,
     loadLabel,
-    typePlural,
   } = DashboardMediaAudioData()
 
   const hasResults = !!(
@@ -29,7 +28,7 @@ function DashboardMediaAudioContainer() {
   return (
     <SearchSelector.Presentation
       searchQuery={searchValue}
-      searchPromptText={`Search all ${typePlural}`}
+      searchPromptText="Search all audio"
       setSearchQuery={handleTextFieldChange}
       search={handleSearchSubmit}
       headerSection=""
@@ -41,7 +40,7 @@ function DashboardMediaAudioContainer() {
                 id="results-header"
                 className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
               >
-                {typePlural}
+                Audio
               </h1>
               <DashboardMediaAudioPresentation
                 data={audio}

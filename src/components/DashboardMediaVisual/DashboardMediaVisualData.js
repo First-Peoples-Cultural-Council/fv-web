@@ -6,21 +6,21 @@ import PropTypes from 'prop-types'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import {
-  AUDIO,
-  IMAGE,
-  VIDEO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
   TYPES,
   SORT,
   SORT_CREATED_DESC,
+  IMAGE_PATH,
+  VIDEO_PATH,
 } from 'common/constants'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
-function DashboardMediaVisualData({ docType }) {
+function DashboardMediaVisualData({ type }) {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
 
-  const docTypePlural = getFriendlyDocType({ docType, plural: true })
+  const path = type === TYPE_IMAGE ? IMAGE_PATH : VIDEO_PATH
 
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
@@ -30,7 +30,7 @@ function DashboardMediaVisualData({ docType }) {
   // Add search Term
   const _searchParams = new URLSearchParams({
     q: searchTerm,
-    [TYPES]: docType,
+    [TYPES]: type,
     [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
@@ -47,11 +47,9 @@ function DashboardMediaVisualData({ docType }) {
     event.preventDefault()
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
-      navigate(
-        `/${sitename}/dashboard/media/${docTypePlural}?q=${searchInputValue}`,
-      )
+      navigate(`/${sitename}/dashboard/media/${path}?q=${searchInputValue}`)
     } else {
-      navigate(`/${sitename}/dashboard/media/${docTypePlural}`)
+      navigate(`/${sitename}/dashboard/media/${path}`)
     }
   }
 
@@ -60,7 +58,7 @@ function DashboardMediaVisualData({ docType }) {
       const firstFile = data?.pages?.[0]?.results?.[0]
       setCurrentFile(firstFile)
     }
-  }, [currentFile, data, docType])
+  }, [currentFile, data, type])
 
   useIntersectionObserver({
     target: loadRef,
@@ -89,14 +87,14 @@ function DashboardMediaVisualData({ docType }) {
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
-    docTypePlural,
+    typePlural: path,
   }
 }
 
 const { oneOf } = PropTypes
 
 DashboardMediaVisualData.propTypes = {
-  docType: oneOf([AUDIO, IMAGE, VIDEO]),
+  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
 }
 
 export default DashboardMediaVisualData

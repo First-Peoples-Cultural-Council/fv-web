@@ -20,7 +20,7 @@ function DashboardMediaVisualContainer({ type }) {
     isLoadingEntries,
     loadRef,
     loadLabel,
-    docTypePlural,
+    typePlural,
   } = DashboardMediaVisualData({ type })
 
   const hasResults = !!(
@@ -30,7 +30,7 @@ function DashboardMediaVisualContainer({ type }) {
   return (
     <SearchSelector.Presentation
       searchQuery={searchValue}
-      searchPromptText={`Search all ${docTypePlural}`}
+      searchPromptText={`Search all ${typePlural}`}
       setSearchQuery={handleTextFieldChange}
       search={handleSearchSubmit}
       headerSection=""
@@ -42,7 +42,7 @@ function DashboardMediaVisualContainer({ type }) {
                 id="results-header"
                 className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
               >
-                {docTypePlural}
+                {typePlural}
               </h1>
               <DashboardMediaVisualPresentation
                 data={media}
