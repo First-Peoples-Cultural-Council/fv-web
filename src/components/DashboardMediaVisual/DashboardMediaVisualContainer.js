@@ -6,7 +6,7 @@ import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/Da
 import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import MediaDetails from 'components/MediaDetails'
 import SearchSelector from 'components/SearchSelector'
-import { IMAGE, VIDEO } from 'common/constants'
+import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
 function DashboardMediaVisualContainer({ type }) {
   const {
@@ -68,7 +68,7 @@ function DashboardMediaVisualContainer({ type }) {
 const { oneOf } = PropTypes
 
 DashboardMediaVisualContainer.propTypes = {
-  type: oneOf([IMAGE, VIDEO]),
+  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
 }
 
 export default DashboardMediaVisualContainer

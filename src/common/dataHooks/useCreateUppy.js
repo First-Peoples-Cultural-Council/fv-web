@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Uppy from '@uppy/core'
-import { Dashboard } from '@uppy/react'
 import XHR from '@uppy/xhr-upload'
 import ImageEditor from '@uppy/image-editor'
 
 // FPCC
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 import api from 'services/api'
-import { AUDIO, IMAGE } from 'common/constants'
-import UploadAudio from 'components/MediaCrud/UploadAudio'
-import {
-  getFileExtensions,
-  getFriendlyDocType,
-} from 'common/utils/stringHelpers'
+import { getFileExtensions } from 'common/utils/stringHelpers'
 
 // Uppy
 import '@uppy/core/dist/style.css'
@@ -22,7 +15,7 @@ import '@uppy/progress-bar/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import '@uppy/image-editor/dist/style.css'
 
-function createUppy(
+function useCreateUppy(
   site,
   maxFiles,
   extensionList,
@@ -105,106 +98,10 @@ function createUppy(
   return uppy
 }
 
-function UploadMedia({
-  site,
-  docType,
-  maxFiles,
-  extensionList,
-  setSelectedMedia,
-}) {
-  const friendlyDocType = getFriendlyDocType({ docType, plural: true })
-
-  const [uppy] = useState(
-    createUppy(
-      site,
-      maxFiles,
-      extensionList,
-      friendlyDocType,
-      setSelectedMedia,
-    ),
-  )
-
-  useEffect(() => () => uppy.close({ reason: 'unmount' }), [uppy])
-
-  if (docType === AUDIO) {
-    return (
-      <UploadAudio
-        site={site}
-        extensionList={extensionList}
-        setSelectedMedia={setSelectedMedia}
-      />
-    )
-  }
-
-  const baseMetaFields = [
-    {
-      id: 'title',
-      name: 'Title',
-      placeholder: 'Title for the media file.',
-    },
-    {
-      id: 'description',
-      name: 'General description',
-      placeholder: 'Description of the media file to be uploaded.',
-    },
-    {
-      id: 'acknowledgement',
-      name: 'Acknowledgement',
-      placeholder: 'Who created this media or where did you get it from?',
-    },
-  ]
-
-  const imageMetaFields = [
-    ...baseMetaFields,
-    {
-      id: 'excludeFromGames',
-      name: 'Exclude from games',
-      render({ value, onChange, required, form }, h) {
-        return h('input', {
-          type: 'checkbox',
-          required,
-          form,
-          onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-          defaultChecked: value === 'on',
-        })
-      },
-    },
-    {
-      id: 'excludeFromKids',
-      name: 'Exclude from Kids',
-      render({ value, onChange, required, form }, h) {
-        return h('input', {
-          type: 'checkbox',
-          required,
-          form,
-          onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-          defaultChecked: value === 'on',
-        })
-      },
-    },
-  ]
-
-  return (
-    <div id="UploadMedia" className="h-3/4 mt-4">
-      <Dashboard
-        inline
-        uppy={uppy}
-        width="100%"
-        height="400"
-        doneButtonHandler={null}
-        fileManagerSelectionType="files"
-        showSelectedFiles
-        plugins={['ImageEditor']}
-        metaFields={docType === IMAGE ? imageMetaFields : baseMetaFields}
-      />
-    </div>
-  )
-}
-
 // PROPTYPES
 const { array, func, number, string, object } = PropTypes
 
-UploadMedia.propTypes = {
+useCreateUppy.propTypes = {
   site: object,
   docType: string,
   extensionList: array,
@@ -212,4 +109,4 @@ UploadMedia.propTypes = {
   maxFiles: number,
 }
 
-export default UploadMedia
+export default useCreateUppy

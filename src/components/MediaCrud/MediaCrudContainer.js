@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaCrudData from 'components/MediaCrud/MediaCrudData'
-import UploadMedia from 'components/MediaCrud/UploadMedia'
 import SelectMedia from 'components/MediaCrud/SelectMedia'
 import VideoLinks from 'components/MediaCrud/VideoLinks'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import { makeTitleCase } from 'common/utils/stringHelpers'
+import UploadAudio from 'components/UploadAudio'
+import UploadVisualMedia from 'components/UploadVisualMedia'
 
 function MediaCrudContainer({
   savedMedia,
@@ -137,15 +138,22 @@ function MediaCrudContainer({
             docTypeLabelPlural={docTypeLabelPlural}
           />
         )}
-        {selectedTab === 'Upload Files' && (
-          <UploadMedia
-            docType={docType}
-            site={site}
-            extensionList={extensionList}
-            setSelectedMedia={setSelectedMedia}
-            maxFiles={maxFiles}
-          />
-        )}
+        {selectedTab === 'Upload Files' &&
+          (docType === AUDIO ? (
+            <UploadAudio
+              site={site}
+              extensionList={extensionList}
+              setSelectedMedia={setSelectedMedia}
+            />
+          ) : (
+            <UploadVisualMedia
+              site={site}
+              extensionList={extensionList}
+              setSelectedMedia={setSelectedMedia}
+              type={docType}
+              maxFiles={maxFiles}
+            />
+          ))}
         {selectedTab === 'Video Links' && (
           <VideoLinks
             relatedVideoLinks={relatedVideoLinks}
