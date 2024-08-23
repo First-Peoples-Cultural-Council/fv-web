@@ -5,16 +5,30 @@ import { Route, Routes } from 'react-router-dom'
 import DashboardMediaPresentation from 'components/DashboardMedia/DashboardMediaPresentation'
 import DashboardMediaData from 'components/DashboardMedia/DashboardMediaData'
 import MediaBrowser from 'components/MediaBrowser'
+import {
+  TYPE_AUDIO,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+} from 'common/constants/searchParams'
 
 function DashboardMediaContainer() {
-  const { tileContent, headerContent, site, docType } = DashboardMediaData()
+  const { tileContent, headerContent, site } = DashboardMediaData()
   return (
     <div id="DashboardMediaContainer">
       <Routes>
         <Route
-          path="browser"
-          element={<MediaBrowser.Container docType={docType} />}
+          path="audio"
+          element={<MediaBrowser.Container docType={TYPE_AUDIO} />}
         />
+        <Route
+          path="images"
+          element={<MediaBrowser.Container docType={TYPE_IMAGE} />}
+        />
+        <Route
+          path="videos"
+          element={<MediaBrowser.Container docType={TYPE_VIDEO} />}
+        />
+
         <Route
           path=""
           element={

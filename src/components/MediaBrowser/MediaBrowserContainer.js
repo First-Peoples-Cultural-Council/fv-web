@@ -8,7 +8,7 @@ import MediaItemsLayout from 'components/MediaItemsLayout'
 import SearchSelector from 'components/SearchSelector'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 
-function MediaBrowserContainerNonModal({ docType }) {
+function MediaBrowserContainer({ docType }) {
   const {
     media,
     searchValue,
@@ -73,8 +73,8 @@ function MediaBrowserContainerNonModal({ docType }) {
 
 const { oneOf } = PropTypes
 
-MediaBrowserContainerNonModal.propTypes = {
+MediaBrowserContainer.propTypes = {
   docType: oneOf([AUDIO, IMAGE, VIDEO, null]),
 }
 
-export default MediaBrowserContainerNonModal
+export default MediaBrowserContainer

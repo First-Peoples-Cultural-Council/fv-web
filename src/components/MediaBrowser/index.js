@@ -1,7 +1,7 @@
 import MediaBrowserData from 'components/MediaBrowser/MediaBrowserData'
-import MediaBrowserContainerNonModal from 'components/MediaBrowser/MediaBrowserContainerNonModal'
+import MediaBrowserContainer from 'components/MediaBrowser/MediaBrowserContainer'
 
 export default {
-  Container: MediaBrowserContainerNonModal,
+  Container: MediaBrowserContainer,
   Data: MediaBrowserData,
 }

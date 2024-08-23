@@ -5,7 +5,14 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { AUDIO, IMAGE, VIDEO, TYPES, TYPE_MEDIA } from 'common/constants'
+import {
+  AUDIO,
+  IMAGE,
+  VIDEO,
+  TYPES,
+  SORT,
+  SORT_CREATED_DESC,
+} from 'common/constants'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
 function MediaBrowserData({ docType }) {
@@ -15,8 +22,6 @@ function MediaBrowserData({ docType }) {
 
   const docTypePlural = getFriendlyDocType({ docType, plural: true })
 
-  const searchType = searchParams.get(TYPES) || TYPE_MEDIA
-
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
@@ -25,8 +30,8 @@ function MediaBrowserData({ docType }) {
   // Add search Term
   const _searchParams = new URLSearchParams({
     q: searchTerm,
-    [TYPES]: searchType,
-    sort: searchTerm ? null : 'created_desc',
+    [TYPES]: docType,
+    [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
   const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
@@ -43,10 +48,10 @@ function MediaBrowserData({ docType }) {
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
       navigate(
-        `/${sitename}/dashboard/media/browser?types=${docType}&q=${searchInputValue}`,
+        `/${sitename}/dashboard/media/${docTypePlural}?q=${searchInputValue}`,
       )
     } else {
-      navigate(`/${sitename}/dashboard/media/browser?types=${docType}`)
+      navigate(`/${sitename}/dashboard/media/${docTypePlural}`)
     }
   }
 
