@@ -7,7 +7,7 @@ import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import { AUDIO, TYPES, SORT, SORT_CREATED_DESC } from 'common/constants'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
-function DashboardAudioListData() {
+function DashboardMediaAudioData() {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
@@ -85,4 +85,4 @@ function DashboardAudioListData() {
   }
 }
 
-export default DashboardAudioListData
+export default DashboardMediaAudioData

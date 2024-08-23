@@ -1,15 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // FPCC
-import DashboardAudioListData from 'components/DashboardAudioList/DashboardAudioListData'
-import DashboardAudioListPresentation from 'components/DashboardAudioList/DashboardAudioListPresentation'
+import DashboardMediaVisualData from 'components/DashboardMediaVisual/DashboardMediaVisualData'
+import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
 import MediaDetails from 'components/MediaDetails'
 import SearchSelector from 'components/SearchSelector'
-import { AUDIO } from 'common/constants'
+import { IMAGE, VIDEO } from 'common/constants'
 
-function DashboardAudioListContainer() {
+function DashboardMediaVisualContainer({ type }) {
   const {
-    audio,
+    media,
     searchValue,
     currentFile,
     setCurrentFile,
@@ -19,17 +20,17 @@ function DashboardAudioListContainer() {
     isLoadingEntries,
     loadRef,
     loadLabel,
-    typePlural,
-  } = DashboardAudioListData()
+    docTypePlural,
+  } = DashboardMediaVisualData({ type })
 
   const hasResults = !!(
-    audio?.pages !== undefined && audio?.pages?.[0]?.results?.length > 0
+    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
 
   return (
     <SearchSelector.Presentation
       searchQuery={searchValue}
-      searchPromptText={`Search all ${typePlural}`}
+      searchPromptText={`Search all ${docTypePlural}`}
       setSearchQuery={handleTextFieldChange}
       search={handleSearchSubmit}
       headerSection=""
@@ -41,10 +42,10 @@ function DashboardAudioListContainer() {
                 id="results-header"
                 className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
               >
-                {typePlural}
+                {docTypePlural}
               </h1>
-              <DashboardAudioListPresentation
-                data={audio}
+              <DashboardMediaVisualPresentation
+                data={media}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
                 setCurrentFile={setCurrentFile}
@@ -53,7 +54,7 @@ function DashboardAudioListContainer() {
             </section>
           </main>
           <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
-            <MediaDetails.Audio file={currentFile} docType={AUDIO} />
+            <MediaDetails.Visual file={currentFile} docType={type} />
           </aside>
         </div>
       }
@@ -64,4 +65,10 @@ function DashboardAudioListContainer() {
   )
 }
 
-export default DashboardAudioListContainer
+const { oneOf } = PropTypes
+
+DashboardMediaVisualContainer.propTypes = {
+  type: oneOf([IMAGE, VIDEO]),
+}
+
+export default DashboardMediaVisualContainer

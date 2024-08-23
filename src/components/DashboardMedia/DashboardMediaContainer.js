@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom'
 // FPCC
 import DashboardMediaPresentation from 'components/DashboardMedia/DashboardMediaPresentation'
 import DashboardMediaData from 'components/DashboardMedia/DashboardMediaData'
-import DashboardAudioList from 'components/DashboardAudioList'
-import MediaBrowser from 'components/MediaBrowser'
+import DashboardMediaAudio from 'components/DashboardMediaAudio'
+import DashboardMediaVisual from 'components/DashboardMediaVisual'
 import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants/searchParams'
 
 function DashboardMediaContainer() {
@@ -13,14 +13,14 @@ function DashboardMediaContainer() {
   return (
     <div id="DashboardMediaContainer">
       <Routes>
-        <Route path="audio" element={<DashboardAudioList.Container />} />
+        <Route path="audio" element={<DashboardMediaAudio.Container />} />
         <Route
           path="images"
-          element={<MediaBrowser.Container type={TYPE_IMAGE} />}
+          element={<DashboardMediaVisual.Container type={TYPE_IMAGE} />}
         />
         <Route
           path="videos"
-          element={<MediaBrowser.Container type={TYPE_VIDEO} />}
+          element={<DashboardMediaVisual.Container type={TYPE_VIDEO} />}
         />
 
         <Route

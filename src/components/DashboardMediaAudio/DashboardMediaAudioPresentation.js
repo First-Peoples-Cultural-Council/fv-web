@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import AudioNative from 'components/AudioNative'
 
-function DashboardAudioListPresentation({
+function DashboardMediaAudioPresentation({
   data,
   infiniteScroll,
   currentFile,
@@ -17,7 +17,7 @@ function DashboardAudioListPresentation({
     'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
-    <div id="DashboardAudioListPresentation">
+    <div id="DashboardMediaAudioPresentation">
       <div>
         <table className="w-full table-fixed divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -86,7 +86,7 @@ function DashboardAudioListPresentation({
 
 // PROPTYPES
 const { func, object, string } = PropTypes
-DashboardAudioListPresentation.propTypes = {
+DashboardMediaAudioPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
   currentFile: object,
@@ -94,4 +94,4 @@ DashboardAudioListPresentation.propTypes = {
   loadLabel: string,
 }
 
-export default DashboardAudioListPresentation
+export default DashboardMediaAudioPresentation

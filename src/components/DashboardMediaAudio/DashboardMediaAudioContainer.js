@@ -1,16 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 // FPCC
-import MediaBrowserData from 'components/MediaBrowser/MediaBrowserData'
-import MediaBrowserPresentation from 'components/MediaBrowser/MediaBrowserPresentation'
+import DashboardMediaAudioData from 'components/DashboardMediaAudio/DashboardMediaAudioData'
+import DashboardMediaAudioPresentation from 'components/DashboardMediaAudio/DashboardMediaAudioPresentation'
 import MediaDetails from 'components/MediaDetails'
 import SearchSelector from 'components/SearchSelector'
-import { IMAGE, VIDEO } from 'common/constants'
+import { AUDIO } from 'common/constants'
 
-function MediaBrowserContainer({ type }) {
+function DashboardMediaAudioContainer() {
   const {
-    media,
+    audio,
     searchValue,
     currentFile,
     setCurrentFile,
@@ -20,17 +19,17 @@ function MediaBrowserContainer({ type }) {
     isLoadingEntries,
     loadRef,
     loadLabel,
-    docTypePlural,
-  } = MediaBrowserData({ type })
+    typePlural,
+  } = DashboardMediaAudioData()
 
   const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
+    audio?.pages !== undefined && audio?.pages?.[0]?.results?.length > 0
   )
 
   return (
     <SearchSelector.Presentation
       searchQuery={searchValue}
-      searchPromptText={`Search all ${docTypePlural}`}
+      searchPromptText={`Search all ${typePlural}`}
       setSearchQuery={handleTextFieldChange}
       search={handleSearchSubmit}
       headerSection=""
@@ -42,10 +41,10 @@ function MediaBrowserContainer({ type }) {
                 id="results-header"
                 className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
               >
-                {docTypePlural}
+                {typePlural}
               </h1>
-              <MediaBrowserPresentation
-                data={media}
+              <DashboardMediaAudioPresentation
+                data={audio}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
                 setCurrentFile={setCurrentFile}
@@ -54,7 +53,7 @@ function MediaBrowserContainer({ type }) {
             </section>
           </main>
           <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
-            <MediaDetails.Visual file={currentFile} docType={type} />
+            <MediaDetails.Audio file={currentFile} docType={AUDIO} />
           </aside>
         </div>
       }
@@ -65,10 +64,4 @@ function MediaBrowserContainer({ type }) {
   )
 }
 
-const { oneOf } = PropTypes
-
-MediaBrowserContainer.propTypes = {
-  type: oneOf([IMAGE, VIDEO]),
-}
-
-export default MediaBrowserContainer
+export default DashboardMediaAudioContainer

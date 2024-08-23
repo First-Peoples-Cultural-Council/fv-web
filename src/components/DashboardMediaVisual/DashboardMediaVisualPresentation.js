@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function MediaBrowserPresentation({
+function DashboardMediaVisualPresentation({
   data,
   infiniteScroll,
   currentFile,
@@ -11,7 +11,10 @@ function MediaBrowserPresentation({
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
   return (
-    <div id="MediaBrowserPresentation" className="overflow-y-auto h-full">
+    <div
+      id="DashboardMediaVisualPresentation"
+      className="overflow-y-auto h-full"
+    >
       <div>
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
           {data?.pages !== undefined &&
@@ -76,7 +79,7 @@ function MediaBrowserPresentation({
 }
 // PROPTYPES
 const { func, object, string } = PropTypes
-MediaBrowserPresentation.propTypes = {
+DashboardMediaVisualPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
   currentFile: object,
@@ -84,4 +87,4 @@ MediaBrowserPresentation.propTypes = {
   loadLabel: string,
 }
 
-export default MediaBrowserPresentation
+export default DashboardMediaVisualPresentation

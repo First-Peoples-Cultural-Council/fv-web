@@ -15,7 +15,7 @@ import {
 } from 'common/constants'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
-function MediaBrowserData({ docType }) {
+function DashboardMediaVisualData({ docType }) {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
@@ -95,8 +95,8 @@ function MediaBrowserData({ docType }) {
 
 const { oneOf } = PropTypes
 
-MediaBrowserData.propTypes = {
+DashboardMediaVisualData.propTypes = {
   docType: oneOf([AUDIO, IMAGE, VIDEO]),
 }
 
-export default MediaBrowserData
+export default DashboardMediaVisualData
