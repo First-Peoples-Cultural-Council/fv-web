@@ -211,6 +211,11 @@ function StoryPresentation({ entry }) {
                       <div className="text-fv-charcoal-light">
                         <WysiwygBlock jsonString={page?.textTranslation} />
                       </div>
+                      {page?.notes.map((note) => (
+                        <p key={note.id} className="text-xs">
+                          note: {note.text}
+                        </p>
+                      ))}
                     </div>
                     <div
                       className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
