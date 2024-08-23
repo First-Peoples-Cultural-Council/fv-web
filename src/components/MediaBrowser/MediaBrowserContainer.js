@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaBrowserData from 'components/MediaBrowser/MediaBrowserData'
+import MediaBrowserPresentation from 'components/MediaBrowser/MediaBrowserPresentation'
 import MediaDetails from 'components/MediaDetails'
-import MediaItemsLayout from 'components/MediaItemsLayout'
 import SearchSelector from 'components/SearchSelector'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import { IMAGE, VIDEO } from 'common/constants'
 
-function MediaBrowserContainer({ docType }) {
+function MediaBrowserContainer({ type }) {
   const {
     media,
     searchValue,
@@ -21,17 +21,11 @@ function MediaBrowserContainer({ docType }) {
     loadRef,
     loadLabel,
     docTypePlural,
-  } = MediaBrowserData({ docType })
+  } = MediaBrowserData({ type })
 
   const hasResults = !!(
     media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
-
-  // Switiching Main and Sidebar components based on document type between Audio and Visual
-  const BrowserComponent =
-    docType === AUDIO ? MediaItemsLayout.Audio : MediaItemsLayout.Visual
-  const SidebarComponent =
-    docType === AUDIO ? MediaDetails.Audio : MediaDetails.Visual
 
   return (
     <SearchSelector.Presentation
@@ -50,7 +44,7 @@ function MediaBrowserContainer({ docType }) {
               >
                 {docTypePlural}
               </h1>
-              <BrowserComponent
+              <MediaBrowserPresentation
                 data={media}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
@@ -60,7 +54,7 @@ function MediaBrowserContainer({ docType }) {
             </section>
           </main>
           <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
-            <SidebarComponent file={currentFile} docType={docType} />
+            <MediaDetails.Visual file={currentFile} docType={type} />
           </aside>
         </div>
       }
@@ -74,7 +68,7 @@ function MediaBrowserContainer({ docType }) {
 const { oneOf } = PropTypes
 
 MediaBrowserContainer.propTypes = {
-  docType: oneOf([AUDIO, IMAGE, VIDEO, null]),
+  type: oneOf([IMAGE, VIDEO]),
 }
 
 export default MediaBrowserContainer
