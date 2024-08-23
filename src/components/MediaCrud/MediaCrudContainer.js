@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaCrudData from 'components/MediaCrud/MediaCrudData'
-import SelectMedia from 'components/MediaCrud/SelectMedia'
 import VideoLinks from 'components/MediaCrud/VideoLinks'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
-import { makeTitleCase } from 'common/utils/stringHelpers'
 import UploadAudio from 'components/UploadAudio'
 import UploadVisualMedia from 'components/UploadVisualMedia'
+import AudioSelector from 'components/AudioSelector'
+import VisualMediaSelector from 'components/VisualMediaSelector'
 
 function MediaCrudContainer({
   savedMedia,
@@ -20,40 +20,76 @@ function MediaCrudContainer({
   closeModal,
 }) {
   const {
-    searchValue,
-    handleSearchSubmit,
-    handleTextFieldChange,
-    fetchedMedia,
     selectedMedia,
     setSelectedMedia,
     mediaSelectHandler,
-    infiniteScroll,
-    isLoadingEntries,
-    loadRef,
-    loadLabel,
     docTypeLabelPlural,
     site,
     extensionList,
-  } = MediaCrudData({ docType, maxFiles })
-
-  const [selectedTab, setSelectedTab] = useState('Media Library')
+  } = MediaCrudData({ type: docType, maxFiles })
+  const SEARCH_TAB = 'search-tab'
+  const UPLOAD_TAB = 'upload-tab'
+  const VLINK_TAB = 'video-link-tab'
+  const [selectedTab, setSelectedTab] = useState(SEARCH_TAB)
   const [allowSwitchTab, setAllowSwitchTab] = useState(true)
   const buttonStyles =
-    'mx-2 w-1/5 border-2 border-wordText rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
+    'capitalize disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
 
-  const insertMediaButton = () => (
+  const insertMediaButton = (
     <button
+      data-testid="insert-btn"
       type="button"
-      className={`${buttonStyles} bg-primary hover:bg-primary-dark text-white`}
+      className={`${buttonStyles} capitalize btn-contained`}
       onClick={() => updateSavedMedia(selectedMedia)}
     >
       Insert {selectedMedia.length ? selectedMedia.length : ''}{' '}
-      {makeTitleCase(docTypeLabelPlural)}
+      {docTypeLabelPlural}
+    </button>
+  )
+
+  const uploadButton = (
+    <button
+      data-testid="upload-tab-btn"
+      type="button"
+      className={`${buttonStyles} ${
+        selectedTab === UPLOAD_TAB ? 'btn-outlined' : 'btn-contained'
+      }`}
+      onClick={() => setSelectedTab(UPLOAD_TAB)}
+      disabled={!allowSwitchTab}
+    >
+      Upload New {docType}
+    </button>
+  )
+  const searchMediaButton = (
+    <button
+      data-testid="search-tab-btn"
+      type="button"
+      className={`${buttonStyles} ${
+        selectedTab === SEARCH_TAB ? 'btn-outlined' : 'btn-contained'
+      }`}
+      onClick={() => setSelectedTab(SEARCH_TAB)}
+      disabled={!allowSwitchTab}
+    >
+      Search {docType} Files
+    </button>
+  )
+
+  const videoLinkButton = (
+    <button
+      data-testid="video-link-tab-btn"
+      type="button"
+      className={`${buttonStyles} ${
+        selectedTab === VLINK_TAB && 'bg-primary-light text-white'
+      } mx-2 hover:bg-primary-light`}
+      onClick={() => setSelectedTab(VLINK_TAB)}
+      disabled={!allowSwitchTab && selectedTab !== VLINK_TAB}
+    >
+      Link a Video
     </button>
   )
 
   useEffect(() => {
-    // This checks if a user has selected/uploade any file
+    // This checks if a user has selected/uploaded any file
     // and if change of tab should be allowed
     if (selectedMedia.length > 0) {
       setAllowSwitchTab(false)
@@ -69,76 +105,41 @@ function MediaCrudContainer({
           {selectedTab}
         </h2>
       </div>
-      <div className="w-full bg-gray-50 flex justify-center">
+      <div className="w-full bg-gray-50 flex justify-center space-x-2">
         {/*
         If no file is uploaded, allow the user to switch tabs
         If a file is uploaded, this button will switch to Insert Media button
         allowing user to attach the selected/uploaded files to the document.
          */}
-        {allowSwitchTab || selectedTab !== 'Upload Files' ? (
-          <button
-            type="button"
-            className={`${buttonStyles} ${
-              selectedTab === 'Upload Files' && 'bg-primary-light text-white'
-            } hover:bg-primary-light`}
-            onClick={() => setSelectedTab(`Upload Files`)}
-            disabled={!allowSwitchTab}
-          >
-            Upload New {docType.charAt(0).toUpperCase() + docType.slice(1)}
-          </button>
-        ) : (
-          insertMediaButton()
-        )}
-        {allowSwitchTab || selectedTab !== 'Media Library' ? (
-          <button
-            type="button"
-            className={`${buttonStyles} ${
-              selectedTab === 'Media Library' && 'bg-primary-light text-white'
-            } hover:bg-primary-light`}
-            onClick={() => setSelectedTab(`Media Library`)}
-            disabled={!allowSwitchTab}
-          >
-            Search {docType.charAt(0).toUpperCase() + docType.slice(1)} Files
-          </button>
-        ) : (
-          insertMediaButton()
-        )}
-        {docType === VIDEO && (
-          <button
-            type="button"
-            className={`${buttonStyles} ${
-              selectedTab === 'Video Links' && 'bg-primary-light text-white'
-            } mx-2 hover:bg-primary-light`}
-            onClick={() => setSelectedTab(`Video Links`)}
-            disabled={!allowSwitchTab && selectedTab !== 'Video Links'}
-          >
-            Link a Video
-          </button>
-        )}
+        {allowSwitchTab || selectedTab !== UPLOAD_TAB
+          ? uploadButton
+          : insertMediaButton}
+        {allowSwitchTab || selectedTab !== SEARCH_TAB
+          ? searchMediaButton
+          : insertMediaButton}
+        {docType === VIDEO && videoLinkButton}
       </div>
       <div
         className={`grow mt-2 ${
-          selectedTab === 'Upload Files' ? 'overflow-y-scroll' : ''
+          selectedTab === UPLOAD_TAB ? 'overflow-y-scroll' : ''
         }`}
       >
-        {selectedTab === 'Media Library' && (
-          <SelectMedia
-            docType={docType}
-            searchValue={searchValue}
-            handleSearchSubmit={handleSearchSubmit}
-            handleTextFieldChange={handleTextFieldChange}
-            fetchedMedia={fetchedMedia}
-            savedMedia={savedMedia}
-            selectedMedia={selectedMedia}
-            mediaSelectHandler={mediaSelectHandler}
-            infiniteScroll={infiniteScroll}
-            isLoadingEntries={isLoadingEntries}
-            loadRef={loadRef}
-            loadLabel={loadLabel}
-            docTypeLabelPlural={docTypeLabelPlural}
-          />
-        )}
-        {selectedTab === 'Upload Files' &&
+        {selectedTab === SEARCH_TAB &&
+          (docType === AUDIO ? (
+            <AudioSelector.Container
+              savedMedia={savedMedia}
+              selectedMedia={selectedMedia}
+              mediaSelectHandler={mediaSelectHandler}
+            />
+          ) : (
+            <VisualMediaSelector.Container
+              type={docType}
+              savedMedia={savedMedia}
+              selectedMedia={selectedMedia}
+              mediaSelectHandler={mediaSelectHandler}
+            />
+          ))}
+        {selectedTab === UPLOAD_TAB &&
           (docType === AUDIO ? (
             <UploadAudio
               site={site}
@@ -154,7 +155,7 @@ function MediaCrudContainer({
               maxFiles={maxFiles}
             />
           ))}
-        {selectedTab === 'Video Links' && (
+        {selectedTab === VLINK_TAB && (
           <VideoLinks
             relatedVideoLinks={relatedVideoLinks}
             appendVideoLinks={appendVideoLinks}

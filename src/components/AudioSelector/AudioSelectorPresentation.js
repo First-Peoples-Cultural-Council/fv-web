@@ -5,13 +5,10 @@ import PropTypes from 'prop-types'
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
 
-function MediaItemsLayoutAudio({
+function AudioSelectorPresentation({
   data,
   infiniteScroll,
-  currentFile,
-  setCurrentFile,
   loadLabel,
-  selection,
   savedMedia,
   selectedMedia,
   mediaSelectHandler,
@@ -22,16 +19,14 @@ function MediaItemsLayoutAudio({
     'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
-    <div id="MediaItemsLayoutAudio">
+    <div id="AudioSelectorPresentation">
       <div>
         <table className="w-full table-fixed divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              {selection && (
-                <th scope="col" className={headerClass}>
-                  {selection}
-                </th>
-              )}
+              <th scope="col" className={headerClass}>
+                Selected
+              </th>
               <th scope="col" className={headerClass}>
                 Audio
               </th>
@@ -58,26 +53,18 @@ function MediaItemsLayoutAudio({
                     return (
                       <tr
                         key={audioFile?.id}
-                        className={`${
-                          audioFile?.id === currentFile?.id
-                            ? 'ring-2 ring-offset-2 ring-primary'
-                            : ''
-                        } rounded-lg relative`}
-                        {...(selection
-                          ? { onClick: () => mediaSelectHandler(audioFile?.id) } // Selecting a file from the dialogBox to attach to document
-                          : { onClick: () => setCurrentFile(audioFile) })}
+                        className="rounded-lg relative"
+                        onClick={() => mediaSelectHandler(audioFile?.id)}
                       >
-                        {selection && (
-                          <td data-testid="DashboardMediaItemsRow">
-                            {selectedMedia?.some(
-                              (elemId) => elemId === audioFile?.id,
-                            ) && // Add a small checkIcon on the top-right if it is selected
-                              getIcon(
-                                'CheckCircleSolid',
-                                'h-8 w-8 fill-green-700',
-                              )}
-                          </td>
-                        )}
+                        <td data-testid="DashboardMediaItemsRow">
+                          {selectedMedia?.some(
+                            (elemId) => elemId === audioFile?.id,
+                          ) && // Add a small checkIcon on the top-right if it is selected
+                            getIcon(
+                              'CheckCircleSolid',
+                              'h-8 w-8 fill-green-700',
+                            )}
+                        </td>
                         <td
                           className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
                           aria-label="list"
@@ -102,6 +89,7 @@ function MediaItemsLayoutAudio({
         </table>
         <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
           <button
+            data-testid="load-btn"
             type="button"
             className={!hasNextPage ? 'cursor-text' : ''}
             onClick={() => fetchNextPage()}
@@ -116,17 +104,14 @@ function MediaItemsLayoutAudio({
 }
 
 // PROPTYPES
-const { array, bool, func, object, string } = PropTypes
-MediaItemsLayoutAudio.propTypes = {
+const { array, func, object, string } = PropTypes
+AudioSelectorPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
-  currentFile: object,
-  setCurrentFile: func,
   loadLabel: string,
-  selection: bool,
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
 }
 
-export default MediaItemsLayoutAudio
+export default AudioSelectorPresentation
