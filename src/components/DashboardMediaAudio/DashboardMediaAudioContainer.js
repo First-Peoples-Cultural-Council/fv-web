@@ -1,15 +1,15 @@
 import React from 'react'
 
 // FPCC
-import DashboardMediaAudioData from 'components/DashboardMediaAudio/DashboardMediaAudioData'
 import DashboardMediaAudioPresentation from 'components/DashboardMediaAudio/DashboardMediaAudioPresentation'
+import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import MediaDetails from 'components/MediaDetails'
 import SearchSelector from 'components/SearchSelector'
-import { AUDIO } from 'common/constants'
+import { TYPE_AUDIO } from 'common/constants'
 
 function DashboardMediaAudioContainer() {
   const {
-    audio,
+    media,
     searchValue,
     currentFile,
     setCurrentFile,
@@ -19,10 +19,10 @@ function DashboardMediaAudioContainer() {
     isLoadingEntries,
     loadRef,
     loadLabel,
-  } = DashboardMediaAudioData()
+  } = useMediaSearch({ type: TYPE_AUDIO })
 
   const hasResults = !!(
-    audio?.pages !== undefined && audio?.pages?.[0]?.results?.length > 0
+    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
 
   return (
@@ -43,7 +43,7 @@ function DashboardMediaAudioContainer() {
                 Audio
               </h1>
               <DashboardMediaAudioPresentation
-                data={audio}
+                data={media}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
                 setCurrentFile={setCurrentFile}
@@ -52,7 +52,7 @@ function DashboardMediaAudioContainer() {
             </section>
           </main>
           <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
-            <MediaDetails.Audio file={currentFile} docType={AUDIO} />
+            <MediaDetails.Audio file={currentFile} docType={TYPE_AUDIO} />
           </aside>
         </div>
       }

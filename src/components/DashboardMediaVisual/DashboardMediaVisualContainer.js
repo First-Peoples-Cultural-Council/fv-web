@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import DashboardMediaVisualData from 'components/DashboardMediaVisual/DashboardMediaVisualData'
 import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
+import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import MediaDetails from 'components/MediaDetails'
 import SearchSelector from 'components/SearchSelector'
 import { IMAGE, VIDEO } from 'common/constants'
@@ -21,7 +21,7 @@ function DashboardMediaVisualContainer({ type }) {
     loadRef,
     loadLabel,
     typePlural,
-  } = DashboardMediaVisualData({ type })
+  } = useMediaSearch({ type })
 
   const hasResults = !!(
     media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0

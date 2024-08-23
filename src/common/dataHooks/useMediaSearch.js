@@ -1,21 +1,26 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 import {
-  TYPE_AUDIO,
-  AUDIO_PATH,
+  AUDIO,
+  IMAGE,
+  VIDEO,
   TYPES,
   SORT,
   SORT_CREATED_DESC,
 } from 'common/constants'
+import { getPathForMediaType } from 'common/utils/mediaHelpers'
 
-function DashboardMediaAudioData() {
+function useMediaSearch({ type }) {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
+
+  const path = getPathForMediaType(type)
 
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
@@ -25,7 +30,7 @@ function DashboardMediaAudioData() {
   // Add search Term
   const _searchParams = new URLSearchParams({
     q: searchTerm,
-    [TYPES]: TYPE_AUDIO,
+    [TYPES]: type,
     [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
@@ -42,11 +47,9 @@ function DashboardMediaAudioData() {
     event.preventDefault()
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
-      navigate(
-        `/${sitename}/dashboard/media/${AUDIO_PATH}?q=${searchInputValue}`,
-      )
+      navigate(`/${sitename}/dashboard/media/${path}?q=${searchInputValue}`)
     } else {
-      navigate(`/${sitename}/dashboard/media/${AUDIO_PATH}`)
+      navigate(`/${sitename}/dashboard/media/${path}`)
     }
   }
 
@@ -55,7 +58,7 @@ function DashboardMediaAudioData() {
       const firstFile = data?.pages?.[0]?.results?.[0]
       setCurrentFile(firstFile)
     }
-  }, [currentFile, data])
+  }, [currentFile, data, type])
 
   useIntersectionObserver({
     target: loadRef,
@@ -79,12 +82,19 @@ function DashboardMediaAudioData() {
     infiniteScroll,
     isLoadingEntries: isInitialLoading,
     loadRef,
-    audio: data,
+    media: data,
     searchValue: searchInputValue,
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
+    typePlural: path,
   }
 }
 
-export default DashboardMediaAudioData
+const { oneOf } = PropTypes
+
+useMediaSearch.propTypes = {
+  type: oneOf([AUDIO, IMAGE, VIDEO]),
+}
+
+export default useMediaSearch
