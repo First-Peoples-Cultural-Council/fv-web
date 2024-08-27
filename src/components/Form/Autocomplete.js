@@ -78,7 +78,7 @@ function Autocomplete({
                     ) : (
                       filteredOptions?.map((option) => (
                         <Combobox.Option
-                          key={option.id}
+                          key={option.value}
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               active
