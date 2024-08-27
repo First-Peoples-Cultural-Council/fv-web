@@ -84,7 +84,7 @@ function UploadVisualMedia({
   ]
 
   return (
-    <div id="UploadVisualMedia" className="h-3/4 mt-4">
+    <div id="UploadVisualMedia" className="overflow-y-scroll h-3/4 mt-4">
       <Dashboard
         inline
         uppy={uppy}

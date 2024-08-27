@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import MediaCrudData from 'components/MediaCrud/MediaCrudData'
-import VideoLinks from 'components/MediaCrud/VideoLinks'
+import VideoLinkForm from 'components/VideoLinkForm'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import UploadAudio from 'components/UploadAudio'
 import UploadVisualMedia from 'components/UploadVisualMedia'
@@ -27,143 +27,107 @@ function MediaCrudContainer({
     site,
     extensionList,
   } = MediaCrudData({ type: docType, maxFiles })
-  const SEARCH_TAB = 'search-tab'
-  const UPLOAD_TAB = 'upload-tab'
-  const VLINK_TAB = 'video-link-tab'
-  const [selectedTab, setSelectedTab] = useState(SEARCH_TAB)
-  const [allowSwitchTab, setAllowSwitchTab] = useState(true)
-  const buttonStyles =
-    'capitalize disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
 
-  const insertMediaButton = (
-    <button
-      data-testid="insert-btn"
-      type="button"
-      className={`${buttonStyles} capitalize btn-contained`}
-      onClick={() => updateSavedMedia(selectedMedia)}
-    >
-      Insert {selectedMedia.length ? selectedMedia.length : ''}{' '}
-      {docTypeLabelPlural}
-    </button>
-  )
+  const tabOptions = [
+    {
+      id: 'upload-tab',
+      title: 'Upload',
+      btnLabel: `Upload New ${docType}`,
+      component:
+        docType === AUDIO ? (
+          <UploadAudio
+            site={site}
+            extensionList={extensionList}
+            setSelectedMedia={setSelectedMedia}
+          />
+        ) : (
+          <UploadVisualMedia
+            site={site}
+            extensionList={extensionList}
+            setSelectedMedia={setSelectedMedia}
+            type={docType}
+            maxFiles={maxFiles}
+          />
+        ),
+    },
+    {
+      id: 'search-tab',
+      title: 'Media Library',
+      btnLabel: `Search ${docType} Files`,
+      component:
+        docType === AUDIO ? (
+          <AudioSelector.Container
+            savedMedia={savedMedia}
+            selectedMedia={selectedMedia}
+            mediaSelectHandler={mediaSelectHandler}
+          />
+        ) : (
+          <VisualMediaSelector.Container
+            type={docType}
+            savedMedia={savedMedia}
+            selectedMedia={selectedMedia}
+            mediaSelectHandler={mediaSelectHandler}
+          />
+        ),
+    },
+    {
+      id: 'video-link-tab',
+      title: 'Add Video Link',
+      btnLabel: 'Link a Video',
+      component: (
+        <VideoLinkForm
+          relatedVideoLinks={relatedVideoLinks}
+          appendVideoLinks={appendVideoLinks}
+          closeModal={closeModal}
+          maxLinks={maxFiles}
+        />
+      ),
+    },
+  ]
 
-  const uploadButton = (
-    <button
-      data-testid="upload-tab-btn"
-      type="button"
-      className={`${buttonStyles} ${
-        selectedTab === UPLOAD_TAB ? 'btn-outlined' : 'btn-contained'
-      }`}
-      onClick={() => setSelectedTab(UPLOAD_TAB)}
-      disabled={!allowSwitchTab}
-    >
-      Upload New {docType}
-    </button>
-  )
-  const searchMediaButton = (
-    <button
-      data-testid="search-tab-btn"
-      type="button"
-      className={`${buttonStyles} ${
-        selectedTab === SEARCH_TAB ? 'btn-outlined' : 'btn-contained'
-      }`}
-      onClick={() => setSelectedTab(SEARCH_TAB)}
-      disabled={!allowSwitchTab}
-    >
-      Search {docType} Files
-    </button>
-  )
+  const [selectedTab, setSelectedTab] = useState(tabOptions[1])
 
-  const videoLinkButton = (
-    <button
-      data-testid="video-link-tab-btn"
-      type="button"
-      className={`${buttonStyles} ${
-        selectedTab === VLINK_TAB && 'bg-primary-light text-white'
-      } mx-2 hover:bg-primary-light`}
-      onClick={() => setSelectedTab(VLINK_TAB)}
-      disabled={!allowSwitchTab && selectedTab !== VLINK_TAB}
-    >
-      Link a Video
-    </button>
-  )
-
-  useEffect(() => {
-    // This checks if a user has selected/uploaded any file
-    // and if change of tab should be allowed
-    if (selectedMedia.length > 0) {
-      setAllowSwitchTab(false)
-    } else if (selectedMedia.length === 0) {
-      setAllowSwitchTab(true)
+  const tabButton = (tab) => {
+    const itemsSelected = selectedMedia.length > 0
+    const tabHasSelectedItems = itemsSelected && selectedTab.id === tab.id
+    // If no files are uploaded/selected, allow the user to switch tabs
+    // otherwise switch to Insert Media button
+    // allowing user to attach the selected/uploaded files to the document.
+    const handleOnClick = () => {
+      if (tabHasSelectedItems) updateSavedMedia(selectedMedia)
+      setSelectedTab(tab)
     }
-  }, [selectedMedia])
+    return (
+      <button
+        key={`${tab.id}-btn`}
+        data-testid={`${tab.id}-btn`}
+        type="button"
+        className={`capitalize disabled:pointer-events-none disabled:bg-gray-100 disabled:opacity-50 ${
+          selectedTab.id === tab.id
+            ? 'btn-contained'
+            : 'btn-outlined hover:btn-contained'
+        }`}
+        onClick={handleOnClick}
+        disabled={itemsSelected && selectedTab.id !== tab.id}
+      >
+        {tabHasSelectedItems
+          ? `Insert ${selectedMedia.length} ${docTypeLabelPlural}`
+          : tab.btnLabel}
+      </button>
+    )
+  }
 
   return (
     <div id="MediaCrudContainer" className="h-full flex flex-col">
       <div>
         <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
-          {selectedTab}
+          {selectedTab.title}
         </h2>
       </div>
       <div className="w-full bg-gray-50 flex justify-center space-x-2">
-        {/*
-        If no file is uploaded, allow the user to switch tabs
-        If a file is uploaded, this button will switch to Insert Media button
-        allowing user to attach the selected/uploaded files to the document.
-         */}
-        {allowSwitchTab || selectedTab !== UPLOAD_TAB
-          ? uploadButton
-          : insertMediaButton}
-        {allowSwitchTab || selectedTab !== SEARCH_TAB
-          ? searchMediaButton
-          : insertMediaButton}
-        {docType === VIDEO && videoLinkButton}
+        {tabOptions.map((tab) => tabButton(tab))}
       </div>
-      <div
-        className={`grow mt-2 ${
-          selectedTab === UPLOAD_TAB ? 'overflow-y-scroll' : ''
-        }`}
-      >
-        {selectedTab === SEARCH_TAB &&
-          (docType === AUDIO ? (
-            <AudioSelector.Container
-              savedMedia={savedMedia}
-              selectedMedia={selectedMedia}
-              mediaSelectHandler={mediaSelectHandler}
-            />
-          ) : (
-            <VisualMediaSelector.Container
-              type={docType}
-              savedMedia={savedMedia}
-              selectedMedia={selectedMedia}
-              mediaSelectHandler={mediaSelectHandler}
-            />
-          ))}
-        {selectedTab === UPLOAD_TAB &&
-          (docType === AUDIO ? (
-            <UploadAudio
-              site={site}
-              extensionList={extensionList}
-              setSelectedMedia={setSelectedMedia}
-            />
-          ) : (
-            <UploadVisualMedia
-              site={site}
-              extensionList={extensionList}
-              setSelectedMedia={setSelectedMedia}
-              type={docType}
-              maxFiles={maxFiles}
-            />
-          ))}
-        {selectedTab === VLINK_TAB && (
-          <VideoLinks
-            relatedVideoLinks={relatedVideoLinks}
-            appendVideoLinks={appendVideoLinks}
-            closeModal={closeModal}
-            maxLinks={maxFiles}
-          />
-        )}
-      </div>
+      <div className="grow mt-2">{selectedTab.component}</div>
     </div>
   )
 }

@@ -88,7 +88,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
   }
 
   return (
-    <div id="UploadAudio" className="text-left px-4">
+    <div id="UploadAudio" className="overflow-y-scroll text-left px-4">
       <Header subtitle="Upload a new Audio file" />
       <form onReset={reset}>
         <div className="mt-2 grid grid-cols-12">
