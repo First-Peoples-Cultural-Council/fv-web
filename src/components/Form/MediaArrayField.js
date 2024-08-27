@@ -9,8 +9,7 @@ import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
 import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
-import Modal from 'components/Modal'
-import MediaCrud from 'components/MediaCrud'
+import AddMediaModal from 'components/AddMediaModal'
 import api from 'services/api'
 
 function MediaArrayField({
@@ -163,25 +162,17 @@ function MediaArrayField({
               {getIcon('Add', 'btn-icon')}
               <span>{`Add ${getFriendlyDocType({ docType: type })}`}</span>
             </button>
-            <Modal.Presentation
-              isOpen={modalOpen}
-              closeHandler={closeModal}
+            <AddMediaModal.Container
               isDashboard
-            >
-              <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50">
-                <div className="h-full p-4">
-                  <MediaCrud.Container
-                    savedMedia={value}
-                    updateSavedMedia={selectItem}
-                    type={type}
-                    relatedVideoLinks={relatedVideoLinks}
-                    appendVideoLinks={appendVideoLinks}
-                    closeModal={closeModal}
-                    maxFiles={maxItems}
-                  />
-                </div>
-              </div>
-            </Modal.Presentation>
+              savedMedia={value}
+              updateSavedMedia={selectItem}
+              type={type}
+              relatedVideoLinks={relatedVideoLinks}
+              appendVideoLinks={appendVideoLinks}
+              modalOpen={modalOpen}
+              closeModal={closeModal}
+              maxFiles={maxItems}
+            />
           </div>
         )}
       </div>
