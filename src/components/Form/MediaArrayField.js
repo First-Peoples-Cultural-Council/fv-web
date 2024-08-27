@@ -101,6 +101,7 @@ function MediaArrayField({
                     Remove
                   </span>
                   <button
+                    data-testid="remove-btn"
                     type="button"
                     aria-label="Remove"
                     className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
@@ -129,6 +130,7 @@ function MediaArrayField({
                       Remove
                     </span>
                     <button
+                      data-testid="remove-btn"
                       type="button"
                       aria-label="Remove"
                       className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
@@ -171,7 +173,7 @@ function MediaArrayField({
                   <MediaCrud.Container
                     savedMedia={value}
                     updateSavedMedia={selectItem}
-                    docType={type}
+                    type={type}
                     relatedVideoLinks={relatedVideoLinks}
                     appendVideoLinks={appendVideoLinks}
                     closeModal={closeModal}

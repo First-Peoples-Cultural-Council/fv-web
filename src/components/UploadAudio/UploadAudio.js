@@ -13,8 +13,11 @@ import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
+import { SUPPORTED_AUDIO_EXTENSIONS } from 'common/constants'
+import { useSiteStore } from 'context/SiteContext'
 
-function UploadAudio({ site, extensionList, setSelectedMedia }) {
+function UploadAudio({ setSelectedMedia }) {
+  const { site } = useSiteStore()
   const [isUploading, setIsUploading] = useState(false)
   const [fileUploaded, setFileUploaded] = useState(false)
 
@@ -23,7 +26,7 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
     acknowledgement: definitions.paragraph(),
     description: definitions.paragraph(),
     audioFile: definitions
-      .file({ extensionList })
+      .file({ SUPPORTED_AUDIO_EXTENSIONS })
       .required('A file is required'),
   })
 
@@ -187,11 +190,9 @@ function UploadAudio({ site, extensionList, setSelectedMedia }) {
 }
 
 // PROPTYPES
-const { array, func, object } = PropTypes
+const { func } = PropTypes
 
 UploadAudio.propTypes = {
-  site: object,
-  extensionList: array,
   setSelectedMedia: func,
 }
 

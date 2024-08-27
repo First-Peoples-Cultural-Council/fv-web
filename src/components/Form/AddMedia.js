@@ -74,6 +74,7 @@ function AddMediaButton({ value, onChange, docType }) {
           Remove
         </span>
         <button
+          data-testid="remove-btn"
           type="button"
           aria-label="Remove"
           // eslint-disable-next-line react/no-unknown-property
@@ -88,6 +89,7 @@ function AddMediaButton({ value, onChange, docType }) {
   ) : (
     <Fragment key="AddMediaButton">
       <button
+        data-testid="add-btn"
         type="button"
         onClick={(event) => onAddMediaClick(event)}
         className="mt-1 btn-outlined"
@@ -105,7 +107,7 @@ function AddMediaButton({ value, onChange, docType }) {
           <MediaCrud.Container
             savedMedia={[value]}
             updateSavedMedia={chooseMediaHandler}
-            docType={docType}
+            type={docType}
             maxFiles={1}
           />
         </div>

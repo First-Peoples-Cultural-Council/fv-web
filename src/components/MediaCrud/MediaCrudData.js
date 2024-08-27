@@ -16,7 +16,7 @@ import { useSiteStore } from 'context/SiteContext'
 function MediaCrudData({ type, maxFiles }) {
   const { site } = useSiteStore()
 
-  const docTypePlural = getFriendlyDocType({ type, plural: true })
+  const typePlural = getFriendlyDocType({ type, plural: true })
 
   const [selectedMedia, setSelectedMedia] = useState([])
 
@@ -61,7 +61,7 @@ function MediaCrudData({ type, maxFiles }) {
     setSelectedMedia,
     mediaSelectHandler,
     clearSelectedMedia,
-    docTypeLabelPlural: docTypePlural,
+    typeLabelPlural: typePlural,
     extensionList,
   }
 }
@@ -69,7 +69,7 @@ function MediaCrudData({ type, maxFiles }) {
 const { number, oneOf } = PropTypes
 
 MediaCrudData.propTypes = {
-  docType: oneOf([AUDIO, IMAGE, VIDEO]),
+  type: oneOf([AUDIO, IMAGE, VIDEO]),
   maxFiles: number,
 }
 

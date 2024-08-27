@@ -2,11 +2,6 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Dashboard } from '@uppy/react'
 
-// FPCC
-import useCreateUppy from 'common/dataHooks/useCreateUppy'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
-
 // Uppy
 import '@uppy/core/dist/style.css'
 import '@uppy/drag-drop/dist/style.css'
@@ -14,14 +9,24 @@ import '@uppy/progress-bar/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import '@uppy/image-editor/dist/style.css'
 
-function UploadVisualMedia({
-  site,
-  type,
-  maxFiles,
-  extensionList,
-  setSelectedMedia,
-}) {
+// FPCC
+import useCreateUppy from 'common/dataHooks/useCreateUppy'
+import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import {
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+  SUPPORTED_IMAGE_EXTENSIONS,
+  SUPPORTED_VIDEO_EXTENSIONS,
+} from 'common/constants'
+import { useSiteStore } from 'context/SiteContext'
+
+function UploadVisualMedia({ type, maxFiles, setSelectedMedia }) {
   const friendlyDocType = getFriendlyDocType({ type, plural: true })
+  const { site } = useSiteStore()
+  const extensionList =
+    type === TYPE_IMAGE
+      ? SUPPORTED_IMAGE_EXTENSIONS
+      : SUPPORTED_VIDEO_EXTENSIONS
 
   const [uppy] = useState(
     useCreateUppy(
@@ -101,12 +106,10 @@ function UploadVisualMedia({
 }
 
 // PROPTYPES
-const { array, func, number, oneOf, object } = PropTypes
+const { func, number, oneOf } = PropTypes
 
 UploadVisualMedia.propTypes = {
-  site: object,
   type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
-  extensionList: array,
   setSelectedMedia: func,
   maxFiles: number,
 }

@@ -150,7 +150,7 @@ function SelectOneButton({ value, onChange }) {
           <MediaCrud.Container
             savedMedia={[value]}
             updateSavedMedia={chooseMediaHandler}
-            docType={docType}
+            type={docType}
             maxFiles={1}
           />
         </div>

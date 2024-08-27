@@ -13,7 +13,7 @@ import VisualMediaSelector from 'components/VisualMediaSelector'
 function MediaCrudContainer({
   savedMedia,
   updateSavedMedia,
-  docType,
+  type,
   maxFiles,
   relatedVideoLinks,
   appendVideoLinks,
@@ -23,29 +23,21 @@ function MediaCrudContainer({
     selectedMedia,
     setSelectedMedia,
     mediaSelectHandler,
-    docTypeLabelPlural,
-    site,
-    extensionList,
-  } = MediaCrudData({ type: docType, maxFiles })
+    typeLabelPlural,
+  } = MediaCrudData({ type, maxFiles })
 
   const tabOptions = [
     {
       id: 'upload-tab',
       title: 'Upload',
-      btnLabel: `Upload New ${docType}`,
+      btnLabel: `Upload New ${type}`,
       component:
-        docType === AUDIO ? (
-          <UploadAudio
-            site={site}
-            extensionList={extensionList}
-            setSelectedMedia={setSelectedMedia}
-          />
+        type === AUDIO ? (
+          <UploadAudio setSelectedMedia={setSelectedMedia} />
         ) : (
           <UploadVisualMedia
-            site={site}
-            extensionList={extensionList}
             setSelectedMedia={setSelectedMedia}
-            type={docType}
+            type={type}
             maxFiles={maxFiles}
           />
         ),
@@ -53,9 +45,9 @@ function MediaCrudContainer({
     {
       id: 'search-tab',
       title: 'Media Library',
-      btnLabel: `Search ${docType} Files`,
+      btnLabel: `Search ${type} Files`,
       component:
-        docType === AUDIO ? (
+        type === AUDIO ? (
           <AudioSelector.Container
             savedMedia={savedMedia}
             selectedMedia={selectedMedia}
@@ -63,7 +55,7 @@ function MediaCrudContainer({
           />
         ) : (
           <VisualMediaSelector.Container
-            type={docType}
+            type={type}
             savedMedia={savedMedia}
             selectedMedia={selectedMedia}
             mediaSelectHandler={mediaSelectHandler}
@@ -111,7 +103,7 @@ function MediaCrudContainer({
         disabled={itemsSelected && selectedTab.id !== tab.id}
       >
         {tabHasSelectedItems
-          ? `Insert ${selectedMedia.length} ${docTypeLabelPlural}`
+          ? `Insert ${selectedMedia.length} ${typeLabelPlural}`
           : tab.btnLabel}
       </button>
     )
@@ -132,12 +124,12 @@ function MediaCrudContainer({
   )
 }
 
-const { array, func, oneOf, number } = PropTypes
+const { array, func, number, oneOf } = PropTypes
 
 MediaCrudContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
-  docType: oneOf([AUDIO, IMAGE, VIDEO]),
+  type: oneOf([AUDIO, IMAGE, VIDEO]),
   maxFiles: number,
   relatedVideoLinks: array,
   appendVideoLinks: func,
