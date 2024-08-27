@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import MediaThumbnail from 'components/MediaThumbnail'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
-import MediaCrud from 'components/MediaCrud'
+import AddMediaModal from 'components/AddMediaModal'
 import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
@@ -140,21 +140,15 @@ function SelectOneButton({ value, onChange }) {
         </div>
       </Modal.Presentation>
 
-      {/* Add Media Modal */}
-      <Modal.Presentation
-        isOpen={addMediaModalOpen}
-        closeHandler={() => setAddMediaModalOpen(false)}
+      <AddMediaModal.Container
         isDashboard
-      >
-        <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-4">
-          <MediaCrud.Container
-            savedMedia={[value]}
-            updateSavedMedia={chooseMediaHandler}
-            type={docType}
-            maxFiles={1}
-          />
-        </div>
-      </Modal.Presentation>
+        savedMedia={[value]}
+        updateSavedMedia={chooseMediaHandler}
+        type={docType}
+        modalOpen={addMediaModalOpen}
+        closeModal={() => setAddMediaModalOpen(false)}
+        maxFiles={1}
+      />
     </div>
   )
 }
