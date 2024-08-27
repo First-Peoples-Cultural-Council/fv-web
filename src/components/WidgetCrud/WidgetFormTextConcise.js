@@ -88,7 +88,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.AddMedia
               label="Audio"
               nameId="audio"
-              docType={AUDIO}
+              type={AUDIO}
               control={control}
               errors={errors}
             />

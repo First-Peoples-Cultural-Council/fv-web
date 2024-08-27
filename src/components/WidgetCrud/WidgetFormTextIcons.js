@@ -86,7 +86,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.AddMedia
               label="Image"
               nameId="image"
-              docType={DOC_IMAGE}
+              type={DOC_IMAGE}
               control={control}
               errors={errors}
             />

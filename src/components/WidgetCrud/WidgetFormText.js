@@ -96,7 +96,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.AddMedia
               label="Image"
               nameId="image"
-              docType={IMAGE}
+              type={IMAGE}
               control={control}
               errors={errors}
             />
@@ -105,7 +105,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.AddMedia
               label="Audio"
               nameId="audio"
-              docType={AUDIO}
+              type={AUDIO}
               control={control}
               errors={errors}
             />

@@ -95,7 +95,7 @@ function GalleryCrudPresentation({
             <Form.AddMedia
               label="Cover image"
               nameId="coverImage"
-              docType={IMAGE}
+              type={IMAGE}
               control={control}
               errors={errors}
             />

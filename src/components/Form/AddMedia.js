@@ -4,9 +4,8 @@ import { Controller } from 'react-hook-form'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import MediaCrud from 'components/MediaCrud'
+import AddMediaModal from 'components/AddMediaModal'
 import MediaThumbnail from 'components/MediaThumbnail'
-import Modal from 'components/Modal'
 import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import ValidationError from 'components/Form/ValidationError'
@@ -16,7 +15,7 @@ function AddMedia({
   nameId,
   helpText,
   control,
-  docType = IMAGE,
+  type = IMAGE,
   errors,
 }) {
   return (
@@ -30,7 +29,7 @@ function AddMedia({
         defaultValue=""
         control={control}
         render={({ field: { value, onChange } }) => (
-          <AddMediaButton value={value} onChange={onChange} docType={docType} />
+          <AddMediaButton value={value} onChange={onChange} type={type} />
         )}
       />
       {helpText && (
@@ -41,7 +40,7 @@ function AddMedia({
   )
 }
 
-function AddMediaButton({ value, onChange, docType }) {
+function AddMediaButton({ value, onChange, type }) {
   const [modalOpen, setModalOpen] = useState(false)
 
   const chooseMediaHandler = (id) => {
@@ -61,14 +60,14 @@ function AddMediaButton({ value, onChange, docType }) {
   }
   return value ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      {docType === AUDIO && <MediaThumbnail.Audio id={value} />}
-      {docType === IMAGE && (
+      {type === AUDIO && <MediaThumbnail.Audio id={value} />}
+      {type === IMAGE && (
         <MediaThumbnail.Image
           id={value}
           imageStyles="object-cover pointer-events-none"
         />
       )}
-      {docType === VIDEO && <MediaThumbnail.Video id={value} />}
+      {type === VIDEO && <MediaThumbnail.Video id={value} />}
       <div className="has-tooltip">
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
           Remove
@@ -95,23 +94,18 @@ function AddMediaButton({ value, onChange, docType }) {
         className="mt-1 btn-outlined"
       >
         {getIcon('Add', 'btn-icon')}
-        <span>{`Add ${getFriendlyDocType({ docType })}`}</span>
+        <span>{`Add ${getFriendlyDocType({ docType: type })}`}</span>
       </button>
-      {/* Add Modal */}
-      <Modal.Presentation
-        isOpen={modalOpen}
-        closeHandler={() => setModalOpen(false)}
+
+      <AddMediaModal.Container
         isDashboard
-      >
-        <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-4">
-          <MediaCrud.Container
-            savedMedia={[value]}
-            updateSavedMedia={chooseMediaHandler}
-            type={docType}
-            maxFiles={1}
-          />
-        </div>
-      </Modal.Presentation>
+        savedMedia={[value]}
+        updateSavedMedia={chooseMediaHandler}
+        type={type}
+        modalOpen={modalOpen}
+        closeModal={() => setModalOpen(false)}
+        maxFiles={1}
+      />
     </Fragment>
   )
 }
@@ -120,7 +114,7 @@ const { func, object, string } = PropTypes
 AddMedia.propTypes = {
   helpText: string,
   label: string,
-  docType: string,
+  type: string,
   nameId: string.isRequired,
   control: object,
   errors: object,
@@ -129,7 +123,7 @@ AddMedia.propTypes = {
 AddMediaButton.propTypes = {
   value: string,
   onChange: func,
-  docType: string,
+  type: string,
 }
 
 export default AddMedia

@@ -37,7 +37,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
               <Form.AddMedia
                 label="Add logo"
                 nameId="logoId"
-                docType={IMAGE}
+                type={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
                 errors={errors}
