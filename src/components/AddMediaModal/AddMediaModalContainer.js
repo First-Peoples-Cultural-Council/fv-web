@@ -38,7 +38,7 @@ function AddMediaModalContainer({
     },
   ]
 
-  if (type === TYPE_VIDEO) {
+  if (type === TYPE_VIDEO && appendVideoLinks) {
     tabOptions = [
       ...tabOptions,
       {
