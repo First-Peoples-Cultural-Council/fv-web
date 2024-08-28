@@ -3,12 +3,13 @@ import PropTypes from 'prop-types'
 import { Controller } from 'react-hook-form'
 
 // FPCC
-import getIcon from 'common/utils/getIcon'
 import AddMediaModal from 'components/AddMediaModal'
 import MediaThumbnail from 'components/MediaThumbnail'
 import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import ValidationError from 'components/Form/ValidationError'
+import XButton from 'components/Form/XButton'
+import FieldButton from 'components/Form/FieldButton'
 
 function AddMedia({
   label = '',
@@ -68,35 +69,14 @@ function AddMediaButton({ value, onChange, type }) {
         />
       )}
       {type === VIDEO && <MediaThumbnail.Video id={value} />}
-      <div className="has-tooltip">
-        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
-          Remove
-        </span>
-        <button
-          data-testid="remove-btn"
-          type="button"
-          aria-label="Remove"
-          // eslint-disable-next-line react/no-unknown-property
-          tooltip="Remove"
-          className="border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-          onClick={(event) => onAddMediaClick(event)}
-        >
-          {getIcon('Close', 'fill-current h-5 w-5')}
-        </button>
-      </div>
+      <XButton onClickHandler={(event) => onAddMediaClick(event)} />
     </div>
   ) : (
     <Fragment key="AddMediaButton">
-      <button
-        data-testid="add-btn"
-        type="button"
-        onClick={(event) => onAddMediaClick(event)}
-        className="mt-1 btn-outlined"
-      >
-        {getIcon('Add', 'btn-icon')}
-        <span>{`Add ${getFriendlyDocType({ docType: type })}`}</span>
-      </button>
-
+      <FieldButton
+        label={`Add ${getFriendlyDocType({ docType: type })}`}
+        onClickHandler={(event) => onAddMediaClick(event)}
+      />
       <AddMediaModal.Container
         isDashboard
         savedMedia={[value]}

@@ -22,6 +22,7 @@ import TextTranslationArrayField from 'components/Form/TextTranslationArrayField
 import ValidationError from 'components/Form/ValidationError'
 import Visibility from 'components/Form/Visibility'
 import WysiwygField from 'components/Form/WysiwygField'
+import XButton from 'components/Form/XButton'
 
 export default {
   AddMedia,
@@ -48,4 +49,5 @@ export default {
   ValidationError,
   Visibility,
   WysiwygField,
+  XButton,
 }

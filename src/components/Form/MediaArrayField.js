@@ -4,13 +4,14 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import getIcon from 'common/utils/getIcon'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
 import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
 import AddMediaModal from 'components/AddMediaModal'
 import api from 'services/api'
+import XButton from 'components/Form/XButton'
+import FieldButton from 'components/Form/FieldButton'
 
 function MediaArrayField({
   label = '',
@@ -74,13 +75,13 @@ function MediaArrayField({
       <label className="block text-sm font-medium text-fv-charcoal">
         {label}
       </label>
-      <div className="space-y-2 mt-2">
+      <div data-testid="MediaArrayField" className="space-y-2 mt-2">
         {type === VIDEO && value?.length > 0 && (
           <p className="block text-sm font-small text-fv-charcoal italic">
             Uploaded Videos
           </p>
         )}
-        <div id="MediaThumbnailGallery">
+        <div>
           {value?.length > 0 &&
             value?.map((docId) => (
               <div
@@ -95,20 +96,7 @@ function MediaArrayField({
                   />
                 )}
                 {type === VIDEO && <MediaThumbnail.Video id={docId} />}
-                <div className="has-tooltip">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">
-                    Remove
-                  </span>
-                  <button
-                    data-testid="remove-btn"
-                    type="button"
-                    aria-label="Remove"
-                    className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-                    onClick={() => removeItem(docId)}
-                  >
-                    {getIcon('Close', 'fill-current h-5 w-5')}
-                  </button>
-                </div>
+                <XButton onClickHandler={() => removeItem(docId)} />
               </div>
             ))}
         </div>
@@ -117,29 +105,14 @@ function MediaArrayField({
             <p className="block text-sm font-small text-fv-charcoal italic">
               Linked Videos
             </p>
-            <div id="MediaThumbnailGallery">
+            <div>
               {relatedVideoLinks?.map((mediaLink, index) => (
                 <div
                   key={`${mediaLink?.text}`}
                   className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
                 >
                   <MediaThumbnail.VideoLink link={mediaLink?.thumbnail} />
-                  <div className="has-tooltip">
-                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-8">
-                      Remove
-                    </span>
-                    <button
-                      data-testid="remove-btn"
-                      type="button"
-                      aria-label="Remove"
-                      className="-mr-1.5 border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-                      onClick={() => {
-                        removeVideoLinks(index)
-                      }}
-                    >
-                      {getIcon('Close', 'fill-current h-5 w-5')}
-                    </button>
-                  </div>
+                  <XButton onClickHandler={() => removeVideoLinks(index)} />
                 </div>
               ))}
             </div>
@@ -153,15 +126,10 @@ function MediaArrayField({
           ''
         ) : (
           <div>
-            <button
-              data-testid={`add-${type}`}
-              type="button"
-              onClick={openModal}
-              className="btn-outlined"
-            >
-              {getIcon('Add', 'btn-icon')}
-              <span>{`Add ${getFriendlyDocType({ docType: type })}`}</span>
-            </button>
+            <FieldButton
+              label={`Add ${getFriendlyDocType({ docType: type })}`}
+              onClickHandler={openModal}
+            />
             <AddMediaModal.Container
               isDashboard
               savedMedia={value}

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function FieldButton({ label, onClickHandler }) {
+function FieldButton({ label, onClickHandler, iconId = 'Add' }) {
   return (
     <button
       data-testid={`${label}-btn`}
@@ -12,7 +12,7 @@ function FieldButton({ label, onClickHandler }) {
       onClick={onClickHandler}
       className="btn-outlined"
     >
-      {getIcon('Add', 'btn-icon')}
+      {getIcon(iconId, 'btn-icon')}
       <span>{label}</span>
     </button>
   )
@@ -23,6 +23,7 @@ const { func, string } = PropTypes
 FieldButton.propTypes = {
   label: string,
   onClickHandler: func,
+  iconId: string,
 }
 
 export default FieldButton

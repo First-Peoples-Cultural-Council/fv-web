@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import getIcon from 'common/utils/getIcon'
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import EntrySelector from 'components/EntrySelector'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
+import XButton from 'components/Form/XButton'
 
 function EntryArrayField({
   label = '',
@@ -46,20 +46,7 @@ function EntryArrayField({
                 {...register(`${nameId}.${index}.value`)}
               />
               <div>{field?.title}</div>
-              <div className="has-tooltip flex items-center">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-14">
-                  Remove
-                </span>
-                <button
-                  data-testid={`remove-entry-btn-${field?.id}`}
-                  type="button"
-                  aria-label="Remove"
-                  className="border p-1 border-transparent inline-flex items-center rounded-lg"
-                  onClick={() => remove(index)}
-                >
-                  {getIcon('Close', 'btn-icon')}
-                </button>
-              </div>
+              <XButton onClickHandler={() => remove(index)} />
             </li>
           ))}
         </ul>

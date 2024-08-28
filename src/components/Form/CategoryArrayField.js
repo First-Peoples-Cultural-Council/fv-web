@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import getIcon from 'common/utils/getIcon'
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import CategoriesBrowser from 'components/CategoriesBrowser'
 import FieldButton from 'components/Form/FieldButton'
+import XButton from 'components/Form/XButton'
+
 function CategoryArrayField({
   label,
   nameId,
@@ -37,20 +38,10 @@ function CategoryArrayField({
             <li key={item.id} className="btn-contained mr-1">
               <input type="hidden" {...register(`${nameId}.${index}`)} />
               <div>{item?.title}</div>
-              <div className="has-tooltip flex items-center">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-14">
-                  Remove from category
-                </span>
-                <button
-                  type="button"
-                  data-testid={`remove-category-btn-${item?.id}`}
-                  aria-label="Remove from category"
-                  className="border p-1 -m-1 border-transparent inline-flex items-center rounded-lg"
-                  onClick={() => remove(index)}
-                >
-                  {getIcon('Close', 'btn-icon')}
-                </button>
-              </div>
+              <XButton
+                label="Remove from category"
+                onClickHandler={() => remove(index)}
+              />
             </li>
           ))}
         </ul>

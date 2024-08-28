@@ -4,12 +4,13 @@ import { Controller } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 // FPCC
-import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import Gallery from 'components/Gallery'
 import { useGalleries } from 'common/dataHooks/useGalleries'
+import XButton from 'components/Form/XButton'
+import FieldButton from 'components/Form/FieldButton'
 
 function GalleryField({ label, nameId, helpText, control, errors }) {
   return (
@@ -48,32 +49,14 @@ function AddGalleryButton({ value, onChange }) {
   return value ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       <Gallery.Container view="thumbnail" id={value} />
-      <div className="has-tooltip">
-        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
-          Remove
-        </span>
-        <button
-          type="button"
-          data-testid="GalleryField-btn-remove"
-          aria-label="Remove"
-          className="border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-          onClick={() => onChange('')}
-        >
-          {getIcon('Close', 'fill-current h-5 w-5')}
-        </button>
-      </div>
+      <XButton onClickHandler={() => onChange('')} />
     </div>
   ) : (
     <Fragment key="AddGalleryButton">
-      <button
-        type="button"
-        data-testid="GalleryField-btn-add"
-        onClick={() => setModalOpen(true)}
-        className="mt-1 btn-outlined"
-      >
-        {getIcon('Add', 'btn-icon')}
-        <span>Add Gallery</span>
-      </button>
+      <FieldButton
+        label="Add Gallery"
+        onClickHandler={() => setModalOpen(true)}
+      />
       {/* Add Modal */}
       <Modal.Presentation
         isOpen={modalOpen}

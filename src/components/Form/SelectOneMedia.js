@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
-import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import AddMediaModal from 'components/AddMediaModal'
 import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
+import XButton from 'components/Form/XButton'
+import FieldButton from 'components/Form/FieldButton'
 
 const DEFAULT_MEDIA_VALUE = {
   docId: '',
@@ -82,61 +83,34 @@ function SelectOneButton({ value, onChange }) {
       ) : (
         <MediaThumbnail.Video id={value?.docId} />
       )}
-      <div className="has-tooltip">
-        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary -mt-8">
-          Remove
-        </span>
-        <button
-          data-testid="remove"
-          type="button"
-          aria-label="Remove"
-          // eslint-disable-next-line react/no-unknown-property
-          tooltip="Remove"
-          className="border p-1 border-transparent inline-flex items-center rounded-lg text-sm font-bold text-fv-charcoal hover:bg-gray-300"
-          onClick={(event) => resetMedia(event)}
-        >
-          {getIcon('Close', 'fill-current h-5 w-5')}
-        </button>
-      </div>
+      <XButton onClickHandler={(event) => resetMedia(event)} />
     </div>
   ) : (
     <div className="block">
-      <button
-        data-testid="add-media"
-        type="button"
-        className="btn-outlined mt-1 mr-4"
-        onClick={() => setMediaChoiceModalOpen(true)}
-      >
-        {getIcon('Add', 'btn-icon')}
-        <span>Add Media</span>
-      </button>
-
+      <FieldButton
+        label="Add Media"
+        onClickHandler={() => setMediaChoiceModalOpen(true)}
+      />
       {/* Choose between doc types Modal */}
-
       <Modal.Presentation
         isOpen={mediaChoiceModalOpen}
         closeHandler={() => setMediaChoiceModalOpen(false)}
       >
         <div className="mx-auto rounded-lg overflow-hidden bg-gray-50 p-8 m-8 mt-0">
           <h2 className="mb-4">What kind of file do you want to add?</h2>
-          <button
-            data-testid="add-image"
-            type="button"
-            className="btn-outlined mt-1 mr-4"
-            onClick={() => mediaChoiceButtonClicked(IMAGE)}
-          >
-            {getIcon('Images', 'btn-icon')}
-            <span>Add Image</span>
-          </button>
-          <button
-            data-testid="add-video"
-            type="button"
-            className="btn-outlined mt-1 mr-4"
-            onClick={() => mediaChoiceButtonClicked(VIDEO)}
-          >
-            {getIcon('Video', 'btn-icon')}
-            <span>Add Video</span>
-          </button>
+          <div className="space-x-2">
+            <FieldButton
+              label="Add Image"
+              iconId="Images"
+              onClickHandler={() => mediaChoiceButtonClicked(IMAGE)}
+            />
+
+            <FieldButton
+              label="Add Video"
+              iconId="Video"
+              onClickHandler={() => mediaChoiceButtonClicked(VIDEO)}
+            />
+          </div>
         </div>
       </Modal.Presentation>
 
