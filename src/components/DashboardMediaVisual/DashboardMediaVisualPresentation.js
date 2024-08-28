@@ -9,7 +9,6 @@ function DashboardMediaVisualPresentation({
   loadLabel,
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
-
   return (
     <div
       id="DashboardMediaVisualPresentation"
@@ -19,9 +18,8 @@ function DashboardMediaVisualPresentation({
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
           {data?.pages !== undefined &&
             data?.pages?.[0]?.results?.length > 0 &&
-            data?.pages?.map((page, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <React.Fragment key={index}>
+            data?.pages?.map((page) => (
+              <React.Fragment key={page?.pageNumber}>
                 {page.results.map((doc) => (
                   <li key={doc?.id} className="relative">
                     <div

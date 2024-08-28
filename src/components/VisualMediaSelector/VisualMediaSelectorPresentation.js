@@ -34,9 +34,8 @@ function VisualMediaSelectorPresentation({
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
           {data?.pages !== undefined &&
             data?.pages?.[0]?.results?.length > 0 &&
-            data?.pages?.map((page, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <React.Fragment key={index}>
+            data?.pages?.map((page) => (
+              <React.Fragment key={page?.pageNumber}>
                 {page.results.map((doc, elementIndex) => {
                   if (savedMedia?.some((elemId) => elemId === doc?.id)) {
                     // If a media file is already attached to the document
