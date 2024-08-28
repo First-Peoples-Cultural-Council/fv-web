@@ -21,7 +21,7 @@ import {
 import { useSiteStore } from 'context/SiteContext'
 
 function UploadVisualMedia({ type, maxFiles, setSelectedMedia }) {
-  const friendlyDocType = getFriendlyDocType({ type, plural: true })
+  const friendlyDocType = getFriendlyDocType({ docType: type, plural: true })
   const { site } = useSiteStore()
   const extensionList =
     type === TYPE_IMAGE
