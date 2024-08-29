@@ -8,7 +8,7 @@ import VisualMediaSelector from 'components/VisualMediaSelector'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 
-function AddImagesModalContainer({
+function AddImageModalContainer({
   savedMedia,
   updateSavedMedia,
   maxFiles,
@@ -67,7 +67,7 @@ function AddImagesModalContainer({
 
 const { array, bool, func, number } = PropTypes
 
-AddImagesModalContainer.propTypes = {
+AddImageModalContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
   maxFiles: number,
@@ -75,4 +75,4 @@ AddImagesModalContainer.propTypes = {
   modalOpen: bool,
 }
 
-export default AddImagesModalContainer
+export default AddImageModalContainer
