@@ -128,7 +128,7 @@ function VideoArrayField({
               appendVideoLinks={appendVideoLinks}
               modalOpen={modalOpen}
               closeModal={closeModal}
-              maxFiles={maxItems}
+              maxItems={maxItems}
             />
           </div>
         )}

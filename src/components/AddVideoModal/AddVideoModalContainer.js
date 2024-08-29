@@ -12,14 +12,14 @@ import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 function AddVideoModalContainer({
   savedMedia,
   updateSavedMedia,
-  maxFiles,
+  maxItems,
   relatedVideoLinks,
   appendVideoLinks,
   modalOpen,
   closeModal,
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
-    useArrayStateManager({ maxItems: maxFiles })
+    useArrayStateManager({ maxItems })
 
   let tabOptions = [
     {
@@ -63,7 +63,7 @@ function AddVideoModalContainer({
           <UploadVisualMedia
             setSelectedMedia={setSelectedItems}
             type={TYPE_VIDEO}
-            maxFiles={maxFiles}
+            maxItems={maxItems}
           />
         )}
         {selectedTab.id === 'search-tab' && (
@@ -79,7 +79,7 @@ function AddVideoModalContainer({
             relatedVideoLinks={relatedVideoLinks}
             appendVideoLinks={appendVideoLinks}
             closeModal={closeModal}
-            maxLinks={maxFiles}
+            maxLinks={maxItems}
           />
         )}
       </>
@@ -92,7 +92,7 @@ const { array, bool, func, number } = PropTypes
 AddVideoModalContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
-  maxFiles: number,
+  maxItems: number,
   relatedVideoLinks: array,
   appendVideoLinks: func,
   closeModal: func,

@@ -20,7 +20,7 @@ import {
 } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
 
-function UploadVisualMedia({ type, maxFiles, setSelectedMedia }) {
+function UploadVisualMedia({ type, maxItems, setSelectedMedia }) {
   const friendlyDocType = getFriendlyDocType({ docType: type, plural: true })
   const { site } = useSiteStore()
   const extensionList =
@@ -31,7 +31,7 @@ function UploadVisualMedia({ type, maxFiles, setSelectedMedia }) {
   const [uppy] = useState(
     useCreateUppy(
       site,
-      maxFiles,
+      maxItems,
       extensionList,
       friendlyDocType,
       setSelectedMedia,
@@ -111,7 +111,7 @@ const { func, number, oneOf } = PropTypes
 UploadVisualMedia.propTypes = {
   type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
   setSelectedMedia: func,
-  maxFiles: number,
+  maxItems: number,
 }
 
 export default UploadVisualMedia

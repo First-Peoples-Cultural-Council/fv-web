@@ -17,7 +17,7 @@ import '@uppy/image-editor/dist/style.css'
 
 function useCreateUppy(
   site,
-  maxFiles,
+  maxItems,
   extensionList,
   friendlyDocType,
   setSelectedMedia,
@@ -27,7 +27,7 @@ function useCreateUppy(
     autoProceed: false,
     allowMultipleUploadBatches: true,
     restrictions: {
-      maxNumberOfFiles: maxFiles,
+      maxNumberOfFiles: maxItems,
       requiredMetaFields: ['title'],
     },
     // eslint-disable-next-line no-unused-vars
@@ -106,7 +106,7 @@ useCreateUppy.propTypes = {
   docType: string,
   extensionList: array,
   setSelectedMedia: func,
-  maxFiles: number,
+  maxItems: number,
 }
 
 export default useCreateUppy

@@ -63,7 +63,7 @@ function ImageIdFieldButton({ value, onChange }) {
         updateSavedMedia={updateSavedMedia}
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
-        maxFiles={1}
+        maxItems={1}
       />
     </Fragment>
   )

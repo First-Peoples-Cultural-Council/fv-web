@@ -15,14 +15,14 @@ function AddMediaModalContainer({
   savedMedia,
   updateSavedMedia,
   type,
-  maxFiles,
+  maxItems,
   relatedVideoLinks,
   appendVideoLinks,
   modalOpen,
   closeModal,
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
-    useArrayStateManager({ maxItems: maxFiles })
+    useArrayStateManager({ maxItems })
 
   let tabOptions = [
     {
@@ -57,7 +57,7 @@ function AddMediaModalContainer({
       <UploadVisualMedia
         setSelectedMedia={setSelectedItems}
         type={type}
-        maxFiles={maxFiles}
+        maxItems={maxItems}
       />
     )
 
@@ -96,7 +96,7 @@ function AddMediaModalContainer({
             relatedVideoLinks={relatedVideoLinks}
             appendVideoLinks={appendVideoLinks}
             closeModal={closeModal}
-            maxLinks={maxFiles}
+            maxLinks={maxItems}
           />
         )}
       </>
@@ -110,7 +110,7 @@ AddMediaModalContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
   type: oneOf([TYPE_AUDIO, TYPE_IMAGE, TYPE_VIDEO]),
-  maxFiles: number,
+  maxItems: number,
   relatedVideoLinks: array,
   appendVideoLinks: func,
   closeModal: func,

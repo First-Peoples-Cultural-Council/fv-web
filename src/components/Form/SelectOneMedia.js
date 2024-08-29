@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
 import Modal from 'components/Modal'
-import AddMediaModal from 'components/AddMediaModal'
+import AddVideoModal from 'components/AddVideoModal'
 import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
@@ -42,16 +42,16 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
 }
 
 function SelectOneButton({ value, onChange }) {
-  const [docType, setDocType] = useState(null)
+  const [type, setType] = useState(null)
 
-  const [addMediaModalOpen, setAddMediaModalOpen] = useState(false)
+  const [addVideoModalOpen, setAddVideoModalOpen] = useState(false)
   const [mediaChoiceModalOpen, setMediaChoiceModalOpen] = useState(false)
 
   const resetMedia = (event) => {
     event.preventDefault()
     // Clear out values
     if (value.docId) {
-      setDocType(null)
+      setType(null)
       onChange(DEFAULT_MEDIA_VALUE)
     }
   }
@@ -60,17 +60,17 @@ function SelectOneButton({ value, onChange }) {
     if (isUUID(id[0])) {
       const newMediaObj = {
         docId: id[0],
-        docType,
+        docType: type,
       }
       onChange(newMediaObj)
     }
-    setAddMediaModalOpen(false)
+    setAddVideoModalOpen(false)
   }
 
   const mediaChoiceButtonClicked = (docTypeChosen) => {
-    setDocType(docTypeChosen)
+    setType(docTypeChosen)
     setMediaChoiceModalOpen(false)
-    setAddMediaModalOpen(true)
+    setAddVideoModalOpen(true)
   }
 
   return value?.docId ? (
@@ -114,14 +114,13 @@ function SelectOneButton({ value, onChange }) {
         </div>
       </Modal.Presentation>
 
-      <AddMediaModal.Container
-        isDashboard
+      <AddVideoModal.Container
         savedMedia={[value]}
         updateSavedMedia={chooseMediaHandler}
-        type={docType}
-        modalOpen={addMediaModalOpen}
-        closeModal={() => setAddMediaModalOpen(false)}
-        maxFiles={1}
+        type={type}
+        modalOpen={addVideoModalOpen}
+        closeModal={() => setAddVideoModalOpen(false)}
+        maxItems={1}
       />
     </div>
   )
