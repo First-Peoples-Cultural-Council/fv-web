@@ -10,7 +10,6 @@ import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
 import ImageArrayField from 'components/Form/ImageArrayField'
-import MediaArrayField from 'components/Form/MediaArrayField'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
@@ -22,6 +21,7 @@ import TextAreaField from 'components/Form/TextAreaField'
 import TextArrayField from 'components/Form/TextArrayField'
 import TextTranslationArrayField from 'components/Form/TextTranslationArrayField'
 import ValidationError from 'components/Form/ValidationError'
+import VideoArrayField from 'components/Form/VideoArrayField'
 import Visibility from 'components/Form/Visibility'
 import WysiwygField from 'components/Form/WysiwygField'
 import XButton from 'components/Form/XButton'
@@ -39,7 +39,6 @@ export default {
   GalleryField,
   Header,
   ImageArrayField,
-  MediaArrayField,
   NextPrevious,
   RadioButtons,
   Select,
@@ -51,6 +50,7 @@ export default {
   TextArrayField,
   TextTranslationArrayField,
   ValidationError,
+  VideoArrayField,
   Visibility,
   WysiwygField,
   XButton,

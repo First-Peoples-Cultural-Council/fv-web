@@ -5,7 +5,6 @@ import { EditorState } from 'draft-js'
 
 // FPCC
 import Form from 'components/Form'
-import { VIDEO } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import DeleteButton from 'components/DeleteButton'
@@ -96,12 +95,11 @@ function StoryPageForm({
           />
         </div>
         <div className="col-span-12">
-          <Form.MediaArrayField
+          <Form.VideoArrayField
             label="Videos"
             nameId="relatedVideos"
             control={control}
             errors={errors}
-            type={VIDEO}
             maxItems={1}
           />
         </div>

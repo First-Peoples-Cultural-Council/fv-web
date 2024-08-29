@@ -7,13 +7,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import {
-  VIDEO,
-  TYPE_WORD,
-  TYPE_PHRASE,
-  PUBLIC,
-  WARNING,
-} from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE, PUBLIC, WARNING } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -222,12 +216,11 @@ function DictionaryCrudPresentation({
               />
             </div>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.VideoArrayField
                 label="Videos"
                 nameId="relatedVideos"
                 control={control}
                 errors={errors}
-                type={VIDEO}
                 maxItems={10}
               />
             </div>

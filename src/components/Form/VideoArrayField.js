@@ -3,23 +3,20 @@ import PropTypes from 'prop-types'
 import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
 import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
-import AddMediaModal from 'components/AddMediaModal'
+import AddVideoModal from 'components/AddVideoModal'
 import api from 'services/api'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 
-function MediaArrayField({
+function VideoArrayField({
   label = '',
   nameId,
   helpText,
   control,
-  type = IMAGE,
   maxItems = 3,
   errors,
 }) {
@@ -72,37 +69,34 @@ function MediaArrayField({
     })
   }, [control, fields, relatedVideoLinks])
 
+  const totalNumberOfVideos =
+    (value?.length || 0) + (relatedVideoLinks?.length || 0)
+
   return (
     <Fragment key={`${nameId}_ArrayField`}>
       <label className="block text-sm font-medium text-fv-charcoal">
         {label}
       </label>
-      <div data-testid="MediaArrayField" className="space-y-2 mt-2">
-        {type === VIDEO && value?.length > 0 && (
-          <p className="block text-sm font-small text-fv-charcoal italic">
-            Uploaded Videos
-          </p>
+      <div data-testid="VideoArrayField" className="space-y-2 mt-2">
+        {value?.length > 0 && (
+          <div>
+            <p className="block text-sm font-small text-fv-charcoal italic">
+              Uploaded Videos
+            </p>
+            <div>
+              {value?.map((docId) => (
+                <div
+                  key={`${docId}`}
+                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+                >
+                  <MediaThumbnail.Video id={docId} />
+                  <XButton onClickHandler={() => removeItem(docId)} />
+                </div>
+              ))}
+            </div>
+          </div>
         )}
-        <div>
-          {value?.length > 0 &&
-            value?.map((docId) => (
-              <div
-                key={`${docId}`}
-                className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
-              >
-                {type === AUDIO && <MediaThumbnail.Audio id={docId} />}
-                {type === IMAGE && (
-                  <MediaThumbnail.Image
-                    id={docId}
-                    imageStyles="object-cover pointer-events-none"
-                  />
-                )}
-                {type === VIDEO && <MediaThumbnail.Video id={docId} />}
-                <XButton onClickHandler={() => removeItem(docId)} />
-              </div>
-            ))}
-        </div>
-        {type === VIDEO && relatedVideoLinks?.length > 0 && (
+        {relatedVideoLinks?.length > 0 && (
           <div>
             <p className="block text-sm font-small text-fv-charcoal italic">
               Linked Videos
@@ -121,22 +115,15 @@ function MediaArrayField({
           </div>
         )}
 
-        {value?.length >= maxItems ||
-        (type === VIDEO &&
-          (value?.length || 0) + (relatedVideoLinks?.length || 0) >=
-            maxItems) ? (
+        {totalNumberOfVideos >= maxItems ? (
           ''
         ) : (
           <div>
-            <FieldButton
-              label={`Add ${getFriendlyDocType({ docType: type })}`}
-              onClickHandler={openModal}
-            />
-            <AddMediaModal.Container
+            <FieldButton label="Add Video" onClickHandler={openModal} />
+            <AddVideoModal.Container
               isDashboard
               savedMedia={value}
               updateSavedMedia={selectItem}
-              type={type}
               relatedVideoLinks={relatedVideoLinks}
               appendVideoLinks={appendVideoLinks}
               modalOpen={modalOpen}
@@ -156,14 +143,13 @@ function MediaArrayField({
 
 // PROPTYPES
 const { number, object, string } = PropTypes
-MediaArrayField.propTypes = {
+VideoArrayField.propTypes = {
   helpText: string,
   label: string,
-  type: string,
   nameId: string.isRequired,
   control: object,
   maxItems: number,
   errors: object,
 }
 
-export default MediaArrayField
+export default VideoArrayField
