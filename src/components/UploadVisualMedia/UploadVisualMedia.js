@@ -11,32 +11,13 @@ import '@uppy/image-editor/dist/style.css'
 
 // FPCC
 import useCreateUppy from 'common/dataHooks/useCreateUppy'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import {
-  TYPE_IMAGE,
-  TYPE_VIDEO,
-  SUPPORTED_IMAGE_EXTENSIONS,
-  SUPPORTED_VIDEO_EXTENSIONS,
-} from 'common/constants'
+import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
 
 function UploadVisualMedia({ type, maxItems, setSelectedMedia }) {
-  const friendlyDocType = getFriendlyDocType({ docType: type, plural: true })
   const { site } = useSiteStore()
-  const extensionList =
-    type === TYPE_IMAGE
-      ? SUPPORTED_IMAGE_EXTENSIONS
-      : SUPPORTED_VIDEO_EXTENSIONS
 
-  const [uppy] = useState(
-    useCreateUppy(
-      site,
-      maxItems,
-      extensionList,
-      friendlyDocType,
-      setSelectedMedia,
-    ),
-  )
+  const [uppy] = useState(useCreateUppy(site, maxItems, setSelectedMedia, type))
 
   useEffect(() => () => uppy.close({ reason: 'unmount' }), [uppy])
 

@@ -3,11 +3,6 @@ import Uppy from '@uppy/core'
 import XHR from '@uppy/xhr-upload'
 import ImageEditor from '@uppy/image-editor'
 
-// FPCC
-import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
-import api from 'services/api'
-import { getFileExtensions } from 'common/utils/stringHelpers'
-
 // Uppy
 import '@uppy/core/dist/style.css'
 import '@uppy/drag-drop/dist/style.css'
@@ -15,13 +10,26 @@ import '@uppy/progress-bar/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import '@uppy/image-editor/dist/style.css'
 
-function useCreateUppy(
-  site,
-  maxItems,
-  extensionList,
-  friendlyDocType,
-  setSelectedMedia,
-) {
+// FPCC
+import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
+import api from 'services/api'
+import { getFileExtensions } from 'common/utils/stringHelpers'
+import { getPathForMediaType } from 'common/utils/mediaHelpers'
+import {
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+  SUPPORTED_IMAGE_EXTENSIONS,
+  SUPPORTED_VIDEO_EXTENSIONS,
+} from 'common/constants'
+
+function useCreateUppy(site, maxItems, setSelectedMedia, type) {
+  const extensionList =
+    type === TYPE_IMAGE
+      ? SUPPORTED_IMAGE_EXTENSIONS
+      : SUPPORTED_VIDEO_EXTENSIONS
+
+  const mediaTypePath = getPathForMediaType(type)
+
   const uppy = new Uppy({
     id: 'mediaUpload',
     autoProceed: false,
@@ -82,7 +90,7 @@ function useCreateUppy(
   })
 
   uppy.use(XHR, {
-    endpoint: api.media.getUploadEndpoint(site?.sitename, friendlyDocType),
+    endpoint: api.media.getUploadEndpoint(site?.sitename, mediaTypePath),
     fieldName: 'original',
     formData: true,
     headers: getAuthHeaderIfTokenExists(),
@@ -99,12 +107,11 @@ function useCreateUppy(
 }
 
 // PROPTYPES
-const { array, func, number, string, object } = PropTypes
+const { func, number, oneOf, object } = PropTypes
 
 useCreateUppy.propTypes = {
   site: object,
-  docType: string,
-  extensionList: array,
+  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
   setSelectedMedia: func,
   maxItems: number,
 }
