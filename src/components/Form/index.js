@@ -1,6 +1,6 @@
-import AddMedia from 'components/Form/AddMedia'
 import Audience from 'components/Form/Audience'
 import AudioArrayField from 'components/Form/AudioArrayField'
+import AudioIdField from 'components/Form/AudioIdField'
 import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
@@ -28,9 +28,9 @@ import WysiwygField from 'components/Form/WysiwygField'
 import XButton from 'components/Form/XButton'
 
 export default {
-  AddMedia,
   Audience,
   AudioArrayField,
+  AudioIdField,
   Autocomplete,
   AutocompleteMultiple,
   CategoryArrayField,

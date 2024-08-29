@@ -3,24 +3,16 @@ import PropTypes from 'prop-types'
 import { Controller } from 'react-hook-form'
 
 // FPCC
-import AddMediaModal from 'components/AddMediaModal'
+import AddAudioModal from 'components/AddAudioModal'
 import MediaThumbnail from 'components/MediaThumbnail'
-import { getFriendlyDocType, isUUID } from 'common/utils/stringHelpers'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 
-function AddMedia({
-  label = '',
-  nameId,
-  helpText,
-  control,
-  type = IMAGE,
-  errors,
-}) {
+function AudioIdField({ label = '', nameId, helpText, control, errors }) {
   return (
-    <Fragment key={`${nameId}_AddMedia`}>
+    <Fragment key={`${nameId}_AudioIdField`}>
       <label className="block text-sm font-medium text-fv-charcoal">
         {label}
       </label>
@@ -30,7 +22,7 @@ function AddMedia({
         defaultValue=""
         control={control}
         render={({ field: { value, onChange } }) => (
-          <AddMediaButton value={value} onChange={onChange} type={type} />
+          <AudioIdFieldButton value={value} onChange={onChange} />
         )}
       />
       {helpText && (
@@ -41,47 +33,30 @@ function AddMedia({
   )
 }
 
-function AddMediaButton({ value, onChange, type }) {
+function AudioIdFieldButton({ value, onChange }) {
   const [modalOpen, setModalOpen] = useState(false)
 
-  const chooseMediaHandler = (id) => {
+  const updateSavedMedia = (id) => {
     if (isUUID(id[0])) {
       onChange(id[0])
     }
     setModalOpen(false)
   }
 
-  const onAddMediaClick = (event) => {
-    event.preventDefault()
-    if (value) {
-      onChange('')
-    } else {
-      setModalOpen(true)
-    }
-  }
   return value ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      {type === AUDIO && <MediaThumbnail.Audio id={value} />}
-      {type === IMAGE && (
-        <MediaThumbnail.Image
-          id={value}
-          imageStyles="object-cover pointer-events-none"
-        />
-      )}
-      {type === VIDEO && <MediaThumbnail.Video id={value} />}
-      <XButton onClickHandler={(event) => onAddMediaClick(event)} />
+      <MediaThumbnail.Audio id={value} />
+      <XButton onClickHandler={() => onChange('')} />
     </div>
   ) : (
-    <Fragment key="AddMediaButton">
+    <Fragment key="AudioIdFieldButton">
       <FieldButton
-        label={`Add ${getFriendlyDocType({ docType: type })}`}
-        onClickHandler={(event) => onAddMediaClick(event)}
+        label="Add Audio"
+        onClickHandler={() => setModalOpen(true)}
       />
-      <AddMediaModal.Container
-        isDashboard
+      <AddAudioModal.Container
         savedMedia={[value]}
-        updateSavedMedia={chooseMediaHandler}
-        type={type}
+        updateSavedMedia={updateSavedMedia}
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
         maxFiles={1}
@@ -91,19 +66,17 @@ function AddMediaButton({ value, onChange, type }) {
 }
 // PROPTYPES
 const { func, object, string } = PropTypes
-AddMedia.propTypes = {
+AudioIdField.propTypes = {
   helpText: string,
   label: string,
-  type: string,
   nameId: string.isRequired,
   control: object,
   errors: object,
 }
 
-AddMediaButton.propTypes = {
+AudioIdFieldButton.propTypes = {
   value: string,
   onChange: func,
-  type: string,
 }
 
-export default AddMedia
+export default AudioIdField

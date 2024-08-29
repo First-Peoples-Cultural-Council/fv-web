@@ -5,12 +5,7 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import {
-  AUDIO,
-  WIDGET_TEXTCONCISE,
-  FORMAT_DEFAULT,
-  PUBLIC,
-} from 'common/constants'
+import { WIDGET_TEXTCONCISE, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
@@ -85,10 +80,9 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           <div className="col-span-6">
-            <Form.AddMedia
+            <Form.AudioIdField
               label="Audio"
               nameId="audio"
-              type={AUDIO}
               control={control}
               errors={errors}
             />
