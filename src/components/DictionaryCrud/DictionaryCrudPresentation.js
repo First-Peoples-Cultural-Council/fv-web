@@ -9,7 +9,6 @@ import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
   AUDIO,
-  IMAGE,
   VIDEO,
   TYPE_WORD,
   TYPE_PHRASE,
@@ -221,19 +220,13 @@ function DictionaryCrudPresentation({
         return (
           <Fragment key={step}>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.ImageArrayField
                 label="Images"
                 nameId="relatedImages"
                 control={control}
-                register={register}
-                type={IMAGE}
+                errors={errors}
                 maxItems={10}
               />
-              {errors?.relatedImages && (
-                <div className="text-red-500">
-                  {errors?.relatedImages?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.MediaArrayField

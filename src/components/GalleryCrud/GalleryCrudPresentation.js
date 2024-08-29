@@ -101,19 +101,13 @@ function GalleryCrudPresentation({
             />
           </div>
           <div className="col-span-12">
-            <Form.MediaArrayField
+            <Form.ImageArrayField
               label="Gallery Images"
               nameId="galleryItems"
               control={control}
-              register={register}
-              type={IMAGE}
+              errors={errors}
               maxItems={50}
             />
-            {errors?.galleryItems && (
-              <div className="text-red-500">
-                {errors?.galleryItems?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons

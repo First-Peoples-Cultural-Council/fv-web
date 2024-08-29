@@ -4,7 +4,7 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import { AUDIO, IMAGE, VIDEO, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
+import { AUDIO, VIDEO, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
@@ -72,18 +72,13 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.MediaArrayField
+            <Form.ImageArrayField
               label="Image"
               nameId="relatedImages"
               control={control}
-              type={IMAGE}
+              errors={errors}
               maxItems={1}
             />
-            {errors?.relatedImages && (
-              <div className="text-red-500">
-                {errors?.relatedImages?.[0]?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.MediaArrayField

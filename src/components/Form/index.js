@@ -8,6 +8,7 @@ import FieldButton from 'components/Form/FieldButton'
 import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
+import ImageArrayField from 'components/Form/ImageArrayField'
 import MediaArrayField from 'components/Form/MediaArrayField'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
@@ -35,6 +36,7 @@ export default {
   FileUploadField,
   GalleryField,
   Header,
+  ImageArrayField,
   MediaArrayField,
   NextPrevious,
   RadioButtons,

@@ -5,7 +5,7 @@ import { EditorState } from 'draft-js'
 
 // FPCC
 import Form from 'components/Form'
-import { AUDIO, VIDEO, IMAGE } from 'common/constants'
+import { AUDIO, VIDEO } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import DeleteButton from 'components/DeleteButton'
@@ -111,16 +111,13 @@ function StoryPageForm({
           )}
         </div>
         <div className="col-span-12">
-          <Form.MediaArrayField
+          <Form.ImageArrayField
             label="Images"
             nameId="relatedImages"
             control={control}
-            type={IMAGE}
+            errors={errors}
             maxItems={1}
           />
-          {errors?.relatedImages && (
-            <div className="text-red-500">{errors?.relatedImages?.message}</div>
-          )}
         </div>
         <div className="col-span-12">
           <Form.TextArrayField
