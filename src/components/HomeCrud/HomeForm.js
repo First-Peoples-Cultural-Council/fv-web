@@ -15,8 +15,8 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   const defaultValues = {
     logoId: '',
     banner: {
-      docId: '',
-      docType: '',
+      id: '',
+      type: '',
     },
   }
 

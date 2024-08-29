@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
 import Modal from 'components/Modal'
+import AddImageModal from 'components/AddImageModal'
 import AddVideoModal from 'components/AddVideoModal'
 import { IMAGE, VIDEO } from 'common/constants'
 import { isUUID } from 'common/utils/stringHelpers'
@@ -13,8 +14,8 @@ import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 
 const DEFAULT_MEDIA_VALUE = {
-  docId: '',
-  docType: '',
+  id: '',
+  type: '',
 }
 
 function SelectOneMedia({ label, nameId, control, errors, helpText }) {
@@ -44,13 +45,13 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
 function SelectOneButton({ value, onChange }) {
   const [type, setType] = useState(null)
 
-  const [addVideoModalOpen, setAddVideoModalOpen] = useState(false)
+  const [addMediaModalOpen, setAddMediaModalOpen] = useState(false)
   const [mediaChoiceModalOpen, setMediaChoiceModalOpen] = useState(false)
 
   const resetMedia = (event) => {
     event.preventDefault()
     // Clear out values
-    if (value.docId) {
+    if (value.id) {
       setType(null)
       onChange(DEFAULT_MEDIA_VALUE)
     }
@@ -59,29 +60,29 @@ function SelectOneButton({ value, onChange }) {
   const chooseMediaHandler = (id) => {
     if (isUUID(id[0])) {
       const newMediaObj = {
-        docId: id[0],
-        docType: type,
+        id: id[0],
+        type,
       }
       onChange(newMediaObj)
     }
-    setAddVideoModalOpen(false)
+    setAddMediaModalOpen(false)
   }
 
-  const mediaChoiceButtonClicked = (docTypeChosen) => {
-    setType(docTypeChosen)
+  const mediaChoiceButtonClicked = (typeChosen) => {
+    setType(typeChosen)
     setMediaChoiceModalOpen(false)
-    setAddVideoModalOpen(true)
+    setAddMediaModalOpen(true)
   }
 
-  return value?.docId ? (
+  return value?.id ? (
     <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      {value.docType === IMAGE ? (
+      {value.type === IMAGE ? (
         <MediaThumbnail.Image
-          id={value?.docId}
+          id={value?.id}
           imageStyles="object-cover pointer-events-none"
         />
       ) : (
-        <MediaThumbnail.Video id={value?.docId} />
+        <MediaThumbnail.Video id={value?.id} />
       )}
       <XButton onClickHandler={(event) => resetMedia(event)} />
     </div>
@@ -114,14 +115,23 @@ function SelectOneButton({ value, onChange }) {
         </div>
       </Modal.Presentation>
 
-      <AddVideoModal.Container
-        savedMedia={[value]}
-        updateSavedMedia={chooseMediaHandler}
-        type={type}
-        modalOpen={addVideoModalOpen}
-        closeModal={() => setAddVideoModalOpen(false)}
-        maxItems={1}
-      />
+      {type === IMAGE ? (
+        <AddImageModal.Container
+          savedMedia={[value]}
+          updateSavedMedia={chooseMediaHandler}
+          modalOpen={addMediaModalOpen}
+          closeModal={() => setAddMediaModalOpen(false)}
+          maxFiles={1}
+        />
+      ) : (
+        <AddVideoModal.Container
+          savedMedia={[value]}
+          updateSavedMedia={chooseMediaHandler}
+          modalOpen={addMediaModalOpen}
+          closeModal={() => setAddMediaModalOpen(false)}
+          maxFiles={1}
+        />
+      )}
     </div>
   )
 }

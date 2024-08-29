@@ -24,8 +24,8 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
     bannerVideo: '',
     visibility: PUBLIC,
     banner: {
-      docId: '',
-      docType: '',
+      id: '',
+      type: '',
     },
   }
 

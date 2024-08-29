@@ -56,8 +56,11 @@ function AddMediaModalWrapper({
       closeHandler={closeModal}
       isDashboard
     >
-      <div className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-4">
-        <div id="AddMediaModalWrapper" className="h-full flex flex-col">
+      <div
+        id="AddMediaModalWrapper"
+        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-4"
+      >
+        <div className="h-full flex flex-col">
           <div>
             <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
               {selectedTab.title}

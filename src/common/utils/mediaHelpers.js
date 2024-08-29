@@ -59,14 +59,14 @@ export const getPathForMediaType = (type) => {
 export const selectOneMediaFormHelper = (formMediaObject) => {
   // Helper function to be used where a choice between
   // an image or video is given to add to a form
-  // Accepts an object with the properties docId and docType
+  // Accepts an object with the properties id and type
 
-  const docType = formMediaObject?.docType
-  switch (docType) {
+  const type = formMediaObject?.type
+  switch (type) {
     case IMAGE:
-      return { imageId: formMediaObject?.docId, videoId: '' }
+      return { imageId: formMediaObject?.id, videoId: '' }
     case VIDEO:
-      return { imageId: '', videoId: formMediaObject?.docId }
+      return { imageId: '', videoId: formMediaObject?.id }
     default:
       return { imageId: '', videoId: '' }
   }
@@ -76,14 +76,14 @@ export const selectOneMediaDataHelper = (imageObj, videoObj) => {
   // allow for either image or video
   if (imageObj?.id) {
     return {
-      docId: imageObj?.id,
-      docType: IMAGE,
+      id: imageObj?.id,
+      type: IMAGE,
     }
   }
   if (videoObj?.id) {
     return {
-      docId: videoObj?.id,
-      docType: VIDEO,
+      id: videoObj?.id,
+      type: VIDEO,
     }
   }
   return {}
