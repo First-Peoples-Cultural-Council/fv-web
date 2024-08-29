@@ -10,6 +10,7 @@ import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
 import ImageArrayField from 'components/Form/ImageArrayField'
+import ImageIdField from 'components/Form/ImageIdField'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
@@ -39,6 +40,7 @@ export default {
   GalleryField,
   Header,
   ImageArrayField,
+  ImageIdField,
   NextPrevious,
   RadioButtons,
   Select,
