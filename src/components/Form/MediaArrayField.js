@@ -12,6 +12,7 @@ import AddMediaModal from 'components/AddMediaModal'
 import api from 'services/api'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
+import ValidationError from 'components/Form/ValidationError'
 
 function MediaArrayField({
   label = '',
@@ -20,6 +21,7 @@ function MediaArrayField({
   control,
   type = IMAGE,
   maxItems = 3,
+  errors,
 }) {
   const { value, addItems, removeItem } = useIdArrayField(nameId, control)
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
@@ -143,6 +145,7 @@ function MediaArrayField({
             />
           </div>
         )}
+        <ValidationError errors={errors} nameId={nameId} />
       </div>
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
@@ -152,7 +155,7 @@ function MediaArrayField({
 }
 
 // PROPTYPES
-const { object, number, string } = PropTypes
+const { number, object, string } = PropTypes
 MediaArrayField.propTypes = {
   helpText: string,
   label: string,
@@ -160,6 +163,7 @@ MediaArrayField.propTypes = {
   nameId: string.isRequired,
   control: object,
   maxItems: number,
+  errors: object,
 }
 
 export default MediaArrayField
