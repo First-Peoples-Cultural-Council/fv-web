@@ -11,12 +11,12 @@ import { TYPE_AUDIO } from 'common/constants'
 function AddAudioModalContainer({
   savedMedia,
   updateSavedMedia,
-  maxFiles,
+  maxItems,
   modalOpen,
   closeModal,
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
-    useArrayStateManager({ maxItems: maxFiles })
+    useArrayStateManager({ maxItems })
 
   const tabOptions = [
     {
@@ -65,7 +65,7 @@ const { array, bool, func, number } = PropTypes
 AddAudioModalContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
-  maxFiles: number,
+  maxItems: number,
   closeModal: func,
   modalOpen: bool,
 }

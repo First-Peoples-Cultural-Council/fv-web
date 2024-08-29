@@ -11,12 +11,12 @@ import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 function AddImageModalContainer({
   savedMedia,
   updateSavedMedia,
-  maxFiles,
+  maxItems,
   modalOpen,
   closeModal,
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
-    useArrayStateManager({ maxItems: maxFiles })
+    useArrayStateManager({ maxItems })
 
   const tabOptions = [
     {
@@ -49,7 +49,7 @@ function AddImageModalContainer({
           <UploadVisualMedia
             setSelectedMedia={setSelectedItems}
             type={TYPE_IMAGE}
-            maxFiles={maxFiles}
+            maxItems={maxItems}
           />
         )}
         {selectedTab.id === 'search-tab' && (
@@ -70,7 +70,7 @@ const { array, bool, func, number } = PropTypes
 AddImageModalContainer.propTypes = {
   savedMedia: array,
   updateSavedMedia: func,
-  maxFiles: number,
+  maxItems: number,
   closeModal: func,
   modalOpen: bool,
 }

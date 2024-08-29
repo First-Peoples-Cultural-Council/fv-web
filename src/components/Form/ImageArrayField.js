@@ -57,7 +57,7 @@ function ImageArrayField({
               updateSavedMedia={selectItem}
               modalOpen={modalOpen}
               closeModal={closeModal}
-              maxFiles={maxItems}
+              maxItems={maxItems}
             />
           </div>
         )}
