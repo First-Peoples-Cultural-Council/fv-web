@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { AUDIO, VIDEO, TEAM } from 'common/constants'
+import { VIDEO, TEAM } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
 import { EditorState } from 'draft-js'
 
@@ -127,32 +127,23 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
               />
             </div>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.AudioArrayField
                 label="Audio"
                 nameId="relatedAudio"
                 control={control}
-                type={AUDIO}
+                errors={errors}
                 maxItems={3}
               />
-              {errors?.relatedAudio && (
-                <div className="text-red-500">
-                  {errors?.relatedAudio?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.MediaArrayField
                 label="Videos"
                 nameId="relatedVideos"
                 control={control}
+                errors={errors}
                 type={VIDEO}
                 maxItems={1}
               />
-              {errors?.relatedVideos && (
-                <div className="text-red-500">
-                  {errors?.relatedVideos?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.ImageArrayField

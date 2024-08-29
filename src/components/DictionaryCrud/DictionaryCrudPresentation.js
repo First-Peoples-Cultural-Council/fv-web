@@ -8,7 +8,6 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import {
-  AUDIO,
   VIDEO,
   TYPE_WORD,
   TYPE_PHRASE,
@@ -148,19 +147,13 @@ function DictionaryCrudPresentation({
               />
             </div>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.AudioArrayField
                 label="Audio"
                 nameId="relatedAudio"
                 control={control}
-                register={register}
-                type={AUDIO}
+                errors={errors}
                 maxItems={10}
               />
-              {errors?.relatedAudio && (
-                <div className="text-red-500">
-                  {errors?.relatedAudio?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.CategoryArrayField
@@ -233,15 +226,10 @@ function DictionaryCrudPresentation({
                 label="Videos"
                 nameId="relatedVideos"
                 control={control}
-                register={register}
+                errors={errors}
                 type={VIDEO}
                 maxItems={10}
               />
-              {errors?.relatedVideos && (
-                <div className="text-red-500">
-                  {errors?.relatedVideos?.message}
-                </div>
-              )}
             </div>
             {type === TYPE_WORD && (
               <>

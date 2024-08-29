@@ -8,7 +8,7 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { AUDIO, VIDEO, PUBLIC } from 'common/constants'
+import { VIDEO, PUBLIC } from 'common/constants'
 
 function SongCrudPresentation({
   backHandler,
@@ -119,19 +119,13 @@ function SongCrudPresentation({
             />
           </div>
           <div className="col-span-12">
-            <Form.MediaArrayField
+            <Form.AudioArrayField
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              register={register}
-              type={AUDIO}
+              errors={errors}
               maxItems={10}
             />
-            {errors?.relatedAudio && (
-              <div className="text-red-500">
-                {errors?.relatedAudio?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextTranslationArrayField
@@ -157,15 +151,10 @@ function SongCrudPresentation({
               label="Videos"
               nameId="relatedVideos"
               control={control}
-              register={register}
+              errors={errors}
               type={VIDEO}
               maxItems={10}
             />
-            {errors?.relatedVideos && (
-              <div className="text-red-500">
-                {errors?.relatedVideos?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextArrayField
