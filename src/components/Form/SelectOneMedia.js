@@ -20,11 +20,10 @@ const DEFAULT_MEDIA_VALUE = {
 
 function SelectOneMedia({ label, nameId, control, errors, helpText }) {
   return (
-    <div>
+    <div data-testid="SelectOneMedia">
       <label className="block text-sm font-medium text-fv-charcoal">
         {label}
       </label>
-
       <Controller
         id={nameId}
         name={nameId}
@@ -97,8 +96,13 @@ function SelectOneButton({ value, onChange }) {
         isOpen={mediaChoiceModalOpen}
         closeHandler={() => setMediaChoiceModalOpen(false)}
       >
-        <div className="mx-auto rounded-lg overflow-hidden bg-gray-50 p-8 m-8 mt-0">
-          <h2 className="mb-4">What kind of file do you want to add?</h2>
+        <div
+          id="media-choice-modal"
+          className="mx-auto rounded-lg overflow-hidden bg-gray-50 p-8"
+        >
+          <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
+            What kind of file do you want to add?
+          </h2>
           <div className="space-x-2">
             <FieldButton
               label="Add Image"
