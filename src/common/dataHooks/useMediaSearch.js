@@ -5,17 +5,22 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { AUDIO, IMAGE, VIDEO, TYPES, TYPE_MEDIA } from 'common/constants'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import {
+  AUDIO,
+  IMAGE,
+  VIDEO,
+  TYPES,
+  SORT,
+  SORT_CREATED_DESC,
+} from 'common/constants'
+import { getPathForMediaType } from 'common/utils/mediaHelpers'
 
-function MediaBrowserData({ docType }) {
+function useMediaSearch({ type }) {
   const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
 
-  const docTypePlural = getFriendlyDocType({ docType, plural: true })
-
-  const searchType = searchParams.get(TYPES) || TYPE_MEDIA
+  const path = getPathForMediaType(type)
 
   const searchParamsQuery = searchParams.get('q') || ''
   const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
@@ -25,8 +30,8 @@ function MediaBrowserData({ docType }) {
   // Add search Term
   const _searchParams = new URLSearchParams({
     q: searchTerm,
-    [TYPES]: searchType,
-    sort: searchTerm ? null : 'created_desc',
+    [TYPES]: type,
+    [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
   const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
@@ -42,11 +47,9 @@ function MediaBrowserData({ docType }) {
     event.preventDefault()
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
-      navigate(
-        `/${sitename}/dashboard/media/browser?types=${docType}&q=${searchInputValue}`,
-      )
+      navigate(`/${sitename}/dashboard/media/${path}?q=${searchInputValue}`)
     } else {
-      navigate(`/${sitename}/dashboard/media/browser?types=${docType}`)
+      navigate(`/${sitename}/dashboard/media/${path}`)
     }
   }
 
@@ -55,7 +58,7 @@ function MediaBrowserData({ docType }) {
       const firstFile = data?.pages?.[0]?.results?.[0]
       setCurrentFile(firstFile)
     }
-  }, [currentFile, data, docType])
+  }, [currentFile, data, type])
 
   useIntersectionObserver({
     target: loadRef,
@@ -84,14 +87,14 @@ function MediaBrowserData({ docType }) {
     currentFile,
     setCurrentFile,
     loadLabel: getLoadLabel(),
-    docTypePlural,
+    typePlural: path,
   }
 }
 
 const { oneOf } = PropTypes
 
-MediaBrowserData.propTypes = {
-  docType: oneOf([AUDIO, IMAGE, VIDEO]),
+useMediaSearch.propTypes = {
+  type: oneOf([AUDIO, IMAGE, VIDEO]),
 }
 
-export default MediaBrowserData
+export default useMediaSearch

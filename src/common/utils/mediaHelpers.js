@@ -8,6 +8,12 @@ import {
   MEDIUM,
   THUMBNAIL,
   DISPLAYABLE_PROPS_MEDIA,
+  TYPE_AUDIO,
+  AUDIO_PATH,
+  TYPE_IMAGE,
+  IMAGE_PATH,
+  TYPE_VIDEO,
+  VIDEO_PATH,
 } from 'common/constants'
 // NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
 export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
@@ -37,17 +43,30 @@ export const isDisplayablePropMedia = (property, value) =>
   (typeof value === 'string' || value instanceof String) &&
   DISPLAYABLE_PROPS_MEDIA.includes(property)
 
+export const getPathForMediaType = (type) => {
+  switch (type) {
+    case TYPE_AUDIO:
+      return AUDIO_PATH
+    case TYPE_IMAGE:
+      return IMAGE_PATH
+    case TYPE_VIDEO:
+      return VIDEO_PATH
+    default:
+      return ''
+  }
+}
+
 export const selectOneMediaFormHelper = (formMediaObject) => {
   // Helper function to be used where a choice between
   // an image or video is given to add to a form
-  // Accepts an object with the properties docId and docType
+  // Accepts an object with the properties id and type
 
-  const docType = formMediaObject?.docType
-  switch (docType) {
+  const type = formMediaObject?.type
+  switch (type) {
     case IMAGE:
-      return { imageId: formMediaObject?.docId, videoId: '' }
+      return { imageId: formMediaObject?.id, videoId: '' }
     case VIDEO:
-      return { imageId: '', videoId: formMediaObject?.docId }
+      return { imageId: '', videoId: formMediaObject?.id }
     default:
       return { imageId: '', videoId: '' }
   }
@@ -57,14 +76,14 @@ export const selectOneMediaDataHelper = (imageObj, videoObj) => {
   // allow for either image or video
   if (imageObj?.id) {
     return {
-      docId: imageObj?.id,
-      docType: IMAGE,
+      id: imageObj?.id,
+      type: IMAGE,
     }
   }
   if (videoObj?.id) {
     return {
-      docId: videoObj?.id,
-      docType: VIDEO,
+      id: videoObj?.id,
+      type: VIDEO,
     }
   }
   return {}

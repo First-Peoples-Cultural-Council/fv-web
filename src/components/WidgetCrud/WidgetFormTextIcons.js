@@ -4,12 +4,7 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import {
-  DOC_IMAGE,
-  WIDGET_TEXTICONS,
-  FORMAT_DEFAULT,
-  PUBLIC,
-} from 'common/constants'
+import { WIDGET_TEXTICONS, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
@@ -83,10 +78,9 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           <div className="col-span-6">
-            <Form.AddMedia
+            <Form.ImageIdField
               label="Image"
               nameId="image"
-              docType={DOC_IMAGE}
               control={control}
               errors={errors}
             />

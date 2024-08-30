@@ -1,5 +1,6 @@
-import AddMedia from 'components/Form/AddMedia'
 import Audience from 'components/Form/Audience'
+import AudioArrayField from 'components/Form/AudioArrayField'
+import AudioIdField from 'components/Form/AudioIdField'
 import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
@@ -8,7 +9,8 @@ import FieldButton from 'components/Form/FieldButton'
 import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
-import MediaArrayField from 'components/Form/MediaArrayField'
+import ImageArrayField from 'components/Form/ImageArrayField'
+import ImageIdField from 'components/Form/ImageIdField'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
@@ -20,12 +22,15 @@ import TextAreaField from 'components/Form/TextAreaField'
 import TextArrayField from 'components/Form/TextArrayField'
 import TextTranslationArrayField from 'components/Form/TextTranslationArrayField'
 import ValidationError from 'components/Form/ValidationError'
+import VideoArrayField from 'components/Form/VideoArrayField'
 import Visibility from 'components/Form/Visibility'
 import WysiwygField from 'components/Form/WysiwygField'
+import XButton from 'components/Form/XButton'
 
 export default {
-  AddMedia,
   Audience,
+  AudioArrayField,
+  AudioIdField,
   Autocomplete,
   AutocompleteMultiple,
   CategoryArrayField,
@@ -34,7 +39,8 @@ export default {
   FileUploadField,
   GalleryField,
   Header,
-  MediaArrayField,
+  ImageArrayField,
+  ImageIdField,
   NextPrevious,
   RadioButtons,
   Select,
@@ -46,6 +52,8 @@ export default {
   TextArrayField,
   TextTranslationArrayField,
   ValidationError,
+  VideoArrayField,
   Visibility,
   WysiwygField,
+  XButton,
 }

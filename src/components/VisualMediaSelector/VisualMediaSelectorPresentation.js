@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-function MediaItemsLayoutVisual({
+
+function VisualMediaSelectorPresentation({
   data,
   infiniteScroll,
-  currentFile,
-  setCurrentFile,
   loadLabel,
-  selection = false,
   savedMedia,
   selectedMedia,
   mediaSelectHandler,
@@ -28,14 +26,16 @@ function MediaItemsLayoutVisual({
   }
 
   return (
-    <div id="MediaItemsLayoutVisual" className="overflow-y-auto h-full">
-      <div className={selection ? 'h-3/4 overflow-y-auto' : ''}>
+    <div
+      data-testid="VisualMediaSelectorPresentation"
+      className="overflow-y-auto h-full"
+    >
+      <div className="h-3/4 overflow-y-auto">
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
           {data?.pages !== undefined &&
             data?.pages?.[0]?.results?.length > 0 &&
-            data?.pages?.map((page, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <React.Fragment key={index}>
+            data?.pages?.map((page) => (
+              <React.Fragment key={page?.pageNumber}>
                 {page.results.map((doc, elementIndex) => {
                   if (savedMedia?.some((elemId) => elemId === doc?.id)) {
                     // If a media file is already attached to the document
@@ -44,28 +44,17 @@ function MediaItemsLayoutVisual({
                   }
                   return (
                     <li key={doc?.id} className="relative">
-                      <div
-                        className={`${
-                          doc?.id === currentFile?.id
-                            ? 'ring-4 ring-offset-2 ring-secondary'
-                            : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary'
-                        } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden`}
-                      >
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
                         <img
                           src={doc?.thumbnail}
                           alt={doc?.title}
-                          className={`${
-                            doc?.id === currentFile?.id
-                              ? ''
-                              : 'group-hover:opacity-75'
-                          } object-cover pointer-events-none`}
+                          className="group-hover:opacity-75 object-cover pointer-events-none"
                         />
                         <button
+                          data-testid="media-select-btn"
                           type="button"
                           className="absolute inset-0 focus:outline-none"
-                          {...(selection
-                            ? { onClick: () => mediaSelectHandler(doc?.id) } // Selecting a file from the dialogBox to attach to document
-                            : { onClick: () => setCurrentFile(doc) })} // For MediaBrowser, this presents the mediaDetails in the sidebar
+                          onClick={() => mediaSelectHandler(doc?.id)}
                           onMouseEnter={() => {
                             handleHover(elementIndex, false)
                           }}
@@ -86,6 +75,7 @@ function MediaItemsLayoutVisual({
                       )}
                       {selectedMedia?.some((elemId) => elemId === doc?.id) && (
                         <button
+                          data-testid="media-select-btn"
                           type="button"
                           onClick={() => mediaSelectHandler(doc?.id)}
                           onMouseEnter={() => {
@@ -114,6 +104,7 @@ function MediaItemsLayoutVisual({
         </ul>
         <div className="pt-10 text-center text-fv-charcoal font-medium">
           <button
+            data-testid="load-btn"
             type="button"
             className={!hasNextPage ? 'cursor-text' : ''}
             onClick={() => fetchNextPage()}
@@ -126,18 +117,16 @@ function MediaItemsLayoutVisual({
     </div>
   )
 }
+
 // PROPTYPES
-const { func, array, object, string, bool } = PropTypes
-MediaItemsLayoutVisual.propTypes = {
+const { array, func, object, string } = PropTypes
+VisualMediaSelectorPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
-  currentFile: object,
-  setCurrentFile: func,
   loadLabel: string,
-  selection: bool,
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
 }
 
-export default MediaItemsLayoutVisual
+export default VisualMediaSelectorPresentation

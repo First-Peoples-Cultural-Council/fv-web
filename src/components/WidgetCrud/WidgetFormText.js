@@ -6,8 +6,6 @@ import * as yup from 'yup'
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
 import {
-  AUDIO,
-  IMAGE,
   WIDGET_TEXT,
   FORMAT_LEFT,
   FORMAT_RIGHT,
@@ -93,19 +91,17 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           <div className="col-span-6">
-            <Form.AddMedia
+            <Form.ImageIdField
               label="Image"
               nameId="image"
-              docType={IMAGE}
               control={control}
               errors={errors}
             />
           </div>
           <div className="col-span-6">
-            <Form.AddMedia
+            <Form.AudioIdField
               label="Audio"
               nameId="audio"
-              docType={AUDIO}
               control={control}
               errors={errors}
             />

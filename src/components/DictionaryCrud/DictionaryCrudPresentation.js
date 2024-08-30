@@ -7,15 +7,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
-import {
-  AUDIO,
-  IMAGE,
-  VIDEO,
-  TYPE_WORD,
-  TYPE_PHRASE,
-  PUBLIC,
-  WARNING,
-} from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE, PUBLIC, WARNING } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -149,19 +141,13 @@ function DictionaryCrudPresentation({
               />
             </div>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.AudioArrayField
                 label="Audio"
                 nameId="relatedAudio"
                 control={control}
-                register={register}
-                type={AUDIO}
+                errors={errors}
                 maxItems={10}
               />
-              {errors?.relatedAudio && (
-                <div className="text-red-500">
-                  {errors?.relatedAudio?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.CategoryArrayField
@@ -221,34 +207,22 @@ function DictionaryCrudPresentation({
         return (
           <Fragment key={step}>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.ImageArrayField
                 label="Images"
                 nameId="relatedImages"
                 control={control}
-                register={register}
-                type={IMAGE}
+                errors={errors}
                 maxItems={10}
               />
-              {errors?.relatedImages && (
-                <div className="text-red-500">
-                  {errors?.relatedImages?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
-              <Form.MediaArrayField
+              <Form.VideoArrayField
                 label="Videos"
                 nameId="relatedVideos"
                 control={control}
-                register={register}
-                type={VIDEO}
+                errors={errors}
                 maxItems={10}
               />
-              {errors?.relatedVideos && (
-                <div className="text-red-500">
-                  {errors?.relatedVideos?.message}
-                </div>
-              )}
             </div>
             {type === TYPE_WORD && (
               <>

@@ -4,7 +4,7 @@ import * as yup from 'yup'
 
 // FPCC
 import Form from 'components/Form'
-import { AUDIO, IMAGE, VIDEO, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
+import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
@@ -58,46 +58,31 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             )}
           </div>
           <div className="col-span-12">
-            <Form.MediaArrayField
+            <Form.AudioArrayField
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              type={AUDIO}
+              errors={errors}
               maxItems={3}
             />
-            {errors?.relatedAudio && (
-              <div className="text-red-500">
-                {errors?.relatedAudio?.[0]?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.MediaArrayField
+            <Form.ImageArrayField
               label="Image"
               nameId="relatedImages"
               control={control}
-              type={IMAGE}
+              errors={errors}
               maxItems={1}
             />
-            {errors?.relatedImages && (
-              <div className="text-red-500">
-                {errors?.relatedImages?.[0]?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12 sm:col-span-6">
-            <Form.MediaArrayField
+            <Form.VideoArrayField
               label="Video"
               nameId="relatedVideos"
               control={control}
-              type={VIDEO}
+              errors={errors}
               maxItems={1}
             />
-            {errors?.relatedVideos && (
-              <div className="text-red-500">
-                {errors?.relatedVideos?.[0]?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.TextField

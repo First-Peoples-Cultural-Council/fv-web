@@ -1,0 +1,3 @@
+import AddMediaModalWrapper from 'components/AddMediaModalWrapper/AddMediaModalWrapper'
+
+export default AddMediaModalWrapper

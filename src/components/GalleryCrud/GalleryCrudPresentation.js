@@ -7,7 +7,6 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
-import { IMAGE } from 'common/constants'
 
 function GalleryCrudPresentation({
   backHandler,
@@ -92,28 +91,21 @@ function GalleryCrudPresentation({
             />
           </div>
           <div className="col-span-6">
-            <Form.AddMedia
+            <Form.ImageIdField
               label="Cover image"
               nameId="coverImage"
-              docType={IMAGE}
               control={control}
               errors={errors}
             />
           </div>
           <div className="col-span-12">
-            <Form.MediaArrayField
+            <Form.ImageArrayField
               label="Gallery Images"
               nameId="galleryItems"
               control={control}
-              register={register}
-              type={IMAGE}
+              errors={errors}
               maxItems={50}
             />
-            {errors?.galleryItems && (
-              <div className="text-red-500">
-                {errors?.galleryItems?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons

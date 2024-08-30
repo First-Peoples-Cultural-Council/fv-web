@@ -7,7 +7,7 @@ import TextArrayField from 'components/Form/TextArrayField'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
-function VideoLinks({
+function VideoLinkForm({
   relatedVideoLinks,
   appendVideoLinks,
   closeModal,
@@ -39,7 +39,7 @@ function VideoLinks({
     'my-2 w-1/5 border-2 border-wordText rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
 
   return (
-    <form onReset={reset}>
+    <form data-testid="VideoLinkForm" onReset={reset}>
       <div className="col-span-12">
         {relatedVideoLinks?.length < maxLinks ? (
           <div className="max-w-screen-lg mx-auto">
@@ -57,6 +57,7 @@ function VideoLinks({
               disableExistingEdits
             />
             <button
+              data-testid="add-video-link-btn"
               type="button"
               className={`${buttonStyles} bg-secondary hover:bg-secondary-dark text-white`}
               onClick={handleSubmit(submitHandler)}
@@ -77,11 +78,11 @@ function VideoLinks({
 
 const { array, func, number } = PropTypes
 
-VideoLinks.propTypes = {
+VideoLinkForm.propTypes = {
   relatedVideoLinks: array,
   appendVideoLinks: func,
   closeModal: func,
   maxLinks: number,
 }
 
-export default VideoLinks
+export default VideoLinkForm

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import { IMAGE } from 'common/constants'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -16,8 +15,8 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   const defaultValues = {
     logoId: '',
     banner: {
-      docId: '',
-      docType: '',
+      id: '',
+      type: '',
     },
   }
 
@@ -34,10 +33,9 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
         <form onReset={reset}>
           <div className="mt-6 grid grid-cols-12 gap-6">
             <div className="col-span-6">
-              <Form.AddMedia
+              <Form.ImageIdField
                 label="Add logo"
                 nameId="logoId"
-                docType={IMAGE}
                 control={control}
                 helpText="Recommended size: 512 x 512"
                 errors={errors}

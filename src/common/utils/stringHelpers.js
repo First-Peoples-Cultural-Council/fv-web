@@ -55,6 +55,7 @@ export const getFriendlyDocType = ({
   let friendly = ''
   switch (docType) {
     case DOC_AUDIO:
+    case TYPE_AUDIO:
     case 'audio':
       friendly = 'audio'
       break
@@ -65,6 +66,7 @@ export const getFriendlyDocType = ({
       friendly = plural ? 'categories' : 'category'
       break
     case DOC_IMAGE:
+    case TYPE_IMAGE:
     case 'image':
     case 'images':
       friendly = plural ? 'images' : 'image'
@@ -77,6 +79,7 @@ export const getFriendlyDocType = ({
       friendly = plural ? 'phrases' : 'phrase'
       break
     case DOC_VIDEO:
+    case TYPE_VIDEO:
     case 'video':
     case 'videos':
       friendly = plural ? 'videos' : 'video'
