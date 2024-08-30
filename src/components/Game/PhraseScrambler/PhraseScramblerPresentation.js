@@ -79,7 +79,7 @@ function PhraseScramblerPresentation({
                     <div
                       // eslint-disable-next-line react/no-array-index-key
                       key={`selectedWordsRow-${_rowIdx}`} // NOSONAR
-                      className="flex flex-row "
+                      className="flex md:flex-row flex-col"
                     >
                       {row?.map((wordObj) => (
                         <button
