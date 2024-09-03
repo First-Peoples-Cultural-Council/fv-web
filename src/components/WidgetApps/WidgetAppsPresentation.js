@@ -9,8 +9,8 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function WidgetAppsPresentation({ header, appLogo, subtitle, urls }) {
   return (
-    <div className="flex">
-      <div className="grid grid-cols-3 gap-4 bg-tertiaryA mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
+    <div className="flex bg-tertiaryA">
+      <div className="grid grid-cols-3 gap-4 mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
         <div className="col-span-2 space-y-10">
           <h1 className="text-4xl font-bold">{header}</h1>
           <p className="text-base font-medium">{subtitle}</p>
