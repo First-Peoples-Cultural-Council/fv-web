@@ -10,6 +10,7 @@ import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
+import HelpText from 'components/Form/HelpText'
 
 function EntryArrayField({
   label = '',
@@ -57,9 +58,7 @@ function EntryArrayField({
           />
         )}
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
 
       <ValidationError errors={errors} nameId={nameId} />
 

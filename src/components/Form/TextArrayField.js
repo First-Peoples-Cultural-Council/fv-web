@@ -6,6 +6,7 @@ import { useFieldArray } from 'react-hook-form'
 import getIcon from 'common/utils/getIcon'
 import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 import FieldButton from 'components/Form/FieldButton'
+import HelpText from 'components/Form/HelpText'
 function TextArrayField({
   label = '',
   nameId,
@@ -99,9 +100,7 @@ function TextArrayField({
           )}
         </div>
       )}
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
     </Fragment>
   )
 }

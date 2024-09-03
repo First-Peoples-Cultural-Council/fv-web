@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function TextField({
   label = '',
@@ -39,9 +40,7 @@ function TextField({
           } mt-1 block w-full border border-gray-300 rounded-lg shadow-sm py-4 px-3 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
         />
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

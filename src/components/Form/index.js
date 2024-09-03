@@ -9,6 +9,7 @@ import FieldButton from 'components/Form/FieldButton'
 import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
+import HelpText from 'components/Form/HelpText'
 import ImageArrayField from 'components/Form/ImageArrayField'
 import ImageIdField from 'components/Form/ImageIdField'
 import NextPrevious from 'components/Form/NextPrevious'
@@ -39,6 +40,7 @@ export default {
   FileUploadField,
   GalleryField,
   Header,
+  HelpText,
   ImageArrayField,
   ImageIdField,
   NextPrevious,

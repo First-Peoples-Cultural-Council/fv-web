@@ -12,6 +12,7 @@ import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
+import HelpText from 'components/Form/HelpText'
 
 const DEFAULT_MEDIA_VALUE = {
   id: '',
@@ -33,9 +34,7 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
           <SelectOneButton value={value} onChange={onChange} />
         )}
       />
-      {helpText && (
-        <div className="mt-2 text-sm text-fv-charcoal-light">{helpText}</div>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </div>
   )

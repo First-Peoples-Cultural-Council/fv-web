@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function TextAreaField({
   defaultValue = '',
@@ -31,10 +32,7 @@ function TextAreaField({
           defaultValue={defaultValue}
         />
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
-
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

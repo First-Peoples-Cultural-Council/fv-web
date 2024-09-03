@@ -11,6 +11,7 @@ import api from 'services/api'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function VideoArrayField({
   label = '',
@@ -134,9 +135,7 @@ function VideoArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
     </Fragment>
   )
 }

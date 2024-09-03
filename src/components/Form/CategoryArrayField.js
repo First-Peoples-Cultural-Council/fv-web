@@ -9,6 +9,7 @@ import CategoriesBrowser from 'components/CategoriesBrowser'
 import FieldButton from 'components/Form/FieldButton'
 import XButton from 'components/Form/XButton'
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function CategoryArrayField({
   control,
@@ -51,9 +52,7 @@ function CategoryArrayField({
           <FieldButton label="Add category" onClickHandler={openModal} />
         )}
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
 
       <ValidationError errors={errors} nameId={nameId} />
 

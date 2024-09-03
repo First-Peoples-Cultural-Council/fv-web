@@ -9,6 +9,7 @@ import AddAudioModal from 'components/AddAudioModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function AudioArrayField({
   label = '',
@@ -60,9 +61,7 @@ function AudioArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
     </Fragment>
   )
 }

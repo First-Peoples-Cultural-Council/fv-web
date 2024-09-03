@@ -9,6 +9,7 @@ import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
+import HelpText from 'components/Form/HelpText'
 
 function AudioIdField({ label = '', nameId, helpText, control, errors }) {
   return (
@@ -25,9 +26,7 @@ function AudioIdField({ label = '', nameId, helpText, control, errors }) {
           <AudioIdFieldButton value={value} onChange={onChange} />
         )}
       />
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

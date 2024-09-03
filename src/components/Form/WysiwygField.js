@@ -8,6 +8,7 @@ import 'draft-js/dist/Draft.css'
 import WysiwygControls from 'components/Form/WysiwygControls'
 import { safeJsonParse } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function WysiwygField({
   label = '',
@@ -95,10 +96,7 @@ function WysiwygField({
           />
         </div>
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
-
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

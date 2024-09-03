@@ -11,6 +11,7 @@ import Gallery from 'components/Gallery'
 import { useGalleries } from 'common/dataHooks/useGalleries'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
+import HelpText from 'components/Form/HelpText'
 
 function GalleryField({ label, nameId, helpText, control, errors }) {
   return (
@@ -27,9 +28,7 @@ function GalleryField({ label, nameId, helpText, control, errors }) {
           <AddGalleryButton value={value} onChange={onChange} />
         )}
       />
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
