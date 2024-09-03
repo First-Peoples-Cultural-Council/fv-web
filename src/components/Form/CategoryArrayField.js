@@ -8,14 +8,18 @@ import Modal from 'components/Modal'
 import CategoriesBrowser from 'components/CategoriesBrowser'
 import FieldButton from 'components/Form/FieldButton'
 import XButton from 'components/Form/XButton'
+import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function CategoryArrayField({
-  label,
-  nameId,
-  helpText,
-  maxItems = 6,
-  register,
   control,
+  errors,
+  helpText,
+  label,
+  maxItems = 6,
+  nameId,
+  register,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -29,10 +33,8 @@ function CategoryArrayField({
 
   return (
     <Fragment key={`${nameId}_CategoryArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="space-y-2 mt-1">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="space-y-2">
         <ul className="space-y-2">
           {fields.map((item, index) => (
             <li key={item.id} className="btn-contained mr-1">
@@ -49,9 +51,10 @@ function CategoryArrayField({
           <FieldButton label="Add category" onClickHandler={openModal} />
         )}
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
+
+      <ValidationError errors={errors} nameId={nameId} />
+
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen h-screen mx-auto rounded-lg overflow-hidden">
           <CategoriesBrowser.Container chooseDocHandler={selectItem} />
@@ -64,11 +67,12 @@ function CategoryArrayField({
 // PROPTYPES
 const { func, number, object, string } = PropTypes
 CategoryArrayField.propTypes = {
+  control: object,
+  errors: object,
   helpText: string,
   label: string,
   maxItems: number,
   nameId: string.isRequired,
-  control: object,
   register: func,
 }
 

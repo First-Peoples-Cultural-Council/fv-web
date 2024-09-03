@@ -12,6 +12,8 @@ import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
+import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 const DEFAULT_MEDIA_VALUE = {
   id: '',
@@ -21,9 +23,7 @@ const DEFAULT_MEDIA_VALUE = {
 function SelectOneMedia({ label, nameId, control, errors, helpText }) {
   return (
     <div data-testid="SelectOneMedia">
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
+      <FieldLabel nameId={nameId} text={label} />
       <Controller
         id={nameId}
         name={nameId}
@@ -33,9 +33,7 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
           <SelectOneButton value={value} onChange={onChange} />
         )}
       />
-      {helpText && (
-        <div className="mt-2 text-sm text-fv-charcoal-light">{helpText}</div>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </div>
   )
@@ -74,7 +72,7 @@ function SelectOneButton({ value, onChange }) {
   }
 
   return value?.id ? (
-    <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
+    <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       {value.type === IMAGE ? (
         <MediaThumbnail.Image
           id={value?.id}

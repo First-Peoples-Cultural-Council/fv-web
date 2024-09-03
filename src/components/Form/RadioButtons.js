@@ -5,6 +5,7 @@ import { Controller } from 'react-hook-form'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
 
 function RadioButtons({
   errors,
@@ -67,9 +68,7 @@ function RadioButtons({
           </RadioGroup>
         )}
       />
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

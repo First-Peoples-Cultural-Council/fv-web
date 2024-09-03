@@ -9,6 +9,8 @@ import AddImageModal from 'components/AddImageModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function ImageArrayField({
   label = '',
@@ -26,10 +28,8 @@ function ImageArrayField({
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div data-testid="ImageArrayField" className="space-y-2 mt-2">
+      <FieldLabel nameId={nameId} text={label} />
+      <div data-testid="ImageArrayField" className="space-y-2">
         <div>
           {value?.length > 0 &&
             value?.map((imageId) => (
@@ -63,9 +63,7 @@ function ImageArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
     </Fragment>
   )
 }

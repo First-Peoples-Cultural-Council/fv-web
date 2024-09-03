@@ -6,9 +6,11 @@ import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
 import EntryArrayField from 'components/Form/EntryArrayField'
 import FieldButton from 'components/Form/FieldButton'
+import FieldLabel from 'components/Form/FieldLabel'
 import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
+import HelpText from 'components/Form/HelpText'
 import ImageArrayField from 'components/Form/ImageArrayField'
 import ImageIdField from 'components/Form/ImageIdField'
 import NextPrevious from 'components/Form/NextPrevious'
@@ -36,9 +38,11 @@ export default {
   CategoryArrayField,
   EntryArrayField,
   FieldButton,
+  FieldLabel,
   FileUploadField,
   GalleryField,
   Header,
+  HelpText,
   ImageArrayField,
   ImageIdField,
   NextPrevious,

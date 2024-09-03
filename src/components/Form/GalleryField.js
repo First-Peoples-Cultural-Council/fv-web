@@ -11,13 +11,13 @@ import Gallery from 'components/Gallery'
 import { useGalleries } from 'common/dataHooks/useGalleries'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
+import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function GalleryField({ label, nameId, helpText, control, errors }) {
   return (
     <Fragment key={`${nameId}_GalleryField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
+      <FieldLabel nameId={nameId} text={label} />
       <Controller
         id={nameId}
         name={nameId}
@@ -27,9 +27,7 @@ function GalleryField({ label, nameId, helpText, control, errors }) {
           <AddGalleryButton value={value} onChange={onChange} />
         )}
       />
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
@@ -47,7 +45,7 @@ function AddGalleryButton({ value, onChange }) {
   }
 
   return value ? (
-    <div className="mt-1 inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
+    <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       <Gallery.Container view="thumbnail" id={value} />
       <XButton onClickHandler={() => onChange('')} />
     </div>

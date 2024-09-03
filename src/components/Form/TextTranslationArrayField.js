@@ -4,6 +4,8 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function TextTranslationArrayField({
   label = '',
@@ -21,10 +23,8 @@ function TextTranslationArrayField({
 
   return (
     <Fragment key={`${nameId}_TextTranslationArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="space-y-2 mt-2">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="space-y-2">
         <ul className="space-y-4">
           {fields.map((item, index) => (
             <li key={item.id}>
@@ -99,9 +99,7 @@ function TextTranslationArrayField({
           </button>
         )}
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
     </Fragment>
   )
 }

@@ -156,12 +156,8 @@ function DictionaryCrudPresentation({
                 control={control}
                 register={register}
                 docCountLimit={8}
+                errors={errors}
               />
-              {errors?.categories && (
-                <div className="text-red-500">
-                  {errors?.categories?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.EntryArrayField
@@ -174,12 +170,8 @@ function DictionaryCrudPresentation({
                 )}`}
                 maxItems={10}
                 types={[TYPE_WORD, TYPE_PHRASE]}
+                errors={errors}
               />
-              {errors?.relatedEntries && (
-                <div className="text-red-500">
-                  {errors?.relatedEntries?.message}
-                </div>
-              )}
             </div>
             <div className="col-span-12">
               <Form.TextArrayField
@@ -232,12 +224,8 @@ function DictionaryCrudPresentation({
                     nameId="partOfSpeech"
                     control={control}
                     options={partsOfSpeech}
+                    errors={errors}
                   />
-                  {errors?.partOfSpeech && (
-                    <div className="text-red-500">
-                      {errors?.partOfSpeech?.message}
-                    </div>
-                  )}
                 </div>
                 <div className="col-span-12">
                   <Form.TextArrayField

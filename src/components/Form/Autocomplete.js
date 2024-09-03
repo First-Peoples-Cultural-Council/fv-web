@@ -5,10 +5,14 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import ValidationError from 'components/Form/ValidationError'
+import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function Autocomplete({
   control,
   disabled = false,
+  errors,
   helpText,
   label = '',
   nameId,
@@ -31,10 +35,8 @@ function Autocomplete({
 
   return (
     <Fragment key="FormAutocomplete">
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="w-full mt-1">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="w-full">
         <Controller
           control={control}
           defaultValue=""
@@ -118,9 +120,8 @@ function Autocomplete({
           )}
         />
       </div>
-      {helpText && (
-        <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
-      )}
+      <HelpText text={helpText} />
+      <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
 }
@@ -128,6 +129,7 @@ function Autocomplete({
 const { any, arrayOf, bool, object, shape, string } = PropTypes
 Autocomplete.propTypes = {
   disabled: bool,
+  errors: object,
   label: string,
   nameId: string.isRequired,
   options: arrayOf(shape({ label: string, value: any })),
