@@ -46,16 +46,12 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Related content"
               nameId="relatedDictionaryEntries"
               control={control}
+              errors={errors}
               register={register}
               helpText="Words and phrases related to your alphabet character"
               maxItems={10}
               types={[TYPE_WORD, TYPE_PHRASE]}
             />
-            {errors?.relatedDictionaryEntries && (
-              <div className="text-red-500">
-                {errors?.relatedDictionaryEntries?.[0]?.message}
-              </div>
-            )}
           </div>
           <div className="col-span-12">
             <Form.AudioArrayField

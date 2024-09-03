@@ -8,14 +8,16 @@ import Modal from 'components/Modal'
 import CategoriesBrowser from 'components/CategoriesBrowser'
 import FieldButton from 'components/Form/FieldButton'
 import XButton from 'components/Form/XButton'
+import ValidationError from 'components/Form/ValidationError'
 
 function CategoryArrayField({
-  label,
-  nameId,
-  helpText,
-  maxItems = 6,
-  register,
   control,
+  errors,
+  helpText,
+  label,
+  maxItems = 6,
+  nameId,
+  register,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -52,6 +54,9 @@ function CategoryArrayField({
       {helpText && (
         <p className="mt-2 text-sm text-fv-charcoal-light">{helpText}</p>
       )}
+
+      <ValidationError errors={errors} nameId={nameId} />
+
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen h-screen mx-auto rounded-lg overflow-hidden">
           <CategoriesBrowser.Container chooseDocHandler={selectItem} />
@@ -64,11 +69,12 @@ function CategoryArrayField({
 // PROPTYPES
 const { func, number, object, string } = PropTypes
 CategoryArrayField.propTypes = {
+  control: object,
+  errors: object,
   helpText: string,
   label: string,
   maxItems: number,
   nameId: string.isRequired,
-  control: object,
   register: func,
 }
 
