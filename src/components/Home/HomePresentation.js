@@ -91,14 +91,15 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
             id="HomeBannerNoMedia"
             className="bg-gradient-to-b from-word to-word-dark"
           >
-            <div className="flex flex-col md:flex-row items-center justify-center mx-auto max-w-7xl p-3 md:p-5">
+            <div className="flex flex-col md:flex-row md:min-h-96 items-center justify-center mx-auto p-3 md:p-5">
               <div className={logoTitleColumnStyling}>
-                <div className="flex mb-2">
-                  <SiteLogo.Presentation />
-                </div>
+                <SiteLogo.Presentation
+                  additionalStyling={`${logoTitleColumnStyling} mb-2`}
+                />
+
                 <div className={titleStyling}>{site?.title}</div>
               </div>
-              <div className="flex items-center justify-center w-full md:w-2/3 xl:w-3/4 md:h-24">
+              <div className="flex items-center justify-center w-full md:w-2/3">
                 <div className="w-11/12 md:w-5/6 xl:w-3/4">
                   <SearchSiteForm.Container />
                 </div>
