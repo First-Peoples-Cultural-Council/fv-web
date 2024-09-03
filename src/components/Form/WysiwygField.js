@@ -9,6 +9,7 @@ import WysiwygControls from 'components/Form/WysiwygControls'
 import { safeJsonParse } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function WysiwygField({
   label = '',
@@ -64,28 +65,25 @@ function WysiwygField({
 
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="block w-full bg-white overflow-hidden shadow-sm mt-1 sm:text-sm border border-gray-300 rounded-lg">
-        {toolbar !== 'none' && (
-          <div className="flex w-full border-b border-gray-200 text-xl text-gray-600">
-            {toolbar?.includes('INLINESTYLES') && (
-              <WysiwygControls.InlineStyleToolbar
-                onChange={onEditorChange}
-                editorState={editorState}
-                toolbar={toolbar}
-              />
-            )}
-            {toolbar?.includes('BLOCKSTYLES') && (
-              <WysiwygControls.BlockStyleToolbar
-                onChange={onEditorChange}
-                editorState={editorState}
-                toolbar={toolbar}
-              />
-            )}
-          </div>
-        )}
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="block w-full bg-white overflow-hidden shadow-sm sm:text-sm border border-gray-300 rounded-lg">
+        <div className="flex w-full border-b border-gray-200 text-xl text-gray-600">
+          {toolbar?.includes('INLINESTYLES') && (
+            <WysiwygControls.InlineStyleToolbar
+              onChange={onEditorChange}
+              editorState={editorState}
+              toolbar={toolbar}
+            />
+          )}
+          {toolbar?.includes('BLOCKSTYLES') && (
+            <WysiwygControls.BlockStyleToolbar
+              onChange={onEditorChange}
+              editorState={editorState}
+              toolbar={toolbar}
+            />
+          )}
+        </div>
+
         <div className="w-full h-full px-4 wysiwyg max-h-96 overflow-y-scroll">
           <Editor
             editorState={editorState}

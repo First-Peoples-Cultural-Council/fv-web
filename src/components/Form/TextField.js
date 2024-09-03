@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function TextField({
   label = '',
@@ -21,25 +22,18 @@ function TextField({
 
   return (
     <Fragment key={`${nameId}_TextField`}>
-      <label
-        htmlFor={nameId}
-        className="block text-sm font-medium text-fv-charcoal"
-      >
-        {label}
-      </label>
-      <div className="mt-1">
-        <input
-          id={nameId}
-          name={nameId}
-          {...register(nameId)}
-          type="text"
-          disabled={disabled}
-          onKeyDown={handleKeyDown}
-          className={`${
-            disabled ? 'opacity-50' : ''
-          } mt-1 block w-full border border-gray-300 rounded-lg shadow-sm py-4 px-3 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
-        />
-      </div>
+      <FieldLabel nameId={nameId} text={label} />
+      <input
+        id={nameId}
+        name={nameId}
+        {...register(nameId)}
+        type="text"
+        disabled={disabled}
+        onKeyDown={handleKeyDown}
+        className={`${
+          disabled ? 'opacity-50' : ''
+        } block w-full border border-gray-300 rounded-lg shadow-sm py-4 px-3 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
+      />
       <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>

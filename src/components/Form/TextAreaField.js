@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function TextAreaField({
   defaultValue = '',
@@ -16,22 +17,15 @@ function TextAreaField({
 }) {
   return (
     <Fragment key={`${nameId}_TextAreaField`}>
-      <label
-        htmlFor={nameId}
-        className="block text-sm font-medium text-fv-charcoal"
-      >
-        {label}
-      </label>
-      <div className="mt-1">
-        <textarea
-          id={nameId}
-          name={nameId}
-          {...register(nameId)}
-          rows={rows}
-          className="shadow-sm focus:ring-secondary focus:border-secondary mt-1 block w-full border border-gray-300 rounded-lg"
-          defaultValue={defaultValue}
-        />
-      </div>
+      <FieldLabel nameId={nameId} text={label} />
+      <textarea
+        id={nameId}
+        name={nameId}
+        {...register(nameId)}
+        rows={rows}
+        className="shadow-sm focus:ring-secondary focus:border-secondary block w-full border border-gray-300 rounded-lg"
+        defaultValue={defaultValue}
+      />
       <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>

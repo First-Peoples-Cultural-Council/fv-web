@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function Autocomplete({
   control,
@@ -33,10 +34,8 @@ function Autocomplete({
 
   return (
     <Fragment key="FormAutocomplete">
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="w-full mt-1">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="w-full">
         <Controller
           control={control}
           defaultValue=""

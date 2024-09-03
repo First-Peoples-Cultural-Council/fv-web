@@ -10,6 +10,7 @@ import FieldButton from 'components/Form/FieldButton'
 import XButton from 'components/Form/XButton'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function CategoryArrayField({
   control,
@@ -32,10 +33,8 @@ function CategoryArrayField({
 
   return (
     <Fragment key={`${nameId}_CategoryArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="space-y-2 mt-1">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="space-y-2">
         <ul className="space-y-2">
           {fields.map((item, index) => (
             <li key={item.id} className="btn-contained mr-1">

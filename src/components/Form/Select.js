@@ -6,14 +6,13 @@ import PropTypes from 'prop-types'
 import Listbox from 'components/Listbox'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function Select({ control, helpText, label = '', nameId, options, errors }) {
   return (
     <Fragment key="FormSelect">
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="mt-4 w-96">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="w-96">
         <Controller
           control={control}
           defaultValue=""

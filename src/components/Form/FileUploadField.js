@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function FileUploadField({
   label = '',
@@ -13,24 +14,17 @@ function FileUploadField({
 }) {
   return (
     <Fragment key={`${nameId}_FileUploadField`}>
-      <label
-        htmlFor={nameId}
-        className="block text-sm font-medium text-fv-charcol"
-      >
-        {label}
-      </label>
-      <div className="mt-1">
-        <input
-          id={nameId}
-          name={nameId}
-          {...register(nameId)}
-          type="file"
-          className={`${
-            disabled ? 'opacity-50' : ''
-          } mt-1 block w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 
+      <FieldLabel nameId={nameId} text={label} />
+      <input
+        id={nameId}
+        name={nameId}
+        {...register(nameId)}
+        type="file"
+        className={`${
+          disabled ? 'opacity-50' : ''
+        } block w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 
           focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
-        />
-      </div>
+      />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

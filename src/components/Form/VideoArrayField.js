@@ -12,6 +12,7 @@ import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function VideoArrayField({
   label = '',
@@ -75,10 +76,8 @@ function VideoArrayField({
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div data-testid="VideoArrayField" className="space-y-2 mt-2">
+      <FieldLabel nameId={nameId} text={label} />
+      <div data-testid="VideoArrayField" className="space-y-2">
         {value?.length > 0 && (
           <div>
             <p className="block text-sm font-small text-fv-charcoal italic">

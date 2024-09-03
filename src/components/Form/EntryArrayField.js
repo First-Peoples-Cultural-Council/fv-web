@@ -11,6 +11,7 @@ import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
 import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 
 function EntryArrayField({
   label = '',
@@ -34,10 +35,8 @@ function EntryArrayField({
 
   return (
     <Fragment key={`${nameId}_EntryArrayField`}>
-      <label className="block text-sm font-medium text-fv-charcoal">
-        {label}
-      </label>
-      <div className="space-y-2 mt-2">
+      <FieldLabel nameId={nameId} text={label} />
+      <div className="space-y-2">
         <ul className="space-y-1">
           {fields.map((field, index) => (
             <li key={field.id} className="btn-contained mr-1">
