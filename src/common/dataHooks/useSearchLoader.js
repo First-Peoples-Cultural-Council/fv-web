@@ -90,25 +90,23 @@ function useSearchLoader({ searchParams }) {
   }
 
   // Fetch search results
-  const response = useInfiniteQuery(
-    [SEARCH, sitename, searchParamString],
-    ({ pageParam = 1 }) =>
+  const response = useInfiniteQuery({
+    queryKey: [SEARCH, sitename, searchParamString],
+    queryFn: ({ pageParam = 1 }) =>
       api.search[sitename ? 'get' : 'getFVWideSearch']({
         sitename,
         searchParams: searchParamString,
         pageParam,
       }),
-    {
-      enabled: !!sitename,
-      getNextPageParam: (currentPage) => currentPage.next,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      select: (responseData) => ({
-        pages: pagesDataAdaptor(responseData.pages),
-        pageParams: responseData.pageParams,
-      }),
-    },
-  )
+    enabled: !!sitename,
+    getNextPageParam: (currentPage) => currentPage.next,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    select: (responseData) => ({
+      pages: pagesDataAdaptor(responseData.pages),
+      pageParams: responseData.pageParams,
+    }),
+  })
 
   const infiniteScroll = {
     fetchNextPage: response?.fetchNextPage,
