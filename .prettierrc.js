@@ -1,4 +1,5 @@
 module.exports = {
+  $schema: 'http://json.schemastore.org/prettierrc',
   arrowParens: 'always',
   bracketSpacing: true,
   bracketSameLine: false,
@@ -12,4 +13,5 @@ module.exports = {
   htmlWhitespaceSensitivity: 'css',
   ignorePath: '.eslintignore',
   jsxSingleQuote: false,
+  endOfLine: 'lf',
 }
