@@ -14,11 +14,11 @@ import {
 
 export function useCharacter({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [CHARACTERS, sitename],
-    () => api.characters.get({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [CHARACTERS, sitename],
+    queryFn: () => api.characters.get({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   const relatedMedia = edit
     ? relatedMediaForEditing({ item: response?.data })
     : relatedMediaForViewing({ item: response?.data })
@@ -38,11 +38,11 @@ export function useCharacter({ id, edit = false }) {
 
 export function useCharacters() {
   const { sitename } = useParams()
-  const response = useQuery(
-    [CHARACTERS, sitename],
-    () => api.characters.getAll({ sitename }),
-    { enabled: !!sitename },
-  )
+  const response = useQuery({
+    queryKey: [CHARACTERS, sitename],
+    queryFn: () => api.characters.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
   const formattedResults = response?.data?.results?.map((character) => ({
     id: character?.id,
     title: character?.title,

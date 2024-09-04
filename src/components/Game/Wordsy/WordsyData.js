@@ -30,15 +30,15 @@ function WordsyData({ kids }) {
     _searchParams.append(KIDS, kids)
   }
 
-  const { data, isFetching } = useQuery(
-    [WORDSY, sitename],
-    () =>
+  const { data, isFetching } = useQuery({
+    queryKey: [WORDSY, sitename],
+    queryFn: () =>
       api.gameContent.getWordsyConfig({
         sitename,
         searchParams: _searchParams.toString(),
       }),
-    { enabled: !!sitename },
-  )
+    ...{ enabled: !!sitename },
+  })
 
   useEffect(() => {
     const updatedLanguageConfig = {

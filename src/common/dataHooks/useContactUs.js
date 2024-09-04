@@ -9,11 +9,11 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 
 export function useContactUsEmailList() {
   const { sitename } = useParams()
-  const response = useQuery(
-    [CONTACT_US, sitename],
-    () => api.mail.get({ sitename }),
-    { enabled: !!sitename },
-  )
+  const response = useQuery({
+    queryKey: [CONTACT_US, sitename],
+    queryFn: () => api.mail.get({ sitename }),
+    ...{ enabled: !!sitename },
+  })
 
   const emailList = response?.data?.[0]?.emailList
   const emailListAsString = emailList

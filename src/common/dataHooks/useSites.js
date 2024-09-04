@@ -11,21 +11,21 @@ import { useSiteDispatch } from 'context/SiteContext'
 
 export function useSite() {
   const { sitename } = useParams()
-  const response = useQuery(
-    [SITES, sitename],
-    () => api.sites.get({ sitename }),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!sitename,
-    },
-  )
+  const response = useQuery({
+    queryKey: [SITES, sitename],
+    queryFn: () => api.sites.get({ sitename }),
+    ...{ enabled: !!sitename },
+  })
   const formattedSiteData = siteAdaptor({ siteData: response?.data })
 
   return { ...response, data: formattedSiteData }
 }
 
 export function useSites() {
-  const allSitesResponse = useQuery([SITES], () => api.sites.getAll())
+  const allSitesResponse = useQuery({
+    queryKey: [SITES],
+    queryFn: () => api.sites.getAll(),
+  })
   const formattedSitesData = languagesListAdaptor({
     languagesData: allSitesResponse?.data,
   })

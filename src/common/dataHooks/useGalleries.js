@@ -13,11 +13,11 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 
 export function useGallery({ id }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [GALLERIES, sitename, id],
-    () => api.galleries.get({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [GALLERIES, sitename, id],
+    queryFn: () => api.galleries.get({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   const dataToEdit = galleryForEditing({
     item: response?.data,
   })
@@ -31,13 +31,11 @@ export function useGallery({ id }) {
 export function useGalleries() {
   const { sitename } = useParams()
 
-  const response = useQuery(
-    [GALLERIES, sitename],
-    () => api.galleries.getAll({ sitename }),
-    {
-      enabled: !!sitename,
-    },
-  )
+  const response = useQuery({
+    queryKey: [GALLERIES, sitename],
+    queryFn: () => api.galleries.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
 
   return {
     ...response,

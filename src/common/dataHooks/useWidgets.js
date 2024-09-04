@@ -12,11 +12,11 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 export function useWidget({ id }) {
   const { sitename } = useParams()
 
-  const response = useQuery(
-    [WIDGETS, sitename, id],
-    () => api.widgets.get({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [WIDGETS, sitename, id],
+    queryFn: () => api.widgets.get({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   return {
     ...response,
     data: widgetAdaptor({ widgetData: response?.data, sitename }),
@@ -29,11 +29,11 @@ export function useWidgets() {
   const { isSuperAdmin } = user
   const editableWidgets = getEditableWidgetsForUser(isSuperAdmin)
 
-  const response = useQuery(
-    [WIDGETS, sitename],
-    () => api.widgets.getAll({ sitename }),
-    { enabled: !!sitename },
-  )
+  const response = useQuery({
+    queryKey: [WIDGETS, sitename],
+    queryFn: () => api.widgets.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
   const formattedWidgets = response?.data?.results?.map((widget) => {
     const formattedWidget = widgetAdaptor({ widgetData: widget, sitename })
     return {

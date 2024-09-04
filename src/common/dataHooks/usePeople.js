@@ -8,21 +8,21 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 
 export function usePerson({ id }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [PEOPLE, sitename, id],
-    () => api.people.get({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [PEOPLE, sitename, id],
+    queryFn: () => api.people.get({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   return response
 }
 
 export function usePeople() {
   const { sitename } = useParams()
-  const response = useQuery(
-    [PEOPLE, sitename],
-    () => api.people.getAll({ sitename }),
-    { enabled: !!sitename },
-  )
+  const response = useQuery({
+    queryKey: [PEOPLE, sitename],
+    queryFn: () => api.people.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
   return response
 }
 

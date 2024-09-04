@@ -17,11 +17,11 @@ import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
 export function useStories() {
   const { sitename } = useParams()
 
-  const response = useQuery(
-    [STORIES, sitename],
-    () => api.stories.getAll({ sitename }),
-    { enabled: !!sitename },
-  )
+  const response = useQuery({
+    queryKey: [STORIES, sitename],
+    queryFn: () => api.stories.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
 
   const formatted = response?.data?.results?.map((item) =>
     storySummaryAdaptor({ item }),
@@ -34,11 +34,11 @@ export function useStory({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery(
-    [STORIES, sitenameToSend, id],
-    () => api.stories.get({ sitename: sitenameToSend, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [STORIES, sitenameToSend, id],
+    queryFn: () => api.stories.get({ sitename: sitenameToSend, id }),
+    ...{ enabled: !!id },
+  })
 
   const formatted = edit
     ? storyForEditing({ item: response?.data })

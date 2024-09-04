@@ -80,20 +80,17 @@ function PhraseScramblerData({ kids }) {
     _searchParams.append(KIDS, kids)
   }
 
-  const { data, isFetching, refetch } = useQuery(
-    // Fetching only phrase at a time
-    [SEARCH, sitename],
-    () =>
+  const { data, isFetching, refetch } = useQuery({
+    queryKey: [SEARCH, sitename],
+    queryFn: () =>
       api.search.get({
         sitename,
         searchParams: _searchParams.toString(),
         pageParam: 1,
-        perPage: 1,
+        perPage: 1, // Fetching one phrase at a time
       }),
-    {
-      enabled: !!sitename,
-    },
-  )
+    ...{ enabled: !!sitename },
+  })
 
   const generateInputData = () => {
     const newPhrase = data?.results?.[0]?.entry

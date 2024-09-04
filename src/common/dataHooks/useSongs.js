@@ -47,14 +47,11 @@ export function useSong({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery(
-    [SONGS, sitenameToSend, id],
-    () => api.songs.get({ sitename: sitenameToSend, id }),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!id,
-    },
-  )
+  const response = useQuery({
+    queryKey: [SONGS, sitenameToSend, id],
+    queryFn: () => api.songs.get({ sitename: sitenameToSend, id }),
+    ...{ enabled: !!id },
+  })
 
   const formattedSong = edit
     ? songForEditing({ item: response?.data })
