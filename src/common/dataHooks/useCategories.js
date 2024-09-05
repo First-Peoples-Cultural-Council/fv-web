@@ -9,11 +9,11 @@ import { categoryForApi } from 'common/dataAdaptors/categoriesAdaptors'
 
 export function useCategory({ id }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [CATEGORIES, sitename, id],
-    () => api.categories.get({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [CATEGORIES, sitename, id],
+    queryFn: () => api.categories.get({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   return {
     ...response,
     data: { ...response?.data, parentId: response?.data?.parent?.id },
@@ -22,14 +22,11 @@ export function useCategory({ id }) {
 
 export function useCategories() {
   const { sitename } = useParams()
-  const response = useQuery(
-    [CATEGORIES, sitename],
-    () => api.categories.getAll({ sitename }),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!sitename,
-    },
-  )
+  const response = useQuery({
+    queryKey: [CATEGORIES, sitename],
+    queryFn: () => api.categories.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
   const allCategories = []
   response?.data?.results?.forEach((category) => {
     allCategories.push({

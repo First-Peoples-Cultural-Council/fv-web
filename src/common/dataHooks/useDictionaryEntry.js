@@ -17,11 +17,11 @@ export function useDictionaryEntry({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery(
-    [DICTIONARY, sitenameToSend, id],
-    () => api.dictionary.get({ sitename: sitenameToSend, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [DICTIONARY, sitenameToSend, id],
+    queryFn: () => api.dictionary.get({ sitename: sitenameToSend, id }),
+    ...{ enabled: !!id },
+  })
   const formattedEntry = edit
     ? entryForEditing({ item: response?.data })
     : entryForViewing({ item: response?.data })

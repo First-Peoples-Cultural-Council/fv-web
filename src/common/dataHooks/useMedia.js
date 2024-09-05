@@ -43,31 +43,31 @@ const MEDIA_UPDATE_APIS = {
 
 export function useAudioObject({ id }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [AUDIO_PATH, sitename, id],
-    () => api.media.getAudio({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [AUDIO_PATH, sitename, id],
+    queryFn: () => api.media.getAudio({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   return response?.data
 }
 
 export function useImageObject({ id }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [IMAGE_PATH, sitename, id],
-    () => api.media.getImage({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [IMAGE_PATH, sitename, id],
+    queryFn: () => api.media.getImage({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   return response?.data
 }
 
 export function useVideoObject({ id }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [VIDEO_PATH, sitename, id],
-    () => api.media.getVideo({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [VIDEO_PATH, sitename, id],
+    queryFn: () => api.media.getVideo({ sitename, id }),
+    ...{ enabled: !!id },
+  })
   return response?.data
 }
 
@@ -77,11 +77,11 @@ export function useMediaObject({ id, mediaType }) {
   const mediaPath = MEDIA_PATHS[mediaType]
   const mediaApi = MEDIA_APIS[mediaType]
 
-  const response = useQuery(
-    [mediaPath, sitename, id],
-    () => mediaApi({ sitename, id }),
-    { enabled: !!id },
-  )
+  const response = useQuery({
+    queryKey: [mediaPath, sitename, id],
+    queryFn: () => mediaApi({ sitename, id }),
+    ...{ enabled: !!id },
+  })
 
   return {
     ...response,

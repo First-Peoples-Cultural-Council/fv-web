@@ -7,9 +7,10 @@ import { useParams } from 'react-router-dom'
 
 export function useStats() {
   const { sitename } = useParams()
-  const response = useQuery([STATS, sitename], () =>
-    api.stats.get({ sitename }),
-  )
+  const response = useQuery({
+    queryKey: [STATS, sitename],
+    queryFn: () => api.stats.get({ sitename }),
+  })
   const types = ['words', 'phrases', 'songs', 'stories']
   const temporal = response?.data?.temporal
   const aggregate = response?.data?.aggregate

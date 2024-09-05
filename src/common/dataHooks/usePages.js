@@ -14,11 +14,11 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 
 export function usePage({ pageSlug }) {
   const { sitename } = useParams()
-  const response = useQuery(
-    [PAGES, sitename, pageSlug],
-    () => api.pages.get({ sitename, slug: pageSlug }),
-    { enabled: !!pageSlug },
-  )
+  const response = useQuery({
+    queryKey: [PAGES, sitename, pageSlug],
+    queryFn: () => api.pages.get({ sitename, slug: pageSlug }),
+    ...{ enabled: !!pageSlug },
+  })
 
   const widgets = response?.data?.widgets
     ? widgetListAdaptor({
@@ -33,13 +33,11 @@ export function usePage({ pageSlug }) {
 export function usePages() {
   const { sitename } = useParams()
 
-  const response = useQuery(
-    [PAGES, sitename],
-    () => api.pages.getAll({ sitename }),
-    {
-      enabled: !!sitename,
-    },
-  )
+  const response = useQuery({
+    queryKey: [PAGES, sitename],
+    queryFn: () => api.pages.getAll({ sitename }),
+    ...{ enabled: !!sitename },
+  })
 
   const formattedPages = response?.data?.results?.map((page) => ({
     id: page?.id,

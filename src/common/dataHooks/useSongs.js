@@ -21,18 +21,15 @@ import useAuthCheck from 'common/hooks/useAuthCheck'
 export function useSongs() {
   const { sitename } = useParams()
 
-  const allSongsResponse = useInfiniteQuery(
-    [SONGS, sitename],
-    ({ pageParam = 1 }) =>
+  const allSongsResponse = useInfiniteQuery({
+    queryKey: [SONGS, sitename],
+    queryFn: ({ pageParam = 1 }) =>
       api.songs.getAll({
         sitename,
         pageParam,
       }),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!sitename,
-    },
-  )
+    enabled: !!sitename,
+  })
   const formattedResponse = allSongsResponse?.data?.pages?.map((page) => ({
     results: page?.results?.map((result) => songForViewing({ item: result })),
   }))
@@ -47,14 +44,11 @@ export function useSong({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery(
-    [SONGS, sitenameToSend, id],
-    () => api.songs.get({ sitename: sitenameToSend, id }),
-    {
-      // The query will not execute until the sitename exists
-      enabled: !!id,
-    },
-  )
+  const response = useQuery({
+    queryKey: [SONGS, sitenameToSend, id],
+    queryFn: () => api.songs.get({ sitename: sitenameToSend, id }),
+    ...{ enabled: !!id },
+  })
 
   const formattedSong = edit
     ? songForEditing({ item: response?.data })

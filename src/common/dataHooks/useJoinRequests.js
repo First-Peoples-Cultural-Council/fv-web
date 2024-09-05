@@ -38,17 +38,16 @@ export function useJoinRequestCreate(options = {}) {
       properties,
     })
   }
-  const _options = {
-    ...options,
+
+  const mutation = useMutation({
     mutationFn: createJoinRequest,
     onSuccess: (response) => {
       queryClient.invalidateQueries({
         queryKey: [JOIN_REQUESTS, response?.site?.slug],
       })
     },
-  }
-
-  const mutation = useMutation(_options)
+    ...options,
+  })
 
   return mutation
 }

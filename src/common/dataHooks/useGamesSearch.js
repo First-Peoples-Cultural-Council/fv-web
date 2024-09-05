@@ -34,18 +34,16 @@ export function useParachuteSearch({ perPage, kids }) {
   }
   const searchParamString = _searchParams.toString()
 
-  const response = useQuery(
-    [SEARCH, sitename],
-    () =>
+  const response = useQuery({
+    queryKey: [SEARCH, sitename],
+    queryFn: () =>
       api.search.getParachute({
         sitename,
         searchParams: searchParamString,
         perPage,
       }),
-    {
-      enabled: !!sitename,
-    },
-  )
+    ...{ enabled: !!sitename },
+  })
 
   const getPuzzles = () => {
     // If no words are found during the search then return an array with a single empty puzzle
