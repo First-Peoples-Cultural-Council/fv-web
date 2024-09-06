@@ -53,7 +53,7 @@ function PhraseScramblerPresentation({
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
         {translations?.length && jumbledWords?.length ? (
           <div>
-            <div className="mx-auto mt-16 w-1/2 md:w-2/3 sm:w-full rounded-lg bg-white shadow-md border-2 border-gray-50">
+            <div className="mx-auto mt-16 w-full rounded-lg bg-white shadow-md border-2 border-gray-50">
               <div className="px-4 py-5 sm:p-6" data-testid="card-content">
                 <div className="header" data-testid="translations">
                   {translations?.map((translation, index) => (
@@ -130,9 +130,7 @@ function PhraseScramblerPresentation({
               </div>
               <div
                 data-testid="card-footer"
-                className={`flex flex-row bg-gray-50 px-4 py-4 sm:px-6 ${
-                  !gameCompleted ? 'justify-end' : 'justify-center'
-                }`}
+                className="flex flex-row bg-gray-50 px-4 py-4 sm:px-6 justify-center"
               >
                 {gameStatus === 'Won' && (
                   <div>
@@ -155,6 +153,7 @@ function PhraseScramblerPresentation({
                 {gameStatus === 'Lost' && (
                   <div className="flex flex-row justify-around w-3/4">
                     <button
+                      data-testid="TryAgainButton"
                       type="button"
                       onClick={() => resetGame()}
                       className="inline font-bold py-2 pl-4 pr-6 border-gray-200 shadow-md rounded-md"
@@ -182,6 +181,7 @@ function PhraseScramblerPresentation({
                 {!gameCompleted && (
                   <div data-testid="action-buttons">
                     <button
+                      data-testid="checkButton"
                       type="button"
                       onClick={() => checkAnswer()}
                       className={checkAnswerButtonStyling}
@@ -189,6 +189,7 @@ function PhraseScramblerPresentation({
                       Check
                     </button>
                     <button
+                      data-testid="resetButton"
                       type="button"
                       onClick={() => resetGame()}
                       className={baseButtonStyling}
@@ -200,6 +201,7 @@ function PhraseScramblerPresentation({
               </div>
             </div>
             <button
+              data-testid="loadButton"
               type="button"
               onClick={() => newGame()}
               className={`${checkAnswerButtonStyling} mt-4 py-4 px-8`}
