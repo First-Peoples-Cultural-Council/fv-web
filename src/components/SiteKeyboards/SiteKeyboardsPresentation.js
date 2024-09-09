@@ -5,14 +5,17 @@ import Widget from 'components/Widget'
 
 function SiteKeyboardsPresentation({ title, widgets }) {
   return (
-    <div data-testid="SiteKeyboardsPresentation" className="justify-center max-w-screen-lg px-4 lg:px-0 mx-auto">
+    <div
+      data-testid="SiteKeyboardsPresentation"
+      className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto"
+    >
       {widgets?.map((widget) => (
         <div key={widget?.id} className="flex lg:my-4">
           <Widget.Container data={widget} />
         </div>
       ))}
       <div>
-        <section className="wysiwyg pb-4 lg:pb-10">
+        <section className="wysiwyg">
           <h2>{`${title} keyboards let you type in your language!`}</h2>
           <p>
             Many languages have alphabets with letters that are not available on the standard English keyboard. To type
