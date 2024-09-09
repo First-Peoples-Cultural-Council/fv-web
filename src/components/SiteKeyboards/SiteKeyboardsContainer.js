@@ -7,11 +7,7 @@ import SiteKeyboardsData from 'components/SiteKeyboards/SiteKeyboardsData'
 function SiteKeyboardsContainer() {
   const { title, widgets } = SiteKeyboardsData()
 
-  return (
-    <div>
-      <SiteKeyboardsPresentation title={title} widgets={widgets} />
-    </div>
-  )
+  return <SiteKeyboardsPresentation title={title} widgets={widgets} />
 }
 
 export default SiteKeyboardsContainer
