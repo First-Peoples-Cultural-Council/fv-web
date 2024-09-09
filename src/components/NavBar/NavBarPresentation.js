@@ -11,26 +11,15 @@ import UserMenu from 'components/UserMenu'
 import JoinModalButton from 'components/JoinModalButton'
 import getIcon from 'common/utils/getIcon'
 
-function NavBarPresentation({
-  isHome,
-  isSearchPage,
-  mobileNavbarOpen,
-  openCloseMobileNavbar,
-  site,
-  siteLoading,
-}) {
+function NavBarPresentation({ isHome, isSearchPage, mobileNavbarOpen, openCloseMobileNavbar, site, siteLoading }) {
   const menuData = site?.menu || {}
 
   const generateMenu = (menu) => (
-    <NavBarPresentationMenu
-      key={`NavBarMenu_${menu?.id}`}
-      menuItemData={menu}
-      sitename={site?.sitename}
-    />
+    <NavBarPresentationMenu key={`NavBarMenu_${menu?.id}`} menuItemData={menu} sitename={site?.sitename} />
   )
 
   const fvlogo = isHome
-    ? getIcon('FVLogo', 'h-10 w-auto')
+    ? getIcon('FVLogo', 'h-10 w-auto fill-current text-white')
     : getIcon('FVShortLogo', 'h-10 w-auto')
 
   return (
@@ -71,12 +60,8 @@ function NavBarPresentation({
                 onClick={() => openCloseMobileNavbar()}
                 className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
               >
-                <span className="sr-only">
-                  {mobileNavbarOpen ? 'Close menu' : 'Open menu'}
-                </span>
-                {mobileNavbarOpen
-                  ? getIcon('Close', 'h-6 w-6')
-                  : getIcon('HamburgerMenu', 'h-6 w-6')}
+                <span className="sr-only">{mobileNavbarOpen ? 'Close menu' : 'Open menu'}</span>
+                {mobileNavbarOpen ? getIcon('Close', 'h-6 w-6') : getIcon('HamburgerMenu', 'h-6 w-6')}
               </button>
             </div>
           </div>
