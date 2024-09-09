@@ -15,7 +15,7 @@ function SiteAppsPresentation() {
       className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto"
     >
       <div className="flex lg:my-4">
-        <WidgetApps.Container />
+        <WidgetApps.Presentation />
       </div>
 
       <section>
