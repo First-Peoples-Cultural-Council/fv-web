@@ -12,7 +12,7 @@ function WidgetAppsPresentation() {
     <div className="flex bg-tertiaryA">
       <div className="grid grid-cols-3 gap-4 mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
         <div className="col-span-2 space-y-4">
-          <h1 className="text-4xl font-bold">Download the {site?.title} Language App!</h1>
+          <h1 className="text-3xl font-bold">Download the {site?.title} Language App!</h1>
           <p className="text-base font-medium">
             Browse words and phrases in the dictionary, practice with flashcards, bookmark content and more with the{' '}
             {site?.title} mobile app!
