@@ -10,15 +10,12 @@ function SiteAppsPresentation() {
   const headerStyle = 'border-b border-gray-500 font-bold mb-5 pb-5 text-2xl text-primary'
 
   return (
-    <div
-      data-testid="SiteAppsPresentation"
-      className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto"
-    >
-      <div className="flex lg:my-4">
+    <div data-testid="SiteAppsPresentation">
+      <div className="lg:my-4">
         <WidgetApps.Presentation />
       </div>
 
-      <section>
+      <section className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto">
         <h2 className={headerStyle}>{`The ${site?.title} app lets you access your language on-the-go!`}</h2>
         <p className="pb-8">
           The wealth of language data uploaded onto the {site?.title} FirstVoices language site can now also be accessed

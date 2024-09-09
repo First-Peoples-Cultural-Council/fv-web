@@ -1,6 +1,7 @@
 import React from 'react'
 
 // FPCC
+import SectionTitle from 'components/SectionTitle'
 import { useSiteStore } from 'context/SiteContext'
 
 function WidgetAppsPresentation() {
@@ -9,10 +10,12 @@ function WidgetAppsPresentation() {
   const pwaUrl = `https://${site?.sitename}.firstvoicesapp.com/`
 
   return (
-    <div className="flex bg-tertiaryA">
-      <div className="grid grid-cols-3 gap-4 mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
+    <section className="py-3 md:py-6 bg-white">
+      <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
+        <SectionTitle.Presentation title={`Download the ${site?.title} Language App`} />
+      </div>
+      <div className="grid grid-cols-3 gap-4 mx-auto max-w-screen-lg">
         <div className="col-span-2 space-y-4">
-          <h1 className="text-3xl font-bold">Download the {site?.title} Language App!</h1>
           <p className="text-base font-medium">
             Browse words and phrases in the dictionary, practice with flashcards, bookmark content and more with the{' '}
             {site?.title} mobile app!
@@ -47,7 +50,7 @@ function WidgetAppsPresentation() {
           />
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
