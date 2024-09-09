@@ -40,10 +40,10 @@ function WidgetAppsPresentation() {
         </div>
         <div className="col-span-1 flex items-center">
           <img
-            className="h-32 lg:h-52 w-auto shadow-2xl rounded-lg mx-auto border-8 border-white float-right "
+            className="h-32 lg:h-52 w-32 lg:w-52 shadow-2xl rounded-lg mx-auto border-8 border-white float-right "
             src={appLogoSrc}
             loading="lazy"
-            alt="App Logo"
+            alt={`${site?.title} App Logo`}
           />
         </div>
       </div>
