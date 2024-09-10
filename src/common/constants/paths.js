@@ -1,5 +1,4 @@
 /* Paths for APIs */
-
 export const CATEGORIES = 'categories'
 export const CHARACTERS = 'characters'
 export const CONTACT_US = 'contact-us'
@@ -29,6 +28,7 @@ export const VIDEO_PATH = 'videos'
 // GAMES
 export const WORDSY = 'wordsy'
 
-// FRONTEND PATHS
+// FRONTEND ONLY PATHS
 export const PHRASES = 'phrases'
 export const WORDS = 'words'
+export const MEDIA = 'media'

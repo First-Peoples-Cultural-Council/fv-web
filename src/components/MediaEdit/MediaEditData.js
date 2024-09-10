@@ -1,12 +1,16 @@
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
 import { useMediaObject, useMediaUpdate } from 'common/dataHooks/useMedia'
+import { getPathForMediaType } from 'common/utils/mediaHelpers'
+import { MEDIA } from 'common/constants'
 
 function MediaEditData({ mediaType }) {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
+  const { sitename } = useParams()
   const mediaId = searchParams.get('id')
+  const mediaTypePath = getPathForMediaType(mediaType)
 
   const { data, isLoading } = useMediaObject({
     id: mediaId,
@@ -15,7 +19,7 @@ function MediaEditData({ mediaType }) {
 
   const { onSubmit: updateEntry } = useMediaUpdate({ mediaType })
   const submitHandler = (formData) => updateEntry(formData)
-  const backHandler = () => navigate(`../../media/browser?types=${mediaType}`)
+  const backHandler = () => navigate(`/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`)
 
   return {
     isLoading,
