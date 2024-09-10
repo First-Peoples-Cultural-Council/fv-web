@@ -3,25 +3,10 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import {
-  AUDIO,
-  AUDIO_PATH,
-  IMAGE,
-  IMAGE_PATH,
-  VIDEO,
-  VIDEO_PATH,
-} from 'common/constants'
-import {
-  mediaItemForEditing,
-  mediaItemForApi,
-} from 'common/dataAdaptors/mediaAdaptors'
+import { AUDIO, AUDIO_PATH, IMAGE, IMAGE_PATH, VIDEO, VIDEO_PATH, MEDIA } from 'common/constants'
+import { mediaItemForEditing, mediaItemForApi } from 'common/dataAdaptors/mediaAdaptors'
+import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import api from 'services/api'
-
-const MEDIA_PATHS = {
-  [AUDIO]: AUDIO_PATH,
-  [IMAGE]: IMAGE_PATH,
-  [VIDEO]: VIDEO_PATH,
-}
 
 const MEDIA_APIS = {
   [AUDIO]: api.media.getAudio,
@@ -74,7 +59,7 @@ export function useVideoObject({ id }) {
 export function useMediaObject({ id, mediaType }) {
   // General function to fetch details of all media types
   const { sitename } = useParams()
-  const mediaPath = MEDIA_PATHS[mediaType]
+  const mediaPath = getPathForMediaType(mediaType)
   const mediaApi = MEDIA_APIS[mediaType]
 
   const response = useQuery({
@@ -116,6 +101,7 @@ export function useMediaDelete({ mediaType }) {
 export function useMediaUpdate({ mediaType }) {
   const { sitename } = useParams()
   const updateMediaApi = MEDIA_UPDATE_APIS[mediaType]
+  const mediaTypePath = getPathForMediaType(mediaType)
 
   const updateMediaItem = async (formData) => {
     const data = mediaItemForApi({ formData, mediaType })
@@ -128,7 +114,7 @@ export function useMediaUpdate({ mediaType }) {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateMediaItem,
-    redirectTo: `/${sitename}/dashboard/media/browser?types=${mediaType}`,
+    redirectTo: `/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`,
     actionWord: 'updated',
     type: 'media item',
   })

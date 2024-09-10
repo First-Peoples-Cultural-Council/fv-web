@@ -5,14 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import {
-  AUDIO,
-  IMAGE,
-  VIDEO,
-  TYPES,
-  SORT,
-  SORT_CREATED_DESC,
-} from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, TYPES, SORT, SORT_CREATED_DESC, MEDIA } from 'common/constants'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
 
 function useMediaSearch({ type }) {
@@ -47,9 +40,9 @@ function useMediaSearch({ type }) {
     event.preventDefault()
     setSearchTerm(searchInputValue)
     if (searchInputValue) {
-      navigate(`/${sitename}/dashboard/media/${path}?q=${searchInputValue}`)
+      navigate(`/${sitename}/dashboard/${MEDIA}/${path}?q=${searchInputValue}`)
     } else {
-      navigate(`/${sitename}/dashboard/media/${path}`)
+      navigate(`/${sitename}/dashboard/${MEDIA}/${path}`)
     }
   }
 
