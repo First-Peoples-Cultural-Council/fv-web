@@ -10,8 +10,8 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
-    <div className="flex" id="WidgetKeyboardsPresentation">
-      <div className="bg-tertiaryA mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
+    <div className="flex bg-tertiaryA" data-testid="WidgetKeyboardsPresentation">
+      <div className="mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
         <div className="grid grid-cols-3 gap-4 ">
           <div className="col-span-2 space-y-10">
             <h1 className="text-3xl font-bold">{header}</h1>
@@ -21,11 +21,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               rel="noopener noreferrer"
               className="inline-flex mr-5"
             >
-              <img
-                className="h-14 w-auto mx-auto shadow-xl"
-                src={appleBadge}
-                alt="App Store Logo"
-              />
+              <img className="h-14 w-auto mx-auto shadow-xl" src={appleBadge} alt="App Store Logo" />
             </a>
             <a
               href="https://play.google.com/store/apps/details?id=com.firstvoices.keyboards "
@@ -33,11 +29,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               rel="noopener noreferrer"
               className="inline-flex mr-5"
             >
-              <img
-                className="h-14 w-auto mx-auto shadow-xl"
-                src={googleBadge}
-                alt="Google Play Store Logo"
-              />
+              <img className="h-14 w-auto mx-auto shadow-xl" src={googleBadge} alt="Google Play Store Logo" />
             </a>
           </div>
           <div className="col-span-1 flex items-center">
@@ -60,15 +52,9 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                   rel="noopener noreferrer"
                   className="flex flex-col space-y-5 mr-8"
                 >
-                  <img
-                    className="h-14 w-auto mx-auto shadow-xl"
-                    src={macLogo}
-                    alt={urls?.macUrl}
-                  />
+                  <img className="h-14 w-auto mx-auto shadow-xl" src={macLogo} alt={urls?.macUrl} />
                   <div className="mx-auto">
-                    <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
-                      Install on Mac
-                    </div>
+                    <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">Install on Mac</div>
                   </div>
                 </a>
               </div>
@@ -81,15 +67,9 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                   rel="noopener noreferrer"
                   className="flex flex-col space-y-5 mr-8"
                 >
-                  <img
-                    className="h-14 w-auto mx-auto shadow-xl"
-                    src={windowsLogo}
-                    alt={urls?.windowsUrl}
-                  />
+                  <img className="h-14 w-auto mx-auto shadow-xl" src={windowsLogo} alt={urls?.windowsUrl} />
                   <div className="mx-auto">
-                    <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
-                      Install on Windows
-                    </div>
+                    <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">Install on Windows</div>
                   </div>
                 </a>
               </div>
