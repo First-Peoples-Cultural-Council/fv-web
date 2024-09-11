@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import {
-  AUDIO,
-  IMAGE,
-  VIDEO,
-  TYPES,
-  SORT,
-  SORT_CREATED_DESC,
-} from 'common/constants'
+import { AUDIO, IMAGE, VIDEO, TYPES, SORT, SORT_CREATED_DESC } from 'common/constants'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
 
 function useMediaSearch({ type }) {
-  const navigate = useNavigate()
-  const { sitename } = useParams()
-  const [searchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const path = getPathForMediaType(type)
 
@@ -46,11 +37,11 @@ function useMediaSearch({ type }) {
   const handleSearchSubmit = (event) => {
     event.preventDefault()
     setSearchTerm(searchInputValue)
-    if (searchInputValue) {
-      navigate(`/${sitename}/dashboard/media/${path}?q=${searchInputValue}`)
-    } else {
-      navigate(`/${sitename}/dashboard/media/${path}`)
-    }
+  }
+
+  const handleSearchSubmitWithUrlSync = (event) => {
+    handleSearchSubmit(event)
+    setSearchParams({ q: searchInputValue })
   }
 
   useEffect(() => {
@@ -78,6 +69,7 @@ function useMediaSearch({ type }) {
 
   return {
     handleSearchSubmit,
+    handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
     infiniteScroll,
     isLoadingEntries: isInitialLoading,
