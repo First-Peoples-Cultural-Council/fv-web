@@ -39,7 +39,7 @@ function ImageWithLightboxPresentation({
           className="inline-block text-white transform transition-all align-middle md:w-2/3 max-w-2xl lg:max-w-4xl xl:max-w-7xl"
         >
           <img
-            className="object-contain sm:h-4/5-screen shadow-xl mx-auto w-1/2-screen"
+            className="object-contain sm:h-4/5-screen shadow-xl mx-auto"
             src={getMediaPath({
               mediaObject: image,
               type: IMAGE,
