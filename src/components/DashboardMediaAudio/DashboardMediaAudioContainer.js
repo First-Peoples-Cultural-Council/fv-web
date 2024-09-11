@@ -13,7 +13,7 @@ function DashboardMediaAudioContainer() {
     searchValue,
     currentFile,
     setCurrentFile,
-    handleSearchSubmit,
+    handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
     infiniteScroll,
     isLoadingEntries,
@@ -21,25 +21,20 @@ function DashboardMediaAudioContainer() {
     loadLabel,
   } = useMediaSearch({ type: TYPE_AUDIO })
 
-  const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
-  )
+  const hasResults = !!(media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0)
 
   return (
     <SearchSelector.Presentation
       searchQuery={searchValue}
       searchPromptText="Search all audio"
       setSearchQuery={handleTextFieldChange}
-      search={handleSearchSubmit}
+      search={handleSearchSubmitWithUrlSync}
       headerSection=""
       resultsSection={
         <div className="grid grid-cols-3 w-full">
           <main className="col-span-2 pt-4 mx-2">
             <section className="p-2 h-full" aria-labelledby="results-header">
-              <h1
-                id="results-header"
-                className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
-              >
+              <h1 id="results-header" className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4">
                 Audio
               </h1>
               <DashboardMediaAudioPresentation
