@@ -7,12 +7,7 @@ import VisualMediaSelectorPresentation from 'components/VisualMediaSelector/Visu
 import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import { TYPE_VIDEO, TYPE_IMAGE } from 'common/constants'
 
-function VisualMediaSelectorContainer({
-  savedMedia,
-  selectedMedia,
-  mediaSelectHandler,
-  type,
-}) {
+function VisualMediaSelectorContainer({ savedMedia, selectedMedia, mediaSelectHandler, type }) {
   const {
     media,
     searchValue,
@@ -22,17 +17,16 @@ function VisualMediaSelectorContainer({
     isLoadingEntries,
     loadRef,
     loadLabel,
+    typePlural,
   } = useMediaSearch({ type })
 
-  const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
-  )
+  const hasResults = !!(media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0)
 
   return (
     <div data-testid="VisualMediaSelectorContainer" className="h-full">
       <SearchSelectorPresentation
         searchQuery={searchValue}
-        searchPromptText="Search all audio"
+        searchPromptText={`Search all ${typePlural}`}
         setSearchQuery={handleTextFieldChange}
         search={handleSearchSubmit}
         isSelectDialog
