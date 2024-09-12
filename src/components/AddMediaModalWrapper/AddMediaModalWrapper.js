@@ -58,7 +58,7 @@ function AddMediaModalWrapper({
     >
       <div
         id="AddMediaModalWrapper"
-        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-gray-50 p-4"
+        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-gray-50 p-4"
       >
         <div className="h-full flex flex-col">
           <div>
