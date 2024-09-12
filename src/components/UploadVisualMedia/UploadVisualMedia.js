@@ -70,7 +70,7 @@ function UploadVisualMedia({ type, maxItems, setSelectedMedia }) {
   ]
 
   return (
-    <div id="UploadVisualMedia" className="overflow-y-scroll h-3/4 mt-4">
+    <div id="UploadVisualMedia" className="h-full p-4">
       <Dashboard
         inline
         uppy={uppy}
