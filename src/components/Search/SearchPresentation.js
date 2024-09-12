@@ -35,6 +35,7 @@ function SearchPresentation({
           className="col-span-1 transition duration-500 ease-in-out flex-nowrap"
         >
           <button
+            data-testid={`${filter.type}-filter-btn`}
             type="button"
             className={`flex w-full items-center justify-center lg:justify-start transition duration-300 ease-in-out text-sm md:text-base lg:text-lg p-2 grow rounded-lg capitalize cursor-pointer leading-tight ${filterIsActiveClass}`}
             onClick={() => handleFilter(filter.type)}
@@ -58,7 +59,7 @@ function SearchPresentation({
     })
 
   return (
-    <>
+    <div data-testid="SearchPresentation">
       <section
         className={`${
           wholeDomain ? 'bg-bgRed' : 'bg-gradient-to-b from-word to-word-dark'
@@ -101,7 +102,7 @@ function SearchPresentation({
         </div>
       </div>
       <div ref={loadRef} className="w-full h-10" />
-    </>
+    </div>
   )
 }
 // PROPTYPES

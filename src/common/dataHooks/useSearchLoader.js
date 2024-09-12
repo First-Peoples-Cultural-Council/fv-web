@@ -89,16 +89,20 @@ function useSearchLoader({ searchParams }) {
     }
   }
 
+  const queryKeySite = sitename || 'cross-site'
+  const queryFn = sitename
+    ? ({ pageParam = 1 }) =>
+        api.search.get({ sitename, searchParams: searchParamString, pageParam })
+    : ({ pageParam = 1 }) =>
+        api.search.getFVWideSearch({
+          searchParams: searchParamString,
+          pageParam,
+        })
+
   // Fetch search results
   const response = useInfiniteQuery({
-    queryKey: [SEARCH, sitename, searchParamString],
-    queryFn: ({ pageParam = 1 }) =>
-      api.search[sitename ? 'get' : 'getFVWideSearch']({
-        sitename,
-        searchParams: searchParamString,
-        pageParam,
-      }),
-    enabled: !!sitename,
+    queryKey: [SEARCH, queryKeySite, searchParamString],
+    queryFn,
     getNextPageParam: (currentPage) => currentPage.next,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
