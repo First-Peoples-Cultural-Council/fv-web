@@ -14,7 +14,9 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   const [scrollAtTop, setScrollAtTop] = useState(true)
   const isGuest = user.isAnonymous
   const location = useLocation()
-  const isSearchPage = location.pathname.startsWith(`/search`) || location.pathname.startsWith(`/languages`)
+  const isSearchPage =
+    location.pathname.startsWith(`/search`) ||
+    location.pathname.startsWith(`/languages`)
 
   useEffect(() => {
     const listener = document.addEventListener('scroll', () => {
@@ -46,7 +48,8 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
     'h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-300'
   const menuItemLabelStyling = 'ml-1 xl:ml-3 xl:mr-2 whitespace-nowrap'
 
-  const mobileMenuItemStyling = 'w-full py-3 px-1 text-fv-charcoal flex items-center rounded focus:ring-2'
+  const mobileMenuItemStyling =
+    'w-full py-3 px-1 text-fv-charcoal flex items-center rounded focus:ring-2'
   const mobileMenuItemLabelStyling = 'ml-3 font-medium'
 
   const createMobileMenuLink = ({ title, iconName, link }) => (
@@ -69,19 +72,27 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <span className="sr-only">FirstVoices Logo</span>
-            {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
+            {getIcon('FVLogo', 'h-10 w-auto')}
           </Link>
 
           {/* Menu Items */}
           <ul className="hidden md:flex md:text-white md:items-center justify-end md:space-x-4">
             <li>
-              <Link data-testid="NavBar-About-Link" to="/about" className={menuItemStyling}>
+              <Link
+                data-testid="NavBar-About-Link"
+                to="/about"
+                className={menuItemStyling}
+              >
                 {getIcon('About', 'fill-current h-full w-auto')}
                 <p className={menuItemLabelStyling}>About</p>
               </Link>
             </li>
             <li>
-              <Link data-testid="NavBar-Support-Link" to="/support" className={menuItemStyling}>
+              <Link
+                data-testid="NavBar-Support-Link"
+                to="/support"
+                className={menuItemStyling}
+              >
                 {getIcon('QuestionCircleSolid', 'fill-current h-full w-auto')}
                 <p className={menuItemLabelStyling}>Support</p>
               </Link>
@@ -121,14 +132,21 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             {!isGuest && <UserMenu.Container />}
           </ul>
           {/* Landing Mobile Menu Button */}
-          <div id="LandingMobileMenuButton" className="flex items-center md:hidden">
+          <div
+            id="LandingMobileMenuButton"
+            className="flex items-center md:hidden"
+          >
             <button
               type="button"
               onClick={() => openCloseMobileLandingNavbar()}
               className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
             >
-              <span className="sr-only">{mobileLandingNavbarOpen ? 'Close menu' : 'Open menu'}</span>
-              {mobileLandingNavbarOpen ? getIcon('Close', 'h-6 w-6') : getIcon('HamburgerMenu', 'h-6 w-6')}
+              <span className="sr-only">
+                {mobileLandingNavbarOpen ? 'Close menu' : 'Open menu'}
+              </span>
+              {mobileLandingNavbarOpen
+                ? getIcon('Close', 'h-6 w-6')
+                : getIcon('HamburgerMenu', 'h-6 w-6')}
             </button>
           </div>
         </div>
@@ -177,8 +195,13 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
                 onClick={isGuest ? login : logout}
                 onKeyDown={isGuest ? login : logout}
               >
-                {getIcon(`${isGuest ? 'Login' : 'LogOut'}`, 'fill-current h-12 w-8')}
-                <span className={mobileMenuItemLabelStyling}>{isGuest ? 'Sign in / Register' : 'Sign out'}</span>
+                {getIcon(
+                  `${isGuest ? 'Login' : 'LogOut'}`,
+                  'fill-current h-12 w-8',
+                )}
+                <span className={mobileMenuItemLabelStyling}>
+                  {isGuest ? 'Sign in / Register' : 'Sign out'}
+                </span>
               </button>
             </li>
           </ul>

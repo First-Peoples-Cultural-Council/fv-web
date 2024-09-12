@@ -20,7 +20,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         {getIcon(
           'LogOut',
 
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6'
+          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
         )}
         <span>Sign Out</span>
       </button>
@@ -34,11 +34,14 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
           <div className="flex-1 flex flex-col overflow-y-auto">
             <div className="flex items-center flex-shrink-0 m-4">
-              {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
+              {getIcon('FVLogo', 'h-10 w-auto')}
             </div>
 
             <nav className="flex-1">
-              <DashboardPresentationSiteSelect sites={currentUser?.sites} site={site} />
+              <DashboardPresentationSiteSelect
+                sites={currentUser?.sites}
+                site={site}
+              />
               <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
                 {primaryNavigationItems(site?.sitename)}
                 {secondaryNavigationItems(currentUser?.sites)}
@@ -103,10 +106,15 @@ const primaryNavigationItems = (currentSitename) => {
               data-testid={`DashboardPresentation${item.name}`}
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
-                match ? 'bg-fv-charcoal-dark text-white' : 'text-gray-300 hover:bg-fv-charcoal-light hover:text-white'
+                match
+                  ? 'bg-fv-charcoal-dark text-white'
+                  : 'text-gray-300 hover:bg-fv-charcoal-light hover:text-white'
               }`}
             >
-              {getIcon(item.icon, 'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6')}
+              {getIcon(
+                item.icon,
+                'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+              )}
               {item.name}
             </Link>
           </RequireAuth>
@@ -124,7 +132,7 @@ const secondaryNavigationItems = (sites) => {
         name: `${site?.title} site`,
         href: `/${site?.sitename}`,
         icon: 'BackArrow',
-      })
+      }),
     )
   }
 
@@ -138,7 +146,7 @@ const secondaryNavigationItems = (sites) => {
       >
         {getIcon(
           'QuestionCircleSolid',
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6'
+          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
         )}
         Support
       </a>
@@ -148,7 +156,10 @@ const secondaryNavigationItems = (sites) => {
           to={item.href}
           className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
         >
-          {getIcon(item.icon, 'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6')}
+          {getIcon(
+            item.icon,
+            'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+          )}
           {item.name}
         </Link>
       ))}

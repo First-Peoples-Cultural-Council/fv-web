@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function SectionTitlePresentation({ accentColor, bgColor = 'white', title, placeholder = false }) {
+function SectionTitlePresentation({
+  accentColor,
+  bgColor = 'white',
+  title,
+  placeholder = false,
+}) {
   return (
     <div data-testid="SectionTitlePresentation" className="relative">
       <h2
@@ -9,13 +14,17 @@ function SectionTitlePresentation({ accentColor, bgColor = 'white', title, place
           accentColor || 'primary'
         } font-bold`}
       >
-        <span className={`max-w-screen-lg inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}>
+        <span
+          className={`inline-block px-4 sm:px-8 md:px-12 lg:px-20 bg-${bgColor}`}
+        >
           {title}
           {placeholder && <span className="bg-gray-100 text-gray-100 px-28" />}
         </span>
       </h2>
       <hr
-        className={`absolute z-0 w-full ${accentColor ? `border-${accentColor}` : 'border-primary'}`}
+        className={`absolute z-0 w-full ${
+          accentColor ? `border-${accentColor}` : 'border-primary'
+        }`}
         style={{ top: '50%' }}
       />
     </div>
