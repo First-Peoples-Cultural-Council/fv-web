@@ -2,12 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import SearchSelectorPresentation from 'components/SearchSelector/SearchSelectorPresentation'
-import VisualMediaSelectorPresentation from 'components/VisualMediaSelector/VisualMediaSelectorPresentation'
+import SearchSelector from 'components/SearchSelector'
+import SelectorVisualMediaGrid from 'components/SelectorVisualMediaGrid'
 import useMediaSearch from 'common/dataHooks/useMediaSearch'
-import { TYPE_VIDEO, TYPE_IMAGE } from 'common/constants'
+import { TYPE_VIDEO } from 'common/constants'
 
-function VisualMediaSelectorContainer({ savedMedia, selectedMedia, mediaSelectHandler, type }) {
+function SelectorVideosContainer({
+  savedMedia,
+  selectedMedia,
+  mediaSelectHandler,
+}) {
   const {
     media,
     searchValue,
@@ -17,25 +21,26 @@ function VisualMediaSelectorContainer({ savedMedia, selectedMedia, mediaSelectHa
     isLoadingEntries,
     loadRef,
     loadLabel,
-    typePlural,
-  } = useMediaSearch({ type })
+  } = useMediaSearch({ type: TYPE_VIDEO })
 
-  const hasResults = !!(media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0)
+  const hasResults = !!(
+    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
+  )
 
   return (
-    <div data-testid="VisualMediaSelectorContainer" className="h-full">
-      <SearchSelectorPresentation
+    <div data-testid="SelectorVideosContainer" className="h-full">
+      <SearchSelector.Presentation
         searchQuery={searchValue}
-        searchPromptText={`Search all ${typePlural}`}
+        searchPromptText="Search all videos"
         setSearchQuery={handleTextFieldChange}
         search={handleSearchSubmit}
         isSelectDialog
         resultsSection={
           <div className="p-4 pt-0" aria-labelledby="results-header">
             <h2 id="results-header" className="sr-only">
-              Audio
+              Videos
             </h2>
-            <VisualMediaSelectorPresentation
+            <SelectorVisualMediaGrid.Presentation
               data={media}
               infiniteScroll={infiniteScroll}
               loadLabel={loadLabel}
@@ -54,12 +59,11 @@ function VisualMediaSelectorContainer({ savedMedia, selectedMedia, mediaSelectHa
 }
 
 // PROPTYPES
-const { array, func, oneOf } = PropTypes
-VisualMediaSelectorContainer.propTypes = {
+const { array, func } = PropTypes
+SelectorVideosContainer.propTypes = {
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
-  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
 }
 
-export default VisualMediaSelectorContainer
+export default SelectorVideosContainer

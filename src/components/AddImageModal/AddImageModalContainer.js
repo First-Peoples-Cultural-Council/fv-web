@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { TYPE_IMAGE } from 'common/constants'
 import UploadVisualMedia from 'components/UploadVisualMedia'
-import VisualMediaSelector from 'components/VisualMediaSelector'
+import SelectorImages from 'components/SelectorImages'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 
@@ -53,8 +53,7 @@ function AddImageModalContainer({
           />
         )}
         {selectedTab.id === 'search-tab' && (
-          <VisualMediaSelector.Container
-            type={TYPE_IMAGE}
+          <SelectorImages.Container
             savedMedia={savedMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
