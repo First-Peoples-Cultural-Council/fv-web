@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
 
-function AudioSelectorPresentation({
+function SelectorAudioPresentation({
   data,
   infiniteScroll,
   loadLabel,
@@ -19,7 +19,7 @@ function AudioSelectorPresentation({
     'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
-    <div id="AudioSelectorPresentation">
+    <div id="SelectorAudioPresentation">
       <div>
         <table className="w-full table-fixed divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -105,7 +105,7 @@ function AudioSelectorPresentation({
 
 // PROPTYPES
 const { array, func, object, string } = PropTypes
-AudioSelectorPresentation.propTypes = {
+SelectorAudioPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
   loadLabel: string,
@@ -114,4 +114,4 @@ AudioSelectorPresentation.propTypes = {
   mediaSelectHandler: func,
 }
 
-export default AudioSelectorPresentation
+export default SelectorAudioPresentation

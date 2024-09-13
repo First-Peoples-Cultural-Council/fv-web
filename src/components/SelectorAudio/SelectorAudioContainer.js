@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import SearchSelectorPresentation from 'components/SearchSelector/SearchSelectorPresentation'
-import AudioSelectorPresentation from 'components/AudioSelector/AudioSelectorPresentation'
+import SearchSelector from 'components/SearchSelector'
+import SelectorAudioPresentation from 'components/SelectorAudio/SelectorAudioPresentation'
 import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import { TYPE_AUDIO } from 'common/constants'
 
-function AudioSelectorContainer({
+function SelectorAudioContainer({
   savedMedia,
   selectedMedia,
   mediaSelectHandler,
@@ -28,8 +28,8 @@ function AudioSelectorContainer({
   )
 
   return (
-    <div data-testid="AudioSelectorContainer" className="h-full">
-      <SearchSelectorPresentation
+    <div data-testid="SelectorAudioContainer" className="h-full">
+      <SearchSelector.Presentation
         searchQuery={searchValue}
         searchPromptText="Search all audio"
         setSearchQuery={handleTextFieldChange}
@@ -40,7 +40,7 @@ function AudioSelectorContainer({
             <h2 id="results-header" className="sr-only">
               Audio
             </h2>
-            <AudioSelectorPresentation
+            <SelectorAudioPresentation
               data={media}
               infiniteScroll={infiniteScroll}
               loadLabel={loadLabel}
@@ -60,10 +60,10 @@ function AudioSelectorContainer({
 
 // PROPTYPES
 const { array, func } = PropTypes
-AudioSelectorContainer.propTypes = {
+SelectorAudioContainer.propTypes = {
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
 }
 
-export default AudioSelectorContainer
+export default SelectorAudioContainer
