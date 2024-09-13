@@ -28,7 +28,7 @@ function SelectorVisualMediaGridPresentation({
   return (
     <div
       data-testid="SelectorVisualMediaGridPresentation"
-      className="overflow-y-auto h-full"
+      className="p-4 pt-0 overflow-y-auto h-full"
     >
       <div className="h-3/4 overflow-y-auto">
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">

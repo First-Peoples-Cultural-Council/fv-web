@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { getFriendlyDocTypes } from 'common/utils/stringHelpers'
-import getIcon from 'common/utils/getIcon'
+
 import useSearchModal from 'common/hooks/useSearchModal'
 import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
-import SearchSelector from 'components/SearchSelector'
+import SelectorSearchbox from 'components/SelectorSearchbox'
+import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorEntryPresentationList from 'components/SelectorEntry/SelectorEntryPresentationList'
 
 function SelectorEntryContainer({ types, visibility, addItem }) {
@@ -25,49 +25,38 @@ function SelectorEntryContainer({ types, visibility, addItem }) {
     searchResults,
   })
 
-  const docLabel =
-    types.length > 1 ? '' : getFriendlyDocTypes({ docTypes: types })
-  const buttonLabel = `Add ${docLabel} to document`
-  const labelPlural = getFriendlyDocTypes({
-    docTypes: types,
-    plural: true,
-    isAnd: true,
-  })
+  const addToEntry = () => addItem(selectedItem)
 
   return (
-    <SearchSelector.Presentation
-      searchQuery={searchQuery}
-      searchPromptText={`Search all ${labelPlural}`}
-      setSearchQuery={setSearchQuery}
-      search={search}
-      resultsSection={
-        <>
-          <div className="w-full flex justify-center mb-5 mt-5">
-            <button
-              data-testid={`add-${docLabel}`}
-              type="button"
-              onClick={() => addItem(selectedItem)}
-              className="btn-contained mx-auto bg-secondary"
-            >
-              {getIcon('Add', 'btn-icon')}
-              <span>{buttonLabel}</span>
-            </button>
-          </div>
-          <div className="p-4 pt-0">
-            <SelectorEntryPresentationList
-              types={types}
-              searchResults={searchResults}
-              selected={selectedItem}
-              setSelected={setSelectedItem}
-              infiniteScroll={infiniteScroll}
-            />
-          </div>
-        </>
-      }
-      isLoadingEntries={isLoadingEntries}
-      hasResults={hasResults}
-      loadRef={loadRef}
-    />
+    <div data-testid="SelectorEntryContainer" className="h-full bg-gray-50">
+      <div className="h-full w-full flex flex-col">
+        <div className="w-3/4 mx-auto">
+          <SelectorSearchbox.Presentation
+            onSearchChange={setSearchQuery}
+            onSearchSubmit={search}
+            searchPlaceholder="Search all words and phrases"
+            searchValue={searchQuery}
+          />
+        </div>
+        <div className="grow mt-2 h-72 overflow-y-scroll">
+          <SelectorResultsWrapper.Presentation
+            hasResults={hasResults}
+            isLoading={isLoadingEntries}
+            loadRef={loadRef}
+            resultsSection={
+              <SelectorEntryPresentationList
+                types={types}
+                searchResults={searchResults}
+                selected={selectedItem}
+                setSelected={setSelectedItem}
+                infiniteScroll={infiniteScroll}
+                addToEntry={addToEntry}
+              />
+            }
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 

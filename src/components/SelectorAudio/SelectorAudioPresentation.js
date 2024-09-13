@@ -19,7 +19,14 @@ function SelectorAudioPresentation({
     'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
-    <div id="SelectorAudioPresentation">
+    <div
+      id="SelectorAudioPresentation"
+      className="p-4 pt-0"
+      aria-labelledby="results-header"
+    >
+      <h2 id="results-header" className="sr-only">
+        Audio
+      </h2>
       <div>
         <table className="w-full table-fixed divide-y divide-gray-200">
           <thead className="bg-gray-50">
