@@ -5,7 +5,7 @@ import { useFieldArray } from 'react-hook-form'
 // FPCC
 import { useModalSelector } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
-import EntrySelector from 'components/EntrySelector'
+import SelectorEntry from 'components/SelectorEntry'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
@@ -63,7 +63,7 @@ function EntryArrayField({
 
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
-          <EntrySelector.Container
+          <SelectorEntry.Container
             types={types}
             addItem={selectItem}
             removeItem={unselectItem}

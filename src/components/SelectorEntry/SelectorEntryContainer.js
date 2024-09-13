@@ -7,9 +7,9 @@ import getIcon from 'common/utils/getIcon'
 import useSearchModal from 'common/hooks/useSearchModal'
 import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SearchSelector from 'components/SearchSelector'
-import EntrySelectorPresentationList from 'components/EntrySelector/EntrySelectorPresentationList'
+import SelectorEntryPresentationList from 'components/SelectorEntry/SelectorEntryPresentationList'
 
-function EntrySelectorContainer({ types, visibility, addItem }) {
+function SelectorEntryContainer({ types, visibility, addItem }) {
   const {
     searchQuery,
     setSearchQuery,
@@ -53,7 +53,7 @@ function EntrySelectorContainer({ types, visibility, addItem }) {
       }
       resultsSection={
         <div className="p-4 pt-0">
-          <EntrySelectorPresentationList
+          <SelectorEntryPresentationList
             types={types}
             searchResults={searchResults}
             selected={selectedItem}
@@ -71,10 +71,10 @@ function EntrySelectorContainer({ types, visibility, addItem }) {
 
 // PROPTYPES
 const { arrayOf, func, string } = PropTypes
-EntrySelectorContainer.propTypes = {
+SelectorEntryContainer.propTypes = {
   types: arrayOf(string),
   visibility: string,
   addItem: func,
 }
 
-export default EntrySelectorContainer
+export default SelectorEntryContainer

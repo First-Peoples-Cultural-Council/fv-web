@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 
-function EntrySelectorPresentationList({
+function SelectorEntryPresentationList({
   searchResults,
   infiniteScroll,
   selected,
@@ -29,7 +29,7 @@ function EntrySelectorPresentationList({
     'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
-    <div id="EntrySelectorPresentationList">
+    <div id="SelectorEntryPresentationList">
       {/* Gallery */}
       <h2
         id="gallery-heading"
@@ -77,7 +77,7 @@ function EntrySelectorPresentationList({
                         </td>
                         <td
                           className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left"
-                          data-testid="DashboardEntrySelectorRow"
+                          data-testid="DashboardSelectorEntryRow"
                         >
                           {item?.translations ? (
                             <ol className="text-fv-charcoal">
@@ -126,7 +126,7 @@ function EntrySelectorPresentationList({
 // PROPTYPES
 const { arrayOf, func, object, string } = PropTypes
 
-EntrySelectorPresentationList.propTypes = {
+SelectorEntryPresentationList.propTypes = {
   searchResults: object,
   infiniteScroll: object,
   selected: object,
@@ -134,4 +134,4 @@ EntrySelectorPresentationList.propTypes = {
   types: arrayOf(string),
 }
 
-export default EntrySelectorPresentationList
+export default SelectorEntryPresentationList
