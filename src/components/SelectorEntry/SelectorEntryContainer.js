@@ -40,27 +40,29 @@ function SelectorEntryContainer({ types, visibility, addItem }) {
       searchPromptText={`Search all ${labelPlural}`}
       setSearchQuery={setSearchQuery}
       search={search}
-      headerSection={
-        <button
-          data-testid={`add-${docLabel}`}
-          type="button"
-          onClick={() => addItem(selectedItem)}
-          className="btn-contained mx-auto bg-secondary"
-        >
-          {getIcon('Add', 'btn-icon')}
-          <span>{buttonLabel}</span>
-        </button>
-      }
       resultsSection={
-        <div className="p-4 pt-0">
-          <SelectorEntryPresentationList
-            types={types}
-            searchResults={searchResults}
-            selected={selectedItem}
-            setSelected={setSelectedItem}
-            infiniteScroll={infiniteScroll}
-          />
-        </div>
+        <>
+          <div className="w-full flex justify-center mb-5 mt-5">
+            <button
+              data-testid={`add-${docLabel}`}
+              type="button"
+              onClick={() => addItem(selectedItem)}
+              className="btn-contained mx-auto bg-secondary"
+            >
+              {getIcon('Add', 'btn-icon')}
+              <span>{buttonLabel}</span>
+            </button>
+          </div>
+          <div className="p-4 pt-0">
+            <SelectorEntryPresentationList
+              types={types}
+              searchResults={searchResults}
+              selected={selectedItem}
+              setSelected={setSelectedItem}
+              infiniteScroll={infiniteScroll}
+            />
+          </div>
+        </>
       }
       isLoadingEntries={isLoadingEntries}
       hasResults={hasResults}
