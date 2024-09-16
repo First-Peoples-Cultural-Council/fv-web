@@ -44,7 +44,7 @@
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.53.0",
     "cypress": "^13.14.1",
-    "eslint": "^8.44.0",
+    "eslint": "^9.10.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.8.0",
