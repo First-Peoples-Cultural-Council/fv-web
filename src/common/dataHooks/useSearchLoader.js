@@ -15,20 +15,11 @@ function useSearchLoader({ searchParams }) {
   const { sitename } = useParams()
   const searchParamString = searchParams.toString()
 
-  const queryKeySite = sitename || 'cross-site'
-  const queryFn = sitename
-    ? ({ pageParam = 1 }) =>
-        api.search.get({ sitename, searchParams: searchParamString, pageParam })
-    : ({ pageParam = 1 }) =>
-        api.search.getFVWideSearch({
-          searchParams: searchParamString,
-          pageParam,
-        })
-
   // Fetch search results
   const response = useInfiniteQuery({
-    queryKey: [SEARCH, queryKeySite, searchParamString],
-    queryFn,
+    queryKey: [SEARCH, sitename, searchParamString],
+    queryFn: ({ pageParam = 1 }) =>
+      api.search.get({ sitename, searchParams: searchParamString, pageParam }),
     getNextPageParam: (currentPage) => currentPage.next,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

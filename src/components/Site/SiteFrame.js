@@ -22,7 +22,7 @@ import Loading from 'components/Loading'
 import NavBar from 'components/NavBar'
 import Page from 'components/Page'
 import Resource from 'components/Resource'
-import Search from 'components/Search'
+import SearchSite from 'components/SearchSite'
 import Song from 'components/Song'
 import SongsAndStories from 'components/SongsAndStories'
 import Story from 'components/Story'
@@ -40,7 +40,7 @@ function SiteFrame({ siteLoading }) {
       <main role="main" className="relative pt-16 z-0 min-h-screen">
         <Loading.Container isLoading={siteLoading}>
           <Routes>
-            <Route path="search" element={<Search.Container />} />
+            <Route path="search" element={<SearchSite.Container />} />
             <Route
               path="dictionary"
               element={<Dictionary.Container searchType={TYPE_DICTIONARY} />}

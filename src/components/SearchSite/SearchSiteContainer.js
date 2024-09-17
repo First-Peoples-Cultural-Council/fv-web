@@ -1,3 +1,4 @@
+import React from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 // FPCC
@@ -5,10 +6,10 @@ import { useSiteStore } from 'context/SiteContext'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchType from 'common/hooks/useSearchType'
 import { TYPE_ENTRY } from 'common/constants'
+import SearchPresentation from 'components/Search/SearchPresentation'
 
-function SearchData() {
+function SearchSiteContainer() {
   const { site } = useSiteStore()
-  const { title } = site
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
 
@@ -26,22 +27,24 @@ function SearchData() {
     searchParams,
   })
 
-  return {
-    searchType: searchTypeInUrl,
-    siteTitle: title || 'FirstVoices',
-    filters: typeFilters,
-    handleFilter: (filter) => {
-      setSearchTypeInUrl(filter)
-    },
-    infiniteScroll,
-    isLoading: isInitialLoading,
-    items: data,
-    loadRef,
-    actions: ['copy'],
-    moreActions: ['share', 'qrcode'],
-    sitename,
-    entryLabel: getSearchTypeLabel({ searchTypeInUrl }),
-  }
+  return (
+    <SearchPresentation
+      actions={['copy']}
+      searchType={searchTypeInUrl}
+      filters={typeFilters}
+      handleFilter={(filter) => {
+        setSearchTypeInUrl(filter)
+      }}
+      infiniteScroll={infiniteScroll}
+      isLoading={isInitialLoading}
+      items={data}
+      loadRef={loadRef}
+      moreActions={['share', 'qrcode']}
+      sitename={sitename}
+      siteTitle={site?.title}
+      entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
+    />
+  )
 }
 
-export default SearchData
+export default SearchSiteContainer
