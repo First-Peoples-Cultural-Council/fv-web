@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import UploadAudio from 'components/UploadAudio'
-import AudioSelector from 'components/AudioSelector'
+import SelectorAudio from 'components/SelectorAudio'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 import { TYPE_AUDIO } from 'common/constants'
@@ -49,7 +49,7 @@ function AddAudioModalContainer({
           <UploadAudio setSelectedMedia={setSelectedItems} />
         )}
         {selectedTab.id === 'search-tab' && (
-          <AudioSelector.Container
+          <SelectorAudio.Container
             savedMedia={savedMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}

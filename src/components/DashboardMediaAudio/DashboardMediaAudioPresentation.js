@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import AudioNative from 'components/AudioNative'
+import MediaDetails from 'components/MediaDetails'
+import { TYPE_AUDIO } from 'common/constants'
 
 function DashboardMediaAudioPresentation({
   data,
@@ -17,69 +19,87 @@ function DashboardMediaAudioPresentation({
     'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
 
   return (
-    <div id="DashboardMediaAudioPresentation">
-      <div>
-        <table className="w-full table-fixed divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th scope="col" className={headerClass}>
-                Audio
-              </th>
-              <th scope="col" className={headerClass}>
-                Title
-              </th>
-              <th scope="col" className={headerClass}>
-                Description
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {data?.pages?.[0]?.results?.length &&
-              data?.pages?.map((page) => (
-                <React.Fragment key={page?.pageNumber}>
-                  {page.results.map((audioFile) => (
-                    <tr
-                      key={audioFile?.id}
-                      className={`${
-                        audioFile?.id === currentFile?.id
-                          ? 'ring-2 ring-offset-2 ring-primary'
-                          : ''
-                      } rounded-lg relative`}
-                      onClick={() => setCurrentFile(audioFile)}
-                    >
-                      <td
-                        className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
-                        aria-label="list"
-                      >
-                        <AudioNative
-                          styling="w-full "
-                          audioObject={audioFile}
-                        />
-                      </td>
-                      <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal truncate">
-                        {audioFile.title}
-                      </td>
-                      <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left truncate">
-                        {audioFile?.description}
-                      </td>
-                    </tr>
-                  ))}
-                </React.Fragment>
-              ))}
-          </tbody>
-        </table>
-        <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
-          <button
-            data-testid="load-btn"
-            type="button"
-            className={!hasNextPage ? 'cursor-text' : ''}
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
+    <div
+      id="DashboardMediaAudioPresentation"
+      className="grid grid-cols-3 w-full"
+    >
+      <main className="col-span-2 pt-4 mx-2">
+        <section className="p-2 h-full" aria-labelledby="results-header">
+          <h1
+            id="results-header"
+            className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
           >
-            {loadLabel}
-          </button>
-        </div>
-      </div>
+            Audio
+          </h1>
+          <div>
+            <div>
+              <table className="w-full table-fixed divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th scope="col" className={headerClass}>
+                      Audio
+                    </th>
+                    <th scope="col" className={headerClass}>
+                      Title
+                    </th>
+                    <th scope="col" className={headerClass}>
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {data?.pages?.[0]?.results?.length &&
+                    data?.pages?.map((page) => (
+                      <React.Fragment key={page?.pageNumber}>
+                        {page.results.map((audioFile) => (
+                          <tr
+                            key={audioFile?.id}
+                            className={`${
+                              audioFile?.id === currentFile?.id
+                                ? 'ring-2 ring-offset-2 ring-primary'
+                                : ''
+                            } rounded-lg relative`}
+                            onClick={() => setCurrentFile(audioFile)}
+                          >
+                            <td
+                              className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
+                              aria-label="list"
+                            >
+                              <AudioNative
+                                styling="w-full "
+                                audioObject={audioFile}
+                              />
+                            </td>
+                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal truncate">
+                              {audioFile.title}
+                            </td>
+                            <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left truncate">
+                              {audioFile?.description}
+                            </td>
+                          </tr>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                </tbody>
+              </table>
+              <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
+                <button
+                  data-testid="load-btn"
+                  type="button"
+                  className={!hasNextPage ? 'cursor-text' : ''}
+                  onClick={() => fetchNextPage()}
+                  disabled={!hasNextPage || isFetchingNextPage}
+                >
+                  {loadLabel}
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
+        <MediaDetails.Audio file={currentFile} docType={TYPE_AUDIO} />
+      </aside>
     </div>
   )
 }

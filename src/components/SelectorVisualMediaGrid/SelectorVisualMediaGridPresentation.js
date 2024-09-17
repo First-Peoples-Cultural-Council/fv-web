@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function VisualMediaSelectorPresentation({
+function SelectorVisualMediaGridPresentation({
   data,
   infiniteScroll,
   loadLabel,
@@ -27,8 +27,8 @@ function VisualMediaSelectorPresentation({
 
   return (
     <div
-      data-testid="VisualMediaSelectorPresentation"
-      className="overflow-y-auto h-full"
+      data-testid="SelectorVisualMediaGridPresentation"
+      className="p-4 pt-0 overflow-y-auto h-full"
     >
       <div className="h-3/4 overflow-y-auto">
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
@@ -120,7 +120,7 @@ function VisualMediaSelectorPresentation({
 
 // PROPTYPES
 const { array, func, object, string } = PropTypes
-VisualMediaSelectorPresentation.propTypes = {
+SelectorVisualMediaGridPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
   loadLabel: string,
@@ -129,4 +129,4 @@ VisualMediaSelectorPresentation.propTypes = {
   mediaSelectHandler: func,
 }
 
-export default VisualMediaSelectorPresentation
+export default SelectorVisualMediaGridPresentation

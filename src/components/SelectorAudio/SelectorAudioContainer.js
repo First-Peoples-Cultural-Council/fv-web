@@ -2,59 +2,56 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
-import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
+import SelectorAudioPresentation from 'components/SelectorAudio/SelectorAudioPresentation'
+import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import { TYPE_AUDIO } from 'common/constants'
 
-function DashboardMediaVisualContainer({ type }) {
+function SelectorAudioContainer({
+  savedMedia,
+  selectedMedia,
+  mediaSelectHandler,
+}) {
   const {
     media,
     searchValue,
-    currentFile,
-    setCurrentFile,
-    handleSearchSubmitWithUrlSync,
+    handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
     isLoadingEntries,
     loadRef,
     loadLabel,
-    typePlural,
-  } = useMediaSearch({ type })
+  } = useMediaSearch({ type: TYPE_AUDIO })
 
   const hasResults = !!(
     media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
 
   return (
-    <div
-      data-testid="DashboardMediaAudioContainer"
-      className="h-full bg-gray-50"
-    >
+    <div data-testid="SelectorAudioContainer" className="h-full bg-gray-50">
       <div className="h-full w-full flex flex-col">
-        <div className="w-full">
+        <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
             onSearchChange={handleTextFieldChange}
-            onSearchSubmit={handleSearchSubmitWithUrlSync}
-            searchPlaceholder={`Search all ${typePlural}`}
+            onSearchSubmit={handleSearchSubmit}
+            searchPlaceholder="Search all audio"
             searchValue={searchValue}
           />
         </div>
-        <div>
+        <div className="grow mt-2 h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
             isLoading={isLoadingEntries}
             loadRef={loadRef}
             resultsSection={
-              <DashboardMediaVisualPresentation
+              <SelectorAudioPresentation
                 data={media}
                 infiniteScroll={infiniteScroll}
-                currentFile={currentFile}
-                setCurrentFile={setCurrentFile}
                 loadLabel={loadLabel}
-                type={type}
-                typePlural={typePlural}
+                savedMedia={savedMedia}
+                selectedMedia={selectedMedia}
+                mediaSelectHandler={mediaSelectHandler}
               />
             }
           />
@@ -64,10 +61,12 @@ function DashboardMediaVisualContainer({ type }) {
   )
 }
 
-const { oneOf } = PropTypes
-
-DashboardMediaVisualContainer.propTypes = {
-  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
+// PROPTYPES
+const { array, func } = PropTypes
+SelectorAudioContainer.propTypes = {
+  savedMedia: array,
+  selectedMedia: array,
+  mediaSelectHandler: func,
 }
 
-export default DashboardMediaVisualContainer
+export default SelectorAudioContainer

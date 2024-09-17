@@ -32,7 +32,7 @@ function TextField({
         onKeyDown={handleKeyDown}
         className={`${
           disabled ? 'opacity-50' : ''
-        } block w-full border border-gray-300 rounded-lg shadow-sm py-4 px-3 focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
+        } block w-full border border-gray-300 rounded-lg shadow-sm py-4 px-3 focus:outline-none focus:ring-secondary focus:border-secondary`}
       />
       <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />

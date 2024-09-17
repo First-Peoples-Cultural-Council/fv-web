@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import VideoLinkForm from 'components/VideoLinkForm'
 import { TYPE_VIDEO } from 'common/constants'
 import UploadVisualMedia from 'components/UploadVisualMedia'
-import VisualMediaSelector from 'components/VisualMediaSelector'
+import SelectorVideos from 'components/SelectorVideos'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 
@@ -67,8 +67,7 @@ function AddVideoModalContainer({
           />
         )}
         {selectedTab.id === 'search-tab' && (
-          <VisualMediaSelector.Container
-            type={TYPE_VIDEO}
+          <SelectorVideos.Container
             savedMedia={savedMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
