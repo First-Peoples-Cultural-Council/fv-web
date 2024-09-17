@@ -19,7 +19,7 @@ import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
 import Loading from 'components/Loading'
 import NotificationBanner from 'components/NotificationBanner'
-import Search from 'components/Search'
+import SearchAllSites from 'components/SearchAllSites'
 import Site from 'components/Site'
 import Support from 'components/Support'
 import LegacyRedirect from './LegacyRedirect'
@@ -117,7 +117,7 @@ function AppContainer() {
                 path="search"
                 element={
                   <AppWrapper>
-                    <Search.Container />
+                    <SearchAllSites.Container />
                   </AppWrapper>
                 }
               />
