@@ -3,19 +3,8 @@ import { useParams, useSearchParams } from 'react-router-dom'
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import {
-  makeTitleCase,
-  getPresentationPropertiesForType,
-} from 'common/utils/stringHelpers'
-import {
-  TYPES,
-  TYPE_PHRASE,
-  TYPE_SONG,
-  TYPE_STORY,
-  TYPE_WORD,
-  TYPE_ENTRY,
-} from 'common/constants'
+import useSearchType from 'common/hooks/useSearchType'
+import { TYPE_ENTRY } from 'common/constants'
 
 function SearchData() {
   const { site } = useSiteStore()
@@ -23,9 +12,13 @@ function SearchData() {
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
 
-  const [searchTypeInUrl, setSearchTypeInUrl] = useSearchParamsState({
-    searchParamName: TYPES,
-    defaultValue: TYPE_ENTRY,
+  const {
+    searchTypeInUrl,
+    setSearchTypeInUrl,
+    getSearchTypeLabel,
+    typeFilters,
+  } = useSearchType({
+    initialSearchType: TYPE_ENTRY,
   })
 
   // fetch results
@@ -33,30 +26,13 @@ function SearchData() {
     searchParams,
   })
 
-  const searchType = searchTypeInUrl || TYPE_ENTRY
-  const labels = getPresentationPropertiesForType(searchType)
-
-  const filters = [
-    {
-      type: TYPE_ENTRY,
-      label: 'All Results',
-    },
-  ]
-  const typesToFilterBy = [TYPE_WORD, TYPE_PHRASE, TYPE_SONG, TYPE_STORY]
-
-  typesToFilterBy.forEach((type) =>
-    filters.push({ type, label: makeTitleCase(type) }),
-  )
-
-  const handleFilter = (filter) => {
-    setSearchTypeInUrl(filter)
-  }
-
   return {
-    searchType,
+    searchType: searchTypeInUrl,
     siteTitle: title || 'FirstVoices',
-    filters,
-    handleFilter,
+    filters: typeFilters,
+    handleFilter: (filter) => {
+      setSearchTypeInUrl(filter)
+    },
     infiniteScroll,
     isLoading: isInitialLoading,
     items: data,
@@ -64,7 +40,7 @@ function SearchData() {
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
-    entryLabel: labels?.singular,
+    entryLabel: getSearchTypeLabel({ searchTypeInUrl }),
   }
 }
 
