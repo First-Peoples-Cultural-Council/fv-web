@@ -25,6 +25,8 @@ export const AUDIO_PATH = 'audio'
 export const IMAGE_PATH = 'images'
 export const VIDEO_PATH = 'videos'
 
+export const SHARED_MEDIA = 'art-library'
+
 // GAMES
 export const WORDSY = 'wordsy'
 
