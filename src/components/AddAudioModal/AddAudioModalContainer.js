@@ -23,11 +23,13 @@ function AddAudioModalContainer({
       id: 'upload-tab',
       title: 'Upload',
       btnLabel: 'Upload New Audio',
+      icon: 'Upload',
     },
     {
       id: 'search-tab',
       title: 'Media Library',
       btnLabel: 'Search Audio Files',
+      icon: 'Search',
     },
   ]
 

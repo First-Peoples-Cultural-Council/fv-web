@@ -23,11 +23,13 @@ function AddImageModalContainer({
       id: 'upload-tab',
       title: 'Upload Images',
       btnLabel: 'Upload New Images',
+      icon: 'Upload',
     },
     {
       id: 'search-tab',
       title: 'Image Library',
       btnLabel: 'Search Image Files',
+      icon: 'Search',
     },
   ]
 
