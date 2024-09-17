@@ -1,10 +1,9 @@
-import { useRef } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
+import useLoader from 'common/hooks/useLoader'
 import api from 'services/api'
 import { SEARCH } from 'common/constants'
 import { searchResponseAdaptor } from 'common/dataAdaptors'
@@ -39,18 +38,7 @@ function useSearchLoader({ searchParams }) {
     }),
   })
 
-  const infiniteScroll = {
-    fetchNextPage: response?.fetchNextPage,
-    hasNextPage: response?.hasNextPage,
-    isFetchingNextPage: response?.isFetchingNextPage,
-  }
-
-  const loadRef = useRef(null)
-  useIntersectionObserver({
-    target: loadRef,
-    onIntersect: response?.fetchNextPage,
-    enabled: response?.hasNextPage,
-  })
+  const { infiniteScroll, loadRef } = useLoader({ response })
 
   return {
     ...response,
