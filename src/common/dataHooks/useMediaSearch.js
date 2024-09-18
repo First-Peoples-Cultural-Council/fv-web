@@ -1,27 +1,24 @@
 import { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { useInfiniteQuery } from '@tanstack/react-query'
 
 // FPCC
-import useLoader from 'common/hooks/useLoader'
-import api from 'services/api'
-import { searchResponseAdaptor } from 'common/dataAdaptors'
 import {
   AUDIO,
   IMAGE,
   VIDEO,
   TYPES,
-  SEARCH,
+  HAS_SITE_FEATURE,
   SHARED_MEDIA,
   SORT,
   SORT_CREATED_DESC,
 } from 'common/constants'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 
 function useMediaSearch({ type, library }) {
-  const { sitename } = useParams()
-  const siteToSearch = library === SHARED_MEDIA ? SHARED_MEDIA : sitename
+  const searchSharedMedia = library === SHARED_MEDIA
   const [searchParams, setSearchParams] = useSearchParams()
 
   const path = getPathForMediaType(type)
@@ -31,34 +28,28 @@ function useMediaSearch({ type, library }) {
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
   const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
 
-  // Add search Term
-  const _searchParams = new URLSearchParams({
+  const siteSearchParams = new URLSearchParams({
     q: searchTerm,
     [TYPES]: type,
     [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
-  const searchParamString = _searchParams.toString()
-
-  // Fetch search results
-  const response = useInfiniteQuery({
-    queryKey: [SEARCH, siteToSearch, searchParamString],
-    queryFn: ({ pageParam = 1 }) =>
-      api.search.get({
-        sitename: siteToSearch,
-        searchParams: searchParamString,
-        pageParam,
-      }),
-    getNextPageParam: (currentPage) => currentPage.next,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
-    select: (responseData) => ({
-      pages: searchResponseAdaptor(responseData),
-      pageParams: responseData.pageParams,
-    }),
+  const sharedMediaSearchParams = new URLSearchParams({
+    q: searchTerm,
+    [TYPES]: type,
+    [SORT]: searchTerm ? null : SORT_CREATED_DESC,
+    [HAS_SITE_FEATURE]: SHARED_MEDIA,
   })
 
-  const { infiniteScroll, loadRef } = useLoader({ response })
+  // Fetch search results
+  const siteSearchResponse = useSearchLoader({ searchParams: siteSearchParams })
+  const sharedMediaSearchResponse = useSearchAllSitesLoader({
+    searchParams: sharedMediaSearchParams,
+  })
+
+  const response = searchSharedMedia
+    ? sharedMediaSearchResponse
+    : siteSearchResponse
 
   const handleTextFieldChange = (event) => {
     event.preventDefault()
@@ -83,10 +74,10 @@ function useMediaSearch({ type, library }) {
   }, [currentFile, response?.data, type])
 
   const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
+    if (response?.infiniteScroll?.isFetchingNextPage) {
       return 'Loading more...'
     }
-    if (infiniteScroll?.hasNextPage) {
+    if (response?.infiniteScroll?.hasNextPage) {
       return 'Load more'
     }
     return 'End of results.'
@@ -96,9 +87,9 @@ function useMediaSearch({ type, library }) {
     handleSearchSubmit,
     handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
-    infiniteScroll,
+    infiniteScroll: response?.infiniteScroll,
     isLoadingEntries: response?.isLoading,
-    loadRef,
+    loadRef: response?.loadRef,
     media: response?.data,
     searchValue: searchInputValue,
     currentFile,
