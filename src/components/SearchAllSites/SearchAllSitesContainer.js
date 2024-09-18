@@ -23,6 +23,7 @@ function SearchAllSitesContainer() {
   // fetch results
   const { data, infiniteScroll, loadRef, isInitialLoading } =
     useSearchAllSitesLoader({
+      enabled: true,
       searchParams,
     })
 

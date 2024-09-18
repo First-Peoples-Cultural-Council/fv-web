@@ -10,7 +10,7 @@ import { searchResponseAdaptor } from 'common/dataAdaptors'
 /**
  * Calls search API and provides search results and infinite scroll info.
  */
-function useSearchAllSitesLoader({ searchParams }) {
+function useSearchAllSitesLoader({ enabled, searchParams }) {
   const searchParamString = searchParams.toString()
 
   // Fetch search results
@@ -22,6 +22,7 @@ function useSearchAllSitesLoader({ searchParams }) {
         pageParam,
       }),
     getNextPageParam: (currentPage) => currentPage.next,
+    enabled: !!enabled,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     select: (responseData) => ({

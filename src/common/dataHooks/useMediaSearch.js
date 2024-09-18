@@ -45,6 +45,7 @@ function useMediaSearch({ type, library }) {
   const siteSearchResponse = useSearchLoader({ searchParams: siteSearchParams })
   const sharedMediaSearchResponse = useSearchAllSitesLoader({
     searchParams: sharedMediaSearchParams,
+    enabled: searchSharedMedia,
   })
 
   const response = searchSharedMedia
