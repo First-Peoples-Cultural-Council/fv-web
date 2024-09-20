@@ -15,7 +15,11 @@ function ImageWithLightboxPresentation({
   const [lightboxOpen, setLightboxOpen] = useState(false)
   return (
     <>
-      <button type="button" onClick={() => setLightboxOpen(true)} className="relative group flex">
+      <button
+        type="button"
+        onClick={() => setLightboxOpen(true)}
+        className="relative group flex"
+      >
         <img
           className={imgStyling}
           src={getMediaPath({
@@ -29,17 +33,20 @@ function ImageWithLightboxPresentation({
         {withIcon &&
           getIcon(
             'InfoCircleSolid',
-            'absolute bottom-2 right-2 p-1 w-6 h-6 text-white fill-current opacity-60 group-hover:opacity-100'
+            'absolute bottom-2 right-2 p-1 w-6 h-6 text-white fill-current opacity-60 group-hover:opacity-100',
           )}
       </button>
       {/* Lightbox Modal */}
-      <Modal.Presentation isOpen={lightboxOpen} closeHandler={() => setLightboxOpen(false)}>
+      <Modal.Presentation
+        isOpen={lightboxOpen}
+        closeHandler={() => setLightboxOpen(false)}
+      >
         <div
           id="ImageWithLightboxPresentation"
-          className="inline-block text-white transform transition-all align-middle md:w-2/3 max-w-2xl lg:max-w-4xl xl:max-w-7xl"
+          className="inline-block text-white transform transition-all align-middle max-w-2xl lg:max-w-4xl xl:max-w-7xl"
         >
           <img
-            className="object-contain sm:h-4/5-screen shadow-xl mx-auto"
+            className="object-contain max-h-screen h-2/3-screen shadow-xl mx-auto"
             src={getMediaPath({
               mediaObject: image,
               type: IMAGE,
@@ -47,9 +54,19 @@ function ImageWithLightboxPresentation({
             })}
             alt={image?.title}
           />
-          <div className="my-1 text-lg md:text-xl font-medium">{image?.title}</div>
-          {image?.description && <div className="text-base my-2">Description: {image?.description}</div>}
-          {image?.acknowledgement && <div className="text-sm my-2">Acknowledgement: {image?.acknowledgement}</div>}
+          <div className="my-1 text-lg md:text-xl font-medium">
+            {image?.title}
+          </div>
+          {image?.description && (
+            <div className="text-base my-2">
+              Description: {image?.description}
+            </div>
+          )}
+          {image?.acknowledgement && (
+            <div className="text-sm my-2">
+              Acknowledgement: {image?.acknowledgement}
+            </div>
+          )}
         </div>
       </Modal.Presentation>
     </>
