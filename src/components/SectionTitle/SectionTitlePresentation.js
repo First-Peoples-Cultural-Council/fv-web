@@ -15,7 +15,7 @@ function SectionTitlePresentation({
         } font-bold`}
       >
         <span
-          className={`inline-block px-4 sm:px-8 md:px-12 lg:px-20 bg-${bgColor}`}
+          className={`max-w-screen-lg inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
         >
           {title}
           {placeholder && <span className="bg-gray-100 text-gray-100 px-28" />}
