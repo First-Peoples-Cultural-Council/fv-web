@@ -11,9 +11,9 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
     <div className="flex" id="WidgetKeyboardsPresentation">
-      <div className="bg-tertiaryA mx-auto p-10 text-white lg:my-4 max-w-screen-xl">
-        <div className="grid grid-cols-3 gap-4 ">
-          <div className="col-span-2 space-y-10">
+      <div className="bg-tertiaryA mx-auto p-6 md:p-10 text-white lg:my-4 max-w-screen-xl">
+        <div className="flex flex-col md:flex-row">
+          <div className="space-y-10">
             <h1 className="text-3xl font-bold">{header}</h1>
             <a
               href="https://apps.apple.com/ca/app/firstvoices-keyboards/id1066651145"
@@ -40,9 +40,9 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               />
             </a>
           </div>
-          <div className="col-span-1 flex items-center">
+          <div className="flex items-center">
             <img
-              className="h-32 lg:h-52 w-auto shadow-2xl rounded-lg mx-auto border-8 border-white float-right "
+              className="hidden md:flex lg:h-52 w-auto shadow-2xl rounded-lg mx-auto border-8 border-white float-right"
               src={fvKeyboardsLogo}
               loading="lazy"
               alt="App Logo"
