@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { TYPE_AUDIO, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 import Modal from 'components/Modal'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import getIcon from 'common/utils/getIcon'
 
 function AddMediaModalWrapper({
   selectedMedia,
@@ -40,12 +41,15 @@ function AddMediaModalWrapper({
         onClick={handleOnClick}
         disabled={itemsSelected && selectedTab.id !== tab.id}
       >
-        {tabHasSelectedItems
-          ? `Insert ${selectedMedia.length} ${getFriendlyDocType({
-              docType: type,
-              plural: true,
-            })}`
-          : tab.btnLabel}
+        {getIcon(tabHasSelectedItems ? 'Add' : tab?.icon, 'btn-icon')}
+        <span>
+          {tabHasSelectedItems
+            ? `Insert ${selectedMedia.length} ${getFriendlyDocType({
+                docType: type,
+                plural: true,
+              })}`
+            : tab.btnLabel}
+        </span>
       </button>
     )
   }
@@ -58,18 +62,16 @@ function AddMediaModalWrapper({
     >
       <div
         id="AddMediaModalWrapper"
-        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-gray-50 p-4"
+        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-gray-50 p-6"
       >
-        <div className="h-full flex flex-col">
-          <div>
-            <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
-              {selectedTab.title}
-            </h2>
-          </div>
-          <div className="w-full bg-gray-50 flex justify-center space-x-2">
+        <div className="h-full flex flex-col space-y-4">
+          <h2 className="text-center text-2xl font-bold text-fv-charcoal">
+            {selectedTab.title}
+          </h2>
+          <div className="w-full bg-gray-50 flex justify-center space-x-4">
             {tabOptions.map((tab) => tabButton(tab))}
           </div>
-          <div className="grow mt-2">{children}</div>
+          <div className="grow">{children}</div>
         </div>
       </div>
     </Modal.Presentation>

@@ -26,11 +26,13 @@ function AddVideoModalContainer({
       id: 'upload-tab',
       title: 'Upload Video',
       btnLabel: 'Upload New Video',
+      icon: 'Upload',
     },
     {
       id: 'search-tab',
       title: 'Video Library',
       btnLabel: 'Search Videos',
+      icon: 'Search',
     },
   ]
 
@@ -41,6 +43,7 @@ function AddVideoModalContainer({
         id: 'video-link-tab',
         title: 'Add Video Link',
         btnLabel: 'Link a Video',
+        icon: 'Link',
       },
     ]
   }

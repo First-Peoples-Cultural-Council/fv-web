@@ -11,7 +11,10 @@ import {
   TYPE_ENTRY,
   TYPES,
 } from 'common/constants'
-import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
+import {
+  makeTitleCase,
+  getPresentationPropertiesForType,
+} from 'common/utils/stringHelpers'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
 function useSearchType({ initialSearchType = TYPE_ENTRY }) {
@@ -44,6 +47,18 @@ function useSearchType({ initialSearchType = TYPE_ENTRY }) {
     }
   }, [selectedSearchType, searchTypeInUrl])
 
+  const typeFilters = [
+    {
+      type: TYPE_ENTRY,
+      label: 'All Results',
+    },
+  ]
+  const typesToFilterBy = [TYPE_WORD, TYPE_PHRASE, TYPE_SONG, TYPE_STORY]
+
+  typesToFilterBy.forEach((type) =>
+    typeFilters.push({ type, label: makeTitleCase(type) }),
+  )
+
   return {
     searchType: selectedSearchType,
     setSearchType: setSelectedSearchTypeWithDefaults,
@@ -51,6 +66,7 @@ function useSearchType({ initialSearchType = TYPE_ENTRY }) {
     setSearchTypeInUrl,
     getSearchTypeLabel,
     handleSearchTypeChange,
+    typeFilters,
   }
 }
 

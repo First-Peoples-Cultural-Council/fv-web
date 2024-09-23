@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -11,16 +10,19 @@ import { searchResponseAdaptor } from 'common/dataAdaptors'
 /**
  * Calls search API and provides search results and infinite scroll info.
  */
-function useSearchLoader({ searchParams }) {
-  const { sitename } = useParams()
+function useSearchAllSitesLoader({ enabled, searchParams }) {
   const searchParamString = searchParams.toString()
 
   // Fetch search results
   const response = useInfiniteQuery({
-    queryKey: [SEARCH, sitename, searchParamString],
+    queryKey: [SEARCH, 'cross-site', searchParamString],
     queryFn: ({ pageParam = 1 }) =>
-      api.search.get({ sitename, searchParams: searchParamString, pageParam }),
+      api.search.getFVWideSearch({
+        searchParams: searchParamString,
+        pageParam,
+      }),
     getNextPageParam: (currentPage) => currentPage.next,
+    enabled: !!enabled,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     select: (responseData) => ({
@@ -40,8 +42,8 @@ function useSearchLoader({ searchParams }) {
 
 // PROPTYPES
 const { obj } = PropTypes
-useSearchLoader.propTypes = {
+useSearchAllSitesLoader.propTypes = {
   searchParams: obj,
 }
 
-export default useSearchLoader
+export default useSearchAllSitesLoader

@@ -17,18 +17,9 @@ function DictionaryGridPresentation({
   kids = null,
   noResultsMessage = 'Sorry, no results were found for this search.',
 }) {
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
+  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
+    infiniteScroll
   const [loadAll, setLoadAll] = useState(false)
-
-  const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
 
   const printBtn = () => {
     setLoadAll(true)
@@ -44,6 +35,7 @@ function DictionaryGridPresentation({
           <div className="p-4 align-middle inline-block min-w-full relative">
             {/* Hiding print button until custom print view has been created */}
             <button
+              data-testid="print-btn"
               type="button"
               className="hidden float-right m-1 text-primary font-medium"
               onClick={() => printBtn()}
@@ -74,12 +66,13 @@ function DictionaryGridPresentation({
           </div>
           <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
             <button
+              data-testid="load-btn"
               type="button"
               className={!hasNextPage ? 'cursor-text' : ''}
               onClick={() => fetchNextPage()}
               disabled={!hasNextPage || isFetchingNextPage}
             >
-              {getLoadLabel()}
+              {loadLabel}
             </button>
           </div>
         </div>

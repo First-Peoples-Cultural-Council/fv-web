@@ -9,6 +9,7 @@ export const HAS_IMAGE = 'hasImage'
 export const HAS_VIDEO = 'hasVideo'
 export const HAS_TRANSLATION = 'hasTranslation'
 export const HAS_UNRECOGNIZED_CHARS = 'hasUnrecognizedChars'
+export const HAS_SITE_FEATURE = 'hasSiteFeature'
 export const KIDS = 'kids'
 export const PAGE = 'page'
 export const PAGE_SIZE = 'pageSize'
@@ -44,6 +45,9 @@ export const DOMAIN_BOTH = 'both'
 // For  GAMES, KIDS, HAS_AUDIO, HAS_IMAGE, HAS_VIDEO, HAS_TRANSLATION
 export const TRUE = 'True'
 export const FALSE = 'False'
+
+// For HAS_SITE_FEATURE
+export const SHARED_MEDIA = 'shared_media'
 
 // For SORT
 export const SORT_ALPHABETICAL = 'title'

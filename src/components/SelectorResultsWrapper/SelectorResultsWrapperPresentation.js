@@ -14,6 +14,7 @@ function SelectorResultsWrapperPresentation({
     <Loading.Container
       data-testid="SelectorResultsWrapperPresentation"
       isLoading={isLoading}
+      height="h-96"
     >
       {hasResults && (
         <div>

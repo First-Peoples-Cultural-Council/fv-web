@@ -3,12 +3,21 @@ import { useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
-import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { AUDIO, IMAGE, VIDEO, TYPES, SORT, SORT_CREATED_DESC } from 'common/constants'
+import {
+  AUDIO,
+  IMAGE,
+  VIDEO,
+  TYPES,
+  HAS_SITE_FEATURE,
+  SHARED_MEDIA,
+  SORT,
+  SORT_CREATED_DESC,
+} from 'common/constants'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
+import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 
-function useMediaSearch({ type }) {
+function useMediaSearch({ type, searchSharedMedia }) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const path = getPathForMediaType(type)
@@ -18,16 +27,29 @@ function useMediaSearch({ type }) {
   const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
   const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
 
-  // Add search Term
-  const _searchParams = new URLSearchParams({
+  const siteSearchParams = new URLSearchParams({
     q: searchTerm,
     [TYPES]: type,
     [SORT]: searchTerm ? null : SORT_CREATED_DESC,
   })
 
-  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
-    searchParams: _searchParams,
+  const sharedMediaSearchParams = new URLSearchParams({
+    q: searchTerm,
+    [TYPES]: type,
+    [SORT]: searchTerm ? null : SORT_CREATED_DESC,
+    [HAS_SITE_FEATURE]: SHARED_MEDIA,
   })
+
+  // Fetch search results
+  const siteSearchResponse = useSearchLoader({ searchParams: siteSearchParams })
+  const sharedMediaSearchResponse = useSearchAllSitesLoader({
+    searchParams: sharedMediaSearchParams,
+    enabled: searchSharedMedia,
+  })
+
+  const response = searchSharedMedia
+    ? sharedMediaSearchResponse
+    : siteSearchResponse
 
   const handleTextFieldChange = (event) => {
     event.preventDefault()
@@ -45,48 +67,33 @@ function useMediaSearch({ type }) {
   }
 
   useEffect(() => {
-    if (!currentFile && data?.pages?.[0]?.results) {
-      const firstFile = data?.pages?.[0]?.results?.[0]
+    if (!currentFile && response?.data?.pages?.[0]?.results) {
+      const firstFile = response?.data?.pages?.[0]?.results?.[0]
       setCurrentFile(firstFile)
     }
-  }, [currentFile, data, type])
-
-  useIntersectionObserver({
-    target: loadRef,
-    onIntersect: infiniteScroll?.fetchNextPage,
-    enabled: infiniteScroll?.hasNextPage,
-  })
-
-  const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
+  }, [currentFile, response?.data, type])
 
   return {
     handleSearchSubmit,
     handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
-    infiniteScroll,
-    isLoadingEntries: isInitialLoading,
-    loadRef,
-    media: data,
+    infiniteScroll: response?.infiniteScroll,
+    isLoadingEntries: response?.isLoading,
+    loadLabel: response?.infiniteScroll?.loadLabel,
+    loadRef: response?.loadRef,
+    media: response?.data,
     searchValue: searchInputValue,
     currentFile,
     setCurrentFile,
-    loadLabel: getLoadLabel(),
     typePlural: path,
   }
 }
 
-const { oneOf } = PropTypes
+const { oneOf, bool } = PropTypes
 
 useMediaSearch.propTypes = {
   type: oneOf([AUDIO, IMAGE, VIDEO]),
+  searchSharedMedia: bool,
 }
 
 export default useMediaSearch
