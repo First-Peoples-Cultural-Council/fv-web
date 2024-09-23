@@ -17,8 +17,7 @@ import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 
-function useMediaSearch({ type, library }) {
-  const searchSharedMedia = library === SHARED_MEDIA
+function useMediaSearch({ type, searchSharedMedia }) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const path = getPathForMediaType(type)
@@ -90,11 +89,11 @@ function useMediaSearch({ type, library }) {
   }
 }
 
-const { oneOf, string } = PropTypes
+const { oneOf, bool } = PropTypes
 
 useMediaSearch.propTypes = {
   type: oneOf([AUDIO, IMAGE, VIDEO]),
-  library: string,
+  searchSharedMedia: bool,
 }
 
 export default useMediaSearch

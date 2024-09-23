@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -7,7 +6,7 @@ import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorVisualMediaGrid from 'components/SelectorVisualMediaGrid'
 import useMediaSearch from 'common/dataHooks/useMediaSearch'
-import { SHARED_MEDIA, TYPE_IMAGE } from 'common/constants'
+import { TYPE_IMAGE } from 'common/constants'
 import RadioButtonGroup from 'components/RadioButtonGroup'
 
 function SelectorImagesContainer({
@@ -15,8 +14,7 @@ function SelectorImagesContainer({
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const { sitename } = useParams()
-  const [libraryToSearch, setLibraryToSearch] = useState(sitename)
+  const [searchSharedMedia, setSearchSharedMedia] = useState(false)
 
   const {
     media,
@@ -27,14 +25,14 @@ function SelectorImagesContainer({
     isLoadingEntries,
     loadRef,
     loadLabel,
-  } = useMediaSearch({ type: TYPE_IMAGE, library: libraryToSearch })
+  } = useMediaSearch({ type: TYPE_IMAGE, searchSharedMedia })
 
   const hasResults = !!(
     media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
-  const libraryOptions = [
-    { value: SHARED_MEDIA, label: 'Shared Images' },
-    { value: sitename, label: 'Your image library' },
+  const sharedMediaOptions = [
+    { value: true, label: 'Shared Images' },
+    { value: false, label: 'Your image library' },
   ]
 
   return (
@@ -51,9 +49,9 @@ function SelectorImagesContainer({
         <div className="mt-4 mx-auto">
           <RadioButtonGroup.Presentation
             accentColor="primary"
-            onChange={setLibraryToSearch}
-            options={libraryOptions}
-            value={libraryToSearch}
+            onChange={setSearchSharedMedia}
+            options={sharedMediaOptions}
+            value={searchSharedMedia}
           />
         </div>
         <div className="grow h-72 overflow-y-scroll">
@@ -68,12 +66,12 @@ function SelectorImagesContainer({
                     id="results-header"
                     className="text-lg font-bold text-primary"
                   >
-                    {libraryToSearch === SHARED_MEDIA
+                    {searchSharedMedia
                       ? 'Shared media library'
                       : 'Your media uploads'}
                   </h2>
                   <p className="text-sm text-fv-charcoal-light">
-                    {libraryToSearch === SHARED_MEDIA
+                    {searchSharedMedia
                       ? 'Feel free to use the below art, illustration, and photos created by first nations artist'
                       : 'Images uploaded by your or your team '}
                   </p>
