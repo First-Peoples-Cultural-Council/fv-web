@@ -28,19 +28,11 @@ function DashboardEntriesPresentationList({
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
+  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
+    infiniteScroll
   const { sitename } = useParams()
   const { checkIfUserCanEdit } = useAuthCheck()
 
-  const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
   function handleItemClick(item) {
     setSelectedItem(item)
     setDrawerOpen(true)
@@ -121,36 +113,43 @@ function DashboardEntriesPresentationList({
                           key={entry?.id}
                           className="w-full hover:bg-gray-100"
                         >
-                          <td
-                            onClick={() => handleItemClick(entry)}
-                            className="cursor-pointer pl-6 pr-4 py-4 text-left font-medium"
-                          >
-                            {entry?.title}
+                          <td>
+                            <button
+                              data-testid="click-title"
+                              type="button"
+                              onClick={() => handleItemClick(entry)}
+                              className="cursor-pointer pl-6 pr-4 py-4 text-left font-medium"
+                            >
+                              {entry?.title}
+                            </button>
                           </td>
-
-                          <td
-                            className="cursor-pointer p-4 text-left font-medium"
-                            onClick={() => handleItemClick(entry)}
-                          >
-                            {/* For Dictionary Entries */}
-                            {entry?.translations && (
-                              <ol className="text-fv-charcoal">
-                                {entry?.translations.map((translation, i) => (
-                                  <li key={translation?.text}>
-                                    {entry?.translations.length > 1
-                                      ? `${i + 1}. `
-                                      : null}{' '}
-                                    {translation?.text}
-                                  </li>
-                                ))}
-                              </ol>
-                            )}
-                            {/* For Songs and Stories */}
-                            {entry?.titleTranslation && (
-                              <div className="text-fv-charcoal">
-                                {entry?.titleTranslation}
-                              </div>
-                            )}
+                          <td>
+                            <button
+                              data-testid="click-translations"
+                              type="button"
+                              className="cursor-pointer p-4 text-left font-medium"
+                              onClick={() => handleItemClick(entry)}
+                            >
+                              {/* For Dictionary Entries */}
+                              {entry?.translations && (
+                                <ol className="text-fv-charcoal">
+                                  {entry?.translations.map((translation, i) => (
+                                    <li key={translation?.text}>
+                                      {entry?.translations.length > 1
+                                        ? `${i + 1}. `
+                                        : null}{' '}
+                                      {translation?.text}
+                                    </li>
+                                  ))}
+                                </ol>
+                              )}
+                              {/* For Songs and Stories */}
+                              {entry?.titleTranslation && (
+                                <div className="text-fv-charcoal">
+                                  {entry?.titleTranslation}
+                                </div>
+                              )}
+                            </button>
                           </td>
                           <td className="p-4 text-fv-charcoal text-xs whitespace-nowrap">
                             {entry?.created}
@@ -213,7 +212,7 @@ function DashboardEntriesPresentationList({
                 onClick={() => fetchNextPage()}
                 disabled={!hasNextPage || isFetchingNextPage}
               >
-                {getLoadLabel()}
+                {loadLabel}
               </button>
             </div>
           </div>

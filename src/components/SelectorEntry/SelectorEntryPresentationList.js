@@ -13,19 +13,10 @@ function SelectorEntryPresentationList({
   setSelected,
   types,
 }) {
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
+  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
+    infiniteScroll
 
   const isMultiDocType = types.length > 1
-
-  const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
 
   const headerClass =
     'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
@@ -133,7 +124,7 @@ function SelectorEntryPresentationList({
                     onClick={() => fetchNextPage()}
                     disabled={!hasNextPage || isFetchingNextPage}
                   >
-                    {getLoadLabel()}
+                    {loadLabel}
                   </button>
                 </div>
               </div>

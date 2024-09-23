@@ -27,19 +27,10 @@ function DictionaryListPresentation({
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
+  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
+    infiniteScroll
   const navigate = useNavigate()
   const { setCurrentAudio } = useAudiobar()
-
-  const getLoadLabel = () => {
-    if (infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
 
   const getSortingIcon = (field) => {
     if (!sorting) {
@@ -79,6 +70,7 @@ function DictionaryListPresentation({
                     <th scope="col" className="px-6 py-3">
                       {sorting ? (
                         <button
+                          data-testid="sort-btn"
                           type="button"
                           onClick={() => onSortByClick('ENTRY')}
                           className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider"
@@ -206,12 +198,13 @@ function DictionaryListPresentation({
           </div>
           <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
             <button
+              data-testid="load-btn"
               type="button"
               className={!hasNextPage ? 'cursor-text' : ''}
               onClick={() => fetchNextPage()}
               disabled={!hasNextPage || isFetchingNextPage}
             >
-              {getLoadLabel()}
+              {loadLabel}
             </button>
           </div>
         </div>

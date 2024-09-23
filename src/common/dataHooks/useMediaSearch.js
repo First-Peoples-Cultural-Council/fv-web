@@ -74,28 +74,18 @@ function useMediaSearch({ type, library }) {
     }
   }, [currentFile, response?.data, type])
 
-  const getLoadLabel = () => {
-    if (response?.infiniteScroll?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (response?.infiniteScroll?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
-
   return {
     handleSearchSubmit,
     handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
     infiniteScroll: response?.infiniteScroll,
     isLoadingEntries: response?.isLoading,
+    loadLabel: response?.infiniteScroll?.loadLabel,
     loadRef: response?.loadRef,
     media: response?.data,
     searchValue: searchInputValue,
     currentFile,
     setCurrentFile,
-    loadLabel: getLoadLabel(),
     typePlural: path,
   }
 }
