@@ -42,7 +42,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
           </div>
           <div className="flex items-center">
             <img
-              className="hidden md:flex lg:h-52 w-auto shadow-2xl rounded-lg mx-auto border-8 border-white float-right"
+              className="flex lg:h-52 w-auto shadow-2xl rounded-lg my-6 border-8 border-white float-right"
               src={fvKeyboardsLogo}
               loading="lazy"
               alt="App Logo"
