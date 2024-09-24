@@ -11,15 +11,15 @@ function WidgetAppsPresentation() {
   const pwaUrl = `https://${site?.sitename}.firstvoicesapp.com/`
 
   return (
-    <section className="py-3 md:py-6 bg-white">
+    <section className="px-4 md:px-0 py-3 md:py-6 bg-white">
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title="DOWNLOAD MOBILE APP" />
         <h2 className="text-center text-secondary text-sm md:text-base lg:text-2xl mt-2 md:mt-3.5 lg:mt-5">
           {site?.title} Language
         </h2>
       </div>
-      <div className="grid grid-cols-3 gap-4 mx-auto max-w-screen-lg">
-        <div className="col-span-2 space-y-4 md:space-y-8">
+      <div className="grid grid-cols-6 gap-6 md:gap-4 mx-auto max-w-screen-lg">
+        <div className="col-span-6 md:col-span-4 space-y-2 md:space-y-8">
           <p className="text-base font-medium">
             Browse words and phrases in the dictionary
           </p>
@@ -54,10 +54,10 @@ function WidgetAppsPresentation() {
             </a>
           </p>
         </div>
-        <div className="col-span-1">
-          <div className="flex-col items-center justify-center space-y-14 md:space-y-20">
+        <div className="col-span-6 md:col-span-2">
+          <div className="flex-col items-center justify-center space-y-6 md:space-y-20">
             <img
-              className="h-32 md:h-44 lg:h-52 w-32 md:w-44 lg:w-52 rounded-lg mx-auto border"
+              className="h-44 lg:h-52 w-44 lg:w-52 rounded-lg mx-auto border"
               src={appLogoSrc}
               loading="lazy"
               alt={`${site?.title} App Logo`}
