@@ -72,8 +72,8 @@ function SelectorImagesContainer({
                   </h2>
                   <p className="text-sm text-fv-charcoal-light">
                     {searchSharedMedia
-                      ? 'Feel free to use the below art, illustration, and photos created by first nations artist'
-                      : 'Images uploaded by your or your team '}
+                      ? 'These artworks were created by indigenous artists for use on any FirstVoices sites'
+                      : 'Images uploaded by you or your team'}
                   </p>
                 </div>
                 <SelectorVisualMediaGrid.Presentation
