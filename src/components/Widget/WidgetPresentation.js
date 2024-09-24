@@ -40,7 +40,7 @@ function WidgetPresentation({ data, type }) {
       return <Alphabet.Container widgetView />
 
     case WIDGET_APPS:
-      return <WidgetApps.Container widgetData={data} />
+      return <WidgetApps.Presentation />
 
     case WIDGET_CONTACT:
       return <WidgetContactUs.Container widgetData={data} />
