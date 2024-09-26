@@ -5,7 +5,16 @@ import copyToClipboard from 'common/utils/copyToClipboard'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { useNotification } from 'context/NotificationContext'
-function ShareLinksPresentation({ url, title, modalCloseHandler }) {
+import { QrcodeButton } from 'components/Actions'
+import { makePlural } from 'common/utils/urlHelpers'
+
+function ShareLinksPresentation({
+  url,
+  sitename,
+  title,
+  modalCloseHandler,
+  entry,
+}) {
   const { setNotification } = useNotification()
 
   function confirmationCallback() {
@@ -82,7 +91,7 @@ function ShareLinksPresentation({ url, title, modalCloseHandler }) {
       <li>
         <button
           type="button"
-          id="CopyUrl"
+          data-testid="CopyUrl"
           aria-label="Copy to clipboard"
           className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryA"
           onClick={() => copyToClipboard({ text: url, confirmationCallback })}
@@ -90,15 +99,26 @@ function ShareLinksPresentation({ url, title, modalCloseHandler }) {
           {getIcon('Link', 'fill-current h-7 w-7')}
         </button>
       </li>
+      <li>
+        <QrcodeButton
+          buttonStyling="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryB"
+          entry={entry}
+          url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+            entry?.type,
+          )}/${entry?.id}`}
+        />
+      </li>
     </ul>
   )
 }
 // PROPTYPES
-const { string, func } = PropTypes
+const { string, func, obj } = PropTypes
 ShareLinksPresentation.propTypes = {
   url: string,
   title: string,
   modalCloseHandler: func,
+  sitename: string,
+  entry: obj,
 }
 
 export default ShareLinksPresentation
