@@ -1,15 +1,13 @@
-import PropTypes from 'prop-types'
-
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { usePage } from 'common/dataHooks/usePages'
 
-function ResourceData({ pageSlug }) {
+function SiteKeyboardsData() {
   const { site } = useSiteStore()
   const { title } = site
 
   const { data, isInitialLoading } = usePage({
-    pageSlug,
+    pageSlug: 'keyboards',
   })
 
   return {
@@ -18,10 +16,5 @@ function ResourceData({ pageSlug }) {
     title,
   }
 }
-// PROPTYPES
-const { string } = PropTypes
-ResourceData.propTypes = {
-  pageSlug: string,
-}
 
-export default ResourceData
+export default SiteKeyboardsData

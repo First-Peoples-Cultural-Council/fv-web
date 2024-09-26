@@ -21,8 +21,9 @@ import Join from 'components/Join'
 import Loading from 'components/Loading'
 import NavBar from 'components/NavBar'
 import Page from 'components/Page'
-import Resource from 'components/Resource'
 import SearchSite from 'components/SearchSite'
+import SiteApps from 'components/SiteApps'
+import SiteKeyboards from 'components/SiteKeyboards'
 import Song from 'components/Song'
 import SongsAndStories from 'components/SongsAndStories'
 import Story from 'components/Story'
@@ -84,14 +85,8 @@ function SiteFrame({ siteLoading }) {
             <Route path="games" element={<Games.Presentation />} />
             <Route path="immersion" element={<Immersion.Container />} />
             <Route path="join" element={<Join.Container />} />
-            <Route
-              path="apps"
-              element={<Resource.Container pageSlug="apps" />}
-            />
-            <Route
-              path="keyboards"
-              element={<Resource.Container pageSlug="keyboards" />}
-            />
+            <Route path="apps" element={<SiteApps.Presentation />} />
+            <Route path="keyboards" element={<SiteKeyboards.Container />} />
             <Route path="conditions-of-use" element={<ConditionsOfUse />} />
             <Route path="disclaimer" element={<Disclaimer />} />
             <Route
