@@ -16,7 +16,6 @@ function ShareLinksPresentation({
   entry,
 }) {
   const { setNotification } = useNotification()
-
   function confirmationCallback() {
     if (typeof modalCloseHandler !== 'undefined') {
       modalCloseHandler()
@@ -112,13 +111,13 @@ function ShareLinksPresentation({
   )
 }
 // PROPTYPES
-const { string, func, obj } = PropTypes
+const { string, func, object } = PropTypes
 ShareLinksPresentation.propTypes = {
   url: string,
   title: string,
   modalCloseHandler: func,
   sitename: string,
-  entry: obj,
+  entry: object,
 }
 
 export default ShareLinksPresentation

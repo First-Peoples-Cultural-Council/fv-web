@@ -13,6 +13,8 @@ function WidgetWordOfTheDayContainer() {
     title,
     url,
     isError,
+    sitename,
+    entry,
   } = WidgetWordOfTheDayData()
   return isError ? null : (
     <WidgetWordOfTheDayPresentation
@@ -23,6 +25,8 @@ function WidgetWordOfTheDayContainer() {
       relativeUrl={relativeUrl}
       title={title}
       url={url}
+      sitename={sitename}
+      entry={entry}
     />
   )
 }

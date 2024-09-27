@@ -16,7 +16,6 @@ function WidgetWordOfTheDayData() {
   const word = data?.[0]?.dictionaryEntry
   const translationArray = word?.translations?.map((trans) => `${trans?.text}`)
   const partOfSpeech = word?.translations?.[0]?.partOfSpeech?.title
-
   return {
     audio: word?.relatedAudio,
     wordTitle: word?.title,
@@ -26,6 +25,8 @@ function WidgetWordOfTheDayData() {
     title: 'WORD OF THE DAY',
     url: `${window.location.origin.toString()}/${sitename}/words/${word?.id}`,
     relativeUrl: `/${sitename}/words/${word?.id}`,
+    sitename,
+    entry: word,
   }
 }
 
