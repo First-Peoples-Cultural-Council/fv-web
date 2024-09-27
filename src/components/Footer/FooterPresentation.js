@@ -49,7 +49,7 @@ function FooterPresentation() {
             </a>
             <a
               className={linkClass}
-              href="https://fpcf.ca/what-you-can-do/"
+              href=" https://fpcf.ca/take-action/ways-to-give"
               target="_blank"
               rel="noopener noreferrer"
             >
