@@ -7,15 +7,14 @@ import { useSiteStore } from 'context/SiteContext'
 function SiteAppsPresentation() {
   const { site } = useSiteStore()
 
+  const h2Styling = 'text-xl md:text-3xl lg:text-4xl font-bold'
+
   return (
     <div data-testid="SiteAppsPresentation">
-      <div className="mb-4 lg:my-4">
-        <WidgetApps.Presentation />
-      </div>
-
-      <section className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto">
+      <WidgetApps.Presentation />
+      <section className="justify-center max-w-screen-lg px-4 lg:px-0 mx-auto">
         <div className="space-y-4 py-4 md:space-y-8 md:py-8">
-          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold">
+          <h2 className={h2Styling}>
             The {site?.title} app lets you access your language on-the-go!
           </h2>
           <p>
@@ -25,11 +24,8 @@ function SiteAppsPresentation() {
             from FirstVoices and always has the latest content. The app can be
             installed directly from the web.
           </p>
-        </div>
-        <div className="space-y-4 py-4 md:space-y-8 md:py-8">
-          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold">
-            Installation Instructions
-          </h2>
+
+          <h2 className={h2Styling}>Installation Instructions</h2>
           <p>
             Find detailed instructions for your browser here:{' '}
             <a
@@ -41,15 +37,18 @@ function SiteAppsPresentation() {
               Instructions for installing PWA
             </a>
           </p>
+        </div>
+        <div className="w-full rounded-lg bg-story-light  py-4 md:py-8 px-8 md:px-14 my-8 space-y-4 md:space-y-8 ">
+          <h2 className={h2Styling}>Having trouble installing apps?</h2>
           <p>
-            Having trouble installing apps? Let us know via our{' '}
+            Let us know{' '}
             <a
               className="inline-url"
               target="_blank"
               rel="noopener noreferrer"
               href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
             >
-              Help Desk.
+              via our Help Desk.
             </a>
           </p>
         </div>

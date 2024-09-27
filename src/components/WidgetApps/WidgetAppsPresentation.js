@@ -23,19 +23,19 @@ function WidgetAppsPresentation() {
           <div className="space-y-4 md:space-y-8">
             <div className="flex">
               <div className="flex-none w-12 p-1">
-                {getIcon('Search', 'fill-current h-5 w-auto')}
+                {getIcon('Search', 'fill-current h-5 w-auto mx-auto')}
               </div>
               <p className="grow">Browse words and phrases in the dictionary</p>
             </div>
             <div className="flex">
               <div className="flex-none w-12 p-1">
-                {getIcon('Flashcard', 'fill-current h-5 w-auto')}
+                {getIcon('Flashcard', 'fill-current h-5 w-auto mx-auto')}
               </div>
               <p className="grow">Practice with flashcards</p>
             </div>
             <div className="flex">
               <div className="flex-none w-12 p-1">
-                {getIcon('Bookmark', 'fill-current h-5 w-auto')}
+                {getIcon('Bookmark', 'fill-current h-5 w-auto mx-auto')}
               </div>
               <p className="grow">
                 Bookmark content and more with the {site?.title} mobile app!
@@ -43,7 +43,7 @@ function WidgetAppsPresentation() {
             </div>
             <div className="flex">
               <div className="flex-none w-12 p-1">
-                {getIcon('Devices', 'fill-current h-5 w-auto')}
+                {getIcon('Devices', 'fill-current h-5 w-auto mx-auto')}
               </div>
               <p className="grow">
                 Compatible with iPhone, iPad, Android, Chromebook, Windows, and
