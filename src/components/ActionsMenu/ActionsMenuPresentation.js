@@ -71,14 +71,24 @@ function ActionsMenuPresentation({
                       />
                     )}
                     {moreActions.includes('qrcode') && (
-                      <QrcodeButton
-                        withLabels
-                        iconStyling={iconStyling}
-                        entry={entry}
-                        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
-                          entry?.type,
-                        )}/${entry?.id}`}
-                      />
+                      <Menu.Item>
+                        {({ active }) => (
+                          <QrcodeButton
+                            buttonStyling={`${
+                              active
+                                ? 'bg-gray-100 text-fv-charcoal'
+                                : 'text-fv-charcoal-light'
+                            } w-full group flex items-center px-4 py-2 text-sm`}
+                            active={active}
+                            withLabels
+                            iconStyling={iconStyling}
+                            entry={entry}
+                            url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+                              entry?.type,
+                            )}/${entry?.id}`}
+                          />
+                        )}
+                      </Menu.Item>
                     )}
                   </div>
                 </Menu.Items>

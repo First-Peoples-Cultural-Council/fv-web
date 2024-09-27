@@ -16,6 +16,8 @@ function WidgetWordOfTheDayPresentation({
   relativeUrl,
   title,
   url,
+  sitename,
+  entry,
 }) {
   return (
     <section className="py-3 md:py-6 bg-white">
@@ -46,13 +48,18 @@ function WidgetWordOfTheDayPresentation({
         <h3 className="mt-8 max-w-2xl text-lg text-secondary md:mx-auto sm:text-xl">
           Share on:
         </h3>
-        <ShareLinks.Presentation url={url} title={wordTitle} />
+        <ShareLinks.Presentation
+          url={url}
+          title={wordTitle}
+          entry={entry}
+          sitename={sitename}
+        />
       </div>
     </section>
   )
 }
 // PROPTYPES
-const { string, array } = PropTypes
+const { string, array, object } = PropTypes
 WidgetWordOfTheDayPresentation.propTypes = {
   audio: array,
   wordTitle: string,
@@ -61,6 +68,8 @@ WidgetWordOfTheDayPresentation.propTypes = {
   title: string,
   url: string,
   partOfSpeech: string,
+  entry: object,
+  sitename: string,
 }
 
 export default WidgetWordOfTheDayPresentation
