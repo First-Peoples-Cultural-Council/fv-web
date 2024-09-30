@@ -126,7 +126,7 @@
     "react-router-dom": "^6.23.1",
     "style-loader": "^3.3.4",
     "tailwindcss": "^3.4.11",
-    "webpack": "^5.93.0",
+    "webpack": "^5.95.0",
     "webpack-merge": "^6.0.1",
     "yup": "^1.4.0"
   }
