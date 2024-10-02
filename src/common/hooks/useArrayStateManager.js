@@ -4,20 +4,21 @@ import PropTypes from 'prop-types'
 function useArrayStateManager({ maxItems }) {
   const [selectedItems, setSelectedItems] = useState([])
 
-  const handleSelectAdditionalItems = (id) => {
+  const removeItem = (array, item) =>
+    array.filter((elem) => elem !== item && elem?.id !== item?.id)
+
+  const handleSelectAdditionalItems = (item) => {
     let updatedSelectedItems = [...selectedItems]
-    if (selectedItems.some((elemId) => elemId === id)) {
-      updatedSelectedItems = updatedSelectedItems.filter(
-        (elemId) => elemId !== id,
-      )
+    if (selectedItems.some((elem) => elem === item || elem?.id === item?.id)) {
+      updatedSelectedItems = removeItem(updatedSelectedItems, item)
     } else if (maxItems && updatedSelectedItems.length === maxItems) {
       if (maxItems === 1) {
-        updatedSelectedItems = [id]
+        updatedSelectedItems = [item]
       } else {
         return
       }
     } else {
-      updatedSelectedItems = [...updatedSelectedItems, id]
+      updatedSelectedItems = [...updatedSelectedItems, item]
     }
     setSelectedItems(updatedSelectedItems)
   }

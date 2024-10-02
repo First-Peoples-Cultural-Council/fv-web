@@ -14,7 +14,7 @@ function SelectorImagesContainer({
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const [searchSharedMedia, setSearchSharedMedia] = useState(false)
+  const [searchSharedMedia, setSearchSharedMedia] = useState('false')
 
   const {
     media,
@@ -25,14 +25,17 @@ function SelectorImagesContainer({
     isLoadingEntries,
     loadRef,
     loadLabel,
-  } = useMediaSearch({ type: TYPE_IMAGE, searchSharedMedia })
+  } = useMediaSearch({
+    type: TYPE_IMAGE,
+    searchSharedMedia: searchSharedMedia === 'true',
+  })
 
   const hasResults = !!(
     media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
   const sharedMediaOptions = [
-    { value: true, label: 'Shared Images' },
-    { value: false, label: 'Your image library' },
+    { value: 'true', label: 'Shared Images' },
+    { value: 'false', label: 'Your image library' },
   ]
 
   return (

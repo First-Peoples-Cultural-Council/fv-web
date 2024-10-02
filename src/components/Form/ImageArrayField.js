@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import MediaThumbnail from 'components/MediaThumbnail'
-import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
 import AddImageModal from 'components/AddImageModal'
 import XButton from 'components/Form/XButton'
@@ -11,6 +10,8 @@ import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import { IMAGE, THUMBNAIL } from 'common/constants'
 
 function ImageArrayField({
   label = '',
@@ -20,10 +21,13 @@ function ImageArrayField({
   maxItems = 3,
   errors,
 }) {
-  const { value, addItems, removeItem } = useIdArrayField(nameId, control)
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: nameId,
+  })
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    addItems,
-    removeItem,
+    append,
+    remove,
   )
 
   return (
@@ -31,29 +35,39 @@ function ImageArrayField({
       <FieldLabel nameId={nameId} text={label} />
       <div data-testid="ImageArrayField" className="space-y-2">
         <div>
-          {value?.length > 0 &&
-            value?.map((imageId) => (
+          {fields?.length > 0 &&
+            fields?.map((image) => (
               <div
-                key={`${imageId}`}
+                key={image?.id}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
               >
-                <MediaThumbnail.Image
-                  id={imageId}
-                  imageStyles="object-cover pointer-events-none"
-                />
+                <div
+                  id="MediaThumbnailImage"
+                  className="relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden"
+                >
+                  <img
+                    src={getMediaPath({
+                      mediaObject: image,
+                      size: THUMBNAIL,
+                      type: IMAGE,
+                    })}
+                    alt={image?.title}
+                    className="object-cover pointer-events-none"
+                  />
+                </div>
 
-                <XButton onClickHandler={() => removeItem(imageId)} />
+                <XButton onClickHandler={() => remove(image)} />
               </div>
             ))}
         </div>
 
-        {value?.length >= maxItems ? (
+        {fields?.length >= maxItems ? (
           ''
         ) : (
           <div>
             <FieldButton label="Add image" onClickHandler={openModal} />
             <AddImageModal.Container
-              savedMedia={value}
+              savedMedia={fields}
               updateSavedMedia={selectItem}
               modalOpen={modalOpen}
               closeModal={closeModal}
