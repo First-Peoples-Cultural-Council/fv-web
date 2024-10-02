@@ -96,7 +96,7 @@ function MediaEditPresentation({
               mediaType === AUDIO ? 'col-span-12' : 'col-span-6'
             }`}
           >
-            <div className="col-span-12 sm:col-span-6">
+            <div className="col-span-12">
               <Form.TextField
                 label="Title"
                 nameId="title"
