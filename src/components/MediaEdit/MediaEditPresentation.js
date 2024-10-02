@@ -67,7 +67,7 @@ function MediaEditPresentation({
               <AudioNative styling="mt-4" audioObject={dataToEdit} />
             </div>
           ) : (
-            <div className="m-6 col-span-6 max-h-1/3-screen rounded-lg overflow-hidden">
+            <div className="m-6 col-span-6 overflow-hidden">
               {mediaType === IMAGE && (
                 <img
                   src={getMediaPath({
@@ -75,7 +75,7 @@ function MediaEditPresentation({
                     type: IMAGE,
                   })}
                   alt={dataToEdit?.title}
-                  className="object-contain w-full"
+                  className="object-contain w-full rounded-lg"
                 />
               )}
               {mediaType === VIDEO && (
