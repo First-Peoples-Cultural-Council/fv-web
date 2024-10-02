@@ -38,8 +38,8 @@ function DictionaryCrudPresentation({
     pronunciations: definitions.textArray(),
     relatedAudio: definitions.idArray(),
     relatedEntries: definitions.objectArray(),
-    relatedImages: definitions.idArray(),
-    relatedVideos: definitions.idArray(),
+    relatedImages: definitions.objectArray(),
+    relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     title: definitions
       .title({ charCount: 225 })

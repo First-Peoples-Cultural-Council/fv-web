@@ -22,8 +22,8 @@ function StoryPageForm({
     textTranslation: definitions.wysiwyg({ charCount: 5000 }),
     notes: definitions.textArray({ charCount: 500 }),
     relatedAudio: definitions.idArray(),
-    relatedImages: definitions.idArray(),
-    relatedVideos: definitions.idArray(),
+    relatedImages: definitions.objectArray(),
+    relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
   })
 
