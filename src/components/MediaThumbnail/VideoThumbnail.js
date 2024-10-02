@@ -7,32 +7,29 @@ import { useVideoObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { VIDEO, ORIGINAL } from 'common/constants'
 
-function VideoThumbnail(props) {
-  const {
-    id,
-    size = ORIGINAL,
-    alt,
-    containerStyles = 'block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
-    videoStyles = 'object-cover pointer-events-none',
-    ...other
-  } = props
-
+function VideoThumbnail({
+  id,
+  containerStyles = 'block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
+  videoStyles = 'object-cover pointer-events-none',
+  videoObject,
+  ...other
+}) {
   const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
   const mediaObject = useVideoObject({ sitename, id })
   useEffect(() => {
-    if (mediaObject?.original) {
+    if (videoObject || mediaObject?.original) {
       const srcToUse = getMediaPath({
-        mediaObject,
-        size,
+        mediaObject: videoObject || mediaObject,
+        size: ORIGINAL,
         type: VIDEO,
       })
       if (srcToUse !== src) {
         setSrc(srcToUse)
       }
     }
-  }, [src, setSrc, mediaObject, size])
+  }, [src, setSrc, mediaObject, videoObject])
 
   return (
     <div className={containerStyles}>
@@ -44,13 +41,12 @@ function VideoThumbnail(props) {
 }
 
 // PROPTYPES
-const { string } = PropTypes
+const { object, string } = PropTypes
 VideoThumbnail.propTypes = {
   id: string,
-  size: string,
-  alt: string,
   containerStyles: string,
   videoStyles: string,
+  videoObject: object,
 }
 
 export default VideoThumbnail

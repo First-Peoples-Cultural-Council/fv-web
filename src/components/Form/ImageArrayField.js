@@ -10,8 +10,7 @@ import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
-import { getMediaPath } from 'common/utils/mediaHelpers'
-import { IMAGE, THUMBNAIL } from 'common/constants'
+import MediaThumbnail from 'components/MediaThumbnail'
 
 function ImageArrayField({
   label = '',
@@ -41,20 +40,10 @@ function ImageArrayField({
                 key={image?.id}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
               >
-                <div
-                  id="MediaThumbnailImage"
-                  className="relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden"
-                >
-                  <img
-                    src={getMediaPath({
-                      mediaObject: image,
-                      size: THUMBNAIL,
-                      type: IMAGE,
-                    })}
-                    alt={image?.title}
-                    className="object-cover pointer-events-none"
-                  />
-                </div>
+                <MediaThumbnail.Image
+                  imageObject={image}
+                  imageStyles="object-cover pointer-events-none"
+                />
 
                 <XButton onClickHandler={() => remove(image)} />
               </div>

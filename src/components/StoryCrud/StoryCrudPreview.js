@@ -60,19 +60,19 @@ function StoryCrudPreview({ storyData }) {
     return (
       <>
         {images?.length > 0 &&
-          images?.map((imageId) => (
+          images?.map((image) => (
             <MediaThumbnail.Image
-              key={imageId}
-              id={imageId}
+              key={image?.id}
+              imageObject={image}
               containerStyles="w-40 h-40 mr-2"
               imageStyles="object-cover"
             />
           ))}
         {videos?.length > 0 &&
-          videos?.map((videoId) => (
+          videos?.map((video) => (
             <MediaThumbnail.Video
-              key={videoId}
-              id={videoId}
+              key={video?.id}
+              videoObject={video}
               containerStyles="w-40 h-40 mr-2"
             />
           ))}
@@ -144,7 +144,7 @@ function StoryCrudPreview({ storyData }) {
           )}
           <div className={detailStyle}>
             <h3 className={labelStyle}>Audio</h3>
-            {audioThumbnails(currentPage?.relatedAudio)}
+            {audioThumbnails(storyData?.relatedAudio)}
           </div>
           <div className={detailStyle}>
             <h3 className={labelStyle}>Visual media</h3>
@@ -196,6 +196,7 @@ function StoryCrudPreview({ storyData }) {
             {pages?.map((pageId, pageIndex) => (
               <button
                 type="button"
+                data-testid={`page-${pageIndex + 1}-btn`}
                 key={pageId}
                 onClick={() => setCurrentPage(pagesData?.[pageId])}
                 className={`cursor-pointer ${

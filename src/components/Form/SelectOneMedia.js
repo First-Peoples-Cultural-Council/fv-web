@@ -71,11 +71,11 @@ function SelectOneButton({ value, onChange }) {
     <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       {value.type === IMAGE ? (
         <MediaThumbnail.Image
-          id={value?.id}
+          imageObject={value}
           imageStyles="object-cover pointer-events-none"
         />
       ) : (
-        <MediaThumbnail.Video id={value?.id} />
+        <MediaThumbnail.Video videoObject={value} />
       )}
       <XButton onClickHandler={(event) => resetMedia(event)} />
     </div>

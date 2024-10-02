@@ -4,8 +4,6 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
-import { getMediaPath } from 'common/utils/mediaHelpers'
-import { VIDEO, ORIGINAL } from 'common/constants'
 import { useModalSelector } from 'common/hooks/useModalController'
 import AddVideoModal from 'components/AddVideoModal'
 import api from 'services/api'
@@ -93,19 +91,7 @@ function VideoArrayField({
                   key={video?.id}
                   className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
                 >
-                  <div className="block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
-                    <video
-                      className="'object-cover pointer-events-none'"
-                      src={getMediaPath({
-                        mediaObject: video,
-                        size: ORIGINAL,
-                        type: VIDEO,
-                      })}
-                      disableRemotePlayback
-                    >
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
+                  <MediaThumbnail.Video videoObject={video} />
                   <XButton onClickHandler={() => remove(video)} />
                 </div>
               ))}

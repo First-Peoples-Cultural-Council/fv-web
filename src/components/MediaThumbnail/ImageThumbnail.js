@@ -7,39 +7,36 @@ import { useImageObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, SMALL } from 'common/constants'
 
-function ImageThumbnail(props) {
-  const {
-    id,
-    size = SMALL,
-    alt,
-    containerStyles = 'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
-    imageStyles = 'w-full h-full object-contain',
-    ...other
-  } = props
-
+function ImageThumbnail({
+  id,
+  containerStyles = 'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
+  imageStyles = 'w-full h-full object-contain',
+  imageObject,
+  ...other
+}) {
   const { sitename } = useParams()
   const [src, setSrc] = useState()
 
-  const mediaObject = useImageObject({ sitename, id })
+  const fetchedImageObject = useImageObject({ sitename, id })
 
   useEffect(() => {
-    if (mediaObject?.original) {
+    if (imageObject || fetchedImageObject?.original) {
       const srcToUse = getMediaPath({
-        mediaObject,
-        size,
+        mediaObject: imageObject || fetchedImageObject,
+        size: SMALL,
         type: IMAGE,
       })
       if (srcToUse !== src) {
         setSrc(srcToUse)
       }
     }
-  }, [src, setSrc, mediaObject, size])
+  }, [src, setSrc, fetchedImageObject, imageObject])
 
   return (
     <div id="MediaThumbnailImage" className={containerStyles}>
       <img
         src={src}
-        alt={alt || mediaObject?.title}
+        alt={imageObject?.title || fetchedImageObject?.title}
         className={imageStyles}
         {...other}
       />
@@ -48,13 +45,12 @@ function ImageThumbnail(props) {
 }
 
 // PROPTYPES
-const { string } = PropTypes
+const { object, string } = PropTypes
 ImageThumbnail.propTypes = {
   id: string,
-  size: string,
-  alt: string,
   containerStyles: string,
   imageStyles: string,
+  imageObject: object,
 }
 
 export default ImageThumbnail
