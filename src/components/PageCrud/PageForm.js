@@ -23,10 +23,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
     bannerImage: '',
     bannerVideo: '',
     visibility: PUBLIC,
-    banner: {
-      id: '',
-      type: '',
-    },
+    banner: '',
   }
 
   const {
