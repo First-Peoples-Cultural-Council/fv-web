@@ -35,17 +35,17 @@ function ImageArrayField({
       <div data-testid="ImageArrayField" className="space-y-2">
         <div>
           {fields?.length > 0 &&
-            fields?.map((image) => (
+            fields?.map((image, index) => (
               <div
                 key={image?.id}
-                className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+                className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
               >
                 <MediaThumbnail.Image
                   imageObject={image}
                   imageStyles="object-cover pointer-events-none"
                 />
 
-                <XButton onClickHandler={() => remove(image)} />
+                <XButton onClickHandler={() => remove(index)} />
               </div>
             ))}
         </div>

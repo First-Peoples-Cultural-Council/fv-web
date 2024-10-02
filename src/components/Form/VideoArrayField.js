@@ -86,13 +86,13 @@ function VideoArrayField({
               Uploaded Videos
             </p>
             <div>
-              {fields?.map((video) => (
+              {fields?.map((video, index) => (
                 <div
                   key={video?.id}
-                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
                 >
                   <MediaThumbnail.Video videoObject={video} />
-                  <XButton onClickHandler={() => remove(video)} />
+                  <XButton onClickHandler={() => remove(index)} />
                 </div>
               ))}
             </div>
