@@ -15,11 +15,6 @@ import FieldButton from 'components/Form/FieldButton'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
-const DEFAULT_MEDIA_VALUE = {
-  id: '',
-  type: '',
-}
-
 function SelectOneMedia({ label, nameId, control, errors, helpText }) {
   return (
     <div data-testid="SelectOneMedia">
@@ -27,7 +22,7 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
       <Controller
         id={nameId}
         name={nameId}
-        defaultValue={DEFAULT_MEDIA_VALUE}
+        defaultValue=""
         control={control}
         render={({ field: { value, onChange } }) => (
           <SelectOneButton value={value} onChange={onChange} />
@@ -50,14 +45,15 @@ function SelectOneButton({ value, onChange }) {
     // Clear out values
     if (value.id) {
       setType(null)
-      onChange(DEFAULT_MEDIA_VALUE)
+      onChange('')
     }
   }
 
-  const chooseMediaHandler = (id) => {
-    if (isUUID(id[0])) {
+  const chooseMediaHandler = (mediaArray) => {
+    const firstItem = mediaArray?.[0]
+    if (isUUID(firstItem?.id)) {
       const newMediaObj = {
-        id: id[0],
+        ...firstItem,
         type,
       }
       onChange(newMediaObj)
