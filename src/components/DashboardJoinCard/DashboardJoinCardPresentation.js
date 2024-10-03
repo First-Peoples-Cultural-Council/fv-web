@@ -61,11 +61,11 @@ function DashboardJoinCardPresentation({
           <div className="lg:inline-flex justify-between w-full">
             <div className="lg:space-x-1 lg:inline-flex items-center">
               <label htmlFor="role-to-assign" className="sr-only">
-                Select message type
+                Select role to assign
               </label>
               <select
                 id="role-to-assign"
-                data-testid="role-to-assign"
+                data-testid="role-select"
                 onChange={(e) =>
                   setSelectedRole(e.target.value.split(' ').join('_'))
                 }
@@ -84,7 +84,7 @@ function DashboardJoinCardPresentation({
               </label>
               <button
                 id="approve-request"
-                data-testid="approve-request"
+                data-testid="approve-request-btn"
                 type="button"
                 onClick={() => handleApprove(selectedRole)}
                 className="btn-contained"
@@ -99,7 +99,7 @@ function DashboardJoinCardPresentation({
               </label>
               <button
                 id="igore-request"
-                data-testid="igore-request"
+                data-testid="igore-request-btn"
                 type="button"
                 onClick={() => handleIgnore()}
                 className="btn-outlined text-secondary border-secondary"
