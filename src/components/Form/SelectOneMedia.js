@@ -22,7 +22,6 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
       <Controller
         id={nameId}
         name={nameId}
-        defaultValue=""
         control={control}
         render={({ field: { value, onChange } }) => (
           <SelectOneButton value={value} onChange={onChange} />
