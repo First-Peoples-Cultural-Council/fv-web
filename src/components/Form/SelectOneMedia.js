@@ -45,7 +45,7 @@ function SelectOneButton({ value, onChange }) {
     // Clear out values
     if (value.id) {
       setType(null)
-      onChange('')
+      onChange(null)
     }
   }
 
@@ -119,7 +119,7 @@ function SelectOneButton({ value, onChange }) {
           updateSavedMedia={chooseMediaHandler}
           modalOpen={addMediaModalOpen}
           closeModal={() => setAddMediaModalOpen(false)}
-          maxFiles={1}
+          maxItems={1}
         />
       ) : (
         <AddVideoModal.Container
@@ -127,7 +127,7 @@ function SelectOneButton({ value, onChange }) {
           updateSavedMedia={chooseMediaHandler}
           modalOpen={addMediaModalOpen}
           closeModal={() => setAddMediaModalOpen(false)}
-          maxFiles={1}
+          maxItems={1}
         />
       )}
     </div>

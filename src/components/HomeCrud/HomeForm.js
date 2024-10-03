@@ -14,7 +14,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
 
   const defaultValues = {
     logoArray: '',
-    banner: '',
+    banner: null,
   }
 
   const { control, errors, handleSubmit, reset } = useEditForm({
