@@ -65,7 +65,7 @@ function DashboardJoinCardPresentation({
               </label>
               <select
                 id="role-to-assign"
-                name="role-to-assign"
+                data-testid="role-to-assign"
                 onChange={(e) =>
                   setSelectedRole(e.target.value.split(' ').join('_'))
                 }
@@ -83,8 +83,8 @@ function DashboardJoinCardPresentation({
                 Approve and assign role
               </label>
               <button
+                id="approve-request"
                 data-testid="approve-request"
-                name="approve-request"
                 type="button"
                 onClick={() => handleApprove(selectedRole)}
                 className="btn-contained"
@@ -98,9 +98,9 @@ function DashboardJoinCardPresentation({
                 Ignore request
               </label>
               <button
-                type="button"
+                id="igore-request"
                 data-testid="igore-request"
-                name="igore-request"
+                type="button"
                 onClick={() => handleIgnore()}
                 className="btn-outlined text-secondary border-secondary"
               >
