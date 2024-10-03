@@ -4,23 +4,26 @@ import PropTypes from 'prop-types'
 function useArrayStateManager({ maxItems }) {
   const [selectedItems, setSelectedItems] = useState([])
 
-  const removeItem = (array, item) =>
-    array.filter((elem) => elem !== item && elem?.id !== item?.id)
+  const removeItemFromArray = (array, item) =>
+    [...array].filter((elem) => elem !== item && elem?.id !== item?.id)
 
-  const handleSelectAdditionalItems = (item) => {
-    let updatedSelectedItems = [...selectedItems]
-    if (selectedItems.some((elem) => elem === item || elem?.id === item?.id)) {
-      updatedSelectedItems = removeItem(updatedSelectedItems, item)
-    } else if (maxItems && updatedSelectedItems.length === maxItems) {
-      if (maxItems === 1) {
-        updatedSelectedItems = [item]
-      } else {
-        return
-      }
-    } else {
-      updatedSelectedItems = [...updatedSelectedItems, item]
+  const hasItem = (array, item) =>
+    array.some((elem) => elem === item || elem?.id === item?.id)
+
+  const handleSelectAdditionalItems = (selectedItem) => {
+    if (maxItems === 1) {
+      setSelectedItems([selectedItem])
+      return
     }
-    setSelectedItems(updatedSelectedItems)
+
+    if (maxItems && selectedItems.length === maxItems) return
+
+    if (hasItem) {
+      setSelectedItems(removeItemFromArray(selectedItems, selectedItem))
+      return
+    }
+
+    setSelectedItems([...selectedItems, selectedItem])
   }
 
   return {
