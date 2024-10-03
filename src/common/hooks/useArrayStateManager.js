@@ -7,7 +7,7 @@ function useArrayStateManager({ maxItems }) {
   const removeItemFromArray = (array, item) =>
     [...array].filter((elem) => elem !== item && elem?.id !== item?.id)
 
-  const hasItem = (array, item) =>
+  const checkForItem = (array, item) =>
     array.some((elem) => elem === item || elem?.id === item?.id)
 
   const handleSelectAdditionalItems = (selectedItem) => {
@@ -16,8 +16,11 @@ function useArrayStateManager({ maxItems }) {
       return
     }
 
-    if (maxItems && selectedItems.length === maxItems) return
+    if (maxItems && selectedItems.length >= maxItems) {
+      return
+    }
 
+    const hasItem = checkForItem(selectedItems, selectedItem)
     if (hasItem) {
       setSelectedItems(removeItemFromArray(selectedItems, selectedItem))
       return

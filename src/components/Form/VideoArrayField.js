@@ -24,6 +24,7 @@ function VideoArrayField({
   const { fields, append, remove } = useFieldArray({
     control,
     name: nameId,
+    keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
   })
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
     append,
@@ -88,7 +89,7 @@ function VideoArrayField({
             <div>
               {fields?.map((video, index) => (
                 <div
-                  key={video?.id}
+                  key={video?.key}
                   className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
                 >
                   <MediaThumbnail.Video videoObject={video} />

@@ -27,7 +27,7 @@ function SelectorVisualMediaGridPresentation({
               <React.Fragment key={page?.pageNumber}>
                 {page.results.map((mediaObject) => {
                   if (
-                    savedMedia?.some((elemId) => elemId?.id === mediaObject?.id)
+                    savedMedia?.some((elem) => elem?.id === mediaObject?.id)
                   ) {
                     // If a media file is already attached to the document
                     // it will not be presented as a choice in the selectMedia dialog box

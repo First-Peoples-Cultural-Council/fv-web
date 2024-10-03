@@ -23,6 +23,7 @@ function ImageArrayField({
   const { fields, append, remove } = useFieldArray({
     control,
     name: nameId,
+    keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
   })
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
     append,
@@ -37,7 +38,7 @@ function ImageArrayField({
           {fields?.length > 0 &&
             fields?.map((image, index) => (
               <div
-                key={image?.id}
+                key={image?.key}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
               >
                 <MediaThumbnail.Image
