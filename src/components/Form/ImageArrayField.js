@@ -19,6 +19,7 @@ function ImageArrayField({
   control,
   maxItems = 3,
   errors,
+  hideSharedMedia = false,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -62,6 +63,7 @@ function ImageArrayField({
               modalOpen={modalOpen}
               closeModal={closeModal}
               maxItems={maxItems}
+              hideSharedMedia={hideSharedMedia}
             />
           </div>
         )}
@@ -73,7 +75,7 @@ function ImageArrayField({
 }
 
 // PROPTYPES
-const { number, object, string } = PropTypes
+const { bool, number, object, string } = PropTypes
 ImageArrayField.propTypes = {
   helpText: string,
   label: string,
@@ -81,6 +83,7 @@ ImageArrayField.propTypes = {
   control: object,
   maxItems: number,
   errors: object,
+  hideSharedMedia: bool,
 }
 
 export default ImageArrayField
