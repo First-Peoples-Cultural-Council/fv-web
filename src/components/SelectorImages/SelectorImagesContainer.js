@@ -13,6 +13,7 @@ function SelectorImagesContainer({
   savedMedia,
   selectedMedia,
   mediaSelectHandler,
+  hideSharedMedia = false,
 }) {
   const [searchSharedMedia, setSearchSharedMedia] = useState('false')
 
@@ -49,14 +50,16 @@ function SelectorImagesContainer({
             searchValue={searchValue}
           />
         </div>
-        <div className="mt-4 mx-auto">
-          <RadioButtonGroup.Presentation
-            accentColor="primary"
-            onChange={setSearchSharedMedia}
-            options={sharedMediaOptions}
-            value={searchSharedMedia}
-          />
-        </div>
+        {!hideSharedMedia && (
+          <div className="mt-4 mx-auto">
+            <RadioButtonGroup.Presentation
+              accentColor="primary"
+              onChange={setSearchSharedMedia}
+              options={sharedMediaOptions}
+              value={searchSharedMedia}
+            />
+          </div>
+        )}
         <div className="grow h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
@@ -69,12 +72,12 @@ function SelectorImagesContainer({
                     id="results-header"
                     className="text-lg font-bold text-primary"
                   >
-                    {searchSharedMedia
+                    {searchSharedMedia === 'true'
                       ? 'Shared media library'
                       : 'Your media uploads'}
                   </h2>
                   <p className="text-sm text-fv-charcoal-light">
-                    {searchSharedMedia
+                    {searchSharedMedia === 'true'
                       ? 'These artworks were created by indigenous artists for use on any FirstVoices sites'
                       : 'Images uploaded by you or your team'}
                   </p>
@@ -97,11 +100,12 @@ function SelectorImagesContainer({
 }
 
 // PROPTYPES
-const { array, func } = PropTypes
+const { array, bool, func } = PropTypes
 SelectorImagesContainer.propTypes = {
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
+  hideSharedMedia: bool,
 }
 
 export default SelectorImagesContainer

@@ -62,6 +62,7 @@ function ImageIdFieldButton({ value, onChange }) {
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
         maxItems={1}
+        hideSharedMedia
       />
     </Fragment>
   )

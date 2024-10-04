@@ -37,6 +37,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 helpText="Recommended size: 512 x 512"
                 errors={errors}
                 maxItems={1}
+                hideSharedMedia
               />
             </div>
             <div className="col-span-12 flex items-center justify-start">

@@ -14,6 +14,7 @@ function AddImageModalContainer({
   maxItems,
   modalOpen,
   closeModal,
+  hideSharedMedia,
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
     useArrayStateManager({ maxItems })
@@ -59,6 +60,7 @@ function AddImageModalContainer({
             savedMedia={savedMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
+            hideSharedMedia={hideSharedMedia}
           />
         )}
       </>
@@ -74,6 +76,7 @@ AddImageModalContainer.propTypes = {
   maxItems: number,
   closeModal: func,
   modalOpen: bool,
+  hideSharedMedia: bool,
 }
 
 export default AddImageModalContainer
