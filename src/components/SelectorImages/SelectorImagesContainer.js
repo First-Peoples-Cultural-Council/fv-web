@@ -78,7 +78,7 @@ function SelectorImagesContainer({
                   </h2>
                   <p className="text-sm text-fv-charcoal-light">
                     {searchSharedMedia === 'true'
-                      ? 'These artworks were created by indigenous artists for use on any FirstVoices sites'
+                      ? 'These artworks were created by Indigenous artists for use on any FirstVoices sites'
                       : 'Images uploaded by you or your team'}
                   </p>
                 </div>
