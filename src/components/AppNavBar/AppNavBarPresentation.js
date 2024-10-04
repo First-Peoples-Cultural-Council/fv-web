@@ -72,7 +72,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <span className="sr-only">FirstVoices Logo</span>
-            {getIcon('FVLogo', 'h-10 w-auto')}
+            {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
           </Link>
 
           {/* Menu Items */}

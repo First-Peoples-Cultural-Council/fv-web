@@ -34,7 +34,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
           <div className="flex-1 flex flex-col overflow-y-auto">
             <div className="flex items-center flex-shrink-0 m-4">
-              {getIcon('FVLogo', 'h-10 w-auto')}
+              {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
             </div>
 
             <nav className="flex-1">
