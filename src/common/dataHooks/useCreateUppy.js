@@ -94,11 +94,11 @@ function useCreateUppy(site, maxItems, setSelectedMedia, type) {
     fieldName: 'original',
     formData: true,
     headers: getAuthHeaderIfTokenExists(),
-    getResponseData: (responseText) => {
-      const _responseText = JSON.parse(responseText)
-      setSelectedMedia((oldArray) => [...oldArray, _responseText?.id])
+    getResponseData: (response) => {
+      const parsedResponse = JSON.parse(response)
+      setSelectedMedia((oldArray) => [...oldArray, parsedResponse])
       return {
-        url: _responseText?.url,
+        url: parsedResponse?.url,
       }
     },
   })

@@ -76,13 +76,13 @@ export const selectOneMediaDataHelper = (imageObj, videoObj) => {
   // allow for either image or video
   if (imageObj?.id) {
     return {
-      id: imageObj?.id,
+      ...imageObj,
       type: IMAGE,
     }
   }
   if (videoObj?.id) {
     return {
-      id: videoObj?.id,
+      ...videoObj,
       type: VIDEO,
     }
   }

@@ -90,6 +90,7 @@ const logoAdaptor = ({ item }) => {
   const logoObject = {
     logo: item?.logo,
     logoId: item?.logo?.id,
+    logoArray: item?.logo?.id ? [item?.logo] : [],
   }
   return logoObject
 }

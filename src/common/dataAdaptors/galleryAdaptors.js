@@ -18,8 +18,8 @@ export function galleryForEditing({ item }) {
     ...titleForEditing({ item }),
     intro: item?.introduction,
     introTranslation: item?.introductionTranslation,
-    coverImage: item?.coverImage?.id,
-    galleryItems: objectsToIdsAdaptor(item?.galleryItems),
+    coverImage: item?.coverImage?.id ? [item?.coverImage] : [],
+    galleryItems: item?.galleryItems,
   }
 }
 
@@ -29,7 +29,7 @@ export function galleryForApi({ formData }) {
     ...titleForApi({ item: formData }),
     introduction: formData?.intro,
     introduction_translation: formData?.introTranslation,
-    cover_image: formData?.coverImage,
-    gallery_items: formData?.galleryItems,
+    cover_image: formData?.coverImage?.[0]?.id || '',
+    gallery_items: objectsToIdsAdaptor(formData?.galleryItems),
   }
 }

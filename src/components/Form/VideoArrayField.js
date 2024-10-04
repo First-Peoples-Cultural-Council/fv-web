@@ -4,7 +4,6 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
-import useIdArrayField from 'common/hooks/useIdArrayField'
 import { useModalSelector } from 'common/hooks/useModalController'
 import AddVideoModal from 'components/AddVideoModal'
 import api from 'services/api'
@@ -22,14 +21,18 @@ function VideoArrayField({
   maxItems = 3,
   errors,
 }) {
-  const { value, addItems, removeItem } = useIdArrayField(nameId, control)
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: nameId,
+    keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
+  })
   const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    addItems,
-    removeItem,
+    append,
+    remove,
   )
 
   const {
-    fields,
+    fields: videoLinksFields,
     append: appendVideoLinks,
     remove: removeVideoLinks,
   } = useFieldArray({
@@ -37,10 +40,10 @@ function VideoArrayField({
     name: 'relatedVideoLinks',
   })
 
-  const [relatedVideoLinks, setRelatedVideoLinks] = useState(fields)
+  const [relatedVideoLinks, setRelatedVideoLinks] = useState(videoLinksFields)
 
   useEffect(() => {
-    setRelatedVideoLinks(fields)
+    setRelatedVideoLinks(videoLinksFields)
 
     const getThumbnailFromLink = ({ link, index }) => {
       if (link.toLowerCase().includes('youtu')) {
@@ -69,28 +72,28 @@ function VideoArrayField({
         getThumbnailFromLink({ link: item.text, index })
       }
     })
-  }, [control, fields, relatedVideoLinks])
+  }, [control, videoLinksFields, relatedVideoLinks])
 
   const totalNumberOfVideos =
-    (value?.length || 0) + (relatedVideoLinks?.length || 0)
+    (fields?.length || 0) + (relatedVideoLinks?.length || 0)
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
       <FieldLabel nameId={nameId} text={label} />
       <div data-testid="VideoArrayField" className="space-y-2">
-        {value?.length > 0 && (
+        {fields?.length > 0 && (
           <div>
             <p className="block text-sm font-small text-fv-charcoal italic">
               Uploaded Videos
             </p>
             <div>
-              {value?.map((docId) => (
+              {fields?.map((video, index) => (
                 <div
-                  key={`${docId}`}
-                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
+                  key={video?.key}
+                  className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
                 >
-                  <MediaThumbnail.Video id={docId} />
-                  <XButton onClickHandler={() => removeItem(docId)} />
+                  <MediaThumbnail.Video videoObject={video} />
+                  <XButton onClickHandler={() => remove(index)} />
                 </div>
               ))}
             </div>
@@ -122,7 +125,7 @@ function VideoArrayField({
             <FieldButton label="Add Video" onClickHandler={openModal} />
             <AddVideoModal.Container
               isDashboard
-              savedMedia={value}
+              savedMedia={fields}
               updateSavedMedia={selectItem}
               relatedVideoLinks={relatedVideoLinks}
               appendVideoLinks={appendVideoLinks}
