@@ -30,8 +30,8 @@ function NavBarPresentation({
   )
 
   const fvlogo = isHome
-    ? getIcon('FVLogo', 'h-10 w-auto')
-    : getIcon('FVShortLogo', 'h-10 w-auto')
+    ? getIcon('FVLogo', 'h-10 w-auto fill-current text-white')
+    : getIcon('FVShortLogo', 'h-10 w-auto fill-current text-white')
 
   return (
     <nav id="NavBar" className="relative z-10" role="navigation">
