@@ -20,8 +20,8 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     intro: definitions.wysiwyg({ charCount: 1200 }),
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
     relatedAudio: definitions.idArray(),
-    relatedImages: definitions.idArray(),
-    relatedVideos: definitions.idArray(),
+    relatedImages: definitions.objectArray(),
+    relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     acknowledgments: yup.array().of(yup.string()),
   })

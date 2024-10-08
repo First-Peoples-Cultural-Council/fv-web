@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -14,17 +14,6 @@ function SelectorVisualMediaGridPresentation({
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
-  const [hoverArray, setHoverArray] = useState([])
-
-  function handleHover(elementIndex, isLeaving) {
-    setHoverArray((previousArray) => {
-      if (isLeaving) {
-        return previousArray.filter((item) => item !== elementIndex)
-      }
-      return [...previousArray, elementIndex]
-    })
-  }
-
   return (
     <div
       data-testid="SelectorVisualMediaGridPresentation"
@@ -36,64 +25,56 @@ function SelectorVisualMediaGridPresentation({
             data?.pages?.[0]?.results?.length > 0 &&
             data?.pages?.map((page) => (
               <React.Fragment key={page?.pageNumber}>
-                {page.results.map((doc, elementIndex) => {
-                  if (savedMedia?.some((elemId) => elemId === doc?.id)) {
+                {page.results.map((mediaObject) => {
+                  if (
+                    savedMedia?.some((elem) => elem?.id === mediaObject?.id)
+                  ) {
                     // If a media file is already attached to the document
                     // it will not be presented as a choice in the selectMedia dialog box
                     return null
                   }
                   return (
-                    <li key={doc?.id} className="relative">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+                    <li key={mediaObject?.id} className="relative group">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
                         <img
-                          src={doc?.thumbnail}
-                          alt={doc?.title}
+                          src={mediaObject?.thumbnail}
+                          alt={mediaObject?.title}
                           className="group-hover:opacity-75 object-cover pointer-events-none"
                         />
                         <button
                           data-testid="media-select-btn"
                           type="button"
                           className="absolute inset-0 focus:outline-none"
-                          onClick={() => mediaSelectHandler(doc?.id)}
-                          onMouseEnter={() => {
-                            handleHover(elementIndex, false)
-                          }}
-                          onMouseLeave={() => {
-                            handleHover(elementIndex, true)
-                          }}
+                          onClick={() => mediaSelectHandler(mediaObject)}
                         >
                           <span className="sr-only">
-                            View details for {doc?.title}
+                            View details for {mediaObject?.title}
                           </span>
                         </button>
                       </div>
                       <p className="mt-2 block text-sm font-medium text-fv-charcoal truncate pointer-events-none">
-                        {doc?.title}
+                        {mediaObject?.title}
                       </p>
-                      {doc?.width && doc?.height && (
-                        <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
+                      {mediaObject?.width && mediaObject?.height && (
+                        <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
                       )}
-                      {selectedMedia?.some((elemId) => elemId === doc?.id) && (
+                      {selectedMedia?.some(
+                        (elem) => elem?.id === mediaObject?.id,
+                      ) && (
                         <button
                           data-testid="media-select-btn"
                           type="button"
-                          onClick={() => mediaSelectHandler(doc?.id)}
-                          onMouseEnter={() => {
-                            handleHover(elementIndex, false)
-                          }}
-                          onMouseLeave={() => {
-                            handleHover(elementIndex, true)
-                          }}
+                          className="absolute top-0 right-0 h-8 w-8 rounded-full bg-white"
+                          onClick={() => mediaSelectHandler(mediaObject)}
                         >
-                          {hoverArray.includes(elementIndex)
-                            ? getIcon(
-                                'TimesCircleSolid',
-                                'absolute top-0 right-0 h-8 w-8 fill-red-700',
-                              )
-                            : getIcon(
-                                'CheckCircleSolid',
-                                'absolute top-0 right-0 h-8 w-8 fill-green-700',
-                              )}
+                          {getIcon(
+                            'TimesCircleSolid',
+                            'hidden group-hover:block h-8 w-8 fill-secondary',
+                          )}
+                          {getIcon(
+                            'CheckCircleSolid',
+                            'group-hover:hidden h-8 w-8 fill-bgGreen',
+                          )}
                         </button>
                       )}
                     </li>

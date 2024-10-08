@@ -15,11 +15,6 @@ import FieldButton from 'components/Form/FieldButton'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
-const DEFAULT_MEDIA_VALUE = {
-  id: '',
-  type: '',
-}
-
 function SelectOneMedia({ label, nameId, control, errors, helpText }) {
   return (
     <div data-testid="SelectOneMedia">
@@ -27,7 +22,6 @@ function SelectOneMedia({ label, nameId, control, errors, helpText }) {
       <Controller
         id={nameId}
         name={nameId}
-        defaultValue={DEFAULT_MEDIA_VALUE}
         control={control}
         render={({ field: { value, onChange } }) => (
           <SelectOneButton value={value} onChange={onChange} />
@@ -50,14 +44,15 @@ function SelectOneButton({ value, onChange }) {
     // Clear out values
     if (value.id) {
       setType(null)
-      onChange(DEFAULT_MEDIA_VALUE)
+      onChange(null)
     }
   }
 
-  const chooseMediaHandler = (id) => {
-    if (isUUID(id[0])) {
+  const chooseMediaHandler = (mediaArray) => {
+    const firstItem = mediaArray?.[0]
+    if (isUUID(firstItem?.id)) {
       const newMediaObj = {
-        id: id[0],
+        ...firstItem,
         type,
       }
       onChange(newMediaObj)
@@ -75,11 +70,11 @@ function SelectOneButton({ value, onChange }) {
     <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       {value.type === IMAGE ? (
         <MediaThumbnail.Image
-          id={value?.id}
+          imageObject={value}
           imageStyles="object-cover pointer-events-none"
         />
       ) : (
-        <MediaThumbnail.Video id={value?.id} />
+        <MediaThumbnail.Video videoObject={value} />
       )}
       <XButton onClickHandler={(event) => resetMedia(event)} />
     </div>
@@ -123,7 +118,7 @@ function SelectOneButton({ value, onChange }) {
           updateSavedMedia={chooseMediaHandler}
           modalOpen={addMediaModalOpen}
           closeModal={() => setAddMediaModalOpen(false)}
-          maxFiles={1}
+          maxItems={1}
         />
       ) : (
         <AddVideoModal.Container
@@ -131,7 +126,7 @@ function SelectOneButton({ value, onChange }) {
           updateSavedMedia={chooseMediaHandler}
           modalOpen={addMediaModalOpen}
           closeModal={() => setAddMediaModalOpen(false)}
-          maxFiles={1}
+          maxItems={1}
         />
       )}
     </div>

@@ -9,15 +9,12 @@ import useEditForm from 'common/hooks/useEditForm'
 
 function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    logoId: definitions.uuid(),
+    logoArray: definitions.objectArray(),
   })
 
   const defaultValues = {
-    logoId: '',
-    banner: {
-      id: '',
-      type: '',
-    },
+    logoArray: '',
+    banner: null,
   }
 
   const { control, errors, handleSubmit, reset } = useEditForm({
@@ -33,12 +30,14 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
         <form onReset={reset}>
           <div className="mt-6 grid grid-cols-12 gap-6">
             <div className="col-span-6">
-              <Form.ImageIdField
+              <Form.ImageArrayField
                 label="Add logo"
-                nameId="logoId"
+                nameId="logoArray"
                 control={control}
                 helpText="Recommended size: 512 x 512"
                 errors={errors}
+                maxItems={1}
+                hideSharedMedia
               />
             </div>
             <div className="col-span-12 flex items-center justify-start">

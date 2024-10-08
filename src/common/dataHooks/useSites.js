@@ -43,7 +43,7 @@ export function useSiteUpdateBanner() {
   const updateBanner = async (formData) => {
     const bannerObject = selectOneMediaFormHelper(formData?.banner)
     const properties = {
-      logo: formData?.logoId || null,
+      logo: formData?.logoArray?.[0]?.id || null,
       bannerImage: bannerObject?.imageId || null,
       bannerVideo: bannerObject?.videoId || null,
     }

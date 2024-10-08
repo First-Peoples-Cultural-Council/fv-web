@@ -13,8 +13,9 @@ function SelectorImagesContainer({
   savedMedia,
   selectedMedia,
   mediaSelectHandler,
+  hideSharedMedia = false,
 }) {
-  const [searchSharedMedia, setSearchSharedMedia] = useState(false)
+  const [searchSharedMedia, setSearchSharedMedia] = useState('false')
 
   const {
     media,
@@ -25,14 +26,17 @@ function SelectorImagesContainer({
     isLoadingEntries,
     loadRef,
     loadLabel,
-  } = useMediaSearch({ type: TYPE_IMAGE, searchSharedMedia })
+  } = useMediaSearch({
+    type: TYPE_IMAGE,
+    searchSharedMedia: searchSharedMedia === 'true',
+  })
 
   const hasResults = !!(
     media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
   )
   const sharedMediaOptions = [
-    { value: true, label: 'Shared Images' },
-    { value: false, label: 'Your image library' },
+    { value: 'true', label: 'Shared Images' },
+    { value: 'false', label: 'Your image library' },
   ]
 
   return (
@@ -46,14 +50,16 @@ function SelectorImagesContainer({
             searchValue={searchValue}
           />
         </div>
-        <div className="mt-4 mx-auto">
-          <RadioButtonGroup.Presentation
-            accentColor="primary"
-            onChange={setSearchSharedMedia}
-            options={sharedMediaOptions}
-            value={searchSharedMedia}
-          />
-        </div>
+        {!hideSharedMedia && (
+          <div className="mt-4 mx-auto">
+            <RadioButtonGroup.Presentation
+              accentColor="primary"
+              onChange={setSearchSharedMedia}
+              options={sharedMediaOptions}
+              value={searchSharedMedia}
+            />
+          </div>
+        )}
         <div className="grow h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
@@ -66,13 +72,13 @@ function SelectorImagesContainer({
                     id="results-header"
                     className="text-lg font-bold text-primary"
                   >
-                    {searchSharedMedia
+                    {searchSharedMedia === 'true'
                       ? 'Shared media library'
                       : 'Your media uploads'}
                   </h2>
                   <p className="text-sm text-fv-charcoal-light">
-                    {searchSharedMedia
-                      ? 'These artworks were created by indigenous artists for use on any FirstVoices sites'
+                    {searchSharedMedia === 'true'
+                      ? 'These artworks were created by Indigenous artists for use on any FirstVoices sites'
                       : 'Images uploaded by you or your team'}
                   </p>
                 </div>
@@ -94,11 +100,12 @@ function SelectorImagesContainer({
 }
 
 // PROPTYPES
-const { array, func } = PropTypes
+const { array, bool, func } = PropTypes
 SelectorImagesContainer.propTypes = {
   savedMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
+  hideSharedMedia: bool,
 }
 
 export default SelectorImagesContainer

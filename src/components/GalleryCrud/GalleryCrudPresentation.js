@@ -21,8 +21,8 @@ function GalleryCrudPresentation({
     titleTranslation: definitions.title({ charCount: 150 }),
     intro: definitions.paragraph(),
     introTranslation: definitions.paragraph(),
-    galleryItems: definitions.idArray(),
-    coverImage: definitions.uuid(),
+    galleryItems: definitions.objectArray(),
+    coverImage: definitions.objectArray(),
   })
 
   const defaultValues = {
@@ -91,11 +91,12 @@ function GalleryCrudPresentation({
             />
           </div>
           <div className="col-span-6">
-            <Form.ImageIdField
+            <Form.ImageArrayField
               label="Cover image"
               nameId="coverImage"
               control={control}
               errors={errors}
+              maxItems={1}
             />
           </div>
           <div className="col-span-12">
