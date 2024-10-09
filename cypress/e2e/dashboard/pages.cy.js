@@ -9,7 +9,6 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.on('uncaught:exception', () => false)
       cy.viewport(1024, 768)
     })
 
@@ -21,8 +20,6 @@ describe(
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
           cy.get('#signInFormUsername').type(email, { force: true })
           // lets try an incorrect password
           cy.get('#signInFormPassword').type(`${password}{enter}`, {
@@ -50,8 +47,6 @@ describe(
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
           cy.get('#signInFormUsername').type(email, { force: true })
           // lets try an incorrect password
           cy.get('#signInFormPassword').type(`${password}{enter}`, {

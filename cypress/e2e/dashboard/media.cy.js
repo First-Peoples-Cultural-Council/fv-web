@@ -18,8 +18,6 @@ describe(
           'https://fpcc-dev.auth.ca-central-1.amazoncognito.com',
           () => {
             Cypress.Commands.add('login', (email, password) => {
-              cy.on('uncaught:exception', () => false)
-
               cy.get('#signInFormUsername').type(email, { force: true })
               // lets try an incorrect password
               cy.get('#signInFormPassword').type(`${password}{enter}`, {
@@ -48,6 +46,12 @@ describe(
       cy.contains('Media').click()
       cy.contains('Audio').click()
       cy.contains('Download')
+      cy.get('td audio:first')
+        .invoke('attr', 'src')
+        .then((audiofile) => {
+          const audio = new Audio(audiofile)
+          audio.play()
+        })
       cy.go(-1)
       cy.contains('Manage your images').parent().click()
       cy.contains('Download')

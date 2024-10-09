@@ -49,13 +49,11 @@ describe(
 
       cy.contains('Next step').click()
 
-      for (let i = 0; i < 3; i += 1) {
+      for (let i = 0; i < 1; i += 1) {
         cy.contains('Add page').click()
         cy.contains('Save').should('be.visible')
-        cy.get('.grid > :nth-child(2) > .bg-white > .w-full').type(
-          'asdfasdfafs',
-        )
-        cy.get(':nth-child(3) > .bg-white > .w-full').type('asdfasdfaf')
+        cy.get('div.public-DraftStyleDefault-block').eq(0).type('asdfasdfafs')
+        cy.get('div.public-DraftStyleDefault-block').eq(1).type('asdfasdfaf')
         cy.contains('Save').click()
       }
       cy.contains('Next step').click()

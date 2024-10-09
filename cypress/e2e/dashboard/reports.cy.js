@@ -20,7 +20,6 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.on('uncaught:exception', () => false)
       Cypress.Commands.add('checkHeaderCSS', (fontWeightStrength) => {
         if (fontWeightStrength[0] === 'Build your own') {
           cy.get('[data-testid="sortby-title-btn"] > span').should(
