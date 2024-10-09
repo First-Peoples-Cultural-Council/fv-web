@@ -9,6 +9,7 @@ import getIcon from 'common/utils/getIcon'
 
 function AddMediaModalWrapper({
   selectedMedia,
+  setSelectedMedia,
   updateSavedMedia,
   type,
   modalOpen,
@@ -26,6 +27,7 @@ function AddMediaModalWrapper({
     // allowing user to attach the selected/uploaded files to the document.
     const handleOnClick = () => {
       if (tabHasSelectedItems) updateSavedMedia(selectedMedia)
+      setSelectedMedia([])
       setSelectedTab(tab)
     }
     return (
@@ -82,6 +84,7 @@ const { array, bool, func, node, object, oneOf } = PropTypes
 
 AddMediaModalWrapper.propTypes = {
   selectedMedia: array,
+  setSelectedMedia: func,
   updateSavedMedia: func,
   type: oneOf([TYPE_AUDIO, TYPE_IMAGE, TYPE_VIDEO]),
   tabOptions: array,

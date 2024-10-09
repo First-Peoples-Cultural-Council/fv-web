@@ -39,6 +39,7 @@ function AddImageModalContainer({
   return (
     <AddMediaModalWrapper
       selectedMedia={selectedItems}
+      setSelectedMedia={setSelectedItems}
       updateSavedMedia={updateSavedMedia}
       type={TYPE_IMAGE}
       modalOpen={modalOpen}

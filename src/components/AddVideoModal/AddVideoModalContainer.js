@@ -53,6 +53,7 @@ function AddVideoModalContainer({
   return (
     <AddMediaModalWrapper
       selectedMedia={selectedItems}
+      setSelectedMedia={setSelectedItems}
       updateSavedMedia={updateSavedMedia}
       type={TYPE_VIDEO}
       modalOpen={modalOpen}
