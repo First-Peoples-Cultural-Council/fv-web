@@ -38,6 +38,7 @@ function AddAudioModalContainer({
   return (
     <AddMediaModalWrapper
       selectedMedia={selectedItems}
+      setSelectedMedia={setSelectedItems}
       updateSavedMedia={updateSavedMedia}
       type={TYPE_AUDIO}
       modalOpen={modalOpen}
