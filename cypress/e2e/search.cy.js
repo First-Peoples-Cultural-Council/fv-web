@@ -25,7 +25,8 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Songs').click()
-      cy.get('.bg-center > .group-hover:opacity-75 > .text-lg')
+      cy.get('div.text-lg')
+        .eq(0)
         .invoke('text')
         .then((_text) => {
           cy.log(_text)
@@ -35,6 +36,24 @@ describe(
 
           cy.get('[data-testid="SearchInput"]').type(`${_text}{enter}`)
         })
+    })
+
+    it('global search from homepage', () => {
+      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.contains('SEARCH FIRSTVOICES').click()
+      cy.get(`table`).find('tr').should('have.length.greaterThan', 1)
+
+      cy.get('[data-testid="word-filter-btn"]').click()
+      cy.get(`table`).find('tr').should('have.length.greaterThan', 1)
+
+      cy.get('[data-testid="phrase-filter-btn"]').click()
+      cy.get(`table`).find('tr').should('have.length.greaterThan', 1)
+
+      cy.get('[data-testid="song-filter-btn"]').click()
+      cy.get(`table`).find('tr').should('have.length.greaterThan', 1)
+
+      cy.get('[data-testid="story-filter-btn"]').click()
+      cy.get(`table`).find('tr').should('have.length.greaterThan', 1)
     })
   },
 ) // end of describe

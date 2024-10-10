@@ -22,7 +22,6 @@ describe(
         cy.contains('Finish').click()
         cy.contains('Dismiss').should('not.exist')
       })
-      cy.on('uncaught:exception', () => false)
       cy.viewport(1024, 768)
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
@@ -71,13 +70,11 @@ describe(
       cy.contains('Finish').click()
       cy.get('#title').type(name)
       cy.middlestuff('Add word translation')
-      cy.get('div[id="NavUser"] button').click()
-      cy.contains('Sign out').click()
     })
 
     it('7.1a - delete word', () => {
       cy.contains('Explore Languages').click()
-      cy.get('div[id="NavUser"] button').click()
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()
       cy.get('[data-testid="SearchInput"]').type(`${name}{enter}`)

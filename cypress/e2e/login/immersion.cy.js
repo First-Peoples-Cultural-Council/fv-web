@@ -10,31 +10,42 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.on('uncaught:exception', () => false)
-      cy.viewport(1024, 768)
-      cy.visit(`${Cypress.env('baseUrl')}/nuxeo/login.jsp`)
+      cy.viewport(1920, 1080)
+      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.contains('Sign in').click()
 
-      cy.login(
-        Cypress.env('CYPRESS_FV_USERNAME'),
-        Cypress.env('CYPRESS_FV_PASSWORD'),
-      )
+      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+        Cypress.Commands.add('login', (email, password) => {
+          cy.get('#signInFormUsername').type(email, { force: true })
+          cy.get('#signInFormPassword').type(`${password}{enter}`, {
+            force: true,
+          })
+        })
 
-      cy.visit(`${Cypress.env('baseUrl')}/${Cypress.env('DIALECT')}`)
+        cy.login(
+          Cypress.env('CYPRESS_FV_USERNAME'),
+          Cypress.env('CYPRESS_FV_PASSWORD'),
+        )
+        cy.url().should('contain', '')
+      })
     })
 
     it('Check button exists', () => {
+      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Immersion Mode').should('exist')
     })
 
     it('enable it, check, then disable it', () => {
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
 
       cy.contains('Immersion Mode').click()
       cy.contains('Dictionary').click()
       cy.contains('qwel̓qwal̓éit').should('exist')
 
-      cy.contains('cn').click()
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
 
       cy.contains('Immersion Mode').click()
       cy.contains('Dictionary').click()
@@ -42,6 +53,7 @@ describe(
     })
 
     it('check dashboard', () => {
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.get('[href="/lilwat/dashboard/edit"]').click()
