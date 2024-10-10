@@ -15,8 +15,6 @@ describe(
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
           cy.get('#signInFormUsername').type(email, { force: true })
           // lets try an incorrect password
           cy.get('#signInFormPassword').type(`${password}{enter}`, {
@@ -45,9 +43,7 @@ describe(
       cy.get('#titleTranslation').type('qatestgallery')
 
       cy.contains('Add image').click()
-      cy.get('ul > li').each((_li) => {
-        cy.wrap(_li).click()
-      })
+      cy.get('[data-testid="media-select-btn"]').first().click()
       cy.contains('Insert').click()
       cy.contains('Create gallery').click()
       cy.contains('Sign Out').click()
