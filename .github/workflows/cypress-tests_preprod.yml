@@ -1,9 +1,4 @@
-name: Cypress-Tests
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '30 1 * * *'
-
+name: Cypress-Tests preprod
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
