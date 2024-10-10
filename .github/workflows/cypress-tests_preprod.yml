@@ -1,0 +1,25 @@
+name: Cypress-Tests preprod
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   See https://hub.docker.com/r/cypress/browsers/tags
+    container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Install Cypress
+        run: npm i cypress@13.7.1
+
+      - name: Run tests
+        run: |
+          npx  cypress run --config projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://preprod.firstvoices.com/',DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}},retries=2 -s "cypress/e2e/core_suite_master.cy.js"
+        env:
+          baseUrl: 'https://preprod.firstvoices.com/'
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
+          CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
+          CYPRESS_FV_INITIALS: ${{ secrets.CYPRESS_FV_INITIALS }}
