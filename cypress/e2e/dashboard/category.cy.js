@@ -45,6 +45,7 @@ describe(
       cy.get('#title').type('qatestcategory')
       cy.get('#description').type('qabio test - new speaker')
       cy.contains('Create category').click()
+      cy.contains('Dismiss').should('be.visible')
     })
 
     it('Delete Category', () => {

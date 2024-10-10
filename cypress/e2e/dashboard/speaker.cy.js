@@ -50,7 +50,7 @@ describe(
       cy.get('#name').type('qatestspeaker')
       cy.get('#bio').type('qabio test - new speaker')
       cy.contains('Add Speaker').click()
-      cy.contains('Dismiss').should('not.exist')
+      cy.contains('Dismiss').should('be.visible')
     })
 
     it('Delete Speaker', () => {
