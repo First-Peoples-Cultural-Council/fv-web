@@ -29,6 +29,7 @@ export function useSites() {
   const formattedSitesData = languagesListAdaptor({
     languagesData: allSitesResponse?.data,
   })
+  console.log({ allSitesResponse })
 
   return {
     ...allSitesResponse,

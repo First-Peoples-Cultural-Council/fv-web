@@ -25,7 +25,8 @@ import Support from 'components/Support'
 import LegacyRedirect from './LegacyRedirect'
 
 function AppContainer() {
-  const { appIsLoading } = AppData()
+  const { appIsLoading, hasApp } = AppData()
+  console.log({ hasApp })
 
   return (
     <Loading.Container isLoading={appIsLoading}>
@@ -61,7 +62,7 @@ function AppContainer() {
                 path="apps"
                 element={
                   <AppWrapper>
-                    <FVApps />
+                    <FVApps hasApp={hasApp} />
                   </AppWrapper>
                 }
               />
