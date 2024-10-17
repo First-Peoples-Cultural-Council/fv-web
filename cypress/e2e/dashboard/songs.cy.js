@@ -11,15 +11,12 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.on('uncaught:exception', () => false)
       cy.viewport(1920, 1080)
       cy.visit(`${Cypress.env('baseUrl')}`)
 
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
           cy.get('#signInFormUsername').type(email, { force: true })
           cy.get('#signInFormPassword').type(`${password}{enter}`, {
             force: true,
