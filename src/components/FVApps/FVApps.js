@@ -22,7 +22,7 @@ function FVApps({ hasApp }) {
           title="FIRSTVOICES APPS"
           accentColor="primary"
         />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <div className="max-w-5xl mx-auto text-fv-charcoal space-y-4 py-8">
           <h2 className={headerStyle}>FirstVoices Language Apps</h2>
           <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
@@ -34,7 +34,7 @@ function FVApps({ hasApp }) {
             The new apps can be installed directly from the web
           </p>
           {hasApp && (
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-6 pt-8">
               {hasApp?.map(({ id, title, slug, logo }) => (
                 <div
                   className="rounded-lg bg-white p-6 drop-shadow-md flex flex-col items-center"
@@ -48,6 +48,11 @@ function FVApps({ hasApp }) {
                     />
                   </div>
                   <h2 className="font-bold p-4">{title}</h2>
+                  <div className="pb-6 w-3/4 flex justify-between">
+                    {getIcon('Mobile', 'w-6 h-6 fill-current mr-3 inline-flex')}
+                    {getIcon('Tablet', 'w-6 h-6 fill-current mr-3 inline-flex')}
+                    {getIcon('PC', 'w-6 h-6 fill-current mr-3 inline-flex')}
+                  </div>
                   <a
                     href={`https://wwww.firstvoicesapp.com/${slug}/`}
                     target="_blank"
@@ -56,7 +61,7 @@ function FVApps({ hasApp }) {
                     <button
                       data-testid="DownloadAppButton"
                       type="button"
-                      className="bg-phrase text-white px-4 py-2 rounded-md"
+                      className="bg-buttonOrange text-white px-4 py-2 rounded-md"
                     >
                       {getIcon(
                         'Download',
@@ -70,7 +75,7 @@ function FVApps({ hasApp }) {
             </div>
           )}
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className={headerStyle}>Lagacy Apps</h2>
           <p className={paraStyle}>
             Note: The FirstVoices apps in the iOS and Android app stores are no

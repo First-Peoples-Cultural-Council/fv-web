@@ -56,12 +56,14 @@ import MapLocation from 'common/icons/MapLocation'
 import Microphone from 'common/icons/Microphone'
 import MicrophoneOff from 'common/icons/MicrophoneOff'
 import Minus from 'common/icons/Minus'
+import Mobile from 'common/icons/Mobile'
 import More from 'common/icons/More'
 import Mute from 'common/icons/Mute'
 import Next from 'common/icons/Next'
 import OrderedList from 'common/icons/OrderedList'
 import Pause from 'common/icons/Pause'
 import PauseCircle from 'common/icons/PauseCircle'
+import PC from 'common/icons/PC'
 import Pencil from 'common/icons/Pencil'
 import PlaceHolder from 'common/icons/PlaceHolder'
 import Play from 'common/icons/Play'
@@ -84,6 +86,7 @@ import Star from 'common/icons/Star'
 import Stop from 'common/icons/Stop'
 import StopCircle from 'common/icons/StopCircle'
 import Resources from 'common/icons/Resources'
+import Tablet from 'common/icons/Tablet'
 import TimesCircle from 'common/icons/TimesCircle'
 import TimesCircleSolid from 'common/icons/TimesCircleSolid'
 import Translate from 'common/icons/Translate'
@@ -188,12 +191,14 @@ function getIcon(iconName, iconStyling, title) {
     Microphone,
     MicrophoneOff,
     Minus,
+    Mobile,
     More,
     Mute,
     Next,
     OrderedList,
     Pause,
     PauseCircle,
+    PC,
     Pencil,
     Phrase,
     PlaceHolder,
@@ -221,6 +226,7 @@ function getIcon(iconName, iconStyling, title) {
     Stop,
     StopCircle,
     Story,
+    Tablet,
     Team,
     TimesCircle,
     TimesCircleSolid,
