@@ -19,15 +19,12 @@ function AppData() {
   } = useMySites()
 
   const sites = useSites()
-  const results = sites?.data?.results
-  console.log({ results })
 
   function features(site) {
     return site.enabledFeatures.find(
       (feature) => feature.key.toLowerCase() === 'has_app',
     )
   }
-  // console.log()
   const hasApp = sites?.data?.results?.filter(features)
   console.log({ hasApp })
 

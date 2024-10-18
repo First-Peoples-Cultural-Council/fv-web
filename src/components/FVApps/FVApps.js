@@ -1,10 +1,17 @@
 import React from 'react'
-import SectionTitle from 'components/SectionTitle'
+import { PropTypes } from 'prop-types'
 
-function FVApps(hasApp) {
+// FPCC
+import SectionTitle from 'components/SectionTitle'
+import { SMALL } from 'common/constants'
+import SiteLogo from 'components/SiteLogo'
+import getIcon from 'common/utils/getIcon'
+
+function FVApps({ hasApp }) {
   console.log({ hasApp })
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
+
   return (
     <section
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
@@ -26,9 +33,42 @@ function FVApps(hasApp) {
           <p className={paraStyle}>
             The new apps can be installed directly from the web
           </p>
-          <div className="grid grid-cols-3 gap-6">
-            <div>apps squares</div>
-          </div>
+          {hasApp && (
+            <div className="grid grid-cols-3 gap-6">
+              {hasApp?.map(({ id, title, slug, logo }) => (
+                <div
+                  className="rounded-lg bg-white p-6 drop-shadow-md flex flex-col items-center"
+                  key={id}
+                >
+                  <div className="h-16 w-16 md:w-24 md:h-24">
+                    <SiteLogo.Presentation
+                      size={SMALL}
+                      logo={logo || null}
+                      additionalStyling="ring-1 ring-gray-200"
+                    />
+                  </div>
+                  <h2 className="font-bold p-4">{title}</h2>
+                  <a
+                    href={`https://wwww.firstvoicesapp.com/${slug}/`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button
+                      data-testid="DownloadAppButton"
+                      type="button"
+                      className="bg-phrase text-white px-4 py-2 rounded-md"
+                    >
+                      {getIcon(
+                        'Download',
+                        'w-6 h-6 fill-current mr-3 inline-flex',
+                      )}
+                      Download App
+                    </button>
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className={headerStyle}>Lagacy Apps</h2>
@@ -454,6 +494,12 @@ function FVApps(hasApp) {
       </div>
     </section>
   )
+}
+
+// PROPTYPES
+const { array } = PropTypes
+FVApps.propTypes = {
+  hasApp: array,
 }
 
 export default FVApps
