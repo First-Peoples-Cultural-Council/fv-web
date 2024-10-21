@@ -114,7 +114,7 @@
     "oidc-client-ts": "^3.0.1",
     "postcss": "^8.4.47",
     "postcss-loader": "^8.1.1",
-    "postcss-preset-env": "^10.0.5",
+    "postcss-preset-env": "^10.0.7",
     "prop-types": "^15.8.1",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
