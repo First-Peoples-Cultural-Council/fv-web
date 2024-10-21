@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
 import useIdArrayField from 'common/hooks/useIdArrayField'
-import { useModalSelector } from 'common/hooks/useModalController'
+import { useModalControllerWithCallback } from 'common/hooks/useModalController'
 import AddAudioModal from 'components/AddAudioModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
@@ -21,8 +21,10 @@ function AudioArrayField({
   errors,
 }) {
   const { value, addItems, removeItem } = useIdArrayField(nameId, control)
-  const { modalOpen, openModal, closeModal, selectItem } =
-    useModalSelector(addItems)
+  const { modalOpen, openModal, closeModal, closeWithCallback } =
+    useModalControllerWithCallback({
+      onCloseCallback: addItems,
+    })
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
@@ -49,7 +51,7 @@ function AudioArrayField({
             <FieldButton label="Add Audio" onClickHandler={openModal} />
             <AddAudioModal.Container
               savedMedia={value}
-              updateSavedMedia={selectItem}
+              updateSavedMedia={closeWithCallback}
               modalOpen={modalOpen}
               closeModal={closeModal}
               maxItems={maxItems}
