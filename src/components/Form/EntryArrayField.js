@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import { useModalSelector } from 'common/hooks/useModalController'
+import { useModalWithFieldArray } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import SelectorEntry from 'components/SelectorEntry'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
@@ -25,13 +24,14 @@ function EntryArrayField({
   visibility,
   errors,
 }) {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: nameId,
-  })
-
-  const { modalOpen, openModal, closeModal, selectItem } =
-    useModalSelector(append)
+  const {
+    fields,
+    appendToFormAndClose,
+    remove,
+    modalOpen,
+    openModal,
+    closeModal,
+  } = useModalWithFieldArray({ control, nameId })
 
   return (
     <Fragment key={`${nameId}_EntryArrayField`}>
@@ -39,12 +39,8 @@ function EntryArrayField({
       <div className="space-y-2">
         <ul className="space-y-1">
           {fields.map((field, index) => (
-            <li key={field.id} className="btn-contained mr-1">
-              <input
-                key={field.id}
-                type="hidden"
-                {...register(`${nameId}.${index}.value`)}
-              />
+            <li key={field.key} className="btn-contained mr-1">
+              <input type="hidden" {...register(`${nameId}.${index}.value`)} />
               <div>{field?.title}</div>
               <XButton onClickHandler={() => remove(index)} />
             </li>
@@ -65,7 +61,7 @@ function EntryArrayField({
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
           <SelectorEntry.Container
             types={types}
-            addItem={selectItem}
+            addItem={appendToFormAndClose}
             visibility={visibility}
           />
         </div>

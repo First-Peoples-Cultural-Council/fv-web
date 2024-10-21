@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import { useModalSelector } from 'common/hooks/useModalController'
+import { useModalWithFieldArray } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
 import CategoriesBrowser from 'components/CategoriesBrowser'
 import FieldButton from 'components/Form/FieldButton'
@@ -21,13 +20,14 @@ function CategoryArrayField({
   nameId,
   register,
 }) {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: nameId,
-  })
-
-  const { modalOpen, openModal, closeModal, selectItem } =
-    useModalSelector(append)
+  const {
+    fields,
+    appendToFormAndClose,
+    remove,
+    modalOpen,
+    openModal,
+    closeModal,
+  } = useModalWithFieldArray({ control, nameId })
 
   return (
     <Fragment key={`${nameId}_CategoryArrayField`}>
@@ -35,7 +35,7 @@ function CategoryArrayField({
       <div className="space-y-2">
         <ul className="space-y-2">
           {fields.map((item, index) => (
-            <li key={item.id} className="btn-contained mr-1">
+            <li key={item.key} className="btn-contained mr-1">
               <input type="hidden" {...register(`${nameId}.${index}`)} />
               <div>{item?.title}</div>
               <XButton
@@ -55,7 +55,9 @@ function CategoryArrayField({
 
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen h-screen mx-auto rounded-lg overflow-hidden">
-          <CategoriesBrowser.Container chooseDocHandler={selectItem} />
+          <CategoriesBrowser.Container
+            chooseDocHandler={appendToFormAndClose}
+          />
         </div>
       </Modal.Presentation>
     </Fragment>
