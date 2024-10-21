@@ -21,10 +21,8 @@ function AudioArrayField({
   errors,
 }) {
   const { value, addItems, removeItem } = useIdArrayField(nameId, control)
-  const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    addItems,
-    removeItem,
-  )
+  const { modalOpen, openModal, closeModal, selectItem } =
+    useModalSelector(addItems)
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>

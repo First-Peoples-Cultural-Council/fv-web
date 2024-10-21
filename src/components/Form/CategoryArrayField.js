@@ -26,10 +26,8 @@ function CategoryArrayField({
     name: nameId,
   })
 
-  const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    append,
-    remove,
-  )
+  const { modalOpen, openModal, closeModal, selectItem } =
+    useModalSelector(append)
 
   return (
     <Fragment key={`${nameId}_CategoryArrayField`}>

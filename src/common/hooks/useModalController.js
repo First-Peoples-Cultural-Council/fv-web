@@ -25,7 +25,7 @@ export function useModalControllerWithCallback({ onCloseCallback = () => {} }) {
   }
 }
 
-export function useModalSelector(addItems, removeItem) {
+export function useModalSelector(addItems) {
   const { modalOpen, openModal, closeModal } = useModalController()
 
   // Can be multiple ids for a list of documents
@@ -37,10 +37,5 @@ export function useModalSelector(addItems, removeItem) {
     }
   }
 
-  const unselectItem = (id) => {
-    removeItem(id)
-    closeModal()
-  }
-
-  return { selectItem, unselectItem, modalOpen, openModal, closeModal }
+  return { selectItem, modalOpen, openModal, closeModal }
 }

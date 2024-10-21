@@ -26,10 +26,8 @@ function ImageArrayField({
     name: nameId,
     keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
   })
-  const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    append,
-    remove,
-  )
+  const { modalOpen, openModal, closeModal, selectItem } =
+    useModalSelector(append)
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>

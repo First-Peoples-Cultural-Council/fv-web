@@ -30,8 +30,8 @@ function EntryArrayField({
     name: nameId,
   })
 
-  const { modalOpen, openModal, closeModal, selectItem, unselectItem } =
-    useModalSelector(append, remove)
+  const { modalOpen, openModal, closeModal, selectItem } =
+    useModalSelector(append)
 
   return (
     <Fragment key={`${nameId}_EntryArrayField`}>
@@ -66,7 +66,6 @@ function EntryArrayField({
           <SelectorEntry.Container
             types={types}
             addItem={selectItem}
-            removeItem={unselectItem}
             visibility={visibility}
           />
         </div>
