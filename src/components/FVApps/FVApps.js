@@ -11,12 +11,7 @@ import GlobalConfiguration from 'src/GlobalConfiguration'
 function FVApps({ hasApp }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
-  console.log({ hasApp })
-  console.log({ GlobalConfiguration })
-  // const appRootUrl =
-  //   GlobalConfiguration.ENV_APP === 'production'
-  //     ? `https://${slug}.firstvoicesapp.com`
-  //     : `https://${slug}.${GlobalConfiguration.ENV_APP}.firstvoicesapp.com`
+
   return (
     <section
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
