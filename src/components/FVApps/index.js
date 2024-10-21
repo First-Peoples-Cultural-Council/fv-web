@@ -1,3 +1,9 @@
-import FVApps from 'components/FVApps/FVApps'
+import FVAppsContainer from 'components/FVApps/FVAppsContainer'
+import FVAppsData from 'components/FVApps/FVAppsData'
+import FVAppsPresentation from 'components/FVApps/FVAppsPresentation'
 
-export default FVApps
+export default {
+  Container: FVAppsContainer,
+  Data: FVAppsData,
+  Presentation: FVAppsPresentation,
+}

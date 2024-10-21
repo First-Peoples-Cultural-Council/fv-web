@@ -8,7 +8,7 @@ import SiteLogo from 'components/SiteLogo'
 import getIcon from 'common/utils/getIcon'
 import GlobalConfiguration from 'src/GlobalConfiguration'
 
-function FVApps({ hasApp }) {
+function FVAppsPresentation({ sitesWithApps }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
 
@@ -33,9 +33,9 @@ function FVApps({ hasApp }) {
           <p className={paraStyle}>
             The new apps can be installed directly from the web
           </p>
-          {hasApp && (
+          {sitesWithApps && (
             <div className="grid grid-cols-3 gap-6 pt-8">
-              {hasApp?.map(({ id, title, slug, logo }) => (
+              {sitesWithApps?.map(({ id, title, slug, logo }) => (
                 <div
                   className="rounded-lg bg-white p-6 drop-shadow-md flex flex-col items-center"
                   key={id}
@@ -348,8 +348,8 @@ function FVApps({ hasApp }) {
 
 // PROPTYPES
 const { array } = PropTypes
-FVApps.propTypes = {
-  hasApp: array,
+FVAppsPresentation.propTypes = {
+  sitesWithApps: array,
 }
 
-export default FVApps
+export default FVAppsPresentation

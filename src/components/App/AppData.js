@@ -4,7 +4,6 @@ import { useAuth } from 'react-oidc-context'
 // FPCC
 import { useUserDispatch } from 'context/UserContext'
 import { useMySites } from 'common/dataHooks/useMySites'
-import { useSites } from 'common/dataHooks/useSites'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 
 function AppData() {
@@ -17,15 +16,6 @@ function AppData() {
     error: userRolesError,
     mySitesData,
   } = useMySites()
-
-  const sites = useSites()
-
-  function features(site) {
-    return site.enabledFeatures.find(
-      (feature) => feature.key.toLowerCase() === 'has_app',
-    )
-  }
-  const hasApp = sites?.data?.results?.filter(features)
 
   useEffect(() => {
     if (auth.isLoading === false && !auth.error) {
@@ -64,7 +54,6 @@ function AppData() {
 
   return {
     appIsLoading: auth.isLoading,
-    hasApp,
   }
 }
 
