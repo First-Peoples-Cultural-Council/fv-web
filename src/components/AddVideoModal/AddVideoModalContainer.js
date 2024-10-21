@@ -48,7 +48,7 @@ function AddVideoModalContainer({
     ]
   }
 
-  const [selectedTab, setSelectedTab] = useState(tabOptions[1])
+  const [currentTab, setCurrentTab] = useState(tabOptions[1])
 
   return (
     <AddMediaModalWrapper
@@ -58,25 +58,25 @@ function AddVideoModalContainer({
       modalOpen={modalOpen}
       closeModal={closeModal}
       tabOptions={tabOptions}
-      selectedTab={selectedTab}
-      setSelectedTab={setSelectedTab}
+      currentTab={currentTab}
+      setCurrentTab={setCurrentTab}
     >
       <>
-        {selectedTab.id === 'upload-tab' && (
+        {currentTab.id === 'upload-tab' && (
           <UploadVisualMedia
             setSelectedMedia={setSelectedItems}
             type={TYPE_VIDEO}
             maxItems={maxItems}
           />
         )}
-        {selectedTab.id === 'search-tab' && (
+        {currentTab.id === 'search-tab' && (
           <SelectorVideos.Container
             savedMedia={savedMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
           />
         )}
-        {selectedTab.id === 'video-link-tab' && (
+        {currentTab.id === 'video-link-tab' && (
           <VideoLinkForm
             relatedVideoLinks={relatedVideoLinks}
             appendVideoLinks={appendVideoLinks}

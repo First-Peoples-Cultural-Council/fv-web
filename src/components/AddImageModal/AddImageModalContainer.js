@@ -34,7 +34,7 @@ function AddImageModalContainer({
     },
   ]
 
-  const [selectedTab, setSelectedTab] = useState(tabOptions[1])
+  const [currentTab, setCurrentTab] = useState(tabOptions[1])
 
   return (
     <AddMediaModalWrapper
@@ -44,18 +44,18 @@ function AddImageModalContainer({
       modalOpen={modalOpen}
       closeModal={closeModal}
       tabOptions={tabOptions}
-      selectedTab={selectedTab}
-      setSelectedTab={setSelectedTab}
+      currentTab={currentTab}
+      setCurrentTab={setCurrentTab}
     >
       <>
-        {selectedTab.id === 'upload-tab' && (
+        {currentTab.id === 'upload-tab' && (
           <UploadVisualMedia
             setSelectedMedia={setSelectedItems}
             type={TYPE_IMAGE}
             maxItems={maxItems}
           />
         )}
-        {selectedTab.id === 'search-tab' && (
+        {currentTab.id === 'search-tab' && (
           <SelectorImages.Container
             savedMedia={savedMedia}
             selectedMedia={selectedItems}

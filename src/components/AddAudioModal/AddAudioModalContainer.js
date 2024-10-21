@@ -33,7 +33,7 @@ function AddAudioModalContainer({
     },
   ]
 
-  const [selectedTab, setSelectedTab] = useState(tabOptions[1])
+  const [currentTab, setCurrentTab] = useState(tabOptions[1])
 
   return (
     <AddMediaModalWrapper
@@ -43,14 +43,14 @@ function AddAudioModalContainer({
       modalOpen={modalOpen}
       closeModal={closeModal}
       tabOptions={tabOptions}
-      selectedTab={selectedTab}
-      setSelectedTab={setSelectedTab}
+      currentTab={currentTab}
+      setCurrentTab={setCurrentTab}
     >
       <>
-        {selectedTab.id === 'upload-tab' && (
+        {currentTab.id === 'upload-tab' && (
           <UploadAudio setSelectedMedia={setSelectedItems} />
         )}
-        {selectedTab.id === 'search-tab' && (
+        {currentTab.id === 'search-tab' && (
           <SelectorAudio.Container
             savedMedia={savedMedia}
             selectedMedia={selectedItems}
