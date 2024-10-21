@@ -176,7 +176,7 @@ module.exports = {
           DEFAULT: '#B40212',
         },
         buttonOrange: {
-          DEFAULT: 'C4572D',
+          DEFAULT: '#C4572D',
         },
         'fv-charcoal': {
           xlight: '#979799',

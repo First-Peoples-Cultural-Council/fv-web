@@ -17,7 +17,7 @@ function FVApps({ hasApp }) {
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="FirstVoicesApps"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation
           title="FIRSTVOICES APPS"
           accentColor="primary"
@@ -48,20 +48,20 @@ function FVApps({ hasApp }) {
                     />
                   </div>
                   <h2 className="font-bold p-4">{title}</h2>
-                  <div className="pb-6 w-3/4 flex justify-between">
+                  <div className="pb-6 w-2/3 flex justify-between">
                     {getIcon('Mobile', 'w-6 h-6 fill-current mr-3 inline-flex')}
                     {getIcon('Tablet', 'w-6 h-6 fill-current mr-3 inline-flex')}
                     {getIcon('PC', 'w-6 h-6 fill-current mr-3 inline-flex')}
                   </div>
                   <a
-                    href={`https://wwww.firstvoicesapp.com/${slug}/`}
+                    href={`https://${slug}.firstvoicesapp.com/`}
                     target="_blank"
                     rel="noreferrer"
                   >
                     <button
                       data-testid="DownloadAppButton"
                       type="button"
-                      className="bg-buttonOrange text-white px-4 py-2 rounded-md"
+                      className="bg-buttonOrange text-white px-4 py-2 rounded-md mb-"
                     >
                       {getIcon(
                         'Download',
@@ -76,7 +76,7 @@ function FVApps({ hasApp }) {
           )}
         </div>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className={headerStyle}>Lagacy Apps</h2>
+          <h2 className={headerStyle}>Legacy Apps</h2>
           <p className={paraStyle}>
             Note: The FirstVoices apps in the iOS and Android app stores are no
             longer being updated and may not be installable on all devices.
