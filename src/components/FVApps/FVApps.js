@@ -6,11 +6,17 @@ import SectionTitle from 'components/SectionTitle'
 import { SMALL } from 'common/constants'
 import SiteLogo from 'components/SiteLogo'
 import getIcon from 'common/utils/getIcon'
+import GlobalConfiguration from 'src/GlobalConfiguration'
 
 function FVApps({ hasApp }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
-
+  console.log({ hasApp })
+  console.log({ GlobalConfiguration })
+  // const appRootUrl =
+  //   GlobalConfiguration.ENV_APP === 'production'
+  //     ? `https://${slug}.firstvoicesapp.com`
+  //     : `https://${slug}.${GlobalConfiguration.ENV_APP}.firstvoicesapp.com`
   return (
     <section
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
@@ -53,7 +59,11 @@ function FVApps({ hasApp }) {
                     {getIcon('PC', 'w-6 h-6 fill-current mr-3 inline-flex')}
                   </div>
                   <a
-                    href={`https://${slug}.firstvoicesapp.com/`}
+                    href={
+                      GlobalConfiguration.ENV_APP === 'production'
+                        ? `https://${slug}.firstvoicesapp.com`
+                        : `https://${slug}.${GlobalConfiguration.ENV_APP}.firstvoicesapp.com`
+                    }
                     target="_blank"
                     rel="noreferrer"
                   >

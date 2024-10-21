@@ -78,6 +78,7 @@ $ npm run start
 - OIDC_AUTHORITY_URL - Authority URL for retrieving OIDC metadata
 - OAUTH2_REDIRECT_URL - Destination to redirect after signing in
 - END_SESSION_URL - OAuth2 end session (or logout) endpoint, if not included in the OIDC metadata
+- APP_ENV - denotes environment for app, possible values are dev, preprod, and prod
 
 8. Visit [localhost:3000](http://localhost:3000) in your web browser to view the FirstVoices app.
 
