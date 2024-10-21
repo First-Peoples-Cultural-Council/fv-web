@@ -26,7 +26,6 @@ import LegacyRedirect from './LegacyRedirect'
 
 function AppContainer() {
   const { appIsLoading, hasApp } = AppData()
-  console.log({ hasApp })
 
   return (
     <Loading.Container isLoading={appIsLoading}>

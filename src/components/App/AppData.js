@@ -26,7 +26,6 @@ function AppData() {
     )
   }
   const hasApp = sites?.data?.results?.filter(features)
-  console.log({ hasApp })
 
   useEffect(() => {
     if (auth.isLoading === false && !auth.error) {

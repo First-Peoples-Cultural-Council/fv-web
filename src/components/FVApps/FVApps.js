@@ -8,7 +8,6 @@ import SiteLogo from 'components/SiteLogo'
 import getIcon from 'common/utils/getIcon'
 
 function FVApps({ hasApp }) {
-  console.log({ hasApp })
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
 
