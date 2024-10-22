@@ -50,8 +50,8 @@ function AudioArrayField({
           <div>
             <FieldButton label="Add Audio" onClickHandler={openModal} />
             <AddAudioModal.Container
-              savedMedia={value}
-              updateSavedMedia={closeWithCallback}
+              formMedia={value}
+              updateFormMedia={closeWithCallback}
               modalOpen={modalOpen}
               closeModal={closeModal}
               maxItems={maxItems}

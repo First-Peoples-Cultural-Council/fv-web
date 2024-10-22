@@ -10,8 +10,8 @@ import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 
 function AddVideoModalContainer({
-  savedMedia,
-  updateSavedMedia,
+  formMedia,
+  updateFormMedia,
   maxItems,
   relatedVideoLinks,
   appendVideoLinks,
@@ -53,7 +53,7 @@ function AddVideoModalContainer({
   return (
     <AddMediaModalWrapper
       selectedMedia={selectedItems}
-      updateSavedMedia={updateSavedMedia}
+      updateFormMedia={updateFormMedia}
       type={TYPE_VIDEO}
       modalOpen={modalOpen}
       closeModal={closeModal}
@@ -71,7 +71,7 @@ function AddVideoModalContainer({
         )}
         {currentTab.id === 'search-tab' && (
           <SelectorVideos.Container
-            savedMedia={savedMedia}
+            formMedia={formMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
           />
@@ -92,8 +92,8 @@ function AddVideoModalContainer({
 const { array, bool, func, number } = PropTypes
 
 AddVideoModalContainer.propTypes = {
-  savedMedia: array,
-  updateSavedMedia: func,
+  formMedia: array,
+  updateFormMedia: func,
   maxItems: number,
   relatedVideoLinks: array,
   appendVideoLinks: func,

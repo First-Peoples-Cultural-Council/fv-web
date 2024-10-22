@@ -56,8 +56,8 @@ function ImageArrayField({
           <div>
             <FieldButton label="Add image" onClickHandler={openModal} />
             <AddImageModal.Container
-              savedMedia={fields}
-              updateSavedMedia={appendToFormAndClose}
+              formMedia={fields}
+              updateFormMedia={appendToFormAndClose}
               modalOpen={modalOpen}
               closeModal={closeModal}
               maxItems={maxItems}

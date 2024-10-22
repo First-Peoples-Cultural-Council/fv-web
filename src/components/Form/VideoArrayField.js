@@ -124,8 +124,8 @@ function VideoArrayField({
             <FieldButton label="Add Video" onClickHandler={openModal} />
             <AddVideoModal.Container
               isDashboard
-              savedMedia={fields}
-              updateSavedMedia={appendToFormAndClose}
+              formMedia={fields}
+              updateFormMedia={appendToFormAndClose}
               relatedVideoLinks={relatedVideoLinks}
               appendVideoLinks={appendVideoLinks}
               modalOpen={modalOpen}

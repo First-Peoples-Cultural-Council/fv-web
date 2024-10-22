@@ -8,7 +8,7 @@ function SelectorVisualMediaGridPresentation({
   data,
   infiniteScroll,
   loadLabel,
-  savedMedia,
+  formMedia,
   selectedMedia,
   mediaSelectHandler,
 }) {
@@ -26,10 +26,8 @@ function SelectorVisualMediaGridPresentation({
             data?.pages?.map((page) => (
               <React.Fragment key={page?.pageNumber}>
                 {page.results.map((mediaObject) => {
-                  if (
-                    savedMedia?.some((elem) => elem?.id === mediaObject?.id)
-                  ) {
-                    // If a media file is already attached to the document
+                  if (formMedia?.some((elem) => elem?.id === mediaObject?.id)) {
+                    // If a media file is already in the form
                     // it will not be presented as a choice in the selectMedia dialog box
                     return null
                   }
@@ -105,7 +103,7 @@ SelectorVisualMediaGridPresentation.propTypes = {
   data: object,
   infiniteScroll: object,
   loadLabel: string,
-  savedMedia: array,
+  formMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
 }

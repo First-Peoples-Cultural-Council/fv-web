@@ -9,8 +9,8 @@ import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 
 function AddImageModalContainer({
-  savedMedia,
-  updateSavedMedia,
+  formMedia,
+  updateFormMedia,
   maxItems,
   modalOpen,
   closeModal,
@@ -39,7 +39,7 @@ function AddImageModalContainer({
   return (
     <AddMediaModalWrapper
       selectedMedia={selectedItems}
-      updateSavedMedia={updateSavedMedia}
+      updateFormMedia={updateFormMedia}
       type={TYPE_IMAGE}
       modalOpen={modalOpen}
       closeModal={closeModal}
@@ -57,7 +57,7 @@ function AddImageModalContainer({
         )}
         {currentTab.id === 'search-tab' && (
           <SelectorImages.Container
-            savedMedia={savedMedia}
+            formMedia={formMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
             hideSharedMedia={hideSharedMedia}
@@ -71,8 +71,8 @@ function AddImageModalContainer({
 const { array, bool, func, number } = PropTypes
 
 AddImageModalContainer.propTypes = {
-  savedMedia: array,
-  updateSavedMedia: func,
+  formMedia: array,
+  updateFormMedia: func,
   maxItems: number,
   closeModal: func,
   modalOpen: bool,

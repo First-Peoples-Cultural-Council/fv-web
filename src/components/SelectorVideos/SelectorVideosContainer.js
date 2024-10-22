@@ -9,7 +9,7 @@ import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import { TYPE_VIDEO } from 'common/constants'
 
 function SelectorVideosContainer({
-  savedMedia,
+  formMedia,
   selectedMedia,
   mediaSelectHandler,
 }) {
@@ -53,7 +53,7 @@ function SelectorVideosContainer({
                   data={media}
                   infiniteScroll={infiniteScroll}
                   loadLabel={loadLabel}
-                  savedMedia={savedMedia}
+                  formMedia={formMedia}
                   selectedMedia={selectedMedia}
                   mediaSelectHandler={mediaSelectHandler}
                 />
@@ -69,7 +69,7 @@ function SelectorVideosContainer({
 // PROPTYPES
 const { array, func } = PropTypes
 SelectorVideosContainer.propTypes = {
-  savedMedia: array,
+  formMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
 }

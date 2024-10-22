@@ -114,16 +114,16 @@ function SelectOneButton({ value, onChange }) {
 
       {type === IMAGE ? (
         <AddImageModal.Container
-          savedMedia={[value]}
-          updateSavedMedia={chooseMediaHandler}
+          formMedia={[value]}
+          updateFormMedia={chooseMediaHandler}
           modalOpen={addMediaModalOpen}
           closeModal={() => setAddMediaModalOpen(false)}
           maxItems={1}
         />
       ) : (
         <AddVideoModal.Container
-          savedMedia={[value]}
-          updateSavedMedia={chooseMediaHandler}
+          formMedia={[value]}
+          updateFormMedia={chooseMediaHandler}
           modalOpen={addMediaModalOpen}
           closeModal={() => setAddMediaModalOpen(false)}
           maxItems={1}
