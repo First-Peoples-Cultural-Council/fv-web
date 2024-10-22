@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -20,6 +20,13 @@ function AddVideoModalContainer({
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
     useArrayStateManager({ maxItems })
+
+  // Clear the Selected items when the modal closes
+  useEffect(() => {
+    if (!modalOpen) {
+      setSelectedItems([])
+    }
+  }, [modalOpen, setSelectedItems])
 
   let tabOptions = [
     {
