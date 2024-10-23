@@ -60,8 +60,9 @@ function EntryArrayField({
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
           <SelectorEntry.Container
+            formEntries={fields}
+            updateFormEntries={appendToFormAndClose}
             types={types}
-            addItem={appendToFormAndClose}
             visibility={visibility}
           />
         </div>
