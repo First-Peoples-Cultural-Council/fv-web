@@ -153,6 +153,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
       </div>
       {/* -- Mobile Menu -- */}
       <Transition
+        as="div"
         show={mobileLandingNavbarOpen}
         enter="transform transition ease-in-out duration-500"
         enterFrom="translate-x-full"
