@@ -61,7 +61,7 @@ function AppContainer() {
                 path="apps"
                 element={
                   <AppWrapper>
-                    <FVApps />
+                    <FVApps.Container />
                   </AppWrapper>
                 }
               />
