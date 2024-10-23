@@ -50,7 +50,6 @@ function Autocomplete({
                   onChange={(e) => {
                     onChange(e)
                   }}
-                  nullable
                   multiple
                 >
                   <div className="relative">

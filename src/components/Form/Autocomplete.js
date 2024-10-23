@@ -49,7 +49,6 @@ function Autocomplete({
               onChange={(e) => {
                 onChange(e)
               }}
-              nullable
             >
               <div className="relative">
                 <div className="relative w-full">
