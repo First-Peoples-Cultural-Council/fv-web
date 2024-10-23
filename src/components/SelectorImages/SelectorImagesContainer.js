@@ -10,7 +10,7 @@ import { TYPE_IMAGE } from 'common/constants'
 import RadioButtonGroup from 'components/RadioButtonGroup'
 
 function SelectorImagesContainer({
-  savedMedia,
+  formMedia,
   selectedMedia,
   mediaSelectHandler,
   hideSharedMedia = false,
@@ -86,7 +86,7 @@ function SelectorImagesContainer({
                   data={media}
                   infiniteScroll={infiniteScroll}
                   loadLabel={loadLabel}
-                  savedMedia={savedMedia}
+                  formMedia={formMedia}
                   selectedMedia={selectedMedia}
                   mediaSelectHandler={mediaSelectHandler}
                 />
@@ -102,7 +102,7 @@ function SelectorImagesContainer({
 // PROPTYPES
 const { array, bool, func } = PropTypes
 SelectorImagesContainer.propTypes = {
-  savedMedia: array,
+  formMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
   hideSharedMedia: bool,

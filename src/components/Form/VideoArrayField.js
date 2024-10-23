@@ -4,7 +4,7 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import MediaThumbnail from 'components/MediaThumbnail'
-import { useModalSelector } from 'common/hooks/useModalController'
+import { useModalWithFieldArray } from 'common/hooks/useModalController'
 import AddVideoModal from 'components/AddVideoModal'
 import api from 'services/api'
 import XButton from 'components/Form/XButton'
@@ -21,15 +21,14 @@ function VideoArrayField({
   maxItems = 3,
   errors,
 }) {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: nameId,
-    keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
-  })
-  const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    append,
+  const {
+    fields,
+    appendToFormAndClose,
     remove,
-  )
+    modalOpen,
+    openModal,
+    closeModal,
+  } = useModalWithFieldArray({ control, nameId })
 
   const {
     fields: videoLinksFields,
@@ -125,8 +124,8 @@ function VideoArrayField({
             <FieldButton label="Add Video" onClickHandler={openModal} />
             <AddVideoModal.Container
               isDashboard
-              savedMedia={fields}
-              updateSavedMedia={selectItem}
+              formMedia={fields}
+              updateFormMedia={appendToFormAndClose}
               relatedVideoLinks={relatedVideoLinks}
               appendVideoLinks={appendVideoLinks}
               modalOpen={modalOpen}

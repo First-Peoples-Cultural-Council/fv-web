@@ -34,7 +34,7 @@ function ImageIdField({ label = '', nameId, helpText, control, errors }) {
 function ImageIdFieldButton({ value, onChange }) {
   const [modalOpen, setModalOpen] = useState(false)
 
-  const updateSavedMedia = (id) => {
+  const updateFormMedia = (id) => {
     if (isUUID(id[0]?.id)) {
       onChange(id[0]?.id)
     }
@@ -57,8 +57,8 @@ function ImageIdFieldButton({ value, onChange }) {
       />
       <AddImageModal.Container
         isDashboard
-        savedMedia={[{ id: value }]}
-        updateSavedMedia={updateSavedMedia}
+        formMedia={[{ id: value }]}
+        updateFormMedia={updateFormMedia}
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
         maxItems={1}

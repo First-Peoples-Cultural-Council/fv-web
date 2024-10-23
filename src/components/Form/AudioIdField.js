@@ -34,7 +34,7 @@ function AudioIdField({ label = '', nameId, helpText, control, errors }) {
 function AudioIdFieldButton({ value, onChange }) {
   const [modalOpen, setModalOpen] = useState(false)
 
-  const updateSavedMedia = (id) => {
+  const updateFormMedia = (id) => {
     if (isUUID(id[0])) {
       onChange(id[0])
     }
@@ -53,8 +53,8 @@ function AudioIdFieldButton({ value, onChange }) {
         onClickHandler={() => setModalOpen(true)}
       />
       <AddAudioModal.Container
-        savedMedia={[value]}
-        updateSavedMedia={updateSavedMedia}
+        formMedia={[value]}
+        updateFormMedia={updateFormMedia}
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
         maxItems={1}

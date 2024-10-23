@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useFieldArray } from 'react-hook-form'
 
 // FPCC
-import { useModalSelector } from 'common/hooks/useModalController'
+import { useModalWithFieldArray } from 'common/hooks/useModalController'
 import AddImageModal from 'components/AddImageModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
@@ -21,15 +20,14 @@ function ImageArrayField({
   errors,
   hideSharedMedia = false,
 }) {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: nameId,
-    keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
-  })
-  const { modalOpen, openModal, closeModal, selectItem } = useModalSelector(
-    append,
+  const {
+    fields,
+    appendToFormAndClose,
     remove,
-  )
+    modalOpen,
+    openModal,
+    closeModal,
+  } = useModalWithFieldArray({ control, nameId })
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
@@ -58,8 +56,8 @@ function ImageArrayField({
           <div>
             <FieldButton label="Add image" onClickHandler={openModal} />
             <AddImageModal.Container
-              savedMedia={fields}
-              updateSavedMedia={selectItem}
+              formMedia={fields}
+              updateFormMedia={appendToFormAndClose}
               modalOpen={modalOpen}
               closeModal={closeModal}
               maxItems={maxItems}

@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { useFieldArray } from 'react-hook-form'
+
+// FPCC
 
 function useModalController() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -18,29 +21,35 @@ export function useModalControllerWithCallback({ onCloseCallback = () => {} }) {
     modalOpen,
     openModal,
     closeModal,
-    closeWithCallback: () => {
-      onCloseCallback()
+    closeWithCallback: (params) => {
+      onCloseCallback(params)
       closeModal()
     },
   }
 }
 
-export function useModalSelector(addItems, removeItem) {
+export function useModalWithFieldArray({ control, nameId }) {
   const { modalOpen, openModal, closeModal } = useModalController()
 
-  // Can be multiple ids for a list of documents
-  // or can be just one item's id
-  const selectItem = (ids, closeModalAfter = true) => {
-    addItems(ids)
-    if (closeModalAfter) {
-      closeModal()
-    }
-  }
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: nameId,
+    keyName: 'key', // https://github.com/react-hook-form/react-hook-form/issues/7562#issuecomment-1016379084
+  })
 
-  const unselectItem = (id) => {
-    removeItem(id)
+  // Can be a single object or an array of objects
+  const appendToFormAndClose = (itemsToAppend) => {
+    append(itemsToAppend)
+
     closeModal()
   }
 
-  return { selectItem, unselectItem, modalOpen, openModal, closeModal }
+  return {
+    fields,
+    appendToFormAndClose,
+    remove,
+    modalOpen,
+    openModal,
+    closeModal,
+  }
 }

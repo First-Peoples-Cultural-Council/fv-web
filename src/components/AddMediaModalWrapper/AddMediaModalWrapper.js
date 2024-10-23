@@ -9,24 +9,24 @@ import getIcon from 'common/utils/getIcon'
 
 function AddMediaModalWrapper({
   selectedMedia,
-  updateSavedMedia,
+  updateFormMedia,
   type,
   modalOpen,
   closeModal,
   tabOptions,
-  selectedTab,
-  setSelectedTab,
+  currentTab,
+  setCurrentTab,
   children,
 }) {
   const tabButton = (tab) => {
     const itemsSelected = selectedMedia.length > 0
-    const tabHasSelectedItems = itemsSelected && selectedTab.id === tab.id
+    const tabHasSelectedItems = itemsSelected && currentTab.id === tab.id
     // If no files are uploaded/selected, allow the user to switch tabs
     // otherwise switch to Insert Media button
     // allowing user to attach the selected/uploaded files to the document.
     const handleOnClick = () => {
-      if (tabHasSelectedItems) updateSavedMedia(selectedMedia)
-      setSelectedTab(tab)
+      if (tabHasSelectedItems) updateFormMedia(selectedMedia)
+      setCurrentTab(tab)
     }
     return (
       <button
@@ -34,12 +34,12 @@ function AddMediaModalWrapper({
         data-testid={`${tab.id}-btn`}
         type="button"
         className={`capitalize disabled:pointer-events-none disabled:bg-gray-100 disabled:opacity-50 ${
-          selectedTab.id === tab.id
+          currentTab.id === tab.id
             ? 'btn-contained'
             : 'btn-outlined hover:btn-contained'
         }`}
         onClick={handleOnClick}
-        disabled={itemsSelected && selectedTab.id !== tab.id}
+        disabled={itemsSelected && currentTab.id !== tab.id}
       >
         {getIcon(tabHasSelectedItems ? 'Add' : tab?.icon, 'btn-icon')}
         <span>
@@ -66,7 +66,7 @@ function AddMediaModalWrapper({
       >
         <div className="h-full flex flex-col space-y-4">
           <h2 className="text-center text-2xl font-bold text-fv-charcoal">
-            {selectedTab.title}
+            {currentTab.title}
           </h2>
           <div className="w-full bg-gray-50 flex justify-center space-x-4">
             {tabOptions.map((tab) => tabButton(tab))}
@@ -82,14 +82,14 @@ const { array, bool, func, node, object, oneOf } = PropTypes
 
 AddMediaModalWrapper.propTypes = {
   selectedMedia: array,
-  updateSavedMedia: func,
+  updateFormMedia: func,
   type: oneOf([TYPE_AUDIO, TYPE_IMAGE, TYPE_VIDEO]),
   tabOptions: array,
   children: node,
   closeModal: func,
   modalOpen: bool,
-  selectedTab: object,
-  setSelectedTab: func,
+  currentTab: object,
+  setCurrentTab: func,
 }
 
 export default AddMediaModalWrapper

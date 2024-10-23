@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -9,8 +9,8 @@ import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
 
 function AddImageModalContainer({
-  savedMedia,
-  updateSavedMedia,
+  formMedia,
+  updateFormMedia,
   maxItems,
   modalOpen,
   closeModal,
@@ -18,6 +18,13 @@ function AddImageModalContainer({
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
     useArrayStateManager({ maxItems })
+
+  // Clear the Selected items when the modal closes
+  useEffect(() => {
+    if (!modalOpen) {
+      setSelectedItems([])
+    }
+  }, [modalOpen, setSelectedItems])
 
   const tabOptions = [
     {
@@ -34,30 +41,30 @@ function AddImageModalContainer({
     },
   ]
 
-  const [selectedTab, setSelectedTab] = useState(tabOptions[1])
+  const [currentTab, setCurrentTab] = useState(tabOptions[1])
 
   return (
     <AddMediaModalWrapper
       selectedMedia={selectedItems}
-      updateSavedMedia={updateSavedMedia}
+      updateFormMedia={updateFormMedia}
       type={TYPE_IMAGE}
       modalOpen={modalOpen}
       closeModal={closeModal}
       tabOptions={tabOptions}
-      selectedTab={selectedTab}
-      setSelectedTab={setSelectedTab}
+      currentTab={currentTab}
+      setCurrentTab={setCurrentTab}
     >
       <>
-        {selectedTab.id === 'upload-tab' && (
+        {currentTab.id === 'upload-tab' && (
           <UploadVisualMedia
             setSelectedMedia={setSelectedItems}
             type={TYPE_IMAGE}
             maxItems={maxItems}
           />
         )}
-        {selectedTab.id === 'search-tab' && (
+        {currentTab.id === 'search-tab' && (
           <SelectorImages.Container
-            savedMedia={savedMedia}
+            formMedia={formMedia}
             selectedMedia={selectedItems}
             mediaSelectHandler={handleSelectAdditionalItems}
             hideSharedMedia={hideSharedMedia}
@@ -71,8 +78,8 @@ function AddImageModalContainer({
 const { array, bool, func, number } = PropTypes
 
 AddImageModalContainer.propTypes = {
-  savedMedia: array,
-  updateSavedMedia: func,
+  formMedia: array,
+  updateFormMedia: func,
   maxItems: number,
   closeModal: func,
   modalOpen: bool,

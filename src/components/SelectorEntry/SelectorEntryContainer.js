@@ -9,7 +9,12 @@ import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorEntryPresentationList from 'components/SelectorEntry/SelectorEntryPresentationList'
 
-function SelectorEntryContainer({ types, visibility, addItem }) {
+function SelectorEntryContainer({
+  formEntries,
+  updateFormEntries,
+  types,
+  visibility,
+}) {
   const {
     searchQuery,
     setSearchQuery,
@@ -25,7 +30,7 @@ function SelectorEntryContainer({ types, visibility, addItem }) {
     searchResults,
   })
 
-  const addToEntry = () => addItem(selectedItem)
+  const addToEntry = () => updateFormEntries(selectedItem)
 
   return (
     <div data-testid="SelectorEntryContainer" className="h-full bg-gray-50">
@@ -47,6 +52,7 @@ function SelectorEntryContainer({ types, visibility, addItem }) {
               <SelectorEntryPresentationList
                 types={types}
                 searchResults={searchResults}
+                formEntries={formEntries}
                 selected={selectedItem}
                 setSelected={setSelectedItem}
                 infiniteScroll={infiniteScroll}
@@ -61,11 +67,12 @@ function SelectorEntryContainer({ types, visibility, addItem }) {
 }
 
 // PROPTYPES
-const { arrayOf, func, string } = PropTypes
+const { array, arrayOf, func, string } = PropTypes
 SelectorEntryContainer.propTypes = {
+  formEntries: array,
+  updateFormEntries: func,
   types: arrayOf(string),
   visibility: string,
-  addItem: func,
 }
 
 export default SelectorEntryContainer

@@ -9,7 +9,7 @@ import useMediaSearch from 'common/dataHooks/useMediaSearch'
 import { TYPE_AUDIO } from 'common/constants'
 
 function SelectorAudioContainer({
-  savedMedia,
+  formMedia,
   selectedMedia,
   mediaSelectHandler,
 }) {
@@ -49,7 +49,7 @@ function SelectorAudioContainer({
                 data={media}
                 infiniteScroll={infiniteScroll}
                 loadLabel={loadLabel}
-                savedMedia={savedMedia}
+                formMedia={formMedia}
                 selectedMedia={selectedMedia}
                 mediaSelectHandler={mediaSelectHandler}
               />
@@ -64,7 +64,7 @@ function SelectorAudioContainer({
 // PROPTYPES
 const { array, func } = PropTypes
 SelectorAudioContainer.propTypes = {
-  savedMedia: array,
+  formMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
 }
