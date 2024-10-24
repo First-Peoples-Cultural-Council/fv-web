@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Switch } from '@headlessui/react'
+import { Switch, Field, Label } from '@headlessui/react'
 
 function TogglePresentation({
   accentColor = 'primary',
@@ -9,9 +9,9 @@ function TogglePresentation({
   label,
 }) {
   return (
-    <Switch.Group>
+    <Field>
       <div className="flex items-center">
-        {label && <Switch.Label className="mr-4">{label}</Switch.Label>}
+        {label && <Label className="mr-4">{label}</Label>}
         <Switch
           checked={toggled}
           onChange={toggleCallback}
@@ -26,7 +26,7 @@ function TogglePresentation({
           />
         </Switch>
       </div>
-    </Switch.Group>
+    </Field>
   )
 }
 // PROPTYPES
