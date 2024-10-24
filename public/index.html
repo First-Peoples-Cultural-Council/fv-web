@@ -16,51 +16,18 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=4, user-scalable=yes"
     />
-    <script>
-      const setFavicon = () => {
-        let favicon = document.querySelector('link[rel="icon"]')
-        // if (!favicon) {
-        //   favicon = document.createElement('favicon')
-        //   favicon.rel = 'icon'
-        //   document.head.appendChild(favicon)
-        // }
-        favicon.href = window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'favicons/favicon-white-32x32.png'
-          : 'favicons/favicon-black-32x32.png'
-      }
-      setFavicon()
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', setFavicon)
-    </script>
-    <!-- <link
+    <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="<%=require('favicons/favicon-white-32x32.png')%>"
-      media="(prefers-color-scheme: dark)"
-    /> -->
-    <!-- <link
+      href="<%=require('favicons/favicon-32x32.png')%>"
+    />
+    <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="<%=require('favicons/favicon-white-16x16.png')%>"
-      media="(prefers-color-scheme: dark)"
-    /> -->
-    <!-- <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="<%=require('favicons/favicon-black-32x32.png')%>"
-      media="(prefers-color-scheme: light)"
-    /> -->
-    <!-- <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="<%=require('favicons/favicon-black-16x16.png')%>"
-    media="(prefers-color-scheme: light)"
-  /> -->
+      href="<%=require('favicons/favicon-16x16.png')%>"
+    />
     <!-- Default meta tags for FB sharing -->
     <meta property="og:url" content="https://www.firstvoices.com" />
     <meta property="og:type" content="website" />
