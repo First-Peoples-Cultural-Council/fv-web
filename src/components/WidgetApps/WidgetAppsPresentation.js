@@ -4,18 +4,19 @@ import React from 'react'
 import SectionTitle from 'components/SectionTitle'
 import { useSiteStore } from 'context/SiteContext'
 import getIcon from 'common/utils/getIcon'
+import getAppUrl from 'common/utils/getAppUrl'
 
 function WidgetAppsPresentation() {
   const { site } = useSiteStore()
-  const appLogoSrc = `https://${site?.sitename}.firstvoicesapp.com/${site?.sitename}/logo192.png`
-  const pwaUrl = `https://${site?.sitename}.firstvoicesapp.com/`
+  const pwaUrl = getAppUrl({ slug: site?.sitename })
+  const appLogoSrc = `${pwaUrl}/${site?.sitename}/logo192.png`
 
   return (
     <section className="px-4 lg:px-0 py-3 lg:py-6 bg-white">
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title="DOWNLOAD MOBILE APP" />
         <h2 className="text-center text-secondary text-sm md:text-base lg:text-2xl mt-2 md:mt-3.5 lg:mt-5">
-          {site?.title} Language
+          {site?.title}
         </h2>
       </div>
       <div className="grid grid-cols-7 gap-6 md:gap-4 mx-auto max-w-screen-lg">
