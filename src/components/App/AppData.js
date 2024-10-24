@@ -5,11 +5,33 @@ import { useAuth } from 'react-oidc-context'
 import { useUserDispatch } from 'context/UserContext'
 import { useMySites } from 'common/dataHooks/useMySites'
 import useLoginLogout from 'common/hooks/useLoginLogout'
+// import whiteFavicon from 'assets/favicons/favicon-white-32x32.png'
+// import blackFavicon from 'assets/favicons/favicon-black-32x32.png'
 
 function AppData() {
   const userDispatch = useUserDispatch()
   const auth = useAuth()
   const { logout } = useLoginLogout()
+
+  // console.log({whiteFavicon})
+
+  // const setFavicon = () => {
+  //   let favicon = document.querySelector('link[rel="icon"]')
+  //   if (!favicon) {
+  //     favicon = document.createElement('favicon')
+  //     favicon.rel = 'icon'
+  //     document.head.appendChild(favicon)
+  //   }
+  //   favicon.href = window.matchMedia('(prefers-color-scheme: dark)').matches
+  //     ? whiteFavicon
+  //     : blackFavicon
+  // }
+
+  // window
+  //   .matchMedia('(prefers-color-scheme: dark)')
+  //   .addEventListener('change', setFavicon);
+
+  // setFavicon()
 
   const {
     isInitialLoading: userRolesIsLoading,
