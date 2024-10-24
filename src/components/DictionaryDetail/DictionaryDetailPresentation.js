@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Disclosure } from '@headlessui/react'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react'
 
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
@@ -256,13 +260,13 @@ function DictionaryDetailPresentation({
                       </div>
                       <Disclosure>
                         <div className="flex justify-end">
-                          <Disclosure.Button>
+                          <DisclosureButton>
                             <div className="border-2 z-10 bg-white w-6 h-6 text-sm flex items-center justify-center p-1 rounded-full">
                               <span>i</span>
                             </div>
-                          </Disclosure.Button>
+                          </DisclosureButton>
                         </div>
-                        <Disclosure.Panel>
+                        <DisclosurePanel>
                           {video?.title && (
                             <div className="text-fv-charcoal">
                               {video?.title}
@@ -281,7 +285,7 @@ function DictionaryDetailPresentation({
                               </span>
                             </div>
                           )}
-                        </Disclosure.Panel>
+                        </DisclosurePanel>
                       </Disclosure>
                     </li>
                   ))

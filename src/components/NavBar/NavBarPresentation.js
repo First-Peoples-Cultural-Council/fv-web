@@ -84,6 +84,7 @@ function NavBarPresentation({
       </div>
       {/* -- Mobile Menu -- */}
       <Transition
+        as="div"
         show={mobileNavbarOpen}
         enter="transform transition ease-in-out duration-500"
         enterFrom="translate-x-full"
