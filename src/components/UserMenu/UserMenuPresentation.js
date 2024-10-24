@@ -56,11 +56,11 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
             </MenuItem>
             {currentUser?.isTeam && (
               <MenuItem className="w-full flex">
-                {({ active }) => (
+                {({ focus }) => (
                   <Link to={currentUser?.dashboardLink}>
                     <div
                       className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
+                        focus ? menuItemActiveClass : menuItemInactiveClass
                       } ${menuItemBaseClass}`}
                     >
                       Dashboard
@@ -71,10 +71,10 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
             )}
             {hasImmersion && (
               <MenuItem className="w-full flex">
-                {({ active }) => (
+                {({ focus }) => (
                   <div
                     className={`${
-                      active ? menuItemActiveClass : menuItemInactiveClass
+                      focus ? menuItemActiveClass : menuItemInactiveClass
                     } ${menuItemBaseClass} flex`}
                   >
                     <ImmersionToggle site={site} />
@@ -83,11 +83,11 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
               </MenuItem>
             )}
             <MenuItem className="w-full flex">
-              {({ active }) => (
+              {({ focus }) => (
                 <Link to="/support">
                   <div
                     className={`${
-                      active ? menuItemActiveClass : menuItemInactiveClass
+                      focus ? menuItemActiveClass : menuItemInactiveClass
                     } ${menuItemBaseClass}`}
                   >
                     Support
@@ -97,7 +97,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
             </MenuItem>
             {currentUser?.isAnonymous ? (
               <MenuItem className="w-full flex border-t-2">
-                {({ active }) => (
+                {({ focus }) => (
                   <button
                     data-testid="login-btn"
                     type="button"
@@ -106,7 +106,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
                   >
                     <div
                       className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
+                        focus ? menuItemActiveClass : menuItemInactiveClass
                       } ${menuItemBaseClass} flex justify-start`}
                     >
                       Sign In / Register
@@ -116,7 +116,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
               </MenuItem>
             ) : (
               <MenuItem className="w-full flex border-t-2">
-                {({ active }) => (
+                {({ focus }) => (
                   <button
                     data-testid="logout-btn"
                     type="button"
@@ -125,7 +125,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
                   >
                     <div
                       className={`${
-                        active ? menuItemActiveClass : menuItemInactiveClass
+                        focus ? menuItemActiveClass : menuItemInactiveClass
                       } ${menuItemBaseClass} flex justify-start`}
                     >
                       Sign out

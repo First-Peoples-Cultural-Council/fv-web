@@ -44,13 +44,13 @@ function SearchDomainSelectorPresentation({
           <div className="px-1 py-1">
             {Object.entries(searchDomainOptions).map(([key, label]) => (
               <MenuItem key={`optionlist-key-${key}`}>
-                {({ active }) => (
+                {({ focus }) => (
                   <button
                     data-testid={`language-select-option-${key}`}
                     type="button"
                     onClick={() => handleSearchDomainChange(key)}
                     className={`${
-                      active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
+                      focus ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
                     } font-medium group flex rounded-lg items-center w-full px-2 py-2 text-sm`}
                   >
                     {label}

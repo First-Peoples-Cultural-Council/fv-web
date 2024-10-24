@@ -71,9 +71,9 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
             {options?.map((option) => (
               <ListboxOption
                 key={option.value}
-                className={({ active }) =>
+                className={({ focus }) =>
                   `flex items-center cursor-default p-2 text-sm font-medium ${
-                    active ? 'bg-gray-50 text-secondary' : 'text-fv-charcoal'
+                    focus ? 'bg-gray-50 text-secondary' : 'text-fv-charcoal'
                   }`
                 }
                 value={option}

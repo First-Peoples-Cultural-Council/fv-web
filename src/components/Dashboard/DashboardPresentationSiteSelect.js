@@ -61,10 +61,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
             sites.map((sitesListItem) => (
               <div key={sitesListItem?.id} className="py-1">
                 <MenuItem>
-                  {({ active }) => (
+                  {({ focus }) => (
                     <div
                       className={`${
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
+                        focus ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                       } group w-full rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-gray-200`}
                     >
                       <Link

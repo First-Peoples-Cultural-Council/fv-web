@@ -78,14 +78,13 @@ function ActionsMenuPresentation({
                     )}
                     {moreActions.includes('qrcode') && (
                       <MenuItem>
-                        {({ active }) => (
+                        {({ focus }) => (
                           <QrcodeButton
                             buttonStyling={`${
-                              active
+                              focus
                                 ? 'bg-gray-100 text-fv-charcoal'
                                 : 'text-fv-charcoal-light'
                             } w-full group flex items-center px-4 py-2 text-sm`}
-                            active={active}
                             withLabels
                             iconStyling={iconStyling}
                             entry={entry}

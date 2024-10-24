@@ -20,11 +20,11 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
   const generateMenuItems = (items) =>
     items.map((menuItem) => (
       <MenuItem key={`HeaderMenu_${menuItem.title}`}>
-        {({ active }) => (
+        {({ focus }) => (
           <Link
             to={`/${sitename + menuItem.href}`}
             className={`${
-              active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
+              focus ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
             } flex w-full rounded-lg`}
           >
             <div className="px-2 py-1 w-full text-lg font-medium">

@@ -46,9 +46,9 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
               {options.map((option) => (
                 <ListboxOption
                   key={option?.value}
-                  className={({ active }) =>
+                  className={({ focus }) =>
                     `relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-gray-100 text-secondary' : 'text-fv-charcoal'
+                      focus ? 'bg-gray-100 text-secondary' : 'text-fv-charcoal'
                     }`
                   }
                   value={option?.value}

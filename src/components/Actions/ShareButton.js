@@ -19,13 +19,13 @@ function ShareButton({
   const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
     <MenuItem>
-      {({ active }) => (
+      {({ focus }) => (
         <>
           <button
             type="button"
             data-testid="share-btn"
             className={`${
-              active ? 'bg-gray-100 text-fv-charcoal' : 'text-fv-charcoal-light'
+              focus ? 'bg-gray-100 text-fv-charcoal' : 'text-fv-charcoal-light'
             } w-full group flex items-center px-4 py-2 text-sm`}
             onClick={() => setShareModalOpen(true)}
           >

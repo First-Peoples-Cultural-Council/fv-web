@@ -88,16 +88,16 @@ function Autocomplete({
                           filteredOptions?.map((option) => (
                             <ComboboxOption
                               key={option?.value}
-                              className={({ active }) =>
+                              className={({ focus }) =>
                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active
+                                  focus
                                     ? 'bg-secondary text-white'
                                     : 'text-fv-charcoal'
                                 }`
                               }
                               value={option?.value}
                             >
-                              {({ selected, active }) => (
+                              {({ selected, focus }) => (
                                 <>
                                   <span
                                     className={`inline-flex truncate ${
@@ -109,7 +109,7 @@ function Autocomplete({
                                   {selected ? (
                                     <span
                                       className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                        active ? 'text-white' : 'text-secondary'
+                                        focus ? 'text-white' : 'text-secondary'
                                       }`}
                                     >
                                       {getIcon(

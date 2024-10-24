@@ -153,10 +153,10 @@ function JoinForm({ site, submitHandler }) {
                         <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
                           {reasonOptions.map((option) => (
                             <ListboxOption key={option?.reason} value={option}>
-                              {({ active, selected }) => (
+                              {({ focus, selected }) => (
                                 <div
                                   className={`relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
-                                    active
+                                    focus
                                       ? 'bg-gray-100 text-secondary'
                                       : 'text-fv-charcoal'
                                   }`}
