@@ -2,7 +2,13 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { Menu, Transition } from '@headlessui/react'
+import {
+  Menu,
+  MenuItem,
+  MenuItems,
+  MenuButton,
+  Transition,
+} from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -13,7 +19,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
   const hasItems = itemsData?.length > 0
   const generateMenuItems = (items) =>
     items.map((menuItem) => (
-      <Menu.Item key={`HeaderMenu_${menuItem.title}`}>
+      <MenuItem key={`HeaderMenu_${menuItem.title}`}>
         {({ active }) => (
           <Link
             to={`/${sitename + menuItem.href}`}
@@ -26,7 +32,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
             </div>
           </Link>
         )}
-      </Menu.Item>
+      </MenuItem>
     ))
 
   const generateButtonContents = () => (
@@ -58,12 +64,12 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       className="relative inline-block w-40 xl:w-44"
     >
       <div>
-        <Menu.Button
+        <MenuButton
           data-testid={`${transKey}-button`}
           className={buttonStyling}
         >
           {generateButtonContents()}
-        </Menu.Button>
+        </MenuButton>
       </div>
       <Transition
         as={Fragment}
@@ -74,11 +80,11 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="bg-white space-y-2">
             {generateMenuItems(itemsData)}
           </div>
-        </Menu.Items>
+        </MenuItems>
       </Transition>
     </Menu>
   ) : (

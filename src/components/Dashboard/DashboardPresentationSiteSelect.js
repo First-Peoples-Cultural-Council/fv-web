@@ -1,7 +1,13 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Menu, Transition } from '@headlessui/react'
+import {
+  Menu,
+  MenuButton,
+  MenuItems,
+  MenuItem,
+  Transition,
+} from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -16,7 +22,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
       id="DashboardPresentationSiteSelect"
     >
       <div>
-        <Menu.Button className="group w-full bg-fv-charcoal text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-fv-charcoal-light">
+        <MenuButton className="group w-full bg-fv-charcoal text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-fv-charcoal-light">
           <span className="flex w-full justify-between items-center">
             <span className="flex min-w-0 items-center justify-between space-x-3">
               {site?.logo?.id ? (
@@ -39,7 +45,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
               'fill-current flex-shrink-0 h-5 w-5 text-white',
             )}
           </span>
-        </Menu.Button>
+        </MenuButton>
       </div>
       <Transition
         as={Fragment}
@@ -50,11 +56,11 @@ function DashboardPresentationSiteSelect({ sites, site }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+        <MenuItems className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
           {sites?.length > 1 &&
             sites.map((sitesListItem) => (
               <div key={sitesListItem?.id} className="py-1">
-                <Menu.Item>
+                <MenuItem>
                   {({ active }) => (
                     <div
                       className={`${
@@ -91,10 +97,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                       </Link>
                     </div>
                   )}
-                </Menu.Item>
+                </MenuItem>
               </div>
             ))}
-        </Menu.Items>
+        </MenuItems>
       </Transition>
     </Menu>
   ) : (

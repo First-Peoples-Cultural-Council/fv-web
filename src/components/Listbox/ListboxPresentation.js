@@ -1,6 +1,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Listbox, Transition } from '@headlessui/react'
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+  Transition,
+} from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 
 // FPCC
@@ -16,7 +22,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
     <div data-testid="ListboxPresentation">
       <Listbox value={selectedValue} onChange={setValue}>
         <div className="relative w-full">
-          <Listbox.Button className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+          <ListboxButton className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
             <span className="inline-flex items-center capitalize">
               {getIcon(selectedOption?.icon, 'h-5 w-5 mr-2 fill-current')}
               {selectedOption?.transKey
@@ -29,16 +35,16 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
                 'h-5 w-5 mr-2 text-fv-charcoal fill-current',
               )}
             </span>
-          </Listbox.Button>
+          </ListboxButton>
           <Transition
             as={Fragment}
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+            <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
               {options.map((option) => (
-                <Listbox.Option
+                <ListboxOption
                   key={option?.value}
                   className={({ active }) =>
                     `relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
@@ -65,9 +71,9 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
                         : null}
                     </>
                   )}
-                </Listbox.Option>
+                </ListboxOption>
               ))}
-            </Listbox.Options>
+            </ListboxOptions>
           </Transition>
         </div>
       </Listbox>
