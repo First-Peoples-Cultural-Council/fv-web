@@ -24,8 +24,8 @@
   },
   "scripts": {
     "start": "webpack serve --env API_URL=http://localhost:8000/api/1.0/ --config webpack/webpack.development.js",
-    "startDev": "webpack serve --env API_URL=https://api.dev.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
-    "startPreprod": "webpack serve --env API_URL=https://api.preprod.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
+    "startDev": "webpack serve --env APP_ENV=dev API_URL=https://api.dev.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
+    "startPreprod": "webpack serve --env APP_ENV=preprod API_URL=https://api.preprod.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
     "startInSkaffold": "webpack serve --progress --config webpack/webpack.skaffold.js --disable-host-check",
     "build:production": "webpack --color --progress --config webpack/webpack.production.js",
     "prepare": "husky",
