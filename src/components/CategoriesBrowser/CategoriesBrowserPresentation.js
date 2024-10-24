@@ -20,16 +20,16 @@ function CategoriesBrowserPresentation({
 
   return (
     <section id="CategoriesBrowserPresentation" className="h-full">
-      <div className="w-full bg-white p-4">
+      <div className="w-full bg-white rounded-lg p-4">
         <header className="p-2">
           <div className="flex-1 flex">
             <form className="w-full flex">
-              <div className="relative w-full text-gray-400 focus-within:text-gray-600">
-                <span className="absolute inset-y-0 left-0 flex items-center">
-                  {getIcon('Search', 'fill-current flex-shrink-0 h-5 w-5')}
+              <div className="inline-flex items-center w-full bg-gray-100 rounded-lg px-4 py-2">
+                <span className="flex items-center">
+                  {getIcon('Search', 'fill-current h-5 w-5 text-gray-500')}
                 </span>
                 <input
-                  className="h-full w-full border-transparent px-4 py-2 pl-8 pr-3 bg-gray-100 rounded text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
+                  className="h-full w-full border-transparent px-4 bg-gray-100 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
                   placeholder="Search all Categories"
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={handleKeyDown}
@@ -56,7 +56,7 @@ function CategoriesBrowserPresentation({
                 <h2 className="w-1/2 ml-4">Category</h2>
                 <h2 className="w-1/2">Parent Category</h2>
               </div>
-              <ul className="flex-col divide-y divide-gray-200 bg-white overflow-y-scroll grow mt-2 pt-2 h-72">
+              <ul className="flex-col divide-y divide-gray-200 overflow-y-scroll grow mt-2 pt-2 h-72">
                 {filteredCategories?.map((category) => (
                   <button
                     data-testid="DashboardCategoryRow"
