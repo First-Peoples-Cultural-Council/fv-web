@@ -35,7 +35,7 @@ function NotificationBanner() {
         <div className="min-h-screen p-4 text-center sm:p-0">
           {/* This element is to trick the browser into placing the alert at the bottom. */}
           <span
-            className="inline-block h-screen align-middle"
+            className="inline-block h-9/10-screen align-middle"
             aria-hidden="true"
           >
             &#8203;

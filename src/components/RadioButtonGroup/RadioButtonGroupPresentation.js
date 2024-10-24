@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Radio, RadioGroup, Field, Label } from '@headlessui/react'
 
@@ -25,7 +25,7 @@ function RadioButtonGroupPresentation({
         )}
         <div className="flex space-x-8">
           {options.map((option) => (
-            <Field key={option?.value}>
+            <Field key={option?.value} as={Fragment}>
               <Radio
                 value={option?.value}
                 className="inline-flex relative cursor-pointer focus:outline-none"
