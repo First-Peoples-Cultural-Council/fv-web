@@ -6,7 +6,7 @@ function Support() {
   const paraStyle = 'mb-2'
   const divStyle = 'py-4 w-72 m-4'
   const buttonStyle =
-    'flex ring ring-bgRed rounded-lg p-2 text-white bg-bgRed w-full'
+    'flex ring ring-scarlet-800 rounded-lg p-2 text-white bg-scarlet-800 w-full'
 
   return (
     <section

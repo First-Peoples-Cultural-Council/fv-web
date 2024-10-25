@@ -25,7 +25,7 @@ function LandingBannerData() {
           url: '/languages',
           urlLabel: 'EXPLORE ALL LANGUAGES',
           info: 'Browse the full list of languages on FirstVoices',
-          backgroundColor: 'bgRed',
+          backgroundColor: 'scarlet-800',
           backgroundImage: languages,
           icon: 'RightArrowCircle',
         },

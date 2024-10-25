@@ -121,7 +121,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               <li>
                 <Link
                   to="/languages"
-                  className="inline-flex items-center bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
+                  className="inline-flex items-center bg-scarlet-800 px-8 py-2 rounded-full whitespace-nowrap"
                 >
                   Explore Languages
                   {getIcon('ChevronRight', 'fill-current h-6 w-6 ml-2')}

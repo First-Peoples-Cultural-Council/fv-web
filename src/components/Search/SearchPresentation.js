@@ -62,7 +62,9 @@ function SearchPresentation({
     <div data-testid="SearchPresentation">
       <section
         className={`${
-          wholeDomain ? 'bg-bgRed' : 'bg-gradient-to-b from-word to-word-dark'
+          wholeDomain
+            ? 'bg-scarlet-800'
+            : 'bg-gradient-to-b from-word to-word-dark'
         } p-5`}
       >
         <div className="mx-auto lg:w-3/5">

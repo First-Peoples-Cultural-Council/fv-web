@@ -63,7 +63,7 @@ function LandingKeyboardsPresentation({ data }) {
         </div>
       </div>
       <div
-        className="hidden lg:flex bg-bgRed flex-row p-16 justify-center"
+        className="hidden lg:flex bg-scarlet-800 flex-row p-16 justify-center"
         style={{
           backgroundImage: `url(${bg})`,
           backgroundRepeat: 'no-repeat',
