@@ -4,18 +4,20 @@ import React from 'react'
 import SectionTitle from 'components/SectionTitle'
 import { useSiteStore } from 'context/SiteContext'
 import getIcon from 'common/utils/getIcon'
+import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
+import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 
 function WidgetAppsPresentation() {
   const { site } = useSiteStore()
-  const appLogoSrc = `https://${site?.sitename}.firstvoicesapp.com/${site?.sitename}/logo192.png`
-  const pwaUrl = `https://${site?.sitename}.firstvoicesapp.com/`
+  const appUrl = getAppUrl({ slug: site?.sitename })
+  const appLogoSrc = getAppLogoUrl({ slug: site?.sitename })
 
   return (
     <section className="px-4 lg:px-0 py-3 lg:py-6 bg-white">
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title="DOWNLOAD MOBILE APP" />
         <h2 className="text-center text-secondary text-sm md:text-base lg:text-2xl mt-2 md:mt-3.5 lg:mt-5">
-          {site?.title} Language
+          {site?.title}
         </h2>
       </div>
       <div className="grid grid-cols-7 gap-6 md:gap-4 mx-auto max-w-screen-lg">
@@ -55,7 +57,7 @@ function WidgetAppsPresentation() {
           <p>
             <a
               className="inline-url"
-              href={pwaUrl}
+              href={appUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -77,15 +79,14 @@ function WidgetAppsPresentation() {
         </div>
         <div className="col-span-7 md:col-span-3">
           <div className="flex-col items-center justify-center space-y-6 md:space-y-20">
-            <img
-              className="h-44 w-44 rounded-lg mx-auto border"
-              src={appLogoSrc}
-              loading="lazy"
-              alt={`${site?.title} App Logo`}
+            <LogoPresentation
+              imgSrc={appLogoSrc}
+              altText={`${site?.title} Logo`}
+              additionalStyling="h-44 w-44 mx-auto border"
             />
             <div className="flex justify-center w-full">
               <a
-                href={pwaUrl}
+                href={appUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-80 btn-contained bg-secondary"
