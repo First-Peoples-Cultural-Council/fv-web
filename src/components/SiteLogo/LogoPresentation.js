@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 function LogoPresentation({ imgSrc, altText, additionalStyling = '' }) {
-  console.log('LogoPresentation: ', { imgSrc, altText, additionalStyling })
-
   const [loaded, setLoaded] = useState(false)
   const imgRef = useRef()
 
@@ -16,7 +14,7 @@ function LogoPresentation({ imgSrc, altText, additionalStyling = '' }) {
   return (
     <div
       data-testid="SiteLogoPresentation"
-      className={`relative overflow-hidden w-full aspect-w-1 aspect-h-1 rounded-full bg-gray-50 ${additionalStyling}`}
+      className={`relative overflow-hidden rounded-full bg-gray-50 ${additionalStyling}`}
     >
       <div style={{ paddingBottom: '100%' }} />
       <img
