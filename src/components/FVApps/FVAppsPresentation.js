@@ -46,7 +46,7 @@ function FVAppsPresentation({ sitesWithApps }) {
                     <LogoPresentation
                       imgSrc={appLogoSrc}
                       altText={`${title} Logo`}
-                      additionalStyling="h-16 w-16 md:h-24 md:w-24"
+                      additionalStyling="h-16 w-16 md:h-24 md:w-24 border"
                     />
                     <h2 className="font-bold p-4">{title}</h2>
                     <div className="pb-6 w-2/3 flex justify-between">
