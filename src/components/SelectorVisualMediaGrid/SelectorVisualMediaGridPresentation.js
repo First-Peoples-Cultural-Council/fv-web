@@ -71,7 +71,7 @@ function SelectorVisualMediaGridPresentation({
                           )}
                           {getIcon(
                             'CheckCircleSolid',
-                            'group-hover:hidden h-8 w-8 fill-bgGreen',
+                            'group-hover:hidden h-8 w-8 fill-jade-500',
                           )}
                         </button>
                       )}

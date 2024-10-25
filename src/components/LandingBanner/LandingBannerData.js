@@ -16,7 +16,7 @@ function LandingBannerData() {
           url: '/search',
           urlLabel: 'SEARCH FIRSTVOICES',
           info: 'Search the entire FirstVoices website',
-          backgroundColor: 'bgGreen',
+          backgroundColor: 'jade-500',
           backgroundImage: laptop,
           icon: 'Search',
         },
