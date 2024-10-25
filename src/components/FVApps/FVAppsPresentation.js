@@ -48,8 +48,7 @@ function FVAppsPresentation({ sitesWithApps }) {
                       altText={`${title} Logo`}
                       additionalStyling="h-16 w-16 md:h-24 md:w-24 border"
                     />
-                    <h2 className="font-bold p-4">{title}</h2>
-                    <div className="pb-6 w-2/3 flex justify-between">
+                    <div className="p-6 w-2/3 flex justify-between">
                       {getIcon(
                         'Mobile',
                         'w-6 h-6 fill-current mr-3 inline-flex',
@@ -64,13 +63,13 @@ function FVAppsPresentation({ sitesWithApps }) {
                       <button
                         data-testid="DownloadAppButton"
                         type="button"
-                        className="bg-buttonOrange text-white px-4 py-2 rounded-md mb-"
+                        className="bg-secondary text-white px-4 py-2 rounded-md mb-"
                       >
                         {getIcon(
                           'Download',
                           'w-6 h-6 fill-current mr-3 inline-flex',
                         )}
-                        Download App
+                        Install {title}
                       </button>
                     </a>
                   </div>
