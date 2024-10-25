@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types'
 import SectionTitle from 'components/SectionTitle'
 import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 import getIcon from 'common/utils/getIcon'
-import getAppUrl from 'common/utils/getAppUrl'
+import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
 
 function FVAppsPresentation({ sitesWithApps }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
@@ -36,7 +36,7 @@ function FVAppsPresentation({ sitesWithApps }) {
             <div className="grid grid-cols-3 gap-6 pt-8">
               {sitesWithApps?.map(({ id, title, slug }) => {
                 const appUrl = getAppUrl({ slug })
-                const appLogoSrc = `${appUrl}/${slug}/logo192.png`
+                const appLogoSrc = getAppLogoUrl({ slug })
 
                 return (
                   <div

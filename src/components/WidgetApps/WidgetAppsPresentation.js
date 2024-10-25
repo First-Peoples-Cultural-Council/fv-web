@@ -4,13 +4,13 @@ import React from 'react'
 import SectionTitle from 'components/SectionTitle'
 import { useSiteStore } from 'context/SiteContext'
 import getIcon from 'common/utils/getIcon'
-import getAppUrl from 'common/utils/getAppUrl'
+import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
 import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 
 function WidgetAppsPresentation() {
   const { site } = useSiteStore()
   const appUrl = getAppUrl({ slug: site?.sitename })
-  const appLogoSrc = `${appUrl}/${site?.sitename}/logo192.png`
+  const appLogoSrc = getAppLogoUrl({ slug: site?.sitename })
 
   return (
     <section className="px-4 lg:px-0 py-3 lg:py-6 bg-white">

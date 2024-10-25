@@ -7,10 +7,15 @@ function getAppUrl({ slug }) {
     : `https://${slug}.${GlobalConfiguration.ENV_APP}.firstvoicesapp.com`
 }
 
+function getAppLogoUrl({ slug }) {
+  const appUrl = getAppUrl({ slug })
+  return `${appUrl}/assets/${slug}/logo192.png`
+}
+
 const { string } = PropTypes
 
 getAppUrl.propTypes = {
   slug: string,
 }
 
-export default getAppUrl
+export { getAppUrl, getAppLogoUrl }
