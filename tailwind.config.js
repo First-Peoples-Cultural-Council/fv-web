@@ -19,6 +19,16 @@ module.exports = {
         /(bg|border|from|to|text)-(word|phrase|song|story|tertiaryA|tertiaryB|tertiaryC|wordText|phraseText|songText|storyText|bgGreen)/,
       variants: ['hover'],
     },
+    {
+      pattern:
+        /(bg|border|from|to|text)-(scarlet|blumine|jade|ochre|charcoal)-(100|200|300|400|500|600|700|800|900|950)/,
+      variants: ['hover'],
+    },
+    {
+      pattern:
+        /(bg|border|from|to|text)-(kids-dictionary|kids-categories|kids-songs|kids-stories|kids-games|kids-alphabet)-(500|600|700|800|900)/,
+      variants: ['hover'],
+    },
     ...languageColorsConfig.colors,
   ],
   theme: {
@@ -105,6 +115,98 @@ module.exports = {
         '1/8': '12.5%',
       },
       colors: {
+        scarlet: {
+          50: '#fff0f1',
+          100: '#ffdcdf',
+          200: '#ffc0c6',
+          300: '#ff949e',
+          400: '#ff5665',
+          500: '#ff2236',
+          600: '#ff0219',
+          700: '#d80013',
+          800: '#b40212',
+          900: '#920a16',
+          950: '#510007',
+        },
+        blumine: {
+          50: '#f0f9fb',
+          100: '#daeef3',
+          200: '#badee7',
+          300: '#89c5d7',
+          400: '#52a3be',
+          500: '#3787a3',
+          600: '#306d8a',
+          700: '#2d5b72',
+          800: '#2c4c5e',
+          900: '#284151',
+          950: '#162936',
+        },
+        jade: {
+          50: '#effaf6',
+          100: '#d9f2e6',
+          200: '#b6e4d1',
+          300: '#86cfb5',
+          400: '#53b494',
+          500: '#2c876d',
+          600: '#227962',
+          700: '#1b6150',
+          800: '#184d40',
+          900: '#144036',
+          950: '#0a241f',
+        },
+        ochre: {
+          50: '#fcf9ee',
+          100: '#f5edd0',
+          200: '#ebd99c',
+          300: '#e1c268',
+          400: '#daad45',
+          500: '#d1912f',
+          600: '#c37829',
+          700: '#995424',
+          800: '#7e4322',
+          900: '#68381f',
+          950: '#3b1c0d',
+        },
+        charcoal: {
+          50: '#f5f5f6',
+          100: '#e6e6e7',
+          200: '#cfd0d2',
+          300: '#aeafb2',
+          400: '#85868b',
+          500: '#6a6b70',
+          600: '#5a5b60',
+          700: '#4d4d51',
+          800: '#434347',
+          900: '#313133',
+          950: '#252527',
+        },
+        'kids-dictionary': {
+          // jade
+          500: '#2c876d',
+          700: '#1b6150',
+        },
+        'kids-categories': {
+          // ochre
+          600: '#c37829',
+          700: '#995424',
+        },
+        'kids-songs': {
+          500: '#830042',
+          900: '#5c002e',
+        },
+        'kids-stories': {
+          500: '#E9C46A',
+          900: '#a3894a',
+        },
+        'kids-games': {
+          500: '#513B56',
+          900: '#39293c',
+        },
+        'kids-alphabet': {
+          // blumine
+          700: '#2d5b72',
+          900: '#284151',
+        },
         // Dark Blue
         primary: {
           light: '#44677E',

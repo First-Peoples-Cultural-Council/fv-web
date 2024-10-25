@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function KidsPresentation({ links, sitename, siteTitle }) {
+function KidsPresentation({ links, sitename, site }) {
   return (
     <main className="bg-white" data-testid="KidsPresentation">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,12 +14,9 @@ function KidsPresentation({ links, sitename, siteTitle }) {
             <div className="px-4 sm:px-6 lg:px-8">
               <section className="mb-8" aria-labelledby="gallery-heading">
                 <h2 id="gallery-heading" className="sr-only">
-                  {siteTitle} for Kids
+                  {site?.title} for Kids
                 </h2>
-                <ul
-                  role="list"
-                  className="grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-3"
-                >
+                <ul className="grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-3">
                   {links.map((link) => (
                     <li key={link.id} className="relative">
                       <div
@@ -53,11 +50,11 @@ function KidsPresentation({ links, sitename, siteTitle }) {
   )
 }
 // PROPTYPES
-const { array, string } = PropTypes
+const { array, object, string } = PropTypes
 KidsPresentation.propTypes = {
   links: array,
   sitename: string,
-  siteTitle: string,
+  site: object,
 }
 
 export default KidsPresentation
