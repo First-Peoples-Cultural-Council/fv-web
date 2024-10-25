@@ -18,12 +18,12 @@ function LandingKeyboardsPresentation({ data }) {
   } = data?.settings
   return (
     <section id="LandingKeyboardsPresentation">
-      <div className="bg-tertiaryD text-white flex flex-col items-center lg:hidden">
+      <div className="bg-blumine-700 text-white flex flex-col items-center lg:hidden">
         <p className="text-sm pt-10">{mobileText}</p>
         <div className="pt-2 pb-6 w-full">
           <SectionTitle.Presentation
             title={title}
-            bgColor="tertiaryD"
+            bgColor="blumine-700"
             accentColor="white"
           />
         </div>

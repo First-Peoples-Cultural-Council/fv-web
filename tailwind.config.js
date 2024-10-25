@@ -235,10 +235,6 @@ module.exports = {
         tertiaryC: {
           DEFAULT: '#EFAD1A',
         },
-        // Grey/Blue background - eg. landing banner
-        tertiaryD: {
-          DEFAULT: '#2D5B72',
-        },
         word: {
           light: '#6ABAB1',
           DEFAULT: '#2A9D8F',
