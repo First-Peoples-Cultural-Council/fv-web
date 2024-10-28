@@ -28,13 +28,13 @@ function PhraseScramblerPresentation({
   const baseTextBlockStyling =
     'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
   const baseButtonStyling =
-    'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-fv-charcoal hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
-  const checkAnswerButtonStyling = `${baseButtonStyling} bg-song text-white hover:bg-song-light`
+    'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
+  const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white hover:bg-blumine-500`
   let selectedBoxAdditionalStyling = 'bg-gray-100'
   if (gameStatus === 'Won') {
-    selectedBoxAdditionalStyling = 'bg-word'
+    selectedBoxAdditionalStyling = 'bg-jade-500'
   } else if (gameStatus === 'Lost') {
-    selectedBoxAdditionalStyling = 'bg-story'
+    selectedBoxAdditionalStyling = 'bg-ochre-600'
   }
 
   return (
@@ -83,6 +83,7 @@ function PhraseScramblerPresentation({
                     >
                       {row?.map((wordObj) => (
                         <button
+                          data-testid="word-btn"
                           type="button"
                           key={`selectedWords-${wordObj?.id}`}
                           className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
@@ -113,6 +114,7 @@ function PhraseScramblerPresentation({
                           </div>
                         ) : (
                           <button
+                            data-testid="word-btn"
                             type="button"
                             key={`jumbledWords-${wordObj?.id}`}
                             className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}

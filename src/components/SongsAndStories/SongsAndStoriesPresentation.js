@@ -23,7 +23,7 @@ function SongsAndStoriesPresentation({
   sitename,
 }) {
   const type = searchType.toLowerCase()
-  const accentColor = type === TYPE_SONG ? 'song-900' : 'story-900'
+  const accentColor = type === TYPE_SONG ? 'song-color-900' : 'story-color-900'
   const pluralDocType = makePlural(searchType)
   const [isGridView, setIsGridView] = useState(true)
 

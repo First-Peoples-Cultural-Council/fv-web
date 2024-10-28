@@ -64,7 +64,7 @@ function SearchPresentation({
         className={`${
           wholeDomain
             ? 'bg-scarlet-800'
-            : 'bg-gradient-to-b from-word to-word-dark'
+            : 'bg-gradient-to-b from-jade-500 to-jade-700'
         } p-5`}
       >
         <div className="mx-auto lg:w-3/5">

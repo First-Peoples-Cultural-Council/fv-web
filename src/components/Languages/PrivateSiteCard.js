@@ -28,7 +28,7 @@ function PrivateSiteCard({ site, user }) {
         data-testid="PrivateSiteCard"
         type="button"
         className="group relative card border-2 border-gray-200 rounded-l-lg shadow-md text-fv-charcoal hover:text-white flex items-center
-        h-16 md:h-24 w-64 lg:w-72 m-5 md:ml-12 lg:ml-16 hover:bg-phrase hover:border-phrase"
+        h-16 md:h-24 w-64 lg:w-72 m-5 md:ml-12 lg:ml-16 hover:bg-ochre-600 hover:border-ochre-600"
         onClick={() => setPrivateSiteModalOpen(true)}
       >
         <div className="absolute h-16 w-16 md:w-24 md:h-24 -left-8 md:-left-10">
@@ -43,7 +43,7 @@ function PrivateSiteCard({ site, user }) {
         </p>
         {getIcon(
           'Lock',
-          'absolute bottom-2 right-2 h-5 w-5 fill-phrase-light group-hover:fill-white',
+          'absolute bottom-2 right-2 h-5 w-5 fill-ochre-400 group-hover:fill-white',
         )}
       </button>
 

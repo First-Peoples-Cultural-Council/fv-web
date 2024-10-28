@@ -121,6 +121,10 @@ module.exports = {
         jade: customColorsConfig.jade,
         ochre: customColorsConfig.ochre,
         charcoal: customColorsConfig.charcoal,
+        'word-color': customColorsConfig.jade,
+        'phrase-color': customColorsConfig.ochre,
+        'song-color': customColorsConfig.scarlet,
+        'story-color': customColorsConfig.blumine,
         'kids-dictionary': customColorsConfig.jade,
         'kids-categories': customColorsConfig.ochre,
         'kids-songs': {
@@ -165,24 +169,16 @@ module.exports = {
           DEFAULT: '#EFAD1A',
         },
         word: {
-          light: '#6ABAB1',
           DEFAULT: '#2A9D8F',
-          dark: '#1D6E64',
         },
         phrase: {
-          light: '#D5A169',
           DEFAULT: '#C37829',
-          dark: '#89541D',
         },
         song: {
-          light: '#a84d7b',
           DEFAULT: '#830042',
-          dark: '#5c002e',
         },
         story: {
-          light: '#f0d697',
           DEFAULT: '#E9C46A',
-          dark: '#a3894a',
         },
         wordText: {
           DEFAULT: '#264653',

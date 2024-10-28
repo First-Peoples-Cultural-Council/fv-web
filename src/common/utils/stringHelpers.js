@@ -140,8 +140,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'word',
         plural: 'words',
         slug: 'words',
-        color: 'word-500',
-        textColor: 'word-700',
+        color: 'word-color-500',
+        textColor: 'word-color-700',
       }
     case TYPE_PHRASE:
       return {
@@ -149,8 +149,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'phrase',
         plural: 'phrases',
         slug: 'phrases',
-        color: 'phrase-600',
-        textColor: 'phrase-800',
+        color: 'phrase-color-600',
+        textColor: 'phrase-color-800',
       }
     case TYPE_SONG:
       return {
@@ -158,8 +158,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'song',
         plural: 'songs',
         slug: 'songs',
-        color: 'song-800',
-        textColor: 'song-900',
+        color: 'song-color-800',
+        textColor: 'song-color-900',
       }
     case TYPE_STORY:
       return {
@@ -167,8 +167,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'story',
         plural: 'stories',
         slug: 'stories',
-        color: 'story-700',
-        textColor: 'story-900',
+        color: 'story-color-700',
+        textColor: 'story-color-900',
       }
     case TYPE_DICTIONARY:
       return {
@@ -176,8 +176,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'word / phrase',
         plural: 'words and phrases',
         slug: 'dictionary',
-        color: 'word-500',
-        textColor: 'word-700',
+        color: 'word-color-500',
+        textColor: 'word-color-700',
       }
     case TYPE_MEDIA:
       return {
