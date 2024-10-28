@@ -36,7 +36,7 @@ function VideoLinkForm({
   }
 
   const buttonStyles =
-    'my-2 w-1/5 border-2 border-blumine-900 rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
+    'my-2 w-1/5 border-2 border-blumine-900 rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-charcoal-300 disabled:opacity-50'
 
   return (
     <form data-testid="VideoLinkForm" onReset={reset}>

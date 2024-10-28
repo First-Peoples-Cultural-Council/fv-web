@@ -34,7 +34,7 @@ function ByCategoryPresentation({
         className="inline-block lg:block transition duration-500 ease-in-out lg:my-2 lg:mx-5 grow "
       >
         <Link
-          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-tertiaryB"
+          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-charcoal-700"
           to={`/${sitename}/${kids ? 'kids/' : ''}categories/${category.id}`}
         >
           {getCategoryIcon(
@@ -74,7 +74,7 @@ function ByCategoryPresentation({
             <ul
               className={`list-none m-2 px-2 lg:space-y-2 ${
                 currentCategory?.id === currentParentCategory?.id
-                  ? 'border-l-4 md:border-l-0 lg:border-l-4 border-tertiaryB'
+                  ? 'border-l-4 md:border-l-0 lg:border-l-4 border-charcoal-700'
                   : ''
               }`}
             >
@@ -84,7 +84,7 @@ function ByCategoryPresentation({
                 className="inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow"
               >
                 <Link
-                  className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-tertiaryB bg-gray-300"
+                  className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-charcoal-700 bg-gray-300"
                   to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                     currentParentCategory.id
                   }?docType=${searchType}`}
@@ -105,12 +105,12 @@ function ByCategoryPresentation({
                       id={`SearchFilter${child.id}`}
                       className={`inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow ${
                         child.id === currentCategory.id
-                          ? 'border-l-4 md:border-l-0 lg:border-l-4 border-tertiaryB'
+                          ? 'border-l-4 md:border-l-0 lg:border-l-4 border-charcoal-700'
                           : ''
                       }`}
                     >
                       <Link
-                        className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-tertiaryB ${
+                        className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-charcoal-700 ${
                           child.id === currentCategory.id ? 'bg-gray-300' : ''
                         }`}
                         to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
@@ -210,7 +210,7 @@ function ByCategoryPresentation({
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}
-                  accentColor="tertiaryB"
+                  accentColor="charcoal-700"
                 />
               </div>
               <div className="hidden md:block p-2 print:block">

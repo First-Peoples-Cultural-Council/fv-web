@@ -36,8 +36,9 @@ function ShareLinksPresentation({
       {navigator.share ? (
         <li>
           <button
+            data-testid="webshare-btn"
             type="button"
-            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryB"
+            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-charcoal-500"
             onClick={() =>
               navigator.share({
                 title,
@@ -100,7 +101,7 @@ function ShareLinksPresentation({
       </li>
       <li>
         <QrcodeButton
-          buttonStyling="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryB"
+          buttonStyling="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-charcoal-500"
           entry={entry}
           url={`${window.location.origin.toString()}/${sitename}/${makePlural(
             entry?.type,

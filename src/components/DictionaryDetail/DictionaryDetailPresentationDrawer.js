@@ -143,7 +143,7 @@ function DictionaryDetailPresentationDrawer({
                 <Link
                   key={category?.id}
                   to={`/${sitename}/categories/${category?.id}`}
-                  className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-tertiaryB hover:bg-tertiaryB-dark text-white mr-1"
+                  className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-charcoal-500 hover:bg-charcoal-900 text-white mr-1"
                 >
                   {category?.title}
                   <span className="sr-only">,&nbsp;</span>

@@ -158,12 +158,6 @@ module.exports = {
           DEFAULT: '#513B56',
           dark: '#39293c',
         },
-        // Green/Grey
-        tertiaryB: {
-          light: '#878a80',
-          DEFAULT: '#54584A',
-          dark: '#3b3e34',
-        },
         // Yellow/Orange Accent - e.g. Stats WIdget
         tertiaryC: {
           DEFAULT: '#EFAD1A',
