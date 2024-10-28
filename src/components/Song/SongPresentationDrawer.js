@@ -72,7 +72,7 @@ function SongPresentationDrawer({ entry, sitename }) {
           <div className="flex flex-wrap">
             <Link
               to={`/${sitename}/songs/${entry?.id}`}
-              className="btn-contained bg-songText shrink-0 w-full sm:flex-1"
+              className="btn-contained bg-song-color-900 shrink-0 w-full sm:flex-1"
             >
               <span className="whitespace-nowrap">Go to Song</span>
             </Link>

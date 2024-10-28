@@ -66,7 +66,7 @@ function SongsAndStoriesGrid({
                   style={getConditionalStyle({ item })}
                   className={`${getConditonalClass({
                     item,
-                  })} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
+                  })} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-ochre-800 group w-full rounded-lg overflow-hidden`}
                   onClick={() => handleItemClick(item)}
                   data-testid="SongAndStoriesGridTile"
                 >

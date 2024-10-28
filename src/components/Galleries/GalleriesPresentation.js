@@ -15,7 +15,7 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
       data-testid="GalleriesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="GALLERIES" accentColor="phraseText" />
+        <SectionTitle.Presentation title="GALLERIES" accentColor="ochre-800" />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <div className="flex-1 overflow-y-auto">
             <div className="lg:px-8">
@@ -43,7 +43,7 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
                               to={`/${sitename}/galleries/${item?.id}`}
                               data-testid="GalleryTile"
                               style={conditionalStyle}
-                              className={`${conditionalClass} group h-44 w-44 lg:h-60 lg:w-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group rounded-lg overflow-hidden`}
+                              className={`${conditionalClass} group h-44 w-44 lg:h-60 lg:w-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-ochre-800 group rounded-lg overflow-hidden`}
                             >
                               <div className="group-hover:opacity-75 w-full px-3 lg:px-5 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center">
                                 <div className="text-lg lg:text-2xl font-medium mb-2">

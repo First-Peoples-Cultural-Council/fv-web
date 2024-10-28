@@ -180,18 +180,6 @@ module.exports = {
         story: {
           DEFAULT: '#E9C46A',
         },
-        wordText: {
-          DEFAULT: '#264653',
-        },
-        phraseText: {
-          DEFAULT: '#9A270A',
-        },
-        songText: {
-          DEFAULT: '#830042',
-        },
-        storyText: {
-          DEFAULT: '#8C5822',
-        },
         'fv-charcoal': {
           xlight: '#979799',
           light: '#54584A',

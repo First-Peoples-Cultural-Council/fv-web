@@ -39,7 +39,7 @@ function DashboardEditData({ urlPrefix = '' }) {
             : `&${VISIBILITY}=${VISIBILITY_TEAM}`
         }`,
       ),
-      iconColor: 'wordText',
+      iconColor: 'word-color-700',
       auth: ASSISTANT,
     },
     PHRASES: {
@@ -53,7 +53,7 @@ function DashboardEditData({ urlPrefix = '' }) {
             : `&${VISIBILITY}=${VISIBILITY_TEAM}`
         }`,
       ),
-      iconColor: 'phraseText',
+      iconColor: 'phrase-color-800',
       auth: ASSISTANT,
     },
     SONGS: {
@@ -67,7 +67,7 @@ function DashboardEditData({ urlPrefix = '' }) {
             : `&${VISIBILITY}=${VISIBILITY_TEAM}`
         }`,
       ),
-      iconColor: 'songText',
+      iconColor: 'song-color-900',
       auth: ASSISTANT,
     },
     STORIES: {
@@ -81,7 +81,7 @@ function DashboardEditData({ urlPrefix = '' }) {
             : `&${VISIBILITY}=${VISIBILITY_TEAM}`
         }`,
       ),
-      iconColor: 'storyText',
+      iconColor: 'story-color-900',
       auth: ASSISTANT,
     },
     SPEAKERS: {
@@ -89,7 +89,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       name: 'Edit speakers',
       description: 'Edit the speakers on your site',
       href: addUrlPrefix('speakers'),
-      iconColor: 'storyText',
+      iconColor: 'blumine-900',
       auth: EDITOR,
     },
     CATEGORIES: {
@@ -98,7 +98,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description:
         'Edit the categories for words and phrases in your dictionary',
       href: addUrlPrefix('categories'),
-      iconColor: 'tertiaryB',
+      iconColor: 'charcoal-500',
       auth: LANGUAGE_ADMIN,
     },
     WIDGETS: {
@@ -106,7 +106,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       name: 'Edit widgets',
       description: 'Manage and edit the widgets on your site',
       href: addUrlPrefix('widgets'),
-      iconColor: 'songText',
+      iconColor: 'scarlet-900',
       auth: LANGUAGE_ADMIN,
     },
     PAGES: {
@@ -122,7 +122,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       name: 'Edit homepage',
       description: 'Edit the main homepage for your site',
       href: addUrlPrefix('home'),
-      iconColor: 'wordText',
+      iconColor: 'blumine-900',
       auth: LANGUAGE_ADMIN,
     },
     ALPHABET: {
@@ -131,7 +131,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       description:
         'Update media and linked content for your alphabet characters',
       href: addUrlPrefix('alphabet'),
-      iconColor: 'primary',
+      iconColor: 'blumine-900',
       auth: LANGUAGE_ADMIN,
     },
     IMMERSION: {
@@ -147,7 +147,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       name: 'Edit a gallery',
       description: 'Edit an image gallery on your site',
       href: addUrlPrefix('galleries'),
-      iconColor: 'wordText',
+      iconColor: 'blumine-900',
       auth: ASSISTANT,
     },
   }
