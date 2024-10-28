@@ -11,7 +11,7 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
     <div className="flex" id="WidgetKeyboardsPresentation">
-      <div className="bg-tertiaryA mx-auto p-6 md:p-10 text-white lg:my-4 max-w-screen-xl">
+      <div className="bg-scarlet-900 mx-auto p-6 md:p-10 text-white lg:my-4 max-w-screen-xl">
         <div className="flex flex-col md:flex-row">
           <div className="space-y-10">
             <h1 className="text-3xl font-bold">{header}</h1>

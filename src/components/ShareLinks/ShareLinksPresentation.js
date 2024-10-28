@@ -82,7 +82,7 @@ function ShareLinksPresentation({
       </li>
       <li>
         <a
-          className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-secondary"
+          className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-scarlet-800"
           href={`mailto:?subject=${title}&body=${url}`}
         >
           {getIcon('Mail', 'fill-current h-7 w-7')}
@@ -93,7 +93,7 @@ function ShareLinksPresentation({
           type="button"
           data-testid="CopyUrl"
           aria-label="Copy to clipboard"
-          className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-tertiaryA"
+          className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-ochre-600"
           onClick={() => copyToClipboard({ text: url, confirmationCallback })}
         >
           {getIcon('Link', 'fill-current h-7 w-7')}

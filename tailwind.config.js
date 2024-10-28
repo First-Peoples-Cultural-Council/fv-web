@@ -11,14 +11,6 @@ module.exports = {
     'ql-video',
     'wysiwyg',
     {
-      pattern: /(bg|border|from|to|text)-(tertiaryA|tertiaryC)-(light|dark)/,
-      variants: ['hover'],
-    },
-    {
-      pattern: /(bg|border|from|to|text)-(tertiaryA|tertiaryC)/,
-      variants: ['hover'],
-    },
-    {
       pattern:
         /(bg|border|fill|from|to|text)-(scarlet|blumine|jade|ochre|charcoal)-(100|200|300|400|500|600|700|800|900|950)/,
       variants: ['hover'],
@@ -155,12 +147,6 @@ module.exports = {
           light: '#b07363',
           DEFAULT: '#8E3720',
           dark: '#632716',
-        },
-        // Purple
-        tertiaryA: {
-          light: '#857689',
-          DEFAULT: '#513B56',
-          dark: '#39293c',
         },
         'wordsy-correct': {
           DEFAULT: customColorsConfig.jade[500],

@@ -114,7 +114,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       name: 'Edit custom pages',
       description: 'Manage and edit the custom pages on your site',
       href: addUrlPrefix('pages'),
-      iconColor: 'tertiaryA',
+      iconColor: 'charcoal-500',
       auth: LANGUAGE_ADMIN,
     },
     HOMEPAGE: {
@@ -139,7 +139,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       name: 'Edit your Immersion Labels',
       description: 'Update the labels used in immersion mode on your site',
       href: addUrlPrefix('immersion'),
-      iconColor: 'tertiaryA',
+      iconColor: 'charcoal-500',
       auth: LANGUAGE_ADMIN,
     },
     GALLERY: {

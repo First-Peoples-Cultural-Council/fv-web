@@ -27,7 +27,7 @@ function GamesPresentation({ kids = null }) {
       data-testid="GamesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="GAMES" accentColor="tertiaryA" />
+        <SectionTitle.Presentation title="GAMES" accentColor="blumine-800" />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="px-4 sm:px-6 lg:px-8">
@@ -38,12 +38,12 @@ function GamesPresentation({ kids = null }) {
                 <ul className="grid grid-cols-1 gap-y-8 md:gap-x-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
                   {games.map((game) => (
                     <li key={game.pathname} className="relative">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryA group block w-full rounded-lg overflow-hidden">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-blumine-800 group block w-full rounded-lg overflow-hidden">
                         <Link
                           to={`/${sitename}/${kids ? 'kids/' : ''}games/${
                             game.pathname
                           }`}
-                          className="bg-tertiaryA text-white text-4xl group w-full px-5 py-10 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
+                          className="bg-blumine-800 text-white text-4xl group w-full px-5 py-10 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                         >
                           {getIcon(game.icon, 'fill-current h-28')}
                           <span className="m-2">{game.title}</span>

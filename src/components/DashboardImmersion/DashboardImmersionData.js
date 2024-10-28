@@ -22,7 +22,7 @@ function DashboardImmersionData() {
     title: 'Immersion',
     subtitle: 'Update the labels used in immersion mode on your site.',
     icon: 'Translate',
-    iconColor: 'tertiaryA',
+    iconColor: 'blumine-800',
   }
 
   const { onSubmit: createLabel } = useImmersionLabelCreate()

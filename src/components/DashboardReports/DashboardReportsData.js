@@ -76,7 +76,7 @@ function DashboardReportsData() {
       name: 'Members only content',
       description: 'Content only available to site members',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_MEMBERS}`,
-      iconColor: 'tertiaryA',
+      iconColor: 'charcoal-500',
       auth: ASSISTANT,
     },
     {
@@ -84,7 +84,7 @@ function DashboardReportsData() {
       name: 'Public content',
       description: 'Content available to the general public',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_PUBLIC}`,
-      iconColor: 'charcoal-500',
+      iconColor: 'blumine-500',
       auth: ASSISTANT,
     },
   ]

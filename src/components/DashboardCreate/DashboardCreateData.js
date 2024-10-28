@@ -75,7 +75,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a custom page',
       description: 'Add a new page to your site',
       href: addUrlPrefix('page'),
-      iconColor: 'tertiaryA',
+      iconColor: 'charcoal-500',
       auth: LANGUAGE_ADMIN,
     },
     GALLERY: {
