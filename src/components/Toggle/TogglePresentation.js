@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Switch } from '@headlessui/react'
 
 function TogglePresentation({
-  accentColor = 'primary',
+  accentColor = 'blumine-800',
   toggled = false,
   toggleCallback = () => {},
   label,

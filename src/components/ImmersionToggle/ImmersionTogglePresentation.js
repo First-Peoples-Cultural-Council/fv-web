@@ -30,7 +30,7 @@ function ImmersionTogglePresentation({ site }) {
       className="w-full flex justify-between items-center"
     >
       <Toggle
-        accentColor="secondary"
+        accentColor="scarlet-800"
         toggled={i18n.language === 'language'}
         toggleCallback={() => changeLanguage(i18n.language !== 'language')}
         label="Immersion Mode"
