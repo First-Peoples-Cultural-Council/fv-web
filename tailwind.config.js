@@ -11,25 +11,29 @@ module.exports = {
     'ql-video',
     'wysiwyg',
     {
-      pattern:
-        /(bg|border|from|to|text)-(word|phrase|song|story|tertiaryA|tertiaryB|tertiaryC|wordText|phraseText|songText|storyText)-(light|dark)/,
+      pattern: /(bg|border|from|to|text)-(tertiaryA|tertiaryC)-(light|dark)/,
+      variants: ['hover'],
+    },
+    {
+      pattern: /(bg|border|from|to|text)-(tertiaryA|tertiaryC)/,
       variants: ['hover'],
     },
     {
       pattern:
-        /(bg|border|from|to|text)-(word|phrase|song|story|tertiaryA|tertiaryB|tertiaryC|wordText|phraseText|songText|storyText)/,
+        /(bg|border|fill|from|to|text)-(scarlet|blumine|jade|ochre|charcoal)-(100|200|300|400|500|600|700|800|900|950)/,
       variants: ['hover'],
     },
     {
       pattern:
-        /(bg|border|from|to|text)-(scarlet|blumine|jade|ochre|charcoal)-(100|200|300|400|500|600|700|800|900|950)/,
+        /(bg|border|fill|from|to|text)-(word-color|phrase-color|song-color|story-color)-(100|200|300|400|500|600|700|800|900|950)/,
       variants: ['hover'],
     },
     {
       pattern:
-        /(bg|border|from|to|text)-(kids-dictionary|kids-categories|kids-songs|kids-stories|kids-games|kids-alphabet)-(500|600|700|800|900)/,
+        /(bg|border|fill|from|to|text)-(kids-dictionary|kids-categories|kids-songs|kids-stories|kids-games|kids-alphabet)-(500|600|700|800|900)/,
       variants: ['hover'],
     },
+
     ...languageColorsConfig.colors,
   ],
   theme: {
@@ -175,10 +179,10 @@ module.exports = {
           DEFAULT: '#E9C46A',
         },
         'wordsy-correct': {
-          DEFAULT: '#2C876D', // as bgGreen
+          DEFAULT: customColorsConfig.jade[500],
         },
         'wordsy-present': {
-          DEFAULT: '#C37829', // as phrase
+          DEFAULT: customColorsConfig.ochre[600],
         },
         gray: colors.stone,
       },
