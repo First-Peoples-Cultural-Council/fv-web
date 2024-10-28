@@ -162,22 +162,6 @@ module.exports = {
           DEFAULT: '#513B56',
           dark: '#39293c',
         },
-        // Yellow/Orange Accent - e.g. Stats WIdget
-        tertiaryC: {
-          DEFAULT: '#EFAD1A',
-        },
-        word: {
-          DEFAULT: '#2A9D8F',
-        },
-        phrase: {
-          DEFAULT: '#C37829',
-        },
-        song: {
-          DEFAULT: '#830042',
-        },
-        story: {
-          DEFAULT: '#E9C46A',
-        },
         'wordsy-correct': {
           DEFAULT: customColorsConfig.jade[500],
         },
