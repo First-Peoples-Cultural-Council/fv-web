@@ -5,7 +5,7 @@ import { RadioGroup } from '@headlessui/react'
 // FPCC
 
 function RadioButtonGroupPresentation({
-  accentColor = 'secondary',
+  accentColor = 'scarlet-800',
   label,
   onChange,
   options,
