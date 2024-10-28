@@ -26,7 +26,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               {getIcon(
                 'ChevronUpDown',
-                'h-5 w-5 mr-2 text-fv-charcoal fill-current',
+                'h-5 w-5 mr-2 text-charcoal-900 fill-current',
               )}
             </span>
           </Listbox.Button>
@@ -42,7 +42,9 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
                   key={option?.value}
                   className={({ active }) =>
                     `relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-gray-100 text-secondary' : 'text-fv-charcoal'
+                      active
+                        ? 'bg-gray-100 text-secondary'
+                        : 'text-charcoal-900'
                     }`
                   }
                   value={option?.value}

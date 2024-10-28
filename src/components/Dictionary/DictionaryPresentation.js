@@ -28,7 +28,7 @@ function DictionaryPresentation({
 }) {
   const linkStyle = {
     li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
-    link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-fv-charcoal',
+    link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-charcoal-900',
     icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
   }
 
@@ -71,13 +71,13 @@ function DictionaryPresentation({
               <div
                 className={`${
                   countStr ? '' : 'opacity-0'
-                } text-sm xl:text-base text-fv-charcoal`}
+                } text-sm xl:text-base text-charcoal-900`}
               >
                 Results: {countStr}
               </div>
             </div>
 
-            <h2 className="block text-xl xl:text-2xl font-medium text-fv-charcoal ml-4 xl:ml-7">
+            <h2 className="block text-xl xl:text-2xl font-medium text-charcoal-900 ml-4 xl:ml-7">
               BROWSE BY:
             </h2>
             <ul className="inline-block list-none">

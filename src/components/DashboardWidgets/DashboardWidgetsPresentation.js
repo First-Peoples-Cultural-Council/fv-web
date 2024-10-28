@@ -19,7 +19,7 @@ function DashboardWidgetsPresentation({
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
   const [currentWidget, setCurrentWidget] = useState({})
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div id="DashboardWidgetsPresentation" className="space-y-5">
@@ -53,7 +53,7 @@ function DashboardWidgetsPresentation({
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {widget?.nickname}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {widget?.typeLabel}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">

@@ -79,7 +79,7 @@ function NavBarPresentationMobile({ site }) {
   }
 
   return (
-    <div className="min-h-screen bg-white text-fv-charcoal">
+    <div className="min-h-screen bg-white text-charcoal-900">
       <Transition
         show={!isSubMenuOpen}
         enter="transform transition ease-in-out duration-500"

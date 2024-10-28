@@ -14,7 +14,7 @@ function HomeCrudPresentation({ site }) {
         <div className="max-w-7xl mx-auto flex items-center justify-between space-x-5 p-5">
           <div className="flex items-center">
             <div className="space-y-1">
-              <h2 className="text-3xl font-medium text-fv-charcoal">
+              <h2 className="text-3xl font-medium text-charcoal-900">
                 {site?.title} Homepage
               </h2>
             </div>

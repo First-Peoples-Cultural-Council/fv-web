@@ -30,7 +30,7 @@ function WidgetAreaEditPresentation({
           <div className="mx-auto w-full">
             <div className="flex justify-between items-center p-4">
               <div>
-                <p className="text-fv-charcoal-light">
+                <p className="text-charcoal-500">
                   The Widgets that appear on your{' '}
                   <span className="italic font-bold">{destinationTitle}</span>{' '}
                   page
@@ -86,7 +86,7 @@ function WidgetAreaEditPresentation({
                               <p className="text-lg font-bold text-primary">
                                 {getWidgetTypeLabel(widgetData?.[id]?.type)}
                               </p>
-                              <p className="text-fv-charcoal-light">
+                              <p className="text-charcoal-500">
                                 {widgetData?.[id]?.nickname}
                               </p>
                             </div>

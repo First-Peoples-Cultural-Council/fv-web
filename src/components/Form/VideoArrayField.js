@@ -82,7 +82,7 @@ function VideoArrayField({
       <div data-testid="VideoArrayField" className="space-y-2">
         {fields?.length > 0 && (
           <div>
-            <p className="block text-sm font-small text-fv-charcoal italic">
+            <p className="block text-sm font-small text-charcoal-900 italic">
               Uploaded Videos
             </p>
             <div>
@@ -100,7 +100,7 @@ function VideoArrayField({
         )}
         {relatedVideoLinks?.length > 0 && (
           <div>
-            <p className="block text-sm font-small text-fv-charcoal italic">
+            <p className="block text-sm font-small text-charcoal-900 italic">
               Linked Videos
             </p>
             <div>

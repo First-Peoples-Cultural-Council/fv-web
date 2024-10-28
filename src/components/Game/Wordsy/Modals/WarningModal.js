@@ -11,7 +11,7 @@ function WarningModal({ text }) {
         'ExclamationTriangleSolid',
         'fill-current text-wordsy-present h-6 w-6 mx-auto',
       )}
-      <h3 className="text-center font-medium text-fv-charcoal">{text}</h3>
+      <h3 className="text-center font-medium text-charcoal-900">{text}</h3>
     </div>
   )
 }

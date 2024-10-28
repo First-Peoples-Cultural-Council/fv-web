@@ -16,7 +16,7 @@ function DashboardMediaAudioPresentation({
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
   const headerClass =
-    'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div
@@ -27,7 +27,7 @@ function DashboardMediaAudioPresentation({
         <section className="p-2 h-full" aria-labelledby="results-header">
           <h1
             id="results-header"
-            className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
+            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
           >
             Audio
           </h1>
@@ -62,7 +62,7 @@ function DashboardMediaAudioPresentation({
                             onClick={() => setCurrentFile(audioFile)}
                           >
                             <td
-                              className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
+                              className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
                               aria-label="list"
                             >
                               <AudioNative
@@ -70,10 +70,10 @@ function DashboardMediaAudioPresentation({
                                 audioObject={audioFile}
                               />
                             </td>
-                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal truncate">
+                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
                               {audioFile.title}
                             </td>
-                            <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left truncate">
+                            <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
                               {audioFile?.description}
                             </td>
                           </tr>
@@ -82,7 +82,7 @@ function DashboardMediaAudioPresentation({
                     ))}
                 </tbody>
               </table>
-              <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
+              <div className="pt-10 text-center text-charcoal-900 font-medium print:hidden">
                 <button
                   data-testid="load-btn"
                   type="button"

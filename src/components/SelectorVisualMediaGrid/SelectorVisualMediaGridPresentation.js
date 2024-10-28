@@ -50,11 +50,11 @@ function SelectorVisualMediaGridPresentation({
                           </span>
                         </button>
                       </div>
-                      <p className="mt-2 block text-sm font-medium text-fv-charcoal truncate pointer-events-none">
+                      <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
                         {mediaObject?.title}
                       </p>
                       {mediaObject?.width && mediaObject?.height && (
-                        <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
+                        <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
                       )}
                       {selectedMedia?.some(
                         (elem) => elem?.id === mediaObject?.id,
@@ -81,7 +81,7 @@ function SelectorVisualMediaGridPresentation({
               </React.Fragment>
             ))}
         </ul>
-        <div className="pt-10 text-center text-fv-charcoal font-medium">
+        <div className="pt-10 text-center text-charcoal-900 font-medium">
           <button
             data-testid="load-btn"
             type="button"

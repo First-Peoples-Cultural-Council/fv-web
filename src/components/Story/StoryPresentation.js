@@ -10,8 +10,8 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function StoryPresentation({ entry }) {
   const coverMedia = entry?.coverVisual?.entry
-  const labelStyling = 'font-bold text-fv-charcoal uppercase'
-  const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6'
+  const labelStyling = 'font-bold text-charcoal-900 uppercase'
+  const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6'
   const headerStyling = 'bg-white overflow-hidden shadow-lg'
   const blockBgStyling = 'bg-white overflow-hidden lg:shadow-lg'
   const blockStyling = `${blockBgStyling} block md:flex h-full p-4 lg:p-0 lg:mt-5 lg:rounded-lg`
@@ -35,14 +35,14 @@ function StoryPresentation({ entry }) {
           </div>
           <div className="col-span-2 md:col-span-1 flex items-center ">
             <div className="px-4 py-2 md:p-6 space-y-4">
-              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-fv-charcoal">
+              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-charcoal-900">
                 {entry?.title}
               </h1>
-              <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
+              <h2 className="text-charcoal-500 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                 {entry?.titleTranslation}
               </h2>
               {entry?.author?.length > 0 && (
-                <div className="text-fv-charcoal-light">by {entry.author}</div>
+                <div className="text-charcoal-500">by {entry.author}</div>
               )}
             </div>
           </div>
@@ -66,13 +66,13 @@ function StoryPresentation({ entry }) {
               </video>
             </div>
             <div className="p-6 space-y-4 max-w-lg">
-              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-fv-charcoal">
+              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-charcoal-900">
                 {entry?.title}
               </h1>
-              <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
+              <h2 className="text-charcoal-500 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                 {entry?.titleTranslation}
               </h2>
-              <div className="text-fv-charcoal-light">
+              <div className="text-charcoal-500">
                 {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
               </div>
             </div>
@@ -96,13 +96,13 @@ function StoryPresentation({ entry }) {
               </div>
             </div>
             <div className="p-6 space-y-4 max-w-lg">
-              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-fv-charcoal">
+              <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl xl:text-6xl text-charcoal-900">
                 {entry?.title}
               </h1>
-              <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
+              <h2 className="text-charcoal-500 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                 {entry?.titleTranslation}
               </h2>
-              <div className="text-fv-charcoal-light">
+              <div className="text-charcoal-500">
                 {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
               </div>
             </div>
@@ -114,13 +114,13 @@ function StoryPresentation({ entry }) {
         <div className={headerStyling}>
           <div className="flex justify-center">
             <div className="p-10 space-y-4">
-              <h1 className="font-medium text-2xl md:text-4xl lg:text-5xl xl:text-7xl text-fv-charcoal">
+              <h1 className="font-medium text-2xl md:text-4xl lg:text-5xl xl:text-7xl text-charcoal-900">
                 {entry?.title}
               </h1>
-              <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl xl:text-3xl">
+              <h2 className="text-charcoal-500 text-lg md:text-xl lg:text-2xl xl:text-3xl">
                 {entry?.titleTranslation}
               </h2>
-              <div className="text-fv-charcoal-light">
+              <div className="text-charcoal-500">
                 {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
               </div>
             </div>
@@ -158,10 +158,10 @@ function StoryPresentation({ entry }) {
                       ))}
                     </div>
                   )}
-                  <div className="w-full font-medium text-fv-charcoal">
+                  <div className="w-full font-medium text-charcoal-900">
                     <WysiwygBlock jsonString={entry?.intro} />
                   </div>
-                  <div className="w-full text-fv-charcoal-light">
+                  <div className="w-full text-charcoal-500">
                     <WysiwygBlock jsonString={entry?.introTranslation} />
                   </div>
                 </div>
@@ -169,7 +169,7 @@ function StoryPresentation({ entry }) {
                   className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
                 >
                   <div className="flex items-center justify-end">
-                    <p className="text-fv-charcoal-light text-xs md:text-sm">
+                    <p className="text-charcoal-500 text-xs md:text-sm">
                       INTRO
                     </p>
                   </div>
@@ -192,7 +192,7 @@ function StoryPresentation({ entry }) {
                   })}
                   <div className="w-full md:w-6/12 flex flex-col grow shrink">
                     <div
-                      className={`${blockBgStyling} flex-1 text-fv-charcoal rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
+                      className={`${blockBgStyling} flex-1 text-charcoal-900 rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
                     >
                       {page?.relatedAudio?.length > 0 && (
                         <div className="space-y-5">
@@ -208,7 +208,7 @@ function StoryPresentation({ entry }) {
                       <div className="w-full font-medium">
                         <WysiwygBlock jsonString={page?.text} />
                       </div>
-                      <div className="text-fv-charcoal-light">
+                      <div className="text-charcoal-500">
                         <WysiwygBlock jsonString={page?.textTranslation} />
                       </div>
                       {page?.notes.map((note) => (
@@ -221,7 +221,7 @@ function StoryPresentation({ entry }) {
                       className={`${blockBgStyling} flex-none mt-auto rounded-b rounded-t-none p-4 lg:p-6`}
                     >
                       <div className="flex items-center justify-end">
-                        <p className="text-fv-charcoal-light text-xs md:text-sm">
+                        <p className="text-charcoal-500 text-xs md:text-sm">
                           {index + 1}
                         </p>
                       </div>
@@ -239,7 +239,7 @@ function StoryPresentation({ entry }) {
             <div className={blockStyling}>
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
                 <div
-                  className={`${blockBgStyling} flex-1 text-fv-charcoal rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
+                  className={`${blockBgStyling} flex-1 text-charcoal-900 rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
                 >
                   {entry?.acknowledgements?.length > 0 && (
                     <div className="space-y-2 py-5">

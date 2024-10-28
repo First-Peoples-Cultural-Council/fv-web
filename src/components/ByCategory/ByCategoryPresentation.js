@@ -137,7 +137,7 @@ function ByCategoryPresentation({
           </div>
           {kids ? null : (
             <div className="hidden lg:block mt-1 lg:mt-5">
-              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">
+              <h2 className="text-2xl font-medium ml-7 text-charcoal-900">
                 BROWSE BY:
               </h2>
               <ul className="list-none">
@@ -146,7 +146,7 @@ function ByCategoryPresentation({
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/alphabet`}
                   >
                     {getIcon(
@@ -161,7 +161,7 @@ function ByCategoryPresentation({
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/words`}
                   >
                     {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}
@@ -173,7 +173,7 @@ function ByCategoryPresentation({
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/phrases`}
                   >
                     {getIcon(

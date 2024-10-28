@@ -18,7 +18,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
       {/* Link to  entry */}
       <div className="absolute top-2 right-2 print:hidden">
         <Link
-          className="text-fv-charcoal"
+          className="text-charcoal-900"
           to={`/${entry?.sitename}/kids/${makePlural(entry?.type)}/${
             entry?.id
           }`}
@@ -58,7 +58,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
           id="EntryDetails"
           className={`${
             entry?.image ? 'col-span-1' : 'col-span-2'
-          } h-72 flex text-center w-full items-center text-fv-charcoal`}
+          } h-72 flex text-center w-full items-center text-charcoal-900`}
         >
           <div className="w-full">
             {/* Title */}

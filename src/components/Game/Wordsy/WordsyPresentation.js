@@ -94,7 +94,7 @@ function WordsyPresentation({
           />
         </div>
       ) : (
-        <p className="text-fv-charcoal mt-2 text-center">
+        <p className="text-charcoal-900 mt-2 text-center">
           This site does not currently have enough dictionary content for the
           wordsy game.
           <br />

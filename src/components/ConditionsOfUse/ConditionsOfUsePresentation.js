@@ -14,7 +14,7 @@ function ConditionsOfUsePresentation() {
           title="CONDITIONS OF USE"
           accentColor="primary"
         />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <p className={paraStyle}>
             By accessing this site, or by downloading the language data, the
             user confirms agreement with and acceptance of the <br />

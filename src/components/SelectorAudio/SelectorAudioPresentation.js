@@ -16,7 +16,7 @@ function SelectorAudioPresentation({
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
   const headerClass =
-    'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div
@@ -71,7 +71,7 @@ function SelectorAudioPresentation({
                             )}
                         </td>
                         <td
-                          className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
+                          className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
                           aria-label="list"
                         >
                           <AudioNative
@@ -79,10 +79,10 @@ function SelectorAudioPresentation({
                             audioObject={audioFile}
                           />
                         </td>
-                        <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal truncate">
+                        <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
                           {audioFile.title}
                         </td>
-                        <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left truncate">
+                        <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
                           {audioFile?.description}
                         </td>
                       </tr>
@@ -92,7 +92,7 @@ function SelectorAudioPresentation({
               ))}
           </tbody>
         </table>
-        <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
+        <div className="pt-10 text-center text-charcoal-900 font-medium print:hidden">
           <button
             data-testid="load-btn"
             type="button"

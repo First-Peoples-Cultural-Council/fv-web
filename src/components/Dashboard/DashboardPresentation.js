@@ -15,7 +15,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         data-testid="logout-btn"
         type="button"
         onClick={logout}
-        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
+        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-charcoal-500 hover:text-white"
       >
         {getIcon(
           'LogOut',
@@ -31,7 +31,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
     <div data-testid="DashboardPresentation">
       {/* Sidebar */}
       <div className="flex w-64 flex-col fixed inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
+        <div className="flex-1 flex flex-col min-h-0 bg-charcoal-900 divide-y divide-charcoal-500 space-y-2">
           <div className="flex-1 flex flex-col overflow-y-auto">
             <div className="flex items-center flex-shrink-0 m-4">
               {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
@@ -42,7 +42,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
                 sites={currentUser?.sites}
                 site={site}
               />
-              <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
+              <div className="flex-1 divide-y divide-charcoal-500 space-y-2">
                 {primaryNavigationItems(site?.sitename)}
                 {secondaryNavigationItems(currentUser?.sites)}
               </div>
@@ -107,8 +107,8 @@ const primaryNavigationItems = (currentSitename) => {
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
                 match
-                  ? 'bg-fv-charcoal-dark text-white'
-                  : 'text-gray-300 hover:bg-fv-charcoal-light hover:text-white'
+                  ? 'bg-charcoal-900 text-white'
+                  : 'text-gray-300 hover:bg-charcoal-500 hover:text-white'
               }`}
             >
               {getIcon(
@@ -140,7 +140,7 @@ const secondaryNavigationItems = (sites) => {
     <div className="px-2 py-4 space-y-1">
       <a
         href="https://firstvoices.atlassian.net/servicedesk/customer/portals"
-        className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
+        className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-charcoal-500 hover:text-white"
         target="_blank"
         rel="noreferrer noopener"
       >
@@ -154,7 +154,7 @@ const secondaryNavigationItems = (sites) => {
         <Link
           key={item.name}
           to={item.href}
-          className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
+          className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-charcoal-500 hover:text-white"
         >
           {getIcon(
             item.icon,
@@ -168,7 +168,7 @@ const secondaryNavigationItems = (sites) => {
 }
 
 const userProfile = (user) => (
-  <div className="flex-shrink-0 flex bg-fv-charcoal-light p-4">
+  <div className="flex-shrink-0 flex bg-charcoal-500 p-4">
     <div className="flex-shrink-0 w-full group block">
       <div className="flex items-center">
         <div className="inline-flex">

@@ -27,7 +27,7 @@ function PrivateSiteCard({ site, user }) {
       <button
         data-testid="PrivateSiteCard"
         type="button"
-        className="group relative card border-2 border-gray-200 rounded-l-lg shadow-md text-fv-charcoal hover:text-white flex items-center
+        className="group relative card border-2 border-gray-200 rounded-l-lg shadow-md text-charcoal-900 hover:text-white flex items-center
         h-16 md:h-24 w-64 lg:w-72 m-5 md:ml-12 lg:ml-16 hover:bg-ochre-600 hover:border-ochre-600"
         onClick={() => setPrivateSiteModalOpen(true)}
       >
@@ -63,12 +63,12 @@ function PrivateSiteCard({ site, user }) {
           ) : (
             <div className="p-4 sm:px-6 sm:py-32 lg:px-8">
               <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
+                <h2 className="text-3xl font-bold tracking-tight text-charcoal-900 sm:text-4xl">
                   {site?.title} <br />
                   is Private
                 </h2>
 
-                <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+                <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-charcoal-500">
                   You need to be {isAnonymous && 'logged in and '}a registered
                   member of this site to see its content.
                 </p>
@@ -85,7 +85,7 @@ function PrivateSiteCard({ site, user }) {
                     data-testid="explore-languages"
                     type="button"
                     onClick={() => setPrivateSiteModalOpen(false)}
-                    className="text-sm font-semibold leading-6 text-fv-charcoal"
+                    className="text-sm font-semibold leading-6 text-charcoal-900"
                   >
                     Explore other languages <span aria-hidden="true">→</span>
                   </button>

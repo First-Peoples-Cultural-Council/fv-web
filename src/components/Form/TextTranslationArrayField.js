@@ -33,7 +33,7 @@ function TextTranslationArrayField({
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-fv-charcoal"
+                      className="block text-sm font-medium text-charcoal-900"
                     >
                       {label.slice(0, -1)} in your language
                     </label>
@@ -52,7 +52,7 @@ function TextTranslationArrayField({
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-fv-charcoal"
+                      className="block text-sm font-medium text-charcoal-900"
                     >
                       {label.slice(0, -1)} Translation
                     </label>

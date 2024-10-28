@@ -15,11 +15,11 @@ function SongPresentationDrawer({ entry, sitename }) {
         <div className="sm:flex-1">
           <div>
             <div className="flex items-center">
-              <h3 className="font-medium text-xl text-fv-charcoal sm:text-3xl">
+              <h3 className="font-medium text-xl text-charcoal-900 sm:text-3xl">
                 {entry?.title}
               </h3>
             </div>
-            <p className="text-fv-charcoal-light">
+            <p className="text-charcoal-500">
               {entry?.titleTranslation}
               {entry?.author?.length > 0 ? ` by ${entry.author}` : ''}
             </p>
@@ -94,10 +94,10 @@ function SongPresentationDrawer({ entry, sitename }) {
         {(entry?.introduction?.length > 0 ||
           entry?.introductionTranslation?.length > 0) && (
           <div className="space-y-2 px-4 sm:px-6 sm:space-y-4">
-            <h4 className="font-bold text-fv-charcoal sm:w-40 sm:shrink-0">
+            <h4 className="font-bold text-charcoal-900 sm:w-40 sm:shrink-0">
               INTRODUCTION
             </h4>
-            <div className="text-fv-charcoal sm:col-span-2">
+            <div className="text-charcoal-900 sm:col-span-2">
               <WysiwygBlock className="mb-2" jsonString={entry?.introduction} />
               <WysiwygBlock jsonString={entry?.introductionTranslation} />
             </div>

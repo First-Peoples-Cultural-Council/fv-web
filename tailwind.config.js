@@ -174,12 +174,6 @@ module.exports = {
         story: {
           DEFAULT: '#E9C46A',
         },
-        'fv-charcoal': {
-          xlight: '#979799',
-          light: '#54584A',
-          DEFAULT: '#313133',
-          dark: '#0f0f10',
-        },
         'wordsy-correct': {
           DEFAULT: '#2C876D', // as bgGreen
         },

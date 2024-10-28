@@ -35,7 +35,7 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
                         }
                         const conditionalClass = item?.coverImage
                           ? 'bg-center bg-cover text-white'
-                          : 'text-fv-charcoal-light bg-gray-100'
+                          : 'text-charcoal-500 bg-gray-100'
 
                         return (
                           <li key={item.id} className="relative">

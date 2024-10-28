@@ -40,9 +40,9 @@ function DeleteButtonPresentation({
             className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
           >
             <div className="text-center space-y-2">
-              <p className="text-2xl text-fv-charcoal">{message}</p>
-              {note && <p className="text-fv-charcoal-light">{note}</p>}
-              <p className="text-fv-charcoal-light">
+              <p className="text-2xl text-charcoal-900">{message}</p>
+              {note && <p className="text-charcoal-500">{note}</p>}
+              <p className="text-charcoal-500">
                 You can&apos;t undo this action.
               </p>
             </div>

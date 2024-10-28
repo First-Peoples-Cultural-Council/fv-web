@@ -17,7 +17,7 @@ function DashboardCategoriesPresentation({
   sitename,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div id="DashboardCategoriesPresentation" className="space-y-5">
@@ -48,10 +48,10 @@ function DashboardCategoriesPresentation({
           }
           tableBody={categories.map((category) => (
             <tr key={category.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {category.title}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {category.parentTitle || '-------'}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">

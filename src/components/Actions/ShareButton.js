@@ -25,7 +25,7 @@ function ShareButton({
             type="button"
             id="ShareButton"
             className={`${
-              active ? 'bg-gray-100 text-fv-charcoal' : 'text-fv-charcoal-light'
+              active ? 'bg-gray-100 text-charcoal-900' : 'text-charcoal-500'
             } w-full group flex items-center px-4 py-2 text-sm`}
             onClick={() => setShareModalOpen(true)}
           >
@@ -47,10 +47,10 @@ function ShareButton({
               siteVisibility === TEAM ||
               siteVisibility === MEMBERS ? (
                 <div className="text-center font-medium">
-                  <p className="text-2xl text-fv-charcoal">
+                  <p className="text-2xl text-charcoal-900">
                     This {entry?.type} is visible to
                   </p>
-                  <p className="text-2xl text-fv-charcoal font-bold">
+                  <p className="text-2xl text-charcoal-900 font-bold">
                     {entry?.visibility} only!
                   </p>
                   <a
@@ -66,7 +66,7 @@ function ShareButton({
                 </div>
               ) : (
                 <>
-                  <h3 className="text-center text-xl font-medium text-fv-charcoal">
+                  <h3 className="text-center text-xl font-medium text-charcoal-900">
                     Share <em>{entry?.title}</em> on:
                   </h3>
                   <ShareLinks.Presentation

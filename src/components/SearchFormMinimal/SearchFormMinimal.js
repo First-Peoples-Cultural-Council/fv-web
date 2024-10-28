@@ -23,7 +23,7 @@ function SearchFormMinimal({
             data-testid="SearchInput"
             id="SearchInput"
             aria-labelledby="SearchLabel"
-            className="w-full text-sm text-fv-charcoal-light rounded-none rounded-l-full pl-4 focus:outline-none truncate"
+            className="w-full text-sm text-charcoal-500 rounded-none rounded-l-full pl-4 focus:outline-none truncate"
             type="text"
             placeholder="Search"
             onChange={handleSearchTermChange}
@@ -35,7 +35,7 @@ function SearchFormMinimal({
           data-testid="SearchSubmit"
           aria-label="Search/Go"
           onClick={handleSearchNavigation}
-          className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light rounded-r-full bg-gray-50 hover:bg-gray-100"
+          className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 rounded-r-full bg-gray-50 hover:bg-gray-100"
         >
           {getIcon('Search', 'fill-current h-5 w-5 ')}
         </button>

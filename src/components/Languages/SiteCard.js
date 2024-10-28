@@ -9,7 +9,7 @@ import SiteLogo from 'components/SiteLogo'
 function SiteCard({ site }) {
   return (
     <Link
-      className="group relative card border-2 border-gray-200 rounded-l-lg shadow-md text-fv-charcoal hover:text-white flex items-center
+      className="group relative card border-2 border-gray-200 rounded-l-lg shadow-md text-charcoal-900 hover:text-white flex items-center
         h-16 md:h-24 w-64 lg:w-72 m-5 md:ml-12 lg:ml-16 hover:bg-word hover:border-word"
       to={`/${site?.sitename}`}
     >

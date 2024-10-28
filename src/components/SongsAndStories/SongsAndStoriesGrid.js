@@ -34,7 +34,7 @@ function getConditonalClass({ item }) {
     }
     return 'bg-center bg-cover text-white'
   }
-  return 'text-fv-charcoal-light bg-gray-100'
+  return 'text-charcoal-500 bg-gray-100'
 }
 
 function getOpacityClass({ item }) {

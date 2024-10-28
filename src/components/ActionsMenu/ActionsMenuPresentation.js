@@ -40,7 +40,7 @@ function ActionsMenuPresentation({
               <Menu.Button
                 id="More"
                 aria-label="More Options"
-                className="ml-2 pl-2 relative inline-flex items-center text-sm font-medium text-fv-charcoal hover:text-black border-l border-gray-300"
+                className="ml-2 pl-2 relative inline-flex items-center text-sm font-medium text-charcoal-900 hover:text-black border-l border-gray-300"
               >
                 {getIcon('More', `fill-current ${iconStyling}`)}
                 {withLabels ? <span className="mx-2">MORE</span> : null}
@@ -76,8 +76,8 @@ function ActionsMenuPresentation({
                           <QrcodeButton
                             buttonStyling={`${
                               active
-                                ? 'bg-gray-100 text-fv-charcoal'
-                                : 'text-fv-charcoal-light'
+                                ? 'bg-gray-100 text-charcoal-900'
+                                : 'text-charcoal-500'
                             } w-full group flex items-center px-4 py-2 text-sm`}
                             active={active}
                             withLabels

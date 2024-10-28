@@ -35,7 +35,7 @@ function NavBarPresentation({
 
   return (
     <nav id="NavBar" className="relative z-10" role="navigation">
-      <div className="bg-fv-charcoal max-w-screen-2xl mx-auto px-2 xl:px-16">
+      <div className="bg-charcoal-900 max-w-screen-2xl mx-auto px-2 xl:px-16">
         {!siteLoading && (
           <div className="h-16 flex justify-between items-center">
             {/* Home Links */}
@@ -69,7 +69,7 @@ function NavBarPresentation({
                 data-testid="MobileMenu-button"
                 type="button"
                 onClick={() => openCloseMobileNavbar()}
-                className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
+                className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
               >
                 <span className="sr-only">
                   {mobileNavbarOpen ? 'Close menu' : 'Open menu'}

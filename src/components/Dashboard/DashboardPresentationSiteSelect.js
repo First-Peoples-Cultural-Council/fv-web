@@ -16,7 +16,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
       id="DashboardPresentationSiteSelect"
     >
       <div>
-        <Menu.Button className="group w-full bg-fv-charcoal text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-fv-charcoal-light">
+        <Menu.Button className="group w-full bg-charcoal-900 text-white rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-charcoal-500">
           <span className="flex w-full justify-between items-center">
             <span className="flex min-w-0 items-center justify-between space-x-3">
               {site?.logo?.id ? (
@@ -99,7 +99,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
     </Menu>
   ) : (
     <div className="relative px-2">
-      <div className="w-full bg-fv-charcoal text-white rounded-lg px-2 py-2 text-sm text-left font-medium">
+      <div className="w-full bg-charcoal-900 text-white rounded-lg px-2 py-2 text-sm text-left font-medium">
         <span className="flex w-full justify-between items-center">
           <span className="flex min-w-0 items-center justify-between space-x-3">
             {site?.logo?.id ? (

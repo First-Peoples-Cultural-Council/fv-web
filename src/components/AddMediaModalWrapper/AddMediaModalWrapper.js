@@ -65,7 +65,7 @@ function AddMediaModalWrapper({
         className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-gray-50 p-6"
       >
         <div className="h-full flex flex-col space-y-4">
-          <h2 className="text-center text-2xl font-bold text-fv-charcoal">
+          <h2 className="text-center text-2xl font-bold text-charcoal-900">
             {currentTab.title}
           </h2>
           <div className="w-full bg-gray-50 flex justify-center space-x-4">

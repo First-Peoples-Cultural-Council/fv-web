@@ -56,7 +56,7 @@ function DictionaryListPresentation({
   }
 
   const tableHeaderStyling =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal-light uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
 
   return (
     <Loading.Container isLoading={isLoading}>
@@ -73,7 +73,7 @@ function DictionaryListPresentation({
                           data-testid="sort-btn"
                           type="button"
                           onClick={() => onSortByClick('ENTRY')}
-                          className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider"
+                          className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider"
                         >
                           <div className="inline-flex">
                             {entryLabel.toUpperCase()}
@@ -81,7 +81,7 @@ function DictionaryListPresentation({
                           {getSortingIcon('ENTRY')}
                         </button>
                       ) : (
-                        <div className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider">
+                        <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
                           <div className="inline-flex">
                             {entryLabel.toUpperCase()}
                           </div>
@@ -118,7 +118,7 @@ function DictionaryListPresentation({
                           <td className="px-6 py-4">
                             <button
                               type="button"
-                              className="text-left font-medium text-fv-charcoal lg:mr-2"
+                              className="text-left font-medium text-charcoal-900 lg:mr-2"
                               onClick={() => handleItemClick(entry)}
                               data-testid="DictionaryListEntry"
                             >
@@ -129,7 +129,7 @@ function DictionaryListPresentation({
                             <div className="inline-flex items-center">
                               <AudioButton
                                 audioArray={entry?.audio}
-                                iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-6 w-6"
+                                iconStyling="fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-6 w-6"
                                 hoverTooltip
                               />
                             </div>
@@ -137,7 +137,7 @@ function DictionaryListPresentation({
                           <td className="px-6 py-4">
                             {/* For Dictionary Entries */}
                             {entry?.translations ? (
-                              <ol className="text-fv-charcoal">
+                              <ol className="text-charcoal-900">
                                 {entry?.translations?.map((translation, i) => (
                                   <li key={translation?.text}>
                                     {entry?.translations?.length > 1
@@ -150,7 +150,7 @@ function DictionaryListPresentation({
                             ) : null}
                             {/* For Songs and Stories */}
                             {entry?.titleTranslation && (
-                              <div className="text-fv-charcoal">
+                              <div className="text-charcoal-900">
                                 {entry?.titleTranslation}
                               </div>
                             )}
@@ -167,7 +167,7 @@ function DictionaryListPresentation({
                           {wholeDomain && (
                             <td className="px-6 py-4 whitespace-nowrap">
                               <Link
-                                className="text-left text-sm text-fv-charcoal"
+                                className="text-left text-sm text-charcoal-900"
                                 to={`/${entry?.sitename}`}
                               >
                                 {entry?.siteTitle}
@@ -196,7 +196,7 @@ function DictionaryListPresentation({
               </table>
             </div>
           </div>
-          <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
+          <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
             <button
               data-testid="load-btn"
               type="button"

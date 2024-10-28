@@ -14,8 +14,8 @@ function SongPresentation({ entry }) {
     entry?.relatedVideos?.length > 0 ||
     entry?.relatedVideoLinks?.length > 0
   )
-  const labelStyling = 'font-bold text-fv-charcoal uppercase'
-  const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6'
+  const labelStyling = 'font-bold text-charcoal-900 uppercase'
+  const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6'
   return (
     <div
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2 md:my-10 bg-white"
@@ -40,10 +40,10 @@ function SongPresentation({ entry }) {
           }`}
         >
           <div className="py-2 space-y-1">
-            <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl  text-fv-charcoal">
+            <h1 className="font-medium text-2xl md:text-3xl lg:text-4xl  text-charcoal-900">
               {entry?.title}
             </h1>
-            <h2 className="text-fv-charcoal-light text-lg md:text-xl lg:text-2xl">
+            <h2 className="text-charcoal-500 text-lg md:text-xl lg:text-2xl">
               {entry?.titleTranslation}
             </h2>
           </div>
@@ -52,7 +52,7 @@ function SongPresentation({ entry }) {
               entry?.introTranslation?.length > 0) && (
               <div className="bg-gray-100 p-2 space-y-2 sm:space-y-4 lg:my-2">
                 <h4 className={labelStyling}>Introduction</h4>
-                <div className="text-fv-charcoal">
+                <div className="text-charcoal-900">
                   <WysiwygBlock className="mb-2" jsonString={entry?.intro} />
                   <WysiwygBlock jsonString={entry?.introTranslation} />
                 </div>
@@ -75,7 +75,7 @@ function SongPresentation({ entry }) {
                 {entry.lyrics.map((lyric) => (
                   <div
                     key={lyric?.id}
-                    className="text-fv-charcoal grid grid-cols-2 gap-2 whitespace-pre-wrap"
+                    className="text-charcoal-900 grid grid-cols-2 gap-2 whitespace-pre-wrap"
                   >
                     <div className="col-span-1">{lyric?.text}</div>
                     <div className="col-span-1">{lyric?.translation}</div>

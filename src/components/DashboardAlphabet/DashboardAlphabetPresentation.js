@@ -17,7 +17,7 @@ function DashboardAlphabetPresentation({
   sitename,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   const getIndicatorIcon = (data) => {
     const icon = data?.length > 0 || data?.id ? 'Checkmark' : 'Minus'
@@ -59,22 +59,22 @@ function DashboardAlphabetPresentation({
           }
           tableBody={characters.map((character) => (
             <tr key={character.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 {character.title}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedAudio)}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 <div className="flex justify-center">
                   {character?.relatedVideo
                     ? getIndicatorIcon(character?.relatedVideo)
                     : getIndicatorIcon(character?.relatedVideoLinks)}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedImage)}
                 </div>

@@ -10,7 +10,7 @@ import AudioMinimal from 'components/AudioMinimal'
 function RelatedEntriesTablePresentation({
   entries,
   sitename,
-  labelStyling = 'text-left font-medium text-lg uppercase text-fv-charcoal',
+  labelStyling = 'text-left font-medium text-lg uppercase text-charcoal-900',
 }) {
   return (
     entries?.length > 0 && (

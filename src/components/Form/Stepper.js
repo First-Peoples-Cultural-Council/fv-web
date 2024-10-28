@@ -35,7 +35,7 @@ function Stepper({ steps, onClickCallback }) {
                     {getIcon('Checkmark', 'h-5 w-5 text-white fill-current')}
                   </span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-fv-charcoal">
+                <span className="ml-4 text-sm font-medium text-charcoal-900">
                   {step.title}
                 </span>
               </button>
@@ -64,13 +64,13 @@ function Stepper({ steps, onClickCallback }) {
                 className={buttonClass}
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-fv-charcoal-light">
-                    <span className="text-fv-charcoal-light group-hover:text-fv-charcoal">{`0${
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-charcoal-500">
+                    <span className="text-charcoal-500 group-hover:text-charcoal-900">{`0${
                       stepIdx + 1
                     }`}</span>
                   </span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-fv-charcoal-light group-hover:text-fv-charcoal">
+                <span className="ml-4 text-sm font-medium text-charcoal-500 group-hover:text-charcoal-900">
                   {step.title}
                 </span>
               </button>

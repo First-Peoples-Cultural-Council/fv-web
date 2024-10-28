@@ -81,7 +81,7 @@ function JoinForm({ site, submitHandler }) {
   return (
     <div
       data-testid="JoinForm"
-      className="text-left text-fv-charcoal space-y-5 md:space-y-10"
+      className="text-left text-charcoal-900 space-y-5 md:space-y-10"
     >
       <div className="space-y-2">
         <h1 className="text-xl md:text-2xl leading-10 font-medium">
@@ -131,7 +131,7 @@ function JoinForm({ site, submitHandler }) {
                           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                             {getIcon(
                               'ChevronUpDown',
-                              'h-5 w-5 mr-2 text-fv-charcoal fill-current',
+                              'h-5 w-5 mr-2 text-charcoal-900 fill-current',
                             )}
                           </span>
                         </div>
@@ -152,7 +152,7 @@ function JoinForm({ site, submitHandler }) {
                                   className={`relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
                                     active
                                       ? 'bg-gray-100 text-secondary'
-                                      : 'text-fv-charcoal'
+                                      : 'text-charcoal-900'
                                   }`}
                                 >
                                   <div

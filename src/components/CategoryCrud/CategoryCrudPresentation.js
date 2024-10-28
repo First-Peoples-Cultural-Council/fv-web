@@ -79,7 +79,7 @@ function CategoryCrudPresentation({
                 errors={errors}
               />
             ) : (
-              <div className="text-fv-charcoal text-sm">
+              <div className="text-charcoal-900 text-sm">
                 NB: A parent category cannot be assigned a parent
               </div>
             )}

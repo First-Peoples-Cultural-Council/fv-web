@@ -17,8 +17,8 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
       {widgets?.length > 0 ? (
         <>
           <div className="text-center font-medium">
-            <h2 className="text-2xl text-fv-charcoal">Available Widgets</h2>
-            <p className="text-xl text-fv-charcoal">
+            <h2 className="text-2xl text-charcoal-900">Available Widgets</h2>
+            <p className="text-xl text-charcoal-900">
               Select a Widget to add to your page.
             </p>
           </div>
@@ -63,10 +63,10 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
         </>
       ) : (
         <div className="text-center font-medium">
-          <p className="text-xl text-fv-charcoal">
+          <p className="text-xl text-charcoal-900">
             There are no existing Widgets available to add to your page.
           </p>
-          <p className="text-xl text-fv-charcoal">
+          <p className="text-xl text-charcoal-900">
             Would you like to create a new Widget?
           </p>
         </div>

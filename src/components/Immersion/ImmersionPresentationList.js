@@ -18,12 +18,12 @@ function ImmersionPresentationList({ actions = [], isLoading, items }) {
                 <thead className="bg-gray-50">
                   <tr>
                     <th scope="col" className="px-6 py-3">
-                      <div className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider">
+                      <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
                         LABEL
                       </div>
                     </th>
                     <th scope="col" className="px-6 py-3">
-                      <div className="flex items-center text-left text-xs font-medium text-fv-charcoal-light tracking-wider">
+                      <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
                         ENGLISH LABEL
                       </div>
                     </th>
@@ -47,19 +47,19 @@ function ImmersionPresentationList({ actions = [], isLoading, items }) {
                           <td className="px-6 py-4 flex items-center">
                             <Link
                               to={link}
-                              className="font-medium text-fv-charcoal mr-2"
+                              className="font-medium text-charcoal-900 mr-2"
                             >
                               {immersionLabel}
                             </Link>
                             {relatedAudio?.length > 0 && (
                               <AudioButton
                                 audioArray={relatedAudio}
-                                iconStyling="fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-8 w-8 md:h-6 md:w-6"
+                                iconStyling="fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-8 w-8 md:h-6 md:w-6"
                                 hoverTooltip
                               />
                             )}
                           </td>
-                          <td className="px-6 py-4 text-fv-charcoal">
+                          <td className="px-6 py-4 text-charcoal-900">
                             {english}
                           </td>
                           <td className="text-right px-6" aria-label="list">

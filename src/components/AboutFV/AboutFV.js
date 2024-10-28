@@ -14,7 +14,7 @@ function AboutFV() {
           title="ABOUT FIRSTVOICES"
           accentColor="primary"
         />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <p className={paraStyle}>
             FirstVoices.com is an online space for communities to share and
             promote their language, oral culture and linguistic history.

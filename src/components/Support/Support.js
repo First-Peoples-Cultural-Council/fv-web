@@ -19,7 +19,7 @@ function Support() {
           accentColor="primary"
         />
         <div>
-          <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+          <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
             <p className={paraStyle}>
               Welcome! You can raise a FirstVoices support request from the
               options provided.

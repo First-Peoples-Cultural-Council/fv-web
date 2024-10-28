@@ -115,7 +115,7 @@ function SongsAndStoriesPresentation({
                       handleItemClick,
                     })}
               </div>
-              <div className="p-3 text-center text-fv-charcoal font-medium">
+              <div className="p-3 text-center text-charcoal-900 font-medium">
                 <div ref={loadRef} className="w-full h-5" />
                 <button
                   data-testid="load-btn"

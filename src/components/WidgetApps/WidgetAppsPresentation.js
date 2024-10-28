@@ -21,7 +21,7 @@ function WidgetAppsPresentation() {
         </h2>
       </div>
       <div className="grid grid-cols-7 gap-6 md:gap-4 mx-auto max-w-screen-lg">
-        <div className="md:text-lg text-fv-charcoal-light col-span-7 md:col-span-4 space-y-4 md:space-y-8">
+        <div className="md:text-lg text-charcoal-500 col-span-7 md:col-span-4 space-y-4 md:space-y-8">
           <div className="space-y-4 md:space-y-8">
             <div className="flex">
               <div className="flex-none w-12 p-1">

@@ -80,7 +80,7 @@ function AddGalleryButton({ value, onChange }) {
               ))}
             </div>
           ) : (
-            <div className="text-xl text-center text-fv-charcoal mb-6">
+            <div className="text-xl text-center text-charcoal-900 mb-6">
               There are currently no galleries on your site. You can create a
               gallery{' '}
               <Link to="../gallery" className="inline-url">

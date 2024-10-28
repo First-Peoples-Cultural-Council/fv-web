@@ -13,7 +13,7 @@ function Keyboards() {
           title="FONTS & KEYBOARDS"
           accentColor="primary"
         />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <h2 className={headerStyle}>
             Why do you need to install a special keyboard and font?
           </h2>

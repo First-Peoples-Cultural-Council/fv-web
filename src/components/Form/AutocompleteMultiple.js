@@ -86,7 +86,7 @@ function Autocomplete({
                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
                                   active
                                     ? 'bg-secondary text-white'
-                                    : 'text-fv-charcoal'
+                                    : 'text-charcoal-900'
                                 }`
                               }
                               value={option?.value}

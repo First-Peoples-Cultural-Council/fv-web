@@ -83,7 +83,7 @@ function ParachutePresentation({
           className={`${
             guessed
               ? 'bg-secondary text-white'
-              : 'border-gray-500 text-fv-charcoal hover:bg-gray-100'
+              : 'border-gray-500 text-charcoal-900 hover:bg-gray-100'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
           onClick={() => guessLetter(letter)}
         >
@@ -96,7 +96,7 @@ function ParachutePresentation({
     const timeDiff = Date.now() - startTime
     const timeToSolve = convertMsToTimeWords(timeDiff)
     return (
-      <h3 className="text-xl text-fv-charcoal font-bold">
+      <h3 className="text-xl text-charcoal-900 font-bold">
         <div>You win! You solved it in</div>
         {timeToSolve}.
       </h3>
@@ -104,7 +104,7 @@ function ParachutePresentation({
   }
 
   const renderFail = () => (
-    <h4 className="text-lg text-fv-charcoal">
+    <h4 className="text-lg text-charcoal-900">
       <p>Oh no! You&apos;re out of guesses.</p>
       <div>
         Don&apos;t quit now.{' '}
@@ -144,7 +144,7 @@ function ParachutePresentation({
               title="PULL TOGETHER"
               accentColor="primary"
             />
-            <p className="text-fv-charcoal mt-2">
+            <p className="text-charcoal-900 mt-2">
               This site does not currently have enough dictionary content for
               the game.
               <br />
@@ -162,7 +162,7 @@ function ParachutePresentation({
                 title="PULL TOGETHER"
                 accentColor="primary"
               />
-              <p className="text-fv-charcoal mt-2">
+              <p className="text-charcoal-900 mt-2">
                 Guess the word to make it to the beach
               </p>
             </div>
@@ -176,7 +176,7 @@ function ParachutePresentation({
                 className="max-w-3xl mx-auto object-cover h-96 w-full"
                 alt={`You have ${guessesRemaining} guesses remaining.`}
               />
-              <p className="text-fv-charcoal-xlight text-xs text-right mx-auto -mt-6 mb-6 max-w-[760px]">
+              <p className="text-charcoal-300 text-xs text-right mx-auto -mt-6 mb-6 max-w-[760px]">
                 Art by Chantelle Trainor-Matties
               </p>
             </div>

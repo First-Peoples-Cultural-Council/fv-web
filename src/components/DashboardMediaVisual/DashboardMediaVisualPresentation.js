@@ -23,7 +23,7 @@ function DashboardMediaVisualPresentation({
         <section className="p-2 h-full" aria-labelledby="results-header">
           <h1
             id="results-header"
-            className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
+            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
           >
             {typePlural}
           </h1>
@@ -63,18 +63,18 @@ function DashboardMediaVisualPresentation({
                               </span>
                             </button>
                           </div>
-                          <p className="mt-2 block text-sm font-medium text-fv-charcoal truncate pointer-events-none">
+                          <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
                             {doc?.title}
                           </p>
                           {doc?.width && doc?.height && (
-                            <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
+                            <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
                           )}
                         </li>
                       ))}
                     </React.Fragment>
                   ))}
               </ul>
-              <div className="pt-10 text-center text-fv-charcoal font-medium">
+              <div className="pt-10 text-center text-charcoal-900 font-medium">
                 <button
                   data-testid="load-btn"
                   type="button"

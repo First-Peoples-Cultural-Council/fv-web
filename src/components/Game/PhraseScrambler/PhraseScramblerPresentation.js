@@ -48,7 +48,7 @@ function PhraseScramblerPresentation({
             title="PHRASE SCRAMBLER"
             accentColor="primary"
           />
-          <p className="italic text-fv-charcoal mt-2">Unscramble to win !!</p>
+          <p className="italic text-charcoal-900 mt-2">Unscramble to win !!</p>
         </div>
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
         {translations?.length && jumbledWords?.length ? (
@@ -146,7 +146,7 @@ function PhraseScramblerPresentation({
                     {relatedAudio?.length > 0 && (
                       <AudioButton
                         audioArray={relatedAudio}
-                        iconStyling="inline fill-current text-fv-charcoal-light hover:text-fv-charcoal h-6 w-6 ml-2"
+                        iconStyling="inline fill-current text-charcoal-500 hover:text-charcoal-900 h-6 w-6 ml-2"
                         hoverTooltip
                       />
                     )}
@@ -173,7 +173,7 @@ function PhraseScramblerPresentation({
                         </p>
                         <AudioButton
                           audioArray={relatedAudio}
-                          iconStyling="inline fill-current text-fv-charcoal-light hover:text-fv-charcoal h-6 w-6"
+                          iconStyling="inline fill-current text-charcoal-500 hover:text-charcoal-900 h-6 w-6"
                           hoverTooltip
                         />
                       </div>
@@ -212,7 +212,7 @@ function PhraseScramblerPresentation({
             </button>
           </div>
         ) : (
-          <p className="text-fv-charcoal mt-2">
+          <p className="text-charcoal-900 mt-2">
             This site does not currently have enough dictionary content for the
             phrase scrambler game.
             <br />

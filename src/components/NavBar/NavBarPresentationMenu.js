@@ -18,7 +18,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
           <Link
             to={`/${sitename + menuItem.href}`}
             className={`${
-              active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
+              active ? 'bg-gray-200 text-black' : 'text-charcoal-900'
             } flex w-full rounded-lg`}
           >
             <div className="px-2 py-1 w-full text-lg font-medium">
@@ -37,7 +37,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       </p>
       {i18n?.language !== 'en' && (
         // Tooltip
-        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded text-fv-charcoal p-2 text-sm bg-white">
+        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded text-charcoal-900 p-2 text-sm bg-white">
           {transKey ? t(transKey) : title}
         </span>
       )}

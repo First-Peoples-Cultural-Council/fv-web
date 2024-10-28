@@ -16,7 +16,7 @@ function DashboardPagesPresentation({
   sitename,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   return (
     <div id="DashboardPagesPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -52,10 +52,10 @@ function DashboardPagesPresentation({
               <td className="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900">
                 {page.title}
               </td>
-              <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
                 {page.subtitle}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {page.url}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">

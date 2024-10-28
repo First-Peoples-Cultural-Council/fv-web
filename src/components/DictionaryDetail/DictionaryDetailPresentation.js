@@ -19,8 +19,8 @@ function DictionaryDetailPresentation({
   sitename,
 }) {
   const labelStyling =
-    'text-left font-medium text-lg uppercase text-fv-charcoal'
-  const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
+    'text-left font-medium text-lg uppercase text-charcoal-900'
+  const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6 sm:col-span-2'
   const listStyling = 'list-none md:list-disc space-y-1'
   const noMedia = !(
     entry?.relatedImages?.length > 0 ||
@@ -264,7 +264,7 @@ function DictionaryDetailPresentation({
                         </div>
                         <Disclosure.Panel>
                           {video?.title && (
-                            <div className="text-fv-charcoal">
+                            <div className="text-charcoal-900">
                               {video?.title}
                               {video?.descriotion && (
                                 <span className="font-medium">
@@ -275,7 +275,7 @@ function DictionaryDetailPresentation({
                             </div>
                           )}
                           {video?.acknowledgement && (
-                            <div className="text-fv-charcoal">
+                            <div className="text-charcoal-900">
                               <span className="font-medium">
                                 Acknowledgement: {video?.acknowledgement}
                               </span>

@@ -19,7 +19,7 @@ function RadioButtonGroupPresentation({
     >
       <div className="space-y-2">
         {label && (
-          <RadioGroup.Label className="text-sm font-medium text-fv-charcoal">
+          <RadioGroup.Label className="text-sm font-medium text-charcoal-900">
             {label}
           </RadioGroup.Label>
         )}
@@ -34,7 +34,7 @@ function RadioButtonGroupPresentation({
                 <div className="flex items-center">
                   <span
                     className={`${
-                      checked ? `border-${accentColor}` : 'border-fv-charcoal'
+                      checked ? `border-${accentColor}` : 'border-charcoal-900'
                     } bg-white h-5 w-5 rounded-full border flex items-center justify-center`}
                     aria-hidden="true"
                   >
@@ -51,7 +51,7 @@ function RadioButtonGroupPresentation({
                               ${
                                 checked
                                   ? `text-${accentColor}`
-                                  : 'text-fv-charcoal'
+                                  : 'text-charcoal-900'
                               }`}
                     >
                       {option?.label}

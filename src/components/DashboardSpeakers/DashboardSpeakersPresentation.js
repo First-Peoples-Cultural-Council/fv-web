@@ -16,7 +16,7 @@ function DashboardSpeakersPresentation({
   sitename,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   return (
     <div id="DashboardSpeakersPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -46,7 +46,7 @@ function DashboardSpeakersPresentation({
               <td className="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900">
                 {speaker.name}
               </td>
-              <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
                 {speaker?.bio || '-'}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">

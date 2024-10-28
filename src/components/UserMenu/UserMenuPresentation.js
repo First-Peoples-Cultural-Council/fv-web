@@ -14,7 +14,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
       : false
 
   const menuItemActiveClass = 'bg-gray-200 text-black rounded ring-black'
-  const menuItemInactiveClass = 'text-fv-charcoal'
+  const menuItemInactiveClass = 'text-charcoal-900'
   const menuItemBaseClass =
     'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'
 
@@ -40,7 +40,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute top-14 right-0 w-72 p-2 space-y-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <Menu.Item className="text-fv-charcoal px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-gray-200">
+            <Menu.Item className="text-charcoal-900 px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-gray-200">
               <div>
                 Welcome
                 {currentUser?.displayName && !currentUser?.isAnonymous

@@ -35,7 +35,7 @@ function DashboardLandingPresentation({
                   >
                     {headerContent?.title}
                   </p>
-                  <p className="text-sm font-medium text-fv-charcoal-light">
+                  <p className="text-sm font-medium text-charcoal-500">
                     {headerContent?.subtitle}
                   </p>
                 </div>

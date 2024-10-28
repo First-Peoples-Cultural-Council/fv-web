@@ -39,7 +39,7 @@ function WidgetAreaEditPresentationSettingsPane({
 
   const settingLabelStyling =
     'mb-1 text-sm font-bold text-primary-light capitalize'
-  const settingDetailStyling = 'text-fv-charcoal text-lg'
+  const settingDetailStyling = 'text-charcoal-900 text-lg'
 
   const getSettings = () => {
     if (!currentWidget?.editable) {
@@ -176,7 +176,7 @@ function WidgetAreaEditPresentationSettingsPane({
                 <div className="col-span-3">
                   <div className={settingLabelStyling}>
                     <div>Email Addresses where messages will be sent</div>
-                    <div className="text-sm font-normal normal-case italic text-fv-charcoal-light">
+                    <div className="text-sm font-normal normal-case italic text-charcoal-500">
                       Please contact support at hello@firstvoices.com to update
                       this email list.
                     </div>
@@ -218,10 +218,10 @@ function WidgetAreaEditPresentationSettingsPane({
           className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-md sm:w-full"
         >
           <div className="text-center font-medium space-y-2">
-            <p className="text-2xl text-fv-charcoal">
+            <p className="text-2xl text-charcoal-900">
               Are you sure you want to remove the widget from this page?
             </p>
-            <p className="text-fv-charcoal">
+            <p className="text-charcoal-900">
               This will not delete the widget itself and you can always put it
               back if you change your mind.
             </p>

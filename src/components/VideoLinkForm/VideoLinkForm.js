@@ -43,7 +43,7 @@ function VideoLinkForm({
       <div className="col-span-12">
         {relatedVideoLinks?.length < maxLinks ? (
           <div className="max-w-screen-lg mx-auto">
-            <p className="block text-sm font-small text-fv-charcoal italic">
+            <p className="block text-sm font-small text-charcoal-900 italic">
               Add a link to a video below (currently YouTube and Vimeo links are
               supported).
             </p>
@@ -66,7 +66,7 @@ function VideoLinkForm({
             </button>
           </div>
         ) : (
-          <p className="block text-sm font-small text-fv-charcoal italic">
+          <p className="block text-sm font-small text-charcoal-900 italic">
             You have reached the maximum number of video links. Please remove
             existing videos to add new ones.
           </p>

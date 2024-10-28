@@ -9,7 +9,7 @@ function SliderPresentationTile({ currentSlide, tileRef, item, onTileClick }) {
   const hasCoverImage = item.photos?.length > 0
   const conditionalClass = hasCoverImage
     ? 'bg-center bg-cover text-white'
-    : 'text-fv-charcoal-light bg-gray-100'
+    : 'text-charcoal-500 bg-gray-100'
   const conditionalStyle = hasCoverImage
     ? {
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl(

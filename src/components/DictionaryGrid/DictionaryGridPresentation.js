@@ -64,7 +64,7 @@ function DictionaryGridPresentation({
               </div>
             ))}
           </div>
-          <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
+          <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
             <button
               data-testid="load-btn"
               type="button"

@@ -18,13 +18,13 @@ function AudiobarPresentationMobile({
       id="Audiobar"
       className={`${
         open ? '' : 'hidden'
-      } fixed inset-x-0 -bottom-1 z-50 bg-fv-charcoal p-2`}
+      } fixed inset-x-0 -bottom-1 z-50 bg-charcoal-900 p-2`}
     >
       <div className="w-full h-full text-white flex align-center items-center">
         <div className="w-full space-y-1">
           <button
             type="button"
-            className="float-right text-gray-500 hover:text-fv-charcoal focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
+            className="float-right text-gray-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
             onClick={() => close()}
           >
             {getIcon('Close', 'fill-current h-7 w-7')}
@@ -40,7 +40,7 @@ function AudiobarPresentationMobile({
             <button
               type="button"
               onClick={() => onPlayPauseClick()}
-              className="text-fv-charcoal-dark p-3 rounded-full bg-white shadow-lg"
+              className="text-charcoal-900 p-3 rounded-full bg-white shadow-lg"
             >
               {getIcon(
                 `${isPlaying ? 'Pause' : 'Play'}`,
