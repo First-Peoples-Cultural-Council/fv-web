@@ -140,7 +140,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'word',
         plural: 'words',
         slug: 'words',
-        color: 'word',
+        color: 'word-500',
+        textColor: 'word-700',
       }
     case TYPE_PHRASE:
       return {
@@ -148,7 +149,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'phrase',
         plural: 'phrases',
         slug: 'phrases',
-        color: 'phrase',
+        color: 'phrase-600',
+        textColor: 'phrase-800',
       }
     case TYPE_SONG:
       return {
@@ -156,7 +158,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'song',
         plural: 'songs',
         slug: 'songs',
-        color: 'song',
+        color: 'song-800',
+        textColor: 'song-900',
       }
     case TYPE_STORY:
       return {
@@ -164,7 +167,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'story',
         plural: 'stories',
         slug: 'stories',
-        color: 'story',
+        color: 'story-700',
+        textColor: 'story-900',
       }
     case TYPE_DICTIONARY:
       return {
@@ -172,7 +176,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'word / phrase',
         plural: 'words and phrases',
         slug: 'dictionary',
-        color: 'word',
+        color: 'word-500',
+        textColor: 'word-700',
       }
     case TYPE_MEDIA:
       return {
@@ -180,7 +185,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'media',
         plural: 'media',
         slug: 'search',
-        color: 'primary',
+        color: 'charcoal-500',
+        textColor: 'charcoal-900',
       }
     case TYPE_AUDIO:
       return {
@@ -188,7 +194,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'audio',
         plural: 'audio',
         slug: 'audio',
-        color: 'primary',
+        color: 'charcoal-500',
+        textColor: 'charcoal-900',
       }
     case TYPE_IMAGE:
       return {
@@ -196,7 +203,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'image',
         plural: 'images',
         slug: 'image',
-        color: 'primary',
+        color: 'charcoal-500',
+        textColor: 'charcoal-900',
       }
     case TYPE_VIDEO:
       return {
@@ -204,7 +212,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'video',
         plural: 'videos',
         slug: 'video',
-        color: 'primary',
+        color: 'charcoal-500',
+        textColor: 'charcoal-900',
       }
     case TYPE_ENTRY:
     default:
@@ -213,7 +222,8 @@ export const getPresentationPropertiesForType = (type) => {
         singular: 'language entry',
         plural: 'language entries',
         slug: 'search',
-        color: 'fv-charcoal',
+        color: 'charcoal-500',
+        textColor: 'charcoal-900',
       }
   }
 }

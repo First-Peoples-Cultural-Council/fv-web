@@ -41,7 +41,7 @@ function DictionaryPresentation({
     <>
       <section
         id="DictionaryPresentation"
-        className={`bg-gradient-to-b from-${labels.color} to-${labels.color}-dark p-5 print:hidden`}
+        className={`bg-gradient-to-b from-${labels.color} to-${labels.textColor} p-5 print:hidden`}
       >
         <div className="mx-auto lg:w-3/5">
           <SearchDictionaryForm.Container
@@ -65,7 +65,7 @@ function DictionaryPresentation({
         <div className="grid grid-cols-12">
           <div className="hidden lg:block print:hidden col-span-2 mt-5">
             <div className="mb-12 ml-4 xl:ml-7 space-y-2">
-              <h1 className={`text-3xl xl:text-4xl text-${labels.color}Text `}>
+              <h1 className={`text-3xl xl:text-4xl text-${labels.textColor}`}>
                 {labels.uppercase}
               </h1>
               <div
