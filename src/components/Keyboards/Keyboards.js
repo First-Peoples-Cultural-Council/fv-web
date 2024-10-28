@@ -9,10 +9,7 @@ function Keyboards() {
   return (
     <section className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Keyboards">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="FONTS & KEYBOARDS"
-          accentColor="primary"
-        />
+        <SectionTitle.Presentation title="FONTS & KEYBOARDS" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <h2 className={headerStyle}>
             Why do you need to install a special keyboard and font?

@@ -14,10 +14,7 @@ function Support() {
       data-testid="AboutFirstVoices"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="FIRSTVOICES SUPPORT"
-          accentColor="primary"
-        />
+        <SectionTitle.Presentation title="FIRSTVOICES SUPPORT" />
         <div>
           <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
             <p className={paraStyle}>

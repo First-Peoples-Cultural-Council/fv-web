@@ -10,10 +10,7 @@ function AboutFV() {
       data-testid="AboutFirstVoices"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="ABOUT FIRSTVOICES"
-          accentColor="primary"
-        />
+        <SectionTitle.Presentation title="ABOUT FIRSTVOICES" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <p className={paraStyle}>
             FirstVoices.com is an online space for communities to share and

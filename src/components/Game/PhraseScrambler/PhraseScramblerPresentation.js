@@ -44,10 +44,7 @@ function PhraseScramblerPresentation({
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
         <div>
-          <SectionTitle.Presentation
-            title="PHRASE SCRAMBLER"
-            accentColor="primary"
-          />
+          <SectionTitle.Presentation title="PHRASE SCRAMBLER" />
           <p className="italic text-charcoal-900 mt-2">Unscramble to win !!</p>
         </div>
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
@@ -139,7 +136,7 @@ function PhraseScramblerPresentation({
                     <p className="inline">
                       {getIcon(
                         'CheckCircleSolid',
-                        'h-8 w-8 inline fill-word mx-2',
+                        'h-8 w-8 inline fill-jade-500 mx-2',
                       )}
                       Great Job!
                     </p>
@@ -162,7 +159,7 @@ function PhraseScramblerPresentation({
                     >
                       {getIcon(
                         'TryAgain',
-                        'h-8 w-8 inline fill-story mx-2 stroke-2',
+                        'h-8 w-8 inline fill-ochre-600 mx-2 stroke-2',
                       )}
                       Try again!
                     </button>

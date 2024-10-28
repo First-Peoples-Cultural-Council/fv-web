@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function SectionTitlePresentation({
-  accentColor,
+  accentColor = 'blumine-800',
   bgColor = 'white',
   title,
   placeholder = false,
@@ -10,9 +10,7 @@ function SectionTitlePresentation({
   return (
     <div data-testid="SectionTitlePresentation" className="relative">
       <h2
-        className={`relative z-10 text-center text-2xl md:text-4xl lg:text-5xl text-${
-          accentColor || 'primary'
-        } font-bold`}
+        className={`relative z-10 text-center text-2xl md:text-4xl lg:text-5xl text-${accentColor} font-bold`}
       >
         <span
           className={`max-w-screen-lg inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
@@ -22,9 +20,7 @@ function SectionTitlePresentation({
         </span>
       </h2>
       <hr
-        className={`absolute z-0 w-full ${
-          accentColor ? `border-${accentColor}` : 'border-primary'
-        }`}
+        className={`absolute z-0 w-full border-${accentColor}`}
         style={{ top: '50%' }}
       />
     </div>

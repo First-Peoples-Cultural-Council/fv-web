@@ -27,10 +27,7 @@ function LanguagesPresentation({
       {userSitesList?.length > 0 && (
         <div>
           <div className="mt-4 py-8 items-center">
-            <SectionTitle.Presentation
-              title="YOUR LANGUAGES"
-              accentColor="primary"
-            />
+            <SectionTitle.Presentation title="YOUR LANGUAGES" />
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList?.map((site) => (
@@ -44,10 +41,7 @@ function LanguagesPresentation({
 
       <div>
         <div className="mt-4 py-8 items-center">
-          <SectionTitle.Presentation
-            title="EXPLORE LANGUAGES"
-            accentColor="primary"
-          />
+          <SectionTitle.Presentation title="EXPLORE LANGUAGES" />
         </div>
         <SearchLanguagesForm.Container />
         <Loading.Container isLoading={isLoading}>

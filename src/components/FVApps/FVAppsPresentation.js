@@ -17,10 +17,7 @@ function FVAppsPresentation({ sitesWithApps }) {
       data-testid="FirstVoicesApps"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="FIRSTVOICES APPS"
-          accentColor="primary"
-        />
+        <SectionTitle.Presentation title="FIRSTVOICES APPS" />
         <div className="max-w-5xl mx-auto text-charcoal-900 space-y-4 py-8">
           <h2 className={headerStyle}>FirstVoices Language Apps</h2>
           <p className={paraStyle}>

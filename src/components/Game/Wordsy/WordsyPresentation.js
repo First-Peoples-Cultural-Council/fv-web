@@ -56,7 +56,7 @@ function WordsyPresentation({
       className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white"
       data-testid="WordsyContainer"
     >
-      <SectionTitle.Presentation title="WORDSY" accentColor="primary" />
+      <SectionTitle.Presentation title="WORDSY" />
 
       <button
         type="button"

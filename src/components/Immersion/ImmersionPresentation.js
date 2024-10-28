@@ -9,10 +9,7 @@ function ImmersionPresentation({ actions, isLoadingEntries, items }) {
   return (
     <section className="py-12 bg-white" data-testid="ImmersionPresentation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="WHAT IS IMMERSION MODE?"
-          accentColor="primary"
-        />
+        <SectionTitle.Presentation title="WHAT IS IMMERSION MODE?" />
         <div className="text-center text-charcoal-500 px-20 py-5 space-y-4">
           The language team for this site has added translations for the buttons
           and headers on FirstVoices, so that you can use Immersion Mode to

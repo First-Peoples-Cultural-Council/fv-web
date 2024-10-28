@@ -14,7 +14,6 @@ function GalleryPresentation({ data }) {
     >
       <SectionTitle.Presentation
         title={data?.title}
-        bgColor="white"
         accentColor="charcoal-900"
       />
       <div className="text-center text-charcoal-900 text-xl">

@@ -21,7 +21,7 @@ function AlphabetPresentation({
       data-testid="AlphabetPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="ALPHABET" accentColor="primary" />
+        <SectionTitle.Presentation title="ALPHABET" />
         {links && (
           <div className="flex font-bold items-center justify-center text-center text-primary mb-5">
             <ul className="flex text-center">
