@@ -113,7 +113,7 @@ function SelectorEntryPresentationList({
                             {isMultiDocType ? (
                               <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left">
                                 <span
-                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry.type} capitalize text-white`}
+                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry.type}-color-700 capitalize text-white`}
                                 >
                                   {entry.type}
                                 </span>

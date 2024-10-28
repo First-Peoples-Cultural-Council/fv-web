@@ -29,7 +29,7 @@ function JoinPresentation({
     stage === 'success'
       ? getIcon(
           'CheckCircleSolid',
-          'fill-current text-word h-12 w-12 md:h-20 md:w-20 mx-auto',
+          'fill-current text-jade-500 h-12 w-12 md:h-20 md:w-20 mx-auto',
         )
       : getIcon(
           'TimesCircleSolid',

@@ -76,7 +76,7 @@ function LandingKeyboardsPresentation({ data }) {
           <p className="pt-8 pb-4 m-4">{text}</p>
           <a
             href={url}
-            className="bg-phrase rounded-full text-center py-2 px-5 w-36 hover:font-bold m-4"
+            className="bg-ochre-600 rounded-full text-center py-2 px-5 w-36 hover:font-bold m-4"
           >
             {urlLabel}
           </a>

@@ -39,7 +39,7 @@ function WidgetQuotesPresentation({ widgetData }) {
   return (
     <section
       id="WidgetQuotesPresentation"
-      className="bg-phrase flex flex-col md:flex-row justify-evenly items-center pb-16 md:pb-0"
+      className="bg-ochre-600 flex flex-col md:flex-row justify-evenly items-center pb-16 md:pb-0"
       style={{
         backgroundImage: `url(${
           backgroundImage &&

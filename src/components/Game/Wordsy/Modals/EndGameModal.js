@@ -15,7 +15,7 @@ function EndGameModal({ status, solution, text }) {
         <h3 className={`text-center text-4xl font-bold text-${statusColor}`}>
           {text}
         </h3>
-        <hr className="bg-primary w-48 h-1 border-0 rounded mx-auto" />
+        <hr className="bg-blumine-800 w-48 h-1 border-0 rounded mx-auto" />
       </div>
       <div className="space-y-2">
         <div>Today&apos;s word is:</div>

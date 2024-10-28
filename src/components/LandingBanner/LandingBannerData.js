@@ -34,7 +34,7 @@ function LandingBannerData() {
           extUrl: 'https://maps.fpcc.ca/',
           urlLabel: 'EXPLORE LANGUAGE MAP',
           info: 'View an interactive map of language territories',
-          backgroundColor: 'phrase',
+          backgroundColor: 'ochre-600',
           backgroundImage: map,
           icon: 'MapLocation',
         },

@@ -5,7 +5,7 @@ function LandingAboutData() {
   const data = {
     settings: {
       mockData: true,
-      bg: 'jade-500',
+      bgColor: 'jade-500',
       bgImage,
       image: Img,
       title: 'ABOUT FIRSTVOICES',
