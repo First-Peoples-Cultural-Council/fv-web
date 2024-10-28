@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import Listbox from 'components/Listbox'
 
 function TabsPresentation({
-  accentColor = 'primary',
+  accentColor = 'blumine-800',
   selectedValue,
   tabs,
   setValue,

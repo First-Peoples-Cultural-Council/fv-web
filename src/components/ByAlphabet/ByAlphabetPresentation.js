@@ -165,7 +165,7 @@ function ByAlphabetPresentation({
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}
-                  accentColor="primary"
+                  accentColor="blumine-800"
                 />
               </div>
               <div className="hidden md:block p-2 print:block">
