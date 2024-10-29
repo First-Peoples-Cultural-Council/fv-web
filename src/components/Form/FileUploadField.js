@@ -23,7 +23,7 @@ function FileUploadField({
         className={`${
           disabled ? 'opacity-50' : ''
         } block w-full border border-gray-300 rounded-lg shadow-sm py-2 px-3 
-          focus:outline-none focus:ring-secondary focus:border-secondary sm:text-sm`}
+          focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 sm:text-sm`}
       />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>

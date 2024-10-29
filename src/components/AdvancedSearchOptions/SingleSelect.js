@@ -67,7 +67,7 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
                 key={option.value}
                 className={({ active }) =>
                   `flex items-center cursor-default p-2 text-sm font-medium ${
-                    active ? 'bg-gray-50 text-secondary' : 'text-charcoal-900'
+                    active ? 'bg-gray-50 text-scarlet-800' : 'text-charcoal-900'
                   }`
                 }
                 value={option}
@@ -76,7 +76,7 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
                   <div className="px-4 space-x-4 flex items-center">
                     {getIcon(
                       selected ? 'Checkmark' : '',
-                      'h-4 w-4 fill-current text-secondary',
+                      'h-4 w-4 fill-current text-scarlet-800',
                     )}
                     <span className="whitespace-nowrap">
                       {option?.value ? option?.label : '--------'}

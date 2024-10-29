@@ -12,7 +12,7 @@ function HeaderSelect({ value, handleSelectChange, headerBlockTypes }) {
     <select
       value={value}
       onChange={onToggle}
-      className="border-r border-gray-200 pl-3 pr-10 py-2 focus:outline-none focus:ring-secondary focus:border-secondary text-sm"
+      className="border-r border-gray-200 pl-3 pr-10 py-2 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 text-sm"
     >
       <option value="">Normal</option>
       {headerBlockTypes.map((heading) => (

@@ -106,7 +106,7 @@ function WidgetTextPresentation({ widgetData }) {
                 className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-full md:text-lg ${
                   bgColor
                     ? `text-${bgColor} bg-white hover:font-bold hover:px-4`
-                    : 'text-white bg-secondary hover:bg-secondary-dark'
+                    : 'text-white bg-scarlet-800 hover:bg-scarlet-900'
                 }`}
               >
                 {urlLabel || 'More...'}

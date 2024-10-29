@@ -82,7 +82,7 @@ function ParachutePresentation({
           key={letter.id}
           className={`${
             guessed
-              ? 'bg-secondary text-white'
+              ? 'bg-scarlet-800 text-white'
               : 'border-gray-500 text-charcoal-900 hover:bg-gray-100'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
           onClick={() => guessLetter(letter)}
@@ -221,7 +221,7 @@ function ParachutePresentation({
               <button
                 data-testid="restart"
                 type="button"
-                className="btn-contained bg-secondary"
+                className="btn-contained bg-scarlet-800"
                 onClick={restart}
               >
                 Restart

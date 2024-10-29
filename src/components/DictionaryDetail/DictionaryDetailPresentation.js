@@ -65,7 +65,7 @@ function DictionaryDetailPresentation({
               {entry?.visibility === PUBLIC || !entry?.visibility ? (
                 ''
               ) : (
-                <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-secondary-dark">
+                <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-scarlet-900">
                   {getIcon(
                     entry?.visibility,
                     'fill-current inline-flex h-6 w-6 mr-2',
@@ -122,7 +122,7 @@ function DictionaryDetailPresentation({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-1"
+                    buttonStyling="bg-scarlet-800 hover:bg-scarlet-900 text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-1"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />

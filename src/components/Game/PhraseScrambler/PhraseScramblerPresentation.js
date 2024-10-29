@@ -28,7 +28,7 @@ function PhraseScramblerPresentation({
   const baseTextBlockStyling =
     'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
   const baseButtonStyling =
-    'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-light'
+    'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
   const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white hover:bg-blumine-500`
   let selectedBoxAdditionalStyling = 'bg-gray-100'
   if (gameStatus === 'Won') {

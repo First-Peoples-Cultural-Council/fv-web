@@ -39,8 +39,8 @@ function DashboardMediaVisualPresentation({
                           <div
                             className={`${
                               doc?.id === currentFile?.id
-                                ? 'ring-4 ring-offset-2 ring-secondary'
-                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary'
+                                ? 'ring-4 ring-offset-2 ring-scarlet-800'
+                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-scarlet-800'
                             } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden`}
                           >
                             <img

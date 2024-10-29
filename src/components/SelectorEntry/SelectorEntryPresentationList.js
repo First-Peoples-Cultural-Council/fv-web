@@ -36,7 +36,7 @@ function SelectorEntryPresentationList({
           data-testid="add-entry-btn"
           type="button"
           onClick={addToEntry}
-          className="btn-contained mx-auto bg-secondary"
+          className="btn-contained mx-auto bg-scarlet-800"
         >
           {getIcon('Add', 'btn-icon')}
           <span>Add to dictionary entry</span>

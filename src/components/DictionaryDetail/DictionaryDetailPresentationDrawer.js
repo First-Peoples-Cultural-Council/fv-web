@@ -51,7 +51,7 @@ function DictionaryDetailPresentationDrawer({
               ? ''
               : getIcon(
                   entry?.visibility,
-                  'fill-current text-secondary-dark h-6 w-6 ml-3 mb-1',
+                  'fill-current text-scarlet-900 h-6 w-6 ml-3 mb-1',
                 )}
           </div>
 
@@ -100,7 +100,7 @@ function DictionaryDetailPresentationDrawer({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-2"
+                    buttonStyling="bg-scarlet-800 hover:bg-scarlet-900 text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-2"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />

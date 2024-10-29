@@ -18,7 +18,7 @@ function DashboardLocatorPresentation({ site }) {
           </div>
         ) : (
           <div>
-            <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
+            <div className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
               <span className="text-center">{site?.title?.charAt(0)}</span>
             </div>
           </div>

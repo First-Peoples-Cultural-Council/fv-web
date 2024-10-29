@@ -54,7 +54,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
             <button
               data-testid="delete-confirm"
               type="button"
-              className="btn-contained bg-secondary"
+              className="btn-contained bg-scarlet-800"
               onClick={() => {
                 setDeleteModalOpen(false)
                 deleteHandler()

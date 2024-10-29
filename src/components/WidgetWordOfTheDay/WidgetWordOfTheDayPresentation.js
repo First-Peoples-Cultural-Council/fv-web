@@ -26,7 +26,7 @@ function WidgetWordOfTheDayPresentation({
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <Loading.Container isLoading={wordTitle?.length < 0} height="h-full">
-          <div className="mt-2 max-w-2xl inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-secondary md:mx-auto sm:text-5xl">
+          <div className="mt-2 max-w-2xl inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800 md:mx-auto sm:text-5xl">
             <Link to={relativeUrl}>{wordTitle}</Link>
             {audio && (
               <span className="ml-2 text-black">
@@ -45,7 +45,7 @@ function WidgetWordOfTheDayPresentation({
             {partOfSpeech}
           </p>
         </Loading.Container>
-        <h3 className="mt-8 max-w-2xl text-lg text-secondary md:mx-auto sm:text-xl">
+        <h3 className="mt-8 max-w-2xl text-lg text-scarlet-800 md:mx-auto sm:text-xl">
           Share on:
         </h3>
         <ShareLinks.Presentation

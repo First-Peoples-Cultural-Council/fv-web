@@ -102,7 +102,7 @@ function DashboardJoinCardPresentation({
                 data-testid="igore-request-btn"
                 type="button"
                 onClick={() => handleIgnore()}
-                className="btn-outlined text-secondary border-secondary"
+                className="btn-outlined text-scarlet-800 border-scarlet-800"
               >
                 {getIcon('TimesCircleSolid', 'btn-icon')}
                 <span>Ignore</span>

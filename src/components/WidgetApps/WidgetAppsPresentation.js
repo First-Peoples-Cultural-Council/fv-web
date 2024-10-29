@@ -16,7 +16,7 @@ function WidgetAppsPresentation() {
     <section className="px-4 lg:px-0 py-3 lg:py-6 bg-white">
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title="DOWNLOAD MOBILE APP" />
-        <h2 className="text-center text-secondary text-sm md:text-base lg:text-2xl mt-2 md:mt-3.5 lg:mt-5">
+        <h2 className="text-center text-scarlet-800 text-sm md:text-base lg:text-2xl mt-2 md:mt-3.5 lg:mt-5">
           {site?.title}
         </h2>
       </div>
@@ -89,7 +89,7 @@ function WidgetAppsPresentation() {
                 href={appUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-80 btn-contained bg-secondary"
+                className="w-80 btn-contained bg-scarlet-800"
               >
                 {getIcon('Download', 'btn-icon')}
                 <span>Install now</span>

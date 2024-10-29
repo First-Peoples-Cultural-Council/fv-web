@@ -60,7 +60,7 @@ function FVAppsPresentation({ sitesWithApps }) {
                       <button
                         data-testid="DownloadAppButton"
                         type="button"
-                        className="bg-secondary text-white px-4 py-2 rounded-md mb-"
+                        className="bg-scarlet-800 text-white px-4 py-2 rounded-md mb-"
                       >
                         {getIcon(
                           'Download',

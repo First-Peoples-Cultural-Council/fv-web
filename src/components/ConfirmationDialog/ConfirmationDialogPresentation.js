@@ -31,7 +31,7 @@ function ConfirmationDialogPresentation({
           <button
             data-testid="confirm"
             type="button"
-            className="btn-contained bg-secondary"
+            className="btn-contained bg-scarlet-800"
             onClick={() => {
               onConfirmation()
               closeHandler()

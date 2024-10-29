@@ -22,7 +22,7 @@ function MediaDetailsAudio({ file }) {
           data-testid="EntryDrawerEdit"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 btn-contained bg-secondary"
+          className="flex-1 btn-contained bg-scarlet-800"
         >
           {getIcon('Pencil', 'btn-icon')}
           <span>Edit</span>

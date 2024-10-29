@@ -31,7 +31,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
                 onClick={() => setSelectedWidget(widget?.id)}
                 className={`${
                   selectedWidget === widget?.id
-                    ? 'bg-secondary text-white'
+                    ? 'bg-scarlet-800 text-white'
                     : 'hover:bg-gray-50 text-primary bg-white'
                 } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
               >
@@ -53,7 +53,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
               data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="btn-contained disabled:opacity-40 bg-secondary"
+              className="btn-contained disabled:opacity-40 bg-scarlet-800"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK

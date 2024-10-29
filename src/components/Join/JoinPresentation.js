@@ -33,7 +33,7 @@ function JoinPresentation({
         )
       : getIcon(
           'TimesCircleSolid',
-          'fill-current text-secondary h-12 w-12 md:h-20 md:w-20 mx-auto',
+          'fill-current text-scarlet-800 h-12 w-12 md:h-20 md:w-20 mx-auto',
         )
 
   const navigate = useNavigate()

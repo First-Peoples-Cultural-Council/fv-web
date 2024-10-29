@@ -38,10 +38,10 @@ function TextArrayField({
           <ul className="space-y-2">
             {fields.map((item, index) => (
               <li key={item.id}>
-                <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
+                <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
                   <input
                     type="text"
-                    className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg"
+                    className="flex w-full py-2 border border-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg"
                     {...register(`${nameId}.${index}.text`)}
                     onKeyDown={handleKeyDown}
                   />
@@ -79,10 +79,10 @@ function TextArrayField({
         </div>
       ) : (
         <div className="space-y-2 mt-2">
-          <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-secondary focus:border-secondary">
+          <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
             <input
               type="text"
-              className="flex w-full py-2 border border-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg placeholder:italic"
+              className="flex w-full py-2 border border-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg placeholder:italic"
               {...register(`${nameId}.${fields?.length}.text`)}
               onKeyDown={handleKeyDown}
               placeholder={placeholder}

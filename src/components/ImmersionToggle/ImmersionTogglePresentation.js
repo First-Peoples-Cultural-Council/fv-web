@@ -40,7 +40,7 @@ function ImmersionTogglePresentation({ site }) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {getIcon('Question', 'fill-current text-secondary ml-3 h-6 w-auto')}
+        {getIcon('Question', 'fill-current text-scarlet-800 ml-3 h-6 w-auto')}
       </Link>
     </div>
   ) : null

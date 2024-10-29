@@ -24,7 +24,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                   <SiteLogo.Presentation logo={site?.logo} size={THUMBNAIL} />
                 </div>
               ) : (
-                <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
+                <div className="h-12 w-12 bg-scarlet-800 text-white text-xl rounded-full flex items-center justify-center">
                   <span className="text-center">{site?.title?.charAt(0)}</span>
                 </div>
               )}
@@ -75,7 +75,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                                 />
                               </div>
                             ) : (
-                              <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
+                              <div className="h-12 w-12 bg-scarlet-800 text-white text-xl rounded-full flex items-center justify-center">
                                 <span className="text-center">
                                   {sitesListItem?.title?.charAt(0)}
                                 </span>
@@ -107,7 +107,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                 <SiteLogo.Presentation logo={site?.logo} size={THUMBNAIL} />
               </div>
             ) : (
-              <div className="h-12 w-12 bg-secondary text-white text-xl rounded-full flex items-center justify-center">
+              <div className="h-12 w-12 bg-scarlet-800 text-white text-xl rounded-full flex items-center justify-center">
                 <span className="text-center">{site?.title?.charAt(0)}</span>
               </div>
             )}

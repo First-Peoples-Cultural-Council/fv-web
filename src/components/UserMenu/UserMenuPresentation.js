@@ -22,7 +22,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
     <div id="NavUser" className="relative inline-flex">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-xl rounded-full h-12 w-12 items-center justify-center">
+          <Menu.Button className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center">
             {currentUser?.isAnonymous ? (
               <span className="text-xs">GUEST</span>
             ) : (

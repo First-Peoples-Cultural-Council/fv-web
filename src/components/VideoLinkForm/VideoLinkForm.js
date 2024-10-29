@@ -59,7 +59,7 @@ function VideoLinkForm({
             <button
               data-testid="add-video-link-btn"
               type="button"
-              className={`${buttonStyles} bg-secondary hover:bg-secondary-dark text-white`}
+              className={`${buttonStyles} bg-scarlet-800 hover:bg-scarlet-900 text-white`}
               onClick={handleSubmit(submitHandler)}
             >
               Add Linked Video

@@ -77,7 +77,7 @@ function PrivateSiteCard({ site, user }) {
                     data-testid="login-join"
                     type="button"
                     onClick={primaryButtonClick}
-                    className="btn-contained bg-secondary"
+                    className="btn-contained bg-scarlet-800"
                   >
                     {isAnonymous ? 'Sign in' : 'request to join'}
                   </button>

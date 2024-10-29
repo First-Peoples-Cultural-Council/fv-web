@@ -33,7 +33,7 @@ function SelectorVisualMediaGridPresentation({
                   }
                   return (
                     <li key={mediaObject?.id} className="relative group">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-scarlet-800 block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
                         <img
                           src={mediaObject?.thumbnail}
                           alt={mediaObject?.title}
@@ -67,7 +67,7 @@ function SelectorVisualMediaGridPresentation({
                         >
                           {getIcon(
                             'TimesCircleSolid',
-                            'hidden group-hover:block h-8 w-8 fill-secondary',
+                            'hidden group-hover:block h-8 w-8 fill-scarlet-800',
                           )}
                           {getIcon(
                             'CheckCircleSolid',
