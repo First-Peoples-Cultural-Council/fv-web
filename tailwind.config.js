@@ -112,19 +112,24 @@ module.exports = {
       },
       colors: {
         // Core Colors
-        scarlet: customColorsConfig.scarlet, // 400, 500, 600, 700, 800, 900
         blumine: customColorsConfig.blumine, // 400, 500, 600, 700, 800, 900
+        scarlet: customColorsConfig.scarlet, // 400, 500, 600, 700, 800, 900
         jade: customColorsConfig.jade, // 300, 400, 500, 700, 800
         ochre: customColorsConfig.ochre, // 200, 400, 500, 600, 700, 800
         charcoal: customColorsConfig.charcoal, // 100, 200, 300, 500, 700, 900
         // Type Color Aliases
-        'word-color': customColorsConfig.jade,
         'phrase-color': customColorsConfig.ochre,
         'song-color': customColorsConfig.scarlet,
         'story-color': customColorsConfig.blumine,
+        'word-color': customColorsConfig.jade,
         // Kids Colors and Aliases - NB These will be replaced when we get a new Kids palette
-        'kids-dictionary': customColorsConfig.jade,
+        'kids-alphabet': customColorsConfig.blumine,
         'kids-categories': customColorsConfig.ochre,
+        'kids-dictionary': customColorsConfig.jade,
+        'kids-games': {
+          500: '#513B56',
+          900: '#39293c',
+        },
         'kids-songs': {
           500: '#830042',
           900: '#5c002e',
@@ -133,12 +138,7 @@ module.exports = {
           500: '#E9C46A',
           900: '#a3894a',
         },
-        'kids-games': {
-          500: '#513B56',
-          900: '#39293c',
-        },
         // Misc aliases
-        'kids-alphabet': customColorsConfig.blumine,
         'wordsy-correct': {
           DEFAULT: customColorsConfig.jade[500],
         },
