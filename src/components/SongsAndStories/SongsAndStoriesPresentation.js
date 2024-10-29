@@ -83,7 +83,7 @@ function SongsAndStoriesPresentation({
             <main className="flex-1 overflow-y-auto">
               <div className="lg:px-8">
                 {!kids && (
-                  <div className="hidden md:block border-b border-gray-200 pb-2 lg:py-4">
+                  <div className="hidden md:block border-b border-charcoal-100 pb-2 lg:py-4">
                     <div className="flex justify-end">
                       <GridListToggle.Presentation
                         isGridView={isGridView}

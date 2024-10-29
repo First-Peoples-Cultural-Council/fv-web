@@ -85,7 +85,7 @@ function ByAlphabetPresentation({
             </div>
           </div>
           <div className="block md:p-3">
-            <div className="grid grid-cols-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mx-auto md:pt-5 md:border-t-2 md:border-gray-300">
+            <div className="grid grid-cols-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mx-auto md:pt-5 md:border-t-2 md:border-charcoal-200">
               {getAlphabetList()}
             </div>
           </div>
@@ -144,7 +144,7 @@ function ByAlphabetPresentation({
 
         {kids ? (
           <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8">
-            <div className="bg-gray-100 p-4 min-h-screen">
+            <div className="bg-charcoal-50 p-4 min-h-screen">
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
@@ -159,9 +159,9 @@ function ByAlphabetPresentation({
             </div>
           </div>
         ) : (
-          <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8 border-l-2 border-gray-300 md:pl-3 xl:pl-6">
+          <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8 border-l-2 border-charcoal-200 md:pl-3 xl:pl-6">
             <div className="block py-4">
-              <div className="flex items-center border-b border-gray-200 px-3 pb-5 print:hidden">
+              <div className="flex items-center border-b border-charcoal-100 px-3 pb-5 print:hidden">
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}

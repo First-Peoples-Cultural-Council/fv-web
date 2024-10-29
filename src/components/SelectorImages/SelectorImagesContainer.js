@@ -40,7 +40,10 @@ function SelectorImagesContainer({
   ]
 
   return (
-    <div data-testid="SelectorImagesContainer" className="h-full bg-gray-50">
+    <div
+      data-testid="SelectorImagesContainer"
+      className="h-full bg-charcoal-50"
+    >
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation

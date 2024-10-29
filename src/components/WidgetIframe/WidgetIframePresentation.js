@@ -11,7 +11,7 @@ function WidgetIframePresentation({ widgetData }) {
 
   if (iframeOnly && isMapSrc) {
     return (
-      <div className="relative py-3 lg:py-6 lg:bg-gray-50">
+      <div className="relative py-3 lg:py-6 lg:bg-charcoal-50">
         <div
           className="hidden absolute top-0 inset-x-0 h-1/2 bg-white lg:block"
           aria-hidden="true"
@@ -46,7 +46,7 @@ function WidgetIframePresentation({ widgetData }) {
   }
 
   return (
-    <div className="relative py-3 lg:py-6 lg:bg-gray-50">
+    <div className="relative py-3 lg:py-6 lg:bg-charcoal-50">
       <div
         className="hidden absolute top-0 inset-x-0 h-1/2 bg-white lg:block"
         aria-hidden="true"

@@ -24,7 +24,7 @@ function AudiobarPresentationMobile({
         <div className="w-full space-y-1">
           <button
             type="button"
-            className="float-right text-gray-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
+            className="float-right text-charcoal-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
             onClick={() => close()}
           >
             {getIcon('Close', 'fill-current h-7 w-7')}

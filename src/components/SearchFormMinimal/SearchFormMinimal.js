@@ -35,7 +35,7 @@ function SearchFormMinimal({
           data-testid="SearchSubmit"
           aria-label="Search/Go"
           onClick={handleSearchNavigation}
-          className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 rounded-r-full bg-gray-50 hover:bg-gray-100"
+          className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 rounded-r-full bg-charcoal-50 hover:bg-charcoal-50"
         >
           {getIcon('Search', 'fill-current h-5 w-5 ')}
         </button>

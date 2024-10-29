@@ -50,7 +50,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+        <Menu.Items className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-charcoal-100 focus:outline-none">
           {sites?.length > 1 &&
             sites.map((sitesListItem) => (
               <div key={sitesListItem?.id} className="py-1">
@@ -58,8 +58,10 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                   {({ active }) => (
                     <div
                       className={`${
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
-                      } group w-full rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-gray-200`}
+                        active
+                          ? 'bg-charcoal-50 text-charcoal-900'
+                          : 'text-charcoal-700'
+                      } group w-full rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-charcoal-100`}
                     >
                       <Link
                         to={`/${sitesListItem?.sitename}/dashboard`}
@@ -82,7 +84,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                               </div>
                             )}
                             <span className="flex-1 flex flex-col min-w-0">
-                              <span className="text-gray-900 text-sm font-medium truncate">
+                              <span className="text-charcoal-900 text-sm font-medium truncate">
                                 {sitesListItem?.title}
                               </span>
                             </span>

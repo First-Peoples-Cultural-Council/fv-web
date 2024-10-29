@@ -38,8 +38,8 @@ function DashboardTilesPresentation({ tileContent }) {
 
   const gridClass = () =>
     tileCount === 1
-      ? 'max-w-lg rounded-lg bg-gray-200 overflow-hidden shadow'
-      : `divide-y divide-gray-200 divide-y-0 grid grid-cols-${rowSize} gap-px rounded-lg bg-gray-200 overflow-hidden shadow`
+      ? 'max-w-lg rounded-lg bg-charcoal-100 overflow-hidden shadow'
+      : `divide-y divide-charcoal-100 divide-y-0 grid grid-cols-${rowSize} gap-px rounded-lg bg-charcoal-100 overflow-hidden shadow`
   return (
     <section id="DashboardTilesPresentation">
       <div className={gridClass()}>
@@ -80,10 +80,12 @@ function DashboardTilesPresentation({ tileContent }) {
                     </Link>
                   )}
                 </h3>
-                <p className="mt-2 text-sm text-gray-500">{tile.description}</p>
+                <p className="mt-2 text-sm text-charcoal-500">
+                  {tile.description}
+                </p>
               </div>
               <span
-                className="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400"
+                className="pointer-events-none absolute top-6 right-6 text-charcoal-200 group-hover:text-charcoal-500"
                 aria-hidden="true"
               >
                 <svg

@@ -29,7 +29,7 @@ function RelatedEntriesTablePresentation({
         </thead>
         <tbody>
           {entries?.map((entry, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
+            const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
               <tr key={entry?.id} className={zebraStripe}>
                 <td className="p-2">

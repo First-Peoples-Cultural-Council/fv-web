@@ -16,7 +16,9 @@ function SectionTitlePresentation({
           className={`max-w-screen-lg inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
         >
           {title}
-          {placeholder && <span className="bg-gray-100 text-gray-100 px-28" />}
+          {placeholder && (
+            <span className="bg-charcoal-50 text-charcoal-50 px-28" />
+          )}
         </span>
       </h2>
       <hr

@@ -58,7 +58,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
         return (
           <div
             id="HomeBannerWithVideo"
-            className="flex justify-center relative text-white bg-gradient-to-b from-jade-500 to-jade-700 md:from-gray-300 md:to-gray-300 items-center md:h-96 overflow-hidden"
+            className="flex justify-center relative text-white bg-gradient-to-b from-jade-500 to-jade-700 md:from-charcoal-200 md:to-charcoal-200 items-center md:h-96 overflow-hidden"
           >
             <video
               className="hidden md:flex absolute z-10 w-auto h-auto min-w-full min-h-full max-w-none"
@@ -113,7 +113,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
   return (
     <section
       data-testid="HomePresentation"
-      className="bg-gradient-to-r from-gray-600 to-gray-700 md:min-h-96"
+      className="bg-gradient-to-r from-charcoal-700 to-charcoal-700 md:min-h-96"
     >
       <div>{site?.title ? getContents(bannerType) : null}</div>
     </section>

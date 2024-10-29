@@ -38,7 +38,7 @@ function TextArrayField({
           <ul className="space-y-2">
             {fields.map((item, index) => (
               <li key={item.id}>
-                <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
+                <div className="flex items-center w-full justify-between pr-3 border border-charcoal-200 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
                   <input
                     type="text"
                     className="flex w-full py-2 border border-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg"
@@ -46,7 +46,7 @@ function TextArrayField({
                     onKeyDown={handleKeyDown}
                   />
                   <div className="has-tooltip flex items-center">
-                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-blumine-800 text-xs -mt-12">
+                    <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-blumine-800 text-xs -mt-12">
                       Delete {label.slice(0, -1)}
                     </span>
                     <button
@@ -79,7 +79,7 @@ function TextArrayField({
         </div>
       ) : (
         <div className="space-y-2 mt-2">
-          <div className="flex items-center w-full justify-between pr-3 border border-gray-300 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
+          <div className="flex items-center w-full justify-between pr-3 border border-charcoal-200 shadow-sm bg-white rounded-lg focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
             <input
               type="text"
               className="flex w-full py-2 border border-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg placeholder:italic"

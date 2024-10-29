@@ -28,9 +28,9 @@ function PhraseScramblerPresentation({
   const baseTextBlockStyling =
     'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
   const baseButtonStyling =
-    'border border-gray-300 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
+    'border border-charcoal-200 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:bg-charcoal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
   const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white hover:bg-blumine-500`
-  let selectedBoxAdditionalStyling = 'bg-gray-100'
+  let selectedBoxAdditionalStyling = 'bg-charcoal-50'
   if (gameStatus === 'Won') {
     selectedBoxAdditionalStyling = 'bg-jade-500'
   } else if (gameStatus === 'Lost') {
@@ -50,7 +50,7 @@ function PhraseScramblerPresentation({
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
         {translations?.length && jumbledWords?.length ? (
           <div>
-            <div className="mx-auto mt-16 w-full rounded-lg bg-white shadow-md border-2 border-gray-50">
+            <div className="mx-auto mt-16 w-full rounded-lg bg-white shadow-md border-2 border-charcoal-50">
               <div className="px-4 py-5 sm:p-6" data-testid="card-content">
                 <div className="header" data-testid="translations">
                   {translations?.map((translation, index) => (
@@ -63,7 +63,7 @@ function PhraseScramblerPresentation({
                 </div>
                 <div
                   data-testid="selected-boxes"
-                  className={`shadow my-4 border-thin border-gray-300 rounded px-2 ${selectedBoxAdditionalStyling}`}
+                  className={`shadow my-4 border-thin border-charcoal-200 rounded px-2 ${selectedBoxAdditionalStyling}`}
                 >
                   {/* Placeholder till a user selects does any action to maintain styling. */}
                   {selectedWords?.length === 0 && (
@@ -83,7 +83,7 @@ function PhraseScramblerPresentation({
                           data-testid="word-btn"
                           type="button"
                           key={`selectedWords-${wordObj?.id}`}
-                          className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
+                          className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
                           onClick={() => wordClicked(wordObj)}
                           disabled={gameCompleted && validAnswer}
                         >
@@ -114,7 +114,7 @@ function PhraseScramblerPresentation({
                             data-testid="word-btn"
                             type="button"
                             key={`jumbledWords-${wordObj?.id}`}
-                            className={`${baseTextBlockStyling} bg-gray-100 shadow-md border-thin border-gray-300`}
+                            className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
                             onClick={() => wordClicked(wordObj)}
                             onKeyDown={() => wordClicked(wordObj)}
                             disabled={gameCompleted && validAnswer}
@@ -129,7 +129,7 @@ function PhraseScramblerPresentation({
               </div>
               <div
                 data-testid="card-footer"
-                className="flex flex-row bg-gray-50 px-4 py-4 sm:px-6 justify-center"
+                className="flex flex-row bg-charcoal-50 px-4 py-4 sm:px-6 justify-center"
               >
                 {gameStatus === 'Won' && (
                   <div>
@@ -155,7 +155,7 @@ function PhraseScramblerPresentation({
                       data-testid="TryAgainButton"
                       type="button"
                       onClick={() => resetGame()}
-                      className="inline font-bold py-2 pl-4 pr-6 border-gray-200 shadow-md rounded-md"
+                      className="inline font-bold py-2 pl-4 pr-6 border-charcoal-100 shadow-md rounded-md"
                     >
                       {getIcon(
                         'TryAgain',

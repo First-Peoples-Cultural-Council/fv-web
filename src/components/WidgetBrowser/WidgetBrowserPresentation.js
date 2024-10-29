@@ -12,7 +12,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
   return (
     <div
       id="WidgetBrowserPresentation"
-      className="inline-block align-bottom space-y-5 bg-gray-100 border-gray-200 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
+      className="inline-block align-bottom space-y-5 bg-charcoal-50 border-charcoal-100 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
     >
       {widgets?.length > 0 ? (
         <>
@@ -32,7 +32,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
                 className={`${
                   selectedWidget === widget?.id
                     ? 'bg-scarlet-800 text-white'
-                    : 'hover:bg-gray-50 text-blumine-800 bg-white'
+                    : 'hover:bg-charcoal-50 text-blumine-800 bg-white'
                 } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
               >
                 <div className="space-y-1 truncate">

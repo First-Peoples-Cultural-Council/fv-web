@@ -40,8 +40,8 @@ function DashboardMediaVisualPresentation({
                             className={`${
                               doc?.id === currentFile?.id
                                 ? 'ring-4 ring-offset-2 ring-scarlet-800'
-                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-scarlet-800'
-                            } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden`}
+                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
+                            } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
                           >
                             <img
                               src={doc?.thumbnail}
@@ -89,7 +89,7 @@ function DashboardMediaVisualPresentation({
           </div>
         </section>
       </main>
-      <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
+      <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
         <MediaDetails.Visual file={currentFile} docType={type} />
       </aside>
     </div>

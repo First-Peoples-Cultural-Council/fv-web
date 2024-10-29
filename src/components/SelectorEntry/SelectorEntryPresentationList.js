@@ -47,8 +47,8 @@ function SelectorEntryPresentationList({
         {searchResults?.pages !== undefined &&
           searchResults?.pages?.[0]?.results?.length > 0 && (
             <div>
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-charcoal-100">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className={headerClass}>
                       {isMultiDocType
@@ -65,7 +65,7 @@ function SelectorEntryPresentationList({
                     ) : null}
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-charcoal-100">
                   {searchResults?.pages?.map((page) => (
                     <React.Fragment key={page.pageNumber}>
                       {page.results.map((entry) => {
@@ -87,7 +87,7 @@ function SelectorEntryPresentationList({
                             className={
                               entry?.id === selected?.id
                                 ? 'ring-2 ring-offset-2 ring-blumine-800 rounded-lg'
-                                : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-blumine-800 rounded-lg'
+                                : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-charcoal-50 focus-within:ring-blumine-800 rounded-lg'
                             }
                           >
                             <td className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900">

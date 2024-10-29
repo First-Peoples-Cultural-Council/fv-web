@@ -121,7 +121,7 @@ function WidgetTextPresentation({ widgetData }) {
   if (format === FORMAT_RIGHT) {
     return (
       <section className="w-full" data-testid="WidgetTextPresentation">
-        <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-gray-100">
+        <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
           {getTextElement()}
           {getImageElement()}
         </div>
@@ -131,7 +131,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   return (
     <section className="w-full" data-testid="WidgetTextPresentation">
-      <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-gray-100">
+      <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
         {getImageElement()}
         {getTextElement()}
       </div>

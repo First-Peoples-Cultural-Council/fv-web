@@ -33,8 +33,8 @@ function DashboardMediaAudioPresentation({
           </h1>
           <div>
             <div>
-              <table className="w-full table-fixed divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="w-full table-fixed divide-y divide-charcoal-100">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className={headerClass}>
                       Audio
@@ -47,7 +47,7 @@ function DashboardMediaAudioPresentation({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-charcoal-100">
                   {data?.pages?.[0]?.results?.length &&
                     data?.pages?.map((page) => (
                       <React.Fragment key={page?.pageNumber}>
@@ -97,7 +97,7 @@ function DashboardMediaAudioPresentation({
           </div>
         </section>
       </main>
-      <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
+      <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
         <MediaDetails.Audio file={currentFile} docType={TYPE_AUDIO} />
       </aside>
     </div>

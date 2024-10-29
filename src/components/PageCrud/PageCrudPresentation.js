@@ -11,7 +11,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
   return (
     <div
       data-testid="PageCrudPresentation"
-      className="bg-gray-100 min-h-screen"
+      className="bg-charcoal-50 min-h-screen"
     >
       {/* Page header */}
       <div className="w-full shadow-md">

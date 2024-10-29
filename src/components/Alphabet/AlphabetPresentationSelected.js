@@ -73,7 +73,7 @@ function AlphabetPresentationSelected({
             Example words
           </h2>
           {entriesToDisplay?.map((word, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
+            const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
               <div
                 key={word?.id}
@@ -157,7 +157,7 @@ function AlphabetPresentationSelected({
               {/* content */}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* header */}
-                <div className="flex items-start justify-between border-b border-solid border-gray-300 rounded-t">
+                <div className="flex items-start justify-between border-b border-solid border-charcoal-200 rounded-t">
                   <h3 className="p-2 text-2xl font-medium">{title}</h3>
                   <button
                     type="button"

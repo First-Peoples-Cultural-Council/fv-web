@@ -64,8 +64,8 @@ function DictionaryListPresentation({
         <div id="DictionaryListPresentation" className="flex flex-col">
           <div className="py-2 align-middle inline-block min-w-full">
             <div className="overflow-hidden sm:rounded-lg">
-              <table className="min-w-full divide-y border-b-2 mb-20 divide-gray-300">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y border-b-2 mb-20 divide-charcoal-200">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       {sorting ? (
@@ -110,7 +110,7 @@ function DictionaryListPresentation({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-300">
+                <tbody className="bg-white divide-y divide-charcoal-200">
                   {items?.pages?.map((page) => (
                     <Fragment key={page.pageNumber}>
                       {page.results.map((entry) => (

@@ -53,7 +53,7 @@ function WysiwygField({
   const getBlockStyle = (block) => {
     switch (block.getType()) {
       case 'header-two':
-        return 'border-b border-gray-500 font-bold my-5 py-5 text-2xl text-blumine-800'
+        return 'border-b border-charcoal-500 font-bold my-5 py-5 text-2xl text-blumine-800'
       case 'header-three':
         return 'font-bold my-5 text-xl text-blumine-800'
       case 'paragraph':
@@ -66,8 +66,8 @@ function WysiwygField({
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
       <FieldLabel nameId={nameId} text={label} />
-      <div className="block w-full bg-white overflow-hidden shadow-sm sm:text-sm border border-gray-300 rounded-lg">
-        <div className="flex w-full border-b border-gray-200 text-xl text-gray-600">
+      <div className="block w-full bg-white overflow-hidden shadow-sm sm:text-sm border border-charcoal-200 rounded-lg">
+        <div className="flex w-full border-b border-charcoal-100 text-xl text-charcoal-700">
           {toolbar?.includes('INLINESTYLES') && (
             <WysiwygControls.InlineStyleToolbar
               onChange={onEditorChange}

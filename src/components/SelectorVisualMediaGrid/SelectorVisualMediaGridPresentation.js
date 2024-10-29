@@ -33,7 +33,7 @@ function SelectorVisualMediaGridPresentation({
                   }
                   return (
                     <li key={mediaObject?.id} className="relative group">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-scarlet-800 block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800 block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden">
                         <img
                           src={mediaObject?.thumbnail}
                           alt={mediaObject?.title}

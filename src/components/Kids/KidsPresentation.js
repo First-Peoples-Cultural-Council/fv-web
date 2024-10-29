@@ -20,7 +20,7 @@ function KidsPresentation({ links, sitename, site }) {
                   {links.map((link) => (
                     <li key={link.id} className="relative">
                       <div
-                        className={`focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-${link.color} shadow-xl group block w-full rounded-lg overflow-hidden`}
+                        className={`focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-${link.color} shadow-xl group block w-full rounded-lg overflow-hidden`}
                       >
                         <Link
                           to={`/${sitename}/kids/${link.path}`}

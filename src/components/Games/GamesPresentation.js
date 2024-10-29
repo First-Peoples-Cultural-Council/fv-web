@@ -38,7 +38,7 @@ function GamesPresentation({ kids = null }) {
                 <ul className="grid grid-cols-1 gap-y-8 md:gap-x-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
                   {games.map((game) => (
                     <li key={game.pathname} className="relative">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-blumine-800 group block w-full rounded-lg overflow-hidden">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-blumine-800 group block w-full rounded-lg overflow-hidden">
                         <Link
                           to={`/${sitename}/${kids ? 'kids/' : ''}games/${
                             game.pathname

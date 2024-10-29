@@ -17,7 +17,7 @@ function GalleryPresentationThumbnail({ data }) {
   }
   const conditionalClass = data?.coverImage
     ? 'bg-center bg-cover text-white'
-    : 'text-charcoal-500 bg-gray-100'
+    : 'text-charcoal-500 bg-charcoal-50'
 
   return (
     <div

@@ -50,7 +50,7 @@ function DashboardWidgetsPresentation({
           }
           tableBody={widgets.map((widget) => (
             <tr key={widget?.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
                 {widget?.nickname}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">

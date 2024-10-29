@@ -40,7 +40,7 @@ function TextTranslationArrayField({
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-gray-300 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
+                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
                       {...register(`${nameId}.${index}.text`)}
                     />
                     {errors?.[nameId]?.[index]?.text?.message && (
@@ -59,7 +59,7 @@ function TextTranslationArrayField({
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-gray-300 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
+                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
                       {...register(`${nameId}.${index}.translation`)}
                     />
                     {errors?.[nameId]?.[index]?.translation?.message && (
@@ -70,7 +70,7 @@ function TextTranslationArrayField({
                   </div>
                 </div>
                 <div className="has-tooltip flex items-center">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-blumine-800 text-xs -mt-12">
+                  <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-blumine-800 text-xs -mt-12">
                     Delete {label.slice(0, -1)}
                   </span>
                   <button

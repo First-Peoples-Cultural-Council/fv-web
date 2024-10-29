@@ -43,7 +43,7 @@ function DashboardSpeakersPresentation({
           }
           tableBody={speakers.map((speaker) => (
             <tr key={speaker.id}>
-              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900">
+              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
                 {speaker.name}
               </td>
               <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">

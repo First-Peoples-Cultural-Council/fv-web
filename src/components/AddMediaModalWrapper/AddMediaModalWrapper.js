@@ -33,7 +33,7 @@ function AddMediaModalWrapper({
         key={`${tab.id}-btn`}
         data-testid={`${tab.id}-btn`}
         type="button"
-        className={`capitalize disabled:pointer-events-none disabled:bg-gray-100 disabled:opacity-50 ${
+        className={`capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 ${
           currentTab.id === tab.id
             ? 'btn-contained'
             : 'btn-outlined hover:btn-contained'
@@ -62,13 +62,13 @@ function AddMediaModalWrapper({
     >
       <div
         id="AddMediaModalWrapper"
-        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-gray-50 p-6"
+        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-charcoal-50 p-6"
       >
         <div className="h-full flex flex-col space-y-4">
           <h2 className="text-center text-2xl font-bold text-charcoal-900">
             {currentTab.title}
           </h2>
-          <div className="w-full bg-gray-50 flex justify-center space-x-4">
+          <div className="w-full bg-charcoal-50 flex justify-center space-x-4">
             {tabOptions.map((tab) => tabButton(tab))}
           </div>
           <div className="grow">{children}</div>

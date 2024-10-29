@@ -145,7 +145,6 @@ module.exports = {
         'wordsy-present': {
           DEFAULT: customColorsConfig.ochre[600],
         },
-        gray: customColorsConfig.charcoal,
       },
     },
   },

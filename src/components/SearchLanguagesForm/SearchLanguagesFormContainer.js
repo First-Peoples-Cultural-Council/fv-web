@@ -44,7 +44,7 @@ function SearchLanguagesFormContainer() {
           />
         </form>
 
-        <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
+        <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-l-2 border-charcoal-200 rounded-r-md bg-charcoal-50 hover:bg-charcoal-50">
           <button
             type="button"
             data-testid="submit-search-btn"
@@ -58,7 +58,7 @@ function SearchLanguagesFormContainer() {
           <button
             data-testid="clear-search-btn"
             type="button"
-            className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-gray-300 text-sm font-medium rounded-lg bg-gray-100 hover:bg-gray-200"
+            className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
             onClick={removeQuery}
           >
             Clear Search

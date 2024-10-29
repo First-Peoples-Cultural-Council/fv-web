@@ -72,7 +72,7 @@ function ContactUsPresentation({
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-1 flex items-start rounded-lg hover:bg-gray-50"
+            className="py-1 flex items-start rounded-lg hover:bg-charcoal-50"
           >
             {getIcon(getIconName(link), 'fill-current h-8 w-8')}
           </a>
@@ -124,7 +124,7 @@ function ContactUsPresentation({
                       NAME:
                     </label>
                     <input
-                      className="col-span-5 bg-white border border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      className="col-span-5 bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
                       id="name"
                       name="name"
                       type="text"
@@ -145,7 +145,7 @@ function ContactUsPresentation({
                       EMAIL:
                     </label>
                     <input
-                      className="col-span-5 inline bg-white border border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      className="col-span-5 inline bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
                       id="email"
                       name="email"
                       type="email"
@@ -166,7 +166,7 @@ function ContactUsPresentation({
                       MESSAGE:
                     </label>
                     <textarea
-                      className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-gray-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 resize-none col-span-7"
+                      className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-charcoal-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-charcoal-500 resize-none col-span-7"
                       id="message"
                       name="message"
                       defaultValue=""

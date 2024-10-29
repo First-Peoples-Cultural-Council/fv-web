@@ -45,7 +45,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   }, [location, setMobileLandingNavbarOpen])
 
   const menuItemStyling =
-    'h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-300'
+    'h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-charcoal-200'
   const menuItemLabelStyling = 'ml-1 xl:ml-3 xl:mr-2 whitespace-nowrap'
 
   const mobileMenuItemStyling =
@@ -139,7 +139,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             <button
               type="button"
               onClick={() => openCloseMobileLandingNavbar()}
-              className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
+              className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"
             >
               <span className="sr-only">
                 {mobileLandingNavbarOpen ? 'Close menu' : 'Open menu'}
@@ -162,7 +162,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
         leaveTo="translate-x-full"
       >
         <div className="shadow-lg min-h-screen bg-white">
-          <ul className="grid grid-rows-3 divide-y-2 divide-gray-200 bg-white p-2">
+          <ul className="grid grid-rows-3 divide-y-2 divide-charcoal-100 bg-white p-2">
             {!isGuest && (
               <li className={mobileMenuItemStyling}>
                 Welcome

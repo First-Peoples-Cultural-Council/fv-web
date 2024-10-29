@@ -83,7 +83,7 @@ function ParachutePresentation({
           className={`${
             guessed
               ? 'bg-scarlet-800 text-white'
-              : 'border-gray-500 text-charcoal-900 hover:bg-gray-100'
+              : 'border-charcoal-500 text-charcoal-900 hover:bg-charcoal-50'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
           onClick={() => guessLetter(letter)}
         >
@@ -184,7 +184,7 @@ function ParachutePresentation({
                     key={piece.id}
                     className={`${
                       piece?.found ? 'text-blumine-800' : 'text-white'
-                    } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
+                    } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-charcoal-300`}
                   >
                     <div>{piece?.found ? piece?.letter : '_'}</div>
                   </div>

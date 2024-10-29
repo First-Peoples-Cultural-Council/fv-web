@@ -18,7 +18,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
           <Link
             to={`/${sitename + menuItem.href}`}
             className={`${
-              active ? 'bg-gray-200 text-black' : 'text-charcoal-900'
+              active ? 'bg-charcoal-100 text-black' : 'text-charcoal-900'
             } flex w-full rounded-lg`}
           >
             <div className="px-2 py-1 w-full text-lg font-medium">
@@ -49,7 +49,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
   )
 
   const buttonStyling =
-    'h-8 xl:h-10 group p-1 rounded-lg inline-flex w-full justify-center items-center text-base xl:text-lg font-medium text-white hover:text-gray-100'
+    'h-8 xl:h-10 group p-1 rounded-lg inline-flex w-full justify-center items-center text-base xl:text-lg font-medium text-white hover:text-charcoal-50'
 
   return hasItems ? (
     <Menu

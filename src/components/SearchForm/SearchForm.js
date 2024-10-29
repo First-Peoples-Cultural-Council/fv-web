@@ -35,7 +35,7 @@ function SearchForm({
         />
       </form>
 
-      <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
+      <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-l-2 border-charcoal-200 rounded-r-md bg-charcoal-50 hover:bg-charcoal-50">
         <SearchDomainSelector.Presentation
           searchDomain={searchDomain}
           handleSearchDomainChange={handleSearchDomainChange}

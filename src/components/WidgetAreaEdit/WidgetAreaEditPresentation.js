@@ -71,7 +71,7 @@ function WidgetAreaEditPresentation({
                         className={`${
                           currentWidget?.id === widgetData?.[id]?.id
                             ? 'border-4 border-blumine-800'
-                            : 'hover:bg-gray-50'
+                            : 'hover:bg-charcoal-50'
                         } bg-white flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
                       >
                         <div className="grid grid-cols-6 gap-6 text-left">

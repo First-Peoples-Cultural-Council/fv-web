@@ -90,7 +90,7 @@ function WidgetAreaEditPresentationSettingsPane({
         return (
           <div key={setting.key} className="col-span-3">
             <div className={settingLabelStyling}>Formatted Text</div>
-            <div className="wysiwyg rounded-lg flex w-full border-2 border-gray-100 p-3 overflow-hidden">
+            <div className="wysiwyg rounded-lg flex w-full border-2 border-charcoal-50 p-3 overflow-hidden">
               <WysiwygBlock jsonString={setting?.value} />
             </div>
           </div>

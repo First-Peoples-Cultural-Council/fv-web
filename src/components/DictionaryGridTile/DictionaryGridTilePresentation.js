@@ -14,7 +14,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
   const shortTitle = [...title].length < 12
   return (
     <div
-      className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-gray-200"
+      className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-charcoal-100"
       data-testid="DictionaryGridTilePresentation"
     >
       <section

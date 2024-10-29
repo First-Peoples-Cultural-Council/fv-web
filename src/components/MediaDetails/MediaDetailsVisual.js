@@ -60,7 +60,7 @@ function MediaDetailsVisual({ file, docType }) {
       </div>
       <div>
         <h3 className="font-medium text-charcoal-900">Information</h3>
-        <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+        <dl className="mt-2 border-t border-b border-charcoal-100 divide-y divide-charcoal-100">
           {file?.id &&
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {

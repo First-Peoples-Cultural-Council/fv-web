@@ -29,7 +29,7 @@ function KidsNavBarPresentation({ links, site, home }) {
         <span className="sr-only">Back to {site?.title} main site</span>
         {getIcon(
           'Close',
-          'border-gray-300 hover:border-charcoal-900 border-2 border-dotted h-8 lg:h-14 w-auto',
+          'border-charcoal-200 hover:border-charcoal-900 border-2 border-dotted h-8 lg:h-14 w-auto',
         )}
       </Link>
     </nav>

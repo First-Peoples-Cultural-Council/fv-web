@@ -67,7 +67,9 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
                 key={option.value}
                 className={({ active }) =>
                   `flex items-center cursor-default p-2 text-sm font-medium ${
-                    active ? 'bg-gray-50 text-scarlet-800' : 'text-charcoal-900'
+                    active
+                      ? 'bg-charcoal-50 text-scarlet-800'
+                      : 'text-charcoal-900'
                   }`
                 }
                 value={option}

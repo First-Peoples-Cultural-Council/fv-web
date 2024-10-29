@@ -51,7 +51,7 @@ function DictionaryPresentation({
         </div>
       </section>
       {kids ? (
-        <div className="lg:px-20 bg-gray-100">
+        <div className="lg:px-20 bg-charcoal-50">
           <DictionaryGrid.Presentation
             infiniteScroll={infiniteScroll}
             isLoading={isLoadingEntries}

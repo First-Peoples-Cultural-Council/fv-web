@@ -69,7 +69,7 @@ function NavBarPresentation({
                 data-testid="MobileMenu-button"
                 type="button"
                 onClick={() => openCloseMobileNavbar()}
-                className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
+                className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"
               >
                 <span className="sr-only">
                   {mobileNavbarOpen ? 'Close menu' : 'Open menu'}

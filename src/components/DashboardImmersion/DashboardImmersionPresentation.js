@@ -59,7 +59,7 @@ function DashboardImmersionPresentation({
                 <tr
                   key={label?.transKey}
                   onClick={() => setCurrentLabel(label)}
-                  className="hover:bg-gray-100 cursor-pointer"
+                  className="hover:bg-charcoal-50 cursor-pointer"
                 >
                   <td className="px-6 py-4 text-charcoal-900">
                     {label?.immersionLabel || '-'}

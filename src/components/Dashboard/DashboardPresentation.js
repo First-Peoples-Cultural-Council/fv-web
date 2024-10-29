@@ -15,12 +15,12 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         data-testid="logout-btn"
         type="button"
         onClick={logout}
-        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-charcoal-500 hover:text-white"
+        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
       >
         {getIcon(
           'LogOut',
 
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
         )}
         <span>Sign Out</span>
       </button>
@@ -54,7 +54,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 pl-64 flex flex-col min-h-screen">
+      <div className="bg-charcoal-100 pl-64 flex flex-col min-h-screen">
         {/* Main Page content */}
         <div>{children}</div>
       </div>
@@ -108,12 +108,12 @@ const primaryNavigationItems = (currentSitename) => {
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
                 match
                   ? 'bg-charcoal-900 text-white'
-                  : 'text-gray-300 hover:bg-charcoal-500 hover:text-white'
+                  : 'text-charcoal-200 hover:bg-charcoal-500 hover:text-white'
               }`}
             >
               {getIcon(
                 item.icon,
-                'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+                'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
               )}
               {item.name}
             </Link>
@@ -140,13 +140,13 @@ const secondaryNavigationItems = (sites) => {
     <div className="px-2 py-4 space-y-1">
       <a
         href="https://firstvoices.atlassian.net/servicedesk/customer/portals"
-        className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-charcoal-500 hover:text-white"
+        className="group flex items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
         target="_blank"
         rel="noreferrer noopener"
       >
         {getIcon(
           'QuestionCircleSolid',
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
         )}
         Support
       </a>
@@ -154,11 +154,11 @@ const secondaryNavigationItems = (sites) => {
         <Link
           key={item.name}
           to={item.href}
-          className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-charcoal-500 hover:text-white"
+          className="group flex items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
         >
           {getIcon(
             item.icon,
-            'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+            'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
           )}
           {item.name}
         </Link>
@@ -180,7 +180,7 @@ const userProfile = (user) => (
         </div>
         <div className="ml-3">
           <p className="text-sm font-medium text-white">{user?.fullName}</p>
-          <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200"></p>
+          <p className="text-xs font-medium text-charcoal-200 group-hover:text-charcoal-100"></p>
         </div>
       </div>
     </div>

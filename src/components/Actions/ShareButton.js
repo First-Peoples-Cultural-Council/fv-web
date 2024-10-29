@@ -25,7 +25,7 @@ function ShareButton({
             type="button"
             id="ShareButton"
             className={`${
-              active ? 'bg-gray-100 text-charcoal-900' : 'text-charcoal-500'
+              active ? 'bg-charcoal-50 text-charcoal-900' : 'text-charcoal-500'
             } w-full group flex items-center px-4 py-2 text-sm`}
             onClick={() => setShareModalOpen(true)}
           >

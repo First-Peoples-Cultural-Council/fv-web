@@ -51,7 +51,7 @@ function LanguagesPresentation({
                 // Generating class for border color
                 const borderColor = languageColors?.[language?.languageCode]
                   ? `border-[${languageColors[language?.languageCode]}]`
-                  : 'border-gray'
+                  : 'border-charcoal-500'
                 return (
                   <div
                     id="LanguagesPresentation"

@@ -45,7 +45,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                       categories.map((category) => (
                         <li
                           key={category.id}
-                          className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-charcoal-500 group w-full rounded-lg bg-charcoal-500 overflow-hidden"
+                          className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-charcoal-500 group w-full rounded-lg bg-charcoal-500 overflow-hidden"
                         >
                           <div className="h-full w-full">
                             <Link
@@ -89,7 +89,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                       categories?.map((category) => (
                         <li
                           key={category.id}
-                          className="relative border-b-2 border-gray-200 pb-2 pl-4 block w-full overflow-hidden"
+                          className="relative border-b-2 border-charcoal-100 pb-2 pl-4 block w-full overflow-hidden"
                         >
                           <Link
                             key={category.id}

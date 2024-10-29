@@ -50,7 +50,7 @@ function SongPresentation({ entry }) {
           <div>
             {(entry?.intro?.length > 0 ||
               entry?.introTranslation?.length > 0) && (
-              <div className="bg-gray-100 p-2 space-y-2 sm:space-y-4 lg:my-2">
+              <div className="bg-charcoal-50 p-2 space-y-2 sm:space-y-4 lg:my-2">
                 <h4 className={labelStyling}>Introduction</h4>
                 <div className="text-charcoal-900">
                   <WysiwygBlock className="mb-2" jsonString={entry?.intro} />

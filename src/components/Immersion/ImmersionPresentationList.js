@@ -13,9 +13,9 @@ function ImmersionPresentationList({ actions = [], isLoading, items }) {
       {items?.length > 0 ? (
         <div className="flex flex-col">
           <div className="py-2 align-middle inline-block min-w-full">
-            <div className="shadow-md overflow-hidden border-b border-gray-300 sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
+            <div className="shadow-md overflow-hidden border-b border-charcoal-200 sm:rounded-lg">
+              <table className="min-w-full divide-y divide-charcoal-200">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
@@ -32,7 +32,7 @@ function ImmersionPresentationList({ actions = [], isLoading, items }) {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-300">
+                <tbody className="bg-white divide-y divide-charcoal-200">
                   {items.map(
                     ({
                       immersionLabel,

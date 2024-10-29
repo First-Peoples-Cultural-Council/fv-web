@@ -28,8 +28,8 @@ function SelectorAudioPresentation({
         Audio
       </h2>
       <div>
-        <table className="w-full table-fixed divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="w-full table-fixed divide-y divide-charcoal-100">
+          <thead className="bg-charcoal-50">
             <tr>
               <th scope="col" className={headerClass}>
                 Selected
@@ -45,7 +45,7 @@ function SelectorAudioPresentation({
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-charcoal-100">
             {data?.pages?.[0]?.results?.length &&
               data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>

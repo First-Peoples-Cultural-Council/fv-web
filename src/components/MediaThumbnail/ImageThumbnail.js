@@ -9,7 +9,7 @@ import { IMAGE, SMALL } from 'common/constants'
 
 function ImageThumbnail({
   id,
-  containerStyles = 'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
+  containerStyles = 'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden',
   imageStyles = 'w-full h-full object-contain',
   imageObject,
   ...other

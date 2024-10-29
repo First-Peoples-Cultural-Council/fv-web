@@ -17,7 +17,7 @@ function StoryPresentation({ entry }) {
   const blockStyling = `${blockBgStyling} block md:flex h-full p-4 lg:p-0 lg:mt-5 lg:rounded-lg`
 
   return (
-    <div data-testid="StoryPresentation" className="bg-gray-200">
+    <div data-testid="StoryPresentation" className="bg-charcoal-100">
       {/* Cover with image */}
       {entry?.coverVisual?.type === IMAGE && (
         <div className={`grid grid-cols-2 md:gap-4 ${headerStyling}`}>

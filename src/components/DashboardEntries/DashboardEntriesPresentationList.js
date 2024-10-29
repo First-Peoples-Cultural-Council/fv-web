@@ -50,9 +50,9 @@ function DashboardEntriesPresentationList({
         {items?.pages !== undefined &&
         items?.pages?.[0]?.results?.length > 0 ? (
           <div className="flex flex-col w-full">
-            <div className="border-b border-gray-300">
-              <table className="table-auto w-full divide-y divide-gray-300">
-                <thead className="bg-gray-100">
+            <div className="border-b border-charcoal-200">
+              <table className="table-auto w-full divide-y divide-charcoal-200">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th
                       scope="col"
@@ -104,14 +104,14 @@ function DashboardEntriesPresentationList({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-300 text-charcoal-900">
+                <tbody className="bg-white divide-y divide-charcoal-200 text-charcoal-900">
                   {items.pages.map((page) => (
                     <Fragment key={page?.pageNumber}>
                       {page.results.map((entry) => (
                         <tr
                           data-testid="EntryRow"
                           key={entry?.id}
-                          className="w-full hover:bg-gray-100"
+                          className="w-full hover:bg-charcoal-50"
                         >
                           <td>
                             <button
@@ -175,8 +175,8 @@ function DashboardEntriesPresentationList({
                                 {getIcon('Pencil', 'fill-current w-6 h-6')}
                               </Link>
                             ) : (
-                              <div className="has-tooltip p-4 text-gray-400 flex items-center">
-                                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-charcoal-900 text-xs -mt-10 -ml-20">
+                              <div className="has-tooltip p-4 text-charcoal-500 flex items-center">
+                                <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-20">
                                   You do not have access to edit this.
                                 </span>
                                 {getIcon('Pencil', 'fill-current w-6 h-6')}
@@ -244,8 +244,8 @@ function DashboardEntriesPresentationList({
                   <span>Edit</span>
                 </Link>
               ) : (
-                <div className="has-tooltip btn-outlined text-gray-400 border-gray-400">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-charcoal-900 text-xs -mt-10 -ml-10">
+                <div className="has-tooltip btn-outlined text-charcoal-500 border-charcoal-300">
+                  <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-10">
                     You do not have access to edit this.
                   </span>
                   {getIcon('Pencil', 'btn-icon')}

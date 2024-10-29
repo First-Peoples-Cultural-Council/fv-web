@@ -46,7 +46,7 @@ function MediaDetailsAudio({ file }) {
       </div>
       <div>
         <h3 className="font-medium text-charcoal-900">Information</h3>
-        <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+        <dl className="mt-2 border-t border-b border-charcoal-100 divide-y divide-charcoal-100">
           {file?.id &&
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {
@@ -68,7 +68,7 @@ function MediaDetailsAudio({ file }) {
             })}
         </dl>
         {file?.speakers.length > 0 && (
-          <dl className="mt-2 border-b border-gray-200 divide-y divide-gray-200">
+          <dl className="mt-2 border-b border-charcoal-100 divide-y divide-charcoal-100">
             <div className="py-3 flex justify-between text-sm font-medium">
               <dt className="text-charcoal-500">Speakers</dt>
               <dd className="text-charcoal-900">

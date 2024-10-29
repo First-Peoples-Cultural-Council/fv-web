@@ -84,7 +84,7 @@ function ByCategoryPresentation({
                 className="inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow"
               >
                 <Link
-                  className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-charcoal-700 bg-gray-300"
+                  className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-charcoal-700 bg-charcoal-200"
                   to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                     currentParentCategory.id
                   }?docType=${searchType}`}
@@ -111,7 +111,9 @@ function ByCategoryPresentation({
                     >
                       <Link
                         className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-charcoal-700 ${
-                          child.id === currentCategory.id ? 'bg-gray-300' : ''
+                          child.id === currentCategory.id
+                            ? 'bg-charcoal-200'
+                            : ''
                         }`}
                         to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                           child.id
@@ -131,7 +133,7 @@ function ByCategoryPresentation({
             </ul>
           </div>
           <div className="hidden lg:block lg:p-3">
-            <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-gray-300">
+            <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-charcoal-200">
               {getParentCategoriesList()}
             </ul>
           </div>
@@ -189,7 +191,7 @@ function ByCategoryPresentation({
         </div>
         {kids ? (
           <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9">
-            <div className="bg-gray-100 p-4">
+            <div className="bg-charcoal-50 p-4">
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
@@ -204,9 +206,9 @@ function ByCategoryPresentation({
             </div>
           </div>
         ) : (
-          <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9 border-l-2 border-gray-300 lg:pl-7">
+          <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9 border-l-2 border-charcoal-200 lg:pl-7">
             <div className="block lg:py-4">
-              <div className="flex items-center md:border-b border-gray-200 px-3 md:pb-2 lg:pb-5 print:hidden">
+              <div className="flex items-center md:border-b border-charcoal-100 px-3 md:pb-2 lg:pb-5 print:hidden">
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}

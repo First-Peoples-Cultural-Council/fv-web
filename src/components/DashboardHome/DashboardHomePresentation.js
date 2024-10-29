@@ -56,11 +56,11 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                   className="relative group col-span-1 flex rounded-lg"
                 >
                   <div
-                    className={`bg-gray-100 text-${tile?.iconColor} flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-l-md font-medium`}
+                    className={`bg-charcoal-50 text-${tile?.iconColor} flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-l-md font-medium`}
                   >
                     {getIcon(tile.icon, 'h-6 w-6 fill-current')}
                   </div>
-                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-charcoal-100 bg-white">
                     <div className="flex-1 truncate p-1 ">
                       {tile?.externalLink ? (
                         <a
