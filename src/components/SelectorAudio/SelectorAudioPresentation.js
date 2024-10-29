@@ -67,7 +67,7 @@ function SelectorAudioPresentation({
                           ) && // Add a small checkIcon on the top-right if it is selected
                             getIcon(
                               'CheckCircleSolid',
-                              'h-8 w-8 fill-green-700',
+                              'h-8 w-8 fill-jade-500',
                             )}
                         </td>
                         <td
