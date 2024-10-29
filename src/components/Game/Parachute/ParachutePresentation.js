@@ -183,7 +183,7 @@ function ParachutePresentation({
                   <div
                     key={piece.id}
                     className={`${
-                      piece?.found ? 'text-primary' : 'text-white'
+                      piece?.found ? 'text-blumine-800' : 'text-white'
                     } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
                   >
                     <div>{piece?.found ? piece?.letter : '_'}</div>
@@ -214,7 +214,7 @@ function ParachutePresentation({
                 data-testid="new"
                 type="button"
                 onClick={startNewGame}
-                className="btn-contained bg-primary"
+                className="btn-contained bg-blumine-800"
               >
                 New Puzzle
               </button>

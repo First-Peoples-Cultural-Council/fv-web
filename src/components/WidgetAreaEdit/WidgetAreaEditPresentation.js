@@ -70,7 +70,7 @@ function WidgetAreaEditPresentation({
                         onClick={() => setCurrentWidget(widgetData?.[id])}
                         className={`${
                           currentWidget?.id === widgetData?.[id]?.id
-                            ? 'border-4 border-primary'
+                            ? 'border-4 border-blumine-800'
                             : 'hover:bg-gray-50'
                         } bg-white flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
                       >
@@ -78,12 +78,12 @@ function WidgetAreaEditPresentation({
                           <div className="flex items-center text-left col-span-1">
                             {getWidgetIcon(
                               widgetData?.[id]?.type,
-                              'w-12 h-12 fill-current text-primary',
+                              'w-12 h-12 fill-current text-blumine-800',
                             )}
                           </div>
                           <div className="flex items-center text-left col-span-5">
                             <div className="truncate">
-                              <p className="text-lg font-bold text-primary">
+                              <p className="text-lg font-bold text-blumine-800">
                                 {getWidgetTypeLabel(widgetData?.[id]?.type)}
                               </p>
                               <p className="text-charcoal-500">
@@ -95,7 +95,7 @@ function WidgetAreaEditPresentation({
                         <div className="flex items-center text-left">
                           {getIcon(
                             widgetData?.[id]?.visibility,
-                            'w-5 h-5 fill-current text-primary',
+                            'w-5 h-5 fill-current text-blumine-800',
                           )}
                         </div>
                       </button>
@@ -108,7 +108,7 @@ function WidgetAreaEditPresentation({
                       >
                         {getIcon(
                           'ChevronRight',
-                          'fill-current h-10 w-10 text-primary',
+                          'fill-current h-10 w-10 text-blumine-800',
                         )}
                       </div>
                     </div>

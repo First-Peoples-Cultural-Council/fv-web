@@ -51,7 +51,7 @@ function DashboardJoinCardPresentation({
             type="button"
             className={`${
               isExpanded ? 'hidden' : 'inline-block'
-            } mt-2 text-sm leading-6 text-primary-light hover:text-primary active:text-primary-dark`}
+            } mt-2 text-sm leading-6 text-blumine-600 hover:text-blumine-800 active:text-blumine-900`}
             onClick={() => setIsExpanded(!isExpanded)}
           >
             Show more
@@ -69,7 +69,7 @@ function DashboardJoinCardPresentation({
                 onChange={(e) =>
                   setSelectedRole(e.target.value.split(' ').join('_'))
                 }
-                className="btn-outlined text-primary border-primary"
+                className="btn-outlined text-blumine-800 border-blumine-800"
               >
                 <option value={MEMBER}>Approve as Member</option>
                 <option value={ASSISTANT}>Approve as Assistant</option>
@@ -136,7 +136,7 @@ function DashboardJoinCardPresentation({
             type="button"
             className={`${
               isExpanded ? 'inline-block' : 'hidden'
-            } mt-2 text-sm leading-6 text-primary-light hover:text-primary active:text-primary-dark`}
+            } mt-2 text-sm leading-6 text-blumine-600 hover:text-blumine-800 active:text-blumine-900`}
             onClick={() => setIsExpanded(!isExpanded)}
           >
             Show less

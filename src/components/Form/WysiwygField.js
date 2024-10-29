@@ -53,9 +53,9 @@ function WysiwygField({
   const getBlockStyle = (block) => {
     switch (block.getType()) {
       case 'header-two':
-        return 'border-b border-gray-500 font-bold my-5 py-5 text-2xl text-primary'
+        return 'border-b border-gray-500 font-bold my-5 py-5 text-2xl text-blumine-800'
       case 'header-three':
-        return 'font-bold my-5 text-xl text-primary'
+        return 'font-bold my-5 text-xl text-blumine-800'
       case 'paragraph':
         return 'mb-4'
       default:

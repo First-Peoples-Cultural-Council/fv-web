@@ -46,7 +46,7 @@ function TextArrayField({
                     onKeyDown={handleKeyDown}
                   />
                   <div className="has-tooltip flex items-center">
-                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
+                    <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-blumine-800 text-xs -mt-12">
                       Delete {label.slice(0, -1)}
                     </span>
                     <button

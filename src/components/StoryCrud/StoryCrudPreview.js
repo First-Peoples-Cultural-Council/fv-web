@@ -40,7 +40,7 @@ function StoryCrudPreview({ storyData }) {
     <button
       data-testid="translate"
       type="button"
-      className="text-primary-light text-sm font-semibold"
+      className="text-blumine-600 text-sm font-semibold"
       onClick={() => setTranslate(!translate)}
     >
       View {translate ? 'language' : 'translation'}

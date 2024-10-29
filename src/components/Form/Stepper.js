@@ -31,7 +31,7 @@ function Stepper({ steps, onClickCallback }) {
                 className={buttonClass}
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary group-hover:bg-primary-dark">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blumine-800 group-hover:bg-blumine-900">
                     {getIcon('Checkmark', 'h-5 w-5 text-white fill-current')}
                   </span>
                 </span>
@@ -48,11 +48,13 @@ function Stepper({ steps, onClickCallback }) {
                 aria-current="step"
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-primary">
-                    <span className="text-primary">{`0${stepIdx + 1}`}</span>
+                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-blumine-800">
+                    <span className="text-blumine-800">{`0${
+                      stepIdx + 1
+                    }`}</span>
                   </span>
                 </span>
-                <span className="ml-4 text-sm font-medium text-primary">
+                <span className="ml-4 text-sm font-medium text-blumine-800">
                   {step.title}
                 </span>
               </button>

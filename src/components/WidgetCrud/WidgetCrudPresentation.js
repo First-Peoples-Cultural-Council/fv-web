@@ -61,7 +61,7 @@ function WidgetCrudPresentation({
                   className={`${
                     selectedType === type
                       ? 'bg-scarlet-800 text-white border-scarlet-800'
-                      : 'hover:bg-gray-50 text-primary bg-white border-primary'
+                      : 'hover:bg-gray-50 text-blumine-800 bg-white border-blumine-800'
                   } w-full my-2 mx-1 h-16 font-medium flex items-center rounded shadow-lg border-2`}
                 >
                   <div>

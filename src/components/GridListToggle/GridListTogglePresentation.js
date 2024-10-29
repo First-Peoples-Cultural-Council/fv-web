@@ -5,13 +5,14 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 
 function GridListTogglePresentation({
-  accentColor = 'primary',
+  accentColor = 'blumine-800',
   isGridView,
   setIsGridView,
 }) {
   return (
     <div className="ml-6 bg-gray-100 p-0.5 rounded-lg flex items-center">
       <button
+        data-testid="grid-off-btn"
         type="button"
         onClick={() => setIsGridView(false)}
         className={`${
@@ -24,6 +25,7 @@ function GridListTogglePresentation({
         <span className="sr-only">Use list view</span>
       </button>
       <button
+        data-testid="grid-on-btn"
         type="button"
         onClick={() => setIsGridView(true)}
         className={`${

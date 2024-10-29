@@ -32,7 +32,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
                 className={`${
                   selectedWidget === widget?.id
                     ? 'bg-scarlet-800 text-white'
-                    : 'hover:bg-gray-50 text-primary bg-white'
+                    : 'hover:bg-gray-50 text-blumine-800 bg-white'
                 } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
               >
                 <div className="space-y-1 truncate">

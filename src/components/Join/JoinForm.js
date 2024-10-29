@@ -119,7 +119,7 @@ function JoinForm({ site, submitHandler }) {
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
                   {({ open }) => (
                     <div className="relative max-w-xs">
-                      <Listbox.Button className="relative w-full text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
+                      <Listbox.Button className="relative w-full text-left pr-10 bg-white border border-gray-300 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
                         <div className="w-full inline-flex items-center">
                           <span className="truncate">
                             {value?.length < 1
@@ -165,7 +165,7 @@ function JoinForm({ site, submitHandler }) {
                                   {selected
                                     ? getIcon(
                                         'Checkmark',
-                                        'absolute left-2 h-5 w-5 fill-current text-primary',
+                                        'absolute left-2 h-5 w-5 fill-current text-blumine-800',
                                       )
                                     : null}
                                 </div>

@@ -127,10 +127,13 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
         <div className="rounded-lg bg-gray-50 shadow-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('InfoCircleSolid', 'h-5 w-5 fill-current text-primary')}
+              {getIcon(
+                'InfoCircleSolid',
+                'h-5 w-5 fill-current text-blumine-800',
+              )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-primary">{message}</p>
+              <p className="text-sm font-medium text-blumine-800">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -138,7 +141,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                   <button
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-gray-50 rounded-lg p-1.5 text-primary hover:bg-gray-100"
+                    className="inline-flex bg-gray-50 rounded-lg p-1.5 text-blumine-800 hover:bg-gray-100"
                   >
                     <span className="sr-only">Dismiss</span>
                     {getIcon('Close', 'h-5 w-5')}

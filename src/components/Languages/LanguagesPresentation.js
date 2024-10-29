@@ -58,7 +58,7 @@ function LanguagesPresentation({
                     key={language?.id}
                     className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
                   >
-                    <h1 className="pl-4 text-xl font-extrabold text-primary">
+                    <h1 className="pl-4 text-xl font-extrabold text-blumine-800">
                       {language?.noLanguageAssigned ? '' : language?.title}
                     </h1>
                     <div className="flex flex-wrap justify-start pl-10">

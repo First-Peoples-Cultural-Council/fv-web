@@ -27,7 +27,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
             <button
               data-testid="login"
               type="button"
-              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
+              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-blumine-800 hover:text-blumine-900"
               onClick={login}
               onKeyDown={login}
             >
@@ -38,7 +38,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
             <button
               data-testid="back"
               type="button"
-              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
+              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-blumine-800 hover:text-blumine-900"
               onClick={() => backHandler()}
             >
               {getIcon(

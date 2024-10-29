@@ -26,8 +26,8 @@ function SearchPresentation({
     filters.map((filter) => {
       const filterIsActiveClass =
         searchType === filter.type
-          ? 'border-l-4 border-primary bg-primary text-white'
-          : 'text-primary bg-gray-100 lg:bg-white'
+          ? 'border-l-4 border-blumine-800 bg-blumine-800 text-white'
+          : 'text-blumine-800 bg-gray-100 lg:bg-white'
       return (
         <li
           key={filter.label}

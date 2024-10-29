@@ -65,8 +65,8 @@ function CategoriesBrowserPresentation({
                     onClick={() => setCurrentCategory(category)}
                     className={`${
                       category?.id === currentCategory?.id
-                        ? 'ring-2 ring-offset-2 ring-primary'
-                        : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
+                        ? 'ring-2 ring-offset-2 ring-blumine-800'
+                        : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-blumine-800'
                     } flex mx-auto w-11/12 p-4 cursor-pointer rounded-sm`}
                   >
                     <div className="w-1/2 text-left">{category?.title}</div>

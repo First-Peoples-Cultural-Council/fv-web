@@ -66,7 +66,7 @@ function WordsyPresentation({
       >
         {getIcon(
           'InfoCircleSolid',
-          'h-5 w-5 cursor-pointer fill-current text-primary',
+          'h-5 w-5 cursor-pointer fill-current text-blumine-800',
         )}
       </button>
 

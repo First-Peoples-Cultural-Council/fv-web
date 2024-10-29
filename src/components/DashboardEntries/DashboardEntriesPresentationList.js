@@ -168,7 +168,7 @@ function DashboardEntriesPresentationList({
                             {checkIfUserCanEdit(entry) ? (
                               <Link
                                 to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
-                                className="p-4 text-primary hover:text-primary-dark flex items-center"
+                                className="p-4 text-blumine-800 hover:text-blumine-900 flex items-center"
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
@@ -188,7 +188,7 @@ function DashboardEntriesPresentationList({
                               data-testid={`${entry?.title}-preview`}
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="p-4 text-primary hover:text-primary-dark flex items-center"
+                              className="p-4 text-blumine-800 hover:text-blumine-900 flex items-center"
                             >
                               {getIcon(
                                 'Preview',

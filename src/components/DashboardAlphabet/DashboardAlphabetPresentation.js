@@ -82,7 +82,7 @@ function DashboardAlphabetPresentation({
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   to={`/${sitename}/dashboard/edit/character?id=${character?.id}`}
-                  className="text-primary hover:text-primary-dark flex items-center"
+                  className="text-blumine-800 hover:text-blumine-900 flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                 </Link>
@@ -92,7 +92,7 @@ function DashboardAlphabetPresentation({
                   to={`/${sitename}/alphabet?${CHAR}=${character?.title}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-dark flex items-center"
+                  className="text-blumine-800 hover:text-blumine-900 flex items-center"
                 >
                   {getIcon('Link', 'fill-current w-6 h-6 mr-2')}
                 </Link>

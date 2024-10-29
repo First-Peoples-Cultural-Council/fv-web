@@ -38,7 +38,7 @@ function WidgetAreaEditPresentationSettingsPane({
   const { emailListAsString } = useContactUsEmailList()
 
   const settingLabelStyling =
-    'mb-1 text-sm font-bold text-primary-light capitalize'
+    'mb-1 text-sm font-bold text-blumine-600 capitalize'
   const settingDetailStyling = 'text-charcoal-900 text-lg'
 
   const getSettings = () => {
@@ -116,10 +116,10 @@ function WidgetAreaEditPresentationSettingsPane({
       {currentWidget ? (
         <div className="w-full p-8">
           <div className="block min-w-0 flex-1">
-            <h2 className="text-2xl font-bold text-primary truncate">
+            <h2 className="text-2xl font-bold text-blumine-800 truncate">
               {getWidgetIcon(
                 currentWidget?.type,
-                'w-12 h-12 fill-current text-primary inline-flex mr-2',
+                'w-12 h-12 fill-current text-blumine-800 inline-flex mr-2',
               )}{' '}
               {getWidgetTypeLabel(currentWidget?.type)}
             </h2>
@@ -193,7 +193,7 @@ function WidgetAreaEditPresentationSettingsPane({
         </div>
       ) : (
         <div className="mt-6 mx-auto px-6 h-screen">
-          <h2 className="mt-6 text-2xl text-center font-bold text-primary">
+          <h2 className="mt-6 text-2xl text-center font-bold text-blumine-800">
             Select a Widget to see details.
           </h2>
         </div>

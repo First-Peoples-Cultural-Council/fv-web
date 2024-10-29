@@ -56,7 +56,7 @@ function DashboardMediaAudioPresentation({
                             key={audioFile?.id}
                             className={`${
                               audioFile?.id === currentFile?.id
-                                ? 'ring-2 ring-offset-2 ring-primary'
+                                ? 'ring-2 ring-offset-2 ring-blumine-800'
                                 : ''
                             } rounded-lg relative`}
                             onClick={() => setCurrentFile(audioFile)}

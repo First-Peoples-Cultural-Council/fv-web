@@ -46,7 +46,7 @@ function DashboardJoinListPresentation({
                   type="button"
                   className={`${
                     !hasNextPage ? 'cursor-text' : ''
-                  } text-primary font-semibold w-full text-center p-2 print:hidden`}
+                  } text-blumine-800 font-semibold w-full text-center p-2 print:hidden`}
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}
                 >

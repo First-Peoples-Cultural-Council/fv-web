@@ -29,7 +29,7 @@ function ByAlphabetPresentation({
       <Link
         data-testid={`SearchFilter_${currentCharacter.id}`}
         className={`border col-span-1 font-medium inline-flex justify-center m-1 p-2 rounded-lg shadow text-3xl ${
-          currentCharacter?.id === id ? 'bg-primary text-white' : ''
+          currentCharacter?.id === id ? 'bg-blumine-800 text-white' : ''
         }`}
         key={id}
         to={`/${sitename}/${
@@ -71,7 +71,7 @@ function ByAlphabetPresentation({
           <div className="hidden md:block xl:p-2">
             <div
               data-testid={`SearchFilter_${currentCharacter.id}`}
-              className="font-medium flex justify-center mx-auto p-2 xl:p-4 text-5xl xl:text-7xl text-primary"
+              className="font-medium flex justify-center mx-auto p-2 xl:p-4 text-5xl xl:text-7xl text-blumine-800"
             >
               {currentCharacter.title}
               {currentCharacter?.relatedAudio?.length > 0 && (

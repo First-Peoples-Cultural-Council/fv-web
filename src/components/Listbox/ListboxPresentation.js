@@ -16,7 +16,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
     <div data-testid="ListboxPresentation">
       <Listbox value={selectedValue} onChange={setValue}>
         <div className="relative w-full">
-          <Listbox.Button className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
+          <Listbox.Button className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-gray-300 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
             <span className="inline-flex items-center capitalize">
               {getIcon(selectedOption?.icon, 'h-5 w-5 mr-2 fill-current')}
               {selectedOption?.transKey

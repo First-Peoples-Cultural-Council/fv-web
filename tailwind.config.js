@@ -136,18 +136,6 @@ module.exports = {
           900: '#39293c',
         },
         'kids-alphabet': customColorsConfig.blumine,
-        // Dark Blue
-        primary: {
-          light: '#44677E',
-          DEFAULT: '#264653',
-          dark: '#1b313a',
-        },
-        // Dark Orange
-        secondary: {
-          light: '#b07363',
-          DEFAULT: '#8E3720',
-          dark: '#632716',
-        },
         'wordsy-correct': {
           DEFAULT: customColorsConfig.jade[500],
         },

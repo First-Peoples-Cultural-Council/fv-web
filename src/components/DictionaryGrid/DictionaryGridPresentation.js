@@ -37,7 +37,7 @@ function DictionaryGridPresentation({
             <button
               data-testid="print-btn"
               type="button"
-              className="hidden float-right m-1 text-primary font-medium"
+              className="hidden float-right m-1 text-blumine-800 font-medium"
               onClick={() => printBtn()}
             >
               {getIcon('Print', 'fill-current w-8 h-auto')}

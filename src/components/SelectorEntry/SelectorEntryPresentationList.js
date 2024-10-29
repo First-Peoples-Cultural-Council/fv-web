@@ -86,8 +86,8 @@ function SelectorEntryPresentationList({
                             onClick={() => setSelected(entry)}
                             className={
                               entry?.id === selected?.id
-                                ? 'ring-2 ring-offset-2 ring-primary rounded-lg'
-                                : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary rounded-lg'
+                                ? 'ring-2 ring-offset-2 ring-blumine-800 rounded-lg'
+                                : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-blumine-800 rounded-lg'
                             }
                           >
                             <td className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900">

@@ -70,7 +70,7 @@ function SelectorImagesContainer({
                 <div className="py-4 px-6 text-left">
                   <h2
                     id="results-header"
-                    className="text-lg font-bold text-primary"
+                    className="text-lg font-bold text-blumine-800"
                   >
                     {searchSharedMedia === 'true'
                       ? 'Shared media library'
