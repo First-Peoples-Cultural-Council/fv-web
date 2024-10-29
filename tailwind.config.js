@@ -1,4 +1,3 @@
-const colors = require('tailwindcss/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 const tailwindAspectRatio = require('@tailwindcss/aspect-ratio')
 const tailwindForms = require('@tailwindcss/forms')
@@ -112,15 +111,18 @@ module.exports = {
         '1/8': '12.5%',
       },
       colors: {
-        scarlet: customColorsConfig.scarlet,
-        blumine: customColorsConfig.blumine,
-        jade: customColorsConfig.jade,
-        ochre: customColorsConfig.ochre,
-        charcoal: customColorsConfig.charcoal,
+        // Core Colors
+        scarlet: customColorsConfig.scarlet, // 400, 500, 600, 700, 800, 900
+        blumine: customColorsConfig.blumine, // 400, 500, 600, 700, 800, 900
+        jade: customColorsConfig.jade, // 300, 400, 500, 700, 800
+        ochre: customColorsConfig.ochre, // 200, 400, 500, 600, 700, 800
+        charcoal: customColorsConfig.charcoal, // 100, 200, 300, 500, 700, 900
+        // Type Color Aliases
         'word-color': customColorsConfig.jade,
         'phrase-color': customColorsConfig.ochre,
         'song-color': customColorsConfig.scarlet,
         'story-color': customColorsConfig.blumine,
+        // Kids Colors and Aliases - NB These will be replaced when we get a new Kids palette
         'kids-dictionary': customColorsConfig.jade,
         'kids-categories': customColorsConfig.ochre,
         'kids-songs': {
@@ -135,6 +137,7 @@ module.exports = {
           500: '#513B56',
           900: '#39293c',
         },
+        // Misc aliases
         'kids-alphabet': customColorsConfig.blumine,
         'wordsy-correct': {
           DEFAULT: customColorsConfig.jade[500],
@@ -142,7 +145,7 @@ module.exports = {
         'wordsy-present': {
           DEFAULT: customColorsConfig.ochre[600],
         },
-        gray: colors.stone,
+        gray: customColorsConfig.charcoal,
       },
     },
   },
