@@ -44,7 +44,7 @@ function TextTranslationArrayField({
                       {...register(`${nameId}.${index}.text`)}
                     />
                     {errors?.[nameId]?.[index]?.text?.message && (
-                      <div className="text-red-500">
+                      <div className="text-scarlet-700">
                         {errors?.[nameId]?.[index]?.text?.message}
                       </div>
                     )}
@@ -63,7 +63,7 @@ function TextTranslationArrayField({
                       {...register(`${nameId}.${index}.translation`)}
                     />
                     {errors?.[nameId]?.[index]?.translation?.message && (
-                      <div className="text-red-500">
+                      <div className="text-scarlet-700">
                         {errors?.[nameId]?.[index]?.translation?.message}
                       </div>
                     )}

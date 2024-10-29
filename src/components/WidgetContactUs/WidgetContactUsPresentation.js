@@ -132,7 +132,7 @@ function ContactUsPresentation({
                     />
                   </div>
                   {errors?.name && (
-                    <div className="text-red-500 text-right">
+                    <div className="text-scarlet-700 text-right">
                       {errors?.name?.message}
                     </div>
                   )}
@@ -153,7 +153,7 @@ function ContactUsPresentation({
                     />
                   </div>
                   {errors?.email && (
-                    <div className="text-red-500 text-right">
+                    <div className="text-scarlet-700 text-right">
                       {errors?.email?.message}
                     </div>
                   )}
@@ -174,7 +174,7 @@ function ContactUsPresentation({
                     />
                   </div>
                   {errors?.message && (
-                    <div className="text-red-500 text-right">
+                    <div className="text-scarlet-700 text-right">
                       {errors?.message?.message}
                     </div>
                   )}

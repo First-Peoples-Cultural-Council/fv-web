@@ -39,13 +39,16 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       )
     case ERROR:
       return (
-        <div className="rounded-lg bg-red-50 p-4">
+        <div className="rounded-lg bg-scarlet-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('TimesCircleSolid', 'h-5 w-5 fill-current text-red-400')}
+              {getIcon(
+                'TimesCircleSolid',
+                'h-5 w-5 fill-current text-scarlet-700',
+              )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-red-800">{message}</p>
+              <p className="text-sm font-medium text-scarlet-800">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -53,7 +56,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                   <button
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-red-50 rounded-lg p-1.5 text-red-500 hover:bg-red-100"
+                    className="inline-flex bg-scarlet-50 rounded-lg p-1.5 text-scarlet-700 hover:bg-scarlet-50"
                   >
                     <span className="sr-only">Dismiss</span>
                     {getIcon('Close', 'h-5 w-5')}

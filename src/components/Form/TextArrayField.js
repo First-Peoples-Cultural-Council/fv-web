@@ -61,7 +61,7 @@ function TextArrayField({
                   </div>
                 </div>
                 {errors?.[nameId]?.[index] && (
-                  <div className="text-red-500">
+                  <div className="text-scarlet-700">
                     {convertJsonToReadableString(
                       errors?.[nameId]?.[index]?.text?.message,
                     )}
@@ -89,7 +89,7 @@ function TextArrayField({
             />
           </div>
           {errors?.[nameId]?.[fields?.length] && (
-            <div className="text-red-500">
+            <div className="text-scarlet-700">
               {convertJsonToReadableString(
                 errors?.[nameId]?.[fields?.length]?.text?.message,
               )}
