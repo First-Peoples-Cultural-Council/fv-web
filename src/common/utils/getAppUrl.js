@@ -10,7 +10,7 @@ function getAppUrl({ slug }) {
 
 function getAppLogoUrl({ slug }) {
   const appUrl = getAppUrl({ slug })
-  return `${appUrl}/assets/${slug}/logo192.png`
+  return `${appUrl}/${slug}/logo192.png`
 }
 
 const { string } = PropTypes
