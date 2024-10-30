@@ -46,7 +46,7 @@ function KidsNavBarPresentation({ links, site, home }) {
                 className="relative flex items-center h-24 w-24 md:h-32 md:w-32"
                 to={`/${site?.sitename}/kids`}
               >
-                <SiteLogo.Presentation />
+                <SiteLogo.Presentation additionalStyling="w-full" />
                 {generateText(
                   'kids',
                   'block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-10 sm:w-16',
