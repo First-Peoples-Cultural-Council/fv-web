@@ -34,7 +34,7 @@ function ByCategoryPresentation({
         className="inline-block lg:block transition duration-500 ease-in-out lg:my-2 lg:mx-5 grow "
       >
         <Link
-          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-tertiaryB"
+          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-charcoal-700"
           to={`/${sitename}/${kids ? 'kids/' : ''}categories/${category.id}`}
         >
           {getCategoryIcon(
@@ -74,7 +74,7 @@ function ByCategoryPresentation({
             <ul
               className={`list-none m-2 px-2 lg:space-y-2 ${
                 currentCategory?.id === currentParentCategory?.id
-                  ? 'border-l-4 md:border-l-0 lg:border-l-4 border-tertiaryB'
+                  ? 'border-l-4 md:border-l-0 lg:border-l-4 border-charcoal-700'
                   : ''
               }`}
             >
@@ -84,7 +84,7 @@ function ByCategoryPresentation({
                 className="inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow"
               >
                 <Link
-                  className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-tertiaryB bg-gray-300"
+                  className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-charcoal-700 bg-charcoal-200"
                   to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                     currentParentCategory.id
                   }?docType=${searchType}`}
@@ -105,13 +105,15 @@ function ByCategoryPresentation({
                       id={`SearchFilter${child.id}`}
                       className={`inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow ${
                         child.id === currentCategory.id
-                          ? 'border-l-4 md:border-l-0 lg:border-l-4 border-tertiaryB'
+                          ? 'border-l-4 md:border-l-0 lg:border-l-4 border-charcoal-700'
                           : ''
                       }`}
                     >
                       <Link
-                        className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-tertiaryB ${
-                          child.id === currentCategory.id ? 'bg-gray-300' : ''
+                        className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-charcoal-700 ${
+                          child.id === currentCategory.id
+                            ? 'bg-charcoal-200'
+                            : ''
                         }`}
                         to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                           child.id
@@ -131,13 +133,13 @@ function ByCategoryPresentation({
             </ul>
           </div>
           <div className="hidden lg:block lg:p-3">
-            <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-gray-300">
+            <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-charcoal-200">
               {getParentCategoriesList()}
             </ul>
           </div>
           {kids ? null : (
             <div className="hidden lg:block mt-1 lg:mt-5">
-              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">
+              <h2 className="text-2xl font-medium ml-7 text-charcoal-900">
                 BROWSE BY:
               </h2>
               <ul className="list-none">
@@ -146,7 +148,7 @@ function ByCategoryPresentation({
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/alphabet`}
                   >
                     {getIcon(
@@ -161,7 +163,7 @@ function ByCategoryPresentation({
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/words`}
                   >
                     {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}
@@ -173,7 +175,7 @@ function ByCategoryPresentation({
                   className="inline-block lg:block transition duration-500 ease-in-out lg:my-3 lg:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/phrases`}
                   >
                     {getIcon(
@@ -189,7 +191,7 @@ function ByCategoryPresentation({
         </div>
         {kids ? (
           <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9">
-            <div className="bg-gray-100 p-4">
+            <div className="bg-charcoal-50 p-4">
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
@@ -204,13 +206,13 @@ function ByCategoryPresentation({
             </div>
           </div>
         ) : (
-          <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9 border-l-2 border-gray-300 lg:pl-7">
+          <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9 border-l-2 border-charcoal-200 lg:pl-7">
             <div className="block lg:py-4">
-              <div className="flex items-center md:border-b border-gray-200 px-3 md:pb-2 lg:pb-5 print:hidden">
+              <div className="flex items-center md:border-b border-charcoal-100 px-3 md:pb-2 lg:pb-5 print:hidden">
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}
-                  accentColor="tertiaryB"
+                  accentColor="charcoal-700"
                 />
               </div>
               <div className="hidden md:block p-2 print:block">

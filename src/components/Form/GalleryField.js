@@ -61,8 +61,8 @@ function AddGalleryButton({ value, onChange }) {
         closeHandler={() => setModalOpen(false)}
         isDashboard
       >
-        <div className="h-4/5-screen mx-auto rounded-lg bg-gray-50 p-6">
-          <h2 className="text-2xl leading-6 font-bold text-center text-primary mb-6">
+        <div className="h-4/5-screen mx-auto rounded-lg bg-charcoal-50 p-6">
+          <h2 className="text-2xl leading-6 font-bold text-center text-blumine-800 mb-6">
             Choose a gallery
           </h2>
           {data?.results?.length > 0 ? (
@@ -80,7 +80,7 @@ function AddGalleryButton({ value, onChange }) {
               ))}
             </div>
           ) : (
-            <div className="text-xl text-center text-fv-charcoal mb-6">
+            <div className="text-xl text-center text-charcoal-900 mb-6">
               There are currently no galleries on your site. You can create a
               gallery{' '}
               <Link to="../gallery" className="inline-url">

@@ -1,8 +1,8 @@
-const colors = require('tailwindcss/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 const tailwindAspectRatio = require('@tailwindcss/aspect-ratio')
 const tailwindForms = require('@tailwindcss/forms')
 const languageColorsConfig = require('./src/assets/languageColorsConfig')
+const customColorsConfig = require('./src/assets/customColorsConfig')
 
 module.exports = {
   content: ['./src/**/*.{html,js}', './public/index.html'],
@@ -11,14 +11,20 @@ module.exports = {
     'wysiwyg',
     {
       pattern:
-        /(bg|border|from|to|text)-(word|phrase|song|story|tertiaryA|tertiaryB|tertiaryC|wordText|phraseText|songText|storyText|bgGreen)-(light|dark)/,
+        /(bg|border|fill|from|to|text)-(scarlet|blumine|jade|ochre|charcoal)-(100|200|300|400|500|600|700|800|900|950)/,
       variants: ['hover'],
     },
     {
       pattern:
-        /(bg|border|from|to|text)-(word|phrase|song|story|tertiaryA|tertiaryB|tertiaryC|wordText|phraseText|songText|storyText|bgGreen)/,
+        /(bg|border|fill|from|to|text)-(word-color|phrase-color|song-color|story-color)-(100|200|300|400|500|600|700|800|900|950)/,
       variants: ['hover'],
     },
+    {
+      pattern:
+        /(bg|border|fill|from|to|text)-(kids-dictionary|kids-categories|kids-songs|kids-stories|kids-games|kids-alphabet)-(500|600|700|800|900)/,
+      variants: ['hover'],
+    },
+
     ...languageColorsConfig.colors,
   ],
   theme: {
@@ -105,92 +111,40 @@ module.exports = {
         '1/8': '12.5%',
       },
       colors: {
-        // Dark Blue
-        primary: {
-          light: '#44677E',
-          DEFAULT: '#264653',
-          dark: '#1b313a',
+        // Core Colors
+        blumine: customColorsConfig.blumine, // 400, 500, 600, 700, 800, 900
+        scarlet: customColorsConfig.scarlet, // 400, 500, 600, 700, 800, 900
+        jade: customColorsConfig.jade, // 300, 400, 500, 700, 800
+        ochre: customColorsConfig.ochre, // 200, 400, 500, 600, 700, 800
+        charcoal: customColorsConfig.charcoal, // 100, 200, 300, 500, 700, 900
+        // Type Color Aliases
+        'phrase-color': customColorsConfig.ochre,
+        'song-color': customColorsConfig.scarlet,
+        'story-color': customColorsConfig.blumine,
+        'word-color': customColorsConfig.jade,
+        // Kids Colors and Aliases - NB These will be replaced when we get a new Kids palette
+        'kids-alphabet': customColorsConfig.blumine,
+        'kids-categories': customColorsConfig.ochre,
+        'kids-dictionary': customColorsConfig.jade,
+        'kids-games': {
+          500: '#513B56',
+          900: '#39293c',
         },
-        // Dark Orange
-        secondary: {
-          light: '#b07363',
-          DEFAULT: '#8E3720',
-          dark: '#632716',
+        'kids-songs': {
+          500: '#830042',
+          900: '#5c002e',
         },
-        // Purple
-        tertiaryA: {
-          light: '#857689',
-          DEFAULT: '#513B56',
-          dark: '#39293c',
+        'kids-stories': {
+          500: '#E9C46A',
+          900: '#a3894a',
         },
-        // Green/Grey
-        tertiaryB: {
-          light: '#878a80',
-          DEFAULT: '#54584A',
-          dark: '#3b3e34',
-        },
-        // Yellow/Orange Accent - e.g. Stats WIdget
-        tertiaryC: {
-          DEFAULT: '#EFAD1A',
-        },
-        // Grey/Blue background - eg. landing banner
-        tertiaryD: {
-          DEFAULT: '#2D5B72',
-        },
-        word: {
-          light: '#6ABAB1',
-          DEFAULT: '#2A9D8F',
-          dark: '#1D6E64',
-        },
-        phrase: {
-          light: '#D5A169',
-          DEFAULT: '#C37829',
-          dark: '#89541D',
-        },
-        song: {
-          light: '#a84d7b',
-          DEFAULT: '#830042',
-          dark: '#5c002e',
-        },
-        story: {
-          light: '#f0d697',
-          DEFAULT: '#E9C46A',
-          dark: '#a3894a',
-        },
-        wordText: {
-          DEFAULT: '#264653',
-        },
-        phraseText: {
-          DEFAULT: '#9A270A',
-        },
-        songText: {
-          DEFAULT: '#830042',
-        },
-        storyText: {
-          DEFAULT: '#8C5822',
-        },
-        bgGreen: {
-          DEFAULT: '#2C876D',
-        },
-        bgRed: {
-          DEFAULT: '#B40212',
-        },
-        buttonOrange: {
-          DEFAULT: '#C4572D',
-        },
-        'fv-charcoal': {
-          xlight: '#979799',
-          light: '#54584A',
-          DEFAULT: '#313133',
-          dark: '#0f0f10',
-        },
+        // Misc aliases
         'wordsy-correct': {
-          DEFAULT: '#2C876D', // as bgGreen
+          DEFAULT: customColorsConfig.jade[500],
         },
         'wordsy-present': {
-          DEFAULT: '#C37829', // as phrase
+          DEFAULT: customColorsConfig.ochre[600],
         },
-        gray: colors.stone,
       },
     },
   },

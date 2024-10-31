@@ -14,14 +14,13 @@ function GalleryPresentation({ data }) {
     >
       <SectionTitle.Presentation
         title={data?.title}
-        bgColor="white"
-        accentColor="fv-charcoal"
+        accentColor="charcoal-900"
       />
-      <div className="text-center text-fv-charcoal text-xl">
+      <div className="text-center text-charcoal-900 text-xl">
         {data?.titleTranslation}
       </div>
       {(data?.introTranslation || data?.intro) && (
-        <div className="mx-auto text-center text-fv-charcoal max-w-prose my-4">
+        <div className="mx-auto text-center text-charcoal-900 max-w-prose my-4">
           <div>{data?.intro}</div>
           <div>{data?.introTranslation}</div>
         </div>

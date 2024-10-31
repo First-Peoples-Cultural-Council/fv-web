@@ -9,27 +9,25 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
   switch (alertType) {
     case SUCCESS:
       return (
-        <div className="rounded-lg bg-green-50 p-4">
+        <div className="rounded-lg bg-jade-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon(
-                'CheckCircleSolid',
-                'h-5 w-5 fill-current  text-green-400',
-              )}
+              {getIcon('CheckCircleSolid', 'btn-icon text-jade-500')}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-green-800">{message}</p>
+              <p className="text-sm font-medium text-jade-800">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
                 {handleClose && (
                   <button
+                    data-testid="success-close-btn"
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-green-50 rounded-lg p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+                    className="inline-flex rounded-lg p-1.5 text-jade-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'h-5 w-5')}
+                    {getIcon('Close', 'btn-icon')}
                   </button>
                 )}
               </div>
@@ -39,24 +37,25 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       )
     case ERROR:
       return (
-        <div className="rounded-lg bg-red-50 p-4">
+        <div className="rounded-lg bg-scarlet-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('TimesCircleSolid', 'h-5 w-5 fill-current text-red-400')}
+              {getIcon('TimesCircleSolid', 'btn-icon text-scarlet-700')}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-red-800">{message}</p>
+              <p className="text-sm font-medium text-scarlet-900">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
                 {handleClose && (
                   <button
+                    data-testid="error-close-btn"
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-red-50 rounded-lg p-1.5 text-red-500 hover:bg-red-100"
+                    className="inline-flex rounded-lg p-1.5 text-scarlet-700"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'h-5 w-5')}
+                    {getIcon('Close', 'btn-icon')}
                   </button>
                 )}
               </div>
@@ -66,27 +65,25 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       )
     case WARNING:
       return (
-        <div className="rounded-lg bg-yellow-50 p-4">
+        <div className="rounded-lg bg-ochre-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon(
-                'ExclamationTriangleSolid',
-                'h-5 w-5 fill-current text-yellow-400',
-              )}
+              {getIcon('ExclamationTriangleSolid', 'btn-icon text-ochre-500')}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-yellow-800">{message}</p>
+              <p className="text-sm font-medium text-ochre-800">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
                 {handleClose && (
                   <button
+                    data-testid="warning-close-btn"
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-yellow-50 rounded-lg p-1.5 text-yellow-500 hover:bg-yellow-100"
+                    className="inline-flex rounded-lg p-1.5 text-ochre-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'h-5 w-5')}
+                    {getIcon('Close', 'btn-icon')}
                   </button>
                 )}
               </div>
@@ -96,24 +93,25 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       )
     case INFO:
       return (
-        <div className="rounded-lg bg-blue-50 p-4">
+        <div className="rounded-lg bg-blumine-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('InfoCircleSolid', 'h-5 w-5 fill-current text-blue-400')}
+              {getIcon('InfoCircleSolid', 'btn-icon text-blumine-500')}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-blue-800">{message}</p>
+              <p className="text-sm font-medium text-blumine-800">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
                 {handleClose && (
                   <button
+                    data-testid="info-close-btn"
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-blue-50 rounded-lg p-1.5 text-blue-500 hover:bg-blue-100"
+                    className="inline-flex rounded-lg p-1.5 text-blumine-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'h-5 w-5')}
+                    {getIcon('Close', 'btn-icon')}
                   </button>
                 )}
               </div>
@@ -124,24 +122,25 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
     case NEUTRAL:
     default:
       return (
-        <div className="rounded-lg bg-gray-50 shadow-lg p-4">
+        <div className="rounded-lg bg-charcoal-50 shadow-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('InfoCircleSolid', 'h-5 w-5 fill-current text-primary')}
+              {getIcon('InfoCircleSolid', 'btn-icon text-charcoal-500')}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-primary">{message}</p>
+              <p className="text-sm font-medium text-charcoal-900">{message}</p>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
                 {handleClose && (
                   <button
+                    data-testid="neutral-close-btn"
                     type="button"
                     onClick={handleClose}
-                    className="inline-flex bg-gray-50 rounded-lg p-1.5 text-primary hover:bg-gray-100"
+                    className="inline-flex rounded-lg p-1.5 text-charcoal-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'h-5 w-5')}
+                    {getIcon('Close', 'btn-icon')}
                   </button>
                 )}
               </div>

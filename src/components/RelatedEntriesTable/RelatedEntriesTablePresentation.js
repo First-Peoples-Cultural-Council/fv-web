@@ -10,7 +10,7 @@ import AudioMinimal from 'components/AudioMinimal'
 function RelatedEntriesTablePresentation({
   entries,
   sitename,
-  labelStyling = 'text-left font-medium text-lg uppercase text-fv-charcoal',
+  labelStyling = 'text-left font-medium text-lg uppercase text-charcoal-900',
 }) {
   return (
     entries?.length > 0 && (
@@ -29,7 +29,7 @@ function RelatedEntriesTablePresentation({
         </thead>
         <tbody>
           {entries?.map((entry, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
+            const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
               <tr key={entry?.id} className={zebraStripe}>
                 <td className="p-2">

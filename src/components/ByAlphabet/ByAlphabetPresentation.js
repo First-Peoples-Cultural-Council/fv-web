@@ -29,7 +29,7 @@ function ByAlphabetPresentation({
       <Link
         data-testid={`SearchFilter_${currentCharacter.id}`}
         className={`border col-span-1 font-medium inline-flex justify-center m-1 p-2 rounded-lg shadow text-3xl ${
-          currentCharacter?.id === id ? 'bg-primary text-white' : ''
+          currentCharacter?.id === id ? 'bg-blumine-800 text-white' : ''
         }`}
         key={id}
         to={`/${sitename}/${
@@ -71,7 +71,7 @@ function ByAlphabetPresentation({
           <div className="hidden md:block xl:p-2">
             <div
               data-testid={`SearchFilter_${currentCharacter.id}`}
-              className="font-medium flex justify-center mx-auto p-2 xl:p-4 text-5xl xl:text-7xl text-primary"
+              className="font-medium flex justify-center mx-auto p-2 xl:p-4 text-5xl xl:text-7xl text-blumine-800"
             >
               {currentCharacter.title}
               {currentCharacter?.relatedAudio?.length > 0 && (
@@ -85,13 +85,13 @@ function ByAlphabetPresentation({
             </div>
           </div>
           <div className="block md:p-3">
-            <div className="grid grid-cols-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mx-auto md:pt-5 md:border-t-2 md:border-gray-300">
+            <div className="grid grid-cols-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mx-auto md:pt-5 md:border-t-2 md:border-charcoal-200">
               {getAlphabetList()}
             </div>
           </div>
           {kids ? null : (
             <div className="hidden lg:block mt-5">
-              <h2 className="text-2xl font-medium ml-7 text-fv-charcoal">
+              <h2 className="text-2xl font-medium ml-7 text-charcoal-900">
                 BROWSE BY:
               </h2>
               <ul className="list-none">
@@ -100,7 +100,7 @@ function ByAlphabetPresentation({
                   className="inline-block md:block transition duration-500 ease-in-out md:my-3 md:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/categories?${TYPES}=${searchType}`}
                   >
                     {getIcon(
@@ -115,7 +115,7 @@ function ByAlphabetPresentation({
                   className="inline-block md:block transition duration-500 ease-in-out md:my-3 md:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/words`}
                   >
                     {getIcon('Word', 'inline-flex fill-current w-8 lg:mr-5')}
@@ -127,7 +127,7 @@ function ByAlphabetPresentation({
                   className="inline-block md:block transition duration-500 ease-in-out md:my-3 md:ml-8"
                 >
                   <Link
-                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-fv-charcoal"
+                    className="transition duration-500 ease-in-out p-3 grow rounded-lg capitalize cursor-pointer text-xl text-charcoal-900"
                     to={`/${sitename}/phrases`}
                   >
                     {getIcon(
@@ -144,7 +144,7 @@ function ByAlphabetPresentation({
 
         {kids ? (
           <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8">
-            <div className="bg-gray-100 p-4 min-h-screen">
+            <div className="bg-charcoal-50 p-4 min-h-screen">
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
@@ -159,13 +159,13 @@ function ByAlphabetPresentation({
             </div>
           </div>
         ) : (
-          <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8 border-l-2 border-gray-300 md:pl-3 xl:pl-6">
+          <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8 border-l-2 border-charcoal-200 md:pl-3 xl:pl-6">
             <div className="block py-4">
-              <div className="flex items-center border-b border-gray-200 px-3 pb-5 print:hidden">
+              <div className="flex items-center border-b border-charcoal-100 px-3 pb-5 print:hidden">
                 <SearchTypeSelector.Container
                   selectedSearchType={searchType}
                   setSearchType={setSearchType}
-                  accentColor="primary"
+                  accentColor="blumine-800"
                 />
               </div>
               <div className="hidden md:block p-2 print:block">

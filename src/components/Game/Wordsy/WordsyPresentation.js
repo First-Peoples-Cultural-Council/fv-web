@@ -56,7 +56,7 @@ function WordsyPresentation({
       className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white"
       data-testid="WordsyContainer"
     >
-      <SectionTitle.Presentation title="WORDSY" accentColor="primary" />
+      <SectionTitle.Presentation title="WORDSY" />
 
       <button
         type="button"
@@ -66,7 +66,7 @@ function WordsyPresentation({
       >
         {getIcon(
           'InfoCircleSolid',
-          'h-5 w-5 cursor-pointer fill-current text-primary',
+          'h-5 w-5 cursor-pointer fill-current text-blumine-800',
         )}
       </button>
 
@@ -94,7 +94,7 @@ function WordsyPresentation({
           />
         </div>
       ) : (
-        <p className="text-fv-charcoal mt-2 text-center">
+        <p className="text-charcoal-900 mt-2 text-center">
           This site does not currently have enough dictionary content for the
           wordsy game.
           <br />

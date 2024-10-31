@@ -30,7 +30,7 @@ function ModalPresentation({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" />
+            <Dialog.Overlay className="fixed inset-0 bg-charcoal-700 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           {/* This element is to 'trick' the browser into centering the modal contents. */}
@@ -54,7 +54,7 @@ function ModalPresentation({
               {children}
               <button
                 type="button"
-                className="absolute -top-7 right-0 sm:-right-7 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
+                className="absolute -top-7 right-0 sm:-right-7 text-charcoal-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
                 onClick={closeHandler}
               >
                 {getIcon('Close', 'fill-current h-7 w-7')}

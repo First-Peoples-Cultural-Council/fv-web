@@ -29,7 +29,7 @@ function DashboardPagesData() {
       name: 'Edit Homepage',
       description: 'Edit the main homepage for your site',
       href: `/${sitename}/dashboard/edit/home`,
-      iconColor: 'wordText',
+      iconColor: 'ochre-800',
       auth: LANGUAGE_ADMIN,
     },
     {
@@ -37,7 +37,7 @@ function DashboardPagesData() {
       name: 'Create a Custom Page',
       description: 'Add a new page to your site',
       href: `/${sitename}/dashboard/create/page`,
-      iconColor: 'wordText',
+      iconColor: 'blumine-800',
       auth: LANGUAGE_ADMIN,
     },
   ]

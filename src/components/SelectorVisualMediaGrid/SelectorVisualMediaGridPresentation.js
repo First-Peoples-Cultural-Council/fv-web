@@ -33,7 +33,7 @@ function SelectorVisualMediaGridPresentation({
                   }
                   return (
                     <li key={mediaObject?.id} className="relative group">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800 block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden">
                         <img
                           src={mediaObject?.thumbnail}
                           alt={mediaObject?.title}
@@ -50,11 +50,11 @@ function SelectorVisualMediaGridPresentation({
                           </span>
                         </button>
                       </div>
-                      <p className="mt-2 block text-sm font-medium text-fv-charcoal truncate pointer-events-none">
+                      <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
                         {mediaObject?.title}
                       </p>
                       {mediaObject?.width && mediaObject?.height && (
-                        <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
+                        <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
                       )}
                       {selectedMedia?.some(
                         (elem) => elem?.id === mediaObject?.id,
@@ -67,11 +67,11 @@ function SelectorVisualMediaGridPresentation({
                         >
                           {getIcon(
                             'TimesCircleSolid',
-                            'hidden group-hover:block h-8 w-8 fill-secondary',
+                            'hidden group-hover:block h-8 w-8 fill-scarlet-800',
                           )}
                           {getIcon(
                             'CheckCircleSolid',
-                            'group-hover:hidden h-8 w-8 fill-bgGreen',
+                            'group-hover:hidden h-8 w-8 fill-jade-500',
                           )}
                         </button>
                       )}
@@ -81,7 +81,7 @@ function SelectorVisualMediaGridPresentation({
               </React.Fragment>
             ))}
         </ul>
-        <div className="pt-10 text-center text-fv-charcoal font-medium">
+        <div className="pt-10 text-center text-charcoal-900 font-medium">
           <button
             data-testid="load-btn"
             type="button"

@@ -29,7 +29,7 @@ function SelectorAudioContainer({
   )
 
   return (
-    <div data-testid="SelectorAudioContainer" className="h-full bg-gray-50">
+    <div data-testid="SelectorAudioContainer" className="h-full bg-charcoal-50">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation

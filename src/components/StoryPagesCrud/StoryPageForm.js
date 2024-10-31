@@ -46,7 +46,7 @@ function StoryPageForm({
   })
 
   return (
-    <div id="StoryPageForm" className="p-4 bg-white text-fv-charcoal">
+    <div id="StoryPageForm" className="p-4 bg-white text-charcoal-900">
       <div className="flex justify-between mb-4">
         <div className="text-lg font-semibold">Edit Page {pageNumber}</div>
         {dataToEdit?.id && (

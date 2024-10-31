@@ -13,10 +13,10 @@ function SelectorSearchboxPresentation({
   return (
     <div
       data-testid="SelectorSearchboxPresentation"
-      className="w-full relative z-10 flex items-center h-16 mx-auto bg-white border-b border-gray-200 shadow-sm px-6"
+      className="w-full relative z-10 flex items-center h-16 mx-auto bg-white border-b border-charcoal-100 shadow-sm px-6"
     >
       <form onSubmit={onSearchSubmit} className="w-full flex">
-        <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+        <div className="relative w-full text-charcoal-500 focus-within:text-charcoal-700">
           <button
             data-testid="search-submit-btn"
             type="submit"
@@ -27,7 +27,7 @@ function SelectorSearchboxPresentation({
           <input
             name="search-field"
             id="search-field"
-            className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
+            className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-charcoal-300 sm:block"
             placeholder={searchPlaceholder}
             type="search"
             onChange={onSearchChange}

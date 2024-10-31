@@ -100,29 +100,29 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           {emailListAsString?.length > 0 ? (
-            <div className="col-span-12 mt-2 text-sm text-fv-charcoal-light">
-              <div className="block text-sm font-medium text-fv-charcoal">
+            <div className="col-span-12 mt-2 text-sm text-charcoal-500">
+              <div className="block text-sm font-medium text-charcoal-900">
                 Contact list
               </div>
-              <div className="mt-2 text-xs text-fv-charcoal-light italic">
+              <div className="mt-2 text-xs text-charcoal-500 italic">
                 (Please contact support at hello@firstvoices.com to update this
                 list)
               </div>
-              <div className="mt-2 text-sm text-fv-charcoal-light">
+              <div className="mt-2 text-sm text-charcoal-500">
                 Contact us emails will be sent to the following addresses:
               </div>
               <div>{emailListAsString}</div>
             </div>
           ) : (
             <div className="col-span-12">
-              <div className="block text-sm font-medium text-fv-charcoal">
+              <div className="block text-sm font-medium text-charcoal-900">
                 Contact list
               </div>
-              <div className="mt-2 text-xs text-fv-charcoal-light italic">
+              <div className="mt-2 text-xs text-charcoal-500 italic">
                 (Please contact support at hello@firstvoices.com to update this
                 list)
               </div>
-              <div className="mt-2 text-sm text-fv-charcoal-light">
+              <div className="mt-2 text-sm text-charcoal-500">
                 Could not find any emails to send contact messages to.
               </div>
             </div>

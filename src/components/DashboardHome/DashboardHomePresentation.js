@@ -20,18 +20,18 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
               <div className="sm:flex sm:items-center sm:justify-between">
                 <div className="flex space-x-5">
                   <div className="flex-shrink-0">
-                    <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
+                    <div className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
                       {currentUser?.userInitials}
                     </div>
                   </div>
                   <div className="pt-1 text-left">
-                    <p className="text-sm font-medium text-fv-charcoal-light">
+                    <p className="text-sm font-medium text-charcoal-500">
                       Welcome back,
                     </p>
-                    <p className="font-bold text-fv-charcoal text-2xl">
+                    <p className="font-bold text-charcoal-900 text-2xl">
                       {currentUser.fullName}
                     </p>
-                    <p className="text-sm font-medium text-fv-charcoal-light">
+                    <p className="text-sm font-medium text-charcoal-500">
                       {currentUser.role}
                     </p>
                   </div>
@@ -42,7 +42,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
           </div>
         </section>
         <section>
-          <h2 className="mb-3 mx-2 text-sm font-medium text-fv-charcoal-light">
+          <h2 className="mb-3 mx-2 text-sm font-medium text-charcoal-500">
             Quick links
           </h2>
           <ul className="grid grid-cols-3 lg:grid-cols-4  gap-3">
@@ -56,16 +56,16 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                   className="relative group col-span-1 flex rounded-lg"
                 >
                   <div
-                    className={`bg-gray-100 text-${tile?.iconColor} flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-l-md font-medium`}
+                    className={`bg-charcoal-50 text-${tile?.iconColor} flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-l-md font-medium`}
                   >
                     {getIcon(tile.icon, 'h-6 w-6 fill-current')}
                   </div>
-                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-charcoal-100 bg-white">
                     <div className="flex-1 truncate p-1 ">
                       {tile?.externalLink ? (
                         <a
                           href={tile?.href}
-                          className="text-sm font-medium text-fv-charcoal group-hover:text-fv-charcoal-light"
+                          className="text-sm font-medium text-charcoal-900 group-hover:text-charcoal-500"
                           target="_blank"
                           rel="noreferrer noopener"
                         >
@@ -79,7 +79,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                       ) : (
                         <Link
                           to={tile?.href}
-                          className="text-sm font-medium text-fv-charcoal group-hover:text-fv-charcoal-light"
+                          className="text-sm font-medium text-charcoal-900 group-hover:text-charcoal-500"
                         >
                           {/* Extend touch target to entire panel */}
                           <span
@@ -98,7 +98,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
         </section>
         <RequireAuth siteMembership={LANGUAGE_ADMIN}>
           <section className="rounded-lg overflow-hidden">
-            <h2 className="mb-3 mx-2 text-sm font-medium text-fv-charcoal-light">
+            <h2 className="mb-3 mx-2 text-sm font-medium text-charcoal-500">
               Requests to join {site?.title}
             </h2>
             <DashboardJoinList.Container />

@@ -17,7 +17,7 @@ function DashboardCategoriesPresentation({
   sitename,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div id="DashboardCategoriesPresentation" className="space-y-5">
@@ -48,16 +48,16 @@ function DashboardCategoriesPresentation({
           }
           tableBody={categories.map((category) => (
             <tr key={category.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {category.title}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {category.parentTitle || '-------'}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   to={`/${sitename}/dashboard/edit/category?id=${category?.id}`}
-                  className="text-secondary hover:text-secondary-dark flex items-center"
+                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                 </Link>
@@ -67,7 +67,7 @@ function DashboardCategoriesPresentation({
                   to={`/${sitename}/categories/${category?.id}?type=${TYPE_DICTIONARY}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-secondary hover:text-secondary-dark flex items-center"
+                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
                   {getIcon('Link', 'fill-current w-6 h-6 mr-2')}
                 </Link>

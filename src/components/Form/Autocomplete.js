@@ -56,7 +56,7 @@ function Autocomplete({
                   <Combobox.Input
                     className={`${
                       disabled ? 'opacity-50' : 'opacity-100'
-                    } relative w-full cursor-default block border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary`}
+                    } relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800`}
                     displayValue={() => getCurrentLabel(value)}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder="Type to find a part of speech..."
@@ -74,7 +74,7 @@ function Autocomplete({
                 >
                   <Combobox.Options className="focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5">
                     {filteredOptions?.length === 0 && query !== '' ? (
-                      <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                      <div className="relative cursor-default select-none py-2 px-4 text-charcoal-700">
                         Nothing found.
                       </div>
                     ) : (
@@ -84,8 +84,8 @@ function Autocomplete({
                           className={({ active }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               active
-                                ? 'bg-secondary text-white'
-                                : 'text-fv-charcoal'
+                                ? 'bg-scarlet-800 text-white'
+                                : 'text-charcoal-900'
                             }`
                           }
                           value={option?.value}
@@ -102,7 +102,7 @@ function Autocomplete({
                               {selected ? (
                                 <span
                                   className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                    active ? 'text-white' : 'text-secondary'
+                                    active ? 'text-white' : 'text-scarlet-800'
                                   }`}
                                 >
                                   {getIcon('Checkmark', 'h-5 w-5 fill-current')}

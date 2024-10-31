@@ -45,11 +45,11 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   }, [location, setMobileLandingNavbarOpen])
 
   const menuItemStyling =
-    'h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-gray-300'
+    'h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-charcoal-200'
   const menuItemLabelStyling = 'ml-1 xl:ml-3 xl:mr-2 whitespace-nowrap'
 
   const mobileMenuItemStyling =
-    'w-full py-3 px-1 text-fv-charcoal flex items-center rounded focus:ring-2'
+    'w-full py-3 px-1 text-charcoal-900 flex items-center rounded focus:ring-2'
   const mobileMenuItemLabelStyling = 'ml-3 font-medium'
 
   const createMobileMenuLink = ({ title, iconName, link }) => (
@@ -65,7 +65,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
     <nav id="AppNavBar" role="navigation">
       <div
         className={`${
-          scrollAtTop && isHome ? 'bg-transparent' : 'bg-fv-charcoal'
+          scrollAtTop && isHome ? 'bg-transparent' : 'bg-charcoal-900'
         } w-full max-w-screen-2xl mx-auto px-2 lg:px-6 xl:px-16 relative z-10`}
       >
         <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
@@ -121,7 +121,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               <li>
                 <Link
                   to="/languages"
-                  className="inline-flex items-center bg-bgRed px-8 py-2 rounded-full whitespace-nowrap"
+                  className="inline-flex items-center bg-scarlet-800 px-8 py-2 rounded-full whitespace-nowrap"
                 >
                   Explore Languages
                   {getIcon('ChevronRight', 'fill-current h-6 w-6 ml-2')}
@@ -139,7 +139,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             <button
               type="button"
               onClick={() => openCloseMobileLandingNavbar()}
-              className="bg-fv-charcoal rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-gray-100 focus:ring-2"
+              className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"
             >
               <span className="sr-only">
                 {mobileLandingNavbarOpen ? 'Close menu' : 'Open menu'}
@@ -162,7 +162,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
         leaveTo="translate-x-full"
       >
         <div className="shadow-lg min-h-screen bg-white">
-          <ul className="grid grid-rows-3 divide-y-2 divide-gray-200 bg-white p-2">
+          <ul className="grid grid-rows-3 divide-y-2 divide-charcoal-100 bg-white p-2">
             {!isGuest && (
               <li className={mobileMenuItemStyling}>
                 Welcome

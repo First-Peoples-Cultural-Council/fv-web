@@ -41,15 +41,15 @@ function WidgetTextIconsPresentation({ widgetData }) {
 
           <div className="hidden md:flex justify-between text-sm font-bold">
             <div className="w-1/4 flex-col items-center">
-              {getIcon('Device', 'fill-primary w-full')}
+              {getIcon('Device', 'fill-blumine-800 w-full')}
               <p className="text-center">Easy to use on any device</p>
             </div>
             <div className="w-1/4 flex-col items-center">
-              {getIcon('Community', 'fill-primary w-full')}
+              {getIcon('Community', 'fill-blumine-800 w-full')}
               <p className="text-center">Community-driven language content</p>
             </div>
             <div className="w-1/4 flex-col items-center">
-              {getIcon('Generations', 'fill-primary w-full')}
+              {getIcon('Generations', 'fill-blumine-800 w-full')}
               <p className="text-center">Developed for future generations</p>
             </div>
           </div>

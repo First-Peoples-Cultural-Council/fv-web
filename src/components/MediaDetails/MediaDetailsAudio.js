@@ -22,7 +22,7 @@ function MediaDetailsAudio({ file }) {
           data-testid="EntryDrawerEdit"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 btn-contained bg-secondary"
+          className="flex-1 btn-contained bg-scarlet-800"
         >
           {getIcon('Pencil', 'btn-icon')}
           <span>Edit</span>
@@ -34,19 +34,19 @@ function MediaDetailsAudio({ file }) {
         </div>
         <div className="mt-4 flex items-start">
           <div>
-            <h2 className="text-lg font-medium text-fv-charcoal">
+            <h2 className="text-lg font-medium text-charcoal-900">
               <span className="sr-only">Details for </span>
               {file?.filename}
             </h2>
-            <p className="text-sm font-medium text-fv-charcoal-light">
+            <p className="text-sm font-medium text-charcoal-500">
               {file?.title}
             </p>
           </div>
         </div>
       </div>
       <div>
-        <h3 className="font-medium text-fv-charcoal">Information</h3>
-        <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+        <h3 className="font-medium text-charcoal-900">Information</h3>
+        <dl className="mt-2 border-t border-b border-charcoal-100 divide-y divide-charcoal-100">
           {file?.id &&
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {
@@ -55,10 +55,10 @@ function MediaDetailsAudio({ file }) {
                     key={key}
                     className="py-3 flex justify-between text-sm font-medium"
                   >
-                    <dt className="text-fv-charcoal-light capitalize">
+                    <dt className="text-charcoal-500 capitalize">
                       {key === 'mimeType' ? 'File type' : key}
                     </dt>
-                    <dd className="text-fv-charcoal max-w-1/2 truncate">
+                    <dd className="text-charcoal-900 max-w-1/2 truncate">
                       {file[key]}
                     </dd>
                   </div>
@@ -68,10 +68,10 @@ function MediaDetailsAudio({ file }) {
             })}
         </dl>
         {file?.speakers.length > 0 && (
-          <dl className="mt-2 border-b border-gray-200 divide-y divide-gray-200">
+          <dl className="mt-2 border-b border-charcoal-100 divide-y divide-charcoal-100">
             <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-fv-charcoal-light">Speakers</dt>
-              <dd className="text-fv-charcoal">
+              <dt className="text-charcoal-500">Speakers</dt>
+              <dd className="text-charcoal-900">
                 {file?.speakers?.map((speaker) => speaker?.name).join(', ')}
               </dd>
             </div>
@@ -79,9 +79,9 @@ function MediaDetailsAudio({ file }) {
         )}
       </div>
       <div>
-        <h3 className="font-medium text-fv-charcoal">Description</h3>
+        <h3 className="font-medium text-charcoal-900">Description</h3>
         <div className="mt-2 flex items-center justify-between">
-          <p className="text-sm text-fv-charcoal-light italic">
+          <p className="text-sm text-charcoal-500 italic">
             {file?.description}
           </p>
         </div>

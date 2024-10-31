@@ -7,7 +7,7 @@ import Join from 'components/Join'
 import JoinModalButtonData from 'components/JoinModalButton/JoinModalButtonData'
 
 function JoinModalButtonContainer({
-  linkStyling = 'rounded-lg text-white bg-phrase py-1 px-3',
+  linkStyling = 'rounded-lg text-white bg-ochre-600 py-1 px-3',
   site,
 }) {
   const { alreadyMember, isAnonymous, login } = JoinModalButtonData({

@@ -17,7 +17,7 @@ function QrcodeModalContent({ closeHandler, url }) {
       id="QrcodeModalContent"
       className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
     >
-      <h3 className="text-center text-xl font-medium text-fv-charcoal">
+      <h3 className="text-center text-xl font-medium text-charcoal-900">
         QR Code:
       </h3>
       <div className="w-full flex justify-center">
@@ -26,7 +26,7 @@ function QrcodeModalContent({ closeHandler, url }) {
       <button
         data-testid="cancel"
         type="button"
-        className="btn-contained bg-secondary"
+        className="btn-contained bg-scarlet-800"
         onClick={closeHandler}
       >
         Cancel

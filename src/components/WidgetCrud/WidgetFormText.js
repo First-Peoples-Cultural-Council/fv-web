@@ -125,7 +125,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               errors={errors}
               nameId="bg"
               options={[
-                { label: 'Yes', value: 'bgGreen' },
+                { label: 'Yes', value: 'jade-500' },
                 { label: 'No', value: '' },
               ]}
             />

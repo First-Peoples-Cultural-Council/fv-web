@@ -36,7 +36,7 @@ function SearchLanguagesFormContainer() {
             data-testid="search-languages-input"
             id="SearchInput"
             aria-labelledby="SearchLabel"
-            className="block w-full md:text-xl lg:text-2xl text-fv-charcoal-light rounded-none rounded-l-md pl-4 truncate border-0"
+            className="block w-full md:text-xl lg:text-2xl text-charcoal-500 rounded-none rounded-l-md pl-4 truncate border-0"
             type="text"
             placeholder="Search for a language site"
             onChange={handleSearchTermChange}
@@ -44,7 +44,7 @@ function SearchLanguagesFormContainer() {
           />
         </form>
 
-        <div className="relative inline-flex items-center px-2 py-1.5 text-fv-charcoal-light border-l-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100">
+        <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-l-2 border-charcoal-200 rounded-r-md bg-charcoal-50 hover:bg-charcoal-50">
           <button
             type="button"
             data-testid="submit-search-btn"
@@ -58,7 +58,7 @@ function SearchLanguagesFormContainer() {
           <button
             data-testid="clear-search-btn"
             type="button"
-            className="inline-flex items-center ml-4 my-1 px-2 text-fv-charcoal-light border-gray-300 text-sm font-medium rounded-lg bg-gray-100 hover:bg-gray-200"
+            className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
             onClick={removeQuery}
           >
             Clear Search

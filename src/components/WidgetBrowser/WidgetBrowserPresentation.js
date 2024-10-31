@@ -12,13 +12,13 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
   return (
     <div
       id="WidgetBrowserPresentation"
-      className="inline-block align-bottom space-y-5 bg-gray-100 border-gray-200 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
+      className="inline-block align-bottom space-y-5 bg-charcoal-50 border-charcoal-100 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
     >
       {widgets?.length > 0 ? (
         <>
           <div className="text-center font-medium">
-            <h2 className="text-2xl text-fv-charcoal">Available Widgets</h2>
-            <p className="text-xl text-fv-charcoal">
+            <h2 className="text-2xl text-charcoal-900">Available Widgets</h2>
+            <p className="text-xl text-charcoal-900">
               Select a Widget to add to your page.
             </p>
           </div>
@@ -31,8 +31,8 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
                 onClick={() => setSelectedWidget(widget?.id)}
                 className={`${
                   selectedWidget === widget?.id
-                    ? 'bg-secondary text-white'
-                    : 'hover:bg-gray-50 text-primary bg-white'
+                    ? 'bg-scarlet-800 text-white'
+                    : 'hover:bg-charcoal-50 text-blumine-800 bg-white'
                 } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
               >
                 <div className="space-y-1 truncate">
@@ -53,7 +53,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
               data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="btn-contained disabled:opacity-40 bg-secondary"
+              className="btn-contained disabled:opacity-40 bg-scarlet-800"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK
@@ -63,10 +63,10 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
         </>
       ) : (
         <div className="text-center font-medium">
-          <p className="text-xl text-fv-charcoal">
+          <p className="text-xl text-charcoal-900">
             There are no existing Widgets available to add to your page.
           </p>
-          <p className="text-xl text-fv-charcoal">
+          <p className="text-xl text-charcoal-900">
             Would you like to create a new Widget?
           </p>
         </div>

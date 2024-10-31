@@ -8,7 +8,7 @@ import fpcfLogo from 'images/fpcfLogoWhite.svg'
 function FooterPresentation() {
   const linkClass = 'block md:inline-flex underline px-2 whitespace-nowrap'
   return (
-    <nav id="footer" className="bg-fv-charcoal print:hidden">
+    <nav id="footer" className="bg-charcoal-900 print:hidden">
       <div className="max-w-screen-2xl mx-auto grid grid-cols-8 md:pt-8 md:pb-4 md:px-4">
         <div className="col-span-8 md:col-span-3 lg:col-start-2 lg:col-span-3 xl:col-start-2 xl:col-span-4 p-2 md:p-0">
           <h4 className="text-white text-xs md:text-base md:mb-2">

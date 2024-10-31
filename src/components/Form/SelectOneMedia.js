@@ -91,9 +91,9 @@ function SelectOneButton({ value, onChange }) {
       >
         <div
           id="media-choice-modal"
-          className="mx-auto rounded-lg overflow-hidden bg-gray-50 p-8"
+          className="mx-auto rounded-lg overflow-hidden bg-charcoal-50 p-8"
         >
-          <h2 className="text-2xl font-bold text-fv-charcoal mb-4">
+          <h2 className="text-2xl font-bold text-charcoal-900 mb-4">
             What kind of file do you want to add?
           </h2>
           <div className="space-x-2">

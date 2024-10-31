@@ -34,17 +34,17 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
     >
       <div>
         <Listbox.Button
-          className={`group inline-flex items-center justify-center text-sm  hover:text-fv-charcoal ${
+          className={`group inline-flex items-center justify-center text-sm  hover:text-charcoal-900 ${
             selectedOption?.value
-              ? 'font-bold text-fv-charcoal'
-              : 'font-medium text-fv-charcoal-light'
+              ? 'font-bold text-charcoal-900'
+              : 'font-medium text-charcoal-500'
           }`}
         >
           <span>{selectedOption?.label}</span>
 
           {getIcon(
             'ChevronDown',
-            '-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-fv-charcoal-light group-hover:text-fv-charcoal',
+            '-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-charcoal-500 group-hover:text-charcoal-900',
           )}
         </Listbox.Button>
       </div>
@@ -67,7 +67,9 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
                 key={option.value}
                 className={({ active }) =>
                   `flex items-center cursor-default p-2 text-sm font-medium ${
-                    active ? 'bg-gray-50 text-secondary' : 'text-fv-charcoal'
+                    active
+                      ? 'bg-charcoal-50 text-scarlet-800'
+                      : 'text-charcoal-900'
                   }`
                 }
                 value={option}
@@ -76,7 +78,7 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
                   <div className="px-4 space-x-4 flex items-center">
                     {getIcon(
                       selected ? 'Checkmark' : '',
-                      'h-4 w-4 fill-current text-secondary',
+                      'h-4 w-4 fill-current text-scarlet-800',
                     )}
                     <span className="whitespace-nowrap">
                       {option?.value ? option?.label : '--------'}

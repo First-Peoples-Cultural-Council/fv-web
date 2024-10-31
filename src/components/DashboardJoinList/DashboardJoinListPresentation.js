@@ -31,7 +31,7 @@ function DashboardJoinListPresentation({
               id="EntriesListPresentation"
               className="flex flex-col w-full bg-white rounded-lg"
             >
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-charcoal-100">
                 {joinRequests?.pages.map((page) => (
                   <Fragment key={page?.pageNumber}>
                     {page.results.map((request) => (
@@ -46,7 +46,7 @@ function DashboardJoinListPresentation({
                   type="button"
                   className={`${
                     !hasNextPage ? 'cursor-text' : ''
-                  } text-primary font-semibold w-full text-center p-2 print:hidden`}
+                  } text-blumine-800 font-semibold w-full text-center p-2 print:hidden`}
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}
                 >

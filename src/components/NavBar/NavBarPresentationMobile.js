@@ -79,14 +79,14 @@ function NavBarPresentationMobile({ site }) {
   }
 
   return (
-    <div className="min-h-screen bg-white text-fv-charcoal">
+    <div className="min-h-screen bg-white text-charcoal-900">
       <Transition
         show={!isSubMenuOpen}
         enter="transform transition ease-in-out duration-500"
         enterFrom="-translate-x-full"
         enterTo="-translate-x-0"
       >
-        <ul className="divide-y-2 divide-gray-200 bg-white p-2 overflow-y-auto">
+        <ul className="divide-y-2 divide-charcoal-100 bg-white p-2 overflow-y-auto">
           {!isGuest && (
             <li className={buttonStyling}>
               Welcome
@@ -161,7 +161,7 @@ function NavBarPresentationMobile({ site }) {
         leaveTo="translate-x-full"
       >
         <div className="shadow-lg min-h-screen bg-white">
-          <ul className="grid grid-rows-3 divide-y-2 divide-gray-200 bg-white p-2">
+          <ul className="grid grid-rows-3 divide-y-2 divide-charcoal-100 bg-white p-2">
             {selectedSubMenu?.itemsData?.length > 0
               ? selectedSubMenu?.itemsData.map((item) => generateMenuItem(item))
               : null}

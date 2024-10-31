@@ -14,7 +14,7 @@ function LogoPresentation({ imgSrc, altText, additionalStyling = '' }) {
   return (
     <div
       data-testid="SiteLogoPresentation"
-      className={`relative overflow-hidden rounded-full bg-gray-50 ${additionalStyling}`}
+      className={`relative overflow-hidden rounded-full bg-charcoal-50 ${additionalStyling}`}
     >
       <div style={{ paddingBottom: '100%' }} />
       <img

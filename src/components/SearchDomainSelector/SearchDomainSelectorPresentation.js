@@ -34,7 +34,7 @@ function SearchDomainSelectorPresentation({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-charcoal-50 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1">
             {Object.entries(searchDomainOptions).map(([key, label]) => (
               <Menu.Item key={`optionlist-key-${key}`}>
@@ -44,7 +44,9 @@ function SearchDomainSelectorPresentation({
                     type="button"
                     onClick={() => handleSearchDomainChange(key)}
                     className={`${
-                      active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
+                      active
+                        ? 'bg-charcoal-100 text-black'
+                        : 'text-charcoal-900'
                     } font-medium group flex rounded-lg items-center w-full px-2 py-2 text-sm`}
                   >
                     {label}
