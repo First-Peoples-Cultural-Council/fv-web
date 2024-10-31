@@ -24,12 +24,12 @@ function CategoriesBrowserPresentation({
         <header className="p-2">
           <div className="flex-1 flex">
             <form className="w-full flex">
-              <div className="inline-flex items-center w-full bg-gray-100 rounded-lg px-4 py-2">
+              <div className="inline-flex items-center w-full bg-charcoal-50 rounded-lg px-4 py-2">
                 <span className="flex items-center">
-                  {getIcon('Search', 'fill-current h-5 w-5 text-gray-500')}
+                  {getIcon('Search', 'fill-current h-5 w-5 text-charcoal-500')}
                 </span>
                 <input
-                  className="h-full w-full border-transparent px-4 bg-gray-100 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
+                  className="h-full w-full border-transparent px-4 bg-gray-100 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-charcoal-300 sm:block"
                   placeholder="Search all Categories"
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={handleKeyDown}
@@ -42,7 +42,7 @@ function CategoriesBrowserPresentation({
               data-testid="add-category"
               type="button"
               onClick={() => chooseDocHandler(currentCategory)}
-              className="btn-contained mx-auto my-4 bg-secondary"
+              className="btn-contained mx-auto my-4 bg-scarlet-800"
             >
               {getIcon('Add', 'btn-icon')}
               <span>Add Category</span>
@@ -56,7 +56,7 @@ function CategoriesBrowserPresentation({
                 <h2 className="w-1/2 ml-4">Category</h2>
                 <h2 className="w-1/2">Parent Category</h2>
               </div>
-              <ul className="flex-col divide-y divide-gray-200 overflow-y-scroll grow mt-2 pt-2 h-72">
+              <ul className="flex-col divide-y divide-charcoal-100 overflow-y-scroll grow mt-2 pt-2 h-72">
                 {filteredCategories?.map((category) => (
                   <button
                     data-testid="DashboardCategoryRow"
@@ -65,8 +65,8 @@ function CategoriesBrowserPresentation({
                     onClick={() => setCurrentCategory(category)}
                     className={`${
                       category?.id === currentCategory?.id
-                        ? 'ring-2 ring-offset-2 ring-primary'
-                        : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary'
+                        ? 'ring-2 ring-offset-2 ring-blumine-800'
+                        : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-charcoal-50 focus-within:ring-blumine-800'
                     } flex mx-auto w-11/12 p-4 cursor-pointer rounded-sm`}
                   >
                     <div className="w-1/2 text-left">{category?.title}</div>

@@ -313,7 +313,7 @@ function DictionaryCrudPresentation({
                   ? onFinishClick
                   : handleSubmit(submitHandler)
               }
-              className="btn-contained bg-secondary"
+              className="btn-contained bg-scarlet-800"
             >
               {getIcon('Save', 'btn-icon')}
               <span>Finish</span>

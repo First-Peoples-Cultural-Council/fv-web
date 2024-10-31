@@ -27,10 +27,7 @@ function LanguagesPresentation({
       {userSitesList?.length > 0 && (
         <div>
           <div className="mt-4 py-8 items-center">
-            <SectionTitle.Presentation
-              title="YOUR LANGUAGES"
-              accentColor="primary"
-            />
+            <SectionTitle.Presentation title="YOUR LANGUAGES" />
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
             {userSitesList?.map((site) => (
@@ -44,10 +41,7 @@ function LanguagesPresentation({
 
       <div>
         <div className="mt-4 py-8 items-center">
-          <SectionTitle.Presentation
-            title="EXPLORE LANGUAGES"
-            accentColor="primary"
-          />
+          <SectionTitle.Presentation title="EXPLORE LANGUAGES" />
         </div>
         <SearchLanguagesForm.Container />
         <Loading.Container isLoading={isLoading}>
@@ -57,14 +51,14 @@ function LanguagesPresentation({
                 // Generating class for border color
                 const borderColor = languageColors?.[language?.languageCode]
                   ? `border-[${languageColors[language?.languageCode]}]`
-                  : 'border-gray'
+                  : 'border-charcoal-500'
                 return (
                   <div
                     id="LanguagesPresentation"
                     key={language?.id}
                     className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
                   >
-                    <h1 className="pl-4 text-xl font-extrabold text-primary">
+                    <h1 className="pl-4 text-xl font-extrabold text-blumine-800">
                       {language?.noLanguageAssigned ? '' : language?.title}
                     </h1>
                     <div className="flex flex-wrap justify-start pl-10">

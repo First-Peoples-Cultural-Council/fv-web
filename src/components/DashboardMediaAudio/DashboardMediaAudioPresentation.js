@@ -16,7 +16,7 @@ function DashboardMediaAudioPresentation({
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
 
   const headerClass =
-    'px-6 py-3 text-center text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div
@@ -27,14 +27,14 @@ function DashboardMediaAudioPresentation({
         <section className="p-2 h-full" aria-labelledby="results-header">
           <h1
             id="results-header"
-            className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
+            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
           >
             Audio
           </h1>
           <div>
             <div>
-              <table className="w-full table-fixed divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="w-full table-fixed divide-y divide-charcoal-100">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className={headerClass}>
                       Audio
@@ -47,7 +47,7 @@ function DashboardMediaAudioPresentation({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-charcoal-100">
                   {data?.pages?.[0]?.results?.length &&
                     data?.pages?.map((page) => (
                       <React.Fragment key={page?.pageNumber}>
@@ -56,13 +56,13 @@ function DashboardMediaAudioPresentation({
                             key={audioFile?.id}
                             className={`${
                               audioFile?.id === currentFile?.id
-                                ? 'ring-2 ring-offset-2 ring-primary'
+                                ? 'ring-2 ring-offset-2 ring-blumine-800'
                                 : ''
                             } rounded-lg relative`}
                             onClick={() => setCurrentFile(audioFile)}
                           >
                             <td
-                              className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal"
+                              className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
                               aria-label="list"
                             >
                               <AudioNative
@@ -70,10 +70,10 @@ function DashboardMediaAudioPresentation({
                                 audioObject={audioFile}
                               />
                             </td>
-                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-fv-charcoal truncate">
+                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
                               {audioFile.title}
                             </td>
-                            <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left truncate">
+                            <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
                               {audioFile?.description}
                             </td>
                           </tr>
@@ -82,7 +82,7 @@ function DashboardMediaAudioPresentation({
                     ))}
                 </tbody>
               </table>
-              <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
+              <div className="pt-10 text-center text-charcoal-900 font-medium print:hidden">
                 <button
                   data-testid="load-btn"
                   type="button"
@@ -97,7 +97,7 @@ function DashboardMediaAudioPresentation({
           </div>
         </section>
       </main>
-      <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
+      <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
         <MediaDetails.Audio file={currentFile} docType={TYPE_AUDIO} />
       </aside>
     </div>

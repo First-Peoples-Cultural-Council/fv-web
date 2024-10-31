@@ -3,10 +3,9 @@ import { PropTypes } from 'prop-types'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
-import { SMALL } from 'common/constants'
-import SiteLogo from 'components/SiteLogo'
+import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 import getIcon from 'common/utils/getIcon'
-import GlobalConfiguration from 'src/GlobalConfiguration'
+import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
 
 function FVAppsPresentation({ sitesWithApps }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
@@ -18,11 +17,8 @@ function FVAppsPresentation({ sitesWithApps }) {
       data-testid="FirstVoicesApps"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="FIRSTVOICES APPS"
-          accentColor="primary"
-        />
-        <div className="max-w-5xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <SectionTitle.Presentation title="FIRSTVOICES APPS" />
+        <div className="max-w-5xl mx-auto text-charcoal-900 space-y-4 py-8">
           <h2 className={headerStyle}>FirstVoices Language Apps</h2>
           <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
@@ -35,47 +31,47 @@ function FVAppsPresentation({ sitesWithApps }) {
           </p>
           {sitesWithApps && (
             <div className="grid grid-cols-3 gap-6 pt-8">
-              {sitesWithApps?.map(({ id, title, slug, logo }) => (
-                <div
-                  className="rounded-lg bg-white p-6 drop-shadow-md flex flex-col items-center"
-                  key={id}
-                >
-                  <div className="h-16 w-16 md:w-24 md:h-24">
-                    <SiteLogo.Presentation
-                      size={SMALL}
-                      logo={logo || null}
-                      additionalStyling="ring-1 ring-gray-200"
-                    />
-                  </div>
-                  <h2 className="font-bold p-4">{title}</h2>
-                  <div className="pb-6 w-2/3 flex justify-between">
-                    {getIcon('Mobile', 'w-6 h-6 fill-current mr-3 inline-flex')}
-                    {getIcon('Tablet', 'w-6 h-6 fill-current mr-3 inline-flex')}
-                    {getIcon('PC', 'w-6 h-6 fill-current mr-3 inline-flex')}
-                  </div>
-                  <a
-                    href={
-                      GlobalConfiguration.ENV_APP === 'production'
-                        ? `https://${slug}.firstvoicesapp.com`
-                        : `https://${slug}.${GlobalConfiguration.ENV_APP}.firstvoicesapp.com`
-                    }
-                    target="_blank"
-                    rel="noreferrer"
+              {sitesWithApps?.map(({ id, title, slug }) => {
+                const appUrl = getAppUrl({ slug })
+                const appLogoSrc = getAppLogoUrl({ slug })
+
+                return (
+                  <div
+                    className="rounded-lg bg-white p-6 drop-shadow-md flex flex-col items-center"
+                    key={id}
                   >
-                    <button
-                      data-testid="DownloadAppButton"
-                      type="button"
-                      className="bg-buttonOrange text-white px-4 py-2 rounded-md mb-"
-                    >
+                    <LogoPresentation
+                      imgSrc={appLogoSrc}
+                      altText={`${title} Logo`}
+                      additionalStyling="h-16 w-16 md:h-24 md:w-24 border"
+                    />
+                    <div className="p-6 w-2/3 flex justify-between">
                       {getIcon(
-                        'Download',
+                        'Mobile',
                         'w-6 h-6 fill-current mr-3 inline-flex',
                       )}
-                      Download App
-                    </button>
-                  </a>
-                </div>
-              ))}
+                      {getIcon(
+                        'Tablet',
+                        'w-6 h-6 fill-current mr-3 inline-flex',
+                      )}
+                      {getIcon('PC', 'w-6 h-6 fill-current mr-3 inline-flex')}
+                    </div>
+                    <a href={appUrl} target="_blank" rel="noreferrer">
+                      <button
+                        data-testid="DownloadAppButton"
+                        type="button"
+                        className="bg-scarlet-800 text-white px-4 py-2 rounded-md mb-"
+                      >
+                        {getIcon(
+                          'Download',
+                          'w-6 h-6 fill-current mr-3 inline-flex',
+                        )}
+                        Install {title}
+                      </button>
+                    </a>
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>

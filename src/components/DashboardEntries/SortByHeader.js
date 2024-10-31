@@ -51,13 +51,13 @@ function SortByHeader({ title, asc, desc }) {
       <span
         className={`${
           isActive ? 'font-bold' : 'font-medium'
-        } text-left text-xs text-fv-charcoal uppercase tracking-wider`}
+        } text-left text-xs text-charcoal-900 uppercase tracking-wider`}
       >
         {title}
       </span>
       {getIcon(
         iconName,
-        'text-fv-charcoal-light ml-1 h-5 w-5 flex-none rounded fill-current group-hover:text-fv-charcoal group-focus:text-fv-charcoal',
+        'text-charcoal-500 ml-1 h-5 w-5 flex-none rounded fill-current group-hover:text-charcoal-900 group-focus:text-charcoal-900',
       )}
     </button>
   )

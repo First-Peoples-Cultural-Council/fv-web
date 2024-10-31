@@ -33,16 +33,7 @@ function AlphabetPresentationSelected({
     <>
       <h1
         data-testid="AlphabetPresentationSelected__header"
-        className="
-            flex
-            font-bold
-            items-center
-            justify-center
-            md:text-5xl
-            text-3xl
-            text-center
-            text-primary
-            mb-5"
+        className="flex font-bold items-center justify-center md:text-5xl text-3xl text-center text-blumine-800 mb-5"
       >
         {title}
         {relatedAudio?.length > 0 && (
@@ -55,7 +46,7 @@ function AlphabetPresentationSelected({
         {title ? (
           <Copy
             docTitle={title}
-            iconStyling="fill-current text-primary h-6 w-6 sm:w-8 sm:h-8 ml-2"
+            iconStyling="fill-current text-blumine-800 h-6 w-6 sm:w-8 sm:h-8 ml-2"
             withConfirmation
             withTooltip
             hoverTooltip
@@ -78,11 +69,11 @@ function AlphabetPresentationSelected({
       )}
       {entriesToDisplay?.length > 0 && (
         <div className="mx-auto my-5 w-4/5">
-          <h2 className="sm:text-2xl font-medium text-xl text-center text-primary p-3">
+          <h2 className="sm:text-2xl font-medium text-xl text-center text-blumine-800 p-3">
             Example words
           </h2>
           {entriesToDisplay?.map((word, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-gray-100' : ''
+            const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
               <div
                 key={word?.id}
@@ -94,7 +85,7 @@ function AlphabetPresentationSelected({
                       to={`/${sitename}/${kids ? 'kids/' : ''}words/${
                         word?.id
                       }`}
-                      className="text-center w-full pb-2 text-primary text-lg font-bold"
+                      className="text-center w-full pb-2 text-blumine-800 text-lg font-bold"
                     >
                       {word?.title}
                     </Link>
@@ -120,7 +111,7 @@ function AlphabetPresentationSelected({
       )}
       {generalNote?.length > 0 && (
         <div className="flex-col justify-center mx-auto my-5 w-3/4">
-          <h2 className="sm:text-2xl font-medium text-xl text-center text-primary p-3">
+          <h2 className="sm:text-2xl font-medium text-xl text-center text-blumine-800 p-3">
             Notes
           </h2>
           <p className="text-center">{generalNote}</p>
@@ -166,7 +157,7 @@ function AlphabetPresentationSelected({
               {/* content */}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* header */}
-                <div className="flex items-start justify-between border-b border-solid border-gray-300 rounded-t">
+                <div className="flex items-start justify-between border-b border-solid border-charcoal-200 rounded-t">
                   <h3 className="p-2 text-2xl font-medium">{title}</h3>
                   <button
                     type="button"

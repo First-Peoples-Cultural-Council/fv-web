@@ -26,7 +26,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
       <button
         type="button"
         onClick={backHandler}
-        className="flex items-center font-medium text-base text-center text-fv-charcoal px-5 py-2 lg:ml-5"
+        className="flex items-center font-medium text-base text-center text-charcoal-900 px-5 py-2 lg:ml-5"
       >
         {getIcon('BackArrow', 'fill-current w-8 h-8')}
         <span className="inline-flex ml-2">Back</span>
@@ -61,7 +61,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                 </div>
                 {/* Audio */}
                 {entry?.relatedAudio?.length > 0 && (
-                  <div className="ml-4 inline-flex text-fv-charcoal">
+                  <div className="ml-4 inline-flex text-charcoal-900">
                     {entry?.relatedAudio?.map((audioObject) => (
                       <AudioMinimal.Container
                         key={audioObject?.id}

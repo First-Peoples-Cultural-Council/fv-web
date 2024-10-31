@@ -19,17 +19,17 @@ function AudiobarPresentation({
   return (
     <nav
       id="Audiobar"
-      className="transition-all transform fixed inset-x-0 bottom-0 h-24 bg-fv-charcoal shadow-xl print:hidden"
+      className="transition-all transform fixed inset-x-0 bottom-0 h-24 bg-charcoal-900 shadow-xl print:hidden"
     >
       {/* Infobar */}
       <section
         className={`${
           infoOpen ? '' : 'hidden'
-        } absolute inset-x-0 bottom-24 transition-all bg-gray-200 text-fv-charcoal shadow-xl`}
+        } absolute inset-x-0 bottom-24 transition-all bg-charcoal-100 text-charcoal-900 shadow-xl`}
       >
         <button
           type="button"
-          className="float-right m-3 text-gray-500 hover:text-fv-charcoal focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
+          className="float-right m-3 text-charcoal-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
           onClick={() => setInfoOpen(false)}
         >
           {getIcon('Close', 'fill-current h-7 w-7')}
@@ -85,7 +85,7 @@ function AudiobarPresentation({
           type="button"
           id="CloseAudiobar"
           aria-label="Close Audiobar"
-          className="float-right m-2 text-gray-500 hover:text-fv-charcoal focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-400"
+          className="float-right m-2 text-charcoal-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
           onClick={() => close()}
         >
           {getIcon('Close', 'fill-current h-7 w-7')}
@@ -114,7 +114,7 @@ function AudiobarPresentation({
                   type="button"
                   aria-label="Play/Pause"
                   onClick={() => onPlayPauseClick()}
-                  className="text-fv-charcoal-dark p-2 rounded-full bg-white shadow-lg"
+                  className="text-charcoal-900 p-2 rounded-full bg-white shadow-lg"
                 >
                   {getIcon(
                     `${isPlaying ? 'Pause' : 'Play'}`,
@@ -189,7 +189,7 @@ function AudiobarPresentation({
                   onChange={(event) => {
                     onVolumeChange(event.target.value)
                   }}
-                  className="w-1/2 h-1 bg-gray-400 rounded outline-none inline-flex"
+                  className="w-1/2 h-1 bg-charcoal-300 rounded outline-none inline-flex"
                 />
               </div>
             </div>

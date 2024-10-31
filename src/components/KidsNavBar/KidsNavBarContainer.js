@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import KidsNavBarPresentation from 'components/KidsNavBar/KidsNavBarPresentation'
-import KidsNavBarData from 'components/KidsNavBar/KidsNavBarData'
+import KidsData from 'components/Kids/KidsData'
 
 function KidsNavBarContainer({ home = false }) {
-  const { links, site } = KidsNavBarData()
+  const { links, site } = KidsData()
   return <KidsNavBarPresentation links={links} site={site} home={home} />
 }
 

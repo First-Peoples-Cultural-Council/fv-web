@@ -30,7 +30,7 @@ function DrawerPresentation({
                   {fullScreenPath && (
                     <Link
                       data-testid="full-screen-link"
-                      className="text-fv-charcoal-light hover:text-fv-charcoal"
+                      className="text-charcoal-500 hover:text-charcoal-900"
                       to={fullScreenPath}
                     >
                       <span className="sr-only">Full screen</span>
@@ -41,7 +41,7 @@ function DrawerPresentation({
                     type="button"
                     id="CloseDrawerBtn"
                     data-testid="close-drawer-btn"
-                    className="text-fv-charcoal-light hover:text-fv-charcoal"
+                    className="text-charcoal-500 hover:text-charcoal-500"
                     onClick={closeHandler}
                   >
                     <span className="sr-only">Close panel</span>

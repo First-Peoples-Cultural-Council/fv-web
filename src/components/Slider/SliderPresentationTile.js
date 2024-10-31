@@ -9,7 +9,7 @@ function SliderPresentationTile({ currentSlide, tileRef, item, onTileClick }) {
   const hasCoverImage = item.photos?.length > 0
   const conditionalClass = hasCoverImage
     ? 'bg-center bg-cover text-white'
-    : 'text-fv-charcoal-light bg-gray-100'
+    : 'text-charcoal-500 bg-charcoal-50'
   const conditionalStyle = hasCoverImage
     ? {
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url(${getMediaUrl(
@@ -39,7 +39,10 @@ function SliderPresentationTile({ currentSlide, tileRef, item, onTileClick }) {
           <div className="text-lg lg:text-2xl font-medium mb-2">
             {item.title}{' '}
             {item.videos?.length > 0 &&
-              getIcon('Video', 'inline-flex text-gray-400 fill-current w-6')}
+              getIcon(
+                'Video',
+                'inline-flex text-charcoal-500 fill-current w-6',
+              )}
           </div>
           <div className="text-base font-light">{item.titleTranslation}</div>
           <div className="text-base font-light">{item.author}</div>

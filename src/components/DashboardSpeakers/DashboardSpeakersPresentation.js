@@ -16,7 +16,7 @@ function DashboardSpeakersPresentation({
   sitename,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   return (
     <div id="DashboardSpeakersPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -43,16 +43,16 @@ function DashboardSpeakersPresentation({
           }
           tableBody={speakers.map((speaker) => (
             <tr key={speaker.id}>
-              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-gray-900">
+              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
                 {speaker.name}
               </td>
-              <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
                 {speaker?.bio || '-'}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   to={`/${sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
-                  className="text-secondary hover:text-secondary-dark flex items-center"
+                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                 </Link>

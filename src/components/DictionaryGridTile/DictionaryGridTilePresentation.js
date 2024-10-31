@@ -14,17 +14,17 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
   const shortTitle = [...title].length < 12
   return (
     <div
-      className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-gray-200"
+      className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-charcoal-100"
       data-testid="DictionaryGridTilePresentation"
     >
       <section
         id="EntryDetails"
-        className="w-full flex items-center text-fv-charcoal"
+        className="w-full flex items-center text-charcoal-900"
       >
         <div className="w-full">
           {/* Title */}
           <div
-            className={`flex justify-between items-center w-full font-medium text-fv-charcoal ${
+            className={`flex justify-between items-center w-full font-medium text-charcoal-900 ${
               shortTitle ? 'text-2xl' : 'text-xl'
             }`}
           >
@@ -49,7 +49,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
             <ol
               className={`${
                 entry?.translations?.length === 1 ? 'list-none' : 'list-decimal'
-              } list-inside my-2 text-fv-charcoal-light`}
+              } list-inside my-2 text-charcoal-500`}
             >
               {entry?.translations?.map((translation) => (
                 <li key={translation?.id} className="p-0.5">

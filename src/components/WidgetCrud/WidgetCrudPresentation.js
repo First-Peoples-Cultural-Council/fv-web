@@ -49,7 +49,7 @@ function WidgetCrudPresentation({
         <div className="space-y-2 p-6">
           <Form.Header
             title="Create a new Widget"
-            subtitle={"1. Choose what type of widget you'd like to create."}
+            subtitle="1. Choose what type of widget you'd like to create."
           />
           <div className="grid gap-4 grid-cols-4 place-content-center">
             {widgetTypes?.length > 0 &&
@@ -60,8 +60,8 @@ function WidgetCrudPresentation({
                   onClick={() => setSelectedType(type)}
                   className={`${
                     selectedType === type
-                      ? 'bg-secondary text-white border-secondary'
-                      : 'hover:bg-gray-50 text-primary bg-white border-primary'
+                      ? 'bg-scarlet-800 text-white border-scarlet-800'
+                      : 'hover:bg-charcoal-50 text-blumine-800 bg-white border-blumine-800'
                   } w-full my-2 mx-1 h-16 font-medium flex items-center rounded shadow-lg border-2`}
                 >
                   <div>

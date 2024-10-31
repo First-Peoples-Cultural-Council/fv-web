@@ -13,7 +13,7 @@ function DashboardLandingPresentation({
   site,
   tileContent,
 }) {
-  const iconColor = headerContent?.iconColor || 'secondary'
+  const iconColor = headerContent?.iconColor || 'scarlet-800'
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <main id="DashboardLandingPresentation" className="space-y-5">
@@ -35,7 +35,7 @@ function DashboardLandingPresentation({
                   >
                     {headerContent?.title}
                   </p>
-                  <p className="text-sm font-medium text-fv-charcoal-light">
+                  <p className="text-sm font-medium text-charcoal-500">
                     {headerContent?.subtitle}
                   </p>
                 </div>

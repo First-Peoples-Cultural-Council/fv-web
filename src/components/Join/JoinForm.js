@@ -87,7 +87,7 @@ function JoinForm({ site, submitHandler }) {
   return (
     <div
       data-testid="JoinForm"
-      className="text-left text-fv-charcoal space-y-5 md:space-y-10"
+      className="text-left text-charcoal-900 space-y-5 md:space-y-10"
     >
       <div className="space-y-2">
         <h1 className="text-xl md:text-2xl leading-10 font-medium">
@@ -125,7 +125,7 @@ function JoinForm({ site, submitHandler }) {
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
                   {({ open }) => (
                     <div className="relative max-w-xs">
-                      <ListboxButton className="relative w-full text-left pr-10 bg-white border border-gray-300 text-primary rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                      <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
                         <div className="w-full inline-flex items-center">
                           <span className="truncate">
                             {value?.length < 1
@@ -137,7 +137,7 @@ function JoinForm({ site, submitHandler }) {
                           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                             {getIcon(
                               'ChevronUpDown',
-                              'h-5 w-5 mr-2 text-fv-charcoal fill-current',
+                              'h-5 w-5 mr-2 text-charcoal-900 fill-current',
                             )}
                           </span>
                         </div>
@@ -157,8 +157,8 @@ function JoinForm({ site, submitHandler }) {
                                 <div
                                   className={`relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
                                     focus
-                                      ? 'bg-gray-100 text-secondary'
-                                      : 'text-fv-charcoal'
+                                      ? 'bg-charcoal-50 text-scarlet-800'
+                                      : 'text-charcoal-900'
                                   }`}
                                 >
                                   <div
@@ -171,7 +171,7 @@ function JoinForm({ site, submitHandler }) {
                                   {selected
                                     ? getIcon(
                                         'Checkmark',
-                                        'absolute left-2 h-5 w-5 fill-current text-primary',
+                                        'absolute left-2 h-5 w-5 fill-current text-blumine-800',
                                       )
                                     : null}
                                 </div>
@@ -200,7 +200,7 @@ function JoinForm({ site, submitHandler }) {
                 id="message"
                 name="message"
                 {...register('message')}
-                className="shadow-sm focus:ring-secondary focus:border-secondary mt-1 block w-full border border-gray-300 rounded-lg"
+                className="shadow-sm focus:ring-scarlet-800 focus:border-scarlet-800 mt-1 block w-full border border-charcoal-200 rounded-lg"
               />
             </div>
 

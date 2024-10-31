@@ -24,7 +24,7 @@ function WidgetTextPresentation({ widgetData }) {
     url,
     urlLabel,
     audio,
-    bg,
+    bgColor,
     bgImage,
     mockData,
   } = widgetData.settings
@@ -54,7 +54,7 @@ function WidgetTextPresentation({ widgetData }) {
   const getTextElement = () => (
     <div
       className={`${image ? 'md:w-1/2' : 'm-auto w-full'} bg-${
-        bg || ''
+        bgColor || ''
       } inline-flex items-center`}
       style={{
         backgroundImage: `url(${
@@ -74,7 +74,7 @@ function WidgetTextPresentation({ widgetData }) {
       <div className="max-w-5xl mx-auto text-center px-8 py-4">
         <h2
           className={`text-xl md:text-2xl lg:text-3xl text-${
-            bg ? 'white' : 'black'
+            bgColor ? 'white' : 'black'
           } font-bold flex items-center mb-4`}
         >
           <span className="inline-block">{title}</span>
@@ -88,7 +88,7 @@ function WidgetTextPresentation({ widgetData }) {
         </h2>
         <div
           className={`inline-block text-bold text-base md:text-lg text-${
-            bg ? 'white' : 'black'
+            bgColor ? 'white' : 'black'
           } max-w-md md:max-w-4xl mx-auto`}
         >
           <WysiwygBlock jsonString={textWithFormatting} />
@@ -104,9 +104,9 @@ function WidgetTextPresentation({ widgetData }) {
                   : { target: '_blank' })}
                 rel="noopener noreferrer"
                 className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-full md:text-lg ${
-                  bg
-                    ? `text-${bg} bg-white hover:font-bold hover:px-4`
-                    : 'text-white bg-secondary hover:bg-secondary-dark'
+                  bgColor
+                    ? `text-${bgColor} bg-white hover:font-bold hover:px-4`
+                    : 'text-white bg-scarlet-800 hover:bg-scarlet-900'
                 }`}
               >
                 {urlLabel || 'More...'}
@@ -121,7 +121,7 @@ function WidgetTextPresentation({ widgetData }) {
   if (format === FORMAT_RIGHT) {
     return (
       <section className="w-full" data-testid="WidgetTextPresentation">
-        <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-gray-100">
+        <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
           {getTextElement()}
           {getImageElement()}
         </div>
@@ -131,7 +131,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   return (
     <section className="w-full" data-testid="WidgetTextPresentation">
-      <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-gray-100">
+      <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
         {getImageElement()}
         {getTextElement()}
       </div>

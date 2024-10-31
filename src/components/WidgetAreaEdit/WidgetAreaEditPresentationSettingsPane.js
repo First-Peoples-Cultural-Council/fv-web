@@ -38,8 +38,8 @@ function WidgetAreaEditPresentationSettingsPane({
   const { emailListAsString } = useContactUsEmailList()
 
   const settingLabelStyling =
-    'mb-1 text-sm font-bold text-primary-light capitalize'
-  const settingDetailStyling = 'text-fv-charcoal text-lg'
+    'mb-1 text-sm font-bold text-blumine-600 capitalize'
+  const settingDetailStyling = 'text-charcoal-900 text-lg'
 
   const getSettings = () => {
     if (!currentWidget?.editable) {
@@ -90,7 +90,7 @@ function WidgetAreaEditPresentationSettingsPane({
         return (
           <div key={setting.key} className="col-span-3">
             <div className={settingLabelStyling}>Formatted Text</div>
-            <div className="wysiwyg rounded-lg flex w-full border-2 border-gray-100 p-3 overflow-hidden">
+            <div className="wysiwyg rounded-lg flex w-full border-2 border-charcoal-50 p-3 overflow-hidden">
               <WysiwygBlock jsonString={setting?.value} />
             </div>
           </div>
@@ -116,10 +116,10 @@ function WidgetAreaEditPresentationSettingsPane({
       {currentWidget ? (
         <div className="w-full p-8">
           <div className="block min-w-0 flex-1">
-            <h2 className="text-2xl font-bold text-primary truncate">
+            <h2 className="text-2xl font-bold text-blumine-800 truncate">
               {getWidgetIcon(
                 currentWidget?.type,
-                'w-12 h-12 fill-current text-primary inline-flex mr-2',
+                'w-12 h-12 fill-current text-blumine-800 inline-flex mr-2',
               )}{' '}
               {getWidgetTypeLabel(currentWidget?.type)}
             </h2>
@@ -176,7 +176,7 @@ function WidgetAreaEditPresentationSettingsPane({
                 <div className="col-span-3">
                   <div className={settingLabelStyling}>
                     <div>Email Addresses where messages will be sent</div>
-                    <div className="text-sm font-normal normal-case italic text-fv-charcoal-light">
+                    <div className="text-sm font-normal normal-case italic text-charcoal-500">
                       Please contact support at hello@firstvoices.com to update
                       this email list.
                     </div>
@@ -193,7 +193,7 @@ function WidgetAreaEditPresentationSettingsPane({
         </div>
       ) : (
         <div className="mt-6 mx-auto px-6 h-screen">
-          <h2 className="mt-6 text-2xl text-center font-bold text-primary">
+          <h2 className="mt-6 text-2xl text-center font-bold text-blumine-800">
             Select a Widget to see details.
           </h2>
         </div>
@@ -218,10 +218,10 @@ function WidgetAreaEditPresentationSettingsPane({
           className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-md sm:w-full"
         >
           <div className="text-center font-medium space-y-2">
-            <p className="text-2xl text-fv-charcoal">
+            <p className="text-2xl text-charcoal-900">
               Are you sure you want to remove the widget from this page?
             </p>
-            <p className="text-fv-charcoal">
+            <p className="text-charcoal-900">
               This will not delete the widget itself and you can always put it
               back if you change your mind.
             </p>
@@ -238,7 +238,7 @@ function WidgetAreaEditPresentationSettingsPane({
             <button
               data-testid="confirm"
               type="button"
-              className="btn-contained bg-secondary"
+              className="btn-contained bg-scarlet-800"
               onClick={() => onRemoveConfirmationClick()}
             >
               Remove

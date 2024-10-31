@@ -15,7 +15,7 @@ function InlineStyleToolbar({ editorState, onChange }) {
   }
 
   return (
-    <span className="flex border-b border-gray-200 text-xl text-gray-600">
+    <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
       <WysiwygControls.Button
         onClickHandler={(event) => toggleInlineStyle(event, 'BOLD')}
         label={<span className="font-bold">B</span>}

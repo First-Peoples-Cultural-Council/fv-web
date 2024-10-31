@@ -16,7 +16,10 @@ function CategoriesPresentation({ categories, kids, sitename }) {
       data-testid="CategoriesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="CATEGORIES" accentColor="tertiaryB" />
+        <SectionTitle.Presentation
+          title="CATEGORIES"
+          accentColor="charcoal-500"
+        />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="lg:px-8">
@@ -25,7 +28,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                   <GridListToggle.Presentation
                     isGridView={isGridView}
                     setIsGridView={setIsGridView}
-                    accentColor="tertiaryB"
+                    accentColor="charcoal-500"
                   />
                 </div>
               )}
@@ -42,7 +45,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                       categories.map((category) => (
                         <li
                           key={category.id}
-                          className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-tertiaryB group w-full rounded-lg bg-tertiaryB overflow-hidden"
+                          className="flex items-center h-auto lg:h-60 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-charcoal-500 group w-full rounded-lg bg-charcoal-500 overflow-hidden"
                         >
                           <div className="h-full w-full">
                             <Link
@@ -86,7 +89,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                       categories?.map((category) => (
                         <li
                           key={category.id}
-                          className="relative border-b-2 border-gray-200 pb-2 pl-4 block w-full overflow-hidden"
+                          className="relative border-b-2 border-charcoal-100 pb-2 pl-4 block w-full overflow-hidden"
                         >
                           <Link
                             key={category.id}
@@ -97,13 +100,13 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                             }?${TYPES}=${TYPE_DICTIONARY}`}
                             className="w-full rounded-lg inline-flex items-center hover:opacity-75"
                           >
-                            <div className="inline-flex bg-white text-tertiaryB rounded-lg items-center">
+                            <div className="inline-flex bg-white text-charcoal-500 rounded-lg items-center">
                               {getCategoryIcon(
                                 category.title,
                                 'fill-current h-10 w-10',
                               )}
                             </div>
-                            <div className="inline-flex ml-3 text-lg font-medium">
+                            <div className="inline-flex ml-3 text-lg text-charcoal-900 font-medium">
                               {category.title}
                             </div>
                           </Link>
@@ -121,7 +124,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                                 }?${TYPES}=${TYPE_DICTIONARY}`}
                                 className="w-full rounded-lg inline-flex items-center"
                               >
-                                <div className="inline-flex font-medium text-tertiaryB hover:opacity-75 rounded-lg items-center">
+                                <div className="inline-flex font-medium text-charcoal-900 hover:opacity-75 rounded-lg items-center">
                                   {child.title}
                                 </div>
                               </Link>

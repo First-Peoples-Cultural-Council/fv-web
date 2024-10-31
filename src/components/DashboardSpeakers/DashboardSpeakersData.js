@@ -27,7 +27,7 @@ function DashboardSpeakersData() {
       name: 'Add a Speaker',
       description: 'Add a new speaker to your site',
       href: `/${sitename}/dashboard/create/speaker`,
-      iconColor: 'wordText',
+      iconColor: 'blumine-800',
     },
   ]
 

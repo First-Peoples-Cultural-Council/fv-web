@@ -30,7 +30,7 @@ function WidgetAreaEditPresentation({
           <div className="mx-auto w-full">
             <div className="flex justify-between items-center p-4">
               <div>
-                <p className="text-fv-charcoal-light">
+                <p className="text-charcoal-500">
                   The Widgets that appear on your{' '}
                   <span className="italic font-bold">{destinationTitle}</span>{' '}
                   page
@@ -40,7 +40,7 @@ function WidgetAreaEditPresentation({
                 data-testid="add-widget"
                 type="button"
                 onClick={() => setAddModalOpen(true)}
-                className="btn-contained bg-secondary"
+                className="btn-contained bg-scarlet-800"
               >
                 {getIcon('Add', 'btn-icon')}
                 <span className="truncate">Widget</span>
@@ -70,23 +70,23 @@ function WidgetAreaEditPresentation({
                         onClick={() => setCurrentWidget(widgetData?.[id])}
                         className={`${
                           currentWidget?.id === widgetData?.[id]?.id
-                            ? 'border-4 border-primary'
-                            : 'hover:bg-gray-50'
+                            ? 'border-4 border-blumine-800'
+                            : 'hover:bg-charcoal-50'
                         } bg-white flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
                       >
                         <div className="grid grid-cols-6 gap-6 text-left">
                           <div className="flex items-center text-left col-span-1">
                             {getWidgetIcon(
                               widgetData?.[id]?.type,
-                              'w-12 h-12 fill-current text-primary',
+                              'w-12 h-12 fill-current text-blumine-800',
                             )}
                           </div>
                           <div className="flex items-center text-left col-span-5">
                             <div className="truncate">
-                              <p className="text-lg font-bold text-primary">
+                              <p className="text-lg font-bold text-blumine-800">
                                 {getWidgetTypeLabel(widgetData?.[id]?.type)}
                               </p>
-                              <p className="text-fv-charcoal-light">
+                              <p className="text-charcoal-500">
                                 {widgetData?.[id]?.nickname}
                               </p>
                             </div>
@@ -95,7 +95,7 @@ function WidgetAreaEditPresentation({
                         <div className="flex items-center text-left">
                           {getIcon(
                             widgetData?.[id]?.visibility,
-                            'w-5 h-5 fill-current text-primary',
+                            'w-5 h-5 fill-current text-blumine-800',
                           )}
                         </div>
                       </button>
@@ -108,7 +108,7 @@ function WidgetAreaEditPresentation({
                       >
                         {getIcon(
                           'ChevronRight',
-                          'fill-current h-10 w-10 text-primary',
+                          'fill-current h-10 w-10 text-blumine-800',
                         )}
                       </div>
                     </div>
@@ -137,7 +137,7 @@ function WidgetAreaEditPresentation({
               data-testid="add-widget"
               type="button"
               onClick={() => setAddModalOpen(true)}
-              className="btn-contained flex mx-auto  bg-secondary"
+              className="btn-contained flex mx-auto  bg-scarlet-800"
             >
               {getIcon('Add', 'btn-icon')}
               <span className="truncate">Widget</span>

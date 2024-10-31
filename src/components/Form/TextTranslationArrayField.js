@@ -33,18 +33,18 @@ function TextTranslationArrayField({
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-fv-charcoal"
+                      className="block text-sm font-medium text-charcoal-900"
                     >
                       {label.slice(0, -1)} in your language
                     </label>
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-gray-300 bg-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg shadow-sm"
+                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
                       {...register(`${nameId}.${index}.text`)}
                     />
                     {errors?.[nameId]?.[index]?.text?.message && (
-                      <div className="text-red-500">
+                      <div className="text-scarlet-700">
                         {errors?.[nameId]?.[index]?.text?.message}
                       </div>
                     )}
@@ -52,25 +52,25 @@ function TextTranslationArrayField({
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-fv-charcoal"
+                      className="block text-sm font-medium text-charcoal-900"
                     >
                       {label.slice(0, -1)} Translation
                     </label>
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-gray-300 bg-white focus:outline-none focus:ring-secondary focus:border-secondary rounded-lg shadow-sm"
+                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
                       {...register(`${nameId}.${index}.translation`)}
                     />
                     {errors?.[nameId]?.[index]?.translation?.message && (
-                      <div className="text-red-500">
+                      <div className="text-scarlet-700">
                         {errors?.[nameId]?.[index]?.translation?.message}
                       </div>
                     )}
                   </div>
                 </div>
                 <div className="has-tooltip flex items-center">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-primary text-xs -mt-12">
+                  <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-blumine-800 text-xs -mt-12">
                     Delete {label.slice(0, -1)}
                   </span>
                   <button

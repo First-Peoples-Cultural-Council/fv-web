@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Switch, Field, Label } from '@headlessui/react'
 
 function TogglePresentation({
-  accentColor = 'primary',
+  accentColor = 'blumine-800',
   toggled = false,
   toggleCallback = () => {},
   label,
@@ -16,7 +16,7 @@ function TogglePresentation({
           checked={toggled}
           onChange={toggleCallback}
           className={`${
-            toggled ? `bg-${accentColor}` : 'bg-gray-200'
+            toggled ? `bg-${accentColor}` : 'bg-charcoal-100'
           } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-${accentColor} focus:ring-offset-2`}
         >
           <span

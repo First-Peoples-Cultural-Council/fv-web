@@ -26,8 +26,8 @@ function SearchPresentation({
     filters.map((filter) => {
       const filterIsActiveClass =
         searchType === filter.type
-          ? 'border-l-4 border-primary bg-primary text-white'
-          : 'text-primary bg-gray-100 lg:bg-white'
+          ? 'border-l-4 border-blumine-800 bg-blumine-800 text-white'
+          : 'text-blumine-800 bg-charcoal-50 lg:bg-white'
       return (
         <li
           key={filter.label}
@@ -62,7 +62,9 @@ function SearchPresentation({
     <div data-testid="SearchPresentation">
       <section
         className={`${
-          wholeDomain ? 'bg-bgRed' : 'bg-gradient-to-b from-word to-word-dark'
+          wholeDomain
+            ? 'bg-scarlet-800'
+            : 'bg-gradient-to-b from-jade-500 to-jade-700'
         } p-5`}
       >
         <div className="mx-auto lg:w-3/5">
@@ -70,7 +72,7 @@ function SearchPresentation({
         </div>
       </section>
       <div className="grid grid-cols-11 lg:p-2">
-        <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-gray-200 md:border-0">
+        <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-charcoal-100 md:border-0">
           <h2 className="hidden lg:block text-2xl mx-2 xl:ml-8">Filters</h2>
           <ul className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-1 list-none gap-2 py-2 xl:py-4 xl:pr-8 xl:ml-8 items-center mx-2">
             {getFilterListItems()}

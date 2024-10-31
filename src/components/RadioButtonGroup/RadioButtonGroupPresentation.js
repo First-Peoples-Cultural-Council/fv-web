@@ -5,7 +5,7 @@ import { Radio, RadioGroup, Field, Label } from '@headlessui/react'
 // FPCC
 
 function RadioButtonGroupPresentation({
-  accentColor = 'secondary',
+  accentColor = 'scarlet-800',
   label,
   onChange,
   options,
@@ -19,7 +19,7 @@ function RadioButtonGroupPresentation({
     >
       <div className="space-y-2">
         {label && (
-          <Label className="text-sm font-medium text-fv-charcoal">
+          <Label className="text-sm font-medium text-charcoal-900">
             {label}
           </Label>
         )}
@@ -53,7 +53,7 @@ function RadioButtonGroupPresentation({
                               ${
                                 checked
                                   ? `text-${accentColor}`
-                                  : 'text-fv-charcoal'
+                                  : 'text-charcoal-900'
                               }`}
                       >
                         {option?.label}

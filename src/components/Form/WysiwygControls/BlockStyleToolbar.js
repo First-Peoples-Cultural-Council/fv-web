@@ -25,7 +25,7 @@ function BlockStyleToolbar({ editorState, onChange, toolbar }) {
   }
 
   return (
-    <span className="flex border-b border-gray-200 text-xl text-gray-600">
+    <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
       {toolbar?.includes('HEADER') && (
         <WysiwygControls.HeaderSelect
           headerBlockTypes={headerBlockTypes}

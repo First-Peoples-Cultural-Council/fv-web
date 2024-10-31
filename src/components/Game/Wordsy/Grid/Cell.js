@@ -5,13 +5,13 @@ function getClassList(status, value) {
   let baseClasses =
     'w-10 h-10 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded'
   if (!status) {
-    baseClasses += ' bg-white border-gray-200'
+    baseClasses += ' bg-white border-charcoal-100'
   }
   if (value && !status) {
     baseClasses += ' border-black'
   }
   if (status === 'absent') {
-    baseClasses += ' bg-gray-400 text-white border-gray-400'
+    baseClasses += ' bg-charcoal-300 text-white border-charcoal-300'
   }
   if (status === 'correct') {
     baseClasses += ' bg-wordsy-correct text-white border-wordsy-correct'

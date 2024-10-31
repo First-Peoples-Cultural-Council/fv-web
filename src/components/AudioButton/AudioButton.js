@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 
 function AudioButton({
   audioArray,
-  iconStyling = 'fill-current text-fv-charcoal-light hover:text-fv-charcoal m-1 h-10 w-10',
+  iconStyling = 'fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-10 w-10',
   hoverTooltip,
 }) {
   const { setCurrentAudio } = useAudiobar()
@@ -23,7 +23,7 @@ function AudioButton({
         <div className="sr-only">Play audio</div>
         {getIcon('Audio', iconStyling)}
         {hoverTooltip ? (
-          <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-fv-charcoal-light text-white text-center rounded-lg whitespace-nowrap">
+          <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg whitespace-nowrap">
             Play audio
           </div>
         ) : null}

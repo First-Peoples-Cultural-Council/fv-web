@@ -34,7 +34,7 @@ function getConditonalClass({ item }) {
     }
     return 'bg-center bg-cover text-white'
   }
-  return 'text-fv-charcoal-light bg-gray-100'
+  return 'text-charcoal-500 bg-charcoal-50'
 }
 
 function getOpacityClass({ item }) {
@@ -66,7 +66,7 @@ function SongsAndStoriesGrid({
                   style={getConditionalStyle({ item })}
                   className={`${getConditonalClass({
                     item,
-                  })} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-storyText group w-full rounded-lg overflow-hidden`}
+                  })} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-ochre-800 group w-full rounded-lg overflow-hidden`}
                   onClick={() => handleItemClick(item)}
                   data-testid="SongAndStoriesGridTile"
                 >
@@ -80,7 +80,7 @@ function SongsAndStoriesGrid({
                       {item.videos?.length > 0 &&
                         getIcon(
                           'Video',
-                          'inline-flex text-gray-400 fill-current w-6',
+                          'inline-flex text-charcoal-500 fill-current w-6',
                         )}
                     </div>
                     <div className="text-base font-light">

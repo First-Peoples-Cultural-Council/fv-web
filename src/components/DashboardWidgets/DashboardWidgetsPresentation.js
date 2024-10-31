@@ -19,7 +19,7 @@ function DashboardWidgetsPresentation({
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
   const [currentWidget, setCurrentWidget] = useState({})
   const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <div id="DashboardWidgetsPresentation" className="space-y-5">
@@ -50,17 +50,17 @@ function DashboardWidgetsPresentation({
           }
           tableBody={widgets.map((widget) => (
             <tr key={widget?.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
                 {widget?.nickname}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-fv-charcoal">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {widget?.typeLabel}
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 {widget?.editable ? (
                   <Link
                     to={`/${site?.sitename}/dashboard/edit/widget?id=${widget?.id}`}
-                    className="text-secondary hover:text-secondary-dark flex items-center"
+                    className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                   >
                     {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                   </Link>
@@ -68,12 +68,13 @@ function DashboardWidgetsPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <button
+                  data-testid="widget-preview-btn"
                   type="button"
                   onClick={() => {
                     setCurrentWidget(widget)
                     setPreviewModalOpen(true)
                   }}
-                  className="text-secondary hover:text-secondary-dark flex items-center"
+                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
                   {getIcon('Preview', 'fill-current w-6 h-6 mr-2', 'Preview')}
                 </button>

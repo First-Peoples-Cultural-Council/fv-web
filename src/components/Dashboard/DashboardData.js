@@ -60,7 +60,7 @@ function DashboardData() {
           ? `&${VISIBILITY}=${VISIBILITY_TEAM}`
           : ''
       }`,
-      iconColor: 'phraseText',
+      iconColor: 'phrase-color-800',
       auth: ASSISTANT,
     },
     createTiles.WIDGET,
@@ -72,7 +72,7 @@ function DashboardData() {
       description:
         'Saved searches to help you manage dictionary content on your site.',
       href: `reports`,
-      iconColor: 'tertiaryB',
+      iconColor: 'charcoal-500',
       auth: ASSISTANT,
     },
     {
@@ -81,7 +81,7 @@ function DashboardData() {
       description:
         'Ask a question or find out how to do something on FirstVoices',
       href: 'https://firstvoices.atlassian.net/servicedesk/customer/portals',
-      iconColor: 'songText',
+      iconColor: 'scarlet-900',
       auth: MEMBER,
       externalLink: true,
     },

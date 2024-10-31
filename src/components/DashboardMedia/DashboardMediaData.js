@@ -10,21 +10,21 @@ function DashboardMediaData() {
       name: 'Audio',
       description: 'Manage your audio files',
       href: 'audio',
-      iconColor: 'songText',
+      iconColor: 'scarlet-900',
     },
     {
       icon: 'Images',
       name: 'Images',
       description: 'Manage your images',
       href: 'images',
-      iconColor: 'wordText',
+      iconColor: 'blumine-800',
     },
     {
       icon: 'Video',
       name: 'Videos',
       description: 'Manage your videos',
       href: 'videos',
-      iconColor: 'storyText',
+      iconColor: 'ochre-800',
     },
   ]
   const headerContent = {

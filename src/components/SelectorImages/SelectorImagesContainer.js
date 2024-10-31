@@ -40,7 +40,10 @@ function SelectorImagesContainer({
   ]
 
   return (
-    <div data-testid="SelectorImagesContainer" className="h-full bg-gray-50">
+    <div
+      data-testid="SelectorImagesContainer"
+      className="h-full bg-charcoal-50"
+    >
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
@@ -53,7 +56,7 @@ function SelectorImagesContainer({
         {!hideSharedMedia && (
           <div className="mt-4 mx-auto">
             <RadioButtonGroup.Presentation
-              accentColor="primary"
+              accentColor="blumine-800"
               onChange={setSearchSharedMedia}
               options={sharedMediaOptions}
               value={searchSharedMedia}
@@ -70,13 +73,13 @@ function SelectorImagesContainer({
                 <div className="py-4 px-6 text-left">
                   <h2
                     id="results-header"
-                    className="text-lg font-bold text-primary"
+                    className="text-lg font-bold text-blumine-800"
                   >
                     {searchSharedMedia === 'true'
                       ? 'Shared media library'
                       : 'Your media uploads'}
                   </h2>
-                  <p className="text-sm text-fv-charcoal-light">
+                  <p className="text-sm text-charcoal-500">
                     {searchSharedMedia === 'true'
                       ? 'These artworks were created by Indigenous artists for use on any FirstVoices sites'
                       : 'Images uploaded by you or your team'}

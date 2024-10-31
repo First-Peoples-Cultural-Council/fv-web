@@ -82,8 +82,8 @@ function ParachutePresentation({
           key={letter.id}
           className={`${
             guessed
-              ? 'bg-secondary text-white'
-              : 'border-gray-500 text-fv-charcoal hover:bg-gray-100'
+              ? 'bg-scarlet-800 text-white'
+              : 'border-charcoal-500 text-charcoal-900 hover:bg-charcoal-50'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
           onClick={() => guessLetter(letter)}
         >
@@ -96,7 +96,7 @@ function ParachutePresentation({
     const timeDiff = Date.now() - startTime
     const timeToSolve = convertMsToTimeWords(timeDiff)
     return (
-      <h3 className="text-xl text-fv-charcoal font-bold">
+      <h3 className="text-xl text-charcoal-900 font-bold">
         <div>You win! You solved it in</div>
         {timeToSolve}.
       </h3>
@@ -104,7 +104,7 @@ function ParachutePresentation({
   }
 
   const renderFail = () => (
-    <h4 className="text-lg text-fv-charcoal">
+    <h4 className="text-lg text-charcoal-900">
       <p>Oh no! You&apos;re out of guesses.</p>
       <div>
         Don&apos;t quit now.{' '}
@@ -140,11 +140,8 @@ function ParachutePresentation({
         {/* If the puzzle length is zero then render an error message, else render the puzzle. */}
         {puzzle?.length === 0 ? (
           <div>
-            <SectionTitle.Presentation
-              title="PULL TOGETHER"
-              accentColor="primary"
-            />
-            <p className="text-fv-charcoal mt-2">
+            <SectionTitle.Presentation title="PULL TOGETHER" />
+            <p className="text-charcoal-900 mt-2">
               This site does not currently have enough dictionary content for
               the game.
               <br />
@@ -158,11 +155,8 @@ function ParachutePresentation({
         ) : (
           <div>
             <div>
-              <SectionTitle.Presentation
-                title="PULL TOGETHER"
-                accentColor="primary"
-              />
-              <p className="text-fv-charcoal mt-2">
+              <SectionTitle.Presentation title="PULL TOGETHER" />
+              <p className="text-charcoal-900 mt-2">
                 Guess the word to make it to the beach
               </p>
             </div>
@@ -176,7 +170,7 @@ function ParachutePresentation({
                 className="max-w-3xl mx-auto object-cover h-96 w-full"
                 alt={`You have ${guessesRemaining} guesses remaining.`}
               />
-              <p className="text-fv-charcoal-xlight text-xs text-right mx-auto -mt-6 mb-6 max-w-[760px]">
+              <p className="text-charcoal-300 text-xs text-right mx-auto -mt-6 mb-6 max-w-[760px]">
                 Art by Chantelle Trainor-Matties
               </p>
             </div>
@@ -189,8 +183,8 @@ function ParachutePresentation({
                   <div
                     key={piece.id}
                     className={`${
-                      piece?.found ? 'text-primary' : 'text-white'
-                    } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-gray-400`}
+                      piece?.found ? 'text-blumine-800' : 'text-white'
+                    } inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2 overflow-hidden font-bold border border-solid border-charcoal-300`}
                   >
                     <div>{piece?.found ? piece?.letter : '_'}</div>
                   </div>
@@ -220,14 +214,14 @@ function ParachutePresentation({
                 data-testid="new"
                 type="button"
                 onClick={startNewGame}
-                className="btn-contained bg-primary"
+                className="btn-contained bg-blumine-800"
               >
                 New Puzzle
               </button>
               <button
                 data-testid="restart"
                 type="button"
-                className="btn-contained bg-secondary"
+                className="btn-contained bg-scarlet-800"
                 onClick={restart}
               >
                 Restart

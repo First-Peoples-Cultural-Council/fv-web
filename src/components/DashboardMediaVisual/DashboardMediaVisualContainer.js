@@ -30,7 +30,7 @@ function DashboardMediaVisualContainer({ type }) {
   return (
     <div
       data-testid="DashboardMediaAudioContainer"
-      className="h-full bg-gray-50"
+      className="h-full bg-charcoal-50"
     >
       <div className="h-full w-full flex flex-col">
         <div className="w-full">

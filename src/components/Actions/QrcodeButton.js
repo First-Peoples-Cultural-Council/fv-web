@@ -43,10 +43,10 @@ function QrcodeButton({
             id="ShareModalContent"
             className="inline-block text-center align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
           >
-            <p className="text-2xl text-fv-charcoal font-bold">
+            <p className="text-2xl text-charcoal-900 font-bold">
               This {entry?.type} is visible to {entry?.visibility} only!
             </p>
-            <p className="text-lg text-fv-charcoal">
+            <p className="text-lg text-charcoal-900">
               QR Codes can only be generated for public content.
             </p>
           </div>

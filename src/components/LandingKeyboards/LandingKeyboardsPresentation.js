@@ -18,12 +18,12 @@ function LandingKeyboardsPresentation({ data }) {
   } = data?.settings
   return (
     <section id="LandingKeyboardsPresentation">
-      <div className="bg-tertiaryD text-white flex flex-col items-center lg:hidden">
+      <div className="bg-blumine-700 text-white flex flex-col items-center lg:hidden">
         <p className="text-sm pt-10">{mobileText}</p>
         <div className="pt-2 pb-6 w-full">
           <SectionTitle.Presentation
             title={title}
-            bgColor="tertiaryD"
+            bgColor="blumine-700"
             accentColor="white"
           />
         </div>
@@ -63,7 +63,7 @@ function LandingKeyboardsPresentation({ data }) {
         </div>
       </div>
       <div
-        className="hidden lg:flex bg-bgRed flex-row p-16 justify-center"
+        className="hidden lg:flex bg-scarlet-800 flex-row p-16 justify-center"
         style={{
           backgroundImage: `url(${bg})`,
           backgroundRepeat: 'no-repeat',
@@ -76,7 +76,7 @@ function LandingKeyboardsPresentation({ data }) {
           <p className="pt-8 pb-4 m-4">{text}</p>
           <a
             href={url}
-            className="bg-phrase rounded-full text-center py-2 px-5 w-36 hover:font-bold m-4"
+            className="bg-ochre-600 rounded-full text-center py-2 px-5 w-36 hover:font-bold m-4"
           >
             {urlLabel}
           </a>

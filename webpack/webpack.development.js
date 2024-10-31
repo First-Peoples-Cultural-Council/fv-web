@@ -13,8 +13,8 @@ module.exports = (env) => {
     ENV_API_URL: env?.API_URL
       ? JSON.stringify(env.API_URL)
       : JSON.stringify('/api/1.0/'),
-    ENV_APP_ENV: process.env.APP_ENV
-      ? JSON.stringify(process.env.APP_ENV)
+    ENV_APP_ENV: env?.APP_ENV
+      ? JSON.stringify(env.APP_ENV)
       : JSON.stringify(''),
     ENV_AWS_CLIENT_ID: process.env.AWS_CLIENT_ID
       ? JSON.stringify(process.env.AWS_CLIENT_ID)

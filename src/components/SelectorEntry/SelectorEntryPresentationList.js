@@ -24,7 +24,7 @@ function SelectorEntryPresentationList({
   const isMultiDocType = types.length > 1
 
   const headerClass =
-    'px-6 py-3 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <>
@@ -36,7 +36,7 @@ function SelectorEntryPresentationList({
           data-testid="add-entry-btn"
           type="button"
           onClick={addToEntry}
-          className="btn-contained mx-auto bg-secondary"
+          className="btn-contained mx-auto bg-scarlet-800"
         >
           {getIcon('Add', 'btn-icon')}
           <span>Add to dictionary entry</span>
@@ -47,8 +47,8 @@ function SelectorEntryPresentationList({
         {searchResults?.pages !== undefined &&
           searchResults?.pages?.[0]?.results?.length > 0 && (
             <div>
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-charcoal-100">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className={headerClass}>
                       {isMultiDocType
@@ -65,7 +65,7 @@ function SelectorEntryPresentationList({
                     ) : null}
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-charcoal-100">
                   {searchResults?.pages?.map((page) => (
                     <React.Fragment key={page.pageNumber}>
                       {page.results.map((entry) => {
@@ -86,19 +86,19 @@ function SelectorEntryPresentationList({
                             onClick={() => setSelected(entry)}
                             className={
                               entry?.id === selected?.id
-                                ? 'ring-2 ring-offset-2 ring-primary rounded-lg'
-                                : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-gray-100 focus-within:ring-primary rounded-lg'
+                                ? 'ring-2 ring-offset-2 ring-blumine-800 rounded-lg'
+                                : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-charcoal-50 focus-within:ring-blumine-800 rounded-lg'
                             }
                           >
-                            <td className="px-2 py-2 overflow-visible w-80 text-sm text-fv-charcoal">
+                            <td className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900">
                               {entry.title}
                             </td>
                             <td
-                              className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left"
+                              className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left"
                               data-testid="DashboardSelectorEntryRow"
                             >
                               {entry?.translations ? (
-                                <ol className="text-fv-charcoal">
+                                <ol className="text-charcoal-900">
                                   {entry.translations.map((translation, i) => (
                                     <li key={translation?.text}>
                                       {entry.translations.length > 1
@@ -111,9 +111,9 @@ function SelectorEntryPresentationList({
                               ) : null}
                             </td>
                             {isMultiDocType ? (
-                              <td className="px-6 py-4 whitespace-normal text-sm text-fv-charcoal text-left">
+                              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left">
                                 <span
-                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry.type} capitalize text-white`}
+                                  className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry.type}-color-700 capitalize text-white`}
                                 >
                                   {entry.type}
                                 </span>
@@ -126,7 +126,7 @@ function SelectorEntryPresentationList({
                   ))}
                 </tbody>
               </table>
-              <div className="pt-10 text-center text-fv-charcoal font-medium print:hidden">
+              <div className="pt-10 text-center text-charcoal-900 font-medium print:hidden">
                 <button
                   data-testid="load-btn"
                   type="button"

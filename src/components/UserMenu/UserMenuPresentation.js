@@ -19,8 +19,8 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
       ? site?.checkForEnabledFeature(IMMERSION)
       : false
 
-  const menuItemActiveClass = 'bg-gray-200 text-black rounded ring-black'
-  const menuItemInactiveClass = 'text-fv-charcoal'
+  const menuItemActiveClass = 'bg-charcoal-100 text-black rounded ring-black'
+  const menuItemInactiveClass = 'text-charcoal-900'
   const menuItemBaseClass =
     'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'
 
@@ -28,7 +28,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
     <div id="NavUser" className="relative inline-flex">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <MenuButton className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-xl rounded-full h-12 w-12 items-center justify-center">
+          <MenuButton className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center">
             {currentUser?.isAnonymous ? (
               <span className="text-xs">GUEST</span>
             ) : (
@@ -46,7 +46,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
           leaveTo="transform opacity-0 scale-95"
         >
           <MenuItems className="absolute top-14 right-0 w-72 p-2 space-y-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <MenuItem className="text-fv-charcoal px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-gray-200">
+            <MenuItem className="text-charcoal-900 px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-charcoal-100">
               <div>
                 Welcome
                 {currentUser?.displayName && !currentUser?.isAnonymous

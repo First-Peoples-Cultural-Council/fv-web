@@ -11,14 +11,14 @@ function ValidationError({ errors, nameId }) {
       <div
         // eslint-disable-next-line react/no-array-index-key
         key={index}
-        className="text-red-500"
+        className="text-scarlet-700"
         data-testid="DashboardFormErrorMessage"
       >
         {message}
       </div>
     ))
   ) : (
-    <div className="text-red-500" data-testid="DashboardFormErrorMessage">
+    <div className="text-scarlet-700" data-testid="DashboardFormErrorMessage">
       <ErrorMessage errors={errors} name={nameId} />
     </div>
   )
