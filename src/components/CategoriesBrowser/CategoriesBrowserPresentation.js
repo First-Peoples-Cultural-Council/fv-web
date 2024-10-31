@@ -29,7 +29,7 @@ function CategoriesBrowserPresentation({
                   {getIcon('Search', 'fill-current h-5 w-5 text-charcoal-500')}
                 </span>
                 <input
-                  className="h-full w-full border-transparent px-4 bg-gray-100 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-charcoal-300 sm:block"
+                  className="h-full w-full border-transparent px-4 bg-charcoal-50 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-charcoal-300 sm:block"
                   placeholder="Search all Categories"
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={handleKeyDown}
