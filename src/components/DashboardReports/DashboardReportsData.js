@@ -25,7 +25,7 @@ function DashboardReportsData() {
       name: 'Build your own',
       description: 'Use the advanced search filters to create your own report',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}`,
-      iconColor: 'wordText',
+      iconColor: 'blumine-800',
       auth: ASSISTANT,
     },
   ]
@@ -36,7 +36,7 @@ function DashboardReportsData() {
       name: 'Recently created',
       description: 'New words and phrases at the top',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_CREATED_DESC}`,
-      iconColor: 'story',
+      iconColor: 'ochre-600',
       auth: ASSISTANT,
     },
     {
@@ -44,7 +44,7 @@ function DashboardReportsData() {
       name: 'Recently modified',
       description: 'Recently edited words and phrases at the top',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_MODIFIED_DESC}`,
-      iconColor: 'word',
+      iconColor: 'jade-500',
       auth: ASSISTANT,
     },
     {
@@ -52,7 +52,7 @@ function DashboardReportsData() {
       name: 'No audio',
       description: 'Words and phrases without audio files',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${HAS_AUDIO}=${FALSE}`,
-      iconColor: 'song',
+      iconColor: 'scarlet-800',
       auth: ASSISTANT,
     },
     {
@@ -60,7 +60,7 @@ function DashboardReportsData() {
       name: 'No images',
       description: 'Words and phrases without images',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${HAS_IMAGE}=${FALSE}`,
-      iconColor: 'phrase',
+      iconColor: 'charcoal-500',
       auth: ASSISTANT,
     },
     {
@@ -68,7 +68,7 @@ function DashboardReportsData() {
       name: 'Team content',
       description: 'Content only available to the language team',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_TEAM}`,
-      iconColor: 'phraseText',
+      iconColor: 'scarlet-600',
       auth: ASSISTANT,
     },
     {
@@ -76,7 +76,7 @@ function DashboardReportsData() {
       name: 'Members only content',
       description: 'Content only available to site members',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_MEMBERS}`,
-      iconColor: 'tertiaryA',
+      iconColor: 'charcoal-500',
       auth: ASSISTANT,
     },
     {
@@ -84,7 +84,7 @@ function DashboardReportsData() {
       name: 'Public content',
       description: 'Content available to the general public',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_PUBLIC}`,
-      iconColor: 'tertiaryB',
+      iconColor: 'blumine-500',
       auth: ASSISTANT,
     },
   ]

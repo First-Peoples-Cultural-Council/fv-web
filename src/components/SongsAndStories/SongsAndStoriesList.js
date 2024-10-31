@@ -13,7 +13,7 @@ function SongsAndStoriesList({
         {pluralDocType}
       </h2>
 
-      <div className="w-full text-left py-2 text-lg text-fv-charcoal">
+      <div className="w-full text-left py-2 text-lg text-charcoal-900">
         {items?.pages?.map((page) => (
           <React.Fragment key={page.pageNumber}>
             {page.results.map((item, index) => (
@@ -21,17 +21,17 @@ function SongsAndStoriesList({
                 key={item.id}
                 type="button"
                 tabIndex={index}
-                className="w-full cursor-pointer hover:bg-gray-200 px-2 lg:px-5 hover:text-fv-charcoal-dark border-b-2 border-gray-200 space-y-1 py-2"
+                className="w-full cursor-pointer hover:bg-charcoal-100 px-2 lg:px-5 hover:text-charcoal-900 border-b-2 border-charcoal-100 space-y-1 py-2"
                 onClick={() => handleItemClick(item)}
                 onKeyDown={() => handleItemClick(item)}
                 data-testid="SongAndStoriesListRow"
               >
                 <div className="text-xl flex justify-start">{item?.title}</div>
-                <div className="text-base text-fv-charcoal-light flex justify-start">
+                <div className="text-base text-charcoal-500 flex justify-start">
                   {item?.titleTranslation}
                 </div>
                 {item?.author?.length > 0 && (
-                  <div className="text-base text-fv-charcoal-light">
+                  <div className="text-base text-charcoal-500">
                     by {item?.author}
                   </div>
                 )}

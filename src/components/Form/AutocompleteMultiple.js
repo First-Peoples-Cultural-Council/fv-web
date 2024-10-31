@@ -1,6 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import { Controller } from 'react-hook-form'
-import { Combobox, Transition } from '@headlessui/react'
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxButton,
+  ComboboxOptions,
+  ComboboxOption,
+  Transition,
+} from '@headlessui/react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -50,21 +57,20 @@ function Autocomplete({
                   onChange={(e) => {
                     onChange(e)
                   }}
-                  nullable
                   multiple
                 >
                   <div className="relative">
                     <div className="relative w-full">
-                      <Combobox.Input
+                      <ComboboxInput
                         className={`${
                           disabled ? 'opacity-50' : 'opacity-100'
-                        } relative w-full cursor-default block border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary`}
+                        } relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800`}
                         onChange={(event) => setQuery(event.target.value)}
                         placeholder={placeholder}
                       />
-                      <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                      <ComboboxButton className="absolute inset-y-0 right-0 flex items-center pr-2">
                         {getIcon('ChevronUpDown', 'h-5 w-5 fill-current')}
-                      </Combobox.Button>
+                      </ComboboxButton>
                     </div>
                     <Transition
                       as={Fragment}
@@ -73,25 +79,25 @@ function Autocomplete({
                       leaveTo="opacity-0"
                       afterLeave={() => setQuery('')}
                     >
-                      <Combobox.Options className="focus:outline-none h-32 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5">
+                      <ComboboxOptions className="focus:outline-none h-32 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5">
                         {filteredOptions?.length === 0 && query !== '' ? (
-                          <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                          <div className="relative cursor-default select-none py-2 px-4 text-charcoal-700">
                             Nothing found.
                           </div>
                         ) : (
                           filteredOptions?.map((option) => (
-                            <Combobox.Option
+                            <ComboboxOption
                               key={option?.value}
-                              className={({ active }) =>
+                              className={({ focus }) =>
                                 `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                  active
-                                    ? 'bg-secondary text-white'
-                                    : 'text-fv-charcoal'
+                                  focus
+                                    ? 'bg-scarlet-800 text-white'
+                                    : 'text-charcoal-900'
                                 }`
                               }
                               value={option?.value}
                             >
-                              {({ selected, active }) => (
+                              {({ selected, focus }) => (
                                 <>
                                   <span
                                     className={`inline-flex truncate ${
@@ -103,7 +109,9 @@ function Autocomplete({
                                   {selected ? (
                                     <span
                                       className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                        active ? 'text-white' : 'text-secondary'
+                                        focus
+                                          ? 'text-white'
+                                          : 'text-scarlet-800'
                                       }`}
                                     >
                                       {getIcon(
@@ -114,10 +122,10 @@ function Autocomplete({
                                   ) : null}
                                 </>
                               )}
-                            </Combobox.Option>
+                            </ComboboxOption>
                           ))
                         )}
-                      </Combobox.Options>
+                      </ComboboxOptions>
                     </Transition>
                   </div>
                 </Combobox>

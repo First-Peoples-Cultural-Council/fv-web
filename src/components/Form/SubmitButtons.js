@@ -29,7 +29,7 @@ function SubmitButtons({
         data-testid="form-submit"
         type="button"
         onClick={onSubmitClick}
-        className="btn-contained bg-secondary"
+        className="btn-contained bg-scarlet-800"
       >
         {submitIcon && getIcon(submitIcon, 'btn-icon')}
         <span>{submitLabel}</span>

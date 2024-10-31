@@ -10,7 +10,7 @@ function WidgetLogoPresentation({ widgetData }) {
   const format = widgetData?.format ? widgetData?.format : FORMAT_RIGHT
   return format === FORMAT_RIGHT ? (
     <section className="w-full bg-white" data-testid="WidgetLogoPresentation">
-      <div className="my-2 sm:m-10 py-6 sm:py-10 px-2 lg:px-4 bg-tertiaryB sm:rounded-lg">
+      <div className="my-2 sm:m-10 py-6 sm:py-10 px-2 lg:px-4 bg-charcoal-500 sm:rounded-lg">
         <div className="max-w-2xl mx-auto px-4 lg:max-w-7xl border-t border-b border-white">
           <div className="space-y-16 py-4">
             <div
@@ -32,7 +32,7 @@ function WidgetLogoPresentation({ widgetData }) {
     </section>
   ) : (
     <section className="w-full bg-white" data-testid="WidgetLogoPresentation">
-      <div className="lg:my-20 py-8 bg-primary lg:py-0 lg:z-10 lg:relative">
+      <div className="lg:my-20 py-8 bg-blumine-800 lg:py-0 lg:z-10 lg:relative">
         <div className="mx-auto lg:max-w-7xl lg:px-8 grid grid-cols-3 lg:gap-8">
           <div className="relative lg:-my-8 col-span-3 sm:col-span-1 sm:col-start-2 lg:col-start-1">
             <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">

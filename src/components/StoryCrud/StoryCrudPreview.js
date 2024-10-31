@@ -32,7 +32,7 @@ function StoryCrudPreview({ storyData }) {
     }
   }, [currentPage, pages, pagesData])
 
-  const labelStyle = 'text-fv-charcoal-light font-semibold'
+  const labelStyle = 'text-charcoal-500 font-semibold'
   const headingStyle = 'font-bold pb-8 text-xl'
   const detailStyle = 'space-y-2'
 
@@ -40,7 +40,7 @@ function StoryCrudPreview({ storyData }) {
     <button
       data-testid="translate"
       type="button"
-      className="text-primary-light text-sm font-semibold"
+      className="text-blumine-600 text-sm font-semibold"
       onClick={() => setTranslate(!translate)}
     >
       View {translate ? 'language' : 'translation'}
@@ -101,7 +101,7 @@ function StoryCrudPreview({ storyData }) {
     <div id="StoryCrudPreview" className="space-y-4">
       <section className="bg-white p-8 rounded">
         <h2 className={headingStyle}>Story Info</h2>
-        <div className="text-fv-charcoal space-y-6">
+        <div className="text-charcoal-900 space-y-6">
           <div className={detailStyle}>
             <h3 className={labelStyle}>Story title</h3>
             <p>{translate ? titleTranslation : title}</p>
@@ -166,7 +166,7 @@ function StoryCrudPreview({ storyData }) {
       {currentPage && (
         <section className="relative bg-white p-8 rounded">
           <h2 className={headingStyle}>Story Pages</h2>
-          <div className="text-fv-charcoal-light grid grid-cols-2">
+          <div className="text-charcoal-500 grid grid-cols-2">
             <div className="col-span-1 inline-flex">
               {relatedVisualMediaThumbnails({
                 images: currentPage?.relatedImages,
@@ -191,7 +191,7 @@ function StoryCrudPreview({ storyData }) {
               {audioThumbnails(currentPage?.relatedAudio)}
             </div>
           </div>
-          <div className="flex top-4 justify-center py-2 gap-x-2 text-fv-charcoal-light">
+          <div className="flex top-4 justify-center py-2 gap-x-2 text-charcoal-500">
             Page
             {pages?.map((pageId, pageIndex) => (
               <button
@@ -201,8 +201,8 @@ function StoryCrudPreview({ storyData }) {
                 onClick={() => setCurrentPage(pagesData?.[pageId])}
                 className={`cursor-pointer ${
                   pageId === currentPage?.id
-                    ? 'text-fv-charcoal-dark font-bold'
-                    : 'text-fv-charcoal-light'
+                    ? 'text-charcoal-900 font-bold'
+                    : 'text-charcoal-500'
                 }`}
               >
                 {pageIndex + 1}
@@ -218,7 +218,7 @@ function StoryCrudPreview({ storyData }) {
       )}
       <section className="bg-white p-8 rounded">
         <h2 className={headingStyle}>Privacy</h2>
-        <div className="text-fv-charcoal space-y-6">
+        <div className="text-charcoal-900 space-y-6">
           <div className={detailStyle}>
             <h3 className={labelStyle}>Who can view your content?</h3>
             <p>{visibility}</p>

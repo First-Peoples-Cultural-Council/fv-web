@@ -15,12 +15,12 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         data-testid="logout-btn"
         type="button"
         onClick={logout}
-        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
+        className="group flex w-full items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
       >
         {getIcon(
           'LogOut',
 
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
         )}
         <span>Sign Out</span>
       </button>
@@ -31,7 +31,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
     <div data-testid="DashboardPresentation">
       {/* Sidebar */}
       <div className="flex w-64 flex-col fixed inset-y-0">
-        <div className="flex-1 flex flex-col min-h-0 bg-fv-charcoal divide-y divide-fv-charcoal-light space-y-2">
+        <div className="flex-1 flex flex-col min-h-0 bg-charcoal-900 divide-y divide-charcoal-500 space-y-2">
           <div className="flex-1 flex flex-col overflow-y-auto">
             <div className="flex items-center flex-shrink-0 m-4">
               {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
@@ -42,7 +42,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
                 sites={currentUser?.sites}
                 site={site}
               />
-              <div className="flex-1 divide-y divide-fv-charcoal-light space-y-2">
+              <div className="flex-1 divide-y divide-charcoal-500 space-y-2">
                 {primaryNavigationItems(site?.sitename)}
                 {secondaryNavigationItems(currentUser?.sites)}
               </div>
@@ -54,7 +54,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 pl-64 flex flex-col min-h-screen">
+      <div className="bg-charcoal-100 pl-64 flex flex-col min-h-screen">
         {/* Main Page content */}
         <div>{children}</div>
       </div>
@@ -107,13 +107,13 @@ const primaryNavigationItems = (currentSitename) => {
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
                 match
-                  ? 'bg-fv-charcoal-dark text-white'
-                  : 'text-gray-300 hover:bg-fv-charcoal-light hover:text-white'
+                  ? 'bg-charcoal-900 text-white'
+                  : 'text-charcoal-200 hover:bg-charcoal-500 hover:text-white'
               }`}
             >
               {getIcon(
                 item.icon,
-                'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+                'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
               )}
               {item.name}
             </Link>
@@ -140,13 +140,13 @@ const secondaryNavigationItems = (sites) => {
     <div className="px-2 py-4 space-y-1">
       <a
         href="https://firstvoices.atlassian.net/servicedesk/customer/portals"
-        className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
+        className="group flex items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
         target="_blank"
         rel="noreferrer noopener"
       >
         {getIcon(
           'QuestionCircleSolid',
-          'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
         )}
         Support
       </a>
@@ -154,11 +154,11 @@ const secondaryNavigationItems = (sites) => {
         <Link
           key={item.name}
           to={item.href}
-          className="group flex items-center p-2 text-sm font-medium rounded-lg text-gray-300 hover:bg-fv-charcoal-light hover:text-white"
+          className="group flex items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
         >
           {getIcon(
             item.icon,
-            'text-gray-400 fill-current group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6',
+            'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
           )}
           {item.name}
         </Link>
@@ -168,19 +168,19 @@ const secondaryNavigationItems = (sites) => {
 }
 
 const userProfile = (user) => (
-  <div className="flex-shrink-0 flex bg-fv-charcoal-light p-4">
+  <div className="flex-shrink-0 flex bg-charcoal-500 p-4">
     <div className="flex-shrink-0 w-full group block">
       <div className="flex items-center">
         <div className="inline-flex">
           <div className="inline-block text-left">
-            <div className="flex max-w-xs p-3 bg-secondary hover:bg-secondary-dark text-white text-xl rounded-full h-12 w-12 items-center justify-center">
+            <div className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center">
               {user?.userInitials}
             </div>
           </div>
         </div>
         <div className="ml-3">
           <p className="text-sm font-medium text-white">{user?.fullName}</p>
-          <p className="text-xs font-medium text-gray-300 group-hover:text-gray-200"></p>
+          <p className="text-xs font-medium text-charcoal-200 group-hover:text-charcoal-100"></p>
         </div>
       </div>
     </div>

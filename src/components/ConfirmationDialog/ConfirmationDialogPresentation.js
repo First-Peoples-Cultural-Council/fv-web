@@ -17,7 +17,7 @@ function ConfirmationDialogPresentation({
         className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
       >
         <div className="text-center space-y-2">
-          <p className="text-2xl text-fv-charcoal">{message}</p>
+          <p className="text-2xl text-charcoal-900">{message}</p>
         </div>
         <div className="w-full justify-center flex space-x-2">
           <button
@@ -31,7 +31,7 @@ function ConfirmationDialogPresentation({
           <button
             data-testid="confirm"
             type="button"
-            className="btn-contained bg-secondary"
+            className="btn-contained bg-scarlet-800"
             onClick={() => {
               onConfirmation()
               closeHandler()

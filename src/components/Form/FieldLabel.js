@@ -9,7 +9,7 @@ function FieldLabel({ text, nameId }) {
     <label
       data-testid={`label-${nameId}`}
       htmlFor={nameId}
-      className="block text-sm font-medium text-fv-charcoal mb-2"
+      className="block text-sm font-medium text-charcoal-900 mb-2"
     >
       {text}
     </label>

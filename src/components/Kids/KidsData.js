@@ -6,62 +6,61 @@ import { useSiteStore } from 'context/SiteContext'
 function KidsData() {
   const { sitename } = useParams()
   const { site } = useSiteStore()
-  const { title } = site
 
   const links = [
     {
       id: 'dictionary',
       title: 'Dictionary',
       icon: 'Dictionary',
-      color: 'word',
-      textColor: 'wordText',
+      color: 'kids-dictionary-500',
+      textColor: 'kids-dictionary-700',
       path: 'dictionary',
     },
     {
       id: 'alphabet',
       title: 'Alphabet',
       icon: 'Alphabet',
-      color: 'primary',
-      textColor: 'primary',
+      color: 'kids-alphabet-700',
+      textColor: 'kids-alphabet-900',
       path: 'alphabet',
     },
     {
       id: 'categories',
       title: 'Categories',
       icon: 'Categories',
-      color: 'phrase',
-      textColor: 'phraseText',
+      color: 'kids-categories-600',
+      textColor: 'kids-categories-700',
       path: 'categories',
     },
     {
       id: 'games',
       title: 'Games',
       icon: 'Jigsaw',
-      color: 'tertiaryA',
-      textColor: 'tertiaryA',
+      color: 'kids-games-500',
+      textColor: 'kids-games-900',
       path: 'games',
     },
     {
       id: 'songs',
       title: 'Songs',
       icon: 'Song',
-      color: 'song',
-      textColor: 'songText',
+      color: 'kids-songs-500',
+      textColor: 'kids-songs-900',
       path: 'songs',
     },
     {
       id: 'stories',
       title: 'Stories',
       icon: 'Story',
-      color: 'story',
-      textColor: 'storyText',
+      color: 'kids-stories-500',
+      textColor: 'kids-stories-900',
       path: 'stories',
     },
   ]
   return {
     links,
     sitename,
-    siteTitle: title,
+    site,
   }
 }
 

@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Disclosure } from '@headlessui/react'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react'
 
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
@@ -19,8 +23,8 @@ function DictionaryDetailPresentation({
   sitename,
 }) {
   const labelStyling =
-    'text-left font-medium text-lg uppercase text-fv-charcoal'
-  const contentStyling = 'text-fv-charcoal sm:mt-0 sm:ml-6 sm:col-span-2'
+    'text-left font-medium text-lg uppercase text-charcoal-900'
+  const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6 sm:col-span-2'
   const listStyling = 'list-none md:list-disc space-y-1'
   const noMedia = !(
     entry?.relatedImages?.length > 0 ||
@@ -65,7 +69,7 @@ function DictionaryDetailPresentation({
               {entry?.visibility === PUBLIC || !entry?.visibility ? (
                 ''
               ) : (
-                <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-secondary-dark">
+                <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-scarlet-900">
                   {getIcon(
                     entry?.visibility,
                     'fill-current inline-flex h-6 w-6 mr-2',
@@ -122,7 +126,7 @@ function DictionaryDetailPresentation({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-1"
+                    buttonStyling="bg-scarlet-800 hover:bg-scarlet-900 text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-1"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />
@@ -168,7 +172,7 @@ function DictionaryDetailPresentation({
                   <Link
                     key={category.id}
                     to={`/${sitename}/categories/${category.id}`}
-                    className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-tertiaryB hover:bg-tertiaryB-dark text-white mr-1 mb-1"
+                    className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-charcoal-500 hover:bg-charcoal-900 text-white mr-1 mb-1"
                   >
                     {category?.title}
                     <span className="sr-only">,&nbsp;</span>
@@ -256,15 +260,15 @@ function DictionaryDetailPresentation({
                       </div>
                       <Disclosure>
                         <div className="flex justify-end">
-                          <Disclosure.Button>
+                          <DisclosureButton>
                             <div className="border-2 z-10 bg-white w-6 h-6 text-sm flex items-center justify-center p-1 rounded-full">
                               <span>i</span>
                             </div>
-                          </Disclosure.Button>
+                          </DisclosureButton>
                         </div>
-                        <Disclosure.Panel>
+                        <DisclosurePanel>
                           {video?.title && (
-                            <div className="text-fv-charcoal">
+                            <div className="text-charcoal-900">
                               {video?.title}
                               {video?.descriotion && (
                                 <span className="font-medium">
@@ -275,13 +279,13 @@ function DictionaryDetailPresentation({
                             </div>
                           )}
                           {video?.acknowledgement && (
-                            <div className="text-fv-charcoal">
+                            <div className="text-charcoal-900">
                               <span className="font-medium">
                                 Acknowledgement: {video?.acknowledgement}
                               </span>
                             </div>
                           )}
-                        </Disclosure.Panel>
+                        </DisclosurePanel>
                       </Disclosure>
                     </li>
                   ))

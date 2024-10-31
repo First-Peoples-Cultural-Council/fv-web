@@ -21,7 +21,7 @@ function DashboardTablePresentation({
             <div className="my-5 px-6">
               <h2
                 id="billing-history-heading"
-                className="text-lg leading-6 font-medium text-gray-900"
+                className="text-lg leading-6 font-medium text-charcoal-900"
               >
                 {title}
               </h2>
@@ -30,10 +30,10 @@ function DashboardTablePresentation({
           <div className="flex flex-col ">
             <div className="-my-2 sm:-mx-6 lg:-mx-8">
               <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="border-t border-gray-200 max-h-3/4-screen overflow-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">{tableHead}</thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                <div className="border-t border-charcoal-100 max-h-3/4-screen overflow-auto">
+                  <table className="min-w-full divide-y divide-charcoal-100">
+                    <thead className="bg-charcoal-50">{tableHead}</thead>
+                    <tbody className="bg-white divide-y divide-charcoal-100">
                       {tableBody}
                     </tbody>
                   </table>

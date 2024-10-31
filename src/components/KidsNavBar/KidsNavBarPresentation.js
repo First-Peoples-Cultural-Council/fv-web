@@ -23,13 +23,13 @@ function KidsNavBarPresentation({ links, site, home }) {
         </div>
       </div>
       <Link
-        className="absolute top-5 right-5 text-fv-charcoal-light flex items-center group rounded-lg text-lg font-medium hover:text-fv-charcoal"
+        className="absolute top-5 right-5 text-charcoal-500 flex items-center group rounded-lg text-lg font-medium hover:text-charcoal-900"
         to={`/${site?.sitename}`}
       >
         <span className="sr-only">Back to {site?.title} main site</span>
         {getIcon(
           'Close',
-          'border-gray-300 hover:border-fv-charcoal border-2 border-dotted h-8 lg:h-14 w-auto',
+          'border-charcoal-200 hover:border-charcoal-900 border-2 border-dotted h-8 lg:h-14 w-auto',
         )}
       </Link>
     </nav>
@@ -46,7 +46,7 @@ function KidsNavBarPresentation({ links, site, home }) {
                 className="relative flex items-center h-24 w-24 md:h-32 md:w-32"
                 to={`/${site?.sitename}/kids`}
               >
-                <SiteLogo.Presentation />
+                <SiteLogo.Presentation additionalStyling="w-full" />
                 {generateText(
                   'kids',
                   'block absolute -bottom-5 right-2 transform -rotate-6 text-white fill-current w-10 sm:w-16',

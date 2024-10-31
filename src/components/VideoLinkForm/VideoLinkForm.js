@@ -36,14 +36,14 @@ function VideoLinkForm({
   }
 
   const buttonStyles =
-    'my-2 w-1/5 border-2 border-wordText rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-tertiaryB-light disabled:opacity-50'
+    'my-2 w-1/5 border-2 border-blumine-900 rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-charcoal-300 disabled:opacity-50'
 
   return (
     <form data-testid="VideoLinkForm" onReset={reset}>
       <div className="col-span-12">
         {relatedVideoLinks?.length < maxLinks ? (
           <div className="max-w-screen-lg mx-auto">
-            <p className="block text-sm font-small text-fv-charcoal italic">
+            <p className="block text-sm font-small text-charcoal-900 italic">
               Add a link to a video below (currently YouTube and Vimeo links are
               supported).
             </p>
@@ -59,14 +59,14 @@ function VideoLinkForm({
             <button
               data-testid="add-video-link-btn"
               type="button"
-              className={`${buttonStyles} bg-secondary hover:bg-secondary-dark text-white`}
+              className={`${buttonStyles} bg-scarlet-800 hover:bg-scarlet-900 text-white`}
               onClick={handleSubmit(submitHandler)}
             >
               Add Linked Video
             </button>
           </div>
         ) : (
-          <p className="block text-sm font-small text-fv-charcoal italic">
+          <p className="block text-sm font-small text-charcoal-900 italic">
             You have reached the maximum number of video links. Please remove
             existing videos to add new ones.
           </p>

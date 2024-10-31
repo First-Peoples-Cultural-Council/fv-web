@@ -38,7 +38,7 @@ function SearchDictionaryFormContainer({ kids, initialSearchType }) {
         <button
           data-testid="reset-search"
           type="button"
-          className="inline-flex items-center ml-4 my-1 px-2 text-fv-charcoal-light border-gray-300 text-sm font-medium rounded-lg bg-gray-100 hover:bg-gray-200"
+          className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
           onClick={clearSearchTerm}
         >
           Clear Search

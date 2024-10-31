@@ -12,8 +12,8 @@ function DisclaimerPresentation() {
       data-testid="ConditionsOfUse"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="DISCLAIMER" accentColor="primary" />
-        <div className="max-w-5xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <SectionTitle.Presentation title="DISCLAIMER" />
+        <div className="max-w-5xl mx-auto text-charcoal-900 space-y-4 py-8">
           <div>
             <h2 className={headerStyle}>Liability and Warranty Disclaimer</h2>
             <p className={paraStyle}>

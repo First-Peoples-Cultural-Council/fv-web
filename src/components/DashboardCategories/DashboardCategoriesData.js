@@ -30,7 +30,7 @@ function DashboardCategoriesData() {
       name: 'Add a Category',
       description: 'Add a new category to your dictionary',
       href: `/${sitename}/dashboard/create/category`,
-      iconColor: 'wordText',
+      iconColor: 'blumine-900',
       auth: LANGUAGE_ADMIN,
     },
   ]

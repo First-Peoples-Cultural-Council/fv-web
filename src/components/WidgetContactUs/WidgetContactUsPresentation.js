@@ -66,13 +66,13 @@ function ContactUsPresentation({
     ? links.map((link) => (
         <li
           key={getIconName(link)}
-          className="mr-3 h-9 w-9 inline-flex align-center rounded text-primary"
+          className="mr-3 h-9 w-9 inline-flex align-center rounded text-blumine-800"
         >
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-1 flex items-start rounded-lg hover:bg-gray-50"
+            className="py-1 flex items-start rounded-lg hover:bg-charcoal-50"
           >
             {getIcon(getIconName(link), 'fill-current h-8 w-8')}
           </a>
@@ -93,7 +93,7 @@ function ContactUsPresentation({
         />
       </div>
       {user.isAnonymous ? (
-        <div className="text-primary md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
+        <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
           Please{' '}
           <button
             data-testid="login-button"
@@ -108,7 +108,7 @@ function ContactUsPresentation({
         </div>
       ) : (
         <div>
-          <div className="text-primary md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
+          <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
             {subtitle ||
               'Please contact us if you have any suggestions or feedback regarding our language content.'}
           </div>
@@ -118,13 +118,13 @@ function ContactUsPresentation({
                 <div className="">
                   <div className="grid grid-cols-7">
                     <label
-                      className="col-span-2 tracking-wide text-primary text-xl font-bold mb-2"
+                      className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
                       htmlFor="name"
                     >
                       NAME:
                     </label>
                     <input
-                      className="col-span-5 bg-white border border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      className="col-span-5 bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
                       id="name"
                       name="name"
                       type="text"
@@ -132,20 +132,20 @@ function ContactUsPresentation({
                     />
                   </div>
                   {errors?.name && (
-                    <div className="text-red-500 text-right">
+                    <div className="text-scarlet-700 text-right">
                       {errors?.name?.message}
                     </div>
                   )}
 
                   <div className="mt-2 grid grid-cols-7">
                     <label
-                      className="col-span-2 tracking-wide text-primary text-xl font-bold mb-2"
+                      className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
                       htmlFor="email"
                     >
                       EMAIL:
                     </label>
                     <input
-                      className="col-span-5 inline bg-white border border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+                      className="col-span-5 inline bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white"
                       id="email"
                       name="email"
                       type="email"
@@ -153,20 +153,20 @@ function ContactUsPresentation({
                     />
                   </div>
                   {errors?.email && (
-                    <div className="text-red-500 text-right">
+                    <div className="text-scarlet-700 text-right">
                       {errors?.email?.message}
                     </div>
                   )}
 
                   <div className="mt-2 grid grid-cols-7">
                     <label
-                      className="block tracking-wide text-primary text-xl font-bold mb-2"
+                      className="block tracking-wide text-blumine-800 text-xl font-bold mb-2"
                       htmlFor="message"
                     >
                       MESSAGE:
                     </label>
                     <textarea
-                      className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-gray-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 resize-none col-span-7"
+                      className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-charcoal-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-charcoal-500 resize-none col-span-7"
                       id="message"
                       name="message"
                       defaultValue=""
@@ -174,7 +174,7 @@ function ContactUsPresentation({
                     />
                   </div>
                   {errors?.message && (
-                    <div className="text-red-500 text-right">
+                    <div className="text-scarlet-700 text-right">
                       {errors?.message?.message}
                     </div>
                   )}
@@ -194,7 +194,7 @@ function ContactUsPresentation({
               <div className="col-span-6 sm:col-start-5 sm:col-span-2 mt-8 sm:mt-0">
                 {textWithFormatting && (
                   <>
-                    <h3 className="block tracking-wide text-primary text-xl font-bold mb-2">
+                    <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
                       ADDRESS
                     </h3>
                     <div className="block mb-6">
@@ -203,7 +203,7 @@ function ContactUsPresentation({
                   </>
                 )}
                 {links?.length > 0 && (
-                  <h3 className="block tracking-wide text-primary text-xl font-bold mb-2">
+                  <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
                     FOLLOW US
                   </h3>
                 )}

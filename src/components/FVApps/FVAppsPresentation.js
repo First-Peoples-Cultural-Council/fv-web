@@ -17,11 +17,8 @@ function FVAppsPresentation({ sitesWithApps }) {
       data-testid="FirstVoicesApps"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="FIRSTVOICES APPS"
-          accentColor="primary"
-        />
-        <div className="max-w-5xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <SectionTitle.Presentation title="FIRSTVOICES APPS" />
+        <div className="max-w-5xl mx-auto text-charcoal-900 space-y-4 py-8">
           <h2 className={headerStyle}>FirstVoices Language Apps</h2>
           <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
@@ -63,7 +60,7 @@ function FVAppsPresentation({ sitesWithApps }) {
                       <button
                         data-testid="DownloadAppButton"
                         type="button"
-                        className="bg-secondary text-white px-4 py-2 rounded-md mb-"
+                        className="bg-scarlet-800 text-white px-4 py-2 rounded-md mb-"
                       >
                         {getIcon(
                           'Download',

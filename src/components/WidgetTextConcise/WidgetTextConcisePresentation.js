@@ -21,7 +21,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
       className="py-3 md:py-6 bg-white"
     >
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-3 text-center">
-        <div className="flex w-full mx-auto items-center justify-center text-primary">
+        <div className="flex w-full mx-auto items-center justify-center text-blumine-800">
           <span className="leading-loose text-2xl md:text-4xl lg:text-5xl text-center font-bold">
             {title}
           </span>

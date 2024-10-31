@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Disclosure } from '@headlessui/react'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from '@headlessui/react'
 
 // FPCC
 import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
@@ -19,8 +23,8 @@ function DictionaryDetailPresentationDrawer({
   sitename,
 }) {
   const labelStyling =
-    'text-left font-medium text-lg uppercase text-fv-charcoal'
-  const contentStyling = 'text-sm text-fv-charcoal sm:mt-0 sm:ml-6'
+    'text-left font-medium text-lg uppercase text-charcoal-900'
+  const contentStyling = 'text-sm text-charcoal-900 sm:mt-0 sm:ml-6'
   const noMedia = !(
     entry?.relatedImages?.length > 0 ||
     entry?.relatedVideos?.length > 0 ||
@@ -51,7 +55,7 @@ function DictionaryDetailPresentationDrawer({
               ? ''
               : getIcon(
                   entry?.visibility,
-                  'fill-current text-secondary-dark h-6 w-6 ml-3 mb-1',
+                  'fill-current text-scarlet-900 h-6 w-6 ml-3 mb-1',
                 )}
           </div>
 
@@ -100,7 +104,7 @@ function DictionaryDetailPresentationDrawer({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-secondary hover:bg-secondary-dark text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-2"
+                    buttonStyling="bg-scarlet-800 hover:bg-scarlet-900 text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-2"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />
@@ -143,7 +147,7 @@ function DictionaryDetailPresentationDrawer({
                 <Link
                   key={category?.id}
                   to={`/${sitename}/categories/${category?.id}`}
-                  className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-tertiaryB hover:bg-tertiaryB-dark text-white mr-1"
+                  className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-charcoal-500 hover:bg-charcoal-900 text-white mr-1"
                 >
                   {category?.title}
                   <span className="sr-only">,&nbsp;</span>
@@ -199,15 +203,15 @@ function DictionaryDetailPresentationDrawer({
                       </div>
                       <Disclosure>
                         <div className="flex justify-end">
-                          <Disclosure.Button>
+                          <DisclosureButton>
                             <div className="border-2 z-10 bg-white w-4 h-4 text-sm flex items-center justify-center p-1 rounded-full">
                               <span>i</span>
                             </div>
-                          </Disclosure.Button>
+                          </DisclosureButton>
                         </div>
-                        <Disclosure.Panel>
+                        <DisclosurePanel>
                           {video?.title && (
-                            <div className="text-fv-charcoal font-bold">
+                            <div className="text-charcoal-900 font-bold">
                               {video?.title}
                               {video?.description && (
                                 <span className="font-medium">
@@ -218,13 +222,13 @@ function DictionaryDetailPresentationDrawer({
                             </div>
                           )}
                           {video?.acknowledgement && (
-                            <div className="text-fv-charcoal">
+                            <div className="text-charcoal-900">
                               <span className="font-medium">
                                 Acknowledgement: {video?.acknowledgement}
                               </span>
                             </div>
                           )}
-                        </Disclosure.Panel>
+                        </DisclosurePanel>
                       </Disclosure>
                     </div>
                   ))

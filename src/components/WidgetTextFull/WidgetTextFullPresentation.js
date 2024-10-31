@@ -8,7 +8,7 @@ function WidgetTextFullPresentation({ widgetData }) {
   const { textWithFormatting } = widgetData?.settings
 
   return (
-    <div className="w-screen text-base text-fv-charcoal max-w-md md:max-w-4xl mx-auto bg-white p-4">
+    <div className="w-screen text-base text-charcoal-900 max-w-md md:max-w-4xl mx-auto bg-white p-4">
       <WysiwygBlock jsonString={textWithFormatting} />
     </div>
   )

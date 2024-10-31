@@ -10,24 +10,24 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
   return (
     <div
       id="ErrorHandler"
-      className="min-w-screen min-h-screen bg-tertiaryA flex items-center p-5 lg:p-20 overflow-hidden relative"
+      className="min-w-screen min-h-screen bg-jade-500 flex items-center p-5 lg:p-20 overflow-hidden relative"
     >
-      <div className="w-full flex-1 min-h-full min-w-full rounded-lg bg-white shadow-xl p-10 lg:p-20 text-gray-800 relative items-center text-center">
-        <h1 className="font-black text-3xl lg:text-5xl text-fv-charcoal mb-10">
+      <div className="w-full flex-1 min-h-full min-w-full rounded-lg bg-white shadow-xl p-10 lg:p-20 text-charcoal-900 relative items-center text-center">
+        <h1 className="font-black text-3xl lg:text-5xl text-charcoal-900 mb-10">
           Oops! We&apos;ve found a problem...
         </h1>
-        <div className="mb-10 text-gray-600 font-light">
-          <h1 className="font-black uppercase text-3xl lg:text-5xl text-tertiaryA mb-5">
+        <div className="mb-10 text-charcoal-700 font-light">
+          <h1 className="font-black uppercase text-3xl lg:text-5xl text-jade-700 mb-5">
             {status} {heading}
           </h1>
-          <div className="text-xl text-fv-charcoal">{content}</div>
+          <div className="text-xl text-charcoal-900">{content}</div>
         </div>
         <div className="mb-5 md:mb-10">
           {status === 401 ? (
             <button
               data-testid="login"
               type="button"
-              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
+              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-blumine-800 hover:text-blumine-900"
               onClick={login}
               onKeyDown={login}
             >
@@ -38,7 +38,7 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
             <button
               data-testid="back"
               type="button"
-              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-primary hover:text-primary-dark"
+              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-blumine-800 hover:text-blumine-900"
               onClick={() => backHandler()}
             >
               {getIcon(

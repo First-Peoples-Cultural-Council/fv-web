@@ -23,7 +23,7 @@ function MediaDetailsVisual({ file, docType }) {
           data-testid="EntryDrawerEdit"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 btn-contained bg-secondary"
+          className="flex-1 btn-contained bg-scarlet-800"
         >
           {getIcon('Pencil', 'btn-icon')}
           <span>Edit</span>
@@ -48,19 +48,19 @@ function MediaDetailsVisual({ file, docType }) {
         </div>
         <div className="mt-4 flex items-start">
           <div>
-            <h2 className="text-lg font-medium text-fv-charcoal">
+            <h2 className="text-lg font-medium text-charcoal-900">
               <span className="sr-only">Details for </span>
               {file?.title}
             </h2>
             {file?.width && file?.height && (
-              <p className="text-sm font-medium text-fv-charcoal-light">{`${file?.width} x ${file?.height}`}</p>
+              <p className="text-sm font-medium text-charcoal-500">{`${file?.width} x ${file?.height}`}</p>
             )}
           </div>
         </div>
       </div>
       <div>
-        <h3 className="font-medium text-fv-charcoal">Information</h3>
-        <dl className="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+        <h3 className="font-medium text-charcoal-900">Information</h3>
+        <dl className="mt-2 border-t border-b border-charcoal-100 divide-y divide-charcoal-100">
           {file?.id &&
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {
@@ -72,10 +72,10 @@ function MediaDetailsVisual({ file, docType }) {
                     key={key}
                     className="py-3 flex justify-between text-sm font-medium"
                   >
-                    <dt className="text-fv-charcoal-light capitalize">
+                    <dt className="text-charcoal-500 capitalize">
                       {key === 'mimeType' ? 'File Type' : key}
                     </dt>
-                    <dd className="text-fv-charcoal truncate pl-8">
+                    <dd className="text-charcoal-900 truncate pl-8">
                       {file[key]}
                     </dd>
                   </div>

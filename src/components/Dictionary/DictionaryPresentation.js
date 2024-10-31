@@ -28,7 +28,7 @@ function DictionaryPresentation({
 }) {
   const linkStyle = {
     li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
-    link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-fv-charcoal',
+    link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-charcoal-900',
     icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
   }
 
@@ -41,7 +41,7 @@ function DictionaryPresentation({
     <>
       <section
         id="DictionaryPresentation"
-        className={`bg-gradient-to-b from-${labels.color} to-${labels.color}-dark p-5 print:hidden`}
+        className={`bg-gradient-to-b from-${labels.color} to-${labels.textColor} p-5 print:hidden`}
       >
         <div className="mx-auto lg:w-3/5">
           <SearchDictionaryForm.Container
@@ -51,7 +51,7 @@ function DictionaryPresentation({
         </div>
       </section>
       {kids ? (
-        <div className="lg:px-20 bg-gray-100">
+        <div className="lg:px-20 bg-charcoal-50">
           <DictionaryGrid.Presentation
             infiniteScroll={infiniteScroll}
             isLoading={isLoadingEntries}
@@ -65,19 +65,19 @@ function DictionaryPresentation({
         <div className="grid grid-cols-12">
           <div className="hidden lg:block print:hidden col-span-2 mt-5">
             <div className="mb-12 ml-4 xl:ml-7 space-y-2">
-              <h1 className={`text-3xl xl:text-4xl text-${labels.color}Text `}>
+              <h1 className={`text-3xl xl:text-4xl text-${labels.textColor}`}>
                 {labels.uppercase}
               </h1>
               <div
                 className={`${
                   countStr ? '' : 'opacity-0'
-                } text-sm xl:text-base text-fv-charcoal`}
+                } text-sm xl:text-base text-charcoal-900`}
               >
                 Results: {countStr}
               </div>
             </div>
 
-            <h2 className="block text-xl xl:text-2xl font-medium text-fv-charcoal ml-4 xl:ml-7">
+            <h2 className="block text-xl xl:text-2xl font-medium text-charcoal-900 ml-4 xl:ml-7">
               BROWSE BY:
             </h2>
             <ul className="inline-block list-none">

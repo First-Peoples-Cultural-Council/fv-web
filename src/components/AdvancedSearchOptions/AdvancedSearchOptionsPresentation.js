@@ -36,9 +36,7 @@ function AdvancedSearchOptionsPresentation({ items }) {
 
           <div className="flex items-center justify-between">
             <div className="flex items-baseline space-x-8">
-              <p className="text-sm text-fv-charcoal-light">
-                Results : {countStr}
-              </p>
+              <p className="text-sm text-charcoal-500">Results : {countStr}</p>
             </div>
 
             <div className="flex items-baseline space-x-8">

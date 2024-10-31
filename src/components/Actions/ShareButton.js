@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Menu } from '@headlessui/react'
+import { MenuItem } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -18,14 +18,14 @@ function ShareButton({
 }) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
-    <Menu.Item>
-      {({ active }) => (
+    <MenuItem>
+      {({ focus }) => (
         <>
           <button
             type="button"
-            id="ShareButton"
+            data-testid="share-btn"
             className={`${
-              active ? 'bg-gray-100 text-fv-charcoal' : 'text-fv-charcoal-light'
+              focus ? 'bg-charcoal-50 text-charcoal-900' : 'text-charcoal-500'
             } w-full group flex items-center px-4 py-2 text-sm`}
             onClick={() => setShareModalOpen(true)}
           >
@@ -47,14 +47,14 @@ function ShareButton({
               siteVisibility === TEAM ||
               siteVisibility === MEMBERS ? (
                 <div className="text-center font-medium">
-                  <p className="text-2xl text-fv-charcoal">
+                  <p className="text-2xl text-charcoal-900">
                     This {entry?.type} is visible to
                   </p>
-                  <p className="text-2xl text-fv-charcoal font-bold">
+                  <p className="text-2xl text-charcoal-900 font-bold">
                     {entry?.visibility} only!
                   </p>
                   <a
-                    className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-secondary"
+                    className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-scarlet-800"
                     href={`mailto:?subject=${
                       entry?.title
                     }&body=${window.location.origin.toString()}/${sitename}/${makePlural(
@@ -66,7 +66,7 @@ function ShareButton({
                 </div>
               ) : (
                 <>
-                  <h3 className="text-center text-xl font-medium text-fv-charcoal">
+                  <h3 className="text-center text-xl font-medium text-charcoal-900">
                     Share <em>{entry?.title}</em> on:
                   </h3>
                   <ShareLinks.Presentation
@@ -81,7 +81,7 @@ function ShareButton({
               <button
                 data-testid="cancel"
                 type="button"
-                className="btn-contained bg-secondary"
+                className="btn-contained bg-scarlet-800"
                 onClick={() => setShareModalOpen(false)}
               >
                 Cancel
@@ -90,7 +90,7 @@ function ShareButton({
           </Modal.Presentation>
         </>
       )}
-    </Menu.Item>
+    </MenuItem>
   )
 }
 

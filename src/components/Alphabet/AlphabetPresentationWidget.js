@@ -19,7 +19,7 @@ function AlphabetPresentationWidget({
         <SectionTitle.Presentation title="ALPHABET" />
       </div>
       <div className="max-w-7xl mx-auto px-2 md:px-4 lg:px-8">
-        <div className="grid grid-cols-7 gap-2 md:gap-4 xl:gap-8 md:divide-x-2 divide-gray-300">
+        <div className="grid grid-cols-7 gap-2 md:gap-4 xl:gap-8 md:divide-x-2 divide-charcoal-200">
           <div className="col-span-7 md:col-span-4">
             <div className="grid grid-cols-6 lg:grid-cols-7">
               {characters?.map(({ title, id }) => (
@@ -44,7 +44,7 @@ function AlphabetPresentationWidget({
                       text-2xl
                       ${
                         selectedData?.title === title
-                          ? 'bg-primary text-white'
+                          ? 'bg-blumine-800 text-white'
                           : ''
                       }
                       `}
@@ -60,7 +60,7 @@ function AlphabetPresentationWidget({
             {selectedData?.id?.length < 0 ? (
               <div
                 data-testid="AlphabetPresentationWidget__noCharacter"
-                className="text-center font-bold sm:text-3xl text-2xl text-primary m-10"
+                className="text-center font-bold sm:text-3xl text-2xl text-blumine-800 m-10"
               >
                 Please select a character
               </div>

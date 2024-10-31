@@ -19,7 +19,7 @@ function DashboardImmersionPresentation({
   submitHandler,
 }) {
   const tableHeaderClass =
-    'px-6 py-3 text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   const getIndicatorIcon = (dataArray) => {
     const icon = dataArray?.length > 0 ? 'Checkmark' : 'Minus'
@@ -59,21 +59,21 @@ function DashboardImmersionPresentation({
                 <tr
                   key={label?.transKey}
                   onClick={() => setCurrentLabel(label)}
-                  className="hover:bg-gray-100 cursor-pointer"
+                  className="hover:bg-charcoal-50 cursor-pointer"
                 >
-                  <td className="px-6 py-4 text-fv-charcoal">
+                  <td className="px-6 py-4 text-charcoal-900">
                     {label?.immersionLabel || '-'}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+                  <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                     {label?.english}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-fv-charcoal">
+                  <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                     <div className="flex justify-center">
                       {getIndicatorIcon(label?.relatedAudio)}
                     </div>
                   </td>
                   <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div className="text-secondary hover:text-secondary-dark flex items-center">
+                    <div className="text-scarlet-800 hover:text-scarlet-900 flex items-center">
                       {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                     </div>
                   </td>

@@ -30,7 +30,7 @@ function DashboardWidgetsData() {
       name: 'Create a Widget',
       description: 'Add a new Widget to your site',
       href: `/${sitename}/dashboard/create/widget`,
-      iconColor: 'wordText',
+      iconColor: 'blumine-800',
     },
   ]
 

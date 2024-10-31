@@ -29,11 +29,11 @@ function JoinPresentation({
     stage === 'success'
       ? getIcon(
           'CheckCircleSolid',
-          'fill-current text-word h-12 w-12 md:h-20 md:w-20 mx-auto',
+          'fill-current text-jade-500 h-12 w-12 md:h-20 md:w-20 mx-auto',
         )
       : getIcon(
           'TimesCircleSolid',
-          'fill-current text-secondary h-12 w-12 md:h-20 md:w-20 mx-auto',
+          'fill-current text-scarlet-800 h-12 w-12 md:h-20 md:w-20 mx-auto',
         )
 
   const navigate = useNavigate()
@@ -59,11 +59,11 @@ function JoinPresentation({
           >
             <div>{icon}</div>
             <div className="mt-6 mx-auto text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-fv-charcoal sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-charcoal-900 sm:text-4xl">
                 {messageHeader}
               </h2>
 
-              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-fv-charcoal-light">
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-charcoal-500">
                 {message}
               </p>
               <div className="mt-10 space-y-6">
@@ -81,7 +81,7 @@ function JoinPresentation({
                   onClick={() => linkAndClose('/languages')}
                   className={
                     site?.visibility === PUBLIC
-                      ? 'text-sm font-semibold leading-6 text-fv-charcoal'
+                      ? 'text-sm font-semibold leading-6 text-charcoal-900'
                       : 'btn-contained mx-auto flex'
                   }
                 >

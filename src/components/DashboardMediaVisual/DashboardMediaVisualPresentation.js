@@ -23,7 +23,7 @@ function DashboardMediaVisualPresentation({
         <section className="p-2 h-full" aria-labelledby="results-header">
           <h1
             id="results-header"
-            className="capitalize flex text-2xl font-bold text-fv-charcoal mb-4"
+            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
           >
             {typePlural}
           </h1>
@@ -39,9 +39,9 @@ function DashboardMediaVisualPresentation({
                           <div
                             className={`${
                               doc?.id === currentFile?.id
-                                ? 'ring-4 ring-offset-2 ring-secondary'
-                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-secondary'
-                            } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden`}
+                                ? 'ring-4 ring-offset-2 ring-scarlet-800'
+                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
+                            } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
                           >
                             <img
                               src={doc?.thumbnail}
@@ -63,18 +63,18 @@ function DashboardMediaVisualPresentation({
                               </span>
                             </button>
                           </div>
-                          <p className="mt-2 block text-sm font-medium text-fv-charcoal truncate pointer-events-none">
+                          <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
                             {doc?.title}
                           </p>
                           {doc?.width && doc?.height && (
-                            <p className="mt-2 block text-sm font-medium text-fv-charcoal-light truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
+                            <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
                           )}
                         </li>
                       ))}
                     </React.Fragment>
                   ))}
               </ul>
-              <div className="pt-10 text-center text-fv-charcoal font-medium">
+              <div className="pt-10 text-center text-charcoal-900 font-medium">
                 <button
                   data-testid="load-btn"
                   type="button"
@@ -89,7 +89,7 @@ function DashboardMediaVisualPresentation({
           </div>
         </section>
       </main>
-      <aside className="col-span-1 bg-white p-8 border-1 border-gray-200">
+      <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
         <MediaDetails.Visual file={currentFile} docType={type} />
       </aside>
     </div>

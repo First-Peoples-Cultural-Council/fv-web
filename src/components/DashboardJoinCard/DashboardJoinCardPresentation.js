@@ -29,11 +29,11 @@ function DashboardJoinCardPresentation({
       <div className="grid grid-cols-2">
         <div className="p-5 col-span-1">
           <div className="flex gap-x-3">
-            <p className="font-semibold leading-6 text-fv-charcoal">
+            <p className="font-semibold leading-6 text-charcoal-900">
               {nameOfUser || joinRequest?.user?.email}
             </p>
           </div>
-          <div className="mt-1 flex items-center gap-x-2 text-sm leading-5 text-fv-charcoal-light">
+          <div className="mt-1 flex items-center gap-x-2 text-sm leading-5 text-charcoal-500">
             <p className="whitespace-nowrap">{joinRequest?.user?.email}</p>
             <svg viewBox="0 0 2 2" className="h-1 w-1 fill-current">
               <circle cx={1} cy={1} r={1} />
@@ -51,7 +51,7 @@ function DashboardJoinCardPresentation({
             type="button"
             className={`${
               isExpanded ? 'hidden' : 'inline-block'
-            } mt-2 text-sm leading-6 text-primary-light hover:text-primary active:text-primary-dark`}
+            } mt-2 text-sm leading-6 text-blumine-600 hover:text-blumine-800 active:text-blumine-900`}
             onClick={() => setIsExpanded(!isExpanded)}
           >
             Show more
@@ -69,7 +69,7 @@ function DashboardJoinCardPresentation({
                 onChange={(e) =>
                   setSelectedRole(e.target.value.split(' ').join('_'))
                 }
-                className="btn-outlined text-primary border-primary"
+                className="btn-outlined text-blumine-800 border-blumine-800"
               >
                 <option value={MEMBER}>Approve as Member</option>
                 <option value={ASSISTANT}>Approve as Assistant</option>
@@ -102,7 +102,7 @@ function DashboardJoinCardPresentation({
                 data-testid="igore-request-btn"
                 type="button"
                 onClick={() => handleIgnore()}
-                className="btn-outlined text-secondary border-secondary"
+                className="btn-outlined text-scarlet-800 border-scarlet-800"
               >
                 {getIcon('TimesCircleSolid', 'btn-icon')}
                 <span>Ignore</span>
@@ -114,20 +114,20 @@ function DashboardJoinCardPresentation({
       <div className={isExpanded ? 'block px-5 pb-5' : 'hidden'}>
         <dl className="space-y-5">
           <div>
-            <dt className="text-sm font-semibold leading-4 text-fv-charcoal">
+            <dt className="text-sm font-semibold leading-4 text-charcoal-900">
               {joinRequest?.reasons?.length === 1
                 ? 'Reason for request'
                 : 'Reasons for request'}
             </dt>
-            <dd className="mt-2 text-base leading-4 text-fv-charcoal capitalize">
+            <dd className="mt-2 text-base leading-4 text-charcoal-900 capitalize">
               {joinRequest?.reasons?.map((reason) => reason?.reason).join(', ')}
             </dd>
           </div>
           <div>
-            <dt className="text-sm font-semibold leading-4 text-fv-charcoal">
+            <dt className="text-sm font-semibold leading-4 text-charcoal-900">
               Message from the user
             </dt>
-            <dd className="mt-2 text-base leading-4 text-fv-charcoal">
+            <dd className="mt-2 text-base leading-4 text-charcoal-900">
               {joinRequest?.reasonNote}
             </dd>
           </div>
@@ -136,7 +136,7 @@ function DashboardJoinCardPresentation({
             type="button"
             className={`${
               isExpanded ? 'inline-block' : 'hidden'
-            } mt-2 text-sm leading-6 text-primary-light hover:text-primary active:text-primary-dark`}
+            } mt-2 text-sm leading-6 text-blumine-600 hover:text-blumine-800 active:text-blumine-900`}
             onClick={() => setIsExpanded(!isExpanded)}
           >
             Show less

@@ -14,11 +14,11 @@ function GalleryPresentationWidget({ data, sitename }) {
   return (
     <section
       data-testid="GalleryPresentationWidget"
-      className="py-3 md:py-6 px-2 lg:px-10 bg-fv-charcoal space-y-2 lg:space-y-4"
+      className="py-3 md:py-6 px-2 lg:px-10 bg-charcoal-900 space-y-2 lg:space-y-4"
     >
       <SectionTitle.Presentation
         title={data?.title}
-        bgColor="fv-charcoal"
+        bgColor="charcoal-900"
         accentColor="white"
       />
       <div className="text-center text-white text-xl">
@@ -37,7 +37,7 @@ function GalleryPresentationWidget({ data, sitename }) {
       </div>
       <div className="flex justify-center">
         <Link
-          className="btn-contained bg-secondary"
+          className="btn-contained bg-scarlet-800"
           to={`/${sitename}/galleries/${data?.id}`}
         >
           Go to gallery

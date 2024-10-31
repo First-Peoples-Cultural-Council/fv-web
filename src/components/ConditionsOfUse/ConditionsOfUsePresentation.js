@@ -10,11 +10,8 @@ function ConditionsOfUsePresentation() {
       data-testid="ConditionsOfUse"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="CONDITIONS OF USE"
-          accentColor="primary"
-        />
-        <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+        <SectionTitle.Presentation title="CONDITIONS OF USE" />
+        <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <p className={paraStyle}>
             By accessing this site, or by downloading the language data, the
             user confirms agreement with and acceptance of the <br />

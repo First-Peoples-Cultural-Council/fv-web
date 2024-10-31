@@ -9,7 +9,7 @@ import { VIDEO, ORIGINAL } from 'common/constants'
 
 function VideoThumbnail({
   id,
-  containerStyles = 'block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden',
+  containerStyles = 'block relative w-48 aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden',
   videoStyles = 'object-cover pointer-events-none',
   videoObject,
   ...other

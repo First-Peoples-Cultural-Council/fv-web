@@ -1,6 +1,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Transition } from '@headlessui/react'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition,
+} from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -37,14 +43,14 @@ function ActionsMenuPresentation({
         <Menu as="div" className="relative inline-flex text-left">
           {({ open }) => (
             <>
-              <Menu.Button
+              <MenuButton
                 id="More"
                 aria-label="More Options"
-                className="ml-2 pl-2 relative inline-flex items-center text-sm font-medium text-fv-charcoal hover:text-black border-l border-gray-300"
+                className="ml-2 pl-2 relative inline-flex items-center text-sm font-medium text-charcoal-900 hover:text-black border-l border-charcoal-200"
               >
                 {getIcon('More', `fill-current ${iconStyling}`)}
                 {withLabels ? <span className="mx-2">MORE</span> : null}
-              </Menu.Button>
+              </MenuButton>
 
               <Transition
                 show={open}
@@ -56,7 +62,7 @@ function ActionsMenuPresentation({
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items
+                <MenuItems
                   static
                   className="z-10 origin-top-right absolute top-5 right-0 mt-2 w-40 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
@@ -71,15 +77,14 @@ function ActionsMenuPresentation({
                       />
                     )}
                     {moreActions.includes('qrcode') && (
-                      <Menu.Item>
-                        {({ active }) => (
+                      <MenuItem>
+                        {({ focus }) => (
                           <QrcodeButton
                             buttonStyling={`${
-                              active
-                                ? 'bg-gray-100 text-fv-charcoal'
-                                : 'text-fv-charcoal-light'
+                              focus
+                                ? 'bg-charcoal-50 text-charcoal-900'
+                                : 'text-charcoal-500'
                             } w-full group flex items-center px-4 py-2 text-sm`}
-                            active={active}
                             withLabels
                             iconStyling={iconStyling}
                             entry={entry}
@@ -88,10 +93,10 @@ function ActionsMenuPresentation({
                             )}/${entry?.id}`}
                           />
                         )}
-                      </Menu.Item>
+                      </MenuItem>
                     )}
                   </div>
-                </Menu.Items>
+                </MenuItems>
               </Transition>
             </>
           )}

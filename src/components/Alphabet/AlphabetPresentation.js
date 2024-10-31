@@ -21,9 +21,9 @@ function AlphabetPresentation({
       data-testid="AlphabetPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="ALPHABET" accentColor="primary" />
+        <SectionTitle.Presentation title="ALPHABET" />
         {links && (
-          <div className="flex font-bold items-center justify-center text-center text-primary mb-5">
+          <div className="flex font-bold items-center justify-center text-center text-blumine-800 mb-5">
             <ul className="flex text-center">
               {links.map(({ url, title }) => (
                 <li key={title} className="m-3 inline-flex">
@@ -37,7 +37,7 @@ function AlphabetPresentation({
           {characters?.map(({ title, id }) => (
             <Link
               className={`border col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
-                selectedData?.title === title ? 'bg-primary text-white' : ''
+                selectedData?.title === title ? 'bg-blumine-800 text-white' : ''
               } `}
               key={id}
               to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
@@ -50,7 +50,7 @@ function AlphabetPresentation({
           {selectedData?.title === undefined && (
             <div
               data-testid="AlphabetPresentation__noCharacter"
-              className="text-center font-bold sm:text-3xl text-2xl text-primary m-10"
+              className="text-center font-bold sm:text-3xl text-2xl text-blumine-800 m-10"
             >
               Please select a character
             </div>

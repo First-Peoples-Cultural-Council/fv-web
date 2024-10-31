@@ -2,7 +2,13 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { Menu, Transition } from '@headlessui/react'
+import {
+  Menu,
+  MenuItem,
+  MenuItems,
+  MenuButton,
+  Transition,
+} from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -13,12 +19,12 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
   const hasItems = itemsData?.length > 0
   const generateMenuItems = (items) =>
     items.map((menuItem) => (
-      <Menu.Item key={`HeaderMenu_${menuItem.title}`}>
-        {({ active }) => (
+      <MenuItem key={`HeaderMenu_${menuItem.title}`}>
+        {({ focus }) => (
           <Link
             to={`/${sitename + menuItem.href}`}
             className={`${
-              active ? 'bg-gray-200 text-black' : 'text-fv-charcoal'
+              focus ? 'bg-charcoal-100 text-black' : 'text-charcoal-900'
             } flex w-full rounded-lg`}
           >
             <div className="px-2 py-1 w-full text-lg font-medium">
@@ -26,7 +32,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
             </div>
           </Link>
         )}
-      </Menu.Item>
+      </MenuItem>
     ))
 
   const generateButtonContents = () => (
@@ -37,7 +43,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       </p>
       {i18n?.language !== 'en' && (
         // Tooltip
-        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded text-fv-charcoal p-2 text-sm bg-white">
+        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded text-charcoal-900 p-2 text-sm bg-white">
           {transKey ? t(transKey) : title}
         </span>
       )}
@@ -49,7 +55,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
   )
 
   const buttonStyling =
-    'h-8 xl:h-10 group p-1 rounded-lg inline-flex w-full justify-center items-center text-base xl:text-lg font-medium text-white hover:text-gray-100'
+    'h-8 xl:h-10 group p-1 rounded-lg inline-flex w-full justify-center items-center text-base xl:text-lg font-medium text-white hover:text-charcoal-50'
 
   return hasItems ? (
     <Menu
@@ -58,12 +64,12 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       className="relative inline-block w-40 xl:w-44"
     >
       <div>
-        <Menu.Button
+        <MenuButton
           data-testid={`${transKey}-button`}
           className={buttonStyling}
         >
           {generateButtonContents()}
-        </Menu.Button>
+        </MenuButton>
       </div>
       <Transition
         as={Fragment}
@@ -74,11 +80,11 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="bg-white space-y-2">
             {generateMenuItems(itemsData)}
           </div>
-        </Menu.Items>
+        </MenuItems>
       </Transition>
     </Menu>
   ) : (

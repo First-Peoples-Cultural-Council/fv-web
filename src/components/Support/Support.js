@@ -6,7 +6,7 @@ function Support() {
   const paraStyle = 'mb-2'
   const divStyle = 'py-4 w-72 m-4'
   const buttonStyle =
-    'flex ring ring-bgRed rounded-lg p-2 text-white bg-bgRed w-full'
+    'flex ring ring-scarlet-800 rounded-lg p-2 text-white bg-scarlet-800 w-full'
 
   return (
     <section
@@ -14,12 +14,9 @@ function Support() {
       data-testid="AboutFirstVoices"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation
-          title="FIRSTVOICES SUPPORT"
-          accentColor="primary"
-        />
+        <SectionTitle.Presentation title="FIRSTVOICES SUPPORT" />
         <div>
-          <div className="max-w-4xl mx-auto text-fv-charcoal space-y-4 py-8">
+          <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
             <p className={paraStyle}>
               Welcome! You can raise a FirstVoices support request from the
               options provided.

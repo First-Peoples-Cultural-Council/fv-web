@@ -39,7 +39,7 @@ function DashboardEntriesPresentationList({
   }
 
   const tableHeaderClass =
-    'p-4 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider'
+    'p-4 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
     <Loading.Container isLoading={isLoading}>
@@ -50,14 +50,14 @@ function DashboardEntriesPresentationList({
         {items?.pages !== undefined &&
         items?.pages?.[0]?.results?.length > 0 ? (
           <div className="flex flex-col w-full">
-            <div className="border-b border-gray-300">
-              <table className="table-auto w-full divide-y divide-gray-300">
-                <thead className="bg-gray-100">
+            <div className="border-b border-charcoal-200">
+              <table className="table-auto w-full divide-y divide-charcoal-200">
+                <thead className="bg-charcoal-50">
                   <tr>
                     <th
                       scope="col"
                       aria-labelledby={SORT_ALPHABETICAL}
-                      className="pl-6 pr-4 py-4 text-left text-xs font-medium text-fv-charcoal uppercase tracking-wider"
+                      className="pl-6 pr-4 py-4 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider"
                     >
                       <SortByHeader
                         id={SORT_ALPHABETICAL}
@@ -104,14 +104,14 @@ function DashboardEntriesPresentationList({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-300 text-fv-charcoal">
+                <tbody className="bg-white divide-y divide-charcoal-200 text-charcoal-900">
                   {items.pages.map((page) => (
                     <Fragment key={page?.pageNumber}>
                       {page.results.map((entry) => (
                         <tr
                           data-testid="EntryRow"
                           key={entry?.id}
-                          className="w-full hover:bg-gray-100"
+                          className="w-full hover:bg-charcoal-50"
                         >
                           <td>
                             <button
@@ -132,7 +132,7 @@ function DashboardEntriesPresentationList({
                             >
                               {/* For Dictionary Entries */}
                               {entry?.translations && (
-                                <ol className="text-fv-charcoal">
+                                <ol className="text-charcoal-900">
                                   {entry?.translations.map((translation, i) => (
                                     <li key={translation?.text}>
                                       {entry?.translations.length > 1
@@ -145,16 +145,16 @@ function DashboardEntriesPresentationList({
                               )}
                               {/* For Songs and Stories */}
                               {entry?.titleTranslation && (
-                                <div className="text-fv-charcoal">
+                                <div className="text-charcoal-900">
                                   {entry?.titleTranslation}
                                 </div>
                               )}
                             </button>
                           </td>
-                          <td className="p-4 text-fv-charcoal text-xs whitespace-nowrap">
+                          <td className="p-4 text-charcoal-900 text-xs whitespace-nowrap">
                             {entry?.created}
                           </td>
-                          <td className="p-4 text-fv-charcoal text-xs whitespace-nowrap">
+                          <td className="p-4 text-charcoal-900 text-xs whitespace-nowrap">
                             {entry?.lastModified}
                           </td>
                           <td className="p-4 whitespace-nowrap">
@@ -168,15 +168,15 @@ function DashboardEntriesPresentationList({
                             {checkIfUserCanEdit(entry) ? (
                               <Link
                                 to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
-                                className="p-4 text-primary hover:text-primary-dark flex items-center"
+                                className="p-4 text-blumine-800 hover:text-blumine-900 flex items-center"
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
                                 {getIcon('Pencil', 'fill-current w-6 h-6')}
                               </Link>
                             ) : (
-                              <div className="has-tooltip p-4 text-gray-400 flex items-center">
-                                <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-fv-charcoal text-xs -mt-10 -ml-20">
+                              <div className="has-tooltip p-4 text-charcoal-500 flex items-center">
+                                <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-20">
                                   You do not have access to edit this.
                                 </span>
                                 {getIcon('Pencil', 'fill-current w-6 h-6')}
@@ -188,7 +188,7 @@ function DashboardEntriesPresentationList({
                               data-testid={`${entry?.title}-preview`}
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="p-4 text-primary hover:text-primary-dark flex items-center"
+                              className="p-4 text-blumine-800 hover:text-blumine-900 flex items-center"
                             >
                               {getIcon(
                                 'Preview',
@@ -204,7 +204,7 @@ function DashboardEntriesPresentationList({
                 </tbody>
               </table>
             </div>
-            <div className="p-3 text-center text-fv-charcoal font-medium print:hidden">
+            <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
               <button
                 data-testid="load-btn"
                 type="button"
@@ -244,8 +244,8 @@ function DashboardEntriesPresentationList({
                   <span>Edit</span>
                 </Link>
               ) : (
-                <div className="has-tooltip btn-outlined text-gray-400 border-gray-400">
-                  <span className="tooltip rounded shadow-lg p-1 bg-gray-100 text-fv-charcoal text-xs -mt-10 -ml-10">
+                <div className="has-tooltip btn-outlined text-charcoal-500 border-charcoal-300">
+                  <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-10">
                     You do not have access to edit this.
                   </span>
                   {getIcon('Pencil', 'btn-icon')}

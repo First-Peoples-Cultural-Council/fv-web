@@ -35,7 +35,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
                 imageObject={bannerMedia}
               />
             </div>
-            <div className="z-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-word to-word-dark">
+            <div className="z-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-jade-500 to-jade-700">
               <div className="flex flex-col md:flex-row items-center justify-center mx-auto p-3 md:p-5">
                 <div
                   className={`${logoTitleColumnStyling} md:-mt-24 lg:-mt-44 mr-4`}
@@ -58,7 +58,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
         return (
           <div
             id="HomeBannerWithVideo"
-            className="flex justify-center relative text-white bg-gradient-to-b from-word to-word-dark md:from-gray-300 md:to-gray-300 items-center md:h-96 overflow-hidden"
+            className="flex justify-center relative text-white bg-gradient-to-b from-jade-500 to-jade-700 md:from-charcoal-200 md:to-charcoal-200 items-center md:h-96 overflow-hidden"
           >
             <video
               className="hidden md:flex absolute z-10 w-auto h-auto min-w-full min-h-full max-w-none"
@@ -89,7 +89,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
         return (
           <div
             id="HomeBannerNoMedia"
-            className="bg-gradient-to-b from-word to-word-dark"
+            className="bg-gradient-to-b from-jade-500 to-jade-700"
           >
             <div className="flex flex-col md:flex-row md:min-h-96 items-center justify-center mx-auto p-3 md:p-5">
               <div className={logoTitleColumnStyling}>
@@ -113,7 +113,7 @@ function HomePresentation({ bannerMedia, bannerType, site }) {
   return (
     <section
       data-testid="HomePresentation"
-      className="bg-gradient-to-r from-gray-600 to-gray-700 md:min-h-96"
+      className="bg-gradient-to-r from-charcoal-700 to-charcoal-700 md:min-h-96"
     >
       <div>{site?.title ? getContents(bannerType) : null}</div>
     </section>

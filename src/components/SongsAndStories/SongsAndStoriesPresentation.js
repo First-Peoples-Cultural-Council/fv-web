@@ -12,6 +12,7 @@ import Song from 'components/Song'
 import Story from 'components/Story'
 import SongsAndStoriesGrid from 'components/SongsAndStories/SongsAndStoriesGrid'
 import SongsAndStoriesList from 'components/SongsAndStories/SongsAndStoriesList'
+import { TYPE_SONG } from 'common/constants'
 
 function SongsAndStoriesPresentation({
   searchType,
@@ -22,6 +23,7 @@ function SongsAndStoriesPresentation({
   sitename,
 }) {
   const type = searchType.toLowerCase()
+  const accentColor = type === TYPE_SONG ? 'song-color-900' : 'story-color-900'
   const pluralDocType = makePlural(searchType)
   const [isGridView, setIsGridView] = useState(true)
 
@@ -75,18 +77,18 @@ function SongsAndStoriesPresentation({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle.Presentation
             title={pluralDocType}
-            accentColor={`${type}Text`}
+            accentColor={accentColor}
           />
           <div className="flex-1 flex items-stretch overflow-hidden">
             <main className="flex-1 overflow-y-auto">
               <div className="lg:px-8">
                 {!kids && (
-                  <div className="hidden md:block border-b border-gray-200 pb-2 lg:py-4">
+                  <div className="hidden md:block border-b border-charcoal-100 pb-2 lg:py-4">
                     <div className="flex justify-end">
                       <GridListToggle.Presentation
                         isGridView={isGridView}
                         setIsGridView={setIsGridView}
-                        accentColor={`${type}Text`}
+                        accentColor={accentColor}
                       />
                     </div>
                   </div>
@@ -113,9 +115,10 @@ function SongsAndStoriesPresentation({
                       handleItemClick,
                     })}
               </div>
-              <div className="p-3 text-center text-fv-charcoal font-medium">
+              <div className="p-3 text-center text-charcoal-900 font-medium">
                 <div ref={loadRef} className="w-full h-5" />
                 <button
+                  data-testid="load-btn"
                   type="button"
                   className={!hasNextPage ? 'cursor-text' : ''}
                   onClick={() => fetchNextPage()}

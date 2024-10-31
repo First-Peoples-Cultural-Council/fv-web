@@ -34,6 +34,7 @@ function DashboardEntriesPresentation({
           <div className="w-1/2 flex items-center justify-between space-x-2">
             {!showAdvancedSearch ? (
               <button
+                data-testid="advanced-search-btn"
                 type="button"
                 className="text-sm underline"
                 onClick={() => setShowAdvancedSearch(true)}
@@ -42,6 +43,7 @@ function DashboardEntriesPresentation({
               </button>
             ) : (
               <button
+                data-testid="remove-filters-btn"
                 type="button"
                 className="text-sm underline"
                 onClick={() => removeFilters()}
@@ -50,7 +52,7 @@ function DashboardEntriesPresentation({
               </button>
             )}
             <SearchTypeSelector.Container
-              accentColor="tertiaryB"
+              accentColor="charcoal-500"
               selectedSearchType={searchType}
               setSearchType={setSearchType}
             />

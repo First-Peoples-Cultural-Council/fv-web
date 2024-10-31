@@ -18,7 +18,7 @@ function DashboardGalleriesData() {
       name: 'Create a Gallery',
       description: 'Add a new image gallery to your site',
       href: `/${sitename}/dashboard/create/gallery`,
-      iconColor: 'wordText',
+      iconColor: 'blumine-800',
       auth: LANGUAGE_ADMIN,
     },
   ]

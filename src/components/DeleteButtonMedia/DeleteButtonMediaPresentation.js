@@ -29,7 +29,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
           className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
         >
           <div className="text-center space-y-2">
-            <p className="text-xl text-fv-charcoal">
+            <p className="text-xl text-charcoal-900">
               Are you sure you want to delete this {docType} from your site ?
             </p>
             <p>
@@ -38,7 +38,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
               it will remove it from all of them. Are you sure you want to
               delete it?
             </p>
-            <p className="text-fv-charcoal-light">
+            <p className="text-charcoal-500">
               You can&apos;t undo this action.
             </p>
           </div>
@@ -54,7 +54,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
             <button
               data-testid="delete-confirm"
               type="button"
-              className="btn-contained bg-secondary"
+              className="btn-contained bg-scarlet-800"
               onClick={() => {
                 setDeleteModalOpen(false)
                 deleteHandler()

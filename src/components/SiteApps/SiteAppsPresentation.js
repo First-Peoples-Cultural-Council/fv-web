@@ -38,7 +38,7 @@ function SiteAppsPresentation() {
             </a>
           </p>
         </div>
-        <div className="w-full rounded-lg bg-story-light  py-4 md:py-8 px-8 md:px-14 my-8 space-y-4 md:space-y-8 ">
+        <div className="w-full rounded-lg bg-ochre-200  py-4 md:py-8 px-8 md:px-14 my-8 space-y-4 md:space-y-8 ">
           <h2 className={h2Styling}>Having trouble installing apps?</h2>
           <p>
             Let us know{' '}

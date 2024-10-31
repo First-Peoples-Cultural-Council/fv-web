@@ -19,7 +19,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a word',
       description: 'Add a new word to your dictionary',
       href: addUrlPrefix('word'),
-      iconColor: 'wordText',
+      iconColor: 'word-color-800',
       auth: ASSISTANT,
     },
     PHRASE: {
@@ -27,7 +27,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a phrase',
       description: 'Add a new phrase to your dictionary',
       href: addUrlPrefix('phrase'),
-      iconColor: 'phraseText',
+      iconColor: 'phrase-color-800',
       auth: ASSISTANT,
     },
     SONG: {
@@ -35,7 +35,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a song',
       description: 'Add a new song to your site',
       href: addUrlPrefix('song'),
-      iconColor: 'songText',
+      iconColor: 'song-color-900',
       auth: ASSISTANT,
     },
     STORY: {
@@ -43,7 +43,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a story',
       description: 'Add a new story to your site',
       href: addUrlPrefix('story'),
-      iconColor: 'storyText',
+      iconColor: 'story-color-900',
       auth: ASSISTANT,
     },
     SPEAKER: {
@@ -51,7 +51,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Add a speaker',
       description: 'Add a new speaker to your site',
       href: addUrlPrefix('speaker'),
-      iconColor: 'storyText',
+      iconColor: 'blumine-900',
       auth: EDITOR,
     },
     CATEGORY: {
@@ -59,7 +59,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Add a category',
       description: 'Add a new category to your dictionary',
       href: addUrlPrefix('category'),
-      iconColor: 'tertiaryB',
+      iconColor: 'charcoal-500',
       auth: LANGUAGE_ADMIN,
     },
     WIDGET: {
@@ -67,7 +67,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a widget',
       description: "Add a new widget to your site's collection",
       href: addUrlPrefix('widget'),
-      iconColor: 'songText',
+      iconColor: 'scarlet-900',
       auth: LANGUAGE_ADMIN,
     },
     PAGE: {
@@ -75,7 +75,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a custom page',
       description: 'Add a new page to your site',
       href: addUrlPrefix('page'),
-      iconColor: 'tertiaryA',
+      iconColor: 'charcoal-500',
       auth: LANGUAGE_ADMIN,
     },
     GALLERY: {
@@ -83,7 +83,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a gallery',
       description: 'Add a new image gallery to your site',
       href: addUrlPrefix('gallery'),
-      iconColor: 'wordText',
+      iconColor: 'blumine-900',
       auth: ASSISTANT,
     },
   }
