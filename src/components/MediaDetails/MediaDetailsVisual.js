@@ -8,6 +8,7 @@ import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
 
 function MediaDetailsVisual({ file, docType }) {
+  console.log({ file })
   const { sitename } = useParams()
 
   return (
@@ -64,6 +65,9 @@ function MediaDetailsVisual({ file, docType }) {
           {file?.id &&
             Object.keys(file).map((key) => {
               if (isDisplayablePropMedia(key, file[key])) {
+                if (key === 'description') {
+                  return null
+                }
                 return (
                   <div
                     key={key}
@@ -82,6 +86,16 @@ function MediaDetailsVisual({ file, docType }) {
             })}
         </dl>
       </div>
+      {file?.description.length > 0 && (
+        <div>
+          <h3 className="font-medium text-fv-charcoal">Description</h3>
+          <div className="mt-2 flex items-center justify-between">
+            <p className="text-sm text-fv-charcoal-light italic">
+              {file?.description}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
