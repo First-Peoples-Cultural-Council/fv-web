@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Menu } from '@headlessui/react'
+import { MenuItem } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -18,14 +18,14 @@ function ShareButton({
 }) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
   return (
-    <Menu.Item>
-      {({ active }) => (
+    <MenuItem>
+      {({ focus }) => (
         <>
           <button
             type="button"
-            id="ShareButton"
+            data-testid="share-btn"
             className={`${
-              active ? 'bg-charcoal-50 text-charcoal-900' : 'text-charcoal-500'
+              focus ? 'bg-charcoal-50 text-charcoal-900' : 'text-charcoal-500'
             } w-full group flex items-center px-4 py-2 text-sm`}
             onClick={() => setShareModalOpen(true)}
           >
@@ -90,7 +90,7 @@ function ShareButton({
           </Modal.Presentation>
         </>
       )}
-    </Menu.Item>
+    </MenuItem>
   )
 }
 

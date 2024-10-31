@@ -1,7 +1,13 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
-import { Listbox, Transition } from '@headlessui/react'
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+  Transition,
+} from '@headlessui/react'
 import { Controller } from 'react-hook-form'
 
 // FPCC
@@ -119,7 +125,7 @@ function JoinForm({ site, submitHandler }) {
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
                   {({ open }) => (
                     <div className="relative max-w-xs">
-                      <Listbox.Button className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
+                      <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
                         <div className="w-full inline-flex items-center">
                           <span className="truncate">
                             {value?.length < 1
@@ -135,7 +141,7 @@ function JoinForm({ site, submitHandler }) {
                             )}
                           </span>
                         </div>
-                      </Listbox.Button>
+                      </ListboxButton>
 
                       <Transition
                         show={open}
@@ -144,13 +150,13 @@ function JoinForm({ site, submitHandler }) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+                        <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
                           {reasonOptions.map((option) => (
-                            <Listbox.Option key={option?.reason} value={option}>
-                              {({ active, selected }) => (
+                            <ListboxOption key={option?.reason} value={option}>
+                              {({ focus, selected }) => (
                                 <div
                                   className={`relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
-                                    active
+                                    focus
                                       ? 'bg-charcoal-50 text-scarlet-800'
                                       : 'text-charcoal-900'
                                   }`}
@@ -170,9 +176,9 @@ function JoinForm({ site, submitHandler }) {
                                     : null}
                                 </div>
                               )}
-                            </Listbox.Option>
+                            </ListboxOption>
                           ))}
-                        </Listbox.Options>
+                        </ListboxOptions>
                       </Transition>
                     </div>
                   )}

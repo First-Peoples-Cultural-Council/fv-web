@@ -81,6 +81,7 @@ function NavBarPresentationMobile({ site }) {
   return (
     <div className="min-h-screen bg-white text-charcoal-900">
       <Transition
+        as="div"
         show={!isSubMenuOpen}
         enter="transform transition ease-in-out duration-500"
         enterFrom="-translate-x-full"
@@ -152,6 +153,7 @@ function NavBarPresentationMobile({ site }) {
         </ul>
       </Transition>
       <Transition
+        as="div"
         show={isSubMenuOpen}
         enter="transform transition ease-in-out duration-500"
         enterFrom="translate-x-full"

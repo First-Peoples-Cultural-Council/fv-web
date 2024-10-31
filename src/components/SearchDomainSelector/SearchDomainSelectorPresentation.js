@@ -1,6 +1,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Menu, Transition } from '@headlessui/react'
+import {
+  Menu,
+  MenuButton,
+  MenuItems,
+  MenuItem,
+  Transition,
+} from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -17,13 +23,13 @@ function SearchDomainSelectorPresentation({
       className="relative inline-block text-left"
     >
       <div aria-label="Search/Go">
-        <Menu.Button className="inline-flex justify-center w-full px-2 lg:px-4 py-2 font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+        <MenuButton className="inline-flex justify-center w-full px-2 lg:px-4 py-2 font-medium text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           {searchDomainOptions[searchDomain]}
           {getIcon(
             'ChevronDown',
             'w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100',
           )}
-        </Menu.Button>
+        </MenuButton>
       </div>
       <Transition
         as={Fragment}
@@ -34,19 +40,17 @@ function SearchDomainSelectorPresentation({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-charcoal-50 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-charcoal-50 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1">
             {Object.entries(searchDomainOptions).map(([key, label]) => (
-              <Menu.Item key={`optionlist-key-${key}`}>
-                {({ active }) => (
+              <MenuItem key={`optionlist-key-${key}`}>
+                {({ focus }) => (
                   <button
                     data-testid={`language-select-option-${key}`}
                     type="button"
                     onClick={() => handleSearchDomainChange(key)}
                     className={`${
-                      active
-                        ? 'bg-charcoal-100 text-black'
-                        : 'text-charcoal-900'
+                      focus ? 'bg-charcoal-100 text-black' : 'text-charcoal-900'
                     } font-medium group flex rounded-lg items-center w-full px-2 py-2 text-sm`}
                   >
                     {label}
@@ -55,10 +59,10 @@ function SearchDomainSelectorPresentation({
                       : ''}
                   </button>
                 )}
-              </Menu.Item>
+              </MenuItem>
             ))}
           </div>
-        </Menu.Items>
+        </MenuItems>
       </Transition>
     </Menu>
   )
