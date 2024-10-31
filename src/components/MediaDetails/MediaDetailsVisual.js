@@ -8,7 +8,6 @@ import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
 
 function MediaDetailsVisual({ file, docType }) {
-  console.log({ file })
   const { sitename } = useParams()
 
   return (
