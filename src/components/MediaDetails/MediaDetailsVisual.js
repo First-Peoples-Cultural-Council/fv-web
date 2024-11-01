@@ -59,17 +59,7 @@ function MediaDetailsVisual({ file, docType }) {
           </div>
         </div>
       </div>
-      {MediaDetailsSettings({ file })}
-      {file?.description.length > 0 && (
-        <div>
-          <h3 className="font-medium text-charcoal">Description</h3>
-          <div className="mt-2 flex items-center justify-between">
-            <p className="text-sm text-charcoal-500 italic">
-              {file?.description}
-            </p>
-          </div>
-        </div>
-      )}
+      <MediaDetailsSettings file={file} />
     </div>
   )
 }
