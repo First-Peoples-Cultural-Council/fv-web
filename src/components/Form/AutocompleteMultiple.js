@@ -109,7 +109,9 @@ function Autocomplete({
                                   {selected ? (
                                     <span
                                       className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                                        focus ? 'text-white' : 'text-scarlet-800'
+                                        focus
+                                          ? 'text-white'
+                                          : 'text-scarlet-800'
                                       }`}
                                     >
                                       {getIcon(

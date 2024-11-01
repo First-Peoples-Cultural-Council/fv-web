@@ -5,7 +5,9 @@ import { Link, useParams } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import AudioNative from 'components/AudioNative'
-import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
+// import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
+import MediaDetailsSettings from 'components/MediaDetails/MediaDetailsSettings'
+
 function MediaDetailsAudio({ file }) {
   const { sitename } = useParams()
 
@@ -44,48 +46,7 @@ function MediaDetailsAudio({ file }) {
           </div>
         </div>
       </div>
-      <div>
-        <h3 className="font-medium text-charcoal-900">Information</h3>
-        <dl className="mt-2 border-t border-b border-charcoal-100 divide-y divide-charcoal-100">
-          {file?.id &&
-            Object.keys(file).map((key) => {
-              if (isDisplayablePropMedia(key, file[key])) {
-                return (
-                  <div
-                    key={key}
-                    className="py-3 flex justify-between text-sm font-medium"
-                  >
-                    <dt className="text-charcoal-500 capitalize">
-                      {key === 'mimeType' ? 'File type' : key}
-                    </dt>
-                    <dd className="text-charcoal-900 max-w-1/2 truncate">
-                      {file[key]}
-                    </dd>
-                  </div>
-                )
-              }
-              return null
-            })}
-        </dl>
-        {file?.speakers.length > 0 && (
-          <dl className="mt-2 border-b border-charcoal-100 divide-y divide-charcoal-100">
-            <div className="py-3 flex justify-between text-sm font-medium">
-              <dt className="text-charcoal-500">Speakers</dt>
-              <dd className="text-charcoal-900">
-                {file?.speakers?.map((speaker) => speaker?.name).join(', ')}
-              </dd>
-            </div>
-          </dl>
-        )}
-      </div>
-      <div>
-        <h3 className="font-medium text-charcoal-900">Description</h3>
-        <div className="mt-2 flex items-center justify-between">
-          <p className="text-sm text-charcoal-500 italic">
-            {file?.description}
-          </p>
-        </div>
-      </div>
+      <MediaDetailsSettings file={file} />
     </div>
   )
 }

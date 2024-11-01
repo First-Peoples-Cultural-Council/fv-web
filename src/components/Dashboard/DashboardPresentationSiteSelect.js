@@ -64,7 +64,9 @@ function DashboardPresentationSiteSelect({ sites, site }) {
                   {({ focus }) => (
                     <div
                       className={`${
-                        focus ? 'bg-charcoal-50 text-charcoal-900' : 'text-charcoal-700'
+                        focus
+                          ? 'bg-charcoal-50 text-charcoal-900'
+                          : 'text-charcoal-700'
                       } group w-full rounded-lg px-3.5 py-2 text-sm text-left font-medium hover:bg-charcoal-100`}
                     >
                       <Link

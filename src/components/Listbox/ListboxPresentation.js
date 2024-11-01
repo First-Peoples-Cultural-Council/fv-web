@@ -48,7 +48,9 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
                   key={option?.value}
                   className={({ focus }) =>
                     `relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
-                      focus ? 'bg-charcoal-50 text-scarlet-800' : 'text-charcoal-900'
+                      focus
+                        ? 'bg-charcoal-50 text-scarlet-800'
+                        : 'text-charcoal-900'
                     }`
                   }
                   value={option?.value}
