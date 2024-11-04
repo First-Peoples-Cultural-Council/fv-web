@@ -4,10 +4,12 @@ import { RichUtils } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
 // FPCC
-import WysiwygControls from 'components/Form/WysiwygControls'
+import Button from 'components/Form/WysiwygControls/Button'
+import HeaderSelect from 'components/Form/WysiwygControls/HeaderSelect'
 import getIcon from 'common/utils/getIcon'
 
 export const headerBlockTypes = [
+  { label: 'Normal', value: 'unstyled' },
   { label: 'Heading', value: 'header-two' },
   { label: 'Subheading', value: 'header-three' },
 ]
@@ -27,14 +29,14 @@ function BlockStyleToolbar({ editorState, onChange, toolbar }) {
   return (
     <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
       {toolbar?.includes('HEADER') && (
-        <WysiwygControls.HeaderSelect
+        <HeaderSelect
           headerBlockTypes={headerBlockTypes}
           value={currentBlockType}
           handleSelectChange={toggleBlockType}
         />
       )}
       {toolbar?.includes('OL') && (
-        <WysiwygControls.Button
+        <Button
           onClickHandler={(event) =>
             toggleBlockType(event, 'ordered-list-item')
           }
@@ -43,7 +45,7 @@ function BlockStyleToolbar({ editorState, onChange, toolbar }) {
         />
       )}
       {toolbar?.includes('UL') && (
-        <WysiwygControls.Button
+        <Button
           onClickHandler={(event) =>
             toggleBlockType(event, 'unordered-list-item')
           }
