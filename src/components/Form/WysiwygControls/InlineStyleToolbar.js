@@ -4,7 +4,7 @@ import { RichUtils } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
 // FPCC
-import WysiwygControls from 'components/Form/WysiwygControls'
+import Button from 'components/Form/WysiwygControls/Button'
 
 function InlineStyleToolbar({ editorState, onChange }) {
   const currentStyle = editorState.getCurrentInlineStyle()
@@ -16,12 +16,12 @@ function InlineStyleToolbar({ editorState, onChange }) {
 
   return (
     <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
-      <WysiwygControls.Button
+      <Button
         onClickHandler={(event) => toggleInlineStyle(event, 'BOLD')}
         label={<span className="font-bold">B</span>}
         active={currentStyle.has('BOLD')}
       />
-      <WysiwygControls.Button
+      <Button
         onClickHandler={(event) => toggleInlineStyle(event, 'ITALIC')}
         label={<span className="italic">I</span>}
         active={currentStyle.has('ITALIC')}
