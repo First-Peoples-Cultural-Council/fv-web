@@ -127,7 +127,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     ALPHABET: {
       icon: 'Alphabet',
-      name: 'Edit your alphabet',
+      name: 'Edit alphabet',
       description:
         'Update media and linked content for your alphabet characters',
       href: addUrlPrefix('alphabet'),
@@ -136,7 +136,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     IMMERSION: {
       icon: 'Translate',
-      name: 'Edit your Immersion Labels',
+      name: 'Edit Immersion Labels',
       description: 'Update the labels used in immersion mode on your site',
       href: addUrlPrefix('immersion'),
       iconColor: 'charcoal-500',
