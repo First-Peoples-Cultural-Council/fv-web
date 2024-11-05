@@ -34,7 +34,9 @@ function RadioButtonGroupPresentation({
                   <div className="flex items-center">
                     <span
                       className={`${
-                        checked ? `border-${accentColor}` : 'border-fv-charcoal'
+                        checked
+                          ? `border-${accentColor}`
+                          : 'border-charcoal-900'
                       } bg-white h-5 w-5 rounded-full border flex items-center justify-center`}
                       aria-hidden="true"
                     >
