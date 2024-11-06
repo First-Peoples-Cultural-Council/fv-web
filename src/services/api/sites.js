@@ -3,7 +3,7 @@ import { SITES } from 'common/constants'
 
 const site = {
   get: async ({ sitename }) => apiBase().get(`${SITES}/${sitename}/`).json(),
-  getAll: async (page = 1, pageSize = 100) =>
+  getAll: async ({ page = 1, pageSize = 100 }) =>
     apiBase().get(`${SITES}?page=${page}&pageSize=${pageSize}`).json(),
   update: async ({ sitename, properties }) =>
     apiBase().put(`${SITES}/${sitename}/`, { json: properties }).json(),

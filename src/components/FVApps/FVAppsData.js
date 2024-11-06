@@ -1,8 +1,7 @@
 import { useSites } from 'common/dataHooks/useSites'
 
 function FVAppsData() {
-  // Passing a number to useSites will set the page size to that number
-  const sites = useSites(250)
+  const sites = useSites({ pageSize: 250 })
 
   function features(site) {
     return site.enabledFeatures.find(
