@@ -1,7 +1,8 @@
 import { useSites } from 'common/dataHooks/useSites'
 
 function FVAppsData() {
-  const sites = useSites()
+  // Passing a number to useSites will set the page size to that number
+  const sites = useSites(250)
 
   function features(site) {
     return site.enabledFeatures.find(
@@ -9,9 +10,6 @@ function FVAppsData() {
     )
   }
 
-  // NOTE: this only gets the first page of sites,
-  // which won't work on dev but currently does work on prod
-  // See: FW-6216
   const sitesWithApps = sites?.data?.results?.filter(features)
 
   return {
