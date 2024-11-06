@@ -51,6 +51,7 @@ function DashboardSpeakersPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
+                  data-testid={`edit-speaker-${speaker.name}`}
                   to={`/${sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
                   className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
