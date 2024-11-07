@@ -147,7 +147,8 @@ function AppContainer() {
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
-              <Route path="en/*" element={<Navigate to="/" />} />
+              <Route path="en/apps" element={<Navigate to="/apps" />} />
+              <Route path="content/apps" element={<Navigate to="/apps" />} />
               {/* End of legacy URLs */}
 
               <Route path=":sitename/*" element={<Site.Container />} />
