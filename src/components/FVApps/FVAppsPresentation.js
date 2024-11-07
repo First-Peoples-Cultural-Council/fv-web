@@ -24,20 +24,35 @@ function FVAppsPresentation({ sitesWithApps }) {
             The wealth of language data uploaded by Indigenous communities onto
             their FirstVoices language sites can also be accessed through mobile
             apps. The app pulls content directly from FirstVoices and is
-            compatible with most phones, tablets, and laptops.
+            compatible with most phones, tablets, and laptops. The new apps can
+            be installed directly from the web.
           </p>
-          <p className={paraStyle}>
-            The new apps can be installed directly from the web
+          <p>
+            Install apps directly from the web by selecting “Install” or “Add to
+            Homescreen” in your browser.
+          </p>
+
+          <h2 className={headerStyle}>Installation Instructions</h2>
+          <p>
+            Find detailed instructions for your browser here:{' '}
+            <a
+              className="inline-url"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/644579350"
+            >
+              Instructions for installing PWA
+            </a>
           </p>
           {sitesWithApps && (
-            <div className="grid grid-cols-3 gap-6 pt-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8">
               {sitesWithApps?.map(({ id, title, slug }) => {
                 const appUrl = getAppUrl({ slug })
                 const appLogoSrc = getAppLogoUrl({ slug })
 
                 return (
                   <div
-                    className="rounded-lg bg-white p-6 drop-shadow-md flex flex-col items-center"
+                    className="rounded-lg bg-white pt-6 drop-shadow-md flex flex-col items-center"
                     key={id}
                   >
                     <LogoPresentation
@@ -45,7 +60,7 @@ function FVAppsPresentation({ sitesWithApps }) {
                       altText={`${title} Logo`}
                       additionalStyling="h-16 w-16 md:h-24 md:w-24 border"
                     />
-                    <div className="p-6 w-2/3 flex justify-between">
+                    <div className="p-6 w-full md:w-2/3 flex justify-between">
                       {getIcon(
                         'Mobile',
                         'w-6 h-6 fill-current mr-3 inline-flex',
@@ -56,17 +71,22 @@ function FVAppsPresentation({ sitesWithApps }) {
                       )}
                       {getIcon('PC', 'w-6 h-6 fill-current mr-3 inline-flex')}
                     </div>
-                    <a href={appUrl} target="_blank" rel="noreferrer">
+                    <a
+                      href={appUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full md:w-3/4 md:mb-4"
+                    >
                       <button
                         data-testid="DownloadAppButton"
                         type="button"
-                        className="bg-scarlet-800 text-white px-4 py-2 rounded-md mb-"
+                        className="bg-scarlet-800 text-white px-4 py-2 rounded-md w-full h-24 md:h-16"
                       >
                         {getIcon(
                           'Download',
-                          'w-6 h-6 fill-current mr-3 inline-flex',
+                          'w-6 h-6 fill-current md:mr-3 inline-flex',
                         )}
-                        Install {title}
+                        <span>Install {title}</span>
                       </button>
                     </a>
                   </div>
