@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import { THUMBNAIL, IMAGE } from 'common/constants'
+import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function SelectorVisualMediaGridPresentation({
   data,
@@ -31,11 +33,16 @@ function SelectorVisualMediaGridPresentation({
                     // it will not be presented as a choice in the selectMedia dialog box
                     return null
                   }
+                  const mediaSrc = getMediaPath({
+                    type: IMAGE,
+                    mediaObject,
+                    size: THUMBNAIL,
+                  })
                   return (
                     <li key={mediaObject?.id} className="relative group">
                       <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800 block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden">
                         <img
-                          src={mediaObject?.thumbnail}
+                          src={mediaSrc}
                           alt={mediaObject?.title}
                           className="group-hover:opacity-75 object-cover pointer-events-none"
                         />
