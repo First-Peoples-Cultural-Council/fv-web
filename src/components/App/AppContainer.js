@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Sentry from '@sentry/react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 // FPCC
@@ -147,6 +147,8 @@ function AppContainer() {
                 caseSensitive={false}
                 element={<LegacyRedirect />}
               />
+              <Route path="en/apps" element={<Navigate to="/apps" />} />
+              <Route path="content/apps" element={<Navigate to="/apps" />} />
               {/* End of legacy URLs */}
 
               <Route path=":sitename/*" element={<Site.Container />} />
