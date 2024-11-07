@@ -21,10 +21,10 @@ export function useSite() {
   return { ...response, data: formattedSiteData }
 }
 
-export function useSites() {
+export function useSites({ pageSize = 100 }) {
   const allSitesResponse = useQuery({
-    queryKey: [SITES],
-    queryFn: () => api.sites.getAll(),
+    queryKey: [SITES, pageSize],
+    queryFn: () => api.sites.getAll({ pageSize }),
   })
   const formattedSitesData = languagesListAdaptor({
     languagesData: allSitesResponse?.data,
