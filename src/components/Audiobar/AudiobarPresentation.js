@@ -85,7 +85,7 @@ function AudiobarPresentation({
           type="button"
           id="CloseAudiobar"
           aria-label="Close Audiobar"
-          className="float-right m-2 text-charcoal-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
+          className="float-right m-2 text-charcoal-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
           onClick={() => close()}
         >
           {getIcon('Close', 'fill-current h-7 w-7')}
