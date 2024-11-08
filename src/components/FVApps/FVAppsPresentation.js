@@ -24,17 +24,12 @@ function FVAppsPresentation({ sitesWithApps }) {
             The wealth of language data uploaded by Indigenous communities onto
             their FirstVoices language sites can also be accessed through mobile
             apps. The app pulls content directly from FirstVoices and is
-            compatible with most phones, tablets, and laptops. The new apps can
-            be installed directly from the web.
+            compatible with most phones, tablets, and laptops.
           </p>
           <p>
             Install apps directly from the web by selecting “Install” or “Add to
-            Homescreen” in your browser.
-          </p>
-
-          <h2 className={headerStyle}>Installation Instructions</h2>
-          <p>
-            Find detailed instructions for your browser here:{' '}
+            Homescreen” in your browser. Find detailed instructions for your
+            browser here:{' '}
             <a
               className="inline-url"
               target="_blank"
