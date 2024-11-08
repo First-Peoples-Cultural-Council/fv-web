@@ -58,7 +58,7 @@ function SelectorAudioPresentation({
                     return (
                       <tr
                         key={audioFile?.id}
-                        className="rounded-lg relative"
+                        className="rounded-lg relative cursor-pointer"
                         onClick={() => mediaSelectHandler(audioFile?.id)}
                       >
                         <td data-testid="DashboardMediaItemsRow">
