@@ -17,9 +17,10 @@ function MediaEditData({ mediaType }) {
     mediaType,
   })
 
-  const { onSubmit: updateEntry } = useMediaUpdate({ mediaType })
-  const submitHandler = (formData) => updateEntry(formData)
-  const backHandler = () => navigate(`/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`)
+  const { onSubmit } = useMediaUpdate({ mediaType, id: mediaId })
+  const submitHandler = (formData) => onSubmit(formData)
+  const backHandler = () =>
+    navigate(`/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`)
 
   return {
     isLoading,

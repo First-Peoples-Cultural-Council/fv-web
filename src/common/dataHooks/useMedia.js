@@ -1,10 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import { AUDIO, AUDIO_PATH, IMAGE, IMAGE_PATH, VIDEO, VIDEO_PATH, MEDIA } from 'common/constants'
-import { mediaItemForEditing, mediaItemForApi } from 'common/dataAdaptors/mediaAdaptors'
+import {
+  AUDIO,
+  AUDIO_PATH,
+  IMAGE,
+  IMAGE_PATH,
+  VIDEO,
+  VIDEO_PATH,
+  MEDIA,
+} from 'common/constants'
+import {
+  mediaItemForEditing,
+  mediaItemForApi,
+} from 'common/dataAdaptors/mediaAdaptors'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import api from 'services/api'
 
@@ -68,13 +79,46 @@ export function useMediaObject({ id, mediaType }) {
     ...{ enabled: !!id },
   })
 
+  const formattedData = mediaItemForEditing({ data: response?.data })
+
   return {
     ...response,
-    data: mediaItemForEditing({
-      type: mediaType,
-      data: response?.data,
-    }),
+    data: formattedData,
   }
+}
+
+export function useAudioCreate(options = {}) {
+  const { sitename } = useParams()
+  const createJoinRequest = async (formData) => {
+    // Audience flags
+    const excludeFromGames = formData?.includeInGames === 'false'
+    const excludeFromKids = formData?.includeInKids === 'false'
+
+    const data = new FormData()
+    data.append('title', formData?.title)
+    data.append('description', formData?.description)
+    data.append('acknowledgement', formData?.acknowledgement)
+    data.append('excludeFromGames', excludeFromGames)
+    data.append('excludeFromKids', excludeFromKids)
+    data.append('isShared', formData?.isShared)
+    data.append('original', formData?.audioFile?.[0])
+
+    formData?.speakers.forEach((speaker) => {
+      data.append('speakers', speaker)
+    })
+
+    return api.media.uploadAudio({
+      sitename,
+      data,
+    })
+  }
+
+  const mutation = useMutation({
+    mutationFn: createJoinRequest,
+    ...options,
+  })
+
+  return mutation
 }
 
 export function useMediaDelete({ mediaType }) {
@@ -98,15 +142,15 @@ export function useMediaDelete({ mediaType }) {
   return { onSubmit }
 }
 
-export function useMediaUpdate({ mediaType }) {
+export function useMediaUpdate({ mediaType, id }) {
   const { sitename } = useParams()
   const updateMediaApi = MEDIA_UPDATE_APIS[mediaType]
   const mediaTypePath = getPathForMediaType(mediaType)
 
   const updateMediaItem = async (formData) => {
-    const data = mediaItemForApi({ formData, mediaType })
+    const data = mediaItemForApi({ formData })
     updateMediaApi({
-      id: formData?.id,
+      id,
       data,
       sitename,
     })
@@ -117,10 +161,11 @@ export function useMediaUpdate({ mediaType }) {
     redirectTo: `/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`,
     actionWord: 'updated',
     type: 'media item',
+    queryKeyToInvalidate: [mediaTypePath, sitename, id],
   })
 
-  const onSubmit = (id) => {
-    mutation.mutate(id)
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
   }
   return { onSubmit }
 }

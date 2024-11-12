@@ -9,7 +9,7 @@ import { useAudioObject } from 'common/dataHooks/useMedia'
 function AudioThumbnail(props) {
   const {
     id,
-    containerStyles = 'elative w-72 block overflow-hidden',
+    containerStyles = 'relative w-72 block overflow-hidden',
     audioStyles = 'w-full',
     labelStyles = '',
     ...other
