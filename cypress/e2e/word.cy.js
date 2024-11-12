@@ -9,7 +9,7 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.viewport(1024, 768)
+      cy.viewport(2000, 1080)
     })
 
     it('5.1 - Check out word drawer', () => {
@@ -27,6 +27,7 @@ describe(
       cy.contains('QR CODE').should('be.visible')
       cy.contains('SHARE').click()
       cy.contains('Cancel').click()
+      cy.get('body').type('{esc}')
       cy.contains('MORE').scrollIntoView()
       cy.contains('MORE').should('be.visible')
       cy.contains('MORE').click()
