@@ -13,6 +13,8 @@ import Header from 'components/Form/Header'
 import HelpText from 'components/Form/HelpText'
 import ImageArrayField from 'components/Form/ImageArrayField'
 import ImageIdField from 'components/Form/ImageIdField'
+import IncludeInGames from 'components/Form/IncludeInGames'
+import IncludeInKids from 'components/Form/IncludeInKids'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
@@ -45,6 +47,8 @@ export default {
   HelpText,
   ImageArrayField,
   ImageIdField,
+  IncludeInGames,
+  IncludeInKids,
   NextPrevious,
   RadioButtons,
   Select,
