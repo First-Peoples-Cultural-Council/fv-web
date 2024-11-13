@@ -1,8 +1,10 @@
-import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useStory } from 'common/dataHooks/useStories'
 
 function StoryData({ docId, sitename }) {
   const { id, sitename: paramsSitename } = useParams()
+  const navigate = useNavigate()
 
   const idToSend = docId || id
   const sitenameToSend = sitename || paramsSitename
@@ -13,6 +15,15 @@ function StoryData({ docId, sitename }) {
     sitename: sitenameToSend,
   })
   const entry = data?.title ? data : {}
+
+  useEffect(() => {
+    if (isError) {
+      navigate(
+        `/${sitenameToSend}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
+        { replace: true },
+      )
+    }
+  }, [isError])
 
   return {
     notFound: !!(isFetched && entry === null),
