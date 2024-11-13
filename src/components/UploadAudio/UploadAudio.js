@@ -1,25 +1,27 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useQueryClient } from '@tanstack/react-query'
 import * as yup from 'yup'
 
 // FPCC
-import api from 'services/api'
 import Header from 'components/Form/Header'
 import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
-import RadioButtons from 'components/Form/RadioButtons'
+import Audience from 'components/Form/Audience'
 import FileUploadField from 'components/Form/FileUploadField'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
-import { SUPPORTED_AUDIO_EXTENSIONS } from 'common/constants'
+import { SUPPORTED_AUDIO_EXTENSIONS, IMAGE_PATH } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
+import { useAudioCreate } from 'common/dataHooks/useMedia'
 
 function UploadAudio({ setSelectedMedia }) {
   const { site } = useSiteStore()
   const [isUploading, setIsUploading] = useState(false)
   const [fileUploaded, setFileUploaded] = useState(false)
+  const queryClient = useQueryClient()
 
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
@@ -54,47 +56,29 @@ function UploadAudio({ setSelectedMedia }) {
     value: entry?.id,
   }))
 
-  const submitHandler = (formData) => {
-    const file = formData?.audioFile?.[0]
+  const { mutate } = useAudioCreate({
+    onSuccess: (response) => {
+      queryClient.invalidateQueries({
+        queryKey: [IMAGE_PATH, site?.sitename, response?.id],
+      })
+      setIsUploading(false)
+      setFileUploaded(true)
+      setSelectedMedia((oldArray) => [...oldArray, response?.id])
+    },
+  })
 
-    if (!file) {
+  const submitHandler = (formData) => {
+    if (!formData?.audioFile?.[0]) {
       return
     }
-
-    // Audience flags
-    const excludeFromGames = formData?.includeInGames === 'false'
-    const excludeFromKids = formData?.includeInKids === 'false'
-
-    const data = new FormData()
-    data.append('title', formData?.title)
-    data.append('description', formData?.description)
-    data.append('acknowledgement', formData?.acknowledgement)
-    data.append('excludeFromGames', excludeFromGames)
-    data.append('excludeFromKids', excludeFromKids)
-    data.append('isShared', formData?.isShared)
-    data.append('original', file)
-
-    formData?.speakers.forEach((speaker) => {
-      data.append('speakers', speaker)
-    })
-
-    api.media
-      .uploadAudio({
-        sitename: site?.sitename,
-        data,
-      })
-      .then((res) => {
-        setIsUploading(false)
-        setFileUploaded(true)
-        setSelectedMedia((oldArray) => [...oldArray, res?.id])
-      })
+    mutate(formData)
   }
 
   return (
     <div id="UploadAudio" className="h-full text-left p-4">
       <Header subtitle="Upload a new Audio file" />
       <form onReset={reset}>
-        <div className="mt-2 grid grid-cols-12">
+        <div className="mt-4 grid grid-cols-12 gap-4">
           <div className="col-span-12">
             <TextField
               label="Title"
@@ -103,7 +87,6 @@ function UploadAudio({ setSelectedMedia }) {
               errors={errors}
             />
           </div>
-
           <div className="col-span-12">
             <TextField
               label="Description"
@@ -112,7 +95,6 @@ function UploadAudio({ setSelectedMedia }) {
               errors={errors}
             />
           </div>
-
           <div className="col-span-12">
             <TextField
               label="Acknowledgements"
@@ -121,42 +103,6 @@ function UploadAudio({ setSelectedMedia }) {
               errors={errors}
             />
           </div>
-
-          <div className="col-span-12">
-            <RadioButtons
-              label="Include on the Kids site?"
-              control={control}
-              errors={errors}
-              nameId="includeInKids"
-              options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
-              ]}
-            />
-          </div>
-
-          <div className="col-span-12">
-            <RadioButtons
-              label="Include in games?"
-              control={control}
-              errors={errors}
-              nameId="includeInGames"
-              options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
-              ]}
-            />
-          </div>
-
-          <div className="col-span-12">
-            <FileUploadField
-              label="Audio File"
-              nameId="audioFile"
-              register={register}
-              errors={errors}
-            />
-          </div>
-
           <div className="col-span-12">
             <AutocompleteMultiple
               label="Speakers"
@@ -166,7 +112,15 @@ function UploadAudio({ setSelectedMedia }) {
               placeholder="Find speakers to add.."
             />
           </div>
-
+          <div className="col-span-12">
+            <FileUploadField
+              label="Audio File"
+              nameId="audioFile"
+              register={register}
+              errors={errors}
+            />
+          </div>
+          <Audience control={control} errors={errors} />
           <div className="col-span-12 flex justify-end mt-2 px-6">
             {isUploading && (
               <SubmitButtons

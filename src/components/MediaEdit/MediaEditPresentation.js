@@ -33,7 +33,7 @@ function MediaEditPresentation({
     title: '',
     description: '',
     acknowledgement: '',
-    speakerIds: [],
+    speakers: [],
     includeInGames: 'true',
     includeInKids: 'true',
   }
@@ -117,7 +117,7 @@ function MediaEditPresentation({
               <div className="col-span-12">
                 <Form.AutocompleteMultiple
                   label="Speakers"
-                  nameId="speakerIds"
+                  nameId="speakers"
                   control={control}
                   options={speakerOptions}
                   placeholder="Find speakers to add.."
@@ -127,7 +127,7 @@ function MediaEditPresentation({
 
             <div className="col-span-12">
               <Form.TextField
-                label="Acknowledgements"
+                label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}
                 errors={errors}

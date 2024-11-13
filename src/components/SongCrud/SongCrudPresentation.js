@@ -183,16 +183,7 @@ function SongCrudPresentation({
             />
           </div>
           <div className="col-span-6">
-            <Form.RadioButtons
-              label="Include on the Kids site?"
-              control={control}
-              errors={errors}
-              nameId="includeInKids"
-              options={[
-                { label: 'Yes', value: 'true' },
-                { label: 'No', value: 'false' },
-              ]}
-            />
+            <Form.IncludeInKids control={control} errors={errors} />
           </div>
           <div className="col-span-6">
             <Form.RadioButtons

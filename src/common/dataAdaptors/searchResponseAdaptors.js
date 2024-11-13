@@ -8,12 +8,10 @@ import {
   TYPE_IMAGE,
   TYPE_VIDEO,
 } from 'common/constants'
-import {
-  basicDatesAdaptor,
-  storySummaryAdaptor,
-  songSummaryAdaptor,
-  mediaAdaptor,
-} from 'common/dataAdaptors'
+import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
+import { storySummaryAdaptor } from 'common/dataAdaptors/storyAdaptors'
+import { songSummaryAdaptor } from 'common/dataAdaptors/songAdaptors'
+import { mediaSearchAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 
 export function searchResponseAdaptor(response) {
   return pagesDataAdaptor(response.pages)
@@ -65,7 +63,7 @@ const resultAdaptor = (result) => {
     case TYPE_IMAGE:
     case TYPE_VIDEO:
       return {
-        ...mediaAdaptor({ type: result?.type, data: result?.entry }),
+        ...mediaSearchAdaptor({ type: result?.type, data: result?.entry }),
         ...baseObject,
       }
     default:

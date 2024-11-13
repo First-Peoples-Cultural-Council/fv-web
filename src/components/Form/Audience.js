@@ -2,35 +2,17 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import RadioButtons from 'components/Form/RadioButtons'
+import IncludeInGames from 'components/Form/IncludeInGames'
+import IncludeInKids from 'components/Form/IncludeInKids'
 
 function Audience({ control, errors } = {}) {
   return (
     <Fragment key="FormAudience">
       <div className="col-span-12">
-        <RadioButtons
-          label="Include on the Kids site?"
-          control={control}
-          errors={errors}
-          nameId="includeInKids"
-          options={[
-            { label: 'Yes', value: 'true' },
-            { label: 'No', value: 'false' },
-          ]}
-        />
+        <IncludeInKids control={control} errors={errors} />
       </div>
-
       <div className="col-span-12">
-        <RadioButtons
-          label="Include in games?"
-          control={control}
-          errors={errors}
-          nameId="includeInGames"
-          options={[
-            { label: 'Yes', value: 'true' },
-            { label: 'No', value: 'false' },
-          ]}
-        />
+        <IncludeInGames control={control} errors={errors} />
       </div>
     </Fragment>
   )

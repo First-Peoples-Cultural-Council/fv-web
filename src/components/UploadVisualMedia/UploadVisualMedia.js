@@ -39,31 +39,34 @@ function UploadVisualMedia({ type, maxItems, setSelectedMedia }) {
     },
   ]
 
+  // NB Exercise caution if updating these fields. The label vs id and value can be confusing due to reverse framing of data in UI
   const imageMetaFields = [
     ...baseMetaFields,
     {
       id: 'excludeFromGames',
-      name: 'Exclude from games',
+      name: 'Include in games?',
       render({ value, onChange, required, form }, h) {
         return h('input', {
+          value,
           type: 'checkbox',
           required,
           form,
-          onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-          defaultChecked: value === 'on',
+          onChange: (ev) => onChange(ev.target.checked ? 'false' : 'true'),
+          defaultChecked: value !== 'true',
         })
       },
     },
     {
       id: 'excludeFromKids',
-      name: 'Exclude from Kids',
+      name: 'Include on the Kids site?',
       render({ value, onChange, required, form }, h) {
         return h('input', {
+          value,
           type: 'checkbox',
           required,
           form,
-          onChange: (ev) => onChange(ev.target.checked ? 'on' : ''),
-          defaultChecked: value === 'on',
+          onChange: (ev) => onChange(ev.target.checked ? 'false' : 'true'),
+          defaultChecked: value !== 'true',
         })
       },
     },
