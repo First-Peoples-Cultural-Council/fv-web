@@ -16,9 +16,9 @@ function SelectorEntryContainer({
   visibility,
 }) {
   const {
-    searchQuery,
-    setSearchQuery,
-    search,
+    displayedSearchTerm,
+    handleSearchTermChange,
+    handleSearchSubmit,
     searchResults,
     hasResults,
     infiniteScroll,
@@ -34,13 +34,13 @@ function SelectorEntryContainer({
 
   return (
     <div data-testid="SelectorEntryContainer" className="h-full bg-charcoal-50">
-      <div className="h-full w-full flex flex-col">
-        <div className="w-3/4 mx-auto">
+      <div className="h-full w-full flex flex-col py-4">
+        <div className="w-3/4 mx-auto bg-white rounded-lg overflow-hidden">
           <SelectorSearchbox.Presentation
-            onSearchChange={setSearchQuery}
-            onSearchSubmit={search}
+            onSearchChange={handleSearchTermChange}
+            onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all words and phrases"
-            searchValue={searchQuery}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div className="grow mt-2 h-72 overflow-y-scroll">

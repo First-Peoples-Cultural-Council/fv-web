@@ -22,11 +22,6 @@ function useSearchTerm() {
     setDisplayedSearchTerm(event.target.value)
   }
 
-  const handleSearchTermSubmit = (event) => {
-    event.preventDefault()
-    setSubmittedSearchTerm(displayedSearchTerm)
-  }
-
   // This is to keep submittedSearchTerm and searchTermInUrl in sync when on url driven pages
   useEffect(() => {
     if (searchTermInUrl && searchTermInUrl !== submittedSearchTerm) {
@@ -58,14 +53,11 @@ function useSearchTerm() {
   return {
     clearSearchTerm,
     displayedSearchTerm,
-    setDisplayedSearchTerm,
     submittedSearchTerm,
     setSubmittedSearchTerm,
     handleSearchTermChange,
-    handleSearchTermSubmit,
     searchTermInUrl,
     setSearchTermInUrl,
-    removeSearchTermInUrl,
   }
 }
 
