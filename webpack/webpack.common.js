@@ -6,6 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 const alias = require('./webpack.alias')
 
+const is_prod = process.env.NODE_ENV == 'production'
+
 module.exports = (env, definitions) => ({
   cache: {
     compression: 'gzip',
@@ -42,7 +44,11 @@ module.exports = (env, definitions) => ({
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [
+          is_prod ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
