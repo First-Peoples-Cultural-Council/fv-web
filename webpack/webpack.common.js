@@ -27,6 +27,7 @@ module.exports = (env, definitions) => ({
   },
   output: {
     filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
     path: alias.dist,
   },
   module: {

@@ -13,12 +13,6 @@ module.exports = (env) =>
     devtool: 'source-map',
     optimization: {
       minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          minify: TerserPlugin.uglifyJsMinify,
-        }),
-        new CssMinimizerPlugin(),
-      ],
     },
     module: {
       rules: [
