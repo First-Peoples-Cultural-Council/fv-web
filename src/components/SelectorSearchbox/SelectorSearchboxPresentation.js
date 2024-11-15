@@ -29,8 +29,8 @@ function SelectorSearchboxPresentation({
             id="search-field"
             className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-charcoal-300 sm:block"
             placeholder={searchPlaceholder}
-            type="search"
-            onChange={onSearchChange}
+            type="text"
+            onInput={onSearchChange}
             value={searchValue}
           />
         </div>
