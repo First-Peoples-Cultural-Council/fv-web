@@ -2,26 +2,23 @@ import React from 'react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import useSearchTerm from 'common/hooks/useSearchTerm'
 
 function SearchLanguagesFormContainer() {
-  const [query, setQuery, removeQuery] = useSearchParamsState({
-    searchParamName: 'q',
-    defaultValue: '',
-  })
-
   const {
     displayedSearchTerm,
     handleSearchTermChange,
     setSubmittedSearchTerm,
+    searchTermInUrl,
+    setSearchTermInUrl,
+    clearSearchTerm,
   } = useSearchTerm()
 
   const submitHandler = (event) => {
     event.preventDefault()
     setSubmittedSearchTerm(displayedSearchTerm)
-    if (displayedSearchTerm !== query) {
-      setQuery(displayedSearchTerm)
+    if (displayedSearchTerm !== searchTermInUrl) {
+      setSearchTermInUrl(displayedSearchTerm)
     }
   }
 
@@ -39,7 +36,7 @@ function SearchLanguagesFormContainer() {
             className="block w-full md:text-xl lg:text-2xl text-charcoal-500 rounded-none rounded-l-md pl-4 truncate border-0"
             type="text"
             placeholder="Search for a language site"
-            onChange={handleSearchTermChange}
+            onInput={handleSearchTermChange}
             value={displayedSearchTerm}
           />
         </form>
@@ -54,12 +51,12 @@ function SearchLanguagesFormContainer() {
             {getIcon('Search', 'fill-current h-7 w-7 ')}
           </button>
         </div>
-        {query && (
+        {searchTermInUrl && (
           <button
             data-testid="clear-search-btn"
             type="button"
             className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
-            onClick={removeQuery}
+            onClick={clearSearchTerm}
           >
             Clear Search
           </button>

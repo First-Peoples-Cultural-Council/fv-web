@@ -21,8 +21,8 @@ function useSearchModal({ types, visibility = '' }) {
   const {
     displayedSearchTerm,
     handleSearchTermChange,
-    handleSearchTermSubmit,
     submittedSearchTerm,
+    setSubmittedSearchTerm,
   } = useSearchTerm()
 
   const _searchParams = new URLSearchParams({
@@ -37,10 +37,15 @@ function useSearchModal({ types, visibility = '' }) {
       searchParams: _searchParams,
     })
 
+  const handleSearchSubmit = (event) => {
+    event.preventDefault()
+    setSubmittedSearchTerm(displayedSearchTerm)
+  }
+
   return {
-    searchQuery: displayedSearchTerm,
-    setSearchQuery: handleSearchTermChange,
-    search: handleSearchTermSubmit,
+    displayedSearchTerm,
+    handleSearchTermChange,
+    handleSearchSubmit,
     searchResults: data,
     hasResults:
       data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0,

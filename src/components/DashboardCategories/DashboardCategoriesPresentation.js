@@ -56,6 +56,7 @@ function DashboardCategoriesPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
+                  data-testid={`${category.title}-edit-link`}
                   to={`/${sitename}/dashboard/edit/category?id=${category?.id}`}
                   className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
@@ -64,6 +65,7 @@ function DashboardCategoriesPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
+                  data-testid={`${category.title}-link`}
                   to={`/${sitename}/categories/${category?.id}?type=${TYPE_DICTIONARY}`}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -10,23 +10,23 @@ function SearchFormMinimal({
   displayedSearchTerm,
 }) {
   return (
-    <div id="SearchFormMinimal-Minimal">
+    <div id="SearchFormMinimal">
       <div className="w-full flex rounded-full h-10">
         <form
           onSubmit={handleSearchNavigation}
           className="flex items-stretch grow"
         >
           <label id="SearchLabel" htmlFor="SearchInput" className="sr-only">
-            Search Bar Input
+            Search FirstVoices
           </label>
           <input
             data-testid="SearchInput"
             id="SearchInput"
             aria-labelledby="SearchLabel"
-            className="w-full text-sm text-charcoal-500 rounded-none rounded-l-full pl-4 focus:outline-none truncate"
+            className="w-full text-sm placeholder:text-charcoal-500 text-charcoal-700 rounded-none rounded-l-full pl-4 focus:outline-none truncate"
             type="text"
             placeholder="Search"
-            onChange={handleSearchTermChange}
+            onInput={handleSearchTermChange}
             value={displayedSearchTerm}
           />
         </form>

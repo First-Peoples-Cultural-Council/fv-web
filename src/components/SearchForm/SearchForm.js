@@ -21,16 +21,16 @@ function SearchForm({
         className="flex items-stretch grow"
       >
         <label id="SearchLabel" htmlFor="SearchInput" className="sr-only">
-          Search Bar Input
+          Search FirstVoices
         </label>
         <input
           data-testid="SearchInput"
           id="SearchInput"
           aria-labelledby="SearchLabel"
-          className="block w-full md:text-lg lg:text-xl text-charcoal-500 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
+          className="block w-full md:text-lg lg:text-xl placeholder:text-charcoal-500 text-charcoal-700 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
           type="text"
           placeholder={searchBoxPlaceholder}
-          onChange={handleSearchTermChange}
+          onInput={handleSearchTermChange}
           value={displayedSearchTerm}
         />
       </form>
