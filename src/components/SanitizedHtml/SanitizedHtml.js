@@ -17,12 +17,12 @@ const Sanitize = (content) =>
     ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'],
   })
 
-function SanitizedHtml({ text = '', className, tagName = 'div' }) {
+function SanitizedHtml({ htmlString = '', className, tagName = 'div' }) {
   const Tag = tagName
   return (
     <Tag
       className={className}
-      dangerouslySetInnerHTML={{ __html: Sanitize(text) }}
+      dangerouslySetInnerHTML={{ __html: Sanitize(htmlString) }}
     />
   )
 }
@@ -30,7 +30,7 @@ function SanitizedHtml({ text = '', className, tagName = 'div' }) {
 // PROPTYPES
 const { string } = PropTypes
 SanitizedHtml.propTypes = {
-  text: string,
+  htmlString: string,
   className: string,
   tagName: string,
 }

@@ -5,6 +5,7 @@ import 'draft-js/dist/Draft.css'
 
 // FPCC
 import { safeJsonParse } from 'common/utils/stringHelpers'
+import SanitizedHtml from 'components/SanitizedHtml'
 
 function WysiwygBlock({ jsonString }) {
   const content = safeJsonParse(jsonString)
@@ -16,7 +17,9 @@ function WysiwygBlock({ jsonString }) {
     <div className="wysiwyg w-full">
       <Editor editorState={editorState} readOnly />
     </div>
-  ) : null
+  ) : (
+    <SanitizedHtml className="wysiwyg w-full" text={jsonString} />
+  )
 }
 
 // PROPTYPES
