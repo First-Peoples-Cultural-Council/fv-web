@@ -19,7 +19,7 @@ function LandingPageData() {
       image: Elders,
       title: 'WHY FIRSTVOICES?',
       textWithFormatting:
-        '{"blocks":[{"key":"","text":"FirstVoices is an internationally recognized online platform for Indigenous communities to share and promote their languages, oral cultures and linguistic histories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"","text":"FirstVoices provides state-of-the-art technologies, training and technical support to community language champions.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"faghd","text":"Language champions collaborate with Indigenous Elders, youth and speakers to create and share language resources like words, phrases, songs and stories.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+        '<p>FirstVoices is an internationally recognized online platform for Indigenous communities to share and promote their languages, oral cultures and linguistic histories.</p><p>FirstVoices provides state-of-the-art technologies, training and technical support to community language champions.</p><p>Language champions collaborate with Indigenous Elders, youth and speakers to create and share language resources like words, phrases, songs and stories.</p>',
     },
   }
 
@@ -28,14 +28,14 @@ function LandingPageData() {
     type: WIDGET_TEXT,
     settings: {
       mockData: true,
-      bg: 'jade-500',
+      bgColor: 'jade-500',
       bgImage,
       image: Img,
       title: 'ABOUT FIRSTVOICES',
       url: `https://${FIRSTVOICESLINK}/about`,
       urlLabel: 'Learn more',
       textWithFormatting:
-        '{"blocks":[{"key":"3euvg","text":"On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cnh18","text":"Any content available on FirstVoices is gathered, uploaded and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community. ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"40rem","text":"FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+        '<p>On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites.</p><p>Any content available on FirstVoices is gathered, uploaded and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community.</p><p>FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.</p>',
     },
   }
 
@@ -55,14 +55,6 @@ function LandingPageData() {
       backgroundImage: languages,
     },
   }
-  // const rssFeed =
-  //   'https://firstvoices.atlassian.net/wiki/createrssfeed.action?types=blogpost&blogpostSubTypes=attachment&spaces=conf_all&title=FirstVoices+Blog+RSS+Feed&labelString%3D&excludedSpaceKeys%3D&sort=modified&maxResults=10&timeSpan=1000&showContent=true&confirm=Create+RSS+Feed'
-
-  // const MAX_ARTICLES = 3
-  // const [articles, setArticles] = useState()
-  // useEffect(() => {
-  //   const loadArticles = api.blog.get(rssFeed)
-  // })
 
   return {
     whyData,
