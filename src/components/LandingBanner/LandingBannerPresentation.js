@@ -50,9 +50,12 @@ function LandingBannerPresentation({ data }) {
               {link?.url && (
                 <Link to={link?.url} className="flex-col items-center">
                   <p className="flex justify-center">
-                    {getIcon(`${link?.icon}`, 'fill-current h-12 w-12')}
+                    {getIcon(
+                      `${link?.icon}`,
+                      'fill-current h-10 w-10 lg:h-12 lg:w-12',
+                    )}
                   </p>
-                  <p className="p-2 md:text-2xl">{link?.urlLabel}</p>
+                  <p className="p-2 md:text-lg lg:text-2xl">{link?.urlLabel}</p>
                   <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
                     {link?.info}
                   </p>
@@ -66,9 +69,12 @@ function LandingBannerPresentation({ data }) {
                   className="flex-col items-center"
                 >
                   <p className="flex justify-center">
-                    {getIcon(`${link?.icon}`, 'fill-current h-12 w-12')}
+                    {getIcon(
+                      `${link?.icon}`,
+                      'fill-current h-10 w-10 lg:h-12 lg:w-12',
+                    )}
                   </p>
-                  <p className="p-2 md:text-2xl">{link?.urlLabel}</p>
+                  <p className="p-2 md:text-lg lg:text-2xl">{link?.urlLabel}</p>
                   <p className="text-xs md:text-sm w-1/2 mx-auto my-2">
                     {link?.info}
                   </p>
