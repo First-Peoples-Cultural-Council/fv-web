@@ -87,7 +87,7 @@ function WidgetTextPresentation({ widgetData }) {
           )}
         </h2>
         <div
-          className={`inline-block text-bold text-base md:text-lg text-${
+          className={`inline-block text-bold text-base text-left md:text-lg text-${
             bgColor ? 'white' : 'black'
           } max-w-md md:max-w-4xl mx-auto`}
         >
