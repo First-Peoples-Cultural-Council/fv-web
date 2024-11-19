@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TopicsPresentationTopic from 'components/Topics/TopicsPresentationTopic'
 import SectionTitle from 'components/SectionTitle'
-import Slider from 'components/Slider'
 
 function TopicsPresentation({ title, topics }) {
   return (
@@ -16,9 +15,7 @@ function TopicsPresentation({ title, topics }) {
           return <TopicsPresentationTopic key={key} topic={topic} />
         })}
       </div>
-      <div className="mx-10 block lg:hidden">
-        <Slider.Container items={topics} topics />
-      </div>
+      <div className="mx-10 block lg:hidden"></div>
     </section>
   )
 }

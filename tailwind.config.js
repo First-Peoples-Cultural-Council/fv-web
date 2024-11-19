@@ -40,13 +40,6 @@ module.exports = {
       xl: '1280px',
       print: { raw: 'print' },
     },
-    flex: {
-      1: '1 1 0%',
-      auto: '1 1 auto',
-      initial: '0 1 auto',
-      none: 'none',
-      basis: '0 0 19.7%',
-    },
     extend: {
       animation: {
         'pulse-blur': 'pulse-blur 2.5s linear infinite',
