@@ -18,7 +18,7 @@ function WysiwygBlock({ jsonString }) {
       <Editor editorState={editorState} readOnly />
     </div>
   ) : (
-    <SanitizedHtml className="wysiwyg w-full" text={jsonString} />
+    <SanitizedHtml className="wysiwyg w-full" htmlString={jsonString} />
   )
 }
 
