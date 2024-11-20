@@ -22,6 +22,9 @@
   .wysiwyg div {
     @apply my-4;
   }
+  .wysiwyg p {
+    @apply my-4;
+  }
 }
 
 /* These component rules can be over-ridden using utility classes. 

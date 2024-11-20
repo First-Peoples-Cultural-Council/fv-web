@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import SanitizedHtml from 'components/SanitizedHtml'
 
 function WidgetIframePresentation({ widgetData }) {
   const { title, text, src } = widgetData?.settings
@@ -16,7 +15,7 @@ function WidgetIframePresentation({ widgetData }) {
           className="hidden absolute top-0 inset-x-0 h-1/2 bg-white lg:block"
           aria-hidden="true"
         />
-        <div className="bg-scarlet-800 lg:bg-transparent">
+        <div className="bg-scarlet-900 lg:bg-transparent">
           <div className="lg:grid lg:grid-cols-12">
             <div className="relative z-10 lg:col-start-4 lg:row-start-1 lg:col-span-6 lg:bg-transparent">
               <div
@@ -31,14 +30,14 @@ function WidgetIframePresentation({ widgetData }) {
                     allowfullscreen="true"
                     mozallowfullscreen="true"
                     webkitallowfullscreen="true"
-                    className="object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-800 bg-white"
+                    className="object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-900 bg-white"
                     src={src}
                   />
                 </div>
               </div>
             </div>
 
-            <div className="lg:my-20 relative bg-scarlet-800 lg:col-start-1 lg:row-start-1 lg:col-span-12 lg:flex lg:items-center lg:py-4"></div>
+            <div className="lg:my-20 relative bg-scarlet-900 lg:col-start-1 lg:row-start-1 lg:col-span-12 lg:flex lg:items-center lg:py-4"></div>
           </div>
         </div>
       </div>
@@ -46,12 +45,12 @@ function WidgetIframePresentation({ widgetData }) {
   }
 
   return (
-    <div className="relative py-3 lg:py-6 lg:bg-charcoal-50">
+    <div className="relative py-3 lg:py-6">
       <div
         className="hidden absolute top-0 inset-x-0 h-1/2 bg-white lg:block"
         aria-hidden="true"
       />
-      <div className="max-w-7xl mx-auto bg-scarlet-800 lg:bg-transparent lg:px-8">
+      <div className="max-w-7xl mx-auto bg-scarlet-900 lg:bg-transparent lg:px-8">
         <div className="lg:grid lg:grid-cols-12">
           <div className="relative z-10 lg:col-start-1 lg:row-start-1 lg:col-span-8 lg:py-10 lg:bg-transparent">
             <div
@@ -63,22 +62,19 @@ function WidgetIframePresentation({ widgetData }) {
                 {isMapSrc && (
                   <iframe
                     title={src}
-                    className="object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-800 bg-white"
+                    className="object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-900 bg-white"
                     src={src}
                   />
                 )}
               </div>
             </div>
           </div>
-          <div className="relative bg-scarlet-800 lg:col-start-3 lg:row-start-1 lg:col-span-10 lg:rounded-xl lg:grid lg:grid-cols-10 lg:items-center md:py-4">
+          <div className="relative bg-scarlet-900 lg:col-start-3 lg:row-start-1 lg:col-span-10 lg:rounded-xl lg:grid lg:grid-cols-10 lg:items-center md:py-4">
             <div className="relative max-w-md mx-auto p-4 sm:p-6 space-y-2 sm:space-y-6 sm:max-w-3xl lg:max-w-none lg:p-10 lg:col-start-7 lg:col-span-4">
-              <h2
-                className="text-xl md:text-2xl lg:text-3xl font-bold text-white"
-                id="join-heading"
-              >
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
                 {title}
               </h2>
-              <SanitizedHtml className="text-lg text-white" text={text} />
+              <div className="text-lg text-white">{text}</div>
             </div>
           </div>
         </div>

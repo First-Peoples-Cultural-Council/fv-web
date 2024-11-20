@@ -14,6 +14,8 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_IFRAME]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
+    title: definitions.paragraph({ charCount: 100 }),
+    text: definitions.paragraph({ charCount: 500 }),
     src: definitions.mapsURL(),
     visibility: definitions.visibility(),
   })
@@ -22,8 +24,10 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
     nickname: '',
     type: WIDGET_IFRAME,
     format: FORMAT_DEFAULT,
-    visibility: PUBLIC,
+    title: '',
+    text: '',
     src: '',
+    visibility: PUBLIC,
   }
 
   const {
@@ -54,6 +58,22 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
         isCreateMode={isCreateMode}
         type={WIDGET_IFRAME}
       >
+        <div className="col-span-12">
+          <Form.TextField
+            label="Title"
+            nameId="title"
+            register={register}
+            errors={errors}
+          />
+        </div>
+        <div className="col-span-12">
+          <Form.TextAreaField
+            label="Text"
+            nameId="text"
+            register={register}
+            errors={errors}
+          />
+        </div>
         <div className="col-span-12">
           <Form.TextField
             label="URL"
