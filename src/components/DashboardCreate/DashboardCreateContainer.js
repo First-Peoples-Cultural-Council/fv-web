@@ -16,6 +16,8 @@ import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
 import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+// For removal in FW-6252
+import Maintenance from 'components/Maintenance'
 
 function DashboardCreateContainer() {
   const { tileContent, headerContent, site } = DashboardCreateData({
@@ -59,9 +61,11 @@ function DashboardCreateContainer() {
         <Route
           path="song"
           element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <SongCrud.Container />
-            </RequireAuth>
+            <Maintenance pageName="Song creation">
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <SongCrud.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         <Route
@@ -75,17 +79,21 @@ function DashboardCreateContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <StoryCrud.Container />
-            </RequireAuth>
+            <Maintenance pageName="Story creation">
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <StoryCrud.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         <Route
           path="widget"
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <WidgetCrud.Container />
-            </RequireAuth>
+            <Maintenance pageName="Widget creation">
+              <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+                <WidgetCrud.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         <Route

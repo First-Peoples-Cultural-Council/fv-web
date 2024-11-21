@@ -28,6 +28,8 @@ import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
 import DashboardWidgets from 'components/DashboardWidgets'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
+// For removal in FW-6252
+import Maintenance from 'components/Maintenance'
 
 function DashboardEditContainer() {
   const { tileContent, headerContent, site } = DashboardEditData({
@@ -96,9 +98,11 @@ function DashboardEditContainer() {
         <Route
           path="widgets"
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <DashboardWidgets.Container />
-            </RequireAuth>
+            <Maintenance pageName="Widget editing">
+              <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+                <DashboardWidgets.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         {/* Individual Edit Forms */}
@@ -153,9 +157,11 @@ function DashboardEditContainer() {
         <Route
           path="song"
           element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <SongCrud.Container />
-            </RequireAuth>
+            <Maintenance pageName="Song editing">
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <SongCrud.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         <Route
@@ -169,17 +175,21 @@ function DashboardEditContainer() {
         <Route
           path="story"
           element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <StoryCrud.Container />
-            </RequireAuth>
+            <Maintenance pageName="Story editing">
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <StoryCrud.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         <Route
           path="widget"
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <WidgetCrud.Container />
-            </RequireAuth>
+            <Maintenance pageName="Widget editing">
+              <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+                <WidgetCrud.Container />
+              </RequireAuth>
+            </Maintenance>
           }
         />
         <Route
