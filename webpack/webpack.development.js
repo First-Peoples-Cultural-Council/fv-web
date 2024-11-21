@@ -16,6 +16,9 @@ module.exports = (env) => {
     ENV_APP_ENV: env?.APP_ENV
       ? JSON.stringify(env.APP_ENV)
       : JSON.stringify(''),
+    ENV_UNDER_MAINTENANCE: env?.UNDER_MAINTENANCE
+      ? JSON.stringify(env.UNDER_MAINTENANCE)
+      : JSON.stringify(''),
     ENV_AWS_CLIENT_ID: process.env.AWS_CLIENT_ID
       ? JSON.stringify(process.env.AWS_CLIENT_ID)
       : JSON.stringify(''),

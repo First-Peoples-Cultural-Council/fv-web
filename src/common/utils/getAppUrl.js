@@ -2,9 +2,9 @@ import GlobalConfiguration from 'src/GlobalConfiguration'
 import PropTypes from 'prop-types'
 
 function getAppUrl({ slug }) {
-  return GlobalConfiguration.ENV_APP === 'dev' ||
-    GlobalConfiguration.ENV_APP === 'preprod'
-    ? `https://${slug}.${GlobalConfiguration.ENV_APP}.firstvoicesapp.com`
+  return GlobalConfiguration.APP_ENV === 'dev' ||
+    GlobalConfiguration.APP_ENV === 'preprod'
+    ? `https://${slug}.${GlobalConfiguration.APP_ENV}.firstvoicesapp.com`
     : `https://${slug}.firstvoicesapp.com`
 }
 

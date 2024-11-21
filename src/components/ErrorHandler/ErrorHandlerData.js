@@ -1,32 +1,23 @@
-import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
+
+// FPCC
+import useGoBack from 'common/hooks/useGoBack'
 
 function ErrorHandlerData() {
-  const location = useLocation()
-  const navigate = useNavigate()
-  const [goBack, setGoBack] = useState(false)
+  const [searchParams] = useSearchParams()
 
-  const backHandler = () => {
-    setGoBack(true)
-  }
+  const { sitename } = useParams()
+  const { goBack } = useGoBack({
+    fallbackRoute: sitename ? `/${sitename}` : '/',
+  })
 
-  const status = new URLSearchParams(location.search).get('status')
-    ? new URLSearchParams(location.search).get('status')
-    : '0'
-  const statusText = new URLSearchParams(location.search).get('statusText')
-    ? new URLSearchParams(location.search).get('statusText')
-    : null
-
-  useEffect(() => {
-    if (navigate && goBack) {
-      navigate(-1)
-    }
-  }, [goBack])
+  const status = searchParams.get('status') || '0'
+  const statusText = searchParams.get('statusText') || null
 
   return {
     errorStatusCode: parseInt(status, 10),
     errorStatusText: statusText,
-    backHandler,
+    backHandler: goBack,
   }
 }
 

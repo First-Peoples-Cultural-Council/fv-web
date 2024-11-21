@@ -4,6 +4,8 @@ const common = require('./webpack.common.js')
 const definitions = {
   CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
   ENV_API_URL: '/api/1.0/',
+  ENV_APP_ENV: '',
+  ENV_UNDER_MAINTENANCE: '',
   ENV_AWS_CLIENT_ID: '',
   ENV_OIDC_AUTHORITY_URL: '',
   ENV_OAUTH2_REDIRECT_URL: '',
