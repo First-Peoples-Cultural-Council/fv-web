@@ -1,10 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import GlobalConfiguration from 'src/GlobalConfiguration'
+import getIcon from 'common/utils/getIcon'
+import useGoBack from 'common/hooks/useGoBack'
 
 function Maintenance({ children, pageName = 'This page' }) {
+  const { sitename } = useParams()
+  const { goBack } = useGoBack({ fallbackRoute: `/${sitename}/dashboard` })
+
   const isUnderMaintenance = GlobalConfiguration?.UNDER_MAINTENANCE === 'true'
   return isUnderMaintenance ? (
     <div
@@ -28,14 +34,25 @@ function Maintenance({ children, pageName = 'This page' }) {
             </p>
           </div>
         </div>
-        <a
-          className="btn-outlined border-blumine-700 text-blumine-700 font-bold"
-          href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Need support?
-        </a>
+        <div className="inline-flex items-center space-x-2">
+          <a
+            className="btn-outlined border-blumine-700 text-blumine-700 font-bold w-36"
+            href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Need support?
+          </a>
+          <button
+            type="button"
+            className="btn-contained bg-blumine-700 w-36"
+            data-testid="back-btn"
+            onClick={goBack}
+          >
+            {getIcon('BackArrow', 'btn-icon')}
+            <span>Go back</span>
+          </button>
+        </div>
       </div>
     </div>
   ) : (
