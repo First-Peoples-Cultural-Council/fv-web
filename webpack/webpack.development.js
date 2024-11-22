@@ -22,6 +22,9 @@ module.exports = (env) => {
     ENV_AWS_CLIENT_ID: process.env.AWS_CLIENT_ID
       ? JSON.stringify(process.env.AWS_CLIENT_ID)
       : JSON.stringify(''),
+    ENV_BUILD_STRING: env?.BUILD_STRING
+      ? JSON.stringify(env.BUILD_STRING)
+      : JSON.stringify(''),
     ENV_OIDC_AUTHORITY_URL: process.env.OIDC_AUTHORITY_URL
       ? JSON.stringify(process.env.OIDC_AUTHORITY_URL)
       : JSON.stringify(''),

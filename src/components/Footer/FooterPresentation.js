@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // FPCC / FPCF
 import fpccLogo from 'images/fpccLogoColorWhite.svg'
 import fpcfLogo from 'images/fpcfLogoWhite.svg'
+import GlobalConfiguration from 'src/GlobalConfiguration'
 
 function FooterPresentation() {
   const linkClass = 'block md:inline-flex underline px-2 whitespace-nowrap'
@@ -79,6 +80,9 @@ function FooterPresentation() {
         individuals. Any commercial use of the language data or multimedia data
         in whole or in part, directly or indirectly, is specifically forbidden
         except with the prior written authority of the owner of the copyright.
+      </div>
+      <div className="p-2 md:py-6 md:px-3 md:flex border-t-2 border-white border-opacity-10 text-xs text-white text-opacity-80">
+        Last build: {GlobalConfiguration?.BUILD_STRING}
       </div>
     </nav>
   )

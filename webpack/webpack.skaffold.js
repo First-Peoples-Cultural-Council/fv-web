@@ -7,6 +7,7 @@ const definitions = {
   ENV_APP_ENV: '',
   ENV_UNDER_MAINTENANCE: '',
   ENV_AWS_CLIENT_ID: '',
+  ENV_BUILD_STRING: '',
   ENV_OIDC_AUTHORITY_URL: '',
   ENV_OAUTH2_REDIRECT_URL: '',
   ENV_END_SESSION_URL: '',
