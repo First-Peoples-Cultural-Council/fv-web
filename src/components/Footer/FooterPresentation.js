@@ -81,7 +81,7 @@ function FooterPresentation() {
         in whole or in part, directly or indirectly, is specifically forbidden
         except with the prior written authority of the owner of the copyright.
       </div>
-      <div className="p-2 md:py-6 md:px-3 md:flex border-t-2 border-white border-opacity-10 text-xs text-white text-opacity-80">
+      <div className="px-2 md:pb-6 md:px-3 text-xs text-white text-opacity-80">
         Last build: {GlobalConfiguration?.BUILD_STRING}
       </div>
     </nav>
