@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { useModalWithFieldArray } from 'common/hooks/useModalController'
 import Modal from 'components/Modal'
-import SelectorEntry from 'components/SelectorEntry'
+import SelectorEntries from 'components/SelectorEntries'
 import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
@@ -56,7 +56,7 @@ function EntryArrayField({
       </div>
       <HelpText text={helpText} />
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
-        <SelectorEntry.Container
+        <SelectorEntries.Container
           formEntries={fields}
           isModalOpen={modalOpen}
           types={types}

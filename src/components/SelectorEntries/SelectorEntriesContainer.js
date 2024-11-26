@@ -6,11 +6,11 @@ import PropTypes from 'prop-types'
 import useSearchModal from 'common/hooks/useSearchModal'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
-import SelectorEntryPresentationList from 'components/SelectorEntry/SelectorEntryPresentationList'
+import SelectorEntriesPresentationList from 'components/SelectorEntries/SelectorEntriesPresentationList'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import getIcon from 'common/utils/getIcon'
 
-function SelectorEntryContainer({
+function SelectorEntriesContainer({
   formEntries,
   isModalOpen,
   types,
@@ -40,7 +40,7 @@ function SelectorEntryContainer({
 
   return (
     <div
-      id="SelectorEntryContainer"
+      id="SelectorEntriesContainer"
       className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-charcoal-50 p-6"
     >
       <div className="h-full flex flex-col space-y-4">
@@ -80,7 +80,7 @@ function SelectorEntryContainer({
                   isLoading={isLoadingEntries}
                   loadRef={loadRef}
                   resultsSection={
-                    <SelectorEntryPresentationList
+                    <SelectorEntriesPresentationList
                       formEntries={formEntries}
                       handleSelectAdditionalItems={handleSelectAdditionalItems}
                       infiniteScroll={infiniteScroll}
@@ -101,7 +101,7 @@ function SelectorEntryContainer({
 
 // PROPTYPES
 const { array, arrayOf, bool, func, string } = PropTypes
-SelectorEntryContainer.propTypes = {
+SelectorEntriesContainer.propTypes = {
   formEntries: array,
   isModalOpen: bool,
   types: arrayOf(string),
@@ -109,4 +109,4 @@ SelectorEntryContainer.propTypes = {
   visibility: string,
 }
 
-export default SelectorEntryContainer
+export default SelectorEntriesContainer

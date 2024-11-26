@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom'
 import { getFriendlyDocType } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
 
-function SelectorEntryPresentationList({
+function SelectorEntriesPresentationList({
   formEntries,
   searchResults,
   infiniteScroll,
@@ -26,7 +26,7 @@ function SelectorEntryPresentationList({
     'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
-    <div id="SelectorEntryPresentationList" className="w-full my-4 px-2">
+    <div id="SelectorEntriesPresentationList" className="w-full my-4 px-2">
       <h2 className="sr-only">Search results</h2>
       {searchResults?.pages !== undefined &&
         searchResults?.pages?.[0]?.results?.length > 0 && (
@@ -73,7 +73,7 @@ function SelectorEntryPresentationList({
                       return (
                         <tr
                           key={entry.id}
-                          data-testid="DashboardSelectorEntryRow"
+                          data-testid="SelectorEntriesRow"
                           onClick={() => handleSelectAdditionalItems(entry)}
                           className={
                             isSelected
@@ -141,7 +141,7 @@ function SelectorEntryPresentationList({
 // PROPTYPES
 const { array, arrayOf, func, object, string } = PropTypes
 
-SelectorEntryPresentationList.propTypes = {
+SelectorEntriesPresentationList.propTypes = {
   formEntries: array,
   searchResults: object,
   infiniteScroll: object,
@@ -150,4 +150,4 @@ SelectorEntryPresentationList.propTypes = {
   types: arrayOf(string),
 }
 
-export default SelectorEntryPresentationList
+export default SelectorEntriesPresentationList
