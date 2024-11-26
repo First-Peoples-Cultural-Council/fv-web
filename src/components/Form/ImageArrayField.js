@@ -33,10 +33,10 @@ function ImageArrayField({
     <Fragment key={`${nameId}_ArrayField`}>
       <FieldLabel nameId={nameId} text={label} />
       <div data-testid="ImageArrayField" className="space-y-2">
-        <div>
+        <ul>
           {fields?.length > 0 &&
             fields?.map((image, index) => (
-              <div
+              <li
                 key={image?.key}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
               >
@@ -46,9 +46,9 @@ function ImageArrayField({
                 />
 
                 <XButton onClickHandler={() => remove(index)} />
-              </div>
+              </li>
             ))}
-        </div>
+        </ul>
 
         {fields?.length >= maxItems ? (
           ''
