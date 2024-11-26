@@ -48,24 +48,21 @@ function EntryArrayField({
         </ul>
         {fields?.length < maxItems && (
           <FieldButton
-            label={buttonLabel || 'Add a related dictionary entry'}
+            label={buttonLabel || 'Add related dictionary entries'}
             onClickHandler={openModal}
           />
         )}
+        <ValidationError errors={errors} nameId={nameId} />
       </div>
       <HelpText text={helpText} />
-
-      <ValidationError errors={errors} nameId={nameId} />
-
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
-        <div className="w-1/2-screen mx-auto rounded-lg overflow-hidden">
-          <SelectorEntry.Container
-            formEntries={fields}
-            updateFormEntries={appendToFormAndClose}
-            types={types}
-            visibility={visibility}
-          />
-        </div>
+        <SelectorEntry.Container
+          formEntries={fields}
+          isModalOpen={modalOpen}
+          types={types}
+          updateFormEntries={appendToFormAndClose}
+          visibility={visibility}
+        />
       </Modal.Presentation>
     </Fragment>
   )

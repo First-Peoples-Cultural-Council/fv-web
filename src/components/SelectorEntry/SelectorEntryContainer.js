@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 
 import useSearchModal from 'common/hooks/useSearchModal'
-import useSearchResultSelector from 'common/hooks/useSearchResultSelector'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorEntryPresentationList from 'components/SelectorEntry/SelectorEntryPresentationList'
+import useArrayStateManager from 'common/hooks/useArrayStateManager'
+import getIcon from 'common/utils/getIcon'
 
 function SelectorEntryContainer({
   formEntries,
-  updateFormEntries,
+  isModalOpen,
   types,
+  updateFormEntries,
   visibility,
 }) {
   const {
@@ -26,40 +28,71 @@ function SelectorEntryContainer({
     loadRef,
   } = useSearchModal({ types, visibility })
 
-  const { selectedItem, setSelectedItem } = useSearchResultSelector({
-    searchResults,
-  })
+  const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
+    useArrayStateManager({ maxItems: 30 })
 
-  const addToEntry = () => updateFormEntries(selectedItem)
+  // Clear the Selected items when the modal closes
+  useEffect(() => {
+    if (!isModalOpen) {
+      setSelectedItems([])
+    }
+  }, [isModalOpen, setSelectedItems])
 
   return (
-    <div data-testid="SelectorEntryContainer" className="h-full bg-charcoal-50">
-      <div className="h-full w-full flex flex-col py-4">
-        <div className="w-3/4 mx-auto bg-white rounded-lg overflow-hidden">
-          <SelectorSearchbox.Presentation
-            onSearchChange={handleSearchTermChange}
-            onSearchSubmit={handleSearchSubmit}
-            searchPlaceholder="Search all words and phrases"
-            searchValue={displayedSearchTerm}
-          />
+    <div
+      id="SelectorEntryContainer"
+      className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-charcoal-50 p-6"
+    >
+      <div className="h-full flex flex-col space-y-4">
+        <h2 className="text-center text-2xl font-bold text-charcoal-900">
+          Search dictionary entries
+        </h2>
+        <div className="w-full bg-charcoal-50 flex justify-center space-x-4">
+          <button
+            data-testid="add-btn"
+            type="button"
+            className="capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 btn-outlined hover:btn-contained"
+            onClick={() => updateFormEntries(selectedItems)}
+            disabled={selectedItems?.length < 1}
+          >
+            {getIcon('Add', 'btn-icon')}
+            <span>
+              {selectedItems?.length > 0
+                ? `Add ${selectedItems.length} related entries`
+                : 'Select Items'}
+            </span>
+          </button>
         </div>
-        <div className="grow mt-2 h-72 overflow-y-scroll">
-          <SelectorResultsWrapper.Presentation
-            hasResults={hasResults}
-            isLoading={isLoadingEntries}
-            loadRef={loadRef}
-            resultsSection={
-              <SelectorEntryPresentationList
-                types={types}
-                searchResults={searchResults}
-                formEntries={formEntries}
-                selected={selectedItem}
-                setSelected={setSelectedItem}
-                infiniteScroll={infiniteScroll}
-                addToEntry={addToEntry}
-              />
-            }
-          />
+        <div className="grow">
+          <section className="h-full bg-charcoal-50">
+            <div className="h-full w-full flex flex-col">
+              <div className="w-3/4 mx-auto">
+                <SelectorSearchbox.Presentation
+                  onSearchChange={handleSearchTermChange}
+                  onSearchSubmit={handleSearchSubmit}
+                  searchPlaceholder="Search all words and phrases"
+                  searchValue={displayedSearchTerm}
+                />
+              </div>
+              <div className="grow h-72 overflow-y-scroll">
+                <SelectorResultsWrapper.Presentation
+                  hasResults={hasResults}
+                  isLoading={isLoadingEntries}
+                  loadRef={loadRef}
+                  resultsSection={
+                    <SelectorEntryPresentationList
+                      formEntries={formEntries}
+                      handleSelectAdditionalItems={handleSelectAdditionalItems}
+                      infiniteScroll={infiniteScroll}
+                      searchResults={searchResults}
+                      selectedItems={selectedItems}
+                      types={types}
+                    />
+                  }
+                />
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -67,11 +100,12 @@ function SelectorEntryContainer({
 }
 
 // PROPTYPES
-const { array, arrayOf, func, string } = PropTypes
+const { array, arrayOf, bool, func, string } = PropTypes
 SelectorEntryContainer.propTypes = {
   formEntries: array,
-  updateFormEntries: func,
+  isModalOpen: bool,
   types: arrayOf(string),
+  updateFormEntries: func,
   visibility: string,
 }
 
