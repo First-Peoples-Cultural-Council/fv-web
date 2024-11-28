@@ -1,6 +1,6 @@
 import { useSites } from 'common/dataHooks/useSites'
 
-function FVAppsData() {
+function MobileAppsData() {
   const sites = useSites({ pageSize: 250 })
 
   function features(site) {
@@ -16,4 +16,4 @@ function FVAppsData() {
   }
 }
 
-export default FVAppsData
+export default MobileAppsData

@@ -1,7 +1,10 @@
 import React from 'react'
-import SectionTitle from 'components/SectionTitle'
 
-function AboutFV() {
+// FPCC
+import SectionTitle from 'components/SectionTitle'
+import DocHead from 'components/DocHead'
+
+function About() {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
   return (
@@ -9,6 +12,7 @@ function AboutFV() {
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="AboutFirstVoices"
     >
+      <DocHead titleArray={['About FirstVoices']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="ABOUT FIRSTVOICES" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
@@ -96,4 +100,4 @@ function AboutFV() {
   )
 }
 
-export default AboutFV
+export default About

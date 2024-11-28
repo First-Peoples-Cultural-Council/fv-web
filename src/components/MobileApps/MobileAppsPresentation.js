@@ -7,7 +7,7 @@ import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 import getIcon from 'common/utils/getIcon'
 import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
 
-function FVAppsPresentation({ sitesWithApps }) {
+function MobileAppsPresentation({ sitesWithApps }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
   const paraStyle = 'mb-2'
 
@@ -359,8 +359,8 @@ function FVAppsPresentation({ sitesWithApps }) {
 
 // PROPTYPES
 const { array } = PropTypes
-FVAppsPresentation.propTypes = {
+MobileAppsPresentation.propTypes = {
   sitesWithApps: array,
 }
 
-export default FVAppsPresentation
+export default MobileAppsPresentation

@@ -4,17 +4,17 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 
 // FPCC
-import AboutFV from 'components/AboutFV'
 import AppData from 'components/App/AppData'
+import AppWrapper from 'components/App/AppWrapper'
 import { AudiobarProvider } from 'context/AudiobarContext'
 import { NotificationProvider } from 'context/NotificationContext'
 
-import AppWrapper from 'components/App/AppWrapper'
+import About from 'components/About'
+import MobileApps from 'components/MobileApps'
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
 import DocHead from 'components/DocHead'
 import ErrorHandler from 'components/ErrorHandler'
-import FVApps from 'components/FVApps'
 import Keyboards from 'components/Keyboards'
 import LandingPage from 'components/LandingPage'
 import Languages from 'components/Languages'
@@ -49,7 +49,7 @@ function AppContainer() {
                   path="about"
                   element={
                     <AppWrapper>
-                      <AboutFV />
+                      <About />
                     </AppWrapper>
                   }
                 />
@@ -57,7 +57,7 @@ function AppContainer() {
                   path="apps"
                   element={
                     <AppWrapper>
-                      <FVApps.Container />
+                      <MobileApps.Container />
                     </AppWrapper>
                   }
                 />

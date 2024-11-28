@@ -1,5 +1,8 @@
 import React from 'react'
+
+// FPCC
 import SectionTitle from 'components/SectionTitle'
+import DocHead from 'components/DocHead'
 
 function ConditionsOfUsePresentation() {
   const headerStyle = 'text-xl font-bold mb-1'
@@ -9,6 +12,7 @@ function ConditionsOfUsePresentation() {
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="ConditionsOfUse"
     >
+      <DocHead titleArray={['Conditions of Use']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="CONDITIONS OF USE" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
