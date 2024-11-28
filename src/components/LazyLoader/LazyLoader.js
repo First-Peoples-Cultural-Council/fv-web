@@ -15,24 +15,26 @@ function LazyLoader({
   const _placeholder = placeholder || null
 
   useEffect(() => {
-    const el = ref && ref?.current
-    if (ref.current) {
+    const el = ref?.current
+    if (el) {
       io.current = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.intersectionRatio > 0.75) {
               setIsIntersecting(true)
-              io.current.unobserve(ref.current)
+              io.current.unobserve(el)
             }
           })
         },
         { threshold: [0.5, 1] },
       )
-      io.current.observe(ref.current)
+      io.current.observe(el)
     }
 
     return () => {
-      io.current.unobserve(el)
+      if (el) {
+        io.current.unobserve(el)
+      }
     }
   }, [ref])
 
