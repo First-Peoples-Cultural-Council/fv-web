@@ -1,11 +1,11 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import PageData from 'components/Page/PageData'
 import WidgetArea from 'components/WidgetArea'
 import PageBanner from 'components/PageBanner'
 import ErrorHandler from 'components/ErrorHandler'
+import SiteDocHead from 'components/SiteDocHead'
 
 function PageContainer({ pageSlug }) {
   const { banner, title, subtitle, widgets, notFound } = PageData({ pageSlug })
@@ -16,10 +16,7 @@ function PageContainer({ pageSlug }) {
     />
   ) : (
     <main id="CustomPage">
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={subtitle} />
-      </Helmet>
+      {title && <SiteDocHead titleArray={[title]} description={subtitle} />}
       <PageBanner.Presentation
         variant={subtitle ? 'CENTER' : 'LEFT'}
         background={background}
