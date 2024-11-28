@@ -7,6 +7,7 @@ import LazyLoader from 'components/LazyLoader'
 import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK, MEDIUM, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
+import SiteDocHead from 'components/SiteDocHead'
 
 function StoryPresentation({ entry }) {
   const coverMedia = entry?.coverVisual?.entry
@@ -18,6 +19,7 @@ function StoryPresentation({ entry }) {
 
   return (
     <div data-testid="StoryPresentation" className="bg-charcoal-100">
+      <SiteDocHead titleArray={[entry?.title, 'Stories']} />
       {/* Cover with image */}
       {entry?.coverVisual?.type === IMAGE && (
         <div className={`grid grid-cols-2 md:gap-4 ${headerStyling}`}>

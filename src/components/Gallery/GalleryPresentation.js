@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import SectionTitle from 'components/SectionTitle'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import LazyLoader from 'components/LazyLoader'
+import SiteDocHead from 'components/SiteDocHead'
 
 function GalleryPresentation({ data }) {
   return (
@@ -12,6 +13,7 @@ function GalleryPresentation({ data }) {
       data-testid="GalleryPresentation"
       className="py-6 px-10 bg-white space-y-4"
     >
+      <SiteDocHead titleArray={[data?.title, 'Galleries']} />
       <SectionTitle.Presentation
         title={data?.title}
         accentColor="charcoal-900"

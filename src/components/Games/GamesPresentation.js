@@ -4,21 +4,20 @@ import React from 'react'
 import getIcon from 'common/utils/getIcon'
 import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
+
+// FPCC
 import SectionTitle from 'components/SectionTitle'
+import SiteDocHead from 'components/SiteDocHead'
 
 function GamesPresentation({ kids = null }) {
   const { sitename } = useParams()
   const games = [
-    // { pathname: 'memory', title: 'Memory', icon: 'Memory' },
-    // { pathname: 'jigsaw', title: 'Jigsaw', icon: 'Jigsaw' },
     { pathname: 'pull-together', title: 'Pull Together', icon: 'Canoe' },
-    // { pathname: 'quiz', title: 'Quiz', icon: 'Quiz' },
     {
       pathname: 'phrasescrambler',
       title: 'Phrase Scrambler',
       icon: 'PhraseScrambler',
     },
-    // { pathname: 'wordsearch', title: 'Word Search', icon: 'WordSearch' },
     { pathname: 'wordsy', title: 'Wordsy', icon: 'Wordsy' },
   ]
   return (
@@ -26,6 +25,7 @@ function GamesPresentation({ kids = null }) {
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="GamesPresentation"
     >
+      <SiteDocHead titleArray={['Games']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="GAMES" accentColor="blumine-800" />
         <div className="flex-1 flex items-stretch overflow-hidden">

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 // FPCC
 import AlphabetPresentationSelected from 'components/Alphabet/AlphabetPresentationSelected'
 import SectionTitle from 'components/SectionTitle'
+import SiteDocHead from 'components/SiteDocHead'
 
 function AlphabetPresentation({
   characters,
@@ -20,6 +21,7 @@ function AlphabetPresentation({
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="AlphabetPresentation"
     >
+      <SiteDocHead titleArray={['Alphabet']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="ALPHABET" />
         {links && (

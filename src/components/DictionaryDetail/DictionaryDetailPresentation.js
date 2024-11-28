@@ -15,6 +15,7 @@ import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryDetailPresentation({
   actions,
@@ -38,6 +39,7 @@ function DictionaryDetailPresentation({
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-10 bg-white"
       data-testid="DictionaryDetailPresentation"
     >
+      <SiteDocHead titleArray={[entry.title, 'Dictionary']} />
       <div className="grid grid-cols-8 gap-4">
         <div
           id="WordDetails"

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function SongsAndStoriesList({
-  pluralDocType,
+  labels,
   items,
   handleItemClick,
   showNoResultsMessage,
@@ -10,7 +10,7 @@ function SongsAndStoriesList({
   return (
     <section className="pb-16" aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" className="sr-only">
-        {pluralDocType}
+        {labels?.titlecase}
       </h2>
 
       <div className="w-full text-left py-2 text-lg text-charcoal-900">
@@ -46,9 +46,9 @@ function SongsAndStoriesList({
   )
 }
 
-const { func, object, string } = PropTypes
+const { func, object } = PropTypes
 SongsAndStoriesList.propTypes = {
-  pluralDocType: string,
+  labels: object,
   items: object,
   handleItemClick: func,
   showNoResultsMessage: func,

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 // FPCC
-import { makePlural } from 'common/utils/urlHelpers'
-
 import Drawer from 'components/Drawer'
 import GridListToggle from 'components/GridListToggle'
 import SectionTitle from 'components/SectionTitle'
@@ -12,21 +10,17 @@ import Song from 'components/Song'
 import Story from 'components/Story'
 import SongsAndStoriesGrid from 'components/SongsAndStories/SongsAndStoriesGrid'
 import SongsAndStoriesList from 'components/SongsAndStories/SongsAndStoriesList'
-import { TYPE_SONG } from 'common/constants'
 
 function SongsAndStoriesPresentation({
-  searchType,
   infiniteScroll,
   items,
   kids,
+  labels,
   loadRef,
   sitename,
 }) {
-  const type = searchType.toLowerCase()
-  const accentColor = type === TYPE_SONG ? 'song-color-900' : 'story-color-900'
-  const pluralDocType = makePlural(searchType)
+  const accentColor = labels?.textColor
   const [isGridView, setIsGridView] = useState(true)
-
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
   const { isFetchingNextPage, fetchNextPage, hasNextPage, loadButtonLabel } =
@@ -46,11 +40,7 @@ function SongsAndStoriesPresentation({
 
   function handleItemClick(item) {
     if (window.innerWidth < 768 || kids) {
-      navigate(
-        `/${sitename}/${kids ? 'kids/' : ''}${makePlural(item?.type)}/${
-          item?.id
-        }`,
-      )
+      navigate(`/${sitename}/${kids ? 'kids/' : ''}${labels?.slug}/${item?.id}`)
     }
     setSelectedItem(item)
     setDrawerOpen(true)
@@ -61,7 +51,7 @@ function SongsAndStoriesPresentation({
       !page.results?.length && (
         <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
           <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
-            No {makePlural(type)} have been added to this site yet!
+            No {labels?.lowercase} have been added to this site yet!
           </div>
         </div>
       )
@@ -76,7 +66,7 @@ function SongsAndStoriesPresentation({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle.Presentation
-            title={pluralDocType}
+            title={labels?.uppercase}
             accentColor={accentColor}
           />
           <div className="flex-1 flex items-stretch overflow-hidden">
@@ -103,13 +93,13 @@ function SongsAndStoriesPresentation({
                 )}
                 {isGridView
                   ? SongsAndStoriesGrid({
-                      pluralDocType,
+                      labels,
                       items,
                       showNoResultsMessage,
                       handleItemClick,
                     })
                   : SongsAndStoriesList({
-                      pluralDocType,
+                      labels,
                       items,
                       showNoResultsMessage,
                       handleItemClick,
@@ -137,9 +127,7 @@ function SongsAndStoriesPresentation({
         maxWidth="max-w-lg"
         fullScreenPath={
           selectedItem?.type
-            ? `/${sitename}/${makePlural(selectedItem?.type)}/${
-                selectedItem?.id
-              }`
+            ? `/${sitename}/${labels?.slug}/${selectedItem?.id}`
             : null
         }
       >
@@ -151,10 +139,10 @@ function SongsAndStoriesPresentation({
 // PROPTYPES
 const { bool, object, string } = PropTypes
 SongsAndStoriesPresentation.propTypes = {
-  searchType: string,
   infiniteScroll: object,
   items: object,
   kids: bool,
+  labels: object,
   loadRef: object,
   sitename: string,
 }

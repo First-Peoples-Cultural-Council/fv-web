@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 import ImageWithLightbox from 'components/ImageWithLightbox'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryDetailPresentationKids({ entry, backHandler }) {
   const relatedImages =
@@ -23,7 +24,9 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
   const shortTitle = entry?.title.length < 16
   return (
     <div className="bg-white" data-testid="DictionaryDetailPresentationKids">
+      <SiteDocHead titleArray={[entry.title, 'Dictionary']} />
       <button
+        data-testid="back-btn"
         type="button"
         onClick={backHandler}
         className="flex items-center font-medium text-base text-center text-charcoal-900 px-5 py-2 lg:ml-5"

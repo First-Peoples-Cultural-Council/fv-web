@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// FPCC
 import Widget from 'components/Widget'
+import SiteDocHead from 'components/SiteDocHead'
 
 function SiteKeyboardsPresentation({ title, widgets }) {
   return (
@@ -9,6 +11,7 @@ function SiteKeyboardsPresentation({ title, widgets }) {
       data-testid="SiteKeyboardsPresentation"
       className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto"
     >
+      <SiteDocHead titleArray={['Keyboards']} />
       {widgets?.map((widget) => (
         <div key={widget?.id} className="flex lg:my-4">
           <Widget.Container data={widget} />

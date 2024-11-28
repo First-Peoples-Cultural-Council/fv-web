@@ -18,7 +18,14 @@ import Dictionary from 'components/Dictionary'
 import Song from 'components/Song'
 import SongsAndStories from 'components/SongsAndStories'
 import Story from 'components/Story'
-import { TYPE_PHRASE, TYPE_WORD, TYPE_DICTIONARY } from 'common/constants'
+import {
+  TYPE_PHRASE,
+  TYPE_WORD,
+  TYPE_DICTIONARY,
+  TYPE_SONG,
+  TYPE_STORY,
+} from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function SiteFrameKids({ siteLoading }) {
   const location = useLocation()
@@ -27,6 +34,7 @@ function SiteFrameKids({ siteLoading }) {
     location?.pathname?.endsWith('kids/')
   return (
     <div className="overflow-hidden">
+      <SiteDocHead />
       <header className="w-full">
         <KidsNavBar.Container home={isHome} />
       </header>
@@ -68,12 +76,16 @@ function SiteFrameKids({ siteLoading }) {
             <Route path="songs/:id" element={<Song.Container kids />} />
             <Route
               path="songs"
-              element={<SongsAndStories.Container searchType="SONG" kids />}
+              element={
+                <SongsAndStories.Container searchType={TYPE_SONG} kids />
+              }
             />
             <Route path="stories/:id" element={<Story.Container kids />} />
             <Route
               path="stories"
-              element={<SongsAndStories.Container searchType="STORY" kids />}
+              element={
+                <SongsAndStories.Container searchType={TYPE_STORY} kids />
+              }
             />
             <Route path="games/:id" element={<Game.Container kids />} />
             <Route path="games" element={<Games.Presentation kids />} />

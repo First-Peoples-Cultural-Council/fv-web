@@ -6,6 +6,7 @@ import DictionaryPresentation from 'components/Dictionary/DictionaryPresentation
 import DictionaryData from 'components/Dictionary/DictionaryData'
 import Loading from 'components/Loading'
 import { TYPE_DICTIONARY } from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryContainer({ searchType = TYPE_DICTIONARY, kids = null }) {
   const {
@@ -22,6 +23,7 @@ function DictionaryContainer({ searchType = TYPE_DICTIONARY, kids = null }) {
   } = DictionaryData({ searchType, kids })
   return (
     <Loading.Container isLoading={isLoading}>
+      <SiteDocHead titleArray={[labels.titlecase]} />
       <DictionaryPresentation
         actions={actions}
         searchType={searchType}

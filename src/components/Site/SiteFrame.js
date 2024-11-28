@@ -30,11 +30,19 @@ import Story from 'components/Story'
 
 import ConditionsOfUse from 'components/ConditionsOfUse'
 import Disclaimer from 'components/Disclaimer'
-import { TYPE_PHRASE, TYPE_WORD, TYPE_DICTIONARY } from 'common/constants'
+import {
+  TYPE_PHRASE,
+  TYPE_WORD,
+  TYPE_DICTIONARY,
+  TYPE_SONG,
+  TYPE_STORY,
+} from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function SiteFrame({ siteLoading }) {
   return (
     <div className="overflow-hidden">
+      <SiteDocHead />
       <header className="fixed w-full top-0 z-50 print:hidden bg-charcoal-900 h-16">
         <NavBar.Container siteLoading={siteLoading} />
       </header>
@@ -72,12 +80,12 @@ function SiteFrame({ siteLoading }) {
             <Route path="songs/:id" element={<Song.Container />} />
             <Route
               path="songs"
-              element={<SongsAndStories.Container searchType="SONG" />}
+              element={<SongsAndStories.Container searchType={TYPE_SONG} />}
             />
             <Route path="stories/:id" element={<Story.Container />} />
             <Route
               path="stories"
-              element={<SongsAndStories.Container searchType="STORY" />}
+              element={<SongsAndStories.Container searchType={TYPE_STORY} />}
             />
             <Route path="galleries/:id" element={<Gallery.Container />} />
             <Route path="galleries" element={<Galleries.Container />} />

@@ -7,6 +7,7 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import Loading from 'components/Loading'
 import SectionTitle from 'components/SectionTitle'
 import { SMALL, IMAGE } from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function GalleriesPresentation({ isLoading, galleries, sitename }) {
   return (
@@ -14,6 +15,7 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
       data-testid="GalleriesPresentation"
     >
+      <SiteDocHead titleArray={['Galleries']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="GALLERIES" accentColor="ochre-800" />
         <div className="flex-1 flex items-stretch overflow-hidden">

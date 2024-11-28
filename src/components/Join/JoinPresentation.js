@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import getIcon from 'common/utils/getIcon'
 import JoinForm from 'components/Join/JoinForm'
 import { PUBLIC } from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function JoinPresentation({
   errorMessage,
@@ -48,6 +49,7 @@ function JoinPresentation({
       data-testid="JoinPresentation"
       className="bg-white p-6 lg:p-10 transform transition-all"
     >
+      <SiteDocHead titleArray={['Join']} />
       <div className="mx-auto max-w-2xl">
         {stage === 'form' && (
           <JoinForm site={site} submitHandler={submitHandler} />
