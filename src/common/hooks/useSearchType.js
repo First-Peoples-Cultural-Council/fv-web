@@ -32,7 +32,7 @@ function useSearchType({ initialSearchType = TYPE_ENTRY }) {
 
   const getSearchTypeLabel = ({ searchType, plural = false }) => {
     const labels = getPresentationPropertiesForType(searchType)
-    if (plural) return labels.plural
+    if (plural) return labels.lowercase
     return labels.singular
   }
 
