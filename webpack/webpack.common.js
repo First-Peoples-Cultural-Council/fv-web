@@ -1,12 +1,9 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 const alias = require('./webpack.alias')
-
-const is_prod = process.env.NODE_ENV == 'production'
 
 module.exports = (env, definitions) => ({
   cache: {
@@ -27,7 +24,6 @@ module.exports = (env, definitions) => ({
   },
   output: {
     filename: '[name].[contenthash].js',
-    chunkFilename: '[name].[contenthash].js',
     path: alias.dist,
   },
   module: {
@@ -45,11 +41,7 @@ module.exports = (env, definitions) => ({
       },
       {
         test: /\.css$/i,
-        use: [
-          is_prod ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'postcss-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
@@ -69,11 +61,6 @@ module.exports = (env, definitions) => ({
         new Date().toLocaleString('en-CA', { timeZone: 'America/Vancouver' }),
       ),
       ...definitions,
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].css',
-      ignoreOrder: false,
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
