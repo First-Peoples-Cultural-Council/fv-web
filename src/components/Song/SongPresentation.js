@@ -7,6 +7,7 @@ import AudioNative from 'components/AudioNative'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function SongPresentation({ entry }) {
   const hasMedia = !!(
@@ -21,6 +22,7 @@ function SongPresentation({ entry }) {
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2 md:my-10 bg-white"
       data-testid="SongPresentation"
     >
+      <SiteDocHead titleArray={[entry?.title, 'Songs']} />
       <div className="grid grid-cols-3 gap-10">
         <div>
           {hasMedia && (

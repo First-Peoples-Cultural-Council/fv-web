@@ -2,15 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Parachute from 'components/Game/Parachute'
+import ParachuteData from 'components/Game/Parachute/ParachuteData'
+import ParachutePresentation from 'components/Game/Parachute/ParachutePresentation'
 import Loading from 'components/Loading'
+import SiteDocHead from 'components/SiteDocHead'
 
 function ParachuteContainer({ kids }) {
   const { isLoading, puzzle, translation, audio, alphabet, newPuzzle } =
-    Parachute.Data({ kids })
+    ParachuteData({ kids })
   return (
     <Loading.Container isLoading={isLoading}>
-      <Parachute.Presentation
+      <SiteDocHead titleArray={['Pull Together', 'Games']} />
+      <ParachutePresentation
         puzzle={puzzle}
         translation={translation}
         audio={audio}

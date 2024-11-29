@@ -1,5 +1,8 @@
 import React from 'react'
+
+// FPCC
 import SectionTitle from 'components/SectionTitle'
+import DocHead from 'components/DocHead'
 
 function Support() {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
@@ -9,10 +12,8 @@ function Support() {
     'flex ring ring-scarlet-800 rounded-lg p-2 text-white bg-scarlet-800 w-full'
 
   return (
-    <section
-      className="pt-2 md:pt-4 lg:pt-8 bg-white"
-      data-testid="AboutFirstVoices"
-    >
+    <section className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Support">
+      <DocHead titleArray={['Support']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="FIRSTVOICES SUPPORT" />
         <div>

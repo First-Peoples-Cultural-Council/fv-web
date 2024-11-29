@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import ByAlphabetPresentation from 'components/ByAlphabet/ByAlphabetPresentation'
 import ByAlphabetData from 'components/ByAlphabet/ByAlphabetData'
 import Loading from 'components/Loading'
+import SiteDocHead from 'components/SiteDocHead'
 
 function ByAlphabetContainer({ kids = null }) {
   const {
@@ -26,6 +27,10 @@ function ByAlphabetContainer({ kids = null }) {
   } = ByAlphabetData({ kids })
   return (
     <Loading.Container isLoading={charactersAreLoading}>
+      <SiteDocHead
+        titleArray={[currentCharacter?.title, 'Dictionary']}
+        description={`Dictionary entries that start with ${currentCharacter?.title}.`}
+      />
       <ByAlphabetPresentation
         actions={actions}
         characters={characters}

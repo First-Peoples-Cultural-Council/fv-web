@@ -136,81 +136,90 @@ export const getPresentationPropertiesForType = (type) => {
   switch (type) {
     case TYPE_WORD:
       return {
+        lowercase: 'words',
         uppercase: 'WORDS',
+        titlecase: 'Words',
         singular: 'word',
-        plural: 'words',
         slug: 'words',
         color: 'word-color-500',
         textColor: 'word-color-700',
       }
     case TYPE_PHRASE:
       return {
+        lowercase: 'phrases',
         uppercase: 'PHRASES',
+        titlecase: 'Phrases',
         singular: 'phrase',
-        plural: 'phrases',
         slug: 'phrases',
         color: 'phrase-color-600',
         textColor: 'phrase-color-800',
       }
     case TYPE_SONG:
       return {
+        lowercase: 'songs',
         uppercase: 'SONGS',
+        titlecase: 'Songs',
         singular: 'song',
-        plural: 'songs',
         slug: 'songs',
         color: 'song-color-800',
         textColor: 'song-color-900',
       }
     case TYPE_STORY:
       return {
+        lowercase: 'stories',
         uppercase: 'STORIES',
+        titlecase: 'Stories',
         singular: 'story',
-        plural: 'stories',
         slug: 'stories',
         color: 'story-color-700',
         textColor: 'story-color-900',
       }
     case TYPE_DICTIONARY:
       return {
+        lowercase: 'words and phrases',
         uppercase: 'DICTIONARY',
+        titlecase: 'Dictionary',
         singular: 'word / phrase',
-        plural: 'words and phrases',
         slug: 'dictionary',
         color: 'word-color-500',
         textColor: 'word-color-700',
       }
     case TYPE_MEDIA:
       return {
+        lowercase: 'media',
         uppercase: 'MEDIA',
+        titlecase: 'Media',
         singular: 'media',
-        plural: 'media',
         slug: 'search',
         color: 'charcoal-500',
         textColor: 'charcoal-900',
       }
     case TYPE_AUDIO:
       return {
+        lowercase: 'audio',
         uppercase: 'AUDIO',
+        titlecase: 'Audio',
         singular: 'audio',
-        plural: 'audio',
         slug: 'audio',
         color: 'charcoal-500',
         textColor: 'charcoal-900',
       }
     case TYPE_IMAGE:
       return {
-        uppercase: 'IMAGE',
+        lowercase: 'images',
+        uppercase: 'IMAGES',
+        titlecase: 'Images',
         singular: 'image',
-        plural: 'images',
         slug: 'image',
         color: 'charcoal-500',
         textColor: 'charcoal-900',
       }
     case TYPE_VIDEO:
       return {
-        uppercase: 'VIDEO',
+        lowercase: 'videos',
+        uppercase: 'VIDEOS',
+        titlecase: 'Videos',
         singular: 'video',
-        plural: 'videos',
         slug: 'video',
         color: 'charcoal-500',
         textColor: 'charcoal-900',
@@ -218,9 +227,10 @@ export const getPresentationPropertiesForType = (type) => {
     case TYPE_ENTRY:
     default:
       return {
-        uppercase: 'DICTIONARY',
+        lowercase: 'language entries',
+        uppercase: 'LANGUAGE ENTRIES',
+        titlecase: 'Language Entries',
         singular: 'language entry',
-        plural: 'language entries',
         slug: 'search',
         color: 'charcoal-500',
         textColor: 'charcoal-900',

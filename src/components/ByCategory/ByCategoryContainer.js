@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import ByCategoryPresentation from 'components/ByCategory/ByCategoryPresentation'
 import ByCategoryData from 'components/ByCategory/ByCategoryData'
 import Loading from 'components/Loading'
+import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
     actions,
@@ -26,6 +27,7 @@ function ByCategoryContainer({ kids = null }) {
   } = ByCategoryData({ kids })
   return (
     <Loading.Container isLoading={categoriesAreLoading}>
+      <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
       <ByCategoryPresentation
         actions={actions}
         categories={categories}

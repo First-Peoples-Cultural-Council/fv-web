@@ -4,12 +4,14 @@ import React from 'react'
 import HomeData from 'components/Home/HomeData'
 import HomePresentation from 'components/Home/HomePresentation'
 import WidgetArea from 'components/WidgetArea'
+import SiteDocHead from 'components/SiteDocHead'
 
 function HomeContainer() {
   const { bannerMedia, bannerType, site, widgetData } = HomeData()
 
   return (
     <div data-testid="Home">
+      <SiteDocHead titleArray={['Home']} />
       <HomePresentation
         bannerMedia={bannerMedia}
         bannerType={bannerType}

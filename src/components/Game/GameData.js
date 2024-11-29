@@ -9,23 +9,15 @@ function GameData() {
 
   function getGameId(path) {
     switch (path) {
-      case 'memory':
-        return 'concentration' // Backend refers to Memory as concentration
-      case 'jigsaw':
-        return 'jigsaw'
       case 'parachute':
       case 'pull-together':
         return 'parachute'
       case 'phrasescrambler':
         return 'phrasescrambler'
-      case 'quiz':
-        return 'quiz'
       case 'wordsy':
         return 'wordsy'
-      case 'wordsearch':
-        return 'wordsearch'
       default:
-        return null
+        return path
     }
   }
 

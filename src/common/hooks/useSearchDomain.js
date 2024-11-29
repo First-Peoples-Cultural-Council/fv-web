@@ -9,10 +9,7 @@ import {
   DOMAIN_TRANSLATION,
 } from 'common/constants'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import {
-  makeTitleCase,
-  getPresentationPropertiesForType,
-} from 'common/utils/stringHelpers'
+import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
 
 function useSearchDomain({ searchType }) {
   const [searchDomainInUrl, setSearchDomainInUrl] = useSearchParamsState({
@@ -34,7 +31,7 @@ function useSearchDomain({ searchType }) {
   const searchDomainOptions = {
     [DOMAIN_BOTH]: 'All',
     [DOMAIN_TRANSLATION]: 'Translation',
-    [DOMAIN_LANGUAGE]: makeTitleCase(labels.plural),
+    [DOMAIN_LANGUAGE]: labels.titlecase,
   }
 
   const handleSearchDomainNavigation = (value) => {

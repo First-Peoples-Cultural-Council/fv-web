@@ -6,6 +6,7 @@ import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 import useSearchType from 'common/hooks/useSearchType'
 import { TYPE_ENTRY } from 'common/constants'
 import SearchPresentation from 'components/Search/SearchPresentation'
+import DocHead from 'components/DocHead'
 
 function SearchAllSitesContainer() {
   const [searchParams] = useSearchParams()
@@ -28,21 +29,24 @@ function SearchAllSitesContainer() {
     })
 
   return (
-    <SearchPresentation
-      actions={['copy']}
-      searchType={searchTypeInUrl}
-      filters={typeFilters}
-      handleFilter={(filter) => {
-        setSearchTypeInUrl(filter)
-      }}
-      infiniteScroll={infiniteScroll}
-      isLoading={isInitialLoading}
-      items={data}
-      loadRef={loadRef}
-      moreActions={['share', 'qrcode']}
-      siteTitle="FirstVoices"
-      entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
-    />
+    <>
+      <DocHead titleArray={['Search']} />
+      <SearchPresentation
+        actions={['copy']}
+        searchType={searchTypeInUrl}
+        filters={typeFilters}
+        handleFilter={(filter) => {
+          setSearchTypeInUrl(filter)
+        }}
+        infiniteScroll={infiniteScroll}
+        isLoading={isInitialLoading}
+        items={data}
+        loadRef={loadRef}
+        moreActions={['share', 'qrcode']}
+        siteTitle="FirstVoices"
+        entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
+      />
+    </>
   )
 }
 

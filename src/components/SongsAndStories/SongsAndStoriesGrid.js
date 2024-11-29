@@ -45,7 +45,7 @@ function getOpacityClass({ item }) {
 }
 
 function SongsAndStoriesGrid({
-  pluralDocType,
+  labels,
   items,
   showNoResultsMessage,
   handleItemClick,
@@ -53,7 +53,7 @@ function SongsAndStoriesGrid({
   return (
     <section className="mt-4 lg:mt-8 pb-16" aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" className="sr-only">
-        {pluralDocType}
+        {labels?.titlecase}
       </h2>
 
       <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
@@ -100,9 +100,9 @@ function SongsAndStoriesGrid({
   )
 }
 
-const { func, object, string } = PropTypes
+const { func, object } = PropTypes
 SongsAndStoriesGrid.propTypes = {
-  pluralDocType: string,
+  labels: object,
   items: object,
   handleItemClick: func,
   showNoResultsMessage: func,

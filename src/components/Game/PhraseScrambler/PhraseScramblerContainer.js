@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Loading from 'components/Loading'
 import PhraseScramblerPresentation from 'components/Game/PhraseScrambler/PhraseScramblerPresentation'
 import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScramblerData'
+import SiteDocHead from 'components/SiteDocHead'
 
 function PhraseScramblerContainer({ kids }) {
   const {
@@ -23,6 +24,7 @@ function PhraseScramblerContainer({ kids }) {
 
   return (
     <Loading.Container isLoading={isLoading}>
+      <SiteDocHead titleArray={['Phrase Scrambler', 'Games']} />
       <PhraseScramblerPresentation
         translations={translations}
         relatedAudio={relatedAudio}

@@ -13,11 +13,13 @@ import DashboardMedia from 'components/DashboardMedia'
 import DashboardReports from 'components/DashboardReports'
 import Loading from 'components/Loading'
 import { ASSISTANT } from 'common/constants/roles'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DashboardContainer() {
   const { currentUser, site, homeTiles, isLoading, logout } = DashboardData()
   return (
     <Loading.Container isLoading={isLoading}>
+      <SiteDocHead titleArray={['Dashboard']} />
       <DashboardPresentation
         currentUser={currentUser}
         site={site}

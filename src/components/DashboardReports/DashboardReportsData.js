@@ -36,7 +36,7 @@ function DashboardReportsData() {
       name: 'Recently created',
       description: 'New words and phrases at the top',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_CREATED_DESC}`,
-      iconColor: 'ochre-600',
+      iconColor: 'ochre-500',
       auth: ASSISTANT,
     },
     {
@@ -60,7 +60,7 @@ function DashboardReportsData() {
       name: 'No images',
       description: 'Words and phrases without images',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${HAS_IMAGE}=${FALSE}`,
-      iconColor: 'charcoal-500',
+      iconColor: 'charcoal-600',
       auth: ASSISTANT,
     },
     {
@@ -68,7 +68,7 @@ function DashboardReportsData() {
       name: 'Team content',
       description: 'Content only available to the language team',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_TEAM}`,
-      iconColor: 'scarlet-600',
+      iconColor: 'ochre-700',
       auth: ASSISTANT,
     },
     {
@@ -76,7 +76,7 @@ function DashboardReportsData() {
       name: 'Members only content',
       description: 'Content only available to site members',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_MEMBERS}`,
-      iconColor: 'charcoal-500',
+      iconColor: 'charcoal-600',
       auth: ASSISTANT,
     },
     {

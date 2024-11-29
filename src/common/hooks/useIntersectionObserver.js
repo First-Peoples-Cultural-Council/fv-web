@@ -9,7 +9,7 @@ export default function useIntersectionObserver({
   enabled = true,
 }) {
   useEffect(() => {
-    const el = target && target?.current
+    const el = target?.current
     if (!enabled || !el) {
       return
     }
@@ -17,14 +17,17 @@ export default function useIntersectionObserver({
       (entries) =>
         entries.forEach((entry) => entry.isIntersecting && onIntersect()),
       {
-        root: root && root.current,
+        root: root?.current,
         rootMargin,
         threshold,
       },
     )
     observer.observe(el)
+
     return () => {
-      observer.unobserve(el)
+      if (el) {
+        observer.unobserve(el)
+      }
     }
-  }, [target.current, enabled])
+  }, [target, enabled, root, rootMargin, threshold, onIntersect])
 }

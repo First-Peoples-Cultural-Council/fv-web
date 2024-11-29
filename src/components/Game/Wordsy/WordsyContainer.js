@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Loading from 'components/Loading'
 import WordsyData from 'components/Game/Wordsy/WordsyData'
 import WordsyPresentation from 'components/Game/Wordsy/WordsyPresentation'
+import SiteDocHead from 'components/SiteDocHead'
 
 function WordsyContainer({ kids }) {
   const {
@@ -25,6 +26,7 @@ function WordsyContainer({ kids }) {
   } = WordsyData({ kids })
   return (
     <Loading.Container isLoading={isFetching}>
+      <SiteDocHead titleArray={['Wordsy', 'Games']} />
       <WordsyPresentation
         tries={tries}
         solution={solution}
