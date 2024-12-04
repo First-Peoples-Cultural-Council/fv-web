@@ -27,13 +27,13 @@ function GalleryPresentation({ data }) {
           <div>{data?.introTranslation}</div>
         </div>
       )}
-      <div className="p-4 flex flex-wrap mb-2">
+      <div className="p-4 columns-4 gap-6">
         {data?.galleryItems?.length > 0 &&
           data?.galleryItems?.map((image) => (
             <LazyLoader key={image?.id}>
-              <div className="m-2">
+              <div className="mb-6 space-y-2 break-inside-avoid-column">
                 <ImageWithLightbox.Presentation image={image} />
-                <p className="py-2">{image.title}</p>
+                <p className="text-sm break-words">{image.title}</p>
               </div>
             </LazyLoader>
           ))}
