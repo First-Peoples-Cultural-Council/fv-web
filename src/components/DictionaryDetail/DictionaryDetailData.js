@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 // FPCC
@@ -14,23 +13,16 @@ function DictionaryDetailData({ id, sitename }) {
   const backHandler = () => navigate(-1)
 
   // Data fetch
-  const { data, error, isError, isInitialLoading } = useDictionaryEntry({
+  const dictionaryEntryQueryReturn = useDictionaryEntry({
     id: idToSend,
     sitename: sitenameToSend,
   })
 
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitenameToSend}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
-
   return {
-    isLoading: isInitialLoading || isError,
-    entry: data?.title ? data : {},
+    dictionaryEntryQueryReturn,
+    entry: dictionaryEntryQueryReturn?.data?.title
+      ? dictionaryEntryQueryReturn?.data
+      : {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename: sitenameToSend,
