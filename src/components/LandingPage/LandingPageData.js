@@ -1,6 +1,7 @@
 // FPCC
 import Elders from 'assets/images/elders-landing.png'
-import Img from 'assets/images/landing-about.png'
+import aboutImage from 'assets/images/landing-about.png'
+import appsImage from 'assets/images/landing-apps.png'
 import bgImage from 'assets/images/landing-about-bg.png'
 import languages from 'assets/images/languages-background.png'
 import {
@@ -8,6 +9,7 @@ import {
   WIDGET_TEXTICONS,
   WIDGET_QUOTES,
   FIRSTVOICESLINK,
+  FORMAT_RIGHT,
 } from 'src/common/constants'
 
 function LandingPageData() {
@@ -30,7 +32,7 @@ function LandingPageData() {
       mockData: true,
       bgColor: 'jade-500',
       bgImage,
-      image: Img,
+      image: aboutImage,
       title: 'ABOUT FIRSTVOICES',
       url: `https://${FIRSTVOICESLINK}/about`,
       urlLabel: 'Learn more',
@@ -56,10 +58,26 @@ function LandingPageData() {
     },
   }
 
+  const appsData = {
+    id: 4,
+    type: WIDGET_TEXT,
+    format: FORMAT_RIGHT,
+    settings: {
+      mockData: true,
+      image: appsImage,
+      title: 'FIRSTVOICES APPS',
+      url: `https://${FIRSTVOICESLINK}/apps`,
+      urlLabel: 'Learn more',
+      textWithFormatting:
+        '<p>The wealth of language data uploaded by Indigenous communities onto their FirstVoices language sites can now also be accessed through mobile and desktop apps. The app pulls content directly from entries on FirstVoices and functions with offline capabilities. The apps are updated throughout the year in order to ensure that the latest content that has been added to a language site also appears on the app.</p>',
+    },
+  }
+
   return {
     whyData,
     aboutData,
     quotesData,
+    appsData,
   }
 }
 
