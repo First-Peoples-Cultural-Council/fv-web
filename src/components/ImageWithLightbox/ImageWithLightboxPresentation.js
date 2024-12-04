@@ -16,9 +16,10 @@ function ImageWithLightboxPresentation({
   return (
     <>
       <button
+        data-testid={`lightbox-btn-${image?.title}`}
         type="button"
         onClick={() => setLightboxOpen(true)}
-        className="relative group flex"
+        className="relative group flex w-full"
       >
         <img
           className={imgStyling}

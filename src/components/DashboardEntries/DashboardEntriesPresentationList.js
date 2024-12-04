@@ -159,7 +159,7 @@ function DashboardEntriesPresentationList({
                           </td>
                           <td className="p-4 whitespace-nowrap">
                             <span
-                              className={`px-2 py-1 inline-flex text-xs font-medium rounded-full bg-${entry?.type} capitalize text-white`}
+                              className={`px-2 py-1 inline-flex text-xs font-medium rounded-full bg-${entry?.type?.toLowerCase()}-color-700 capitalize text-white`}
                             >
                               {entry?.type}
                             </span>
