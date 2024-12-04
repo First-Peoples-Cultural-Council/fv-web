@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -15,7 +15,6 @@ import {
 } from 'common/constants'
 
 function ByAlphabetData({ kids = null }) {
-  const navigate = useNavigate()
   const { sitename } = useParams()
   const [searchParams] = useSearchParams()
 
@@ -31,50 +30,33 @@ function ByAlphabetData({ kids = null }) {
     [STARTS_WITH_CHAR]: character,
   })
 
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError, error } =
-    useSearchLoader({ searchParams: _searchParams })
+  const searchQueryReturn = useSearchLoader({ searchParams: _searchParams })
 
-  const alphabetResponse = useCharacters()
+  const characterQueryReturn = useCharacters()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
   useEffect(() => {
     if (
-      alphabetResponse?.data &&
-      alphabetResponse?.status === 'success' &&
-      !alphabetResponse?.isError
+      characterQueryReturn?.data &&
+      !characterQueryReturn?.isPending &&
+      !characterQueryReturn?.isError
     ) {
-      const selectedCharacter = alphabetResponse?.data?.characters?.find(
+      const selectedCharacter = characterQueryReturn?.data?.characters?.find(
         (char) => char?.title === character,
       )
       if (selectedCharacter?.id !== currentCharacter?.id) {
         setCurrentCharacter(selectedCharacter)
       }
     }
-  }, [alphabetResponse?.status, currentCharacter, character])
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
+  }, [currentCharacter, character, characterQueryReturn])
 
   return {
-    characters:
-      alphabetResponse?.data?.characters?.length > 0
-        ? alphabetResponse?.data?.characters
-        : [],
-    charactersAreLoading: alphabetResponse?.isLoading,
-    isLoading: isInitialLoading || isError,
-    items: data || {},
+    characterQueryReturn,
+    searchQueryReturn,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
-    infiniteScroll,
-    loadRef,
     currentCharacter,
     searchType,
     setSearchType: setSearchTypeInUrl,

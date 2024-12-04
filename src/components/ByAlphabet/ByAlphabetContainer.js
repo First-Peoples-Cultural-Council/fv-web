@@ -4,51 +4,47 @@ import PropTypes from 'prop-types'
 // FPCC
 import ByAlphabetPresentation from 'components/ByAlphabet/ByAlphabetPresentation'
 import ByAlphabetData from 'components/ByAlphabet/ByAlphabetData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 
 function ByAlphabetContainer({ kids = null }) {
   const {
     actions,
-    characters,
-    charactersAreLoading,
+    characterQueryReturn,
     currentCharacter,
     searchType,
     setSearchType,
     entryLabel,
-    infiniteScroll,
-    loadRef,
-    isLoading,
-    items,
+    searchQueryReturn,
     moreActions,
     selectedTab,
     sitename,
     tabs,
   } = ByAlphabetData({ kids })
   return (
-    <Loading.Container isLoading={charactersAreLoading}>
+    <LoadOrError queryReturn={characterQueryReturn}>
       <SiteDocHead
         titleArray={[currentCharacter?.title, 'Dictionary']}
         description={`Dictionary entries that start with ${currentCharacter?.title}.`}
       />
       <ByAlphabetPresentation
         actions={actions}
-        characters={characters}
+        characters={characterQueryReturn?.data?.characters || []}
         currentCharacter={currentCharacter}
         searchType={searchType}
         setSearchType={setSearchType}
         entryLabel={entryLabel}
-        infiniteScroll={infiniteScroll}
-        loadRef={loadRef}
-        isLoading={isLoading}
-        items={items}
+        infiniteScroll={searchQueryReturn?.infiniteScroll}
+        loadRef={searchQueryReturn?.loadRef}
+        isLoading={searchQueryReturn?.isPending}
+        items={searchQueryReturn?.data || {}}
         kids={kids}
         moreActions={moreActions}
         selectedTab={selectedTab}
         sitename={sitename}
         tabs={tabs}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
