@@ -15,7 +15,6 @@ function LoadOrError({ children, queryReturn, height = 'h-screen' }) {
       <ErrorHandler.Container
         error={{
           status: queryReturn?.error?.response?.status,
-          statusText: queryReturn?.error?.message,
         }}
       />
     )
