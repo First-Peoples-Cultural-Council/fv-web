@@ -30,7 +30,7 @@ function SongsAndStoriesPresentation({
   function getDrawerContents() {
     switch (selectedItem?.type) {
       case 'song':
-        return <Song.Container docId={selectedItem?.id} isDrawer />
+        return <Song.Container id={selectedItem?.id} isDrawer />
       case 'story':
         return <Story.Container id={selectedItem?.id} isDrawer />
       default:

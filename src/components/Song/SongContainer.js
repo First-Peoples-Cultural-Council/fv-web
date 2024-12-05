@@ -3,29 +3,28 @@ import PropTypes from 'prop-types'
 import SongData from 'components/Song/SongData'
 import SongPresentation from 'components/Song/SongPresentation'
 import SongPresentationDrawer from 'components/Song/SongPresentationDrawer'
-import Loading from 'components/Loading'
-import { useParams } from 'react-router-dom'
+import LoadOrError from 'components/LoadOrError'
 
-function SongContainer({ docId, sitename, isDrawer }) {
-  const { sitename: sitenameParams } = useParams()
-  const sitenameToSend = sitename || sitenameParams
-
-  const { entry, isLoading } = SongData({ docId, sitename: sitenameToSend })
+function SongContainer({ id, sitename, isDrawer }) {
+  const { entry, songQueryReturn } = SongData({
+    id,
+    sitename,
+  })
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryReturn={songQueryReturn}>
       {isDrawer ? (
-        <SongPresentationDrawer entry={entry} sitename={sitenameToSend} />
+        <SongPresentationDrawer entry={entry} />
       ) : (
         <SongPresentation entry={entry} />
       )}
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
 // PROPTYPES
 const { bool, string } = PropTypes
 SongContainer.propTypes = {
-  docId: string,
+  id: string,
   sitename: string,
   isDrawer: bool,
 }

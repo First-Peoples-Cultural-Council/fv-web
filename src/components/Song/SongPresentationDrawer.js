@@ -8,7 +8,7 @@ import AudioNative from 'components/AudioNative'
 import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK, SMALL, ORIGINAL } from 'common/constants'
 
-function SongPresentationDrawer({ entry, sitename }) {
+function SongPresentationDrawer({ entry }) {
   return (
     <div data-testid="SongPresentationDrawer">
       <div className="sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
@@ -71,7 +71,7 @@ function SongPresentationDrawer({ entry, sitename }) {
         <div className="sm:flex-1">
           <div className="flex flex-wrap">
             <Link
-              to={`/${sitename}/songs/${entry?.id}`}
+              to={`/${entry?.site?.slug}/songs/${entry?.id}`}
               className="btn-contained bg-song-color-900 shrink-0 w-full sm:flex-1"
             >
               <span className="whitespace-nowrap">Go to Song</span>
@@ -108,10 +108,9 @@ function SongPresentationDrawer({ entry, sitename }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { object } = PropTypes
 SongPresentationDrawer.propTypes = {
   entry: object,
-  sitename: string,
 }
 
 export default SongPresentationDrawer
