@@ -12,36 +12,44 @@ const AlphabetData = () => {
 
   const character = searchParams.get(CHAR) || null
 
-  const { isInitialLoading, data } = useCharacters()
+  const characterQueryReturn = useCharacters()
 
   const getCharacterDataToDisplay = useCallback(
     (selectedCharacter) => {
-      const characters = Object.assign([], data?.characters)
+      const characters = Object.assign(
+        [],
+        characterQueryReturn?.data?.characters,
+      )
       const found = characters.filter(
         (char) => char.title === selectedCharacter,
       )[0]
 
       return found?.title ? found : null
     },
-    [data],
+    [characterQueryReturn?.data],
   )
 
   // Set selected character data based on the url - only relevant to Alphabet Page
   useEffect(() => {
-    if (data?.characters?.length > 0) {
+    if (characterQueryReturn?.data?.characters?.length > 0) {
       if (character && character !== selectedData?.title) {
         const dataToDisplay = getCharacterDataToDisplay(character)
         if (dataToDisplay) setSelectedData(dataToDisplay)
       }
     }
-  }, [character, data, selectedData, getCharacterDataToDisplay])
+  }, [
+    character,
+    characterQueryReturn?.data,
+    selectedData,
+    getCharacterDataToDisplay,
+  ])
 
   // If no character selected then select the first character
   useEffect(() => {
-    if (data?.characters?.length > 0 && !selectedData) {
-      setSelectedData(data?.characters?.[0])
+    if (characterQueryReturn?.data?.characters?.length > 0 && !selectedData) {
+      setSelectedData(characterQueryReturn?.data?.characters?.[0])
     }
-  }, [data, selectedData])
+  }, [characterQueryReturn?.data, selectedData])
 
   // Video Modal
   const [videoIsOpen, setVideoIsOpen] = useState(false)
@@ -55,9 +63,9 @@ const AlphabetData = () => {
   }
 
   return {
-    characters: data?.characters,
-    links: data?.relatedLinks || [],
-    isLoading: isInitialLoading,
+    characters: characterQueryReturn?.data?.characters,
+    links: characterQueryReturn?.data?.relatedLinks || [],
+    characterQueryReturn,
     sitename,
     onCharacterClick,
     onVideoClick: () => setVideoIsOpen(!videoIsOpen),
