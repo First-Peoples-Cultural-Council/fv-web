@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
@@ -8,20 +7,10 @@ import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardPagesData() {
   const { site } = useSiteStore()
-  const navigate = useNavigate()
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, error, isError, isInitialLoading } = usePages()
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
+  const pagesQueryReturn = usePages()
 
   const tileContent = [
     {
@@ -50,11 +39,14 @@ function DashboardPagesData() {
 
   return {
     headerContent,
-    isLoading: isInitialLoading || isError,
+    pagesQueryReturn,
     site,
     sitename,
     tileContent,
-    customPages: data?.results?.length > 0 ? data?.results : [],
+    customPages:
+      pagesQueryReturn?.data?.results?.length > 0
+        ? pagesQueryReturn?.data?.results
+        : [],
   }
 }
 
