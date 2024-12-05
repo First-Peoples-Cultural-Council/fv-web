@@ -4,21 +4,17 @@ import StoryData from 'components/Story/StoryData'
 import StoryPresentation from 'components/Story/StoryPresentation'
 import StoryPresentationDrawer from 'components/Story/StoryPresentationDrawer'
 import LoadOrError from 'components/LoadOrError'
-import { useParams } from 'react-router-dom'
 
-function StoryContainer({ docId, sitename, isDrawer }) {
-  const { sitename: sitenameParams } = useParams()
-  const sitenameToSend = sitename || sitenameParams
-
+function StoryContainer({ id, sitename, isDrawer }) {
   const { entry, storyQueryReturn } = StoryData({
-    docId,
-    sitename: sitenameToSend,
+    id,
+    sitename,
   })
 
   return (
     <LoadOrError queryReturn={storyQueryReturn}>
       {isDrawer ? (
-        <StoryPresentationDrawer entry={entry} sitename={sitenameToSend} />
+        <StoryPresentationDrawer entry={entry} />
       ) : (
         <StoryPresentation entry={entry} />
       )}
@@ -29,7 +25,7 @@ function StoryContainer({ docId, sitename, isDrawer }) {
 // PROPTYPES
 const { bool, string } = PropTypes
 StoryContainer.propTypes = {
-  docId: string,
+  id: string,
   sitename: string,
   isDrawer: bool,
 }

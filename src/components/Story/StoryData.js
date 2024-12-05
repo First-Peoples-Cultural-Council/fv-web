@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom'
+
+// FPCC
 import { useStory } from 'common/dataHooks/useStories'
 
-function StoryData({ docId, sitename }) {
-  const { id, sitename: paramsSitename } = useParams()
-
-  const idToSend = docId || id
+function StoryData({ id, sitename }) {
+  const { id: paramsId, sitename: paramsSitename } = useParams()
+  const idToSend = id || paramsId
   const sitenameToSend = sitename || paramsSitename
 
   // Data fetch
@@ -16,7 +17,6 @@ function StoryData({ docId, sitename }) {
   return {
     storyQueryReturn,
     entry: storyQueryReturn?.data?.title ? storyQueryReturn?.data : {},
-    sitename: sitenameToSend,
   }
 }
 
