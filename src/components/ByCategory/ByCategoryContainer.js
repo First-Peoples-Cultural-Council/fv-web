@@ -4,49 +4,42 @@ import PropTypes from 'prop-types'
 // FPCC
 import ByCategoryPresentation from 'components/ByCategory/ByCategoryPresentation'
 import ByCategoryData from 'components/ByCategory/ByCategoryData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
     actions,
-    categories,
-    categoriesAreLoading,
+    categoriesQueryReturn,
     currentCategory,
     currentParentCategory,
     searchType,
     setSearchType,
     entryLabel,
-    infiniteScroll,
-    loadRef,
-    isLoading,
-    items,
+    searchQueryReturn,
     moreActions,
     selectedTab,
     sitename,
     tabs,
   } = ByCategoryData({ kids })
   return (
-    <Loading.Container isLoading={categoriesAreLoading}>
+    <LoadOrError queryReturn={categoriesQueryReturn}>
       <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
       <ByCategoryPresentation
         actions={actions}
-        categories={categories}
+        categories={categoriesQueryReturn?.data?.results || []}
         currentCategory={currentCategory}
         currentParentCategory={currentParentCategory}
+        searchQueryReturn={searchQueryReturn}
         searchType={searchType}
         setSearchType={setSearchType}
         entryLabel={entryLabel}
-        infiniteScroll={infiniteScroll}
-        loadRef={loadRef}
-        isLoading={isLoading}
-        items={items}
         kids={kids}
         moreActions={moreActions}
         selectedTab={selectedTab}
         sitename={sitename}
         tabs={tabs}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
