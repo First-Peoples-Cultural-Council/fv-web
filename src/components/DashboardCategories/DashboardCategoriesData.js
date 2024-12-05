@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
@@ -8,21 +7,11 @@ import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCategoriesData() {
   const { site } = useSiteStore()
-  const navigate = useNavigate()
   const { sitename } = useParams()
 
   // Data fetch
 
-  const { allCategories, isError, error, isInitialLoading } = useCategories()
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError, error, sitename, navigate])
+  const categoriesQueryReturn = useCategories()
 
   const tileContent = [
     {
@@ -43,11 +32,11 @@ function DashboardCategoriesData() {
 
   return {
     headerContent,
-    isLoading: isInitialLoading,
+    categoriesQueryReturn,
     site,
     sitename,
     tileContent,
-    categories: allCategories || [],
+    categories: categoriesQueryReturn?.allCategories || [],
   }
 }
 
