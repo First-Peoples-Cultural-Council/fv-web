@@ -1,14 +1,15 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 // FPCC
 import useGoBack from 'common/hooks/useGoBack'
+import { useSiteStore } from 'context/SiteContext'
 
 function ErrorHandlerData() {
   const [searchParams] = useSearchParams()
 
-  const { sitename } = useParams()
+  const { site } = useSiteStore()
   const { goBack } = useGoBack({
-    fallbackRoute: sitename ? `/${sitename}` : '/',
+    fallbackRoute: site?.sitename ? `/${site?.sitename}` : '/',
   })
 
   const status = searchParams.get('status') || '0'
