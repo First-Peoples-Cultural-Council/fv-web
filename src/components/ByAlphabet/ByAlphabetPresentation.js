@@ -13,7 +13,7 @@ function ByAlphabetPresentation({
   actions,
   characters,
   currentCharacter,
-  searchQueryReturn,
+  searchInfiniteQueryResponse,
   searchType,
   setSearchType,
   entryLabel,
@@ -21,9 +21,9 @@ function ByAlphabetPresentation({
   moreActions,
   sitename,
 }) {
-  const infiniteScroll = searchQueryReturn?.infiniteScroll
-  const loadRef = searchQueryReturn?.loadRef
-  const items = searchQueryReturn?.data || {}
+  const infiniteScroll = searchInfiniteQueryResponse?.infiniteScroll
+  const loadRef = searchInfiniteQueryResponse?.loadRef
+  const items = searchInfiniteQueryResponse?.data || {}
 
   const getAlphabetList = () =>
     characters.map(({ title, id }) => (
@@ -149,7 +149,7 @@ function ByAlphabetPresentation({
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
-                isLoading={searchQueryReturn?.isPending}
+                isLoading={searchInfiniteQueryResponse?.isPending}
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
@@ -173,7 +173,7 @@ function ByAlphabetPresentation({
                 <DictionaryList.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={searchQueryReturn?.isPending}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   noResultsMessage={getNoResultsMessage()}
@@ -186,7 +186,7 @@ function ByAlphabetPresentation({
                 <DictionaryGrid.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={searchQueryReturn?.isPending}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   sitename={sitename}
@@ -207,7 +207,7 @@ ByAlphabetPresentation.propTypes = {
   actions: array,
   characters: array,
   currentCharacter: object,
-  searchQueryReturn: object,
+  searchInfiniteQueryResponse: object,
   searchType: string,
   setSearchType: func,
   entryLabel: string,

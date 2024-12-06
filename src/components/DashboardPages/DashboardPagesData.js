@@ -10,7 +10,7 @@ function DashboardPagesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const pagesQueryReturn = usePages()
+  const pagesQueryResponse = usePages()
 
   const tileContent = [
     {
@@ -39,13 +39,13 @@ function DashboardPagesData() {
 
   return {
     headerContent,
-    pagesQueryReturn,
+    pagesQueryResponse,
     site,
     sitename,
     tileContent,
     customPages:
-      pagesQueryReturn?.data?.results?.length > 0
-        ? pagesQueryReturn?.data?.results
+      pagesQueryResponse?.data?.results?.length > 0
+        ? pagesQueryResponse?.data?.results
         : [],
   }
 }

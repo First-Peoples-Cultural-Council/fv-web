@@ -9,27 +9,27 @@ import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
     actions,
-    categoriesQueryReturn,
+    categoriesQueryResponse,
     currentCategory,
     currentParentCategory,
     searchType,
     setSearchType,
     entryLabel,
-    searchQueryReturn,
+    searchInfiniteQueryResponse,
     moreActions,
     selectedTab,
     sitename,
     tabs,
   } = ByCategoryData({ kids })
   return (
-    <LoadOrError queryReturn={categoriesQueryReturn}>
+    <LoadOrError queryResponse={categoriesQueryResponse}>
       <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
       <ByCategoryPresentation
         actions={actions}
-        categories={categoriesQueryReturn?.data?.results || []}
+        categories={categoriesQueryResponse?.data?.results || []}
         currentCategory={currentCategory}
         currentParentCategory={currentParentCategory}
-        searchQueryReturn={searchQueryReturn}
+        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
         searchType={searchType}
         setSearchType={setSearchType}
         entryLabel={entryLabel}

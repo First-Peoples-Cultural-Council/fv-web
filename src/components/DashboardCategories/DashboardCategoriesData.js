@@ -11,7 +11,7 @@ function DashboardCategoriesData() {
 
   // Data fetch
 
-  const categoriesQueryReturn = useCategories()
+  const categoriesQueryResponse = useCategories()
 
   const tileContent = [
     {
@@ -32,11 +32,11 @@ function DashboardCategoriesData() {
 
   return {
     headerContent,
-    categoriesQueryReturn,
+    categoriesQueryResponse,
     site,
     sitename,
     tileContent,
-    categories: categoriesQueryReturn?.allCategories || [],
+    categories: categoriesQueryResponse?.allCategories || [],
   }
 }
 

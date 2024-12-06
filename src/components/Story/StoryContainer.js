@@ -6,13 +6,13 @@ import StoryPresentationDrawer from 'components/Story/StoryPresentationDrawer'
 import LoadOrError from 'components/LoadOrError'
 
 function StoryContainer({ id, sitename, isDrawer }) {
-  const { entry, storyQueryReturn } = StoryData({
+  const { entry, storyQueryResponse } = StoryData({
     id,
     sitename,
   })
 
   return (
-    <LoadOrError queryReturn={storyQueryReturn}>
+    <LoadOrError queryResponse={storyQueryResponse}>
       {isDrawer ? (
         <StoryPresentationDrawer entry={entry} />
       ) : (

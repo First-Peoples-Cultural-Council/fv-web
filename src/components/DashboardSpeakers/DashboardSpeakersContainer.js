@@ -8,7 +8,7 @@ function DashboardSpeakersContainer() {
   const {
     speakers,
     headerContent,
-    peopleQueryReturn,
+    peopleQueryResponse,
     site,
     sitename,
     tileContent,
@@ -18,7 +18,7 @@ function DashboardSpeakersContainer() {
       headerContent={headerContent}
       tileContent={tileContent}
       speakers={speakers}
-      isLoading={peopleQueryReturn?.isPending}
+      isLoading={peopleQueryResponse?.isPending}
       site={site}
       sitename={sitename}
     />

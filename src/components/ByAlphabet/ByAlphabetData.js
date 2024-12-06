@@ -30,30 +30,32 @@ function ByAlphabetData({ kids = null }) {
     [STARTS_WITH_CHAR]: character,
   })
 
-  const searchQueryReturn = useSearchLoader({ searchParams: _searchParams })
+  const searchInfiniteQueryResponse = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
-  const characterQueryReturn = useCharacters()
+  const characterQueryResponse = useCharacters()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
   useEffect(() => {
     if (
-      characterQueryReturn?.data &&
-      !characterQueryReturn?.isPending &&
-      !characterQueryReturn?.isError
+      characterQueryResponse?.data &&
+      !characterQueryResponse?.isPending &&
+      !characterQueryResponse?.isError
     ) {
-      const selectedCharacter = characterQueryReturn?.data?.characters?.find(
+      const selectedCharacter = characterQueryResponse?.data?.characters?.find(
         (char) => char?.title === character,
       )
       if (selectedCharacter?.id !== currentCharacter?.id) {
         setCurrentCharacter(selectedCharacter)
       }
     }
-  }, [currentCharacter, character, characterQueryReturn])
+  }, [currentCharacter, character, characterQueryResponse])
 
   return {
-    characterQueryReturn,
-    searchQueryReturn,
+    characterQueryResponse,
+    searchInfiniteQueryResponse,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,

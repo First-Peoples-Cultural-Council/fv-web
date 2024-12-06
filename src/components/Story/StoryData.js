@@ -9,14 +9,14 @@ function StoryData({ id, sitename }) {
   const sitenameToSend = sitename || paramsSitename
 
   // Data fetch
-  const storyQueryReturn = useStory({
+  const storyQueryResponse = useStory({
     id: idToSend,
     sitename: sitenameToSend,
   })
 
   return {
-    storyQueryReturn,
-    entry: storyQueryReturn?.data?.title ? storyQueryReturn?.data : {},
+    storyQueryResponse,
+    entry: storyQueryResponse?.data?.title ? storyQueryResponse?.data : {},
   }
 }
 

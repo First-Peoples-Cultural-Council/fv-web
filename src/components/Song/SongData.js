@@ -10,11 +10,11 @@ function SongData({ id, sitename }) {
   const sitenameToSend = sitename || paramsSitename
 
   // Data fetch
-  const songQueryReturn = useSong({ id: idToSend, sitename: sitenameToSend })
+  const songQueryResponse = useSong({ id: idToSend, sitename: sitenameToSend })
 
   return {
-    songQueryReturn,
-    entry: songQueryReturn?.data?.title ? songQueryReturn?.data : {},
+    songQueryResponse,
+    entry: songQueryResponse?.data?.title ? songQueryResponse?.data : {},
   }
 }
 

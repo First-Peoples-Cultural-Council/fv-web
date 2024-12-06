@@ -7,7 +7,7 @@ import DashboardCategoriesPresentation from 'components/DashboardCategories/Dash
 function DashboardCategoriesContainer() {
   const {
     categories,
-    categoriesQueryReturn,
+    categoriesQueryResponse,
     headerContent,
     site,
     sitename,
@@ -18,7 +18,7 @@ function DashboardCategoriesContainer() {
       headerContent={headerContent}
       tileContent={tileContent}
       categories={categories}
-      isLoading={categoriesQueryReturn?.isPending}
+      isLoading={categoriesQueryResponse?.isPending}
       site={site}
       sitename={sitename}
     />

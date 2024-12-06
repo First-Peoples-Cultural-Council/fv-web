@@ -14,13 +14,13 @@ function DictionaryDetailContainer({ id, sitename, isDrawer, kids }) {
   const {
     actions,
     backHandler,
-    dictionaryEntryQueryReturn,
+    dictionaryEntryQueryResponse,
     entry,
     moreActions,
   } = DictionaryDetailData({ id, sitename: sitenameToSend })
 
   return (
-    <LoadOrError queryReturn={dictionaryEntryQueryReturn}>
+    <LoadOrError queryResponse={dictionaryEntryQueryResponse}>
       {isDrawer && (
         <DictionaryDetailPresentationDrawer
           actions={actions}

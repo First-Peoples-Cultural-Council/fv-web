@@ -23,20 +23,22 @@ function ByCategoryData({ kids = null }) {
   })
 
   // Search fetch
-  const searchQueryReturn = useSearchLoader({ searchParams: _searchParams })
+  const searchInfiniteQueryResponse = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
-  const categoriesQueryReturn = useCategories()
+  const categoriesQueryResponse = useCategories()
 
   const [currentCategory, setCurrentCategory] = useState({})
   const [currentParentCategory, setCurrentParentCategory] = useState({})
 
   useEffect(() => {
-    if (categoriesQueryReturn?.allCategories?.length > 0 && categoryId) {
-      const selectedCategory = categoriesQueryReturn?.allCategories?.find(
+    if (categoriesQueryResponse?.allCategories?.length > 0 && categoryId) {
+      const selectedCategory = categoriesQueryResponse?.allCategories?.find(
         (category) => category?.id === categoryId,
       )
       const parentCategory = selectedCategory?.parentId
-        ? categoriesQueryReturn?.allCategories?.find(
+        ? categoriesQueryResponse?.allCategories?.find(
             (category) => category?.id === selectedCategory.parentId,
           )
         : selectedCategory
@@ -47,11 +49,11 @@ function ByCategoryData({ kids = null }) {
         }
       }
     }
-  }, [categoriesQueryReturn, currentCategory, categoryId])
+  }, [categoriesQueryResponse, currentCategory, categoryId])
 
   return {
-    categoriesQueryReturn,
-    searchQueryReturn,
+    categoriesQueryResponse,
+    searchInfiniteQueryResponse,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,

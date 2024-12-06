@@ -5,16 +5,16 @@ import PropTypes from 'prop-types'
 import LoadingPresentation from 'components/Loading/LoadingPresentation'
 import ErrorHandler from 'components/ErrorHandler'
 
-function LoadOrError({ children, queryReturn, height = 'h-screen' }) {
-  if (queryReturn?.status === 'pending') {
+function LoadOrError({ children, queryResponse, height = 'h-screen' }) {
+  if (queryResponse?.status === 'pending') {
     return <LoadingPresentation height={height} />
   }
 
-  if (queryReturn?.status === 'error') {
+  if (queryResponse?.status === 'error') {
     return (
       <ErrorHandler.Container
         error={{
-          status: queryReturn?.error?.response?.status,
+          status: queryResponse?.error?.response?.status,
         }}
       />
     )
@@ -25,7 +25,7 @@ function LoadOrError({ children, queryReturn, height = 'h-screen' }) {
 const { object, node, string } = PropTypes
 LoadOrError.propTypes = {
   children: node,
-  queryReturn: object,
+  queryResponse: object,
   height: string,
 }
 

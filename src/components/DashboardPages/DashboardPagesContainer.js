@@ -8,7 +8,7 @@ function DashboardPagesContainer() {
   const {
     customPages,
     headerContent,
-    pagesQueryReturn,
+    pagesQueryResponse,
     site,
     sitename,
     tileContent,
@@ -18,7 +18,7 @@ function DashboardPagesContainer() {
       headerContent={headerContent}
       tileContent={tileContent}
       customPages={customPages}
-      isLoading={pagesQueryReturn?.isPending}
+      isLoading={pagesQueryResponse?.isPending}
       site={site}
       sitename={sitename}
     />

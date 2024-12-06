@@ -15,7 +15,7 @@ function ByCategoryPresentation({
   categories,
   currentCategory,
   currentParentCategory,
-  searchQueryReturn,
+  searchInfiniteQueryResponse,
   searchType,
   setSearchType,
   entryLabel,
@@ -23,9 +23,9 @@ function ByCategoryPresentation({
   moreActions,
   sitename,
 }) {
-  const infiniteScroll = searchQueryReturn?.infiniteScroll
-  const loadRef = searchQueryReturn?.loadRef
-  const items = searchQueryReturn?.data || {}
+  const infiniteScroll = searchInfiniteQueryResponse?.infiniteScroll
+  const loadRef = searchInfiniteQueryResponse?.loadRef
+  const items = searchInfiniteQueryResponse?.data || {}
 
   const getParentCategoriesList = () =>
     categories.map((category) => (
@@ -196,7 +196,7 @@ function ByCategoryPresentation({
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
-                isLoading={searchQueryReturn?.isPending}
+                isLoading={searchInfiniteQueryResponse?.isPending}
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
@@ -220,7 +220,7 @@ function ByCategoryPresentation({
                 <DictionaryList.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={searchQueryReturn?.isPending}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   noResultsMessage={getNoResultsMessage()}
@@ -233,7 +233,7 @@ function ByCategoryPresentation({
                 <DictionaryGrid.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={searchQueryReturn?.isPending}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   sitename={sitename}
@@ -258,7 +258,7 @@ ByCategoryPresentation.propTypes = {
   searchType: string,
   entryLabel: string,
   setSearchType: func,
-  searchQueryReturn: object,
+  searchInfiniteQueryResponse: object,
   kids: bool,
   moreActions: array,
   sitename: string,

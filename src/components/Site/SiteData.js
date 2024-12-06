@@ -16,39 +16,42 @@ function SiteData() {
   // --------------------------------
   // Get Language Site data
   // --------------------------------
-  const siteQueryReturn = useSite() // site data request, to put in the site store
+  const siteQueryResponse = useSite() // site data request, to put in the site store
   const { site } = useSiteStore() // site store, to validate when it is ready for use
 
   useEffect(() => {
     if (
-      !siteQueryReturn?.isPending &&
-      !siteQueryReturn?.isError &&
-      siteQueryReturn?.data?.sitename !== site?.sitename
+      !siteQueryResponse?.isPending &&
+      !siteQueryResponse?.isError &&
+      siteQueryResponse?.data?.sitename !== site?.sitename
     ) {
-      siteDispatch({ type: 'SET', data: siteQueryReturn?.data })
+      siteDispatch({ type: 'SET', data: siteQueryResponse?.data })
     }
-  }, [siteQueryReturn, siteDispatch, sitename, site?.sitename])
+  }, [siteQueryResponse, siteDispatch, sitename, site?.sitename])
 
   // --------------------------------
   // Get immersion data
   // --------------------------------
-  const immersionQueryReturn = useImmersionMap()
+  const immersionQueryResponse = useImmersionMap()
 
   useEffect(() => {
-    if (!immersionQueryReturn?.isPending && !immersionQueryReturn?.isError) {
+    if (
+      !immersionQueryResponse?.isPending &&
+      !immersionQueryResponse?.isError
+    ) {
       // addResourceBundle will not replace the labels if the object is empty (i.e. a site has no labels).
       // To prevent labels from one site carrying over to a site with no labels we must clear the resource
-      if (JSON.stringify(immersionQueryReturn?.data) === '{}') {
+      if (JSON.stringify(immersionQueryResponse?.data) === '{}') {
         i18next.removeResourceBundle('language', 'translation')
       } else {
         i18next.addResourceBundle(
           'language',
           'translation',
-          immersionQueryReturn?.data,
+          immersionQueryResponse?.data,
         )
       }
     }
-  }, [immersionQueryReturn])
+  }, [immersionQueryResponse])
 
   useEffect(() => {
     // If on a site that doesn't have the immersion feature
@@ -59,7 +62,7 @@ function SiteData() {
   }, [site])
 
   return {
-    queryReturn: siteQueryReturn,
+    siteQueryResponse,
   }
 }
 

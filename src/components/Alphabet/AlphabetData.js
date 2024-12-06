@@ -12,13 +12,13 @@ const AlphabetData = () => {
 
   const character = searchParams.get(CHAR) || null
 
-  const characterQueryReturn = useCharacters()
+  const characterQueryResponse = useCharacters()
 
   const getCharacterDataToDisplay = useCallback(
     (selectedCharacter) => {
       const characters = Object.assign(
         [],
-        characterQueryReturn?.data?.characters,
+        characterQueryResponse?.data?.characters,
       )
       const found = characters.filter(
         (char) => char.title === selectedCharacter,
@@ -26,12 +26,12 @@ const AlphabetData = () => {
 
       return found?.title ? found : null
     },
-    [characterQueryReturn?.data],
+    [characterQueryResponse?.data],
   )
 
   // Set selected character data based on the url - only relevant to Alphabet Page
   useEffect(() => {
-    if (characterQueryReturn?.data?.characters?.length > 0) {
+    if (characterQueryResponse?.data?.characters?.length > 0) {
       if (character && character !== selectedData?.title) {
         const dataToDisplay = getCharacterDataToDisplay(character)
         if (dataToDisplay) setSelectedData(dataToDisplay)
@@ -39,17 +39,17 @@ const AlphabetData = () => {
     }
   }, [
     character,
-    characterQueryReturn?.data,
+    characterQueryResponse?.data,
     selectedData,
     getCharacterDataToDisplay,
   ])
 
   // If no character selected then select the first character
   useEffect(() => {
-    if (characterQueryReturn?.data?.characters?.length > 0 && !selectedData) {
-      setSelectedData(characterQueryReturn?.data?.characters?.[0])
+    if (characterQueryResponse?.data?.characters?.length > 0 && !selectedData) {
+      setSelectedData(characterQueryResponse?.data?.characters?.[0])
     }
-  }, [characterQueryReturn?.data, selectedData])
+  }, [characterQueryResponse?.data, selectedData])
 
   // Video Modal
   const [videoIsOpen, setVideoIsOpen] = useState(false)
@@ -63,9 +63,9 @@ const AlphabetData = () => {
   }
 
   return {
-    characters: characterQueryReturn?.data?.characters,
-    links: characterQueryReturn?.data?.relatedLinks || [],
-    characterQueryReturn,
+    characters: characterQueryResponse?.data?.characters,
+    links: characterQueryResponse?.data?.relatedLinks || [],
+    characterQueryResponse,
     sitename,
     onCharacterClick,
     onVideoClick: () => setVideoIsOpen(!videoIsOpen),

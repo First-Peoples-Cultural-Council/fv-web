@@ -10,31 +10,31 @@ function PageData({ pageSlug }) {
   const slugToUse = pageSlug || slug
 
   // Data fetch
-  const pageQueryReturn = usePage({
+  const pageQueryResponse = usePage({
     pageSlug: slugToUse,
   })
 
   let backgroundType = null
   let background = null
 
-  if (pageQueryReturn?.data?.bannerImage) {
+  if (pageQueryResponse?.data?.bannerImage) {
     backgroundType = IMAGE
-    background = pageQueryReturn?.data?.bannerImage
-  } else if (pageQueryReturn?.data?.bannerVideo) {
+    background = pageQueryResponse?.data?.bannerImage
+  } else if (pageQueryResponse?.data?.bannerVideo) {
     backgroundType = VIDEO
-    background = pageQueryReturn?.data?.bannerVideo
+    background = pageQueryResponse?.data?.bannerVideo
   }
 
   return {
-    pageQueryReturn,
+    pageQueryResponse,
     banner: {
       background,
       backgroundType,
       showLogo: slugToUse === 'our-language' || slugToUse === 'our-people',
     },
-    widgets: pageQueryReturn?.data?.widgets || [],
-    title: pageQueryReturn?.data?.title,
-    subtitle: pageQueryReturn?.data?.subtitle,
+    widgets: pageQueryResponse?.data?.widgets || [],
+    title: pageQueryResponse?.data?.title,
+    subtitle: pageQueryResponse?.data?.subtitle,
   }
 }
 

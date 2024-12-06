@@ -6,12 +6,12 @@ import SongPresentationDrawer from 'components/Song/SongPresentationDrawer'
 import LoadOrError from 'components/LoadOrError'
 
 function SongContainer({ id, sitename, isDrawer }) {
-  const { entry, songQueryReturn } = SongData({
+  const { entry, songQueryResponse } = SongData({
     id,
     sitename,
   })
   return (
-    <LoadOrError queryReturn={songQueryReturn}>
+    <LoadOrError queryResponse={songQueryResponse}>
       {isDrawer ? (
         <SongPresentationDrawer entry={entry} />
       ) : (

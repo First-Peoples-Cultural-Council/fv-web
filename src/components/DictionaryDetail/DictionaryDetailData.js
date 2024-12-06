@@ -13,15 +13,15 @@ function DictionaryDetailData({ id, sitename }) {
   const backHandler = () => navigate(-1)
 
   // Data fetch
-  const dictionaryEntryQueryReturn = useDictionaryEntry({
+  const dictionaryEntryQueryResponse = useDictionaryEntry({
     id: idToSend,
     sitename: sitenameToSend,
   })
 
   return {
-    dictionaryEntryQueryReturn,
-    entry: dictionaryEntryQueryReturn?.data?.title
-      ? dictionaryEntryQueryReturn?.data
+    dictionaryEntryQueryResponse,
+    entry: dictionaryEntryQueryResponse?.data?.title
+      ? dictionaryEntryQueryResponse?.data
       : {},
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],

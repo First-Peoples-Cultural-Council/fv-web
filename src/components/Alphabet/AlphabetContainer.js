@@ -10,7 +10,7 @@ import LoadOrError from 'components/LoadOrError'
 function AlphabetContainer({ widgetView = false, kids = null }) {
   const {
     characters,
-    characterQueryReturn,
+    characterQueryResponse,
     links,
     onCharacterClick,
     onVideoClick,
@@ -19,12 +19,12 @@ function AlphabetContainer({ widgetView = false, kids = null }) {
     videoIsOpen,
   } = AlphabetData()
 
-  if (widgetView && characterQueryReturn?.isPending) {
+  if (widgetView && characterQueryResponse?.isPending) {
     return <AlphabetPlaceholder />
   }
 
   return (
-    <LoadOrError queryReturn={characterQueryReturn}>
+    <LoadOrError queryResponse={characterQueryResponse}>
       {widgetView ? (
         <AlphabetPresentationWidget
           characters={characters}

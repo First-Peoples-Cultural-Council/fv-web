@@ -7,10 +7,10 @@ function CategoriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const categoryQueryReturn = useCategories()
+  const categoryQueryResponse = useCategories()
 
   return {
-    categoryQueryReturn,
+    categoryQueryResponse,
     sitename,
   }
 }

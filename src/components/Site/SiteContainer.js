@@ -14,11 +14,11 @@ import { ASSISTANT } from 'common/constants/roles'
 const Dashboard = lazy(() => import('components/Dashboard/DashboardContainer'))
 
 function SiteContainer() {
-  const { queryReturn } = SiteData()
+  const { siteQueryResponse } = SiteData()
   return (
     <div id="SiteContainer">
       <ScrollToTopOnMount />
-      <LoadOrError queryReturn={queryReturn}>
+      <LoadOrError queryResponse={siteQueryResponse}>
         <Routes>
           <Route
             path="dashboard/*"

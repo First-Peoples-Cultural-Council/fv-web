@@ -10,31 +10,31 @@ import SiteDocHead from 'components/SiteDocHead'
 function ByAlphabetContainer({ kids = null }) {
   const {
     actions,
-    characterQueryReturn,
+    characterQueryResponse,
     currentCharacter,
     searchType,
     setSearchType,
     entryLabel,
-    searchQueryReturn,
+    searchInfiniteQueryResponse,
     moreActions,
     selectedTab,
     sitename,
     tabs,
   } = ByAlphabetData({ kids })
   return (
-    <LoadOrError queryReturn={characterQueryReturn}>
+    <LoadOrError queryResponse={characterQueryResponse}>
       <SiteDocHead
         titleArray={[currentCharacter?.title, 'Dictionary']}
         description={`Dictionary entries that start with ${currentCharacter?.title}.`}
       />
       <ByAlphabetPresentation
         actions={actions}
-        characters={characterQueryReturn?.data?.characters || []}
+        characters={characterQueryResponse?.data?.characters || []}
         currentCharacter={currentCharacter}
         searchType={searchType}
         setSearchType={setSearchType}
         entryLabel={entryLabel}
-        searchQueryReturn={searchQueryReturn}
+        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
         kids={kids}
         moreActions={moreActions}
         selectedTab={selectedTab}

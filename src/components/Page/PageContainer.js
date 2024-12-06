@@ -8,12 +8,12 @@ import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 
 function PageContainer({ pageSlug }) {
-  const { banner, title, subtitle, widgets, pageQueryReturn } = PageData({
+  const { banner, title, subtitle, widgets, pageQueryResponse } = PageData({
     pageSlug,
   })
   const { background, backgroundType, showLogo } = banner
   return (
-    <LoadOrError queryReturn={pageQueryReturn}>
+    <LoadOrError queryResponse={pageQueryResponse}>
       <main id="CustomPage">
         {title && <SiteDocHead titleArray={[title]} description={subtitle} />}
         <PageBanner.Presentation

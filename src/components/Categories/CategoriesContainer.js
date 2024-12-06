@@ -8,12 +8,12 @@ import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 
 function CategoriesContainer({ kids = null }) {
-  const { categoryQueryReturn, sitename } = CategoriesData()
+  const { categoryQueryResponse, sitename } = CategoriesData()
   return (
-    <LoadOrError queryReturn={categoryQueryReturn}>
+    <LoadOrError queryResponse={categoryQueryResponse}>
       <SiteDocHead titleArray={['Categories']} />
       <CategoriesPresentation
-        categories={categoryQueryReturn?.data?.results}
+        categories={categoryQueryResponse?.data?.results}
         kids={kids}
         sitename={sitename}
       />
