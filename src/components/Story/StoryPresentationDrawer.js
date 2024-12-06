@@ -7,7 +7,7 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK } from 'common/constants'
 
-function StoryPresentationDrawer({ entry, sitename }) {
+function StoryPresentationDrawer({ entry }) {
   return (
     <div data-testid="StoryPresentationDrawer">
       <div className="px-4 sm:flex sm:items-end sm:px-6">
@@ -84,7 +84,7 @@ function StoryPresentationDrawer({ entry, sitename }) {
         <div className="sm:flex-1">
           <div className="flex flex-wrap">
             <Link
-              to={`/${sitename}/stories/${entry?.id}`}
+              to={`/${entry?.site?.slug}/stories/${entry?.id}`}
               className="btn-contained shrink-0 w-full bg-story-color-900 sm:flex-1"
             >
               <span className="whitespace-nowrap">Go to Story</span>
@@ -96,10 +96,9 @@ function StoryPresentationDrawer({ entry, sitename }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { object } = PropTypes
 StoryPresentationDrawer.propTypes = {
   entry: object,
-  sitename: string,
 }
 
 export default StoryPresentationDrawer

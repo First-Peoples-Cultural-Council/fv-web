@@ -4,20 +4,20 @@ import PropTypes from 'prop-types'
 // FPCC
 import CategoriesPresentation from 'components/Categories/CategoriesPresentation'
 import CategoriesData from 'components/Categories/CategoriesData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 
 function CategoriesContainer({ kids = null }) {
-  const { categories, isLoading, sitename } = CategoriesData()
+  const { categoryQueryResponse, sitename } = CategoriesData()
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={categoryQueryResponse}>
       <SiteDocHead titleArray={['Categories']} />
       <CategoriesPresentation
-        categories={categories}
+        categories={categoryQueryResponse?.data?.results}
         kids={kids}
         sitename={sitename}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 

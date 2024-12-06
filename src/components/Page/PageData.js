@@ -1,51 +1,40 @@
-import { useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { usePage } from 'common/dataHooks/usePages'
 import { IMAGE, VIDEO } from 'common/constants'
 
 function PageData({ pageSlug }) {
-  const { slug, sitename } = useParams()
-  const navigate = useNavigate()
+  const { slug } = useParams()
 
   const slugToUse = pageSlug || slug
 
   // Data fetch
-  const { data, error, isError, isFetched } = usePage({
+  const pageQueryResponse = usePage({
     pageSlug: slugToUse,
   })
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
 
   let backgroundType = null
   let background = null
 
-  if (data?.bannerImage) {
+  if (pageQueryResponse?.data?.bannerImage) {
     backgroundType = IMAGE
-    background = data?.bannerImage
-  } else if (data?.bannerVideo) {
+    background = pageQueryResponse?.data?.bannerImage
+  } else if (pageQueryResponse?.data?.bannerVideo) {
     backgroundType = VIDEO
-    background = data?.bannerVideo
+    background = pageQueryResponse?.data?.bannerVideo
   }
 
   return {
-    notFound: !!(isFetched && data?.length === 0),
+    pageQueryResponse,
     banner: {
       background,
       backgroundType,
       showLogo: slugToUse === 'our-language' || slugToUse === 'our-people',
     },
-    widgets: data?.widgets || [],
-    title: data?.title,
-    subtitle: data?.subtitle,
+    widgets: pageQueryResponse?.data?.widgets || [],
+    title: pageQueryResponse?.data?.title,
+    subtitle: pageQueryResponse?.data?.subtitle,
   }
 }
 

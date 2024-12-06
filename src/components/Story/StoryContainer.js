@@ -3,36 +3,29 @@ import PropTypes from 'prop-types'
 import StoryData from 'components/Story/StoryData'
 import StoryPresentation from 'components/Story/StoryPresentation'
 import StoryPresentationDrawer from 'components/Story/StoryPresentationDrawer'
-import ErrorHandler from 'components/ErrorHandler'
-import Loading from 'components/Loading'
-import { useParams } from 'react-router-dom'
+import LoadOrError from 'components/LoadOrError'
 
-function StoryContainer({ docId, sitename, isDrawer }) {
-  const { sitename: sitenameParams } = useParams()
-  const sitenameToSend = sitename || sitenameParams
-
-  const { entry, isLoading, notFound, error } = StoryData({
-    docId,
-    sitename: sitenameToSend,
+function StoryContainer({ id, sitename, isDrawer }) {
+  const { entry, storyQueryResponse } = StoryData({
+    id,
+    sitename,
   })
 
-  return notFound ? (
-    <ErrorHandler.Container error={{ status: error.response.status }} />
-  ) : (
-    <Loading.Container isLoading={isLoading}>
+  return (
+    <LoadOrError queryResponse={storyQueryResponse}>
       {isDrawer ? (
-        <StoryPresentationDrawer entry={entry} sitename={sitenameToSend} />
+        <StoryPresentationDrawer entry={entry} />
       ) : (
         <StoryPresentation entry={entry} />
       )}
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
 // PROPTYPES
 const { bool, string } = PropTypes
 StoryContainer.propTypes = {
-  docId: string,
+  id: string,
   sitename: string,
   isDrawer: bool,
 }

@@ -37,7 +37,7 @@ function PageBannerPresentation({
       case VIDEO:
         return 'text-white bg-charcoal-200 items-center h-72 md:h-96 overflow-hidden'
       default:
-        return 'bg-charcoal-200 py-16'
+        return 'bg-white py-8'
     }
   }
 

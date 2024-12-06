@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
@@ -7,22 +6,10 @@ import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function DashboardWidgetsData() {
   const { site } = useSiteStore()
-  const navigate = useNavigate()
   const { sitename } = useParams()
 
   // Data fetch
-  const response = useWidgets()
-
-  const { error, isError, isInitialLoading, widgets } = response
-
-  useEffect(() => {
-    if (isError) {
-      navigate(
-        `/${sitename}/error?status=${error?.response?.status}&statusText=${error?.response?.statusText}&url=${error?.response?.url}`,
-        { replace: true },
-      )
-    }
-  }, [isError])
+  const widgetsQueryResponse = useWidgets()
 
   const tileContent = [
     {
@@ -43,10 +30,13 @@ function DashboardWidgetsData() {
 
   return {
     headerContent,
-    isLoading: isInitialLoading || isError,
+    widgetsQueryResponse,
     site,
     tileContent,
-    widgets: widgets?.length > 0 ? widgets : [],
+    widgets:
+      widgetsQueryResponse?.widgets?.length > 0
+        ? widgetsQueryResponse?.widgets
+        : [],
   }
 }
 

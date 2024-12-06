@@ -19,13 +19,9 @@ function EntryDetailContainer({ id, type, sitename, isDrawer }) {
         />
       )
     case TYPE_SONG:
-      return (
-        <Song.Container docId={id} sitename={sitename} isDrawer={isDrawer} />
-      )
+      return <Song.Container id={id} sitename={sitename} isDrawer={isDrawer} />
     case TYPE_STORY:
-      return (
-        <Story.Container docId={id} sitename={sitename} isDrawer={isDrawer} />
-      )
+      return <Story.Container id={id} sitename={sitename} isDrawer={isDrawer} />
     default:
       return null
   }
