@@ -19,7 +19,9 @@ function Visibility({
   const isAssistant = checkIfAssistant()
 
   useEffect(() => {
-    const defaultValue = isAssistant ? TEAM : site?.visibilityOptions[0]?.value
+    const defaultValue = isAssistant
+      ? TEAM
+      : site?.visibilityOptions?.[0]?.value
     // set default value to match visibility options
     resetField('visibility', { defaultValue })
   }, [site?.visibilityOptions, isAssistant, resetField])

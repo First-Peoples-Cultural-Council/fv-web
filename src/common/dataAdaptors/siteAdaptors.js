@@ -35,12 +35,6 @@ export function siteAdaptor({ siteData }) {
     path: siteData?.url,
     id: siteData?.id,
     roles: [],
-    children: {
-      Alphabet: siteData?.characters,
-      Dictionary: siteData?.dictionary,
-      Categories: siteData?.categories,
-      Contributors: siteData?.people,
-    },
     menu: siteData?.menu,
     title: siteData?.title,
     sitename: siteData?.slug,
