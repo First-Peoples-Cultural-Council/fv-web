@@ -43,16 +43,23 @@ describe(
       cy.contains('Dismiss').should('be.visible')
     })
 
+    it('Edit Category', () => {
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.contains('Dashboard').click()
+      cy.contains('Edit').click()
+      cy.contains('Edit categories').click()
+      cy.get('[data-testid="qatestcategory-edit-link"]').click()
+
+      cy.get('#description').type('test qa data')
+      cy.contains('Save changes').click()
+    })
+
     it('Delete Category', () => {
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
       cy.contains('Edit categories').click()
-      cy.get('td:contains("qatestcategory")')
-        .siblings()
-        .children('a')
-        .first()
-        .click()
+      cy.get('[data-testid="qatestcategory-edit-link"]').click()
       cy.contains('Delete Category').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
