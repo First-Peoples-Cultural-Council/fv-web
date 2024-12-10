@@ -286,12 +286,22 @@ function DictionaryDetailPresentationDrawer({
           {/* created and modified */}
           {entry?.createdBy && (
             <div className="py-3">
-              <p>Created by: {entry?.createdBy}</p>
+              <p>
+                Created: {entry?.created?.slice(0, 10)} by {entry?.createdBy}
+              </p>
             </div>
           )}
-          {entry?.created && (
+          {/* {entry?.created && (
+            <div className="">
+              <p>Created on: {entry?.created?.slice(0, 10)}</p>
+            </div>
+          )} */}
+          {entry?.lastModifiedBy && (
             <div className="py-3">
-              <p>Created on: {entry?.created}</p>
+              <p>
+                Modified: {entry?.lastModified?.slice(0, 10)} by{' '}
+                {entry?.lastModifiedBy}
+              </p>
             </div>
           )}
         </section>
