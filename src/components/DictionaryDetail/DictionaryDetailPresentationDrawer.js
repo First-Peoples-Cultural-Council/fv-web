@@ -22,6 +22,7 @@ function DictionaryDetailPresentationDrawer({
   entry,
   sitename,
 }) {
+  console.log({ entry })
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
   const contentStyling = 'text-sm text-charcoal-900 sm:mt-0 sm:ml-6'
@@ -280,6 +281,17 @@ function DictionaryDetailPresentationDrawer({
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+          {/* created and modified */}
+          {entry?.createdBy && (
+            <div className="py-3">
+              <p>Created by: {entry?.createdBy}</p>
+            </div>
+          )}
+          {entry?.created && (
+            <div className="py-3">
+              <p>Created on: {entry?.created}</p>
             </div>
           )}
         </section>
