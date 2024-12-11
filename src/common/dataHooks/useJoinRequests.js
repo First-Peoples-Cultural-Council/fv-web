@@ -11,7 +11,7 @@ import { useSiteStore } from 'context/SiteContext'
 export function useJoinRequests() {
   const { site } = useSiteStore()
 
-  const response = useInfiniteScroll({
+  const infiniteQueryResponse = useInfiniteScroll({
     queryKey: [JOIN_REQUESTS, site?.sitename],
     queryFn: ({ pageParam = 1 }) =>
       api.joinRequests.getAll({
@@ -20,7 +20,7 @@ export function useJoinRequests() {
       }),
   })
 
-  return response
+  return infiniteQueryResponse
 }
 
 export function useJoinRequestCreate(options = {}) {
