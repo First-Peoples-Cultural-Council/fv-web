@@ -10,7 +10,7 @@ function CategoriesBrowserData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { isInitialLoading, allCategories } = useCategories()
+  const categoriesQueryResponse = useCategories()
 
   const [currentCategory, setCurrentCategory] = useState()
 
@@ -18,16 +18,21 @@ function CategoriesBrowserData() {
 
   const filteredCategories =
     query === ''
-      ? allCategories
-      : allCategories?.filter((category) =>
-          category.title
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, '')),
+      ? categoriesQueryResponse?.allCategories
+      : categoriesQueryResponse?.allCategories?.filter(
+          (category) =>
+            category.title
+              .toLowerCase()
+              .replace(/\s+/g, '')
+              .includes(query.toLowerCase().replace(/\s+/g, '')) ||
+            category?.parentTitle
+              ?.toLowerCase()
+              ?.replace(/\s+/g, '')
+              ?.includes(query.toLowerCase().replace(/\s+/g, '')),
         )
 
   return {
-    isLoading: isInitialLoading,
+    categoriesQueryResponse,
     site,
     sitename,
     currentCategory,
