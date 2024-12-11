@@ -10,27 +10,23 @@ import { PUBLIC } from 'common/constants'
 import { atLeastMember } from 'common/constants/roles'
 import { isAtLeastRole } from 'common/utils/membershipHelpers'
 import SearchLanguagesForm from 'components/SearchLanguagesForm'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 
-function LanguagesPresentation({
-  allSitesList,
-  isLoading,
-  userSitesList,
-  user,
-}) {
+function LanguagesPresentation({ languagesQueryResponse, user }) {
+  const languagesList = languagesQueryResponse?.languagesData
   return (
     <section
       data-testid="LanguagesPresentation"
       className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
     >
       {/* USER SITES LANGUAGES SECTION */}
-      {userSitesList?.length > 0 && (
+      {user?.sites?.length > 0 && (
         <div>
           <div className="mt-4 py-8 items-center">
             <SectionTitle.Presentation title="YOUR LANGUAGES" />
           </div>
           <div className="mt-5 flex flex-wrap justify-start pl-10">
-            {userSitesList?.map((site) => (
+            {user?.sites?.map((site) => (
               <SiteCard key={site?.id} site={site} user={user} />
             ))}
           </div>
@@ -44,10 +40,10 @@ function LanguagesPresentation({
           <SectionTitle.Presentation title="EXPLORE LANGUAGES" />
         </div>
         <SearchLanguagesForm.Container />
-        <Loading.Container isLoading={isLoading}>
+        <LoadOrError queryResponse={languagesQueryResponse}>
           <div className="mt-5">
-            {allSitesList?.length > 0 ? (
-              allSitesList.map((language) => {
+            {languagesList?.length > 0 ? (
+              languagesList.map((language) => {
                 // Generating class for border color
                 const borderColor = languageColors?.[language?.languageCode]
                   ? `border-[${languageColors[language?.languageCode]}]`
@@ -93,18 +89,16 @@ function LanguagesPresentation({
               </div>
             )}
           </div>
-        </Loading.Container>
+        </LoadOrError>
       </div>
     </section>
   )
 }
 
 // PROPTYPES
-const { array, bool, object } = PropTypes
+const { object } = PropTypes
 LanguagesPresentation.propTypes = {
-  allSitesList: array,
-  isLoading: bool,
-  userSitesList: array,
+  languagesQueryResponse: object,
   user: object,
 }
 

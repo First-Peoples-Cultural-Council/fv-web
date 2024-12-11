@@ -6,15 +6,13 @@ import LanguagesData from 'components/Languages/LanguagesData'
 import DocHead from 'components/DocHead'
 
 function LanguagesContainer() {
-  const { allSitesList, userSitesList, isLoading, user } = LanguagesData()
+  const { languagesQueryResponse, user } = LanguagesData()
   return (
     <>
       <DocHead titleArray={['Explore Languages']} />
       <LanguagesPresentation
-        allSitesList={allSitesList}
-        userSitesList={userSitesList}
         user={user}
-        isLoading={isLoading}
+        languagesQueryResponse={languagesQueryResponse}
       />
     </>
   )
