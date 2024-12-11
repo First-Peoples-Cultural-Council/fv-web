@@ -1,20 +1,15 @@
 import React from 'react'
 
 // FPCC
-import DashboardJoinListData from 'components/DashboardJoinList/DashboardJoinListData'
 import DashboardJoinListPresentation from 'components/DashboardJoinList/DashboardJoinListPresentation'
+import { useJoinRequests } from 'common/dataHooks/useJoinRequests'
 
 function DashboardJoinListContainer() {
-  const { joinRequests, infiniteScroll, loadRef, isLoading, site } =
-    DashboardJoinListData()
+  const joinRequestsInfiniteQueryResponse = useJoinRequests()
   return (
     <div id="DashboardJoinListContainer">
       <DashboardJoinListPresentation
-        joinRequests={joinRequests}
-        isLoading={isLoading}
-        site={site}
-        infiniteScroll={infiniteScroll}
-        loadRef={loadRef}
+        joinRequestsInfiniteQueryResponse={joinRequestsInfiniteQueryResponse}
       />
     </div>
   )
