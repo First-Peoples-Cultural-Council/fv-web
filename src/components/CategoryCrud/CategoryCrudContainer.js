@@ -3,20 +3,20 @@ import React from 'react'
 // FPCC
 import CategoryCrudPresentation from 'components/CategoryCrud/CategoryCrudPresentation'
 import CategoryCrudData from 'components/CategoryCrud/CategoryCrudData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 
 function CategoryCrudContainer() {
   const {
     backHandler,
     dataToEdit,
     deleteHandler,
-    isLoading,
+    categoriesQueryResponse,
     submitHandler,
     parentCategoryOptions,
   } = CategoryCrudData()
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={categoriesQueryResponse}>
       <CategoryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
@@ -24,7 +24,7 @@ function CategoryCrudContainer() {
         deleteHandler={deleteHandler}
         parentCategoryOptions={parentCategoryOptions}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 

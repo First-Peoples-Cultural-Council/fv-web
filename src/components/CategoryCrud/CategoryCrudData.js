@@ -18,15 +18,14 @@ function CategoryCrudData() {
   const categoryId = searchParams.get('id')
 
   // Fetch Data
-  const { data, isInitialLoading } = useCategories()
-  const { data: categoryData, isInitialLoading: categoryIsInitialLoading } =
-    useCategory({ id: categoryId })
+  const categoriesQueryResponse = useCategories()
+  const categoryQueryResponse = useCategory({ id: categoryId })
 
   const getParentCategoryOptions = () => {
     // If a category with no children or a new category allow assigning/changing a parent
-    if (categoryData?.children?.length < 1 || !categoryId) {
-      const categories = data?.results
-        ? data?.results?.map((result) => {
+    if (categoryQueryResponse?.data?.children?.length < 1 || !categoryId) {
+      const categories = categoriesQueryResponse?.data?.results
+        ? categoriesQueryResponse?.data?.results?.map((result) => {
             const category = { label: result?.title, value: result?.id }
             return category
           })
@@ -41,7 +40,7 @@ function CategoryCrudData() {
   const { onSubmit: deleteCategory } = useCategoryDelete()
 
   const submitHandler = (formData) => {
-    if (categoryId && categoryData) {
+    if (categoryId && categoryQueryResponse?.data) {
       updateCategory(formData)
     } else {
       createCategory(formData)
@@ -52,9 +51,9 @@ function CategoryCrudData() {
     parentCategoryOptions: getParentCategoryOptions(),
     submitHandler,
     backHandler,
-    dataToEdit: categoryData,
-    deleteHandler: () => deleteCategory(categoryData?.id),
-    isLoading: isInitialLoading || categoryIsInitialLoading,
+    dataToEdit: categoryQueryResponse?.data,
+    deleteHandler: () => deleteCategory(categoryQueryResponse?.data?.id),
+    categoriesQueryResponse,
   }
 }
 
