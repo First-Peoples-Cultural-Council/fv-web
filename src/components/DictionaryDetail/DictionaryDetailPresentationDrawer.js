@@ -21,6 +21,7 @@ function DictionaryDetailPresentationDrawer({
   moreActions,
   entry,
   sitename,
+  isDashboard,
 }) {
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
@@ -282,18 +283,38 @@ function DictionaryDetailPresentationDrawer({
               </ul>
             </div>
           )}
+          {/* created and modified */}
+          {isDashboard && (
+            <div className="border-t text-sm">
+              {entry?.createdBy && (
+                <div className="py-4">
+                  <p>
+                    Created: {entry?.created?.slice(0, 10)} by{' '}
+                    {entry?.createdBy}
+                  </p>
+                </div>
+              )}
+              {entry?.lastModifiedBy && (
+                <p>
+                  Modified: {entry?.lastModified?.slice(0, 10)} by{' '}
+                  {entry?.lastModifiedBy}
+                </p>
+              )}
+            </div>
+          )}
         </section>
       </div>
     </div>
   )
 }
 // PROPTYPES
-const { array, object, string } = PropTypes
+const { array, object, string, bool } = PropTypes
 DictionaryDetailPresentationDrawer.propTypes = {
   actions: array,
   entry: object,
   moreActions: array,
   sitename: string,
+  isDashboard: bool,
 }
 
 export default DictionaryDetailPresentationDrawer
