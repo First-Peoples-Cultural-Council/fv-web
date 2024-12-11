@@ -40,6 +40,10 @@ export function entryForEditing({ item }) {
 export function entryForViewing({ item }) {
   return {
     partOfSpeech: item?.partOfSpeech || '',
+    created: item?.created,
+    createdBy: item?.createdBy,
+    lastModified: item?.lastModified,
+    lastModifiedBy: item?.lastModifiedBy,
     ...coreEntry({ item }),
     ...audienceForViewing({ item }),
     ...relatedMediaForViewing({ item }),
