@@ -4,7 +4,7 @@ import DictionaryDetailData from 'components/DictionaryDetail/DictionaryDetailDa
 import DictionaryDetailPresentation from 'components/DictionaryDetail/DictionaryDetailPresentation'
 import DictionaryDetailPresentationDrawer from 'components/DictionaryDetail/DictionaryDetailPresentationDrawer'
 import DictionaryDetailPresentationKids from 'components/DictionaryDetail/DictionaryDetailPresentationKids'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import { useParams } from 'react-router-dom'
 
 function DictionaryDetailContainer({
@@ -17,11 +17,16 @@ function DictionaryDetailContainer({
   const { sitename: sitenameParams } = useParams()
   const sitenameToSend = sitename || sitenameParams
 
-  const { actions, entry, isLoading, moreActions, backHandler } =
-    DictionaryDetailData({ id, sitename: sitenameToSend })
+  const {
+    actions,
+    backHandler,
+    dictionaryEntryQueryResponse,
+    entry,
+    moreActions,
+  } = DictionaryDetailData({ id, sitename: sitenameToSend })
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={dictionaryEntryQueryResponse}>
       {isDrawer && (
         <DictionaryDetailPresentationDrawer
           actions={actions}
@@ -45,7 +50,7 @@ function DictionaryDetailContainer({
           sitename={sitenameToSend}
         />
       )}
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 

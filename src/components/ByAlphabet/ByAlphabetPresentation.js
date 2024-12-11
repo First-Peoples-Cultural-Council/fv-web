@@ -13,17 +13,18 @@ function ByAlphabetPresentation({
   actions,
   characters,
   currentCharacter,
+  searchInfiniteQueryResponse,
   searchType,
   setSearchType,
   entryLabel,
-  infiniteScroll,
-  loadRef,
-  isLoading,
-  items,
   kids,
   moreActions,
   sitename,
 }) {
+  const infiniteScroll = searchInfiniteQueryResponse?.infiniteScroll
+  const loadRef = searchInfiniteQueryResponse?.loadRef
+  const items = searchInfiniteQueryResponse?.data || {}
+
   const getAlphabetList = () =>
     characters.map(({ title, id }) => (
       <Link
@@ -148,7 +149,7 @@ function ByAlphabetPresentation({
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
-                isLoading={isLoading}
+                isLoading={searchInfiniteQueryResponse?.isPending}
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
@@ -172,7 +173,7 @@ function ByAlphabetPresentation({
                 <DictionaryList.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={isLoading}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   noResultsMessage={getNoResultsMessage()}
@@ -185,7 +186,7 @@ function ByAlphabetPresentation({
                 <DictionaryGrid.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={isLoading}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   sitename={sitename}
@@ -206,13 +207,10 @@ ByAlphabetPresentation.propTypes = {
   actions: array,
   characters: array,
   currentCharacter: object,
+  searchInfiniteQueryResponse: object,
   searchType: string,
   setSearchType: func,
   entryLabel: string,
-  infiniteScroll: object,
-  loadRef: object,
-  isLoading: bool,
-  items: object,
   kids: bool,
   moreActions: array,
   sitename: string,

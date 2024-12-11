@@ -1,7 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
+// FPCC
 import Alphabet from 'components/Alphabet'
 import Audiobar from 'components/Audiobar'
 import ByAlphabet from 'components/ByAlphabet'
@@ -13,7 +13,6 @@ import Game from 'components/Game'
 import Games from 'components/Games'
 import Kids from 'components/Kids'
 import KidsNavBar from 'components/KidsNavBar'
-import Loading from 'components/Loading'
 import Dictionary from 'components/Dictionary'
 import Song from 'components/Song'
 import SongsAndStories from 'components/SongsAndStories'
@@ -27,7 +26,7 @@ import {
 } from 'common/constants'
 import SiteDocHead from 'components/SiteDocHead'
 
-function SiteFrameKids({ siteLoading }) {
+function SiteFrameKids() {
   const location = useLocation()
   const isHome =
     location?.pathname?.endsWith('kids') ||
@@ -39,59 +38,51 @@ function SiteFrameKids({ siteLoading }) {
         <KidsNavBar.Container home={isHome} />
       </header>
       <main role="main" className="relative z-0 xl:pt-3">
-        <Loading.Container isLoading={siteLoading}>
-          <Routes>
-            <Route
-              path="dictionary"
-              element={
-                <Dictionary.Container searchType={TYPE_DICTIONARY} kids />
-              }
-            />
-            <Route
-              path="words/:id"
-              element={<DictionaryDetail.Container kids />}
-            />
-            <Route
-              path="words"
-              element={<Dictionary.Container searchType={TYPE_WORD} kids />}
-            />
-            <Route
-              path="phrases/:id"
-              element={<DictionaryDetail.Container kids />}
-            />
-            <Route
-              path="phrases"
-              element={<Dictionary.Container searchType={TYPE_PHRASE} kids />}
-            />
-            <Route
-              path="alphabet/startsWith"
-              element={<ByAlphabet.Container kids />}
-            />
-            <Route path="alphabet" element={<Alphabet.Container kids />} />
-            <Route
-              path="categories/:categoryId"
-              element={<ByCategory.Container kids />}
-            />
-            <Route path="categories" element={<Categories.Container kids />} />
-            <Route path="songs/:id" element={<Song.Container kids />} />
-            <Route
-              path="songs"
-              element={
-                <SongsAndStories.Container searchType={TYPE_SONG} kids />
-              }
-            />
-            <Route path="stories/:id" element={<Story.Container kids />} />
-            <Route
-              path="stories"
-              element={
-                <SongsAndStories.Container searchType={TYPE_STORY} kids />
-              }
-            />
-            <Route path="games/:id" element={<Game.Container kids />} />
-            <Route path="games" element={<Games.Presentation kids />} />
-            <Route path="/" element={<Kids.Container />} />
-          </Routes>
-        </Loading.Container>
+        <Routes>
+          <Route
+            path="dictionary"
+            element={<Dictionary.Container searchType={TYPE_DICTIONARY} kids />}
+          />
+          <Route
+            path="words/:id"
+            element={<DictionaryDetail.Container kids />}
+          />
+          <Route
+            path="words"
+            element={<Dictionary.Container searchType={TYPE_WORD} kids />}
+          />
+          <Route
+            path="phrases/:id"
+            element={<DictionaryDetail.Container kids />}
+          />
+          <Route
+            path="phrases"
+            element={<Dictionary.Container searchType={TYPE_PHRASE} kids />}
+          />
+          <Route
+            path="alphabet/startsWith"
+            element={<ByAlphabet.Container kids />}
+          />
+          <Route path="alphabet" element={<Alphabet.Container kids />} />
+          <Route
+            path="categories/:categoryId"
+            element={<ByCategory.Container kids />}
+          />
+          <Route path="categories" element={<Categories.Container kids />} />
+          <Route path="songs/:id" element={<Song.Container kids />} />
+          <Route
+            path="songs"
+            element={<SongsAndStories.Container searchType={TYPE_SONG} kids />}
+          />
+          <Route path="stories/:id" element={<Story.Container kids />} />
+          <Route
+            path="stories"
+            element={<SongsAndStories.Container searchType={TYPE_STORY} kids />}
+          />
+          <Route path="games/:id" element={<Game.Container kids />} />
+          <Route path="games" element={<Games.Presentation kids />} />
+          <Route path="/" element={<Kids.Container />} />
+        </Routes>
       </main>
       <footer>
         <KidsFooter.Presentation />
@@ -99,12 +90,6 @@ function SiteFrameKids({ siteLoading }) {
       <Audiobar.Container />
     </div>
   )
-}
-
-// PROPTYPES
-const { bool } = PropTypes
-SiteFrameKids.propTypes = {
-  siteLoading: bool,
 }
 
 export default SiteFrameKids

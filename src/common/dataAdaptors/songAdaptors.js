@@ -32,7 +32,7 @@ export function songForViewing({ item }) {
     ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     ...relatedMediaForViewing({ item }),
-
+    site: item?.site,
     // lyrics
     lyrics: item?.lyrics || [],
   }

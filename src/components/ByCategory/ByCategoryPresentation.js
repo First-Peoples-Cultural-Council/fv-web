@@ -15,17 +15,18 @@ function ByCategoryPresentation({
   categories,
   currentCategory,
   currentParentCategory,
+  searchInfiniteQueryResponse,
   searchType,
   setSearchType,
   entryLabel,
-  infiniteScroll,
-  loadRef,
-  isLoading,
   kids,
-  items,
   moreActions,
   sitename,
 }) {
+  const infiniteScroll = searchInfiniteQueryResponse?.infiniteScroll
+  const loadRef = searchInfiniteQueryResponse?.loadRef
+  const items = searchInfiniteQueryResponse?.data || {}
+
   const getParentCategoriesList = () =>
     categories.map((category) => (
       <li
@@ -195,7 +196,7 @@ function ByCategoryPresentation({
               <DictionaryGrid.Presentation
                 actions={actions}
                 infiniteScroll={infiniteScroll}
-                isLoading={isLoading}
+                isLoading={searchInfiniteQueryResponse?.isPending}
                 items={items}
                 moreActions={moreActions}
                 sitename={sitename}
@@ -219,7 +220,7 @@ function ByCategoryPresentation({
                 <DictionaryList.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={isLoading}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   noResultsMessage={getNoResultsMessage()}
@@ -232,7 +233,7 @@ function ByCategoryPresentation({
                 <DictionaryGrid.Presentation
                   actions={actions}
                   infiniteScroll={infiniteScroll}
-                  isLoading={isLoading}
+                  isLoading={searchInfiniteQueryResponse?.isPending}
                   items={items}
                   moreActions={moreActions}
                   sitename={sitename}
@@ -257,10 +258,7 @@ ByCategoryPresentation.propTypes = {
   searchType: string,
   entryLabel: string,
   setSearchType: func,
-  infiniteScroll: object,
-  loadRef: object,
-  isLoading: bool,
-  items: object,
+  searchInfiniteQueryResponse: object,
   kids: bool,
   moreActions: array,
   sitename: string,

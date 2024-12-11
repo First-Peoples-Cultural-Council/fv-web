@@ -23,22 +23,22 @@ function ByCategoryData({ kids = null }) {
   })
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+  const searchInfiniteQueryResponse = useSearchLoader({
     searchParams: _searchParams,
   })
 
-  const categoriesResponse = useCategories()
+  const categoriesQueryResponse = useCategories()
 
   const [currentCategory, setCurrentCategory] = useState({})
   const [currentParentCategory, setCurrentParentCategory] = useState({})
 
   useEffect(() => {
-    if (categoriesResponse?.allCategories?.length > 0 && categoryId) {
-      const selectedCategory = categoriesResponse?.allCategories?.find(
+    if (categoriesQueryResponse?.allCategories?.length > 0 && categoryId) {
+      const selectedCategory = categoriesQueryResponse?.allCategories?.find(
         (category) => category?.id === categoryId,
       )
       const parentCategory = selectedCategory?.parentId
-        ? categoriesResponse?.allCategories?.find(
+        ? categoriesQueryResponse?.allCategories?.find(
             (category) => category?.id === selectedCategory.parentId,
           )
         : selectedCategory
@@ -49,18 +49,14 @@ function ByCategoryData({ kids = null }) {
         }
       }
     }
-  }, [categoriesResponse, currentCategory, categoryId])
+  }, [categoriesQueryResponse, currentCategory, categoryId])
 
   return {
-    categories: categoriesResponse?.data?.results || [],
-    categoriesAreLoading: categoriesResponse?.isLoading,
-    isLoading: isInitialLoading,
-    items: data || {},
+    categoriesQueryResponse,
+    searchInfiniteQueryResponse,
     actions: ['copy'],
     moreActions: ['share', 'qrcode'],
     sitename,
-    infiniteScroll,
-    loadRef,
     currentCategory,
     currentParentCategory,
     searchType,

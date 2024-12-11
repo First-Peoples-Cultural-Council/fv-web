@@ -8,37 +8,31 @@ import SiteFrameKids from 'components/Site/SiteFrameKids'
 import SiteFrameEmbed from 'components/Site/SiteFrameEmbed'
 import ScrollToTopOnMount from 'common/ScrollToTopOnMount'
 import SiteData from 'components/Site/SiteData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import { ASSISTANT } from 'common/constants/roles'
 
 const Dashboard = lazy(() => import('components/Dashboard/DashboardContainer'))
 
 function SiteContainer() {
-  const { siteLoading } = SiteData()
+  const { siteQueryResponse } = SiteData()
   return (
     <div id="SiteContainer">
       <ScrollToTopOnMount />
-      <Routes>
-        <Route
-          path="dashboard/*"
-          element={
-            <Loading.Container isLoading={siteLoading}>
+      <LoadOrError queryResponse={siteQueryResponse}>
+        <Routes>
+          <Route
+            path="dashboard/*"
+            element={
               <RequireAuth siteMembership={ASSISTANT} withMessage>
                 <Dashboard />
               </RequireAuth>
-            </Loading.Container>
-          }
-        />
-        <Route
-          path="kids/*"
-          element={<SiteFrameKids siteLoading={siteLoading} />}
-        />
-        <Route
-          path="widgets/*"
-          element={<SiteFrameEmbed siteLoading={siteLoading} />}
-        />
-        <Route path="*" element={<SiteFrame siteLoading={siteLoading} />} />
-      </Routes>
+            }
+          />
+          <Route path="kids/*" element={<SiteFrameKids />} />
+          <Route path="widgets/*" element={<SiteFrameEmbed />} />
+          <Route path="*" element={<SiteFrame />} />
+        </Routes>
+      </LoadOrError>
     </div>
   )
 }

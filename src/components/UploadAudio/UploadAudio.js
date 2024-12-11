@@ -74,11 +74,18 @@ function UploadAudio({ setSelectedMedia }) {
     mutate(formData)
   }
 
-  return (
-    <div id="UploadAudio" className="h-full text-left p-4">
+  return fileUploaded ? (
+    <div className="h-96 flex items-center justify-center">
+      <div>
+        <p>File successfully uploaded.</p>
+        <p>Click insert above to add it to this dictionary entry.</p>
+      </div>
+    </div>
+  ) : (
+    <div id="UploadAudio" className="h-full text-left px-4">
       <Header subtitle="Upload a new Audio file" />
       <form onReset={reset}>
-        <div className="mt-4 grid grid-cols-12 gap-4">
+        <div className="mt-2 grid grid-cols-12 gap-4">
           <div className="col-span-12">
             <TextField
               label="Title"
