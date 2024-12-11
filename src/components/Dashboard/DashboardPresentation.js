@@ -33,9 +33,10 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
       <div className="flex w-64 flex-col fixed inset-y-0">
         <div className="flex-1 flex flex-col min-h-0 bg-charcoal-900 divide-y divide-charcoal-500 space-y-2">
           <div className="flex-1 flex flex-col overflow-y-auto">
-            <div className="flex items-center flex-shrink-0 m-4">
+            <Link to="/" className="flex items-center flex-shrink-0 m-4">
+              <span className="sr-only">FirstVoices Logo</span>
               {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
-            </div>
+            </Link>
 
             <nav className="flex-1">
               <DashboardPresentationSiteSelect
