@@ -205,20 +205,15 @@ function DashboardEntriesPresentationList({
                 data-testid="load-btn"
                 type="button"
                 className={
-                  !searchInfiniteQueryResponse?.infiniteScroll?.hasNextPage
-                    ? 'cursor-text'
-                    : ''
+                  !searchInfiniteQueryResponse?.hasNextPage ? 'cursor-text' : ''
                 }
-                onClick={() =>
-                  searchInfiniteQueryResponse?.infiniteScroll?.fetchNextPage()
-                }
+                onClick={() => searchInfiniteQueryResponse?.fetchNextPage()}
                 disabled={
-                  !searchInfiniteQueryResponse?.infiniteScroll?.hasNextPage ||
-                  searchInfiniteQueryResponse?.infiniteScroll
-                    ?.isFetchingNextPage
+                  !searchInfiniteQueryResponse?.hasNextPage ||
+                  searchInfiniteQueryResponse?.isFetchingNextPage
                 }
               >
-                {searchInfiniteQueryResponse?.infiniteScroll?.loadLabel}
+                {searchInfiniteQueryResponse?.loadLabel}
               </button>
             </div>
           </div>
