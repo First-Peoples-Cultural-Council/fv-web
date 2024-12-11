@@ -268,6 +268,7 @@ function DashboardEntriesPresentationList({
               id={selectedItem?.id}
               type={selectedItem?.type}
               isDrawer
+              isDashboard
             />
           </>
         )}

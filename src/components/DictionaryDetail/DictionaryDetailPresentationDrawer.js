@@ -21,8 +21,10 @@ function DictionaryDetailPresentationDrawer({
   moreActions,
   entry,
   sitename,
+  isDashboard,
 }) {
   console.log({ entry })
+  console.log({ isDashboard })
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
   const contentStyling = 'text-sm text-charcoal-900 sm:mt-0 sm:ml-6'
@@ -284,24 +286,29 @@ function DictionaryDetailPresentationDrawer({
             </div>
           )}
           {/* created and modified */}
-          {entry?.createdBy && (
-            <div className="py-3">
-              <p>
-                Created: {entry?.created?.slice(0, 10)} by {entry?.createdBy}
-              </p>
-            </div>
-          )}
-          {/* {entry?.created && (
+          {isDashboard && (
+            <div>
+              {entry?.createdBy && (
+                <div className="py-3">
+                  <p>
+                    Created: {entry?.created?.slice(0, 10)} by{' '}
+                    {entry?.createdBy}
+                  </p>
+                </div>
+              )}
+              {/* {entry?.created && (
             <div className="">
               <p>Created on: {entry?.created?.slice(0, 10)}</p>
             </div>
           )} */}
-          {entry?.lastModifiedBy && (
-            <div className="py-3">
-              <p>
-                Modified: {entry?.lastModified?.slice(0, 10)} by{' '}
-                {entry?.lastModifiedBy}
-              </p>
+              {entry?.lastModifiedBy && (
+                <div className="py-3">
+                  <p>
+                    Modified: {entry?.lastModified?.slice(0, 10)} by{' '}
+                    {entry?.lastModifiedBy}
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </section>
@@ -310,12 +317,13 @@ function DictionaryDetailPresentationDrawer({
   )
 }
 // PROPTYPES
-const { array, object, string } = PropTypes
+const { array, object, string, bool } = PropTypes
 DictionaryDetailPresentationDrawer.propTypes = {
   actions: array,
   entry: object,
   moreActions: array,
   sitename: string,
+  isDashboard: bool,
 }
 
 export default DictionaryDetailPresentationDrawer

@@ -7,7 +7,7 @@ import DictionaryDetail from 'components/DictionaryDetail'
 import Song from 'components/Song'
 import Story from 'components/Story'
 
-function EntryDetailContainer({ id, type, sitename, isDrawer }) {
+function EntryDetailContainer({ id, type, sitename, isDrawer, isDashboard }) {
   switch (type) {
     case TYPE_PHRASE:
     case TYPE_WORD:
@@ -16,6 +16,7 @@ function EntryDetailContainer({ id, type, sitename, isDrawer }) {
           id={id}
           sitename={sitename}
           isDrawer={isDrawer}
+          isDashboard={isDashboard}
         />
       )
     case TYPE_SONG:
@@ -37,6 +38,7 @@ EntryDetailContainer.propTypes = {
   sitename: string,
   type: oneOf([TYPE_PHRASE, TYPE_SONG, TYPE_STORY, TYPE_WORD]),
   isDrawer: bool,
+  isDashboard: bool,
 }
 
 export default EntryDetailContainer

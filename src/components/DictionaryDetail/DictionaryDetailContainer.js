@@ -7,7 +7,13 @@ import DictionaryDetailPresentationKids from 'components/DictionaryDetail/Dictio
 import Loading from 'components/Loading'
 import { useParams } from 'react-router-dom'
 
-function DictionaryDetailContainer({ id, sitename, isDrawer, kids }) {
+function DictionaryDetailContainer({
+  id,
+  sitename,
+  isDrawer,
+  kids,
+  isDashboard,
+}) {
   const { sitename: sitenameParams } = useParams()
   const sitenameToSend = sitename || sitenameParams
 
@@ -22,6 +28,7 @@ function DictionaryDetailContainer({ id, sitename, isDrawer, kids }) {
           entry={entry}
           moreActions={moreActions}
           sitename={sitenameToSend}
+          isDashboard={isDashboard}
         />
       )}
       {kids && (
@@ -49,6 +56,7 @@ DictionaryDetailContainer.propTypes = {
   sitename: string,
   isDrawer: bool,
   kids: bool,
+  isDashboard: bool,
 }
 
 export default DictionaryDetailContainer
