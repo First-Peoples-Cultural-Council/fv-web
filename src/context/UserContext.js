@@ -1,5 +1,10 @@
 import makeStore from 'context/makeStore'
-import { LANGUAGE_ADMIN, EDITOR, ASSISTANT } from 'common/constants/roles'
+import {
+  LANGUAGE_ADMIN,
+  EDITOR,
+  ASSISTANT,
+  atLeastAssistant,
+} from 'common/constants'
 
 const anonymousUser = {
   isAnonymous: true,
@@ -85,6 +90,9 @@ const userDataAdaptor = (data) => {
     userProfile?.preferred_username ||
     fullName ||
     userProfile?.email
+  const teamMemberSites = data?.memberships?.filter((s) =>
+    s?.role.match(atLeastAssistant),
+  )
 
   return {
     isAnonymous: false,
@@ -97,6 +105,8 @@ const userDataAdaptor = (data) => {
     isSuperAdmin: false, // until fw-4694
     isStaff: false, // until fw-4694
     roles,
+    sites: data?.memberships,
+    teamMemberSites,
   }
 }
 

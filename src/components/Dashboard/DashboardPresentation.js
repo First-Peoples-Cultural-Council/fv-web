@@ -39,12 +39,12 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
 
             <nav className="flex-1">
               <DashboardPresentationSiteSelect
-                sites={currentUser?.sites}
+                sites={currentUser?.teamMemberSites}
                 site={site}
               />
               <div className="flex-1 divide-y divide-charcoal-500 space-y-2">
                 {primaryNavigationItems(site?.sitename)}
-                {secondaryNavigationItems(currentUser?.sites)}
+                {secondaryNavigationItems(currentUser?.teamMemberSites)}
               </div>
             </nav>
           </div>
