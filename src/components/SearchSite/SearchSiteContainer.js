@@ -24,7 +24,7 @@ function SearchSiteContainer() {
   })
 
   // fetch results
-  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+  const infiniteQueryResponse = useSearchLoader({
     searchParams,
   })
 
@@ -38,10 +38,7 @@ function SearchSiteContainer() {
         handleFilter={(filter) => {
           setSearchTypeInUrl(filter)
         }}
-        infiniteScroll={infiniteScroll}
-        isLoading={isInitialLoading}
-        items={data}
-        loadRef={loadRef}
+        infiniteQueryResponse={infiniteQueryResponse}
         moreActions={['share', 'qrcode']}
         sitename={sitename}
         siteTitle={site?.title}

@@ -11,10 +11,7 @@ function SearchPresentation({
   searchType,
   filters,
   handleFilter,
-  isLoading,
-  items,
-  infiniteScroll,
-  loadRef,
+  infiniteQueryResponse,
   actions,
   moreActions,
   sitename,
@@ -81,9 +78,9 @@ function SearchPresentation({
         <div className="hidden md:block min-h-220 col-span-11 lg:col-span-9">
           <DictionaryList.Presentation
             actions={actions}
-            infiniteScroll={infiniteScroll}
-            isLoading={isLoading}
-            items={items}
+            infiniteScroll={infiniteQueryResponse?.infiniteScroll}
+            isLoading={infiniteQueryResponse?.isPending}
+            items={infiniteQueryResponse?.data}
             moreActions={moreActions}
             sitename={sitename}
             showType
@@ -94,30 +91,27 @@ function SearchPresentation({
         <div className="block md:hidden min-h-220 col-span-11">
           <DictionaryGrid.Presentation
             actions={actions}
-            infiniteScroll={infiniteScroll}
-            isLoading={isLoading}
-            items={items}
+            infiniteScroll={infiniteQueryResponse?.infiniteScroll}
+            isLoading={infiniteQueryResponse?.isPending}
+            items={infiniteQueryResponse?.data}
             moreActions={moreActions}
             sitename={sitename}
             showType
           />
         </div>
       </div>
-      <div ref={loadRef} className="w-full h-10" />
+      <div ref={infiniteQueryResponse?.loadRef} className="w-full h-10" />
     </div>
   )
 }
 // PROPTYPES
-const { array, bool, func, object, string } = PropTypes
+const { array, func, object, string } = PropTypes
 SearchPresentation.propTypes = {
   actions: array,
   searchType: string,
   filters: array,
   handleFilter: func,
-  infiniteScroll: object,
-  isLoading: bool,
-  items: object,
-  loadRef: object,
+  infiniteQueryResponse: object,
   moreActions: array,
   sitename: string,
   entryLabel: string,
