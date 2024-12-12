@@ -1,20 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function SongsAndStoriesList({
-  labels,
-  items,
-  handleItemClick,
-  showNoResultsMessage,
-}) {
+function SongsAndStoriesList({ labels, data, handleItemClick }) {
   return (
-    <section className="pb-16" aria-labelledby="gallery-heading">
+    <section aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" className="sr-only">
         {labels?.titlecase}
       </h2>
 
       <div className="w-full text-left py-2 text-lg text-charcoal-900">
-        {items?.pages?.map((page) => (
+        {data?.pages?.map((page) => (
           <React.Fragment key={page.pageNumber}>
             {page.results.map((item, index) => (
               <button
@@ -37,8 +32,6 @@ function SongsAndStoriesList({
                 )}
               </button>
             ))}
-
-            {showNoResultsMessage(page)}
           </React.Fragment>
         ))}
       </div>
@@ -49,9 +42,8 @@ function SongsAndStoriesList({
 const { func, object } = PropTypes
 SongsAndStoriesList.propTypes = {
   labels: object,
-  items: object,
+  data: object,
   handleItemClick: func,
-  showNoResultsMessage: func,
 }
 
 export default SongsAndStoriesList
