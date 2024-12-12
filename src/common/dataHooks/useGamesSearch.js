@@ -15,7 +15,9 @@ import {
   HAS_UNRECOGNIZED_CHARS,
   TYPE_PHRASE,
   MINWORDS,
+  WORDSY,
 } from 'common/constants'
+import { getOrthographyPattern } from 'components/Game/Wordsy/Utils/helpers'
 
 export function useParachuteSearch({ perPage, kids }) {
   const { sitename } = useParams()
@@ -102,4 +104,29 @@ export function usePhraseScramblerSearch({ kids }) {
       }),
   })
   return queryResponse
+}
+
+export function useWordsySearch({ kids }) {
+  const { sitename } = useParams()
+  const _searchParams = new URLSearchParams()
+  if (kids) {
+    _searchParams.append(KIDS, kids)
+  }
+
+  const queryResponse = useQuery({
+    queryKey: [WORDSY, sitename],
+    queryFn: () =>
+      api.gameContent.getWordsyConfig({
+        sitename,
+        searchParams: _searchParams.toString(),
+      }),
+  })
+
+  const languageConfig = {
+    orthography: queryResponse?.data?.orthography,
+    orthographyPattern: getOrthographyPattern(queryResponse?.data?.orthography),
+    words: queryResponse?.data?.words,
+    validGuesses: queryResponse?.data?.validGuesses,
+  }
+  return { ...queryResponse, languageConfig }
 }
