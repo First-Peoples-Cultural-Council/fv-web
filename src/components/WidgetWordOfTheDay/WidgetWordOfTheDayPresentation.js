@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import ShareLinks from 'components/ShareLinks'
 import SectionTitle from 'components/SectionTitle'
 import AudioButton from 'components/AudioButton'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 
 function WidgetWordOfTheDayPresentation({
   audio,
@@ -18,15 +18,16 @@ function WidgetWordOfTheDayPresentation({
   url,
   sitename,
   entry,
+  queryResponse,
 }) {
   return (
     <section className="py-3 md:py-6 bg-white">
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title={title} />
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <Loading.Container isLoading={wordTitle?.length < 0} height="h-full">
-          <div className="mt-2 max-w-2xl inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800 md:mx-auto sm:text-5xl">
+      <LoadOrError queryResponse={queryResponse}>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mt-2 inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800 sm:text-5xl">
             <Link to={relativeUrl}>{wordTitle}</Link>
             {audio && (
               <span className="ml-2 text-black">
@@ -38,23 +39,19 @@ function WidgetWordOfTheDayPresentation({
               </span>
             )}
           </div>
-          <p className="mt-4 max-w-2xl text-2xl md:mx-auto sm:text-3xl">
-            {translations}
-          </p>
-          <p className="mt-4 max-w-2xl text-m md:mx-auto italic">
-            {partOfSpeech}
-          </p>
-        </Loading.Container>
-        <h3 className="mt-8 max-w-2xl text-lg text-scarlet-800 md:mx-auto sm:text-xl">
-          Share on:
-        </h3>
-        <ShareLinks.Presentation
-          url={url}
-          title={wordTitle}
-          entry={entry}
-          sitename={sitename}
-        />
-      </div>
+          <p className="mt-4 text-2xl sm:text-3xl">{translations}</p>
+          <p className="mt-4 text-sm italic">{partOfSpeech}</p>
+          <h3 className="mt-8 text-lg text-scarlet-800 sm:text-xl">
+            Share on:
+          </h3>
+          <ShareLinks.Presentation
+            url={url}
+            title={wordTitle}
+            entry={entry}
+            sitename={sitename}
+          />
+        </div>
+      </LoadOrError>
     </section>
   )
 }
@@ -70,6 +67,7 @@ WidgetWordOfTheDayPresentation.propTypes = {
   partOfSpeech: string,
   entry: object,
   sitename: string,
+  queryResponse: object,
 }
 
 export default WidgetWordOfTheDayPresentation
