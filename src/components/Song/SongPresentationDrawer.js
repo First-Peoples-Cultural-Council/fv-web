@@ -9,7 +9,6 @@ import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK, SMALL, ORIGINAL } from 'common/constants'
 
 function SongPresentationDrawer({ entry, isDashboard }) {
-  console.log({ entry })
   return (
     <div data-testid="SongPresentationDrawer">
       <div className="sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
