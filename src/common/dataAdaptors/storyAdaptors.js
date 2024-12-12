@@ -39,6 +39,8 @@ export function storyForViewing({ item }) {
     ...introAdaptor({ item }),
     ...notesAcknowledgementsAdaptor({ item }),
     site: item?.site,
+    createdBy: item?.createdBy,
+    lastModifiedBy: item?.lastModifiedBy,
     ...storyPagesForViewing({ item }),
   }
 }
