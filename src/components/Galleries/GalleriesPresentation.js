@@ -1,15 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import SectionTitle from 'components/SectionTitle'
 import { SMALL, IMAGE } from 'common/constants'
 import SiteDocHead from 'components/SiteDocHead'
 
-function GalleriesPresentation({ isLoading, galleries, sitename }) {
+function GalleriesPresentation({ galleriesQueryResponse }) {
+  const { sitename } = useParams()
   return (
     <main
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
@@ -22,10 +23,10 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
           <div className="flex-1 overflow-y-auto">
             <div className="lg:px-8">
               <section className="mt-4 lg:mt-8 pb-16">
-                <Loading.Container isLoading={isLoading}>
+                <LoadOrError queryResponse={galleriesQueryResponse}>
                   <ul className="grid grid-cols-1 gap-y-6 md:grid-cols-3 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
-                    {galleries?.length > 0 ? (
-                      galleries?.map((item) => {
+                    {galleriesQueryResponse?.data?.results?.length > 0 ? (
+                      galleriesQueryResponse?.data?.results?.map((item) => {
                         const imageUrl = getMediaPath({
                           type: IMAGE,
                           mediaObject: item?.coverImage,
@@ -70,7 +71,7 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
                       </div>
                     )}
                   </ul>
-                </Loading.Container>
+                </LoadOrError>
               </section>
             </div>
           </div>
@@ -80,11 +81,9 @@ function GalleriesPresentation({ isLoading, galleries, sitename }) {
   )
 }
 // PROPTYPES
-const { bool, array, string } = PropTypes
+const { object } = PropTypes
 GalleriesPresentation.propTypes = {
-  isLoading: bool,
-  galleries: array,
-  sitename: string,
+  galleriesQueryResponse: object,
 }
 
 export default GalleriesPresentation
