@@ -1,27 +1,14 @@
-import { useQuery } from '@tanstack/react-query'
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useCallback, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import api from 'services/api'
-import {
-  SEARCH,
-  TYPES,
-  KIDS,
-  GAMES,
-  TYPE_PHRASE,
-  HAS_TRANSLATION,
-  SORT,
-  MINWORDS,
-} from 'common/constants'
+import { usePhraseScramblerSearch } from 'common/dataHooks/useGamesSearch'
 import { arrayShuffle, partitionArray } from 'common/utils/functionHelpers'
 import { normalizeSpaces } from 'common/utils/stringHelpers'
 
 const MAX_ROW_LENGTH = 6 // max number of buttons to display in one row
 
 function PhraseScramblerData({ kids }) {
-  const { sitename } = useParams()
   const [jumbledWords, setJumbledWords] = useState([])
   const [selectedWords, setSelectedWords] = useState([])
   const [gameCompleted, setGameCompleted] = useState(false)
@@ -31,6 +18,29 @@ function PhraseScramblerData({ kids }) {
     translations: [],
     relatedAudio: [],
   })
+
+  const queryResponse = usePhraseScramblerSearch({ kids })
+
+  const generateInputData = useCallback(() => {
+    const newPhrase = queryResponse?.data?.results?.[0]?.entry
+    const translations = newPhrase?.translations?.map((translation) =>
+      normalizeSpaces(translation?.text),
+    )
+    const phraseTitle = normalizeSpaces(newPhrase?.title)
+    setInputData({
+      translations,
+      title: phraseTitle,
+      relatedAudio: newPhrase?.relatedAudio.slice(0, 3), // take at max 3 audio files for hints
+    })
+    let correctAnswer = phraseTitle.split(' ')
+    correctAnswer = correctAnswer.map((text, index) => ({
+      id: index,
+      text,
+    }))
+    let shuffledWords = arrayShuffle([...correctAnswer])
+    shuffledWords = partitionArray(shuffledWords, MAX_ROW_LENGTH)
+    setJumbledWords(shuffledWords)
+  }, [queryResponse?.data?.results])
 
   const wordClicked = (wordObj) => {
     if (gameCompleted && !validAnswer) {
@@ -64,63 +74,19 @@ function PhraseScramblerData({ kids }) {
   }
 
   const newGame = () => {
-    refetch()
+    queryResponse?.refetch()
     generateInputData()
     resetGame()
   }
 
-  const _searchParams = new URLSearchParams({
-    [TYPES]: TYPE_PHRASE,
-    [GAMES]: true,
-    [HAS_TRANSLATION]: true,
-    [SORT]: 'random',
-    [MINWORDS]: 2,
-  })
-  if (kids) {
-    _searchParams.append(KIDS, kids)
-  }
-
-  const { data, isFetching, refetch } = useQuery({
-    queryKey: [SEARCH, sitename],
-    queryFn: () =>
-      api.search.get({
-        sitename,
-        searchParams: _searchParams.toString(),
-        pageParam: 1,
-        perPage: 1, // Fetching one phrase at a time
-      }),
-    ...{ enabled: !!sitename },
-  })
-
-  const generateInputData = () => {
-    const newPhrase = data?.results?.[0]?.entry
-    const translations = newPhrase?.translations?.map((translation) =>
-      normalizeSpaces(translation?.text),
-    )
-    const phraseTitle = normalizeSpaces(newPhrase?.title)
-    setInputData({
-      translations,
-      title: phraseTitle,
-      relatedAudio: newPhrase?.relatedAudio.slice(0, 3), // take at max 3 audio files for hints
-    })
-    let correctAnswer = phraseTitle.split(' ')
-    correctAnswer = correctAnswer.map((text, index) => ({
-      id: index,
-      text,
-    }))
-    let shuffledWords = arrayShuffle([...correctAnswer])
-    shuffledWords = partitionArray(shuffledWords, MAX_ROW_LENGTH)
-    setJumbledWords(shuffledWords)
-  }
-
   useEffect(() => {
-    if (data?.count > 0) {
+    if (queryResponse?.data?.count > 0 && !inputData?.title) {
       generateInputData()
     }
-  }, [data])
+  }, [queryResponse, generateInputData, inputData])
 
   return {
-    isLoading: isFetching,
+    queryResponse,
     translations: inputData?.translations,
     relatedAudio: inputData?.relatedAudio,
     jumbledWords,

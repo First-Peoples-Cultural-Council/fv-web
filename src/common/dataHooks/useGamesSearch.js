@@ -13,6 +13,8 @@ import {
   GAMES,
   SORT,
   HAS_UNRECOGNIZED_CHARS,
+  TYPE_PHRASE,
+  MINWORDS,
 } from 'common/constants'
 
 export function useParachuteSearch({ perPage, kids }) {
@@ -42,7 +44,6 @@ export function useParachuteSearch({ perPage, kids }) {
         searchParams: searchParamString,
         perPage,
       }),
-    ...{ enabled: !!sitename },
   })
 
   const getPuzzles = () => {
@@ -75,4 +76,30 @@ export function useParachuteSearch({ perPage, kids }) {
     ...response,
     puzzles: getPuzzles(),
   }
+}
+
+export function usePhraseScramblerSearch({ kids }) {
+  const { sitename } = useParams()
+  const _searchParams = new URLSearchParams({
+    [TYPES]: TYPE_PHRASE,
+    [GAMES]: true,
+    [HAS_TRANSLATION]: true,
+    [SORT]: 'random',
+    [MINWORDS]: 2,
+  })
+  if (kids) {
+    _searchParams.append(KIDS, kids)
+  }
+
+  const queryResponse = useQuery({
+    queryKey: [SEARCH, sitename],
+    queryFn: () =>
+      api.search.get({
+        sitename,
+        searchParams: _searchParams.toString(),
+        pageParam: 1,
+        perPage: 1, // Fetching one phrase at a time
+      }),
+  })
+  return queryResponse
 }

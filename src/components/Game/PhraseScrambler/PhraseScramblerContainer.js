@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import PhraseScramblerPresentation from 'components/Game/PhraseScrambler/PhraseScramblerPresentation'
 import PhraseScramblerData from 'components/Game/PhraseScrambler/PhraseScramblerData'
 import SiteDocHead from 'components/SiteDocHead'
 
 function PhraseScramblerContainer({ kids }) {
   const {
-    isLoading,
+    queryResponse,
     translations,
     relatedAudio,
     jumbledWords,
@@ -23,21 +23,23 @@ function PhraseScramblerContainer({ kids }) {
   } = PhraseScramblerData({ kids })
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <>
       <SiteDocHead titleArray={['Phrase Scrambler', 'Games']} />
-      <PhraseScramblerPresentation
-        translations={translations}
-        relatedAudio={relatedAudio}
-        jumbledWords={jumbledWords}
-        selectedWords={selectedWords}
-        gameCompleted={gameCompleted}
-        validAnswer={validAnswer}
-        wordClicked={wordClicked}
-        checkAnswer={checkAnswer}
-        resetGame={resetGame}
-        newGame={newGame}
-      />
-    </Loading.Container>
+      <LoadOrError queryResponse={queryResponse}>
+        <PhraseScramblerPresentation
+          translations={translations}
+          relatedAudio={relatedAudio}
+          jumbledWords={jumbledWords}
+          selectedWords={selectedWords}
+          gameCompleted={gameCompleted}
+          validAnswer={validAnswer}
+          wordClicked={wordClicked}
+          checkAnswer={checkAnswer}
+          resetGame={resetGame}
+          newGame={newGame}
+        />
+      </LoadOrError>
+    </>
   )
 }
 
