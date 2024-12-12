@@ -14,12 +14,10 @@ import {
 } from 'common/constants'
 
 function DictionaryPresentation({
-  actions,
   searchType,
   infiniteQueryResponse,
   kids,
   labels,
-  moreActions,
   sitename,
 }) {
   const linkStyle = {
@@ -49,9 +47,7 @@ function DictionaryPresentation({
       {kids ? (
         <div className="lg:px-20 bg-charcoal-50">
           <DictionaryGrid.Presentation
-            infiniteScroll={infiniteQueryResponse?.infiniteScroll}
-            isLoading={infiniteQueryResponse?.isPending}
-            items={infiniteQueryResponse?.data}
+            infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
             showType={searchType === TYPE_DICTIONARY}
             kids
@@ -116,11 +112,7 @@ function DictionaryPresentation({
           <div className="min-h-220 col-span-12 lg:col-span-10">
             <div className="hidden md:block p-2 print:block">
               <DictionaryList.Presentation
-                actions={actions}
-                infiniteScroll={infiniteQueryResponse?.infiniteScroll}
-                isLoading={infiniteQueryResponse?.isPending}
-                items={infiniteQueryResponse?.data}
-                moreActions={moreActions}
+                infiniteQueryResponse={infiniteQueryResponse}
                 sitename={sitename}
                 entryLabel={labels.singular}
                 showType={searchType === TYPE_DICTIONARY}
@@ -128,11 +120,7 @@ function DictionaryPresentation({
             </div>
             <div className="block md:hidden print:hidden">
               <DictionaryGrid.Presentation
-                actions={actions}
-                infiniteScroll={infiniteQueryResponse?.infiniteScroll}
-                isLoading={infiniteQueryResponse?.isPending}
-                items={infiniteQueryResponse?.data}
-                moreActions={moreActions}
+                infiniteQueryResponse={infiniteQueryResponse}
                 sitename={sitename}
                 showType={searchType === TYPE_DICTIONARY}
               />
@@ -145,14 +133,12 @@ function DictionaryPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { bool, object, string } = PropTypes
 DictionaryPresentation.propTypes = {
-  actions: array,
   searchType: string,
   infiniteQueryResponse: object,
   kids: bool,
   labels: object,
-  moreActions: array,
   sitename: string,
 }
 

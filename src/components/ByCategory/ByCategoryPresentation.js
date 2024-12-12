@@ -11,7 +11,6 @@ import SearchTypeSelector from 'components/SearchTypeSelector'
 import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
 function ByCategoryPresentation({
-  actions,
   categories,
   currentCategory,
   currentParentCategory,
@@ -20,13 +19,8 @@ function ByCategoryPresentation({
   setSearchType,
   entryLabel,
   kids,
-  moreActions,
   sitename,
 }) {
-  const infiniteScroll = searchInfiniteQueryResponse?.infiniteScroll
-  const loadRef = searchInfiniteQueryResponse?.loadRef
-  const items = searchInfiniteQueryResponse?.data || {}
-
   const getParentCategoriesList = () =>
     categories.map((category) => (
       <li
@@ -48,6 +42,7 @@ function ByCategoryPresentation({
         </Link>
       </li>
     ))
+
   const getNoResultsMessage = () => {
     let typeLabel = ''
     switch (searchType) {
@@ -194,11 +189,7 @@ function ByCategoryPresentation({
           <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9">
             <div className="bg-charcoal-50 p-4">
               <DictionaryGrid.Presentation
-                actions={actions}
-                infiniteScroll={infiniteScroll}
-                isLoading={searchInfiniteQueryResponse?.isPending}
-                items={items}
-                moreActions={moreActions}
+                infiniteQueryResponse={searchInfiniteQueryResponse}
                 sitename={sitename}
                 showType={searchType === TYPE_DICTIONARY}
                 hasSideNav
@@ -218,11 +209,7 @@ function ByCategoryPresentation({
               </div>
               <div className="hidden md:block p-2 print:block">
                 <DictionaryList.Presentation
-                  actions={actions}
-                  infiniteScroll={infiniteScroll}
-                  isLoading={searchInfiniteQueryResponse?.isPending}
-                  items={items}
-                  moreActions={moreActions}
+                  infiniteQueryResponse={searchInfiniteQueryResponse}
                   noResultsMessage={getNoResultsMessage()}
                   sitename={sitename}
                   entryLabel={entryLabel}
@@ -231,11 +218,7 @@ function ByCategoryPresentation({
               </div>
               <div className="block md:hidden print:hidden">
                 <DictionaryGrid.Presentation
-                  actions={actions}
-                  infiniteScroll={infiniteScroll}
-                  isLoading={searchInfiniteQueryResponse?.isPending}
-                  items={items}
-                  moreActions={moreActions}
+                  infiniteQueryResponse={searchInfiniteQueryResponse}
                   sitename={sitename}
                   showType={searchType === TYPE_DICTIONARY}
                 />
@@ -244,14 +227,13 @@ function ByCategoryPresentation({
           </div>
         )}
       </div>
-      <div ref={loadRef} className="w-full h-5" />
+      <div ref={searchInfiniteQueryResponse?.loadRef} className="w-full h-5" />
     </>
   )
 }
 // PROPTYPES
 const { array, bool, func, object, string } = PropTypes
 ByCategoryPresentation.propTypes = {
-  actions: array,
   categories: array,
   currentCategory: object,
   currentParentCategory: object,
@@ -260,7 +242,6 @@ ByCategoryPresentation.propTypes = {
   setSearchType: func,
   searchInfiniteQueryResponse: object,
   kids: bool,
-  moreActions: array,
   sitename: string,
 }
 

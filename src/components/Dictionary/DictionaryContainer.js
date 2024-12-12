@@ -8,18 +8,18 @@ import { TYPE_DICTIONARY } from 'common/constants'
 import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryContainer({ searchType = TYPE_DICTIONARY, kids = null }) {
-  const { actions, infiniteQueryResponse, labels, moreActions, sitename } =
-    DictionaryData({ searchType, kids })
+  const { infiniteQueryResponse, labels, sitename } = DictionaryData({
+    searchType,
+    kids,
+  })
   return (
     <>
       <SiteDocHead titleArray={[labels.titlecase]} />
       <DictionaryPresentation
-        actions={actions}
         searchType={searchType}
         infiniteQueryResponse={infiniteQueryResponse}
         kids={kids}
         labels={labels}
-        moreActions={moreActions}
         sitename={sitename}
       />
     </>

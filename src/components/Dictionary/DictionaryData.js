@@ -31,8 +31,6 @@ function DictionaryDataSearch({ searchType, kids }) {
     infiniteQueryResponse,
     labels,
     sitename,
-    actions: ['copy'],
-    moreActions: ['share', 'qrcode'],
   }
 }
 

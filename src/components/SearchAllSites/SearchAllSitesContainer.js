@@ -31,14 +31,12 @@ function SearchAllSitesContainer() {
     <>
       <DocHead titleArray={['Search']} />
       <SearchPresentation
-        actions={['copy']}
         searchType={searchTypeInUrl}
         filters={typeFilters}
         handleFilter={(filter) => {
           setSearchTypeInUrl(filter)
         }}
         infiniteQueryResponse={infiniteQueryResponse}
-        moreActions={['share', 'qrcode']}
         siteTitle="FirstVoices"
         entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
       />

@@ -10,7 +10,6 @@ import getIcon from 'common/utils/getIcon'
 import { CHAR, TYPES, TYPE_DICTIONARY } from 'common/constants'
 
 function ByAlphabetPresentation({
-  actions,
   characters,
   currentCharacter,
   searchInfiniteQueryResponse,
@@ -18,13 +17,8 @@ function ByAlphabetPresentation({
   setSearchType,
   entryLabel,
   kids,
-  moreActions,
   sitename,
 }) {
-  const infiniteScroll = searchInfiniteQueryResponse?.infiniteScroll
-  const loadRef = searchInfiniteQueryResponse?.loadRef
-  const items = searchInfiniteQueryResponse?.data || {}
-
   const getAlphabetList = () =>
     characters.map(({ title, id }) => (
       <Link
@@ -147,11 +141,7 @@ function ByAlphabetPresentation({
           <div className="min-h-220 col-span-11 md:col-span-7 xl:col-span-8">
             <div className="bg-charcoal-50 p-4 min-h-screen">
               <DictionaryGrid.Presentation
-                actions={actions}
-                infiniteScroll={infiniteScroll}
-                isLoading={searchInfiniteQueryResponse?.isPending}
-                items={items}
-                moreActions={moreActions}
+                infiniteQueryResponse={searchInfiniteQueryResponse}
                 sitename={sitename}
                 showType={searchType === TYPE_DICTIONARY}
                 hasSideNav
@@ -171,24 +161,16 @@ function ByAlphabetPresentation({
               </div>
               <div className="hidden md:block p-2 print:block">
                 <DictionaryList.Presentation
-                  actions={actions}
-                  infiniteScroll={infiniteScroll}
-                  isLoading={searchInfiniteQueryResponse?.isPending}
-                  items={items}
-                  moreActions={moreActions}
+                  infiniteQueryResponse={searchInfiniteQueryResponse}
                   noResultsMessage={getNoResultsMessage()}
                   sitename={sitename}
-                  showType
                   entryLabel={entryLabel}
+                  showType
                 />
               </div>
               <div className="block md:hidden print:hidden">
                 <DictionaryGrid.Presentation
-                  actions={actions}
-                  infiniteScroll={infiniteScroll}
-                  isLoading={searchInfiniteQueryResponse?.isPending}
-                  items={items}
-                  moreActions={moreActions}
+                  infiniteQueryResponse={searchInfiniteQueryResponse}
                   sitename={sitename}
                   showType={searchType === TYPE_DICTIONARY}
                 />
@@ -197,14 +179,13 @@ function ByAlphabetPresentation({
           </div>
         )}
       </div>
-      <div ref={loadRef} className="w-full h-5" />
+      <div ref={searchInfiniteQueryResponse?.loadRef} className="w-full h-5" />
     </>
   )
 }
 // PROPTYPES
 const { array, bool, func, object, string } = PropTypes
 ByAlphabetPresentation.propTypes = {
-  actions: array,
   characters: array,
   currentCharacter: object,
   searchInfiniteQueryResponse: object,
@@ -212,7 +193,6 @@ ByAlphabetPresentation.propTypes = {
   setSearchType: func,
   entryLabel: string,
   kids: bool,
-  moreActions: array,
   sitename: string,
 }
 

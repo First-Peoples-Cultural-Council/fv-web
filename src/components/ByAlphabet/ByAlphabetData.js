@@ -56,8 +56,6 @@ function ByAlphabetData({ kids = null }) {
   return {
     characterQueryResponse,
     searchInfiniteQueryResponse,
-    actions: ['copy'],
-    moreActions: ['share', 'qrcode'],
     sitename,
     currentCharacter,
     searchType,

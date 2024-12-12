@@ -32,14 +32,12 @@ function SearchSiteContainer() {
     <>
       <SiteDocHead titleArray={['Search']} />
       <SearchPresentation
-        actions={['copy']}
         searchType={searchTypeInUrl}
         filters={typeFilters}
         handleFilter={(filter) => {
           setSearchTypeInUrl(filter)
         }}
         infiniteQueryResponse={infiniteQueryResponse}
-        moreActions={['share', 'qrcode']}
         sitename={sitename}
         siteTitle={site?.title}
         entryLabel={getSearchTypeLabel({ searchTypeInUrl })}

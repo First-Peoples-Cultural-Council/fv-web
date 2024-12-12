@@ -12,8 +12,6 @@ function SearchPresentation({
   filters,
   handleFilter,
   infiniteQueryResponse,
-  actions,
-  moreActions,
   sitename,
   entryLabel,
 }) {
@@ -77,11 +75,7 @@ function SearchPresentation({
         </div>
         <div className="hidden md:block min-h-220 col-span-11 lg:col-span-9">
           <DictionaryList.Presentation
-            actions={actions}
-            infiniteScroll={infiniteQueryResponse?.infiniteScroll}
-            isLoading={infiniteQueryResponse?.isPending}
-            items={infiniteQueryResponse?.data}
-            moreActions={moreActions}
+            infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
             showType
             wholeDomain={wholeDomain}
@@ -90,11 +84,7 @@ function SearchPresentation({
         </div>
         <div className="block md:hidden min-h-220 col-span-11">
           <DictionaryGrid.Presentation
-            actions={actions}
-            infiniteScroll={infiniteQueryResponse?.infiniteScroll}
-            isLoading={infiniteQueryResponse?.isPending}
-            items={infiniteQueryResponse?.data}
-            moreActions={moreActions}
+            infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
             showType
           />
@@ -107,12 +97,10 @@ function SearchPresentation({
 // PROPTYPES
 const { array, func, object, string } = PropTypes
 SearchPresentation.propTypes = {
-  actions: array,
   searchType: string,
   filters: array,
   handleFilter: func,
   infiniteQueryResponse: object,
-  moreActions: array,
   sitename: string,
   entryLabel: string,
 }

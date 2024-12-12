@@ -54,8 +54,6 @@ function ByCategoryData({ kids = null }) {
   return {
     categoriesQueryResponse,
     searchInfiniteQueryResponse,
-    actions: ['copy'],
-    moreActions: ['share', 'qrcode'],
     sitename,
     currentCategory,
     currentParentCategory,
