@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import ShareLinks from 'components/ShareLinks'
 import SectionTitle from 'components/SectionTitle'
 import AudioButton from 'components/AudioButton'
-import LoadOrError from 'components/LoadOrError'
 
 function WidgetWordOfTheDayPresentation({
   audio,
@@ -25,9 +24,10 @@ function WidgetWordOfTheDayPresentation({
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title={title} />
       </div>
-      <LoadOrError queryResponse={queryResponse}>
+
+      {!queryResponse?.isError ? (
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mt-2 inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800 sm:text-5xl">
+          <div className="mt-2 inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800">
             <Link to={relativeUrl}>{wordTitle}</Link>
             {audio && (
               <span className="ml-2 text-black">
@@ -51,7 +51,12 @@ function WidgetWordOfTheDayPresentation({
             sitename={sitename}
           />
         </div>
-      </LoadOrError>
+      ) : (
+        <div className="mt-2 inline-flex items-center text-2xl">
+          Oops! We seem to be having trouble finding a word for the day. <br />
+          If this problem persists please contact hello@firstvoices.com
+        </div>
+      )}
     </section>
   )
 }
