@@ -14,7 +14,7 @@ function StoryContainer({ id, sitename, isDrawer, isDashboard }) {
   return (
     <LoadOrError queryResponse={storyQueryResponse}>
       {isDrawer ? (
-        <StoryPresentationDrawer entry={entry} isDasboard={isDashboard} />
+        <StoryPresentationDrawer entry={entry} isDashboard={isDashboard} />
       ) : (
         <StoryPresentation entry={entry} />
       )}

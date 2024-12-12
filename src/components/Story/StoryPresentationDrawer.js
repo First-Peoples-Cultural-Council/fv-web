@@ -94,18 +94,17 @@ function StoryPresentationDrawer({ entry, isDashboard }) {
       </div>
       {/* created and modified */}
       {isDashboard && (
-        <div className="border-t text-sm px-6">
+        <div className="border-t text-sm px-6 mt-6">
           {entry?.createdBy && (
             <div className="py-4">
               <p>
-                Created: {entry?.created?.slice(0, 10)} by {entry?.createdBy}
+                Created: {entry?.created} by {entry?.createdBy}
               </p>
             </div>
           )}
           {entry?.lastModifiedBy && (
             <p>
-              Modified: {entry?.lastModified?.slice(0, 10)} by{' '}
-              {entry?.lastModifiedBy}
+              Modified: {entry?.lastModified} by {entry?.lastModifiedBy}
             </p>
           )}
         </div>
