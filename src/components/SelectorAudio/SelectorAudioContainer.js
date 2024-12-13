@@ -14,18 +14,18 @@ function SelectorAudioContainer({
   mediaSelectHandler,
 }) {
   const {
-    media,
+    data,
     searchValue,
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoadingEntries,
+    isPending,
     loadRef,
     loadLabel,
   } = useMediaSearch({ type: TYPE_AUDIO })
 
   const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
+    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
   )
 
   return (
@@ -42,11 +42,11 @@ function SelectorAudioContainer({
         <div className="grow mt-2 h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
-            isLoading={isLoadingEntries}
+            isLoading={isPending}
             loadRef={loadRef}
             resultsSection={
               <SelectorAudioPresentation
-                data={media}
+                data={data}
                 infiniteScroll={infiniteScroll}
                 loadLabel={loadLabel}
                 formMedia={formMedia}

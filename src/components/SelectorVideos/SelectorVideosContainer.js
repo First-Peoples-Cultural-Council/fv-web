@@ -14,18 +14,18 @@ function SelectorVideosContainer({
   mediaSelectHandler,
 }) {
   const {
-    media,
+    data,
     searchValue,
     handleSearchSubmit,
     handleTextFieldChange,
     infiniteScroll,
-    isLoadingEntries,
+    isPending,
     loadRef,
     loadLabel,
   } = useMediaSearch({ type: TYPE_VIDEO })
 
   const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
+    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
   )
 
   return (
@@ -45,7 +45,7 @@ function SelectorVideosContainer({
         <div className="grow mt-2 h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
-            isLoading={isLoadingEntries}
+            isLoading={isPending}
             loadRef={loadRef}
             resultsSection={
               <div aria-labelledby="results-header">
@@ -53,7 +53,7 @@ function SelectorVideosContainer({
                   Videos
                 </h2>
                 <SelectorVisualMediaGrid.Presentation
-                  data={media}
+                  data={data}
                   infiniteScroll={infiniteScroll}
                   loadLabel={loadLabel}
                   formMedia={formMedia}
