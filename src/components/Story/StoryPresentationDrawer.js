@@ -7,7 +7,7 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK } from 'common/constants'
 
-function StoryPresentationDrawer({ entry }) {
+function StoryPresentationDrawer({ entry, isDashboard }) {
   return (
     <div data-testid="StoryPresentationDrawer">
       <div className="px-4 sm:flex sm:items-end sm:px-6">
@@ -92,13 +92,31 @@ function StoryPresentationDrawer({ entry }) {
           </div>
         </div>
       </div>
+      {/* created and modified */}
+      {isDashboard && (
+        <div className="border-t text-sm px-6 mt-6">
+          {entry?.createdBy && (
+            <div className="py-4">
+              <p>
+                Created: {entry?.created} by {entry?.createdBy}
+              </p>
+            </div>
+          )}
+          {entry?.lastModifiedBy && (
+            <p>
+              Modified: {entry?.lastModified} by {entry?.lastModifiedBy}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   )
 }
 // PROPTYPES
-const { object } = PropTypes
+const { object, bool } = PropTypes
 StoryPresentationDrawer.propTypes = {
   entry: object,
+  isDashboard: bool,
 }
 
 export default StoryPresentationDrawer
