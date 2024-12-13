@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaDetails from 'components/MediaDetails'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import { SMALL, IMAGE } from 'common/constants'
 
 function DashboardMediaVisualPresentation({
   data,
@@ -34,43 +36,50 @@ function DashboardMediaVisualPresentation({
                   data?.pages?.[0]?.results?.length > 0 &&
                   data?.pages?.map((page) => (
                     <React.Fragment key={page?.pageNumber}>
-                      {page.results.map((doc) => (
-                        <li key={doc?.id} className="relative">
-                          <div
-                            className={`${
-                              doc?.id === currentFile?.id
-                                ? 'ring-4 ring-offset-2 ring-scarlet-800'
-                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
-                            } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
-                          >
-                            <img
-                              src={doc?.thumbnail}
-                              alt={doc?.title}
+                      {page.results.map((mediaObject) => {
+                        const src = getMediaPath({
+                          type: IMAGE,
+                          mediaObject,
+                          size: SMALL,
+                        })
+                        return (
+                          <li key={mediaObject?.id} className="relative">
+                            <div
                               className={`${
-                                doc?.id === currentFile?.id
-                                  ? ''
-                                  : 'group-hover:opacity-75'
-                              } object-cover pointer-events-none`}
-                            />
-                            <button
-                              data-testid=""
-                              type="button"
-                              className="absolute inset-0 focus:outline-none"
-                              onClick={() => setCurrentFile(doc)}
+                                mediaObject?.id === currentFile?.id
+                                  ? 'ring-4 ring-offset-2 ring-scarlet-800'
+                                  : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
+                              } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
                             >
-                              <span className="sr-only">
-                                View details for {doc?.title}
-                              </span>
-                            </button>
-                          </div>
-                          <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
-                            {doc?.title}
-                          </p>
-                          {doc?.width && doc?.height && (
-                            <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
-                          )}
-                        </li>
-                      ))}
+                              <img
+                                src={src}
+                                alt={mediaObject?.title}
+                                className={`${
+                                  mediaObject?.id === currentFile?.id
+                                    ? ''
+                                    : 'group-hover:opacity-75'
+                                } object-cover pointer-events-none`}
+                              />
+                              <button
+                                data-testid=""
+                                type="button"
+                                className="absolute inset-0 focus:outline-none"
+                                onClick={() => setCurrentFile(mediaObject)}
+                              >
+                                <span className="sr-only">
+                                  View details for {mediaObject?.title}
+                                </span>
+                              </button>
+                            </div>
+                            <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
+                              {mediaObject?.title}
+                            </p>
+                            {mediaObject?.width && mediaObject?.height && (
+                              <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
+                            )}
+                          </li>
+                        )
+                      })}
                     </React.Fragment>
                   ))}
               </ul>

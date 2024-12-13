@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { THUMBNAIL, IMAGE } from 'common/constants'
+import { SMALL, IMAGE } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function SelectorVisualMediaGridPresentation({
@@ -15,7 +15,6 @@ function SelectorVisualMediaGridPresentation({
   mediaSelectHandler,
 }) {
   const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
-
   return (
     <div
       data-testid="SelectorVisualMediaGridPresentation"
@@ -36,7 +35,7 @@ function SelectorVisualMediaGridPresentation({
                   const mediaSrc = getMediaPath({
                     type: IMAGE,
                     mediaObject,
-                    size: THUMBNAIL,
+                    size: SMALL,
                   })
                   return (
                     <li key={mediaObject?.id} className="relative group">
