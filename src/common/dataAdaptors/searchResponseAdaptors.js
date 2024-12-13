@@ -13,23 +13,7 @@ import { storySummaryAdaptor } from 'common/dataAdaptors/storyAdaptors'
 import { songSummaryAdaptor } from 'common/dataAdaptors/songAdaptors'
 import { mediaSearchAdaptor } from 'common/dataAdaptors/mediaAdaptors'
 
-export function searchResponseAdaptor(response) {
-  return pagesDataAdaptor(response.pages)
-}
-
-const pagesDataAdaptor = (pages) =>
-  pages.map((page, index) => singlePageDataAdaptor(page, index))
-
-const singlePageDataAdaptor = (page, index) => {
-  const formattedEntries = page?.results?.map((result) => resultAdaptor(result))
-  return {
-    ...page,
-    pageNumber: index + 1,
-    results: formattedEntries,
-  }
-}
-
-const resultAdaptor = (result) => {
+export function searchResultAdaptor(result) {
   const baseObject = {
     id: result?.entry?.id,
     title: result?.entry?.title,

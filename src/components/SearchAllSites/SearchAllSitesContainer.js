@@ -22,27 +22,21 @@ function SearchAllSitesContainer() {
   })
 
   // fetch results
-  const { data, infiniteScroll, loadRef, isInitialLoading } =
-    useSearchAllSitesLoader({
-      enabled: true,
-      searchParams,
-    })
+  const infiniteQueryResponse = useSearchAllSitesLoader({
+    enabled: true,
+    searchParams,
+  })
 
   return (
     <>
       <DocHead titleArray={['Search']} />
       <SearchPresentation
-        actions={['copy']}
         searchType={searchTypeInUrl}
         filters={typeFilters}
         handleFilter={(filter) => {
           setSearchTypeInUrl(filter)
         }}
-        infiniteScroll={infiniteScroll}
-        isLoading={isInitialLoading}
-        items={data}
-        loadRef={loadRef}
-        moreActions={['share', 'qrcode']}
+        infiniteQueryResponse={infiniteQueryResponse}
         siteTitle="FirstVoices"
         entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
       />

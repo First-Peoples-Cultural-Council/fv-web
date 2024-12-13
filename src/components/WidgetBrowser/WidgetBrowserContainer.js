@@ -4,25 +4,25 @@ import PropTypes from 'prop-types'
 // FPCC
 import WidgetBrowserPresentation from 'components/WidgetBrowser/WidgetBrowserPresentation'
 import WidgetBrowserData from 'components/WidgetBrowser/WidgetBrowserData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 
 function WidgetBrowserContainer({
   chooseWidgetHandler,
   currentWidgets,
   isHomepage,
 }) {
-  const { isLoading, site, widgets } = WidgetBrowserData({
+  const { queryResponse, site, widgets } = WidgetBrowserData({
     isHomepage,
     currentWidgets,
   })
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={queryResponse}>
       <WidgetBrowserPresentation
         chooseWidgetHandler={chooseWidgetHandler}
         widgets={widgets}
         site={site}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 // PROPTYPES

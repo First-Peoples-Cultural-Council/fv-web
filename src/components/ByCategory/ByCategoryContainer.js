@@ -8,7 +8,6 @@ import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
-    actions,
     categoriesQueryResponse,
     currentCategory,
     currentParentCategory,
@@ -16,7 +15,6 @@ function ByCategoryContainer({ kids = null }) {
     setSearchType,
     entryLabel,
     searchInfiniteQueryResponse,
-    moreActions,
     selectedTab,
     sitename,
     tabs,
@@ -25,7 +23,6 @@ function ByCategoryContainer({ kids = null }) {
     <LoadOrError queryResponse={categoriesQueryResponse}>
       <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
       <ByCategoryPresentation
-        actions={actions}
         categories={categoriesQueryResponse?.data?.results || []}
         currentCategory={currentCategory}
         currentParentCategory={currentParentCategory}
@@ -34,7 +31,6 @@ function ByCategoryContainer({ kids = null }) {
         setSearchType={setSearchType}
         entryLabel={entryLabel}
         kids={kids}
-        moreActions={moreActions}
         selectedTab={selectedTab}
         sitename={sitename}
         tabs={tabs}

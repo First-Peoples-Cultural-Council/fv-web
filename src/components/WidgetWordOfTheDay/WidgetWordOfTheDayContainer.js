@@ -12,11 +12,11 @@ function WidgetWordOfTheDayContainer() {
     relativeUrl,
     title,
     url,
-    isError,
+    queryResponse,
     sitename,
     entry,
   } = WidgetWordOfTheDayData()
-  return isError ? null : (
+  return (
     <WidgetWordOfTheDayPresentation
       audio={audio}
       wordTitle={wordTitle}
@@ -27,6 +27,7 @@ function WidgetWordOfTheDayContainer() {
       url={url}
       sitename={sitename}
       entry={entry}
+      queryResponse={queryResponse}
     />
   )
 }

@@ -16,7 +16,7 @@ function CharacterCrudData() {
     window.location.href = `/${sitename}/dashboard/edit/alphabet`
   }
 
-  const { isInitialLoading, data } = useCharacter({
+  const characterQueryResponse = useCharacter({
     id: characterId,
     edit: true,
   })
@@ -24,7 +24,7 @@ function CharacterCrudData() {
   const { onSubmit } = useCharacterPartialUpdate()
 
   const submitHandler = (formData) => {
-    if (characterId && data) {
+    if (characterId && characterQueryResponse?.data) {
       onSubmit(formData)
     }
   }
@@ -34,8 +34,7 @@ function CharacterCrudData() {
   return {
     submitHandler,
     backHandler,
-    dataToEdit: data || null,
-    isLoading: isInitialLoading,
+    characterQueryResponse,
   }
 }
 

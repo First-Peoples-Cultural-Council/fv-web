@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import getIcon from 'common/utils/getIcon'
 function CategoriesBrowserPresentation({
-  isLoading,
+  categoriesQueryResponse,
   chooseDocHandler,
   currentCategory,
   setCurrentCategory,
@@ -49,7 +49,7 @@ function CategoriesBrowserPresentation({
             </button>
           )}
         </header>
-        <Loading.Container isLoading={isLoading}>
+        <LoadOrError queryResponse={categoriesQueryResponse}>
           {filteredCategories && (
             <section className="text-left">
               <div className="flex justify-start px-4 py-2 font-semibold">
@@ -81,16 +81,16 @@ function CategoriesBrowserPresentation({
           {!filteredCategories && (
             <p className="bg-white">You have not created any categories yet</p>
           )}
-        </Loading.Container>
+        </LoadOrError>
       </div>
     </section>
   )
 }
 
 // PROPTYPES
-const { array, bool, object, func } = PropTypes
+const { array, object, func } = PropTypes
 CategoriesBrowserPresentation.propTypes = {
-  isLoading: bool,
+  categoriesQueryResponse: object,
   chooseDocHandler: func,
   currentCategory: object,
   setCurrentCategory: func,

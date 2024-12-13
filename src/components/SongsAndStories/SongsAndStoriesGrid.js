@@ -44,20 +44,15 @@ function getOpacityClass({ item }) {
   return 'group-hover:opacity-75'
 }
 
-function SongsAndStoriesGrid({
-  labels,
-  items,
-  showNoResultsMessage,
-  handleItemClick,
-}) {
+function SongsAndStoriesGrid({ labels, data, handleItemClick }) {
   return (
-    <section className="mt-4 lg:mt-8 pb-16" aria-labelledby="gallery-heading">
+    <section className="mt-4 lg:mt-8" aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" className="sr-only">
         {labels?.titlecase}
       </h2>
 
       <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {items?.pages?.map((page) => (
+        {data?.pages?.map((page) => (
           <React.Fragment key={page.pageNumber}>
             {page?.results?.map((item) => (
               <li key={item.id} className="relative">
@@ -92,7 +87,6 @@ function SongsAndStoriesGrid({
                 </button>
               </li>
             ))}
-            {showNoResultsMessage(page)}
           </React.Fragment>
         ))}
       </ul>
@@ -103,9 +97,8 @@ function SongsAndStoriesGrid({
 const { func, object } = PropTypes
 SongsAndStoriesGrid.propTypes = {
   labels: object,
-  items: object,
+  data: object,
   handleItemClick: func,
-  showNoResultsMessage: func,
 }
 
 export default SongsAndStoriesGrid

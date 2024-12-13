@@ -6,7 +6,7 @@ import CategoriesBrowserData from 'components/CategoriesBrowser/CategoriesBrowse
 import CategoriesBrowserPresentation from 'components/CategoriesBrowser/CategoriesBrowserPresentation'
 function CategoriesBrowserContainer({ chooseDocHandler }) {
   const {
-    isLoading,
+    categoriesQueryResponse,
     site,
     sitename,
     currentCategory,
@@ -16,7 +16,7 @@ function CategoriesBrowserContainer({ chooseDocHandler }) {
   } = CategoriesBrowserData()
   return (
     <CategoriesBrowserPresentation
-      isLoading={isLoading}
+      categoriesQueryResponse={categoriesQueryResponse}
       site={site}
       sitename={sitename}
       chooseDocHandler={chooseDocHandler}

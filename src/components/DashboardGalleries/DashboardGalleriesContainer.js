@@ -6,20 +6,18 @@ import DashboardGalleriesPresentation from 'components/DashboardGalleries/Dashbo
 import DashboardLanding from 'components/DashboardLanding'
 
 function DashboardGalleriesContainer() {
-  const { galleries, headerContent, isLoading, site, sitename, tileContent } =
+  const { galleriesQueryResponse, headerContent, site, tileContent } =
     DashboardGalleriesData()
   return (
     <div id="DashboardGalleriesContainer">
       <DashboardLanding.Presentation
-        tileContent={tileContent}
         headerContent={headerContent}
         site={site}
+        tileContent={tileContent}
       >
         <DashboardGalleriesPresentation
-          galleries={galleries}
-          isLoading={isLoading}
+          galleriesQueryResponse={galleriesQueryResponse}
           site={site}
-          sitename={sitename}
         />
       </DashboardLanding.Presentation>
     </div>

@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { makePlural } from 'common/utils/urlHelpers'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import ActionsMenu from 'components/ActionsMenu'
 import Drawer from 'components/Drawer'
 import EntryDetail from 'components/EntryDetail'
@@ -13,11 +13,9 @@ import AudioButton from 'components/AudioButton'
 import { useAudiobar } from 'context/AudiobarContext'
 
 function DictionaryListPresentation({
-  actions = [],
-  infiniteScroll,
-  isLoading,
-  items,
-  moreActions = [],
+  infiniteQueryResponse,
+  actions = ['copy'],
+  moreActions = ['share', 'qrcode'],
   noResultsMessage = 'Sorry, no results were found for this search.',
   onSortByClick,
   showType,
@@ -27,8 +25,6 @@ function DictionaryListPresentation({
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
-    infiniteScroll
   const navigate = useNavigate()
   const { setCurrentAudio } = useAudiobar()
 
@@ -59,8 +55,9 @@ function DictionaryListPresentation({
     'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
 
   return (
-    <Loading.Container isLoading={isLoading}>
-      {items?.pages !== undefined && items?.pages?.[0]?.results?.length > 0 ? (
+    <LoadOrError queryResponse={infiniteQueryResponse}>
+      {infiniteQueryResponse?.data?.pages !== undefined &&
+      infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0 ? (
         <div id="DictionaryListPresentation" className="flex flex-col">
           <div className="py-2 align-middle inline-block min-w-full">
             <div className="overflow-hidden sm:rounded-lg">
@@ -111,7 +108,7 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-200">
-                  {items?.pages?.map((page) => (
+                  {infiniteQueryResponse?.data?.pages?.map((page) => (
                     <Fragment key={page.pageNumber}>
                       {page.results.map((entry) => (
                         <tr key={entry?.id}>
@@ -200,11 +197,16 @@ function DictionaryListPresentation({
             <button
               data-testid="load-btn"
               type="button"
-              className={!hasNextPage ? 'cursor-text' : ''}
-              onClick={() => fetchNextPage()}
-              disabled={!hasNextPage || isFetchingNextPage}
+              className={
+                !infiniteQueryResponse?.hasNextPage ? 'cursor-text' : ''
+              }
+              onClick={() => infiniteQueryResponse?.fetchNextPage()}
+              disabled={
+                !infiniteQueryResponse?.hasNextPage ||
+                infiniteQueryResponse?.isFetchingNextPage
+              }
             >
-              {loadLabel}
+              {infiniteQueryResponse?.loadLabel}
             </button>
           </div>
         </div>
@@ -233,16 +235,14 @@ function DictionaryListPresentation({
           isDrawer
         />
       </Drawer.Presentation>
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
 // PROPTYPES
 const { array, bool, func, node, object, string } = PropTypes
 DictionaryListPresentation.propTypes = {
-  infiniteScroll: object,
-  isLoading: bool,
-  items: object,
+  infiniteQueryResponse: object,
   actions: array,
   moreActions: array,
   noResultsMessage: node,

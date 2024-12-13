@@ -9,20 +9,20 @@ import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 
 function DashboardMediaAudioContainer() {
   const {
-    media,
+    data,
     searchValue,
     currentFile,
     setCurrentFile,
     handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
     infiniteScroll,
-    isLoadingEntries,
+    isPending,
     loadRef,
     loadLabel,
   } = useMediaSearch({ type: TYPE_AUDIO })
 
   const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
+    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
   )
 
   return (
@@ -42,11 +42,11 @@ function DashboardMediaAudioContainer() {
         <div>
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
-            isLoading={isLoadingEntries}
+            isLoading={isPending}
             loadRef={loadRef}
             resultsSection={
               <DashboardMediaAudioPresentation
-                data={media}
+                data={data}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
                 setCurrentFile={setCurrentFile}

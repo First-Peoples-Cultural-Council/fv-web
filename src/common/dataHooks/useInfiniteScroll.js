@@ -3,14 +3,16 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 // FPCC
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { useSiteStore } from 'context/SiteContext'
 
 /**
  * Calls API and provides results and infinite scroll info.
  */
-function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
-  const { site } = useSiteStore()
-
+function useInfiniteScroll({
+  queryKey,
+  queryFn,
+  enabled = true,
+  resultAdaptor,
+}) {
   const pagesDataAdaptor = (pages) =>
     pages.map((page, index) => singlePageDataAdaptor(page, index))
 
@@ -29,7 +31,7 @@ function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
   const response = useInfiniteQuery({
     queryKey,
     queryFn,
-    enabled: !!site?.sitename,
+    enabled,
     getNextPageParam: (currentPage) => currentPage.next,
     select: (responseData) => ({
       pages: pagesDataAdaptor(responseData.pages),
@@ -37,10 +39,21 @@ function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
     }),
   })
 
+  const getLoadLabel = () => {
+    if (response?.isFetchingNextPage) {
+      return 'Loading more...'
+    }
+    if (response?.hasNextPage) {
+      return 'Load more'
+    }
+    return 'End of results.'
+  }
+
   const infiniteScroll = {
     fetchNextPage: response?.fetchNextPage,
     hasNextPage: response?.hasNextPage,
     isFetchingNextPage: response?.isFetchingNextPage,
+    loadLabel: getLoadLabel(),
   }
 
   const loadRef = useRef(null)
@@ -53,6 +66,7 @@ function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
   return {
     ...response,
     infiniteScroll,
+    loadLabel: getLoadLabel(),
     loadRef,
   }
 }

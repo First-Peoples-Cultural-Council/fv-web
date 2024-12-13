@@ -9,12 +9,9 @@ function DashboardEntriesContainer({ advancedSearch = false }) {
   const {
     emptyListMessage,
     entryLabel,
-    infiniteScroll,
+    searchInfiniteQueryResponse,
     initialSearchType,
     isDictionary,
-    isLoadingEntries,
-    items,
-    loadRef,
     removeFilters,
     searchType,
     setSearchType,
@@ -27,12 +24,9 @@ function DashboardEntriesContainer({ advancedSearch = false }) {
       <DashboardEntriesPresentation
         emptyListMessage={emptyListMessage}
         entryLabel={entryLabel}
-        infiniteScroll={infiniteScroll}
         initialSearchType={initialSearchType}
         isDictionary={isDictionary}
-        isLoadingEntries={isLoadingEntries}
-        items={items}
-        loadRef={loadRef}
+        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
         removeFilters={removeFilters}
         searchType={searchType}
         setSearchType={setSearchType}

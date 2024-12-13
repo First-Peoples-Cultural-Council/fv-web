@@ -21,7 +21,6 @@ export const mediaSearchAdaptor = ({ type, data }) => {
         downloadLink: data?.original?.path || '',
         height: data?.original?.height,
         width: data?.original?.width,
-        thumbnail: data?.small?.path,
       }
     default:
       return { ...data, message: 'NOT a media document' }

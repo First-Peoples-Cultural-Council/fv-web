@@ -10,7 +10,7 @@ function DashboardGalleriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const { data, isInitialLoading } = useGalleries()
+  const galleriesQueryResponse = useGalleries()
 
   const tileContent = [
     {
@@ -30,11 +30,10 @@ function DashboardGalleriesData() {
   }
 
   return {
+    galleriesQueryResponse,
     headerContent,
-    isLoading: isInitialLoading,
     site,
     tileContent,
-    galleries: data?.results || [],
   }
 }
 

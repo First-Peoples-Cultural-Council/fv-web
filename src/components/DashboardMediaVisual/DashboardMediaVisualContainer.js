@@ -10,21 +10,21 @@ import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
 function DashboardMediaVisualContainer({ type }) {
   const {
-    media,
+    data,
     searchValue,
     currentFile,
     setCurrentFile,
     handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
     infiniteScroll,
-    isLoadingEntries,
+    isPending,
     loadRef,
     loadLabel,
     typePlural,
   } = useMediaSearch({ type })
 
   const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
+    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
   )
 
   return (
@@ -44,11 +44,11 @@ function DashboardMediaVisualContainer({ type }) {
         <div>
           <SelectorResultsWrapper.Presentation
             hasResults={hasResults}
-            isLoading={isLoadingEntries}
+            isLoading={isPending}
             loadRef={loadRef}
             resultsSection={
               <DashboardMediaVisualPresentation
-                data={media}
+                data={data}
                 infiniteScroll={infiniteScroll}
                 currentFile={currentFile}
                 setCurrentFile={setCurrentFile}

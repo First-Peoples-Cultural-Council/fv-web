@@ -14,17 +14,11 @@ import {
 } from 'common/constants'
 
 function DictionaryPresentation({
-  actions,
   searchType,
-  infiniteScroll,
-  loadRef,
-  isLoadingEntries,
-  items,
+  infiniteQueryResponse,
   kids,
   labels,
-  moreActions,
   sitename,
-  count,
 }) {
   const linkStyle = {
     li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
@@ -32,10 +26,10 @@ function DictionaryPresentation({
     icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
   }
 
-  let countStr = count
-  if (count >= 10000) {
-    countStr = '10000+'
-  }
+  const count =
+    infiniteQueryResponse?.data?.pages?.[0]?.count < 10000
+      ? infiniteQueryResponse?.data?.pages?.[0]?.count
+      : '10000+'
 
   return (
     <>
@@ -53,9 +47,7 @@ function DictionaryPresentation({
       {kids ? (
         <div className="lg:px-20 bg-charcoal-50">
           <DictionaryGrid.Presentation
-            infiniteScroll={infiniteScroll}
-            isLoading={isLoadingEntries}
-            items={items}
+            infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
             showType={searchType === TYPE_DICTIONARY}
             kids
@@ -70,10 +62,10 @@ function DictionaryPresentation({
               </h1>
               <div
                 className={`${
-                  countStr ? '' : 'opacity-0'
+                  count ? '' : 'opacity-0'
                 } text-sm xl:text-base text-charcoal-900`}
               >
-                Results: {countStr}
+                Results: {count}
               </div>
             </div>
 
@@ -120,11 +112,7 @@ function DictionaryPresentation({
           <div className="min-h-220 col-span-12 lg:col-span-10">
             <div className="hidden md:block p-2 print:block">
               <DictionaryList.Presentation
-                actions={actions}
-                infiniteScroll={infiniteScroll}
-                isLoading={isLoadingEntries}
-                items={items}
-                moreActions={moreActions}
+                infiniteQueryResponse={infiniteQueryResponse}
                 sitename={sitename}
                 entryLabel={labels.singular}
                 showType={searchType === TYPE_DICTIONARY}
@@ -132,11 +120,7 @@ function DictionaryPresentation({
             </div>
             <div className="block md:hidden print:hidden">
               <DictionaryGrid.Presentation
-                actions={actions}
-                infiniteScroll={infiniteScroll}
-                isLoading={isLoadingEntries}
-                items={items}
-                moreActions={moreActions}
+                infiniteQueryResponse={infiniteQueryResponse}
                 sitename={sitename}
                 showType={searchType === TYPE_DICTIONARY}
               />
@@ -144,24 +128,18 @@ function DictionaryPresentation({
           </div>
         </div>
       )}
-      <div ref={loadRef} className="w-full h-10" />
+      <div ref={infiniteQueryResponse?.loadRef} className="w-full h-10" />
     </>
   )
 }
 // PROPTYPES
-const { array, bool, object, string, number } = PropTypes
+const { bool, object, string } = PropTypes
 DictionaryPresentation.propTypes = {
-  actions: array,
   searchType: string,
-  infiniteScroll: object,
-  loadRef: object,
-  isLoadingEntries: bool,
-  items: object,
+  infiniteQueryResponse: object,
   kids: bool,
   labels: object,
-  moreActions: array,
   sitename: string,
-  count: number,
 }
 
 export default DictionaryPresentation

@@ -47,7 +47,7 @@ function useMediaSearch({ type, searchSharedMedia }) {
     enabled: searchSharedMedia,
   })
 
-  const response = searchSharedMedia
+  const infiniteQueryResponse = searchSharedMedia
     ? sharedMediaSearchResponse
     : siteSearchResponse
 
@@ -67,21 +67,17 @@ function useMediaSearch({ type, searchSharedMedia }) {
   }
 
   useEffect(() => {
-    if (!currentFile && response?.data?.pages?.[0]?.results) {
-      const firstFile = response?.data?.pages?.[0]?.results?.[0]
+    if (!currentFile && infiniteQueryResponse?.data?.pages?.[0]?.results) {
+      const firstFile = infiniteQueryResponse?.data?.pages?.[0]?.results?.[0]
       setCurrentFile(firstFile)
     }
-  }, [currentFile, response?.data, type])
+  }, [currentFile, infiniteQueryResponse?.data, type])
 
   return {
+    ...infiniteQueryResponse,
     handleSearchSubmit,
     handleSearchSubmitWithUrlSync,
     handleTextFieldChange,
-    infiniteScroll: response?.infiniteScroll,
-    isLoadingEntries: response?.isLoading,
-    loadLabel: response?.infiniteScroll?.loadLabel,
-    loadRef: response?.loadRef,
-    media: response?.data,
     searchValue: searchInputValue,
     currentFile,
     setCurrentFile,
