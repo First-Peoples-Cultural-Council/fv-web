@@ -21,10 +21,10 @@ function SelectorEntriesContainer({
     displayedSearchTerm,
     handleSearchTermChange,
     handleSearchSubmit,
-    searchResults,
+    data,
     hasResults,
     infiniteScroll,
-    isLoadingEntries,
+    isPending,
     loadRef,
   } = useSearchModal({ types, visibility })
 
@@ -77,14 +77,14 @@ function SelectorEntriesContainer({
               <div className="grow h-72 overflow-y-scroll">
                 <SelectorResultsWrapper.Presentation
                   hasResults={hasResults}
-                  isLoading={isLoadingEntries}
+                  isLoading={isPending}
                   loadRef={loadRef}
                   resultsSection={
                     <SelectorEntriesPresentationList
                       formEntries={formEntries}
                       handleSelectAdditionalItems={handleSelectAdditionalItems}
                       infiniteScroll={infiniteScroll}
-                      searchResults={searchResults}
+                      searchResults={data}
                       selectedItems={selectedItems}
                       types={types}
                     />
