@@ -28,7 +28,7 @@ function useInfiniteScroll({
   }
 
   // Fetch search results
-  const response = useInfiniteQuery({
+  const infiniteQueryResponse = useInfiniteQuery({
     queryKey,
     queryFn,
     enabled,
@@ -40,34 +40,38 @@ function useInfiniteScroll({
   })
 
   const getLoadLabel = () => {
-    if (response?.isFetchingNextPage) {
+    if (infiniteQueryResponse?.isFetchingNextPage) {
       return 'Loading more...'
     }
-    if (response?.hasNextPage) {
+    if (infiniteQueryResponse?.hasNextPage) {
       return 'Load more'
     }
     return 'End of results.'
   }
 
   const infiniteScroll = {
-    fetchNextPage: response?.fetchNextPage,
-    hasNextPage: response?.hasNextPage,
-    isFetchingNextPage: response?.isFetchingNextPage,
+    fetchNextPage: infiniteQueryResponse?.fetchNextPage,
+    hasNextPage: infiniteQueryResponse?.hasNextPage,
+    isFetchingNextPage: infiniteQueryResponse?.isFetchingNextPage,
     loadLabel: getLoadLabel(),
   }
 
   const loadRef = useRef(null)
   useIntersectionObserver({
     target: loadRef,
-    onIntersect: response?.fetchNextPage,
-    enabled: response?.hasNextPage,
+    onIntersect: infiniteQueryResponse?.fetchNextPage,
+    enabled: infiniteQueryResponse?.hasNextPage,
   })
 
   return {
-    ...response,
+    ...infiniteQueryResponse,
     infiniteScroll,
     loadLabel: getLoadLabel(),
     loadRef,
+    hasResults: Boolean(
+      infiniteQueryResponse?.data?.pages !== undefined &&
+        infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0,
+    ),
   }
 }
 
