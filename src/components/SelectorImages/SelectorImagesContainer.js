@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorVisualMediaGrid from 'components/SelectorVisualMediaGrid'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import useMediaSearchModal from 'common/dataHooks/useMediaSearchModal'
 import { TYPE_IMAGE } from 'common/constants'
 import RadioButtonGroup from 'components/RadioButtonGroup'
 
@@ -19,21 +19,19 @@ function SelectorImagesContainer({
 
   const {
     data,
-    searchValue,
+    displayedSearchTerm,
     handleSearchSubmit,
-    handleTextFieldChange,
+    handleSearchTermChange,
+    hasResults,
     infiniteScroll,
     isPending,
     loadRef,
     loadLabel,
-  } = useMediaSearch({
+  } = useMediaSearchModal({
     type: TYPE_IMAGE,
     searchSharedMedia: searchSharedMedia === 'true',
   })
 
-  const hasResults = !!(
-    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
-  )
   const sharedMediaOptions = [
     { value: 'true', label: 'Shared Images' },
     { value: 'false', label: 'Your image library' },
@@ -47,10 +45,10 @@ function SelectorImagesContainer({
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
+            onSearchChange={handleSearchTermChange}
             onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all images"
-            searchValue={searchValue}
+            searchValue={displayedSearchTerm}
           />
         </div>
         {!hideSharedMedia && (

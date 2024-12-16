@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorAudioPresentation from 'components/SelectorAudio/SelectorAudioPresentation'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import useMediaSearchModal from 'common/dataHooks/useMediaSearchModal'
 import { TYPE_AUDIO } from 'common/constants'
 
 function SelectorAudioContainer({
@@ -15,28 +15,25 @@ function SelectorAudioContainer({
 }) {
   const {
     data,
-    searchValue,
+    displayedSearchTerm,
     handleSearchSubmit,
-    handleTextFieldChange,
+    handleSearchTermChange,
+    hasResults,
     infiniteScroll,
     isPending,
     loadRef,
     loadLabel,
-  } = useMediaSearch({ type: TYPE_AUDIO })
-
-  const hasResults = !!(
-    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
-  )
+  } = useMediaSearchModal({ type: TYPE_AUDIO })
 
   return (
     <div data-testid="SelectorAudioContainer" className="h-full bg-charcoal-50">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
+            onSearchChange={handleSearchTermChange}
             onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all audio"
-            searchValue={searchValue}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div className="grow mt-2 h-72 overflow-y-scroll">
