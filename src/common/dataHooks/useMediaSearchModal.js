@@ -11,14 +11,11 @@ import {
   SORT,
   SORT_CREATED_DESC,
 } from 'common/constants'
-import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 import useSearchTerm from 'common/hooks/useSearchTerm'
 
 function useMediaSearch({ type, searchSharedMedia }) {
-  const path = getPathForMediaType(type)
-
   const {
     displayedSearchTerm,
     handleSearchTermChange,
@@ -60,7 +57,6 @@ function useMediaSearch({ type, searchSharedMedia }) {
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,
-    typePlural: path,
   }
 }
 

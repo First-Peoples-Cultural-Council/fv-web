@@ -10,20 +10,17 @@ import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 function DashboardMediaAudioContainer() {
   const {
     data,
-    searchValue,
     currentFile,
     setCurrentFile,
+    displayedSearchTerm,
     handleSearchSubmitWithUrlSync,
-    handleTextFieldChange,
+    handleSearchTermChange,
+    hasResults,
     infiniteScroll,
     isPending,
     loadRef,
     loadLabel,
   } = useMediaSearch({ type: TYPE_AUDIO })
-
-  const hasResults = !!(
-    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
-  )
 
   return (
     <div
@@ -33,10 +30,10 @@ function DashboardMediaAudioContainer() {
       <div className="h-full w-full flex flex-col">
         <div className="w-full">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
+            onSearchChange={handleSearchTermChange}
             onSearchSubmit={handleSearchSubmitWithUrlSync}
             searchPlaceholder="Search all audio"
-            searchValue={searchValue}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div>

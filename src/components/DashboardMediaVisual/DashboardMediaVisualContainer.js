@@ -11,21 +11,18 @@ import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 function DashboardMediaVisualContainer({ type }) {
   const {
     data,
-    searchValue,
     currentFile,
     setCurrentFile,
+    displayedSearchTerm,
     handleSearchSubmitWithUrlSync,
-    handleTextFieldChange,
+    handleSearchTermChange,
+    hasResults,
     infiniteScroll,
     isPending,
     loadRef,
     loadLabel,
     typePlural,
   } = useMediaSearch({ type })
-
-  const hasResults = !!(
-    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
-  )
 
   return (
     <div
@@ -35,10 +32,10 @@ function DashboardMediaVisualContainer({ type }) {
       <div className="h-full w-full flex flex-col">
         <div className="w-full">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
+            onSearchChange={handleSearchTermChange}
             onSearchSubmit={handleSearchSubmitWithUrlSync}
             searchPlaceholder={`Search all ${typePlural}`}
-            searchValue={searchValue}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div>
