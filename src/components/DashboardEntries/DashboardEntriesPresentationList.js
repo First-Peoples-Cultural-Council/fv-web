@@ -18,6 +18,7 @@ import {
   SORT_MODIFIED,
   SORT_MODIFIED_DESC,
 } from 'common/constants'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function DashboardEntriesPresentationList({
   searchInfiniteQueryResponse,
@@ -39,7 +40,7 @@ function DashboardEntriesPresentationList({
 
   return (
     <LoadOrError queryResponse={searchInfiniteQueryResponse}>
-      <div
+      <section
         data-testid="EntriesListPresentation"
         className="bg-white min-h-screen w-full rounded-lg overflow-hidden"
       >
@@ -200,22 +201,9 @@ function DashboardEntriesPresentationList({
                 </tbody>
               </table>
             </div>
-            <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
-              <button
-                data-testid="load-btn"
-                type="button"
-                className={
-                  !searchInfiniteQueryResponse?.hasNextPage ? 'cursor-text' : ''
-                }
-                onClick={() => searchInfiniteQueryResponse?.fetchNextPage()}
-                disabled={
-                  !searchInfiniteQueryResponse?.hasNextPage ||
-                  searchInfiniteQueryResponse?.isFetchingNextPage
-                }
-              >
-                {searchInfiniteQueryResponse?.loadLabel}
-              </button>
-            </div>
+            <InfiniteLoadBtn
+              infiniteQueryResponse={searchInfiniteQueryResponse}
+            />
           </div>
         ) : (
           <div className="w-full flex">
@@ -224,7 +212,7 @@ function DashboardEntriesPresentationList({
             </div>
           </div>
         )}
-      </div>
+      </section>
 
       <Drawer.Presentation
         isOpen={drawerOpen}
