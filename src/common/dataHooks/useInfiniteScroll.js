@@ -49,13 +49,6 @@ function useInfiniteScroll({
     return 'End of results.'
   }
 
-  const infiniteScroll = {
-    fetchNextPage: infiniteQueryResponse?.fetchNextPage,
-    hasNextPage: infiniteQueryResponse?.hasNextPage,
-    isFetchingNextPage: infiniteQueryResponse?.isFetchingNextPage,
-    loadLabel: getLoadLabel(),
-  }
-
   const loadRef = useRef(null)
   useIntersectionObserver({
     target: loadRef,
@@ -65,7 +58,6 @@ function useInfiniteScroll({
 
   return {
     ...infiniteQueryResponse,
-    infiniteScroll,
     loadLabel: getLoadLabel(),
     loadRef,
     hasResults: Boolean(
