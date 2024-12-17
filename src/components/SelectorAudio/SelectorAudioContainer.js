@@ -13,39 +13,25 @@ function SelectorAudioContainer({
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const {
-    data,
-    displayedSearchTerm,
-    handleSearchSubmit,
-    handleSearchTermChange,
-    hasResults,
-    infiniteScroll,
-    isPending,
-    loadRef,
-    loadLabel,
-  } = useMediaSearchModal({ type: TYPE_AUDIO })
+  const infiniteQueryResponse = useMediaSearchModal({ type: TYPE_AUDIO })
 
   return (
     <div data-testid="SelectorAudioContainer" className="h-full bg-charcoal-50">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleSearchTermChange}
-            onSearchSubmit={handleSearchSubmit}
+            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+            onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
             searchPlaceholder="Search all audio"
-            searchValue={displayedSearchTerm}
+            searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
         <div className="grow mt-2 h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
-            hasResults={hasResults}
-            isLoading={isPending}
-            loadRef={loadRef}
+            infiniteQueryResponse={infiniteQueryResponse}
             resultsSection={
               <SelectorAudioPresentation
-                data={data}
-                infiniteScroll={infiniteScroll}
-                loadLabel={loadLabel}
+                infiniteQueryResponse={infiniteQueryResponse}
                 formMedia={formMedia}
                 selectedMedia={selectedMedia}
                 mediaSelectHandler={mediaSelectHandler}

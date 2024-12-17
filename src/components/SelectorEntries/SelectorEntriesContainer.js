@@ -17,16 +17,7 @@ function SelectorEntriesContainer({
   updateFormEntries,
   visibility,
 }) {
-  const {
-    displayedSearchTerm,
-    handleSearchTermChange,
-    handleSearchSubmit,
-    data,
-    hasResults,
-    infiniteScroll,
-    isPending,
-    loadRef,
-  } = useSearchModal({ types, visibility })
+  const infiniteQueryResponse = useSearchModal({ types, visibility })
 
   const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
     useArrayStateManager({ maxItems: 30 })
@@ -68,24 +59,21 @@ function SelectorEntriesContainer({
             <div className="h-full w-full flex flex-col">
               <div className="w-3/4 mx-auto">
                 <SelectorSearchbox.Presentation
-                  onSearchChange={handleSearchTermChange}
-                  onSearchSubmit={handleSearchSubmit}
+                  onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+                  onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
                   searchPlaceholder="Search all words and phrases"
-                  searchValue={displayedSearchTerm}
+                  searchValue={infiniteQueryResponse?.displayedSearchTerm}
                 />
               </div>
               <div className="grow h-72 overflow-y-scroll">
                 <SelectorResultsWrapper.Presentation
-                  hasResults={hasResults}
-                  isLoading={isPending}
-                  loadRef={loadRef}
+                  infiniteQueryResponse={infiniteQueryResponse}
                   resultsSection={
                     <SelectorEntriesPresentationList
+                      infiniteQueryResponse={infiniteQueryResponse}
                       formEntries={formEntries}
-                      handleSelectAdditionalItems={handleSelectAdditionalItems}
-                      infiniteScroll={infiniteScroll}
-                      searchResults={data}
                       selectedItems={selectedItems}
+                      handleSelectAdditionalItems={handleSelectAdditionalItems}
                       types={types}
                     />
                   }

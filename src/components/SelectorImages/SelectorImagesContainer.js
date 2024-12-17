@@ -17,17 +17,7 @@ function SelectorImagesContainer({
 }) {
   const [searchSharedMedia, setSearchSharedMedia] = useState('false')
 
-  const {
-    data,
-    displayedSearchTerm,
-    handleSearchSubmit,
-    handleSearchTermChange,
-    hasResults,
-    infiniteScroll,
-    isPending,
-    loadRef,
-    loadLabel,
-  } = useMediaSearchModal({
+  const infiniteQueryResponse = useMediaSearchModal({
     type: TYPE_IMAGE,
     searchSharedMedia: searchSharedMedia === 'true',
   })
@@ -45,10 +35,10 @@ function SelectorImagesContainer({
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleSearchTermChange}
-            onSearchSubmit={handleSearchSubmit}
+            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+            onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
             searchPlaceholder="Search all images"
-            searchValue={displayedSearchTerm}
+            searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
         {!hideSharedMedia && (
@@ -63,9 +53,7 @@ function SelectorImagesContainer({
         )}
         <div className="grow h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
-            hasResults={hasResults}
-            isLoading={isPending}
-            loadRef={loadRef}
+            infiniteQueryResponse={infiniteQueryResponse}
             resultsSection={
               <div aria-labelledby="results-header">
                 <div className="py-4 px-6 text-left">
@@ -84,9 +72,7 @@ function SelectorImagesContainer({
                   </p>
                 </div>
                 <SelectorVisualMediaGrid.Presentation
-                  data={data}
-                  infiniteScroll={infiniteScroll}
-                  loadLabel={loadLabel}
+                  infiniteQueryResponse={infiniteQueryResponse}
                   formMedia={formMedia}
                   selectedMedia={selectedMedia}
                   mediaSelectHandler={mediaSelectHandler}
