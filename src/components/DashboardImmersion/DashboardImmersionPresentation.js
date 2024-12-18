@@ -9,10 +9,9 @@ import getIcon from 'common/utils/getIcon'
 import Form from 'components/Form'
 
 function DashboardImmersionPresentation({
+  queryResponse,
   headerContent,
-  isLoading,
   tileContent,
-  labels,
   site,
   currentLabel,
   setCurrentLabel,
@@ -36,7 +35,7 @@ function DashboardImmersionPresentation({
         <div className="grid grid-cols-6">
           <div className="col-span-4">
             <DashboardTable.Presentation
-              isLoading={isLoading}
+              queryResponse={queryResponse}
               title="Immersion Labels"
               tableHead={
                 <tr>
@@ -55,7 +54,7 @@ function DashboardImmersionPresentation({
                   </th>
                 </tr>
               }
-              tableBody={labels.map((label) => (
+              tableBody={queryResponse?.labels.map((label) => (
                 <tr
                   key={label?.transKey}
                   onClick={() => setCurrentLabel(label)}
@@ -100,11 +99,10 @@ function DashboardImmersionPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, func, object } = PropTypes
+const { array, func, object } = PropTypes
 DashboardImmersionPresentation.propTypes = {
-  labels: array,
+  queryResponse: object,
   headerContent: object,
-  isLoading: bool,
   site: object,
   tileContent: array,
   currentLabel: object,
