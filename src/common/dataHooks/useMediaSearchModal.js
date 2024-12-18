@@ -15,7 +15,7 @@ import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 import useSearchTerm from 'common/hooks/useSearchTerm'
 
-function useMediaSearch({ type, searchSharedMedia }) {
+function useMediaSearchModal({ type, searchSharedMedia }) {
   const {
     displayedSearchTerm,
     handleSearchTermChange,
@@ -62,9 +62,9 @@ function useMediaSearch({ type, searchSharedMedia }) {
 
 const { oneOf, bool } = PropTypes
 
-useMediaSearch.propTypes = {
+useMediaSearchModal.propTypes = {
   type: oneOf([AUDIO, IMAGE, VIDEO]).isRequired,
   searchSharedMedia: bool,
 }
 
-export default useMediaSearch
+export default useMediaSearchModal
