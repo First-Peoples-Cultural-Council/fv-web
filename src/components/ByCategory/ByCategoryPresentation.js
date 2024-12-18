@@ -186,7 +186,7 @@ function ByCategoryPresentation({
           )}
         </div>
         {kids ? (
-          <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9">
+          <div className="col-span-11 lg:col-span-8 xl:col-span-9">
             <div className="bg-charcoal-50 p-4">
               <DictionaryGrid.Presentation
                 infiniteQueryResponse={searchInfiniteQueryResponse}
@@ -198,7 +198,7 @@ function ByCategoryPresentation({
             </div>
           </div>
         ) : (
-          <div className="min-h-220 col-span-11 lg:col-span-8 xl:col-span-9 border-l-2 border-charcoal-200 lg:pl-7">
+          <div className="col-span-11 lg:col-span-8 xl:col-span-9 border-l-2 border-charcoal-200 lg:pl-7">
             <div className="block lg:py-4">
               <div className="flex items-center md:border-b border-charcoal-100 px-3 md:pb-2 lg:pb-5 print:hidden">
                 <SearchTypeSelector.Container
@@ -227,7 +227,6 @@ function ByCategoryPresentation({
           </div>
         )}
       </div>
-      <div ref={searchInfiniteQueryResponse?.loadRef} className="w-full h-5" />
     </>
   )
 }

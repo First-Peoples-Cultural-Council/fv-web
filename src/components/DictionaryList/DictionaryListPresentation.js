@@ -11,6 +11,7 @@ import Drawer from 'components/Drawer'
 import EntryDetail from 'components/EntryDetail'
 import AudioButton from 'components/AudioButton'
 import { useAudiobar } from 'context/AudiobarContext'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DictionaryListPresentation({
   infiniteQueryResponse,
@@ -56,12 +57,14 @@ function DictionaryListPresentation({
 
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
-      {infiniteQueryResponse?.data?.pages !== undefined &&
-      infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0 ? (
-        <div id="DictionaryListPresentation" className="flex flex-col">
-          <div className="py-2 align-middle inline-block min-w-full">
-            <div className="overflow-hidden sm:rounded-lg">
-              <table className="min-w-full divide-y border-b-2 mb-20 divide-charcoal-200">
+      <section
+        data-testid="DictionaryListPresentation"
+        className="bg-white min-h-screen w-full"
+      >
+        {infiniteQueryResponse?.hasResults ? (
+          <div className="flex flex-col w-full py-2">
+            <div className="border-b border-charcoal-200 rounded-lg overflow-hidden">
+              <table className="table-auto w-full divide-y divide-charcoal-200">
                 <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className="px-6 py-3">
@@ -192,31 +195,17 @@ function DictionaryListPresentation({
                 </tbody>
               </table>
             </div>
+            <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
           </div>
-          <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
-            <button
-              data-testid="load-btn"
-              type="button"
-              className={
-                !infiniteQueryResponse?.hasNextPage ? 'cursor-text' : ''
-              }
-              onClick={() => infiniteQueryResponse?.fetchNextPage()}
-              disabled={
-                !infiniteQueryResponse?.hasNextPage ||
-                infiniteQueryResponse?.isFetchingNextPage
-              }
-            >
-              {infiniteQueryResponse?.loadLabel}
-            </button>
+        ) : (
+          <div className="w-full flex">
+            <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
+              {noResultsMessage}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="w-full flex">
-          <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
-            {noResultsMessage}
-          </div>
-        </div>
-      )}
+        )}
+      </section>
+
       <Drawer.Presentation
         isOpen={drawerOpen}
         closeHandler={() => setDrawerOpen(false)}

@@ -109,7 +109,7 @@ function DictionaryPresentation({
               )}
             </ul>
           </div>
-          <div className="min-h-220 col-span-12 lg:col-span-10">
+          <div className="col-span-12 lg:col-span-10">
             <div className="hidden md:block p-2 print:block">
               <DictionaryList.Presentation
                 infiniteQueryResponse={infiniteQueryResponse}
@@ -128,7 +128,6 @@ function DictionaryPresentation({
           </div>
         </div>
       )}
-      <div ref={infiniteQueryResponse?.loadRef} className="w-full h-10" />
     </>
   )
 }

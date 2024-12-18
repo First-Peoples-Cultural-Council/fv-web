@@ -6,6 +6,7 @@ import LoadOrError from 'components/LoadOrError'
 import getIcon from 'common/utils/getIcon'
 import DictionaryGridTile from 'components/DictionaryGridTile'
 import LazyLoader from 'components/LazyLoader'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DictionaryGridPresentation({
   infiniteQueryResponse,
@@ -26,8 +27,7 @@ function DictionaryGridPresentation({
 
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
-      {infiniteQueryResponse?.data?.pages !== undefined &&
-      infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0 ? (
+      {infiniteQueryResponse?.hasResults ? (
         <div id="DictionaryGridPresentation" className="mx-auto flex flex-col">
           <div className="p-4 align-middle inline-block min-w-full relative">
             {/* Hiding print button until custom print view has been created */}
@@ -61,22 +61,7 @@ function DictionaryGridPresentation({
               </div>
             ))}
           </div>
-          <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
-            <button
-              data-testid="load-btn"
-              type="button"
-              className={
-                !infiniteQueryResponse?.hasNextPage ? 'cursor-text' : ''
-              }
-              onClick={() => infiniteQueryResponse?.fetchNextPage()}
-              disabled={
-                !infiniteQueryResponse?.hasNextPage ||
-                infiniteQueryResponse?.isFetchingNextPage
-              }
-            >
-              {infiniteQueryResponse?.loadLabel}
-            </button>
-          </div>
+          <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
         </div>
       ) : (
         <div className="w-full flex">
