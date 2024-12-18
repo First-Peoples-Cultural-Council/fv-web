@@ -4,17 +4,14 @@ import PropTypes from 'prop-types'
 // FPCC
 import AudioNative from 'components/AudioNative'
 import getIcon from 'common/utils/getIcon'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function SelectorAudioPresentation({
-  data,
-  infiniteScroll,
-  loadLabel,
+  infiniteQueryResponse,
   formMedia,
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
-
   const headerClass =
     'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
@@ -46,8 +43,8 @@ function SelectorAudioPresentation({
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-charcoal-100">
-            {data?.pages?.[0]?.results?.length &&
-              data?.pages?.map((page) => (
+            {infiniteQueryResponse?.hasResults &&
+              infiniteQueryResponse?.data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>
                   {page.results.map((audioFile) => {
                     if (formMedia?.some((elemId) => elemId === audioFile?.id)) {
@@ -92,28 +89,16 @@ function SelectorAudioPresentation({
               ))}
           </tbody>
         </table>
-        <div className="pt-10 text-center text-charcoal-900 font-medium print:hidden">
-          <button
-            data-testid="load-btn"
-            type="button"
-            className={!hasNextPage ? 'cursor-text' : ''}
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-          >
-            {loadLabel}
-          </button>
-        </div>
+        <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
       </div>
     </div>
   )
 }
 
 // PROPTYPES
-const { array, func, object, string } = PropTypes
+const { array, func, object } = PropTypes
 SelectorAudioPresentation.propTypes = {
-  data: object,
-  infiniteScroll: object,
-  loadLabel: string,
+  infiniteQueryResponse: object,
   formMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,

@@ -5,22 +5,14 @@ import DashboardSpeakersData from 'components/DashboardSpeakers/DashboardSpeaker
 import DashboardSpeakersPresentation from 'components/DashboardSpeakers/DashboardSpeakersPresentation'
 
 function DashboardSpeakersContainer() {
-  const {
-    speakers,
-    headerContent,
-    peopleQueryResponse,
-    site,
-    sitename,
-    tileContent,
-  } = DashboardSpeakersData()
+  const { queryResponse, headerContent, site, tileContent } =
+    DashboardSpeakersData()
   return (
     <DashboardSpeakersPresentation
+      queryResponse={queryResponse}
       headerContent={headerContent}
       tileContent={tileContent}
-      speakers={speakers}
-      isLoading={peopleQueryResponse?.isPending}
       site={site}
-      sitename={sitename}
     />
   )
 }

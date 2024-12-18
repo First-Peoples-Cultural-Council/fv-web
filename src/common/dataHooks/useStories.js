@@ -13,21 +13,22 @@ import {
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { audienceForApi } from 'common/dataAdaptors/audienceAdaptors'
 import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
+import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 
 export function useStories() {
   const { sitename } = useParams()
 
-  const response = useQuery({
+  const infiniteQueryResponse = useInfiniteScroll({
     queryKey: [STORIES, sitename],
-    queryFn: () => api.stories.getAll({ sitename }),
-    ...{ enabled: !!sitename },
+    queryFn: ({ pageParam = 1 }) =>
+      api.stories.getAll({
+        sitename,
+        pageParam,
+      }),
+    resultAdaptor: (result) => storySummaryAdaptor({ item: result }),
   })
 
-  const formatted = response?.data?.results?.map((item) =>
-    storySummaryAdaptor({ item }),
-  )
-
-  return { ...response, data: { ...response?.data, results: formatted } }
+  return infiniteQueryResponse
 }
 
 export function useStory({ id, sitename, edit = false }) {

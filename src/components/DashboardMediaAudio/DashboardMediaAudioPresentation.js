@@ -5,16 +5,9 @@ import PropTypes from 'prop-types'
 import AudioNative from 'components/AudioNative'
 import MediaDetails from 'components/MediaDetails'
 import { TYPE_AUDIO } from 'common/constants'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
-function DashboardMediaAudioPresentation({
-  data,
-  infiniteScroll,
-  currentFile,
-  setCurrentFile,
-  loadLabel,
-}) {
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
-
+function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
   const headerClass =
     'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
@@ -48,18 +41,21 @@ function DashboardMediaAudioPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-100">
-                  {data?.pages?.[0]?.results?.length &&
-                    data?.pages?.map((page) => (
+                  {infiniteQueryResponse?.data?.pages?.[0]?.results?.length &&
+                    infiniteQueryResponse?.data?.pages?.map((page) => (
                       <React.Fragment key={page?.pageNumber}>
                         {page.results.map((audioFile) => (
                           <tr
                             key={audioFile?.id}
                             className={`${
-                              audioFile?.id === currentFile?.id
+                              audioFile?.id ===
+                              infiniteQueryResponse?.currentFile?.id
                                 ? 'ring-2 ring-offset-2 ring-blumine-800'
                                 : ''
                             } rounded-lg relative`}
-                            onClick={() => setCurrentFile(audioFile)}
+                            onClick={() =>
+                              infiniteQueryResponse?.setCurrentFile(audioFile)
+                            }
                           >
                             <td
                               className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
@@ -82,36 +78,25 @@ function DashboardMediaAudioPresentation({
                     ))}
                 </tbody>
               </table>
-              <div className="pt-10 text-center text-charcoal-900 font-medium print:hidden">
-                <button
-                  data-testid="load-btn"
-                  type="button"
-                  className={!hasNextPage ? 'cursor-text' : ''}
-                  onClick={() => fetchNextPage()}
-                  disabled={!hasNextPage || isFetchingNextPage}
-                >
-                  {loadLabel}
-                </button>
-              </div>
+              <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
             </div>
           </div>
         </section>
       </main>
       <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
-        <MediaDetails.Audio file={currentFile} docType={TYPE_AUDIO} />
+        <MediaDetails.Audio
+          file={infiniteQueryResponse?.currentFile}
+          docType={TYPE_AUDIO}
+        />
       </aside>
     </div>
   )
 }
 
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { object } = PropTypes
 DashboardMediaAudioPresentation.propTypes = {
-  data: object,
-  infiniteScroll: object,
-  currentFile: object,
-  setCurrentFile: func,
-  loadLabel: string,
+  infiniteQueryResponse: object,
 }
 
 export default DashboardMediaAudioPresentation

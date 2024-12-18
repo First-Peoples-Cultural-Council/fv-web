@@ -1,31 +1,19 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
 
 // FPCC
 import DashboardAlphabetData from 'components/DashboardAlphabet/DashboardAlphabetData'
 import DashboardAlphabetPresentation from 'components/DashboardAlphabet/DashboardAlphabetPresentation'
 
 function DashboardAlphabetContainer() {
-  const { characters, headerContent, isLoading, site, sitename, tileContent } =
+  const { queryResponse, headerContent, site, tileContent } =
     DashboardAlphabetData()
   return (
-    <div id="DashboardAlphabetContainer">
-      <Routes>
-        <Route
-          path=""
-          element={
-            <DashboardAlphabetPresentation
-              headerContent={headerContent}
-              tileContent={tileContent}
-              characters={characters}
-              isLoading={isLoading}
-              site={site}
-              sitename={sitename}
-            />
-          }
-        />
-      </Routes>
-    </div>
+    <DashboardAlphabetPresentation
+      queryResponse={queryResponse}
+      headerContent={headerContent}
+      tileContent={tileContent}
+      site={site}
+    />
   )
 }
 

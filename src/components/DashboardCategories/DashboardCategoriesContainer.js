@@ -5,22 +5,14 @@ import DashboardCategoriesData from 'components/DashboardCategories/DashboardCat
 import DashboardCategoriesPresentation from 'components/DashboardCategories/DashboardCategoriesPresentation'
 
 function DashboardCategoriesContainer() {
-  const {
-    categories,
-    categoriesQueryResponse,
-    headerContent,
-    site,
-    sitename,
-    tileContent,
-  } = DashboardCategoriesData()
+  const { queryResponse, headerContent, site, tileContent } =
+    DashboardCategoriesData()
   return (
     <DashboardCategoriesPresentation
+      queryResponse={queryResponse}
       headerContent={headerContent}
       tileContent={tileContent}
-      categories={categories}
-      isLoading={categoriesQueryResponse?.isPending}
       site={site}
-      sitename={sitename}
     />
   )
 }

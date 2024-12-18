@@ -7,12 +7,13 @@ import useSearchType from 'common/hooks/useSearchType'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { useCategories } from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
+import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
 function ByCategoryData({ kids = null }) {
   const { sitename, categoryId } = useParams()
   const [searchParams] = useSearchParams()
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
-  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } = useSearchType({
+  const { searchType, setSearchTypeInUrl } = useSearchType({
     initialSearchType: urlSearchType,
   })
 
@@ -59,7 +60,7 @@ function ByCategoryData({ kids = null }) {
     currentParentCategory,
     searchType,
     setSearchType: setSearchTypeInUrl,
-    entryLabel: getSearchTypeLabel({ searchType }),
+    labels: getPresentationPropertiesForType(searchType),
   }
 }
 

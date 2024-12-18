@@ -1,11 +1,8 @@
-import { useRef } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 // FPCC
-import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-
 /**
- * Calls API and provides results and infinite scroll info.
+ * Calls API and provides results - use in conjunction with components/InfiniteLoadBtn or useIntersectionObserver for  infinite scrolling.
  */
 function useInfiniteScroll({
   queryKey,
@@ -28,7 +25,7 @@ function useInfiniteScroll({
   }
 
   // Fetch search results
-  const response = useInfiniteQuery({
+  const infiniteQueryResponse = useInfiniteQuery({
     queryKey,
     queryFn,
     enabled,
@@ -39,35 +36,12 @@ function useInfiniteScroll({
     }),
   })
 
-  const getLoadLabel = () => {
-    if (response?.isFetchingNextPage) {
-      return 'Loading more...'
-    }
-    if (response?.hasNextPage) {
-      return 'Load more'
-    }
-    return 'End of results.'
-  }
-
-  const infiniteScroll = {
-    fetchNextPage: response?.fetchNextPage,
-    hasNextPage: response?.hasNextPage,
-    isFetchingNextPage: response?.isFetchingNextPage,
-    loadLabel: getLoadLabel(),
-  }
-
-  const loadRef = useRef(null)
-  useIntersectionObserver({
-    target: loadRef,
-    onIntersect: response?.fetchNextPage,
-    enabled: response?.hasNextPage,
-  })
-
   return {
-    ...response,
-    infiniteScroll,
-    loadLabel: getLoadLabel(),
-    loadRef,
+    ...infiniteQueryResponse,
+    hasResults: Boolean(
+      infiniteQueryResponse?.data?.pages !== undefined &&
+        infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0,
+    ),
   }
 }
 

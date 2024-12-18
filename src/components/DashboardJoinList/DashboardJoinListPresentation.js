@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardJoinCard from 'components/DashboardJoinCard'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function DashboardJoinListPresentation({ joinRequestsInfiniteQueryResponse }) {
   return (
@@ -24,24 +25,9 @@ function DashboardJoinListPresentation({ joinRequestsInfiniteQueryResponse }) {
                   ))}
                 </Fragment>
               ))}
-              <button
-                data-testid="load-btn"
-                type="button"
-                className={`${
-                  !joinRequestsInfiniteQueryResponse?.hasNextPage
-                    ? 'cursor-text'
-                    : ''
-                } text-blumine-800 font-semibold w-full text-center p-2 print:hidden`}
-                onClick={() =>
-                  joinRequestsInfiniteQueryResponse?.fetchNextPage()
-                }
-                disabled={
-                  !joinRequestsInfiniteQueryResponse?.hasNextPage ||
-                  joinRequestsInfiniteQueryResponse?.isFetchingNextPage
-                }
-              >
-                {joinRequestsInfiniteQueryResponse?.loadLabel}
-              </button>
+              <InfiniteLoadBtn
+                infiniteQueryResponse={joinRequestsInfiniteQueryResponse}
+              />
             </div>
           </div>
         ) : (
@@ -52,10 +38,6 @@ function DashboardJoinListPresentation({ joinRequestsInfiniteQueryResponse }) {
           </div>
         )}
       </div>
-      <div
-        ref={joinRequestsInfiniteQueryResponse?.loadRef}
-        className="w-full h-10"
-      />
     </div>
   )
 }

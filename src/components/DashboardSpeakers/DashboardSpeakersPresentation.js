@@ -8,12 +8,10 @@ import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
 
 function DashboardSpeakersPresentation({
+  queryResponse,
   headerContent,
-  isLoading,
   tileContent,
-  speakers,
   site,
-  sitename,
 }) {
   const tableHeaderClass =
     'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
@@ -25,7 +23,7 @@ function DashboardSpeakersPresentation({
         site={site}
       >
         <DashboardTable.Presentation
-          isLoading={isLoading}
+          queryResponse={queryResponse}
           title="Speakers"
           tableHead={
             <tr>
@@ -41,7 +39,7 @@ function DashboardSpeakersPresentation({
               </th>
             </tr>
           }
-          tableBody={speakers.map((speaker) => (
+          tableBody={queryResponse?.data?.results?.map((speaker) => (
             <tr key={speaker.id}>
               <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
                 {speaker.name}
@@ -52,7 +50,7 @@ function DashboardSpeakersPresentation({
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   data-testid={`edit-speaker-${speaker.name}`}
-                  to={`/${sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
+                  to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
                   className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
@@ -66,13 +64,11 @@ function DashboardSpeakersPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { array, object } = PropTypes
 DashboardSpeakersPresentation.propTypes = {
-  speakers: array,
+  queryResponse: object,
   headerContent: object,
-  isLoading: bool,
   site: object,
-  sitename: string,
   tileContent: array,
 }
 

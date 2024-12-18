@@ -14,7 +14,7 @@ function DashboardImmersionData() {
 
   const [currentLabel, setCurrentLabel] = useState()
 
-  const { isInitialLoading, isFetching, labels } = useImmersionLabels()
+  const queryResponse = useImmersionLabels()
 
   const tileContent = []
 
@@ -41,10 +41,9 @@ function DashboardImmersionData() {
 
   return {
     headerContent,
-    isLoading: isInitialLoading || isFetching,
+    queryResponse,
     site,
     tileContent,
-    labels,
     submitHandler,
     currentLabel,
     setCurrentLabel,

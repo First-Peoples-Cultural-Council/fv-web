@@ -9,23 +9,7 @@ import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
 function DashboardMediaVisualContainer({ type }) {
-  const {
-    data,
-    searchValue,
-    currentFile,
-    setCurrentFile,
-    handleSearchSubmitWithUrlSync,
-    handleTextFieldChange,
-    infiniteScroll,
-    isPending,
-    loadRef,
-    loadLabel,
-    typePlural,
-  } = useMediaSearch({ type })
-
-  const hasResults = !!(
-    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
-  )
+  const infiniteQueryResponse = useMediaSearch({ type })
 
   return (
     <div
@@ -35,26 +19,21 @@ function DashboardMediaVisualContainer({ type }) {
       <div className="h-full w-full flex flex-col">
         <div className="w-full">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
-            onSearchSubmit={handleSearchSubmitWithUrlSync}
-            searchPlaceholder={`Search all ${typePlural}`}
-            searchValue={searchValue}
+            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+            onSearchSubmit={
+              infiniteQueryResponse?.handleSearchSubmitWithUrlSync
+            }
+            searchPlaceholder={`Search all ${infiniteQueryResponse?.typePlural}`}
+            searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
         <div>
           <SelectorResultsWrapper.Presentation
-            hasResults={hasResults}
-            isLoading={isPending}
-            loadRef={loadRef}
+            infiniteQueryResponse={infiniteQueryResponse}
             resultsSection={
               <DashboardMediaVisualPresentation
-                data={data}
-                infiniteScroll={infiniteScroll}
-                currentFile={currentFile}
-                setCurrentFile={setCurrentFile}
-                loadLabel={loadLabel}
+                infiniteQueryResponse={infiniteQueryResponse}
                 type={type}
-                typePlural={typePlural}
               />
             }
           />

@@ -1,18 +1,12 @@
-import { useParams } from 'react-router-dom'
-
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
 import { useCharacters } from 'common/dataHooks/useCharacters'
 
 function DashboardAlphabetData() {
   const { site } = useSiteStore()
-  const { sitename } = useParams()
 
   // Data fetch
-
-  const { isInitialLoading, data } = useCharacters()
-
-  const tileContent = []
+  const queryResponse = useCharacters()
 
   const headerContent = {
     title: 'Alphabet',
@@ -22,11 +16,9 @@ function DashboardAlphabetData() {
 
   return {
     headerContent,
-    isLoading: isInitialLoading,
+    queryResponse,
     site,
-    sitename,
-    tileContent,
-    characters: data?.characters || [],
+    tileContent: [],
   }
 }
 

@@ -63,17 +63,12 @@ function DashboardEntriesPresentation({
           />
         </section>
       )}
-      <section className="w-full">
-        <DashboardEntriesPresentationList
-          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
-          emptyListMessage={emptyListMessage}
-          entryLabel={entryLabel}
-        />
-        <div
-          ref={searchInfiniteQueryResponse?.loadRef}
-          className="w-full h-10"
-        />
-      </section>
+
+      <DashboardEntriesPresentationList
+        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+        emptyListMessage={emptyListMessage}
+        entryLabel={entryLabel}
+      />
     </div>
   )
 }
