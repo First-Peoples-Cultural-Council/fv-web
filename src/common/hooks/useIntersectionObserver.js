@@ -1,33 +1,34 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 export default function useIntersectionObserver({
-  root = null,
-  target,
-  onIntersect,
-  threshold = 0,
-  rootMargin = '0px',
-  enabled = true,
+  hasNextPage,
+  fetchNextPage,
 }) {
-  useEffect(() => {
-    const el = target?.current
-    if (!enabled || !el) {
-      return
-    }
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((entry) => entry.isIntersecting && onIntersect()),
-      {
-        root: root?.current,
-        rootMargin,
-        threshold,
-      },
-    )
-    observer.observe(el)
+  const loadRef = useRef(null)
 
-    return () => {
-      if (el) {
-        observer.unobserve(el)
-      }
+  const intersectionCallback = useCallback(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (entry?.isIntersecting && hasNextPage) {
+          fetchNextPage()
+        }
+      }),
+    [hasNextPage, fetchNextPage],
+  )
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(intersectionCallback, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1,
+    })
+
+    if (loadRef && loadRef?.current) {
+      observer.observe(loadRef.current)
     }
-  }, [target, enabled, root, rootMargin, threshold, onIntersect])
+
+    return () => observer.disconnect()
+  }, [loadRef, intersectionCallback, fetchNextPage])
+
+  return { loadRef }
 }
