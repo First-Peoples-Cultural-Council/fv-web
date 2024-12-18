@@ -23,7 +23,7 @@ export default function useIntersectionObserver({
       threshold: 0.1,
     })
 
-    if (loadRef && loadRef?.current) {
+    if (loadRef?.current) {
       observer.observe(loadRef.current)
     }
 

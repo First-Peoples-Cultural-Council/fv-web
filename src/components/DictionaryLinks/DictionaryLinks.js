@@ -8,7 +8,7 @@ function DictionaryLinks() {
   const { sitename } = useParams()
   const { pathname } = useLocation()
   return (
-    <div data-testid="DictionaryLinks" role="navigation">
+    <nav data-testid="DictionaryLinks">
       <h2 className="text-xl xl:text-2xl font-medium ml-4 xl:ml-7 text-charcoal-900">
         BROWSE BY:
       </h2>
@@ -58,7 +58,7 @@ function DictionaryLinks() {
           />
         )}
       </ul>
-    </div>
+    </nav>
   )
 }
 
