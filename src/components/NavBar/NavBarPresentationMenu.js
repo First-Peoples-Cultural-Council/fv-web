@@ -22,6 +22,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       <MenuItem key={`HeaderMenu_${menuItem.title}`}>
         {({ focus }) => (
           <Link
+            data-testid={`${menuItem.transKey}-link`}
             to={`/${sitename + menuItem.href}`}
             className={`${
               focus ? 'bg-charcoal-100 text-black' : 'text-charcoal-900'
@@ -64,10 +65,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       className="relative inline-block w-40 xl:w-44"
     >
       <div>
-        <MenuButton
-          data-testid={`${transKey}-button`}
-          className={buttonStyling}
-        >
+        <MenuButton data-testid={`${transKey}-btn`} className={buttonStyling}>
           {generateButtonContents()}
         </MenuButton>
       </div>
@@ -93,7 +91,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       className="relative inline-block w-40 xl:w-44"
     >
       <Link
-        data-testid={`${transKey}-button`}
+        data-testid={`${transKey}-link`}
         to={`/${sitename + href}`}
         className={buttonStyling}
       >

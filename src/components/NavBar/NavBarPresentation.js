@@ -65,7 +65,7 @@ function NavBarPresentation({
             </div>
             <div className="flex items-center lg:hidden">
               <button
-                data-testid="MobileMenu-button"
+                data-testid="mobile-menu-btn"
                 type="button"
                 onClick={() => openCloseMobileNavbar()}
                 className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"

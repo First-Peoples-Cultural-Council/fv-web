@@ -14,6 +14,7 @@ function DashboardPagesData() {
 
   const tileContent = [
     {
+      testid: 'edit-homepage-link',
       icon: 'Home',
       name: 'Edit Homepage',
       description: 'Edit the main homepage for your site',
@@ -22,6 +23,7 @@ function DashboardPagesData() {
       auth: LANGUAGE_ADMIN,
     },
     {
+      testid: 'create-page-link',
       icon: 'Create',
       name: 'Create a Custom Page',
       description: 'Add a new page to your site',

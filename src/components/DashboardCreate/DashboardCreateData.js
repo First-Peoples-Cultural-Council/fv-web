@@ -15,6 +15,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
 
   const createTiles = {
     WORD: {
+      testid: 'create-word-link',
       icon: 'Word',
       name: 'Create a word',
       description: 'Add a new word to your dictionary',
@@ -23,6 +24,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     PHRASE: {
+      testid: 'create-phrase-link',
       icon: 'Phrase',
       name: 'Create a phrase',
       description: 'Add a new phrase to your dictionary',
@@ -31,6 +33,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     SONG: {
+      testid: 'create-song-link',
       icon: 'Song',
       name: 'Create a song',
       description: 'Add a new song to your site',
@@ -39,6 +42,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     STORY: {
+      testid: 'create-story-link',
       icon: 'Story',
       name: 'Create a story',
       description: 'Add a new story to your site',
@@ -47,6 +51,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     SPEAKER: {
+      testid: 'create-speaker-link',
       icon: 'Speak',
       name: 'Add a speaker',
       description: 'Add a new speaker to your site',
@@ -55,6 +60,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: EDITOR,
     },
     CATEGORY: {
+      testid: 'create-category-link',
       icon: 'Category',
       name: 'Add a category',
       description: 'Add a new category to your dictionary',
@@ -63,6 +69,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     WIDGET: {
+      testid: 'create-widget-link',
       icon: 'Widget',
       name: 'Create a widget',
       description: "Add a new widget to your site's collection",
@@ -71,6 +78,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     PAGE: {
+      testid: 'create-page-link',
       icon: 'WebPages',
       name: 'Create a custom page',
       description: 'Add a new page to your site',
@@ -79,6 +87,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     GALLERY: {
+      testid: 'create-gallery-link',
       icon: 'Images',
       name: 'Create a gallery',
       description: 'Add a new image gallery to your site',

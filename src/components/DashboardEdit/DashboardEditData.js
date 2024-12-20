@@ -29,6 +29,7 @@ function DashboardEditData({ urlPrefix = '' }) {
 
   const editTiles = {
     WORDS: {
+      testid: 'edit-words-link',
       icon: 'Word',
       name: 'Edit words',
       description: 'Edit the words in your dictionary',
@@ -43,6 +44,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     PHRASES: {
+      testid: 'edit-phrases-link',
       icon: 'Phrase',
       name: 'Edit phrases',
       description: 'Edit the phrases in your dictionary',
@@ -57,6 +59,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     SONGS: {
+      testid: 'edit-songs-link',
       icon: 'Song',
       name: 'Edit songs',
       description: 'Edit the songs on your site',
@@ -71,6 +74,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     STORIES: {
+      testid: 'edit-stories-link',
       icon: 'Story',
       name: 'Edit stories',
       description: 'Edit the stories on your site',
@@ -85,6 +89,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     SPEAKERS: {
+      testid: 'edit-speakers-link',
       icon: 'Speak',
       name: 'Edit speakers',
       description: 'Edit the speakers on your site',
@@ -93,6 +98,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: EDITOR,
     },
     CATEGORIES: {
+      testid: 'edit-categories-link',
       icon: 'Categories',
       name: 'Edit categories',
       description:
@@ -102,6 +108,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     WIDGETS: {
+      testid: 'edit-widgets-link',
       icon: 'Widget',
       name: 'Edit widgets',
       description: 'Manage and edit the widgets on your site',
@@ -110,6 +117,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     PAGES: {
+      testid: 'edit-pages-link',
       icon: 'WebPages',
       name: 'Edit custom pages',
       description: 'Manage and edit the custom pages on your site',
@@ -118,6 +126,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     HOMEPAGE: {
+      testid: 'edit-homepage-link',
       icon: 'Home',
       name: 'Edit homepage',
       description: 'Edit the main homepage for your site',
@@ -126,6 +135,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     ALPHABET: {
+      testid: 'edit-alphabet-link',
       icon: 'Alphabet',
       name: 'Edit alphabet',
       description:
@@ -135,6 +145,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     IMMERSION: {
+      testid: 'edit-immersion-link',
       icon: 'Translate',
       name: 'Edit Immersion Labels',
       description: 'Update the labels used in immersion mode on your site',
@@ -143,8 +154,9 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     GALLERY: {
+      testid: 'edit-galleries-link',
       icon: 'Images',
-      name: 'Edit a gallery',
+      name: 'Edit galleries',
       description: 'Edit an image gallery on your site',
       href: addUrlPrefix('galleries'),
       iconColor: 'blumine-900',

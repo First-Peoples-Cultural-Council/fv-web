@@ -22,7 +22,7 @@ function DeleteButtonPresentation({
     atLeastEditor && (
       <>
         <button
-          data-testid="DeleteButton"
+          data-testid="delete-btn"
           type="button"
           onClick={() => setDeleteModalOpen(true)}
           className={styling}

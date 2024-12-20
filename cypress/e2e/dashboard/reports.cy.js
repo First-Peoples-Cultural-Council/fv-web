@@ -75,7 +75,7 @@ describe(
       cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
-      cy.get('[data-testid="DashboardPresentationReports"]').click()
+      cy.get('[data-testid="dashboard-reports-link"]').click()
     })
 
     it('check page loaded', () => {

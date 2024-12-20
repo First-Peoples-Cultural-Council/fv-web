@@ -6,6 +6,7 @@ function DashboardMediaData() {
 
   const tileContent = [
     {
+      testid: 'dashboard-audio-link',
       icon: 'Microphone',
       name: 'Audio',
       description: 'Manage your audio files',
@@ -13,6 +14,7 @@ function DashboardMediaData() {
       iconColor: 'scarlet-900',
     },
     {
+      testid: 'dashboard-images-link',
       icon: 'Images',
       name: 'Images',
       description: 'Manage your images',
@@ -20,6 +22,7 @@ function DashboardMediaData() {
       iconColor: 'blumine-800',
     },
     {
+      testid: 'dashboard-videos-link',
       icon: 'Video',
       name: 'Videos',
       description: 'Manage your videos',

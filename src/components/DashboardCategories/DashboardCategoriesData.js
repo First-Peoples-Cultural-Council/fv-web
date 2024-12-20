@@ -15,6 +15,7 @@ function DashboardCategoriesData() {
 
   const tileContent = [
     {
+      testid: 'create-category-link',
       icon: 'Create',
       name: 'Add a Category',
       description: 'Add a new category to your dictionary',

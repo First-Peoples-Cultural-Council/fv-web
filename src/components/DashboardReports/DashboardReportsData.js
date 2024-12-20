@@ -21,6 +21,7 @@ function DashboardReportsData() {
 
   const tileContent = [
     {
+      testid: 'advanced-search-link',
       icon: 'Wrench',
       name: 'Build your own',
       description: 'Use the advanced search filters to create your own report',
@@ -32,6 +33,7 @@ function DashboardReportsData() {
 
   const reportTiles = [
     {
+      testid: 'report-created-link',
       icon: 'Star',
       name: 'Recently created',
       description: 'New words and phrases at the top',
@@ -40,6 +42,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      testid: 'report-modified-link',
       icon: 'Pencil',
       name: 'Recently modified',
       description: 'Recently edited words and phrases at the top',
@@ -48,6 +51,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      testid: 'report-no-audio-link',
       icon: 'MicrophoneOff',
       name: 'No audio',
       description: 'Words and phrases without audio files',
@@ -56,6 +60,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      testid: 'report-no-images-link',
       icon: 'ImagesNone',
       name: 'No images',
       description: 'Words and phrases without images',
@@ -64,6 +69,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      testid: 'report-team-link',
       icon: 'Team',
       name: 'Team content',
       description: 'Content only available to the language team',
@@ -72,6 +78,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      testid: 'report-members-link',
       icon: 'Members',
       name: 'Members only content',
       description: 'Content only available to site members',
@@ -80,6 +87,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      testid: 'report-public-link',
       icon: 'Public',
       name: 'Public content',
       description: 'Content available to the general public',

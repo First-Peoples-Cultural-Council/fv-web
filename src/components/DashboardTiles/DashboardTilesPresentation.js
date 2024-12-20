@@ -63,6 +63,7 @@ function DashboardTilesPresentation({ tileContent }) {
                 <h3 className="text-lg font-medium">
                   {tile?.externalLink ? (
                     <a
+                      data-testid={tile?.testid}
                       href={tile.href}
                       className="focus:outline-none"
                       target="_blank"
@@ -73,7 +74,11 @@ function DashboardTilesPresentation({ tileContent }) {
                       {tile.name}
                     </a>
                   ) : (
-                    <Link to={tile.href} className="focus:outline-none">
+                    <Link
+                      data-testid={tile?.testid}
+                      to={tile.href}
+                      className="focus:outline-none"
+                    >
                       {/* Extend touch target to entire panel */}
                       <span className="absolute inset-0" aria-hidden="true" />
                       {tile.name}

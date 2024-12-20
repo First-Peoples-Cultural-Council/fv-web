@@ -13,6 +13,7 @@ function DashboardWidgetsData() {
 
   const tileContent = [
     {
+      testid: 'create-widget-link',
       icon: 'Create',
       name: 'Create a Widget',
       description: 'Add a new Widget to your site',
