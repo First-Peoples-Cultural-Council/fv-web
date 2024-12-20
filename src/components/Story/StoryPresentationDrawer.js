@@ -84,6 +84,7 @@ function StoryPresentationDrawer({ entry, isDashboard }) {
         <div className="sm:flex-1">
           <div className="flex flex-wrap">
             <Link
+              data-testid="story-link"
               to={`/${entry?.site?.slug}/stories/${entry?.id}`}
               className="btn-contained shrink-0 w-full bg-story-color-900 sm:flex-1"
             >

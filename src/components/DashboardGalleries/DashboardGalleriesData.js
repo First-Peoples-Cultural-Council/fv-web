@@ -14,6 +14,7 @@ function DashboardGalleriesData() {
 
   const tileContent = [
     {
+      testid: 'create-gallery-link',
       icon: 'Create',
       name: 'Create a Gallery',
       description: 'Add a new image gallery to your site',

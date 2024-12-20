@@ -71,6 +71,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
         <div className="sm:flex-1">
           <div className="flex flex-wrap">
             <Link
+              data-testid="song-link"
               to={`/${entry?.site?.slug}/songs/${entry?.id}`}
               className="btn-contained bg-song-color-900 shrink-0 w-full sm:flex-1"
             >

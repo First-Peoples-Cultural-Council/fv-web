@@ -28,7 +28,10 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
     <div id="NavUser" className="relative inline-flex">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <MenuButton className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center">
+          <MenuButton
+            data-testid="user-menu-btn"
+            className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center"
+          >
             {currentUser?.isAnonymous ? (
               <span className="text-xs">GUEST</span>
             ) : (
@@ -57,7 +60,10 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
             {currentUser?.isTeam && (
               <MenuItem className="w-full flex">
                 {({ focus }) => (
-                  <Link to={currentUser?.dashboardLink}>
+                  <Link
+                    data-testid="user-dashboard-link"
+                    to={currentUser?.dashboardLink}
+                  >
                     <div
                       className={`${
                         focus ? menuItemActiveClass : menuItemInactiveClass
@@ -84,7 +90,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
             )}
             <MenuItem className="w-full flex">
               {({ focus }) => (
-                <Link to="/support">
+                <Link data-testid="support-link" to="/support">
                   <div
                     className={`${
                       focus ? menuItemActiveClass : menuItemInactiveClass

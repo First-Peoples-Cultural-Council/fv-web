@@ -49,7 +49,7 @@ function NavBarPresentationMobile({ site }) {
       <li key={`${menuItem.title}_id`}>
         {hasItems ? (
           <button
-            data-testid={`${menuItem.title}-button`}
+            data-testid={`${menuItem.title}-btn`}
             type="button"
             onClick={(e) => {
               onMenuClick(e, menuItem)
@@ -103,7 +103,7 @@ function NavBarPresentationMobile({ site }) {
           {isGuest ? (
             <li>
               <button
-                data-testid="login-button"
+                data-testid="login-btn"
                 className={buttonStyling}
                 type="button"
                 onClick={login}
@@ -131,7 +131,7 @@ function NavBarPresentationMobile({ site }) {
               )}
               <li>
                 <button
-                  data-testid="logout-button"
+                  data-testid="logout-btn"
                   className={buttonStyling}
                   type="button"
                   onClick={logout}
@@ -169,7 +169,7 @@ function NavBarPresentationMobile({ site }) {
               : null}
             <li>
               <button
-                data-testid="close-button"
+                data-testid="close-btn"
                 type="button"
                 onClick={() => setIsSubMenuOpen(false)}
                 onKeyDown={() => setIsSubMenuOpen(false)}

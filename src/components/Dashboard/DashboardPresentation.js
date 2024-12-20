@@ -66,30 +66,35 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
 const primaryNavigationItems = (currentSitename) => {
   const navigation = [
     {
+      testid: 'dashboard-home-link',
       name: 'Dashboard',
       href: `/${currentSitename}/dashboard`,
       icon: 'Dashboard',
       auth: MEMBER,
     },
     {
+      testid: 'dashboard-create-link',
       name: 'Create',
       href: `/${currentSitename}/dashboard/create`,
       icon: 'Create',
       auth: ASSISTANT,
     },
     {
+      testid: 'dashboard-edit-link',
       name: 'Edit',
       href: `/${currentSitename}/dashboard/edit`,
       icon: 'Pencil',
       auth: ASSISTANT,
     },
     {
+      testid: 'dashboard-media-link',
       name: 'Media',
       href: `/${currentSitename}/dashboard/media`,
       icon: 'Microphone',
       auth: ASSISTANT,
     },
     {
+      testid: 'dashboard-reports-link',
       name: 'Reports',
       href: `/${currentSitename}/dashboard/reports`,
       icon: 'Reports',
@@ -104,7 +109,7 @@ const primaryNavigationItems = (currentSitename) => {
         return (
           <RequireAuth key={item.name} siteMembership={item.auth}>
             <Link
-              data-testid={`DashboardPresentation${item.name}`}
+              data-testid={item.testid}
               to={item.href}
               className={`group flex items-center p-2 text-sm font-medium rounded-lg ${
                 match
@@ -130,6 +135,7 @@ const secondaryNavigationItems = (sites) => {
   if (sites?.length > 0) {
     sites.forEach((site) =>
       secondaryNavigation.push({
+        testid: `${site?.sitename}-link`,
         name: `${site?.title} site`,
         href: `/${site?.sitename}`,
         icon: 'BackArrow',
@@ -154,6 +160,7 @@ const secondaryNavigationItems = (sites) => {
       {secondaryNavigation.map((item) => (
         <Link
           key={item.name}
+          data-testid={item.testid}
           to={item.href}
           className="group flex items-center p-2 text-sm font-medium rounded-lg text-charcoal-200 hover:bg-charcoal-500 hover:text-white"
         >

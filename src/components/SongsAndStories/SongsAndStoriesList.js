@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 function SongsAndStoriesList({ labels, data, handleItemClick }) {
   return (
-    <section aria-labelledby="gallery-heading">
+    <section data-testid="songs-stories-list" aria-labelledby="gallery-heading">
       <h2 id="gallery-heading" className="sr-only">
         {labels?.titlecase}
       </h2>
@@ -19,7 +19,7 @@ function SongsAndStoriesList({ labels, data, handleItemClick }) {
                 className="w-full cursor-pointer hover:bg-charcoal-100 px-2 lg:px-5 hover:text-charcoal-900 border-b-2 border-charcoal-100 space-y-1 py-2"
                 onClick={() => handleItemClick(item)}
                 onKeyDown={() => handleItemClick(item)}
-                data-testid="SongAndStoriesListRow"
+                data-testid="song-story-list-row"
               >
                 <div className="text-xl flex justify-start">{item?.title}</div>
                 <div className="text-base text-charcoal-500 flex justify-start">

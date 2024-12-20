@@ -12,6 +12,7 @@ function DashboardSpeakersData() {
 
   const tileContent = [
     {
+      testid: 'create-speaker-link',
       icon: 'Create',
       name: 'Add a Speaker',
       description: 'Add a new speaker to your site',
