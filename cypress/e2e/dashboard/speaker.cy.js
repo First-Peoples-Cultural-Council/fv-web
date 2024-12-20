@@ -47,6 +47,17 @@ describe(
       cy.contains('Dismiss').should('be.visible')
     })
 
+    it('Edit Speaker', () => {
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.contains('Dashboard').click()
+      cy.contains('Edit').click()
+      cy.contains('Edit speakers').click()
+      cy.get('[data-testid="edit-speaker-qatestspeaker"]').click()
+      cy.get('#bio').type('this is the new value')
+      cy.contains('Save Changes').click()
+    })
+
     it('Delete Speaker', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
@@ -54,6 +65,9 @@ describe(
       cy.contains('Edit').click()
       cy.contains('Edit speakers').click()
       cy.get('[data-testid="edit-speaker-qatestspeaker"]').click()
+      cy.get('#bio')
+        .invoke('val')
+        .then((sometext) => sometext === 'this is the new value')
       cy.contains('Delete Speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
