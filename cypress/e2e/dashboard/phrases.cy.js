@@ -61,7 +61,7 @@ describe(
 
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
-      cy.get('[data-testid="DashboardPresentationEdit"]').click()
+      cy.get('[data-testid="dashboard-edit-link"]').click()
       cy.contains('Edit phrases').click()
       cy.contains('Loading').should('be.visible')
       cy.contains('Loading').should('not.exist')
