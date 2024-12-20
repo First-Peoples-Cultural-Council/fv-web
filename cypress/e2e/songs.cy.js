@@ -13,30 +13,36 @@ describe(
 
     it('10.3 - Click on songs grid view', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-      cy.contains('Learn').click()
-      cy.contains('Songs').click()
-      cy.get('ul li').each((_song) => {
-        cy.wrap(_song).click()
-        cy.contains('Loading').should('not.exist')
-
-        cy.contains('Go to Song', { timeout: 12000 })
-        cy.get('#CloseDrawerBtn').click()
-      })
+      cy.get('[data-testid=navigation-learn-btn]').click()
+      cy.get('[data-testid=navigation-songs-link]').click()
+      cy.get('[data-testid=song-story-grid-tile]', { timeout: 10000 }).each(
+        (_song) => {
+          cy.wrap(_song).scrollIntoView()
+          cy.wrap(_song).click()
+          cy.contains('Loading').should('not.exist')
+          cy.get('[data-testid=song-link]').scrollIntoView()
+          cy.get('[data-testid=song-link]').should('be.visible')
+          cy.get('#CloseDrawerBtn').click()
+          cy.get('[data-testid=song-link]').should('not.exist')
+        },
+      )
     })
 
     it('10.4 - Check list view songs', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-      cy.contains('Learn').click()
-      cy.contains('Songs').click()
-      cy.contains('Use list view').click()
-      cy.get('.pb-16 > .w-full >').each((_song) => {
-        cy.wrap(_song).scrollIntoView()
-        cy.wrap(_song).should('be.enabled')
-        cy.wrap(_song).click()
-        cy.contains('Go to Song').scrollIntoView()
-        cy.contains('Go to Song')
-        cy.get('#CloseDrawerBtn').click()
-      })
+      cy.get('[data-testid=navigation-learn-btn]').click()
+      cy.get('[data-testid=navigation-songs-link]').click()
+      cy.get('[data-testid=grid-off-btn]').click()
+      cy.get('[data-testid=song-story-list-row]', { timeout: 10000 }).each(
+        (_song) => {
+          cy.wrap(_song).scrollIntoView()
+          cy.wrap(_song).should('be.enabled')
+          cy.wrap(_song).click()
+          cy.get('[data-testid=song-link]').scrollIntoView()
+          cy.get('[data-testid=song-link]').should('be.visible')
+          cy.get('#CloseDrawerBtn').click()
+        },
+      )
     })
   },
 ) // end of describe
