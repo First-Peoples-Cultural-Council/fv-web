@@ -8,24 +8,22 @@ import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
 
 function DashboardPagesPresentation({
+  queryResponse,
   headerContent,
-  isLoading,
   tileContent,
-  customPages,
   site,
-  sitename,
 }) {
   const tableHeaderClass =
     'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   return (
-    <div id="DashboardPagesPresentation" className="space-y-5">
+    <div data-testid="DashboardPagesPresentation" className="space-y-5">
       <DashboardLanding.Presentation
         tileContent={tileContent}
         headerContent={headerContent}
         site={site}
       >
         <DashboardTable.Presentation
-          isLoading={isLoading}
+          queryResponse={queryResponse}
           title="Custom Pages"
           tableHead={
             <tr>
@@ -47,7 +45,7 @@ function DashboardPagesPresentation({
               </th>
             </tr>
           }
-          tableBody={customPages.map((page) => (
+          tableBody={queryResponse?.data?.results?.map((page) => (
             <tr key={page.id}>
               <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
                 {page.title}
@@ -60,7 +58,7 @@ function DashboardPagesPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
-                  to={`/${sitename}/dashboard/edit/page?slug=${page?.url}`}
+                  to={`/${site?.sitename}/dashboard/edit/page?slug=${page?.url}`}
                   className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
@@ -84,11 +82,10 @@ function DashboardPagesPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { array, object, string } = PropTypes
 DashboardPagesPresentation.propTypes = {
-  customPages: array,
+  queryResponse: object,
   headerContent: object,
-  isLoading: bool,
   site: object,
   sitename: string,
   tileContent: array,

@@ -11,6 +11,7 @@ import Story from 'components/Story'
 import SongsAndStoriesGrid from 'components/SongsAndStories/SongsAndStoriesGrid'
 import SongsAndStoriesList from 'components/SongsAndStories/SongsAndStoriesList'
 import LoadOrError from 'components/LoadOrError'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
   const { sitename } = useParams()
@@ -79,29 +80,9 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
                         handleItemClick={handleItemClick}
                       />
                     )}
-
-                    <div className="p-3 text-center text-charcoal-900 font-medium">
-                      <div
-                        ref={infiniteQueryResponse?.loadRef}
-                        className="w-full h-5"
-                      />
-                      <button
-                        data-testid="load-btn"
-                        type="button"
-                        className={
-                          !infiniteQueryResponse?.hasNextPage
-                            ? 'cursor-text'
-                            : ''
-                        }
-                        onClick={() => infiniteQueryResponse?.fetchNextPage()}
-                        disabled={
-                          !infiniteQueryResponse?.hasNextPage ||
-                          infiniteQueryResponse?.isFetchingNextPage
-                        }
-                      >
-                        {infiniteQueryResponse?.loadLabel}
-                      </button>
-                    </div>
+                    <InfiniteLoadBtn
+                      infiniteQueryResponse={infiniteQueryResponse}
+                    />
                   </div>
                 ) : (
                   <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SelectorVisualMediaGrid from 'components/SelectorVisualMediaGrid'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import useMediaSearchModal from 'common/dataHooks/useMediaSearchModal'
 import { TYPE_IMAGE } from 'common/constants'
 import RadioButtonGroup from 'components/RadioButtonGroup'
 
@@ -17,23 +17,11 @@ function SelectorImagesContainer({
 }) {
   const [searchSharedMedia, setSearchSharedMedia] = useState('false')
 
-  const {
-    data,
-    searchValue,
-    handleSearchSubmit,
-    handleTextFieldChange,
-    infiniteScroll,
-    isPending,
-    loadRef,
-    loadLabel,
-  } = useMediaSearch({
+  const infiniteQueryResponse = useMediaSearchModal({
     type: TYPE_IMAGE,
     searchSharedMedia: searchSharedMedia === 'true',
   })
 
-  const hasResults = !!(
-    data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0
-  )
   const sharedMediaOptions = [
     { value: 'true', label: 'Shared Images' },
     { value: 'false', label: 'Your image library' },
@@ -47,10 +35,10 @@ function SelectorImagesContainer({
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
-            onSearchSubmit={handleSearchSubmit}
+            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+            onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
             searchPlaceholder="Search all images"
-            searchValue={searchValue}
+            searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
         {!hideSharedMedia && (
@@ -65,9 +53,7 @@ function SelectorImagesContainer({
         )}
         <div className="grow h-72 overflow-y-scroll">
           <SelectorResultsWrapper.Presentation
-            hasResults={hasResults}
-            isLoading={isPending}
-            loadRef={loadRef}
+            infiniteQueryResponse={infiniteQueryResponse}
             resultsSection={
               <div aria-labelledby="results-header">
                 <div className="py-4 px-6 text-left">
@@ -86,9 +72,7 @@ function SelectorImagesContainer({
                   </p>
                 </div>
                 <SelectorVisualMediaGrid.Presentation
-                  data={data}
-                  infiniteScroll={infiniteScroll}
-                  loadLabel={loadLabel}
+                  infiniteQueryResponse={infiniteQueryResponse}
                   formMedia={formMedia}
                   selectedMedia={selectedMedia}
                   mediaSelectHandler={mediaSelectHandler}

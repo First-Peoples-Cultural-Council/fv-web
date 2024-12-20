@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -8,62 +7,43 @@ import {
   IMAGE,
   VIDEO,
   TYPES,
-  HAS_SITE_FEATURE,
-  SHARED_MEDIA,
   SORT,
   SORT_CREATED_DESC,
 } from 'common/constants'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
+import useSearchTerm from 'common/hooks/useSearchTerm'
 
-function useMediaSearch({ type, searchSharedMedia }) {
-  const [searchParams, setSearchParams] = useSearchParams()
-
+function useMediaSearch({ type }) {
   const path = getPathForMediaType(type)
+  const [currentFile, setCurrentFile] = useState(null) // Used for the sidebar to display the current selected file
 
-  const searchParamsQuery = searchParams.get('q') || ''
-  const [currentFile, setCurrentFile] = useState() // Used for the sidebar to display the current selected file
-  const [searchTerm, setSearchTerm] = useState(searchParamsQuery)
-  const [searchInputValue, setSearchInputValue] = useState(searchParamsQuery)
+  const {
+    displayedSearchTerm,
+    handleSearchTermChange,
+    submittedSearchTerm,
+    setSubmittedSearchTerm,
+    searchTermInUrl,
+    setSearchTermInUrl,
+  } = useSearchTerm()
 
   const siteSearchParams = new URLSearchParams({
-    q: searchTerm,
+    q: submittedSearchTerm,
     [TYPES]: type,
-    [SORT]: searchTerm ? null : SORT_CREATED_DESC,
+    [SORT]: submittedSearchTerm ? null : SORT_CREATED_DESC,
   })
 
-  const sharedMediaSearchParams = new URLSearchParams({
-    q: searchTerm,
-    [TYPES]: type,
-    [SORT]: searchTerm ? null : SORT_CREATED_DESC,
-    [HAS_SITE_FEATURE]: SHARED_MEDIA,
+  const infiniteQueryResponse = useSearchLoader({
+    searchParams: siteSearchParams,
   })
-
-  // Fetch search results
-  const siteSearchResponse = useSearchLoader({ searchParams: siteSearchParams })
-  const sharedMediaSearchResponse = useSearchAllSitesLoader({
-    searchParams: sharedMediaSearchParams,
-    enabled: searchSharedMedia,
-  })
-
-  const infiniteQueryResponse = searchSharedMedia
-    ? sharedMediaSearchResponse
-    : siteSearchResponse
-
-  const handleTextFieldChange = (event) => {
-    event.preventDefault()
-    setSearchInputValue(event.target.value)
-  }
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault()
-    setSearchTerm(searchInputValue)
-  }
 
   const handleSearchSubmitWithUrlSync = (event) => {
-    handleSearchSubmit(event)
-    setSearchParams({ q: searchInputValue })
+    event.preventDefault()
+    setSubmittedSearchTerm(displayedSearchTerm)
+    setCurrentFile(null)
+    if (displayedSearchTerm !== searchTermInUrl) {
+      setSearchTermInUrl(displayedSearchTerm)
+    }
   }
 
   useEffect(() => {
@@ -75,10 +55,9 @@ function useMediaSearch({ type, searchSharedMedia }) {
 
   return {
     ...infiniteQueryResponse,
-    handleSearchSubmit,
+    displayedSearchTerm,
     handleSearchSubmitWithUrlSync,
-    handleTextFieldChange,
-    searchValue: searchInputValue,
+    handleSearchTermChange,
     currentFile,
     setCurrentFile,
     typePlural: path,

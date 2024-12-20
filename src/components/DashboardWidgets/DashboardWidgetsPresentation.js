@@ -10,10 +10,9 @@ import Modal from 'components/Modal'
 import Widget from 'components/Widget'
 
 function DashboardWidgetsPresentation({
+  queryResponse,
   headerContent,
-  isLoading,
   tileContent,
-  widgets,
   site,
 }) {
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
@@ -29,7 +28,7 @@ function DashboardWidgetsPresentation({
         site={site}
       >
         <DashboardTable.Presentation
-          isLoading={isLoading}
+          queryResponse={queryResponse}
           title="Widgets"
           tableHead={
             <tr>
@@ -48,7 +47,7 @@ function DashboardWidgetsPresentation({
               </th>
             </tr>
           }
-          tableBody={widgets.map((widget) => (
+          tableBody={queryResponse?.widgets?.map((widget) => (
             <tr key={widget?.id}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
                 {widget?.nickname}
@@ -96,11 +95,10 @@ function DashboardWidgetsPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object } = PropTypes
+const { array, object } = PropTypes
 DashboardWidgetsPresentation.propTypes = {
-  widgets: array,
+  queryResponse: object,
   headerContent: object,
-  isLoading: bool,
   site: object,
   tileContent: array,
 }

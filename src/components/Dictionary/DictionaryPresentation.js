@@ -1,17 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
-import getIcon from 'common/utils/getIcon'
-import {
-  TYPES,
-  TYPE_DICTIONARY,
-  TYPE_PHRASE,
-  TYPE_WORD,
-} from 'common/constants'
+import DictionaryLinks from 'components/DictionaryLinks'
+import { TYPE_DICTIONARY } from 'common/constants'
 
 function DictionaryPresentation({
   searchType,
@@ -20,12 +14,6 @@ function DictionaryPresentation({
   labels,
   sitename,
 }) {
-  const linkStyle = {
-    li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
-    link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-charcoal-900',
-    icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
-  }
-
   const count =
     infiniteQueryResponse?.data?.pages?.[0]?.count < 10000
       ? infiniteQueryResponse?.data?.pages?.[0]?.count
@@ -68,48 +56,9 @@ function DictionaryPresentation({
                 Results: {count}
               </div>
             </div>
-
-            <h2 className="block text-xl xl:text-2xl font-medium text-charcoal-900 ml-4 xl:ml-7">
-              BROWSE BY:
-            </h2>
-            <ul className="inline-block list-none">
-              <li id="CategoryLink" className={linkStyle.li}>
-                <Link
-                  className={linkStyle.link}
-                  to={`/${sitename}/categories?${TYPES}=${searchType}`}
-                >
-                  {getIcon('Categories', linkStyle.icon)}
-                  <p>Categories</p>
-                </Link>
-              </li>
-              <li id="AlphabetLink" className={linkStyle.li}>
-                <Link
-                  className={linkStyle.link}
-                  to={`/${sitename}/alphabet?${TYPES}=${searchType}`}
-                >
-                  {getIcon('Alphabet', linkStyle.icon)}
-                  <p>Alphabet</p>
-                </Link>
-              </li>
-              {searchType !== TYPE_WORD && (
-                <li id="DocLink" className={linkStyle.li}>
-                  <Link className={linkStyle.link} to={`/${sitename}/words`}>
-                    {getIcon('Word', linkStyle.icon)}
-                    <p>Words</p>
-                  </Link>
-                </li>
-              )}
-              {searchType !== TYPE_PHRASE && (
-                <li id="DocLink" className={linkStyle.li}>
-                  <Link className={linkStyle.link} to={`/${sitename}/phrases`}>
-                    {getIcon('Phrase', linkStyle.icon)}
-                    <p>Phrases</p>
-                  </Link>
-                </li>
-              )}
-            </ul>
+            <DictionaryLinks />
           </div>
-          <div className="min-h-220 col-span-12 lg:col-span-10">
+          <div className="col-span-12 lg:col-span-10">
             <div className="hidden md:block p-2 print:block">
               <DictionaryList.Presentation
                 infiniteQueryResponse={infiniteQueryResponse}
@@ -128,7 +77,6 @@ function DictionaryPresentation({
           </div>
         </div>
       )}
-      <div ref={infiniteQueryResponse?.loadRef} className="w-full h-10" />
     </>
   )
 }

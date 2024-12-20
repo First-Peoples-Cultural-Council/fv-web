@@ -73,7 +73,7 @@ function SearchPresentation({
             {getFilterListItems()}
           </ul>
         </div>
-        <div className="hidden md:block min-h-220 col-span-11 lg:col-span-9">
+        <div className="hidden md:block col-span-11 lg:col-span-9">
           <DictionaryList.Presentation
             infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
@@ -82,7 +82,7 @@ function SearchPresentation({
             entryLabel={entryLabel}
           />
         </div>
-        <div className="block md:hidden min-h-220 col-span-11">
+        <div className="block md:hidden col-span-11">
           <DictionaryGrid.Presentation
             infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
@@ -90,7 +90,6 @@ function SearchPresentation({
           />
         </div>
       </div>
-      <div ref={infiniteQueryResponse?.loadRef} className="w-full h-10" />
     </div>
   )
 }
