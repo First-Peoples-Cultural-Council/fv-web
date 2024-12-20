@@ -12,7 +12,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
     <>
       <button
         type="button"
-        data-testid="DeleteButton"
+        data-testid="delete-btn"
         onClick={() => setDeleteModalOpen(true)}
         className="btn-outlined"
       >
