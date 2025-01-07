@@ -30,7 +30,7 @@ describe(
 
     it('4.1 - custom page', () => {
       const site = `${Cypress.env('baseUrl')}${Cypress.env(
-        'DIALECT',
+        'CYPRESS_DIALECT',
       )}/custom/qacustompage`
 
       cy.contains('Explore Languages').should('be.visible')
