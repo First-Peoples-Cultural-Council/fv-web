@@ -53,7 +53,7 @@ describe(
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
       cy.contains('Edit speakers').click()
-      cy.get('[data-testid="edit-speaker-qatestspeaker"]').click()
+      cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
       cy.contains('Delete Speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
