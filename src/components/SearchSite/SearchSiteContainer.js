@@ -24,7 +24,7 @@ function SearchSiteContainer() {
   })
 
   // fetch results
-  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+  const infiniteQueryResponse = useSearchLoader({
     searchParams,
   })
 
@@ -32,17 +32,12 @@ function SearchSiteContainer() {
     <>
       <SiteDocHead titleArray={['Search']} />
       <SearchPresentation
-        actions={['copy']}
         searchType={searchTypeInUrl}
         filters={typeFilters}
         handleFilter={(filter) => {
           setSearchTypeInUrl(filter)
         }}
-        infiniteScroll={infiniteScroll}
-        isLoading={isInitialLoading}
-        items={data}
-        loadRef={loadRef}
-        moreActions={['share', 'qrcode']}
+        infiniteQueryResponse={infiniteQueryResponse}
         sitename={sitename}
         siteTitle={site?.title}
         entryLabel={getSearchTypeLabel({ searchTypeInUrl })}

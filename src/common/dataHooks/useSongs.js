@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 // FPCC
@@ -17,27 +17,22 @@ import {
 } from 'common/dataAdaptors/songAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import useAuthCheck from 'common/hooks/useAuthCheck'
+import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 
 export function useSongs() {
   const { sitename } = useParams()
 
-  const allSongsResponse = useInfiniteQuery({
+  const infiniteQueryResponse = useInfiniteScroll({
     queryKey: [SONGS, sitename],
     queryFn: ({ pageParam = 1 }) =>
       api.songs.getAll({
         sitename,
         pageParam,
       }),
-    enabled: !!sitename,
+    resultAdaptor: (result) => songForViewing({ item: result }),
   })
-  const formattedResponse = allSongsResponse?.data?.pages?.map((page) => ({
-    results: page?.results?.map((result) => songForViewing({ item: result })),
-  }))
 
-  return {
-    ...allSongsResponse,
-    data: formattedResponse,
-  }
+  return infiniteQueryResponse
 }
 
 export function useSong({ id, sitename, edit = false }) {

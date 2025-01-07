@@ -8,22 +8,7 @@ import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 
 function DashboardMediaAudioContainer() {
-  const {
-    media,
-    searchValue,
-    currentFile,
-    setCurrentFile,
-    handleSearchSubmitWithUrlSync,
-    handleTextFieldChange,
-    infiniteScroll,
-    isLoadingEntries,
-    loadRef,
-    loadLabel,
-  } = useMediaSearch({ type: TYPE_AUDIO })
-
-  const hasResults = !!(
-    media?.pages !== undefined && media?.pages?.[0]?.results?.length > 0
-  )
+  const infiniteQueryResponse = useMediaSearch({ type: TYPE_AUDIO })
 
   return (
     <div
@@ -33,24 +18,20 @@ function DashboardMediaAudioContainer() {
       <div className="h-full w-full flex flex-col">
         <div className="w-full">
           <SelectorSearchbox.Presentation
-            onSearchChange={handleTextFieldChange}
-            onSearchSubmit={handleSearchSubmitWithUrlSync}
+            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+            onSearchSubmit={
+              infiniteQueryResponse?.handleSearchSubmitWithUrlSync
+            }
             searchPlaceholder="Search all audio"
-            searchValue={searchValue}
+            searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
         <div>
           <SelectorResultsWrapper.Presentation
-            hasResults={hasResults}
-            isLoading={isLoadingEntries}
-            loadRef={loadRef}
+            infiniteQueryResponse={infiniteQueryResponse}
             resultsSection={
               <DashboardMediaAudioPresentation
-                data={media}
-                infiniteScroll={infiniteScroll}
-                currentFile={currentFile}
-                setCurrentFile={setCurrentFile}
-                loadLabel={loadLabel}
+                infiniteQueryResponse={infiniteQueryResponse}
               />
             }
           />

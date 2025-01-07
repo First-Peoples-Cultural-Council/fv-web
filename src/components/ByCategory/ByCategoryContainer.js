@@ -3,20 +3,19 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ByCategoryPresentation from 'components/ByCategory/ByCategoryPresentation'
+import ByCategoryKids from 'components/ByCategory/ByCategoryKids'
 import ByCategoryData from 'components/ByCategory/ByCategoryData'
 import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
-    actions,
     categoriesQueryResponse,
     currentCategory,
     currentParentCategory,
     searchType,
     setSearchType,
-    entryLabel,
+    labels,
     searchInfiniteQueryResponse,
-    moreActions,
     selectedTab,
     sitename,
     tabs,
@@ -24,21 +23,29 @@ function ByCategoryContainer({ kids = null }) {
   return (
     <LoadOrError queryResponse={categoriesQueryResponse}>
       <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
-      <ByCategoryPresentation
-        actions={actions}
-        categories={categoriesQueryResponse?.data?.results || []}
-        currentCategory={currentCategory}
-        currentParentCategory={currentParentCategory}
-        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
-        searchType={searchType}
-        setSearchType={setSearchType}
-        entryLabel={entryLabel}
-        kids={kids}
-        moreActions={moreActions}
-        selectedTab={selectedTab}
-        sitename={sitename}
-        tabs={tabs}
-      />
+      {kids ? (
+        <ByCategoryKids
+          categories={categoriesQueryResponse?.data?.results || []}
+          currentCategory={currentCategory}
+          currentParentCategory={currentParentCategory}
+          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+          searchType={searchType}
+          sitename={sitename}
+        />
+      ) : (
+        <ByCategoryPresentation
+          categories={categoriesQueryResponse?.data?.results || []}
+          currentCategory={currentCategory}
+          currentParentCategory={currentParentCategory}
+          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+          searchType={searchType}
+          setSearchType={setSearchType}
+          labels={labels}
+          selectedTab={selectedTab}
+          sitename={sitename}
+          tabs={tabs}
+        />
+      )}
     </LoadOrError>
   )
 }

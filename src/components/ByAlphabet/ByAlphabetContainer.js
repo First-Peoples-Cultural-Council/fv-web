@@ -3,20 +3,19 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ByAlphabetPresentation from 'components/ByAlphabet/ByAlphabetPresentation'
+import ByAlphabetKids from 'components/ByAlphabet/ByAlphabetKids'
 import ByAlphabetData from 'components/ByAlphabet/ByAlphabetData'
 import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 
 function ByAlphabetContainer({ kids = null }) {
   const {
-    actions,
     characterQueryResponse,
     currentCharacter,
     searchType,
     setSearchType,
-    entryLabel,
+    labels,
     searchInfiniteQueryResponse,
-    moreActions,
     selectedTab,
     sitename,
     tabs,
@@ -27,20 +26,27 @@ function ByAlphabetContainer({ kids = null }) {
         titleArray={[currentCharacter?.title, 'Dictionary']}
         description={`Dictionary entries that start with ${currentCharacter?.title}.`}
       />
-      <ByAlphabetPresentation
-        actions={actions}
-        characters={characterQueryResponse?.data?.characters || []}
-        currentCharacter={currentCharacter}
-        searchType={searchType}
-        setSearchType={setSearchType}
-        entryLabel={entryLabel}
-        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
-        kids={kids}
-        moreActions={moreActions}
-        selectedTab={selectedTab}
-        sitename={sitename}
-        tabs={tabs}
-      />
+      {kids ? (
+        <ByAlphabetKids
+          characters={characterQueryResponse?.data?.characters || []}
+          currentCharacter={currentCharacter}
+          searchType={searchType}
+          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+          sitename={sitename}
+        />
+      ) : (
+        <ByAlphabetPresentation
+          characters={characterQueryResponse?.data?.characters || []}
+          currentCharacter={currentCharacter}
+          searchType={searchType}
+          setSearchType={setSearchType}
+          labels={labels}
+          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+          selectedTab={selectedTab}
+          sitename={sitename}
+          tabs={tabs}
+        />
+      )}
     </LoadOrError>
   )
 }

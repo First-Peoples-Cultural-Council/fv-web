@@ -10,11 +10,9 @@ import { CHAR } from 'common/constants'
 
 function DashboardAlphabetPresentation({
   headerContent,
-  isLoading,
+  queryResponse,
   tileContent,
-  characters,
   site,
-  sitename,
 }) {
   const tableHeaderClass =
     'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
@@ -32,7 +30,7 @@ function DashboardAlphabetPresentation({
         site={site}
       >
         <DashboardTable.Presentation
-          isLoading={isLoading}
+          queryResponse={queryResponse}
           title="Characters"
           tableHead={
             <tr>
@@ -57,7 +55,7 @@ function DashboardAlphabetPresentation({
               </th>
             </tr>
           }
-          tableBody={characters.map((character) => (
+          tableBody={queryResponse?.data?.characters?.map((character) => (
             <tr key={character.id}>
               <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 {character.title}
@@ -81,7 +79,7 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
-                  to={`/${sitename}/dashboard/edit/character?id=${character?.id}`}
+                  to={`/${site?.sitename}/dashboard/edit/character?id=${character?.id}`}
                   className="text-blumine-800 hover:text-blumine-900 flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
@@ -89,7 +87,7 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
-                  to={`/${sitename}/alphabet?${CHAR}=${character?.title}`}
+                  to={`/${site?.sitename}/alphabet?${CHAR}=${character?.title}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blumine-800 hover:text-blumine-900 flex items-center"
@@ -105,13 +103,12 @@ function DashboardAlphabetPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { array, object } = PropTypes
 DashboardAlphabetPresentation.propTypes = {
-  characters: array,
+  queryResponse: object,
   headerContent: object,
-  isLoading: bool,
+
   site: object,
-  sitename: string,
   tileContent: array,
 }
 

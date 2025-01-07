@@ -10,12 +10,9 @@ import SearchTypeSelector from 'components/SearchTypeSelector'
 function DashboardEntriesPresentation({
   emptyListMessage,
   entryLabel,
-  infiniteScroll,
+  searchInfiniteQueryResponse,
   initialSearchType,
   isDictionary,
-  isLoadingEntries,
-  items,
-  loadRef,
   removeFilters,
   searchType,
   setSearchType,
@@ -61,19 +58,17 @@ function DashboardEntriesPresentation({
       </section>
       {showAdvancedSearch && (
         <section className="w-full">
-          <AdvancedSearchOptions.Presentation items={items} />
+          <AdvancedSearchOptions.Presentation
+            items={searchInfiniteQueryResponse?.data}
+          />
         </section>
       )}
-      <section className="w-full">
-        <DashboardEntriesPresentationList
-          infiniteScroll={infiniteScroll}
-          isLoading={isLoadingEntries}
-          items={items}
-          emptyListMessage={emptyListMessage}
-          entryLabel={entryLabel}
-        />
-        <div ref={loadRef} className="w-full h-10" />
-      </section>
+
+      <DashboardEntriesPresentationList
+        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+        emptyListMessage={emptyListMessage}
+        entryLabel={entryLabel}
+      />
     </div>
   )
 }
@@ -82,12 +77,9 @@ const { bool, func, object, string } = PropTypes
 DashboardEntriesPresentation.propTypes = {
   entryLabel: string,
   emptyListMessage: string,
-  infiniteScroll: object,
+  searchInfiniteQueryResponse: object,
   initialSearchType: string,
   isDictionary: bool,
-  isLoadingEntries: bool,
-  items: object,
-  loadRef: object,
   removeFilters: func,
   searchType: string,
   setSearchType: func,

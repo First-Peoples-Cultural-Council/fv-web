@@ -8,18 +8,18 @@ import { WORD_OF_THE_DAY } from 'common/constants/paths'
 function WidgetWordOfTheDayData() {
   const { sitename } = useParams()
 
-  const { data, error, isError } = useQuery({
+  const queryResponse = useQuery({
     queryKey: [WORD_OF_THE_DAY, sitename],
     queryFn: () => api.wordOfTheDay.get({ sitename }),
     ...{ enabled: !!sitename },
   })
-  const word = data?.[0]?.dictionaryEntry
+  const word = queryResponse?.data?.[0]?.dictionaryEntry
   const translationArray = word?.translations?.map((trans) => `${trans?.text}`)
   const partOfSpeech = word?.translations?.[0]?.partOfSpeech?.title
   return {
     audio: word?.relatedAudio,
     wordTitle: word?.title,
-    isError: isError && error && error?.response?.status === 404,
+    queryResponse,
     translations: translationArray?.join('; '),
     partOfSpeech,
     title: 'WORD OF THE DAY',

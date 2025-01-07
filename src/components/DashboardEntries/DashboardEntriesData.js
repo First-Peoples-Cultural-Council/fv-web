@@ -25,7 +25,7 @@ function DashboardEntriesData({ advancedSearch }) {
     urlSearchType === TYPE_DICTIONARY
 
   // Search fetch
-  const { data, infiniteScroll, loadRef, isInitialLoading } = useSearchLoader({
+  const searchInfiniteQueryResponse = useSearchLoader({
     searchParams,
   })
 
@@ -57,12 +57,9 @@ function DashboardEntriesData({ advancedSearch }) {
   return {
     emptyListMessage: 'Sorry, no results match your search criteria.',
     entryLabel: getSearchTypeLabel({ searchType }),
-    infiniteScroll,
+    searchInfiniteQueryResponse,
     initialSearchType: urlSearchType,
     isDictionary,
-    isLoadingEntries: isInitialLoading,
-    items: data,
-    loadRef: searchTerm ? loadRef : null,
     removeFilters,
     searchType,
     setSearchType: setSearchTypeInUrl,

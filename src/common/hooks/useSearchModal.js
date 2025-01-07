@@ -32,10 +32,9 @@ function useSearchModal({ types, visibility = '' }) {
     [DOMAIN]: DOMAIN_BOTH,
   })
 
-  const { data, infiniteScroll, loadRef, isInitialLoading, isError } =
-    useSearchLoader({
-      searchParams: _searchParams,
-    })
+  const infiniteQueryResponse = useSearchLoader({
+    searchParams: _searchParams,
+  })
 
   const handleSearchSubmit = (event) => {
     event.preventDefault()
@@ -43,16 +42,10 @@ function useSearchModal({ types, visibility = '' }) {
   }
 
   return {
+    ...infiniteQueryResponse,
     displayedSearchTerm,
     handleSearchTermChange,
     handleSearchSubmit,
-    searchResults: data,
-    hasResults:
-      data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0,
-    infiniteScroll,
-    isLoading: isInitialLoading || isError,
-    isLoadingEntries: isInitialLoading,
-    loadRef,
   }
 }
 

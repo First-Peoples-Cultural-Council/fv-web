@@ -6,9 +6,9 @@ import DashboardImmersionPresentation from 'components/DashboardImmersion/Dashbo
 
 function DashboardImmersionContainer() {
   const {
-    labels,
+    queryResponse,
     headerContent,
-    isLoading,
+
     site,
     tileContent,
     submitHandler,
@@ -17,10 +17,9 @@ function DashboardImmersionContainer() {
   } = DashboardImmersionData()
   return (
     <DashboardImmersionPresentation
+      queryResponse={queryResponse}
       headerContent={headerContent}
       tileContent={tileContent}
-      labels={labels}
-      isLoading={isLoading}
       site={site}
       submitHandler={submitHandler}
       currentLabel={currentLabel}

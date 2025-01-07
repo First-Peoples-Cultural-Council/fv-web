@@ -5,19 +5,18 @@ import { Link, useNavigate } from 'react-router-dom'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { makePlural } from 'common/utils/urlHelpers'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import ActionsMenu from 'components/ActionsMenu'
 import Drawer from 'components/Drawer'
 import EntryDetail from 'components/EntryDetail'
 import AudioButton from 'components/AudioButton'
 import { useAudiobar } from 'context/AudiobarContext'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DictionaryListPresentation({
-  actions = [],
-  infiniteScroll,
-  isLoading,
-  items,
-  moreActions = [],
+  infiniteQueryResponse,
+  actions = ['copy'],
+  moreActions = ['share', 'qrcode'],
   noResultsMessage = 'Sorry, no results were found for this search.',
   onSortByClick,
   showType,
@@ -27,8 +26,6 @@ function DictionaryListPresentation({
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
-    infiniteScroll
   const navigate = useNavigate()
   const { setCurrentAudio } = useAudiobar()
 
@@ -59,12 +56,15 @@ function DictionaryListPresentation({
     'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
 
   return (
-    <Loading.Container isLoading={isLoading}>
-      {items?.pages !== undefined && items?.pages?.[0]?.results?.length > 0 ? (
-        <div id="DictionaryListPresentation" className="flex flex-col">
-          <div className="py-2 align-middle inline-block min-w-full">
-            <div className="overflow-hidden sm:rounded-lg">
-              <table className="min-w-full divide-y border-b-2 mb-20 divide-charcoal-200">
+    <LoadOrError queryResponse={infiniteQueryResponse}>
+      <section
+        data-testid="DictionaryListPresentation"
+        className="bg-white min-h-screen w-full"
+      >
+        {infiniteQueryResponse?.hasResults ? (
+          <div className="flex flex-col w-full py-2">
+            <div className="border-b border-charcoal-200 rounded-lg overflow-hidden">
+              <table className="table-auto w-full divide-y divide-charcoal-200">
                 <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className="px-6 py-3">
@@ -111,7 +111,7 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-200">
-                  {items?.pages?.map((page) => (
+                  {infiniteQueryResponse?.data?.pages?.map((page) => (
                     <Fragment key={page.pageNumber}>
                       {page.results.map((entry) => (
                         <tr key={entry?.id}>
@@ -195,26 +195,17 @@ function DictionaryListPresentation({
                 </tbody>
               </table>
             </div>
+            <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
           </div>
-          <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
-            <button
-              data-testid="load-btn"
-              type="button"
-              className={!hasNextPage ? 'cursor-text' : ''}
-              onClick={() => fetchNextPage()}
-              disabled={!hasNextPage || isFetchingNextPage}
-            >
-              {loadLabel}
-            </button>
+        ) : (
+          <div className="w-full flex">
+            <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
+              {noResultsMessage}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="w-full flex">
-          <div className="mx-6 mt-4 text-center md:mx-auto md:mt-20">
-            {noResultsMessage}
-          </div>
-        </div>
-      )}
+        )}
+      </section>
+
       <Drawer.Presentation
         isOpen={drawerOpen}
         closeHandler={() => setDrawerOpen(false)}
@@ -233,16 +224,14 @@ function DictionaryListPresentation({
           isDrawer
         />
       </Drawer.Presentation>
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
 // PROPTYPES
 const { array, bool, func, node, object, string } = PropTypes
 DictionaryListPresentation.propTypes = {
-  infiniteScroll: object,
-  isLoading: bool,
-  items: object,
+  infiniteQueryResponse: object,
   actions: array,
   moreActions: array,
   noResultsMessage: node,

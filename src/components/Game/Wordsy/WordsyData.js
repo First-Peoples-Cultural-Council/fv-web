@@ -1,56 +1,15 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import api from 'services/api'
-import { KIDS, WORDSY } from 'common/constants'
-import {
-  getOrthographyPattern,
-  isWordInWordList,
-} from 'components/Game/Wordsy/Utils/helpers'
+import { useWordsySearch } from 'common/dataHooks/useGamesSearch'
+import { isWordInWordList } from 'components/Game/Wordsy/Utils/helpers'
 
 const MAX_TRIES = 7
 const WORD_LENGTH = 5
 
 function WordsyData({ kids }) {
-  const [languageConfig, setLanguageConfig] = useState({
-    orthography: [],
-    orthographyPattern: [],
-    words: [],
-    validGuesses: [],
-  })
-  const [solution, setSolution] = useState('')
-
-  const { sitename } = useParams()
-
-  const _searchParams = new URLSearchParams()
-  if (kids) {
-    _searchParams.append(KIDS, kids)
-  }
-
-  const { data, isFetching } = useQuery({
-    queryKey: [WORDSY, sitename],
-    queryFn: () =>
-      api.gameContent.getWordsyConfig({
-        sitename,
-        searchParams: _searchParams.toString(),
-      }),
-    ...{ enabled: !!sitename },
-  })
-
-  useEffect(() => {
-    const updatedLanguageConfig = {
-      orthography: data?.orthography,
-      orthographyPattern: getOrthographyPattern(data?.orthography),
-      words: data?.words,
-      validGuesses: data?.validGuesses,
-    }
-    setLanguageConfig(updatedLanguageConfig)
-    setSolution(data?.solution)
-  }, [data])
-
+  const queryResponse = useWordsySearch({ kids })
   // Game controls
   const [isGameOver, setIsGameOver] = useState(false)
   const [guesses, setGuesses] = useState([])
@@ -66,8 +25,8 @@ function WordsyData({ kids }) {
 
   const isValidGuess = () =>
     isWordInWordList(
-      languageConfig.words,
-      languageConfig.validGuesses,
+      queryResponse?.languageConfig?.words,
+      queryResponse?.languageConfig?.validGuesses,
       currentGuess.join(''),
     )
 
@@ -89,7 +48,7 @@ function WordsyData({ kids }) {
     setGuesses([...guesses, currentGuess])
     setCurrentGuess([])
 
-    if (currentGuess.join('') === solution) {
+    if (currentGuess.join('') === queryResponse?.data?.solution) {
       setIsGameOver(true)
       setModalData({
         status: 'win',
@@ -135,10 +94,8 @@ function WordsyData({ kids }) {
   }
 
   return {
-    isFetching,
+    queryResponse,
     tries: MAX_TRIES,
-    solution,
-    languageConfig,
     guesses,
     currentGuess,
     wordLength: WORD_LENGTH,

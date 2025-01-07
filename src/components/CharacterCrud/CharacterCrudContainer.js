@@ -3,20 +3,20 @@ import React from 'react'
 // FPCC
 import CharacterCrudPresentation from 'components/CharacterCrud/CharacterCrudPresentation'
 import CharacterCrudData from 'components/CharacterCrud/CharacterCrudData'
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 
 function CharacterCrudContainer() {
-  const { backHandler, dataToEdit, isLoading, submitHandler } =
+  const { backHandler, characterQueryResponse, submitHandler } =
     CharacterCrudData()
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={characterQueryResponse}>
       <CharacterCrudPresentation
         backHandler={backHandler}
-        dataToEdit={dataToEdit}
+        dataToEdit={characterQueryResponse?.data || null}
         submitHandler={submitHandler}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 

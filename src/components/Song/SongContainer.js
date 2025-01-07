@@ -5,7 +5,7 @@ import SongPresentation from 'components/Song/SongPresentation'
 import SongPresentationDrawer from 'components/Song/SongPresentationDrawer'
 import LoadOrError from 'components/LoadOrError'
 
-function SongContainer({ id, sitename, isDrawer }) {
+function SongContainer({ id, sitename, isDrawer, isDashboard }) {
   const { entry, songQueryResponse } = SongData({
     id,
     sitename,
@@ -13,7 +13,7 @@ function SongContainer({ id, sitename, isDrawer }) {
   return (
     <LoadOrError queryResponse={songQueryResponse}>
       {isDrawer ? (
-        <SongPresentationDrawer entry={entry} />
+        <SongPresentationDrawer entry={entry} isDashboard={isDashboard} />
       ) : (
         <SongPresentation entry={entry} />
       )}
@@ -27,6 +27,7 @@ SongContainer.propTypes = {
   id: string,
   sitename: string,
   isDrawer: bool,
+  isDashboard: bool,
 }
 
 export default SongContainer

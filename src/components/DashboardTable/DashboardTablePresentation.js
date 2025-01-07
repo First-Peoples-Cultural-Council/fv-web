@@ -2,16 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 
 function DashboardTablePresentation({
   title,
-  isLoading,
+  queryResponse,
   tableHead,
   tableBody,
 }) {
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={queryResponse}>
       <section
         data-testid="DashboardTablePresentation"
         className="mx-auto h-full px-8"
@@ -43,13 +43,13 @@ function DashboardTablePresentation({
           </div>
         </div>
       </section>
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 // PROPTYPES
-const { bool, node, string } = PropTypes
+const { object, node, string } = PropTypes
 DashboardTablePresentation.propTypes = {
-  isLoading: bool,
+  queryResponse: object,
   tableHead: node,
   tableBody: node,
   title: string,

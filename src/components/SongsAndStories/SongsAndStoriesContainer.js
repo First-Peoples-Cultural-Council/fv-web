@@ -3,34 +3,34 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import SongsAndStoriesPresentation from 'components/SongsAndStories/SongsAndStoriesPresentation'
-import SongsAndStoriesData from 'components/SongsAndStories/SongsAndStoriesData'
-import Loading from 'components/Loading'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import SiteDocHead from 'components/SiteDocHead'
 import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
+import { TYPE_SONG, TYPE_STORY } from 'common/constants'
 
 function SongsAndStoriesContainer({ searchType, kids = null }) {
-  const { infiniteScroll, items, isLoading, loadRef, sitename } =
-    SongsAndStoriesData({ searchType, kids })
+  const infiniteQueryResponse = useSearchLoader({
+    searchParams: `types=${searchType}&kids=${kids}`,
+  })
+
   const labels = getPresentationPropertiesForType(searchType)
+
   return (
-    <Loading.Container isLoading={isLoading}>
+    <>
       <SiteDocHead titleArray={[labels?.titlecase]} />
       <SongsAndStoriesPresentation
-        infiniteScroll={infiniteScroll}
-        items={items}
+        infiniteQueryResponse={infiniteQueryResponse || {}}
         kids={kids}
         labels={labels}
-        loadRef={loadRef}
-        sitename={sitename}
       />
-    </Loading.Container>
+    </>
   )
 }
 
 // PROPTYPES
-const { bool, string } = PropTypes
+const { bool, oneOf } = PropTypes
 SongsAndStoriesContainer.propTypes = {
-  searchType: string.isRequired,
+  searchType: oneOf([TYPE_SONG, TYPE_STORY]).isRequired,
   kids: bool,
 }
 

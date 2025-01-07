@@ -2,16 +2,12 @@ import React from 'react'
 
 // FPCC
 import GalleriesPresentation from 'components/Galleries/GalleriesPresentation'
-import GalleriesData from 'components/Galleries/GalleriesData'
+import { useGalleries } from 'common/dataHooks/useGalleries'
 
 function GalleriesContainer() {
-  const { galleries, isLoading, sitename } = GalleriesData()
+  const galleriesQueryResponse = useGalleries()
   return (
-    <GalleriesPresentation
-      galleries={galleries}
-      isLoading={isLoading}
-      sitename={sitename}
-    />
+    <GalleriesPresentation galleriesQueryResponse={galleriesQueryResponse} />
   )
 }
 

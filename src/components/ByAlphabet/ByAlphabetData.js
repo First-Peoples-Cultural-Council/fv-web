@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import { useCharacters } from 'common/dataHooks/useCharacters'
 import useSearchType from 'common/hooks/useSearchType'
+import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
 import {
   CHAR,
   KIDS,
@@ -20,7 +21,7 @@ function ByAlphabetData({ kids = null }) {
 
   const urlSearchType = searchParams.get(TYPES) || TYPE_DICTIONARY
   const character = searchParams.get(CHAR)
-  const { searchType, setSearchTypeInUrl, getSearchTypeLabel } = useSearchType({
+  const { searchType, setSearchTypeInUrl } = useSearchType({
     initialSearchType: urlSearchType,
   })
 
@@ -56,13 +57,11 @@ function ByAlphabetData({ kids = null }) {
   return {
     characterQueryResponse,
     searchInfiniteQueryResponse,
-    actions: ['copy'],
-    moreActions: ['share', 'qrcode'],
     sitename,
     currentCharacter,
     searchType,
     setSearchType: setSearchTypeInUrl,
-    entryLabel: getSearchTypeLabel({ searchType }),
+    labels: getPresentationPropertiesForType(searchType),
   }
 }
 

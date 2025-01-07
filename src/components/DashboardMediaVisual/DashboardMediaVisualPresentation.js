@@ -3,17 +3,11 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import MediaDetails from 'components/MediaDetails'
+import { getMediaPath } from 'common/utils/mediaHelpers'
+import { SMALL, IMAGE } from 'common/constants'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
-function DashboardMediaVisualPresentation({
-  data,
-  infiniteScroll,
-  currentFile,
-  setCurrentFile,
-  loadLabel,
-  type,
-  typePlural,
-}) {
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
+function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
   return (
     <div
       id="DashboardMediaVisualPresentation"
@@ -25,86 +19,88 @@ function DashboardMediaVisualPresentation({
             id="results-header"
             className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
           >
-            {typePlural}
+            {infiniteQueryResponse?.typePlural}
           </h1>
           <div className="overflow-y-auto h-full">
             <div>
               <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
-                {data?.pages !== undefined &&
-                  data?.pages?.[0]?.results?.length > 0 &&
-                  data?.pages?.map((page) => (
+                {infiniteQueryResponse?.data?.pages !== undefined &&
+                  infiniteQueryResponse?.data?.pages?.[0]?.results?.length >
+                    0 &&
+                  infiniteQueryResponse?.data?.pages?.map((page) => (
                     <React.Fragment key={page?.pageNumber}>
-                      {page.results.map((doc) => (
-                        <li key={doc?.id} className="relative">
-                          <div
-                            className={`${
-                              doc?.id === currentFile?.id
-                                ? 'ring-4 ring-offset-2 ring-scarlet-800'
-                                : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
-                            } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
-                          >
-                            <img
-                              src={doc?.thumbnail}
-                              alt={doc?.title}
+                      {page.results.map((mediaObject) => {
+                        const src = getMediaPath({
+                          type: IMAGE,
+                          mediaObject,
+                          size: SMALL,
+                        })
+                        return (
+                          <li key={mediaObject?.id} className="relative">
+                            <div
                               className={`${
-                                doc?.id === currentFile?.id
-                                  ? ''
-                                  : 'group-hover:opacity-75'
-                              } object-cover pointer-events-none`}
-                            />
-                            <button
-                              data-testid=""
-                              type="button"
-                              className="absolute inset-0 focus:outline-none"
-                              onClick={() => setCurrentFile(doc)}
+                                mediaObject?.id ===
+                                infiniteQueryResponse?.currentFile?.id
+                                  ? 'ring-4 ring-offset-2 ring-scarlet-800'
+                                  : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
+                              } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
                             >
-                              <span className="sr-only">
-                                View details for {doc?.title}
-                              </span>
-                            </button>
-                          </div>
-                          <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
-                            {doc?.title}
-                          </p>
-                          {doc?.width && doc?.height && (
-                            <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${doc?.width}x${doc?.height}`}</p>
-                          )}
-                        </li>
-                      ))}
+                              <img
+                                src={src}
+                                alt={mediaObject?.title}
+                                className={`${
+                                  mediaObject?.id ===
+                                  infiniteQueryResponse?.currentFile?.id
+                                    ? ''
+                                    : 'group-hover:opacity-75'
+                                } object-cover pointer-events-none`}
+                              />
+                              <button
+                                data-testid=""
+                                type="button"
+                                className="absolute inset-0 focus:outline-none"
+                                onClick={() =>
+                                  infiniteQueryResponse?.setCurrentFile(
+                                    mediaObject,
+                                  )
+                                }
+                              >
+                                <span className="sr-only">
+                                  View details for {mediaObject?.title}
+                                </span>
+                              </button>
+                            </div>
+                            <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
+                              {mediaObject?.title}
+                            </p>
+                            {mediaObject?.width && mediaObject?.height && (
+                              <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
+                            )}
+                          </li>
+                        )
+                      })}
                     </React.Fragment>
                   ))}
               </ul>
-              <div className="pt-10 text-center text-charcoal-900 font-medium">
-                <button
-                  data-testid="load-btn"
-                  type="button"
-                  className={!hasNextPage ? 'cursor-text' : ''}
-                  onClick={() => fetchNextPage()}
-                  disabled={!hasNextPage || isFetchingNextPage}
-                >
-                  {loadLabel}
-                </button>
-              </div>
+              <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
             </div>
           </div>
         </section>
       </main>
       <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
-        <MediaDetails.Visual file={currentFile} docType={type} />
+        <MediaDetails.Visual
+          file={infiniteQueryResponse?.currentFile}
+          docType={type}
+        />
       </aside>
     </div>
   )
 }
 // PROPTYPES
-const { func, object, string } = PropTypes
+const { object, string } = PropTypes
 DashboardMediaVisualPresentation.propTypes = {
-  data: object,
-  infiniteScroll: object,
-  currentFile: object,
-  setCurrentFile: func,
-  loadLabel: string,
+  infiniteQueryResponse: object,
   type: string,
-  typePlural: string,
 }
 
 export default DashboardMediaVisualPresentation

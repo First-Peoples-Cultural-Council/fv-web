@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router-dom'
 
 // FPCC
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import EntryDetail from 'components/EntryDetail'
 import getIcon from 'common/utils/getIcon'
 import Drawer from 'components/Drawer'
@@ -18,18 +18,15 @@ import {
   SORT_MODIFIED,
   SORT_MODIFIED_DESC,
 } from 'common/constants'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function DashboardEntriesPresentationList({
-  infiniteScroll,
-  isLoading,
-  items,
+  searchInfiniteQueryResponse,
   emptyListMessage,
   entryLabel = 'Language Entry',
 }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { isFetchingNextPage, fetchNextPage, hasNextPage, loadLabel } =
-    infiniteScroll
   const { sitename } = useParams()
   const { checkIfUserCanEdit } = useAuthCheck()
 
@@ -42,13 +39,12 @@ function DashboardEntriesPresentationList({
     'p-4 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
-    <Loading.Container isLoading={isLoading}>
-      <div
+    <LoadOrError queryResponse={searchInfiniteQueryResponse}>
+      <section
         data-testid="EntriesListPresentation"
         className="bg-white min-h-screen w-full rounded-lg overflow-hidden"
       >
-        {items?.pages !== undefined &&
-        items?.pages?.[0]?.results?.length > 0 ? (
+        {searchInfiniteQueryResponse?.hasResults ? (
           <div className="flex flex-col w-full">
             <div className="border-b border-charcoal-200">
               <table className="table-auto w-full divide-y divide-charcoal-200">
@@ -105,7 +101,7 @@ function DashboardEntriesPresentationList({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-200 text-charcoal-900">
-                  {items.pages.map((page) => (
+                  {searchInfiniteQueryResponse?.data?.pages.map((page) => (
                     <Fragment key={page?.pageNumber}>
                       {page.results.map((entry) => (
                         <tr
@@ -204,17 +200,9 @@ function DashboardEntriesPresentationList({
                 </tbody>
               </table>
             </div>
-            <div className="p-3 text-center text-charcoal-900 font-medium print:hidden">
-              <button
-                data-testid="load-btn"
-                type="button"
-                className={!hasNextPage ? 'cursor-text' : ''}
-                onClick={() => fetchNextPage()}
-                disabled={!hasNextPage || isFetchingNextPage}
-              >
-                {loadLabel}
-              </button>
-            </div>
+            <InfiniteLoadBtn
+              infiniteQueryResponse={searchInfiniteQueryResponse}
+            />
           </div>
         ) : (
           <div className="w-full flex">
@@ -223,7 +211,7 @@ function DashboardEntriesPresentationList({
             </div>
           </div>
         )}
-      </div>
+      </section>
 
       <Drawer.Presentation
         isOpen={drawerOpen}
@@ -273,16 +261,14 @@ function DashboardEntriesPresentationList({
           </>
         )}
       </Drawer.Presentation>
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 
 // PROPTYPES
-const { bool, object, string } = PropTypes
+const { object, string } = PropTypes
 DashboardEntriesPresentationList.propTypes = {
-  infiniteScroll: object,
-  isLoading: bool,
-  items: object,
+  searchInfiniteQueryResponse: object,
   emptyListMessage: string,
   entryLabel: string,
 }

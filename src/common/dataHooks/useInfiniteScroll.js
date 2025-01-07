@@ -1,16 +1,15 @@
-import { useRef } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 // FPCC
-import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
-import { useSiteStore } from 'context/SiteContext'
-
 /**
- * Calls API and provides results and infinite scroll info.
+ * Calls API and provides results - use in conjunction with components/InfiniteLoadBtn or useIntersectionObserver for  infinite scrolling.
  */
-function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
-  const { site } = useSiteStore()
-
+function useInfiniteScroll({
+  queryKey,
+  queryFn,
+  enabled = true,
+  resultAdaptor,
+}) {
   const pagesDataAdaptor = (pages) =>
     pages.map((page, index) => singlePageDataAdaptor(page, index))
 
@@ -26,10 +25,10 @@ function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
   }
 
   // Fetch search results
-  const response = useInfiniteQuery({
+  const infiniteQueryResponse = useInfiniteQuery({
     queryKey,
     queryFn,
-    enabled: !!site?.sitename,
+    enabled,
     getNextPageParam: (currentPage) => currentPage.next,
     select: (responseData) => ({
       pages: pagesDataAdaptor(responseData.pages),
@@ -37,23 +36,12 @@ function useInfiniteScroll({ queryKey, queryFn, resultAdaptor }) {
     }),
   })
 
-  const infiniteScroll = {
-    fetchNextPage: response?.fetchNextPage,
-    hasNextPage: response?.hasNextPage,
-    isFetchingNextPage: response?.isFetchingNextPage,
-  }
-
-  const loadRef = useRef(null)
-  useIntersectionObserver({
-    target: loadRef,
-    onIntersect: response?.fetchNextPage,
-    enabled: response?.hasNextPage,
-  })
-
   return {
-    ...response,
-    infiniteScroll,
-    loadRef,
+    ...infiniteQueryResponse,
+    hasResults: Boolean(
+      infiniteQueryResponse?.data?.pages !== undefined &&
+        infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0,
+    ),
   }
 }
 

@@ -7,10 +7,10 @@ function WidgetBrowserData({ isHomepage, currentWidgets }) {
   const { site } = useSiteStore()
 
   // Fetch all widgets for this site
-  const { widgets, isInitialLoading } = useWidgets()
+  const queryResponse = useWidgets()
 
   // Don't include widgets that are already active on the page
-  const widgetsNotOnThisPage = widgets?.filter(
+  const widgetsNotOnThisPage = queryResponse?.widgets?.filter(
     (widget) => !currentWidgets?.includes(widget?.id),
   )
 
@@ -20,7 +20,7 @@ function WidgetBrowserData({ isHomepage, currentWidgets }) {
     : widgetsNotOnThisPage
 
   return {
-    isLoading: isInitialLoading,
+    queryResponse,
     site,
     widgets: widgetsToShow || [],
   }

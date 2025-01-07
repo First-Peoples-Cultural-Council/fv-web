@@ -1,41 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
-import getIcon from 'common/utils/getIcon'
-import {
-  TYPES,
-  TYPE_DICTIONARY,
-  TYPE_PHRASE,
-  TYPE_WORD,
-} from 'common/constants'
+import DictionaryLinks from 'components/DictionaryLinks'
+import { TYPE_DICTIONARY } from 'common/constants'
 
 function DictionaryPresentation({
-  actions,
   searchType,
-  infiniteScroll,
-  loadRef,
-  isLoadingEntries,
-  items,
+  infiniteQueryResponse,
   kids,
   labels,
-  moreActions,
   sitename,
-  count,
 }) {
-  const linkStyle = {
-    li: 'block transition duration-500 ease-in-out ml-5 xl:ml-8',
-    link: 'flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-charcoal-900',
-    icon: 'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
-  }
-
-  let countStr = count
-  if (count >= 10000) {
-    countStr = '10000+'
-  }
+  const count =
+    infiniteQueryResponse?.data?.pages?.[0]?.count < 10000
+      ? infiniteQueryResponse?.data?.pages?.[0]?.count
+      : '10000+'
 
   return (
     <>
@@ -53,9 +35,7 @@ function DictionaryPresentation({
       {kids ? (
         <div className="lg:px-20 bg-charcoal-50">
           <DictionaryGrid.Presentation
-            infiniteScroll={infiniteScroll}
-            isLoading={isLoadingEntries}
-            items={items}
+            infiniteQueryResponse={infiniteQueryResponse}
             sitename={sitename}
             showType={searchType === TYPE_DICTIONARY}
             kids
@@ -70,61 +50,18 @@ function DictionaryPresentation({
               </h1>
               <div
                 className={`${
-                  countStr ? '' : 'opacity-0'
+                  count ? '' : 'opacity-0'
                 } text-sm xl:text-base text-charcoal-900`}
               >
-                Results: {countStr}
+                Results: {count}
               </div>
             </div>
-
-            <h2 className="block text-xl xl:text-2xl font-medium text-charcoal-900 ml-4 xl:ml-7">
-              BROWSE BY:
-            </h2>
-            <ul className="inline-block list-none">
-              <li id="CategoryLink" className={linkStyle.li}>
-                <Link
-                  className={linkStyle.link}
-                  to={`/${sitename}/categories?${TYPES}=${searchType}`}
-                >
-                  {getIcon('Categories', linkStyle.icon)}
-                  <p>Categories</p>
-                </Link>
-              </li>
-              <li id="AlphabetLink" className={linkStyle.li}>
-                <Link
-                  className={linkStyle.link}
-                  to={`/${sitename}/alphabet?${TYPES}=${searchType}`}
-                >
-                  {getIcon('Alphabet', linkStyle.icon)}
-                  <p>Alphabet</p>
-                </Link>
-              </li>
-              {searchType !== TYPE_WORD && (
-                <li id="DocLink" className={linkStyle.li}>
-                  <Link className={linkStyle.link} to={`/${sitename}/words`}>
-                    {getIcon('Word', linkStyle.icon)}
-                    <p>Words</p>
-                  </Link>
-                </li>
-              )}
-              {searchType !== TYPE_PHRASE && (
-                <li id="DocLink" className={linkStyle.li}>
-                  <Link className={linkStyle.link} to={`/${sitename}/phrases`}>
-                    {getIcon('Phrase', linkStyle.icon)}
-                    <p>Phrases</p>
-                  </Link>
-                </li>
-              )}
-            </ul>
+            <DictionaryLinks />
           </div>
-          <div className="min-h-220 col-span-12 lg:col-span-10">
+          <div className="col-span-12 lg:col-span-10">
             <div className="hidden md:block p-2 print:block">
               <DictionaryList.Presentation
-                actions={actions}
-                infiniteScroll={infiniteScroll}
-                isLoading={isLoadingEntries}
-                items={items}
-                moreActions={moreActions}
+                infiniteQueryResponse={infiniteQueryResponse}
                 sitename={sitename}
                 entryLabel={labels.singular}
                 showType={searchType === TYPE_DICTIONARY}
@@ -132,11 +69,7 @@ function DictionaryPresentation({
             </div>
             <div className="block md:hidden print:hidden">
               <DictionaryGrid.Presentation
-                actions={actions}
-                infiniteScroll={infiniteScroll}
-                isLoading={isLoadingEntries}
-                items={items}
-                moreActions={moreActions}
+                infiniteQueryResponse={infiniteQueryResponse}
                 sitename={sitename}
                 showType={searchType === TYPE_DICTIONARY}
               />
@@ -144,24 +77,17 @@ function DictionaryPresentation({
           </div>
         </div>
       )}
-      <div ref={loadRef} className="w-full h-10" />
     </>
   )
 }
 // PROPTYPES
-const { array, bool, object, string, number } = PropTypes
+const { bool, object, string } = PropTypes
 DictionaryPresentation.propTypes = {
-  actions: array,
   searchType: string,
-  infiniteScroll: object,
-  loadRef: object,
-  isLoadingEntries: bool,
-  items: object,
+  infiniteQueryResponse: object,
   kids: bool,
   labels: object,
-  moreActions: array,
   sitename: string,
-  count: number,
 }
 
 export default DictionaryPresentation

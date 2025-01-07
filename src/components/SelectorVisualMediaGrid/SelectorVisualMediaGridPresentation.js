@@ -3,19 +3,16 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { THUMBNAIL, IMAGE } from 'common/constants'
+import { SMALL, IMAGE } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function SelectorVisualMediaGridPresentation({
-  data,
-  infiniteScroll,
-  loadLabel,
+  infiniteQueryResponse,
   formMedia,
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const { isFetchingNextPage, fetchNextPage, hasNextPage } = infiniteScroll
-
   return (
     <div
       data-testid="SelectorVisualMediaGridPresentation"
@@ -23,9 +20,8 @@ function SelectorVisualMediaGridPresentation({
     >
       <div className="h-3/4 overflow-y-auto">
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
-          {data?.pages !== undefined &&
-            data?.pages?.[0]?.results?.length > 0 &&
-            data?.pages?.map((page) => (
+          {infiniteQueryResponse?.hasResults &&
+            infiniteQueryResponse?.data?.pages?.map((page) => (
               <React.Fragment key={page?.pageNumber}>
                 {page.results.map((mediaObject) => {
                   if (formMedia?.some((elem) => elem?.id === mediaObject?.id)) {
@@ -36,7 +32,7 @@ function SelectorVisualMediaGridPresentation({
                   const mediaSrc = getMediaPath({
                     type: IMAGE,
                     mediaObject,
-                    size: THUMBNAIL,
+                    size: SMALL,
                   })
                   return (
                     <li key={mediaObject?.id} className="relative group">
@@ -88,28 +84,16 @@ function SelectorVisualMediaGridPresentation({
               </React.Fragment>
             ))}
         </ul>
-        <div className="pt-10 text-center text-charcoal-900 font-medium">
-          <button
-            data-testid="load-btn"
-            type="button"
-            className={!hasNextPage ? 'cursor-text' : ''}
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-          >
-            {loadLabel}
-          </button>
-        </div>
+        <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
       </div>
     </div>
   )
 }
 
 // PROPTYPES
-const { array, func, object, string } = PropTypes
+const { array, func, object } = PropTypes
 SelectorVisualMediaGridPresentation.propTypes = {
-  data: object,
-  infiniteScroll: object,
-  loadLabel: string,
+  infiniteQueryResponse: object,
   formMedia: array,
   selectedMedia: array,
   mediaSelectHandler: func,
