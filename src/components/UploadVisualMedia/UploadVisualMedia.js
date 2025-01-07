@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Dashboard } from '@uppy/react'
 
@@ -12,14 +12,12 @@ import '@uppy/image-editor/dist/style.css'
 // FPCC
 import useCreateUppy from 'common/dataHooks/useCreateUppy'
 import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
-import { useSiteStore } from 'context/SiteContext'
 
-function UploadVisualMedia({ type, maxItems, setSelectedMedia }) {
-  const { site } = useSiteStore()
+function UploadVisualMedia({ maxItems, setSelectedMedia, type }) {
+  const uppy = useCreateUppy({ maxItems, setSelectedMedia, type })
 
-  const [uppy] = useState(useCreateUppy(site, maxItems, setSelectedMedia, type))
-
-  useEffect(() => () => uppy.close({ reason: 'unmount' }), [uppy])
+  // Clean up - Clear state of uppy on unmount
+  useEffect(() => () => uppy.clear(), [uppy])
 
   const baseMetaFields = [
     {
@@ -75,7 +73,6 @@ function UploadVisualMedia({ type, maxItems, setSelectedMedia }) {
   return (
     <div id="UploadVisualMedia" className="h-full p-4">
       <Dashboard
-        inline
         uppy={uppy}
         width="100%"
         height="400"
