@@ -10,11 +10,12 @@ webpack/.node-cache/*
 *.releaseBackup
 release.properties
 
-/frontend/cypress/screenshots/
-/frontend/cypress/scripts/files/import.log
-/frontend/cypress/scripts/files/*_errors.csv
-/frontend/cypress/temp/
-/frontend/cypress/videos/
+/cypress/screenshots/
+/cypress/downloads/
+/cypress/scripts/files/import.log
+/cypress/scripts/files/*_errors.csv
+/cypress/temp/
+/cypress/videos/
 
 .idea
 dist
