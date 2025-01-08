@@ -62,7 +62,7 @@ function AddMediaModalWrapper({
     >
       <div
         id="AddMediaModalWrapper"
-        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-y-scroll bg-charcoal-50 p-6"
+        className="h-4/5-screen w-3/4-screen mx-auto rounded-lg overflow-hidden bg-charcoal-50 p-6"
       >
         <div className="h-full flex flex-col space-y-4">
           <h2 className="text-center text-2xl font-bold text-charcoal-900">
