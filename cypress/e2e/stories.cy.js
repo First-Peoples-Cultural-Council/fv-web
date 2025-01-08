@@ -29,16 +29,14 @@ describe(
       cy.contains('Learn').click()
       cy.contains('Stories').click()
       cy.contains('Use list view').click()
-      cy.get('[data-testid="SongAndStoriesListRow"]', { timeout: 10000 }).each(
-        (_song) => {
-          cy.wrap(_song).should('be.enabled')
-          cy.wrap(_song).click()
-          cy.contains('Loading').should('not.exist')
-          cy.contains('Go to Story').scrollIntoView()
-          cy.contains('Go to Story').should('be.visible')
-          cy.get('#CloseDrawerBtn').click()
-        },
-      )
+      cy.get('.pb-16 > .w-full >', { timeout: 10000 }).each((_song) => {
+        cy.wrap(_song).should('be.enabled')
+        cy.wrap(_song).click()
+        cy.contains('Loading').should('not.exist')
+        cy.contains('Go to Story').scrollIntoView()
+        cy.contains('Go to Story').should('be.visible')
+        cy.get('#CloseDrawerBtn').click()
+      })
     })
   },
 ) // end of describe
