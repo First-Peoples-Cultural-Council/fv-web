@@ -29,7 +29,7 @@ describe(
       cy.contains('Learn').click()
       cy.contains('Songs').click()
       cy.contains('Use list view').click()
-      cy.get('[data-testid="SongAndStoriesListRow"]').each((_song) => {
+      cy.get('.pb-16 > .w-full >').each((_song) => {
         cy.wrap(_song).scrollIntoView()
         cy.wrap(_song).should('be.enabled')
         cy.wrap(_song).click()
