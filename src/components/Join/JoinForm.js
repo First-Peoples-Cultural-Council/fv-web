@@ -155,7 +155,7 @@ function JoinForm({ site, submitHandler }) {
                             <ListboxOption key={option?.reason} value={option}>
                               {({ focus, selected }) => (
                                 <div
-                                  className={`relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
+                                  className={`relative w-full inline-flex items-center select-none py-2 pl-8 pr-4 ${
                                     focus
                                       ? 'bg-charcoal-50 text-scarlet-800'
                                       : 'text-charcoal-900'
