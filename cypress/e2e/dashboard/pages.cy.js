@@ -10,12 +10,6 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1024, 768)
-    })
-
-    it('4.1 - custom page', () => {
-      const site = `${Cypress.env('baseUrl')}${Cypress.env(
-        'DIALECT',
-      )}/custom/qacustompage`
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
@@ -32,6 +26,12 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
+    })
+
+    it('4.1 - custom page', () => {
+      const site = `${Cypress.env('baseUrl')}${Cypress.env(
+        'CYPRESS_DIALECT',
+      )}/custom/qacustompage`
 
       cy.contains('Explore Languages').should('be.visible')
       cy.visit(site)
@@ -43,22 +43,6 @@ describe(
     })
 
     it('3.1 edit homepage', () => {
-      cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.get('#signInFormUsername').type(email, { force: true })
-          // lets try an incorrect password
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
-          })
-        })
-
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
-      })
       cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
@@ -68,24 +52,6 @@ describe(
     })
 
     it('12.2 - Page Text', () => {
-      cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
-          cy.get('#signInFormUsername').type(email, { force: true })
-          // lets try an incorrect password
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
-          })
-        })
-
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
-      })
       cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
