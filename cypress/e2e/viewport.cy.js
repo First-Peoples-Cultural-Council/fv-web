@@ -12,7 +12,7 @@ describe(
     it('rotate between view ports ', () => {
       cy.on('uncaught:exception', () => false)
 
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
 
       cy.viewport('macbook-15')
 

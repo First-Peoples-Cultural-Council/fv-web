@@ -28,7 +28,7 @@ describe('Dashboard - Page testing', () => {
   })
   it('2.2 - Create Page', () => {
     cy._login()
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()
@@ -37,7 +37,7 @@ describe('Dashboard - Page testing', () => {
 
     cy.contains('title must be').should('exist')
     cy.contains('Please enter a URL').should('exist')
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()

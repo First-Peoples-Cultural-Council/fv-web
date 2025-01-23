@@ -13,7 +13,7 @@ describe(
     })
 
     it('5.1 - Check out word drawer', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
 
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
@@ -36,7 +36,7 @@ describe(
     it('9.1 - Get first word and search for it', () => {
       // i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
       cy.on('uncaught:exception', () => false)
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
 

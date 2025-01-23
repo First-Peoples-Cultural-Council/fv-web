@@ -12,7 +12,7 @@ describe(
     })
 
     it('10.3 - Click on songs grid view', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Songs').click()
       cy.get('ul li').each((_song) => {
@@ -25,7 +25,7 @@ describe(
     })
 
     it('10.4 - Check list view songs', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Songs').click()
       cy.contains('Use list view').click()
