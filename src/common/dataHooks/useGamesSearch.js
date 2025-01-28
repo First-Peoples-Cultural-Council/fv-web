@@ -49,27 +49,26 @@ export function useParachuteSearch({ perPage, kids }) {
   })
 
   const getPuzzles = () => {
+    const puzzles = []
     // If no words are found during the search then return an array with a single empty puzzle
     if (response?.data?.count === 0) {
-      return [[]]
+      return puzzles
     }
-    const splitCharsBaseArray = response?.data?.results?.map(
-      (item) => item?.entry?.splitCharsBase,
-    )
-    const puzzles = splitCharsBaseArray?.map((splitCharsBase) => {
+
+    response?.data?.results?.forEach((item) => {
+      const splitCharsBaseArray = item?.entry?.splitCharsBase
       // If the splitCharsBase is not empty, generate a puzzle
-      if (splitCharsBase?.length > 0) {
+      if (splitCharsBaseArray?.length > 0 && splitCharsBaseArray?.length > 4) {
         const puzzleParts = []
-        splitCharsBase.forEach((letter) => {
+        splitCharsBaseArray.forEach((letter, index) => {
           if (letter === ' ') {
-            puzzleParts.push({ letter: ' ', found: true })
+            puzzleParts.push({ id: index, letter: ' ', found: true })
           } else {
-            puzzleParts.push({ letter, found: false })
+            puzzleParts.push({ id: index, letter, found: false })
           }
         })
-        return puzzleParts
+        puzzles.push({ ...item, puzzleParts })
       }
-      return []
     })
     return puzzles
   }
