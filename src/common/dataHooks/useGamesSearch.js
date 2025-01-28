@@ -58,7 +58,7 @@ export function useParachuteSearch({ perPage, kids }) {
     response?.data?.results?.forEach((item) => {
       const splitCharsBaseArray = item?.entry?.splitCharsBase
       // If the splitCharsBase is not empty, generate a puzzle
-      if (splitCharsBaseArray?.length > 0 && splitCharsBaseArray?.length > 4) {
+      if (splitCharsBaseArray?.length > 4) {
         const puzzleParts = []
         splitCharsBaseArray.forEach((letter, index) => {
           if (letter === ' ') {
