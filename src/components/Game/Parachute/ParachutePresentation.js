@@ -13,31 +13,31 @@ function ParachutePresentation({
   puzzle,
   translation,
   audio,
-  newPuzzle,
+  goToNextPuzzle,
 }) {
   const [guessedLetters, setGuessedLetters] = useState([])
   const [gameStatus, setGameStatus] = useState('IN-PROGRESS')
   const [guessesRemaining, setGuessesRemaining] = useState(7)
   const [startTime, setStartTime] = useState(Date.now())
-  const [currentPuzzle, setCurrentPuzzle] = useState(puzzle)
+  const [currentPuzzle, setCurrentPuzzle] = useState(null)
 
-  const startNewGame = () => {
-    newPuzzle()
+  useEffect(() => {
+    if (!currentPuzzle && puzzle) {
+      setCurrentPuzzle(puzzle)
+    }
+  }, [puzzle, currentPuzzle])
+
+  const resetGameBoard = () => {
     setGuessedLetters([])
     setGameStatus('IN-PROGRESS')
     setGuessesRemaining(7)
     setStartTime(Date.now())
+    setCurrentPuzzle()
   }
 
-  /**
-   * Restart with the same puzzle
-   */
-  const restart = () => {
-    setGuessedLetters([])
-    setGameStatus('IN-PROGRESS')
-    setGuessesRemaining(7)
-    setStartTime(Date.now())
-    setCurrentPuzzle(puzzle)
+  const startNewGame = () => {
+    goToNextPuzzle()
+    resetGameBoard()
   }
 
   const guessLetter = (letter) => {
@@ -75,19 +75,20 @@ function ParachutePresentation({
 
   const renderKeyboard = () =>
     alphabet?.map((letter) => {
-      const guessed = guessedLetters?.includes(letter)
+      const guessed = guessedLetters?.includes(letter?.title)
       return (
         <button
+          data-testid={`${letter?.id}-keyboard-btn`}
           type="button"
-          key={letter.id}
+          key={letter?.id}
           className={`${
             guessed
               ? 'bg-scarlet-800 text-white'
               : 'border-charcoal-500 text-charcoal-900 hover:bg-charcoal-50'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
-          onClick={() => guessLetter(letter)}
+          onClick={() => guessLetter(letter?.title)}
         >
-          {letter}
+          {letter?.title}
         </button>
       )
     })
@@ -109,9 +110,10 @@ function ParachutePresentation({
       <div>
         Don&apos;t quit now.{' '}
         <button
+          data-testid="restart-btn"
           type="button"
           className="inline-flex underline cursor-pointer"
-          onClick={restart}
+          onClick={resetGameBoard}
         >
           Try again.
         </button>
@@ -127,18 +129,14 @@ function ParachutePresentation({
     ),
   )
 
-  useEffect(() => {
-    setCurrentPuzzle(puzzle)
-  }, [puzzle, newPuzzle])
-
   return (
     <section
       className="py-2 md:py-4 lg:py-8 bg-white"
       data-testid="ParachutePresentation"
     >
       <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
-        {/* If the puzzle length is zero then render an error message, else render the puzzle. */}
-        {puzzle?.length === 0 ? (
+        {/* If no puzzle then render an error message, else render the puzzle. */}
+        {!puzzle?.length ? (
           <div>
             <SectionTitle.Presentation title="PULL TOGETHER" />
             <p className="text-charcoal-900 mt-2">
@@ -178,7 +176,10 @@ function ParachutePresentation({
             <div className="inline-block">
               {currentPuzzle?.map((piece) =>
                 piece?.letter === ' ' ? (
-                  <div className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2" />
+                  <div
+                    key={piece.id}
+                    className="inline-flex items-center justify-center w-14 h-14 text-2xl m-1 p-2"
+                  />
                 ) : (
                   <div
                     key={piece.id}
@@ -222,7 +223,7 @@ function ParachutePresentation({
                 data-testid="restart"
                 type="button"
                 className="btn-contained bg-scarlet-800"
-                onClick={restart}
+                onClick={resetGameBoard}
               >
                 Restart
               </button>
@@ -240,7 +241,7 @@ ParachutePresentation.propTypes = {
   puzzle: array,
   translation: any,
   audio: object,
-  newPuzzle: func,
+  goToNextPuzzle: func,
   alphabet: array,
 }
 

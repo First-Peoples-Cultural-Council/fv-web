@@ -6,12 +6,13 @@ import { useCharacters } from 'common/dataHooks/useCharacters'
 import { useParachuteSearch } from 'common/dataHooks/useGamesSearch'
 
 const PUZZLES_PER_PAGE = 100
-const MAX_PAGES_WITHOUT_USABLE_PUZZLE = 10
+// Prevents infinite fetches on sites that don't have sords that meet the requirements
+const MAX_FETCHES_WITHOUT_USABLE_PUZZLE = 10
 
 function ParachuteData({ kids }) {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [currentPuzzleIndex, setCurrentPuzzleIndex] = useState(0)
   const [currentPuzzle, setCurrentPuzzle] = useState()
-  const [pagesWithoutUsablePuzzle, setPagesWithoutUsablePuzzle] = useState(1)
+  const [responsesWithoutPuzzles, setResponsesWithoutPuzzles] = useState(0)
 
   const parachuteQueryResponse = useParachuteSearch({
     perPage: PUZZLES_PER_PAGE,
@@ -19,60 +20,36 @@ function ParachuteData({ kids }) {
   })
 
   const { data: characterData } = useCharacters()
-  const characters = characterData?.characters?.map((item) => item?.title)
 
-  const nextWord = useCallback(() => {
-    if (
-      currentWordIndex <
-      Math.min(
-        PUZZLES_PER_PAGE,
-        (parachuteQueryResponse?.data?.count || {}) - 1,
-      )
-    ) {
-      setCurrentWordIndex(currentWordIndex + 1)
-    } else {
+  const goToNextPuzzle = useCallback(() => {
+    const numberOfPuzzlesReturned = parachuteQueryResponse?.puzzles?.length || 0
+
+    if (currentPuzzleIndex < numberOfPuzzlesReturned - 1) {
+      const nextPuzzleIndex = currentPuzzleIndex + 1
+      setCurrentPuzzleIndex(nextPuzzleIndex)
+      setCurrentPuzzle(parachuteQueryResponse?.puzzles[nextPuzzleIndex])
+    } else if (responsesWithoutPuzzles < MAX_FETCHES_WITHOUT_USABLE_PUZZLE) {
       // If we run out of puzzles trigger a fetch for another page
       parachuteQueryResponse?.refetch()
-      setCurrentWordIndex(0)
-      setPagesWithoutUsablePuzzle(pagesWithoutUsablePuzzle + 1)
+      setCurrentPuzzleIndex(0)
+      setResponsesWithoutPuzzles(responsesWithoutPuzzles + 1)
     }
-  }, [currentWordIndex, pagesWithoutUsablePuzzle, parachuteQueryResponse])
+  }, [currentPuzzleIndex, responsesWithoutPuzzles, parachuteQueryResponse])
 
   useEffect(() => {
-    const getPuzzle = () => {
-      if (parachuteQueryResponse?.puzzles[currentWordIndex]?.length > 0) {
-        setPagesWithoutUsablePuzzle(0)
-        return parachuteQueryResponse?.puzzles[currentWordIndex]
-      }
-      if (pagesWithoutUsablePuzzle < MAX_PAGES_WITHOUT_USABLE_PUZZLE) {
-        // If the puzzle pieces array is empty then go to the next word
-        nextWord()
-      }
-      // If we have already fetched the max number of pages and still not found a usable puzzle return an empty array to prevent possible infinite requests
-      return []
+    if (!currentPuzzle && parachuteQueryResponse?.puzzles?.length > 0) {
+      setResponsesWithoutPuzzles(0)
+      setCurrentPuzzle(parachuteQueryResponse?.puzzles?.[0])
     }
-
-    if (parachuteQueryResponse?.data?.results) {
-      setCurrentPuzzle(getPuzzle())
-    }
-  }, [
-    currentWordIndex,
-    nextWord,
-    pagesWithoutUsablePuzzle,
-    parachuteQueryResponse,
-  ])
+  }, [currentPuzzle, parachuteQueryResponse?.puzzles])
 
   return {
     parachuteQueryResponse,
-    puzzle: currentPuzzle,
-    translation:
-      parachuteQueryResponse?.data?.results?.[currentWordIndex]?.entry
-        ?.translations?.[0]?.text,
-    audio:
-      parachuteQueryResponse?.data?.results?.[currentWordIndex]?.entry
-        ?.relatedAudio?.[0],
-    alphabet: characters,
-    newPuzzle: nextWord,
+    puzzle: currentPuzzle?.puzzleParts,
+    translation: currentPuzzle?.entry?.translations?.[0]?.text,
+    audio: currentPuzzle?.entry?.relatedAudio?.[0],
+    alphabet: characterData?.characters,
+    goToNextPuzzle,
   }
 }
 
