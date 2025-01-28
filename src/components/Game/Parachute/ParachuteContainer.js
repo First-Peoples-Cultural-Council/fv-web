@@ -14,8 +14,9 @@ function ParachuteContainer({ kids }) {
     translation,
     audio,
     alphabet,
-    newPuzzle,
+    goToNextPuzzle,
   } = ParachuteData({ kids })
+
   return (
     <>
       <SiteDocHead titleArray={['Pull Together', 'Games']} />
@@ -25,7 +26,7 @@ function ParachuteContainer({ kids }) {
           translation={translation}
           audio={audio}
           alphabet={alphabet}
-          newPuzzle={newPuzzle}
+          goToNextPuzzle={goToNextPuzzle}
         />
       </LoadOrError>
     </>
