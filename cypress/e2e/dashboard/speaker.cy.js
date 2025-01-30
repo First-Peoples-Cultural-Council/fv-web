@@ -46,6 +46,7 @@ describe(
     })
 
     it('Edit Speaker', () => {
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
@@ -56,6 +57,7 @@ describe(
     })
 
     it('Delete Speaker', () => {
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()

@@ -73,6 +73,7 @@ describe(
       })
 
       cy.contains('Explore Languages').click()
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.get('[data-testid="DashboardPresentationReports"]').click()
