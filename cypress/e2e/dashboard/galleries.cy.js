@@ -46,7 +46,6 @@ describe(
       cy.get('[data-testid="media-select-btn"]').first().click()
       cy.contains('Insert').click()
       cy.contains('Create gallery').click()
-      cy.contains('Sign Out').click()
     })
 
     it('Delete Gallery', () => {

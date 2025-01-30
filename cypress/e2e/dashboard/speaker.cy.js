@@ -28,10 +28,8 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
-      cy.contains('Explore Languages').click()
     })
     it('Create Speaker', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
@@ -48,7 +46,6 @@ describe(
     })
 
     it('Edit Speaker', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
@@ -59,7 +56,6 @@ describe(
     })
 
     it('Delete Speaker', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()

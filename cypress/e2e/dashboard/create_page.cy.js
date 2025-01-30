@@ -12,23 +12,24 @@ describe('Dashboard - Page testing', () => {
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
 
-    Cypress.Commands.add('_login', () => {
-      cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        cy.contains('Sign in with your email and password').should('exist')
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
+    cy.visit(`${Cypress.env('baseUrl')}`)
+    cy.contains('Sign in').click()
+    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+      Cypress.Commands.add('login', (email, password) => {
+        cy.get('#signInFormUsername').type(email, { force: true })
+        // lets try an incorrect password
+        cy.get('#signInFormPassword').type(`${password}{enter}`, {
+          force: true,
+        })
       })
 
-      cy.contains('Explore Languages').click()
+      cy.login(
+        Cypress.env('CYPRESS_FV_USERNAME'),
+        Cypress.env('CYPRESS_FV_PASSWORD'),
+      )
     })
   })
   it('2.2 - Create Page', () => {
-    cy._login()
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()

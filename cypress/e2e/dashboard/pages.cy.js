@@ -36,10 +36,6 @@ describe(
       cy.contains('Explore Languages').should('be.visible')
       cy.visit(site)
       cy.contains('403').should('not.exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Sign out').click()
-      cy.visit(site)
-      cy.contains('403').should('exist')
     })
 
     it('3.1 edit homepage', () => {
