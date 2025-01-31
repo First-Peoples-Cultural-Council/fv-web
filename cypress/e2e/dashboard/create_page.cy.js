@@ -30,6 +30,7 @@ describe('Dashboard - Page testing', () => {
     })
   })
   it('2.2 - Create Page', () => {
+    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()
