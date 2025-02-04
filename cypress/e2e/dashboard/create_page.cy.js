@@ -30,6 +30,7 @@ describe('Dashboard - Page testing', () => {
     })
   })
   it('2.2 - Create Page', () => {
+    cy.contains('Explore Languages').click()
     cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
     cy.contains('Dashboard').should('be.visible')
     cy.contains('Dashboard').click()
