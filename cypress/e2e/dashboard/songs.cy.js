@@ -43,13 +43,7 @@ describe(
 
       cy.contains('Create song').click()
       cy.get(`td:contains(${_title})`).should('exist')
-    })
 
-    it('Delete Song', () => {
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-
-      cy.contains('Edit songs').click()
       cy.get(`td:contains(${_title})`)
         .siblings()
         .children('a')

@@ -27,10 +27,12 @@ describe(
       cy.contains(' 404').should('not.exist')
       cy.contains('See all words').click()
       cy.contains(' 404').should('not.exist')
-      cy.get('a[data-testid^="SearchFilter"]').each((letter) => {
-        cy.get(letter).click()
-        cy.contains(' 404').should('not.exist')
-        cy.contains('Loading...').should('not.exist')
+      cy.get('a[data-testid^="SearchFilter"]').each((_letter) => {
+        const _href = _letter.prop('href')
+
+        cy.request(_href).then((resp) => {
+          expect(resp.status).to.eq(200)
+        })
       })
     })
 

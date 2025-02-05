@@ -17,7 +17,7 @@ describe(
 
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
 
-      cy.get('[data-tes0 tid=SearchInput]').type('a{enter}')
+      cy.get('[data-testid=SearchInput]').type('a{enter}')
       cy.contains('Not2 Found').should('not.exist')
     })
 

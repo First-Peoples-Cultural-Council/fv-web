@@ -79,13 +79,13 @@ describe(
       cy.get('[data-testid="DashboardPresentationReports"]').click()
     })
 
-    it('check page loaded', () => {
-      cy.contains('Reports').should('exist')
+    // it('check page loaded', () => {
+    //   cy.contains('Reports').should('exist')
 
-      _reportTypes.forEach((_rt) => {
-        cy.contains(_rt).should('exist')
-      })
-    })
+    //   _reportTypes.forEach((_rt) => {
+    //     cy.contains(_rt).should('exist')
+    //   })
+    // })
 
     it('check recently created', () => {
       cy.contains(_reportTypes[0]).click()

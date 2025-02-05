@@ -35,7 +35,7 @@ describe(
     })
     const _title = 'gallerytestqa'
 
-    it('Create Gallery', () => {
+    it('Create/Delete Gallery', () => {
       cy.contains('Create').click()
       cy.contains('Create a gallery').click()
 
@@ -46,11 +46,7 @@ describe(
       cy.get('[data-testid="media-select-btn"]').first().click()
       cy.contains('Insert').click()
       cy.contains('Create gallery').click()
-    })
 
-    it('Delete Gallery', () => {
-      cy.contains('Edit').click()
-      cy.contains('Edit a gallery').click()
       cy.contains(_title).click()
       cy.contains('Delete Gallery').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()

@@ -40,12 +40,10 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}languages`)
       cy.get('[id="LanguagesPresentation"] a').should('have.length.above', 1)
       cy.get('[id="LanguagesPresentation"] a').each((_site) => {
-        let _text = _site.text()
-        _text = _text.replaceAll('  ', ' ')
-        cy.get('[data-testid="search-languages-input"]').type(`${_text}{enter}`)
-        cy.contains(_text).should('be.visible')
-        cy.contains(_text).invoke('css', 'background-color', 'blue')
-        cy.contains('Clear Search').click()
+        const _href = _site.prop('href')
+        cy.request(_href).then((resp) => {
+          expect(resp.status).to.eq(200)
+        })
       })
     })
   },

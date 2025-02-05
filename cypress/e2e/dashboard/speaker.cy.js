@@ -46,28 +46,11 @@ describe(
       cy.get('#bio').type('qabio test - new speaker')
       cy.contains('Add Speaker').click()
       cy.contains('Dismiss').should('be.visible')
-    })
 
-    it('Edit Speaker', () => {
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit speakers').click()
       cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
       cy.get('#bio').type('this is the new value')
       cy.contains('Save Changes').click()
-    })
 
-    it('Delete Speaker', () => {
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').should('be.visible')
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit speakers').click()
       cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
       cy.contains('Delete Speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
