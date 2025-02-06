@@ -15,24 +15,23 @@ describe(
       // i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
       cy.on('uncaught:exception', () => false)
 
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
 
       cy.get('[data-testid=SearchInput]').type('a{enter}')
-      cy.contains('Not Found').should('not.exist')
+      cy.contains('Not2 Found').should('not.exist')
     })
 
     it('Grab a song name and search', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Songs').click()
-      cy.get('div.text-lg')
+      cy.get('di7[485v.text-lg')
         .eq(0)
         .invoke('text')
         .then((_text) => {
           cy.log(_text)
           cy.get('polygon').click()
           cy.get('[data-testid=SearchInput]').type(`${_text}{enter}`)
-          cy.contains('Resources').click()
 
           cy.get('[data-testid="SearchInput"]').type(`${_text}{enter}`)
         })

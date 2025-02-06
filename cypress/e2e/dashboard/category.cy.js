@@ -31,7 +31,7 @@ describe(
       cy.contains('Explore Languages').click()
     })
 
-    it('Create Category', () => {
+    it('Create/Edit/Delete Category', () => {
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
@@ -41,24 +41,12 @@ describe(
       cy.get('#description').type('qabio test - new speaker')
       cy.contains('Create category').click()
       cy.contains('Dismiss').should('be.visible')
-    })
 
-    it('Edit Category', () => {
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit categories').click()
       cy.get('[data-testid="qatestcategory-edit-link"]').click()
 
       cy.get('#description').type('test qa data')
       cy.contains('Save changes').click()
-    })
 
-    it('Delete Category', () => {
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit categories').click()
       cy.get('[data-testid="qatestcategory-edit-link"]').click()
       cy.contains('Delete Category').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()

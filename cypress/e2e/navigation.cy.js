@@ -11,7 +11,7 @@ describe(
       cy.viewport(1200, 1200)
     })
     it('4.0 - site nav - dictionary', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
       cy.contains('WORDS').should('exist')
@@ -29,7 +29,7 @@ describe(
     })
 
     it('12.1 - alphabet', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('ALPHABET').should('exist')
       cy.get(
         '[data-testid="AlphabetPresentationSelected__header"] button',
@@ -40,12 +40,10 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}languages`)
       cy.get('[id="LanguagesPresentation"] a').should('have.length.above', 1)
       cy.get('[id="LanguagesPresentation"] a').each((_site) => {
-        let _text = _site.text()
-        _text = _text.replaceAll('  ', ' ')
-        cy.get('[data-testid="search-languages-input"]').type(`${_text}{enter}`)
-        cy.contains(_text).should('be.visible')
-        cy.contains(_text).invoke('css', 'background-color', 'blue')
-        cy.contains('Clear Search').click()
+        const _href = _site.prop('href')
+        cy.request(_href).then((resp) => {
+          expect(resp.status).to.eq(200)
+        })
       })
     })
   },

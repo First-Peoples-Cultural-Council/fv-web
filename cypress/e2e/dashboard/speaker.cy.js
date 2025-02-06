@@ -28,11 +28,12 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
-      cy.contains('Explore Languages').click()
     })
     it('Create Speaker', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.contains('Explore Languages').click()
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.contains('Dashboard').should('exist')
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
       cy.contains('Add a speaker').click()
@@ -45,25 +46,11 @@ describe(
       cy.get('#bio').type('qabio test - new speaker')
       cy.contains('Add Speaker').click()
       cy.contains('Dismiss').should('be.visible')
-    })
 
-    it('Edit Speaker', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit speakers').click()
-      cy.get('[data-testid="edit-speaker-qatestspeaker"]').click()
+      cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
       cy.get('#bio').type('this is the new value')
       cy.contains('Save Changes').click()
-    })
 
-    it('Delete Speaker', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').click()
-      cy.contains('Edit').click()
-      cy.contains('Edit speakers').click()
       cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
       cy.contains('Delete Speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()

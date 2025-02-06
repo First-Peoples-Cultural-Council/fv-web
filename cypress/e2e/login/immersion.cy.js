@@ -26,7 +26,6 @@ describe(
           Cypress.env('CYPRESS_FV_USERNAME'),
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
-        cy.url().should('contain', '')
       })
     })
 

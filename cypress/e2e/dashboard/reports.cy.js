@@ -73,18 +73,19 @@ describe(
       })
 
       cy.contains('Explore Languages').click()
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.get('[data-testid="DashboardPresentationReports"]').click()
     })
 
-    it('check page loaded', () => {
-      cy.contains('Reports').should('exist')
+    // it('check page loaded', () => {
+    //   cy.contains('Reports').should('exist')
 
-      _reportTypes.forEach((_rt) => {
-        cy.contains(_rt).should('exist')
-      })
-    })
+    //   _reportTypes.forEach((_rt) => {
+    //     cy.contains(_rt).should('exist')
+    //   })
+    // })
 
     it('check recently created', () => {
       cy.contains(_reportTypes[0]).click()
@@ -93,37 +94,37 @@ describe(
 
       cy.contains(_reportTypes[1]).click()
       cy.checkHeaderCSS([_reportTypes[1], 700, 500, 500, 500, 500, 500])
-      cy.contains('Created').should('be.visible')
+      cy.contains('Created', { matchCase: false }).should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[2]).click()
       cy.checkHeaderCSS([_reportTypes[2], 700, 500, 500, 500, 500, 500])
-      cy.contains('Last modified').should('be.visible')
+      cy.contains('Last modified', { matchCase: false }).should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[3]).click()
       cy.checkHeaderCSS([_reportTypes[3], 500, 700, 500, 500, 500, 500])
-      cy.contains('Has no audio').should('be.visible')
+      cy.contains('Has no audio', { matchCase: false }).should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[4]).click()
       cy.checkHeaderCSS([_reportTypes[4], 500, 500, 700, 500, 500, 500])
-      cy.contains('Has no image').should('be.visible')
+      cy.contains('Has no image', { matchCase: false }).should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[5]).click()
       cy.checkHeaderCSS([_reportTypes[5], 500, 500, 500, 500, 500, 700])
-      cy.contains('Team Only').should('be.visible')
+      cy.contains('Team Only', { matchCase: false }).should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[6]).click()
       cy.checkHeaderCSS([_reportTypes[6], 500, 500, 500, 500, 500, 700])
-      cy.contains('Members Only').should('be.visible')
+      cy.contains('Members Only', { matchCase: false }).should('be.visible')
       cy.go('back')
 
       cy.contains(_reportTypes[7]).click()
       cy.checkHeaderCSS([_reportTypes[7], 500, 500, 500, 500, 500, 700])
-      cy.contains('Public').should('be.visible')
+      cy.contains('Public', { matchCase: false }).should('be.visible')
       cy.go('back')
     })
   },

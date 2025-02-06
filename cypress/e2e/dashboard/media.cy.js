@@ -39,7 +39,7 @@ describe(
 
     it('2.6 - view media', () => {
       cy._login()
-
+      cy.contains('Explore Languages').click()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
 

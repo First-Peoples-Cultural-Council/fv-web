@@ -29,13 +29,13 @@ describe(
       })
 
       cy.contains('Explore Languages').click()
-
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
     })
     const _title = 'gallerytestqa'
 
-    it('Create Gallery', () => {
+    it('Create/Delete Gallery', () => {
       cy.contains('Create').click()
       cy.contains('Create a gallery').click()
 
@@ -46,12 +46,7 @@ describe(
       cy.get('[data-testid="media-select-btn"]').first().click()
       cy.contains('Insert').click()
       cy.contains('Create gallery').click()
-      cy.contains('Sign Out').click()
-    })
 
-    it('Delete Gallery', () => {
-      cy.contains('Edit').click()
-      cy.contains('Edit a gallery').click()
       cy.contains(_title).click()
       cy.contains('Delete Gallery').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()

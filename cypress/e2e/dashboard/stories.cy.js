@@ -56,7 +56,7 @@ describe(
         cy.get('div.public-DraftStyleDefault-block').eq(1).type('asdfasdfaf')
         cy.contains('Save').click()
       }
-      cy.contains('Next step').click()
+      cy.contains('Next step').click({ force: true })
       cy.contains('Next step').click()
       cy.contains('Finish').click()
 

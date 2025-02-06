@@ -46,7 +46,7 @@ describe(
         const widgetname = 'testwidgetcypress'
         cy.visit(
           `${Cypress.env('baseUrl')}${Cypress.env(
-            'DIALECT',
+            'CYPRESS_DIALECT',
           )}/dashboard/create/widget`,
         )
         cy.contains(name).should('be.enabled')
@@ -155,7 +155,9 @@ describe(
       cy.contains('OK').click()
 
       cy.visit(
-        `${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}/custom/qatesturl`,
+        `${Cypress.env('baseUrl')}${Cypress.env(
+          'CYPRESS_DIALECT',
+        )}/custom/qatesturl`,
       )
       cy.get('.object-cover').should('exist')
       cy.contains('qatestpage').should('exist')
