@@ -26,6 +26,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          record: true
           browser: chrome
           spec: cypress/e2e/core_suite_user.cy.js
           install: npm ci --include=dev
