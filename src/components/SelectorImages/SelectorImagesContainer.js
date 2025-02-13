@@ -72,6 +72,8 @@ function SelectorImagesContainer({
                         <a
                           className="inline-url"
                           href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1225818119/Shared+Media+Library"
+                          target="_blank"
+                          rel="noreferrer"
                         >
                           Indigenous artists
                         </a>{' '}
