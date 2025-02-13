@@ -66,9 +66,22 @@ function SelectorImagesContainer({
                       : 'Your media uploads'}
                   </h2>
                   <p className="text-sm text-charcoal-500">
-                    {searchSharedMedia === 'true'
-                      ? 'These artworks were created by Indigenous artists for use on any FirstVoices sites'
-                      : 'Images uploaded by you or your team'}
+                    {searchSharedMedia === 'true' ? (
+                      <span>
+                        This collection includes artworks created by{' '}
+                        <a
+                          className="inline-url"
+                          href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1225818119/Shared+Media+Library"
+                        >
+                          Indigenous artists
+                        </a>{' '}
+                        for use on any FirstVoices site, as well as public
+                        domain photos suitable for language learning that have
+                        been curated by the FPCC Mentor Apprentice Program.
+                      </span>
+                    ) : (
+                      'Images uploaded by you or your team'
+                    )}
                   </p>
                 </div>
                 <SelectorVisualMediaGrid.Presentation
