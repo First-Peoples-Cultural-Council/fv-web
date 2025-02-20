@@ -13,5 +13,6 @@ module.exports = defineConfig({
   },
   e2e: {
     experimentalOriginDependencies: true,
+    projectId: process.env.CYPRESS_PROJECT_ID,
   },
 })
