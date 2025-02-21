@@ -9,7 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
     env:
       CYPRESS_FV_USERNAME: ${{ secrets.CYPRESS_FV_USERNAME }}
       CYPRESS_FV_PASSWORD: ${{ secrets.CYPRESS_FV_PASSWORD }}
