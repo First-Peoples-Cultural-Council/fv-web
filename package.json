@@ -93,7 +93,7 @@
     "@uppy/drag-drop": "^4.1.0",
     "@uppy/file-input": "^4.1.0",
     "@uppy/image-editor": "^3.3.0",
-    "@uppy/progress-bar": "^4.2.0",
+    "@uppy/progress-bar": "^4.2.1",
     "@uppy/react": "^4.2.0",
     "@uppy/xhr-upload": "^4.3.0",
     "autoprefixer": "^10.4.20",
