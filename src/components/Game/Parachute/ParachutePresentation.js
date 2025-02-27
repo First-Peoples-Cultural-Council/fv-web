@@ -162,8 +162,8 @@ function ParachutePresentation({
               <img
                 src={
                   gameStatus === 'SUCCESS'
-                    ? gameImages['win.jpg']
-                    : gameImages[`${guessesRemaining}.jpg`]
+                    ? gameImages['win.svg']
+                    : gameImages[`${guessesRemaining}.svg`]
                 }
                 className="max-w-3xl mx-auto object-cover h-96 w-full"
                 alt={`You have ${guessesRemaining} guesses remaining.`}
