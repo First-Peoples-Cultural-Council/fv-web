@@ -94,7 +94,7 @@
     "@uppy/file-input": "^4.1.1",
     "@uppy/image-editor": "^3.3.1",
     "@uppy/progress-bar": "^4.2.1",
-    "@uppy/react": "^4.2.0",
+    "@uppy/react": "^4.2.1",
     "@uppy/xhr-upload": "^4.3.0",
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
