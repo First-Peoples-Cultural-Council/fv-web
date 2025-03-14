@@ -3,10 +3,8 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { usePhraseScramblerSearch } from 'common/dataHooks/useGamesSearch'
-import { arrayShuffle, partitionArray } from 'common/utils/functionHelpers'
+import { arrayShuffle } from 'common/utils/functionHelpers'
 import { normalizeSpaces } from 'common/utils/stringHelpers'
-
-const MAX_ROW_LENGTH = 6 // max number of buttons to display in one row
 
 function PhraseScramblerData({ kids }) {
   const [jumbledWords, setJumbledWords] = useState([])
@@ -37,8 +35,7 @@ function PhraseScramblerData({ kids }) {
       id: index,
       text,
     }))
-    let shuffledWords = arrayShuffle([...correctAnswer])
-    shuffledWords = partitionArray(shuffledWords, MAX_ROW_LENGTH)
+    const shuffledWords = arrayShuffle([...correctAnswer])
     setJumbledWords(shuffledWords)
   }, [queryResponse?.data?.results])
 
@@ -90,7 +87,7 @@ function PhraseScramblerData({ kids }) {
     translations: inputData?.translations,
     relatedAudio: inputData?.relatedAudio,
     jumbledWords,
-    selectedWords: partitionArray(selectedWords, MAX_ROW_LENGTH),
+    selectedWords,
     gameCompleted,
     validAnswer,
     wordClicked,
