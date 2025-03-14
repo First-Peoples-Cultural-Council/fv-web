@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import AudioButton from 'components/AudioButton'
 import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
-import { isWordInNestedArray } from 'common/utils/gameHelpers'
 
 function PhraseScramblerPresentation({
   translations,
@@ -71,60 +70,55 @@ function PhraseScramblerPresentation({
                       {' '}
                     </div>
                   )}
-                  {/* Selected words */}
-                  {selectedWords?.map((row, _rowIdx) => (
-                    <div
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={`selectedWordsRow-${_rowIdx}`} // NOSONAR
-                      className="flex md:flex-row flex-col"
-                    >
-                      {row?.map((wordObj) => (
+                  <div
+                    // eslint-disable-next-line react/no-array-index-key
+                    className="flex md:flex-row flex-col flex-wrap"
+                  >
+                    {selectedWords?.map((wordObj) => (
+                      <button
+                        data-testid="word-btn"
+                        type="button"
+                        key={`selectedWords-${wordObj?.id}`}
+                        className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
+                        onClick={() => wordClicked(wordObj)}
+                        disabled={gameCompleted && validAnswer}
+                      >
+                        {wordObj?.text}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div data-testid="jumbled-words">
+                  {/* Jumbled words, turns invisible if selected. */}
+                  <div
+                    // eslint-disable-next-line react/no-array-index-key
+                    className="flex md:flex-row flex-col flex-wrap"
+                  >
+                    {jumbledWords?.map((wordObj) =>
+                      selectedWords.some(
+                        (selectedWordObj) => selectedWordObj.id === wordObj.id,
+                      ) ? (
+                        <div
+                          key={`disabledWords-${wordObj?.id}`}
+                          className={`${baseTextBlockStyling} invisible flex flex-wrap`}
+                        >
+                          {wordObj?.text}
+                        </div>
+                      ) : (
                         <button
                           data-testid="word-btn"
                           type="button"
-                          key={`selectedWords-${wordObj?.id}`}
+                          key={`jumbledWords-${wordObj?.id}`}
                           className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
                           onClick={() => wordClicked(wordObj)}
+                          onKeyDown={() => wordClicked(wordObj)}
                           disabled={gameCompleted && validAnswer}
                         >
                           {wordObj?.text}
                         </button>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <div data-testid="jumbled-words">
-                  {/* Jumbled words, turns invisible if selected. */}
-                  {jumbledWords?.map((row, _rowIdx) => (
-                    <div
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={`jumbledWordsRow-${_rowIdx}`} // NOSONAR
-                      className="flex md:flex-row flex-col"
-                    >
-                      {row?.map((wordObj) =>
-                        isWordInNestedArray(selectedWords, wordObj) ? (
-                          <div
-                            key={`disabledWords-${wordObj?.id}`}
-                            className={`${baseTextBlockStyling} invisible`}
-                          >
-                            {wordObj?.text}
-                          </div>
-                        ) : (
-                          <button
-                            data-testid="word-btn"
-                            type="button"
-                            key={`jumbledWords-${wordObj?.id}`}
-                            className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
-                            onClick={() => wordClicked(wordObj)}
-                            onKeyDown={() => wordClicked(wordObj)}
-                            disabled={gameCompleted && validAnswer}
-                          >
-                            {wordObj?.text}
-                          </button>
-                        ),
-                      )}
-                    </div>
-                  ))}
+                      ),
+                    )}
+                  </div>
                 </div>
               </div>
               <div
