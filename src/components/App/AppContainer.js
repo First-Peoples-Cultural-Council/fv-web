@@ -124,6 +124,27 @@ function AppContainer() {
                   element={<LegacyRedirect />}
                 />
                 <Route
+                  path="t/:sections/:dialect/*"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+                <Route
+                  path="en/:dialect"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+                <Route
+                  path="en/:dialect/*"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+                <Route
+                  path="en/:dialect/WordsOrPhrasesOrStoriesOrSongs/:uuid/:title"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+
+                <Route
                   path="explore/FV/:area/Data"
                   caseSensitive={false}
                   element={<LegacyRedirect />}
