@@ -155,7 +155,7 @@ function DictionaryCrudPresentation({
                 nameId="categories"
                 control={control}
                 register={register}
-                docCountLimit={8}
+                maxItems={8}
                 errors={errors}
               />
             </div>

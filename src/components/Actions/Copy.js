@@ -5,8 +5,7 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import copyToClipboard from 'common/utils/copyToClipboard'
 function Copy({
-  docId,
-  docTitle,
+  textToCopy,
   iconStyling = 'h-8 w-8 md:h-6 md:w-6',
   withLabels = false,
   withConfirmation = false,
@@ -29,9 +28,12 @@ function Copy({
     <button
       type="button"
       id="CopyAction"
+      data-testid={`copy-btn-${textToCopy}`}
       aria-label="Copy to clipboard"
       className="relative inline-flex items-center text-sm font-medium text-charcoal-900 hover:text-black group"
-      onClick={() => copyToClipboard({ text: docTitle, confirmationCallback })}
+      onClick={() =>
+        copyToClipboard({ text: textToCopy, confirmationCallback })
+      }
     >
       {getIcon('Copy', `fill-current ${iconStyling}`)}
       {hoverTooltip ? (
@@ -42,19 +44,13 @@ function Copy({
       {withLabels ? (
         <>
           <span className="mx-2">COPY</span>
-          <span
-            id={`copy-message-${docId}`}
-            className={confirmation ? '' : 'hidden'}
-          >
+          <span className={confirmation ? '' : 'hidden'}>
             <span className="absolute bottom-1 -right-1 bg-white">COPIED</span>
           </span>
         </>
       ) : null}
       {withTooltip ? (
-        <span
-          id={`copy-message-${docId}`}
-          className={confirmation ? '' : 'hidden'}
-        >
+        <span className={confirmation ? '' : 'hidden'}>
           <div className="absolute bottom-0 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg shadow-lg ">
             Copied
           </div>
@@ -66,8 +62,7 @@ function Copy({
 // PROPTYPES
 const { bool, string } = PropTypes
 Copy.propTypes = {
-  docId: string,
-  docTitle: string,
+  textToCopy: string,
   iconStyling: string,
   withLabels: bool,
   withConfirmation: bool,

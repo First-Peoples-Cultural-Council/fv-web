@@ -23,7 +23,7 @@ export const mediaSearchAdaptor = ({ type, data }) => {
         width: data?.original?.width,
       }
     default:
-      return { ...data, message: 'NOT a media document' }
+      return { ...data, message: 'NOT a media type' }
   }
 }
 

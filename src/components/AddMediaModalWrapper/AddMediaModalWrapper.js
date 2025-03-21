@@ -28,7 +28,7 @@ function AddMediaModalWrapper({
     const tabHasSelectedItems = itemsSelected && currentTab.id === tab.id
     // If no files are uploaded/selected, allow the user to switch tabs
     // otherwise switch to Insert Media button
-    // allowing user to attach the selected/uploaded files to the document.
+    // allowing user to attach the selected/uploaded files.
     const handleOnClick = () => {
       if (tabHasSelectedItems) updateFormMedia(selectedMedia)
       setCurrentTab(tab)
