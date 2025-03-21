@@ -90,7 +90,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
       <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
         <MediaDetails.Visual
           file={infiniteQueryResponse?.currentFile}
-          docType={type}
+          type={type}
         />
       </aside>
     </div>

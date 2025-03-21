@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useSearchParams } from 'react-router-dom'
 
 // FPCC
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import { getFriendlyType } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
@@ -36,7 +36,7 @@ function SelectorEntriesPresentationList({
                 <th scope="col" className={headerClass}>
                   {isMultiDocType
                     ? 'Language Entry'
-                    : getFriendlyDocType({ docType: types[0] })}
+                    : getFriendlyType({ type: types[0] })}
                 </th>
                 <th scope="col" className={headerClass}>
                   Translation

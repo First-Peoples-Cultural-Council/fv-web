@@ -9,7 +9,7 @@ import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 import AudioNative from 'components/AudioNative'
 import { AUDIO, IMAGE, VIDEO } from 'common/constants'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import { getFriendlyType } from 'common/utils/stringHelpers'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 
 function MediaEditPresentation({
@@ -49,8 +49,8 @@ function MediaEditPresentation({
     value: entry?.id,
   }))
 
-  const titleCaseDocType = getFriendlyDocType({
-    docType: mediaType,
+  const titleCaseDocType = getFriendlyType({
+    type: mediaType,
     titleCase: true,
   })
 

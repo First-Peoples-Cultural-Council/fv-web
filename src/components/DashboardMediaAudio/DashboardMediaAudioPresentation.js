@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import AudioNative from 'components/AudioNative'
 import MediaDetails from 'components/MediaDetails'
-import { TYPE_AUDIO } from 'common/constants'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
@@ -84,10 +83,7 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
         </section>
       </main>
       <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
-        <MediaDetails.Audio
-          file={infiniteQueryResponse?.currentFile}
-          docType={TYPE_AUDIO}
-        />
+        <MediaDetails.Audio file={infiniteQueryResponse?.currentFile} />
       </aside>
     </div>
   )

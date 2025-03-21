@@ -2,9 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { TYPE_AUDIO, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
+import {
+  TYPE_AUDIO,
+  TYPE_DOCUMENT,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+} from 'common/constants'
 import Modal from 'components/Modal'
-import { getFriendlyDocType } from 'common/utils/stringHelpers'
+import { getFriendlyType } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
 
 function AddMediaModalWrapper({
@@ -44,8 +49,8 @@ function AddMediaModalWrapper({
         {getIcon(tabHasSelectedItems ? 'Add' : tab?.icon, 'btn-icon')}
         <span>
           {tabHasSelectedItems
-            ? `Insert ${selectedMedia.length} ${getFriendlyDocType({
-                docType: type,
+            ? `Insert ${selectedMedia.length} ${getFriendlyType({
+                type,
                 plural: true,
               })}`
             : tab.btnLabel}
@@ -83,7 +88,7 @@ const { array, bool, func, node, object, oneOf } = PropTypes
 AddMediaModalWrapper.propTypes = {
   selectedMedia: array,
   updateFormMedia: func,
-  type: oneOf([TYPE_AUDIO, TYPE_IMAGE, TYPE_VIDEO]),
+  type: oneOf([TYPE_AUDIO, TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO]),
   tabOptions: array,
   children: node,
   closeModal: func,

@@ -1,4 +1,3 @@
-export * from './docTypes'
 export * from './join'
 export * from './media'
 export * from './misc'

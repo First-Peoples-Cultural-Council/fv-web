@@ -6,7 +6,7 @@ import api from 'services/api'
 import { useNotification } from 'context/NotificationContext'
 import {
   convertStateToVisibility,
-  getFriendlyDocType,
+  getFriendlyType,
 } from 'common/utils/stringHelpers'
 import { useSiteStore } from 'context/SiteContext'
 
@@ -30,9 +30,9 @@ function VisibilitySelectData({ id, docState, successCallback }) {
     if (response?.uid) {
       setNotification({
         type: 'SUCCESS',
-        message: `Success! Your ${getFriendlyDocType(
-          response?.type,
-        )} is now visible to: ${t(`visibility.${newVisibility}`)}.`,
+        message: `Success! Your ${getFriendlyType({
+          type: response?.type,
+        })} is now visible to: ${t(`visibility.${newVisibility}`)}.`,
       })
       setDocVisibility(newVisibility)
       if (successCallback) return successCallback()

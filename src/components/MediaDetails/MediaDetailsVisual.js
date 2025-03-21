@@ -8,7 +8,7 @@ import getIcon from 'common/utils/getIcon'
 import { IMAGE, VIDEO } from 'common/constants'
 import MediaDetailsSettings from 'components/MediaDetails/MediaDetailsSettings'
 
-function MediaDetailsVisual({ file, docType }) {
+function MediaDetailsVisual({ file, type }) {
   const { sitename } = useParams()
 
   return (
@@ -20,7 +20,7 @@ function MediaDetailsVisual({ file, docType }) {
         </a>
 
         <Link
-          to={`/${sitename}/dashboard/edit/${docType}?id=${file?.id}`}
+          to={`/${sitename}/dashboard/edit/${type}?id=${file?.id}`}
           data-testid="EntryDrawerEdit"
           target="_blank"
           rel="noopener noreferrer"
@@ -32,14 +32,14 @@ function MediaDetailsVisual({ file, docType }) {
       </div>
       <div>
         <div className="block w-full max-h-1/3-screen rounded-lg overflow-hidden">
-          {docType === IMAGE && (
+          {type === IMAGE && (
             <img
               src={getMediaPath({ mediaObject: file, type: IMAGE })}
               alt={file?.title}
               className="object-contain w-full"
             />
           )}
-          {docType === VIDEO && (
+          {type === VIDEO && (
             <video
               className="w-full aspect-video"
               src={getMediaPath({ mediaObject: file, type: VIDEO })}
@@ -67,7 +67,7 @@ function MediaDetailsVisual({ file, docType }) {
 const { object, oneOf } = PropTypes
 MediaDetailsVisual.propTypes = {
   file: object,
-  docType: oneOf([IMAGE, VIDEO]),
+  type: oneOf([IMAGE, VIDEO]),
 }
 
 export default MediaDetailsVisual

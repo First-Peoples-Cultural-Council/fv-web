@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 
-function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
+function DeleteButtonMediaPresentation({ type, usage, deleteHandler }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
   return (
@@ -30,10 +30,10 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
         >
           <div className="text-center space-y-2">
             <p className="text-xl text-charcoal-900">
-              Are you sure you want to delete this {docType} from your site ?
+              Are you sure you want to delete this {type} from your site ?
             </p>
             <p>
-              This {docType} file is being used on your site in{' '}
+              This {type} file is being used on your site in{' '}
               <span className="font-bold">{usage?.total}</span> places. Deleting
               it will remove it from all of them. Are you sure you want to
               delete it?
@@ -71,7 +71,7 @@ function DeleteButtonMediaPresentation({ docType, usage, deleteHandler }) {
 // PROPTYPES
 const { func, object, string } = PropTypes
 DeleteButtonMediaPresentation.propTypes = {
-  docType: string,
+  type: string,
   usage: object,
   deleteHandler: func,
 }

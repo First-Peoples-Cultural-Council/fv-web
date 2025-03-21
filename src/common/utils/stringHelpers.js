@@ -1,14 +1,6 @@
 /* eslint-disable max-lines */
 // FPCC
 import {
-  DOC_BOOK,
-  DOC_CATEGORY,
-  DOC_PAGE,
-  DOC_PHRASE,
-  DOC_WORD,
-  DOC_AUDIO,
-  DOC_IMAGE,
-  DOC_VIDEO,
   MEMBERS,
   PUBLIC,
   TEAM,
@@ -24,6 +16,7 @@ import {
   TYPE_VIDEO,
   UUID_REGEX,
 } from 'common/constants'
+import { TYPE_DOCUMENT } from '../constants/searchParams'
 
 export const convertMsToTimeWords = (milliseconds) => {
   let s = milliseconds
@@ -45,74 +38,45 @@ export const extractTextFromHtml = (htmlString) => {
   return span.textContent || span.innerText
 }
 
-export const getFriendlyDocType = ({
-  docType,
+export const getFriendlyType = ({
+  type,
   plural = false,
   titleCase = false,
 }) => {
-  // Temporarily adding redundant cases to use the function with updated media types
-  // until we completely switch over to new document types
   let friendly = ''
-  switch (docType) {
-    case DOC_AUDIO:
+  switch (type) {
     case TYPE_AUDIO:
     case 'audio':
       friendly = 'audio'
       break
-    case DOC_BOOK:
-      friendly = plural ? 'songs/stories' : 'song/story'
+    case TYPE_DOCUMENT:
+      friendly = plural ? 'documents' : 'document'
       break
-    case DOC_CATEGORY:
-      friendly = plural ? 'categories' : 'category'
-      break
-    case DOC_IMAGE:
     case TYPE_IMAGE:
     case 'image':
     case 'images':
       friendly = plural ? 'images' : 'image'
       break
-    case DOC_PAGE:
-      friendly = plural ? 'custom pages' : 'custom page'
-      break
-    case DOC_PHRASE:
     case TYPE_PHRASE:
+    case 'phrase':
+    case 'phrases':
       friendly = plural ? 'phrases' : 'phrase'
       break
-    case DOC_VIDEO:
     case TYPE_VIDEO:
     case 'video':
     case 'videos':
       friendly = plural ? 'videos' : 'video'
       break
-    case DOC_WORD:
     case TYPE_WORD:
+    case 'word':
+    case 'words':
       friendly = plural ? 'words' : 'word'
       break
     default:
-      friendly = plural ? 'documents' : 'document'
+      friendly = plural ? 'types' : 'type'
       break
   }
   return titleCase ? makeTitleCase(friendly) : friendly
-}
-
-export const getFriendlyDocTypes = ({
-  docTypes,
-  plural = false,
-  titleCase = false,
-  isAnd = false,
-}) => {
-  const friendlyTypes = docTypes?.map((docType) =>
-    getFriendlyDocType({ docType, plural, titleCase }),
-  )
-  return friendlyTypes?.reduce((result, item, i) => {
-    if (i === 0) {
-      return item
-    }
-
-    const isLastItem = i === friendlyTypes.length - 1
-    const finalConnector = isAnd ? ' and ' : ' or '
-    return isLastItem ? result + finalConnector + item : `${result}, ${item}`
-  }, '')
 }
 
 export const convertStateToVisibility = (state) => {
