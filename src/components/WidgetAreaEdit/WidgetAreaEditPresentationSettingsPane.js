@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 // FPCC
 import Modal from 'components/Modal'
-// import VisibilitySelect from 'components/VisibilitySelect'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
 
@@ -127,19 +126,13 @@ function WidgetAreaEditPresentationSettingsPane({
           <div className="my-2 col-span-3 flex items-center justify-end">
             <div className="flex justify-stretch flex-row space-x-4">
               {currentWidget?.editable ? (
-                <>
-                  {/* <VisibilitySelect.Container
-                    id={currentWidget?.id}
-                    docState={currentWidget?.visibility}
-                  /> */}
-                  <Link
-                    to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.id}`}
-                    className="btn-outlined"
-                  >
-                    {getIcon('Pencil', 'btn-icon')}
-                    <span>Edit</span>
-                  </Link>
-                </>
+                <Link
+                  to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.id}`}
+                  className="btn-outlined"
+                >
+                  {getIcon('Pencil', 'btn-icon')}
+                  <span>Edit</span>
+                </Link>
               ) : null}
               <button
                 data-testid="preview"
