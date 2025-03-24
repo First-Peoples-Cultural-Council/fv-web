@@ -84,7 +84,7 @@ function SelectOneButton({ value, onChange }) {
         label="Add Media"
         onClickHandler={() => setMediaChoiceModalOpen(true)}
       />
-      {/* Choose between doc types Modal */}
+      {/* Choose between types Modal */}
       <Modal.Presentation
         isOpen={mediaChoiceModalOpen}
         closeHandler={() => setMediaChoiceModalOpen(false)}

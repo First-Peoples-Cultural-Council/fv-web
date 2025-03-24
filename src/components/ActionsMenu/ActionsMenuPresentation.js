@@ -29,8 +29,7 @@ function ActionsMenuPresentation({
       {/* Pinned Action Buttons */}
       {actions.includes('copy') ? (
         <Copy
-          docId={entry?.id}
-          docTitle={entry?.title}
+          textToCopy={entry?.title}
           iconStyling={iconStyling}
           withLabels={withLabels}
           withConfirmation={withConfirmation}

@@ -23,7 +23,9 @@ function ByCategoryFilters({
       >
         <Link
           className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-charcoal-700"
-          to={`/${sitename}/${kids ? 'kids/' : ''}categories/${category.id}`}
+          to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
+            category.id
+          }?types=${searchType}`}
         >
           {getCategoryIcon(
             category.title,
@@ -55,7 +57,7 @@ function ByCategoryFilters({
               className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-charcoal-700 bg-charcoal-200"
               to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                 currentParentCategory.id
-              }?docType=${searchType}`}
+              }?types=${searchType}`}
             >
               {getCategoryIcon(
                 currentParentCategory.title,
@@ -83,7 +85,7 @@ function ByCategoryFilters({
                     }`}
                     to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                       child.id
-                    }?docType=${searchType}`}
+                    }?types=${searchType}`}
                   >
                     {getIcon(
                       'Placeholder',

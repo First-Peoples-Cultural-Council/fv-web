@@ -18,7 +18,7 @@ function useIdArrayField(nameId, control) {
     onChange([...value, item])
   }
 
-  // Can be multiple ids for a list of documents
+  // Can be multiple ids for a list of items
   // or can be just one item's id
   const addItems = (items) => {
     if (Array.isArray(items)) {

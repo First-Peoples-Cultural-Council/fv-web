@@ -32,14 +32,14 @@ function AudioArrayField({
       <div data-testid="AudioArrayField" className="space-y-2">
         <div>
           {value?.length > 0 &&
-            value?.map((docId) => (
+            value?.map((id) => (
               <div
-                key={`${docId}`}
+                key={`${id}`}
                 className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
               >
-                <MediaThumbnail.Audio id={docId} />
+                <MediaThumbnail.Audio id={id} />
 
-                <XButton onClickHandler={() => removeItem(docId)} />
+                <XButton onClickHandler={() => removeItem(id)} />
               </div>
             ))}
         </div>

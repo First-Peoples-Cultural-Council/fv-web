@@ -3,11 +3,11 @@ import { apiBase } from 'services/config'
 import { SITES, AUDIO_PATH, IMAGE_PATH, VIDEO_PATH } from 'common/constants'
 
 const media = {
-  get: async ({ sitename, docType, pageParam, perPage = 24 }) => {
+  get: async ({ sitename, mediaTypePath, pageParam, perPage = 24 }) => {
     // Get list of media files of specified type for given site
     const response = await apiBase()
       .get(
-        `${SITES}/${sitename}/${docType}/?page=${pageParam}&pageSize=${perPage}`,
+        `${SITES}/${sitename}/${mediaTypePath}/?page=${pageParam}&pageSize=${perPage}`,
       )
       .json()
     const lastPage = response?.previous
@@ -23,11 +23,9 @@ const media = {
     apiBase().get(`${SITES}/${sitename}/${IMAGE_PATH}/${id}`).json(),
   getVideo: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${VIDEO_PATH}/${id}`).json(),
-  getMediaDocument: async ({ sitename, docId, docType }) =>
-    apiBase().get(`${SITES}/${sitename}/${docType}/${docId}`).json(),
-  getUploadEndpoint: (sitename, docType) => {
+  getUploadEndpoint: ({ sitename, mediaTypePath }) => {
     const url = new URL(
-      `${SITES}/${sitename}/${docType}`,
+      `${SITES}/${sitename}/${mediaTypePath}`,
       GlobalConfiguration.API_URL,
     )
     return url.href

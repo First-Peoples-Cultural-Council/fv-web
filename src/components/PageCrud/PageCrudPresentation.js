@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 // FPCC
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
 import getIcon from 'common/utils/getIcon'
-// import VisibilitySelect from 'components/VisibilitySelect'
 
 function PageCrudPresentation({ dataToEdit, site }) {
   return (
@@ -33,10 +32,6 @@ function PageCrudPresentation({ dataToEdit, site }) {
               {getIcon('Link', 'btn-icon')}
               <span>View Page</span>
             </Link>
-            {/* <VisibilitySelect.Container
-              id={dataToEdit?.id}
-              docState={dataToEdit?.state}
-            /> */}
             <Link
               type="button"
               to={`/${site?.sitename}/dashboard/edit/page?slug=${dataToEdit?.slug}&editHeader=true`}

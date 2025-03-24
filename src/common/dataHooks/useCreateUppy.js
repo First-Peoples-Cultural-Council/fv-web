@@ -87,7 +87,10 @@ function useCreateUppy({ maxItems, setSelectedMedia, type }) {
         },
       })
       .use(XHR, {
-        endpoint: api.media.getUploadEndpoint(site?.sitename, mediaTypePath),
+        endpoint: api.media.getUploadEndpoint({
+          sitename: site?.sitename,
+          mediaTypePath,
+        }),
         fieldName: 'original',
         formData: true,
         headers: getAuthHeaderIfTokenExists(),
