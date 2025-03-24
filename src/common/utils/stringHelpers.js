@@ -12,11 +12,11 @@ import {
   TYPE_SONG,
   TYPE_MEDIA,
   TYPE_AUDIO,
+  TYPE_DOCUMENT,
   TYPE_IMAGE,
   TYPE_VIDEO,
   UUID_REGEX,
 } from 'common/constants'
-import { TYPE_DOCUMENT } from '../constants/searchParams'
 
 export const convertMsToTimeWords = (milliseconds) => {
   let s = milliseconds
