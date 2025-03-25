@@ -22,6 +22,7 @@ export const WORD_OF_THE_DAY = 'word-of-the-day'
 
 // MEDIA
 export const AUDIO_PATH = 'audio'
+export const DOCUMENT_PATH = 'documents'
 export const IMAGE_PATH = 'images'
 export const VIDEO_PATH = 'videos'
 
