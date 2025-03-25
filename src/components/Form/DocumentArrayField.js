@@ -31,18 +31,13 @@ function DocumentArrayField({
     <Fragment key={`${nameId}_ArrayField`}>
       <FieldLabel nameId={nameId} text={label} />
       <div data-testid="DocumentArrayField" className="space-y-2">
-        <ul>
-          {fields?.length > 0 &&
-            fields?.map((document, index) => (
-              <li
-                key={document?.key}
-                className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
-              >
-                {document?.title}
-                {document?.filename}
-                <XButton onClickHandler={() => remove(index)} />
-              </li>
-            ))}
+        <ul className="space-y-1">
+          {fields?.map((field, index) => (
+            <li key={field.key} className="btn-contained mr-1">
+              <div>{field?.title}</div>
+              <XButton onClickHandler={() => remove(index)} />
+            </li>
+          ))}
         </ul>
 
         {fields?.length >= maxItems ? (
