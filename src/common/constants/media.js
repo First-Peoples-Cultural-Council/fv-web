@@ -1,7 +1,8 @@
 // Kinds
 export const AUDIO = 'audio'
-export const VIDEO = 'video'
+export const DOCUMENT = 'document'
 export const IMAGE = 'image'
+export const VIDEO = 'video'
 export const VIDEO_LINK = 'videoLink'
 
 // Sizes - see fv-be/firstvoices/firstvoices/settings.py

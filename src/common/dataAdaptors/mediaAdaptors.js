@@ -3,11 +3,12 @@ import {
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import { AUDIO, DOCUMENT, IMAGE, VIDEO } from 'common/constants'
 
 export const mediaSearchAdaptor = ({ type, data }) => {
   switch (type) {
     case AUDIO:
+    case DOCUMENT:
       return {
         ...data,
         mimeType: data?.original?.mimetype || '',
