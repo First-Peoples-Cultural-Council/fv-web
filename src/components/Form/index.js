@@ -4,6 +4,7 @@ import AudioIdField from 'components/Form/AudioIdField'
 import Autocomplete from 'components/Form/Autocomplete'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import CategoryArrayField from 'components/Form/CategoryArrayField'
+import DocumentArrayField from 'components/Form/DocumentArrayField'
 import EntryArrayField from 'components/Form/EntryArrayField'
 import FieldButton from 'components/Form/FieldButton'
 import FieldLabel from 'components/Form/FieldLabel'
@@ -38,6 +39,7 @@ export default {
   Autocomplete,
   AutocompleteMultiple,
   CategoryArrayField,
+  DocumentArrayField,
   EntryArrayField,
   FieldButton,
   FieldLabel,
