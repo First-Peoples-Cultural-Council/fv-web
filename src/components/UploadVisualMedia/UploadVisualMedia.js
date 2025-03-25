@@ -11,7 +11,7 @@ import '@uppy/image-editor/dist/style.css'
 
 // FPCC
 import useCreateUppy from 'common/dataHooks/useCreateUppy'
-import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
+import { TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
 function UploadVisualMedia({ maxItems, setSelectedMedia, type }) {
   const uppy = useCreateUppy({ maxItems, setSelectedMedia, type })
@@ -90,7 +90,7 @@ function UploadVisualMedia({ maxItems, setSelectedMedia, type }) {
 const { func, number, oneOf } = PropTypes
 
 UploadVisualMedia.propTypes = {
-  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
+  type: oneOf([TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO]),
   setSelectedMedia: func,
   maxItems: number,
 }
