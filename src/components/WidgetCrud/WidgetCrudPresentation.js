@@ -8,6 +8,7 @@ import {
   WIDGET_CONTACT,
   WIDGET_GALLERY,
   WIDGET_IFRAME,
+  WIDGET_IMAGE,
   WIDGET_KEYBOARDS,
   WIDGET_LOGO,
   WIDGET_QUOTES,
@@ -16,11 +17,13 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
+  // WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
 import WidgetFormDefault from 'components/WidgetCrud/WidgetFormDefault'
 import WidgetFormContact from 'components/WidgetCrud/WidgetFormContact'
 import WidgetFormGallery from 'components/WidgetCrud/WidgetFormGallery'
+import WidgetFormImage from 'components/WidgetCrud/WidgetFormImage'
 import WidgetFormKeyboards from 'components/WidgetCrud/WidgetFormKeyboards'
 import WidgetFormLogo from 'components/WidgetCrud/WidgetFormLogo'
 import WidgetFormMaps from 'components/WidgetCrud/WidgetFormMaps'
@@ -42,7 +45,9 @@ function WidgetCrudPresentation({
   deleteHandler,
   widgetTypes,
 }) {
+  console.log({ widgetTypes })
   const [selectedType, setSelectedType] = useState(null)
+  console.log({ selectedType })
   return (
     <div id="WidgetCrudPresentation" className="max-w-5xl p-8">
       {!selectedType && !dataToEdit?.type ? (
@@ -178,6 +183,15 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
         />
       )
 
+    case WIDGET_IMAGE:
+      return (
+        <WidgetFormImage
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
+
     case WIDGET_LOGO:
       return (
         <WidgetFormLogo
@@ -231,6 +245,15 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
           submitHandler={submitHandler}
         />
       )
+
+    // case WIDGET_VIDEO:
+    //   return (
+    //     <WidgetFormVideo
+    //       cancelHandler={cancelHandler}
+    //       dataToEdit={dataToEdit}
+    //       submitHandler={submitHandler}
+    //     />
+    //   )
 
     case WIDGET_IFRAME:
       return (
