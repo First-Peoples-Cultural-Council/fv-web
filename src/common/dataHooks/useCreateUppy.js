@@ -15,23 +15,17 @@ import '@uppy/image-editor/dist/style.css'
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 import api from 'services/api'
 import { getFileExtensions } from 'common/utils/stringHelpers'
-import { getPathForMediaType } from 'common/utils/mediaHelpers'
-import { useSiteStore } from 'context/SiteContext'
 import {
-  TYPE_IMAGE,
-  TYPE_VIDEO,
-  SUPPORTED_IMAGE_EXTENSIONS,
-  SUPPORTED_VIDEO_EXTENSIONS,
-} from 'common/constants'
+  getPathForMediaType,
+  getSupportedExtensionsForMediaType,
+} from 'common/utils/mediaHelpers'
+import { useSiteStore } from 'context/SiteContext'
+import { TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
 function useCreateUppy({ maxItems, setSelectedMedia, type }) {
   const { site } = useSiteStore()
 
-  const extensionList =
-    type === TYPE_IMAGE
-      ? SUPPORTED_IMAGE_EXTENSIONS
-      : SUPPORTED_VIDEO_EXTENSIONS
-
+  const extensionList = getSupportedExtensionsForMediaType(type)
   const mediaTypePath = getPathForMediaType(type)
 
   // IMPORTANT: passing an initializer function to prevent Uppy from being reinstantiated on every render.
@@ -116,7 +110,7 @@ function useCreateUppy({ maxItems, setSelectedMedia, type }) {
 const { func, number, oneOf } = PropTypes
 
 useCreateUppy.propTypes = {
-  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
+  type: oneOf([TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO]),
   setSelectedMedia: func,
   maxItems: number,
 }

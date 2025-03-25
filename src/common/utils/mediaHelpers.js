@@ -9,11 +9,17 @@ import {
   THUMBNAIL,
   DISPLAYABLE_PROPS_MEDIA,
   TYPE_AUDIO,
-  AUDIO_PATH,
+  TYPE_DOCUMENT,
   TYPE_IMAGE,
-  IMAGE_PATH,
   TYPE_VIDEO,
+  AUDIO_PATH,
+  DOCUMENT_PATH,
+  IMAGE_PATH,
   VIDEO_PATH,
+  SUPPORTED_AUDIO_EXTENSIONS,
+  SUPPORTED_DOCUMENT_EXTENSIONS,
+  SUPPORTED_IMAGE_EXTENSIONS,
+  SUPPORTED_VIDEO_EXTENSIONS,
 } from 'common/constants'
 // NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
 export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
@@ -47,10 +53,27 @@ export const getPathForMediaType = (type) => {
   switch (type) {
     case TYPE_AUDIO:
       return AUDIO_PATH
+    case TYPE_DOCUMENT:
+      return DOCUMENT_PATH
     case TYPE_IMAGE:
       return IMAGE_PATH
     case TYPE_VIDEO:
       return VIDEO_PATH
+    default:
+      return ''
+  }
+}
+
+export const getSupportedExtensionsForMediaType = (type) => {
+  switch (type) {
+    case TYPE_AUDIO:
+      return SUPPORTED_AUDIO_EXTENSIONS
+    case TYPE_DOCUMENT:
+      return SUPPORTED_DOCUMENT_EXTENSIONS
+    case TYPE_IMAGE:
+      return SUPPORTED_IMAGE_EXTENSIONS
+    case TYPE_VIDEO:
+      return SUPPORTED_VIDEO_EXTENSIONS
     default:
       return ''
   }
