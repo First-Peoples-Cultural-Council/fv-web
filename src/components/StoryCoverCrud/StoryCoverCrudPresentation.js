@@ -20,6 +20,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     intro: definitions.wysiwyg({ charCount: 1200 }),
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
     relatedAudio: definitions.idArray(),
+    relatedDocuments: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
@@ -41,6 +42,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     acknowledgements: [],
     notes: [],
     relatedAudio: [],
+    relatedDocuments: [],
     includeInKids: 'true',
     includeInGames: 'true',
     hideOverlay: 'false',
@@ -136,6 +138,15 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
               />
             </div>
             <div className="col-span-12">
+              <Form.ImageArrayField
+                label="Images"
+                nameId="relatedImages"
+                control={control}
+                errors={errors}
+                maxItems={1}
+              />
+            </div>
+            <div className="col-span-12">
               <Form.VideoArrayField
                 label="Videos"
                 nameId="relatedVideos"
@@ -145,9 +156,9 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
               />
             </div>
             <div className="col-span-12">
-              <Form.ImageArrayField
-                label="Images"
-                nameId="relatedImages"
+              <Form.DocumentArrayField
+                label="Document"
+                nameId="relatedDocuments"
                 control={control}
                 errors={errors}
                 maxItems={1}
