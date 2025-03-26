@@ -9,6 +9,7 @@ export function relatedMediaForViewing({ item }) {
   }))
   return {
     relatedAudio: item?.relatedAudio || [],
+    relatedDocuments: item?.relatedDocuments || [],
     relatedImages: item?.relatedImages || [],
     relatedVideos: item?.relatedVideos || [],
     relatedVideoLinks: relatedVideoLinks || [],
@@ -24,6 +25,7 @@ export function relatedMediaForEditing({ item }) {
   }))
   return {
     relatedAudio: objectsToIdsAdaptor(item?.relatedAudio),
+    relatedDocuments: item?.relatedDocuments || [],
     relatedImages: item?.relatedImages || [],
     relatedVideos: item?.relatedVideos || [],
     relatedVideoLinks: relatedVideoLinks || [],
@@ -34,6 +36,7 @@ export function relatedMediaForApi({ item }) {
   const relatedVideoLinks = item?.relatedVideoLinks?.map((el) => el.text)
   return {
     related_audio: item?.relatedAudio || [],
+    related_documents: objectsToIdsAdaptor(item?.relatedDocuments),
     related_images: objectsToIdsAdaptor(item?.relatedImages),
     related_videos: objectsToIdsAdaptor(item?.relatedVideos),
     related_video_links: relatedVideoLinks || [],

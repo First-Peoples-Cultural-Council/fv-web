@@ -5,6 +5,7 @@ import {
   TYPE_STORY,
   TYPE_WORD,
   TYPE_AUDIO,
+  TYPE_DOCUMENT,
   TYPE_IMAGE,
   TYPE_VIDEO,
 } from 'common/constants'
@@ -44,6 +45,7 @@ export function searchResultAdaptor(result) {
         ...baseObject,
       }
     case TYPE_AUDIO:
+    case TYPE_DOCUMENT:
     case TYPE_IMAGE:
     case TYPE_VIDEO:
       return {

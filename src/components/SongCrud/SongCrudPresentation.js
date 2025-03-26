@@ -30,6 +30,7 @@ function SongCrudPresentation({
     acknowledgments: definitions.textArray({ charCount: 500 }),
     notes: definitions.textArray({ charCount: 500 }),
     relatedAudio: definitions.idArray(),
+    relatedDocuments: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
@@ -44,6 +45,7 @@ function SongCrudPresentation({
     acknowledgements: [],
     notes: [],
     relatedAudio: [],
+    relatedDocuments: [],
     relatedImages: [],
     relatedVideos: [],
     relatedVideoLinks: [],
@@ -150,6 +152,15 @@ function SongCrudPresentation({
             <Form.VideoArrayField
               label="Videos"
               nameId="relatedVideos"
+              control={control}
+              errors={errors}
+              maxItems={10}
+            />
+          </div>
+          <div className="col-span-12">
+            <Form.DocumentArrayField
+              label="Documents"
+              nameId="relatedDocuments"
               control={control}
               errors={errors}
               maxItems={10}
