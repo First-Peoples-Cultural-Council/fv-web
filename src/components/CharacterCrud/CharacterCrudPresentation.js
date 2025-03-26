@@ -11,6 +11,7 @@ import useEditForm from 'common/hooks/useEditForm'
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     relatedAudio: definitions.idArray(),
+    relatedDocuments: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
@@ -20,6 +21,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
 
   const defaultValues = {
     relatedAudio: [],
+    relatedDocuments: [],
     relatedImages: [],
     relatedVideos: [],
     relatedVideoLinks: [],
@@ -75,6 +77,15 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             <Form.VideoArrayField
               label="Video"
               nameId="relatedVideos"
+              control={control}
+              errors={errors}
+              maxItems={1}
+            />
+          </div>
+          <div className="col-span-12">
+            <Form.DocumentArrayField
+              label="Document"
+              nameId="relatedDocuments"
               control={control}
               errors={errors}
               maxItems={1}
