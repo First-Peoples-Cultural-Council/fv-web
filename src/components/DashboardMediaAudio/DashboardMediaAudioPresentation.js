@@ -3,23 +3,32 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import AudioNative from 'components/AudioNative'
-import MediaDetails from 'components/MediaDetails'
+import DashboardMediaDetails from 'components/DashboardMediaDetails'
+import { AUDIO_PATH } from 'common/constants'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
   const headerClass =
     'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
+  const speakersForDisplay = infiniteQueryResponse?.currentFile?.speakers
+    ?.map((speaker) => speaker?.name)
+    .join(', ')
+  const file = {
+    ...infiniteQueryResponse?.currentFile,
+    speakers: speakersForDisplay,
+  }
+
   return (
     <div
       id="DashboardMediaAudioPresentation"
       className="grid grid-cols-3 w-full"
     >
-      <main className="col-span-2 pt-4 mx-2">
+      <main className="col-span-2 pt-2 mx-2">
         <section className="p-2 h-full" aria-labelledby="results-header">
           <h1
             id="results-header"
-            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
+            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-2"
           >
             Audio
           </h1>
@@ -49,9 +58,9 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                             className={`${
                               audioFile?.id ===
                               infiniteQueryResponse?.currentFile?.id
-                                ? 'ring-2 ring-offset-2 ring-blumine-800'
+                                ? 'ring-2 ring-scarlet-800'
                                 : ''
-                            } rounded-lg relative`}
+                            } m-2 rounded-lg relative`}
                             onClick={() =>
                               infiniteQueryResponse?.setCurrentFile(audioFile)
                             }
@@ -82,8 +91,16 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
           </div>
         </section>
       </main>
-      <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
-        <MediaDetails.Audio file={infiniteQueryResponse?.currentFile} />
+      <aside className="col-span-1">
+        <DashboardMediaDetails
+          mediaTypePath={AUDIO_PATH}
+          file={file}
+          thumbnail={
+            <div className="block w-full rounded-lg overflow-hidden">
+              <AudioNative styling="w-full" audioObject={file} />
+            </div>
+          }
+        />
       </aside>
     </div>
   )

@@ -14,10 +14,10 @@ function DashboardMediaVisualContainer({ type }) {
   return (
     <div
       data-testid="DashboardMediaAudioContainer"
-      className="h-full bg-charcoal-50"
+      className="h-full min-h-screen bg-charcoal-50"
     >
       <div className="h-full w-full flex flex-col">
-        <div className="w-full">
+        <div className="w-full sticky top-0 z-30 bg-white">
           <SelectorSearchbox.Presentation
             onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
             onSearchSubmit={

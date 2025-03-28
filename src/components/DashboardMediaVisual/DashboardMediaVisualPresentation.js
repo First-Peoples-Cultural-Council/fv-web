@@ -2,19 +2,41 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import MediaDetails from 'components/MediaDetails'
-import { getMediaPath } from 'common/utils/mediaHelpers'
-import { SMALL, IMAGE } from 'common/constants'
+import { SMALL, IMAGE, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
+import { getMediaPath, getPathForMediaType } from 'common/utils/mediaHelpers'
+import DashboardMediaDetails from 'components/DashboardMediaDetails'
 
 function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
+  const file = infiniteQueryResponse?.currentFile
+
+  const mediaTypePath = getPathForMediaType(type)
+
+  const thumbnail = (
+    <div className="block w-full rounded-lg overflow-hidden">
+      {type === TYPE_IMAGE ? (
+        <img
+          src={getMediaPath({ mediaObject: file, type: TYPE_IMAGE })}
+          alt={file?.title}
+          className="object-contain w-full h-96"
+        />
+      ) : (
+        <video
+          className="w-full aspect-video"
+          src={getMediaPath({ mediaObject: file, type: TYPE_VIDEO })}
+          controls
+        />
+      )}
+    </div>
+  )
+
   return (
     <div
       id="DashboardMediaVisualPresentation"
       className="grid grid-cols-3 w-full"
     >
-      <main className="col-span-2 pt-4 mx-2">
-        <section className="p-2 h-full" aria-labelledby="results-header">
+      <main className="col-span-2 mx-2">
+        <section className="px-2 py-4 h-full" aria-labelledby="results-header">
           <h1
             id="results-header"
             className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
@@ -87,10 +109,11 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
           </div>
         </section>
       </main>
-      <aside className="col-span-1 bg-white p-8 border-1 border-charcoal-100">
-        <MediaDetails.Visual
-          file={infiniteQueryResponse?.currentFile}
-          type={type}
+      <aside className="col-span-1">
+        <DashboardMediaDetails
+          mediaTypePath={mediaTypePath}
+          file={{ ...file, dimensions: `${file?.width} x ${file?.height}` }}
+          thumbnail={thumbnail}
         />
       </aside>
     </div>

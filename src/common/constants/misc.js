@@ -8,6 +8,8 @@ export const DISPLAYABLE_PROPS_MEDIA = [
   'mimeType',
   'acknowledgement',
   'description',
+  'dimensions',
+  'speakers',
 ]
 export const ABOUT_LINK =
   'https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704813/About+FirstVoices'
