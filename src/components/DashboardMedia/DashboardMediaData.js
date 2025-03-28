@@ -1,5 +1,11 @@
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
+import {
+  AUDIO_PATH,
+  DOCUMENT_PATH,
+  IMAGE_PATH,
+  VIDEO_PATH,
+} from 'common/constants'
 
 function DashboardMediaData() {
   const { site } = useSiteStore()
@@ -9,22 +15,29 @@ function DashboardMediaData() {
       icon: 'Microphone',
       name: 'Audio',
       description: 'Manage your audio files',
-      href: 'audio',
+      href: AUDIO_PATH,
       iconColor: 'scarlet-900',
     },
     {
       icon: 'Images',
       name: 'Images',
       description: 'Manage your images',
-      href: 'images',
+      href: IMAGE_PATH,
       iconColor: 'blumine-800',
     },
     {
       icon: 'Video',
       name: 'Videos',
       description: 'Manage your videos',
-      href: 'videos',
+      href: VIDEO_PATH,
       iconColor: 'ochre-800',
+    },
+    {
+      icon: 'Reports',
+      name: 'Documents',
+      description: 'Manage your pdfs, csvs, and text files.',
+      href: DOCUMENT_PATH,
+      iconColor: 'jade-800',
     },
   ]
   const headerContent = {
