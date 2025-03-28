@@ -1,0 +1,3 @@
+import DashboardMediaDetailsPresentation from 'components/DashboardMediaDetails/DashboardMediaDetailsPresentation'
+
+export default DashboardMediaDetailsPresentation
