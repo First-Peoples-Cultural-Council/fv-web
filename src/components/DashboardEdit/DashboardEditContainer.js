@@ -5,7 +5,18 @@ import { Route, Routes } from 'react-router-dom'
 import RequireAuth from 'common/RequireAuth'
 import DashboardEditPresentation from 'components/DashboardEdit/DashboardEditPresentation'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
-import { TYPE_WORD, TYPE_PHRASE, AUDIO, IMAGE, VIDEO } from 'common/constants'
+import {
+  TYPE_WORD,
+  TYPE_PHRASE,
+  AUDIO_PATH,
+  DOCUMENT_PATH,
+  IMAGE_PATH,
+  VIDEO_PATH,
+  TYPE_AUDIO,
+  TYPE_DOCUMENT,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+} from 'common/constants'
 
 import CategoryCrud from 'components/CategoryCrud'
 import CharacterCrud from 'components/CharacterCrud'
@@ -203,26 +214,34 @@ function DashboardEditContainer() {
         {/* Media edit routes */}
         {/* Regexp not supported in v6. See: https://reactrouter.com/en/6.14.0/start/faq#what-happened-to-regexp-routes-paths */}
         <Route
-          path={AUDIO}
+          path={AUDIO_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={AUDIO} />
+              <MediaEdit.Container mediaType={TYPE_AUDIO} />
             </RequireAuth>
           }
         />
         <Route
-          path={IMAGE}
+          path={DOCUMENT_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={IMAGE} />
+              <MediaEdit.Container mediaType={TYPE_DOCUMENT} />
             </RequireAuth>
           }
         />
         <Route
-          path={VIDEO}
+          path={IMAGE_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={VIDEO} />
+              <MediaEdit.Container mediaType={TYPE_IMAGE} />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={VIDEO_PATH}
+          element={
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <MediaEdit.Container mediaType={TYPE_VIDEO} />
             </RequireAuth>
           }
         />

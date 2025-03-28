@@ -1,19 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 // FPCC
-import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
+import DashboardMediaDocumentsPresentation from 'components/DashboardMediaDocuments/DashboardMediaDocumentsPresentation'
 import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import { TYPE_DOCUMENT } from 'common/constants'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
-import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
-function DashboardMediaVisualContainer({ type }) {
-  const infiniteQueryResponse = useMediaSearch({ type })
+function DashboardMediaDocumentsContainer() {
+  const infiniteQueryResponse = useMediaSearch({ type: TYPE_DOCUMENT })
 
   return (
     <div
-      data-testid="DashboardMediaAudioContainer"
+      data-testid="DashboardMediaDocumentsContainer"
       className="h-full min-h-screen bg-charcoal-50"
     >
       <div className="h-full w-full flex flex-col">
@@ -23,7 +22,7 @@ function DashboardMediaVisualContainer({ type }) {
             onSearchSubmit={
               infiniteQueryResponse?.handleSearchSubmitWithUrlSync
             }
-            searchPlaceholder={`Search all ${infiniteQueryResponse?.typePlural}`}
+            searchPlaceholder="Search all documents"
             searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
@@ -31,9 +30,8 @@ function DashboardMediaVisualContainer({ type }) {
           <SelectorResultsWrapper.Presentation
             infiniteQueryResponse={infiniteQueryResponse}
             resultsSection={
-              <DashboardMediaVisualPresentation
+              <DashboardMediaDocumentsPresentation
                 infiniteQueryResponse={infiniteQueryResponse}
-                type={type}
               />
             }
           />
@@ -43,10 +41,4 @@ function DashboardMediaVisualContainer({ type }) {
   )
 }
 
-const { oneOf } = PropTypes
-
-DashboardMediaVisualContainer.propTypes = {
-  type: oneOf([TYPE_IMAGE, TYPE_VIDEO]),
-}
-
-export default DashboardMediaVisualContainer
+export default DashboardMediaDocumentsContainer

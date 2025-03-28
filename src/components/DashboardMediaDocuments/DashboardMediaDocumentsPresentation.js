@@ -2,26 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import AudioNative from 'components/AudioNative'
+import { DOCUMENT_PATH } from 'common/constants'
 import DashboardMediaDetails from 'components/DashboardMediaDetails'
-import { AUDIO_PATH } from 'common/constants'
+import getIcon from 'common/utils/getIcon'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
-function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
+function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
   const headerClass =
-    'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
-
-  const speakersForDisplay = infiniteQueryResponse?.currentFile?.speakers
-    ?.map((speaker) => speaker?.name)
-    .join(', ')
-  const file = {
-    ...infiniteQueryResponse?.currentFile,
-    speakers: speakersForDisplay,
-  }
+    'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
+  const columnClass =
+    'px-6 py-4 text-sm text-charcoal-900 whitespace-nowrap truncate'
 
   return (
     <div
-      id="DashboardMediaAudioPresentation"
+      id="DashboardMediaDocumentsPresentation"
       className="grid grid-cols-3 w-full"
     >
       <main className="col-span-2 pt-2 mx-2">
@@ -30,7 +24,7 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
             id="results-header"
             className="capitalize flex text-2xl font-bold text-charcoal-900 mb-2"
           >
-            Audio
+            Documents
           </h1>
           <div>
             <div>
@@ -38,10 +32,10 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                 <thead className="bg-charcoal-50">
                   <tr>
                     <th scope="col" className={headerClass}>
-                      Audio
+                      Title
                     </th>
                     <th scope="col" className={headerClass}>
-                      Title
+                      Type
                     </th>
                     <th scope="col" className={headerClass}>
                       Description
@@ -52,34 +46,21 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                   {infiniteQueryResponse?.data?.pages?.[0]?.results?.length &&
                     infiniteQueryResponse?.data?.pages?.map((page) => (
                       <React.Fragment key={page?.pageNumber}>
-                        {page.results.map((audioFile) => (
+                        {page.results.map((doc) => (
                           <tr
-                            key={audioFile?.id}
+                            key={doc?.id}
                             className={`${
-                              audioFile?.id ===
-                              infiniteQueryResponse?.currentFile?.id
+                              doc?.id === infiniteQueryResponse?.currentFile?.id
                                 ? 'ring-2 ring-scarlet-800'
                                 : ''
                             } m-2 rounded-lg relative`}
                             onClick={() =>
-                              infiniteQueryResponse?.setCurrentFile(audioFile)
+                              infiniteQueryResponse?.setCurrentFile(doc)
                             }
                           >
-                            <td
-                              className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
-                              aria-label="list"
-                            >
-                              <AudioNative
-                                styling="w-full "
-                                audioObject={audioFile}
-                              />
-                            </td>
-                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
-                              {audioFile.title}
-                            </td>
-                            <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
-                              {audioFile?.description}
-                            </td>
+                            <td className={columnClass}>{doc.title}</td>
+                            <td className={columnClass}>{doc.mimeType}</td>
+                            <td className={columnClass}>{doc?.description}</td>
                           </tr>
                         ))}
                       </React.Fragment>
@@ -93,11 +74,14 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
       </main>
       <aside className="col-span-1">
         <DashboardMediaDetails
-          mediaTypePath={AUDIO_PATH}
-          file={file}
+          mediaTypePath={DOCUMENT_PATH}
+          file={infiniteQueryResponse?.currentFile}
           thumbnail={
-            <div className="block w-full rounded-lg overflow-hidden">
-              <AudioNative styling="w-full" audioObject={file} />
+            <div className="block w-full">
+              {getIcon(
+                'Reports',
+                'h-32 mx-auto fill-current text-charcoal-300',
+              )}
             </div>
           }
         />
@@ -108,8 +92,8 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
 
 // PROPTYPES
 const { object } = PropTypes
-DashboardMediaAudioPresentation.propTypes = {
+DashboardMediaDocumentsPresentation.propTypes = {
   infiniteQueryResponse: object,
 }
 
-export default DashboardMediaAudioPresentation
+export default DashboardMediaDocumentsPresentation

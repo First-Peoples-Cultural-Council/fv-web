@@ -1,0 +1,7 @@
+import DashboardMediaDocumentsContainer from 'components/DashboardMediaDocuments/DashboardMediaDocumentsContainer'
+import DashboardMediaDocumentsPresentation from 'components/DashboardMediaDocuments/DashboardMediaDocumentsPresentation'
+
+export default {
+  Container: DashboardMediaDocumentsContainer,
+  Presentation: DashboardMediaDocumentsPresentation,
+}

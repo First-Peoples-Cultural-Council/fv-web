@@ -8,9 +8,15 @@ import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 import AudioNative from 'components/AudioNative'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import {
+  TYPE_AUDIO,
+  TYPE_DOCUMENT,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+} from 'common/constants'
 import { getFriendlyType } from 'common/utils/stringHelpers'
 import { getMediaPath } from 'common/utils/mediaHelpers'
+import getIcon from 'common/utils/getIcon'
 
 function MediaEditPresentation({
   mediaType,
@@ -61,39 +67,48 @@ function MediaEditPresentation({
         subtitle={`Edit the details for your ${mediaType} file.`}
       />
       <form onReset={reset}>
-        <div className="grid grid-cols-12">
-          {mediaType === AUDIO ? (
+        <div className="grid grid-cols-12 py-6">
+          {mediaType === TYPE_AUDIO && (
             <div className="col-span-6">
               <AudioNative styling="mt-4" audioObject={dataToEdit} />
             </div>
-          ) : (
+          )}
+          {mediaType === TYPE_DOCUMENT && (
+            <div className="m-6 col-span-6">
+              {getIcon(
+                'Reports',
+                'h-72 w-auto mx-auto bg-white rounded-lg p-10 fill-current text-charcoal-500',
+              )}
+            </div>
+          )}
+          {mediaType === TYPE_IMAGE && (
             <div className="m-6 col-span-6 overflow-hidden">
-              {mediaType === IMAGE && (
-                <img
-                  src={getMediaPath({
-                    mediaObject: dataToEdit,
-                    type: IMAGE,
-                  })}
-                  alt={dataToEdit?.title}
-                  className="object-contain w-full rounded-lg"
-                />
-              )}
-              {mediaType === VIDEO && (
-                <video
-                  className="w-full aspect-video"
-                  src={getMediaPath({
-                    mediaObject: dataToEdit,
-                    type: VIDEO,
-                  })}
-                  controls
-                />
-              )}
+              <img
+                src={getMediaPath({
+                  mediaObject: dataToEdit,
+                  type: TYPE_IMAGE,
+                })}
+                alt={dataToEdit?.title}
+                className="object-contain w-full rounded-lg"
+              />
+            </div>
+          )}
+          {mediaType === TYPE_VIDEO && (
+            <div className="m-6 col-span-6 overflow-hidden">
+              <video
+                className="w-full aspect-video"
+                src={getMediaPath({
+                  mediaObject: dataToEdit,
+                  type: TYPE_VIDEO,
+                })}
+                controls
+              />
             </div>
           )}
 
           <div
-            className={`mt-6 grid grid-cols-12 gap-6 ${
-              mediaType === AUDIO ? 'col-span-12' : 'col-span-6'
+            className={`grid grid-cols-12 gap-6 ${
+              mediaType === TYPE_AUDIO ? 'col-span-12' : 'col-span-6'
             }`}
           >
             <div className="col-span-12">
@@ -113,7 +128,7 @@ function MediaEditPresentation({
               />
             </div>
 
-            {mediaType === AUDIO && (
+            {mediaType === TYPE_AUDIO && (
               <div className="col-span-12">
                 <Form.AutocompleteMultiple
                   label="Speakers"
@@ -134,7 +149,7 @@ function MediaEditPresentation({
               />
             </div>
 
-            {mediaType !== VIDEO && (
+            {(mediaType === TYPE_AUDIO || mediaType === TYPE_IMAGE) && (
               <Form.Audience control={control} errors={errors} />
             )}
 
@@ -157,7 +172,7 @@ function MediaEditPresentation({
 
 const { func, object, oneOf } = PropTypes
 MediaEditPresentation.propTypes = {
-  mediaType: oneOf([AUDIO, IMAGE, VIDEO]),
+  mediaType: oneOf([TYPE_AUDIO, TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO]),
   dataToEdit: object,
   submitHandler: func,
   backHandler: func,
