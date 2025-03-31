@@ -6,11 +6,11 @@ import { EditorState } from 'draft-js'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_IMAGE, PUBLIC } from 'common/constants'
+import { WIDGET_VIDEO, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
-function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
+function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
     image: definitions.uuid(),
@@ -51,16 +51,17 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
         handleSubmit={handleSubmit}
         submitHandler={submitHandler}
         isCreateMode={isCreateMode}
-        type={WIDGET_IMAGE}
+        type={WIDGET_VIDEO}
       >
         <>
           <div className="col-span-12">
-            <Form.ImageIdField
-              label="Add an Image"
-              nameId="image"
-              helpText="Suggestion: Min size of image 200px - max image size 2000px"
+            <Form.VideoArrayField
+              label="Upload a video"
+              nameId="video"
+              helpText="Please keep the file size under 1GB"
               control={control}
               errors={errors}
+              maxItems={1}
             />
           </div>
           <div className="col-span-12">
@@ -79,10 +80,10 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
 }
 // PROPTYPES
 const { func, object } = PropTypes
-WidgetFormImage.propTypes = {
+WidgetFormVideo.propTypes = {
   cancelHandler: func,
   dataToEdit: object,
   submitHandler: func,
 }
 
-export default WidgetFormImage
+export default WidgetFormVideo

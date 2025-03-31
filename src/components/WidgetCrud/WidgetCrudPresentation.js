@@ -17,7 +17,7 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  // WIDGET_VIDEO,
+  WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
 import WidgetFormDefault from 'components/WidgetCrud/WidgetFormDefault'
@@ -32,6 +32,7 @@ import WidgetFormText from 'components/WidgetCrud/WidgetFormText'
 import WidgetFormTextConcise from 'components/WidgetCrud/WidgetFormTextConcise'
 import WidgetFormTextFull from 'components/WidgetCrud/WidgetFormTextFull'
 import WidgetFormTextIcons from 'components/WidgetCrud/WidgetFormTextIcons'
+import WidgetFormVideo from 'components/WidgetCrud/WidgetFormVideo'
 import WidgetFormApps from 'components/WidgetCrud/WidgetFormApps'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import Form from 'components/Form'
@@ -45,9 +46,7 @@ function WidgetCrudPresentation({
   deleteHandler,
   widgetTypes,
 }) {
-  console.log({ widgetTypes })
   const [selectedType, setSelectedType] = useState(null)
-  console.log({ selectedType })
   return (
     <div id="WidgetCrudPresentation" className="max-w-5xl p-8">
       {!selectedType && !dataToEdit?.type ? (
@@ -246,14 +245,14 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
         />
       )
 
-    // case WIDGET_VIDEO:
-    //   return (
-    //     <WidgetFormVideo
-    //       cancelHandler={cancelHandler}
-    //       dataToEdit={dataToEdit}
-    //       submitHandler={submitHandler}
-    //     />
-    //   )
+    case WIDGET_VIDEO:
+      return (
+        <WidgetFormVideo
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
 
     case WIDGET_IFRAME:
       return (
@@ -295,6 +294,7 @@ WidgetForm.propTypes = {
     WIDGET_APPS,
     WIDGET_CONTACT,
     WIDGET_GALLERY,
+    WIDGET_IMAGE,
     WIDGET_IFRAME,
     WIDGET_KEYBOARDS,
     WIDGET_LOGO,
@@ -304,6 +304,7 @@ WidgetForm.propTypes = {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
+    WIDGET_VIDEO,
     WIDGET_WOTD,
   ]),
 }
