@@ -110,7 +110,7 @@
     "html-webpack-plugin": "^5.6.3",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.2",
-    "ky": "^1.7.4",
+    "ky": "^1.8.0",
     "oidc-client-ts": "^3.1.0",
     "postcss": "^8.5.3",
     "postcss-loader": "^8.1.1",
