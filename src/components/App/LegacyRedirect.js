@@ -66,29 +66,18 @@ function LegacyRedirect() {
 
     if (found) {
       const typePath = convertLegacyType(type)
+      const basePath = `/${found.newSiteName}${isKids ? '/kids' : ''}`
 
       if (isUUID(categoryId)) {
-        navigate(
-          `/${found.newSiteName}${
-            isKids ? '/kids' : ''
-          }/${CATEGORIES}/${categoryId}`,
-          {
-            replace: true,
-          },
-        )
-      } else if (typePath) {
-        navigate(
-          `/${found.newSiteName}${isKids ? '/kids' : ''}/${typePath}/${
-            isUUID(uuid) ? uuid : ''
-          }`,
-          {
-            replace: true,
-          },
-        )
-      } else {
-        navigate(`/${found.newSiteName}${isKids ? '/kids' : ''}`, {
+        navigate(`${basePath}/${CATEGORIES}/${categoryId}`, {
           replace: true,
         })
+      } else if (typePath) {
+        navigate(`${basePath}/${typePath}/${isUUID(uuid) ? uuid : ''}`, {
+          replace: true,
+        })
+      } else {
+        navigate(basePath, { replace: true })
       }
     }
   }, [dialect, found])
