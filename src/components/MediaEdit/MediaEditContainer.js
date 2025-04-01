@@ -5,7 +5,12 @@ import PropTypes from 'prop-types'
 import Loading from 'components/Loading'
 import MediaEditPresentation from 'components/MediaEdit/MediaEditPresentation'
 import MediaEditData from 'components/MediaEdit/MediaEditData'
-import { AUDIO, IMAGE, VIDEO } from 'common/constants'
+import {
+  TYPE_AUDIO,
+  TYPE_DOCUMENT,
+  TYPE_IMAGE,
+  TYPE_VIDEO,
+} from 'common/constants'
 
 function MediaEditContainer({ mediaType }) {
   const { isLoading, dataToEdit, submitHandler, backHandler } = MediaEditData({
@@ -27,7 +32,7 @@ function MediaEditContainer({ mediaType }) {
 const { oneOf } = PropTypes
 
 MediaEditContainer.propTypes = {
-  mediaType: oneOf([AUDIO, IMAGE, VIDEO]),
+  mediaType: oneOf([TYPE_AUDIO, TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO]),
 }
 
 export default MediaEditContainer
