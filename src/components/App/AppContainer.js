@@ -118,6 +118,31 @@ function AppContainer() {
                   }
                 />
                 {/* Redirect legacy URLs */}
+                <Route path="en/apps" element={<Navigate to="/apps" />} />
+                <Route path="en/games" element={<Navigate to="/" />} />
+                <Route path="content/apps" element={<Navigate to="/apps" />} />
+                <Route path="home" element={<Navigate to="/" />} />
+                <Route path="kids" element={<Navigate to="/" />} />
+                <Route
+                  path="en/:dialect/:type/:uuid/*"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+                <Route
+                  path="en/:dialect/:type"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+                <Route
+                  path="en/:dialect/*"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
+                <Route
+                  path="t/:area/:dialect/:type"
+                  caseSensitive={false}
+                  element={<LegacyRedirect />}
+                />
                 <Route
                   path="t/:area/:dialect/*"
                   caseSensitive={false}
@@ -143,8 +168,6 @@ function AppContainer() {
                   caseSensitive={false}
                   element={<LegacyRedirect />}
                 />
-                <Route path="en/apps" element={<Navigate to="/apps" />} />
-                <Route path="content/apps" element={<Navigate to="/apps" />} />
                 {/* End of legacy URLs */}
 
                 <Route path=":sitename/*" element={<Site.Container />} />
