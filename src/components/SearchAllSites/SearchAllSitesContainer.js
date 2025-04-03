@@ -5,7 +5,10 @@ import { useSearchParams } from 'react-router-dom'
 import useSearchAllSitesLoader from 'common/dataHooks/useSearchAllSitesLoader'
 import useSearchType from 'common/hooks/useSearchType'
 import { TYPE_ENTRY } from 'common/constants'
-import SearchPresentation from 'components/Search/SearchPresentation'
+import DictionaryList from 'components/DictionaryList'
+import DictionaryGrid from 'components/DictionaryGrid'
+import SearchSiteForm from 'components/SearchSiteForm'
+import SearchTypeFilters from 'components/SearchTypeFilters'
 import DocHead from 'components/DocHead'
 
 function SearchAllSitesContainer() {
@@ -30,16 +33,38 @@ function SearchAllSitesContainer() {
   return (
     <>
       <DocHead titleArray={['Search']} />
-      <SearchPresentation
-        searchType={searchTypeInUrl}
-        filters={typeFilters}
-        handleFilter={(filter) => {
-          setSearchTypeInUrl(filter)
-        }}
-        infiniteQueryResponse={infiniteQueryResponse}
-        siteTitle="FirstVoices"
-        entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
-      />
+      <div data-testid="SearchAllSitesContainer">
+        <section className="bg-scarlet-800 p-5">
+          <div className="mx-auto lg:w-3/5">
+            <SearchSiteForm.Container />
+          </div>
+        </section>
+        <div className="grid grid-cols-11 lg:p-2">
+          <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-charcoal-100 md:border-0">
+            <SearchTypeFilters
+              searchType={searchTypeInUrl}
+              filters={typeFilters}
+              handleFilter={(filter) => {
+                setSearchTypeInUrl(filter)
+              }}
+            />
+          </div>
+          <div className="hidden md:block col-span-11 lg:col-span-9">
+            <DictionaryList.Presentation
+              infiniteQueryResponse={infiniteQueryResponse}
+              showType
+              wholeDomain
+              entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
+            />
+          </div>
+          <div className="block md:hidden col-span-11">
+            <DictionaryGrid.Presentation
+              infiniteQueryResponse={infiniteQueryResponse}
+              showType
+            />
+          </div>
+        </div>
+      </div>
     </>
   )
 }
