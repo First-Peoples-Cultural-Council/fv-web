@@ -10,6 +10,7 @@ import DictionaryGrid from 'components/DictionaryGrid'
 import SearchSiteForm from 'components/SearchSiteForm'
 import SearchTypeFilters from 'components/SearchTypeFilters'
 import DocHead from 'components/DocHead'
+import SearchSitesFilter from 'components/SearchAllSites/SearchSitesFilter'
 
 function SearchAllSitesContainer() {
   const [searchParams] = useSearchParams()
@@ -48,6 +49,7 @@ function SearchAllSitesContainer() {
                 setSearchTypeInUrl(filter)
               }}
             />
+            <SearchSitesFilter />
           </div>
           <div className="hidden md:block col-span-11 lg:col-span-9">
             <DictionaryList.Presentation
