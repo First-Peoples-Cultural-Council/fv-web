@@ -10,7 +10,7 @@ function useArrayStateManager({ maxItems }) {
   const checkForItem = (array, item) =>
     array.some((elem) => elem === item || elem?.id === item?.id)
 
-  const handleSelectAdditionalItems = (selectedItem) => {
+  const handleSelectAdditionalItem = (selectedItem) => {
     if (maxItems === 1) {
       setSelectedItems([selectedItem])
       return
@@ -29,10 +29,27 @@ function useArrayStateManager({ maxItems }) {
     setSelectedItems([...selectedItems, selectedItem])
   }
 
+  const handleSelectArray = (newItems) => {
+    const predicate = (a, b) => a.id === b.id
+
+    const copy = [...selectedItems] // copy to avoid side effects
+    // add all items from newItems array to copy array if they're not already present
+    newItems.forEach((newItem) =>
+      copy.some((existingItem) => predicate(newItem, existingItem))
+        ? null
+        : copy.push(newItem),
+    )
+    setSelectedItems(copy)
+  }
+
   return {
     selectedItems,
     setSelectedItems,
-    handleSelectAdditionalItems,
+    handleSelectAdditionalItem,
+    handleSelectArray,
+    handleRemoveItem: (item) =>
+      setSelectedItems(removeItemFromArray(selectedItems, item)),
+    isItemSelected: (item) => checkForItem(selectedItems, item),
   }
 }
 
