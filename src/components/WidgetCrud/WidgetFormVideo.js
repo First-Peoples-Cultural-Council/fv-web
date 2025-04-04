@@ -1,28 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
-import { EditorState } from 'draft-js'
 
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_VIDEO, PUBLIC } from 'common/constants'
+import { WIDGET_VIDEO, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
-    image: definitions.uuid(),
-    textWithFormatting: definitions.wysiwygRequired({ charCount: 250 }),
+    video: definitions.uuid(),
+    caption: definitions.paragraph({ charCount: 250 }),
     visibility: definitions.visibility(),
   })
 
   const defaultValues = {
     nickname: '',
     visibility: PUBLIC,
-    textWithFormatting: EditorState.createEmpty(),
-    image: '',
+    caption: '',
+    video: '',
+    format: FORMAT_DEFAULT,
+    type: WIDGET_VIDEO,
   }
 
   const {
@@ -65,11 +66,10 @@ function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           <div className="col-span-12">
-            <Form.WysiwygField
+            <Form.TextField
               label="Enter your caption for the image here (max: 250 characters)"
-              nameId="textWithFormatting"
+              nameId="caption"
               control={control}
-              toolbar="none"
               errors={errors}
             />
           </div>
