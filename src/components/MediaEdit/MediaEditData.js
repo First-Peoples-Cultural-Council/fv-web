@@ -12,9 +12,10 @@ function MediaEditData({ mediaType }) {
   const mediaId = searchParams.get('id')
   const mediaTypePath = getPathForMediaType(mediaType)
 
-  const { data, isLoading } = useMediaObject({
+  const mediaQueryResponse = useMediaObject({
     id: mediaId,
     mediaType,
+    edit: true,
   })
 
   const { onSubmit } = useMediaUpdate({ mediaType, id: mediaId })
@@ -23,8 +24,8 @@ function MediaEditData({ mediaType }) {
     navigate(`/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`)
 
   return {
-    isLoading,
-    dataToEdit: data,
+    isLoading: mediaQueryResponse?.isLoading,
+    dataToEdit: mediaQueryResponse?.data,
     submitHandler,
     backHandler,
   }

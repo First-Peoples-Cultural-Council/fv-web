@@ -11,7 +11,7 @@ import {
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import api from 'services/api'
 
-export function useMediaObject({ id, mediaType }) {
+export function useMediaObject({ id, mediaType, edit = false }) {
   // General function to fetch details of all media types
   const { sitename } = useParams()
 
@@ -21,7 +21,9 @@ export function useMediaObject({ id, mediaType }) {
     ...{ enabled: !!id },
   })
 
-  const formattedData = mediaItemForEditing({ data: response?.data })
+  const formattedData = edit
+    ? mediaItemForEditing({ data: response?.data })
+    : response?.data
 
   return {
     ...response,
