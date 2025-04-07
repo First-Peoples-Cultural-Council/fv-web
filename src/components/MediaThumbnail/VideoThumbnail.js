@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { useParams } from 'react-router-dom'
 
 // FPCC
-import { useVideoObject } from 'common/dataHooks/useMedia'
+import { useMediaObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { VIDEO, ORIGINAL } from 'common/constants'
+import { TYPE_VIDEO, VIDEO, ORIGINAL } from 'common/constants'
 
 function VideoThumbnail({
   id,
@@ -17,7 +17,7 @@ function VideoThumbnail({
   const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
-  const mediaObject = useVideoObject({ sitename, id })
+  const mediaObject = useMediaObject({ sitename, id, mediaType: TYPE_VIDEO })
   useEffect(() => {
     if (videoObject || mediaObject?.original) {
       const srcToUse = getMediaPath({

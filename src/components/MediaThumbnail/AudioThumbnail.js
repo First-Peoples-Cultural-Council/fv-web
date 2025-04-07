@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import AudioNative from 'components/AudioNative'
-import { useAudioObject } from 'common/dataHooks/useMedia'
+import { TYPE_AUDIO } from 'common/constants'
+import { useMediaObject } from 'common/dataHooks/useMedia'
 
 function AudioThumbnail(props) {
   const {
@@ -17,7 +18,7 @@ function AudioThumbnail(props) {
 
   const { sitename } = useParams()
 
-  const mediaObject = useAudioObject({ sitename, id })
+  const mediaObject = useMediaObject({ sitename, id, mediaType: TYPE_AUDIO })
 
   return (
     <div className={containerStyles}>
