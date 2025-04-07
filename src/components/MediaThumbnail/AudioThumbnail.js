@@ -18,7 +18,12 @@ function AudioThumbnail(props) {
 
   const { sitename } = useParams()
 
-  const mediaObject = useMediaObject({ sitename, id, mediaType: TYPE_AUDIO })
+  const mediaQueryResponse = useMediaObject({
+    sitename,
+    id,
+    mediaType: TYPE_AUDIO,
+  })
+  const mediaObject = mediaQueryResponse?.data
 
   return (
     <div className={containerStyles}>

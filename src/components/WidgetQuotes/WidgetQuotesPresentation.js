@@ -18,10 +18,11 @@ function WidgetQuotesPresentation({ widgetData }) {
     quote3By,
   } = widgetData.settings
 
-  const bgImageObject = useMediaObject({
+  const mediaQueryResponse = useMediaObject({
     id: backgroundImage,
     mediaType: TYPE_IMAGE,
   })
+  const bgImageObject = mediaQueryResponse?.data
 
   const makeQuote = (quote, quoteBy) => (
     <div className="relative w-4/5 md:w-[30%] h-80 mt-24 md:my-20 bg-white rounded-t-xl rounded-br-xl flex flex-col justify-center items-center">

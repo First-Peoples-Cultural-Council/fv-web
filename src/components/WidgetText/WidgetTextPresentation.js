@@ -33,15 +33,17 @@ function WidgetTextPresentation({ widgetData }) {
   const { sitename } = widgetData
   const format = widgetData?.format || FORMAT_LEFT
 
-  const bgImageObject = useMediaObject({
+  const imageQueryResponse = useMediaObject({
     id: bgImage,
     mediaType: TYPE_IMAGE,
   })
+  const bgImageObject = imageQueryResponse?.data
 
-  const audioObject = useMediaObject({
+  const audioQueryResponse = useMediaObject({
     id: audio,
     mediaType: TYPE_AUDIO,
   })
+  const audioObject = audioQueryResponse?.data
 
   const getImageElement = () =>
     image ? (

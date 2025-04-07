@@ -10,11 +10,11 @@ function WidgetTextConcisePresentation({ widgetData }) {
   const { audio, title, text, url, urlLabel } = widgetData.settings
   const { sitename } = widgetData
 
-  const audioObject = useMediaObject({
+  const mediaQueryResponse = useMediaObject({
     id: audio,
     mediaType: TYPE_AUDIO,
   })
-
+  const audioObject = mediaQueryResponse?.data
   return (
     <section
       id="WidgetTextConcisePresentation"

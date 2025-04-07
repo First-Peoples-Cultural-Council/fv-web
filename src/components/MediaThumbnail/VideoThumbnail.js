@@ -17,11 +17,17 @@ function VideoThumbnail({
   const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
-  const mediaObject = useMediaObject({ sitename, id, mediaType: TYPE_VIDEO })
+  const mediaQueryResponse = useMediaObject({
+    sitename,
+    id,
+    mediaType: TYPE_VIDEO,
+  })
+  const fetchedVideoObject = mediaQueryResponse?.data
+
   useEffect(() => {
-    if (videoObject || mediaObject?.original) {
+    if (videoObject || fetchedVideoObject?.original) {
       const srcToUse = getMediaPath({
-        mediaObject: videoObject || mediaObject,
+        mediaObject: videoObject || fetchedVideoObject,
         size: ORIGINAL,
         type: VIDEO,
       })
@@ -29,7 +35,7 @@ function VideoThumbnail({
         setSrc(srcToUse)
       }
     }
-  }, [src, setSrc, mediaObject, videoObject])
+  }, [src, setSrc, fetchedVideoObject, videoObject])
 
   return (
     <div className={containerStyles}>

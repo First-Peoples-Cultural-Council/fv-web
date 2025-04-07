@@ -17,11 +17,13 @@ function ImageThumbnail({
   const { sitename } = useParams()
   const [src, setSrc] = useState()
 
-  const fetchedImageObject = useMediaObject({
+  const mediaQueryResponse = useMediaObject({
     sitename,
     id,
     mediaType: TYPE_IMAGE,
   })
+
+  const fetchedImageObject = mediaQueryResponse?.data
 
   useEffect(() => {
     if (imageObject || fetchedImageObject?.original) {

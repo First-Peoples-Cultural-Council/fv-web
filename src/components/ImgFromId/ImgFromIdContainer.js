@@ -18,7 +18,8 @@ function ImgFromIdContainer(props) {
   } = props
   const [src, setSrc] = useState('')
 
-  const imageObject = useMediaObject({ id, mediaType: TYPE_IMAGE })
+  const mediaQueryResponse = useMediaObject({ id, mediaType: TYPE_IMAGE })
+  const imageObject = mediaQueryResponse?.data
 
   useEffect(() => {
     if (imageObject?.original) {
