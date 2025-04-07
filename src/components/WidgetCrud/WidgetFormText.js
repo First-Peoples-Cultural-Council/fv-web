@@ -24,7 +24,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     textWithFormatting: definitions.wysiwygRequired({ charCount: 1200 }),
     audio: definitions.uuid(),
     image: definitions.uuid(),
-    bg: yup.string().nullable(),
+    bgColor: yup.string().nullable(),
     url: definitions.url(),
     urlLabel: definitions.label().nullable(),
     visibility: definitions.visibility(),
@@ -39,7 +39,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     textWithFormatting: EditorState.createEmpty(),
     audio: '',
     image: '',
-    bg: '',
+    bgColor: '',
     url: '',
     urlLabel: '',
   }
@@ -123,7 +123,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               label="Would you like a green background color?"
               control={control}
               errors={errors}
-              nameId="bg"
+              nameId="bgColor"
               options={[
                 { label: 'Yes', value: 'jade-500' },
                 { label: 'No', value: '' },
