@@ -16,7 +16,9 @@ function SpeakerCrudPresentation({
 }) {
   const validator = yup.object().shape({
     name: definitions.title().required('A name is required'),
-    bio: definitions.paragraph().required('A bio is required'),
+    bio: definitions
+      .paragraph({ charCount: 1000 })
+      .required('A bio is required'),
   })
 
   const defaultValues = {
@@ -57,9 +59,10 @@ function SpeakerCrudPresentation({
             />
           </div>
           <div className="col-span-12">
-            <Form.TextField
-              label="Bio"
+            <Form.TextAreaField
+              label="Biography"
               nameId="bio"
+              helpText="Add a short bio for this speaker."
               register={register}
               errors={errors}
             />
