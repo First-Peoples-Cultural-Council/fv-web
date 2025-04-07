@@ -24,8 +24,7 @@ function MediaEditData({ mediaType }) {
     navigate(`/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`)
 
   return {
-    isLoading: mediaQueryResponse?.isLoading,
-    dataToEdit: mediaQueryResponse?.data,
+    mediaQueryResponse,
     submitHandler,
     backHandler,
   }
