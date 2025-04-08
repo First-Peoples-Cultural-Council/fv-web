@@ -51,7 +51,7 @@ export function useAudioCreate(options = {}) {
       data.append('speakers', speaker)
     })
 
-    return api.media.uploadAudio({
+    return api.media.createAudio({
       sitename,
       data,
     })

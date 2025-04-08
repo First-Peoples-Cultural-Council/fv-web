@@ -16,7 +16,7 @@ const media = {
     )
     return url.href
   },
-  uploadAudio: async ({ sitename, data }) =>
+  createAudio: async ({ sitename, data }) =>
     apiBase().post(`${SITES}/${sitename}/${AUDIO_PATH}`, { body: data }).json(),
   delete: async ({ sitename, id, mediaType }) => {
     const mediaTypePath = getPathForMediaType(mediaType)
