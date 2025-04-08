@@ -13,7 +13,7 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
   // console.log({dataToEdit})
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
-    image: definitions.uuid(),
+    image: definitions.uuid().required(),
     caption: definitions.paragraph({ charCount: 250 }),
     visibility: definitions.visibility(),
   })

@@ -56,13 +56,13 @@ export const getCreatableWidgetsForUser = (isSuperAdmin) =>
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
 
-export const getObjectFromSettingsArray = (settingsArray) => {
-  const settingsObject = {}
-  settingsArray?.forEach((setting) => {
-    settingsObject[setting?.key] = setting?.value
-  })
-  return settingsObject
-}
+// export const getObjectFromSettingsArray = (settingsArray) => {
+//   const settingsObject = {}
+//   settingsArray?.forEach((setting) => {
+//     settingsObject[setting?.key] = setting?.value
+//   })
+//   return settingsObject
+// }
 
 export const getWidgetTypeLabel = (type) => {
   switch (type) {

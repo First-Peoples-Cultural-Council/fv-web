@@ -12,7 +12,7 @@ import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
-    video: definitions.uuid(),
+    // video: definitions.uuid().required(),
     caption: definitions.paragraph({ charCount: 250 }),
     visibility: definitions.visibility(),
   })
@@ -71,6 +71,7 @@ function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="caption"
               control={control}
               errors={errors}
+              register={register}
             />
           </div>
         </>

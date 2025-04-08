@@ -1,6 +1,6 @@
 // FPCC
 import {
-  getObjectFromSettingsArray,
+  // getObjectFromSettingsArray,
   getWidgetTypeLabel,
 } from 'common/utils/widgetHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
@@ -27,6 +27,14 @@ export function widgetListAdaptor({ widgetList, sitename }) {
   return widgetList?.map((widgetData) =>
     widgetAdaptor({ widgetData, sitename }),
   )
+}
+
+export const getObjectFromSettingsArray = (settingsArray) => {
+  const settingsObject = {}
+  settingsArray?.forEach((setting) => {
+    settingsObject[setting?.key] = setting?.value
+  })
+  return settingsObject
 }
 
 export function widgetFormDataAdaptor({ formData }) {

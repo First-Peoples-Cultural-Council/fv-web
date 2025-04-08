@@ -10,23 +10,29 @@ function WidgetImageVideoPresentation({ widgetData }) {
 
   const getImageElement = () =>
     image ? (
-      <div className="overflow-hidden inline-flex items-center w-auto">
-        <ImgFromId.Container
-          className="w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover"
-          id={image}
-        />
+      //   <div className="overflow-hidden inline-flex items-center w-auto">
+      <ImgFromId.Container
+        // className="h-auto w-auto object-cover mx-auto"
+        className="w-full"
+        id={image}
+      />
+    ) : //   </div>
+    null
+
+  const getCaptionElement = () =>
+    caption ? (
+      <div className="flex flex-wrap">
+        <span className="font-bold">Caption:</span> {caption}
       </div>
     ) : null
 
-  const getCaptionElement = () => (
-    <div className="flex flex-wrap">{caption}</div>
-  )
-
   return (
     <section className="w-full" data-testid="WidgetImageVideoPresentation">
-      <div className="flex flex-col bg-gradient-to-b from-white to-charcoal-50 place-items-center">
-        <div>{getImageElement()}</div>
-        <div>Caption: {getCaptionElement()}</div>
+      <div className="rounded overflow-hidden flex flex-col mx-auto max-w-2xl">
+        <div className="flex flex-col mx-auto overflow-hidden px-6 md:px-0 pt-6">
+          {getImageElement()}
+          {getCaptionElement()}
+        </div>
       </div>
     </section>
   )
