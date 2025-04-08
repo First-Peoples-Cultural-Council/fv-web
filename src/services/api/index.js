@@ -1,9 +1,12 @@
+import audio from 'services/api/audio'
 import blog from 'services/api/blog'
 import categories from 'services/api/categories'
 import characters from 'services/api/characters'
 import dictionary from 'services/api/dictionary'
+import documents from 'services/api/documents'
 import galleries from 'services/api/galleries'
 import gameContent from 'services/api/gameContent'
+import images from 'services/api/images'
 import immersionLabels from 'services/api/immersionLabels'
 import joinRequests from 'services/api/joinRequests'
 import landingPage from 'services/api/landingpage'
@@ -20,18 +23,22 @@ import songs from 'services/api/songs'
 import stats from 'services/api/stats'
 import stories from 'services/api/stories'
 import storyPages from 'services/api/storyPages'
+import videos from 'services/api/videos'
 import vimeoThumbnail from 'services/api/videoLinkThumbnails'
 import visibility from 'services/api/visibility'
 import widgets from 'services/api/widgets'
 import wordOfTheDay from 'services/api/wordOfTheDay'
 
 export default {
+  audio,
   blog,
   categories,
   characters,
   dictionary,
+  documents,
   galleries,
   gameContent,
+  images,
   immersionLabels,
   joinRequests,
   landingPage,
@@ -48,6 +55,7 @@ export default {
   stats,
   stories,
   storyPages,
+  videos,
   vimeoThumbnail,
   visibility,
   widgets,
