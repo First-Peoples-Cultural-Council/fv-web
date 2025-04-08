@@ -16,7 +16,11 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
     <div className="block w-full rounded-lg overflow-hidden">
       {type === TYPE_IMAGE ? (
         <img
-          src={getMediaPath({ mediaObject: file, type: TYPE_IMAGE })}
+          src={getMediaPath({
+            mediaObject: file,
+            type: TYPE_IMAGE,
+            size: SMALL,
+          })}
           alt={file?.title}
           className="object-contain w-full h-96"
         />
