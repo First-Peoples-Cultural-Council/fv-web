@@ -120,7 +120,7 @@ function MediaEditPresentation({
               />
             </div>
             <div className="col-span-12">
-              <Form.TextField
+              <Form.TextAreaField
                 label="Description"
                 nameId="description"
                 register={register}
@@ -141,7 +141,7 @@ function MediaEditPresentation({
             )}
 
             <div className="col-span-12">
-              <Form.TextField
+              <Form.TextAreaField
                 label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}

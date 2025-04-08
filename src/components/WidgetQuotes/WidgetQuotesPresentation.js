@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { useImageObject } from 'common/dataHooks/useMedia'
-import { IMAGE, MEDIUM } from 'common/constants'
+import { useMediaObject } from 'common/dataHooks/useMedia'
+import { TYPE_IMAGE, IMAGE, MEDIUM } from 'common/constants'
 
 function WidgetQuotesPresentation({ widgetData }) {
   const {
@@ -18,9 +18,11 @@ function WidgetQuotesPresentation({ widgetData }) {
     quote3By,
   } = widgetData.settings
 
-  const bgImageObject = useImageObject({
+  const mediaQueryResponse = useMediaObject({
     id: backgroundImage,
+    mediaType: TYPE_IMAGE,
   })
+  const bgImageObject = mediaQueryResponse?.data
 
   const makeQuote = (quote, quoteBy) => (
     <div className="relative w-4/5 md:w-[30%] h-80 mt-24 md:my-20 bg-white rounded-t-xl rounded-br-xl flex flex-col justify-center items-center">

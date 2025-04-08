@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Loading from 'components/Loading'
+import LoadOrError from 'components/LoadOrError'
 import MediaEditPresentation from 'components/MediaEdit/MediaEditPresentation'
 import MediaEditData from 'components/MediaEdit/MediaEditData'
 import {
@@ -13,19 +13,19 @@ import {
 } from 'common/constants'
 
 function MediaEditContainer({ mediaType }) {
-  const { isLoading, dataToEdit, submitHandler, backHandler } = MediaEditData({
+  const { mediaQueryResponse, submitHandler, backHandler } = MediaEditData({
     mediaType,
   })
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={mediaQueryResponse}>
       <MediaEditPresentation
         mediaType={mediaType}
-        dataToEdit={dataToEdit}
+        dataToEdit={mediaQueryResponse?.data}
         submitHandler={submitHandler}
         backHandler={backHandler}
       />
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 

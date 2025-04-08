@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useImageObject } from 'common/dataHooks/useMedia'
+import { useMediaObject } from 'common/dataHooks/useMedia'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { IMAGE, MEDIUM } from 'common/constants'
+import { TYPE_IMAGE, IMAGE, MEDIUM } from 'common/constants'
 
 function ImgFromIdContainer(props) {
   // mockData has been added to props in this component to allow for the Landing page data
@@ -18,7 +18,8 @@ function ImgFromIdContainer(props) {
   } = props
   const [src, setSrc] = useState('')
 
-  const imageObject = useImageObject({ id })
+  const mediaQueryResponse = useMediaObject({ id, mediaType: TYPE_IMAGE })
+  const imageObject = mediaQueryResponse?.data
 
   useEffect(() => {
     if (imageObject?.original) {

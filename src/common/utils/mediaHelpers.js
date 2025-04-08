@@ -3,6 +3,7 @@ import {
   VIDEO,
   VIDEO_LINK,
   AUDIO,
+  DOCUMENT,
   ORIGINAL,
   SMALL,
   MEDIUM,
@@ -31,6 +32,7 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   }
   switch (type) {
     case AUDIO:
+    case DOCUMENT:
       return mediaObject?.original?.path
     case VIDEO:
       return mediaObject?.[size]?.path
