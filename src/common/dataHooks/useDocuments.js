@@ -27,7 +27,7 @@ export function useDocument({ id, edit = false }) {
 
 export function useDocumentUpdate({ id }) {
   const { sitename } = useParams()
-  const updateMediaItem = async (formData) => {
+  const updateDocument = async (formData) => {
     const data = documentForApi({ formData })
     api.documents.partialUpdate({
       id,
@@ -36,7 +36,7 @@ export function useDocumentUpdate({ id }) {
     })
   }
   const mutation = useMutationWithNotification({
-    mutationFn: updateMediaItem,
+    mutationFn: updateDocument,
     redirectTo: `/${sitename}/dashboard/${MEDIA}/${DOCUMENT_PATH}`,
     actionWord: 'updated',
     type: TYPE_DOCUMENT,

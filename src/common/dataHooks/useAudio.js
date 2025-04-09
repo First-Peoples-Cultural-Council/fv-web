@@ -54,7 +54,7 @@ export function useAudioCreate(options = {}) {
 
 export function useAudioUpdate({ id }) {
   const { sitename } = useParams()
-  const updateMediaItem = async (formData) => {
+  const updateAudio = async (formData) => {
     const data = audioForApi({ formData })
     api.audio.partialUpdate({
       id,
@@ -63,7 +63,7 @@ export function useAudioUpdate({ id }) {
     })
   }
   const mutation = useMutationWithNotification({
-    mutationFn: updateMediaItem,
+    mutationFn: updateAudio,
     redirectTo: `/${sitename}/dashboard/${MEDIA}/${AUDIO_PATH}`,
     actionWord: 'updated',
     type: TYPE_AUDIO,

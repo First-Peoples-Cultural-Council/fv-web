@@ -24,7 +24,7 @@ export function useImage({ id, edit = false }) {
 
 export function useImageUpdate({ id }) {
   const { sitename } = useParams()
-  const updateMediaItem = async (formData) => {
+  const updateImage = async (formData) => {
     const data = imageForApi({ formData })
     api.images.partialUpdate({
       id,
@@ -33,7 +33,7 @@ export function useImageUpdate({ id }) {
     })
   }
   const mutation = useMutationWithNotification({
-    mutationFn: updateMediaItem,
+    mutationFn: updateImage,
     redirectTo: `/${sitename}/dashboard/${MEDIA}/${IMAGE_PATH}`,
     actionWord: 'updated',
     type: TYPE_IMAGE,

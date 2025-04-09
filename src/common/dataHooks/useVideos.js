@@ -24,7 +24,7 @@ export function useVideo({ id, edit = false }) {
 
 export function useVideoUpdate({ id }) {
   const { sitename } = useParams()
-  const updateMediaItem = async (formData) => {
+  const updateVideo = async (formData) => {
     const data = videoForApi({ formData })
     api.videos.partialUpdate({
       id,
@@ -33,7 +33,7 @@ export function useVideoUpdate({ id }) {
     })
   }
   const mutation = useMutationWithNotification({
-    mutationFn: updateMediaItem,
+    mutationFn: updateVideo,
     redirectTo: `/${sitename}/dashboard/${MEDIA}/${VIDEO_PATH}`,
     actionWord: 'updated',
     type: TYPE_VIDEO,
