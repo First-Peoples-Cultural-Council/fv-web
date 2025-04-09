@@ -12,7 +12,6 @@ import joinRequests from 'services/api/joinRequests'
 import landingPage from 'services/api/landingpage'
 import languages from 'services/api/languages'
 import mail from 'services/api/mail'
-import media from 'services/api/media'
 import mySites from 'services/api/mySites'
 import pages from 'services/api/pages'
 import partsOfSpeech from 'services/api/partsOfSpeech'
@@ -44,7 +43,6 @@ export default {
   landingPage,
   languages,
   mail,
-  media,
   mySites,
   pages,
   partsOfSpeech,
