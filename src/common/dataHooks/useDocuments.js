@@ -6,8 +6,8 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 import api from 'services/api'
 import { DOCUMENT_PATH, TYPE_DOCUMENT, MEDIA } from 'common/constants'
 import {
-  mediaItemForEditing,
-  mediaItemForApi,
+  documentForEditing,
+  documentForApi,
 } from 'common/dataAdaptors/mediaAdaptors'
 import { isUUID } from 'common/utils/stringHelpers'
 
@@ -19,7 +19,7 @@ export function useDocument({ id, edit = false }) {
     ...{ enabled: !!isUUID(id) },
   })
   const formattedData = edit
-    ? mediaItemForEditing({ data: response?.data })
+    ? documentForEditing({ data: response?.data })
     : response?.data
 
   return { ...response, data: formattedData }
@@ -28,7 +28,7 @@ export function useDocument({ id, edit = false }) {
 export function useDocumentUpdate({ id }) {
   const { sitename } = useParams()
   const updateMediaItem = async (formData) => {
-    const data = mediaItemForApi({ formData })
+    const data = documentForApi({ formData })
     api.documents.partialUpdate({
       id,
       data,

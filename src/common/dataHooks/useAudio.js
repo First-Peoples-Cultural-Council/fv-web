@@ -5,10 +5,7 @@ import { useParams } from 'react-router-dom'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import api from 'services/api'
 import { AUDIO_PATH, TYPE_AUDIO, MEDIA } from 'common/constants'
-import {
-  mediaItemForEditing,
-  mediaItemForApi,
-} from 'common/dataAdaptors/mediaAdaptors'
+import { audioForEditing, audioForApi } from 'common/dataAdaptors/mediaAdaptors'
 import { isUUID } from 'common/utils/stringHelpers'
 
 export function useAudio({ id, edit = false }) {
@@ -19,7 +16,7 @@ export function useAudio({ id, edit = false }) {
     ...{ enabled: !!isUUID(id) },
   })
   const formattedData = edit
-    ? mediaItemForEditing({ data: response?.data })
+    ? audioForEditing({ data: response?.data })
     : response?.data
 
   return { ...response, data: formattedData }
@@ -58,7 +55,7 @@ export function useAudioCreate(options = {}) {
 export function useAudioUpdate({ id }) {
   const { sitename } = useParams()
   const updateMediaItem = async (formData) => {
-    const data = mediaItemForApi({ formData })
+    const data = audioForApi({ formData })
     api.audio.partialUpdate({
       id,
       data,
