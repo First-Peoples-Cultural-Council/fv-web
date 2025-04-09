@@ -9,13 +9,14 @@ import {
   mediaItemForEditing,
   mediaItemForApi,
 } from 'common/dataAdaptors/mediaAdaptors'
+import { isUUID } from 'common/utils/stringHelpers'
 
 export function useAudio({ id, edit = false }) {
   const { sitename } = useParams()
   const response = useQuery({
     queryKey: [AUDIO_PATH, sitename, id],
     queryFn: () => api.audio.get({ sitename, id }),
-    ...{ enabled: !!id },
+    ...{ enabled: !!isUUID(id) },
   })
   const formattedData = edit
     ? mediaItemForEditing({ data: response?.data })
