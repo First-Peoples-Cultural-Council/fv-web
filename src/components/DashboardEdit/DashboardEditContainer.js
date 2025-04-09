@@ -12,23 +12,22 @@ import {
   DOCUMENT_PATH,
   IMAGE_PATH,
   VIDEO_PATH,
-  TYPE_AUDIO,
-  TYPE_DOCUMENT,
-  TYPE_IMAGE,
-  TYPE_VIDEO,
 } from 'common/constants'
 
+import AudioCrud from 'components/AudioCrud'
 import CategoryCrud from 'components/CategoryCrud'
 import CharacterCrud from 'components/CharacterCrud'
 import DictionaryCrud from 'components/DictionaryCrud'
+import DocumentCrud from 'components/DocumentCrud'
 import GalleryCrud from 'components/GalleryCrud'
 import HomeCrud from 'components/HomeCrud'
+import ImageCrud from 'components/ImageCrud'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
 import StoryCrud from 'components/StoryCrud'
+import VideoCrud from 'components/VideoCrud'
 import WidgetCrud from 'components/WidgetCrud'
-import MediaEdit from 'components/MediaEdit'
 
 import DashboardAlphabet from 'components/DashboardAlphabet'
 import DashboardCategories from 'components/DashboardCategories'
@@ -118,6 +117,14 @@ function DashboardEditContainer() {
         />
         {/* Individual Edit Forms */}
         <Route
+          path={AUDIO_PATH}
+          element={
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <AudioCrud.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
           path="category"
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
@@ -134,6 +141,14 @@ function DashboardEditContainer() {
           }
         />
         <Route
+          path={DOCUMENT_PATH}
+          element={
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <DocumentCrud.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
           path="gallery"
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
@@ -146,6 +161,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <HomeCrud.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={IMAGE_PATH}
+          element={
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <ImageCrud.Container />
             </RequireAuth>
           }
         />
@@ -194,6 +217,14 @@ function DashboardEditContainer() {
           }
         />
         <Route
+          path={VIDEO_PATH}
+          element={
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
+              <VideoCrud.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
           path="widget"
           element={
             <Maintenance pageName="Widget editing">
@@ -208,40 +239,6 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DictionaryCrud.Container type={TYPE_WORD} />
-            </RequireAuth>
-          }
-        />
-        {/* Media edit routes */}
-        {/* Regexp not supported in v6. See: https://reactrouter.com/en/6.14.0/start/faq#what-happened-to-regexp-routes-paths */}
-        <Route
-          path={AUDIO_PATH}
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={TYPE_AUDIO} />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path={DOCUMENT_PATH}
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={TYPE_DOCUMENT} />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path={IMAGE_PATH}
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={TYPE_IMAGE} />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path={VIDEO_PATH}
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <MediaEdit.Container mediaType={TYPE_VIDEO} />
             </RequireAuth>
           }
         />
