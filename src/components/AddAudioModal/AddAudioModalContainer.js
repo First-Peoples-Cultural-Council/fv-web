@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import UploadAudio from 'components/UploadAudio'
+import AudioUploadForm from 'components/AudioCrud/AudioUploadForm'
 import SelectorAudio from 'components/SelectorAudio'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import AddMediaModalWrapper from 'components/AddMediaModalWrapper'
@@ -55,7 +55,7 @@ function AddAudioModalContainer({
     >
       <>
         {currentTab.id === 'upload-tab' && (
-          <UploadAudio setSelectedMedia={setSelectedItems} />
+          <AudioUploadForm setSelectedAudio={setSelectedItems} />
         )}
         {currentTab.id === 'search-tab' && (
           <SelectorAudio.Container

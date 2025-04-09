@@ -4,20 +4,17 @@ import { useQueryClient } from '@tanstack/react-query'
 import * as yup from 'yup'
 
 // FPCC
-import Header from 'components/Form/Header'
 import SubmitButtons from 'components/Form/SubmitButtons'
-import TextField from 'components/Form/TextField'
-import Audience from 'components/Form/Audience'
 import FileUploadField from 'components/Form/FileUploadField'
-import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
-import { SUPPORTED_AUDIO_EXTENSIONS, IMAGE_PATH } from 'common/constants'
+import { SUPPORTED_AUDIO_EXTENSIONS, AUDIO_PATH } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
 import { useAudioCreate } from 'common/dataHooks/useAudio'
+import AudioBaseForm from 'components/AudioCrud/AudioBaseForm'
 
-function UploadAudio({ setSelectedMedia }) {
+function AudioUploadForm({ setSelectedAudio }) {
   const { site } = useSiteStore()
   const [isUploading, setIsUploading] = useState(false)
   const [fileUploaded, setFileUploaded] = useState(false)
@@ -59,11 +56,11 @@ function UploadAudio({ setSelectedMedia }) {
   const { mutate } = useAudioCreate({
     onSuccess: (response) => {
       queryClient.invalidateQueries({
-        queryKey: [IMAGE_PATH, site?.sitename, response?.id],
+        queryKey: [AUDIO_PATH, site?.sitename, response?.id],
       })
       setIsUploading(false)
       setFileUploaded(true)
-      setSelectedMedia((oldArray) => [...oldArray, response?.id])
+      setSelectedAudio((oldArray) => [...oldArray, response?.id])
     },
   })
 
@@ -82,52 +79,23 @@ function UploadAudio({ setSelectedMedia }) {
       </div>
     </div>
   ) : (
-    <div id="UploadAudio" className="h-full text-left px-4">
-      <Header subtitle="Upload a new Audio file" />
+    <div id="AudioUploadForm" className="max-w-5xl pb-4 text-left mx-auto">
       <form onReset={reset}>
-        <div className="mt-2 grid grid-cols-12 gap-4">
-          <div className="col-span-12">
-            <TextField
-              label="Title"
-              nameId="title"
-              register={register}
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <TextField
-              label="Description"
-              nameId="description"
-              register={register}
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <TextField
-              label="Acknowledgements"
-              nameId="acknowledgement"
-              register={register}
-              errors={errors}
-            />
-          </div>
-          <div className="col-span-12">
-            <AutocompleteMultiple
-              label="Speakers"
-              nameId="speakers"
-              control={control}
-              options={speakerOptions}
-              placeholder="Find speakers to add.."
-            />
-          </div>
+        <div className="grid grid-cols-12 gap-2">
           <div className="col-span-12">
             <FileUploadField
-              label="Audio File"
+              label="Choose Audio File"
               nameId="audioFile"
               register={register}
               errors={errors}
             />
           </div>
-          <Audience control={control} errors={errors} />
+          <AudioBaseForm
+            register={register}
+            errors={errors}
+            control={control}
+            speakerOptions={speakerOptions}
+          />
           <div className="col-span-12 flex justify-end mt-2 px-6">
             {isUploading && (
               <SubmitButtons
@@ -153,8 +121,8 @@ function UploadAudio({ setSelectedMedia }) {
 // PROPTYPES
 const { func } = PropTypes
 
-UploadAudio.propTypes = {
-  setSelectedMedia: func,
+AudioUploadForm.propTypes = {
+  setSelectedAudio: func,
 }
 
-export default UploadAudio
+export default AudioUploadForm
