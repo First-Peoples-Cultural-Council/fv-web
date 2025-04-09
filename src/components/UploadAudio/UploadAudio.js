@@ -15,7 +15,7 @@ import { definitions } from 'common/utils/validationHelpers'
 import { usePeople } from 'common/dataHooks/usePeople'
 import { SUPPORTED_AUDIO_EXTENSIONS, IMAGE_PATH } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
-import { useAudioCreate } from 'common/dataHooks/useMedia'
+import { useAudioCreate } from 'common/dataHooks/useAudio'
 
 function UploadAudio({ setSelectedMedia }) {
   const { site } = useSiteStore()
