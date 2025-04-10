@@ -102,6 +102,7 @@ WidgetPresentation.propTypes = {
     WIDGET_CONTACT,
     WIDGET_GALLERY,
     WIDGET_IFRAME,
+    WIDGET_IMAGE,
     WIDGET_KEYBOARDS,
     WIDGET_LOGO,
     WIDGET_QUOTES,
@@ -110,6 +111,7 @@ WidgetPresentation.propTypes = {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
+    // WIDGET_VIDEO,
     WIDGET_WOTD,
   ]),
 }
