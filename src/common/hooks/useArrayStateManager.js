@@ -15,23 +15,19 @@ function useArrayStateManager({ maxItems }) {
       setSelectedItems([selectedItem])
       return
     }
-
     if (maxItems && selectedItems.length >= maxItems) {
       return
     }
-
     const hasItem = checkForItem(selectedItems, selectedItem)
     if (hasItem) {
       setSelectedItems(removeItemFromArray(selectedItems, selectedItem))
       return
     }
-
     setSelectedItems([...selectedItems, selectedItem])
   }
 
   const handleSelectArray = (newItems) => {
     const predicate = (a, b) => a.id === b.id
-
     const copy = [...selectedItems] // copy to avoid side effects
     // add all items from newItems array to copy array if they're not already present
     newItems.forEach((newItem) =>
@@ -50,6 +46,8 @@ function useArrayStateManager({ maxItems }) {
     handleRemoveItem: (item) =>
       setSelectedItems(removeItemFromArray(selectedItems, item)),
     isItemSelected: (item) => checkForItem(selectedItems, item),
+    isSubset: (subsetArray) =>
+      subsetArray.every((el) => selectedItems.includes(el)),
   }
 }
 

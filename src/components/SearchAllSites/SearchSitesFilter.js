@@ -22,6 +22,7 @@ function SearchSitesFilter() {
     handleSelectArray,
     handleRemoveItem,
     isItemSelected,
+    isSubset,
   } = useArrayStateManager({ maxItems: 50 })
 
   const { data } = useLanguages({
@@ -36,7 +37,13 @@ function SearchSitesFilter() {
   }
 
   const generateListItem = ({ item }) => {
-    const selected = isItemSelected(item)
+    let selected = isItemSelected(item)
+    if (item?.sites?.length > 0) {
+      if (isSubset(item?.sites)) {
+        selected = true
+      }
+    }
+
     return (
       <div className="inline-flex items-center space-x-2">
         <span
@@ -63,7 +70,7 @@ function SearchSitesFilter() {
           <div className="relative text-charcoal-700">
             <div className="relative">
               <ComboboxInput
-                className="opacity-100 relative w-full cursor-default block border border-blumine-500 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800"
+                className="opacity-100 relative w-full cursor-default block border border-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800"
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search languages"
               />
@@ -86,20 +93,28 @@ function SearchSitesFilter() {
                 ) : (
                   options?.map((option) => (
                     <div key={option?.id}>
-                      <ComboboxOption
-                        className="cursor-default select-none py-2 px-4 data-[focus]:bg-charcoal-100"
-                        value={option?.sites}
-                      >
-                        {() => generateListItem({ item: option })}
-                      </ComboboxOption>
+                      {!option?.noLanguageAssigned && (
+                        <ComboboxOption
+                          className="cursor-default select-none py-2 px-4 data-[focus]:bg-charcoal-100"
+                          value={option.sites}
+                        >
+                          {({ selected }) =>
+                            generateListItem({ item: option, selected })
+                          }
+                        </ComboboxOption>
+                      )}
                       {option?.sites?.length > 0 &&
                         option?.sites?.map((site) => (
                           <ComboboxOption
                             key={site?.id}
-                            className="cursor-default select-none py-2 pl-8 pr-4 data-[focus]:bg-charcoal-100"
+                            className={`${
+                              site?.language ? 'pl-8 pr-4' : 'px-4'
+                            } cursor-default select-none py-2 data-[focus]:bg-charcoal-100`}
                             value={[site]}
                           >
-                            {() => generateListItem({ item: site })}
+                            {({ selected }) =>
+                              generateListItem({ item: site, selected })
+                            }
                           </ComboboxOption>
                         ))}
                     </div>
@@ -131,11 +146,11 @@ function SearchSitesFilter() {
             <button
               data-testid="clear-site-filters-btn"
               type="button"
-              className="btn-contained justify-start pl-0 bg-white shadow-none mt-2"
+              className="btn-contained justify-start pl-0 text-blumine-800 bg-white shadow-none mt-2"
               onClick={() => setSelectedItems([])}
             >
-              {getIcon('ChevronLeft', 'btn-icon h-8 w-8 text-blumine-500')}
-              <span className="text-black">Clear</span>
+              {getIcon('ChevronLeft', 'btn-icon h-8 w-8 fill-current')}
+              <span className="">Clear all</span>
             </button>
           </div>
         )}
