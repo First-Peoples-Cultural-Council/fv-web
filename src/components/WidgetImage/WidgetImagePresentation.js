@@ -18,7 +18,7 @@ function WidgetImagePresentation({ widgetData }) {
     ) : null
 
   return (
-    <section className="w-full" data-testid="WidgetImageVideoPresentation">
+    <section className="w-full" data-testid="WidgetImagePresentation">
       <div className="rounded overflow-hidden flex flex-col mx-auto max-w-2xl">
         <div className="flex flex-col mx-auto overflow-hidden px-6 md:px-0 pt-6">
           {getImageElement()}
