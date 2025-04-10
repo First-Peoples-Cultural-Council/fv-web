@@ -51,12 +51,12 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
                   return (
                     <div
                       key={key}
-                      className="py-3 flex justify-between text-sm font-medium"
+                      className="py-3 grid grid-cols-3 gap-1 text-sm font-medium"
                     >
-                      <dt className="text-charcoal-500 capitalize">
+                      <dt className="col-span-1 text-charcoal-500 capitalize truncate">
                         {key === 'mimeType' ? 'File Type' : key}
                       </dt>
-                      <dd className="text-charcoal-900 truncate pl-8">
+                      <dd className="col-span-2 text-charcoal-900">
                         {file[key]}
                       </dd>
                     </div>

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
 
 // FPCC
-import { useVideoObject } from 'common/dataHooks/useMedia'
+import { useVideo } from 'common/dataHooks/useVideos'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { VIDEO, ORIGINAL } from 'common/constants'
+import { TYPE_VIDEO, ORIGINAL } from 'common/constants'
 
 function VideoThumbnail({
   id,
@@ -14,22 +13,23 @@ function VideoThumbnail({
   videoObject,
   ...other
 }) {
-  const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
-  const mediaObject = useVideoObject({ sitename, id })
+  const videoQueryResponse = useVideo({ id })
+  const fetchedVideoObject = videoQueryResponse?.data
+
   useEffect(() => {
-    if (videoObject || mediaObject?.original) {
+    if (videoObject || fetchedVideoObject?.original) {
       const srcToUse = getMediaPath({
-        mediaObject: videoObject || mediaObject,
+        mediaObject: videoObject || fetchedVideoObject,
         size: ORIGINAL,
-        type: VIDEO,
+        type: TYPE_VIDEO,
       })
       if (srcToUse !== src) {
         setSrc(srcToUse)
       }
     }
-  }, [src, setSrc, mediaObject, videoObject])
+  }, [src, setSrc, fetchedVideoObject, videoObject])
 
   return (
     <div className={containerStyles}>

@@ -12,7 +12,7 @@ export const MEDIUM = 'medium'
 export const THUMBNAIL = 'thumbnail'
 
 // Supported Extensions
-export const SUPPORTED_AUDIO_EXTENSIONS = ['wav', 'mp3']
+export const SUPPORTED_AUDIO_EXTENSIONS = ['wav', 'mp3', 'oga', 'opus', 'weba']
 export const SUPPORTED_DOCUMENT_EXTENSIONS = ['pdf', 'csv', 'txt', 'rtf']
 export const SUPPORTED_IMAGE_EXTENSIONS = [
   'jpeg',

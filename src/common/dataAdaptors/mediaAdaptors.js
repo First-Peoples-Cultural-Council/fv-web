@@ -39,22 +39,44 @@ const baseMediaAdaptor = ({ data }) => {
   return formattedData
 }
 
-export const mediaItemForEditing = ({ data }) => {
+export const audioForEditing = ({ data }) => {
   const formattedData = {
     ...baseMediaAdaptor({ data }),
     ...audienceForEditing({ item: data }),
     speakers: objectsToIdsAdaptor(data?.speakers),
   }
-
   return formattedData
 }
 
-export const mediaItemForApi = ({ formData }) => {
+export const audioForApi = ({ formData }) => {
   const formattedEntry = {
     ...baseMediaAdaptor({ data: formData }),
     ...audienceForApi({ item: formData }),
     speakers: formData?.speakers || [],
   }
-
   return formattedEntry
 }
+
+export const documentForEditing = ({ data }) => baseMediaAdaptor({ data })
+export const documentForApi = ({ formData }) =>
+  baseMediaAdaptor({ data: formData })
+
+export const imageForEditing = ({ data }) => {
+  const formattedData = {
+    ...baseMediaAdaptor({ data }),
+    ...audienceForEditing({ item: data }),
+  }
+  return formattedData
+}
+
+export const imageForApi = ({ formData }) => {
+  const formattedEntry = {
+    ...baseMediaAdaptor({ data: formData }),
+    ...audienceForApi({ item: formData }),
+  }
+  return formattedEntry
+}
+
+export const videoForEditing = ({ data }) => baseMediaAdaptor({ data })
+export const videoForApi = ({ formData }) =>
+  baseMediaAdaptor({ data: formData })

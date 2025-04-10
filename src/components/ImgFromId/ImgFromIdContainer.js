@@ -2,29 +2,25 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import { useImageObject } from 'common/dataHooks/useMedia'
+import { useImage } from 'common/dataHooks/useImages'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { IMAGE, MEDIUM } from 'common/constants'
+import { TYPE_IMAGE, MEDIUM } from 'common/constants'
 
-function ImgFromIdContainer(props) {
-  // mockData has been added to props in this component to allow for the Landing page data
-  // to be stored in the FE. When we refactor for data to come from the BE again, this can be removed
-  const {
-    mockData,
-    id,
-    alt,
-    className = 'w-full h-full object-contain',
-    ...other
-  } = props
+function ImgFromIdContainer({
+  id,
+  alt,
+  className = 'w-full h-full object-contain',
+}) {
   const [src, setSrc] = useState('')
 
-  const imageObject = useImageObject({ id })
+  const imageQueryResponse = useImage({ id })
+  const imageObject = imageQueryResponse?.data
 
   useEffect(() => {
     if (imageObject?.original) {
       const srcToUse = getMediaPath({
         mediaObject: imageObject,
-        type: IMAGE,
+        type: TYPE_IMAGE,
         size: MEDIUM,
       })
       if (srcToUse !== src) {
@@ -33,24 +29,15 @@ function ImgFromIdContainer(props) {
     }
   }, [src, setSrc, imageObject])
 
-  return (
-    <img
-      src={mockData ? id : src}
-      alt={alt || imageObject?.title}
-      className={className}
-      {...other}
-    />
-  )
+  return <img src={src} alt={alt || imageObject?.title} className={className} />
 }
 
 // PROPTYPES
-const { string, bool } = PropTypes
+const { string } = PropTypes
 ImgFromIdContainer.propTypes = {
   id: string,
-  size: string,
   alt: string,
   className: string,
-  mockData: bool,
 }
 
 export default ImgFromIdContainer

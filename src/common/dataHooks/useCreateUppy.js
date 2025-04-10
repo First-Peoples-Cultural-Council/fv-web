@@ -12,21 +12,26 @@ import '@uppy/dashboard/dist/style.css'
 import '@uppy/image-editor/dist/style.css'
 
 // FPCC
+import GlobalConfiguration from 'src/GlobalConfiguration'
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
-import api from 'services/api'
 import { getFileExtensions } from 'common/utils/stringHelpers'
 import {
   getPathForMediaType,
   getSupportedExtensionsForMediaType,
 } from 'common/utils/mediaHelpers'
 import { useSiteStore } from 'context/SiteContext'
-import { TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
+import { TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO, SITES } from 'common/constants'
 
 function useCreateUppy({ maxItems, setSelectedMedia, type }) {
   const { site } = useSiteStore()
 
   const extensionList = getSupportedExtensionsForMediaType(type)
   const mediaTypePath = getPathForMediaType(type)
+
+  const uploadEndpoint = new URL(
+    `${SITES}/${site?.sitename}/${mediaTypePath}`,
+    GlobalConfiguration.API_URL,
+  )
 
   // IMPORTANT: passing an initializer function to prevent Uppy from being reinstantiated on every render.
   const [uppy] = useState(() =>
@@ -81,10 +86,7 @@ function useCreateUppy({ maxItems, setSelectedMedia, type }) {
         },
       })
       .use(XHR, {
-        endpoint: api.media.getUploadEndpoint({
-          sitename: site?.sitename,
-          mediaTypePath,
-        }),
+        endpoint: uploadEndpoint.href,
         fieldName: 'original',
         formData: true,
         headers: getAuthHeaderIfTokenExists(),
