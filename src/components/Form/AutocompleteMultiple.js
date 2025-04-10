@@ -15,7 +15,7 @@ import getIcon from 'common/utils/getIcon'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
-function Autocomplete({
+function AutocompleteMultiple({
   control,
   disabled = false,
   placeholder,
@@ -40,7 +40,7 @@ function Autocomplete({
         )
 
   return (
-    <Fragment key="FormAutocomplete">
+    <Fragment key="FormAutocompleteMultiple">
       <FieldLabel nameId={nameId} text={label} />
       <div className="w-full">
         <Controller
@@ -146,7 +146,7 @@ function Autocomplete({
 }
 // PROPTYPES
 const { any, arrayOf, bool, object, shape, string } = PropTypes
-Autocomplete.propTypes = {
+AutocompleteMultiple.propTypes = {
   disabled: bool,
   label: string,
   nameId: string.isRequired,
@@ -156,4 +156,4 @@ Autocomplete.propTypes = {
   helpText: string,
 }
 
-export default Autocomplete
+export default AutocompleteMultiple

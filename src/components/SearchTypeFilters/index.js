@@ -1,0 +1,3 @@
+import SearchTypeFilters from 'components/SearchTypeFilters/SearchTypeFiltersPresentation'
+
+export default SearchTypeFilters

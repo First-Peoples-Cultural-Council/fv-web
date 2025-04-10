@@ -15,7 +15,7 @@ function AddAudioModalContainer({
   modalOpen,
   closeModal,
 }) {
-  const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
+  const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
     useArrayStateManager({ maxItems })
 
   // Clear the Selected items when the modal closes
@@ -61,7 +61,7 @@ function AddAudioModalContainer({
           <SelectorAudio.Container
             formMedia={formMedia}
             selectedMedia={selectedItems}
-            mediaSelectHandler={handleSelectAdditionalItems}
+            mediaSelectHandler={handleSelectAdditionalItem}
           />
         )}
       </>

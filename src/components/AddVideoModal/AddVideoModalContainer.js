@@ -18,7 +18,7 @@ function AddVideoModalContainer({
   modalOpen,
   closeModal,
 }) {
-  const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
+  const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
     useArrayStateManager({ maxItems })
 
   // Clear the Selected items when the modal closes
@@ -80,7 +80,7 @@ function AddVideoModalContainer({
           <SelectorVideos.Container
             formMedia={formMedia}
             selectedMedia={selectedItems}
-            mediaSelectHandler={handleSelectAdditionalItems}
+            mediaSelectHandler={handleSelectAdditionalItem}
           />
         )}
         {currentTab.id === 'video-link-tab' && (
