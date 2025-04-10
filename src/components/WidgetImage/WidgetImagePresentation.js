@@ -8,14 +8,14 @@ function WidgetImagePresentation({ widgetData }) {
   const { caption, image } = widgetData.settings
 
   const getImageElement = () =>
-    image ? <ImgFromId.Container className="w-full" id={image} /> : null
+    image && <ImgFromId.Container className="w-full" id={image} />
 
   const getCaptionElement = () =>
-    caption ? (
+    caption && (
       <div className="flex flex-wrap">
         <span className="font-bold">Caption:</span> {caption}
       </div>
-    ) : null
+    )
 
   return (
     <section className="w-full" data-testid="WidgetImagePresentation">
