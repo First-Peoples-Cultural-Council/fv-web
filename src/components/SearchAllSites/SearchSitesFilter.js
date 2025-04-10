@@ -65,7 +65,7 @@ function SearchSitesFilter() {
 
   return (
     <div data-testid="FormSearchSitesFilter" className="w-full">
-      <div className="space-y-6 mx-2 xl:ml-8 xl:pr-8">
+      <div className="lg:space-y-6 mx-2 xl:ml-8 xl:pr-8">
         <Combobox value={selectedItems} onChange={onLanguageSelect} multiple>
           <div className="relative text-charcoal-700">
             <div className="relative">
@@ -128,7 +128,10 @@ function SearchSitesFilter() {
           <div>
             <ul className="space-y-2">
               {selectedItems?.map((siteFilter) => (
-                <li key={siteFilter?.id} className="block">
+                <li
+                  key={siteFilter?.id}
+                  className="inline-flex mr-2 lg:mr-0 lg:block"
+                >
                   <button
                     data-testid={`remove-site-btn-${siteFilter?.slug}`}
                     type="button"
