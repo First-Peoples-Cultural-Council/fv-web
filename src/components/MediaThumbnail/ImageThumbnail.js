@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
 
 // FPCC
-import { useMediaObject } from 'common/dataHooks/useMedia'
+import { useImage } from 'common/dataHooks/useImages'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { TYPE_IMAGE, IMAGE, SMALL } from 'common/constants'
+import { TYPE_IMAGE, SMALL } from 'common/constants'
 
 function ImageThumbnail({
   id,
@@ -14,23 +13,17 @@ function ImageThumbnail({
   imageObject,
   ...other
 }) {
-  const { sitename } = useParams()
   const [src, setSrc] = useState()
 
-  const mediaQueryResponse = useMediaObject({
-    sitename,
-    id,
-    mediaType: TYPE_IMAGE,
-  })
-
-  const fetchedImageObject = mediaQueryResponse?.data
+  const imageQueryResponse = useImage({ id })
+  const fetchedImageObject = imageQueryResponse?.data
 
   useEffect(() => {
     if (imageObject || fetchedImageObject?.original) {
       const srcToUse = getMediaPath({
         mediaObject: imageObject || fetchedImageObject,
         size: SMALL,
-        type: IMAGE,
+        type: TYPE_IMAGE,
       })
       if (srcToUse !== src) {
         setSrc(srcToUse)

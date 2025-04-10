@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router-dom'
 
 // FPCC
-import { useMediaObject } from 'common/dataHooks/useMedia'
+import { useVideo } from 'common/dataHooks/useVideos'
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { TYPE_VIDEO, VIDEO, ORIGINAL } from 'common/constants'
+import { TYPE_VIDEO, ORIGINAL } from 'common/constants'
 
 function VideoThumbnail({
   id,
@@ -14,22 +13,17 @@ function VideoThumbnail({
   videoObject,
   ...other
 }) {
-  const { sitename } = useParams()
   const [src, setSrc] = useState('')
 
-  const mediaQueryResponse = useMediaObject({
-    sitename,
-    id,
-    mediaType: TYPE_VIDEO,
-  })
-  const fetchedVideoObject = mediaQueryResponse?.data
+  const videoQueryResponse = useVideo({ id })
+  const fetchedVideoObject = videoQueryResponse?.data
 
   useEffect(() => {
     if (videoObject || fetchedVideoObject?.original) {
       const srcToUse = getMediaPath({
         mediaObject: videoObject || fetchedVideoObject,
         size: ORIGINAL,
-        type: VIDEO,
+        type: TYPE_VIDEO,
       })
       if (srcToUse !== src) {
         setSrc(srcToUse)

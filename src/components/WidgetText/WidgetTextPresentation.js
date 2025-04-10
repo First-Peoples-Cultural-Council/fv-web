@@ -6,14 +6,13 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import AudioButton from 'components/AudioButton'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImgFromId from 'components/ImgFromId'
-import { useMediaObject } from 'common/dataHooks/useMedia'
+import { useImage } from 'common/dataHooks/useImages'
+import { useAudio } from 'common/dataHooks/useAudio'
 import {
   FIRSTVOICESLINK,
   FORMAT_LEFT,
   FORMAT_RIGHT,
   FORMAT_DEFAULT,
-  TYPE_AUDIO,
-  TYPE_IMAGE,
   IMAGE,
   MEDIUM,
 } from 'common/constants'
@@ -33,29 +32,22 @@ function WidgetTextPresentation({ widgetData }) {
   const { sitename } = widgetData
   const format = widgetData?.format || FORMAT_LEFT
 
-  const imageQueryResponse = useMediaObject({
-    id: bgImage,
-    mediaType: TYPE_IMAGE,
-  })
+  const imageQueryResponse = useImage({ id: bgImage })
   const bgImageObject = imageQueryResponse?.data
 
-  const audioQueryResponse = useMediaObject({
-    id: audio,
-    mediaType: TYPE_AUDIO,
-  })
+  const audioQueryResponse = useAudio({ id: audio })
   const audioObject = audioQueryResponse?.data
+  const imgStyling = 'w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover'
 
-  const getImageElement = () =>
-    image ? (
-      <div className="md:w-1/2 overflow-hidden inline-flex items-center">
-        <ImgFromId.Container
-          className="w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover"
-          id={image}
-          alt={title}
-          mockData={mockData}
-        />
-      </div>
-    ) : null
+  const getImageElement = () => (
+    <div className="md:w-1/2 overflow-hidden inline-flex items-center">
+      {mockData ? (
+        <img src={image} alt={title} className={imgStyling} />
+      ) : (
+        <ImgFromId.Container id={image} alt={title} className={imgStyling} />
+      )}
+    </div>
+  )
 
   const getTextElement = () => (
     <div

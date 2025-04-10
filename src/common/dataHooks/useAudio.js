@@ -3,32 +3,23 @@ import { useParams } from 'react-router-dom'
 
 // FPCC
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import { MEDIA } from 'common/constants'
-import {
-  mediaItemForEditing,
-  mediaItemForApi,
-} from 'common/dataAdaptors/mediaAdaptors'
-import { getPathForMediaType } from 'common/utils/mediaHelpers'
 import api from 'services/api'
+import { AUDIO_PATH, TYPE_AUDIO, MEDIA } from 'common/constants'
+import { audioForEditing, audioForApi } from 'common/dataAdaptors/mediaAdaptors'
+import { isUUID } from 'common/utils/stringHelpers'
 
-export function useMediaObject({ id, mediaType, edit = false }) {
-  // General function to fetch details of all media types
+export function useAudio({ id, edit = false }) {
   const { sitename } = useParams()
-
   const response = useQuery({
-    queryKey: [mediaType, sitename, id],
-    queryFn: () => api.media.get({ sitename, id, mediaType }),
-    ...{ enabled: !!id },
+    queryKey: [AUDIO_PATH, sitename, id],
+    queryFn: () => api.audio.get({ sitename, id }),
+    ...{ enabled: !!isUUID(id) },
   })
-
   const formattedData = edit
-    ? mediaItemForEditing({ data: response?.data })
+    ? audioForEditing({ data: response?.data })
     : response?.data
 
-  return {
-    ...response,
-    data: formattedData,
-  }
+  return { ...response, data: formattedData }
 }
 
 export function useAudioCreate(options = {}) {
@@ -37,7 +28,6 @@ export function useAudioCreate(options = {}) {
     // Audience flags
     const excludeFromGames = formData?.includeInGames === 'false'
     const excludeFromKids = formData?.includeInKids === 'false'
-
     const data = new FormData()
     data.append('title', formData?.title)
     data.append('description', formData?.description)
@@ -46,17 +36,14 @@ export function useAudioCreate(options = {}) {
     data.append('excludeFromKids', excludeFromKids)
     data.append('isShared', formData?.isShared)
     data.append('original', formData?.audioFile?.[0])
-
     formData?.speakers.forEach((speaker) => {
       data.append('speakers', speaker)
     })
-
     return api.media.createAudio({
       sitename,
       data,
     })
   }
-
   const mutation = useMutation({
     mutationFn: createJoinRequest,
     ...options,
@@ -65,51 +52,41 @@ export function useAudioCreate(options = {}) {
   return mutation
 }
 
-export function useMediaDelete({ mediaType }) {
+export function useAudioUpdate({ id }) {
   const { sitename } = useParams()
-
-  const deleteMediaFile = async (id) =>
-    api.media.delete({
+  const updateAudio = async (formData) => {
+    const data = audioForApi({ formData })
+    api.audio.partialUpdate({
       id,
+      data,
       sitename,
-      mediaType,
     })
+  }
   const mutation = useMutationWithNotification({
-    mutationFn: deleteMediaFile,
+    mutationFn: updateAudio,
+    redirectTo: `/${sitename}/dashboard/${MEDIA}/${AUDIO_PATH}`,
+    actionWord: 'updated',
+    type: TYPE_AUDIO,
+    queryKeyToInvalidate: [AUDIO_PATH, sitename, id],
+  })
+  const onSubmit = (formData) => {
+    mutation.mutate(formData)
+  }
+
+  return { ...mutation, onSubmit }
+}
+
+export function useAudioDelete() {
+  const { sitename } = useParams()
+  const mutation = useMutationWithNotification({
+    mutationFn: async (id) => api.audio.delete({ id, sitename }),
     actionWord: 'deleted',
-    type: mediaType,
+    type: TYPE_AUDIO,
     refresh: true,
   })
   const onSubmit = (id) => {
     mutation.mutate(id)
   }
-  return { onSubmit }
-}
 
-export function useMediaUpdate({ mediaType, id }) {
-  const { sitename } = useParams()
-  const mediaTypePath = getPathForMediaType(mediaType)
-
-  const updateMediaItem = async (formData) => {
-    const data = mediaItemForApi({ formData })
-    api.media.update({
-      id,
-      data,
-      mediaType,
-      sitename,
-    })
-  }
-
-  const mutation = useMutationWithNotification({
-    mutationFn: updateMediaItem,
-    redirectTo: `/${sitename}/dashboard/${MEDIA}/${mediaTypePath}`,
-    actionWord: 'updated',
-    type: 'media item',
-    queryKeyToInvalidate: [mediaType, sitename, id],
-  })
-
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
-  }
-  return { onSubmit }
+  return { ...mutation, onSubmit }
 }
