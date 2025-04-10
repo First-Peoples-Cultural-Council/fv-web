@@ -16,7 +16,6 @@ import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 import { EditorState } from 'draft-js'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
-  console.log({ dataToEdit })
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_TEXT]),

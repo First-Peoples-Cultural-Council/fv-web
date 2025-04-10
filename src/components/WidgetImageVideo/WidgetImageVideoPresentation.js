@@ -4,20 +4,11 @@ import PropTypes from 'prop-types'
 // FPCC
 import ImgFromId from 'components/ImgFromId'
 
-function WidgetImageVideoPresentation({ widgetData }) {
-  console.log({ widgetData })
+function WidgetImagePresentation({ widgetData }) {
   const { caption, image } = widgetData.settings
 
   const getImageElement = () =>
-    image ? (
-      //   <div className="overflow-hidden inline-flex items-center w-auto">
-      <ImgFromId.Container
-        // className="h-auto w-auto object-cover mx-auto"
-        className="w-full"
-        id={image}
-      />
-    ) : //   </div>
-    null
+    image ? <ImgFromId.Container className="w-full" id={image} /> : null
 
   const getCaptionElement = () =>
     caption ? (
@@ -40,13 +31,12 @@ function WidgetImageVideoPresentation({ widgetData }) {
 
 // PROPTYPES
 const { string, shape } = PropTypes
-WidgetImageVideoPresentation.propTypes = {
+WidgetImagePresentation.propTypes = {
   widgetData: shape({
     settings: shape({
-      textWithFormatting: string,
       image: string,
     }),
   }),
 }
 
-export default WidgetImageVideoPresentation
+export default WidgetImagePresentation

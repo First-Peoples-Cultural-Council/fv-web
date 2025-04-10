@@ -1,5 +1,5 @@
-import WidgetImageVideoPresentation from 'components/WidgetImageVideo/WidgetImageVideoPresentation'
+import WidgetImagePresentation from 'components/WidgetImageVideo/WidgetImageVideoPresentation'
 
 export default {
-  Presentation: WidgetImageVideoPresentation,
+  Presentation: WidgetImagePresentation,
 }

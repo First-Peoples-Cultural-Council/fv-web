@@ -17,7 +17,7 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  WIDGET_VIDEO,
+  // WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
 
@@ -26,7 +26,7 @@ import WidgetApps from 'components/WidgetApps'
 import WidgetContactUs from 'components/WidgetContactUs'
 import Gallery from 'components/Gallery'
 import WidgetIframe from 'components/WidgetIframe'
-import WidgetImageVideo from 'components/WidgetImageVideo'
+import WidgetImage from 'components/WidgetImageVideo'
 import WidgetKeyboards from 'components/WidgetKeyboards'
 import WidgetLogo from 'components/WidgetLogo'
 import WidgetQuotes from 'components/WidgetQuotes'
@@ -55,7 +55,7 @@ function WidgetPresentation({ data, type }) {
       return <WidgetIframe.Presentation widgetData={data} />
 
     case WIDGET_IMAGE:
-      return <WidgetImageVideo.Presentation widgetData={data} />
+      return <WidgetImage.Presentation widgetData={data} />
 
     case WIDGET_KEYBOARDS:
       return <WidgetKeyboards.Container widgetData={data} />
@@ -81,8 +81,8 @@ function WidgetPresentation({ data, type }) {
     case WIDGET_TEXTICONS:
       return <WidgetTextIcons.Presentation widgetData={data} />
 
-    case WIDGET_VIDEO:
-      return <WidgetImageVideo.Presentation widgetData={data} />
+    // case WIDGET_VIDEO:
+    //   return <WidgetVideo.Presentation widgetData={data} />
 
     case WIDGET_WOTD:
       return <WidgetWordOfTheDay.Container />
