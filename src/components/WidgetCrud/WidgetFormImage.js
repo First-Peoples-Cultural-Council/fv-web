@@ -10,7 +10,6 @@ import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
-  // console.log({dataToEdit})
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
     image: definitions.uuid().required(),

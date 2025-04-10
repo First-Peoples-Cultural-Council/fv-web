@@ -1,8 +1,5 @@
 // FPCC
-import {
-  // getObjectFromSettingsArray,
-  getWidgetTypeLabel,
-} from 'common/utils/widgetHelpers'
+import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 
 export function widgetAdaptor({ widgetData, sitename }) {
