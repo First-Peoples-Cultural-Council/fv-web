@@ -6,6 +6,7 @@ import Apps from 'common/widgetIcons/Apps'
 import Calendar from 'common/widgetIcons/Calendar'
 import Camera from 'common/widgetIcons/Camera'
 import Default from 'common/icons/Categories'
+import Image from 'common/icons/Images'
 import ImageText from 'common/widgetIcons/ImageText'
 import Keyboard from 'common/widgetIcons/Keyboard'
 import Location from 'common/widgetIcons/Location'
@@ -14,6 +15,7 @@ import Quotation from 'common/icons/Quotation'
 import Mail from 'common/icons/Mail'
 import Statistics from 'common/widgetIcons/Statistics'
 import TextBlock from 'common/widgetIcons/TextBlock'
+import Video from 'common/widgetIcons/Video'
 
 const recognisedCategories = {
   WIDGET_ALPHABET: Alphabet,
@@ -21,6 +23,7 @@ const recognisedCategories = {
   WIDGET_CONTACT: Mail,
   WIDGET_GALLERY: Camera,
   WIDGET_IFRAME: Location,
+  WIDGET_IMAGE: Image,
   WIDGET_KEYBOARDS: Keyboard,
   WIDGET_LOGO: About,
   WIDGET_QUOTES: Quotation,
@@ -29,6 +32,7 @@ const recognisedCategories = {
   WIDGET_TEXTCONCISE: Lines,
   WIDGET_TEXTFULL: TextBlock,
   WIDGET_TEXTICONS: ImageText,
+  WIDGET_VIDEO: Video,
   WIDGET_WOTD: Calendar,
 }
 
