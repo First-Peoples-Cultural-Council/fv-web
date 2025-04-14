@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import {
   Combobox,
   ComboboxInput,
@@ -12,9 +12,14 @@ import {
 import getIcon from 'common/utils/getIcon'
 import { useLanguages } from 'common/dataHooks/useLanguages'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
+import useSearchParamsState from 'common/hooks/useSearchParamsState'
+import { SITES } from 'common/constants'
 
 function SearchSitesFilter() {
-  const [query, setQuery] = useState('')
+  const [sitesInUrl, setSitesInUrl] = useSearchParamsState({
+    searchParamName: SITES,
+    defaultValue: '',
+  })
 
   const {
     selectedItems,
@@ -25,6 +30,17 @@ function SearchSitesFilter() {
     isSubset,
   } = useArrayStateManager({ maxItems: 50 })
 
+  // This is to keep selectedItems and sitesInUrl in sync
+  useEffect(() => {
+    const siteSlugsArray = selectedItems?.map((site) => site?.slug)
+    const siteSlugsString = siteSlugsArray?.join()
+
+    if (sitesInUrl !== siteSlugsString) {
+      setSitesInUrl(siteSlugsString)
+    }
+  }, [selectedItems, sitesInUrl, setSitesInUrl])
+
+  const [query, setQuery] = useState('')
   const { data } = useLanguages({
     query,
   })
@@ -53,10 +69,10 @@ function SearchSitesFilter() {
         >
           {getIcon(
             selected ? 'Checkmark' : '',
-            'h-3 w-3 fill-current text-white',
+            'h-2 w-2 fill-current text-white',
           )}
         </span>
-        <span className="inline-flex truncate data-[focus]:font-bold">
+        <span className="inline-flex truncate data-[focus]:font-bold text-sm text-charcoal-900">
           {item?.title || item?.language}
         </span>
       </div>
@@ -95,7 +111,7 @@ function SearchSitesFilter() {
                     <div key={option?.id}>
                       {!option?.noLanguageAssigned && (
                         <ComboboxOption
-                          className="cursor-default select-none py-2 px-4 data-[focus]:bg-charcoal-100"
+                          className="cursor-default select-none p-2 data-[focus]:bg-charcoal-100"
                           value={option.sites}
                         >
                           {({ selected }) =>
@@ -108,7 +124,7 @@ function SearchSitesFilter() {
                           <ComboboxOption
                             key={site?.id}
                             className={`${
-                              site?.language ? 'pl-8 pr-4' : 'px-4'
+                              site?.language ? 'pl-6 pr-2' : 'px-2'
                             } cursor-default select-none py-2 data-[focus]:bg-charcoal-100`}
                             value={[site]}
                           >
@@ -138,7 +154,7 @@ function SearchSitesFilter() {
                     onClick={() => handleRemoveItem(siteFilter)}
                     className="btn-contained px-2 bg-blumine-100"
                   >
-                    <span className="text-charcoal-900">
+                    <span className="text-charcoal-900 text-sm">
                       {siteFilter?.title}
                     </span>
                     {getIcon('Close', 'btn-icon text-blumine-800')}
