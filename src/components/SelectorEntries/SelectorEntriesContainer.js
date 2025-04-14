@@ -19,7 +19,7 @@ function SelectorEntriesContainer({
 }) {
   const infiniteQueryResponse = useSearchModal({ types, visibility })
 
-  const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
+  const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
     useArrayStateManager({ maxItems: 30 })
 
   // Clear the Selected items when the modal closes
@@ -73,7 +73,7 @@ function SelectorEntriesContainer({
                       infiniteQueryResponse={infiniteQueryResponse}
                       formEntries={formEntries}
                       selectedItems={selectedItems}
-                      handleSelectAdditionalItems={handleSelectAdditionalItems}
+                      handleSelectAdditionalItem={handleSelectAdditionalItem}
                       types={types}
                     />
                   }
