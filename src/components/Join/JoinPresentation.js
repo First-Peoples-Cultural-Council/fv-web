@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'

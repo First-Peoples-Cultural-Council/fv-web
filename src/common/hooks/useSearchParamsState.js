@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 import { updateSearchParams } from 'common/utils/urlHelpers'
 
 // Allows us to update a param whilst maintaining any existing params stored in SearchParams

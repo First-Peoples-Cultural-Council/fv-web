@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'

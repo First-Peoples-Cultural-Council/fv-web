@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Controller } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router'
 
 // FPCC
 import Modal from 'components/Modal'
@@ -35,6 +35,7 @@ function GalleryField({ label, nameId, helpText, control, errors }) {
 
 function AddGalleryButton({ value, onChange }) {
   const [modalOpen, setModalOpen] = useState(false)
+  const { sitename } = useParams()
   const { data } = useGalleries()
 
   const chooseGalleryHandler = (id) => {
@@ -83,7 +84,10 @@ function AddGalleryButton({ value, onChange }) {
             <div className="text-xl text-center text-charcoal-900 mb-6">
               There are currently no galleries on your site. You can create a
               gallery{' '}
-              <Link to="../gallery" className="inline-url">
+              <Link
+                to={`/${sitename}/dashboard/create/gallery`}
+                className="inline-url"
+              >
                 here
               </Link>
               .

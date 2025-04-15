@@ -5,7 +5,7 @@ import DictionaryDetailPresentation from 'components/DictionaryDetail/Dictionary
 import DictionaryDetailPresentationDrawer from 'components/DictionaryDetail/DictionaryDetailPresentationDrawer'
 import DictionaryDetailPresentationKids from 'components/DictionaryDetail/DictionaryDetailPresentationKids'
 import LoadOrError from 'components/LoadOrError'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 function DictionaryDetailContainer({
   id,

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
 
 import ErrorHandler from 'components/ErrorHandler'
 import LEGACY_SITE_MAPPING from 'common/constants/legacySiteMapping'

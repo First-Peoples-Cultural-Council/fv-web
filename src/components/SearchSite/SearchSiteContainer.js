@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'

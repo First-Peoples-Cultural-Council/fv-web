@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useNavigate, useSearchParams, useParams } from 'react-router'
 
 // FPCC
 import {

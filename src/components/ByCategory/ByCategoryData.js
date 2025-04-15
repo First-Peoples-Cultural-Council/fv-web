@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams, useParams } from 'react-router-dom'
+import { useSearchParams, useParams } from 'react-router'
 import PropTypes from 'prop-types'
 
 // FPCC
