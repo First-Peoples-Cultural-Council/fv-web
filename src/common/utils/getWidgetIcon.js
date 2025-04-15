@@ -15,7 +15,7 @@ import Quotation from 'common/icons/Quotation'
 import Mail from 'common/icons/Mail'
 import Statistics from 'common/widgetIcons/Statistics'
 import TextBlock from 'common/widgetIcons/TextBlock'
-import Video from 'common/widgetIcons/Video'
+import Video from 'common/icons/Video'
 
 const recognisedCategories = {
   WIDGET_ALPHABET: Alphabet,
