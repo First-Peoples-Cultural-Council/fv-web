@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router'
 import PropTypes from 'prop-types'
 
 // FPCC

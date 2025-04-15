@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router'
 
 // FPCC
 import { useCharacters } from 'common/dataHooks/useCharacters'

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router'
 
 // FPCC
 import Drawer from 'components/Drawer'

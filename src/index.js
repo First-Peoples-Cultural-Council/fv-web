@@ -10,7 +10,7 @@ import {
   useNavigationType,
   createRoutesFromChildren,
   matchRoutes,
-} from 'react-router-dom'
+} from 'react-router'
 import { AuthProvider } from 'react-oidc-context'
 import { WebStorageStateStore } from 'oidc-client-ts'
 import * as Sentry from '@sentry/react'

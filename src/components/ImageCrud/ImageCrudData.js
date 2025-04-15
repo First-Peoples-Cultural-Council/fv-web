@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
 
 // FPCC
 import { useImage, useImageUpdate } from 'common/dataHooks/useImages'

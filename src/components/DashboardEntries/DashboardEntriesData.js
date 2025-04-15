@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 
 // FPCC
 import useSearchLoader from 'common/dataHooks/useSearchLoader'

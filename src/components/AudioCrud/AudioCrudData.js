@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
 
 // FPCC
 import { useAudio, useAudioUpdate } from 'common/dataHooks/useAudio'

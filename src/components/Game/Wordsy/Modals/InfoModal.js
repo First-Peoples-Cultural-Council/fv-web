@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router'
 
 // FPCC
 import Cell from 'components/Game/Wordsy/Grid/Cell'

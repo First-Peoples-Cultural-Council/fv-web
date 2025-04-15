@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router'
 
 // FPCC
 import RequireAuth from 'common/RequireAuth'

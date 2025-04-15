@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 // FPCC
 import api from 'services/api'

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 // FPCC
 import { useCategories } from 'common/dataHooks/useCategories'

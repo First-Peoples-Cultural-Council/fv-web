@@ -3,7 +3,7 @@ import React from 'react'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import PropTypes from 'prop-types'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'

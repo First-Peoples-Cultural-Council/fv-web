@@ -3,7 +3,7 @@ import {
   useNavigate,
   useParams,
   useSearchParams,
-} from 'react-router-dom'
+} from 'react-router'
 import PropTypes from 'prop-types'
 
 // FPCC

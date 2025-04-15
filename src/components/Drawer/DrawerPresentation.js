@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import PropTypes from 'prop-types'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import getIcon from 'common/utils/getIcon'
