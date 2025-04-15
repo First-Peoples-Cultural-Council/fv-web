@@ -13,11 +13,11 @@ import getIcon from 'common/utils/getIcon'
 import { useLanguages } from 'common/dataHooks/useLanguages'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
-import { SITES } from 'common/constants'
+import { SITES_FILTER } from 'common/constants'
 
 function SearchSitesFilter() {
   const [sitesInUrl, setSitesInUrl] = useSearchParamsState({
-    searchParamName: SITES,
+    searchParamName: SITES_FILTER,
     defaultValue: '',
   })
 
