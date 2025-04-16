@@ -14,6 +14,7 @@ import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
+import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import SiteDocHead from 'components/SiteDocHead'
 
@@ -219,6 +220,15 @@ function DictionaryDetailPresentation({
                 </ul>
               </div>
             )}
+          </section>
+          <section>
+            {/* Related Documents */}
+            <div className="py-2 md:p-4">
+              <RelatedDocumentsList.Presentation
+                documents={entry?.relatedDocuments || []}
+                labelStyling={labelStyling}
+              />
+            </div>
           </section>
         </div>
         {/* Pictures and Video */}
