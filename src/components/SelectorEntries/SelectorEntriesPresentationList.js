@@ -11,7 +11,7 @@ function SelectorEntriesPresentationList({
   infiniteQueryResponse,
   formEntries,
   selectedItems,
-  handleSelectAdditionalItems,
+  handleSelectAdditionalItem,
   types,
 }) {
   const [searchParams] = useSearchParams()
@@ -70,7 +70,7 @@ function SelectorEntriesPresentationList({
                       <tr
                         key={entry.id}
                         data-testid="SelectorEntriesRow"
-                        onClick={() => handleSelectAdditionalItems(entry)}
+                        onClick={() => handleSelectAdditionalItem(entry)}
                         className={
                           isSelected
                             ? 'ring-2 ring-jade-500 rounded-lg'
@@ -131,7 +131,7 @@ SelectorEntriesPresentationList.propTypes = {
   infiniteQueryResponse: object,
   formEntries: array,
   selectedItems: object,
-  handleSelectAdditionalItems: func,
+  handleSelectAdditionalItem: func,
   types: arrayOf(string),
 }
 
