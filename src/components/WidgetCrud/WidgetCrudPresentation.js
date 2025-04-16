@@ -8,6 +8,7 @@ import {
   WIDGET_CONTACT,
   WIDGET_GALLERY,
   WIDGET_IFRAME,
+  WIDGET_IMAGE,
   WIDGET_KEYBOARDS,
   WIDGET_LOGO,
   WIDGET_QUOTES,
@@ -16,11 +17,13 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
+  // WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
 import WidgetFormDefault from 'components/WidgetCrud/WidgetFormDefault'
 import WidgetFormContact from 'components/WidgetCrud/WidgetFormContact'
 import WidgetFormGallery from 'components/WidgetCrud/WidgetFormGallery'
+import WidgetFormImage from 'components/WidgetCrud/WidgetFormImage'
 import WidgetFormKeyboards from 'components/WidgetCrud/WidgetFormKeyboards'
 import WidgetFormLogo from 'components/WidgetCrud/WidgetFormLogo'
 import WidgetFormMaps from 'components/WidgetCrud/WidgetFormMaps'
@@ -29,6 +32,7 @@ import WidgetFormText from 'components/WidgetCrud/WidgetFormText'
 import WidgetFormTextConcise from 'components/WidgetCrud/WidgetFormTextConcise'
 import WidgetFormTextFull from 'components/WidgetCrud/WidgetFormTextFull'
 import WidgetFormTextIcons from 'components/WidgetCrud/WidgetFormTextIcons'
+// import WidgetFormVideo from 'components/WidgetCrud/WidgetFormVideo'
 import WidgetFormApps from 'components/WidgetCrud/WidgetFormApps'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import Form from 'components/Form'
@@ -178,6 +182,15 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
         />
       )
 
+    case WIDGET_IMAGE:
+      return (
+        <WidgetFormImage
+          cancelHandler={cancelHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
+        />
+      )
+
     case WIDGET_LOGO:
       return (
         <WidgetFormLogo
@@ -232,6 +245,15 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
         />
       )
 
+    // case WIDGET_VIDEO:
+    //   return (
+    //     <WidgetFormVideo
+    //       cancelHandler={cancelHandler}
+    //       dataToEdit={dataToEdit}
+    //       submitHandler={submitHandler}
+    //     />
+    //   )
+
     case WIDGET_IFRAME:
       return (
         <WidgetFormMaps
@@ -272,6 +294,7 @@ WidgetForm.propTypes = {
     WIDGET_APPS,
     WIDGET_CONTACT,
     WIDGET_GALLERY,
+    WIDGET_IMAGE,
     WIDGET_IFRAME,
     WIDGET_KEYBOARDS,
     WIDGET_LOGO,
@@ -281,6 +304,7 @@ WidgetForm.propTypes = {
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     WIDGET_TEXTICONS,
+    // WIDGET_VIDEO,
     WIDGET_WOTD,
   ]),
 }

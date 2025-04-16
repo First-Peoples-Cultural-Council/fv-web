@@ -6,6 +6,7 @@ import {
   WIDGET_CONTACT,
   WIDGET_GALLERY,
   WIDGET_IFRAME,
+  WIDGET_IMAGE,
   WIDGET_KEYBOARDS,
   WIDGET_LOGO,
   WIDGET_QUOTES,
@@ -14,6 +15,7 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
+  // WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
 
@@ -23,6 +25,7 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_CONTACT,
     WIDGET_GALLERY,
     WIDGET_IFRAME,
+    WIDGET_IMAGE,
     isSuperAdmin && WIDGET_KEYBOARDS,
     WIDGET_LOGO,
     WIDGET_QUOTES,
@@ -30,6 +33,7 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     isSuperAdmin && WIDGET_TEXTICONS,
+    // WIDGET_VIDEO,
   ].filter(Boolean)
 
 export const getCreatableWidgetsForUser = (isSuperAdmin) =>
@@ -39,6 +43,7 @@ export const getCreatableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_CONTACT,
     WIDGET_GALLERY,
     WIDGET_IFRAME,
+    WIDGET_IMAGE,
     isSuperAdmin && WIDGET_KEYBOARDS,
     WIDGET_LOGO,
     WIDGET_QUOTES,
@@ -47,16 +52,9 @@ export const getCreatableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     isSuperAdmin && WIDGET_TEXTICONS,
+    // WIDGET_VIDEO,
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
-
-export const getObjectFromSettingsArray = (settingsArray) => {
-  const settingsObject = {}
-  settingsArray?.forEach((setting) => {
-    settingsObject[setting?.key] = setting?.value
-  })
-  return settingsObject
-}
 
 export const getWidgetTypeLabel = (type) => {
   switch (type) {
@@ -70,6 +68,8 @@ export const getWidgetTypeLabel = (type) => {
       return 'Gallery'
     case WIDGET_IFRAME:
       return 'Map'
+    case WIDGET_IMAGE:
+      return 'Image'
     case WIDGET_KEYBOARDS:
       return 'Keyboard'
     case WIDGET_LOGO:
@@ -86,6 +86,8 @@ export const getWidgetTypeLabel = (type) => {
       return 'Page Text'
     case WIDGET_TEXTICONS:
       return 'Text with Icons'
+    // case WIDGET_VIDEO:
+    //   return 'Video'
     case WIDGET_WOTD:
       return 'Word of the Day'
     default:
