@@ -15,44 +15,39 @@ function RelatedDocumentsListPresentation({
         <thead>
           <tr>
             <th colSpan="2" className={`${labelStyling} pb-2`}>
-              Related Links/Documents
+              Related Documents
             </th>
           </tr>
-          <tr>
-            <th className="hidden">Title</th>
-            <th className="hidden">Link</th>
-          </tr>
         </thead>
-        <tbody>
-          {documents?.map((document, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
-            return (
-              <tr key={document?.id} className={zebraStripe}>
-                <td className="p-2">
-                  <span>
-                    {
-                      // display the document icon here
-                    }
-                  </span>
-                </td>
-                <td className="p-2">
-                  <span>{document?.title}</span>
-                </td>
-                <td className="p-2">
-                  <Link
-                    to={document?.original.path}
-                    // should be a download link to the document
-                    // display download icon below
-                  >
-                    {getIcon(
-                      'Download',
-                      'w-6 h-6 fill-current mr-3 inline-flex',
-                    )}
-                  </Link>
-                </td>
-              </tr>
-            )
-          })}
+        <tbody className="border border-charcoal-600 rounded">
+          {documents?.map((document) => (
+            <tr key={document?.id} className="border-b border-charcoal-600">
+              <td className="p-2">
+                <span>
+                  {getIcon(
+                    'DocumentRed',
+                    'w-6 h-6 fill-current mr-3 inline-flex',
+                  )}
+                </span>
+              </td>
+              <td className="border-l-2 border-charcoal-600 px-4 py-2">
+                <span className="text-scarlet-900 text-xl">
+                  {document?.title}
+                </span>
+                <p className="text-charcoal-700 text-sm">
+                  Acknowledgements: {document?.acknowledgement}
+                </p>
+              </td>
+              <td className="p-2">
+                <Link to={document?.original.path}>
+                  {getIcon(
+                    'DownloadRed',
+                    'w-6 h-6 fill-current mr-3 inline-flex',
+                  )}
+                </Link>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     )

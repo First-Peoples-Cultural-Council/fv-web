@@ -25,7 +25,10 @@ import Dashboard from 'common/icons/Dashboard'
 import Device from 'common/icons/Device'
 import Devices from 'common/icons/Devices'
 import Dictionary from 'common/icons/Dictionary'
+import Document from 'common/icons/Document'
+import DocumentRed from 'common/icons/DocumentRed'
 import Download from 'common/icons/Download'
+import DownloadRed from 'common/icons/DownloadRed'
 import Exclamation from 'common/icons/Exclamation'
 import ExclamationTriangleSolid from 'common/icons/ExclamationTriangleSolid'
 import Facebook from 'common/icons/Facebook'
@@ -157,7 +160,10 @@ function getIcon(iconName, iconStyling, title) {
     Device,
     Devices,
     Dictionary,
+    Document,
+    DocumentRed,
     Download,
+    DownloadRed,
     Exclamation,
     ExclamationTriangleSolid,
     Facebook,
