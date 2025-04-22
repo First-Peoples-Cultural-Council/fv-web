@@ -291,7 +291,6 @@ function DictionaryDetailPresentationDrawer({
               labelStyling={labelStyling}
             />
           </div>
-
           {/* created and modified */}
           {isDashboard && (
             <div className="border-t text-sm">

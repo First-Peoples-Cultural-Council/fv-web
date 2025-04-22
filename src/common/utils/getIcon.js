@@ -63,6 +63,8 @@ import Mobile from 'common/icons/Mobile'
 import More from 'common/icons/More'
 import Mute from 'common/icons/Mute'
 import Next from 'common/icons/Next'
+import OpenInNew from 'common/icons/OpenInNew'
+import OpenInNewRed from 'common/icons/OpenInNewRed'
 import OrderedList from 'common/icons/OrderedList'
 import Pause from 'common/icons/Pause'
 import PauseCircle from 'common/icons/PauseCircle'
@@ -101,6 +103,8 @@ import UnfoldMore from 'common/icons/UnfoldMore'
 import Upload from 'common/icons/Upload'
 import Video from 'common/icons/Video'
 import WebPages from 'common/icons/WebPages'
+import Website from 'common/icons/Website'
+import WebsiteRed from 'common/icons/WebsiteRed'
 import WebShare from 'common/icons/WebShare'
 import Widget from 'common/icons/Widget'
 import Wrench from 'common/icons/Wrench'
@@ -201,6 +205,8 @@ function getIcon(iconName, iconStyling, title) {
     More,
     Mute,
     Next,
+    OpenInNew,
+    OpenInNewRed,
     OrderedList,
     Pause,
     PauseCircle,
@@ -245,6 +251,8 @@ function getIcon(iconName, iconStyling, title) {
     Upload,
     Video,
     WebPages,
+    Website,
+    WebsiteRed,
     WebShare,
     Widget,
     Word,
