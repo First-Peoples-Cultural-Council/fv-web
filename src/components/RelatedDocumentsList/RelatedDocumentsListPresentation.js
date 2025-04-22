@@ -34,7 +34,7 @@ function RelatedDocumentsListPresentation({
                     )}
                   </span>
                 </td>
-                <td className="px-4 py-2 relative">
+                <td className="w-full max-w-[250px] break-words p-3 relative">
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-10 bg-charcoal-300"></div>
                   <div className="pl-1">
                     <span className="text-scarlet-900 text-xl">
