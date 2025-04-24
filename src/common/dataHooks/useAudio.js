@@ -39,7 +39,7 @@ export function useAudioCreate(options = {}) {
     formData?.speakers.forEach((speaker) => {
       data.append('speakers', speaker)
     })
-    return api.media.createAudio({
+    return api.audio.create({
       sitename,
       data,
     })
