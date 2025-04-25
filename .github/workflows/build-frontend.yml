@@ -35,6 +35,7 @@ jobs:
         run: |
           npm ci --include=dev
           npm run build:production
+
   build_with_tekton:
     name: Dev Build
     environment: dev
@@ -194,7 +195,7 @@ jobs:
     name: Image Scan
     environment: dev
     runs-on: ubuntu-22.04
-    needs: deploy_with_tekton
+    needs: build_with_tekton
     if: ((github.ref == 'refs/heads/dev') && (github.event_name != 'pull_request'))
     steps:
       - name: Configure AWS credentials
@@ -211,6 +212,7 @@ jobs:
           aws ecr describe-image-scan-findings --image-id imageTag=build-${{ github.head_ref }}${{ github.sha }} --repository-name ${{ secrets.ECR_REPO_NAME }} | jq .imageScanFindings.findings
           aws ecr describe-image-scan-findings --image-id imageTag=build-${{ github.head_ref }}${{ github.sha }} --repository-name ${{ secrets.ECR_REPO_NAME }} | if [[ $(grep  '\"severity\": \"CRITICAL\"') ]]; then echo "CRTICAL Vulnerabilities present in this deployment"; exit 1; fi
           aws ecr describe-image-scan-findings --image-id imageTag=build-${{ github.head_ref }}${{ github.sha }} --repository-name ${{ secrets.ECR_REPO_NAME }} | if [[ $(grep  '\"severity\": \"HIGH\"') ]]; then echo "HIGH Vulnerabilities present in this deployment"; exit 1; fi
+
   helm_deploy_dev:
     name: Dev Deploy
     environment: dev
