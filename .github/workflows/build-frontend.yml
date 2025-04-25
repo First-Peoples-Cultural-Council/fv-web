@@ -82,11 +82,6 @@ jobs:
           kubectl logs pod/${{  env.RUNID  }}-${{  vars.PIPELINE_STEP3  }}-pod -n ${{  secrets.TEKTON_NAMESPACE  }}
           sleep 1;
           echo -e "\n========================================================================================================================================================================"
-          echo "Running Helm-upgrade..."
-          kubectl wait --for=condition=Succeeded TaskRun ${{  env.RUNID  }}-${{  vars.PIPELINE_STEP4  }} --timeout=300s -n ${{  secrets.TEKTON_NAMESPACE  }}
-          kubectl logs pod/${{  env.RUNID  }}-${{  vars.PIPELINE_STEP4  }}-pod -n ${{  secrets.TEKTON_NAMESPACE  }} 
-          sleep 1;
-          echo -e "\n========================================================================================================================================================================"
           kubectl get events -n ${{  secrets.TEKTON_NAMESPACE  }} | grep "${{  env.RUNID  }}";
           echo "Wrapping up pipeline monitoring";
 
