@@ -16,7 +16,7 @@ function AddImageModalContainer({
   closeModal,
   hideSharedMedia,
 }) {
-  const { selectedItems, setSelectedItems, handleSelectAdditionalItems } =
+  const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
     useArrayStateManager({ maxItems })
 
   // Clear the Selected items when the modal closes
@@ -66,7 +66,7 @@ function AddImageModalContainer({
           <SelectorImages.Container
             formMedia={formMedia}
             selectedMedia={selectedItems}
-            mediaSelectHandler={handleSelectAdditionalItems}
+            mediaSelectHandler={handleSelectAdditionalItem}
             hideSharedMedia={hideSharedMedia}
           />
         )}

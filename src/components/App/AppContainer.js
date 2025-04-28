@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Sentry from '@sentry/react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router'
 import { HelmetProvider } from 'react-helmet-async'
 
 // FPCC

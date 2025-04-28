@@ -26,6 +26,7 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_GALLERY,
     WIDGET_IFRAME,
     WIDGET_IMAGE,
+    WIDGET_IMAGE,
     isSuperAdmin && WIDGET_KEYBOARDS,
     WIDGET_LOGO,
     WIDGET_QUOTES,

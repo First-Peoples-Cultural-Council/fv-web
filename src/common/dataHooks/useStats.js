@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 // FPCC
 import { STATS } from 'common/constants'
 import api from 'services/api'
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 export function useStats() {
   const { sitename } = useParams()

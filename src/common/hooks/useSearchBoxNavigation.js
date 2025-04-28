@@ -3,7 +3,7 @@ import {
   useNavigate,
   useParams,
   useSearchParams,
-} from 'react-router-dom'
+} from 'react-router'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -45,9 +45,7 @@ function useSearchBoxNavigation({
     searchType,
   })
 
-  const searchBoxPlaceholderSuffix = sitename
-    ? `${site.title}`
-    : 'all languages on FirstVoices'
+  const searchBoxPlaceholderSuffix = sitename ? `${site.title}` : 'FirstVoices'
 
   const searchBoxPlaceholder =
     searchType && searchType !== TYPE_ENTRY

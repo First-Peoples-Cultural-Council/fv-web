@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router'
 
 // FPCC
 import { useDictionaryEntry } from 'common/dataHooks/useDictionaryEntry'

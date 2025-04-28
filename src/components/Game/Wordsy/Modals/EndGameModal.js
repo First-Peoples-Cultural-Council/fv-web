@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router'
 
 // FPCC
 import CountdownTimer from 'components/Game/Wordsy/Utils/CountdownTimer'

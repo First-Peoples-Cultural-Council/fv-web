@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router'
 
 // FPCC
 import { getFriendlyType } from 'common/utils/stringHelpers'

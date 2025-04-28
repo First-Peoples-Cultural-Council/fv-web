@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -158,9 +158,9 @@ function DictionaryListPresentation({
                           {showType && (
                             <td className="px-6 py-4 whitespace-nowrap">
                               <span
-                                className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry?.type}-color-700 capitalize text-white`}
+                                className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                               >
-                                {entry?.type}
+                                <span>{entry?.type}</span>
                               </span>
                             </td>
                           )}

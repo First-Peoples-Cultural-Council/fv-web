@@ -6,7 +6,7 @@ import Apps from 'common/widgetIcons/Apps'
 import Calendar from 'common/widgetIcons/Calendar'
 import Camera from 'common/widgetIcons/Camera'
 import Default from 'common/icons/Categories'
-import Image from 'common/icons/Images'
+import Image from 'common/widgetIcons/Image'
 import ImageText from 'common/widgetIcons/ImageText'
 import Keyboard from 'common/widgetIcons/Keyboard'
 import Location from 'common/widgetIcons/Location'
@@ -15,7 +15,7 @@ import Quotation from 'common/icons/Quotation'
 import Mail from 'common/icons/Mail'
 import Statistics from 'common/widgetIcons/Statistics'
 import TextBlock from 'common/widgetIcons/TextBlock'
-import Video from 'common/widgetIcons/Video'
+import Video from 'common/icons/Video'
 
 const recognisedCategories = {
   WIDGET_ALPHABET: Alphabet,

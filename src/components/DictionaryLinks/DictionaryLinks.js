@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router'
 
 // FPCC
 import DictionaryLink from 'components/DictionaryLinks/DictionaryLink'
