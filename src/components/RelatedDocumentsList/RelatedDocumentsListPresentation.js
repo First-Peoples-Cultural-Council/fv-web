@@ -11,53 +11,38 @@ function RelatedDocumentsListPresentation({
 }) {
   return (
     documents?.length > 0 && (
-      <table className="w-full">
-        <thead>
-          <tr>
-            <th colSpan="2" className={`${labelStyling} pb-2`}>
-              Related Documents
-            </th>
-          </tr>
-        </thead>
+      <ul className="w-full">
+        <h4 className={`${labelStyling} mb-2`}>Related Documents</h4>
         <div className="border border-charcoal-600 rounded-lg">
-          <tbody>
-            {documents?.map((document) => (
-              <tr
-                key={document?.id}
-                className="border-b border-charcoal-600 last:border-b-0"
-              >
-                <td className="p-2">
-                  <span>
-                    {getIcon(
-                      'DocumentRed',
-                      'w-6 h-6 fill-current mr-1 inline-flex',
-                    )}
+          {documents?.map((document) => (
+            <li
+              key={document?.id}
+              className="flex items-center border-b border-charcoal-600 last:border-b-0 p-2"
+            >
+              <span>
+                {getIcon(
+                  'DocumentRed',
+                  'w-6 h-6 fill-current mr-3 inline-flex',
+                )}
+              </span>
+              <div className="w-full max-w-[600px] break-words p-3 relative">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-10 bg-charcoal-300"></div>
+                <div className="pl-1">
+                  <span className="text-scarlet-900 text-xl">
+                    {document?.title}
                   </span>
-                </td>
-                <td className="w-full max-w-[250px] break-words p-3 relative">
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-10 bg-charcoal-300"></div>
-                  <div className="pl-1">
-                    <span className="text-scarlet-900 text-xl">
-                      {document?.title}
-                    </span>
-                    <p className="text-charcoal-700 text-sm">
-                      Acknowledgements: {document?.acknowledgement}
-                    </p>
-                  </div>
-                </td>
-                <td className="p-2">
-                  <Link to={document?.original.path}>
-                    {getIcon(
-                      'DownloadRed',
-                      'w-6 h-6 fill-current mr-3 inline-flex',
-                    )}
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  <p className="text-charcoal-700 text-sm">
+                    Acknowledgements: {document?.acknowledgement}
+                  </p>
+                </div>
+              </div>
+              <Link to={document?.original.path}>
+                {getIcon('DownloadRed', 'w-6 h-6 fill-current inline-flex')}
+              </Link>
+            </li>
+          ))}
         </div>
-      </table>
+      </ul>
     )
   )
 }
