@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 const alias = require('./webpack.alias')
 
@@ -25,6 +24,7 @@ module.exports = (env, definitions) => ({
   output: {
     filename: '[name].[contenthash].js',
     path: alias.dist,
+    clean: true,
   },
   module: {
     rules: [
@@ -54,7 +54,6 @@ module.exports = (env, definitions) => ({
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new CompressionPlugin(),
     new webpack.DefinePlugin({
       BUILD_DATE: JSON.stringify(
