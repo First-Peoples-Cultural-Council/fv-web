@@ -15,6 +15,7 @@ import AudioMinimal from 'components/AudioMinimal'
 import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
+import RelatedDocumentsList from 'components/RelatedDocumentsList'
 
 function DictionaryDetailPresentationDrawer({
   actions,
@@ -283,6 +284,13 @@ function DictionaryDetailPresentationDrawer({
               </ul>
             </div>
           )}
+          {/* Related Documents */}
+          <div className="py-3">
+            <RelatedDocumentsList.Presentation
+              documents={entry?.relatedDocuments || []}
+              labelStyling={labelStyling}
+            />
+          </div>
           {/* created and modified */}
           {isDashboard && (
             <div className="border-t text-sm">
