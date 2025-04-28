@@ -12,9 +12,9 @@ function RelatedDocumentsListPresentation({
   return (
     documents?.length > 0 && (
       <section>
-        <h1 className={`${labelStyling} mb-2`}>Related Documents</h1>
-        <ul className="w-full">
-          <div className="border border-charcoal-600 rounded-lg">
+        <h4 className={`${labelStyling} mb-2`}>Related Documents</h4>
+        <div className="border border-charcoal-600 rounded-lg">
+          <ul className="w-full">
             {documents?.map((document) => (
               <li
                 key={document?.id}
@@ -45,8 +45,8 @@ function RelatedDocumentsListPresentation({
                 </Link>
               </li>
             ))}
-          </div>
-        </ul>
+          </ul>
+        </div>
       </section>
     )
   )
