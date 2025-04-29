@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
+import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import { Copy } from 'components/Actions'
 import { CHAR, IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
@@ -14,6 +15,7 @@ function AlphabetPresentationSelected({
   title,
   relatedDictionaryEntries,
   relatedAudio,
+  relatedDocuments,
   relatedVideo,
   relatedVideoLink,
   relatedImage,
@@ -22,13 +24,14 @@ function AlphabetPresentationSelected({
   alphabetLink,
   entriesCount,
 }) {
+  const labelStyling =
+    'sm:text-2xl font-medium text-xl text-center text-blumine-800 p-3'
   const { sitename } = useParams()
   let entriesToDisplay = relatedDictionaryEntries // To not make changes to a param variable if we get entriesCount
 
   if (entriesCount) {
     entriesToDisplay = entriesToDisplay?.slice(0, entriesCount)
   }
-
   return (
     <>
       <h1
@@ -111,10 +114,16 @@ function AlphabetPresentationSelected({
       )}
       {generalNote?.length > 0 && (
         <div className="flex-col justify-center mx-auto my-5 w-3/4">
-          <h2 className="sm:text-2xl font-medium text-xl text-center text-blumine-800 p-3">
-            Notes
-          </h2>
+          <h2 className={labelStyling}>Notes</h2>
           <p className="text-center">{generalNote}</p>
+        </div>
+      )}
+      {relatedDocuments?.length > 0 && (
+        <div className="flex-col justify-center mx-auto my-5 w-3/4">
+          <RelatedDocumentsList.Presentation
+            documents={relatedDocuments}
+            labelStyling={labelStyling}
+          />
         </div>
       )}
       <div className="flex justify-center space-x-2">
@@ -160,6 +169,7 @@ function AlphabetPresentationSelected({
                 <div className="flex items-start justify-between border-b border-solid border-charcoal-200 rounded-t">
                   <h3 className="p-2 text-2xl font-medium">{title}</h3>
                   <button
+                    data-testid="close-video"
                     type="button"
                     className="ml-auto p-2 bg-transparent border-0 float-right leading-none font-medium outline-none focus:outline-none text-black opacity-30 text-2xl"
                     onClick={() => onVideoClick()}
@@ -215,6 +225,7 @@ AlphabetPresentationSelected.propTypes = {
   relatedImage: object,
   generalNote: string,
   relatedAudio: array,
+  relatedDocuments: array,
   relatedVideo: object,
   relatedVideoLink: array,
   relatedDictionaryEntries: array,
