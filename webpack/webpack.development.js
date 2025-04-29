@@ -9,7 +9,6 @@ const common = require('./webpack.common')
 
 module.exports = (env) => {
   const definitions = {
-    CONFIGURATION_SOURCE: JSON.stringify('Webpack'),
     ENV_API_URL: env?.API_URL
       ? JSON.stringify(env.API_URL)
       : JSON.stringify('/api/1.0/'),

@@ -65,7 +65,6 @@ module.exports = (env, definitions) => ({
       template: './public/index.html',
       templateParameters: {
         BUILD_DATE: env.BUILD_DATE,
-        CONFIGURATION_SOURCE: definitions.CONFIGURATION_SOURCE,
       },
       minify: {
         collapseWhitespace: true,
