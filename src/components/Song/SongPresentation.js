@@ -7,6 +7,7 @@ import AudioNative from 'components/AudioNative'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import { VIDEO, ORIGINAL } from 'common/constants'
+import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import SiteDocHead from 'components/SiteDocHead'
 
 function SongPresentation({ entry }) {
@@ -111,6 +112,13 @@ function SongPresentation({ entry }) {
                 </ul>
               </div>
             )}
+            {/* Related Documents */}
+            <div className="space-y-2 py-5">
+              <RelatedDocumentsList.Presentation
+                documents={entry?.relatedDocuments || []}
+                labelStyling={labelStyling}
+              />
+            </div>
             {hasMedia && (
               <div className="flex md:hidden mt-2">
                 {getMedia({
