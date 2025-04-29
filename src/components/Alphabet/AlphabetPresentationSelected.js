@@ -72,9 +72,7 @@ function AlphabetPresentationSelected({
       )}
       {entriesToDisplay?.length > 0 && (
         <div className="mx-auto my-5 w-4/5">
-          <h2 className="sm:text-2xl font-medium text-xl text-center text-blumine-800 p-3">
-            Example words
-          </h2>
+          <h2 className={labelStyling}>Example words</h2>
           {entriesToDisplay?.map((word, index) => {
             const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
@@ -120,6 +118,7 @@ function AlphabetPresentationSelected({
       )}
       {relatedDocuments?.length > 0 && (
         <div className="flex-col justify-center mx-auto my-5 w-3/4">
+          <h2 className={labelStyling}>Related Documents</h2>
           <RelatedDocumentsList.Presentation
             documents={relatedDocuments}
             labelStyling={labelStyling}

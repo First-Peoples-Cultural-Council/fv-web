@@ -286,9 +286,9 @@ function DictionaryDetailPresentationDrawer({
           )}
           {/* Related Documents */}
           <div className="py-3">
+            <h4 className={labelStyling}>Related Documents</h4>
             <RelatedDocumentsList.Presentation
               documents={entry?.relatedDocuments || []}
-              labelStyling={labelStyling}
             />
           </div>
           {/* created and modified */}

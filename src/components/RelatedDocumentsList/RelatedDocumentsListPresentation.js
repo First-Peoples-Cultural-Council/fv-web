@@ -5,14 +5,10 @@ import { Link } from 'react-router'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function RelatedDocumentsListPresentation({
-  documents,
-  labelStyling = 'text-left font-medium text-lg uppercase text-charcoal-900',
-}) {
+function RelatedDocumentsListPresentation({ documents }) {
   return (
     documents?.length > 0 && (
       <section>
-        <h4 className={`${labelStyling} mb-2`}>Related Documents</h4>
         <div className="border border-charcoal-600 rounded-lg">
           <ul className="w-full">
             {documents?.map((document) => (
