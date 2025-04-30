@@ -49,10 +49,9 @@ function RelatedDocumentsListPresentation({ documents }) {
 }
 
 // PROPTYPES
-const { array, string } = PropTypes
+const { array } = PropTypes
 RelatedDocumentsListPresentation.propTypes = {
   documents: array,
-  labelStyling: string,
 }
 
 export default RelatedDocumentsListPresentation
