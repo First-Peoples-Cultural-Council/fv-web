@@ -114,6 +114,7 @@ function SongPresentation({ entry }) {
             )}
             {/* Related Documents */}
             <div className="space-y-2 py-5">
+              <h4 className={labelStyling}>Related Documents</h4>
               <RelatedDocumentsList.Presentation
                 documents={entry?.relatedDocuments || []}
                 labelStyling={labelStyling}

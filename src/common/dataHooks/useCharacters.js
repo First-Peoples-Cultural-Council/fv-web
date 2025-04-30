@@ -15,7 +15,7 @@ import {
 export function useCharacter({ id, edit = false }) {
   const { sitename } = useParams()
   const response = useQuery({
-    queryKey: [CHARACTERS, sitename],
+    queryKey: [CHARACTERS, sitename, id],
     queryFn: () => api.characters.get({ sitename, id }),
     ...{ enabled: !!id },
   })
@@ -48,6 +48,7 @@ export function useCharacters() {
     title: character?.title,
     relatedDictionaryEntries: character?.relatedDictionaryEntries,
     relatedAudio: character?.relatedAudio,
+    relatedDocuments: character?.relatedDocuments,
     relatedVideo: character?.relatedVideos?.[0] || null,
     relatedImage: character?.relatedImages?.[0] || null,
     relatedVideoLinks: character?.relatedVideoLinks || null,
