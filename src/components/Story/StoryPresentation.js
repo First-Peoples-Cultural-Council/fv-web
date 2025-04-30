@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import AudioNative from 'components/AudioNative'
 import LazyLoader from 'components/LazyLoader'
+import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK, MEDIUM, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
@@ -268,6 +269,24 @@ function StoryPresentation({ entry }) {
                       </ul>
                     </div>
                   )}
+                </div>
+              </div>
+            </div>
+          </LazyLoader>
+        )}
+
+        {/* Related Documents */}
+        {entry?.relatedDocuments?.length > 0 && (
+          <LazyLoader key="related-documents">
+            <div className={blockStyling}>
+              <div className="w-full md:w-6/12 flex flex-col grow shrink">
+                <div
+                  className={`${blockBgStyling} flex-1 text-charcoal-900 rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
+                >
+                  <h4 className={labelStyling}>Related Documents</h4>
+                  <RelatedDocumentsList.Presentation
+                    documents={entry?.relatedDocuments || []}
+                  />
                 </div>
               </div>
             </div>
