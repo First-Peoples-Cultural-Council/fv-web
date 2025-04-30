@@ -5,7 +5,6 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-// import AddVideoModal from 'components/AddVideoModal'
 import { WIDGET_VIDEO, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
@@ -17,8 +16,6 @@ function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
     caption: definitions.paragraph({ charCount: 250 }),
     visibility: definitions.visibility(),
   })
-
-  // const [addMediaModalOpen, setAddMediaModalOpen] = useState(false)
 
   const defaultValues = {
     nickname: '',
@@ -43,18 +40,6 @@ function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
     dataToEdit,
   })
 
-  // const chooseMediaHandler = (mediaArray) => {
-  //   const firstItem = mediaArray?.[0]
-  //   if (isUUID(firstItem?.id)) {
-  //     const newMediaObj = {
-  //       ...firstItem,
-  //       type,
-  //     }
-  //     onChange(newMediaObj)
-  //   }
-  //   setAddMediaModalOpen(false)
-  // }
-
   return (
     <div id="WidgetFormText">
       <WidgetFormBase
@@ -77,15 +62,7 @@ function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Please keep the file size under 1GB"
               control={control}
               errors={errors}
-              // maxItems={1}
             />
-            {/* <AddVideoModal.Container
-              formMedia={[value]}
-              updateFormMedia={chooseMediaHandler}
-              modalOpen={addMediaModalOpen}
-              closeModal={() => setAddMediaModalOpen(false)}
-              maxItems={1}
-            /> */}
           </div>
           <div className="col-span-12">
             <Form.TextField
