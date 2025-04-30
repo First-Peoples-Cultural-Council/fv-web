@@ -45,7 +45,7 @@ function VideoIdFieldButton({ value, onChange }) {
     <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
       <MediaThumbnail.Video
         id={value}
-        imageStyles="object-cover pointer-events-none"
+        videoStyles="object-cover pointer-events-none"
       />
       <XButton onClickHandler={() => onChange('')} />
     </div>
