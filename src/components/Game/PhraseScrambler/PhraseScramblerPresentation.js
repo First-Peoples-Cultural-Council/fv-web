@@ -27,8 +27,8 @@ function PhraseScramblerPresentation({
   const baseTextBlockStyling =
     'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
   const baseButtonStyling =
-    'border border-charcoal-200 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:bg-charcoal-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
-  const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white hover:bg-blumine-500`
+    'border border-charcoal-200 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
+  const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white`
   let selectedBoxAdditionalStyling = 'bg-charcoal-50'
   if (gameStatus === 'Won') {
     selectedBoxAdditionalStyling = 'bg-jade-500'
@@ -70,10 +70,7 @@ function PhraseScramblerPresentation({
                       {' '}
                     </div>
                   )}
-                  <div
-                    // eslint-disable-next-line react/no-array-index-key
-                    className="flex md:flex-row flex-col flex-wrap"
-                  >
+                  <div className="flex md:flex-row flex-col flex-wrap">
                     {selectedWords?.map((wordObj) => (
                       <button
                         data-testid="word-btn"
@@ -90,10 +87,7 @@ function PhraseScramblerPresentation({
                 </div>
                 <div data-testid="jumbled-words">
                   {/* Jumbled words, turns invisible if selected. */}
-                  <div
-                    // eslint-disable-next-line react/no-array-index-key
-                    className="flex md:flex-row flex-col flex-wrap"
-                  >
+                  <div className="flex md:flex-row flex-col flex-wrap">
                     {jumbledWords?.map((wordObj) =>
                       selectedWords.some(
                         (selectedWordObj) => selectedWordObj.id === wordObj.id,
