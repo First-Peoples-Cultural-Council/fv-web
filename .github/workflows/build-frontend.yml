@@ -85,7 +85,7 @@ jobs:
           echo "Wrapping up pipeline monitoring";
 
   build_with_tekton_preprod:
-    name: Monitor Preprod Deployment
+    name: Preprod Build
     environment: preprod
     runs-on: ubuntu-latest 
     if: ((github.ref == 'refs/heads/main') && (github.event_name != 'pull_request') && (github.actor != 'dependabot[bot]'))
@@ -133,7 +133,7 @@ jobs:
           echo "Wrapping up pipeline monitoring";
 
   build_with_tekton_prod:
-    name: Monitor Prod Deployment
+    name: Prod Build
     environment: prod
     runs-on: ubuntu-latest 
     if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')) && (github.event_name != 'pull_request') && (github.actor != 'dependabot[bot]'))
