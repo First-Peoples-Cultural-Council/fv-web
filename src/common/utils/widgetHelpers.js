@@ -15,7 +15,7 @@ import {
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
   WIDGET_TEXTICONS,
-  // WIDGET_VIDEO,
+  WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
 
@@ -33,7 +33,7 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     isSuperAdmin && WIDGET_TEXTICONS,
-    // WIDGET_VIDEO,
+    WIDGET_VIDEO,
   ].filter(Boolean)
 
 export const getCreatableWidgetsForUser = (isSuperAdmin) =>
@@ -52,7 +52,7 @@ export const getCreatableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
     isSuperAdmin && WIDGET_TEXTICONS,
-    // WIDGET_VIDEO,
+    WIDGET_VIDEO,
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
 
@@ -86,8 +86,8 @@ export const getWidgetTypeLabel = (type) => {
       return 'Page Text'
     case WIDGET_TEXTICONS:
       return 'Text with Icons'
-    // case WIDGET_VIDEO:
-    //   return 'Video'
+    case WIDGET_VIDEO:
+      return 'Video'
     case WIDGET_WOTD:
       return 'Word of the Day'
     default:

@@ -28,6 +28,7 @@ import TextArrayField from 'components/Form/TextArrayField'
 import TextTranslationArrayField from 'components/Form/TextTranslationArrayField'
 import ValidationError from 'components/Form/ValidationError'
 import VideoArrayField from 'components/Form/VideoArrayField'
+import VideoIdField from 'components/Form/VideoIdField'
 import Visibility from 'components/Form/Visibility'
 import WysiwygField from 'components/Form/WysiwygField'
 import XButton from 'components/Form/XButton'
@@ -63,6 +64,7 @@ export default {
   TextTranslationArrayField,
   ValidationError,
   VideoArrayField,
+  VideoIdField,
   Visibility,
   WysiwygField,
   XButton,

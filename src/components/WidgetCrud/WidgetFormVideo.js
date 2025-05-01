@@ -12,7 +12,7 @@ import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
-    video: definitions.uuid().required(),
+    video: definitions.uuid(),
     caption: definitions.paragraph({ charCount: 250 }),
     visibility: definitions.visibility(),
   })
@@ -56,13 +56,12 @@ function WidgetFormVideo({ cancelHandler, dataToEdit, submitHandler }) {
       >
         <>
           <div className="col-span-12">
-            <Form.VideoArrayField
+            <Form.VideoIdField
               label="Upload a video"
               nameId="video"
               helpText="Please keep the file size under 1GB"
               control={control}
               errors={errors}
-              maxItems={1}
             />
           </div>
           <div className="col-span-12">
