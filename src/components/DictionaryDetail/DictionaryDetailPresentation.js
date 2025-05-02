@@ -223,12 +223,14 @@ function DictionaryDetailPresentation({
           </section>
           <section>
             {/* Related Documents */}
-            <div className="py-2 md:p-4">
-              <h4 className={labelStyling}>Related Documents</h4>
-              <RelatedDocumentsList.Presentation
-                documents={entry?.relatedDocuments || []}
-              />
-            </div>
+            {entry?.relatedDocuments?.length > 0 && (
+              <div className="py-2 md:p-4">
+                <h4 className={labelStyling}>Related Documents</h4>
+                <RelatedDocumentsList.Presentation
+                  documents={entry?.relatedDocuments || []}
+                />
+              </div>
+            )}
           </section>
         </div>
         {/* Pictures and Video */}

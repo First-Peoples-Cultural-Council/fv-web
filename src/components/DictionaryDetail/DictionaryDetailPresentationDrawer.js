@@ -285,12 +285,14 @@ function DictionaryDetailPresentationDrawer({
             </div>
           )}
           {/* Related Documents */}
-          <div className="py-3">
-            <h4 className={labelStyling}>Related Documents</h4>
-            <RelatedDocumentsList.Presentation
-              documents={entry?.relatedDocuments || []}
-            />
-          </div>
+          {entry?.relatedDocuments.length > 0 && (
+            <div className="py-3">
+              <h4 className={labelStyling}>Related Documents</h4>
+              <RelatedDocumentsList.Presentation
+                documents={entry?.relatedDocuments || []}
+              />
+            </div>
+          )}
           {/* created and modified */}
           {isDashboard && (
             <div className="border-t text-sm">
