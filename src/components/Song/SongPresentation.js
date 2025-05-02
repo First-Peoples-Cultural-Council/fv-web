@@ -113,13 +113,15 @@ function SongPresentation({ entry }) {
               </div>
             )}
             {/* Related Documents */}
-            <div className="space-y-2 py-5">
-              <h4 className={labelStyling}>Related Documents</h4>
-              <RelatedDocumentsList.Presentation
-                documents={entry?.relatedDocuments || []}
-                labelStyling={labelStyling}
-              />
-            </div>
+            {entry?.relatedDocuments?.length > 0 && (
+              <div className="space-y-2 py-5">
+                <h4 className={labelStyling}>Related Documents</h4>
+                <RelatedDocumentsList.Presentation
+                  documents={entry?.relatedDocuments || []}
+                  labelStyling={labelStyling}
+                />
+              </div>
+            )}
             {hasMedia && (
               <div className="flex md:hidden mt-2">
                 {getMedia({
