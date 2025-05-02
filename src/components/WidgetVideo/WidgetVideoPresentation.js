@@ -31,15 +31,7 @@ function WidgetVideoPresentation({ widgetData }) {
     <section className="w-full pt-8" data-testid="WidgetVideoPresentation">
       <div className="rounded overflow-hidden flex flex-col mx-auto max-w-2xl">
         <div className="flex flex-col mx-auto overflow-hidden px-6 md:px-0 pt-6">
-          {src && (
-            <video
-              className="flex w-auto h-auto"
-              autoPlay
-              muted
-              loop
-              src={src}
-            />
-          )}
+          {src && <video className="flex w-auto h-auto" controls src={src} />}
           {caption && <div className="flex flex-wrap pt-4">{caption}</div>}
         </div>
       </div>
