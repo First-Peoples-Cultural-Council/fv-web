@@ -47,13 +47,13 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
 //reference https://www.codalas.com/en/2303/how-to-display-file-size-in-a-readable-format-in-javascript
 export const getReadableFileSize = (attachmentSize) => {
   const DEFAULT_SIZE = 0
-  const fileSize = attachmentSize ?? DEFAULT_SIZE
+  // const fileSize = attachmentSize
 
-  if (!fileSize) {
+  if (!attachmentSize) {
     return `${DEFAULT_SIZE} KB`
   }
 
-  const sizeInKb = fileSize / 1024
+  const sizeInKb = attachmentSize / 1024
 
   if (sizeInKb > 1024) {
     return `${(sizeInKb / 1024).toFixed(2)} MB`
