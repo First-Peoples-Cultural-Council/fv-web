@@ -8,6 +8,8 @@ import {
   HAS_IMAGE,
   HAS_VIDEO,
   HAS_TRANSLATION,
+  HAS_CATEGORIES,
+  HAS_RELATED_ENTRIES,
   TRUE,
   FALSE,
   VISIBILITY,
@@ -17,6 +19,7 @@ import {
 } from 'common/constants'
 
 function AdvancedSearchOptionsPresentation({ items }) {
+  console.log({ items })
   const count = items?.pages[0]?.count
   let countStr = count
   if (count >= 10000) {
@@ -40,6 +43,22 @@ function AdvancedSearchOptionsPresentation({ items }) {
             </div>
 
             <div className="flex items-baseline space-x-8">
+              <SingleSelect
+                id={HAS_CATEGORIES}
+                options={[
+                  { value: null, label: 'Categories' },
+                  { value: TRUE, label: 'Has categories' },
+                  { value: FALSE, label: 'Has no categories' },
+                ]}
+              />
+              <SingleSelect
+                id={HAS_RELATED_ENTRIES}
+                options={[
+                  { value: null, label: 'Related Entries' },
+                  { value: TRUE, label: 'Has related entries' },
+                  { value: FALSE, label: 'Has no related entries' },
+                ]}
+              />
               <SingleSelect
                 id={HAS_AUDIO}
                 options={[
