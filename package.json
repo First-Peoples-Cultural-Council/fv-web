@@ -19,14 +19,13 @@
   },
   "homepage": "https://github.com/First-Peoples-Cultural-Council/fv-web#readme",
   "engines": {
-    "node": "^20.11.1",
-    "npm": "^10.2.4"
+    "node": "^22.15.0",
+    "npm": "^10.9.2"
   },
   "scripts": {
     "start": "webpack serve --env API_URL=http://localhost:8000/api/1.0/ --config webpack/webpack.development.js",
-    "startDev": "webpack serve --env APP_ENV=dev BUILD_STRING=0.17.0 API_URL=https://api.dev.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
-    "startPreprod": "webpack serve --env APP_ENV=preprod BUILD_STRING=0.17.0 API_URL=https://api.preprod.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
-    "startInSkaffold": "webpack serve --progress --config webpack/webpack.skaffold.js --disable-host-check",
+    "startDev": "webpack serve --env APP_ENV=dev BUILD_STRING=local API_URL=https://api.dev.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
+    "startPreprod": "webpack serve --env APP_ENV=preprod BUILD_STRING=local API_URL=https://api.preprod.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
     "build:production": "webpack --color --progress --config webpack/webpack.production.js",
     "prepare": "husky",
     "lintStaged": "lint-staged",
