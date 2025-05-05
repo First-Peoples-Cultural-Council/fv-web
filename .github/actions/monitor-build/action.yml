@@ -13,7 +13,6 @@ inputs:
   pipeline_step1: { required: true }
   pipeline_step2: { required: true }
   pipeline_step3: { required: true }
-  pipeline_step4: { required: true }
 
 runs:
   using: "composite"
@@ -66,7 +65,7 @@ runs:
         echo "Monitoring Tekton RUNID: $RUNID"
         kubectl get events -n "$NS" | grep "$RUNID" || true
 
-        for STEP in "${{ inputs.pipeline_step1 }}" "${{ inputs.pipeline_step2 }}" "${{ inputs.pipeline_step3 }}" "${{ inputs.pipeline_step4 }}"; do
+        for STEP in "${{ inputs.pipeline_step1 }}" "${{ inputs.pipeline_step2 }}" "${{ inputs.pipeline_step3 }}"; do
           echo "===================================================================================="
           echo "Waiting for step: $STEP"
           kubectl wait --for=condition=Succeeded TaskRun "$RUNID-$STEP" --timeout=300s -n "$NS"

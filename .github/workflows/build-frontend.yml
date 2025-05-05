@@ -95,7 +95,6 @@ jobs:
           pipeline_step1: ${{ vars.PIPELINE_STEP1 }}
           pipeline_step2: ${{ vars.PIPELINE_STEP2 }}
           pipeline_step3: ${{ vars.PIPELINE_STEP3 }}
-          pipeline_step4: ${{ vars.PIPELINE_STEP4 }}
 
   build_with_tekton_preprod:
     name: Preprod Build
@@ -119,7 +118,6 @@ jobs:
           pipeline_step1: ${{ vars.PIPELINE_STEP1 }}
           pipeline_step2: ${{ vars.PIPELINE_STEP2 }}
           pipeline_step3: ${{ vars.PIPELINE_STEP3 }}
-          pipeline_step4: ${{ vars.PIPELINE_STEP4 }}
 
   build_with_tekton_prod:
     name: Prod Build
@@ -143,7 +141,6 @@ jobs:
           pipeline_step1: ${{ vars.PIPELINE_STEP1 }}
           pipeline_step2: ${{ vars.PIPELINE_STEP2 }}
           pipeline_step3: ${{ vars.PIPELINE_STEP3 }}
-          pipeline_step4: ${{ vars.PIPELINE_STEP4 }}
 
 #  image_scan:
 #    name: Image Scan
