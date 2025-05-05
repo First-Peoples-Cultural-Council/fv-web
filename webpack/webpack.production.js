@@ -1,8 +1,12 @@
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 
-module.exports = (env) => {
-  return merge(common(env), {
+const definitions = {
+  CONFIGURATION_SOURCE: JSON.stringify('Caddy'),
+}
+
+module.exports = (env) =>
+  merge(common(env, definitions), {
     mode: 'production',
     devtool: 'source-map',
     optimization: {
@@ -43,4 +47,3 @@ module.exports = (env) => {
       ],
     },
   })
-}
