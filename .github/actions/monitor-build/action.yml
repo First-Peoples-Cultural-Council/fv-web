@@ -1,0 +1,79 @@
+name: "Monitor Tekton Build"
+description: "Setup EKS, derive RUNID from Tekton, and monitor pipeline steps"
+
+inputs:
+  aws_region: { required: true }
+  aws-access-key-id: { required: true }
+  aws-secret-access-key: { required: true }
+  cluster_name: { required: true }
+  job_sort_order: { required: true }
+  tekton_namespace: { required: true }
+  tekton_interceptor_name: { required: true }
+  webhook_prefix: { required: true }
+  pipeline_step1: { required: true }
+  pipeline_step2: { required: true }
+  pipeline_step3: { required: true }
+  pipeline_step4: { required: true }
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+        aws-region: ${{ inputs.aws_region }}
+
+    - name: Setup kubectl
+      shell: bash
+      run: |
+        aws eks update-kubeconfig --name "${{ inputs.cluster_name }}" --region "${{ inputs.aws_region }}"
+
+    - name: Setup RUNID
+      shell: bash
+      run: |
+        SORT_CMD="${{ inputs.job_sort_order }}"
+        WEBHOOK_PREFIX="${{ inputs.webhook_prefix }}"
+        echo "Looking for PipelineRuns matching: $WEBHOOK_PREFIX"
+        
+        RUNID=$(kubectl -n "${{ inputs.tekton_namespace }}" get pr \
+          --sort-by=.status.completionTime \
+          -l triggers.tekton.dev/trigger="${{ inputs.tekton_interceptor_name }}" \
+          | grep "$WEBHOOK_PREFIX" \
+          | $SORT_CMD -n 1 \
+          | awk '{print $1}')
+
+        echo "RUNID=$RUNID" >> "$GITHUB_ENV"
+        echo "$RUNID" > runid.txt
+
+    - name: Check RUNID Validity
+      shell: bash
+      run: |
+        RUNID=$(cat runid.txt)
+        echo "The run ID associated with this deployment is $RUNID"
+        if [ -z "$RUNID" ]; then
+          echo "No valid PipelineRun found. Exiting."
+          exit 1
+        fi
+
+    - name: Monitor Tekton Tasks
+      shell: bash
+      run: |
+        RUNID=$(cat runid.txt)
+        NS="${{ inputs.tekton_namespace }}"
+
+        echo "Monitoring Tekton RUNID: $RUNID"
+        kubectl get events -n "$NS" | grep "$RUNID" || true
+
+        for STEP in "${{ inputs.pipeline_step1 }}" "${{ inputs.pipeline_step2 }}" "${{ inputs.pipeline_step3 }}" "${{ inputs.pipeline_step4 }}"; do
+          echo "===================================================================================="
+          echo "Waiting for step: $STEP"
+          kubectl wait --for=condition=Succeeded TaskRun "$RUNID-$STEP" --timeout=300s -n "$NS"
+          kubectl logs "pod/$RUNID-$STEP-pod" -n "$NS" || echo "Logs for $STEP not found"
+          sleep 1
+        done
+
+        echo "===================================================================================="
+        kubectl get events -n "$NS" | grep "$RUNID" || true
+        echo "Tekton pipeline monitoring complete."
