@@ -41,7 +41,7 @@ $ git clone https://github.com/First-Peoples-Cultural-Council/fv-web.git
 $ cd fv-web
 ```
 
-4. Install NodeJS. If you are using NVM, it will also install a coordinating version of NPM. Find the appropriate version of Node in `./package.json` (for example, 22.15.0) and set it as the active version of NodeJS by running:
+4. Install NodeJS. If you are using NVM, it will also install a coordinating version of NPM. Find the appropriate version of Node in `./package.json` (for example, 18.16.0) and set it as the active version of NodeJS by running:
 
 ```bash
 $ nvm install 18.16.0
