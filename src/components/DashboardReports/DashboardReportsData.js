@@ -65,7 +65,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
-      icon: 'ImagesNone',
+      icon: 'CategoriesNone',
       name: 'No categories',
       description: 'Words and phrases without categories',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${HAS_CATEGORIES}=${FALSE}`,
