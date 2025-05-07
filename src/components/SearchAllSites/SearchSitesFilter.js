@@ -26,6 +26,7 @@ function SearchSitesFilter() {
     setSelectedItems,
     handleSelectArray,
     handleRemoveItem,
+    handleRemoveAllItems,
     isItemSelected,
     isSubset,
   } = useArrayStateManager({ maxItems: 50 })
@@ -47,9 +48,22 @@ function SearchSitesFilter() {
 
   const options = data?.results
 
-  const onLanguageSelect = (sites) => {
-    const consolidatedSites = sites.flat(1)
-    handleSelectArray(consolidatedSites)
+  const handleSiteToggle = (site) => {
+    let selected = isItemSelected(site)
+    if (selected) {
+      handleRemoveItem(site)
+    } else {
+      handleSelectArray([site])
+    }
+  }
+
+  const handleLanguageToggle = (sites) => {
+    let selected = sites.every((site) => isItemSelected(site))
+    if (selected) {
+      handleRemoveAllItems(sites)
+    } else {
+      handleSelectArray(sites)
+    }
   }
 
   const generateListItem = ({ item }) => {
@@ -82,7 +96,7 @@ function SearchSitesFilter() {
   return (
     <div data-testid="FormSearchSitesFilter" className="w-full">
       <div className="lg:space-y-6 mx-2 xl:ml-8 xl:pr-8">
-        <Combobox value={selectedItems} onChange={onLanguageSelect} multiple>
+        <Combobox value={selectedItems} multiple>
           <div className="relative text-charcoal-700">
             <div className="relative">
               <ComboboxInput
@@ -113,6 +127,7 @@ function SearchSitesFilter() {
                         <ComboboxOption
                           className="cursor-default select-none p-2 data-[focus]:bg-charcoal-100"
                           value={option.sites}
+                          onClick={() => handleLanguageToggle(option.sites)}
                         >
                           {({ selected }) =>
                             generateListItem({ item: option, selected })
@@ -126,7 +141,8 @@ function SearchSitesFilter() {
                             className={`${
                               site?.language ? 'pl-6 pr-2' : 'px-2'
                             } cursor-default select-none py-2 data-[focus]:bg-charcoal-100`}
-                            value={[site]}
+                            value={site}
+                            onClick={() => handleSiteToggle(site)}
                           >
                             {({ selected }) =>
                               generateListItem({ item: site, selected })
