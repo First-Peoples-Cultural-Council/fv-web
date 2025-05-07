@@ -7,7 +7,7 @@ function useArrayStateManager({ maxItems }) {
   const removeItemFromArray = (array, item) =>
     [...array].filter((elem) => elem !== item && elem?.id !== item?.id)
 
-  const removeAllItemsFromArray = (array, items) =>
+  const removeItemsFromArray = (array, items) =>
     [...array].filter(
       (elem) => !items.some((item) => elem === item || elem?.id === item?.id),
     )
@@ -50,8 +50,8 @@ function useArrayStateManager({ maxItems }) {
     handleSelectArray,
     handleRemoveItem: (item) =>
       setSelectedItems(removeItemFromArray(selectedItems, item)),
-    handleRemoveAllItems: (items) =>
-      setSelectedItems(removeAllItemsFromArray(selectedItems, items)),
+    handleRemoveItems: (items) =>
+      setSelectedItems(removeItemsFromArray(selectedItems, items)),
     isItemSelected: (item) => checkForItem(selectedItems, item),
     isSubset: (subsetArray) =>
       subsetArray.every((el) => selectedItems.includes(el)),

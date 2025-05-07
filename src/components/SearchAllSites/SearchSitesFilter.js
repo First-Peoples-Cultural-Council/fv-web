@@ -26,7 +26,7 @@ function SearchSitesFilter() {
     setSelectedItems,
     handleSelectArray,
     handleRemoveItem,
-    handleRemoveAllItems,
+    handleRemoveItems,
     isItemSelected,
     isSubset,
   } = useArrayStateManager({ maxItems: 50 })
@@ -60,7 +60,7 @@ function SearchSitesFilter() {
   const handleLanguageToggle = (sites) => {
     let selected = sites.every((site) => isItemSelected(site))
     if (selected) {
-      handleRemoveAllItems(sites)
+      handleRemoveItems(sites)
     } else {
       handleSelectArray(sites)
     }
