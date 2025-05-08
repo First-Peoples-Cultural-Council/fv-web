@@ -23,9 +23,9 @@
     "npm": "^10.9.2"
   },
   "scripts": {
-    "start": "webpack serve --env API_URL=http://localhost:8000/api/1.0/ --config webpack/webpack.development.js",
-    "startDev": "webpack serve --env APP_ENV=dev BUILD_STRING=local API_URL=https://api.dev.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
-    "startPreprod": "webpack serve --env APP_ENV=preprod BUILD_STRING=local API_URL=https://api.preprod.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
+    "start": "webpack serve --config webpack/webpack.development.js",
+    "startDev": "webpack serve --env API_URL=https://api.dev.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
+    "startPreprod": "webpack serve --env APP_ENV=preprod API_URL=https://api.preprod.firstvoices.com/api/1.0/ --config webpack/webpack.development.js",
     "build:production": "webpack --color --progress --config webpack/webpack.production.js",
     "prepare": "husky",
     "lintStaged": "lint-staged",
@@ -100,6 +100,7 @@
     "css-loader": "^7.1.2",
     "cssnano": "^7.0.5",
     "dompurify": "^3.2.4",
+    "dotenv-webpack": "^8.1.0",
     "draft-js": "^0.11.7",
     "howler": "^2.2.3",
     "html-webpack-plugin": "^5.6.3",
