@@ -64,6 +64,14 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
                 }
                 return null
               })}
+            {file?.id && (
+              <div className="py-3 grid grid-cols-3 gap-1 text-sm font-medium">
+                <dt className="col-span-1 text-charcoal-500 capitalize truncate">
+                  ID
+                </dt>
+                <dd className="col-span-2 text-charcoal-900">{file.id}</dd>
+              </div>
+            )}
           </dl>
         </div>
       </div>
