@@ -10,6 +10,7 @@ import Audio from 'common/icons/Audio'
 import BackArrow from 'common/icons/BackArrow'
 import Bookmark from 'common/icons/Bookmark'
 import Categories from 'common/icons/Categories'
+import CategoriesNone from 'common/icons/CategoriesNone'
 import CheckCircleSolid from 'common/icons/CheckCircleSolid'
 import Checkmark from 'common/icons/Checkmark'
 import ChevronDown from 'common/icons/ChevronDown'
@@ -143,6 +144,7 @@ function getIcon(iconName, iconStyling, title) {
     Bookmark,
     Canoe,
     Categories,
+    CategoriesNone,
     CheckCircleSolid,
     Checkmark,
     ChevronDown,

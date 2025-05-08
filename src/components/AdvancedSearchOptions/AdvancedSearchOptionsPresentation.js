@@ -8,6 +8,8 @@ import {
   HAS_IMAGE,
   HAS_VIDEO,
   HAS_TRANSLATION,
+  HAS_CATEGORIES,
+  HAS_RELATED_ENTRIES,
   TRUE,
   FALSE,
   VISIBILITY,
@@ -70,6 +72,22 @@ function AdvancedSearchOptionsPresentation({ items }) {
                   { value: null, label: 'Translation' },
                   { value: TRUE, label: 'Has translation' },
                   { value: FALSE, label: 'Has no translation' },
+                ]}
+              />
+              <SingleSelect
+                id={HAS_CATEGORIES}
+                options={[
+                  { value: null, label: 'Categories' },
+                  { value: TRUE, label: 'Has categories' },
+                  { value: FALSE, label: 'Has no categories' },
+                ]}
+              />
+              <SingleSelect
+                id={HAS_RELATED_ENTRIES}
+                options={[
+                  { value: null, label: 'Related Entries' },
+                  { value: TRUE, label: 'Has related entries' },
+                  { value: FALSE, label: 'Has no related entries' },
                 ]}
               />
               <SingleSelect
