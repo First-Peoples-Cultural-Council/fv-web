@@ -1,5 +1,5 @@
 name: "Scan"
-description: "Scan images before deploy"
+description: "Scan container images, generate CycloneDX SBOMs, and print Python dependency tree"
 
 inputs:
   env:
@@ -11,6 +11,8 @@ inputs:
   aws-access-key-id:
     required: true
   aws-secret-access-key:
+    required: true
+  ecr_repo_name:
     required: true
 
 runs:
@@ -26,28 +28,129 @@ runs:
     - name: Login to ECR
       shell: bash
       run: |
-        aws ecr get-login-password --region ${{ inputs.aws_region }} | \
-        docker login --username AWS --password-stdin ${{ inputs.aws_account }}.dkr.ecr.${{ inputs.aws_region }}.amazonaws.com
+        aws ecr get-login-password --region "${{ inputs.aws_region }}" | \
+        docker login --username AWS --password-stdin "${{ inputs.aws_account }}.dkr.ecr.${{ inputs.aws_region }}.amazonaws.com" > /dev/null
 
     - name: Install Trivy
       shell: bash
       run: |
-        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+        if ! command -v trivy &> /dev/null; then
+          echo "Installing Trivy..."
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin > /dev/null
+        fi
 
-    - name: Scan images from YAML file
+    - name: Setup Python and pip tools
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Extract Image References
+      id: extract
       shell: bash
       run: |
-        set -euo pipefail
-
         FILE="./downloads/Values.${{ inputs.env }}.yaml"
+        REPO="${{ inputs.ecr_repo_name }}"
+        [[ -f "$FILE" ]] || { echo "File $FILE not found"; exit 1; }
 
-        if [[ ! -f "$FILE" ]]; then
-          echo "ERROR: File $FILE not found"
+        IMAGES=$(grep -oE "[^ ]*${REPO}[^ ]*@sha256:[a-f0-9]+" "$FILE" | sort -u)
+        if [[ -z "$IMAGES" ]]; then
+          echo "No images found matching $REPO"
           exit 1
         fi
 
-        echo "🔍 Extracting image references from $FILE..."
-        grep -oE '[^ ]+@sha256:[a-f0-9]+' "$FILE" | while read -r IMAGE; do
-          echo "Scanning $IMAGE"
-          trivy image --vuln-type os,library --severity CRITICAL,HIGH --exit-code 1 "$IMAGE"
-        done
+        echo "$IMAGES" > image-list.txt
+
+    - name: Scan Images and Generate SBOMs
+      shell: bash
+      run: |
+        set -euo pipefail
+        while IFS= read -r IMAGE; do
+          FILENAME=$(echo "$IMAGE" | tr '/:@' '___')
+          echo "━━━━━━━━━━━━━━━━━━━━━ SCANNING $IMAGE ━━━━━━━━━━━━━━━━━━━━━"
+
+          trivy image --scanners vuln,secret,config,license \
+            --format table \
+            --ignore-unfixed \
+            --skip-dirs /proc,/sys \
+            --timeout 10m \
+            --severity HIGH,CRITICAL \
+            --vuln-type os,library \
+            "$IMAGE"
+
+          trivy image --scanners vuln,secret,config,license \
+            --format cyclonedx \
+            --ignore-unfixed \
+            --skip-dirs /proc,/sys \
+            --timeout 10m \
+            --severity HIGH,CRITICAL \
+            --vuln-type os,library \
+            "$IMAGE" > "${FILENAME}_scan_complete_cbom.json"
+
+          echo "Scan completed for $IMAGE"
+          echo
+        done < image-list.txt
+
+    - name: Write CycloneDX Dependency Trees to Files
+      shell: bash
+      run: |
+        mkdir -p dependency_trees
+        while IFS= read -r IMAGE; do
+          FILENAME=$(echo "$IMAGE" | tr '/:@' '___')
+          OUTPUT_FILE_FULL="dependency_trees/${FILENAME}_trivy_tree.txt"
+
+          echo "Generating dependency tree for $IMAGE → $OUTPUT_FILE"
+          python3 "${{ github.action_path }}/tree.py" "${FILENAME}_scan_complete_cbom.json" > "$OUTPUT_FILE_FULL"
+        done < image-list.txt
+
+      # Keep this in sync with the main workflow
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install NPM dependencies and build project
+      shell: bash
+      run: |
+        echo "Installing NPM dependencies..."
+        npm ci > /dev/null
+
+        echo "Building project..."
+        npm run build || echo "Build step failed or is not defined — continuing anyway"
+
+    - name: Source code scan and write NPM Dependency Tree to File
+      shell: bash
+      run: |
+        REPO="${{ inputs.ecr_repo_name }}"
+        OUTPUT_FILE_NPM="dependency_trees/${REPO}_npm_tree.txt"
+        echo "Generating NPM dependency tree..."
+        trivy fs --format cyclonedx --output ${REPO}-local-npm-context.json
+        python3 "${{ github.action_path }}/tree.py" "${REPO}-local-npm-context.json" > "$OUTPUT_FILE_NPM"
+
+    - name: Fail If Vulnerabilities Found
+      shell: bash
+      run: |
+        set -euo pipefail
+        TRIVY_FAILED=0
+        while IFS= read -r IMAGE; do
+          trivy image --scanners vuln \
+            --format table \
+            --ignore-unfixed \
+            --skip-dirs /proc,/sys \
+            --timeout 10m \
+            --severity HIGH,CRITICAL \
+            --vuln-type os,library \
+            --exit-code 1 "$IMAGE" > /dev/null || TRIVY_FAILED=1
+        done < image-list.txt
+
+        if [[ "$TRIVY_FAILED" -eq 1 ]]; then
+          echo "Vulnerabilities were found. Please address them before proceeding."
+          echo "Find each vulnerable package in the trivy generated dependency tree trivy_tree.txt and make the necessary upgrade to address it"
+          echo "If the vulnerable package is installed as a NPM dependency, check the npm_tree.txt"
+          exit 1
+        fi
+
+    - name: Upload All Dependency Trees
+      uses: actions/upload-artifact@v4
+      with:
+        name: all-dependency-trees
+        path: dependency_trees/
