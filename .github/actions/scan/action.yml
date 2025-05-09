@@ -112,18 +112,18 @@ runs:
       shell: bash
       run: |
         echo "Installing NPM dependencies..."
-        npm ci > /dev/null
-
-        echo "Building project..."
-        npm run build || echo "Build step failed or is not defined — continuing anyway"
+          npm ci --include=dev  > /dev/null
+          echo "Building project..."
+          npm run build:production
 
     - name: Source code scan and write NPM Dependency Tree to File
       shell: bash
       run: |
+        ls
         REPO="${{ inputs.ecr_repo_name }}"
         OUTPUT_FILE_NPM="dependency_trees/${REPO}_npm_tree.txt"
         echo "Generating NPM dependency tree..."
-        trivy fs --format cyclonedx --output ${REPO}-local-npm-context.json
+        trivy fs . --format cyclonedx --output ${REPO}-local-npm-context.json
         python3 "${{ github.action_path }}/tree.py" "${REPO}-local-npm-context.json" > "$OUTPUT_FILE_NPM"
 
     - name: Fail If Vulnerabilities Found
