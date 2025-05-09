@@ -152,6 +152,6 @@ runs:
           echo "Find each vulnerable package in the trivy generated dependency tree trivy_tree.txt and make the necessary upgrade to address it"
           echo "If the vulnerable package is installed as a NPM dependency, check the npm_tree.txt"
           exit 1
-        fi
         else
           echo "No HIGH or CRITICAL vulnerabilities detected."
+        fi
