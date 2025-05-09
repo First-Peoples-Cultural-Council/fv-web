@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router'
 // FPCC
 import { isDisplayablePropMedia } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
+import { Copy } from 'components/Actions'
 import {
   AUDIO_PATH,
   DOCUMENT_PATH,
@@ -66,8 +67,15 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
               })}
             {file?.id && (
               <div className="py-3 grid grid-cols-3 gap-1 text-sm font-medium">
-                <dt className="col-span-1 text-charcoal-500 capitalize truncate">
+                <dt className="col-span-1 text-charcoal-500 capitalize truncate h-16">
                   ID
+                  <Copy
+                    textToCopy={file.id}
+                    iconStyling="fill-current text-blumine-800 h-4 w-4 sm:w-8 sm:h-8 ml-4"
+                    withConfirmation
+                    withTooltip
+                    hoverTooltip
+                  />
                 </dt>
                 <dd className="col-span-2 text-charcoal-900">{file.id}</dd>
               </div>
