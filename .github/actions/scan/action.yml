@@ -113,8 +113,7 @@ runs:
       run: |
         echo "Installing NPM dependencies..."
           npm ci --include=dev  > /dev/null
-          echo "Building project..."
-          npm run build:production
+          npm run build:production >/dev/null
 
     - name: Source code scan and write NPM Dependency Tree to File
       shell: bash
@@ -125,6 +124,12 @@ runs:
         echo "Generating NPM dependency tree..."
         trivy fs . --format cyclonedx --output ${REPO}-local-npm-context.json
         python3 "${{ github.action_path }}/tree.py" "${REPO}-local-npm-context.json" > "$OUTPUT_FILE_NPM"
+
+    - name: Upload All Dependency Trees
+      uses: actions/upload-artifact@v4
+      with:
+        name: all-dependency-trees
+        path: dependency_trees/
 
     - name: Fail If Vulnerabilities Found
       shell: bash
@@ -148,9 +153,5 @@ runs:
           echo "If the vulnerable package is installed as a NPM dependency, check the npm_tree.txt"
           exit 1
         fi
-
-    - name: Upload All Dependency Trees
-      uses: actions/upload-artifact@v4
-      with:
-        name: all-dependency-trees
-        path: dependency_trees/
+        else
+          echo "No HIGH or CRITICAL vulnerabilities detected."
