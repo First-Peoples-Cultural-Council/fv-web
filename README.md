@@ -41,7 +41,7 @@ $ git clone https://github.com/First-Peoples-Cultural-Council/fv-web.git
 $ cd fv-web
 ```
 
-4. Install NodeJS. If you are using NVM, it will also install a coordinating version of NPM. Find the appropriate version of Node in `./package.json` (for example, 18.16.0) and set it as the active version of NodeJS by running:
+4. Install NodeJS. If you are using NVM, it will also install a coordinating version of NPM. Find the appropriate version of Node in `./package.json` (for example, 22.15.0) and set it as the active version of NodeJS by running:
 
 ```bash
 $ nvm install 18.16.0
@@ -72,13 +72,15 @@ Important Note: when running 'npm ci' for the first time you will be silently pr
 $ npm run start
 ```
 
-1. Configure required environment variables.
+1. Configure required environment variables. Create a `.env` file by duplicating the `.env.example` file. Fill in the values for the following variables.
 
-- AWS_CLIENT_ID - OAuth2 client id
-- OIDC_AUTHORITY_URL - Authority URL for retrieving OIDC metadata
-- OAUTH2_REDIRECT_URL - Destination to redirect after signing in
-- END_SESSION_URL - OAuth2 end session (or logout) endpoint, if not included in the OIDC metadata
-- APP_ENV - denotes environment for app, possible values are dev, preprod, and prod
+- API_URL - Use the default value provided in the .env.example for a locally running server, or point it to to a server as required.
+- APP_ENV - Denotes environment for app, possible values are dev, preprod, and prod. Defaults to 'dev'.
+- BUILD_STRING - Modification is not necessary for local/dev setups and this gets set automatically on different environments. Defaults to 'local'.
+- AWS_CLIENT_ID - OAuth2 client id.
+- OIDC_AUTHORITY_URL - Authority URL for retrieving OIDC metadata.
+- OAUTH2_REDIRECT_URL - Destination to redirect after signing in.
+- END_SESSION_URL - OAuth2 end session (or logout) endpoint, if not included in the OIDC metadata.
 
 8. Visit [localhost:3000](http://localhost:3000) in your web browser to view the FirstVoices app.
 
