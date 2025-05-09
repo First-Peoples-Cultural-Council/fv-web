@@ -1,5 +1,5 @@
 const GlobalConfiguration = {
-  API_URL: process.env.API_URL ? process.env.API_URL : '/api/1.0',
+  API_URL: process.env.API_URL_OVERRIDE || process.env.API_URL || '/api/1.0',
   APP_ENV: process.env.APP_ENV ? process.env.APP_ENV : 'dev',
   AWS_CLIENT_ID: process.env.AWS_CLIENT_ID ? process.env.AWS_CLIENT_ID : '',
   BUILD_STRING: process.env.BUILD_STRING ? process.env.BUILD_STRING : 'local',

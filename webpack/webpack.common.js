@@ -60,6 +60,9 @@ module.exports = (env) => {
       new Dotenv({
         path: path.resolve(__dirname, '../.env'),
       }),
+      new webpack.DefinePlugin({
+        'process.env.API_URL_OVERRIDE': JSON.stringify(env.API_URL || ''),
+      }),
       new HtmlWebpackPlugin({
         template: './public/index.html',
         minify: {
