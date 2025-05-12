@@ -22,7 +22,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
             size: SMALL,
           })}
           alt={file?.title}
-          className="object-contain w-full h-96"
+          className="object-contain w-full max-h-80"
         />
       ) : (
         <video
