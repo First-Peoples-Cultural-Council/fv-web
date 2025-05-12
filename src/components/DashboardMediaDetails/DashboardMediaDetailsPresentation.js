@@ -66,8 +66,8 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
                 return null
               })}
             {file?.id && (
-              <div className="py-3 grid grid-cols-3 gap-1 text-sm font-medium">
-                <dt className="col-span-1 text-charcoal-500 capitalize truncate h-16">
+              <div className="py-3 grid grid-cols-3 gap-1 text-sm font-medium items-center">
+                <dt className="col-span-1 text-charcoal-500 capitalize truncate h-24 flex items-center">
                   ID
                   <Copy
                     textToCopy={file.id}
