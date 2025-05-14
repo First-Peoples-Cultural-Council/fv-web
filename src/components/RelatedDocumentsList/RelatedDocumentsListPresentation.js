@@ -4,46 +4,49 @@ import { Link } from 'react-router'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
+import { getReadableFileSize } from 'common/utils/mediaHelpers'
 
 function RelatedDocumentsListPresentation({ documents }) {
   return (
     documents?.length > 0 && (
-      <section>
-        <div className="border border-charcoal-600 rounded-lg">
-          <ul className="w-full">
-            {documents?.map((document) => (
-              <li
-                key={document?.id}
-                className="flex items-center border-b border-charcoal-600 last:border-b-0 p-2"
-              >
-                <span>
-                  {getIcon(
-                    'Document',
-                    'fill-current h-6 w-6 mr-3 inline-flex text-scarlet-900',
-                  )}
-                </span>
-                <div className="w-full max-w-[600px] break-words p-3 relative">
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-10 bg-charcoal-300"></div>
-                  <div className="pl-1">
-                    <span className="text-scarlet-900 text-xl">
-                      {document?.title}
-                    </span>
-                    <p className="text-charcoal-700 text-sm">
-                      Acknowledgements: {document?.acknowledgement}
-                    </p>
-                  </div>
+      <ul className="border-2 border-charcoal-300 rounded-lg max-w-2xl w-full">
+        {documents?.map((document) => (
+          <li
+            key={document?.id}
+            className="grid grid-cols-11 w-full h-28 items-center py-5 border-b border-charcoal-300 last:border-b-0 p-2"
+          >
+            <div className="col-span-1 flex items-center justify-center">
+              {getIcon(
+                'Document',
+                'fill-current h-6 w-6 inline-flex text-scarlet-900 mx-auto',
+              )}
+            </div>
+            <div className="col-span-8">
+              <div className="break-words space-y-2 pl-5 border-l-2 border-charcoal-300">
+                <div
+                  className="text-scarlet-900 text-xl truncate"
+                  title={document?.title}
+                >
+                  {document?.title}{' '}
+                  {`(${getReadableFileSize(document?.original?.size)})`}
                 </div>
-                <Link to={document?.original.path}>
-                  {getIcon(
-                    'Download',
-                    'fill-current h-6 w-6 inline-flex text-scarlet-900',
-                  )}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+                <p className="text-charcoal-700 text-xs line-clamp-2">
+                  Acknowledgements: {document?.acknowledgement}
+                </p>
+              </div>
+            </div>
+            <Link
+              className="col-span-2 flex items-center justify-center"
+              to={document?.original.path}
+            >
+              {getIcon(
+                'Download',
+                'fill-current h-6 w-6 inline-flex text-scarlet-900',
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
     )
   )
 }

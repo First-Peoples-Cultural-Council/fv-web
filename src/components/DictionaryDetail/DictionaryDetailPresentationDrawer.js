@@ -286,7 +286,7 @@ function DictionaryDetailPresentationDrawer({
           )}
           {/* Related Documents */}
           {entry?.relatedDocuments.length > 0 && (
-            <div className="py-3">
+            <div className="py-3 space-y-2">
               <h4 className={labelStyling}>Related Documents</h4>
               <RelatedDocumentsList.Presentation
                 documents={entry?.relatedDocuments || []}

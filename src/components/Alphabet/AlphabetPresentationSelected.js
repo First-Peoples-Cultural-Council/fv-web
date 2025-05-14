@@ -117,12 +117,14 @@ function AlphabetPresentationSelected({
         </div>
       )}
       {relatedDocuments?.length > 0 && (
-        <div className="flex-col justify-center mx-auto my-5 w-3/4">
+        <div className="flex-col justify-center mx-auto my-5 w-3/4 space-y-2">
           <h2 className={labelStyling}>Related Documents</h2>
-          <RelatedDocumentsList.Presentation
-            documents={relatedDocuments}
-            labelStyling={labelStyling}
-          />
+          <div className="flex justify-center">
+            <RelatedDocumentsList.Presentation
+              documents={relatedDocuments}
+              labelStyling={labelStyling}
+            />
+          </div>
         </div>
       )}
       <div className="flex justify-center space-x-2">

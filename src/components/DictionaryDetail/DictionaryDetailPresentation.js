@@ -224,7 +224,7 @@ function DictionaryDetailPresentation({
           <section>
             {/* Related Documents */}
             {entry?.relatedDocuments?.length > 0 && (
-              <div className="py-2 md:p-4">
+              <div className="py-2 md:p-4 space-y-2">
                 <h4 className={labelStyling}>Related Documents</h4>
                 <RelatedDocumentsList.Presentation
                   documents={entry?.relatedDocuments || []}
