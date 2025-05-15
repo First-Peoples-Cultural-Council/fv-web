@@ -15,10 +15,10 @@ export function useLanguage({ id }) {
   return { ...response }
 }
 
-export function useLanguages({ query }) {
+export function useLanguages({ query, explorable }) {
   const allLanguagesResponse = useQuery({
-    queryKey: [LANGUAGES, query],
-    queryFn: () => api.languages.getAll({ query }),
+    queryKey: [LANGUAGES, query, explorable],
+    queryFn: () => api.languages.getAll({ query, explorable }),
   })
   const formattedLanguagesData = languagesListAdaptor({
     languagesData: allLanguagesResponse?.data,
