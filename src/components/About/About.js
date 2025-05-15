@@ -21,8 +21,7 @@ function About() {
             promote their language, oral culture and linguistic history.
             Communities create secure, interactive language sites online by
             uploading audio recordings, words, phrases, songs and stories to be
-            shared with others. Operating since 2003, FirstVoices is an
-            initiative of the First Peoples&lsquo; Cultural Council.
+            shared with others. Operating since 2003, FirstVoices is a joint initiative of the First Peoples‘ Cultural Council and the First Peoples‘ Cultural Foundation.
           </p>
           <h2 className={headerStyle}>Community Sites</h2>
           <p className={paraStyle}>
