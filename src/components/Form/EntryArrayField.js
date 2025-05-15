@@ -20,6 +20,7 @@ function EntryArrayField({
   register,
   control,
   types = [TYPE_PHRASE, TYPE_WORD],
+  entryTitle,
   buttonLabel,
   visibility,
   errors,
@@ -60,6 +61,7 @@ function EntryArrayField({
           formEntries={fields}
           isModalOpen={modalOpen}
           types={types}
+          entryTitle={entryTitle}
           updateFormEntries={appendToFormAndClose}
           visibility={visibility}
         />
@@ -80,6 +82,7 @@ EntryArrayField.propTypes = {
   control: object,
   register: func,
   types: array,
+  entryTitle: string,
   buttonLabel: string,
   visibility: string,
 }

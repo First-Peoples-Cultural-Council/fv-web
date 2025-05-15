@@ -14,10 +14,15 @@ function SelectorEntriesContainer({
   formEntries,
   isModalOpen,
   types,
+  entryTitle,
   updateFormEntries,
   visibility,
 }) {
-  const infiniteQueryResponse = useSearchModal({ types, visibility })
+  const infiniteQueryResponse = useSearchModal({
+    types,
+    visibility,
+    displayValue: entryTitle,
+  })
 
   const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
     useArrayStateManager({ maxItems: 30 })
@@ -93,6 +98,7 @@ SelectorEntriesContainer.propTypes = {
   formEntries: array,
   isModalOpen: bool,
   types: arrayOf(string),
+  entryTitle: string,
   updateFormEntries: func,
   visibility: string,
 }

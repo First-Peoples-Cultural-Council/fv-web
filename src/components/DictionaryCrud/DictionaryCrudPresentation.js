@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
@@ -172,6 +171,7 @@ function DictionaryCrudPresentation({
                 })}`}
                 maxItems={10}
                 types={[TYPE_WORD, TYPE_PHRASE]}
+                entryTitle={dataToEdit?.title}
                 errors={errors}
               />
             </div>
@@ -420,4 +420,3 @@ DictionaryCrudPresentation.propTypes = {
 }
 
 export default DictionaryCrudPresentation
-/* eslint-disable max-lines */
