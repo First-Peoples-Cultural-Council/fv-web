@@ -66,6 +66,7 @@ function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
               helpText="NB: Only dictionary entries that match the visibility of your site can be used as immersion labels."
               maxItems={1}
               types={[TYPE_WORD, TYPE_PHRASE]}
+              displayValue={dataToEdit?.english}
               visibility={site?.visibility}
             />
           </div>
