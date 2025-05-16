@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -39,24 +39,28 @@ function DashboardSpeakersPresentation({
               </th>
             </tr>
           }
-          tableBody={queryResponse?.data?.results?.map((speaker) => (
-            <tr key={speaker.id}>
-              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
-                {speaker.name}
-              </td>
-              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
-                {speaker?.bio || '-'}
-              </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <Link
-                  data-testid={`edit-speaker-${speaker.name}`}
-                  to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
-                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
-                >
-                  {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
-                </Link>
-              </td>
-            </tr>
+          tableBody={queryResponse?.data?.pages?.map((page) => (
+            <Fragment key={page.pageNumber}>
+              {page.results.map((speaker) => (
+                <tr key={speaker.id}>
+                  <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
+                    {speaker.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
+                    {speaker?.bio || '-'}
+                  </td>
+                  <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <Link
+                      data-testid={`edit-speaker-${speaker.name}`}
+                      to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
+                      className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                    >
+                      {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </Fragment>
           ))}
         />
       </DashboardLanding.Presentation>

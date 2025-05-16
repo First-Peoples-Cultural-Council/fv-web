@@ -10,6 +10,7 @@ function SongContainer({ id, sitename, isDrawer, isDashboard }) {
     id,
     sitename,
   })
+  console.log({ entry })
   return (
     <LoadOrError queryResponse={songQueryResponse}>
       {isDrawer ? (

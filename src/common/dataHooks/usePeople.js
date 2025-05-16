@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import { PEOPLE } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 
 export function usePerson({ id }) {
   const { sitename } = useParams()
@@ -18,12 +19,15 @@ export function usePerson({ id }) {
 
 export function usePeople() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const infiniteQueryResponse = useInfiniteScroll({
     queryKey: [PEOPLE, sitename],
-    queryFn: () => api.people.getAll({ sitename }),
-    ...{ enabled: !!sitename },
+    queryFn: ({ pageParam = 1 }) =>
+      api.people.getAll({
+        sitename,
+        pageParam,
+      }),
   })
-  return response
+  return infiniteQueryResponse
 }
 
 export function usePersonCreate() {
