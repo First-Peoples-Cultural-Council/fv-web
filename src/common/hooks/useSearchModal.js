@@ -23,6 +23,7 @@ function useSearchModal({ types, visibility = '', displayValue = '' }) {
     handleSearchTermChange,
     submittedSearchTerm,
     setSubmittedSearchTerm,
+    clearSearchTerm,
   } = useSearchTerm({ displayValue })
 
   const _searchParams = new URLSearchParams({
@@ -46,6 +47,8 @@ function useSearchModal({ types, visibility = '', displayValue = '' }) {
     displayedSearchTerm,
     handleSearchTermChange,
     handleSearchSubmit,
+    clearSearchTerm,
+    submittedSearchTerm,
   }
 }
 

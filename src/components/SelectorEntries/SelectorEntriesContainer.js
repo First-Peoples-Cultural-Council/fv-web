@@ -68,6 +68,10 @@ function SelectorEntriesContainer({
                   onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
                   searchPlaceholder="Search all words and phrases"
                   searchValue={infiniteQueryResponse?.displayedSearchTerm}
+                  clearSearchTerm={infiniteQueryResponse?.clearSearchTerm}
+                  submittedSearchTerm={
+                    infiniteQueryResponse?.submittedSearchTerm
+                  }
                 />
               </div>
               <div className="grow h-72 overflow-y-scroll">
