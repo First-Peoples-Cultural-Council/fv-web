@@ -77,9 +77,10 @@ function SelectorImagesContainer({
                         >
                           Indigenous artists
                         </a>{' '}
-                        for use on any FirstVoices site, as well as public
-                        domain photos suitable for language learning that have
-                        been curated by the FPCC Mentor Apprentice Program.
+                        for use on any FirstVoices site, public domain photos
+                        suitable for language learning that have been curated by
+                        the FPCC Mentor Apprentice Program, and other images
+                        that have been licensed for use on FirstVoices.
                       </span>
                     ) : (
                       'Images uploaded by you or your team'
