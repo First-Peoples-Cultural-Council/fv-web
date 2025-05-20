@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DashboardSpeakersPresentation({
   queryResponse,
@@ -60,6 +61,7 @@ function DashboardSpeakersPresentation({
                   </td>
                 </tr>
               ))}
+              <InfiniteLoadBtn infiniteQueryResponse={queryResponse} />
             </Fragment>
           ))}
         />
