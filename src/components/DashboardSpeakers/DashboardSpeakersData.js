@@ -8,7 +8,7 @@ function DashboardSpeakersData() {
   const { site } = useSiteStore()
   const { sitename } = useParams()
 
-  const queryResponse = usePeople()
+  const infiniteQueryResponse = usePeople()
 
   const tileContent = [
     {
@@ -27,7 +27,7 @@ function DashboardSpeakersData() {
   }
 
   return {
-    queryResponse,
+    infiniteQueryResponse,
     headerContent,
     tileContent,
     site,

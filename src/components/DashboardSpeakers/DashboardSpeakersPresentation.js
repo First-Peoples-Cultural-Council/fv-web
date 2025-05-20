@@ -9,7 +9,7 @@ import getIcon from 'common/utils/getIcon'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DashboardSpeakersPresentation({
-  queryResponse,
+  infiniteQueryResponse,
   headerContent,
   tileContent,
   site,
@@ -24,7 +24,7 @@ function DashboardSpeakersPresentation({
         site={site}
       >
         <DashboardTable.Presentation
-          queryResponse={queryResponse}
+          infiniteQueryResponse={infiniteQueryResponse}
           title="Speakers"
           tableHead={
             <tr>
@@ -40,7 +40,7 @@ function DashboardSpeakersPresentation({
               </th>
             </tr>
           }
-          tableBody={queryResponse?.data?.pages?.map((page) => (
+          tableBody={infiniteQueryResponse?.data?.pages?.map((page) => (
             <Fragment key={page.pageNumber}>
               {page.results.map((speaker) => (
                 <tr key={speaker.id}>
@@ -61,7 +61,7 @@ function DashboardSpeakersPresentation({
                   </td>
                 </tr>
               ))}
-              <InfiniteLoadBtn infiniteQueryResponse={queryResponse} />
+              <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
             </Fragment>
           ))}
         />
@@ -72,7 +72,7 @@ function DashboardSpeakersPresentation({
 // PROPTYPES
 const { array, object } = PropTypes
 DashboardSpeakersPresentation.propTypes = {
-  queryResponse: object,
+  infiniteQueryResponse: object,
   headerContent: object,
   site: object,
   tileContent: array,
