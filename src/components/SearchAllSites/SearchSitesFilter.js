@@ -123,17 +123,18 @@ function SearchSitesFilter() {
                 ) : (
                   options?.map((option) => (
                     <div key={option?.id}>
-                      {!option?.noLanguageAssigned && (
-                        <ComboboxOption
-                          className="cursor-default select-none p-2 data-[focus]:bg-charcoal-100"
-                          value={option.sites}
-                          onClick={() => handleLanguageToggle(option.sites)}
-                        >
-                          {({ selected }) =>
-                            generateListItem({ item: option, selected })
-                          }
-                        </ComboboxOption>
-                      )}
+                      {!option?.noLanguageAssigned &&
+                        option?.sites?.length > 0 && (
+                          <ComboboxOption
+                            className="cursor-default select-none p-2 data-[focus]:bg-charcoal-100"
+                            value={option.sites}
+                            onClick={() => handleLanguageToggle(option.sites)}
+                          >
+                            {({ selected }) =>
+                              generateListItem({ item: option, selected })
+                            }
+                          </ComboboxOption>
+                        )}
                       {option?.sites?.length > 0 &&
                         option?.sites?.map((site) => (
                           <ComboboxOption
