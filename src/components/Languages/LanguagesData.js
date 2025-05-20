@@ -12,6 +12,7 @@ function LanguagesData() {
 
   const languagesQueryResponse = useLanguages({
     query,
+    explorable: true,
   })
 
   return {
