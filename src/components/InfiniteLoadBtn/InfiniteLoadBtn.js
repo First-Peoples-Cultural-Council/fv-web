@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useIntersectionObserver from 'common/hooks/useIntersectionObserver'
 
-function InfiniteLoadBtn({ infiniteQueryResponse }) {
+function InfiniteLoadBtn({ infiniteQueryResponse, isResultsEmpty = false }) {
   const { loadRef } = useIntersectionObserver({
     hasNextPage: infiniteQueryResponse?.hasNextPage,
     fetchNextPage: infiniteQueryResponse?.fetchNextPage,
@@ -17,7 +17,7 @@ function InfiniteLoadBtn({ infiniteQueryResponse }) {
     if (infiniteQueryResponse?.hasNextPage) {
       return 'Load more'
     }
-    if (!infiniteQueryResponse?.hasResults) {
+    if (isResultsEmpty) {
       return 'Sorry, there are no results for this search.'
     }
     return 'End of results.'
@@ -44,9 +44,10 @@ function InfiniteLoadBtn({ infiniteQueryResponse }) {
 }
 
 // PROPTYPES
-const { object } = PropTypes
+const { object, bool } = PropTypes
 InfiniteLoadBtn.propTypes = {
   infiniteQueryResponse: object,
+  isResultsEmpty: bool,
 }
 
 export default InfiniteLoadBtn

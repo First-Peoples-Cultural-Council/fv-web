@@ -22,6 +22,18 @@ function SelectorEntriesPresentationList({
   const headerClass =
     'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
+  // List of results not including the current entry being edited
+  const filteredResults =
+    infiniteQueryResponse?.data?.pages
+      ?.flatMap((page) => page.results)
+      ?.filter(
+        (entry) =>
+          !formEntries?.some((formEntry) => formEntry?.id === entry?.id) &&
+          entry?.id !== entryId,
+      ) || []
+
+  const isFilteredListEmpty = filteredResults.length === 0
+
   return (
     <div id="SelectorEntriesPresentationList" className="w-full my-4 px-2">
       <h2 className="sr-only">Search results</h2>
@@ -61,7 +73,6 @@ function SelectorEntriesPresentationList({
                       ) ||
                       entry?.id === entryId
                     ) {
-                      infiniteQueryResponse.hasResults = false
                       return null
                     }
                     const isSelected = selectedItems?.some(
@@ -118,7 +129,10 @@ function SelectorEntriesPresentationList({
               ))}
             </tbody>
           </table>
-          <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
+          <InfiniteLoadBtn
+            infiniteQueryResponse={infiniteQueryResponse}
+            isResultsEmpty={isFilteredListEmpty}
+          />
         </>
       )}
     </div>
