@@ -24,7 +24,7 @@ function DashboardSpeakersPresentation({
         site={site}
       >
         <DashboardTable.Presentation
-          infiniteQueryResponse={infiniteQueryResponse}
+          queryResponse={infiniteQueryResponse}
           title="Speakers"
           tableHead={
             <tr>
