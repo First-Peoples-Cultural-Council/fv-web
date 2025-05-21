@@ -17,7 +17,10 @@ function InfiniteLoadBtn({ infiniteQueryResponse }) {
     if (infiniteQueryResponse?.hasNextPage) {
       return 'Load more'
     }
-    return 'End of results. Try searching for another term.'
+    if (!infiniteQueryResponse?.hasResults) {
+      return 'Sorry, there are no results for this search.'
+    }
+    return 'End of results.'
   }
   return (
     <div data-testid="InfiniteLoadBtn" className="text-center w-full">

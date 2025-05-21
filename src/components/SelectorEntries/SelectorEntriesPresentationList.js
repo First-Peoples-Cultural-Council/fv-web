@@ -61,6 +61,7 @@ function SelectorEntriesPresentationList({
                       ) ||
                       entry?.id === entryId
                     ) {
+                      infiniteQueryResponse.hasResults = false
                       return null
                     }
                     const isSelected = selectedItems?.some(
@@ -130,7 +131,7 @@ const { array, arrayOf, func, object, string } = PropTypes
 SelectorEntriesPresentationList.propTypes = {
   infiniteQueryResponse: object,
   formEntries: array,
-  selectedItems: object,
+  selectedItems: array,
   handleSelectAdditionalItem: func,
   types: arrayOf(string),
 }
