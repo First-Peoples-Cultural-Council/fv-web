@@ -165,7 +165,7 @@ function ParachutePresentation({
                     ? gameImages['win.svg']
                     : gameImages[`${guessesRemaining}.svg`]
                 }
-                className="max-w-3xl mx-auto object-cover h-96 w-full"
+                className="max-w-3xl mx-auto object-cover md:h-96 w-full"
                 alt={`You have ${guessesRemaining} guesses remaining.`}
               />
               <p className="text-charcoal-300 text-xs text-right mx-auto -mt-6 mb-6 max-w-[760px]">
