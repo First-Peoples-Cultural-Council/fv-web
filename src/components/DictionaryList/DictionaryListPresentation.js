@@ -115,7 +115,7 @@ function DictionaryListPresentation({
                       {page.results.map((entry, i) => (
                         <tr key={entry?.id}>
                           <td
-                            className={`px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-20' : ''}`}
+                            className={`px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-20' : ''}`}
                           >
                             <button
                               type="button"
