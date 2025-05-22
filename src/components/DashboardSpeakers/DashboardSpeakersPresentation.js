@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -6,9 +6,10 @@ import { Link } from 'react-router'
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DashboardSpeakersPresentation({
-  queryResponse,
+  infiniteQueryResponse,
   headerContent,
   tileContent,
   site,
@@ -23,7 +24,7 @@ function DashboardSpeakersPresentation({
         site={site}
       >
         <DashboardTable.Presentation
-          queryResponse={queryResponse}
+          queryResponse={infiniteQueryResponse}
           title="Speakers"
           tableHead={
             <tr>
@@ -39,24 +40,29 @@ function DashboardSpeakersPresentation({
               </th>
             </tr>
           }
-          tableBody={queryResponse?.data?.results?.map((speaker) => (
-            <tr key={speaker.id}>
-              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
-                {speaker.name}
-              </td>
-              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
-                {speaker?.bio || '-'}
-              </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <Link
-                  data-testid={`edit-speaker-${speaker.name}`}
-                  to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
-                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
-                >
-                  {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
-                </Link>
-              </td>
-            </tr>
+          tableBody={infiniteQueryResponse?.data?.pages?.map((page) => (
+            <Fragment key={page.pageNumber}>
+              {page.results.map((speaker) => (
+                <tr key={speaker.id}>
+                  <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
+                    {speaker.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
+                    {speaker?.bio || '-'}
+                  </td>
+                  <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <Link
+                      data-testid={`edit-speaker-${speaker.name}`}
+                      to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
+                      className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                    >
+                      {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+              <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
+            </Fragment>
           ))}
         />
       </DashboardLanding.Presentation>
@@ -66,7 +72,7 @@ function DashboardSpeakersPresentation({
 // PROPTYPES
 const { array, object } = PropTypes
 DashboardSpeakersPresentation.propTypes = {
-  queryResponse: object,
+  infiniteQueryResponse: object,
   headerContent: object,
   site: object,
   tileContent: array,

@@ -5,11 +5,11 @@ import DashboardSpeakersData from 'components/DashboardSpeakers/DashboardSpeaker
 import DashboardSpeakersPresentation from 'components/DashboardSpeakers/DashboardSpeakersPresentation'
 
 function DashboardSpeakersContainer() {
-  const { queryResponse, headerContent, site, tileContent } =
+  const { infiniteQueryResponse, headerContent, site, tileContent } =
     DashboardSpeakersData()
   return (
     <DashboardSpeakersPresentation
-      queryResponse={queryResponse}
+      infiniteQueryResponse={infiniteQueryResponse}
       headerContent={headerContent}
       tileContent={tileContent}
       site={site}
