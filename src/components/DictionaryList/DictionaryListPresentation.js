@@ -54,7 +54,6 @@ function DictionaryListPresentation({
 
   const tableHeaderStyling =
     'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
-
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
       <section
@@ -111,11 +110,13 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-200">
-                  {infiniteQueryResponse?.data?.pages?.map((page) => (
+                  {infiniteQueryResponse?.data?.pages?.map((page, j) => (
                     <Fragment key={page.pageNumber}>
-                      {page.results.map((entry) => (
+                      {page.results.map((entry, i) => (
                         <tr key={entry?.id}>
-                          <td className="px-6 py-4">
+                          <td
+                            className={`px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-20' : ''}`}
+                          >
                             <button
                               type="button"
                               className="text-left font-medium text-charcoal-900 lg:mr-2"
@@ -125,7 +126,10 @@ function DictionaryListPresentation({
                               {entry?.title}
                             </button>
                           </td>
-                          <td className="py-4" aria-label="list">
+                          <td
+                            className={`py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
+                            aria-label="list"
+                          >
                             <div className="inline-flex items-center">
                               <AudioButton
                                 audioArray={entry?.audio}
@@ -134,7 +138,9 @@ function DictionaryListPresentation({
                               />
                             </div>
                           </td>
-                          <td className="px-6 py-4">
+                          <td
+                            className={`px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
+                          >
                             {/* For Dictionary Entries */}
                             {entry?.translations ? (
                               <ol className="text-charcoal-900">
@@ -156,7 +162,9 @@ function DictionaryListPresentation({
                             )}
                           </td>
                           {showType && (
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td
+                              className={`px-6 py-4 whitespace-nowrap ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
+                            >
                               <span
                                 className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                               >
@@ -165,7 +173,9 @@ function DictionaryListPresentation({
                             </td>
                           )}
                           {wholeDomain && (
-                            <td className="px-6 py-4 whitespace-nowrap">
+                            <td
+                              className={`px-6 py-4 whitespace-nowrap ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
+                            >
                               <Link
                                 className="text-left text-sm text-charcoal-900"
                                 to={`/${entry?.sitename}`}
@@ -175,7 +185,7 @@ function DictionaryListPresentation({
                             </td>
                           )}
                           <td
-                            className="text-right px-6 py-4"
+                            className={`text-right px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
                             aria-label="list"
                           >
                             <ActionsMenu.Presentation
