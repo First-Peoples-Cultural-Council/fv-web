@@ -45,6 +45,30 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
   .btn-icon {
     @apply fill-current h-5 w-5;
   }
+  .btn {
+    @apply rounded-3xl inline-flex justify-center items-center space-x-2;
+  }
+  .btn-primary {
+    @apply btn bg-forest-600 text-forest-100 hover:bg-forest-800 focus:outline-none focus:ring-2 focus:ring-forest-300;
+  }
+  .btn-secondary {
+    @apply btn bg-white border border-forest-900 text-forest-900 hover:bg-forest-100 focus:bg-forest-200 focus:outline-none focus:ring-2 focus:ring-forest-900;
+  }
+  .btn-tertiary {
+    @apply btn bg-white text-forest-900 hover:bg-forest-100 focus:bg-forest-200 focus:outline-none focus:ring-2 focus:ring-forest-900;
+  }
+  .btn-sm {
+    @apply py-1.5 px-3 text-[14px] min-w-[120px] h-[32px];
+  }
+  .btn-md {
+    @apply py-2 px-3 text-[16px] min-w-[160px] h-[40px];
+  }
+  .btn-lg {
+    @apply py-2 px-3 text-[18px] min-w-[200px] h-[48px];
+  }
+  .btn-xl {
+    @apply py-3 px-5 text-[22px] min-w-[300px] h-[56px];
+  }
 }
 
 @layer utilities {
