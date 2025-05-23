@@ -15,7 +15,7 @@ import {
   VISIBILITY_TEAM,
 } from 'common/constants'
 
-function useSearchModal({ types, visibility = '' }) {
+function useSearchModal({ types, visibility = '', displayValue = '' }) {
   const searchType = types.join()
 
   const {
@@ -23,7 +23,8 @@ function useSearchModal({ types, visibility = '' }) {
     handleSearchTermChange,
     submittedSearchTerm,
     setSubmittedSearchTerm,
-  } = useSearchTerm()
+    clearSearchTerm,
+  } = useSearchTerm({ displayValue })
 
   const _searchParams = new URLSearchParams({
     q: submittedSearchTerm,
@@ -46,14 +47,17 @@ function useSearchModal({ types, visibility = '' }) {
     displayedSearchTerm,
     handleSearchTermChange,
     handleSearchSubmit,
+    clearSearchTerm,
+    submittedSearchTerm,
   }
 }
 
 // PROPTYPES
-const { arrayOf, oneOf } = PropTypes
+const { arrayOf, oneOf, string } = PropTypes
 useSearchModal.propTypes = {
   types: arrayOf(oneOf([TYPE_WORD, TYPE_PHRASE])),
   visibility: oneOf([VISIBILITY_PUBLIC, VISIBILITY_MEMBERS, VISIBILITY_TEAM]),
+  displayValue: string,
 }
 
 export default useSearchModal

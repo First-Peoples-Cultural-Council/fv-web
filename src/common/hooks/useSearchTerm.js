@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 // FPCC
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
-function useSearchTerm() {
+function useSearchTerm({ displayValue = '' } = {}) {
   const location = useLocation()
   // update search settings when url changes
   const [searchTermInUrl, setSearchTermInUrl, removeSearchTermInUrl] =
@@ -16,6 +16,9 @@ function useSearchTerm() {
   // basic search term state
   const [displayedSearchTerm, setDisplayedSearchTerm] = useState('')
   const [submittedSearchTerm, setSubmittedSearchTerm] = useState('')
+
+  // Track whether to auto-fill the search term with displayValue
+  const [useAutofill, setUseAutofill] = useState(true)
 
   const handleSearchTermChange = (event) => {
     event.preventDefault()
@@ -37,11 +40,19 @@ function useSearchTerm() {
   }, [searchTermInUrl, setDisplayedSearchTerm])
 
   useEffect(() => {
+    if (useAutofill && displayValue && !searchTermInUrl) {
+      setDisplayedSearchTerm(displayValue)
+      setSubmittedSearchTerm(displayValue)
+      setUseAutofill(false) // Disable autofill after the first use
+    }
+  }, [displayValue, searchTermInUrl, useAutofill])
+
+  useEffect(() => {
     // execute on path change if there is no query
-    if (!searchTermInUrl) {
+    if (!searchTermInUrl && !displayValue) {
       setDisplayedSearchTerm('')
     }
-  }, [location?.pathname, searchTermInUrl])
+  }, [location?.pathname, searchTermInUrl, displayValue])
 
   const clearSearchTerm = (event) => {
     event.preventDefault()

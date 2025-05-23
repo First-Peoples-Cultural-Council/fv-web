@@ -14,10 +14,15 @@ function SelectorEntriesContainer({
   formEntries,
   isModalOpen,
   types,
+  displayValue,
   updateFormEntries,
   visibility,
 }) {
-  const infiniteQueryResponse = useSearchModal({ types, visibility })
+  const infiniteQueryResponse = useSearchModal({
+    types,
+    visibility,
+    displayValue,
+  })
 
   const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
     useArrayStateManager({ maxItems: 30 })
@@ -63,6 +68,10 @@ function SelectorEntriesContainer({
                   onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
                   searchPlaceholder="Search all words and phrases"
                   searchValue={infiniteQueryResponse?.displayedSearchTerm}
+                  clearSearchTerm={infiniteQueryResponse?.clearSearchTerm}
+                  submittedSearchTerm={
+                    infiniteQueryResponse?.submittedSearchTerm
+                  }
                 />
               </div>
               <div className="grow h-72 overflow-y-scroll">
@@ -93,6 +102,7 @@ SelectorEntriesContainer.propTypes = {
   formEntries: array,
   isModalOpen: bool,
   types: arrayOf(string),
+  displayValue: string,
   updateFormEntries: func,
   visibility: string,
 }
