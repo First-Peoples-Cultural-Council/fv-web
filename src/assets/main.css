@@ -45,6 +45,7 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
   .btn-icon {
     @apply fill-current h-5 w-5;
   }
+  /* New Button Styles */
   .btn {
     @apply rounded-3xl inline-flex justify-center items-center space-x-2;
   }
@@ -60,14 +61,54 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
   .btn-sm {
     @apply py-1.5 px-3 text-[14px] min-w-[120px] h-[32px];
   }
+  .btn-sm svg {
+    @apply w-[14px] h-[14px] fill-current;
+  }
   .btn-md {
     @apply py-2 px-3 text-[16px] min-w-[160px] h-[40px];
+  }
+  .btn-md svg {
+    @apply w-[16px] h-[16px] fill-current;
   }
   .btn-lg {
     @apply py-2 px-3 text-[18px] min-w-[200px] h-[48px];
   }
+  .btn-lg svg {
+    @apply w-[18px] h-[18px] fill-current;
+  }
   .btn-xl {
     @apply py-3 px-5 text-[22px] min-w-[300px] h-[56px];
+  }
+  .btn-xl svg {
+    @apply w-[22px] h-[22px] fill-current;
+  }
+  /* Icon only buttons */
+  .btn-icon-base {
+    @apply rounded-full inline-flex justify-center items-center;
+  }
+  .btn-sm-icon {
+    @apply btn-icon-base w-[32px] h-[32px];
+  }
+  .btn-sm-icon svg {
+    @apply w-[12px] h-[12px] fill-current;
+  }
+  .btn-md-icon {
+    @apply btn-icon-base w-[40px] h-[40px];
+  }
+  .btn-md-icon svg {
+    @apply w-[24px] h-[24px] fill-current;
+  }
+  .btn-lg-icon {
+    @apply btn-icon-base w-[48px] h-[48px];
+  }
+  .btn-lg-icon svg {
+    @apply w-[26px] h-[26px] fill-current;
+  }
+  .btn-xl-icon {
+    @apply btn-icon-base w-[56px] h-[56px];
+  }
+  .btn-xl-icon svg {
+    @apply w-[32px] h-[32px] fill-current;
   }
 }
 
