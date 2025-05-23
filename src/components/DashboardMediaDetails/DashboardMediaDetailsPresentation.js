@@ -21,8 +21,8 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
       className="min-h-screen w-full pb-16 px-8 sticky top-16 bg-white border-1 border-charcoal-100"
     >
       <div className="flex justify-center space-x-2 py-5">
-        <a href={file?.downloadLink} className="flex-1 btn-outlined">
-          {getIcon('Download', 'btn-icon')}
+        <a href={file?.downloadLink} className="flex-1 btn-secondary btn-sm">
+          {getIcon('Download')}
           <span>Download</span>
         </a>
 
@@ -31,9 +31,9 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
           data-testid="EntryDrawerEdit"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 btn-contained bg-scarlet-800"
+          className="flex-1 btn-primary btn-sm"
         >
-          {getIcon('Pencil', 'btn-icon')}
+          {getIcon('Pencil')}
           <span>Edit</span>
         </Link>
       </div>
@@ -71,7 +71,6 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
                   ID
                   <Copy
                     textToCopy={file.id}
-                    iconStyling="fill-current text-blumine-800 h-4 w-4 sm:w-8 sm:h-8 ml-4"
                     withConfirmation
                     withTooltip
                     hoverTooltip
