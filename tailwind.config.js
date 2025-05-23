@@ -110,7 +110,6 @@ module.exports = {
         jade: customColorsConfig.jade, // 300, 400, 500, 700, 800
         ochre: customColorsConfig.ochre, // 200, 400, 500, 600, 700, 800
         charcoal: customColorsConfig.charcoal, // 100, 200, 300, 500, 700, 900
-        forest: customColorsConfig.forest, // 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
         // Type Color Aliases
         'phrase-color': customColorsConfig.ochre,
         'song-color': customColorsConfig.scarlet,

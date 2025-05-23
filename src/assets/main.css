@@ -50,13 +50,13 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
     @apply rounded-3xl inline-flex justify-center items-center space-x-2;
   }
   .btn-primary {
-    @apply btn bg-forest-600 text-forest-100 hover:bg-forest-800 focus:outline-none focus:ring-2 focus:ring-forest-300;
+    @apply btn bg-blumine-600 text-blumine-100 hover:bg-blumine-800 focus:outline-none focus:ring-2 focus:ring-blumine-300;
   }
   .btn-secondary {
-    @apply btn bg-white border border-forest-900 text-forest-900 hover:bg-forest-100 focus:bg-forest-200 focus:outline-none focus:ring-2 focus:ring-forest-900;
+    @apply btn bg-white border border-blumine-900 text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900;
   }
   .btn-tertiary {
-    @apply btn bg-white text-forest-900 hover:bg-forest-100 focus:bg-forest-200 focus:outline-none focus:ring-2 focus:ring-forest-900;
+    @apply btn bg-white text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900;
   }
   .btn-sm {
     @apply py-1.5 px-3 text-[14px] min-w-[120px] h-[32px];
