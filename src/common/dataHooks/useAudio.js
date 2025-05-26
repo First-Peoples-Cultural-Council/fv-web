@@ -24,7 +24,7 @@ export function useAudio({ id, edit = false }) {
 
 export function useAudioCreate(options = {}) {
   const { sitename } = useParams()
-  const createJoinRequest = async (formData) => {
+  const createAudio = async (formData) => {
     // Audience flags
     const excludeFromGames = formData?.includeInGames === 'false'
     const excludeFromKids = formData?.includeInKids === 'false'
@@ -45,7 +45,7 @@ export function useAudioCreate(options = {}) {
     })
   }
   const mutation = useMutation({
-    mutationFn: createJoinRequest,
+    mutationFn: createAudio,
     ...options,
   })
 
