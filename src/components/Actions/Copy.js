@@ -30,7 +30,7 @@ function Copy({
       id="CopyAction"
       data-testid={`copy-btn-${textToCopy}`}
       aria-label="Copy to clipboard"
-      className="btn-md-icon btn-tertiary"
+      className="btn-md-icon btn-tertiary group relative"
       onClick={() =>
         copyToClipboard({ text: textToCopy, confirmationCallback })
       }
