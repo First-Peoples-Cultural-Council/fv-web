@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useQueryClient } from '@tanstack/react-query'
 import * as yup from 'yup'
@@ -18,6 +18,8 @@ function AudioUploadForm({ setSelectedAudio }) {
   const { site } = useSiteStore()
   const [isUploading, setIsUploading] = useState(false)
   const [fileUploaded, setFileUploaded] = useState(false)
+  const [uploadError, setUploadError] = useState(null)
+  const errorRef = useRef(null)
   const queryClient = useQueryClient()
 
   const validator = yup.object().shape({
@@ -62,12 +64,26 @@ function AudioUploadForm({ setSelectedAudio }) {
       setFileUploaded(true)
       setSelectedAudio((oldArray) => [...oldArray, response?.id])
     },
+    onError: (error) => {
+      setIsUploading(false)
+      setUploadError(
+        error?.response?.data?.message ||
+          'Audio upload failed. Please try again.',
+      )
+      setTimeout(() => {
+        if (errorRef.current) {
+          errorRef.current.scrollIntoView({ behavior: 'auto' }) // Jump to the error when it appears
+        }
+      }, 50)
+    },
   })
 
   const submitHandler = (formData) => {
     if (!formData?.audioFile?.[0]) {
       return
     }
+    setIsUploading(true)
+    setUploadError(null)
     mutate(formData)
   }
 
@@ -80,6 +96,13 @@ function AudioUploadForm({ setSelectedAudio }) {
     </div>
   ) : (
     <div id="AudioUploadForm" className="max-w-5xl pb-4 text-left mx-auto">
+      <div ref={errorRef}>
+        {uploadError && (
+          <div className="bg-red-100 text-red-700 p-4 rounded mb-4">
+            <p>{uploadError}</p>
+          </div>
+        )}
+      </div>
       <form onReset={reset}>
         <div className="grid grid-cols-12 gap-2">
           <div className="col-span-12">
