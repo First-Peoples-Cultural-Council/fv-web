@@ -55,8 +55,6 @@ function DictionaryListPresentation({
   const tableHeaderStyling =
     'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
 
-  // const ifLastEntryStyling =`px-6 py-4 ${resultIndex === page.results.length - 1 && pageIndex === infiniteQueryResponse.data.pages.length - 1 ? 'pb-20' : ''}`
-
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
       <section
