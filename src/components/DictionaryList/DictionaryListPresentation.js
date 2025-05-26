@@ -54,6 +54,9 @@ function DictionaryListPresentation({
 
   const tableHeaderStyling =
     'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
+
+  // const ifLastEntryStyling =`px-6 py-4 ${resultIndex === page.results.length - 1 && pageIndex === infiniteQueryResponse.data.pages.length - 1 ? 'pb-20' : ''}`
+
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
       <section
@@ -110,98 +113,107 @@ function DictionaryListPresentation({
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-200">
-                  {infiniteQueryResponse?.data?.pages?.map((page, j) => (
-                    <Fragment key={page.pageNumber}>
-                      {page.results.map((entry, i) => (
-                        <tr key={entry?.id}>
-                          <td
-                            className={`px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-20' : ''}`}
-                          >
-                            <button
-                              type="button"
-                              className="text-left font-medium text-charcoal-900 lg:mr-2"
-                              onClick={() => handleItemClick(entry)}
-                              data-testid="DictionaryListEntry"
-                            >
-                              {entry?.title}
-                            </button>
-                          </td>
-                          <td
-                            className={`py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
-                            aria-label="list"
-                          >
-                            <div className="inline-flex items-center">
-                              <AudioButton
-                                audioArray={entry?.audio}
-                                iconStyling="fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-6 w-6"
-                                hoverTooltip
-                              />
-                            </div>
-                          </td>
-                          <td
-                            className={`px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
-                          >
-                            {/* For Dictionary Entries */}
-                            {entry?.translations ? (
-                              <ol className="text-charcoal-900">
-                                {entry?.translations?.map((translation, i) => (
-                                  <li key={translation?.text}>
-                                    {entry?.translations?.length > 1
-                                      ? `${i + 1}. `
-                                      : null}{' '}
-                                    {translation?.text}
-                                  </li>
-                                ))}
-                              </ol>
-                            ) : null}
-                            {/* For Songs and Stories */}
-                            {entry?.titleTranslation && (
-                              <div className="text-charcoal-900">
-                                {entry?.titleTranslation}
-                              </div>
-                            )}
-                          </td>
-                          {showType && (
-                            <td
-                              className={`px-6 py-4 whitespace-nowrap ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
-                            >
-                              <span
-                                className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
+                  {infiniteQueryResponse?.data?.pages?.map(
+                    (page, pageIndex) => (
+                      <Fragment key={page.pageNumber}>
+                        {page.results.map((entry, resultIndex) => {
+                          const ifLastEntryStyling =
+                            resultIndex === page.results.length - 1 &&
+                            pageIndex ===
+                              infiniteQueryResponse.data.pages.length - 1
+                              ? 'pb-20'
+                              : ''
+
+                          return (
+                            <tr key={entry?.id}>
+                              <td className={`px-6 py-4 ${ifLastEntryStyling}`}>
+                                <button
+                                  type="button"
+                                  className="text-left font-medium text-charcoal-900 lg:mr-2"
+                                  onClick={() => handleItemClick(entry)}
+                                  data-testid="DictionaryListEntry"
+                                >
+                                  {entry?.title}
+                                </button>
+                              </td>
+                              <td
+                                className={`py-4 ${ifLastEntryStyling}`}
+                                aria-label="list"
                               >
-                                <span>{entry?.type}</span>
-                              </span>
-                            </td>
-                          )}
-                          {wholeDomain && (
-                            <td
-                              className={`px-6 py-4 whitespace-nowrap ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
-                            >
-                              <Link
-                                className="text-left text-sm text-charcoal-900"
-                                to={`/${entry?.sitename}`}
+                                <div className="inline-flex items-center">
+                                  <AudioButton
+                                    audioArray={entry?.audio}
+                                    iconStyling="fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-6 w-6"
+                                    hoverTooltip
+                                  />
+                                </div>
+                              </td>
+                              <td className={`px-6 py-4 ${ifLastEntryStyling}`}>
+                                {/* For Dictionary Entries */}
+                                {entry?.translations ? (
+                                  <ol className="text-charcoal-900">
+                                    {entry?.translations?.map(
+                                      (translation, i) => (
+                                        <li key={translation?.text}>
+                                          {entry?.translations?.length > 1
+                                            ? `${i + 1}. `
+                                            : null}{' '}
+                                          {translation?.text}
+                                        </li>
+                                      ),
+                                    )}
+                                  </ol>
+                                ) : null}
+                                {/* For Songs and Stories */}
+                                {entry?.titleTranslation && (
+                                  <div className="text-charcoal-900">
+                                    {entry?.titleTranslation}
+                                  </div>
+                                )}
+                              </td>
+                              {showType && (
+                                <td
+                                  className={`px-6 py-4 whitespace-nowrap ${ifLastEntryStyling}`}
+                                >
+                                  <span
+                                    className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
+                                  >
+                                    <span>{entry?.type}</span>
+                                  </span>
+                                </td>
+                              )}
+                              {wholeDomain && (
+                                <td
+                                  className={`px-6 py-4 whitespace-nowrap ${ifLastEntryStyling}`}
+                                >
+                                  <Link
+                                    className="text-left text-sm text-charcoal-900"
+                                    to={`/${entry?.sitename}`}
+                                  >
+                                    {entry?.siteTitle}
+                                  </Link>
+                                </td>
+                              )}
+                              <td
+                                className={`text-right px-6 py-4 ${ifLastEntryStyling}`}
+                                aria-label="list"
                               >
-                                {entry?.siteTitle}
-                              </Link>
-                            </td>
-                          )}
-                          <td
-                            className={`text-right px-6 py-4 ${i === page.results.length - 1 && j === infiniteQueryResponse.data.pages.length - 1 ? 'pb-24' : ''}`}
-                            aria-label="list"
-                          >
-                            <ActionsMenu.Presentation
-                              entry={entry}
-                              sitename={entry?.sitename}
-                              siteVisibility={entry?.siteVisibility}
-                              actions={actions}
-                              moreActions={moreActions}
-                              withConfirmation
-                              withTooltip
-                            />
-                          </td>
-                        </tr>
-                      ))}
-                    </Fragment>
-                  ))}
+                                <ActionsMenu.Presentation
+                                  entry={entry}
+                                  sitename={entry?.sitename}
+                                  siteVisibility={entry?.siteVisibility}
+                                  actions={actions}
+                                  moreActions={moreActions}
+                                  withConfirmation
+                                  withTooltip
+                                />
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </Fragment>
+                    ),
+                  )}
                 </tbody>
               </table>
             </div>
