@@ -72,7 +72,7 @@ function DashboardImmersionPresentation({
                     </div>
                   </td>
                   <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div className="text-scarlet-800 hover:text-scarlet-900 flex items-center">
+                    <div className="btn-md-icon btn-tertiary">
                       {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                     </div>
                   </td>
