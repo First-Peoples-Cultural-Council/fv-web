@@ -62,12 +62,15 @@ function AddGalleryButton({ value, onChange }) {
         closeHandler={() => setModalOpen(false)}
         isDashboard
       >
-        <div className="h-4/5-screen mx-auto rounded-lg bg-charcoal-50 p-6">
-          <h2 className="text-2xl leading-6 font-bold text-center text-blumine-800 mb-6">
+        <div
+          id="AddGalleryModalWrapper"
+          className="mx-auto rounded-lg bg-charcoal-50 py-6 mb-20"
+        >
+          <h2 className="text-2xl leading-6 font-bold text-center text-blumine-800 pb-6">
             Choose a gallery
           </h2>
           {data?.results?.length > 0 ? (
-            <div className="mx-auto space-x-4 space-y-4">
+            <div className="h-4/5-screen mx-auto space-x-4 space-y-4 overflow-y-scroll size-full">
               {data?.results?.map((gallery) => (
                 <button
                   key={gallery?.id}
