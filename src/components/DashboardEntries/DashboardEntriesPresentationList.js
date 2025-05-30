@@ -114,7 +114,8 @@ function DashboardEntriesPresentationList({
                               data-testid="click-title"
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="cursor-pointer pl-6 pr-4 py-4 text-left font-medium"
+                              // className="cursor-pointer pl-6 pr-4 py-4 text-left font-medium"
+                              className="btn-teriary btn-md text-left pl-6"
                             >
                               {entry?.title}
                             </button>
@@ -123,7 +124,8 @@ function DashboardEntriesPresentationList({
                             <button
                               data-testid="click-translations"
                               type="button"
-                              className="cursor-pointer p-4 text-left font-medium"
+                              // className="cursor-pointer p-4 text-left font-medium"
+                              className="btn-tertairy btn-md"
                               onClick={() => handleItemClick(entry)}
                             >
                               {/* For Dictionary Entries */}
@@ -164,7 +166,7 @@ function DashboardEntriesPresentationList({
                             {checkIfUserCanEdit(entry) ? (
                               <Link
                                 to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
-                                className="p-4 text-blumine-800 hover:text-blumine-900 flex items-center"
+                                className="btn-md-icon btn-tertiary"
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
@@ -184,7 +186,7 @@ function DashboardEntriesPresentationList({
                               data-testid={`${entry?.title}-preview`}
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="p-4 text-blumine-800 hover:text-blumine-900 flex items-center"
+                              className="btn-md-icon btn-tertiary"
                             >
                               {getIcon(
                                 'Preview',
