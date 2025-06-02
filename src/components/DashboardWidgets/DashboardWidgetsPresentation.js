@@ -59,7 +59,8 @@ function DashboardWidgetsPresentation({
                 {widget?.editable ? (
                   <Link
                     to={`/${site?.sitename}/dashboard/edit/widget?id=${widget?.id}`}
-                    className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                    // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                    className="btn-tertiary btn-md-icon flex items-center"
                   >
                     {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                   </Link>
@@ -73,7 +74,8 @@ function DashboardWidgetsPresentation({
                     setCurrentWidget(widget)
                     setPreviewModalOpen(true)
                   }}
-                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  className="btn-tertiary btn-md-icon flex items-center"
                 >
                   {getIcon('Preview', 'fill-current w-6 h-6 mr-2', 'Preview')}
                 </button>
