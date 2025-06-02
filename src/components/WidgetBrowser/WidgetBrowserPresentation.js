@@ -31,8 +31,8 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
                 onClick={() => setSelectedWidget(widget?.id)}
                 className={`${
                   selectedWidget === widget?.id
-                    ? 'bg-scarlet-800 text-white'
-                    : 'hover:bg-charcoal-50 text-blumine-800 bg-white'
+                    ? 'btn-contained'
+                    : 'btn-contained hover:bg-charcoal-50 text-blumine-800 bg-white'
                 } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
               >
                 <div className="space-y-1 truncate">
@@ -53,7 +53,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
               data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="btn-contained disabled:opacity-40 bg-scarlet-800"
+              className="btn-contained disabled:opacity-40"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK

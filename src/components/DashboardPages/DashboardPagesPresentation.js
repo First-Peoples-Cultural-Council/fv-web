@@ -59,7 +59,8 @@ function DashboardPagesPresentation({
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
                   to={`/${site?.sitename}/dashboard/edit/page?slug=${page?.url}`}
-                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  className="btn-tertiary btn-md-icon flex items-center"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                 </Link>
@@ -69,7 +70,8 @@ function DashboardPagesPresentation({
                   to={page.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  className="btn-tertiary btn-md-icon flex items-center"
                 >
                   {getIcon('Link', 'fill-current w-6 h-6 mr-2')}
                 </Link>
