@@ -65,7 +65,6 @@ describe(
         cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
 
         cy.contains('Success').should('not.exist')
-        cy.contains('Dashboard').click()
       })
       cy.viewport(1024, 768)
     })
