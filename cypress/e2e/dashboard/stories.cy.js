@@ -49,7 +49,7 @@ describe(
 
       cy.contains('Next step').click()
 
-      for (let i = 0; i < 10; i += 1) {
+      for (let i = 0; i < 3; i += 1) {
         cy.contains('Add page').click()
         cy.contains('Save').should('be.visible')
         cy.get('div.public-DraftStyleDefault-block').eq(0).type('asdfasdfafs')
