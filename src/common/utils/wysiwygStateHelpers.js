@@ -33,6 +33,10 @@ function wysiwygStateHelpers() {
   // Converts Draft-js ContentState into raw JSON format
   const getJsonFromWysiwygState = (wysiwygState) => {
     if (!wysiwygState) return ''
+    // If the content is html, simply return the raw HTML
+    if (typeof wysiwygState === 'string') {
+      return wysiwygState
+    }
     const content = wysiwygState?.getCurrentContent()
     if (content?.hasText()) {
       return JSON.stringify(convertToRaw(content))

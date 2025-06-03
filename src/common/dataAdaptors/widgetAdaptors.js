@@ -1,5 +1,6 @@
 // FPCC
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
+import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
 
 export function widgetAdaptor({ widgetData, sitename }) {
   const widgetSettings = getObjectFromSettingsArray(widgetData?.settings)
@@ -34,6 +35,7 @@ export const getObjectFromSettingsArray = (settingsArray) => {
 }
 
 export function widgetFormDataAdaptor({ formData }) {
+  const { getJsonFromWysiwygState } = wysiwygStateHelpers()
   const formattedFormData = {
     id: formData?.id,
     title: formData?.nickname,
@@ -50,7 +52,7 @@ export function widgetFormDataAdaptor({ formData }) {
       if (key === 'textWithFormatting') {
         settings.push({
           key,
-          value: validValue,
+          value: getJsonFromWysiwygState(validValue),
           category: 'general',
         })
       } else if (!widgetProperties.includes(key)) {

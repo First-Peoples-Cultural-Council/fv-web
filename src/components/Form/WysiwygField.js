@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useController } from 'react-hook-form'
 import { useEditor, EditorContent } from '@tiptap/react'
@@ -23,7 +23,7 @@ function WysiwygField({
   } = useController({
     name: nameId,
     control,
-    defaultValue: '<p>Hello World!</p>',
+    defaultValue: '<p></p>',
   })
 
   const editor = useEditor({
@@ -33,6 +33,12 @@ function WysiwygField({
       onChange(editor.getHTML())
     },
   })
+
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value || '<p></p>')
+    }
+  }, [editor, value])
 
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
