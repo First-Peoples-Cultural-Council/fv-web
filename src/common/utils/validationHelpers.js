@@ -2,7 +2,10 @@ import * as yup from 'yup'
 
 // FPCC
 import { UUID_REGEX, PUBLIC, MEMBERS, TEAM } from 'common/constants'
-import { getFileExtensions } from 'common/utils/stringHelpers'
+import {
+  extractTextFromHtml,
+  getFileExtensions,
+} from 'common/utils/stringHelpers'
 
 const uuid = yup
   .string()
@@ -123,38 +126,32 @@ export const definitions = {
   visibility: () => yup.string().required().oneOf([PUBLIC, MEMBERS, TEAM]),
   wysiwyg: ({ charCount = 500 } = {}) =>
     yup
-      .object()
+      .string()
       .test(
-        'draftjs-length',
+        'html-length',
         `Maximum length for this field is ${charCount} characters`,
         (value) => {
-          const plainText = value?.getCurrentContent
-            ? value.getCurrentContent().getPlainText(' ')
-            : ''
+          const plainText = extractTextFromHtml(value)
           return plainText?.length < charCount
         },
       )
       .notRequired()
       .nullable()
-      .transform((value) => value || null),
+      .transform((value) => value || ''),
   wysiwygRequired: ({ charCount = 500 } = {}) =>
     yup
-      .object()
+      .string()
       .test(
-        'draftjs-length',
+        'html-length',
         `Maximum length for this field is ${charCount} characters`,
         (value) => {
-          const plainText = value?.getCurrentContent
-            ? value.getCurrentContent().getPlainText(' ')
-            : ''
+          const plainText = extractTextFromHtml(value)
           return plainText?.length < charCount
         },
       )
-      .test('draftjs-required', `This field is required.`, (value) => {
-        const plainText = value?.getCurrentContent
-          ? value.getCurrentContent().getPlainText(' ')
-          : ''
-        return plainText?.length > 1
+      .test('html-required', `This field is required.`, (value) => {
+        const plainText = extractTextFromHtml(value)
+        return plainText?.trim().length > 0
       }),
   file: ({ extensionList = [] } = {}) =>
     yup.mixed().test({

@@ -34,7 +34,6 @@ function WysiwygField({
     },
   })
 
-  //console.log('WysiwygField', { nameId, value, editor })
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
       <FieldLabel nameId={nameId} text={label} />
