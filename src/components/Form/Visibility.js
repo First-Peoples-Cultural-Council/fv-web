@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -18,17 +18,25 @@ function Visibility({
   const { checkIfAssistant } = useAuthCheck()
   const isAssistant = checkIfAssistant()
 
+  // ensure the default value is set only once
+  const [hasRendered, setHasRendered] = useState({ current: false })
+
   useEffect(() => {
-    const defaultValue = isAssistant
-      ? TEAM
-      : site?.visibilityOptions?.[0]?.value
-    // set default value to match visibility options
-    resetField('visibility', { defaultValue })
-  }, [site?.visibilityOptions, isAssistant, resetField])
+    if (!hasRendered) {
+      const defaultValue = isAssistant
+        ? TEAM
+        : site?.visibilityOptions?.[0]?.value
+      // set default value to match visibility options
+      resetField('visibility', { defaultValue })
+      setHasRendered({ current: true })
+    }
+  }, [site?.visibilityOptions, isAssistant, resetField, hasRendered])
 
   const options = isAssistant
     ? formattedVisibilityOptions([TEAM])
     : site?.visibilityOptions
+
+  console.log('hasRendered', hasRendered)
 
   return (
     <Select
