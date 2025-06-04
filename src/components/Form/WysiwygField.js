@@ -23,7 +23,7 @@ function WysiwygField({
   } = useController({
     name: nameId,
     control,
-    defaultValue: '<p></p>',
+    defaultValue: '',
   })
 
   const editor = useEditor({
@@ -36,7 +36,7 @@ function WysiwygField({
 
   useEffect(() => {
     if (editor && value !== editor.getHTML()) {
-      editor.commands.setContent(value || '<p></p>')
+      editor.commands.setContent(value || '')
     }
   }, [editor, value])
 
