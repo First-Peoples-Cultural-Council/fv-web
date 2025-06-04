@@ -1,39 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { RichUtils } from 'draft-js'
-import 'draft-js/dist/Draft.css'
 
 // FPCC
 import Button from 'components/Form/WysiwygControls/Button'
 
-function InlineStyleToolbar({ editorState, onChange }) {
-  const currentStyle = editorState.getCurrentInlineStyle()
-
-  const toggleInlineStyle = (event, style) => {
-    event.preventDefault()
-    onChange(RichUtils.toggleInlineStyle(editorState, style))
-  }
-
+function InlineStyleToolbar({ editor }) {
   return (
     <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
       <Button
-        onClickHandler={(event) => toggleInlineStyle(event, 'BOLD')}
+        onClickHandler={() => editor.chain().focus().toggleBold().run()}
         label={<span className="font-bold">B</span>}
-        active={currentStyle.has('BOLD')}
       />
       <Button
-        onClickHandler={(event) => toggleInlineStyle(event, 'ITALIC')}
+        onClickHandler={() => editor.chain().focus().toggleItalic().run()}
         label={<span className="italic">I</span>}
-        active={currentStyle.has('ITALIC')}
       />
     </span>
   )
 }
 // PROPTYPES
-const { func, object } = PropTypes
+const { object } = PropTypes
 InlineStyleToolbar.propTypes = {
-  editorState: object,
-  onChange: func,
+  editor: object,
 }
 
 export default InlineStyleToolbar

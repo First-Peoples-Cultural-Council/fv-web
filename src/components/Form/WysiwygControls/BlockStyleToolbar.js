@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { RichUtils } from 'draft-js'
-import 'draft-js/dist/Draft.css'
 
 // FPCC
 import Button from 'components/Form/WysiwygControls/Button'
@@ -9,47 +7,40 @@ import HeaderSelect from 'components/Form/WysiwygControls/HeaderSelect'
 import getIcon from 'common/utils/getIcon'
 
 export const headerBlockTypes = [
-  { label: 'Normal', value: 'unstyled' },
-  { label: 'Heading', value: 'header-two' },
-  { label: 'Subheading', value: 'header-three' },
+  { label: 'Normal', value: JSON.stringify('') },
+  { label: 'Heading', value: JSON.stringify({ level: 2 }) },
+  { label: 'Subheading', value: JSON.stringify({ level: 3 }) },
 ]
 
-function BlockStyleToolbar({ editorState, onChange, toolbar }) {
-  const selection = editorState.getSelection()
-  const currentBlockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType()
-
+function BlockStyleToolbar({ editor, toolbar }) {
   const toggleBlockType = (event, blockType) => {
     event.preventDefault()
-    onChange(RichUtils.toggleBlockType(editorState, blockType))
+    if (blockType === '') {
+      return editor.chain().focus().setParagraph().run()
+    }
+    return editor.chain().focus().toggleHeading(blockType).run()
   }
 
   return (
     <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
       {toolbar?.includes('HEADER') && (
         <HeaderSelect
+          editor={editor}
           headerBlockTypes={headerBlockTypes}
-          value={currentBlockType}
           handleSelectChange={toggleBlockType}
         />
       )}
       {toolbar?.includes('OL') && (
         <Button
-          onClickHandler={(event) =>
-            toggleBlockType(event, 'ordered-list-item')
+          onClickHandler={() =>
+            editor.chain().focus().toggleOrderedList().run()
           }
-          active={currentBlockType === 'OL'}
           label={getIcon('OrderedList', 'fill-current h-6 w-6')}
         />
       )}
       {toolbar?.includes('UL') && (
         <Button
-          onClickHandler={(event) =>
-            toggleBlockType(event, 'unordered-list-item')
-          }
-          active={currentBlockType === 'UL'}
+          onClickHandler={() => editor.chain().focus().toggleBulletList().run()}
           label={getIcon('UnorderedList', 'fill-current h-6 w-6')}
         />
       )}
@@ -57,11 +48,10 @@ function BlockStyleToolbar({ editorState, onChange, toolbar }) {
   )
 }
 // PROPTYPES
-const { array, func, object, oneOfType, string } = PropTypes
+const { array, object, oneOfType, string } = PropTypes
 BlockStyleToolbar.propTypes = {
-  editorState: object,
+  editor: object,
   toolbar: oneOfType([array, string]),
-  onChange: func,
 }
 
 export default BlockStyleToolbar

@@ -7,6 +7,9 @@
 
 /* Changes to wysiwyg classes need to be mirrored in the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
 @layer base {
+  .wysiwyg {
+    @apply text-left;
+  }
   .wysiwyg h2 {
     @apply border-b border-charcoal-500 font-bold my-6 py-5 text-2xl text-blumine-800;
   }
@@ -14,10 +17,10 @@
     @apply font-bold my-4 text-xl text-blumine-800;
   }
   .wysiwyg ol {
-    @apply list-decimal;
+    @apply list-decimal pl-6;
   }
   .wysiwyg ul {
-    @apply list-disc;
+    @apply list-disc pl-6;
   }
   .wysiwyg div {
     @apply my-4;
@@ -25,6 +28,12 @@
   .wysiwyg p {
     @apply my-4;
   }
+}
+
+/* Prevent blue focus outline in tiptap editor */
+.wysiwyg .ProseMirror:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 /* These component rules can be over-ridden using utility classes. 
