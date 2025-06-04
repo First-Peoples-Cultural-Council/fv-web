@@ -40,7 +40,7 @@ function WidgetAreaEditPresentation({
                 data-testid="add-widget"
                 type="button"
                 onClick={() => setAddModalOpen(true)}
-                className="btn-contained"
+                className="btn-primary btn-md"
               >
                 {getIcon('Add', 'btn-icon')}
                 <span className="truncate">Widget</span>
@@ -137,7 +137,7 @@ function WidgetAreaEditPresentation({
               data-testid="add-widget"
               type="button"
               onClick={() => setAddModalOpen(true)}
-              className="btn-contained flex mx-auto"
+              className="btn-primary btn-md flex mx-auto"
             >
               {getIcon('Add', 'btn-icon')}
               <span className="truncate">Widget</span>

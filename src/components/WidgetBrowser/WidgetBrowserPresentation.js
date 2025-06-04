@@ -54,7 +54,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
               data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="btn-primary btn-lg disabled:opacity-40"
+              className="btn-primary btn-md disabled:opacity-40"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK
@@ -74,7 +74,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
       )}
       <Link
         to={`/${site?.sitename}/dashboard/create/widget`}
-        className="btn-primary btn-lg"
+        className="btn-primary btn-md"
       >
         {getIcon('Add', 'btn-icon')}
         <span>Create a New Widget</span>

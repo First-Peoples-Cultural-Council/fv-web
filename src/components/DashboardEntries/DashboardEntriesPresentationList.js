@@ -228,7 +228,7 @@ function DashboardEntriesPresentationList({
                   data-testid="EntryDrawerEdit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outlined"
+                  className="btn-secondary"
                 >
                   {getIcon('Pencil', 'btn-icon')}
                   <span>Edit</span>
