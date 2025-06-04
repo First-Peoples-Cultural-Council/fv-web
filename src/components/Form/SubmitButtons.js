@@ -19,7 +19,7 @@ function SubmitButtons({
           data-testid="form-cancel"
           type="button"
           onClick={() => onCancelClick()}
-          className="btn-outlined"
+          className="btn-secondary btn-md"
         >
           {cancelIcon && getIcon(cancelIcon, 'btn-icon')}
           <span>{cancelLabel}</span>
@@ -29,7 +29,7 @@ function SubmitButtons({
         data-testid="form-submit"
         type="button"
         onClick={onSubmitClick}
-        className="btn-contained bg-scarlet-800"
+        className="btn-primary btn-md"
       >
         {submitIcon && getIcon(submitIcon, 'btn-icon')}
         <span>{submitLabel}</span>
