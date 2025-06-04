@@ -10,7 +10,7 @@ function FieldButton({ label, onClickHandler, iconId = 'Add' }) {
       data-testid={`${label}-btn`}
       type="button"
       onClick={onClickHandler}
-      className="btn-outlined"
+      className="btn-secondary btn-md"
     >
       {getIcon(iconId, 'btn-icon')}
       <span>{label}</span>
