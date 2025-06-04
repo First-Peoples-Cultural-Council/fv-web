@@ -309,7 +309,7 @@ function DictionaryCrudPresentation({
               data-testid="DashboardPreviousCancelButton"
               type="button"
               onClick={backStep}
-              className="btn-outlined"
+              className="btn-secondary btn-md"
             >
               {getIcon(activeStepNumber < 1 ? 'Close' : 'Previous', 'btn-icon')}
               <span>{activeStep < 1 ? 'Cancel' : 'Previous step'}</span>
@@ -322,7 +322,7 @@ function DictionaryCrudPresentation({
                   ? onFinishClick
                   : handleSubmit(submitHandler)
               }
-              className="btn-contained bg-scarlet-800"
+              className="btn-primary btn-md"
             >
               {getIcon('Save', 'btn-icon')}
               <span>Finish</span>
@@ -333,7 +333,7 @@ function DictionaryCrudPresentation({
               onClick={forwardStep}
               className={`${
                 activeStepNumber === lastStep ? 'opacity-0 cursor-default' : ''
-              } btn-outlined`}
+              } btn-secondary`}
             >
               <span>Next step</span>
               {getIcon('Next', 'btn-icon')}
