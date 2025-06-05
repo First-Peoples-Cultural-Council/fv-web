@@ -57,7 +57,7 @@ function DashboardCategoriesPresentation({
                   data-testid={`${category.title}-edit-link`}
                   to={`/${site?.sitename}/dashboard/edit/category?id=${category?.id}`}
                   // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
-                  className="btn-tertiary btn-md-icon flex items-center"
+                  className="btn-tertiary btn-md-icon"
                 >
                   {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
                 </Link>
@@ -69,7 +69,7 @@ function DashboardCategoriesPresentation({
                   target="_blank"
                   rel="noopener noreferrer"
                   // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
-                  className="btn-tertiary btn-md-icon flex items-center"
+                  className="btn-tertiary btn-md-icon"
                 >
                   {getIcon('Link', 'fill-current w-6 h-6 mr-2')}
                 </Link>
