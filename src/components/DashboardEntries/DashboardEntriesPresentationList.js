@@ -114,7 +114,6 @@ function DashboardEntriesPresentationList({
                               data-testid="click-title"
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              // className="cursor-pointer pl-6 pr-4 py-4 text-left font-medium"
                               className="btn-teriary btn-md text-left pl-6"
                             >
                               {entry?.title}
@@ -124,7 +123,6 @@ function DashboardEntriesPresentationList({
                             <button
                               data-testid="click-translations"
                               type="button"
-                              // className="cursor-pointer p-4 text-left font-medium"
                               className="btn-tertairy btn-md"
                               onClick={() => handleItemClick(entry)}
                             >
