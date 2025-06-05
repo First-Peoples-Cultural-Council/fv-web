@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useWatch } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -18,25 +19,21 @@ function Visibility({
   const { checkIfAssistant } = useAuthCheck()
   const isAssistant = checkIfAssistant()
 
-  // ensure the default value is set only once
-  const [hasRendered, setHasRendered] = useState({ current: false })
+  const visibilityValue = useWatch({ control, name: 'visibility' })
 
   useEffect(() => {
-    if (!hasRendered) {
-      const defaultValue = isAssistant
-        ? TEAM
-        : site?.visibilityOptions?.[0]?.value
-      // set default value to match visibility options
+    const defaultValue = isAssistant
+      ? TEAM
+      : site?.visibilityOptions?.[0]?.value
+    // set default value to match visibility options
+    if (visibilityValue === undefined || visibilityValue === '') {
       resetField('visibility', { defaultValue })
-      setHasRendered({ current: true })
     }
-  }, [site?.visibilityOptions, isAssistant, resetField, hasRendered])
+  }, [site?.visibilityOptions, isAssistant, resetField, visibilityValue])
 
   const options = isAssistant
     ? formattedVisibilityOptions([TEAM])
     : site?.visibilityOptions
-
-  console.log('hasRendered', hasRendered)
 
   return (
     <Select
