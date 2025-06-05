@@ -333,7 +333,7 @@ function DictionaryCrudPresentation({
               onClick={forwardStep}
               className={`${
                 activeStepNumber === lastStep ? 'opacity-0 cursor-default' : ''
-              } btn-secondary`}
+              } btn-secondary btn-md`}
             >
               <span>Next step</span>
               {getIcon('Next', 'btn-icon')}
