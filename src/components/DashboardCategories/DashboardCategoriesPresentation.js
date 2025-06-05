@@ -59,7 +59,7 @@ function DashboardCategoriesPresentation({
                   // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                   className="btn-tertiary btn-md-icon"
                 >
-                  {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
+                  {getIcon('Pencil')}
                 </Link>
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -71,7 +71,7 @@ function DashboardCategoriesPresentation({
                   // className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
                   className="btn-tertiary btn-md-icon"
                 >
-                  {getIcon('Link', 'fill-current w-6 h-6 mr-2')}
+                  {getIcon('Link')}
                 </Link>
               </td>
             </tr>
