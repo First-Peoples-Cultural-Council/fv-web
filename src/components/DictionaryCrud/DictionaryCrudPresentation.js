@@ -6,7 +6,7 @@ import * as yup from 'yup'
 import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyType } from 'common/utils/stringHelpers'
-import { TYPE_WORD, TYPE_PHRASE, PUBLIC, WARNING } from 'common/constants'
+import { TYPE_WORD, TYPE_PHRASE, WARNING } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -63,7 +63,7 @@ function DictionaryCrudPresentation({
     title: '',
     type: type || TYPE_WORD,
     translations: [],
-    visibility: PUBLIC,
+    visibility: '',
     includeInKids: 'true',
     includeInGames: 'true',
   }

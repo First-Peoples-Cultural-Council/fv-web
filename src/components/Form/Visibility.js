@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useWatch } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -18,13 +19,17 @@ function Visibility({
   const { checkIfAssistant } = useAuthCheck()
   const isAssistant = checkIfAssistant()
 
+  const visibilityValue = useWatch({ control, name: 'visibility' })
+
   useEffect(() => {
     const defaultValue = isAssistant
       ? TEAM
       : site?.visibilityOptions?.[0]?.value
     // set default value to match visibility options
-    resetField('visibility', { defaultValue })
-  }, [site?.visibilityOptions, isAssistant, resetField])
+    if (visibilityValue === undefined || visibilityValue === '') {
+      resetField('visibility', { defaultValue })
+    }
+  }, [site?.visibilityOptions, isAssistant, resetField, visibilityValue])
 
   const options = isAssistant
     ? formattedVisibilityOptions([TEAM])
