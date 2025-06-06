@@ -13,7 +13,7 @@ function AudioButton({ audioArray, hoverTooltip }) {
       <button
         type="button"
         key={audioObject?.id}
-        className="btn-tertiary btn-xl-icon"
+        className="btn-tertiary btn-md-icon"
         onClick={() => setCurrentAudio(audioObject)}
       >
         <div className="sr-only">Play audio</div>

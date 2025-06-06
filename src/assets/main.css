@@ -73,7 +73,7 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
     @apply btn bg-white border border-blumine-900 text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900;
   }
   .btn-tertiary {
-    @apply btn bg-white text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900;
+    @apply btn bg-white text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900 m-1;
   }
 
   /* Button sizes */
@@ -141,6 +141,9 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
   }
 
   /* Auto-formatting for icon-only buttons (Do not use directly) */
+  .btn-icon-base svg {
+    @apply block align-middle w-full h-full p-0 m-0;
+  }
   .btn-sm-icon svg {
     @apply fill-current
            w-5 h-5 /* Mobile and tablet ~20px */
