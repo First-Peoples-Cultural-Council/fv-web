@@ -36,10 +36,10 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
         <button
           data-testid="previous"
           type="button"
-          className="btn-outlined"
+          className="btn-secondary btn-md"
           onClick={() => onStepClick({ forward: false })}
         >
-          {getIcon('Next', 'btn-icon rotate-180')}
+          {getIcon('Next', 'rotate-180')}
           <span>Previous</span>
         </button>
       ) : (
@@ -49,10 +49,10 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
         <button
           data-testid="next"
           type="button"
-          className="btn-contained bg-scarlet-800"
+          className="btn-primary btn-md"
           onClick={() => onStepClick({ forward: true })}
         >
-          <span>Next step</span> {getIcon('Next', 'btn-icon')}
+          <span>Next step</span> {getIcon('Next')}
         </button>
       ) : (
         <div className="flex w-full justify-end">
@@ -60,7 +60,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
             to={`/${sitename}/dashboard/edit/entries?${TYPES}=${TYPE_STORY}${
               checkIfAssistant() ? `&${VISIBILITY}=${VISIBILITY_TEAM}` : ''
             }`}
-            className="btn-contained bg-scarlet-800"
+            className="btn-primary btn-md"
           >
             <span>Finish</span>
           </Link>

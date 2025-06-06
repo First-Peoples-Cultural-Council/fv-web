@@ -59,9 +59,9 @@ function DashboardWidgetsPresentation({
                 {widget?.editable ? (
                   <Link
                     to={`/${site?.sitename}/dashboard/edit/widget?id=${widget?.id}`}
-                    className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                    className="btn-tertiary btn-md-icon"
                   >
-                    {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
+                    {getIcon('Pencil')}
                   </Link>
                 ) : null}
               </td>
@@ -73,9 +73,9 @@ function DashboardWidgetsPresentation({
                     setCurrentWidget(widget)
                     setPreviewModalOpen(true)
                   }}
-                  className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                  className="btn-tertiary btn-md-icon mr-6"
                 >
-                  {getIcon('Preview', 'fill-current w-6 h-6 mr-2', 'Preview')}
+                  {getIcon('Preview')}
                 </button>
               </td>
             </tr>

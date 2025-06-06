@@ -12,7 +12,7 @@ function DeleteButtonPresentation({
   label = 'Delete',
   message = 'Are you sure you want to delete this?',
   note = null,
-  styling = 'btn-outlined',
+  styling = 'btn-secondary btn-md',
 }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const { checkIfUserAtLeastRole } = useAuthCheck()

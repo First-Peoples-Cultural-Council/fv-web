@@ -48,8 +48,8 @@ function StoryCrudPreview({ storyData }) {
   )
 
   const editButton = (link) => (
-    <Link to={link} className="btn-outlined">
-      {getIcon('Pencil', 'btn-icon')} <span>Edit</span>
+    <Link to={link} className="btn-secondary btn-md">
+      {getIcon('Pencil')} <span>Edit</span>
     </Link>
   )
 

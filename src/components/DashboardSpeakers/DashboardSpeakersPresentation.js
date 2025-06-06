@@ -54,9 +54,9 @@ function DashboardSpeakersPresentation({
                     <Link
                       data-testid={`edit-speaker-${speaker.name}`}
                       to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
-                      className="text-scarlet-800 hover:text-scarlet-900 flex items-center"
+                      className="btn-tertiary btn-md-icon mr-6"
                     >
-                      {getIcon('Pencil', 'fill-current w-6 h-6 mr-2')}
+                      {getIcon('Pencil')}
                     </Link>
                   </td>
                 </tr>

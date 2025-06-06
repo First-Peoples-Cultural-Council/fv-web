@@ -26,14 +26,15 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
           <div className="max-w-7xl grid gap-5 grid-cols-4">
             {widgets?.map((widget) => (
               <button
+                data-testid="selectWidgetBtn"
                 type="button"
                 key={widget?.id}
                 onClick={() => setSelectedWidget(widget?.id)}
                 className={`${
                   selectedWidget === widget?.id
-                    ? 'bg-scarlet-800 text-white'
-                    : 'hover:bg-charcoal-50 text-blumine-800 bg-white'
-                } col-span-1 w-full p-6 flex items-center align-center justify-center rounded-lg shadow`}
+                    ? 'btn-primary'
+                    : 'btn-secondary'
+                } col-span-1 w-full p-6 flex items-center align-center justify-center shadow`}
               >
                 <div className="space-y-1 truncate">
                   {getWidgetIcon(
@@ -53,7 +54,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
               data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="btn-contained disabled:opacity-40 bg-scarlet-800"
+              className="btn-primary btn-md disabled:opacity-40"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK
@@ -73,9 +74,9 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
       )}
       <Link
         to={`/${site?.sitename}/dashboard/create/widget`}
-        className="btn-contained"
+        className="btn-primary btn-md"
       >
-        {getIcon('Add', 'btn-icon')}
+        {getIcon('Add')}
         <span>Create a New Widget</span>
       </Link>
     </div>
