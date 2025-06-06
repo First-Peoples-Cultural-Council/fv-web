@@ -21,7 +21,7 @@ function SubmitButtons({
           onClick={() => onCancelClick()}
           className="btn-secondary btn-md"
         >
-          {cancelIcon && getIcon(cancelIcon, 'btn-icon')}
+          {cancelIcon && getIcon(cancelIcon)}
           <span>{cancelLabel}</span>
         </button>
       )}
@@ -31,7 +31,7 @@ function SubmitButtons({
         onClick={onSubmitClick}
         className="btn-primary btn-md"
       >
-        {submitIcon && getIcon(submitIcon, 'btn-icon')}
+        {submitIcon && getIcon(submitIcon)}
         <span>{submitLabel}</span>
       </button>
     </div>

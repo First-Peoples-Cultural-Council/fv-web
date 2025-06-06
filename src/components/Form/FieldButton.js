@@ -12,7 +12,7 @@ function FieldButton({ label, onClickHandler, iconId = 'Add' }) {
       onClick={onClickHandler}
       className="btn-secondary btn-md"
     >
-      {getIcon(iconId, 'btn-icon')}
+      {getIcon(iconId)}
       <span>{label}</span>
     </button>
   )

@@ -311,7 +311,7 @@ function DictionaryCrudPresentation({
               onClick={backStep}
               className="btn-secondary btn-md"
             >
-              {getIcon(activeStepNumber < 1 ? 'Close' : 'Previous', 'btn-icon')}
+              {getIcon(activeStepNumber < 1 ? 'Close' : 'Previous')}
               <span>{activeStep < 1 ? 'Cancel' : 'Previous step'}</span>
             </button>
             <button
@@ -324,7 +324,7 @@ function DictionaryCrudPresentation({
               }
               className="btn-primary btn-md"
             >
-              {getIcon('Save', 'btn-icon')}
+              {getIcon('Save')}
               <span>Finish</span>
             </button>
             <button
@@ -336,7 +336,7 @@ function DictionaryCrudPresentation({
               } btn-secondary btn-md`}
             >
               <span>Next step</span>
-              {getIcon('Next', 'btn-icon')}
+              {getIcon('Next')}
             </button>
           </div>
         </section>

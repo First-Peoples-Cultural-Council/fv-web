@@ -42,7 +42,7 @@ function WidgetAreaEditPresentation({
                 onClick={() => setAddModalOpen(true)}
                 className="btn-primary btn-md"
               >
-                {getIcon('Add', 'btn-icon')}
+                {getIcon('Add')}
                 <span className="truncate">Widget</span>
               </button>
             </div>
@@ -137,9 +137,9 @@ function WidgetAreaEditPresentation({
               data-testid="add-widget"
               type="button"
               onClick={() => setAddModalOpen(true)}
-              className="btn-primary btn-md flex mx-auto"
+              className="btn-primary btn-md"
             >
-              {getIcon('Add', 'btn-icon')}
+              {getIcon('Add')}
               <span className="truncate">Widget</span>
             </button>
           </div>

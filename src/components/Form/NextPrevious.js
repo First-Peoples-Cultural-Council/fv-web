@@ -39,7 +39,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
           className="btn-secondary btn-md"
           onClick={() => onStepClick({ forward: false })}
         >
-          {getIcon('Next', 'btn-icon rotate-180')}
+          {getIcon('Next', 'rotate-180')}
           <span>Previous</span>
         </button>
       ) : (
@@ -52,7 +52,7 @@ function NextPrevious({ numberOfSteps, onClickCallback, sitename }) {
           className="btn-primary btn-md"
           onClick={() => onStepClick({ forward: true })}
         >
-          <span>Next step</span> {getIcon('Next', 'btn-icon')}
+          <span>Next step</span> {getIcon('Next')}
         </button>
       ) : (
         <div className="flex w-full justify-end">

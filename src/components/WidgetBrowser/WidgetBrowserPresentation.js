@@ -76,7 +76,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
         to={`/${site?.sitename}/dashboard/create/widget`}
         className="btn-primary btn-md"
       >
-        {getIcon('Add', 'btn-icon')}
+        {getIcon('Add')}
         <span>Create a New Widget</span>
       </Link>
     </div>

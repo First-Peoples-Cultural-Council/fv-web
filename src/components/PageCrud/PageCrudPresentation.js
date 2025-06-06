@@ -29,7 +29,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
               rel="noopener noreferrer"
               className="btn-secondary btn-md"
             >
-              {getIcon('Link', 'btn-icon')}
+              {getIcon('Link')}
               <span>View Page</span>
             </Link>
             <Link
@@ -37,7 +37,7 @@ function PageCrudPresentation({ dataToEdit, site }) {
               to={`/${site?.sitename}/dashboard/edit/page?slug=${dataToEdit?.slug}&editHeader=true`}
               className="btn-secondary btn-md"
             >
-              {getIcon('Pencil', 'btn-icon')}
+              {getIcon('Pencil')}
               <span>Edit Page Header</span>
             </Link>
           </div>

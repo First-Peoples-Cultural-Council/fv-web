@@ -226,17 +226,17 @@ function DashboardEntriesPresentationList({
                   data-testid="EntryDrawerEdit"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary"
+                  className="btn-secondary btn-md"
                 >
-                  {getIcon('Pencil', 'btn-icon')}
+                  {getIcon('Pencil')}
                   <span>Edit</span>
                 </Link>
               ) : (
-                <div className="has-tooltip btn-outlined text-charcoal-500 border-charcoal-300">
+                <div className="btn-secondary btn-md">
                   <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-10">
                     You do not have access to edit this.
                   </span>
-                  {getIcon('Pencil', 'btn-icon')}
+                  {getIcon('Pencil')}
                   <span>Edit</span>
                 </div>
               )}
@@ -246,9 +246,9 @@ function DashboardEntriesPresentationList({
                 }`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outlined"
+                className="btn-secondary btn-md"
               >
-                {getIcon('Fullscreen', 'btn-icon')}
+                {getIcon('Fullscreen')}
                 <span>View on site</span>
               </Link>
             </div>
