@@ -79,58 +79,81 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
   /* Button sizes */
   /* Combine with btn-primary, btn-secondary, or btn-tertiary */
   .btn-sm {
-    @apply py-1.5 px-3 text-sm min-w-32 h-8;
+    @apply py-1.5 px-3
+           text-xs min-w-24 h-9 /* Mobile and tablet ~(88x36) 12px font */
+           xl:text-sm xl:min-w-32 xl:h-8; /* Desktop ~(120x32) 14px font */
   }
   .btn-md {
-    @apply py-2 px-3 text-base min-w-40 h-10;
+    @apply py-2 px-3
+           text-base min-w-32 h-11 /* Mobile and tablet ~(120x44) 16px font */
+           xl:text-base xl:min-w-40 xl:h-10; /* Desktop ~(160x40) 16px font */
   }
   .btn-lg {
-    @apply py-2 px-3 text-lg min-w-52 h-12;
+    @apply py-2 px-3
+           text-base min-w-40 h-14 /* Mobile and tablet ~(160x52) 16px font */
+           xl:text-lg xl:min-w-52 xl:h-12; /* Desktop ~(200x48) 18px font */
   }
   .btn-xl {
-    @apply py-3 px-5 text-xl min-w-80 h-14;
+    @apply py-3 px-5
+           text-lg min-w-52 h-16 /* Mobile and tablet ~(200x60) 18px font */
+           xl:text-xl xl:min-w-80 xl:h-14; /* Desktop ~(300x56) 22px font */
   }
 
   /* Icon only buttons */
   .btn-sm-icon {
-    @apply btn-icon-base w-8 h-8;
+    @apply btn-icon-base
+           w-11 h-11 /* Mobile and tablet ~44x44 */
+           xl:w-8 xl:h-8; /* Desktop ~32x32 */
   }
   .btn-md-icon {
-    @apply btn-icon-base w-10 h-10;
+    @apply btn-icon-base
+           w-12 h-12 /* Mobile ~48x48 */
+           md:w-14 md:h-14 /* Tablet ~56x56 */
+           xl:w-10 xl:h-10; /* Desktop ~40x40 */
   }
   .btn-lg-icon {
-    @apply btn-icon-base w-12 h-12;
+    @apply btn-icon-base
+           w-14 h-14 /* Mobile ~56x56 */
+           md:w-16 md:h-16 /* Tablet ~64x64 */
+           xl:w-12 xl:h-12; /* Desktop ~48x48 */
   }
   .btn-xl-icon {
-    @apply btn-icon-base w-14 h-14;
+    @apply btn-icon-base
+           w-16 h-16 /* Mobile ~64x64 */
+           md:w-20 md:h-20 /* Tablet ~72x72 */
+           xl:w-14 xl:h-14 /* Desktop ~56x56 */;
   }
 
   /* Auto-formatting for icons on buttons with text (Do not use directly) */
   .btn-sm svg {
-    @apply w-3.5 h-3.5 fill-current;
+    @apply fill-current w-3.5 h-3.5; /* All ~14px */
   }
   .btn-md svg {
-    @apply w-4 h-4 fill-current;
+    @apply fill-current w-4 h-4; /* All ~16px */
   }
   .btn-lg svg {
-    @apply w-5 h-5 fill-current;
+    @apply fill-current w-5 h-5; /* All ~20px */
   }
   .btn-xl svg {
-    @apply w-6 h-6 fill-current;
+    @apply fill-current
+           w-5 h-5 /* Mobile and tablet ~18px */
+           xl:w-6 xl:h-6; /* Desktop ~22px */
   }
 
   /* Auto-formatting for icon-only buttons (Do not use directly) */
   .btn-sm-icon svg {
-    @apply w-3 h-3 fill-current;
+    @apply fill-current
+           w-5 h-5 /* Mobile and tablet ~20px */
+           xl:w-3 xl:h-3; /* Desktop ~12px */
   }
   .btn-md-icon svg {
-    @apply w-6 h-6 fill-current;
+    @apply fill-current w-6 h-6; /* All ~24px */
   }
   .btn-lg-icon svg {
-    @apply w-7 h-7 fill-current;
+    @apply fill-current w-7 h-7; /* All ~28px */
   }
   .btn-xl-icon svg {
-    @apply w-8 h-8 fill-current;
+    @apply fill-current w-8 h-8; /* All ~32px */
   }
 }
 

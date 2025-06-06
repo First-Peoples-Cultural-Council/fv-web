@@ -132,7 +132,7 @@ function AlphabetPresentationSelected({
           to={`/${sitename}/${
             kids ? 'kids/' : ''
           }alphabet/startsWith?${CHAR}=${title}&types=word`}
-          className="btn-contained text-base text-center"
+          className="btn-primary btn-xl"
         >
           <span>See all words starting with</span>
           <div className="mb-1 text-3xl font-bold">{title}</div>
