@@ -77,7 +77,7 @@ function TextTranslationArrayField({
                     data-testid="delete-btn"
                     type="button"
                     aria-label="Delete Translation"
-                    className="inline-flex"
+                    className="btn-tertiary btn-sm-icon"
                     onClick={() => remove(index)}
                   >
                     {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
@@ -92,9 +92,9 @@ function TextTranslationArrayField({
             data-testid="add-translation"
             type="button"
             onClick={() => append({ text: '' })}
-            className="btn-outlined"
+            className="btn-secondary btn-md"
           >
-            {getIcon('Add', 'btn-icon')}
+            {getIcon('Add')}
             <span>Add {label.slice(0, -1).toLowerCase()}</span>
           </button>
         )}
