@@ -43,16 +43,16 @@ function DashboardSpeakersPresentation({
           tableBody={infiniteQueryResponse?.data?.pages?.map((page) => (
             <Fragment key={page.pageNumber}>
               {page.results.map((speaker) => (
-                <tr key={speaker.id}>
+                <tr key={speaker?.id}>
                   <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
-                    {speaker.name}
+                    {speaker?.name}
                   </td>
                   <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
                     {speaker?.bio || '-'}
                   </td>
                   <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
-                      data-testid={`edit-speaker-${speaker.name}`}
+                      data-testid={`edit-speaker-${speaker?.name}`}
                       to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
                       className="btn-tertiary btn-md-icon mr-6"
                     >
@@ -61,9 +61,11 @@ function DashboardSpeakersPresentation({
                   </td>
                 </tr>
               ))}
-              <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
             </Fragment>
           ))}
+          infiniteLoadBtn={
+            <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
+          }
         />
       </DashboardLanding.Presentation>
     </div>

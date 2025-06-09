@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import LoadOrError from 'components/LoadOrError'
-
 function DashboardTablePresentation({
   title,
   queryResponse,
   tableHead,
   tableBody,
+  infiniteLoadBtn,
 }) {
   return (
     <LoadOrError queryResponse={queryResponse}>
@@ -37,6 +37,7 @@ function DashboardTablePresentation({
                       {tableBody}
                     </tbody>
                   </table>
+                  {infiniteLoadBtn && <div>{infiniteLoadBtn}</div>}
                 </div>
               </div>
             </div>
@@ -53,6 +54,7 @@ DashboardTablePresentation.propTypes = {
   tableHead: node,
   tableBody: node,
   title: string,
+  infiniteLoadBtn: node,
 }
 
 export default DashboardTablePresentation
