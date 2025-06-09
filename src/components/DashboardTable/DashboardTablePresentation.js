@@ -37,7 +37,7 @@ function DashboardTablePresentation({
                       {tableBody}
                     </tbody>
                   </table>
-                  {infiniteLoadBtn}
+                  {infiniteLoadBtn && <div>{infiniteLoadBtn}</div>}
                 </div>
               </div>
             </div>
