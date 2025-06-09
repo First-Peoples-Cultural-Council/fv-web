@@ -10,7 +10,6 @@ function DashboardTablePresentation({
   tableBody,
   infiniteLoadBtn,
 }) {
-  console.log({ queryResponse })
   return (
     <LoadOrError queryResponse={queryResponse}>
       <section
