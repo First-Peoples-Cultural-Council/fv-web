@@ -13,7 +13,6 @@ import {
 } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { EditorState } from 'draft-js'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -36,7 +35,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_RIGHT,
     visibility: PUBLIC,
     title: '',
-    textWithFormatting: EditorState.createEmpty(),
+    textWithFormatting: '',
     audio: '',
     image: '',
     bgColor: '',

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
-import { EditorState } from 'draft-js'
 
 // FPCC
 import Form from 'components/Form'
@@ -29,8 +28,8 @@ function StoryPageForm({
 
   const defaultValues = {
     id: '',
-    text: EditorState.createEmpty(),
-    textTranslation: EditorState.createEmpty(),
+    text: '',
+    textTranslation: '',
     notes: [],
     relatedAudio: [],
     relatedImages: [],
