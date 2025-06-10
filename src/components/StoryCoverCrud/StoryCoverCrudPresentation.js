@@ -8,7 +8,6 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import { TEAM } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
-import { EditorState } from 'draft-js'
 
 function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -37,8 +36,8 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     relatedVideoLinks: [],
     relatedImages: [],
     // Introduction
-    intro: EditorState.createEmpty(),
-    introTranslation: EditorState.createEmpty(),
+    intro: '',
+    introTranslation: '',
     acknowledgements: [],
     notes: [],
     relatedAudio: [],

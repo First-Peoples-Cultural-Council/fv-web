@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
-import { EditorState } from 'draft-js'
 
 // FPCC
 import Form from 'components/Form'
@@ -39,8 +38,8 @@ function SongCrudPresentation({
   const defaultValues = {
     title: '',
     titleTranslation: '',
-    intro: EditorState.createEmpty(),
-    introTranslation: EditorState.createEmpty(),
+    intro: '',
+    introTranslation: '',
     lyrics: [],
     acknowledgements: [],
     notes: [],

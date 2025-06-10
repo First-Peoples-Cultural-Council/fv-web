@@ -8,7 +8,6 @@ import Form from 'components/Form'
 import { WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { EditorState } from 'draft-js'
 import { useContactUsEmailList } from 'common/dataHooks/useContactUs'
 
 function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
@@ -30,7 +29,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     visibility: PUBLIC,
     title: 'CONTACT US',
     text: 'Please use the form below to contact our language team. We will try and get back to you as soon as possible.',
-    textWithFormatting: EditorState.createEmpty(),
+    textWithFormatting: '',
     urls: '',
   }
 

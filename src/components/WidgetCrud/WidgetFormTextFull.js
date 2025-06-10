@@ -8,7 +8,6 @@ import Form from 'components/Form'
 import { WIDGET_TEXTFULL, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { EditorState } from 'draft-js'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -24,7 +23,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     type: WIDGET_TEXTFULL,
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
-    textWithFormatting: EditorState.createEmpty(),
+    textWithFormatting: '',
   }
 
   const {

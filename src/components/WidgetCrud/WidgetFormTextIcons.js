@@ -8,7 +8,6 @@ import { WIDGET_TEXTICONS, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { EditorState } from 'draft-js'
 
 function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -27,7 +26,7 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
     title: '',
-    textWithFormatting: EditorState.createEmpty(),
+    textWithFormatting: '',
     image: '',
   }
 
