@@ -92,7 +92,7 @@ function DashboardAlphabetPresentation({
                   target="_blank"
                   rel="noopener noreferrer"
                   // className="text-blumine-800 hover:text-blumine-900 flex items-center"
-                  className="btn-tertiary btn-md-icon"
+                  className="btn-tertiary btn-md-icon mr-6"
                 >
                   {getIcon('Link')}
                 </Link>
