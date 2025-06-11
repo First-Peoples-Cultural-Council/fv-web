@@ -69,7 +69,7 @@ function DashboardJoinCardPresentation({
                 onChange={(e) =>
                   setSelectedRole(e.target.value.split(' ').join('_'))
                 }
-                className="btn-outlined text-blumine-800 border-blumine-800"
+                className="btn-secondary btn-sm"
               >
                 <option value={MEMBER}>Approve as Member</option>
                 <option value={ASSISTANT}>Approve as Assistant</option>
@@ -87,9 +87,9 @@ function DashboardJoinCardPresentation({
                 data-testid="approve-request-btn"
                 type="button"
                 onClick={() => handleApprove(selectedRole)}
-                className="btn-contained"
+                className="btn-primary btn-sm"
               >
-                {getIcon('CheckCircleSolid', 'btn-icon')}
+                {getIcon('CheckCircleSolid')}
                 <span>OK</span>
               </button>
             </div>
@@ -102,9 +102,9 @@ function DashboardJoinCardPresentation({
                 data-testid="igore-request-btn"
                 type="button"
                 onClick={() => handleIgnore()}
-                className="btn-outlined text-scarlet-800 border-scarlet-800"
+                className="btn-secondary btn-sm text-scarlet-800 border-scarlet-800"
               >
-                {getIcon('TimesCircleSolid', 'btn-icon')}
+                {getIcon('TimesCircleSolid')}
                 <span>Ignore</span>
               </button>
             </div>
