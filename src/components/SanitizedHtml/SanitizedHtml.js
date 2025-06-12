@@ -9,12 +9,24 @@ DOMPurify.addHook('uponSanitizeElement', (node, data) => {
       return node.parentNode?.removeChild(node)
     }
   }
+
+  if (data.tagName === 'a') {
+    node.setAttribute('target', '_blank')
+    node.setAttribute('rel', 'noopener noreferrer')
+  }
 })
 
 const Sanitize = (content) =>
   DOMPurify.sanitize(content, {
     ADD_TAGS: ['iframe'],
-    ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling'],
+    ADD_ATTR: [
+      'allow',
+      'allowfullscreen',
+      'frameborder',
+      'scrolling',
+      'target',
+      'rel',
+    ],
   })
 
 function SanitizedHtml({ htmlString = '', className, tagName = 'div' }) {
