@@ -47,7 +47,7 @@ function SelectorEntriesContainer({
           <button
             data-testid="add-btn"
             type="button"
-            className="capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 btn-outlined hover:btn-contained"
+            className="capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 btn-md btn-secondary hover:btn-primary"
             onClick={() => updateFormEntries(selectedItems)}
             disabled={selectedItems?.length < 1}
           >

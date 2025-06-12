@@ -40,13 +40,13 @@ function AddMediaModalWrapper({
         type="button"
         className={`capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 ${
           currentTab.id === tab.id
-            ? 'btn-contained'
-            : 'btn-outlined hover:btn-contained'
+            ? 'btn-primary btn-md'
+            : 'btn-secondary btn-md hover:btn-primary'
         }`}
         onClick={handleOnClick}
         disabled={itemsSelected && currentTab.id !== tab.id}
       >
-        {getIcon(tabHasSelectedItems ? 'Add' : tab?.icon, 'btn-icon')}
+        {getIcon(tabHasSelectedItems ? 'Add' : tab?.icon)}
         <span>
           {tabHasSelectedItems
             ? `Insert ${selectedMedia.length} ${getFriendlyType({

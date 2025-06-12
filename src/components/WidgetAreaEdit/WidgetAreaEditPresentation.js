@@ -137,7 +137,7 @@ function WidgetAreaEditPresentation({
               data-testid="add-widget"
               type="button"
               onClick={() => setAddModalOpen(true)}
-              className="btn-primary btn-md"
+              className="btn-primary btn-md m-6"
             >
               {getIcon('Add')}
               <span className="truncate">Widget</span>

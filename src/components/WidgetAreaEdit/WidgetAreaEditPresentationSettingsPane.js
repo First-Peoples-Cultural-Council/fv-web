@@ -128,9 +128,9 @@ function WidgetAreaEditPresentationSettingsPane({
               {currentWidget?.editable ? (
                 <Link
                   to={`/${site?.sitename}/dashboard/edit/widget?id=${currentWidget?.id}`}
-                  className="btn-outlined"
+                  className="btn-secondary btn-sm"
                 >
-                  {getIcon('Pencil', 'btn-icon')}
+                  {getIcon('Pencil')}
                   <span>Edit</span>
                 </Link>
               ) : null}
@@ -138,18 +138,18 @@ function WidgetAreaEditPresentationSettingsPane({
                 data-testid="preview"
                 type="button"
                 onClick={() => setPreviewModalOpen(true)}
-                className="btn-outlined"
+                className="btn-secondary btn-sm"
               >
-                {getIcon('Fullscreen', 'btn-icon')}
+                {getIcon('Fullscreen')}
                 <span>Preview</span>
               </button>
               <button
                 data-testid="remove"
                 type="button"
                 onClick={() => setRemoveModalOpen(true)}
-                className="btn-outlined"
+                className="btn-secondary btn-sm"
               >
-                {getIcon('TimesCircle', 'btn-icon')}
+                {getIcon('TimesCircle')}
                 <span>Remove</span>
               </button>
             </div>
