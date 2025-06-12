@@ -7,6 +7,7 @@ Please briefly explain the changes here.
 - [ ] README / documentation has been updated if needed
 - [ ] PR title / commit messages contain Jira ticket number if applicable
 - [ ] Tests have been updated / created if applicable
+- [ ] UI review if applicable
 
 ### Reviewers Should Do The Following:
 
