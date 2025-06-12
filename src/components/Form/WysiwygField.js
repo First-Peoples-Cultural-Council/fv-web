@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useController } from 'react-hook-form'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Link from '@tiptap/extension-link'
 
 // FPCC
 import WysiwygControls from 'components/Form/WysiwygControls'
@@ -27,7 +28,12 @@ function WysiwygField({
   })
 
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit,
+      Link.configure({
+        defaultProtocol: 'https:',
+      }),
+    ],
     content: value,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML())
