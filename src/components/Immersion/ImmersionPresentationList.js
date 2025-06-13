@@ -63,7 +63,6 @@ function ImmersionPresentationList({ labels }) {
                           sitename={dictionaryEntry?.[0]?.sitename}
                           actions={['copy']}
                           withConfirmation
-                          withTooltip
                         />
                       </td>
                     </tr>

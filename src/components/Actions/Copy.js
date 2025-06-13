@@ -57,7 +57,6 @@ Copy.propTypes = {
   iconStyling: string,
   withLabels: bool,
   withConfirmation: bool,
-  withTooltip: bool,
   hoverTooltip: bool,
 }
 

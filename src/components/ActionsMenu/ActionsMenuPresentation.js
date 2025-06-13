@@ -22,7 +22,6 @@ function ActionsMenuPresentation({
   iconStyling = 'h-8 w-8 md:h-6 md:w-6',
   withLabels,
   withConfirmation,
-  withTooltip,
 }) {
   const moreButtonClassName = `relative btn-tertiary ${withLabels ? 'btn-md' : 'btn-md-icon'}`
   return (
@@ -37,7 +36,6 @@ function ActionsMenuPresentation({
           iconStyling={iconStyling}
           withLabels={withLabels}
           withConfirmation={withConfirmation}
-          withTooltip={withTooltip}
           hoverTooltip
         />
       ) : null}

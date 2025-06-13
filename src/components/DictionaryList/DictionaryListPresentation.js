@@ -203,7 +203,6 @@ function DictionaryListPresentation({
                                   actions={actions}
                                   moreActions={moreActions}
                                   withConfirmation
-                                  withTooltip
                                 />
                               </td>
                             </tr>

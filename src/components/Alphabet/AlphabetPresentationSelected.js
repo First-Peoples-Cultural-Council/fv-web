@@ -51,7 +51,6 @@ function AlphabetPresentationSelected({
             textToCopy={title}
             iconStyling="fill-current text-blumine-800 h-6 w-6 sm:w-8 sm:h-8 ml-2"
             withConfirmation
-            withTooltip
             hoverTooltip
           />
         ) : null}
