@@ -43,9 +43,7 @@ function Copy({
         </div>
       ) : null}
       {withLabels ? (
-        <>
-          <span className="mx-2">{confirmation ? 'COPIED' : 'COPY'}</span>
-        </>
+        <span className="mx-2">{confirmation ? 'COPIED' : 'COPY'}</span>
       ) : null}
     </button>
   )
