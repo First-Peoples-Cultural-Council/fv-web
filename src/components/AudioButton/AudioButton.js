@@ -16,12 +16,13 @@ function AudioButton({
     audioObject?.id ? (
       <button
         type="button"
+        data-testid={`audio-btn-${audioObject.id}`}
         key={audioObject?.id}
-        className="print:hidden relative group"
+        className="btn-tertiary btn-md-icon relative group"
         onClick={() => setCurrentAudio(audioObject)}
       >
         <div className="sr-only">Play audio</div>
-        {getIcon('Audio', iconStyling)}
+        {getIcon('Audio', `${iconStyling} -translate-x-1`)}
         {hoverTooltip ? (
           <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg whitespace-nowrap">
             Play audio

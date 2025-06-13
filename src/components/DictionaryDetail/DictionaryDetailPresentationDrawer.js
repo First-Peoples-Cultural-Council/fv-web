@@ -106,7 +106,7 @@ function DictionaryDetailPresentationDrawer({
                         }`,
                       ),
                     }}
-                    buttonStyling="bg-scarlet-800 hover:bg-scarlet-900 text-white text-sm rounded-lg inline-flex items-center py-1.5 px-2 mr-2 my-2"
+                    buttonStyling="btn-primary btn-sm mr-2 my-2"
                     label={audioObject?.speakers?.[0]?.name}
                     audioObject={audioObject}
                   />

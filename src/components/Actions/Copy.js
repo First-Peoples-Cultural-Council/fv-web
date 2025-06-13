@@ -9,7 +9,6 @@ function Copy({
   iconStyling = 'h-8 w-8 md:h-6 md:w-6',
   withLabels = false,
   withConfirmation = false,
-  withTooltip = false,
   hoverTooltip,
 }) {
   const [confirmation, setConfirmation] = useState(false)
@@ -24,13 +23,15 @@ function Copy({
     }
   }
 
+  const buttonClass = `relative group btn-tertiary ${withLabels ? ' btn-md' : 'btn-md-icon'}`
+
   return (
     <button
       type="button"
       id="CopyAction"
       data-testid={`copy-btn-${textToCopy}`}
       aria-label="Copy to clipboard"
-      className="relative inline-flex items-center text-sm font-medium text-charcoal-900 hover:text-black group"
+      className={buttonClass}
       onClick={() =>
         copyToClipboard({ text: textToCopy, confirmationCallback })
       }
@@ -38,23 +39,13 @@ function Copy({
       {getIcon('Copy', `fill-current ${iconStyling}`)}
       {hoverTooltip ? (
         <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg">
-          Copy
+          {confirmation ? 'Copied' : 'Copy'}
         </div>
       ) : null}
       {withLabels ? (
         <>
-          <span className="mx-2">COPY</span>
-          <span className={confirmation ? '' : 'hidden'}>
-            <span className="absolute bottom-1 -right-1 bg-white">COPIED</span>
-          </span>
+          <span className="mx-2">{confirmation ? 'COPIED' : 'COPY'}</span>
         </>
-      ) : null}
-      {withTooltip ? (
-        <span className={confirmation ? '' : 'hidden'}>
-          <div className="absolute bottom-0 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg shadow-lg ">
-            Copied
-          </div>
-        </span>
       ) : null}
     </button>
   )

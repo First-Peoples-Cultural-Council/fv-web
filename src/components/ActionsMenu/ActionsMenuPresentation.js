@@ -24,8 +24,12 @@ function ActionsMenuPresentation({
   withConfirmation,
   withTooltip,
 }) {
+  const moreButtonClassName = `relative btn-tertiary ${withLabels ? 'btn-md' : 'btn-md-icon'}`
   return (
-    <div id="ActionsMenuPresentation" className="inline-flex print:hidden">
+    <div
+      id="ActionsMenuPresentation"
+      className="inline-flex items-center print:hidden"
+    >
       {/* Pinned Action Buttons */}
       {actions.includes('copy') ? (
         <Copy
@@ -37,6 +41,12 @@ function ActionsMenuPresentation({
           hoverTooltip
         />
       ) : null}
+
+      {/* Divider */}
+      {moreActions.length > 0 ? (
+        <div className="w-px h-9 m-1 bg-charcoal-200" aria-hidden="true" />
+      ) : null}
+
       {/* More Menu button and Action items */}
       {moreActions.length > 0 ? (
         <Menu as="div" className="relative inline-flex text-left">
@@ -45,7 +55,7 @@ function ActionsMenuPresentation({
               <MenuButton
                 id="More"
                 aria-label="More Options"
-                className="ml-2 pl-2 relative inline-flex items-center text-sm font-medium text-charcoal-900 hover:text-black border-l border-charcoal-200"
+                className={moreButtonClassName}
               >
                 {getIcon('More', `fill-current ${iconStyling}`)}
                 {withLabels ? <span className="mx-2">MORE</span> : null}
