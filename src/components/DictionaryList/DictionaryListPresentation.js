@@ -141,7 +141,6 @@ function DictionaryListPresentation({
                                 <div className="inline-flex items-center">
                                   <AudioButton
                                     audioArray={entry?.audio}
-                                    iconStyling="fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-6 w-6"
                                     hoverTooltip
                                   />
                                 </div>

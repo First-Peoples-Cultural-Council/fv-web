@@ -5,11 +5,7 @@ import PropTypes from 'prop-types'
 import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
 
-function AudioButton({
-  audioArray,
-  iconStyling = 'fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-10 w-10',
-  hoverTooltip,
-}) {
+function AudioButton({ audioArray, hoverTooltip }) {
   const { setCurrentAudio } = useAudiobar()
 
   return audioArray?.map((audioObject) =>
@@ -22,7 +18,7 @@ function AudioButton({
         onClick={() => setCurrentAudio(audioObject)}
       >
         <div className="sr-only">Play audio</div>
-        {getIcon('Audio', `${iconStyling} -translate-x-1`)}
+        {getIcon('Audio', 'fill-current m-1 -translate-x-1')}
         {hoverTooltip ? (
           <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg whitespace-nowrap">
             Play audio

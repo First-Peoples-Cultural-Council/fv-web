@@ -129,11 +129,7 @@ function PhraseScramblerPresentation({
                       Great Job!
                     </p>
                     {relatedAudio?.length > 0 && (
-                      <AudioButton
-                        audioArray={relatedAudio}
-                        iconStyling="inline fill-current text-charcoal-500 hover:text-charcoal-900 h-6 w-6 ml-2"
-                        hoverTooltip
-                      />
+                      <AudioButton audioArray={relatedAudio} hoverTooltip />
                     )}
                   </div>
                 )}
@@ -156,11 +152,7 @@ function PhraseScramblerPresentation({
                         <p className="inline align-center">
                           Need a hint? Listen to the phrase:
                         </p>
-                        <AudioButton
-                          audioArray={relatedAudio}
-                          iconStyling="inline fill-current text-charcoal-500 hover:text-charcoal-900 h-6 w-6"
-                          hoverTooltip
-                        />
+                        <AudioButton audioArray={relatedAudio} hoverTooltip />
                       </div>
                     )}
                   </div>

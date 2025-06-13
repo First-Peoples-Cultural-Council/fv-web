@@ -23,10 +23,7 @@ function ByAlphabetFilters({
           {currentCharacter.title}
           {currentCharacter?.relatedAudio?.length > 0 && (
             <div className="ml-2">
-              <AudioButton
-                audioArray={currentCharacter?.relatedAudio}
-                iconStyling="fill-current h-8 w-8"
-              />
+              <AudioButton audioArray={currentCharacter?.relatedAudio} />
             </div>
           )}
         </div>
