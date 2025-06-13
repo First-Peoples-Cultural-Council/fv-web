@@ -6,17 +6,16 @@ import getIcon from 'common/utils/getIcon'
 
 function AudioMinimalPresentation({
   buttonRef,
-  buttonStyling = '',
+  buttonStyling = 'btn-tertiary btn-md-icon bg-inherit',
   icons,
-  iconStyling = 'fill-current w-7 h-7 lg:w-8 lg:h-8 xl:w-12 xl:h-12',
   isPlaying = false,
   label,
   onClick = () => {},
   onKeyPress = () => {},
 }) {
   const iconsDefault = {
-    Play: getIcon('PlayCircle', iconStyling),
-    Stop: getIcon('StopCircle', iconStyling),
+    Play: getIcon('PlayCircle'),
+    Stop: getIcon('StopCircle'),
   }
   const Icons = { ...iconsDefault, ...icons }
 
