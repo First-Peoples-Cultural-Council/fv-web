@@ -32,6 +32,11 @@ function WysiwygField({
       StarterKit,
       Link.configure({
         defaultProtocol: 'https:',
+        openOnClick: true,
+        HTMLAttributes: {
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        },
       }),
     ],
     content: value,
