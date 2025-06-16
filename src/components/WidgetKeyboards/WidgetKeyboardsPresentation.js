@@ -49,57 +49,55 @@ function WidgetKeyboardsPresentation({ header, urls }) {
             />
           </div>
         </div>
-        <div className="mt-5 space-y-8">
-          {urls && (
-            <>
-              <h3 className="text-xl">Also available on desktop:</h3>
-              <div className="inline-flex">
-                {urls?.macUrl && (
-                  <div className="flex">
-                    <a
-                      href={urls?.macUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-col space-y-5 mr-8"
-                    >
-                      <img
-                        className="h-14 w-auto mx-auto shadow-xl"
-                        src={macLogo}
-                        alt={urls?.macUrl}
-                      />
-                      <div className="mx-auto">
-                        <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
-                          Install on Mac
-                        </div>
+        {urls && (
+          <div className="mt-5 space-y-8">
+            <h3 className="text-xl">Also available on desktop:</h3>
+            <div className="inline-flex">
+              {urls?.macUrl && (
+                <div className="flex">
+                  <a
+                    href={urls?.macUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col space-y-5 mr-8"
+                  >
+                    <img
+                      className="h-14 w-auto mx-auto shadow-xl"
+                      src={macLogo}
+                      alt={urls?.macUrl}
+                    />
+                    <div className="mx-auto">
+                      <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
+                        Install on Mac
                       </div>
-                    </a>
-                  </div>
-                )}
-                {urls?.windowsUrl && (
-                  <div className="flex">
-                    <a
-                      href={urls?.windowsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-col space-y-5 mr-8"
-                    >
-                      <img
-                        className="h-14 w-auto mx-auto shadow-xl"
-                        src={windowsLogo}
-                        alt={urls?.windowsUrl}
-                      />
-                      <div className="mx-auto">
-                        <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
-                          Install on Windows
-                        </div>
+                    </div>
+                  </a>
+                </div>
+              )}
+              {urls?.windowsUrl && (
+                <div className="flex">
+                  <a
+                    href={urls?.windowsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col space-y-5 mr-8"
+                  >
+                    <img
+                      className="h-14 w-auto mx-auto shadow-xl"
+                      src={windowsLogo}
+                      alt={urls?.windowsUrl}
+                    />
+                    <div className="mx-auto">
+                      <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
+                        Install on Windows
                       </div>
-                    </a>
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
+                    </div>
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
