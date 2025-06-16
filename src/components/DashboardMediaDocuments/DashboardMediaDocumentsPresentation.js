@@ -37,11 +37,6 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                     <th scope="col" className={headerClass}>
                       Type
                     </th>
-                    {/* 
-                    <th scope="col" className={headerClass}>
-                      Description
-                    </th>
-                    */}
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-100">

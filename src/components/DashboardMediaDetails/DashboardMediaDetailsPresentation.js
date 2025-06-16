@@ -50,7 +50,7 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
               Object.keys(file).map((key) => {
                 if (
                   isDisplayablePropMedia(key, file[key]) &&
-                  key !== 'description'
+                  (mediaTypePath !== DOCUMENT_PATH || key !== 'description')
                 ) {
                   return (
                     <div
