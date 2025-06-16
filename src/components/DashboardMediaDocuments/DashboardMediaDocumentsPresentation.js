@@ -57,7 +57,6 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                           >
                             <td className={columnClass}>{doc.title}</td>
                             <td className={columnClass}>{doc.mimeType}</td>
-                            {/* <td className={columnClass}>{doc?.description}</td> */}
                           </tr>
                         ))}
                       </React.Fragment>
