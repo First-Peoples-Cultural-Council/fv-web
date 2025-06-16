@@ -53,6 +53,7 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 errors={errors}
               />
             </div>
+            {/*
             <div className="col-span-12">
               <Form.TextAreaField
                 label="Description"
@@ -61,6 +62,7 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 errors={errors}
               />
             </div>
+            */}
             <div className="col-span-12">
               <Form.TextAreaField
                 label="Acknowledgement"

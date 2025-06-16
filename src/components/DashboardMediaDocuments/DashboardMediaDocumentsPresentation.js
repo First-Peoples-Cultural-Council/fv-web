@@ -11,7 +11,7 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
   const headerClass =
     'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   const columnClass =
-    'px-6 py-4 text-sm text-charcoal-900 whitespace-nowrap truncate'
+    'px-6 py-4 text-sm text-charcoal-900 whitespace-nowrap truncate text-center align-middle'
 
   return (
     <div
@@ -37,9 +37,11 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                     <th scope="col" className={headerClass}>
                       Type
                     </th>
+                    {/* 
                     <th scope="col" className={headerClass}>
                       Description
                     </th>
+                    */}
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-100">
@@ -60,7 +62,7 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                           >
                             <td className={columnClass}>{doc.title}</td>
                             <td className={columnClass}>{doc.mimeType}</td>
-                            <td className={columnClass}>{doc?.description}</td>
+                            {/* <td className={columnClass}>{doc?.description}</td> */}
                           </tr>
                         ))}
                       </React.Fragment>

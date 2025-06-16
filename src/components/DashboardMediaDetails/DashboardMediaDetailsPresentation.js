@@ -48,7 +48,10 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
           <dl className="border-t border-b border-charcoal-100 divide-y divide-charcoal-100">
             {file?.id &&
               Object.keys(file).map((key) => {
-                if (isDisplayablePropMedia(key, file[key])) {
+                if (
+                  isDisplayablePropMedia(key, file[key]) &&
+                  key !== 'description'
+                ) {
                   return (
                     <div
                       key={key}
