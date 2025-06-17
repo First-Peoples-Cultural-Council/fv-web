@@ -1,4 +1,5 @@
-/* eslint-disable max-lines */
+import DOMPurify from 'dompurify'
+
 // FPCC
 import {
   MEMBERS,
@@ -36,6 +37,19 @@ export const extractTextFromHtml = (htmlString) => {
   const span = document.createElement('span')
   span.innerHTML = htmlString
   return span.textContent || span.innerText
+}
+
+export const removeStylingFromHtml = (htmlString) => {
+  // Replace all header tags with paragraph tags
+  const normalizedHtml = htmlString
+    .replace(/<h[1-6]>/gi, '<p>')
+    .replace(/<\/h[1-6]>/gi, '</p>')
+
+  // Remove all style tags except whitespace, line breaks and links
+  return DOMPurify.sanitize(normalizedHtml, {
+    ALLOWED_ATTR: ['href', 'target', 'rel'],
+    ALLOWED_TAGS: ['br', 'p', 'span', 'a'],
+  })
 }
 
 export const getFriendlyType = ({
@@ -268,7 +282,7 @@ export const convertJsonToReadableString = (json) => {
     const message = JSON.stringify(json)
     return message?.replace(/[{}[\]"]+/g, ' ') || ''
   } catch (e) {
-    return 'Error'
+    return `Error converting JSON: ${e.message}`
   }
 }
 

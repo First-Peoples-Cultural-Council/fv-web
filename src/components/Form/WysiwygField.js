@@ -10,6 +10,7 @@ import WysiwygControls from 'components/Form/WysiwygControls'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
+import { removeStylingFromHtml } from 'common/utils/stringHelpers'
 
 function WysiwygField({
   label = '',
@@ -34,6 +35,20 @@ function WysiwygField({
         defaultProtocol: 'https:',
       }),
     ],
+    editorProps: {
+      handlePaste: function (view, event) {
+        if (toolbar === 'none' || toolbar.length === 0) {
+          const html = event.clipboardData?.getData('text/html')
+          if (!html) return false
+
+          const strippedHtml = removeStylingFromHtml(html)
+
+          editor.commands.insertContent(strippedHtml)
+          return true // prevents default paste
+        }
+        return false // allow default behavior
+      },
+    },
     content: value,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML())
