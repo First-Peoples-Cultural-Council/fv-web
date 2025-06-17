@@ -55,14 +55,6 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
             </div>
             <div className="col-span-12">
               <Form.TextAreaField
-                label="Description"
-                nameId="description"
-                register={register}
-                errors={errors}
-              />
-            </div>
-            <div className="col-span-12">
-              <Form.TextAreaField
                 label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}
