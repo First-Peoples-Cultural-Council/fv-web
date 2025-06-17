@@ -237,7 +237,9 @@ function StoryPresentation({ entry }) {
           : null}
 
         {/* Notes and Acknowledgements */}
-        {(entry?.notes?.length > 0 || entry?.acknowledgements?.length > 0) && (
+        {(entry?.notes?.length > 0 ||
+          entry?.acknowledgements?.length > 0 ||
+          entry?.relatedDocuments?.length > 0) && (
           <LazyLoader key="notes">
             <div className={blockStyling}>
               <div className="w-full md:w-6/12 flex flex-col grow shrink">
