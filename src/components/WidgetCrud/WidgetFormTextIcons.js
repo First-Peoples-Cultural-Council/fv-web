@@ -72,7 +72,6 @@ function WidgetFormTextIcons({ cancelHandler, dataToEdit, submitHandler }) {
               label="Text"
               nameId="textWithFormatting"
               control={control}
-              toolbar={[]}
               errors={errors}
             />
           </div>

@@ -114,7 +114,6 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Introduction in your language"
                 nameId="intro"
                 control={control}
-                toolbar={[]}
                 errors={errors}
               />
             </div>
@@ -123,7 +122,6 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Introduction translation"
                 nameId="introTranslation"
                 control={control}
-                toolbar={[]}
                 errors={errors}
               />
             </div>

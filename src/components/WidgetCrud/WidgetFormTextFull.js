@@ -10,6 +10,8 @@ import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
+  const toolbar = ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER']
+
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_TEXTFULL]),
@@ -60,6 +62,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             nameId="textWithFormatting"
             control={control}
             errors={errors}
+            toolbar={toolbar}
           />
         </div>
       </WidgetFormBase>

@@ -18,7 +18,7 @@ function WysiwygField({
   errors,
   helpText,
   control,
-  toolbar = ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER'],
+  toolbar = [],
 }) {
   const {
     field: { onChange, value },
