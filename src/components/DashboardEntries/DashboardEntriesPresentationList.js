@@ -25,8 +25,6 @@ function DashboardEntriesPresentationList({
   emptyListMessage,
   entryLabel = 'Language Entry',
 }) {
-  console.log({ searchInfiniteQueryResponse })
-
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
   const { sitename } = useParams()
