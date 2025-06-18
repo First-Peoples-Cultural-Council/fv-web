@@ -106,7 +106,6 @@ function SongCrudPresentation({
               label="Introduction in your language"
               nameId="intro"
               control={control}
-              toolbar="none"
               errors={errors}
             />
           </div>
@@ -115,7 +114,6 @@ function SongCrudPresentation({
               label="Introduction translation"
               nameId="introTranslation"
               control={control}
-              toolbar="none"
               errors={errors}
             />
           </div>

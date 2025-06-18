@@ -10,6 +10,7 @@ import WysiwygControls from 'components/Form/WysiwygControls'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
+import { formatHTMLForTiptap } from 'common/utils/stringHelpers'
 
 function WysiwygField({
   label = '',
@@ -17,7 +18,7 @@ function WysiwygField({
   errors,
   helpText,
   control,
-  toolbar = ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER'],
+  toolbar = [],
 }) {
   const {
     field: { onChange, value },
@@ -39,6 +40,20 @@ function WysiwygField({
         },
       }),
     ],
+    editorProps: {
+      handlePaste: function (view, event) {
+        if (toolbar.length === 0) {
+          const html = event.clipboardData?.getData('text/html')
+          if (!html) return false
+
+          const strippedHtml = formatHTMLForTiptap(html)
+
+          editor.commands.insertContent(strippedHtml)
+          return true // prevents default paste
+        }
+        return false // allow default behavior
+      },
+    },
     content: value,
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML())
@@ -80,14 +95,16 @@ function WysiwygField({
   )
 }
 // PROPTYPES
-const { array, object, oneOfType, string } = PropTypes
+const { arrayOf, object, oneOf, string } = PropTypes
 WysiwygField.propTypes = {
   helpText: string,
   errors: object,
   label: string,
   nameId: string.isRequired,
   control: object,
-  toolbar: oneOfType([array, string]),
+  toolbar: arrayOf(
+    oneOf(['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER']),
+  ),
 }
 
 export default WysiwygField

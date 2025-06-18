@@ -1,4 +1,5 @@
-/* eslint-disable max-lines */
+import DOMPurify from 'dompurify'
+
 // FPCC
 import {
   MEMBERS,
@@ -36,6 +37,36 @@ export const extractTextFromHtml = (htmlString) => {
   const span = document.createElement('span')
   span.innerHTML = htmlString
   return span.textContent || span.innerText
+}
+
+export const removeStylingFromHtml = (htmlString) =>
+  // Remove all styling except line breaks, whitespace, and links
+  DOMPurify.sanitize(htmlString, {
+    ALLOWED_ATTR: ['href', 'target', 'rel'],
+    ALLOWED_TAGS: ['br', 'p', 'span', 'a'],
+  })
+
+export const formatHTMLForTiptap = (htmlString) => {
+  // Remove the first/last instances of p tags with span to prevent automatic line breaks
+  htmlString = htmlString.replace(/<p\b[^>]*>/i, '')
+  htmlString = htmlString.replace(/<\/p>(?![\s\S]*<\/p>)/i, '')
+
+  // Replace headers with <p>
+  htmlString = htmlString
+    .replace(/<h[1-6]>/gi, '<p>')
+    .replace(/<\/h[1-6]>/gi, '</p>')
+
+  //Remove Styling
+  const strippedHtml = removeStylingFromHtml(htmlString)
+
+  // Repair the HTML and remove empty p tags
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(strippedHtml, 'text/html')
+  const emptyTags = doc.querySelectorAll('p:empty')
+  emptyTags.forEach((tag) => {
+    tag.parentNode.removeChild(tag)
+  })
+  return doc.body.innerHTML
 }
 
 export const getFriendlyType = ({
@@ -268,7 +299,7 @@ export const convertJsonToReadableString = (json) => {
     const message = JSON.stringify(json)
     return message?.replace(/[{}[\]"]+/g, ' ') || ''
   } catch (e) {
-    return 'Error'
+    return `Error converting JSON: ${e.message}`
   }
 }
 
