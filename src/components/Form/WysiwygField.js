@@ -37,7 +37,7 @@ function WysiwygField({
     ],
     editorProps: {
       handlePaste: function (view, event) {
-        if (toolbar === 'none' || toolbar.length === 0) {
+        if (toolbar.length === 0) {
           const html = event.clipboardData?.getData('text/html')
           if (!html) return false
 

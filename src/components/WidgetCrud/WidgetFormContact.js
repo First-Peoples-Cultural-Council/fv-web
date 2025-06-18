@@ -85,7 +85,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               label="Address"
               nameId="textWithFormatting"
               control={control}
-              toolbar="none"
+              toolbar={[]}
               errors={errors}
             />
           </div>

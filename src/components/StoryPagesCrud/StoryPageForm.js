@@ -71,7 +71,7 @@ function StoryPageForm({
             label="Page text"
             nameId="text"
             control={control}
-            toolbar="none"
+            toolbar={[]}
             errors={errors}
           />
         </div>
@@ -80,7 +80,7 @@ function StoryPageForm({
             label="Page translation"
             nameId="textTranslation"
             control={control}
-            toolbar="none"
+            toolbar={[]}
             errors={errors}
           />
         </div>
