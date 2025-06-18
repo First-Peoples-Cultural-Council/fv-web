@@ -10,7 +10,7 @@ import WysiwygControls from 'components/Form/WysiwygControls'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
-import { removeStylingFromHtml } from 'common/utils/stringHelpers'
+import { formatHTMLForTiptap } from 'common/utils/stringHelpers'
 
 function WysiwygField({
   label = '',
@@ -41,7 +41,7 @@ function WysiwygField({
           const html = event.clipboardData?.getData('text/html')
           if (!html) return false
 
-          const strippedHtml = removeStylingFromHtml(html)
+          const strippedHtml = formatHTMLForTiptap(html)
 
           editor.commands.insertContent(strippedHtml)
           return true // prevents default paste
