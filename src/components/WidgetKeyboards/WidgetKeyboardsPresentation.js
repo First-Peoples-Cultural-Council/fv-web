@@ -9,7 +9,6 @@ import windowsLogo from 'images/logo-windows.png'
 import fvKeyboardsLogo from 'images/fv-keyboards.png'
 
 function WidgetKeyboardsPresentation({ header, urls }) {
-  console.log({ urls })
   return (
     <div className="flex" id="WidgetKeyboardsPresentation">
       <div className="bg-charcoal-700 mx-auto p-6 md:p-10 text-white lg:my-4 max-w-screen-xl">
