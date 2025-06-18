@@ -147,11 +147,18 @@ function DashboardEntriesPresentationList({
                               )}
                             </button>
                           </td>
-                          <td className="p-4 text-charcoal-900 text-xs whitespace-nowrap">
-                            {entry?.created}
+                          <td className="p-4 text-charcoal-900 text-xs">
+                            <p>{entry?.created}</p>
+                            <p className="whitespace-nowrap">
+                              {entry?.createdBy && `by ${entry.createdBy}`}
+                            </p>
                           </td>
-                          <td className="p-4 text-charcoal-900 text-xs whitespace-nowrap">
-                            {entry?.lastModified}
+                          <td className="p-4 text-charcoal-900 text-xs">
+                            <p>{entry?.lastModified}</p>
+                            <p className="whitespace-nowrap">
+                              {entry?.lastModifiedBy &&
+                                `by ${entry?.lastModifiedBy}`}
+                            </p>
                           </td>
                           <td className="p-4 whitespace-nowrap">
                             <span
