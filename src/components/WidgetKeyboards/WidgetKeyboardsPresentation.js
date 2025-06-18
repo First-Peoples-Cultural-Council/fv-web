@@ -49,7 +49,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
             />
           </div>
         </div>
-        {urls && (
+        {urls.macUrl || urls.windowsUrl ? (
           <div className="mt-5 space-y-8">
             <h3 className="text-xl">Also available on desktop:</h3>
             <div className="inline-flex">
@@ -97,7 +97,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               )}
             </div>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   )
