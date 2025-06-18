@@ -90,14 +90,16 @@ function WysiwygField({
   )
 }
 // PROPTYPES
-const { array, object, oneOfType, string } = PropTypes
+const { arrayOf, object, oneOf, string } = PropTypes
 WysiwygField.propTypes = {
   helpText: string,
   errors: object,
   label: string,
   nameId: string.isRequired,
   control: object,
-  toolbar: oneOfType([array, string]),
+  toolbar: arrayOf(
+    oneOf(['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER']),
+  ),
 }
 
 export default WysiwygField
