@@ -50,7 +50,7 @@ function DeleteButtonPresentation({
               <button
                 data-testid="delete-cancel"
                 type="button"
-                className="btn-outlined"
+                className="btn-secondary btn-sm"
                 onClick={() => setDeleteModalOpen(false)}
               >
                 Cancel
@@ -58,7 +58,7 @@ function DeleteButtonPresentation({
               <button
                 data-testid="delete-confirm"
                 type="button"
-                className="btn-contained bg-scarlet-800"
+                className="btn-primary btn-sm"
                 onClick={() => {
                   setDeleteModalOpen(false)
                   deleteHandler()
