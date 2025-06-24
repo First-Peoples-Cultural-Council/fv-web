@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchType from 'common/hooks/useSearchType'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import { useCategories } from 'common/dataHooks/useCategories'
+import { useCategories, useCategory } from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
 import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
 function ByCategoryData({ kids = null }) {
@@ -29,6 +29,7 @@ function ByCategoryData({ kids = null }) {
   })
 
   const categoriesQueryResponse = useCategories()
+  const categoryQueryResponse = useCategory({ id: categoryId })
 
   const [currentCategory, setCurrentCategory] = useState({})
   const [currentParentCategory, setCurrentParentCategory] = useState({})
@@ -54,6 +55,7 @@ function ByCategoryData({ kids = null }) {
 
   return {
     categoriesQueryResponse,
+    categoryQueryResponse,
     searchInfiniteQueryResponse,
     sitename,
     currentCategory,
