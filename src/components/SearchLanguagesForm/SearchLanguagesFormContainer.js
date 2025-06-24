@@ -36,7 +36,11 @@ function SearchLanguagesFormContainer() {
             className="block w-full md:text-xl lg:text-2xl text-charcoal-500 rounded-none rounded-l-md pl-4 truncate border-0"
             type="text"
             placeholder="Search for a language site"
-            onInput={handleSearchTermChange}
+            onInput={(e) => {
+              handleSearchTermChange(e)
+              setSubmittedSearchTerm(e.currentTarget.value)
+              setSearchTermInUrl(e.currentTarget.value)
+            }}
             value={displayedSearchTerm}
           />
         </form>
