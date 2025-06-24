@@ -49,11 +49,7 @@ function ImmersionPresentationList({ labels }) {
                           {immersionLabel}
                         </Link>
                         {relatedAudio?.length > 0 && (
-                          <AudioButton
-                            audioArray={relatedAudio}
-                            iconStyling="fill-current text-charcoal-500 hover:text-charcoal-900 m-1 h-8 w-8 md:h-6 md:w-6"
-                            hoverTooltip
-                          />
+                          <AudioButton audioArray={relatedAudio} hoverTooltip />
                         )}
                       </td>
                       <td className="px-6 py-4 text-charcoal-900">{english}</td>
@@ -63,7 +59,6 @@ function ImmersionPresentationList({ labels }) {
                           sitename={dictionaryEntry?.[0]?.sitename}
                           actions={['copy']}
                           withConfirmation
-                          withTooltip
                         />
                       </td>
                     </tr>

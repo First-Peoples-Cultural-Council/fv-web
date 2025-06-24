@@ -40,18 +40,13 @@ function AlphabetPresentationSelected({
       >
         {title}
         {relatedAudio?.length > 0 && (
-          <AudioButton
-            audioArray={relatedAudio}
-            iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
-            hoverTooltip
-          />
+          <AudioButton audioArray={relatedAudio} hoverTooltip />
         )}
         {title ? (
           <Copy
             textToCopy={title}
             iconStyling="fill-current text-blumine-800 h-6 w-6 sm:w-8 sm:h-8 ml-2"
             withConfirmation
-            withTooltip
             hoverTooltip
           />
         ) : null}
@@ -93,7 +88,6 @@ function AlphabetPresentationSelected({
                     {word?.relatedAudio?.length > 0 && (
                       <AudioButton
                         audioArray={word?.relatedAudio}
-                        iconStyling="fill-current h-6 w-6 sm:w-8 sm:h-8 ml-2"
                         hoverTooltip
                       />
                     )}
