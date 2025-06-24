@@ -42,7 +42,7 @@ function CategoriesBrowserPresentation({
               data-testid="add-category"
               type="button"
               onClick={() => chooseDocHandler(currentCategory)}
-              className="btn-contained mx-auto my-4 bg-scarlet-800"
+              className="btn-primary btn-md mx-auto my-4"
             >
               {getIcon('Add', 'btn-icon')}
               <span>Add Category</span>

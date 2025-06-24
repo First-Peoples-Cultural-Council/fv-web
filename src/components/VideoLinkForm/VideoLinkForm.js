@@ -35,9 +35,6 @@ function VideoLinkForm({
     closeModal()
   }
 
-  const buttonStyles =
-    'my-2 w-1/5 border-2 border-blumine-900 rounded-md py-2 px-4 hover:text-white disabled:pointer-events-none disabled:bg-charcoal-300 disabled:opacity-50'
-
   return (
     <form data-testid="VideoLinkForm" onReset={reset}>
       <div className="col-span-12">
@@ -59,7 +56,7 @@ function VideoLinkForm({
             <button
               data-testid="add-video-link-btn"
               type="button"
-              className={`${buttonStyles} bg-scarlet-800 hover:bg-scarlet-900 text-white`}
+              className="btn-primary btn-md mt-4"
               onClick={handleSubmit(submitHandler)}
             >
               Add Linked Video
