@@ -10,6 +10,7 @@ import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
     categoriesQueryResponse,
+    categoryQueryResponse,
     currentCategory,
     currentParentCategory,
     searchType,
@@ -21,7 +22,7 @@ function ByCategoryContainer({ kids = null }) {
     tabs,
   } = ByCategoryData({ kids })
   return (
-    <LoadOrError queryResponse={categoriesQueryResponse}>
+    <LoadOrError queryResponse={categoryQueryResponse}>
       <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
       {kids ? (
         <ByCategoryKids
