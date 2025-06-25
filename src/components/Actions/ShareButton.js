@@ -54,7 +54,7 @@ function ShareButton({
                     {entry?.visibility} only!
                   </p>
                   <a
-                    className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-scarlet-800"
+                    className="btn-tertiary btn-lg-icon"
                     href={`mailto:?subject=${
                       entry?.title
                     }&body=${window.location.origin.toString()}/${sitename}/${makePlural(
