@@ -8,8 +8,8 @@ import Loading from 'components/Loading'
 import { MEMBERS, TEAM } from 'common/constants'
 
 // Modal content kept in separate file and lazy loaded to prevent loading of QR library before onClick
-const QrcodeModalContent = lazy(() =>
-  import('components/Actions/QrcodeModalContent'),
+const QrcodeModalContent = lazy(
+  () => import('components/Actions/QrcodeModalContent'),
 )
 
 function QrcodeButton({
