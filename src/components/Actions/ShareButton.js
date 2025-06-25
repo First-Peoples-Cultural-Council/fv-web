@@ -81,7 +81,7 @@ function ShareButton({
               <button
                 data-testid="cancel"
                 type="button"
-                className="btn-contained bg-scarlet-800"
+                className="btn-primary btn-md"
                 onClick={() => setShareModalOpen(false)}
               >
                 Cancel
