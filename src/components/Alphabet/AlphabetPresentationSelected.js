@@ -145,7 +145,7 @@ function AlphabetPresentationSelected({
             data-testid="play-video"
             type="button"
             onClick={onVideoClick}
-            className="btn-contained text-base text-center"
+            className="btn-primary btn-lg text-base text-center"
           >
             {getIcon('Play', 'btn-icon')}
             <span>Play Video</span>
