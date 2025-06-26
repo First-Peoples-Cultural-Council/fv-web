@@ -61,7 +61,7 @@ function ShareButton({
                       entry?.type,
                     )}/${entry?.id}`}
                   >
-                    {getIcon('Mail', 'fill-current h-7 w-7')}
+                    {getIcon('Mail')}
                   </a>
                 </div>
               ) : (
