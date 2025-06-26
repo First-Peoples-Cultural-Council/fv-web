@@ -18,8 +18,21 @@ function AddVideoModalContainer({
   modalOpen,
   closeModal,
 }) {
-  const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
-    useArrayStateManager({ maxItems })
+  const {
+    selectedItems,
+    setSelectedItems,
+    handleSelectAdditionalItem,
+    handleRemoveItem,
+  } = useArrayStateManager({ maxItems })
+
+  const toggleVideoSelection = (video) => {
+    const isSelected = selectedItems.some((v) => v.id === video.id)
+    if (isSelected) {
+      handleRemoveItem(video)
+    } else {
+      handleSelectAdditionalItem(video)
+    }
+  }
 
   // Clear the Selected items when the modal closes
   useEffect(() => {
@@ -80,7 +93,7 @@ function AddVideoModalContainer({
           <SelectorVideos.Container
             formMedia={formMedia}
             selectedMedia={selectedItems}
-            mediaSelectHandler={handleSelectAdditionalItem}
+            mediaSelectHandler={toggleVideoSelection}
           />
         )}
         {currentTab.id === 'video-link-tab' && (
