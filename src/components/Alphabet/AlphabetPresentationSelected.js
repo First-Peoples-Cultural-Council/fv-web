@@ -126,7 +126,7 @@ function AlphabetPresentationSelected({
           to={`/${sitename}/${
             kids ? 'kids/' : ''
           }alphabet/startsWith?${CHAR}=${title}&types=word`}
-          className="btn-contained text-base text-center"
+          className="btn-primary btn-lg"
         >
           <span>See all words starting with</span>
           <div className="mb-1 text-3xl font-bold">{title}</div>
@@ -134,7 +134,7 @@ function AlphabetPresentationSelected({
         {alphabetLink && (
           <Link
             to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
-            className="btn-contained text-base text-center"
+            className="btn-primary btn-lg"
           >
             <span>Learn more about</span>
             <div className="mb-1 text-3xl font-bold">{title}</div>
@@ -145,9 +145,9 @@ function AlphabetPresentationSelected({
             data-testid="play-video"
             type="button"
             onClick={onVideoClick}
-            className="btn-contained text-base text-center"
+            className="btn-primary btn-lg"
           >
-            {getIcon('Play', 'btn-icon')}
+            {getIcon('Play')}
             <span>Play Video</span>
           </button>
         )}

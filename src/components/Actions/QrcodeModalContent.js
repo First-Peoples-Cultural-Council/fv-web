@@ -26,7 +26,7 @@ function QrcodeModalContent({ closeHandler, url }) {
       <button
         data-testid="cancel"
         type="button"
-        className="btn-contained bg-scarlet-800"
+        className="btn-primary btn-md"
         onClick={closeHandler}
       >
         Cancel

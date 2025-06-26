@@ -100,7 +100,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
                             }?${TYPES}=${TYPE_DICTIONARY}`}
                             className="w-full rounded-lg inline-flex items-center hover:opacity-75"
                           >
-                            <div className="inline-flex bg-white text-charcoal-500 rounded-lg items-center">
+                            <div className="btn-tertiary btn-xl-icon">
                               {getCategoryIcon(
                                 category.title,
                                 'fill-current h-10 w-10',

@@ -54,14 +54,14 @@ function ShareButton({
                     {entry?.visibility} only!
                   </p>
                   <a
-                    className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded text-white bg-scarlet-800"
+                    className="btn-tertiary btn-lg-icon"
                     href={`mailto:?subject=${
                       entry?.title
                     }&body=${window.location.origin.toString()}/${sitename}/${makePlural(
                       entry?.type,
                     )}/${entry?.id}`}
                   >
-                    {getIcon('Mail', 'fill-current h-7 w-7')}
+                    {getIcon('Mail')}
                   </a>
                 </div>
               ) : (
@@ -81,7 +81,7 @@ function ShareButton({
               <button
                 data-testid="cancel"
                 type="button"
-                className="btn-contained bg-scarlet-800"
+                className="btn-primary btn-md"
                 onClick={() => setShareModalOpen(false)}
               >
                 Cancel
