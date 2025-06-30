@@ -46,7 +46,7 @@ function DictionaryGridPresentation({
                   hasSideNav
                     ? 'lg:grid-cols-2'
                     : 'md:grid-cols-2 xl:grid-cols-3'
-                } gap-4 md:gap-6 col-span-full`}
+                } gap-4 md:gap-6`}
               >
                 {page.results.map((result) => (
                   <LazyLoader key={result.id} forceLoad={loadAll}>
