@@ -27,20 +27,20 @@ function DictionaryGridTilePresentationKids({ entry }) {
           {getIcon('Fullscreen', 'fill-current h-4 w-4 hover:cursor-pointer')}
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-2 p-2 h-full w-full">
+      <div className="grid row-auto lg:grid-cols-2 gap-2 p-2 h-full w-full min-h-36">
         {/* Photos */}
         {entry?.image && (
           <div
             id="media"
             className={`${
               entry?.image
-                ? 'col-span-1 flex items-center justify-center'
+                ? 'col-span-1 flex items-center justify-center mt-6 lg:mt-0'
                 : 'hidden'
             }`}
           >
             <Link
               key={entry?.id}
-              className="flex items-center justify-center h-72 w-full rounded-l-lg"
+              className="flex items-center justify-center w-full rounded-l-lg"
               to={`/${entry?.sitename}/kids/${makePlural(entry?.type)}/${
                 entry?.id
               }`}
@@ -58,13 +58,13 @@ function DictionaryGridTilePresentationKids({ entry }) {
           id="EntryDetails"
           className={`${
             entry?.image ? 'col-span-1' : 'col-span-2'
-          } h-72 flex text-center w-full items-center text-charcoal-900`}
+          } pt-4 pb-2 md:h-72 flex text-center w-full items-center text-charcoal-900`}
         >
           <div className="w-full">
             {/* Title */}
             <div
               className={`inline-flex font-medium ${
-                shortTitle ? 'text-3xl' : 'text-2xl'
+                shortTitle ? 'text-3xl' : 'text-lg'
               }`}
             >
               <Link
