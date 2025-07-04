@@ -122,15 +122,6 @@ function AlphabetPresentationSelected({
         </div>
       )}
       <div className="flex flex-col justify-center space-x-2 max-w-96 mx-auto">
-        {/* <Link
-          to={`/${sitename}/${
-            kids ? 'kids/' : ''
-          }alphabet/startsWith?${CHAR}=${title}&types=word`}
-          className="btn-secondary btn-xl mb-4"
-        >
-          <span>See all words starting with</span>
-          <div className="mb-1 text-2xl font-bold">{title}</div>
-        </Link> */}
         {alphabetLink && (
           <Link
             to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
