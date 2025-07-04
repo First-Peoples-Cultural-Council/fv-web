@@ -17,7 +17,7 @@ function DictionaryLink({ linkProperties }) {
       >
         {getIcon(
           linkProperties?.iconId,
-          'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
+          'btn-tertiary btn-md-icon inline-flex fill-current mr-2 xl:mr-5',
         )}
         <span>{linkProperties?.label}</span>
       </Link>
