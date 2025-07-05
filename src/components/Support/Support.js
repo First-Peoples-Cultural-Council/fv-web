@@ -8,7 +8,7 @@ function Support() {
   const headerStyle = 'text-xl font-bold mb-1 mt-4 mx-4'
   const paraStyle = 'mb-2 mx-4'
   const divStyle = 'py-4 w-64 md:w-72 mx-auto md:m-4'
-  const buttonStyle = 'btn-primary btn-md w-full'
+  const buttonStyle = 'btn-primary btn-sm md:btn-md w-full'
 
   return (
     <section className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Support">
