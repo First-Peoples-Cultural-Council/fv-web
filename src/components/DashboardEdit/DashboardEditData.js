@@ -136,7 +136,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     },
     IMMERSION: {
       icon: 'Translate',
-      name: 'Edit Immersion Labels',
+      name: 'Edit immersion labels',
       description: 'Update the labels used in immersion mode on your site',
       href: addUrlPrefix('immersion'),
       iconColor: 'charcoal-500',
