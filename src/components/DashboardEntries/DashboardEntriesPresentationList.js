@@ -128,7 +128,7 @@ function DashboardEntriesPresentationList({
                             >
                               {/* For Dictionary Entries */}
                               {entry?.translations && (
-                                <ol className="text-charcoal-900">
+                                <ol className="text-charcoal-900 text-left">
                                   {entry?.translations.map((translation, i) => (
                                     <li key={translation?.text}>
                                       {entry?.translations.length > 1
@@ -141,19 +141,19 @@ function DashboardEntriesPresentationList({
                               )}
                               {/* For Songs and Stories */}
                               {entry?.titleTranslation && (
-                                <div className="text-charcoal-900">
+                                <div className="text-charcoal-900 text-left">
                                   {entry?.titleTranslation}
                                 </div>
                               )}
                             </button>
                           </td>
-                          <td className="p-4 text-charcoal-900 text-xs">
+                          <td className="p-4 text-charcoal-900 text-xs text-left">
                             <p>{entry?.created}</p>
                             <p className="whitespace-nowrap">
                               {entry?.createdBy && `by ${entry.createdBy}`}
                             </p>
                           </td>
-                          <td className="p-4 text-charcoal-900 text-xs">
+                          <td className="p-4 text-charcoal-900 text-xs text-left">
                             <p>{entry?.lastModified}</p>
                             <p className="whitespace-nowrap">
                               {entry?.lastModifiedBy &&
