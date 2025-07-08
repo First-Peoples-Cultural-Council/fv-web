@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import RequireAuth from 'common/RequireAuth'
@@ -24,98 +25,101 @@ function DashboardCreateContainer() {
     urlPrefix: '',
   })
   return (
-    <div id="DashboardCreateContainer">
-      <Routes>
-        <Route
-          path="category"
-          element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <CategoryCrud.Container />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="gallery"
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <GalleryCrud.Container />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="page"
-          element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <PageCrud.Container />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="phrase"
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DictionaryCrud.Container type={TYPE_PHRASE} isCreate />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="song"
-          element={
-            <Maintenance pageName="Song creation">
-              <RequireAuth siteMembership={ASSISTANT} withMessage>
-                <SongCrud.Container />
-              </RequireAuth>
-            </Maintenance>
-          }
-        />
-        <Route
-          path="speaker"
-          element={
-            <RequireAuth siteMembership={EDITOR} withMessage>
-              <SpeakerCrud.Container />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="story"
-          element={
-            <Maintenance pageName="Story creation">
-              <RequireAuth siteMembership={ASSISTANT} withMessage>
-                <StoryCrud.Container />
-              </RequireAuth>
-            </Maintenance>
-          }
-        />
-        <Route
-          path="widget"
-          element={
-            <Maintenance pageName="Widget creation">
+    <>
+      <SiteDocHead titleArray={['Create']} />
+      <div id="DashboardCreateContainer">
+        <Routes>
+          <Route
+            path="category"
+            element={
               <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-                <WidgetCrud.Container />
+                <CategoryCrud.Container />
               </RequireAuth>
-            </Maintenance>
-          }
-        />
-        <Route
-          path="word"
-          element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DictionaryCrud.Container type={TYPE_WORD} isCreate />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <DashboardCreatePresentation
-              tileContent={tileContent}
-              headerContent={headerContent}
-              site={site}
-            />
-          }
-        />
-      </Routes>
-    </div>
+            }
+          />
+          <Route
+            path="gallery"
+            element={
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <GalleryCrud.Container />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="page"
+            element={
+              <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+                <PageCrud.Container />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="phrase"
+            element={
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <DictionaryCrud.Container type={TYPE_PHRASE} isCreate />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="song"
+            element={
+              <Maintenance pageName="Song creation">
+                <RequireAuth siteMembership={ASSISTANT} withMessage>
+                  <SongCrud.Container />
+                </RequireAuth>
+              </Maintenance>
+            }
+          />
+          <Route
+            path="speaker"
+            element={
+              <RequireAuth siteMembership={EDITOR} withMessage>
+                <SpeakerCrud.Container />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="story"
+            element={
+              <Maintenance pageName="Story creation">
+                <RequireAuth siteMembership={ASSISTANT} withMessage>
+                  <StoryCrud.Container />
+                </RequireAuth>
+              </Maintenance>
+            }
+          />
+          <Route
+            path="widget"
+            element={
+              <Maintenance pageName="Widget creation">
+                <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+                  <WidgetCrud.Container />
+                </RequireAuth>
+              </Maintenance>
+            }
+          />
+          <Route
+            path="word"
+            element={
+              <RequireAuth siteMembership={ASSISTANT} withMessage>
+                <DictionaryCrud.Container type={TYPE_WORD} isCreate />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <DashboardCreatePresentation
+                tileContent={tileContent}
+                headerContent={headerContent}
+                site={site}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </>
   )
 }
 

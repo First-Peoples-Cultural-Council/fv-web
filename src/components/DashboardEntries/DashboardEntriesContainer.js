@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardEntriesData from 'components/DashboardEntries/DashboardEntriesData'
@@ -20,20 +21,23 @@ function DashboardEntriesContainer({ advancedSearch = false }) {
   } = DashboardEntriesData({ advancedSearch })
 
   return (
-    <div id="DashboardEntriesContainer">
-      <DashboardEntriesPresentation
-        emptyListMessage={emptyListMessage}
-        entryLabel={entryLabel}
-        initialSearchType={initialSearchType}
-        isDictionary={isDictionary}
-        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
-        removeFilters={removeFilters}
-        searchType={searchType}
-        setSearchType={setSearchType}
-        setShowAdvancedSearch={setShowAdvancedSearch}
-        showAdvancedSearch={showAdvancedSearch}
-      />
-    </div>
+    <>
+      <SiteDocHead titleArray={['Entries']} />
+      <div id="DashboardEntriesContainer">
+        <DashboardEntriesPresentation
+          emptyListMessage={emptyListMessage}
+          entryLabel={entryLabel}
+          initialSearchType={initialSearchType}
+          isDictionary={isDictionary}
+          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+          removeFilters={removeFilters}
+          searchType={searchType}
+          setSearchType={setSearchType}
+          setShowAdvancedSearch={setShowAdvancedSearch}
+          showAdvancedSearch={showAdvancedSearch}
+        />
+      </div>
+    </>
   )
 }
 
