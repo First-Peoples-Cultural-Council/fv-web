@@ -24,7 +24,6 @@ module.exports = {
         /(bg|border|fill|from|to|text)-(kids-dictionary|kids-categories|kids-songs|kids-stories|kids-games|kids-alphabet)-(500|600|700|800|900)/,
       variants: ['hover'],
     },
-
     ...languageColorsConfig.colors,
   ],
   theme: {
@@ -43,6 +42,9 @@ module.exports = {
     extend: {
       animation: {
         'pulse-blur': 'pulse-blur 2.5s linear infinite',
+      },
+      backdropBrightness: {
+        65: '.65',
       },
       borderWidth: {
         thin: '0.5px',
