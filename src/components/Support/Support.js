@@ -93,7 +93,7 @@ function Support() {
                     rel="noreferrer noopener"
                     className={buttonStyle}
                   >
-                    LTP Digitization Knowledge Base
+                    Digitization Knowledge Base
                   </a>
                 </div>
                 <div className={divStyle}>
