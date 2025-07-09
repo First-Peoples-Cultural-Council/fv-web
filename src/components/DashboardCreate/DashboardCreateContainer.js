@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
 import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
@@ -20,13 +20,29 @@ import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
 // For removal in FW-6252
 import Maintenance from 'components/Maintenance'
 
+import { getFriendlyType } from 'common/utils/stringHelpers'
+
 function DashboardCreateContainer() {
   const { tileContent, headerContent, site } = DashboardCreateData({
     urlPrefix: '',
   })
+
+  const { pathname } = useLocation()
+  const lastSegment = pathname.split('/').pop()
+
+  let pageName
+  if (lastSegment === 'word') {
+    pageName = getFriendlyType({ type: TYPE_WORD, titleCase: true })
+  } else if (lastSegment === 'phrase') {
+    pageName = getFriendlyType({ type: TYPE_PHRASE, titleCase: true })
+  } else {
+    pageName = lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1)
+  }
+  const titleArray = [`Create ${pageName}`]
+
   return (
     <>
-      <SiteDocHead titleArray={['Create']} />
+      <SiteDocHead titleArray={titleArray} />
       <div id="DashboardCreateContainer">
         <Routes>
           <Route

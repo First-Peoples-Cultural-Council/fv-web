@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardPagesData from 'components/DashboardPages/DashboardPagesData'
@@ -8,12 +9,15 @@ function DashboardPagesContainer() {
   const { queryResponse, headerContent, site, tileContent } =
     DashboardPagesData()
   return (
-    <DashboardPagesPresentation
-      queryResponse={queryResponse}
-      headerContent={headerContent}
-      tileContent={tileContent}
-      site={site}
-    />
+    <>
+      <SiteDocHead titleArray={['Custom Pages']} />
+      <DashboardPagesPresentation
+        queryResponse={queryResponse}
+        headerContent={headerContent}
+        tileContent={tileContent}
+        site={site}
+      />
+    </>
   )
 }
 

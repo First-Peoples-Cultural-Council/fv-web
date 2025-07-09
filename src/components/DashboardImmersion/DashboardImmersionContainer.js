@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardImmersionData from 'components/DashboardImmersion/DashboardImmersionData'
@@ -16,15 +17,18 @@ function DashboardImmersionContainer() {
     setCurrentLabel,
   } = DashboardImmersionData()
   return (
-    <DashboardImmersionPresentation
-      queryResponse={queryResponse}
-      headerContent={headerContent}
-      tileContent={tileContent}
-      site={site}
-      submitHandler={submitHandler}
-      currentLabel={currentLabel}
-      setCurrentLabel={setCurrentLabel}
-    />
+    <>
+      <SiteDocHead titleArray={['Immersion Labels']} />
+      <DashboardImmersionPresentation
+        queryResponse={queryResponse}
+        headerContent={headerContent}
+        tileContent={tileContent}
+        site={site}
+        submitHandler={submitHandler}
+        currentLabel={currentLabel}
+        setCurrentLabel={setCurrentLabel}
+      />
+    </>
   )
 }
 

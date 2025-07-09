@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardGalleriesData from 'components/DashboardGalleries/DashboardGalleriesData'
@@ -9,18 +10,21 @@ function DashboardGalleriesContainer() {
   const { galleriesQueryResponse, headerContent, site, tileContent } =
     DashboardGalleriesData()
   return (
-    <div id="DashboardGalleriesContainer">
-      <DashboardLanding.Presentation
-        headerContent={headerContent}
-        site={site}
-        tileContent={tileContent}
-      >
-        <DashboardGalleriesPresentation
-          galleriesQueryResponse={galleriesQueryResponse}
+    <>
+      <SiteDocHead titleArray={['Galleries']} />
+      <div id="DashboardGalleriesContainer">
+        <DashboardLanding.Presentation
+          headerContent={headerContent}
           site={site}
-        />
-      </DashboardLanding.Presentation>
-    </div>
+          tileContent={tileContent}
+        >
+          <DashboardGalleriesPresentation
+            galleriesQueryResponse={galleriesQueryResponse}
+            site={site}
+          />
+        </DashboardLanding.Presentation>
+      </div>
+    </>
   )
 }
 

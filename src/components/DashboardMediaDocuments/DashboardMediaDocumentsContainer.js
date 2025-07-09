@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardMediaDocumentsPresentation from 'components/DashboardMediaDocuments/DashboardMediaDocumentsPresentation'
@@ -11,33 +12,36 @@ function DashboardMediaDocumentsContainer() {
   const infiniteQueryResponse = useMediaSearch({ type: TYPE_DOCUMENT })
 
   return (
-    <div
-      data-testid="DashboardMediaDocumentsContainer"
-      className="h-full min-h-screen bg-charcoal-50"
-    >
-      <div className="h-full w-full flex flex-col">
-        <div className="w-full sticky top-0 z-30 bg-white">
-          <SelectorSearchbox.Presentation
-            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
-            onSearchSubmit={
-              infiniteQueryResponse?.handleSearchSubmitWithUrlSync
-            }
-            searchPlaceholder="Search all documents"
-            searchValue={infiniteQueryResponse?.displayedSearchTerm}
-          />
-        </div>
-        <div>
-          <SelectorResultsWrapper.Presentation
-            infiniteQueryResponse={infiniteQueryResponse}
-            resultsSection={
-              <DashboardMediaDocumentsPresentation
-                infiniteQueryResponse={infiniteQueryResponse}
-              />
-            }
-          />
+    <>
+      <SiteDocHead titleArray={['Documents']} />
+      <div
+        data-testid="DashboardMediaDocumentsContainer"
+        className="h-full min-h-screen bg-charcoal-50"
+      >
+        <div className="h-full w-full flex flex-col">
+          <div className="w-full sticky top-0 z-30 bg-white">
+            <SelectorSearchbox.Presentation
+              onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
+              onSearchSubmit={
+                infiniteQueryResponse?.handleSearchSubmitWithUrlSync
+              }
+              searchPlaceholder="Search all documents"
+              searchValue={infiniteQueryResponse?.displayedSearchTerm}
+            />
+          </div>
+          <div>
+            <SelectorResultsWrapper.Presentation
+              infiniteQueryResponse={infiniteQueryResponse}
+              resultsSection={
+                <DashboardMediaDocumentsPresentation
+                  infiniteQueryResponse={infiniteQueryResponse}
+                />
+              }
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
