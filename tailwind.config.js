@@ -4,6 +4,11 @@ const tailwindForms = require('@tailwindcss/forms')
 const languageColorsConfig = require('./src/assets/languageColorsConfig')
 const customColorsConfig = require('./src/assets/customColorsConfig')
 
+// Adding explicit env variable instead of using GlobalConfiguration since
+// this file is run before webpack starts building.
+require('dotenv').config()
+const FONT_FAMILY = process.env.FONT_FAMILY || ''
+
 module.exports = {
   content: ['./src/**/*.{html,js}', './public/index.html'],
   safelist: [
@@ -29,7 +34,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['BCSans', ...defaultTheme.fontFamily.sans],
+      sans: [FONT_FAMILY, 'BCSans', ...defaultTheme.fontFamily.sans],
       serif: [...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
@@ -139,6 +144,15 @@ module.exports = {
           DEFAULT: customColorsConfig.ochre[600],
         },
       },
+    },
+    fontWeight: {
+      light: '300',
+      normal: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+      black: '800',
+      extrabold: '900',
     },
   },
   plugins: [tailwindAspectRatio, tailwindForms],
