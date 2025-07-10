@@ -27,7 +27,7 @@ function SearchForm({
           data-testid="SearchInput"
           id="SearchInput"
           aria-labelledby="SearchLabel"
-          className="block w-full md:text-lg lg:text-xl placeholder:text-charcoal-500 text-charcoal-700 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
+          className="block w-full placeholder:text-charcoal-400 text-charcoal-700 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
           type="text"
           placeholder={searchBoxPlaceholder}
           onInput={handleSearchTermChange}
@@ -35,7 +35,7 @@ function SearchForm({
         />
       </form>
 
-      <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-l-2 border-charcoal-200 rounded-r-md bg-charcoal-50 hover:bg-charcoal-50">
+      <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-charcoal-200 rounded-r-md bg-charcoal-50 hover:bg-charcoal-50">
         <SearchDomainSelector.Presentation
           searchDomain={searchDomain}
           handleSearchDomainChange={handleSearchDomainChange}
@@ -47,7 +47,7 @@ function SearchForm({
           aria-label="Search/Go"
           onClick={handleSearchNavigation}
         >
-          {getIcon('Search', 'fill-current h-7 w-7 ')}
+          {getIcon('Search', 'fill-current h-7 w-7')}
         </button>
       </div>
     </div>
