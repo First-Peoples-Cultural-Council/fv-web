@@ -25,6 +25,9 @@ import GlobalConfiguration from 'src/GlobalConfiguration'
 import { SiteProvider } from 'context/SiteContext'
 import { UserProvider } from 'context/UserContext'
 import { ORIGINAL_DESTINATION } from 'common/constants'
+import { injectVariableFont } from 'src/fonts'
+
+injectVariableFont(GlobalConfiguration.FONT_FAMILY_URL)
 
 const queryClient = new QueryClient({
   defaultOptions: {
