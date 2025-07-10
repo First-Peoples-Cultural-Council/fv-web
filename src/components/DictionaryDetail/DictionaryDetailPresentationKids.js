@@ -52,7 +52,7 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
             } flex items-center`}
           >
             <div className="w-full p-4 space-y-4">
-              <div className="mt-2 max-w-2xl inline-flex items-center font-bold text-black md:mx-auto">
+              <div className="mt-2 max-w-2xl md:inline-flex md:items-center font-bold text-black md:mx-auto">
                 <div
                   className={`font-bold ${
                     shortTitle
