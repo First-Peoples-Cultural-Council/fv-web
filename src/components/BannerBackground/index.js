@@ -1,0 +1,3 @@
+import BannerBackgroundPresentation from 'components/BannerBackground/BannerBackgroundPresentation'
+
+export default BannerBackgroundPresentation
