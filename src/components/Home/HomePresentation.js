@@ -29,9 +29,8 @@ function HomePresentation({ site }) {
 }
 
 // PROPTYPES
-const { bool, object } = PropTypes
+const { object } = PropTypes
 HomePresentation.propTypes = {
-  hasBgMedia: bool,
   site: object,
 }
 
