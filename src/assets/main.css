@@ -31,14 +31,6 @@
   .wysiwyg a {
     @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
   }
-
-  /* @font-face {
-    font-family: 'AfacadFlux';
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-    src: url(../../fonts/font-name.ttf) format('truetype');
-  } */
 }
 
 /* Prevent blue focus outline in tiptap editor */
