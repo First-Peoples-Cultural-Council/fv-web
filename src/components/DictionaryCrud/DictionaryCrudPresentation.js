@@ -29,14 +29,10 @@ function DictionaryCrudPresentation({
   const activeStepNumber = Number(activeStep)
 
   const validator = yup.object().shape({
-    acknowledgements: definitions
-      .textArray({ charCount: 500 })
-      .compact((item) => typeof item !== 'string' || item.trim() === ''),
+    acknowledgements: definitions.textArray({ charCount: 500 }),
     alternateSpellings: definitions.textArray(),
     categories: definitions.objectArray(),
-    notes: definitions
-      .textArray({ charCount: 500 })
-      .compact((item) => typeof item !== 'string' || item.trim() === ''),
+    notes: definitions.textArray({ charCount: 500 }),
     partOfSpeech: definitions.uuid(),
     pronunciations: definitions.textArray(),
     relatedAudio: definitions.idArray(),
