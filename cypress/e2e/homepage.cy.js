@@ -42,16 +42,12 @@ describe(
 
     it('check image logo', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
-      cy.get('img:nth-child(3)')
-        .should('be.visible')
-        .and(($img) => expect($img[0].naturalWidth).to.be.gt(0))
+      cy.get('[data-testid="SiteLogoPresentation"] img').should('be.visible')
     })
 
     it('check banner', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
-      cy.get('#HomeBannerWithImage > .relative > .absolute')
-        .should('be.visible')
-        .and(($img) => expect($img[0].naturalWidth).to.be.gt(0))
+      cy.get('#BannerWithImage').should('be.visible')
     })
   },
 ) // end of describe

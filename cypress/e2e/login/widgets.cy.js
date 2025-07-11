@@ -112,14 +112,14 @@ describe(
           _widget === 'Text with Icons'
         ) {
           cy.get('#title').type('test')
-          cy.get('.public-DraftStyleDefault-block').type('subtitle text')
+          cy.get(':nth-child(1) > .tiptap > p').type('subtitle text')
         } else if (_widget === 'Short Text') {
           cy.get('#title').type('text title test')
           cy.get('#text').type('subtitle text')
           cy.get('#url').type('https://www.google.ca/')
           cy.get('#urlLabel').type('url label')
         } else if (_widget === 'Page Text') {
-          cy.get('.public-DraftStyleDefault-block').type('subtitle text')
+          cy.get(':nth-child(1) > .tiptap > p').type('subtitle text')
         }
         cy.throughme('testwidgetcypress')
       })
