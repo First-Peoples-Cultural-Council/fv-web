@@ -121,14 +121,14 @@ function AlphabetPresentationSelected({
           </div>
         </div>
       )}
-      <div className="flex flex-col justify-center space-x-2 max-w-96 mx-auto">
+      <div className="flex flex-col justify-center max-w-96 space-y-4 mx-auto">
         {alphabetLink && (
           <Link
             to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
-            className="btn-primary btn-xl"
+            className="btn-primary btn-lg"
           >
             <span>Learn more about</span>
-            <div className="mb-1 text-2xl font-bold">{title}</div>
+            <div className="font-bold">{title}</div>
           </Link>
         )}
         {(relatedVideo || relatedVideoLink?.length > 0) && (
@@ -136,7 +136,7 @@ function AlphabetPresentationSelected({
             data-testid="play-video"
             type="button"
             onClick={onVideoClick}
-            className="btn-primary btn-xl"
+            className="btn-primary btn-lg"
           >
             {getIcon('Play')}
             <span>Play Video</span>
@@ -146,10 +146,10 @@ function AlphabetPresentationSelected({
           to={`/${sitename}/${
             kids ? 'kids/' : ''
           }alphabet/startsWith?${CHAR}=${title}&types=word`}
-          className="btn-secondary btn-xl mt-4"
+          className="btn-secondary btn-lg"
         >
           <span>See all words starting with</span>
-          <div className="mb-1 text-2xl font-bold">{title}</div>
+          <div className="font-bold">{title}</div>
         </Link>
       </div>
 
