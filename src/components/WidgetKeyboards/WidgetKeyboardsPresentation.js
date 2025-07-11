@@ -10,11 +10,12 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
-    <div className="flex" id="WidgetKeyboardsPresentation">
-      <div className="bg-charcoal-700 mx-auto p-6 md:p-10 text-white lg:my-4 max-w-screen-xl">
-        <div className="flex flex-col md:flex-row">
-          <div className="space-y-10">
-            <h1 className="text-3xl font-bold">{header}</h1>
+    <div className="mx-auto" id="WidgetKeyboardsPresentation">
+      <div className="bg-charcoal-600 mx-auto p-6 md:p-10 text-white my-4 max-w-screen-lg rounded-lg">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="col-span-3 md:col-span-2 space-y-5 md:space-y-10">
+            <h1 className="text-xl md:text-3xl font-bold">{header}</h1>
+
             <a
               href="https://apps.apple.com/ca/app/firstvoices-keyboards/id1066651145"
               target="_blank"
@@ -31,7 +32,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               href="https://play.google.com/store/apps/details?id=com.firstvoices.keyboards "
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex mr-5"
+              className="inline-flex"
             >
               <img
                 className="h-14 w-auto mx-auto shadow-xl"
@@ -40,9 +41,9 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               />
             </a>
           </div>
-          <div className="flex items-center">
+          <div className="flex order-first col-span-3 md:order-last md:col-span-1 justify-center md:justify-end">
             <img
-              className="flex lg:h-52 w-auto shadow-2xl rounded-lg my-6 border-8 border-white float-right"
+              className="h-32 w-32 md:h-52 md:w-52 shadow-2xl rounded-lg border-8 border-white"
               src={fvKeyboardsLogo}
               loading="lazy"
               alt="App Logo"
@@ -62,14 +63,12 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                     className="flex flex-col space-y-5 mr-8"
                   >
                     <img
-                      className="h-14 w-auto mx-auto shadow-xl"
+                      className="h-14 w-auto mx-auto"
                       src={macLogo}
                       alt={urls?.macUrl}
                     />
                     <div className="mx-auto">
-                      <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
-                        Install on Mac
-                      </div>
+                      <div className="btn-tertiary btn-sm">Install on Mac</div>
                     </div>
                   </a>
                 </div>
@@ -83,12 +82,12 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                     className="flex flex-col space-y-5 mr-8"
                   >
                     <img
-                      className="h-14 w-auto mx-auto shadow-xl"
+                      className="h-14 w-auto mx-auto"
                       src={windowsLogo}
                       alt={urls?.windowsUrl}
                     />
                     <div className="mx-auto">
-                      <div className="flex px-4 py-2 text-xs text-center bg-black rounded-lg">
+                      <div className="btn-tertiary btn-sm">
                         Install on Windows
                       </div>
                     </div>
