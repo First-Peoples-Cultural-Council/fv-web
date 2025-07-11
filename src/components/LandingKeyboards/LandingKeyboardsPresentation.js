@@ -74,12 +74,14 @@ function LandingKeyboardsPresentation({ data }) {
         <div className="text-white text-bold text-base md:text-lg w-1/2 px-4 pt-4 flex flex-col">
           <h2 className="text-4xl font-semibold m-4">{title}</h2>
           <p className="pt-8 pb-4 m-4">{text}</p>
-          <a
-            href={url}
-            className="bg-ochre-600 rounded-full text-center py-2 px-5 w-36 hover:font-bold m-4"
-          >
-            {urlLabel}
-          </a>
+          <div className="m-4">
+            <a
+              href={url}
+              className="btn-primary btn-lg bg-ochre-600 hover:bg-ochre-700"
+            >
+              {urlLabel}
+            </a>
+          </div>
         </div>
       </div>
     </section>

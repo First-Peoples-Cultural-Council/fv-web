@@ -183,7 +183,7 @@ function ContactUsPresentation({
                     <button
                       data-testid="submit"
                       type="submit"
-                      className="btn-contained"
+                      className="btn-primary btn-lg"
                       onClick={handleSubmit(submitHandler)}
                     >
                       Submit

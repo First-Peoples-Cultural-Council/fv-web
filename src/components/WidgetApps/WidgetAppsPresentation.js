@@ -89,9 +89,9 @@ function WidgetAppsPresentation() {
                 href={appUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-80 btn-contained bg-scarlet-800"
+                className="btn-primary btn-xl"
               >
-                {getIcon('Download', 'btn-icon')}
+                {getIcon('Download')}
                 <span>Install now</span>
               </a>
             </div>
