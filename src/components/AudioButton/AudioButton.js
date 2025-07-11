@@ -10,21 +10,25 @@ function AudioButton({ audioArray, hoverTooltip }) {
 
   return audioArray?.map((audioObject) =>
     audioObject?.id ? (
-      <button
-        type="button"
-        data-testid={`audio-btn-${audioObject.id}`}
-        key={audioObject?.id}
-        className="btn-tertiary btn-md-icon relative group"
-        onClick={() => setCurrentAudio(audioObject)}
-      >
-        <div className="sr-only">Play audio</div>
-        {getIcon('Audio', 'fill-current m-1 -translate-x-1')}
-        {hoverTooltip ? (
-          <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-1 w-auto p-1 text-sm bg-charcoal-500 text-white text-center rounded-lg whitespace-nowrap">
-            Play audio
-          </div>
-        ) : null}
-      </button>
+      <>
+        <label htmlFor={`audio-btn-${audioObject.id}`} className="sr-only">
+          Play audio
+        </label>
+        <button
+          type="button"
+          data-testid={`audio-btn-${audioObject.id}`}
+          key={audioObject?.id}
+          className="btn-tertiary btn-md-icon relative group"
+          onClick={() => setCurrentAudio(audioObject)}
+        >
+          {getIcon('Audio')}
+          {hoverTooltip ? (
+            <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-4 w-auto p-1 text-sm font-normal bg-charcoal-500 text-white text-center rounded-lg whitespace-nowrap">
+              Play audio
+            </div>
+          ) : null}
+        </button>
+      </>
     ) : null,
   )
 }
