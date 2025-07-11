@@ -146,7 +146,7 @@ describe(
 
       cy.contains('Add image').click()
       cy.contains('Upload New Images').click()
-      cy.fixture('shieldtest.jpg', null).as('imageFixture')
+      cy.fixture('blank.jpg', null).as('imageFixture')
       cy.get('.uppy-Dashboard-AddFiles').selectFile('@imageFixture', {
         action: 'drag-drop',
       })
