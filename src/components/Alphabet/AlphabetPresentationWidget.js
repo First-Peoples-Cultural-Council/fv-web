@@ -30,24 +30,11 @@ function AlphabetPresentationWidget({
                       ? 'AlphabetPresentationWidget__selectedCharacter'
                       : undefined
                   }
-                  className={`
-                      border
-                      col-span-1
-                      font-medium
-                      inline-flex
-                      justify-center
-                      m-1
-                      p-3
-                      md:p-4
-                      rounded
-                      shadow
-                      text-2xl
-                      ${
-                        selectedData?.title === title
-                          ? 'bg-blumine-800 text-white'
-                          : ''
-                      }
-                      `}
+                  className={` border col-span-1 font-medium inline-flex justify-center m-1 p-3 md:p-4 rounded shadow text-2xl ${
+                    selectedData?.title === title
+                      ? 'bg-blumine-600 text-white'
+                      : ''
+                  }`}
                   key={id}
                   onClick={() => onCharacterClick(title)}
                 >

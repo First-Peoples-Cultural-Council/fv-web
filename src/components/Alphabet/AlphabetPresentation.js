@@ -39,7 +39,7 @@ function AlphabetPresentation({
           {characters?.map(({ title, id }) => (
             <Link
               className={`border col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
-                selectedData?.title === title ? 'bg-blumine-800 text-white' : ''
+                selectedData?.title === title ? 'bg-blumine-600 text-white' : ''
               } `}
               key={id}
               to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
