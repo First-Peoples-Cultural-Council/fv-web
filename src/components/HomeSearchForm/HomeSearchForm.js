@@ -45,7 +45,7 @@ function HomeSearchForm() {
             data-testid="SearchInput"
             id="SearchInput"
             aria-labelledby="SearchLabel"
-            className="block md:h-16 w-full placeholder:text-charcoal-400 text-charcoal-700 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
+            className="block md:h-16 w-full text-base placeholder:text-charcoal-400 text-charcoal-700 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
             type="text"
             placeholder={searchBoxPlaceholder}
             onInput={handleSearchTermChange}
@@ -70,7 +70,10 @@ function HomeSearchForm() {
           className="inline-block text-left space-y-6 sm:flex sm:items-center sm:justify-center sm:space-x-10 sm:space-y-0"
         >
           {arraySearchDomainOptions.map((option) => (
-            <Field key={option.label} className="flex items-center space-x-2">
+            <Field
+              key={option.label}
+              className="flex items-center space-x-2 cursor-pointer"
+            >
               <Radio
                 value={option}
                 className={`group flex h-6 w-6 items-center justify-center rounded-full border  ${selected.value === option.value ? 'bg-charcoal-100 border-charcoal-100' : 'border-white bg-none'}`}
@@ -80,7 +83,7 @@ function HomeSearchForm() {
                   `h-3 w-3 fill-charcoal-700 opacity-0 transition ${selected.value === option.value && 'opacity-100'}`,
                 )}
               </Radio>
-              <Label className="block text-sm font-medium text-white">
+              <Label className="block font-medium text-base text-white cursor-pointer">
                 {option.label}
               </Label>
             </Field>
