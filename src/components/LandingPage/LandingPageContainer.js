@@ -4,7 +4,7 @@ import React from 'react'
 import LandingPageData from 'components/LandingPage/LandingPageData'
 import LandingBanner from 'components/LandingBanner'
 import LandingKeyboards from 'components/LandingKeyboards'
-import WidgetArea from '../WidgetArea/index'
+import WidgetArea from 'components/WidgetArea'
 
 function LandingPageContainer() {
   const { whyData, aboutData, quotesData, appsData } = LandingPageData()
@@ -14,7 +14,7 @@ function LandingPageContainer() {
       <WidgetArea.Container
         widgetData={[whyData, aboutData, quotesData, appsData]}
       />
-      <LandingKeyboards.Container />
+      <LandingKeyboards.Presentation />
     </div>
   )
 }
