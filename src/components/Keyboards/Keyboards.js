@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
-import FVKeyboards from 'assets/images/fv-keyboards-border.png'
+import FVKeyboards from 'assets/images/fv-keyboards.png'
 import DocHead from 'components/DocHead'
 
 function Keyboards() {
@@ -149,11 +149,11 @@ function Keyboards() {
           <h2 className={headerStyle}>
             Installing the correct keyboard on phone or tablet
           </h2>
-          <div className="flex">
+          <div className="flex items-center space-x-10">
             <img
               src={FVKeyboards}
               alt="FirstVoices Keyboards logo"
-              className="pr-10"
+              className="h-32 w-32"
             />
             <p className={paraStyle}>
               If you are installing the FirstVoices keyboard for your language
