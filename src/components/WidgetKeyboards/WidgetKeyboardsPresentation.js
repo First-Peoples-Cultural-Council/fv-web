@@ -11,10 +11,10 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
     <div className="mx-auto" id="WidgetKeyboardsPresentation">
-      <div className="bg-charcoal-600 mx-auto p-6 md:p-10 text-white my-4 max-w-screen-lg rounded-lg">
+      <div className="bg-white border border-charcoal-200 mx-auto p-6 md:p-10 my-4 max-w-screen-lg rounded-xl">
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-3 md:col-span-2 space-y-5 md:space-y-10">
-            <h1 className="text-xl md:text-3xl font-bold">{header}</h1>
+            <h1 className="text-xl md:text-3xl text-blumine-800">{header}</h1>
 
             <a
               href="https://apps.apple.com/ca/app/firstvoices-keyboards/id1066651145"
@@ -23,7 +23,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               className="inline-flex mr-5"
             >
               <img
-                className="h-14 w-auto mx-auto shadow-xl"
+                className="h-14 w-auto mx-auto"
                 src={appleBadge}
                 alt="App Store Logo"
               />
@@ -35,7 +35,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
               className="inline-flex"
             >
               <img
-                className="h-14 w-auto mx-auto shadow-xl"
+                className="h-14 w-auto mx-auto"
                 src={googleBadge}
                 alt="Google Play Store Logo"
               />
@@ -43,7 +43,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
           </div>
           <div className="flex order-first col-span-3 md:order-last md:col-span-1 justify-center md:justify-end">
             <img
-              className="h-32 w-32 md:h-52 md:w-52 shadow-2xl rounded-lg border-8 border-white"
+              className="h-32 w-32 md:h-52 md:w-52"
               src={fvKeyboardsLogo}
               loading="lazy"
               alt="App Logo"
@@ -52,7 +52,9 @@ function WidgetKeyboardsPresentation({ header, urls }) {
         </div>
         {urls.macUrl || urls.windowsUrl ? (
           <div className="mt-5 space-y-8">
-            <h3 className="text-xl">Also available on desktop:</h3>
+            <h3 className="md:text-xl text-charcoal-900">
+              Also available on desktop:
+            </h3>
             <div className="inline-flex">
               {urls?.macUrl && (
                 <div className="flex">
@@ -68,7 +70,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                       alt={urls?.macUrl}
                     />
                     <div className="mx-auto">
-                      <div className="btn-tertiary btn-sm">Install on Mac</div>
+                      <div className="btn-secondary btn-sm">Install on Mac</div>
                     </div>
                   </a>
                 </div>
@@ -87,7 +89,7 @@ function WidgetKeyboardsPresentation({ header, urls }) {
                       alt={urls?.windowsUrl}
                     />
                     <div className="mx-auto">
-                      <div className="btn-tertiary btn-sm">
+                      <div className="btn-secondary btn-sm">
                         Install on Windows
                       </div>
                     </div>
