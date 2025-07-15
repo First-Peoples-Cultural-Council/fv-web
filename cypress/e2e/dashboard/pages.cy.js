@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+import 'cypress-real-events'
+
 describe(
   'Dashboard - Page Test',
   {
@@ -55,6 +57,48 @@ describe(
       cy.contains('Dashboard').click()
       cy.contains('Edit homepage').click()
       cy.contains('Page Text').should('not.exist')
+    })
+
+    it('3.1 edit homepage - widget', () => {
+      cy.contains('Explore Languages').click()
+
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.contains('Dashboard').click()
+      cy.contains('Edit homepage').click()
+
+      cy.get('[data-testid="DashboardWidgetMoveButton"]')
+        .should('be.visible')
+        .then(() => {
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(2)
+            .realMouseDown()
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(2)
+            .realMouseMove(0, 150)
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(2)
+            .realMouseUp()
+
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(1)
+            .realMouseDown()
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(1)
+            .realMouseMove(0, 150)
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(1)
+            .realMouseUp()
+
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(0)
+            .realMouseDown()
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(0)
+            .realMouseMove(0, -150)
+          cy.get('[data-testid="DashboardWidgetMoveButton"]')
+            .eq(0)
+            .realMouseUp()
+        })
     })
   },
 ) // end of describe
