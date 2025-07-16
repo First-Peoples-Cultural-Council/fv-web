@@ -64,6 +64,7 @@ function EntryArrayField({
           displayValue={displayValue}
           updateFormEntries={appendToFormAndClose}
           visibility={visibility}
+          maxItems={maxItems}
         />
       </Modal.Presentation>
     </Fragment>
