@@ -99,14 +99,21 @@ export const definitions = {
   paragraph: ({ charCount = 250 } = {}) => stringWithMax(charCount).nullable(),
 
   textArray: ({ charCount = 225 } = {}) =>
-    yup.array().of(
-      yup.object({
-        text: stringWithMax(charCount).min(
-          1,
-          'This field cannot be empty. Remove it if you do not want to include it.',
-        ),
-      }),
-    ),
+    yup
+      .array()
+      .of(
+        yup.object({
+          text: stringWithMax(charCount).min(
+            1,
+            'This field cannot be empty. Remove it if you do not want to include it.',
+          ),
+        }),
+      )
+      .compact((item) => {
+        const tx = item?.text
+        return typeof tx !== 'string' || tx.trim() === ''
+      })
+      .default([]),
   url: ({ required = false } = {}) =>
     required
       ? yup
