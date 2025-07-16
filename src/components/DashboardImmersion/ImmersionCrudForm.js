@@ -61,8 +61,8 @@ function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
               control={control}
               register={register}
               errors={errors}
-              label={`Immersion label for "${dataToEdit?.english}"`}
-              buttonLabel={`Select a dictionary entry to use as a label for "${dataToEdit?.english}"`}
+              label={`Select a dictionary entry to use as an immersion label for "${dataToEdit?.english}"`}
+              buttonLabel={`Select label for "${dataToEdit?.english}"`}
               helpText="NB: Only dictionary entries that match the visibility of your site can be used as immersion labels."
               maxItems={1}
               types={[TYPE_WORD, TYPE_PHRASE]}

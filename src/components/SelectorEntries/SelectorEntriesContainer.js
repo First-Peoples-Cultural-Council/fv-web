@@ -11,12 +11,13 @@ import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import getIcon from 'common/utils/getIcon'
 
 function SelectorEntriesContainer({
+  displayValue,
   formEntries,
   isModalOpen,
   types,
-  displayValue,
   updateFormEntries,
   visibility,
+  maxItems = 30,
 }) {
   const infiniteQueryResponse = useSearchModal({
     types,
@@ -25,7 +26,7 @@ function SelectorEntriesContainer({
   })
 
   const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
-    useArrayStateManager({ maxItems: 30 })
+    useArrayStateManager({ maxItems: maxItems })
 
   // Clear the Selected items when the modal closes
   useEffect(() => {
@@ -97,12 +98,13 @@ function SelectorEntriesContainer({
 }
 
 // PROPTYPES
-const { array, arrayOf, bool, func, string } = PropTypes
+const { array, arrayOf, bool, func, number, string } = PropTypes
 SelectorEntriesContainer.propTypes = {
+  displayValue: string,
   formEntries: array,
   isModalOpen: bool,
+  maxItems: number,
   types: arrayOf(string),
-  displayValue: string,
   updateFormEntries: func,
   visibility: string,
 }
