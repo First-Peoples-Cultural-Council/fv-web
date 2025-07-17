@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardMediaPresentation from 'components/DashboardMedia/DashboardMediaPresentation'
@@ -19,34 +20,40 @@ import {
 function DashboardMediaContainer() {
   const { tileContent, headerContent, site } = DashboardMediaData()
   return (
-    <div id="DashboardMediaContainer">
-      <Routes>
-        <Route path={AUDIO_PATH} element={<DashboardMediaAudio.Container />} />
-        <Route
-          path={DOCUMENT_PATH}
-          element={<DashboardMediaDocuments.Container />}
-        />
-        <Route
-          path={IMAGE_PATH}
-          element={<DashboardMediaVisual.Container type={TYPE_IMAGE} />}
-        />
-        <Route
-          path={VIDEO_PATH}
-          element={<DashboardMediaVisual.Container type={TYPE_VIDEO} />}
-        />
+    <>
+      <SiteDocHead titleArray={['Media']} />
+      <div id="DashboardMediaContainer">
+        <Routes>
+          <Route
+            path={AUDIO_PATH}
+            element={<DashboardMediaAudio.Container />}
+          />
+          <Route
+            path={DOCUMENT_PATH}
+            element={<DashboardMediaDocuments.Container />}
+          />
+          <Route
+            path={IMAGE_PATH}
+            element={<DashboardMediaVisual.Container type={TYPE_IMAGE} />}
+          />
+          <Route
+            path={VIDEO_PATH}
+            element={<DashboardMediaVisual.Container type={TYPE_VIDEO} />}
+          />
 
-        <Route
-          path=""
-          element={
-            <DashboardMediaPresentation
-              tileContent={tileContent}
-              headerContent={headerContent}
-              site={site}
-            />
-          }
-        />
-      </Routes>
-    </div>
+          <Route
+            path=""
+            element={
+              <DashboardMediaPresentation
+                tileContent={tileContent}
+                headerContent={headerContent}
+                site={site}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </>
   )
 }
 

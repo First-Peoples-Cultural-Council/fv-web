@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import HomeCrudPresentation from 'components/HomeCrud/HomeCrudPresentation'
@@ -9,16 +10,23 @@ import Loading from 'components/Loading'
 function HomeCrudContainer() {
   const { backHandler, dataToEdit, isWidgetAreaEdit, site, submitHandler } =
     HomeCrudData()
-  return isWidgetAreaEdit ? (
-    <Loading.Container isLoading={!site?.id}>
-      <HomeCrudPresentation site={site} />
-    </Loading.Container>
-  ) : (
-    <HomeForm
-      cancelHandler={backHandler}
-      submitHandler={submitHandler}
-      dataToEdit={dataToEdit}
-    />
+
+  return (
+    <>
+      {' '}
+      <SiteDocHead titleArray={['Homepage Edit']} />
+      {isWidgetAreaEdit ? (
+        <Loading.Container isLoading={!site?.id}>
+          <HomeCrudPresentation site={site} />
+        </Loading.Container>
+      ) : (
+        <HomeForm
+          cancelHandler={backHandler}
+          submitHandler={submitHandler}
+          dataToEdit={dataToEdit}
+        />
+      )}
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -12,6 +13,7 @@ import DashboardJoinList from 'components/DashboardJoinList'
 function DashboardHomePresentation({ site, tiles, currentUser }) {
   return (
     <main id="DashboardHome">
+      <SiteDocHead titleArray={['Dashboard']} />
       <h1 className="sr-only">Dashboard Landing Page</h1>
       <div className="mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
         <section>

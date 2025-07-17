@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardAlphabetData from 'components/DashboardAlphabet/DashboardAlphabetData'
@@ -8,12 +9,15 @@ function DashboardAlphabetContainer() {
   const { queryResponse, headerContent, site, tileContent } =
     DashboardAlphabetData()
   return (
-    <DashboardAlphabetPresentation
-      queryResponse={queryResponse}
-      headerContent={headerContent}
-      tileContent={tileContent}
-      site={site}
-    />
+    <>
+      <SiteDocHead titleArray={['Alphabet']} />
+      <DashboardAlphabetPresentation
+        queryResponse={queryResponse}
+        headerContent={headerContent}
+        tileContent={tileContent}
+        site={site}
+      />
+    </>
   )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardWidgetsData from 'components/DashboardWidgets/DashboardWidgetsData'
@@ -8,12 +9,16 @@ function DashboardWidgetsContainer() {
   const { queryResponse, headerContent, site, tileContent } =
     DashboardWidgetsData()
   return (
-    <DashboardWidgetsPresentation
-      queryResponse={queryResponse}
-      headerContent={headerContent}
-      tileContent={tileContent}
-      site={site}
-    />
+    <>
+      {' '}
+      <SiteDocHead titleArray={['Widgets']} />
+      <DashboardWidgetsPresentation
+        queryResponse={queryResponse}
+        headerContent={headerContent}
+        tileContent={tileContent}
+        site={site}
+      />
+    </>
   )
 }
 

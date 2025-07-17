@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardEntriesData from 'components/DashboardEntries/DashboardEntriesData'
 import DashboardEntriesPresentation from 'components/DashboardEntries/DashboardEntriesPresentation'
 
-function DashboardEntriesContainer({ advancedSearch = false }) {
+import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
+
+export default function DashboardEntriesContainer({ advancedSearch = false }) {
   const {
     emptyListMessage,
     entryLabel,
@@ -19,29 +22,32 @@ function DashboardEntriesContainer({ advancedSearch = false }) {
     showAdvancedSearch,
   } = DashboardEntriesData({ advancedSearch })
 
+  const activeType = searchType || initialSearchType
+  const pageLabel = getPresentationPropertiesForType(activeType).titlecase
+  const titleArray = [pageLabel]
+
   return (
-    <div id="DashboardEntriesContainer">
-      <DashboardEntriesPresentation
-        emptyListMessage={emptyListMessage}
-        entryLabel={entryLabel}
-        initialSearchType={initialSearchType}
-        isDictionary={isDictionary}
-        searchInfiniteQueryResponse={searchInfiniteQueryResponse}
-        removeFilters={removeFilters}
-        searchType={searchType}
-        setSearchType={setSearchType}
-        setShowAdvancedSearch={setShowAdvancedSearch}
-        showAdvancedSearch={showAdvancedSearch}
-      />
-    </div>
+    <>
+      <SiteDocHead titleArray={titleArray} />
+
+      <div id="DashboardEntriesContainer">
+        <DashboardEntriesPresentation
+          emptyListMessage={emptyListMessage}
+          entryLabel={entryLabel}
+          initialSearchType={initialSearchType}
+          isDictionary={isDictionary}
+          searchInfiniteQueryResponse={searchInfiniteQueryResponse}
+          removeFilters={removeFilters}
+          searchType={searchType}
+          setSearchType={setSearchType}
+          setShowAdvancedSearch={setShowAdvancedSearch}
+          showAdvancedSearch={showAdvancedSearch}
+        />
+      </div>
+    </>
   )
 }
 
-// PROPTYPES
-const { bool } = PropTypes
-
 DashboardEntriesContainer.propTypes = {
-  advancedSearch: bool,
+  advancedSearch: PropTypes.bool,
 }
-
-export default DashboardEntriesContainer
