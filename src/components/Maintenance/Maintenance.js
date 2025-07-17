@@ -11,6 +11,7 @@ function Maintenance({ children, pageName = 'This page' }) {
   const { sitename } = useParams()
   const { goBack } = useGoBack({ fallbackRoute: `/${sitename}/dashboard` })
 
+  console.log(GlobalConfiguration?.UNDER_MAINTENANCE)
   const isUnderMaintenance = GlobalConfiguration?.UNDER_MAINTENANCE === 'true'
   return isUnderMaintenance ? (
     <div
