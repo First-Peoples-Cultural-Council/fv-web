@@ -137,7 +137,7 @@ Configure lint-staged in `package.json`, for example:
   },
 ```
 
-[ESLint](https://eslint.org/) is checking the code
+[ESLint](https://eslint.org/) is checking the code,
 
 Please adjust the rules to suit your preference.
 
