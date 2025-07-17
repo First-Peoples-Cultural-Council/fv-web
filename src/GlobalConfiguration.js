@@ -11,6 +11,7 @@ const GlobalConfiguration = {
   SENTRY_RELEASE: process.env.SENTRY_RELEASE ? process.env.SENTRY_RELEASE : '',
   SENTRY_TRACES_SAMPLE_RATE: process.env.SENTRY_TRACES_SAMPLE_RATE || '1.0',
   SENTRY_ERROR_SAMPLE_RATE: process.env.SENTRY_ERROR_SAMPLE_RATE || '1.0',
+  UNDER_MAINTENANCE: process.env.UNDER_MAINTENANCE || false,
 }
 
 export default GlobalConfiguration
