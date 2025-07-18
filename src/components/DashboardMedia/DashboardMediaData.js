@@ -42,7 +42,7 @@ function DashboardMediaData() {
     },
     {
       icon: 'Images',
-      name: 'Shared Images',
+      name: 'Shared images',
       description: 'Browse images provided by FirstVoices.',
       href: SHARED_IMAGES_PATH,
       iconColor: 'charcoal-500',
