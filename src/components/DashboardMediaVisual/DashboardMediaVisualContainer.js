@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import useMediaSearchWithUrlSync from 'common/dataHooks/useMediaSearchWithUrlSync'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 
 function DashboardMediaVisualContainer({ type }) {
-  const infiniteQueryResponse = useMediaSearch({ type })
+  const infiniteQueryResponse = useMediaSearchWithUrlSync({ type })
 
   return (
     <div
