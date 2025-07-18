@@ -5,6 +5,7 @@ import {
   DOCUMENT_PATH,
   IMAGE_PATH,
   VIDEO_PATH,
+  SHARED_MEDIA_PATH,
 } from 'common/constants'
 
 function DashboardMediaData() {
@@ -38,6 +39,13 @@ function DashboardMediaData() {
       description: 'Manage your pdfs, csvs, and text files.',
       href: DOCUMENT_PATH,
       iconColor: 'jade-800',
+    },
+    {
+      icon: 'Images',
+      name: 'Shared Images',
+      description: 'Browse images provided by FirstVoices.',
+      href: SHARED_MEDIA_PATH,
+      iconColor: 'charcoal-500',
     },
   ]
   const headerContent = {
