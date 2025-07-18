@@ -5,7 +5,7 @@ import {
   DOCUMENT_PATH,
   IMAGE_PATH,
   VIDEO_PATH,
-  SHARED_MEDIA_PATH,
+  SHARED_IMAGES_PATH,
 } from 'common/constants'
 
 function DashboardMediaData() {
@@ -44,7 +44,7 @@ function DashboardMediaData() {
       icon: 'Images',
       name: 'Shared Images',
       description: 'Browse images provided by FirstVoices.',
-      href: SHARED_MEDIA_PATH,
+      href: SHARED_IMAGES_PATH,
       iconColor: 'charcoal-500',
     },
   ]
