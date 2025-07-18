@@ -2,13 +2,15 @@ import React from 'react'
 
 // FPCC
 import DashboardMediaDocumentsPresentation from 'components/DashboardMediaDocuments/DashboardMediaDocumentsPresentation'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import useMediaSearchWithUrlSync from 'common/dataHooks/useMediaSearchWithUrlSync'
 import { TYPE_DOCUMENT } from 'common/constants'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 
 function DashboardMediaDocumentsContainer() {
-  const infiniteQueryResponse = useMediaSearch({ type: TYPE_DOCUMENT })
+  const infiniteQueryResponse = useMediaSearchWithUrlSync({
+    type: TYPE_DOCUMENT,
+  })
 
   return (
     <div

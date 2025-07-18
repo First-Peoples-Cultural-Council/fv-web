@@ -39,14 +39,8 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
       id="DashboardMediaVisualPresentation"
       className="grid grid-cols-3 w-full"
     >
-      <main className="col-span-2 mx-2">
-        <section className="px-2 py-4 h-full" aria-labelledby="results-header">
-          <h1
-            id="results-header"
-            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-4"
-          >
-            {infiniteQueryResponse?.typePlural}
-          </h1>
+      <section className="col-span-2">
+        <div className="p-4 h-full">
           <div className="overflow-y-auto h-full">
             <div>
               <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
@@ -111,8 +105,8 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
               <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
       <aside className="col-span-1">
         <DashboardMediaDetails
           mediaTypePath={mediaTypePath}

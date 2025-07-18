@@ -11,6 +11,7 @@ import {
   AUDIO_PATH,
   DOCUMENT_PATH,
   IMAGE_PATH,
+  SHARED_IMAGES_PATH,
   VIDEO_PATH,
   TYPE_IMAGE,
   TYPE_VIDEO,
@@ -33,6 +34,15 @@ function DashboardMediaContainer() {
         <Route
           path={VIDEO_PATH}
           element={<DashboardMediaVisual.Container type={TYPE_VIDEO} />}
+        />
+        <Route
+          path={SHARED_IMAGES_PATH}
+          element={
+            <DashboardMediaVisual.Container
+              type={TYPE_IMAGE}
+              searchSharedMedia
+            />
+          }
         />
 
         <Route

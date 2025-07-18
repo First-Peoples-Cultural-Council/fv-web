@@ -2,19 +2,13 @@ import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import {
-  AUDIO,
-  IMAGE,
-  VIDEO,
-  TYPES,
-  SORT,
-  SORT_CREATED_DESC,
-} from 'common/constants'
+import { AUDIO, IMAGE, VIDEO } from 'common/constants'
 import { getPathForMediaType } from 'common/utils/mediaHelpers'
-import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import useSearchTerm from 'common/hooks/useSearchTerm'
+import useSiteMediaSearch from 'common/dataHooks/useSiteMediaSearch'
+import useSharedMediaSearch from 'common/dataHooks/useSharedMediaSearch'
 
-function useMediaSearch({ type }) {
+function useMediaSearchWithUrlSync({ type, searchSharedMedia = false }) {
   const path = getPathForMediaType(type)
   const [currentFile, setCurrentFile] = useState(null) // Used for the sidebar to display the current selected file
 
@@ -27,15 +21,20 @@ function useMediaSearch({ type }) {
     setSearchTermInUrl,
   } = useSearchTerm()
 
-  const siteSearchParams = new URLSearchParams({
-    q: submittedSearchTerm,
-    [TYPES]: type,
-    [SORT]: submittedSearchTerm ? null : SORT_CREATED_DESC,
+  // Fetch search results
+  const siteSearchResponse = useSiteMediaSearch({
+    type,
+    searchTerm: submittedSearchTerm,
+  })
+  const sharedMediaSearchResponse = useSharedMediaSearch({
+    type,
+    searchTerm: submittedSearchTerm,
+    enabled: searchSharedMedia,
   })
 
-  const infiniteQueryResponse = useSearchLoader({
-    searchParams: siteSearchParams,
-  })
+  const infiniteQueryResponse = searchSharedMedia
+    ? sharedMediaSearchResponse
+    : siteSearchResponse
 
   const handleSearchSubmitWithUrlSync = (event) => {
     event.preventDefault()
@@ -64,11 +63,11 @@ function useMediaSearch({ type }) {
   }
 }
 
-const { oneOf, bool } = PropTypes
+const { bool, oneOf } = PropTypes
 
-useMediaSearch.propTypes = {
-  type: oneOf([AUDIO, IMAGE, VIDEO]),
+useMediaSearchWithUrlSync.propTypes = {
   searchSharedMedia: bool,
+  type: oneOf([AUDIO, IMAGE, VIDEO]),
 }
 
-export default useMediaSearch
+export default useMediaSearchWithUrlSync
