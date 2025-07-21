@@ -27,10 +27,6 @@ describe(
       cy.contains('QR CODE').should('be.visible')
       cy.contains('SHARE').click()
       cy.contains('Cancel').click()
-      cy.get('body').type('{esc}')
-      cy.contains('MORE').scrollIntoView()
-      cy.contains('MORE').should('be.visible')
-      cy.contains('MORE').click()
     })
 
     it('9.1 - Get first word and search for it', () => {

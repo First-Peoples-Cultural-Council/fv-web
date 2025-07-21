@@ -52,8 +52,8 @@ describe(
       for (let i = 0; i < 1; i += 1) {
         cy.contains('Add page').click()
         cy.contains('Save').should('be.visible')
-        cy.get('div.public-DraftStyleDefault-block').eq(0).type('asdfasdfafs')
-        cy.get('div.public-DraftStyleDefault-block').eq(1).type('asdfasdfaf')
+        cy.get(':nth-child(1) > .tiptap > p').eq(0).type('asdfasdfafs')
+        cy.get(':nth-child(1) > .tiptap > p').eq(1).type('asdfasdfaf')
         cy.contains('Save').click()
       }
       cy.contains('Next step').click({ force: true })

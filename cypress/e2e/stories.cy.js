@@ -15,14 +15,10 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Stories').click()
-      cy.get('ul li', { timeout: 10000 })
-        .first()
-        .each((_song) => {
-          cy.wrap(_song).click()
-          cy.contains('Go to Story', { timeout: 12000 })
-          cy.get('#CloseDrawerBtn').click()
-          cy.contains('Go to Story').should('not.exist')
-        })
+      cy.get('ul li', { timeout: 10000 }).first().click()
+      cy.contains('Go to Story', { timeout: 12000 })
+      cy.get('#CloseDrawerBtn').click()
+      cy.contains('Go to Story').should('not.exist')
     })
 
     it('10.2 - Check list view stories', () => {
