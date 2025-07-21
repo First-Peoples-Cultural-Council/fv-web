@@ -2,13 +2,13 @@ import React from 'react'
 
 // FPCC
 import DashboardMediaAudioPresentation from 'components/DashboardMediaAudio/DashboardMediaAudioPresentation'
-import useMediaSearch from 'common/dataHooks/useMediaSearch'
+import useMediaSearchWithUrlSync from 'common/dataHooks/useMediaSearchWithUrlSync'
 import { TYPE_AUDIO } from 'common/constants'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 
 function DashboardMediaAudioContainer() {
-  const infiniteQueryResponse = useMediaSearch({ type: TYPE_AUDIO })
+  const infiniteQueryResponse = useMediaSearchWithUrlSync({ type: TYPE_AUDIO })
 
   return (
     <div

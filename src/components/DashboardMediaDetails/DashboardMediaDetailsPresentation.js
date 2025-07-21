@@ -15,28 +15,38 @@ import {
 
 function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
   const { sitename } = useParams()
+  const belongsToCurrentSite = file?.downloadLink?.includes(sitename)
+
   return (
     <div
       id="DashboardMediaDetailsPresentation"
       className="min-h-screen w-full pb-16 px-8 sticky top-16 bg-white border-1 border-charcoal-100"
     >
       <div className="flex justify-center space-x-2 py-5">
-        <a href={file?.downloadLink} className="flex-1 btn-secondary btn-sm">
-          {getIcon('Download')}
-          <span>Download</span>
-        </a>
+        {belongsToCurrentSite && (
+          <>
+            <a
+              href={file?.downloadLink}
+              className="flex-1 btn-secondary btn-sm"
+            >
+              {getIcon('Download')}
+              <span>Download</span>
+            </a>
 
-        <Link
-          to={`/${sitename}/dashboard/edit/${mediaTypePath}?id=${file?.id}`}
-          data-testid="EntryDrawerEdit"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 btn-primary btn-sm"
-        >
-          {getIcon('Pencil')}
-          <span>Edit</span>
-        </Link>
+            <Link
+              to={`/${sitename}/dashboard/edit/${mediaTypePath}?id=${file?.id}`}
+              data-testid="EntryDrawerEdit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 btn-primary btn-sm"
+            >
+              {getIcon('Pencil')}
+              <span>Edit</span>
+            </Link>
+          </>
+        )}
       </div>
+
       <div className="space-y-2">
         <div>{thumbnail}</div>
         <h2 className="text-lg font-medium text-charcoal-900">
