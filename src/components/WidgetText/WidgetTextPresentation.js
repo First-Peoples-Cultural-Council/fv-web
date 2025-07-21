@@ -8,6 +8,7 @@ import WysiwygBlock from 'components/WysiwygBlock'
 import ImgFromId from 'components/ImgFromId'
 import { useImage } from 'common/dataHooks/useImages'
 import { useAudio } from 'common/dataHooks/useAudio'
+import { isUUID } from 'common/utils/stringHelpers'
 import {
   FIRSTVOICESLINK,
   FORMAT_LEFT,
@@ -39,15 +40,18 @@ function WidgetTextPresentation({ widgetData }) {
   const audioObject = audioQueryResponse?.data
   const imgStyling = 'w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover'
 
-  const getImageElement = () => (
-    <div className="md:w-1/2 overflow-hidden inline-flex items-center">
-      {mockData ? (
-        <img src={image} alt={title} className={imgStyling} />
-      ) : (
-        <ImgFromId.Container id={image} alt={title} className={imgStyling} />
-      )}
-    </div>
-  )
+  const getImageElement = () => {
+    if (!isUUID(image) && !mockData) return ''
+    return (
+      <div className="md:w-1/2 overflow-hidden inline-flex items-center">
+        {mockData ? (
+          <img src={image} alt={title} className={imgStyling} />
+        ) : (
+          <ImgFromId.Container id={image} alt={title} className={imgStyling} />
+        )}
+      </div>
+    )
+  }
 
   const getTextElement = () => (
     <div
