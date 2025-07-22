@@ -12,21 +12,22 @@ function AudioCrudData() {
   const id = searchParams.get('id')
 
   const queryResponse = useAudio({ id, edit: true })
-  const speakerQueryResponse = usePeople()
+  const speakerInfiniteQueryResponse = usePeople()
 
   const { onSubmit } = useAudioUpdate({ id })
   const submitHandler = (formData) => onSubmit(formData)
   const backHandler = () =>
     navigate(`/${sitename}/dashboard/${MEDIA}/${AUDIO_PATH}`)
 
-  const speakerOptions = speakerQueryResponse?.data?.results?.map((entry) => ({
-    label: entry?.name,
-    value: entry?.id,
-  }))
+  const speakerOptions =
+    speakerInfiniteQueryResponse?.data?.pages?.[0]?.results?.map((entry) => ({
+      label: entry?.name,
+      value: entry?.id,
+    }))
 
   return {
     queryResponse,
-    speakerOptions,
+    speakerOptions: speakerOptions || [],
     submitHandler,
     backHandler,
   }
