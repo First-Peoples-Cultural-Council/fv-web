@@ -162,10 +162,10 @@ function StoryPresentation({ entry }) {
                     </div>
                   )}
                   <div className="w-full font-medium text-charcoal-900">
-                    <WysiwygBlock jsonString={entry?.intro} />
+                    <WysiwygBlock htmlString={entry?.intro} />
                   </div>
                   <div className="w-full text-charcoal-500">
-                    <WysiwygBlock jsonString={entry?.introTranslation} />
+                    <WysiwygBlock htmlString={entry?.introTranslation} />
                   </div>
                 </div>
                 <div
@@ -209,10 +209,10 @@ function StoryPresentation({ entry }) {
                         </div>
                       )}
                       <div className="w-full font-medium">
-                        <WysiwygBlock jsonString={page?.text} />
+                        <WysiwygBlock htmlString={page?.text} />
                       </div>
                       <div className="text-charcoal-500">
-                        <WysiwygBlock jsonString={page?.textTranslation} />
+                        <WysiwygBlock htmlString={page?.textTranslation} />
                       </div>
                       {page?.notes.map((note) => (
                         <p key={note.id} className="text-xs">

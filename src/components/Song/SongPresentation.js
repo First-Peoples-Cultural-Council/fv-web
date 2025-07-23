@@ -56,8 +56,8 @@ function SongPresentation({ entry }) {
               <div className="bg-charcoal-50 p-2 space-y-2 sm:space-y-4 lg:my-2">
                 <h4 className={labelStyling}>Introduction</h4>
                 <div className="text-charcoal-900">
-                  <WysiwygBlock className="mb-2" jsonString={entry?.intro} />
-                  <WysiwygBlock jsonString={entry?.introTranslation} />
+                  <WysiwygBlock className="mb-2" htmlString={entry?.intro} />
+                  <WysiwygBlock htmlString={entry?.introTranslation} />
                 </div>
               </div>
             )}

@@ -198,7 +198,7 @@ function ContactUsPresentation({
                       ADDRESS
                     </h3>
                     <div className="block mb-6">
-                      <WysiwygBlock jsonString={textWithFormatting} />
+                      <WysiwygBlock htmlString={textWithFormatting} />
                     </div>
                   </>
                 )}

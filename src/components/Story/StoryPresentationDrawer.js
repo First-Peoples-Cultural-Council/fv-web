@@ -74,8 +74,8 @@ function StoryPresentationDrawer({ entry, isDashboard }) {
               INTRODUCTION
             </h4>
             <div className="text-charcoal-900 sm:col-span-2 space-y-2">
-              <WysiwygBlock jsonString={entry?.intro} />
-              <WysiwygBlock jsonString={entry?.introTranslation} />
+              <WysiwygBlock htmlString={entry?.intro} />
+              <WysiwygBlock htmlString={entry?.introTranslation} />
             </div>
           </div>
         </div>

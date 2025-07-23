@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import 'draft-js/dist/Draft.css'
 import WysiwygBlock from 'components/WysiwygBlock'
 
 // FPCC
@@ -24,7 +23,7 @@ function WidgetTextIconsPresentation({ widgetData }) {
       <div className="md:flex md:flex-row-reverse">
         <div className="px-8 lg:pt-12 lg:pb-8 text-base md:text-lg">
           <div className="wysiwyg">
-            <WysiwygBlock jsonString={textWithFormatting} />
+            <WysiwygBlock htmlString={textWithFormatting} />
           </div>
 
           <div className="hidden md:flex justify-between text-sm font-bold">
