@@ -1,4 +1,4 @@
-import { ContentState, convertFromRaw, convertToRaw } from 'draft-js'
+import { ContentState, convertFromRaw } from 'draft-js'
 
 // WysiwygState is used to refer to Draft-js ContentState
 // See https://draftjs.org/docs/api-reference-content-state/ for more details and the difference between EditorState and ContentState
@@ -7,21 +7,6 @@ import { ContentState, convertFromRaw, convertToRaw } from 'draft-js'
 import { isStringWithLength, safeJsonParse } from 'common/utils/stringHelpers'
 
 function wysiwygStateHelpers() {
-  // Converts Draft-js ContentState into raw JSON format
-  const getJsonFromWysiwygState = (wysiwygState) => {
-    if (!wysiwygState) return ''
-    // If the content is html, simply return the raw HTML
-    if (typeof wysiwygState === 'string') {
-      return wysiwygState
-    }
-    const content = wysiwygState?.getCurrentContent()
-    if (content?.hasText()) {
-      return JSON.stringify(convertToRaw(content))
-    }
-
-    return ''
-  }
-
   const getWysiwygStateFromJson = (jsonString) => {
     if (!isStringWithLength(jsonString)) {
       return ContentState.createFromText('')
@@ -32,7 +17,6 @@ function wysiwygStateHelpers() {
   }
 
   return {
-    getJsonFromWysiwygState,
     getWysiwygStateFromJson,
   }
 }

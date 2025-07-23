@@ -45,6 +45,7 @@ export function pageTextAdaptor({ item }) {
   try {
     const textState = getWysiwygStateFromJson(textJson)
     textPreview = `${textState?.getPlainText()?.slice(0, 250)}...`
+    // eslint-disable-next-line no-unused-vars
   } catch (e) {
     // Problem parsing text to get a preview; just leave the preview blank
   }
@@ -56,12 +57,8 @@ export function pageTextAdaptor({ item }) {
 }
 
 export function pageTextForApi({ item }) {
-  const { getJsonFromWysiwygState } = wysiwygStateHelpers()
-  const text = getJsonFromWysiwygState(item?.text)
-  const translation = getJsonFromWysiwygState(item?.textTranslation)
-
   return {
-    text,
-    translation,
+    text: item?.text || '',
+    translation: item?.textTranslation || '',
   }
 }

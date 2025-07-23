@@ -1,5 +1,3 @@
-import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
-
 export function introAdaptor({ item }) {
   return {
     intro: item?.introduction || '',
@@ -8,12 +6,8 @@ export function introAdaptor({ item }) {
 }
 
 export function introForApi({ item }) {
-  const { getJsonFromWysiwygState } = wysiwygStateHelpers()
-  const intro = getJsonFromWysiwygState(item?.intro)
-  const introTranslation = getJsonFromWysiwygState(item?.introTranslation)
-
   return {
-    introduction: intro,
-    introduction_translation: introTranslation,
+    introduction: item?.intro || '',
+    introduction_translation: item?.introTranslation || '',
   }
 }
