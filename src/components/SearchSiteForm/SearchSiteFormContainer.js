@@ -18,6 +18,8 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
     handleSearchTermChange,
     searchBoxPlaceholder,
     searchDomain,
+    submittedSearchTerm,
+    clearSearchTerm,
     handleSearchDomainChange,
     searchDomainOptions,
     submitSearchClearParams,
@@ -36,15 +38,27 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
           handleSearchTermChange={handleSearchTermChange}
         />
       ) : (
-        <SearchForm
-          displayedSearchTerm={displayedSearchTerm}
-          handleSearchNavigation={handleSearchNavigation}
-          handleSearchTermChange={handleSearchTermChange}
-          searchBoxPlaceholder={searchBoxPlaceholder}
-          searchDomain={searchDomain}
-          handleSearchDomainChange={handleSearchDomainChange}
-          searchDomainOptions={searchDomainOptions}
-        />
+        <>
+          <SearchForm
+            displayedSearchTerm={displayedSearchTerm}
+            handleSearchNavigation={handleSearchNavigation}
+            handleSearchTermChange={handleSearchTermChange}
+            searchBoxPlaceholder={searchBoxPlaceholder}
+            searchDomain={searchDomain}
+            handleSearchDomainChange={handleSearchDomainChange}
+            searchDomainOptions={searchDomainOptions}
+          />
+          {submittedSearchTerm && (
+            <button
+              data-testid="reset-search"
+              type="button"
+              className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
+              onClick={clearSearchTerm}
+            >
+              Clear Search
+            </button>
+          )}
+        </>
       )}
     </div>
   )
