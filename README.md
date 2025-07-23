@@ -117,9 +117,8 @@ We use BroswerStack in order to ensure our UI functions in the latest version of
 
 Git hooks are validating the frontend code on commit.
 
-You can skip the commit checks by adding the `--no-verify` flag to a `git commit`, eg:
-
-`git commit -m 'pull update & conflict resolution' --no-verify`
+You can skip the commit checks by adding the `--no-verify` flag to a `git commit`,
+eg: `git commit -m 'pull update & conflict resolution' --no-verify`
 
 [Husky](https://github.com/typicode/husky) runs the `pre-commit` hooks for us.
 
