@@ -3,8 +3,7 @@ import {
   relatedMediaForEditing,
   relatedMediaForApi,
 } from 'common/dataAdaptors/relatedMediaAdaptors'
-
-import wysiwygStateHelpers from 'common/utils/wysiwygStateHelpers'
+import { extractTextFromHtml } from 'common/utils/stringHelpers'
 
 export function storyPageForViewing({ item }) {
   return {
@@ -37,21 +36,14 @@ export function storyPageForApi({ item }) {
 }
 
 export function pageTextAdaptor({ item }) {
-  const { getWysiwygStateFromJson } = wysiwygStateHelpers()
+  const textFromHtml = extractTextFromHtml(item?.text) || ''
 
-  const textJson = item?.text || ''
-  let textPreview = ''
-
-  try {
-    const textState = getWysiwygStateFromJson(textJson)
-    textPreview = `${textState?.getPlainText()?.slice(0, 250)}...`
-    // eslint-disable-next-line no-unused-vars
-  } catch (e) {
-    // Problem parsing text to get a preview; just leave the preview blank
-  }
   return {
-    text: textJson,
-    textPreview,
+    text: item?.text || '',
+    textPreview:
+      textFromHtml?.length > 250
+        ? `${textFromHtml?.slice(0, 250)}...`
+        : textFromHtml,
     textTranslation: item?.translation || '',
   }
 }
