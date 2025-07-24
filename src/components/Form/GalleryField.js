@@ -53,7 +53,7 @@ function AddGalleryButton({ value, onChange }) {
   ) : (
     <Fragment key="AddGalleryButton">
       <FieldButton
-        label="Add Gallery"
+        label="Add gallery"
         onClickHandler={() => setModalOpen(true)}
       />
       {/* Add Modal */}

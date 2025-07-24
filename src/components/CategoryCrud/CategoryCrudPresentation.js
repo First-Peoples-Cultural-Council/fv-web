@@ -46,7 +46,7 @@ function CategoryCrudPresentation({
         <div className="w-full flex justify-end mt-6 px-6">
           <DeleteButton.Presentation
             deleteHandler={deleteHandler}
-            label="Delete Category"
+            label="Delete category"
             message="Are you sure you want to delete this category from your site?"
           />
         </div>
@@ -72,7 +72,7 @@ function CategoryCrudPresentation({
           <div className="col-span-12">
             {parentCategoryOptions?.length > 0 ? (
               <Form.Select
-                label="Parent Category"
+                label="Parent category"
                 nameId="parentId"
                 control={control}
                 options={parentCategoryOptions}

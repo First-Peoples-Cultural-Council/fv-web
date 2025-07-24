@@ -50,9 +50,8 @@ function VideoArrayField({
         const id = link.match(
           /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))(.{11}?)))/,
         )[1]
-        updatedRelatedVideoLinks[
-          index
-        ].thumbnail = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+        updatedRelatedVideoLinks[index].thumbnail =
+          `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
         setRelatedVideoLinks(updatedRelatedVideoLinks)
       }
       if (link.toLowerCase().includes('vimeo')) {
@@ -121,7 +120,7 @@ function VideoArrayField({
           ''
         ) : (
           <div>
-            <FieldButton label="Add Video" onClickHandler={openModal} />
+            <FieldButton label="Add video" onClickHandler={openModal} />
             <AddVideoModal.Container
               isDashboard
               formMedia={fields}

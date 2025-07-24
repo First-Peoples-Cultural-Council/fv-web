@@ -37,7 +37,7 @@ function StoryCrudContainer() {
         <div className="flex w-full justify-end -mb-14 pt-8 pr-8 z-10">
           <DeleteButton.Presentation
             deleteHandler={deleteHandler}
-            label="Delete Story"
+            label="Delete story"
             message="Are you sure you want to delete this story from your site?"
           />
         </div>
