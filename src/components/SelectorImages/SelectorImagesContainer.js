@@ -23,7 +23,7 @@ function SelectorImagesContainer({
   })
 
   const sharedMediaOptions = [
-    { value: 'true', label: 'Shared Images' },
+    { value: 'true', label: 'Shared images' },
     { value: 'false', label: 'Your image library' },
   ]
 

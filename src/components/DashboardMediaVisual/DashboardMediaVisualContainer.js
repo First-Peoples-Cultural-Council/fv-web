@@ -7,6 +7,7 @@ import useMediaSearchWithUrlSync from 'common/dataHooks/useMediaSearchWithUrlSyn
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
+import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
 function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
   const infiniteQueryResponse = useMediaSearchWithUrlSync({
@@ -15,7 +16,7 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
   })
 
   const typeDisplayName = searchSharedMedia
-    ? `Shared ${infiniteQueryResponse?.typePlural}`
+    ? `shared ${infiniteQueryResponse?.typePlural}`
     : infiniteQueryResponse?.typePlural
 
   return (
@@ -37,9 +38,9 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
         <div>
           <h1
             id="results-header"
-            className="capitalize flex text-2xl font-bold text-charcoal-900 px-4 py-2"
+            className="flex text-2xl font-bold text-charcoal-900 px-4 py-2"
           >
-            {typeDisplayName}
+            {capitalizeFirstLetter(typeDisplayName)}
           </h1>
           <SelectorResultsWrapper.Presentation
             infiniteQueryResponse={infiniteQueryResponse}
