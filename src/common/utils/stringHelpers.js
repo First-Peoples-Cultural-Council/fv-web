@@ -345,6 +345,13 @@ export const makeTitleCase = (string) =>
     (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
   )
 
+export const capitalizeFirstLetter = (string) => {
+  if (typeof string !== 'string' || string.length === 0) {
+    return string // Handle empty strings or non-string inputs
+  }
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 export const getFileExtensions = (fileName) =>
   fileName?.split('.').pop().toLowerCase()
 
