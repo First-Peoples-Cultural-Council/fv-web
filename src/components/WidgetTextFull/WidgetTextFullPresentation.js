@@ -9,7 +9,7 @@ function WidgetTextFullPresentation({ widgetData }) {
 
   return (
     <div className="w-screen text-base text-charcoal-900 max-w-md md:max-w-4xl mx-auto bg-white p-4">
-      <WysiwygBlock jsonString={textWithFormatting} />
+      <WysiwygBlock htmlString={textWithFormatting} />
     </div>
   )
 }

@@ -114,7 +114,7 @@ function StoryCrudPreview({ storyData }) {
           <div className={detailStyle}>
             <h3 className={`${labelStyle} -mb-3`}>Story introduction</h3>
 
-            <WysiwygBlock jsonString={translate ? introTranslation : intro} />
+            <WysiwygBlock htmlString={translate ? introTranslation : intro} />
             {translateButton()}
           </div>
 
@@ -179,7 +179,7 @@ function StoryCrudPreview({ storyData }) {
                 <div className={detailStyle}>
                   <h3 className={`${labelStyle} -mb-3`}>Page text</h3>
                   <WysiwygBlock
-                    jsonString={
+                    htmlString={
                       translate
                         ? currentPage?.textTranslation
                         : currentPage?.text

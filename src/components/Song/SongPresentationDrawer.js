@@ -98,8 +98,8 @@ function SongPresentationDrawer({ entry, isDashboard }) {
               INTRODUCTION
             </h4>
             <div className="text-charcoal-900 sm:col-span-2">
-              <WysiwygBlock className="mb-2" jsonString={entry?.introduction} />
-              <WysiwygBlock jsonString={entry?.introductionTranslation} />
+              <WysiwygBlock className="mb-2" htmlString={entry?.introduction} />
+              <WysiwygBlock htmlString={entry?.introductionTranslation} />
             </div>
           </div>
         )}

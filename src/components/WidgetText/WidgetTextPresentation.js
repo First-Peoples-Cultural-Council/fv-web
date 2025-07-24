@@ -87,7 +87,7 @@ function WidgetTextPresentation({ widgetData }) {
             bgColor ? 'white' : 'black'
           } max-w-md md:max-w-4xl mx-auto`}
         >
-          <WysiwygBlock jsonString={textWithFormatting} />
+          <WysiwygBlock htmlString={textWithFormatting} />
         </div>
         {url && (
           <div className="mt-2 lg:mt-6 flex justify-left">
