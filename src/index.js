@@ -68,7 +68,7 @@ Sentry.init({
   release: GlobalConfiguration.SENTRY_RELEASE,
   integrations: [
     Sentry.browserTracingIntegration(),
-    Sentry.reactRouterV6BrowserTracingIntegration({
+    Sentry.reactRouterV7BrowserTracingIntegration({
       useEffect,
       useLocation,
       useNavigationType,
@@ -85,7 +85,7 @@ Sentry.init({
   ),
 })
 
-const SentryRoutes = Sentry.withSentryReactRouterV6Routing(Routes)
+const SentryRoutes = Sentry.withSentryReactRouterV7Routing(Routes)
 
 const container = document.getElementById('root')
 const root = createRoot(container)
