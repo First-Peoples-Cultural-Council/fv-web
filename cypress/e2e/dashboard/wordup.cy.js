@@ -10,6 +10,13 @@ describe(
   },
   () => {
     beforeEach(() => {
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
       Cypress.Commands.add('middlestuff', (_translationwp) => {
         cy.contains(_translationwp).click()
         cy.get('[name="translations.0.text"]').type(
