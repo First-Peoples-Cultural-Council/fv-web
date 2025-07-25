@@ -37,8 +37,7 @@ describe(
     })
 
     it('1.1 - signin/signout', () => {
-      cy.reload()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('be.visible')
+      cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').should('exist')
       cy.contains('Sign out', { timeout: 12000 }).click()
