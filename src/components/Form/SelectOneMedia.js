@@ -81,7 +81,7 @@ function SelectOneButton({ value, onChange }) {
   ) : (
     <div className="block">
       <FieldButton
-        label="Add Media"
+        label="Add media"
         onClickHandler={() => setMediaChoiceModalOpen(true)}
       />
       {/* Choose between types Modal */}
@@ -98,13 +98,13 @@ function SelectOneButton({ value, onChange }) {
           </h2>
           <div className="space-x-2">
             <FieldButton
-              label="Add Image"
+              label="Add image"
               iconId="Images"
               onClickHandler={() => mediaChoiceButtonClicked(IMAGE)}
             />
 
             <FieldButton
-              label="Add Video"
+              label="Add video"
               iconId="Video"
               onClickHandler={() => mediaChoiceButtonClicked(VIDEO)}
             />

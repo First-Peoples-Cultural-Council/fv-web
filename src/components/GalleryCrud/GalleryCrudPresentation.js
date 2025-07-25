@@ -51,7 +51,7 @@ function GalleryCrudPresentation({
         <div className="w-full flex justify-end mt-6 px-6">
           <DeleteButton.Presentation
             deleteHandler={deleteHandler}
-            label="Delete Gallery"
+            label="Delete gallery"
             message="Are you sure you want to delete this gallery from your site?"
           />
         </div>
@@ -68,7 +68,7 @@ function GalleryCrudPresentation({
           </div>
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
-              label="Title Translation"
+              label="Title translation"
               nameId="titleTranslation"
               register={register}
               errors={errors}

@@ -107,7 +107,7 @@ function AudioUploadForm({ setSelectedAudio }) {
         <div className="grid grid-cols-12 gap-2">
           <div className="col-span-12">
             <FileUploadField
-              label="Choose Audio File"
+              label="Choose audio file"
               nameId="audioFile"
               register={register}
               errors={errors}

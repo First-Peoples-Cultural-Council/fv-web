@@ -51,7 +51,7 @@ function StoryPageForm({
         {dataToEdit?.id && (
           <DeleteButton.Presentation
             deleteHandler={() => deleteHandler(dataToEdit.id)}
-            label="Delete Page"
+            label="Delete page"
             message="Are you sure you want to delete this page from your story?"
           />
         )}

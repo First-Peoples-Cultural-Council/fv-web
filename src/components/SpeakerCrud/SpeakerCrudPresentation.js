@@ -42,7 +42,7 @@ function SpeakerCrudPresentation({
         <div className="w-full flex justify-end mt-6 px-6">
           <DeleteButton.Presentation
             deleteHandler={deleteHandler}
-            label="Delete Speaker"
+            label="Delete speaker"
             message="Are you sure you want to delete this speaker from your site?"
             note="This will remove the speaker from all associated audio files."
           />

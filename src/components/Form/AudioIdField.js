@@ -49,7 +49,7 @@ function AudioIdFieldButton({ value, onChange }) {
   ) : (
     <Fragment key="AudioIdFieldButton">
       <FieldButton
-        label="Add Audio"
+        label="Add audio"
         onClickHandler={() => setModalOpen(true)}
       />
       <AddAudioModal.Container

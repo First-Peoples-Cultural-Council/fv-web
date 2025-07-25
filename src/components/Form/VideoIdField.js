@@ -52,7 +52,7 @@ function VideoIdFieldButton({ value, onChange }) {
   ) : (
     <Fragment key="VideoIdFieldButton">
       <FieldButton
-        label="Add Video"
+        label="Add video"
         onClickHandler={() => setModalOpen(true)}
       />
       <AddVideoModal.Container

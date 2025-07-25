@@ -52,7 +52,7 @@ function ImageIdFieldButton({ value, onChange }) {
   ) : (
     <Fragment key="ImageIdFieldButton">
       <FieldButton
-        label="Add Image"
+        label="Add image"
         onClickHandler={() => setModalOpen(true)}
       />
       <AddImageModal.Container

@@ -48,7 +48,7 @@ function AudioArrayField({
           ''
         ) : (
           <div>
-            <FieldButton label="Add Audio" onClickHandler={openModal} />
+            <FieldButton label="Add audio" onClickHandler={openModal} />
             <AddAudioModal.Container
               formMedia={value}
               updateFormMedia={closeWithCallback}
