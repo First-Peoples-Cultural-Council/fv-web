@@ -10,7 +10,13 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.on('uncaught:exception', () => false)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
       Cypress.Commands.add('_login', () => {
         cy.visit(`${Cypress.env('baseUrl')}`)
         cy.contains('Sign in').click()

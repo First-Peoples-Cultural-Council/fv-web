@@ -10,6 +10,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(2000, 1080)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
     })
 
     it('5.1 - Check out word drawer', () => {

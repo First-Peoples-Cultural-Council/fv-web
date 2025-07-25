@@ -9,6 +9,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1200, 1200)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
     })
     it('4.0 - site nav - dictionary', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
