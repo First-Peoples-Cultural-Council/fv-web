@@ -22,9 +22,9 @@ function ByAlphabetPresentation({
   return (
     <div
       data-testid="ByAlphabetPresentation"
-      className="grid grid-cols-11 md:p-2"
+      className="grid grid-cols-11 lg:p-2"
     >
-      <div className="col-span-11 md:col-span-4 xl:col-span-3 mt-2 md:mt-5 print:hidden">
+      <div className="col-span-11 lg:col-span-3 mt-2 lg:mt-5 print:hidden">
         <ByAlphabetFilters
           currentCharacter={currentCharacter}
           sitename={sitename}
@@ -37,7 +37,7 @@ function ByAlphabetPresentation({
         </div>
       </div>
 
-      <div className="col-span-11 md:col-span-7 xl:col-span-8 border-l-2 border-charcoal-200 md:pl-3 xl:pl-6">
+      <div className="col-span-11 lg:col-span-8 border-l-2 border-charcoal-200 lg:pl-3 xl:pl-6">
         <div className="block py-4">
           <div className="flex items-center border-b border-charcoal-100 px-3 pb-5 print:hidden">
             <SearchTypeSelector.Container
