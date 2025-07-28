@@ -17,7 +17,6 @@ function Moon({ styling }) {
       viewBox="0 0 317 317"
       stroke="currentColor"
     >
-      <title>Moon</title>
       <path d="M167 0c-48 15-82 59-82 112 0 65 52 117 117 117 55 0 101-38 114-89 11 94-63 177-158 177C71 317 0 246 0 158 0 67 76-5 167 0z" />
     </svg>
   )
