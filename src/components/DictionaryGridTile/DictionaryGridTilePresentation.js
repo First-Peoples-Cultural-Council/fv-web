@@ -11,7 +11,6 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
   const title = entry?.title || ''
   // The string iterator that is used here iterates over characters,
   // not mere code units
-  const shortTitle = [...title].length < 12
   return (
     <div
       className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-charcoal-100"
@@ -23,11 +22,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
       >
         <div className="w-full">
           {/* Title */}
-          <div
-            className={`flex justify-between items-center w-full font-medium text-charcoal-900 ${
-              shortTitle ? 'text-2xl' : 'text-xl'
-            }`}
-          >
+          <div className="flex justify-between items-center w-full font-medium text-charcoal-900 text-xl">
             <Link
               key={entry.id}
               to={`/${entry?.sitename}/${makePlural(entry.type)}/${entry.id}`}
