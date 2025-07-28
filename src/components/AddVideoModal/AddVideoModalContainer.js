@@ -32,13 +32,13 @@ function AddVideoModalContainer({
     {
       id: 'upload-tab',
       title: 'Upload Video',
-      btnLabel: 'Upload New Video',
+      btnLabel: 'Upload new video',
       icon: 'Upload',
     },
     {
       id: 'search-tab',
       title: 'Video Library',
-      btnLabel: 'Search Videos',
+      btnLabel: 'Search videos',
       icon: 'Search',
     },
   ]

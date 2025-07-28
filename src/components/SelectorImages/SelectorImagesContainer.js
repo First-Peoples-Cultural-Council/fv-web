@@ -37,12 +37,16 @@ function SelectorImagesContainer({
           <SelectorSearchbox.Presentation
             onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
             onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
-            searchPlaceholder="Search all images"
+            searchPlaceholder={
+              searchSharedMedia === 'true'
+                ? 'Search shared images'
+                : 'Search your image library'
+            }
             searchValue={infiniteQueryResponse?.displayedSearchTerm}
           />
         </div>
         {!hideSharedMedia && (
-          <div className="mt-4 mx-auto">
+          <div className="my-4 mx-auto">
             <RadioButtonGroup.Presentation
               accentColor="blumine-800"
               onChange={setSearchSharedMedia}
