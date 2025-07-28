@@ -48,7 +48,7 @@ function SelectorEntriesContainer({
           <button
             data-testid="add-btn"
             type="button"
-            className="capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 btn-md btn-secondary hover:btn-primary"
+            className="disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 btn-md btn-secondary hover:btn-primary"
             onClick={() => updateFormEntries(selectedItems)}
             disabled={selectedItems?.length < 1}
           >
@@ -56,7 +56,7 @@ function SelectorEntriesContainer({
             <span>
               {selectedItems?.length > 0
                 ? `Add ${selectedItems.length} related entries`
-                : 'Select Items'}
+                : 'Select items'}
             </span>
           </button>
         </div>

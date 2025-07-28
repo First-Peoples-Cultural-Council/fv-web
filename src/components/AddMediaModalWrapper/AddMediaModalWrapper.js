@@ -38,7 +38,7 @@ function AddMediaModalWrapper({
         key={`${tab.id}-btn`}
         data-testid={`${tab.id}-btn`}
         type="button"
-        className={`capitalize disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 ${
+        className={`disabled:pointer-events-none disabled:bg-charcoal-50 disabled:opacity-50 ${
           currentTab.id === tab.id
             ? 'btn-primary btn-md'
             : 'btn-secondary btn-md hover:btn-primary'

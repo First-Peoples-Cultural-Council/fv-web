@@ -29,13 +29,13 @@ function AddDocumentModalContainer({
     {
       id: 'upload-tab',
       title: 'Upload Documents',
-      btnLabel: 'Upload New Documents',
+      btnLabel: 'Upload new documents',
       icon: 'Upload',
     },
     {
       id: 'search-tab',
       title: 'Document Library',
-      btnLabel: 'Search Documents',
+      btnLabel: 'Search documents',
       icon: 'Search',
     },
   ]
