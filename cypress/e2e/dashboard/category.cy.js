@@ -43,17 +43,18 @@ describe(
       cy.contains('Create').click()
       cy.contains('Add a category').click()
 
-      cy.get('#title').type('qatestcategory')
+      const _title = `qatestwordh${new Date().getTime()}`
+      cy.get('#title').type(_title)
       cy.get('#description').type('qabio test - new speaker')
       cy.contains('Create category').click()
       cy.contains('Dismiss').should('be.visible')
 
-      cy.get('[data-testid="qatestcategory-edit-link"]').click()
+      cy.get(`[data-testid="${_title}-edit-link"]`).click()
 
       cy.get('#description').type('test qa data')
       cy.contains('Save changes').click()
 
-      cy.get('[data-testid="qatestcategory-edit-link"]').click()
+      cy.get(`[data-testid="${_title}-edit-link"]`).click()
       cy.contains('Delete Category').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
