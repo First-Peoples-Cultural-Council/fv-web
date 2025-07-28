@@ -18,8 +18,8 @@ function Support() {
         <div>
           <div className="max-w-3xl mx-auto text-charcoal-900 space-y-4 py-8">
             <p className={paraStyle}>
-              Welcome! You can raise a FirstVoices support request from the
-              options provided.
+              Our FirstVoices team is happy to support you! To raise a
+              FirstVoices support request, choose one of the following options.
             </p>
             <h2 className={headerStyle}>What can we help you with?</h2>
             <div className="flex flex-col md:flex-row md:justify-between">

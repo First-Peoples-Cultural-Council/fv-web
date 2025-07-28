@@ -22,14 +22,15 @@ function MobileAppsPresentation({ sitesWithApps }) {
           <h2 className={headerStyle}>FirstVoices Language Apps</h2>
           <p className={paraStyle}>
             The wealth of language data uploaded by Indigenous communities onto
-            their FirstVoices language sites can also be accessed through mobile
-            apps. The app pulls content directly from FirstVoices and is
-            compatible with most phones, tablets, and laptops.
+            their FirstVoices language sites can be accessed through mobile and
+            desktop apps. FirstVoices apps pull content directly from community
+            language sites and function with offline capabilities.
           </p>
           <p>
-            Install apps directly from the web by selecting “Install” or “Add to
-            Homescreen” in your browser. Find detailed instructions for your
-            browser here:{' '}
+            FirstVoices apps are compatible with most phones, tablets, and
+            laptops. The apps can be installed directly from the FirstVoices
+            website. For detailed instructions on how to download your community
+            language site app on your browser, go here:{' '}
             <a
               className="inline-url"
               target="_blank"
