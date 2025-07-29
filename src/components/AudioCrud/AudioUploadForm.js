@@ -48,12 +48,13 @@ function AudioUploadForm({ setSelectedAudio }) {
     dataToEdit: {},
   })
 
-  const { data: speakerData } = usePeople()
+  const speakerInfiniteQueryResponse = usePeople()
 
-  const speakerOptions = speakerData?.results?.map((entry) => ({
-    label: entry?.name,
-    value: entry?.id,
-  }))
+  const speakerOptions =
+    speakerInfiniteQueryResponse?.data?.pages?.[0]?.results?.map((entry) => ({
+      label: entry?.name,
+      value: entry?.id,
+    }))
 
   const { mutate } = useAudioCreate({
     onSuccess: (response) => {
