@@ -55,7 +55,7 @@ describe(
       cy.contains('Save changes').click()
 
       cy.get(`[data-testid="${_title}-edit-link"]`).click()
-      cy.contains('Delete Category').click()
+      cy.contains('Delete category').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },

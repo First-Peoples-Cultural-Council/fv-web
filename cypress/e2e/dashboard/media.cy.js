@@ -78,8 +78,8 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
       cy.get('[data-testid="EntryDrawerEdit"]').click()
 
-      cy.contains('Add Audio').click()
-      cy.contains('Upload New Audio').click()
+      cy.contains('Add audio').click()
+      cy.contains('Upload new audio').click()
       cy.fixture('sample1.oga', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
@@ -87,10 +87,10 @@ describe(
         force: true,
       })
       cy.contains('Upload File').click()
-      cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
+      cy.contains('File Successfully Uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
 
-      cy.contains('Add Audio').click()
+      cy.contains('Add audio').click()
       cy.contains('Upload New Audio').click()
       cy.fixture('sample4.opus', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
@@ -102,7 +102,7 @@ describe(
       cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
 
-      cy.contains('Add Audio').click()
+      cy.contains('Add audio').click()
       cy.contains('Upload New Audio').click()
       cy.fixture('sample-6s.mp3', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
@@ -114,7 +114,7 @@ describe(
       cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
 
-      cy.contains('Add Audio').click()
+      cy.contains('Add audio').click()
       cy.contains('Upload New Audio').click()
       cy.fixture('a2-db-kk-03.wav', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
@@ -152,7 +152,7 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]').click()
 
       cy.contains('Add image').click()
-      cy.contains('Upload New Images').click()
+      cy.contains('Upload new images').click()
       cy.fixture('blank.jpg', null).as('imageFixture')
       cy.get('.uppy-Dashboard-AddFiles').selectFile('@imageFixture', {
         action: 'drag-drop',
@@ -174,8 +174,8 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
       cy.get('[data-testid="EntryDrawerEdit"]').click()
 
-      cy.contains('Add Video').click()
-      cy.contains('Upload New Video').click()
+      cy.contains('Add video').click()
+      cy.contains('Upload new video').click()
       cy.fixture('file_example_MP4_640_3MG.mp4', null).as('videoFixture')
       cy.get('.uppy-Dashboard-AddFiles').selectFile('@videoFixture', {
         action: 'drag-drop',
