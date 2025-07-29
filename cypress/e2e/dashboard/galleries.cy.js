@@ -55,7 +55,7 @@ describe(
       cy.contains('Create gallery').click()
 
       cy.contains(_title).click()
-      cy.contains('Delete Gallery').click()
+      cy.contains('Delete gallery').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },

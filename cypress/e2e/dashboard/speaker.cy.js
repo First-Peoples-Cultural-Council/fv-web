@@ -59,7 +59,7 @@ describe(
       cy.contains('Save Changes').click()
 
       cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
-      cy.contains('Delete Speaker').click()
+      cy.contains('Delete speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },

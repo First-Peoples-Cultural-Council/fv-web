@@ -76,7 +76,7 @@ describe(
         .first()
         .invoke('removeAttr', 'target')
       cy.get(`td:contains(${_title})`).siblings().children('a').first().click()
-      cy.contains('Delete Story').click()
+      cy.contains('Delete story').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },
