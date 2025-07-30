@@ -87,11 +87,11 @@ describe(
         force: true,
       })
       cy.contains('Upload File').click()
-      cy.contains('File Successfully Uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
+      cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
 
       cy.contains('Add audio').click()
-      cy.contains('Upload New Audio').click()
+      cy.contains('Upload new audio').click()
       cy.fixture('sample4.opus', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
@@ -103,7 +103,7 @@ describe(
       cy.contains('Insert').click()
 
       cy.contains('Add audio').click()
-      cy.contains('Upload New Audio').click()
+      cy.contains('Upload new audio').click()
       cy.fixture('sample-6s.mp3', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
@@ -115,7 +115,7 @@ describe(
       cy.contains('Insert').click()
 
       cy.contains('Add audio').click()
-      cy.contains('Upload New Audio').click()
+      cy.contains('Upload new audio').click()
       cy.fixture('a2-db-kk-03.wav', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
