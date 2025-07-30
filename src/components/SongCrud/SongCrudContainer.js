@@ -4,6 +4,7 @@ import React from 'react'
 import SongCrudPresentation from 'components/SongCrud/SongCrudPresentation'
 import SongCrudData from 'components/SongCrud/SongCrudData'
 import Loading from 'components/Loading'
+import DocHead from 'components/DocHead'
 
 function SongCrudContainer() {
   const { backHandler, dataToEdit, deleteHandler, isLoading, submitHandler } =
@@ -11,6 +12,7 @@ function SongCrudContainer() {
 
   return (
     <Loading.Container isLoading={isLoading}>
+      <DocHead titleArray={['Create Song']} />
       <SongCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
