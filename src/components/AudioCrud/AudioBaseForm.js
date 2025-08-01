@@ -29,6 +29,7 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           nameId="speakers"
           control={control}
           options={speakerOptions}
+          errors={errors}
           placeholder="Find speakers to add.."
         />
       </div>
