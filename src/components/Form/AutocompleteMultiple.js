@@ -49,7 +49,7 @@ function AutocompleteMultiple({
 
 function CustomCombobox({ field, placeholder, label = '', options }) {
   const [query, setQuery] = useState('')
-  const [selectedOptions, setSelectedOptions] = useState(field.value)
+  const [selectedOptions, setSelectedOptions] = useState(field?.value)
   const getCurrentLabel = (currentValue) => {
     const currentOption = options?.find(({ value }) => value === currentValue)
     return currentOption?.label ? currentOption?.label : ''
@@ -59,14 +59,14 @@ function CustomCombobox({ field, placeholder, label = '', options }) {
     query === ''
       ? _options
       : _options.filter((option) =>
-          option.label
+          option?.label
             .toLowerCase()
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, '')),
         )
 
   useEffect(() => {
-    if (field.value) setSelectedOptions(field.value)
+    if (field?.value) setSelectedOptions(field?.value)
     return () => setSelectedOptions([])
   })
 
@@ -112,7 +112,9 @@ function CustomCombobox({ field, placeholder, label = '', options }) {
               >
                 {({ selected }) => (
                   <>
-                    <span className="inline-flex truncate">{option.label}</span>
+                    <span className="inline-flex truncate">
+                      {option?.label}
+                    </span>
                     {selected ? (
                       <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                         {getIcon('Checkmark', 'h-5 w-5 fill-current')}
@@ -125,8 +127,8 @@ function CustomCombobox({ field, placeholder, label = '', options }) {
           </ComboboxOptions>
         </div>
         <div className="col-span-6">
-          <p className="text-xs">Selected {label.toLowerCase()}:</p>
-          {selectedOptions.length > 0 &&
+          <p className="text-xs">Selected {label?.toLowerCase()}:</p>
+          {selectedOptions?.length > 0 &&
             selectedOptions
               ?.map((optionValue) => getCurrentLabel(optionValue))
               .join(', ')}
