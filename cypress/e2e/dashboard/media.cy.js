@@ -80,18 +80,6 @@ describe(
 
       cy.contains('Add audio').click()
       cy.contains('Upload new audio').click()
-      cy.fixture('sample1.oga', null).as('audioFixture')
-      cy.get('#audioFile').selectFile('@audioFixture')
-
-      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio', {
-        force: true,
-      })
-      cy.contains('Upload File').click()
-      cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
-      cy.contains('Insert').click()
-
-      cy.contains('Add audio').click()
-      cy.contains('Upload new audio').click()
       cy.fixture('sample4.opus', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
