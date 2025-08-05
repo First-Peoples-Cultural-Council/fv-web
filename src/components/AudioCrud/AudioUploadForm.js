@@ -13,6 +13,7 @@ import { SUPPORTED_AUDIO_EXTENSIONS, AUDIO_PATH } from 'common/constants'
 import { useSiteStore } from 'context/SiteContext'
 import { useAudioCreate } from 'common/dataHooks/useAudio'
 import AudioBaseForm from 'components/AudioCrud/AudioBaseForm'
+import LoadOrError from 'components/LoadOrError'
 
 function AudioUploadForm({ setSelectedAudio }) {
   const { site } = useSiteStore()
@@ -104,40 +105,42 @@ function AudioUploadForm({ setSelectedAudio }) {
           </div>
         )}
       </div>
-      <form onReset={reset}>
-        <div className="grid grid-cols-12 gap-2">
-          <div className="col-span-12">
-            <FileUploadField
-              label="Choose audio file"
-              nameId="audioFile"
+      <LoadOrError queryResponse={speakerInfiniteQueryResponse}>
+        <form onReset={reset}>
+          <div className="grid grid-cols-12 gap-2">
+            <div className="col-span-12">
+              <FileUploadField
+                label="Choose audio file"
+                nameId="audioFile"
+                register={register}
+                errors={errors}
+              />
+            </div>
+            <AudioBaseForm
               register={register}
               errors={errors}
+              control={control}
+              speakerOptions={speakerOptions}
             />
+            <div className="col-span-12 flex justify-end mt-2 px-6">
+              {isUploading && (
+                <SubmitButtons
+                  submitLabel="Uploading .."
+                  submitIcon="Upload"
+                  onSubmitClick={null}
+                />
+              )}
+              {!isUploading && !fileUploaded && (
+                <SubmitButtons
+                  submitLabel="Upload File"
+                  submitIcon="Upload"
+                  onSubmitClick={handleSubmit(submitHandler)}
+                />
+              )}
+            </div>
           </div>
-          <AudioBaseForm
-            register={register}
-            errors={errors}
-            control={control}
-            speakerOptions={speakerOptions}
-          />
-          <div className="col-span-12 flex justify-end mt-2 px-6">
-            {isUploading && (
-              <SubmitButtons
-                submitLabel="Uploading .."
-                submitIcon="Upload"
-                onSubmitClick={null}
-              />
-            )}
-            {!isUploading && !fileUploaded && (
-              <SubmitButtons
-                submitLabel="Upload File"
-                submitIcon="Upload"
-                onSubmitClick={handleSubmit(submitHandler)}
-              />
-            )}
-          </div>
-        </div>
-      </form>
+        </form>
+      </LoadOrError>
     </div>
   )
 }
