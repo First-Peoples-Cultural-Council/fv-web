@@ -10,7 +10,7 @@ import {
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { Copy, ShareModal, QrcodeButton } from 'components/Actions'
+import { Copy, ShareModal, QrcodeModal } from 'components/Actions'
 import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
@@ -25,7 +25,10 @@ function ActionsMenuPresentation({
 }) {
   const moreButtonClassName = `relative btn-tertiary ${withLabels ? 'btn-md' : 'btn-md-icon'}`
 
+  const [qrcodeModalOpen, setQrcodeModalOpen] = useState(false)
   const [shareModalOpen, setShareModalOpen] = useState(false)
+
+  const menuItemIconStyling = 'fill-current h-8 w-8 md:h-6 md:w-6'
 
   return (
     <>
@@ -93,10 +96,7 @@ function ActionsMenuPresentation({
                                 onClick={() => setShareModalOpen(true)}
                               >
                                 <span className="sr-only">Share</span>
-                                {getIcon(
-                                  'WebShare',
-                                  'fill-current h-8 w-8 md:h-6 md:w-6',
-                                )}
+                                {getIcon('WebShare', menuItemIconStyling)}
                                 <span className="ml-3">SHARE</span>
                               </button>
                             </>
@@ -106,19 +106,23 @@ function ActionsMenuPresentation({
                       {moreActions.includes('qrcode') && (
                         <MenuItem>
                           {({ focus }) => (
-                            <QrcodeButton
-                              buttonStyling={`${
-                                focus
-                                  ? 'bg-charcoal-50 text-charcoal-900'
-                                  : 'text-charcoal-500'
-                              } w-full group flex items-center px-4 py-2 text-sm`}
-                              withLabels={true}
-                              iconStyling={iconStyling}
-                              entry={entry}
-                              url={`${window.location.origin.toString()}/${sitename}/${makePlural(
-                                entry?.type,
-                              )}/${entry?.id}`}
-                            />
+                            <>
+                              <button
+                                data-testid="QrcodeButton"
+                                type="button"
+                                id="QrcodeButton"
+                                className={`${
+                                  focus
+                                    ? 'bg-charcoal-50 text-charcoal-900'
+                                    : 'text-charcoal-500'
+                                } w-full group flex items-center px-4 py-2 text-sm`}
+                                onClick={() => setQrcodeModalOpen(true)}
+                              >
+                                <span className="sr-only">QR Code</span>
+                                {getIcon('Qrcode', menuItemIconStyling)}
+                                <span className="ml-3">QR CODE</span>
+                              </button>
+                            </>
                           )}
                         </MenuItem>
                       )}
@@ -136,6 +140,14 @@ function ActionsMenuPresentation({
         siteVisibility={siteVisibility}
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
+      />
+      <QrcodeModal
+        entry={entry}
+        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+          entry?.type,
+        )}/${entry?.id}`}
+        isOpen={qrcodeModalOpen}
+        onClose={() => setQrcodeModalOpen(false)}
       />
     </>
   )
