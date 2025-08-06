@@ -200,7 +200,7 @@ function JoinForm({ site, submitHandler }) {
                 id="message"
                 name="message"
                 {...register('message')}
-                className="shadow-sm focus:ring-scarlet-800 focus:border-scarlet-800 mt-1 block w-full border border-charcoal-200 rounded-lg"
+                className="shadow-sm focus:ring-scarlet-800 focus:border-scarlet-800 mt-1 block w-full border border-charcoal-200 rounded-lg max-h-72 overflow-auto"
               />
             </div>
 
