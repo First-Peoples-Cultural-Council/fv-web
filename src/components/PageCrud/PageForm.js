@@ -69,83 +69,71 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
           </div>
         )}
       </div>
-      <form
-        onReset={reset}
-        className="grow grid grid-cols-1 gap-2 content-between"
-      >
-        <div className="space-y-5 w-full">
-          <section>
-            <div className="shadow rounded-md">
-              <div className="grid grid-cols-12 gap-8 bg-white p-8 rounded-md">
-                <div className="col-span-12 sm:col-span-6">
-                  <Form.TextField
-                    label="Title"
-                    nameId="title"
-                    register={register}
-                    errors={errors}
-                  />
+      <form onReset={reset}>
+        <div className="grid grid-cols-12 gap-8">
+          <div className="col-span-12 sm:col-span-6">
+            <Form.TextField
+              label="Title"
+              nameId="title"
+              register={register}
+              errors={errors}
+            />
+          </div>
+          <div className="col-span-12">
+            <Form.TextField
+              label="Subtitle"
+              nameId="subtitle"
+              register={register}
+              errors={errors}
+            />
+          </div>
+          <div className="col-span-12 sm:col-span-6">
+            <Form.TextField
+              label="URL"
+              nameId="slug"
+              helpText={
+                isCreateMode
+                  ? 'Enter a short URL for your page with no special characters or spaces (example: our-people)'
+                  : 'The URL cannot be edited. Please create a new page if the URL is no longer appropriate for this page.'
+              }
+              register={register}
+              disabled={!isCreateMode}
+              errors={errors}
+            />
+          </div>
+          <div className="col-span-12">
+            <Form.SelectOneMedia
+              label="Add banner background"
+              nameId="banner"
+              control={control}
+              errors={errors}
+              helpText={
+                <div>
+                  Choose between adding an image or a silent video. Recommended
+                  size: 2048 x 300, or the widest possible video.
+                  <div>
+                    <a
+                      href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/36012038/New+Creating+and+editing+custom+pages"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-url"
+                    >
+                      Read more about requirements for page banners.
+                    </a>
+                  </div>
                 </div>
-                <div className="col-span-12">
-                  <Form.TextField
-                    label="Subtitle"
-                    nameId="subtitle"
-                    register={register}
-                    errors={errors}
-                  />
-                </div>
-                <div className="col-span-12 sm:col-span-6">
-                  <Form.TextField
-                    label="URL"
-                    nameId="slug"
-                    helpText={
-                      isCreateMode
-                        ? 'Enter a short URL for your page with no special characters or spaces (example: our-people)'
-                        : 'The URL cannot be edited. Please create a new page if the URL is no longer appropriate for this page.'
-                    }
-                    register={register}
-                    disabled={!isCreateMode}
-                    errors={errors}
-                  />
-                </div>
-                <div className="col-span-12 flex items-center justify-start">
-                  <Form.SelectOneMedia
-                    label="Add banner background"
-                    nameId="banner"
-                    control={control}
-                    errors={errors}
-                    helpText={
-                      <div>
-                        Choose between adding an image or a silent video.
-                        Recommended size: 2048 x 300, or the widest possible
-                        video.
-                        <div>
-                          <a
-                            href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/36012038/New+Creating+and+editing+custom+pages"
-                            target="_blank"
-                            rel="noreferrer noopener"
-                            className="inline-url"
-                          >
-                            Read more about requirements for page banners.
-                          </a>
-                        </div>
-                      </div>
-                    }
-                  />
-                </div>
-                <div className="col-span-12">
-                  <Form.Visibility
-                    control={control}
-                    errors={errors}
-                    label="Who can see this page?"
-                    resetField={resetField}
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-        <section className="flex w-full justify-end">
-          <div>
+              }
+            />
+          </div>
+          <div className="col-span-12">
+            <Form.Visibility
+              control={control}
+              errors={errors}
+              label="Who can see this page?"
+              resetField={resetField}
+            />
+          </div>
+          <div className="col-span-12 flex justify-end mt-6 px-6">
             <Form.SubmitButtons
               submitLabel={isCreateMode ? 'Create page' : 'Save changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
@@ -155,7 +143,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
               onSubmitClick={handleSubmit(submitHandler)}
             />
           </div>
-        </section>
+        </div>
       </form>
     </div>
   )

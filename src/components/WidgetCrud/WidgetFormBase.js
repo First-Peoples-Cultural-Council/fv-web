@@ -18,7 +18,7 @@ function WidgetFormBase({
 }) {
   return (
     <form id="WidgetForm" onReset={reset}>
-      <div className="grid grid-cols-12 gap-6">
+      <div className="grid grid-cols-12 gap-8">
         <div className="hidden">
           <input
             id="type"
@@ -48,16 +48,16 @@ function WidgetFormBase({
             label="Who can see this widget?"
           />
         </div>
-      </div>
-      <div className="mt-4 flex justify-end px-6">
-        <Form.SubmitButtons
-          submitLabel={isCreateMode ? 'Create widget' : 'Save changes'}
-          submitIcon={isCreateMode ? 'Add' : 'Save'}
-          cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-          cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
-          onCancelClick={cancelHandler}
-          onSubmitClick={handleSubmit(submitHandler)}
-        />
+        <div className="col-span-12 flex justify-end mt-6 px-6">
+          <Form.SubmitButtons
+            submitLabel={isCreateMode ? 'Create widget' : 'Save changes'}
+            submitIcon={isCreateMode ? 'Add' : 'Save'}
+            cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
+            cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
+            onCancelClick={cancelHandler}
+            onSubmitClick={handleSubmit(submitHandler)}
+          />
+        </div>
       </div>
     </form>
   )
