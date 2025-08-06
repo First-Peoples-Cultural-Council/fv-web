@@ -84,45 +84,41 @@ function ActionsMenuPresentation({
                       {moreActions.includes('share') && (
                         <MenuItem>
                           {({ focus }) => (
-                            <>
-                              <button
-                                type="button"
-                                data-testid="share-btn"
-                                className={`${
-                                  focus
-                                    ? 'bg-charcoal-50 text-charcoal-900'
-                                    : 'text-charcoal-500'
-                                } w-full group flex items-center px-4 py-2 text-sm`}
-                                onClick={() => setShareModalOpen(true)}
-                              >
-                                <span className="sr-only">Share</span>
-                                {getIcon('WebShare', menuItemIconStyling)}
-                                <span className="ml-3">SHARE</span>
-                              </button>
-                            </>
+                            <button
+                              type="button"
+                              data-testid="share-btn"
+                              className={`${
+                                focus
+                                  ? 'bg-charcoal-50 text-charcoal-900'
+                                  : 'text-charcoal-500'
+                              } w-full group flex items-center px-4 py-2 text-sm`}
+                              onClick={() => setShareModalOpen(true)}
+                            >
+                              <span className="sr-only">Share</span>
+                              {getIcon('WebShare', menuItemIconStyling)}
+                              <span className="ml-3">SHARE</span>
+                            </button>
                           )}
                         </MenuItem>
                       )}
                       {moreActions.includes('qrcode') && (
                         <MenuItem>
                           {({ focus }) => (
-                            <>
-                              <button
-                                data-testid="QrcodeButton"
-                                type="button"
-                                id="QrcodeButton"
-                                className={`${
-                                  focus
-                                    ? 'bg-charcoal-50 text-charcoal-900'
-                                    : 'text-charcoal-500'
-                                } w-full group flex items-center px-4 py-2 text-sm`}
-                                onClick={() => setQrcodeModalOpen(true)}
-                              >
-                                <span className="sr-only">QR Code</span>
-                                {getIcon('Qrcode', menuItemIconStyling)}
-                                <span className="ml-3">QR CODE</span>
-                              </button>
-                            </>
+                            <button
+                              data-testid="QrcodeButton"
+                              type="button"
+                              id="QrcodeButton"
+                              className={`${
+                                focus
+                                  ? 'bg-charcoal-50 text-charcoal-900'
+                                  : 'text-charcoal-500'
+                              } w-full group flex items-center px-4 py-2 text-sm`}
+                              onClick={() => setQrcodeModalOpen(true)}
+                            >
+                              <span className="sr-only">QR Code</span>
+                              {getIcon('Qrcode', menuItemIconStyling)}
+                              <span className="ml-3">QR CODE</span>
+                            </button>
                           )}
                         </MenuItem>
                       )}
