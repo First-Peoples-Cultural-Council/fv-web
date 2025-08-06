@@ -1,3 +1,3 @@
 export { default as Copy } from 'components/Actions/Copy'
-export { default as QrcodeButton } from 'components/Actions/QrcodeButton'
-export { default as ShareButton } from 'components/Actions/ShareButton'
+export { default as QrcodeModal } from 'components/Actions/QrcodeModal'
+export { default as ShareModal } from 'components/Actions/ShareModal'
