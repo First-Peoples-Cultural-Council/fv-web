@@ -6,15 +6,8 @@ import copyToClipboard from 'common/utils/copyToClipboard'
 import getIcon from 'common/utils/getIcon'
 import { useNotification } from 'context/NotificationContext'
 import { QrcodeModal } from 'components/Actions'
-import { makePlural } from 'common/utils/urlHelpers'
 
-function ShareLinksPresentation({
-  url,
-  sitename,
-  title,
-  modalCloseHandler,
-  entry,
-}) {
+function ShareLinksPresentation({ url, title, modalCloseHandler, entry }) {
   const { setNotification } = useNotification()
   function confirmationCallback() {
     if (typeof modalCloseHandler !== 'undefined') {
@@ -116,9 +109,7 @@ function ShareLinksPresentation({
       </ul>
       <QrcodeModal
         entry={entry}
-        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
-          entry?.type,
-        )}/${entry?.id}`}
+        url={url}
         isOpen={qrcodeModalOpen}
         onClose={() => setQrcodeModalOpen(false)}
       />
