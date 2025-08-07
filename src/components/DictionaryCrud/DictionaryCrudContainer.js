@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import DictionaryCrudPresentation from 'components/DictionaryCrud/DictionaryCrudPresentation'
 import DictionaryCrudData from 'components/DictionaryCrud/DictionaryCrudData'
 import Loading from 'components/Loading'
+import DocHead from 'components/DocHead'
 
 function DictionaryCrudContainer({ type, isCreate }) {
   const {
@@ -18,6 +19,7 @@ function DictionaryCrudContainer({ type, isCreate }) {
 
   return (
     <Loading.Container isLoading={isLoading}>
+      {isCreate ? <DocHead titleArray={[`Create ${type}`]} /> : null}
       <DictionaryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
