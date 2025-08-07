@@ -13,7 +13,6 @@ function WidgetWordOfTheDayContainer() {
     title,
     url,
     queryResponse,
-    sitename,
     entry,
   } = WidgetWordOfTheDayData()
   return (
@@ -25,7 +24,6 @@ function WidgetWordOfTheDayContainer() {
       relativeUrl={relativeUrl}
       title={title}
       url={url}
-      sitename={sitename}
       entry={entry}
       queryResponse={queryResponse}
     />

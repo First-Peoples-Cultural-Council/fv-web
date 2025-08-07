@@ -15,7 +15,6 @@ function WidgetWordOfTheDayPresentation({
   relativeUrl,
   title,
   url,
-  sitename,
   entry,
   queryResponse,
 }) {
@@ -40,12 +39,7 @@ function WidgetWordOfTheDayPresentation({
           <h3 className="mt-8 text-lg text-scarlet-800 sm:text-xl">
             Share on:
           </h3>
-          <ShareLinks.Presentation
-            url={url}
-            title={wordTitle}
-            entry={entry}
-            sitename={sitename}
-          />
+          <ShareLinks.Presentation url={url} title={wordTitle} entry={entry} />
         </div>
       ) : (
         <div className="mt-2 inline-flex items-center text-2xl">
