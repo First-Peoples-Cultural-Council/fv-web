@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import DashboardPresentationSiteSelect from 'components/Dashboard/DashboardPresentationSiteSelect'
 import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
-import { ASSISTANT, MEMBER } from 'common/constants/roles'
+import { ASSISTANT, LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 
 function DashboardPresentation({ children, currentUser, site, logout }) {
   const logoutButton = (
@@ -94,6 +94,12 @@ const primaryNavigationItems = (currentSitename) => {
       href: `/${currentSitename}/dashboard/reports`,
       icon: 'Reports',
       auth: ASSISTANT,
+    },
+    {
+      name: 'Member Management',
+      href: `/${currentSitename}/dashboard/memberships`,
+      icon: 'Members',
+      auth: LANGUAGE_ADMIN,
     },
   ]
   return (
