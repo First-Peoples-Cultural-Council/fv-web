@@ -11,6 +11,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1920, 1080)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
@@ -48,7 +55,7 @@ describe(
       cy.contains('Create gallery').click()
 
       cy.contains(_title).click()
-      cy.contains('Delete Gallery').click()
+      cy.contains('Delete gallery').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },

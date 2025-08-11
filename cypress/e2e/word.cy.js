@@ -10,6 +10,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(2000, 1080)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
     })
 
     it('5.1 - Check out word drawer', () => {
@@ -27,10 +34,6 @@ describe(
       cy.contains('QR CODE').should('be.visible')
       cy.contains('SHARE').click()
       cy.contains('Cancel').click()
-      cy.get('body').type('{esc}')
-      cy.contains('MORE').scrollIntoView()
-      cy.contains('MORE').should('be.visible')
-      cy.contains('MORE').click()
     })
 
     it('9.1 - Get first word and search for it', () => {

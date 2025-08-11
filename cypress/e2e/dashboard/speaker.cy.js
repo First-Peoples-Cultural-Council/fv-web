@@ -11,6 +11,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1024, 768)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
 
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
@@ -52,7 +59,7 @@ describe(
       cy.contains('Save Changes').click()
 
       cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
-      cy.contains('Delete Speaker').click()
+      cy.contains('Delete speaker').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },

@@ -20,6 +20,13 @@ describe(
   },
   () => {
     beforeEach(() => {
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
       Cypress.Commands.add('checkHeaderCSS', (fontWeightStrength) => {
         if (fontWeightStrength[0] === 'Build your own') {
           cy.get('[data-testid="sortby-title-btn"] > span').should(
