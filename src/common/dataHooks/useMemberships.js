@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
 // FPCC
@@ -10,12 +10,12 @@ export function useMemberships({ page }) {
   const { sitename } = useParams()
   const queryResponse = useQuery({
     queryKey: [MEMBERSHIPS, sitename, page],
-    queryFn: ({ page = 1 }) =>
+    queryFn: () =>
       api.memberships.getAll({
         sitename,
         pageParam: page,
       }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   })
   return queryResponse
 }

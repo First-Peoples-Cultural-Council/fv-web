@@ -123,50 +123,58 @@ function DashboardMembershipPresentation({
               </div>
             </div>
           </div>
-          <div className="mx-auto max-w-lg">
-            <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
-              <div className="-mt-px flex w-0 flex-1">
-                <button
-                  data-testid="prev-page-btn"
-                  type="button"
-                  onClick={() => setPage(page - 1)}
-                  className="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  {getIcon('ChevronLeft', 'mr-3 size-5 text-gray-400')}
-                  Previous
-                </button>
-              </div>
-              <div className="hidden md:-mt-px md:flex">
-                <button
-                  data-testid={`page-${1}-btn`}
-                  type="button"
-                  onClick={() => setPage(1)}
-                  className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  1
-                </button>
-                {/* Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" */}
-                <button
-                  data-testid={`page-${2}-btn`}
-                  type="button"
-                  onClick={() => setPage(2)}
-                  aria-current="page"
-                  className="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600"
-                >
-                  2
-                </button>
-              </div>
-              <div className="-mt-px flex w-0 flex-1 justify-end">
-                <button
-                  data-testid="next-page-btn"
-                  type="button"
-                  onClick={() => setPage(page + 1)}
-                  className="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                >
-                  Next
-                  {getIcon('ChevronRight', 'ml-3 size-5 text-gray-400')}
-                </button>
-              </div>
+          <div className="mx-auto max-w-lg mt-5">
+            <nav className="flex items-center justify-center space-x-2">
+              <button
+                data-testid="prev-page-btn"
+                type="button"
+                onClick={() => setPage((old) => Math.max(old - 1, 1))}
+                disabled={page === 1}
+                className="btn-tertiary btn-md-icon bg-gray-200"
+              >
+                {getIcon('ChevronLeft')}
+                <span className="sr-only">Previous page</span>
+              </button>
+
+              {[...Array(queryResponse?.data?.pages)].map((_page, index) => {
+                const btnStyling =
+                  page === index + 1
+                    ? 'btn-tertiary btn-md-icon'
+                    : 'btn-tertiary btn-md-icon bg-gray-200'
+                return (
+                  <button
+                    key={index}
+                    data-testid={`page-${index + 1}-btn`}
+                    type="button"
+                    onClick={() => setPage(index + 1)}
+                    aria-current="page"
+                    className={btnStyling}
+                  >
+                    {index + 1}
+                  </button>
+                )
+              })}
+
+              <button
+                data-testid="next-page-btn"
+                type="button"
+                onClick={() => {
+                  if (
+                    !queryResponse?.isPlaceholderData &&
+                    queryResponse?.data?.next
+                  ) {
+                    setPage((old) => old + 1)
+                  }
+                }}
+                // Disable the Next Page button until we know a next page is available
+                disabled={
+                  queryResponse?.isPlaceholderData || !queryResponse?.data?.next
+                }
+                className="btn-tertiary btn-md-icon bg-gray-200"
+              >
+                {getIcon('ChevronRight')}
+                <span className="sr-only">Next page</span>
+              </button>
             </nav>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { useMemberships } from 'common/dataHooks/useMemberships'
 
 function DashboardMembershipData() {
   const { site } = useSiteStore()
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
   const queryResponse = useMemberships({ page })
 
   const headerContent = {

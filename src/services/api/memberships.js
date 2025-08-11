@@ -4,7 +4,7 @@ import { SITES, MEMBERSHIPS, PAGE, PAGE_SIZE } from 'common/constants'
 const memberships = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${MEMBERSHIPS}/${id}`).json(),
-  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
+  getAll: async ({ sitename, pageParam = 1, perPage = 8 }) =>
     apiBase()
       .get(
         `${SITES}/${sitename}/${MEMBERSHIPS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
