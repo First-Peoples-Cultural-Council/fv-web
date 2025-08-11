@@ -9,6 +9,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1200, 1200)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
     })
 
     it('Try searching for something', () => {

@@ -4,6 +4,14 @@ describe('Dashboard - Page testing', () => {
   beforeEach(() => {
     cy.viewport(1024, 768)
 
+    cy.intercept(
+      {
+        method: 'GET', // Route all GET requests
+        url: '/matomo.js',
+      },
+      [], // and force the response to be: []
+    )
+
     Cypress.Commands.add('deletePage', (name) => {
       cy.contains(name).parent().children().eq(3).children().click()
       cy.contains('Edit Page Header').click()

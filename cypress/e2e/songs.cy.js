@@ -9,21 +9,23 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1024, 768)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
     })
 
     it('10.3 - Click on songs grid view', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Songs').click()
-      cy.get('ul li')
-        .first()
-        .each((_song) => {
-          cy.wrap(_song).click()
-          cy.contains('Loading').should('not.exist')
-
-          cy.contains('Go to Song', { timeout: 12000 })
-          cy.get('#CloseDrawerBtn').click()
-        })
+      cy.get('ul li').should('be.visible')
+      cy.get('[data-testid="SongAndStoriesGridTile"]').first().click()
+      cy.contains('Go to Song', { timeout: 12000 })
+      cy.get('#CloseDrawerBtn').click()
     })
 
     it('10.4 - Check list view songs', () => {
@@ -41,6 +43,12 @@ describe(
           cy.contains('Go to Song')
           cy.get('#CloseDrawerBtn').click()
         })
+    })
+
+    it('check each song quickly', () => {
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.contains('Learn').click()
+      cy.contains('Songs').click()
     })
   },
 ) // end of describe

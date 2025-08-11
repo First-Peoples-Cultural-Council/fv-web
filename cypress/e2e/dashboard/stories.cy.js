@@ -12,6 +12,13 @@ describe(
     beforeEach(() => {
       cy.on('uncaught:exception', () => false)
       cy.viewport(1920, 1080)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
       cy.visit(`${Cypress.env('baseUrl')}`)
     })
 
@@ -52,8 +59,8 @@ describe(
       for (let i = 0; i < 1; i += 1) {
         cy.contains('Add page').click()
         cy.contains('Save').should('be.visible')
-        cy.get('div.public-DraftStyleDefault-block').eq(0).type('asdfasdfafs')
-        cy.get('div.public-DraftStyleDefault-block').eq(1).type('asdfasdfaf')
+        cy.get(':nth-child(1) > .tiptap > p').eq(0).type('asdfasdfafs')
+        cy.get(':nth-child(1) > .tiptap > p').eq(1).type('asdfasdfaf')
         cy.contains('Save').click()
       }
       cy.contains('Next step').click({ force: true })
@@ -69,7 +76,7 @@ describe(
         .first()
         .invoke('removeAttr', 'target')
       cy.get(`td:contains(${_title})`).siblings().children('a').first().click()
-      cy.contains('Delete Story').click()
+      cy.contains('Delete story').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
   },

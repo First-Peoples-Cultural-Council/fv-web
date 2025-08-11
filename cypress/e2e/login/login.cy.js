@@ -11,6 +11,13 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1024, 768)
+      cy.intercept(
+        {
+          method: 'GET', // Route all GET requests
+          url: '/matomo.js',
+        },
+        [], // and force the response to be: []
+      )
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
@@ -30,7 +37,7 @@ describe(
     })
 
     it('1.1 - signin/signout', () => {
-      cy.reload()
+      cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').should('exist')
       cy.contains('Sign out', { timeout: 12000 }).click()
