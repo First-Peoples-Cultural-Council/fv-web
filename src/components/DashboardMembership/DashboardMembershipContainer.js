@@ -6,8 +6,14 @@ import DashboardMembershipPresentation from 'components/DashboardMembership/Dash
 import DashboardMembershipData from 'components/DashboardMembership/DashboardMembershipData'
 
 function DashboardMembershipContainer() {
-  const { queryResponse, headerContent, site, page, setPage } =
-    DashboardMembershipData()
+  const {
+    queryResponse,
+    deleteMembership,
+    headerContent,
+    site,
+    page,
+    setPage,
+  } = DashboardMembershipData()
   return (
     <div id="DashboardMembershipContainer">
       <Routes>
@@ -16,6 +22,7 @@ function DashboardMembershipContainer() {
           element={
             <DashboardMembershipPresentation
               queryResponse={queryResponse}
+              deleteMembership={deleteMembership}
               headerContent={headerContent}
               site={site}
               page={page}

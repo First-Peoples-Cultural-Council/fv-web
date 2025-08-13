@@ -10,6 +10,7 @@ import DeleteButton from 'components/DeleteButton'
 
 function DashboardMembershipPresentation({
   queryResponse,
+  deleteMembership,
   headerContent,
   site,
   page,
@@ -68,25 +69,25 @@ function DashboardMembershipPresentation({
                         </thead>
 
                         <tbody className="bg-white">
-                          {queryResponse?.data?.results?.map((member) => (
-                            <tr key={member?.id}>
+                          {queryResponse?.data?.results?.map((membership) => (
+                            <tr key={membership?.id}>
                               <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-bold text-charcoal-500 sm:pl-6">
-                                {`${member?.user?.firstName} ${member?.user?.lastName}`}
+                                {`${membership?.user?.firstName} ${membership?.user?.lastName}`}
                                 <dl className="font-normal">
                                   <dt className="sr-only">Email</dt>
                                   <dd className="mt-1 text-charcoal-700">
-                                    {member?.user?.email}
+                                    {membership?.user?.email}
                                   </dd>
                                 </dl>
                               </td>
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                                {localDateMDYwords(member?.created)}
+                                {localDateMDYwords(membership?.created)}
                               </td>
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                                {localDateMDYwords(member?.lastModified)}
+                                {localDateMDYwords(membership?.lastModified)}
                               </td>
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                                {member?.role}
+                                {membership?.role}
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                 <button
@@ -97,13 +98,15 @@ function DashboardMembershipPresentation({
                                 >
                                   {getIcon('Pencil')}
                                   <span className="sr-only">
-                                    Edit, {member?.firstName}
+                                    Edit, {membership?.firstName}
                                   </span>
                                 </button>
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                 <DeleteButton.Presentation
-                                  deleteHandler={() => {}}
+                                  deleteHandler={() =>
+                                    deleteMembership(membership?.id)
+                                  }
                                   message="Remove this user's membership?"
                                   note="This will remove any editing privileges that the user currently has and prevent them from viewing any content on your site that is not public."
                                   styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
@@ -186,6 +189,7 @@ function DashboardMembershipPresentation({
 const { func, object, number } = PropTypes
 DashboardMembershipPresentation.propTypes = {
   queryResponse: object,
+  deleteMembership: func,
   headerContent: object,
   site: object,
   page: number,

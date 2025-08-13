@@ -36,7 +36,6 @@ export function useMembershipUpdateRole() {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateMembershipRole,
-    redirectTo: `/${sitename}/dashboard/edit/memberships`,
     queryKeyToInvalidate: [MEMBERSHIPS, sitename],
     actionWord: 'updated',
     type: 'membership role',
@@ -58,7 +57,6 @@ export function useMembershipDelete() {
 
   const mutation = useMutationWithNotification({
     mutationFn: deleteMembership,
-    redirectTo: `/${sitename}/dashboard/edit/memberships`,
     queryKeyToInvalidate: [MEMBERSHIPS, sitename],
     actionWord: 'deleted',
     type: 'membership',
