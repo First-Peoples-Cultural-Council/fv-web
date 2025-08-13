@@ -67,7 +67,7 @@ function HomeSearchForm() {
           value={selected}
           onChange={setSelected}
           aria-label="Search Domain"
-          className="flex flex-col text-left space-y-6 sm:flex-row sm:items-center sm:justify-center sm:space-x-10 sm:space-y-0 [&>*:nth-child(3)]:order-1 [&>*:nth-child(2)]:order-2"
+          className="inline-block text-left space-y-6 sm:flex sm:items-center sm:justify-center sm:space-x-10 sm:space-y-0"
         >
           {arraySearchDomainOptions.map((option) => (
             <Field
