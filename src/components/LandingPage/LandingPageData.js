@@ -34,7 +34,7 @@ function LandingPageData() {
       bgImage,
       image: aboutImage,
       title: 'ABOUT FIRSTVOICES',
-      url: `https://${FIRSTVOICESLINK}/about`,
+      url: `/about`,
       urlLabel: 'Learn more',
       textWithFormatting:
         '<p>On FirstVoices, interactive language learning resources are uploaded to secure, community-owned sites.</p><p>Any content available on FirstVoices is gathered, uploaded and curated by teams of people from that language community. Ownership and copyright of all language content on FirstVoices is maintained by the contributing community.</p><p>FirstVoices is an initiative of the First Peoples’ Cultural Council and is funded by the First Peoples’ Cultural Foundation.</p>',
