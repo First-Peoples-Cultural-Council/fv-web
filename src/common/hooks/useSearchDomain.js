@@ -30,8 +30,8 @@ function useSearchDomain({ searchType }) {
 
   const searchDomainOptions = {
     [DOMAIN_BOTH]: 'All',
-    [DOMAIN_TRANSLATION]: 'Translation',
     [DOMAIN_LANGUAGE]: labels.titlecase,
+    [DOMAIN_TRANSLATION]: 'Translation',
   }
 
   const handleSearchDomainNavigation = (value) => {
