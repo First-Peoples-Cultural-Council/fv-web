@@ -9,7 +9,7 @@ import { EDITOR } from 'common/constants'
 
 function DeleteButtonPresentation({
   deleteHandler,
-  label = 'Delete',
+  label,
   message = 'Are you sure you want to delete this?',
   note = null,
   styling = 'btn-secondary btn-md',
@@ -27,8 +27,8 @@ function DeleteButtonPresentation({
           onClick={() => setDeleteModalOpen(true)}
           className={styling}
         >
-          {getIcon('Trash', 'btn-icon')}
-          <span>{label}</span>
+          {getIcon('Trash')}
+          {label && <span>{label}</span>}
         </button>
 
         <Modal.Presentation
@@ -37,20 +37,19 @@ function DeleteButtonPresentation({
         >
           <div
             data-testid="DeleteModal"
-            className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
+            className="inline-block align-bottom space-y-8 bg-white rounded-3xl p-6 lg:py-11 lg:px-16 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-xl sm:w-full"
           >
-            <div className="text-center space-y-2">
-              <p className="text-2xl text-charcoal-900">{message}</p>
-              {note && <p className="text-charcoal-500">{note}</p>}
-              <p className="text-charcoal-500">
-                You can&apos;t undo this action.
+            <div className="space-y-5 text-charcoal-900">
+              <h3 className="text-center text-xl font-bold">{message}</h3>
+              <p className="text-left text-pretty">
+                {note ? `${note} ` : ''}You can&apos;t undo this action.
               </p>
             </div>
             <div className="w-full justify-center flex space-x-2">
               <button
                 data-testid="delete-cancel"
                 type="button"
-                className="btn-secondary btn-sm"
+                className="btn-tertiary btn-md"
                 onClick={() => setDeleteModalOpen(false)}
               >
                 Cancel
@@ -58,13 +57,14 @@ function DeleteButtonPresentation({
               <button
                 data-testid="delete-confirm"
                 type="button"
-                className="btn-primary btn-sm"
+                className="btn-primary btn-md bg-scarlet-800 text-scarlet-50 hover:bg-scarlet-900 focus:outline-none focus:ring-2 focus:ring-scarlet-500"
                 onClick={() => {
                   setDeleteModalOpen(false)
                   deleteHandler()
                 }}
               >
-                Delete
+                {getIcon('Trash')}
+                <span>Delete</span>
               </button>
             </div>
           </div>
