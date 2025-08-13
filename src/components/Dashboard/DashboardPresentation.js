@@ -118,10 +118,7 @@ const primaryNavigationItems = (currentSitename) => {
                   : 'text-charcoal-200 hover:bg-charcoal-500 hover:text-white'
               }`}
             >
-              {getIcon(
-                item.icon,
-                'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
-              )}
+              {getIcon(item.icon, 'fill-current mr-4 flex-shrink-0 h-6 w-6')}
               {item.name}
             </Link>
           </RequireAuth>
