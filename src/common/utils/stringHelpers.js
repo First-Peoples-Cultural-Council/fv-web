@@ -248,6 +248,22 @@ export const isUUID = (str) => {
   return !!isId
 }
 
+// Function that accepts a date string and returns formatted date e.g. "August 29, 2023 at 3:40 p.m."
+export const localDateMDYwords = (dateString) => {
+  if (!isStringWithLength(dateString)) return ''
+  const date = new Date(dateString)
+  const options = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }
+  // Only process date if it is not NaN
+  return !Number.isNaN(date)
+    ? new Intl.DateTimeFormat('en-CA', options).format(date) // defaults to local time if no timeZone is set in options
+    : ''
+}
+
+// Function that accepts a date string and returns formatted date e.g. "August 29, 2023 at 3:40 p.m."
 export const localDateMDYTwords = (dateString) => {
   if (!isStringWithLength(dateString)) return ''
   const date = new Date(dateString)
