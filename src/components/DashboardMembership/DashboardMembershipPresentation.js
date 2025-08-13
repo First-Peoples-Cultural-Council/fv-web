@@ -7,6 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import LoadOrError from 'components/LoadOrError'
 import { localDateMDYwords } from 'common/utils/stringHelpers'
 import DeleteButton from 'components/DeleteButton'
+import PaginationControls from 'components/PaginationControls'
 
 function DashboardMembershipPresentation({
   queryResponse,
@@ -122,60 +123,13 @@ function DashboardMembershipPresentation({
               </div>
             </div>
           </div>
-          <div className="mx-auto max-w-lg mt-5">
-            <nav className="flex items-center justify-center space-x-2">
-              <button
-                data-testid="prev-page-btn"
-                type="button"
-                onClick={() => setPage((old) => Math.max(old - 1, 1))}
-                disabled={page === 1}
-                className="btn-tertiary btn-md-icon bg-charcoal-100"
-              >
-                {getIcon('ChevronLeft')}
-                <span className="sr-only">Previous page</span>
-              </button>
-
-              {[...Array(queryResponse?.data?.pages)].map((_page, index) => {
-                const btnStyling =
-                  page === index + 1
-                    ? 'btn-tertiary btn-sm-icon'
-                    : 'btn-tertiary btn-sm-icon bg-charcoal-100'
-                return (
-                  <button
-                    key={index}
-                    data-testid={`page-${index + 1}-btn`}
-                    type="button"
-                    onClick={() => setPage(index + 1)}
-                    aria-current="page"
-                    className={btnStyling}
-                  >
-                    {index + 1}
-                  </button>
-                )
-              })}
-
-              <button
-                data-testid="next-page-btn"
-                type="button"
-                onClick={() => {
-                  if (
-                    !queryResponse?.isPlaceholderData &&
-                    queryResponse?.data?.next
-                  ) {
-                    setPage((old) => old + 1)
-                  }
-                }}
-                // Disable the Next Page button until we know a next page is available
-                disabled={
-                  queryResponse?.isPlaceholderData || !queryResponse?.data?.next
-                }
-                className="btn-tertiary btn-md-icon bg-charcoal-100"
-              >
-                {getIcon('ChevronRight')}
-                <span className="sr-only">Next page</span>
-              </button>
-            </nav>
-          </div>
+          <PaginationControls
+            hasNextPage={queryResponse?.data?.next}
+            isPlaceholderData={queryResponse?.isPlaceholderData}
+            numberOfPages={queryResponse?.data?.pages}
+            page={page}
+            setPage={setPage}
+          />
           <div className="text-charcoal-500 p-8 mt-6">
             If you want to change/remove the role of a language admin. Please
             contact hello@firstvoices.com
