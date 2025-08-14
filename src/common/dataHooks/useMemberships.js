@@ -41,10 +41,7 @@ export function useMembershipUpdateRole() {
     type: 'membership role',
   })
 
-  const onSubmit = (formData) => {
-    mutation.mutate(formData)
-  }
-  return { onSubmit }
+  return mutation
 }
 
 export function useMembershipDelete() {

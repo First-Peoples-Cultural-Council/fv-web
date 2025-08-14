@@ -1,7 +1,16 @@
 import * as yup from 'yup'
 
 // FPCC
-import { UUID_REGEX, PUBLIC, MEMBERS, TEAM } from 'common/constants'
+import {
+  UUID_REGEX,
+  PUBLIC,
+  MEMBERS,
+  TEAM,
+  LANGUAGE_ADMIN_ENUM_NAME,
+  EDITOR_ENUM_NAME,
+  ASSISTANT_ENUM_NAME,
+  MEMBER_ENUM_NAME,
+} from 'common/constants'
 import {
   extractTextFromHtml,
   getFileExtensions,
@@ -93,6 +102,16 @@ export const definitions = {
         /^[aA-zZ-]+$/,
         'Only Latin alphabet characters and hyphens are allowed in this field (e.g. our-people)',
       ),
+  role: () =>
+    yup
+      .string()
+      .required()
+      .oneOf([
+        LANGUAGE_ADMIN_ENUM_NAME,
+        EDITOR_ENUM_NAME,
+        ASSISTANT_ENUM_NAME,
+        MEMBER_ENUM_NAME,
+      ]),
   stringArray: () =>
     yup.array().of(yup.string().typeError('This field is text only.')),
   title: ({ charCount = 90 } = {}) => stringWithMax(charCount).min(1),
