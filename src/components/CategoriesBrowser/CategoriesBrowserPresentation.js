@@ -44,11 +44,11 @@ function CategoriesBrowserPresentation({
             disabled={selectedCategories.length < 1}
             className="btn-primary btn-md mx-auto my-4"
           >
-            {getIcon('Add', 'h-5 w-5 mr-2')}
-            <span className="ml-2">
+            {selectedCategories.length > 0 && getIcon('Add')}
+            <span>
               {selectedCategories.length > 0
-                ? `Add ${selectedCategories.length} Categories`
-                : 'Select Categories'}
+                ? `Add  ${selectedCategories.length === 1 ? 'category' : `${selectedCategories.length} categories`}`
+                : 'Choose categories'}
             </span>
           </button>
         </header>
@@ -66,13 +66,14 @@ function CategoriesBrowserPresentation({
                     (c) => c.id === category.id,
                   )
                   return (
-                    <li key={category.id}>
+                    <li key={category.id} className="p-1">
                       <button
+                        data-testid={`${category.title}-btn`}
                         type="button"
                         onClick={() => handleSelectAdditionalItem(category)}
                         className={`w-full flex items-center px-4 py-3 ${
                           isSelected
-                            ? 'ring-2 ring-jade-500 bg-charcoal-50'
+                            ? 'ring-2 ring-blumine-500 bg-charcoal-50'
                             : 'hover:bg-charcoal-50'
                         } rounded-sm`}
                       >
@@ -80,7 +81,7 @@ function CategoriesBrowserPresentation({
                           {isSelected &&
                             getIcon(
                               'CheckCircleSolid',
-                              'h-6 w-6 fill-jade-500',
+                              'h-6 w-6 fill-blumine-500',
                             )}
                         </span>
                         <div className="w-1/2 text-left">{category.title}</div>
