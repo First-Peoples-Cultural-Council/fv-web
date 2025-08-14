@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 // FPCC
 import DashboardLanding from 'components/DashboardLanding'
-import getIcon from 'common/utils/getIcon'
 import LoadOrError from 'components/LoadOrError'
 import { localDateMDYwords } from 'common/utils/stringHelpers'
 import DeleteButton from 'components/DeleteButton'
+import MembershipEditButton from 'components/MembershipEditButton'
 import PaginationControls from 'components/PaginationControls'
 
 function DashboardMembershipPresentation({
@@ -17,6 +18,7 @@ function DashboardMembershipPresentation({
   page,
   setPage,
 }) {
+  const [t] = useTranslation()
   return (
     <div id="DashboardMembershipPresentation">
       <DashboardLanding.Presentation headerContent={headerContent} site={site}>
@@ -88,20 +90,15 @@ function DashboardMembershipPresentation({
                                 {localDateMDYwords(membership?.lastModified)}
                               </td>
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                                {membership?.role}
+                                {t(`role-${membership?.role}`)}
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                <button
-                                  data-testid="edit-btn"
-                                  type="button"
-                                  onClick={() => {}}
-                                  className="btn-tertiary btn-md-icon"
-                                >
-                                  {getIcon('Pencil')}
-                                  <span className="sr-only">
-                                    Edit, {membership?.firstName}
-                                  </span>
-                                </button>
+                                <MembershipEditButton
+                                  dataToEdit={{
+                                    id: membership?.id,
+                                    role: membership?.role,
+                                  }}
+                                />
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                 <DeleteButton.Presentation
@@ -124,15 +121,15 @@ function DashboardMembershipPresentation({
             </div>
           </div>
           <PaginationControls
-            hasNextPage={queryResponse?.data?.next}
+            hasNextPage={queryResponse?.data?.next ? true : false}
             isPlaceholderData={queryResponse?.isPlaceholderData}
             numberOfPages={queryResponse?.data?.pages}
             page={page}
             setPage={setPage}
           />
           <div className="text-charcoal-500 p-8 mt-6">
-            If you want to change/remove the role of a language admin. Please
-            contact hello@firstvoices.com
+            If you want to remove or change the membership of a language admin
+            please contact hello@firstvoices.com
           </div>
         </div>
       </DashboardLanding.Presentation>
