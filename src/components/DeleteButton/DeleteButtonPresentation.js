@@ -10,6 +10,7 @@ import { EDITOR } from 'common/constants'
 function DeleteButtonPresentation({
   deleteHandler,
   label,
+  disabled = false,
   message = 'Are you sure you want to delete this?',
   note = null,
   styling = 'btn-secondary btn-md',
@@ -26,6 +27,7 @@ function DeleteButtonPresentation({
           type="button"
           onClick={() => setDeleteModalOpen(true)}
           className={styling}
+          disabled={disabled}
         >
           {getIcon('Trash')}
           {label && <span>{label}</span>}
@@ -74,9 +76,10 @@ function DeleteButtonPresentation({
   )
 }
 // PROPTYPES
-const { func, string } = PropTypes
+const { bool, func, string } = PropTypes
 DeleteButtonPresentation.propTypes = {
   deleteHandler: func,
+  disabled: bool,
   label: string,
   message: string,
   note: string,

@@ -9,6 +9,7 @@ import { localDateMDYwords } from 'common/utils/stringHelpers'
 import DeleteButton from 'components/DeleteButton'
 import MembershipEditButton from 'components/MembershipEditButton'
 import PaginationControls from 'components/PaginationControls'
+import { LANGUAGE_ADMIN_ENUM_NAME } from 'common/constants'
 
 function DashboardMembershipPresentation({
   queryResponse,
@@ -104,6 +105,10 @@ function DashboardMembershipPresentation({
                                 <DeleteButton.Presentation
                                   deleteHandler={() =>
                                     deleteMembership(membership?.id)
+                                  }
+                                  disabled={
+                                    membership?.role ===
+                                    LANGUAGE_ADMIN_ENUM_NAME
                                   }
                                   message="Remove this user's membership?"
                                   note="This will remove any editing privileges that the user currently has and prevent them from viewing any content on your site that is not public."
