@@ -248,7 +248,7 @@ export const isUUID = (str) => {
   return !!isId
 }
 
-// Function that accepts a date string and returns formatted date e.g. "August 29, 2023 at 3:40 p.m."
+// Function that accepts a date string and returns formatted date e.g. "Aug 29, 2023"
 export const localDateMDYwords = (dateString) => {
   if (!isStringWithLength(dateString)) return ''
   const date = new Date(dateString)
