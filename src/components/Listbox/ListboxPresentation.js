@@ -62,7 +62,8 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {getIcon(option?.icon, 'h-5 w-5 mr-2 fill-current')}
+                        {option?.icon &&
+                          getIcon(option?.icon, 'h-5 w-5 mr-2 fill-current')}
                         {option?.transKey ? t(option?.transKey) : option?.label}
                       </div>
                       {selected
