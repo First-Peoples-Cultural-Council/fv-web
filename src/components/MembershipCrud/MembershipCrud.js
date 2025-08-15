@@ -6,6 +6,7 @@ import { useController } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 // FPCC
+import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import { useMembershipUpdateRole } from 'common/dataHooks/useMemberships'
@@ -107,8 +108,13 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
                   <div className="flex h-6 items-center">
                     <Radio
                       value={role.id}
-                      className={`relative size-6 appearance-none rounded-full border before:absolute before:inset-1 before:rounded-full before:bg-white ${field?.value === role.id ? 'bg-blumine-900 border-blumine-900' : 'border-charcoal-300 bg-white'}`}
-                    />
+                      className={`group flex h-6 w-6 items-center justify-center rounded-full border border-blumine-900 ${field?.value === role.id ? 'bg-blumine-900' : 'bg-white'}`}
+                    >
+                      {getIcon(
+                        'Checkmark',
+                        `h-3 w-3 fill-white opacity-0 transition ${field?.value === role.id && 'opacity-100'}`,
+                      )}
+                    </Radio>
                   </div>
                   <div className="ml-6 text-left text-blumine-900">
                     <Label htmlFor={role.id} className="text-base font-bold">
