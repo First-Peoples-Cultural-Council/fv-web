@@ -12,7 +12,7 @@ import DashboardCreate from 'components/DashboardCreate'
 import DashboardMedia from 'components/DashboardMedia'
 import DashboardMembership from 'components/DashboardMembership'
 import DashboardReports from 'components/DashboardReports'
-import { ASSISTANT } from 'common/constants/roles'
+import { ASSISTANT, LANGUAGE_ADMIN } from 'common/constants/roles'
 import SiteDocHead from 'components/SiteDocHead'
 
 function DashboardContainer() {
@@ -73,7 +73,7 @@ function DashboardContainer() {
         <Route
           path="memberships/*"
           element={
-            <RequireAuth siteMembership={ASSISTANT} withMessage>
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardMembership.Container />
             </RequireAuth>
           }
