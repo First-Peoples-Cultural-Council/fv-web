@@ -4,6 +4,7 @@ import React from 'react'
 import WidgetCrudPresentation from 'components/WidgetCrud/WidgetCrudPresentation'
 import WidgetCrudData from 'components/WidgetCrud/WidgetCrudData'
 import Loading from 'components/Loading'
+import DocHead from 'components/DocHead'
 
 function WidgetCrudContainer() {
   const {
@@ -16,6 +17,7 @@ function WidgetCrudContainer() {
   } = WidgetCrudData()
   return (
     <Loading.Container isLoading={isLoading}>
+      <DocHead titleArray={['Create Widget']} />
       <WidgetCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
