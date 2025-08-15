@@ -7,29 +7,30 @@ import Modal from 'components/Modal'
 import MembershipCrud from 'components/MembershipCrud/MembershipCrud'
 import { LANGUAGE_ADMIN_ENUM_NAME } from 'common/constants'
 
-function MembershipEditButtonPresentation({ dataToEdit }) {
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
+function MembershipEditButtonPresentation({ membership }) {
+  const [modalOpen, setModalOpen] = useState(false)
+  const disabled = membership?.role === LANGUAGE_ADMIN_ENUM_NAME
 
   return (
     <>
       <button
         data-testid="MembershipEditButton"
         type="button"
-        onClick={() => setDeleteModalOpen(true)}
-        disabled={dataToEdit?.role === LANGUAGE_ADMIN_ENUM_NAME}
+        onClick={() => setModalOpen(true)}
+        disabled={disabled}
         className="btn-tertiary btn-md-icon"
       >
-        {getIcon('Pencil')}
-        <span className="sr-only">Edit, {dataToEdit?.firstName}</span>
+        {getIcon(disabled ? 'Lock' : 'Pencil')}
+        <span className="sr-only">Edit, {membership?.firstName}</span>
       </button>
 
       <Modal.Presentation
-        isOpen={deleteModalOpen}
-        closeHandler={() => setDeleteModalOpen(false)}
+        isOpen={modalOpen}
+        closeHandler={() => setModalOpen(false)}
       >
         <MembershipCrud
-          dataToEdit={dataToEdit}
-          cancelHandler={() => setDeleteModalOpen(false)}
+          membership={membership}
+          cancelHandler={() => setModalOpen(false)}
         />
       </Modal.Presentation>
     </>
@@ -38,7 +39,7 @@ function MembershipEditButtonPresentation({ dataToEdit }) {
 // PROPTYPES
 const { object } = PropTypes
 MembershipEditButtonPresentation.propTypes = {
-  dataToEdit: object,
+  membership: object,
 }
 
 export default MembershipEditButtonPresentation

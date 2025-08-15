@@ -94,12 +94,7 @@ function DashboardMembershipPresentation({
                                 {t(`role-${membership?.role}`)}
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                <MembershipEditButton
-                                  dataToEdit={{
-                                    id: membership?.id,
-                                    role: membership?.role,
-                                  }}
-                                />
+                                <MembershipEditButton membership={membership} />
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                                 <DeleteButton.Presentation

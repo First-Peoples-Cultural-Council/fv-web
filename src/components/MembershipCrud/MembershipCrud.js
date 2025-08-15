@@ -17,9 +17,14 @@ import {
   MEMBER_ENUM_NAME,
 } from 'common/constants'
 
-function MembershipCrudPresentation({ cancelHandler, dataToEdit }) {
+function MembershipCrudPresentation({ cancelHandler, membership }) {
   const [t] = useTranslation()
   const mutation = useMembershipUpdateRole()
+
+  const dataToEdit = {
+    id: membership?.id,
+    role: membership?.role,
+  }
 
   const validator = yup.object().shape({
     role: definitions.role(),
@@ -72,7 +77,10 @@ function MembershipCrudPresentation({ cancelHandler, dataToEdit }) {
       className="inline-block align-bottom space-y-6 divide-y divide-charcoal-300 bg-white rounded-3xl py-6 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full"
     >
       <div className="space-y-4 text-left px-6">
-        <h3 className="text-xl font-bold text-charcoal-700">Choose a role</h3>
+        <h3 className="text-xl font-bold text-charcoal-700">
+          Choose a role for{' '}
+          {membership?.user?.firstName || membership?.user?.email}
+        </h3>
         <p className="text-pretty text-sm text-charcoal-400">
           <a
             className="inline-url"
@@ -148,7 +156,7 @@ const { func, object } = PropTypes
 
 MembershipCrudPresentation.propTypes = {
   cancelHandler: func,
-  dataToEdit: object,
+  membership: object,
 }
 
 export default MembershipCrudPresentation
