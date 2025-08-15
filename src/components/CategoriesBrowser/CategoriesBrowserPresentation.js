@@ -18,6 +18,11 @@ function CategoriesBrowserPresentation({
     }
   }
 
+  const categoryLabelForPluralisation =
+    selectedCategories.length === 1
+      ? 'category'
+      : `${selectedCategories.length} categories`
+
   return (
     <section id="CategoriesBrowserPresentation" className="h-full">
       <div className="w-full bg-white rounded-lg p-4">
@@ -47,7 +52,7 @@ function CategoriesBrowserPresentation({
             {selectedCategories.length > 0 && getIcon('Add')}
             <span>
               {selectedCategories.length > 0
-                ? `Add  ${selectedCategories.length === 1 ? 'category' : `${selectedCategories.length} categories`}`
+                ? `Add  ${categoryLabelForPluralisation}`
                 : 'Choose categories'}
             </span>
           </button>

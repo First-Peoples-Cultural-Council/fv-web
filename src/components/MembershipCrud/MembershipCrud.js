@@ -49,25 +49,30 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
   const roleOptions = [
     {
       id: MEMBER_ENUM_NAME,
-      descriptions: ['Can view public and members only content'],
+      descriptions: [
+        { key: 1, text: 'Can view public and members only content' },
+      ],
     },
     {
       id: ASSISTANT_ENUM_NAME,
-      descriptions: ['Can upload and edit private entries'],
+      descriptions: [{ key: 1, text: 'Can upload and edit private entries' }],
     },
     {
       id: EDITOR_ENUM_NAME,
       descriptions: [
-        'Can upload and edit all entries',
-        'Can delete and hide/publish entries.',
+        { key: 1, text: 'Can upload and edit all entries' },
+        { key: 2, text: 'Can delete and hide/publish entries.' },
       ],
     },
     {
       id: LANGUAGE_ADMIN_ENUM_NAME,
       descriptions: [
-        'Can upload, edit, delete, and hide/publish all entries',
-        'Can edit the language site pages and widgets',
-        'Can add site members and team members',
+        {
+          key: 1,
+          text: 'Can upload, edit, delete, and hide/publish all entries',
+        },
+        { key: 2, text: 'Can edit the language site pages and widgets' },
+        { key: 3, text: 'Can add site members and team members' },
       ],
     },
   ]
@@ -120,9 +125,9 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
                     <Label htmlFor={role.id} className="text-base font-bold">
                       {t(`role-${role?.id}`)}
                     </Label>
-                    {role.descriptions.map((description, index) => (
-                      <p key={index} className="text-sm">
-                        {description}
+                    {role.descriptions.map((description) => (
+                      <p key={description.key} className="text-sm">
+                        {description.text}
                       </p>
                     ))}
                   </div>
