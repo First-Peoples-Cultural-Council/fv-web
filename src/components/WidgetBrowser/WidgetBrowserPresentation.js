@@ -54,7 +54,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
               data-testid="confirm"
               type="button"
               disabled={!selectedWidget}
-              className="btn-primary btn-md disabled:opacity-40"
+              className="btn-primary btn-md"
               onClick={() => chooseWidgetHandler(selectedWidget)}
             >
               OK

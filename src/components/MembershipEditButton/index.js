@@ -1,0 +1,3 @@
+import MembershipEditButton from 'components/MembershipEditButton/MembershipEditButtonPresentation'
+
+export default MembershipEditButton

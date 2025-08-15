@@ -1,0 +1,3 @@
+import PaginationControls from 'components/PaginationControls/PaginationControlsPresentation'
+
+export default PaginationControls

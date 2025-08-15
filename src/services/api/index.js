@@ -9,9 +9,9 @@ import gameContent from 'services/api/gameContent'
 import images from 'services/api/images'
 import immersionLabels from 'services/api/immersionLabels'
 import joinRequests from 'services/api/joinRequests'
-import landingPage from 'services/api/landingpage'
 import languages from 'services/api/languages'
 import mail from 'services/api/mail'
+import memberships from 'services/api/memberships'
 import mySites from 'services/api/mySites'
 import pages from 'services/api/pages'
 import partsOfSpeech from 'services/api/partsOfSpeech'
@@ -40,9 +40,9 @@ export default {
   images,
   immersionLabels,
   joinRequests,
-  landingPage,
   languages,
   mail,
+  memberships,
   mySites,
   pages,
   partsOfSpeech,

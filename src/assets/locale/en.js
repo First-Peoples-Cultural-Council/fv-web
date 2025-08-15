@@ -16,6 +16,10 @@ const en = {
     'navigation-songs': 'Songs',
     'navigation-stories': 'Stories',
     'navigation-words': 'Words',
+    'role-language_admin': 'Language Admin',
+    'role-editor': 'Editor',
+    'role-assistant': 'Assistant',
+    'role-member': 'Member',
   },
 }
 

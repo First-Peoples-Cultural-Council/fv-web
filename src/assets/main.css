@@ -40,7 +40,7 @@
 }
 
 /* These component rules can be over-ridden using utility classes. 
-For example over-ride the colour of the btn-contained backgound using bg-scarlet-800 */
+For example over-ride the colour of the btn-primary backgound using bg-scarlet-800 */
 @layer components {
   .ql-video {
     @apply w-full h-96;
@@ -48,6 +48,8 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
   .inline-url {
     @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
   }
+
+  /* btn-contained, btn-outlined, and btn-icon are deprecated. Use other btn classes */
   .btn-contained {
     @apply rounded-lg shadow-sm py-2 px-4 inline-flex justify-center items-center space-x-2 text-sm font-medium bg-blumine-800 border border-transparent text-white hover:opacity-80 active:opacity-100;
   }
@@ -60,23 +62,23 @@ For example over-ride the colour of the btn-contained backgound using bg-scarlet
 
   /* Button base class */
   .btn {
-    @apply rounded-3xl inline-flex justify-center items-center space-x-2;
+    @apply rounded-3xl inline-flex justify-center items-center space-x-2 disabled:pointer-events-none;
   }
 
   /* Button base class for icon only buttons */
   .btn-icon-base {
-    @apply rounded-full inline-flex justify-center items-center;
+    @apply rounded-full inline-flex justify-center items-center disabled:pointer-events-none;
   }
 
   /* Button styles */
   .btn-primary {
-    @apply btn bg-blumine-600 text-blumine-100 hover:bg-blumine-800 focus:outline-none focus:ring-2 focus:ring-blumine-300;
+    @apply btn bg-blumine-600 text-blumine-100 disabled:bg-charcoal-300 disabled:text-charcoal-50 hover:bg-blumine-800 focus:outline-none focus:ring-2 focus:ring-blumine-300;
   }
   .btn-secondary {
-    @apply btn bg-white border border-blumine-900 text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900;
+    @apply btn bg-white border border-blumine-900 text-blumine-900 disabled:border-charcoal-300 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900;
   }
   .btn-tertiary {
-    @apply btn bg-white text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900 m-1;
+    @apply btn bg-white text-blumine-900 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-none focus:ring-2 focus:ring-blumine-900 m-1;
   }
 
   /* Button sizes */
