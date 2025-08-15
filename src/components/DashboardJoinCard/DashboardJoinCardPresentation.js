@@ -10,6 +10,7 @@ import {
   LANGUAGE_ADMIN,
 } from 'common/constants/roles'
 import getIcon from 'common/utils/getIcon'
+import Listbox from 'components/Listbox'
 
 function DashboardJoinCardPresentation({
   joinRequest,
@@ -17,12 +18,20 @@ function DashboardJoinCardPresentation({
   handleApprove,
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
-  const [selectedRole, setSelectedRole] = useState(MEMBER)
+  const [selectedRole, setSelectedRole] = useState('')
 
   const nameOfUser =
     joinRequest?.user?.firstName || joinRequest?.user?.lastName
       ? `${joinRequest?.user?.firstName} ${joinRequest?.user?.lastName}`
       : null
+
+  const options = [
+    { value: '', label: 'Select a role' },
+    { value: MEMBER, label: 'Approve as Member' },
+    { value: ASSISTANT, label: 'Approve as Assistant' },
+    { value: EDITOR, label: 'Approve as Editor' },
+    { value: LANGUAGE_ADMIN, label: 'Approve as Language Admin' },
+  ]
 
   return (
     <li data-testid="DashboardJoinCard" key={joinRequest?.id}>
@@ -33,12 +42,9 @@ function DashboardJoinCardPresentation({
               {nameOfUser || joinRequest?.user?.email}
             </p>
           </div>
-          <div className="mt-1 flex items-center gap-x-2 text-sm leading-5 text-charcoal-500">
-            <p className="whitespace-nowrap">{joinRequest?.user?.email}</p>
-            <svg viewBox="0 0 2 2" className="h-1 w-1 fill-current">
-              <circle cx={1} cy={1} r={1} />
-            </svg>
-            <p className="whitespace-nowrap">
+          <div className="mt-1 xl:flex xl:items-center gap-x-2 text-sm leading-5 text-charcoal-500">
+            <p>{joinRequest?.user?.email}</p>
+            <p>
               Requested on{' '}
               <time dateTime={joinRequest?.created}>
                 {localDateMDYTwords(joinRequest?.created)}
@@ -58,27 +64,16 @@ function DashboardJoinCardPresentation({
           </button>
         </div>
         <div className="p-5 col-span-1">
-          <div className="lg:inline-flex justify-between w-full">
-            <div className="lg:space-x-1 lg:inline-flex items-center">
-              <label htmlFor="role-to-assign" className="sr-only">
-                Select role to assign
-              </label>
-              <select
-                id="role-to-assign"
-                data-testid="role-select"
-                onChange={(e) =>
-                  setSelectedRole(e.target.value.split(' ').join('_'))
-                }
-                className="btn-secondary btn-sm"
-              >
-                <option value={MEMBER}>Approve as Member</option>
-                <option value={ASSISTANT}>Approve as Assistant</option>
-                <option value={EDITOR}>Approve as Editor</option>
-                <option value={LANGUAGE_ADMIN}>
-                  Approve as Language Admin
-                </option>
-              </select>
+          <div className="inline-flex items-center justify-end space-x-1 w-full">
+            <div data-testid="role-select" className="w-72">
+              <Listbox.Presentation
+                selectedValue={selectedRole}
+                options={options}
+                setValue={(role) => setSelectedRole(role.split(' ').join('_'))}
+              />
+            </div>
 
+            <div>
               <label htmlFor="approve-request" className="sr-only">
                 Approve and assign role
               </label>
@@ -86,6 +81,7 @@ function DashboardJoinCardPresentation({
                 id="approve-request"
                 data-testid="approve-request-btn"
                 type="button"
+                disabled={!selectedRole}
                 onClick={() => handleApprove(selectedRole)}
                 className="btn-primary btn-sm"
               >
@@ -93,7 +89,8 @@ function DashboardJoinCardPresentation({
                 <span>OK</span>
               </button>
             </div>
-            <div className="mt-1 lg:mt-0">
+
+            <div>
               <label htmlFor="igore-request" className="sr-only">
                 Ignore request
               </label>
