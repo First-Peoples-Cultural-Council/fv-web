@@ -29,30 +29,27 @@ function ErrorHandlerPresentation({ backHandler, status, heading, content }) {
             <button
               data-testid="login"
               type="button"
-              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-blumine-800 hover:text-blumine-900"
+              className="btn-tertiary btn-xl"
               onClick={login}
               onKeyDown={login}
             >
-              {getIcon('Login', 'inline-flex fill-current mr-2 h-8 w-8')}
-              Sign in
+              {getIcon('Login')}
+              <span>Sign in</span>
             </button>
           ) : (
             <button
               data-testid="back"
               type="button"
-              className="text-xl outline-none focus:outline-none transform transition-all hover:scale-110 text-blumine-800 hover:text-blumine-900"
+              className="btn-tertiary btn-xl"
               onClick={() => backHandler()}
             >
-              {getIcon(
-                'BackArrow',
-                'inline-flex pb-2 h-7 fill-current mr-2 h-10',
-              )}
-              Go back
+              {getIcon('BackArrow')}
+              <span>Go back</span>
             </button>
           )}
         </div>
         <a
-          className="btn-outlined"
+          className="btn-secondary btn-sm"
           href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
           target="_blank"
           rel="noopener noreferrer"

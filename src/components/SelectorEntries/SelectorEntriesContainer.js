@@ -52,7 +52,7 @@ function SelectorEntriesContainer({
             onClick={() => updateFormEntries(selectedItems)}
             disabled={selectedItems?.length < 1}
           >
-            {getIcon('Add', 'btn-icon')}
+            {getIcon('Add')}
             <span>
               {selectedItems?.length > 0
                 ? `Add ${selectedItems.length} related entries`

@@ -29,7 +29,7 @@ function EndGameModal({ status, solution, text }) {
           pathname: `/${sitename}/words`,
           search: `?q=${solution}&types=word`,
         }}
-        className="btn-contained"
+        className="btn-primary btn-md"
       >
         Look up <span className="font-bold ml-2">{solution}</span>
       </Link>

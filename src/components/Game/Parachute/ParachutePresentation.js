@@ -212,20 +212,20 @@ function ParachutePresentation({
 
             <div className="space-x-2">
               <button
-                data-testid="new"
-                type="button"
-                onClick={startNewGame}
-                className="btn-contained bg-blumine-800"
-              >
-                New Puzzle
-              </button>
-              <button
                 data-testid="restart"
                 type="button"
-                className="btn-contained bg-scarlet-800"
+                className="btn-secondary btn-md"
                 onClick={resetGameBoard}
               >
                 Restart
+              </button>
+              <button
+                data-testid="new"
+                type="button"
+                onClick={startNewGame}
+                className="btn-primary btn-md"
+              >
+                New Puzzle
               </button>
             </div>
           </div>

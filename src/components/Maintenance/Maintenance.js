@@ -36,7 +36,7 @@ function Maintenance({ children, pageName = 'This page' }) {
         </div>
         <div className="inline-flex items-center space-x-2">
           <a
-            className="btn-outlined border-blumine-700 text-blumine-700 font-bold w-36"
+            className="btn-secondary btn-lg"
             href="https://firstvoices.atlassian.net/servicedesk/customer/portal/6"
             target="_blank"
             rel="noopener noreferrer"
@@ -45,11 +45,11 @@ function Maintenance({ children, pageName = 'This page' }) {
           </a>
           <button
             type="button"
-            className="btn-contained bg-blumine-700 w-36"
+            className="btn-primary btn-lg"
             data-testid="back-btn"
             onClick={goBack}
           >
-            {getIcon('BackArrow', 'btn-icon')}
+            {getIcon('BackArrow')}
             <span>Go back</span>
           </button>
         </div>

@@ -59,6 +59,7 @@ function WidgetCrudPresentation({
             {widgetTypes?.length > 0 &&
               widgetTypes?.map((type) => (
                 <button
+                  data-testid={`select-${type}-btn`}
                   type="button"
                   key={type}
                   onClick={() => setSelectedType(type)}
@@ -86,7 +87,7 @@ function WidgetCrudPresentation({
               <button
                 data-testid="cancel"
                 type="button"
-                className="btn-contained"
+                className="btn-primary btn-md"
                 onClick={backHandler}
               >
                 Cancel
