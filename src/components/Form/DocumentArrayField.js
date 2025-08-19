@@ -33,7 +33,10 @@ function DocumentArrayField({
       <div data-testid="DocumentArrayField" className="space-y-2">
         <ul className="space-y-1">
           {fields?.map((field, index) => (
-            <li key={field.key} className="btn-contained mr-1">
+            <li
+              key={field.key}
+              className="rounded-lg py-1 px-2 inline-flex justify-center items-center space-x-2 text-sm bg-blumine-800 text-white mr-1"
+            >
               <div>{field?.title}</div>
               <XButton onClickHandler={() => remove(index)} />
             </li>
