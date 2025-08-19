@@ -169,12 +169,10 @@ function SearchSitesFilter() {
                     data-testid={`remove-site-btn-${siteFilter?.slug}`}
                     type="button"
                     onClick={() => handleRemoveItem(siteFilter)}
-                    className="btn-contained px-2 bg-blumine-100"
+                    className="text-blumine-800 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center items-center space-x-2 text-sm border border-transparent bg-blumine-100"
                   >
-                    <span className="text-charcoal-900 text-sm">
-                      {siteFilter?.title}
-                    </span>
-                    {getIcon('Close', 'btn-icon text-blumine-800')}
+                    <span>{siteFilter?.title}</span>
+                    {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
                 </li>
               ))}
@@ -182,10 +180,10 @@ function SearchSitesFilter() {
             <button
               data-testid="clear-site-filters-btn"
               type="button"
-              className="btn-contained justify-start pl-0 text-blumine-800 bg-white shadow-none mt-2"
+              className="rounded-lg py-2 inline-flex items-center space-x-2 text-sm border border-transparent justify-start text-blumine-800 bg-white mt-2"
               onClick={() => setSelectedItems([])}
             >
-              {getIcon('ChevronLeft', 'btn-icon h-8 w-8 fill-current')}
+              {getIcon('ChevronLeft', 'h-8 w-8 fill-current')}
               <span className="">Clear all</span>
             </button>
           </div>
