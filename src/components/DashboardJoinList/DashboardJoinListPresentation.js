@@ -10,10 +10,7 @@ function DashboardJoinListPresentation({ joinRequestsInfiniteQueryResponse }) {
     <div data-testid="DashboardJoinListPresentation">
       <div className="min-h-220 col-span-12">
         {joinRequestsInfiniteQueryResponse?.data?.pages?.[0]?.count > 0 ? (
-          <div
-            id="EntriesListPresentation"
-            className="flex flex-col w-full bg-white rounded-lg"
-          >
+          <div className="flex flex-col w-full bg-white rounded-lg">
             <ul className="divide-y divide-charcoal-100 list-none">
               {joinRequestsInfiniteQueryResponse?.data?.pages.map((page) => (
                 <Fragment key={page?.pageNumber}>
@@ -25,10 +22,11 @@ function DashboardJoinListPresentation({ joinRequestsInfiniteQueryResponse }) {
                   ))}
                 </Fragment>
               ))}
-              <InfiniteLoadBtn
-                infiniteQueryResponse={joinRequestsInfiniteQueryResponse}
-              />
+              <div className="w-full h-14" />
             </ul>
+            <InfiniteLoadBtn
+              infiniteQueryResponse={joinRequestsInfiniteQueryResponse}
+            />
           </div>
         ) : (
           <div className="w-full flex">
