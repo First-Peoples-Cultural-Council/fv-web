@@ -71,26 +71,28 @@ function JoinPresentation({
               <div className="mt-10 space-y-6">
                 {site?.visibility === PUBLIC && (
                   <button
+                    data-testid="public-site-link"
                     type="button"
                     onClick={() => linkAndClose(`/${site?.sitename}/`)}
-                    className="btn-contained mx-auto flex"
+                    className="btn-primary btn-md mx-auto flex"
                   >
                     Browse public content on the {site?.title} site
                   </button>
                 )}
                 <button
+                  data-testid="languages-link"
                   type="button"
                   onClick={() => linkAndClose('/languages')}
                   className={
                     site?.visibility === PUBLIC
-                      ? 'text-sm font-semibold leading-6 text-charcoal-900'
-                      : 'btn-contained mx-auto flex'
+                      ? 'btn-tertiary btn-md'
+                      : 'btn-primary btn-md mx-auto flex'
                   }
                 >
                   <span>Explore other languages</span>
-                  <span className="text-lg ml-2" aria-hidden="true">
+                  <div className="text-xl" aria-hidden="true">
                     →
-                  </span>
+                  </div>
                 </button>
               </div>
             </div>
