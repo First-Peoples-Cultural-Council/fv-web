@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 import {
@@ -6,7 +6,6 @@ import {
   ListboxButton,
   ListboxOptions,
   ListboxOption,
-  Transition,
 } from '@headlessui/react'
 import { Controller } from 'react-hook-form'
 
@@ -123,65 +122,40 @@ function JoinForm({ site, submitHandler }) {
               name="reasons"
               render={({ field: { value, onChange } }) => (
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
-                  {({ open }) => (
-                    <div className="relative max-w-xs">
-                      <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
-                        <div className="w-full inline-flex items-center">
-                          <span className="truncate">
-                            {value?.length < 1
-                              ? 'Choose reason'
-                              : value
-                                  ?.map((reason) => reason?.label)
-                                  .join(', ')}
-                          </span>
-                          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                            {getIcon(
-                              'ChevronUpDown',
-                              'h-5 w-5 mr-2 text-charcoal-900 fill-current',
-                            )}
-                          </span>
-                        </div>
-                      </ListboxButton>
-
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
-                          {reasonOptions.map((option) => (
-                            <ListboxOption key={option?.reason} value={option}>
-                              {({ focus, selected }) => (
-                                <div
-                                  className={`relative w-full inline-flex items-center select-none py-2 pl-8 pr-4 ${
-                                    focus
-                                      ? 'bg-charcoal-50 text-scarlet-800'
-                                      : 'text-charcoal-900'
-                                  }`}
-                                >
-                                  <div
-                                    className={`inline-flex truncate items-center ${
-                                      selected ? 'font-medium' : 'font-normal'
-                                    }`}
-                                  >
-                                    {option?.label}
-                                  </div>
-                                  {selected
-                                    ? getIcon(
-                                        'Checkmark',
-                                        'absolute left-2 h-5 w-5 fill-current text-blumine-800',
-                                      )
-                                    : null}
-                                </div>
+                  <div className="relative max-w-xs">
+                    <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-blumine-800 focus:border-blumine-800">
+                      <div className="w-full inline-flex items-center">
+                        <span className="truncate">
+                          {value?.length < 1
+                            ? 'Choose reason'
+                            : value?.map((reason) => reason?.label).join(', ')}
+                        </span>
+                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                          {getIcon(
+                            'ChevronUpDown',
+                            'h-5 w-5 mr-2 text-charcoal-900 fill-current',
+                          )}
+                        </span>
+                      </div>
+                    </ListboxButton>
+                    <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+                      {reasonOptions.map((option) => (
+                        <ListboxOption key={option?.reason} value={option}>
+                          {({ selected }) => (
+                            <div className="w-full inline-flex items-center space-x-2 py-2 pl-8 pr-4 hover:bg-charcoal-50 hover:text-blumine-800 text-charcoal-900">
+                              {getIcon(
+                                'Checkmark',
+                                `h-5 w-5 fill-current ${selected ? '' : 'opacity-0'}`,
                               )}
-                            </ListboxOption>
-                          ))}
-                        </ListboxOptions>
-                      </Transition>
-                    </div>
-                  )}
+                              <div className="inline-flex truncate items-center">
+                                {option?.label}
+                              </div>
+                            </div>
+                          )}
+                        </ListboxOption>
+                      ))}
+                    </ListboxOptions>
+                  </div>
                 </Listbox>
               )}
             />
@@ -200,7 +174,7 @@ function JoinForm({ site, submitHandler }) {
                 id="message"
                 name="message"
                 {...register('message')}
-                className="shadow-sm focus:ring-scarlet-800 focus:border-scarlet-800 mt-1 block w-full border border-charcoal-200 rounded-lg max-h-72 overflow-auto"
+                className="shadow-sm focus:ring-blumine-800 focus:border-blumine-800 mt-1 block w-full border border-charcoal-200 rounded-lg max-h-72 overflow-auto"
               />
             </div>
 
