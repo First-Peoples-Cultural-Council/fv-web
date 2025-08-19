@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 // FPCC
 import { localDateMDYTwords } from 'common/utils/stringHelpers'
 import {
-  MEMBER,
-  ASSISTANT,
-  EDITOR,
-  LANGUAGE_ADMIN,
-} from 'common/constants/roles'
+  LANGUAGE_ADMIN_ENUM_NAME,
+  EDITOR_ENUM_NAME,
+  ASSISTANT_ENUM_NAME,
+  MEMBER_ENUM_NAME,
+} from 'common/constants'
 import getIcon from 'common/utils/getIcon'
 import Listbox from 'components/Listbox'
 
@@ -27,10 +27,10 @@ function DashboardJoinCardPresentation({
 
   const options = [
     { value: '', label: 'Select a role' },
-    { value: MEMBER, label: 'Approve as Member' },
-    { value: ASSISTANT, label: 'Approve as Assistant' },
-    { value: EDITOR, label: 'Approve as Editor' },
-    { value: LANGUAGE_ADMIN, label: 'Approve as Language Admin' },
+    { value: MEMBER_ENUM_NAME, label: 'Approve as Member' },
+    { value: ASSISTANT_ENUM_NAME, label: 'Approve as Assistant' },
+    { value: EDITOR_ENUM_NAME, label: 'Approve as Editor' },
+    { value: LANGUAGE_ADMIN_ENUM_NAME, label: 'Approve as Language Admin' },
   ]
 
   return (
@@ -69,7 +69,7 @@ function DashboardJoinCardPresentation({
               <Listbox.Presentation
                 selectedValue={selectedRole}
                 options={options}
-                setValue={(role) => setSelectedRole(role.split(' ').join('_'))}
+                setValue={(role) => setSelectedRole(role)}
               />
             </div>
 
@@ -99,7 +99,7 @@ function DashboardJoinCardPresentation({
                 data-testid="igore-request-btn"
                 type="button"
                 onClick={() => handleIgnore()}
-                className="btn-secondary btn-sm text-scarlet-800 border-scarlet-800"
+                className="btn-secondary btn-sm text-scarlet-800 border-scarlet-800 hover:bg-scarlet-50"
               >
                 {getIcon('TimesCircleSolid')}
                 <span>Ignore</span>

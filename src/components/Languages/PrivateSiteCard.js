@@ -77,17 +77,20 @@ function PrivateSiteCard({ site, user }) {
                     data-testid="login-join"
                     type="button"
                     onClick={primaryButtonClick}
-                    className="btn-contained bg-scarlet-800"
+                    className="btn-primary btn-md"
                   >
-                    {isAnonymous ? 'Sign in' : 'request to join'}
+                    {isAnonymous ? 'Sign in' : 'Request to join'}
                   </button>
                   <button
                     data-testid="explore-languages"
                     type="button"
                     onClick={() => setPrivateSiteModalOpen(false)}
-                    className="text-sm font-semibold leading-6 text-charcoal-900"
+                    className="btn-tertiary btn-md"
                   >
-                    Explore other languages <span aria-hidden="true">→</span>
+                    <span>Explore other languages </span>
+                    <div className="text-xl" aria-hidden="true">
+                      →
+                    </div>
                   </button>
                 </div>
               </div>
