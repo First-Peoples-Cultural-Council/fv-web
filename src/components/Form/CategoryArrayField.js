@@ -35,7 +35,10 @@ function CategoryArrayField({
       <div className="space-y-2">
         <ul className="space-y-2">
           {fields.map((item, index) => (
-            <li key={item.key} className="btn-contained mr-1">
+            <li
+              key={item.key}
+              className="rounded-lg py-1 px-2 inline-flex justify-center items-center space-x-2 text-sm bg-blumine-800 text-white mr-1"
+            >
               <input type="hidden" {...register(`${nameId}.${index}`)} />
               <div>{item?.title}</div>
               <XButton

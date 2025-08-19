@@ -208,22 +208,20 @@ function WidgetAreaEditPresentationSettingsPane({
       >
         <div
           data-testid="RemoveWidgetModalContent"
-          className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-md sm:w-full"
+          className="inline-block align-bottom space-y-6 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-md sm:w-full"
         >
-          <div className="text-center font-medium space-y-2">
-            <p className="text-2xl text-charcoal-900">
-              Are you sure you want to remove the widget from this page?
-            </p>
-            <p className="text-charcoal-900">
-              This will not delete the widget itself and you can always put it
-              back if you change your mind.
-            </p>
-          </div>
+          <h2 className="text-center font-medium text-2xl text-charcoal-900">
+            Are you sure you want to remove the widget from this page?
+          </h2>
+          <p className="text-center text-charcoal-900">
+            This will not delete the widget itself and you can always put it
+            back if you change your mind.
+          </p>
           <div className="w-full justify-center flex space-x-2">
             <button
               data-testid="cancel"
               type="button"
-              className="btn-outlined"
+              className="btn-secondary btn-md"
               onClick={() => setRemoveModalOpen(false)}
             >
               Cancel
@@ -231,7 +229,7 @@ function WidgetAreaEditPresentationSettingsPane({
             <button
               data-testid="confirm"
               type="button"
-              className="btn-contained bg-scarlet-800"
+              className="btn-primary btn-md"
               onClick={() => onRemoveConfirmationClick()}
             >
               Remove
