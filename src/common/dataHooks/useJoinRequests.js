@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 
 // FPCC
 import api from 'services/api'
-import { JOIN_REQUESTS, MEMBER } from 'common/constants'
+import { JOIN_REQUESTS, MEMBER_ENUM_NAME } from 'common/constants'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 import { useSiteStore } from 'context/SiteContext'
@@ -58,7 +58,7 @@ export function useJoinRequestApprove() {
 
   const approveJoinRequest = async (formData) => {
     const properties = {
-      role: formData?.role || MEMBER,
+      role: formData?.role || MEMBER_ENUM_NAME,
     }
     return api.joinRequests.approve({
       id: formData?.id,
