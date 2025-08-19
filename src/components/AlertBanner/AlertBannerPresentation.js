@@ -12,7 +12,10 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
         <div className="rounded-lg bg-jade-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('CheckCircleSolid', 'btn-icon text-jade-500')}
+              {getIcon(
+                'CheckCircleSolid',
+                'fill-current h-5 w-5 text-jade-500',
+              )}
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-jade-800">{message}</p>
@@ -27,7 +30,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                     className="inline-flex rounded-lg p-1.5 text-jade-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'btn-icon')}
+                    {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
                 )}
               </div>
@@ -40,7 +43,10 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
         <div className="rounded-lg bg-scarlet-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('TimesCircleSolid', 'btn-icon text-scarlet-700')}
+              {getIcon(
+                'TimesCircleSolid',
+                'fill-current h-5 w-5 text-scarlet-700',
+              )}
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-scarlet-900">{message}</p>
@@ -55,7 +61,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                     className="inline-flex rounded-lg p-1.5 text-scarlet-700"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'btn-icon')}
+                    {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
                 )}
               </div>
@@ -68,7 +74,10 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
         <div className="rounded-lg bg-ochre-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('ExclamationTriangleSolid', 'btn-icon text-ochre-500')}
+              {getIcon(
+                'ExclamationTriangleSolid',
+                'fill-current h-5 w-5 text-ochre-500',
+              )}
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-ochre-800">{message}</p>
@@ -83,7 +92,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                     className="inline-flex rounded-lg p-1.5 text-ochre-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'btn-icon')}
+                    {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
                 )}
               </div>
@@ -96,7 +105,10 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
         <div className="rounded-lg bg-blumine-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('InfoCircleSolid', 'btn-icon text-blumine-500')}
+              {getIcon(
+                'InfoCircleSolid',
+                'fill-current h-5 w-5 text-blumine-500',
+              )}
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-blumine-800">{message}</p>
@@ -111,7 +123,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                     className="inline-flex rounded-lg p-1.5 text-blumine-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'btn-icon')}
+                    {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
                 )}
               </div>
@@ -125,7 +137,10 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
         <div className="rounded-lg bg-charcoal-50 shadow-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
-              {getIcon('InfoCircleSolid', 'btn-icon text-charcoal-500')}
+              {getIcon(
+                'InfoCircleSolid',
+                'fill-current h-5 w-5 text-charcoal-500',
+              )}
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-charcoal-900">{message}</p>
@@ -140,7 +155,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
                     className="inline-flex rounded-lg p-1.5 text-charcoal-500"
                   >
                     <span className="sr-only">Dismiss</span>
-                    {getIcon('Close', 'btn-icon')}
+                    {getIcon('Close', 'fill-current h-5 w-5')}
                   </button>
                 )}
               </div>

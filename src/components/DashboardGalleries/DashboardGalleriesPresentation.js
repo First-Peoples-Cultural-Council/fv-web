@@ -42,7 +42,7 @@ function DashboardGalleriesPresentation({ galleriesQueryResponse, site }) {
                   >
                     {getIcon(
                       'Pencil',
-                      'absolute top-3 right-3 btn-icon text-white opacity-0 group-hover:opacity-100',
+                      'absolute top-3 right-3 fill-current h-5 w-5 text-white opacity-0 group-hover:opacity-100',
                     )}
                     <div className="opacity-75 group-hover:opacity-100 px-3 lg:px-5 py-6 lg:py-10 flex flex-col text-center items-center">
                       <div className="text-lg lg:text-2xl">{item.title}</div>
