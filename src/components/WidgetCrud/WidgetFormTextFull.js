@@ -10,7 +10,7 @@ import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 
 function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
-  const toolbar = ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL', 'HEADER']
+  const toolbar = ['INLINESTYLES', 'BLOCKSTYLES', 'OL', 'UL']
 
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
