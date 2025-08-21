@@ -160,10 +160,6 @@ function WysiwygField({
           )}
           {/* Toolbar for block styles */}
           {toolbar?.includes('BLOCKSTYLES') && (
-            // <WysiwygControls.BlockStyleToolbar
-            //   editor={editor}
-            //   toolbar={toolbar}
-            // />
             <span className="flex border-b border-charcoal-100 text-xl text-charcoal-700">
               <select
                 value={headerValue}
