@@ -112,8 +112,9 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
                 <div className="relative flex items-start px-3 py-4">
                   <div className="flex h-6 items-center">
                     <Radio
+                      id={role.id}
                       value={role.id}
-                      className={`group flex h-6 w-6 items-center justify-center rounded-full border border-blumine-900 ${field?.value === role.id ? 'bg-blumine-900' : 'bg-white'}`}
+                      className={`group cursor-pointer flex h-6 w-6 items-center justify-center rounded-full border border-blumine-900 ${field?.value === role.id ? 'bg-blumine-900' : 'bg-white'}`}
                     >
                       {getIcon(
                         'Checkmark',
@@ -121,16 +122,19 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
                       )}
                     </Radio>
                   </div>
-                  <div className="ml-6 text-left text-blumine-900">
-                    <Label htmlFor={role.id} className="text-base font-bold">
+                  <Label
+                    htmlFor={role.id}
+                    className="pl-6 text-left text-blumine-900 cursor-pointer"
+                  >
+                    <div htmlFor={role.id} className="text-base font-bold">
                       {t(`role-${role?.id}`)}
-                    </Label>
+                    </div>
                     {role.descriptions.map((description) => (
                       <p key={description.key} className="text-sm">
                         {description.text}
                       </p>
                     ))}
-                  </div>
+                  </Label>
                 </div>
               </Field>
             ))}
