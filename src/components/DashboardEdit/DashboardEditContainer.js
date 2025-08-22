@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router'
 import RequireAuth from 'common/RequireAuth'
 import DashboardEditPresentation from 'components/DashboardEdit/DashboardEditPresentation'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
+import DocHead from 'components/DocHead'
 import {
   TYPE_WORD,
   TYPE_PHRASE,
@@ -45,6 +46,7 @@ function DashboardEditContainer() {
   })
   return (
     <div id="DashboardEditContainer">
+      <DocHead titleArray={['Edit']} />
       <Routes>
         {/* Search and Lists */}
         <Route

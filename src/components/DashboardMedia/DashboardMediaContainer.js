@@ -7,6 +7,7 @@ import DashboardMediaData from 'components/DashboardMedia/DashboardMediaData'
 import DashboardMediaAudio from 'components/DashboardMediaAudio'
 import DashboardMediaDocuments from 'components/DashboardMediaDocuments'
 import DashboardMediaVisual from 'components/DashboardMediaVisual'
+import DocHead from 'components/DocHead'
 import {
   AUDIO_PATH,
   DOCUMENT_PATH,
@@ -21,6 +22,7 @@ function DashboardMediaContainer() {
   const { tileContent, headerContent, site } = DashboardMediaData()
   return (
     <div id="DashboardMediaContainer">
+      <DocHead titleArray={['Media']} />
       <Routes>
         <Route path={AUDIO_PATH} element={<DashboardMediaAudio.Container />} />
         <Route

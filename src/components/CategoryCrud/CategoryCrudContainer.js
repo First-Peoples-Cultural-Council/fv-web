@@ -4,6 +4,7 @@ import React from 'react'
 import CategoryCrudPresentation from 'components/CategoryCrud/CategoryCrudPresentation'
 import CategoryCrudData from 'components/CategoryCrud/CategoryCrudData'
 import LoadOrError from 'components/LoadOrError'
+import DocHead from 'components/DocHead'
 
 function CategoryCrudContainer() {
   const {
@@ -17,6 +18,7 @@ function CategoryCrudContainer() {
 
   return (
     <LoadOrError queryResponse={categoriesQueryResponse}>
+      <DocHead titleArray={['Create Category']} />
       <CategoryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
