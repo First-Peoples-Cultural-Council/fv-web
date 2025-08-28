@@ -89,7 +89,7 @@
     "@tiptap/pm": "^3.2.2",
     "@tiptap/react": "^3.3.0",
     "@tiptap/starter-kit": "^3.2.2",
-    "@uppy/core": "^4.4.0",
+    "@uppy/core": "^5.0.1",
     "@uppy/dashboard": "^4.3.0",
     "@uppy/drag-drop": "^4.1.2",
     "@uppy/file-input": "^4.1.1",
