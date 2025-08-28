@@ -18,7 +18,7 @@ import {
   MEMBER_ENUM_NAME,
 } from 'common/constants'
 
-function MembershipCrudPresentation({ cancelHandler, membership }) {
+function MembershipCrudPresentation({ closeHandler, membership }) {
   const [t] = useTranslation()
   const mutation = useMembershipUpdateRole()
 
@@ -147,6 +147,7 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
             type="button"
             onClick={handleSubmit((formData) => {
               mutation.mutate(formData)
+              closeHandler()
             })}
             className="btn-primary btn-md"
           >
@@ -155,7 +156,7 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
           <button
             data-testid="form-cancel"
             type="button"
-            onClick={() => cancelHandler()}
+            onClick={() => closeHandler()}
             className="btn-tertiary btn-md"
           >
             <span>Cancel</span>
@@ -170,7 +171,7 @@ function MembershipCrudPresentation({ cancelHandler, membership }) {
 const { func, object } = PropTypes
 
 MembershipCrudPresentation.propTypes = {
-  cancelHandler: func,
+  closeHandler: func,
   membership: object,
 }
 
