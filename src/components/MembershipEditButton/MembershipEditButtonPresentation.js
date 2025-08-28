@@ -30,7 +30,7 @@ function MembershipEditButtonPresentation({ membership }) {
       >
         <MembershipCrud
           membership={membership}
-          cancelHandler={() => setModalOpen(false)}
+          closeHandler={() => setModalOpen(false)}
         />
       </Modal.Presentation>
     </>
