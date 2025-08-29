@@ -35,7 +35,7 @@ function WysiwygField({
       Link.extend({
         inclusive: false,
       }).configure({
-        defaultProtocol: 'https:',
+        defaultProtocol: 'https',
         enableClickSelection: true,
         openOnClick: false,
         HTMLAttributes: {
