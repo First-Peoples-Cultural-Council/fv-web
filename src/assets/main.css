@@ -39,6 +39,11 @@
   box-shadow: none;
 }
 
+/* Prevent clickable links while editing in tiptap editor */
+.wysiwyg .ProseMirror a {
+  pointer-events: none;
+}
+
 /* These component rules can be over-ridden using utility classes. 
 For example over-ride the colour of the btn-primary backgound using bg-scarlet-800 */
 @layer components {
