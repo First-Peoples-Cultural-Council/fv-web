@@ -19,7 +19,13 @@ function DictionaryCrudContainer({ type, isCreate }) {
 
   return (
     <Loading.Container isLoading={isLoading}>
-      {isCreate ? <DocHead titleArray={[`Create ${type}`]} /> : null}
+      {isCreate ? (
+        <DocHead
+          titleArray={[
+            `Create ${type.charAt(0).toUpperCase()}${type.slice(1)}`,
+          ]}
+        />
+      ) : null}
       <DictionaryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
