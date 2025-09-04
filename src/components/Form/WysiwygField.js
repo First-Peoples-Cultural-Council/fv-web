@@ -31,7 +31,9 @@ function WysiwygField({
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        link: false, // disable the starter kit link extension for the custom one below
+      }),
       Link.extend({
         inclusive: false,
       }).configure({
@@ -66,21 +68,45 @@ function WysiwygField({
 
   useEffect(() => {
     if (editor && value !== editor.getHTML()) {
-      editor.commands.setContent(value || '')
+      editor.commands.setContent(value || '', {
+        emitUpdate: false,
+      })
     }
   }, [editor, value])
 
   // Inline style toolbar setup
+  const normalizeUrl = (url) => {
+    url = url.trim()
+
+    // If protocol is present, return as is
+    if (/^(https?:\/\/|mailto:|tel:)/i.test(url)) {
+      return url
+    }
+    // If the url has a domain, prepend https://
+    if (/^[\w-]+(\.[\w-]+)+/.test(url)) {
+      return `https://${url}`
+    }
+
+    // Otherwise, return as a relative link
+    return url
+  }
+
   const setLink = useCallback(() => {
     const previousUrl = editor.getAttributes('link').href
-    const url = window.prompt(
+    const rawUrl = window.prompt(
       'Enter a URL to link highlighted text. To remove the link, leave it blank and click OK.',
       previousUrl || '',
     )
-    if (url) {
-      editor.chain().focus().setLink({ href: url }).run()
-    } else if (url === '') {
+    if (rawUrl === null) {
+      // User cancelled the prompt
+      return
+    }
+
+    const url = normalizeUrl(rawUrl)
+    if (url === '') {
       editor.chain().focus().unsetLink().run()
+    } else {
+      editor.chain().focus().setLink({ href: url }).run()
     }
   }, [editor])
 
