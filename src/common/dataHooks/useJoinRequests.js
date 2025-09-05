@@ -6,16 +6,15 @@ import api from 'services/api'
 import { JOIN_REQUESTS, MEMBER_ENUM_NAME } from 'common/constants'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
-import { useSiteStore } from 'context/SiteContext'
 
 export function useJoinRequests() {
-  const { site } = useSiteStore()
+  const { sitename } = useParams()
 
   const infiniteQueryResponse = useInfiniteScroll({
-    queryKey: [JOIN_REQUESTS, site?.sitename],
+    queryKey: [JOIN_REQUESTS, sitename],
     queryFn: ({ pageParam = 1 }) =>
       api.joinRequests.getAll({
-        sitename: site?.sitename,
+        sitename,
         pageParam,
       }),
   })
