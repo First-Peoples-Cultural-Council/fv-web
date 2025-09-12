@@ -6,6 +6,7 @@ import { useFieldArray } from 'react-hook-form'
 import getIcon from 'common/utils/getIcon'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
+import Tooltip from 'components/Tooltip'
 
 function TextTranslationArrayField({
   label = '',
@@ -69,20 +70,18 @@ function TextTranslationArrayField({
                     )}
                   </div>
                 </div>
-                <div className="has-tooltip flex items-center">
-                  <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-blumine-800 text-xs -mt-12">
-                    Delete {label.slice(0, -1)}
-                  </span>
+
+                <Tooltip message={`Delete ${label.slice(0, -1)}`}>
                   <button
                     data-testid="delete-btn"
                     type="button"
                     aria-label="Delete Translation"
-                    className="btn-tertiary btn-sm-icon"
+                    className="btn-tertiary btn-md-icon"
                     onClick={() => remove(index)}
                   >
-                    {getIcon('Trash', 'fill-current h-5 w-5 ml-2')}
+                    {getIcon('Trash')}
                   </button>
-                </div>
+                </Tooltip>
               </div>
             </li>
           ))}

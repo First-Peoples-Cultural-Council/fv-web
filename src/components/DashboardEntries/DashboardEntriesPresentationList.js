@@ -19,6 +19,7 @@ import {
   SORT_MODIFIED_DESC,
 } from 'common/constants'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
+import Tooltip from 'components/Tooltip'
 
 function DashboardEntriesPresentationList({
   searchInfiniteQueryResponse,
@@ -175,15 +176,19 @@ function DashboardEntriesPresentationList({
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {getIcon('Pencil', 'fill-current w-6 h-6')}
+                                {getIcon('Pencil')}
                               </Link>
                             ) : (
-                              <div className="has-tooltip p-4 text-charcoal-500 flex items-center">
-                                <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-20">
-                                  You do not have access to edit this.
-                                </span>
-                                {getIcon('Pencil', 'fill-current w-6 h-6')}
-                              </div>
+                              <Tooltip message="You do not have access to edit this.">
+                                <button
+                                  data-testid="edit-link"
+                                  type="button"
+                                  disabled
+                                  className="btn-md-icon btn-tertiary"
+                                >
+                                  {getIcon('Pencil')}
+                                </button>
+                              </Tooltip>
                             )}
                           </td>
                           <td>
@@ -193,11 +198,7 @@ function DashboardEntriesPresentationList({
                               onClick={() => handleItemClick(entry)}
                               className="btn-md-icon btn-tertiary"
                             >
-                              {getIcon(
-                                'Preview',
-                                'fill-current w-6 h-6',
-                                'Preview',
-                              )}
+                              {getIcon('Preview')}
                             </button>
                           </td>
                         </tr>

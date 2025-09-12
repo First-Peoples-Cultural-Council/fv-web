@@ -163,12 +163,6 @@ For example over-ride the colour of the btn-primary backgound using bg-scarlet-8
   .breakAfter {
     page-break-after: always;
   }
-  .tooltip {
-    @apply invisible absolute;
-  }
-  .has-tooltip:hover .tooltip {
-    @apply visible z-50;
-  }
   .point-up {
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
