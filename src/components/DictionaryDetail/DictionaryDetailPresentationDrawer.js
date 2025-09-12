@@ -50,7 +50,6 @@ function DictionaryDetailPresentationDrawer({
                 actions={actions}
                 moreActions={moreActions}
                 withLabels
-                withConfirmation
               />
             </div>
             {entry?.visibility === PUBLIC || !entry?.visibility

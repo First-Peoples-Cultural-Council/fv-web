@@ -15,12 +15,11 @@ export function useWidget({ id }) {
   const response = useQuery({
     queryKey: [WIDGETS, sitename, id],
     queryFn: () => api.widgets.get({ sitename, id }),
-    ...{ enabled: !!id },
+    select: (data) => widgetAdaptor({ widgetData: data, sitename }),
+    enabled: !!id,
   })
-  return {
-    ...response,
-    data: widgetAdaptor({ widgetData: response?.data, sitename }),
-  }
+
+  return response
 }
 
 export function useWidgets() {

@@ -24,7 +24,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
           <span className="leading-loose text-2xl md:text-4xl lg:text-5xl text-center font-bold">
             {title}
           </span>
-          {audio && <AudioButton audioArray={[audioObject]} hoverTooltip />}
+          {audio && <AudioButton audioArray={[audioObject]} />}
         </div>
         <p className="text-center text-lg md:text-xl lg:text-2xl">{text}</p>
         {url && (

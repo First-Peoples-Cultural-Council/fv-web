@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import MembershipCrud from 'components/MembershipCrud/MembershipCrud'
+import Tooltip from 'components/Tooltip'
 import { LANGUAGE_ADMIN_ENUM_NAME } from 'common/constants'
 
 function MembershipEditButtonPresentation({ membership }) {
@@ -13,16 +14,21 @@ function MembershipEditButtonPresentation({ membership }) {
 
   return (
     <>
-      <button
-        data-testid="MembershipEditButton"
-        type="button"
-        onClick={() => setModalOpen(true)}
-        disabled={disabled}
-        className="btn-tertiary btn-md-icon"
+      <Tooltip
+        hide={!disabled}
+        message="To edit the role of a Language Admin please contact FirstVoices Support"
       >
-        {getIcon(disabled ? 'Lock' : 'Pencil')}
-        <span className="sr-only">Edit, {membership?.firstName}</span>
-      </button>
+        <button
+          data-testid="MembershipEditButton"
+          type="button"
+          onClick={() => setModalOpen(true)}
+          disabled={disabled}
+          className="btn-tertiary btn-md-icon"
+        >
+          {getIcon(disabled ? 'Lock' : 'Pencil')}
+          <span className="sr-only">Edit, {membership?.firstName}</span>
+        </button>
+      </Tooltip>
 
       <Modal.Presentation
         isOpen={modalOpen}

@@ -1,13 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-/**
- * @summary HamburgerMenu
- * @component
- *
- * @param {object} props
- *
- * @returns {node} jsx markup
- */
+
 function HamburgerMenu({ styling }) {
   return (
     <svg
@@ -17,7 +10,6 @@ function HamburgerMenu({ styling }) {
       viewBox="0 0 24 24"
       stroke="currentColor"
     >
-      <title>Open menu</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

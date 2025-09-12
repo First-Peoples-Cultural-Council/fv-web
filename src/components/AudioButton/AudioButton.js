@@ -4,40 +4,35 @@ import PropTypes from 'prop-types'
 // FPCC
 import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
+import Tooltip from 'components/Tooltip'
 
-function AudioButton({ audioArray, hoverTooltip }) {
+function AudioButton({ audioArray }) {
   const { setCurrentAudio } = useAudiobar()
 
   return audioArray?.map((audioObject) =>
     audioObject?.id ? (
-      <>
+      <Tooltip key={audioObject?.id} message="Play audio">
         <label htmlFor={`audio-btn-${audioObject.id}`} className="sr-only">
           Play audio
         </label>
         <button
           type="button"
+          id={`audio-btn-${audioObject.id}`}
           data-testid={`audio-btn-${audioObject.id}`}
           key={audioObject?.id}
-          className="btn-tertiary btn-md-icon relative group"
+          className="btn-tertiary btn-md-icon"
           onClick={() => setCurrentAudio(audioObject)}
         >
           {getIcon('Audio')}
-          {hoverTooltip ? (
-            <div className="z-10 hidden group-hover:inline-flex absolute -bottom-8 -right-4 w-auto p-1 text-sm font-normal bg-charcoal-500 text-white text-center rounded-lg whitespace-nowrap">
-              Play audio
-            </div>
-          ) : null}
         </button>
-      </>
+      </Tooltip>
     ) : null,
   )
 }
 // PROPTYPES
-const { array, string, bool } = PropTypes
+const { array } = PropTypes
 AudioButton.propTypes = {
   audioArray: array,
-  iconStyling: string,
-  hoverTooltip: bool,
 }
 
 export default AudioButton

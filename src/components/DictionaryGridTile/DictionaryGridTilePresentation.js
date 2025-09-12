@@ -34,8 +34,6 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
               sitename={entry?.sitename}
               actions={actions}
               moreActions={moreActions}
-              iconStyling="w-8 h-8"
-              withConfirmation
             />
           </div>
           {/* Translations/Definitions */}
@@ -54,7 +52,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
           )}
           <div className="flex w-full">
             {/* Entry Audio */}
-            <AudioButton audioArray={entry?.audio} hoverTooltip />
+            <AudioButton audioArray={entry?.audio} />
           </div>
         </div>
       </section>

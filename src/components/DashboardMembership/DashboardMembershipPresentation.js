@@ -9,6 +9,7 @@ import { localDateMDYwords } from 'common/utils/stringHelpers'
 import DeleteButton from 'components/DeleteButton'
 import MembershipEditButton from 'components/MembershipEditButton'
 import PaginationControls from 'components/PaginationControls'
+import Tooltip from 'components/Tooltip'
 import { LANGUAGE_ADMIN_ENUM_NAME } from 'common/constants'
 
 function DashboardMembershipPresentation({
@@ -27,8 +28,8 @@ function DashboardMembershipPresentation({
           <div className="sm:flex sm:items-center">
             <div className="flow-root w-full">
               <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                  <div className="overflow-hidden shadow outline outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
+                <div className="inline-block min-w-full py-3 align-middle sm:px-6 lg:px-8">
+                  <div className="shadow outline outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
                     <LoadOrError queryResponse={queryResponse}>
                       <table className="relative min-w-full">
                         <thead className="">
@@ -97,18 +98,26 @@ function DashboardMembershipPresentation({
                                 <MembershipEditButton membership={membership} />
                               </td>
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                <DeleteButton.Presentation
-                                  deleteHandler={() =>
-                                    deleteMembership(membership?.id)
-                                  }
-                                  disabled={
-                                    membership?.role ===
+                                <Tooltip
+                                  hide={
+                                    membership?.role !==
                                     LANGUAGE_ADMIN_ENUM_NAME
                                   }
-                                  message="Remove this user's membership?"
-                                  note="This will remove any editing privileges that the user currently has and prevent them from viewing any content on your site that is not public."
-                                  styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
-                                />
+                                  message="To remove the membership of a Language Admin please contact FirstVoices Support"
+                                >
+                                  <DeleteButton.Presentation
+                                    deleteHandler={() =>
+                                      deleteMembership(membership?.id)
+                                    }
+                                    disabled={
+                                      membership?.role ===
+                                      LANGUAGE_ADMIN_ENUM_NAME
+                                    }
+                                    message="Remove this user's membership?"
+                                    note="This will remove any editing privileges that the user currently has and prevent them from viewing any content on your site that is not public."
+                                    styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
+                                  />
+                                </Tooltip>
                               </td>
                             </tr>
                           ))}

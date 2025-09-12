@@ -64,9 +64,7 @@ function DictionaryDetailPresentation({
                   sitename={sitename}
                   actions={actions}
                   moreActions={moreActions}
-                  iconStyling="w-6 h-6"
                   withLabels
-                  withConfirmation
                 />
               </div>
               {entry?.visibility === PUBLIC || !entry?.visibility ? (

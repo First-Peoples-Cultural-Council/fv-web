@@ -163,11 +163,11 @@ For example over-ride the colour of the btn-primary backgound using bg-scarlet-8
   .breakAfter {
     page-break-after: always;
   }
-  .tooltip {
-    @apply invisible absolute;
+  .point-up {
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
-  .has-tooltip:hover .tooltip {
-    @apply visible z-50;
+  .point-down {
+    clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
   }
   .uppy-Root label {
     font-family: 'BCSans', sans-serif;
