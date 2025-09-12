@@ -52,7 +52,7 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
           )}
           <div className="flex w-full">
             {/* Entry Audio */}
-            <AudioButton audioArray={entry?.audio} hoverTooltip />
+            <AudioButton audioArray={entry?.audio} />
           </div>
         </div>
       </section>

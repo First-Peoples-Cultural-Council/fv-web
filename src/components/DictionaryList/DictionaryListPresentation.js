@@ -141,10 +141,7 @@ function DictionaryListPresentation({
                                 <div
                                   className={`inline-flex items-center ${Array.isArray(entry?.audio) && entry.audio.length > 3 ? 'md:hidden lg:flex' : ''}`}
                                 >
-                                  <AudioButton
-                                    audioArray={entry?.audio}
-                                    hoverTooltip
-                                  />
+                                  <AudioButton audioArray={entry?.audio} />
                                 </div>
                                 {Array.isArray(entry?.audio) &&
                                   entry.audio.length > 3 && (
@@ -153,7 +150,6 @@ function DictionaryListPresentation({
                                         <AudioButton
                                           key={a?.id || i}
                                           audioArray={[a]}
-                                          hoverTooltip
                                         />
                                       ))}
                                     </div>

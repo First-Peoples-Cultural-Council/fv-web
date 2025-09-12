@@ -49,7 +49,7 @@ function ImmersionPresentationList({ labels }) {
                           {immersionLabel}
                         </Link>
                         {relatedAudio?.length > 0 && (
-                          <AudioButton audioArray={relatedAudio} hoverTooltip />
+                          <AudioButton audioArray={relatedAudio} />
                         )}
                       </td>
                       <td className="px-6 py-4 text-charcoal-900">{english}</td>

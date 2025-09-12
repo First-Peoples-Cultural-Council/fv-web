@@ -80,7 +80,7 @@ function WidgetTextPresentation({ widgetData }) {
           } font-bold flex items-center mb-4`}
         >
           <span className="inline-block">{title}</span>
-          {audio && <AudioButton audioArray={[audioObject]} hoverTooltip />}
+          {audio && <AudioButton audioArray={[audioObject]} />}
         </h2>
         <div
           className={`inline-block text-bold text-base text-left md:text-lg text-${

@@ -30,7 +30,7 @@ function WidgetWordOfTheDayPresentation({
             <Link to={relativeUrl}>{wordTitle}</Link>
             {audio && (
               <span className="ml-2 text-black">
-                <AudioButton audioArray={audio} hoverTooltip />
+                <AudioButton audioArray={audio} />
               </span>
             )}
           </div>

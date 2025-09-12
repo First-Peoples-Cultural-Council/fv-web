@@ -39,9 +39,7 @@ function AlphabetPresentationSelected({
         className="flex font-bold items-center justify-center md:text-5xl text-3xl text-center text-blumine-800 mb-5"
       >
         {title}
-        {relatedAudio?.length > 0 && (
-          <AudioButton audioArray={relatedAudio} hoverTooltip />
-        )}
+        {relatedAudio?.length > 0 && <AudioButton audioArray={relatedAudio} />}
         {title ? <Copy textToCopy={title} hoverTooltip /> : null}
       </h1>
       {relatedImage && (
@@ -79,10 +77,7 @@ function AlphabetPresentationSelected({
                       {word?.title}
                     </Link>
                     {word?.relatedAudio?.length > 0 && (
-                      <AudioButton
-                        audioArray={word?.relatedAudio}
-                        hoverTooltip
-                      />
+                      <AudioButton audioArray={word?.relatedAudio} />
                     )}
                   </div>
                 </div>
