@@ -34,11 +34,7 @@ function ActionsMenuPresentation({
       >
         {/* Pinned Action Buttons */}
         {actions.includes('copy') ? (
-          <Copy
-            textToCopy={entry?.title}
-            withLabels={withLabels}
-            hoverTooltip={!withLabels}
-          />
+          <Copy textToCopy={entry?.title} withLabels={withLabels} />
         ) : null}
 
         {/* Divider */}

@@ -6,7 +6,7 @@ import getIcon from 'common/utils/getIcon'
 import copyToClipboard from 'common/utils/copyToClipboard'
 import Tooltip from 'components/Tooltip'
 
-function Copy({ textToCopy, withLabels = false, hoverTooltip }) {
+function Copy({ textToCopy, withLabels = false }) {
   const [confirmation, setConfirmation] = useState(false)
 
   const confirmationCallback = () => {
@@ -20,7 +20,7 @@ function Copy({ textToCopy, withLabels = false, hoverTooltip }) {
   const buttonClass = `btn-tertiary ${withLabels ? ' btn-sm' : 'btn-md-icon'}`
 
   return (
-    <Tooltip hide={!hoverTooltip} message={confirmation ? 'Copied' : 'Copy'}>
+    <Tooltip hide={withLabels} message={confirmation ? 'Copied' : 'Copy'}>
       <button
         type="button"
         id="CopyAction"
@@ -42,7 +42,6 @@ const { bool, string } = PropTypes
 Copy.propTypes = {
   textToCopy: string,
   withLabels: bool,
-  hoverTooltip: bool,
 }
 
 export default Copy

@@ -40,7 +40,7 @@ function AlphabetPresentationSelected({
       >
         {title}
         {relatedAudio?.length > 0 && <AudioButton audioArray={relatedAudio} />}
-        {title ? <Copy textToCopy={title} hoverTooltip /> : null}
+        {title ? <Copy textToCopy={title} /> : null}
       </h1>
       {relatedImage && (
         <div className="flex justify-center m-8">
