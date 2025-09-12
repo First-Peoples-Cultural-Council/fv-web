@@ -22,7 +22,9 @@ function DictionaryCrudContainer({ type, isCreate }) {
       {isCreate ? (
         <DocHead
           titleArray={[
-            `Create ${type.charAt(0).toUpperCase()}${type.slice(1)}`,
+            `${isCreate ? 'Create' : 'Edit'} ${
+              type ? type.charAt(0).toUpperCase() + type.slice(1) : ''
+            }`,
           ]}
         />
       ) : null}

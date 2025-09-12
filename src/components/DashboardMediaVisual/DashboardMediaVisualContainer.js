@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
@@ -24,6 +25,15 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
       data-testid="DashboardMediaAudioContainer"
       className="h-full min-h-screen bg-charcoal-50"
     >
+      <SiteDocHead
+        titleArray={[
+          searchSharedMedia
+            ? 'Shared Images'
+            : type === TYPE_VIDEO
+              ? 'Videos'
+              : 'Images',
+        ]}
+      />
       <div className="h-full w-full flex flex-col">
         <div className="w-full sticky top-0 z-30 bg-white">
           <SelectorSearchbox.Presentation

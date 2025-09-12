@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardTiles from 'components/DashboardTiles'
@@ -17,6 +18,14 @@ function DashboardLandingPresentation({
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <main id="DashboardLandingPresentation" className="space-y-5">
+        <SiteDocHead
+          titleArray={[
+            ((headerContent?.title || '').trim() || 'Entries').replace(
+              /^(?!(edit|create|media)\b)/i,
+              'Edit ',
+            ),
+          ]}
+        />
         <div className="w-full bg-white shadow">
           <h1 className="sr-only">{headerContent?.title}</h1>
           <div className="mx-auto max-w-7xl px-8 py-6">

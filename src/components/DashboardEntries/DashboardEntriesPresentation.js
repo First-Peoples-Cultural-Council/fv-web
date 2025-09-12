@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
@@ -21,6 +22,21 @@ function DashboardEntriesPresentation({
 }) {
   return (
     <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
+      <SiteDocHead
+        titleArray={[
+          (typeof window !== 'undefined' &&
+            /\/(?:dashboard\/)?reports?(?:\/|$)/i.test(
+              window.location.pathname,
+            )) ||
+          /,/.test(String(searchType || initialSearchType || ''))
+            ? 'Report'
+            : `Edit ${String(searchType || initialSearchType || 'entries')
+                .toLowerCase()
+                .replace(/[_-]/g, ' ')
+                .replace(/(^|\s)\S/g, (s) => s.toUpperCase())}`,
+        ]}
+      />
+
       <section className="inline-flex w-full space-x-5 items-center justify-between print:hidden">
         <div className="w-1/2">
           <SearchDictionaryForm.Container
