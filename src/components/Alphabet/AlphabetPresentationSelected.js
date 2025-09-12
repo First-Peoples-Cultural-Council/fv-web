@@ -42,14 +42,7 @@ function AlphabetPresentationSelected({
         {relatedAudio?.length > 0 && (
           <AudioButton audioArray={relatedAudio} hoverTooltip />
         )}
-        {title ? (
-          <Copy
-            textToCopy={title}
-            iconStyling="fill-current text-blumine-800 h-6 w-6 sm:w-8 sm:h-8 ml-2"
-            withConfirmation
-            hoverTooltip
-          />
-        ) : null}
+        {title ? <Copy textToCopy={title} hoverTooltip /> : null}
       </h1>
       {relatedImage && (
         <div className="flex justify-center m-8">
