@@ -34,8 +34,6 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
               sitename={entry?.sitename}
               actions={actions}
               moreActions={moreActions}
-              iconStyling="w-8 h-8"
-              withConfirmation
             />
           </div>
           {/* Translations/Definitions */}

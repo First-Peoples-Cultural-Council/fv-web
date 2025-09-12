@@ -215,7 +215,6 @@ function DictionaryListPresentation({
                                   siteVisibility={entry?.siteVisibility}
                                   actions={actions}
                                   moreActions={moreActions}
-                                  withConfirmation
                                 />
                               </td>
                             </tr>

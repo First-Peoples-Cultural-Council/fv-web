@@ -58,7 +58,6 @@ function ImmersionPresentationList({ labels }) {
                           entry={dictionaryEntry?.[0]}
                           sitename={dictionaryEntry?.[0]?.sitename}
                           actions={['copy']}
-                          withConfirmation
                         />
                       </td>
                     </tr>
