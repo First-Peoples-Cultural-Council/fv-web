@@ -10,6 +10,7 @@ import { useImage } from 'common/dataHooks/useImages'
 import { useAudio } from 'common/dataHooks/useAudio'
 import { isUUID } from 'common/utils/stringHelpers'
 import {
+  FIRSTVOICESLINK,
   FORMAT_LEFT,
   FORMAT_RIGHT,
   FORMAT_DEFAULT,
@@ -30,6 +31,7 @@ function WidgetTextPresentation({ widgetData }) {
     mockData,
   } = widgetData.settings
 
+  const { sitename } = widgetData
   const format = widgetData?.format || FORMAT_LEFT
 
   const imageQueryResponse = useImage({ id: bgImage })
@@ -93,7 +95,10 @@ function WidgetTextPresentation({ widgetData }) {
             <div className="rounded-full shadow">
               <a
                 href={url}
-                target="_self"
+                {...(url.includes(FIRSTVOICESLINK) ||
+                url.startsWith(`/${sitename}`)
+                  ? { target: '_self' }
+                  : { target: '_blank', rel: 'noopener noreferrer' })}
                 className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-full md:text-lg btn-lg ${
                   bgColor
                     ? 'btn-tertiary'
