@@ -30,6 +30,7 @@ function WidgetTextPresentation({ widgetData }) {
     bgImage,
     mockData,
   } = widgetData.settings
+
   const { sitename } = widgetData
   const format = widgetData?.format || FORMAT_LEFT
 
@@ -97,8 +98,7 @@ function WidgetTextPresentation({ widgetData }) {
                 {...(url.includes(FIRSTVOICESLINK) ||
                 url.startsWith(`/${sitename}`)
                   ? { target: '_self' }
-                  : { target: '_blank' })}
-                rel="noopener noreferrer"
+                  : { target: '_blank', rel: 'noopener noreferrer' })}
                 className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-full md:text-lg btn-lg ${
                   bgColor
                     ? 'btn-tertiary'
