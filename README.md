@@ -44,13 +44,13 @@ $ cd fv-web
 4. Install NodeJS. If you are using NVM, it will also install a coordinating version of NPM. Find the appropriate version of Node in `./package.json` (for example, 22.15.0) and set it as the active version of NodeJS by running:
 
 ```bash
-$ nvm install 22.15.0
-$ nvm use 22.15.0
+$ nvm install 22.18.0
+$ nvm use 22.18.0
 ```
 
 5. To successfully run NPM, you need to configure your `~/.ssh/config` file so that NPM knows which RSA Key to use when cloning GitHub repositories. If you don't have an RSA Key [generate](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) one and [add](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/) it to your GitHub account. Create a `~/.ssh/config` file if it does not already exist. Add the following entry to your `~/.ssh/config` file while replacing `<mykey>` as needed:
 
-```
+```bash
 # Github RSA Key
 Host github.com
     UseKeychain yes
@@ -90,7 +90,7 @@ You can build for production after completing the steps found in the _Setting Up
 
 1. Run the following command to build for production:
 
-```
+```bash
 $ npm run production
 ```
 
@@ -126,7 +126,7 @@ eg: `git commit -m 'pull update & conflict resolution' --no-verify`
 
 Configure lint-staged in `package.json`, for example:
 
-```
+```json
   "lint-staged": {
     "*.{json,css,md}": "prettier --write",
     "*.js": [

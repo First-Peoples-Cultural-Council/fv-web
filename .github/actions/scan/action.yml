@@ -1,5 +1,5 @@
-name: "Scan"
-description: "Scan container images, generate CycloneDX SBOMs, and print Python dependency tree"
+name: 'Scan'
+description: 'Scan container images, generate CycloneDX SBOMs, and print Python dependency tree'
 
 inputs:
   env:
@@ -16,7 +16,7 @@ inputs:
     required: true
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -106,7 +106,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'
 
     - name: Install NPM dependencies and build project
       shell: bash
