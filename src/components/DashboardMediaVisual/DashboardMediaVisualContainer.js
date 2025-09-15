@@ -20,20 +20,20 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
     ? `shared ${infiniteQueryResponse?.typePlural}`
     : infiniteQueryResponse?.typePlural
 
+  let pageTitle
+  if (searchSharedMedia) {
+    pageTitle = 'Shared Images'
+  } else if (type === TYPE_VIDEO) {
+    pageTitle = 'Videos'
+  } else {
+    pageTitle = 'Images'
+  }
   return (
     <div
       data-testid="DashboardMediaAudioContainer"
       className="h-full min-h-screen bg-charcoal-50"
     >
-      <SiteDocHead
-        titleArray={[
-          searchSharedMedia
-            ? 'Shared Images'
-            : type === TYPE_VIDEO
-              ? 'Videos'
-              : 'Images',
-        ]}
-      />
+      <SiteDocHead titleArray={[pageTitle]} />
       <div className="h-full w-full flex flex-col">
         <div className="w-full sticky top-0 z-30 bg-white">
           <SelectorSearchbox.Presentation
