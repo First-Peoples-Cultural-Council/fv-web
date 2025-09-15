@@ -19,7 +19,7 @@ jobs:
       CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
       CYPRESS_DIALECT: 'lilwat'
       COMMIT_INFO_BRANCH: ${{ github.ref_name }}
-      container: cypress/browsers:node-20.11.1-chrome-123.0.6312.58-1-ff-124.0-edge-122.0.2365.92-1
+      container: cypress/browsers:node-22.18.0-chrome-139.0.7258.138-1-ff-142.0-edge-139.0.3405.102-1
     steps:
       - name: Checkout
         uses: actions/checkout@v4
