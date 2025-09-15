@@ -2,13 +2,6 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Dashboard } from '@uppy/react'
 
-// Uppy
-import '@uppy/core/dist/style.css'
-import '@uppy/drag-drop/dist/style.css'
-import '@uppy/progress-bar/dist/style.css'
-import '@uppy/dashboard/dist/style.css'
-import '@uppy/image-editor/dist/style.css'
-
 // FPCC
 import useCreateUppy from 'common/dataHooks/useCreateUppy'
 import { TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'

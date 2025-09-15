@@ -5,11 +5,9 @@ import XHR from '@uppy/xhr-upload'
 import ImageEditor from '@uppy/image-editor'
 
 // Uppy
-import '@uppy/core/dist/style.css'
-import '@uppy/drag-drop/dist/style.css'
-import '@uppy/progress-bar/dist/style.css'
-import '@uppy/dashboard/dist/style.css'
-import '@uppy/image-editor/dist/style.css'
+import '@uppy/core/css/style.min.css'
+import '@uppy/dashboard/css/style.min.css'
+import '@uppy/image-editor/css/style.min.css'
 
 // FPCC
 import GlobalConfiguration from 'src/GlobalConfiguration'
