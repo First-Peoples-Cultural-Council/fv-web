@@ -78,7 +78,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                               <button
                                 data-testid=""
                                 type="button"
-                                className="absolute inset-0 focus:outline-none"
+                                className="absolute inset-0 focus:outline-hidden"
                                 onClick={() =>
                                   infiniteQueryResponse?.setCurrentFile(
                                     mediaObject,

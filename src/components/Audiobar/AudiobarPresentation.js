@@ -28,8 +28,9 @@ function AudiobarPresentation({
         } absolute inset-x-0 bottom-24 transition-all bg-charcoal-100 text-charcoal-900 shadow-xl`}
       >
         <button
+          data-testid="audiobar-info-btn"
           type="button"
-          className="float-right m-3 text-charcoal-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
+          className="float-right m-3 text-charcoal-500 hover:text-charcoal-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
           onClick={() => setInfoOpen(false)}
         >
           {getIcon('Close', 'fill-current h-7 w-7')}
@@ -80,12 +81,13 @@ function AudiobarPresentation({
         </div>
       </section>
       {/* Audiobar */}
-      <section className="max-w-screen-2xl">
+      <section className="max-w-[theme(screens.2xl)]">
         <button
+          data-testid="audiobar-close-btn"
           type="button"
           id="CloseAudiobar"
           aria-label="Close Audiobar"
-          className="float-right m-2 text-charcoal-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
+          className="float-right m-2 text-charcoal-500 hover:text-white focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
           onClick={() => close()}
         >
           {getIcon('Close', 'fill-current h-7 w-7')}
@@ -111,6 +113,7 @@ function AudiobarPresentation({
             <div className="w-full">
               <div className="flex justify-center items-center space-x-5">
                 <button
+                  data-testid="audiobar-play-pause-btn"
                   type="button"
                   aria-label="Play/Pause"
                   onClick={() => onPlayPauseClick()}
@@ -128,6 +131,7 @@ function AudiobarPresentation({
                 )}
                 {title ? (
                   <button
+                    data-testid="audiobar-info-btn"
                     type="button"
                     onClick={() => setInfoOpen(!infoOpen)}
                     aria-label="Open Audio Info"
@@ -148,10 +152,10 @@ function AudiobarPresentation({
             <div className="w-full p-1 space-y-2">
               <div className="flex justify-center items-center text-white group">
                 <button
+                  data-testid="audiobar-rate-btn"
                   type="button"
-                  id="#"
                   aria-label="rate"
-                  className="mr-2 font-bold text-black bg-white rounded px-2 py-1"
+                  className="mr-2 font-bold text-black bg-white rounded-sm px-2 py-1"
                   onClick={() => onRateChange()}
                 >
                   {`${rate.toString()}x`}
@@ -160,6 +164,7 @@ function AudiobarPresentation({
                   {getIcon('Download', 'w-6 h-6 fill-current mr-3 inline-flex')}
                 </a>
                 <button
+                  data-testid="audiobar-mute-btn"
                   type="button"
                   id="MuteAudiobar"
                   aria-label="Mute"
@@ -189,7 +194,7 @@ function AudiobarPresentation({
                   onChange={(event) => {
                     onVolumeChange(event.target.value)
                   }}
-                  className="w-1/2 h-1 bg-charcoal-300 rounded outline-none inline-flex"
+                  className="w-1/2 h-1 bg-charcoal-300 rounded-sm outline-hidden inline-flex"
                 />
               </div>
             </div>

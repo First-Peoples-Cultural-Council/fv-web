@@ -146,7 +146,7 @@ function WysiwygField({
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
       <FieldLabel nameId={nameId} text={label} />
-      <div className="block w-full bg-white overflow-hidden shadow-sm sm:text-sm border border-charcoal-200 rounded-lg">
+      <div className="block w-full bg-white overflow-hidden shadow-xs sm:text-sm border border-charcoal-200 rounded-lg">
         <div className="flex w-full border-b border-charcoal-100 text-xl text-charcoal-700">
           {/* Toolbar for inline styles */}
           {toolbar?.includes('INLINESTYLES') && (
@@ -154,7 +154,7 @@ function WysiwygField({
               <button
                 data-testid="bold-btn"
                 type="button"
-                className={`flex items-center justify-center outline-none focus:outline-none border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
+                className={`flex items-center justify-center outline-hidden focus:outline-hidden border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
                   editor.isActive('bold') ? 'bg-charcoal-50' : ''
                 }`}
                 onClick={() => editor.chain().focus().toggleBold().run()}
@@ -164,7 +164,7 @@ function WysiwygField({
               <button
                 data-testid="italic-btn"
                 type="button"
-                className={`flex items-center justify-center outline-none focus:outline-none border-r border-charcoal
+                className={`flex items-center justify-center outline-hidden focus:outline-hidden border-r border-charcoal
                 100 w-10 h-10 hover:text-scarlet-800 ${
                   editor.isActive('italic') ? 'bg-charcoal-50' : ''
                 }`}
@@ -175,7 +175,7 @@ function WysiwygField({
               <button
                 data-testid="link-btn"
                 type="button"
-                className={`flex items-center justify-center outline-none focus:outline-none border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
+                className={`flex items-center justify-center outline-hidden focus:outline-hidden border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
                   editor.isActive('link') ? 'bg-charcoal-50' : ''
                 }`}
                 onClick={setLink}
@@ -190,7 +190,7 @@ function WysiwygField({
               <select
                 value={headerValue}
                 onChange={onToggle}
-                className="border-r border-charcoal-100 pl-3 pr-10 py-2 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 text-sm"
+                className="border-r border-charcoal-100 pl-3 pr-10 py-2 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 text-sm"
               >
                 {headerBlockTypes.map((heading) => (
                   <option key={heading.value} value={heading.value}>
@@ -202,7 +202,7 @@ function WysiwygField({
                 <button
                   data-testid="orderedlist-btn"
                   type="button"
-                  className={`flex items-center justify-center outline-none focus:outline-none border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
+                  className={`flex items-center justify-center outline-hidden focus:outline-hidden border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
                     editor.isActive('orderedList') ? 'bg-charcoal-50' : ''
                   }`}
                   onClick={() =>
@@ -216,7 +216,7 @@ function WysiwygField({
                 <button
                   data-testid="unorderedlist-btn"
                   type="button"
-                  className={`flex items-center justify-center outline-none focus:outline-none border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
+                  className={`flex items-center justify-center outline-hidden focus:outline-hidden border-r border-charcoal-100 w-10 h-10 hover:text-scarlet-800 ${
                     editor.isActive('bulletList') ? 'bg-charcoal-50' : ''
                   }`}
                   onClick={() =>

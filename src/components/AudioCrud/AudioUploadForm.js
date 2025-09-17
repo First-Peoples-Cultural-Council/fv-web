@@ -100,7 +100,7 @@ function AudioUploadForm({ setSelectedAudio }) {
     <div id="AudioUploadForm" className="max-w-5xl pb-4 text-left mx-auto">
       <div ref={errorRef}>
         {uploadError && (
-          <div className="bg-red-100 text-red-700 p-4 rounded mb-4">
+          <div className="bg-red-100 text-red-700 p-4 rounded-sm mb-4">
             <p>{uploadError}</p>
           </div>
         )}

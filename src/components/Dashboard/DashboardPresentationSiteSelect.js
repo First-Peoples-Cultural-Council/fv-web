@@ -42,7 +42,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
             </span>
             {getIcon(
               'ChevronUpDown',
-              'fill-current flex-shrink-0 h-5 w-5 text-white',
+              'fill-current shrink-0 h-5 w-5 text-white',
             )}
           </span>
         </MenuButton>
@@ -56,7 +56,7 @@ function DashboardPresentationSiteSelect({ sites, site }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-charcoal-100 focus:outline-none">
+        <MenuItems className="z-10 mx-3 origin-top absolute right-0 left-0 mt-1 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-charcoal-100 focus:outline-hidden">
           {sites?.length > 1 &&
             sites.map((sitesListItem) => (
               <div key={sitesListItem?.id} className="py-1">

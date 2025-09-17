@@ -92,7 +92,7 @@ function WidgetTextPresentation({ widgetData }) {
         </div>
         {url && (
           <div className="mt-2 lg:mt-6 flex justify-left">
-            <div className="rounded-full shadow">
+            <div className="rounded-full shadow-sm">
               <a
                 href={url}
                 {...(url.includes(FIRSTVOICESLINK) ||
@@ -117,7 +117,7 @@ function WidgetTextPresentation({ widgetData }) {
   if (format === FORMAT_RIGHT) {
     return (
       <section className="w-full" data-testid="WidgetTextPresentation">
-        <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
+        <div className="flex flex-col md:flex-row bg-linear-to-b from-white to-charcoal-50">
           {getTextElement()}
           {getImageElement()}
         </div>
@@ -127,7 +127,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   return (
     <section className="w-full" data-testid="WidgetTextPresentation">
-      <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
+      <div className="flex flex-col md:flex-row bg-linear-to-b from-white to-charcoal-50">
         {getImageElement()}
         {getTextElement()}
       </div>

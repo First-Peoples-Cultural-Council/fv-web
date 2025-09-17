@@ -15,11 +15,11 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
       <h1 className="sr-only">Dashboard Landing Page</h1>
       <div className="mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
         <section>
-          <div className="rounded-lg bg-white overflow-hidden shadow">
+          <div className="rounded-lg bg-white overflow-hidden shadow-sm">
             <div className="bg-white p-6">
               <div className="sm:flex sm:items-center sm:justify-between">
                 <div className="flex space-x-5">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <div className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-3xl rounded-full h-20 w-20 items-center justify-center">
                       {currentUser?.userInitials}
                     </div>
@@ -56,7 +56,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
                   className="relative group col-span-1 flex rounded-lg"
                 >
                   <div
-                    className={`bg-charcoal-50 text-${tile?.iconColor} flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-l-md font-medium`}
+                    className={`bg-charcoal-50 text-${tile?.iconColor} flex h-10 w-10 shrink-0 items-center justify-center rounded-l-md font-medium`}
                   >
                     {getIcon(tile.icon, 'h-6 w-6 fill-current')}
                   </div>

@@ -20,7 +20,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
         {getIcon(
           'LogOut',
 
-          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
+          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 shrink-0 h-6 w-6',
         )}
         <span>Sign Out</span>
       </button>
@@ -33,7 +33,7 @@ function DashboardPresentation({ children, currentUser, site, logout }) {
       <div className="flex w-64 flex-col fixed inset-y-0">
         <div className="flex-1 flex flex-col min-h-0 bg-charcoal-900 divide-y divide-charcoal-500 space-y-2">
           <div className="flex-1 flex flex-col overflow-y-auto">
-            <Link to="/" className="flex items-center flex-shrink-0 m-4">
+            <Link to="/" className="flex items-center shrink-0 m-4">
               <span className="sr-only">FirstVoices Logo</span>
               {getIcon('FVLogo', 'h-10 w-auto fill-current text-white')}
             </Link>
@@ -118,7 +118,7 @@ const primaryNavigationItems = (currentSitename) => {
                   : 'text-charcoal-200 hover:bg-charcoal-500 hover:text-white'
               }`}
             >
-              {getIcon(item.icon, 'fill-current mr-4 flex-shrink-0 h-6 w-6')}
+              {getIcon(item.icon, 'fill-current mr-4 shrink-0 h-6 w-6')}
               {item.name}
             </Link>
           </RequireAuth>
@@ -150,7 +150,7 @@ const secondaryNavigationItems = (sites) => {
       >
         {getIcon(
           'QuestionCircleSolid',
-          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
+          'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 shrink-0 h-6 w-6',
         )}
         Support
       </a>
@@ -162,7 +162,7 @@ const secondaryNavigationItems = (sites) => {
         >
           {getIcon(
             item.icon,
-            'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 flex-shrink-0 h-6 w-6',
+            'text-charcoal-500 fill-current group-hover:text-charcoal-200 mr-4 shrink-0 h-6 w-6',
           )}
           {item.name}
         </Link>
@@ -172,8 +172,8 @@ const secondaryNavigationItems = (sites) => {
 }
 
 const userProfile = (user) => (
-  <div className="flex-shrink-0 flex bg-charcoal-500 p-4">
-    <div className="flex-shrink-0 w-full group block">
+  <div className="shrink-0 flex bg-charcoal-500 p-4">
+    <div className="shrink-0 w-full group block">
       <div className="flex items-center">
         <div className="inline-flex">
           <div className="inline-block text-left">

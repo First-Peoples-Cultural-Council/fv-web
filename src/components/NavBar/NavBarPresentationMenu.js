@@ -43,7 +43,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
       </p>
       {i18n?.language !== 'en' && (
         // Tooltip
-        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded text-charcoal-900 p-2 text-sm bg-white">
+        <span className="absolute top-16 scale-0 group-hover:scale-100 rounded-sm text-charcoal-900 p-2 text-sm bg-white">
           {transKey ? t(transKey) : title}
         </span>
       )}
@@ -80,7 +80,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden">
           <div className="bg-white space-y-2">
             {generateMenuItems(itemsData)}
           </div>

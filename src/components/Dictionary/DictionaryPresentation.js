@@ -23,7 +23,7 @@ function DictionaryPresentation({
     <>
       <section
         id="DictionaryPresentation"
-        className={`bg-gradient-to-b from-${labels.color} to-${labels.textColor} p-5 print:hidden`}
+        className={`bg-linear-to-b from-${labels.color} to-${labels.textColor} p-5 print:hidden`}
       >
         <div className="mx-auto lg:w-3/5">
           <SearchDictionaryForm.Container

@@ -34,7 +34,7 @@ function CategoriesBrowserPresentation({
                   {getIcon('Search', 'fill-current h-5 w-5 text-charcoal-500')}
                 </span>
                 <input
-                  className="w-full bg-charcoal-50 border-transparent px-4 py-2 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-none"
+                  className="w-full bg-charcoal-50 border-transparent px-4 py-2 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-hidden"
                   placeholder="Search all Categories"
                   onChange={(event) => setQuery(event.target.value)}
                   onKeyDown={handleKeyDown}
@@ -80,9 +80,9 @@ function CategoriesBrowserPresentation({
                           isSelected
                             ? 'ring-2 ring-blumine-500 bg-charcoal-50'
                             : 'hover:bg-charcoal-50'
-                        } rounded-sm`}
+                        } rounded-xs`}
                       >
-                        <span className="w-6 h-6 flex-shrink-0 flex items-center justify-center mr-3">
+                        <span className="w-6 h-6 shrink-0 flex items-center justify-center mr-3">
                           {isSelected &&
                             getIcon(
                               'CheckCircleSolid',

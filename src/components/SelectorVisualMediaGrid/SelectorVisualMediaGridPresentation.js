@@ -45,7 +45,7 @@ function SelectorVisualMediaGridPresentation({
                         <button
                           data-testid="media-select-btn"
                           type="button"
-                          className="absolute inset-0 focus:outline-none"
+                          className="absolute inset-0 focus:outline-hidden"
                           onClick={() => mediaSelectHandler(mediaObject)}
                         >
                           <span className="sr-only">

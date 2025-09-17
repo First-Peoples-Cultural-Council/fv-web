@@ -29,7 +29,7 @@ function DashboardMembershipPresentation({
             <div className="flow-root w-full">
               <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-3 align-middle sm:px-6 lg:px-8">
-                  <div className="shadow outline outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
+                  <div className="shadow outline-solid outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
                     <LoadOrError queryResponse={queryResponse}>
                       <table className="relative min-w-full">
                         <thead className="">

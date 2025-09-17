@@ -17,12 +17,12 @@ function DashboardLandingPresentation({
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <main id="DashboardLandingPresentation" className="space-y-5">
-        <div className="w-full bg-white shadow">
+        <div className="w-full bg-white shadow-sm">
           <h1 className="sr-only">{headerContent?.title}</h1>
           <div className="mx-auto max-w-7xl px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="sm:flex sm:space-x-5 items-center">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div
                     className={`flex max-w-xs p-3 bg-${iconColor} text-white text-3xl rounded-full h-20 w-20 items-center justify-center`}
                   >

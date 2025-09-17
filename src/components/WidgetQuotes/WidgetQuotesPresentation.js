@@ -26,7 +26,7 @@ function WidgetQuotesPresentation({ widgetData }) {
       <p className="text-blumine-800 text-base lg:text-lg font-bold text-center leading-5 w-2/3 pb-20 pt-4">
         {quoteBy}
       </p>
-      <div className="absolute -bottom-12 left-0 w-0 h-0 border-[50px] border-l-white border-y-transparent border-r-transparent"></div>
+      <div className="absolute -bottom-12 left-0 w-0 h-0 border-50 border-l-white border-y-transparent border-r-transparent"></div>
     </div>
   )
   return (

@@ -123,7 +123,7 @@ function JoinForm({ site, submitHandler }) {
               render={({ field: { value, onChange } }) => (
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
                   <div className="relative max-w-xs">
-                    <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-blumine-800 focus:border-blumine-800">
+                    <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800">
                       <div className="w-full inline-flex items-center">
                         <span className="truncate">
                           {value?.length < 1
@@ -138,7 +138,7 @@ function JoinForm({ site, submitHandler }) {
                         </span>
                       </div>
                     </ListboxButton>
-                    <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+                    <ListboxOptions className="z-10 focus:outline-hidden absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
                       {reasonOptions.map((option) => (
                         <ListboxOption key={option?.reason} value={option}>
                           {({ selected }) => (
@@ -174,7 +174,7 @@ function JoinForm({ site, submitHandler }) {
                 id="message"
                 name="message"
                 {...register('message')}
-                className="shadow-sm focus:ring-blumine-800 focus:border-blumine-800 mt-1 block w-full border border-charcoal-200 rounded-lg max-h-72 overflow-auto"
+                className="shadow-xs focus:ring-blumine-800 focus:border-blumine-800 mt-1 block w-full border border-charcoal-200 rounded-lg max-h-72 overflow-auto"
               />
             </div>
 

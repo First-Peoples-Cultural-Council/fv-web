@@ -42,7 +42,7 @@ function NotificationBanner() {
           </span>
           <DialogPanel
             transition
-            className="relative transform transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative transform transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-leave:duration-200 data-enter:ease-out data-leave:ease-in sm:data-closed:translate-y-0 sm:data-closed:scale-95"
           >
             <div className="max-w-4xl mx-auto">
               <AlertBanner.Presentation

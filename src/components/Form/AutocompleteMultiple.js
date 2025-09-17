@@ -88,7 +88,7 @@ function CustomCombobox({ field, placeholder, label = '', options }) {
           <div className="relative">
             <ComboboxInput
               data-testid="autocomplete-input"
-              className="relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-none focus:ring-blumine-800 focus:border-blumine-800"
+              className="relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800"
               onChange={(event) => setQuery(event.target.value)}
               placeholder={placeholder}
               onBlur={field.onBlur}
@@ -100,7 +100,7 @@ function CustomCombobox({ field, placeholder, label = '', options }) {
 
           <ComboboxOptions
             transition
-            className="transition duration-100 ease-in data-leave:data-closed:opacity-0 focus:outline-none h-32 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5"
+            className="transition duration-100 ease-in data-leave:data-closed:opacity-0 focus:outline-hidden h-32 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5"
           >
             {filteredOptions?.map((option) => (
               <ComboboxOption

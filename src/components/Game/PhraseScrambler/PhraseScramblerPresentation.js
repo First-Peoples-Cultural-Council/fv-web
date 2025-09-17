@@ -25,9 +25,9 @@ function PhraseScramblerPresentation({
 
   // Conditional styling
   const baseTextBlockStyling =
-    'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded h-12 w-min-12'
+    'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded-sm h-12 w-min-12'
   const baseButtonStyling =
-    'border border-charcoal-200 rounded-lg shadow-sm py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
+    'border border-charcoal-200 rounded-lg shadow-xs py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:opacity-75 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
   const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white`
   let selectedBoxAdditionalStyling = 'bg-charcoal-50'
   if (gameStatus === 'Won') {
@@ -62,7 +62,7 @@ function PhraseScramblerPresentation({
                 </div>
                 <div
                   data-testid="selected-boxes"
-                  className={`shadow my-4 border-thin border-charcoal-200 rounded px-2 ${selectedBoxAdditionalStyling}`}
+                  className={`shadow-sm my-4 border-thin border-charcoal-200 rounded-sm px-2 ${selectedBoxAdditionalStyling}`}
                 >
                   {/* Placeholder till a user selects does any action to maintain styling. */}
                   {selectedWords?.length === 0 && (

@@ -16,7 +16,7 @@ function DashboardTablePresentation({
         data-testid="DashboardTablePresentation"
         className="mx-auto h-full px-8"
       >
-        <div className="bg-white shadow rounded-md overflow-hidden">
+        <div className="bg-white shadow-sm rounded-md overflow-hidden">
           {title && (
             <div className="my-5 px-6">
               <h2

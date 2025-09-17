@@ -12,7 +12,7 @@ import {
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
-function SingleSelect({ id, options, menuAlignment = 'right' }) {
+function SingleSelect({ id, options }) {
   const [paramValue, setParamValue, removeParamValue] = useSearchParamsState({
     searchParamName: id,
     defaultValue: options?.[0]?.value,
@@ -50,7 +50,7 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
 
           {getIcon(
             'ChevronDown',
-            '-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-charcoal-500 group-hover:text-charcoal-900',
+            '-mr-1 ml-1 h-5 w-5 shrink-0 text-charcoal-500 group-hover:text-charcoal-900',
           )}
         </ListboxButton>
       </div>
@@ -64,9 +64,7 @@ function SingleSelect({ id, options, menuAlignment = 'right' }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <ListboxOptions
-          className={`absolute ${menuAlignment}-0 z-10 mt-2 origin-top-right rounded-md bg-white py-1 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none`}
-        >
+        <ListboxOptions className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white py-1 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-hidden">
           <div className="space-y-2">
             {options?.map((option) => (
               <ListboxOption
@@ -105,7 +103,6 @@ const { array, string } = PropTypes
 SingleSelect.propTypes = {
   id: string,
   options: array,
-  menuAlignment: string,
 }
 
 export default SingleSelect

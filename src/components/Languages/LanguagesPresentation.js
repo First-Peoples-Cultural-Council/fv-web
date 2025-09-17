@@ -52,7 +52,7 @@ function LanguagesPresentation({ languagesQueryResponse, user }) {
                   <div
                     id="LanguagesPresentation"
                     key={language?.id}
-                    className={`border-l-[3px] md:border-l-[8px] ${borderColor} mb-10 display-block`}
+                    className={`border-l-3 md:border-l-8 ${borderColor} mb-10 display-block`}
                   >
                     <h1 className="pl-4 text-xl font-extrabold text-blumine-800">
                       {language?.noLanguageAssigned ? '' : language?.title}
