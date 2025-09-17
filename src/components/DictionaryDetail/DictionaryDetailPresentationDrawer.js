@@ -238,10 +238,10 @@ function DictionaryDetailPresentationDrawer({
                 ? entry?.relatedVideoLinks?.map((video) => (
                     <div
                       key={video?.id}
-                      className="rounded-lg relative pb-videoAspect h-0"
+                      className="inline-flex rounded-lg overflow-hidden"
                     >
                       <iframe
-                        className="rounded-lg absolute t-0 l-0 w-full h-full"
+                        className="aspect-3/2 rounded-lg w-full"
                         src={video?.embedLink}
                         title="video"
                         allowFullScreen

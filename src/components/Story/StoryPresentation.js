@@ -87,7 +87,7 @@ function StoryPresentation({ entry }) {
         <div className={headerStyling}>
           <div className="flex justify-center items-center">
             <div className="flex w-full max-h-screen">
-              <div className="relative pb-videoAspect w-full h-0">
+              <div className="relative pb-[50%] w-full h-0">
                 <iframe
                   className="absolute t-0 l-0 w-full h-full"
                   src={entry?.coverVisual?.entry?.embedLink}
@@ -323,16 +323,14 @@ const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
 
   const getVideoLinkTag = ({ videoLink, className }) => (
     <div className={className}>
-      <div className="rounded-lg relative pb-videoAspect h-0">
-        <iframe
-          className="rounded-lg absolute t-0 l-0 w-full h-full"
-          src={videoLink?.embedLink}
-          title="video"
-          allowFullScreen
-        >
-          Your browser does not support the iframe tag.
-        </iframe>
-      </div>
+      <iframe
+        className="aspect-3/2 w-full"
+        src={videoLink?.embedLink}
+        title="video"
+        allowFullScreen
+      >
+        Your browser does not support the iframe tag.
+      </iframe>
     </div>
   )
 

@@ -80,12 +80,6 @@ module.exports = {
         '4/5-screen': '80vw',
         '9/10-screen': '90vw',
       },
-      spacing: {
-        104: '26rem',
-        112: '28rem',
-        120: '30rem',
-        videoAspect: '56.25%',
-      },
       keyframes: {
         'pulse-blur': {
           '0%, 50%, 100%': {
