@@ -1,30 +1,16 @@
 // FPCC
-import Elders from 'assets/images/elders-landing.png'
 import aboutImage from 'assets/images/landing-about.png'
 import appsImage from 'assets/images/landing-apps.png'
 import bgImage from 'assets/images/landing-about-bg.png'
 import languages from 'assets/images/languages-background.png'
 import {
   WIDGET_TEXT,
-  WIDGET_TEXTICONS,
   WIDGET_QUOTES,
   FIRSTVOICESLINK,
   FORMAT_RIGHT,
 } from 'src/common/constants'
 
 function LandingPageData() {
-  const whyData = {
-    id: 1,
-    type: WIDGET_TEXTICONS,
-    settings: {
-      mockData: true,
-      image: Elders,
-      title: 'WHY FIRSTVOICES?',
-      textWithFormatting:
-        '<p>FirstVoices is an internationally recognized online platform for Indigenous communities to share and promote their languages, oral cultures and linguistic histories.</p><p>FirstVoices provides state-of-the-art technologies, training and technical support to community language champions.</p><p>Language champions collaborate with Indigenous Elders, youth and speakers to create and share language resources like words, phrases, songs and stories.</p>',
-    },
-  }
-
   const aboutData = {
     id: 2,
     type: WIDGET_TEXT,
@@ -74,7 +60,6 @@ function LandingPageData() {
   }
 
   return {
-    whyData,
     aboutData,
     quotesData,
     appsData,

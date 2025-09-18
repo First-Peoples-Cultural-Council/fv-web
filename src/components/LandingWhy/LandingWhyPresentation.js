@@ -1,29 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import WysiwygBlock from 'components/WysiwygBlock'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
 import getIcon from 'common/utils/getIcon'
-import ImgFromId from 'components/ImgFromId'
+import Elders from 'assets/images/elders-landing.png'
 
-function WidgetTextIconsPresentation({ widgetData }) {
-  const { title, textWithFormatting, image, mockData } = widgetData.settings
-  const imgStyling =
-    'hidden lg:inline object-cover object-center overflow-hidden md:w-7/12 pt-4 md:rounded-r-[78px]'
-
+function LandingWhyPresentation() {
   return (
     <section
-      id="WidgetTextIconsPresentation"
+      id="LandingWhyPresentation"
       className="bg-white pt-3 md:pt-6 pb-8 md:pb-14"
     >
       <div className="p-4">
-        <SectionTitle.Presentation title={title} />
+        <SectionTitle.Presentation title="WHY FIRSTVOICES?" />
       </div>
       <div className="md:flex md:flex-row-reverse">
         <div className="px-8 lg:pt-12 lg:pb-8 text-base md:text-lg">
           <div className="wysiwyg">
-            <WysiwygBlock htmlString={textWithFormatting} />
+            <p>
+              FirstVoices is an internationally recognized online platform for
+              Indigenous communities to share and promote their languages, oral
+              cultures and linguistic histories.
+            </p>
+            <p>
+              FirstVoices provides state-of-the-art technologies, training and
+              technical support to community language champions.
+            </p>
+            <p>
+              Language champions collaborate with Indigenous Elders, youth and
+              speakers to create and share language resources like words,
+              phrases, songs and stories.
+            </p>
           </div>
 
           <div className="hidden md:flex justify-between text-sm font-bold">
@@ -41,11 +49,12 @@ function WidgetTextIconsPresentation({ widgetData }) {
             </div>
           </div>
         </div>
-        {mockData ? (
-          <img src={image} alt={title} className={imgStyling} />
-        ) : (
-          <ImgFromId.Container id={image} alt={title} className={imgStyling} />
-        )}
+
+        <img
+          src={Elders}
+          alt="Elders recording for FirstVoices"
+          className="hidden lg:inline object-cover md:w-7/12 pt-4 md:rounded-r-[78px]"
+        />
       </div>
     </section>
   )
@@ -54,8 +63,8 @@ function WidgetTextIconsPresentation({ widgetData }) {
 // PROPTYPES
 const { object } = PropTypes
 
-WidgetTextIconsPresentation.propTypes = {
+LandingWhyPresentation.propTypes = {
   widgetData: object,
 }
 
-export default WidgetTextIconsPresentation
+export default LandingWhyPresentation
