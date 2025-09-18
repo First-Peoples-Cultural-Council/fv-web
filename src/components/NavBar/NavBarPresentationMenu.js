@@ -80,7 +80,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-hidden">
+        <MenuItems className="absolute top-10 w-auto min-w-full right-0 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black/50 focus:outline-hidden">
           <div className="bg-white space-y-2">
             {generateMenuItems(itemsData)}
           </div>

@@ -64,7 +64,7 @@ function SingleSelect({ id, options }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <ListboxOptions className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white py-1 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-hidden">
+        <ListboxOptions className="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white py-1 shadow-2xl ring-1 ring-black/50 focus:outline-hidden">
           <div className="space-y-2">
             {options?.map((option) => (
               <ListboxOption
