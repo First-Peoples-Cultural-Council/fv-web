@@ -14,7 +14,7 @@ function SiteAppsPresentation() {
     <div data-testid="SiteAppsPresentation">
       <SiteDocHead titleArray={['Mobile App']} />
       <WidgetApps.Presentation />
-      <section className="justify-center max-w-screen-lg px-4 lg:px-0 mx-auto text-charcoal-700">
+      <section className="justify-center max-w-5xl px-4 lg:px-0 mx-auto text-charcoal-700">
         <div className="space-y-4 py-4 md:space-y-8 md:py-8">
           <h2 className={h2Styling}>
             The {site?.title} app lets you access your language on-the-go!

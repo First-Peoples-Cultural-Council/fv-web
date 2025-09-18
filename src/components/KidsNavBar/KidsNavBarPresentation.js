@@ -13,7 +13,7 @@ function KidsNavBarPresentation({ links, site, home }) {
       className="relative md:p-2 z-10 print:hidden"
       data-testid="KidsNavBarPresentation"
     >
-      <div className="h-28 max-w-screen-2xl mx-auto px-2 md:mb-10 md:mt-10 lg:px-6 xl:px-16 flex justify-center items-center">
+      <div className="h-28 mx-auto px-2 md:mb-10 md:mt-10 lg:px-6 xl:px-16 flex justify-center items-center">
         <div className="relative h-24 w-24 md:h-32 md:w-32 xl:h-44 xl:w-44">
           <SiteLogo.Presentation />
           {generateText(
@@ -38,7 +38,7 @@ function KidsNavBarPresentation({ links, site, home }) {
       className="relative p-2 z-10 print:hidden"
       data-testid="KidsNavBarPresentation"
     >
-      <div className="max-w-screen-2xl mx-auto lg:px-6 xl:px-16">
+      <div className="mx-auto lg:px-6 xl:px-16">
         <div className="flex justify-between items-center py-1 lg:space-x-10">
           <ul className="grid grid-cols-7 gap-1 sm:gap-4 lg:gap-10 mx-auto">
             <li className="col-span-1 inline-flex">

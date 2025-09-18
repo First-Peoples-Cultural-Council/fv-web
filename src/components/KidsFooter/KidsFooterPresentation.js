@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 function KidsFooterPresentation() {
   return (
     <nav id="KidsFooter" className="print:hidden">
-      <div className="max-w-screen-2xl mx-auto p-2">
-        <div className="text-center md:text-right md:px-2">
+      <div className="mx-auto p-2">
+        <div className="text-center md:px-2">
           © 2000-{new Date().getFullYear()}&nbsp;
           <a
             href="https://www.firstvoices.com"

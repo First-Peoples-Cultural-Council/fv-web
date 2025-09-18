@@ -9,7 +9,7 @@ function SiteKeyboardsPresentation({ title, widgets }) {
   return (
     <div
       data-testid="SiteKeyboardsPresentation"
-      className="justify-center max-w-screen-lg px-4 pb-4 lg:px-0 lg:pb-10 mx-auto"
+      className="justify-center max-w-5xl px-4 pb-4 lg:px-0 lg:pb-10 mx-auto"
     >
       <SiteDocHead titleArray={['Keyboards']} />
       {widgets?.map((widget) => (

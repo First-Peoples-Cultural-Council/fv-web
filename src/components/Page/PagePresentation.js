@@ -18,7 +18,7 @@ function PagePresentation({ title, subtitle, hasMedia, showLogo }) {
           additionalStyling={`${logoTitleColumnStyling} z-30 mb-2`}
         />
       </div>
-      <div className="flex items-center justify-center text-center w-full max-w-screen-lg">
+      <div className="flex items-center justify-center text-center w-full max-w-5xl">
         <div>
           <h1 className="font-bold text-3xl lg:text-5xl pb-4">{title}</h1>
           <p>{subtitle}</p>
@@ -28,7 +28,7 @@ function PagePresentation({ title, subtitle, hasMedia, showLogo }) {
   ) : (
     <div
       data-testid="PageBannerNoLogo"
-      className={`flex flex-col items-center justify-center text-center p-3 md:p-5 md:space-x-4 mx-auto max-w-screen-lg ${hasMedia ? 'text-white md:h-96' : 'text-charcoal-900 min-h-52'}`}
+      className={`flex flex-col items-center justify-center text-center p-3 md:p-5 md:space-x-4 mx-auto max-w-5xl ${hasMedia ? 'text-white md:h-96' : 'text-charcoal-900 min-h-52'}`}
     >
       <div>
         <h1 className="font-bold text-3xl lg:text-5xl pb-3">{title}</h1>

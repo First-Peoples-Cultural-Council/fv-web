@@ -11,7 +11,7 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
     <div className="mx-auto" id="WidgetKeyboardsPresentation">
-      <div className="bg-white border border-charcoal-200 mx-auto p-6 md:p-10 my-4 max-w-screen-lg rounded-xl">
+      <div className="bg-white border border-charcoal-200 mx-auto p-6 md:p-10 my-4 max-w-5xl rounded-xl">
         <div className="grid grid-cols-3 gap-4">
           <div className="col-span-3 md:col-span-2 space-y-5 md:space-y-10">
             <h1 className="text-xl md:text-3xl text-blumine-800">{header}</h1>

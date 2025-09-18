@@ -49,7 +49,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
   const menuItemLabelStyling = 'ml-1 xl:ml-3 xl:mr-2 whitespace-nowrap'
 
   const mobileMenuItemStyling =
-    'w-full py-3 px-1 text-charcoal-900 flex items-center rounded focus:ring-2'
+    'w-full py-3 px-1 text-charcoal-900 flex items-center rounded-sm focus:ring-2'
   const mobileMenuItemLabelStyling = 'ml-3 font-medium'
 
   const createMobileMenuLink = ({ title, iconName, link }) => (
@@ -66,7 +66,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
       <div
         className={`${
           scrollAtTop && isHome ? 'bg-transparent' : 'bg-charcoal-900'
-        } w-full max-w-screen-2xl mx-auto px-2 lg:px-6 xl:px-16 relative z-10`}
+        } w-full mx-auto px-2 lg:px-6 xl:px-16 relative z-10`}
       >
         <div className="h-16 flex justify-between items-center py-1 space-x-2 lg:space-x-4">
           {/* Logo */}
