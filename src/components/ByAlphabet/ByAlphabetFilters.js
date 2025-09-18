@@ -33,7 +33,7 @@ function ByAlphabetFilters({
           {characters?.map(({ title, id }) => (
             <Link
               data-testid={`SearchFilter_${currentCharacter.id}`}
-              className={`border col-span-1 font-medium inline-flex justify-center m-1 p-2 rounded-lg shadow text-3xl ${
+              className={`border border-charcoal-200 col-span-1 font-medium inline-flex justify-center m-1 p-2 rounded-lg shadow text-3xl ${
                 currentCharacter?.id === id ? 'bg-blumine-800 text-white' : ''
               }`}
               key={id}
