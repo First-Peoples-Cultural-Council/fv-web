@@ -4,7 +4,7 @@ import React from 'react'
 import SpeakerCrudPresentation from 'components/SpeakerCrud/SpeakerCrudPresentation'
 import SpeakerCrudData from 'components/SpeakerCrud/SpeakerCrudData'
 import Loading from 'components/Loading'
-import DocHead from 'components/DocHead'
+import SiteDocHead from 'components/SiteDocHead'
 
 function SpeakerCrudContainer() {
   const { backHandler, dataToEdit, isLoading, submitHandler, deleteHandler } =
@@ -12,7 +12,7 @@ function SpeakerCrudContainer() {
 
   return (
     <Loading.Container isLoading={isLoading}>
-      <DocHead titleArray={['Create Speaker']} />
+      <SiteDocHead titleArray={['Create Speaker']} />
       <SpeakerCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}

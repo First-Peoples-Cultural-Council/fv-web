@@ -4,7 +4,7 @@ import React from 'react'
 import DashboardReportsData from 'components/DashboardReports/DashboardReportsData'
 import DashboardLanding from 'components/DashboardLanding'
 import DashboardTiles from 'components/DashboardTiles'
-import DocHead from 'components/DocHead'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DashboardReportsContainer() {
   const { tileContent, headerContent, reportTiles, site } =
@@ -15,7 +15,7 @@ function DashboardReportsContainer() {
       headerContent={headerContent}
       site={site}
     >
-      <DocHead titleArray={['Reports']} />
+      <SiteDocHead titleArray={['Reports']} />
       <div className="mx-auto max-w-7xl px-8">
         <DashboardTiles.Presentation tileContent={reportTiles} />
       </div>

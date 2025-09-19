@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import DictionaryCrudPresentation from 'components/DictionaryCrud/DictionaryCrudPresentation'
 import DictionaryCrudData from 'components/DictionaryCrud/DictionaryCrudData'
 import Loading from 'components/Loading'
-import DocHead from 'components/DocHead'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryCrudContainer({ type, isCreate }) {
   const {
@@ -20,7 +20,7 @@ function DictionaryCrudContainer({ type, isCreate }) {
   return (
     <Loading.Container isLoading={isLoading}>
       {isCreate ? (
-        <DocHead
+        <SiteDocHead
           titleArray={[
             `${isCreate ? 'Create' : 'Edit'} ${
               type ? type.charAt(0).toUpperCase() + type.slice(1) : ''

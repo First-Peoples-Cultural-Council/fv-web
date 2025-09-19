@@ -16,7 +16,7 @@ import StoryCrud from 'components/StoryCrud'
 import WidgetCrud from 'components/WidgetCrud'
 import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { ASSISTANT, EDITOR, LANGUAGE_ADMIN } from 'common/constants/roles'
-import DocHead from 'components/DocHead'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DashboardCreateContainer() {
   const { tileContent, headerContent, site } = DashboardCreateData({
@@ -24,7 +24,7 @@ function DashboardCreateContainer() {
   })
   return (
     <div id="DashboardCreateContainer">
-      <DocHead titleArray={['Create']} />
+      <SiteDocHead titleArray={['Create']} />
       <Routes>
         <Route
           path="category"

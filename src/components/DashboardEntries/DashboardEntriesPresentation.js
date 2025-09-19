@@ -29,7 +29,7 @@ function DashboardEntriesPresentation({
               window.location.pathname,
             )) ||
           /,/.test(String(searchType || initialSearchType || ''))
-            ? 'Report'
+            ? 'Reports'
             : `Edit ${String(searchType || initialSearchType || 'entries')
                 .toLowerCase()
                 .replace(/[_-]/g, ' ')
