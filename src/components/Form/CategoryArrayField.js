@@ -57,7 +57,7 @@ function CategoryArrayField({
       <ValidationError errors={errors} nameId={nameId} />
 
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
-        <div className="w-1/2-screen h-screen mx-auto rounded-lg overflow-hidden">
+        <div className="w-[50vw] h-screen mx-auto rounded-lg overflow-hidden">
           <CategoriesBrowser.Container
             chooseDocHandler={appendToFormAndClose}
           />

@@ -39,7 +39,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   const audioQueryResponse = useAudio({ id: audio })
   const audioObject = audioQueryResponse?.data
-  const imgStyling = 'w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover'
+  const imgStyling = 'w-full h-64 sm:h-72 md:h-96 lg:h-[75vh] object-cover'
 
   const getImageElement = () => {
     if (!isUUID(image) && !mockData) return ''

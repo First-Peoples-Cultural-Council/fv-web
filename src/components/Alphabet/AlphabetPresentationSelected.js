@@ -57,7 +57,7 @@ function AlphabetPresentationSelected({
         </div>
       )}
       {entriesToDisplay?.length > 0 && (
-        <div className="mx-auto my-5 w-4/5">
+        <div className="mx-auto my-5 w-4/5 max-w-4xl">
           <h2 className={labelStyling}>Example words</h2>
           {entriesToDisplay?.map((word, index) => {
             const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
@@ -145,7 +145,7 @@ function AlphabetPresentationSelected({
       {videoIsOpen && (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-hidden focus:outline-hidden">
-            <div className="w-auto my-6 mx-auto max-w-3xl max-h-3/4-screen">
+            <div className="w-auto my-6 mx-auto max-w-3xl max-h-[75vh]">
               {/* content */}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-hidden focus:outline-hidden">
                 {/* header */}

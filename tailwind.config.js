@@ -43,43 +43,6 @@ module.exports = {
       animation: {
         'pulse-blur': 'pulse-blur 2.5s linear infinite',
       },
-      backdropBrightness: {
-        65: '.65',
-      },
-      borderWidth: {
-        thin: '0.5px',
-        12: '12px',
-      },
-      fontSize: {
-        xxs: '.5rem',
-      },
-      maxHeight: {
-        '1/2-screen': '50vh',
-        '3/4-screen': '75vh',
-      },
-      maxWidth: {
-        '1/2': '50%',
-      },
-      height: {
-        '1/4-screen': '25vh',
-        '1/3-screen': '33vh',
-        '2/5-screen': '40vh',
-        '1/2-screen': '50vh',
-        '2/3-screen': '66vh',
-        '3/4-screen': '75vh',
-        '4/5-screen': '80vh',
-        '9/10-screen': '90vh',
-      },
-      width: {
-        '1/4-screen': '25vw',
-        '1/3-screen': '33vw',
-        '2/5-screen': '40vw',
-        '1/2-screen': '50vw',
-        '2/3-screen': '66vw',
-        '3/4-screen': '75vw',
-        '4/5-screen': '80vw',
-        '9/10-screen': '90vw',
-      },
       keyframes: {
         'pulse-blur': {
           '0%, 50%, 100%': {
@@ -95,9 +58,6 @@ module.exports = {
             filter: 'blur(2px)',
           },
         },
-      },
-      translate: {
-        '1/8': '12.5%',
       },
       colors: {
         // Core Colors

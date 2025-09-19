@@ -62,7 +62,7 @@ function PhraseScramblerPresentation({
                 </div>
                 <div
                   data-testid="selected-boxes"
-                  className={`shadow-sm my-4 border-thin border-charcoal-200 rounded-sm px-2 ${selectedBoxAdditionalStyling}`}
+                  className={`shadow-sm my-4 border-[0.5px] border-charcoal-200 rounded-sm px-2 ${selectedBoxAdditionalStyling}`}
                 >
                   {/* Placeholder till a user selects does any action to maintain styling. */}
                   {selectedWords?.length === 0 && (
@@ -76,7 +76,7 @@ function PhraseScramblerPresentation({
                         data-testid="word-btn"
                         type="button"
                         key={`selectedWords-${wordObj?.id}`}
-                        className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
+                        className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-[0.5px] border-charcoal-200`}
                         onClick={() => wordClicked(wordObj)}
                         disabled={gameCompleted && validAnswer}
                       >
@@ -103,7 +103,7 @@ function PhraseScramblerPresentation({
                           data-testid="word-btn"
                           type="button"
                           key={`jumbledWords-${wordObj?.id}`}
-                          className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-thin border-charcoal-200`}
+                          className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-[0.5px] border-charcoal-200`}
                           onClick={() => wordClicked(wordObj)}
                           onKeyDown={() => wordClicked(wordObj)}
                           disabled={gameCompleted && validAnswer}

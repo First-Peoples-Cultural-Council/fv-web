@@ -30,7 +30,7 @@ function GalleryPresentationWidget({ data, sitename }) {
             <div key={image?.id} className="inline-flex m-2">
               <ImageWithLightbox.Presentation
                 image={image}
-                imgStyling="object-contain md:h-1/3-screen xl:h-2/5-screen w-full"
+                imgStyling="object-contain md:h-[33vh] xl:h-[40vh] w-full"
               />
             </div>
           ))}
