@@ -60,7 +60,8 @@ function KidsNavBarPresentation({ links, site, home }) {
               >
                 <Link
                   to={`/${site?.sitename}/kids/${link.path}`}
-                  className={`bg-${link.color} group w-full flex items-center justify-center group-hover:opacity-75`}
+                  style={{ 'background-color': link.color }}
+                  className="group w-full flex items-center justify-center group-hover:opacity-75"
                 >
                   <div className="w-full">
                     {getIcon(
@@ -68,7 +69,8 @@ function KidsNavBarPresentation({ links, site, home }) {
                       'fill-current text-white h-8 sm:h-10 lg:h-14 xl:h-20 mx-auto',
                     )}
                     <div
-                      className={`hidden sm:block w-full px-1 mt-1 bg-white text-center text-sm md:text-sm xl:text-lg font-bold text-${link.textColor}`}
+                      style={{ color: link.textColor }}
+                      className="hidden sm:block w-full px-1 mt-1 bg-white text-center text-sm md:text-sm xl:text-lg font-bold"
                     >
                       {link.title}
                     </div>
