@@ -18,13 +18,6 @@ module.exports = {
       serif: [...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
-    screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      print: { raw: 'print' },
-    },
     extend: {
       animation: {
         'pulse-blur': 'pulse-blur 2.5s linear infinite',
