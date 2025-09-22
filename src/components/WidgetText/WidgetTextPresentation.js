@@ -95,7 +95,8 @@ function WidgetTextPresentation({ widgetData }) {
             <div className="rounded-full shadow-sm">
               <a
                 href={url}
-                {...(url.includes(FIRSTVOICESLINK) ||
+                {...(url.startsWith('/') ||
+                url.includes(FIRSTVOICESLINK) ||
                 url.startsWith(`/${sitename}`)
                   ? { target: '_self' }
                   : { target: '_blank', rel: 'noopener noreferrer' })}
