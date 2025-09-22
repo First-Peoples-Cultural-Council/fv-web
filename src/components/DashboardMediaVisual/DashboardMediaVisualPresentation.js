@@ -63,7 +63,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                                 infiniteQueryResponse?.currentFile?.id
                                   ? 'ring-4 ring-offset-2 ring-scarlet-800'
                                   : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
-                              } group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden`}
+                              } group block w-full rounded-lg bg-charcoal-50 overflow-hidden`}
                             >
                               <img
                                 src={src}
@@ -73,7 +73,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                                   infiniteQueryResponse?.currentFile?.id
                                     ? ''
                                     : 'group-hover:opacity-75'
-                                } object-cover pointer-events-none`}
+                                } aspect-3/2 w-full object-cover pointer-events-none`}
                               />
                               <button
                                 data-testid=""

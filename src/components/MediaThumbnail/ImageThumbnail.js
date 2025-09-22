@@ -8,8 +8,8 @@ import { TYPE_IMAGE, SMALL } from 'common/constants'
 
 function ImageThumbnail({
   id,
-  containerStyles = 'relative w-48 block aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden',
-  imageStyles = 'w-full h-full object-contain',
+  containerStyles = 'relative w-48 h-32 block rounded-lg bg-charcoal-50 overflow-hidden',
+  imageStyles = 'w-full aspect-3/2 object-cover',
   imageObject,
   ...other
 }) {

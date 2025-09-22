@@ -1,5 +1,4 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-const tailwindAspectRatio = require('@tailwindcss/aspect-ratio')
 const tailwindForms = require('@tailwindcss/forms')
 const customColorsConfig = require('./src/assets/customColorsConfig')
 
@@ -60,5 +59,5 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindAspectRatio, tailwindForms],
+  plugins: [tailwindForms],
 }

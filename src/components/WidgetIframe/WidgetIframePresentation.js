@@ -23,7 +23,7 @@ function WidgetIframePresentation({ widgetData }) {
                 aria-hidden="true"
               />
               <div className="max-w-md mx-auto p-2 sm:p-6 sm:max-w-3xl lg:max-w-none lg:p-0">
-                <div className="aspect-w-2 aspect-h-2 lg:aspect-w-3">
+                <div className="aspect-3/2">
                   <iframe
                     title="Map"
                     allow="geolocation"
@@ -58,7 +58,7 @@ function WidgetIframePresentation({ widgetData }) {
               aria-hidden="true"
             />
             <div className="max-w-md mx-auto px-4 sm:max-w-3xl sm:px-6 lg:max-w-none lg:p-0">
-              <div className="aspect-w-2 aspect-h-2 xl:aspect-w-3">
+              <div className="aspect-3/2">
                 {isMapSrc && (
                   <iframe
                     title={src}
