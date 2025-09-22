@@ -1,9 +1,6 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const tailwindForms = require('@tailwindcss/forms')
 const customColorsConfig = require('./src/assets/customColorsConfig')
 
 module.exports = {
-  content: ['./src/**/*.{html,js}', './public/index.html'],
   safelist: [
     {
       pattern:
@@ -12,31 +9,7 @@ module.exports = {
     },
   ],
   theme: {
-    fontFamily: {
-      sans: ['BCSans', ...defaultTheme.fontFamily.sans],
-      serif: [...defaultTheme.fontFamily.serif],
-      mono: [...defaultTheme.fontFamily.mono],
-    },
     extend: {
-      animation: {
-        'pulse-blur': 'pulse-blur 2.5s linear infinite',
-      },
-      keyframes: {
-        'pulse-blur': {
-          '0%, 50%, 100%': {
-            transform: 'scale(1)',
-            filter: 'blur(0px)',
-          },
-          '25%': {
-            transform: 'scale(0.6)',
-            filter: 'blur(2px)',
-          },
-          '75%': {
-            transform: 'scale(1.4)',
-            filter: 'blur(2px)',
-          },
-        },
-      },
       colors: {
         // Core Colors
         blumine: customColorsConfig.blumine, // 400, 500, 600, 700, 800, 900
@@ -59,5 +32,4 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindForms],
 }

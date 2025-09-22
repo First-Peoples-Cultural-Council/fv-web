@@ -1,6 +1,29 @@
 @import '@bcgov/bc-sans/css/BCSans.css' layer(base);
 @import 'tailwindcss';
+@plugin "@tailwindcss/forms";
 @config '../../tailwind.config.js';
+
+@theme {
+  --font-sans: 'BCSans', sans-serif;
+  --animate-pulse-blur: pulse-blur 2.5s linear infinite;
+
+  @keyframes pulse-blur {
+    0%,
+    50%,
+    100% {
+      transform: scale(1);
+      filter: blur(0px);
+    }
+    25% {
+      transform: scale(0.6);
+      filter: blur(2px);
+    }
+    75% {
+      transform: scale(1.4);
+      filter: blur(2px);
+    }
+  }
+}
 
 /* Changes to wysiwyg classes need to be mirrored in the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
 @layer base {
