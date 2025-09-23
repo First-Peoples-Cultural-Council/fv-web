@@ -4,7 +4,7 @@
 }
 
 /* Button base class for icon only buttons */
-@utility btn-icon-base {
+@utility btn-icon {
   @apply rounded-full inline-flex justify-center items-center disabled:pointer-events-none;
 
   /* Auto-formatting for icon-only buttons (Do not use directly) */
@@ -63,7 +63,7 @@
 
 /* Icon only buttons */
 @utility btn-sm-icon {
-  @apply btn-icon-base
+  @apply btn-icon
            w-11 h-11 /* Mobile and tablet ~44x44 */
            xl:w-8 xl:h-8; /* Desktop ~32x32 */
   & svg {
@@ -73,7 +73,7 @@
   }
 }
 @utility btn-md-icon {
-  @apply btn-icon-base
+  @apply btn-icon
            w-12 h-12 /* Mobile ~48x48 */
            md:w-14 md:h-14 /* Tablet ~56x56 */
            xl:w-10 xl:h-10; /* Desktop ~40x40 */
@@ -82,7 +82,7 @@
   }
 }
 @utility btn-lg-icon {
-  @apply btn-icon-base
+  @apply btn-icon
            w-14 h-14 /* Mobile ~56x56 */
            md:w-16 md:h-16 /* Tablet ~64x64 */
            xl:w-12 xl:h-12; /* Desktop ~48x48 */
@@ -91,7 +91,7 @@
   }
 }
 @utility btn-xl-icon {
-  @apply btn-icon-base
+  @apply btn-icon
            w-16 h-16 /* Mobile ~64x64 */
            md:w-20 md:h-20 /* Tablet ~72x72 */
            xl:w-14 xl:h-14 /* Desktop ~56x56 */;
