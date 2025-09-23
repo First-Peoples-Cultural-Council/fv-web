@@ -59,7 +59,7 @@ function AudiobarPresentationMobile({
                 type="button"
                 id="#"
                 aria-label="rate"
-                className="mr-2 font-bold text-black bg-white rounded-sm px-2 py-1"
+                className="mr-2 font-bold text-charcoal-900 bg-white rounded-sm px-2 py-1"
                 onClick={() => onRateChange()}
               >
                 {`${rate.toString()}x`}

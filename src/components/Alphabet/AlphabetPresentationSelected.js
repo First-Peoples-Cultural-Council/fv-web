@@ -154,7 +154,7 @@ function AlphabetPresentationSelected({
                   <button
                     data-testid="close-video"
                     type="button"
-                    className="ml-auto p-2 bg-transparent border-0 float-right leading-none font-medium outline-hidden focus:outline-hidden text-black opacity-30 text-2xl"
+                    className="ml-auto p-2 bg-transparent border-0 float-right leading-none font-medium outline-hidden focus:outline-hidden text-charcoal-900 opacity-30 text-2xl"
                     onClick={() => onVideoClick()}
                   >
                     x

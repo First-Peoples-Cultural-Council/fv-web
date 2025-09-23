@@ -85,7 +85,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
           entry?.relatedAudio?.map((audio) => (
             <AudioNative
               key={audio?.id}
-              styling="w-96 text-black mx-auto print:hidden"
+              styling="w-96 text-charcoal-900 mx-auto print:hidden"
               audioObject={audio}
             />
           ))}

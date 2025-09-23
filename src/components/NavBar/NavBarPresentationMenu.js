@@ -24,7 +24,7 @@ function NavBarPresentationMenu({ menuItemData, sitename }) {
           <Link
             to={`/${sitename + menuItem.href}`}
             className={`${
-              focus ? 'bg-charcoal-100 text-black' : 'text-charcoal-900'
+              focus ? 'bg-charcoal-100 text-charcoal-900' : 'text-charcoal-900'
             } flex w-full rounded-lg`}
           >
             <div className="px-2 py-1 w-full text-lg font-medium">

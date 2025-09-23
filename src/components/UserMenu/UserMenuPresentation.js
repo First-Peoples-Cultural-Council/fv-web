@@ -19,7 +19,8 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
       ? site?.checkForEnabledFeature(IMMERSION)
       : false
 
-  const menuItemActiveClass = 'bg-charcoal-100 text-black rounded-sm ring-black'
+  const menuItemActiveClass =
+    'bg-charcoal-100 text-charcoal-900 rounded-sm ring-black'
   const menuItemInactiveClass = 'text-charcoal-900'
   const menuItemBaseClass =
     'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'

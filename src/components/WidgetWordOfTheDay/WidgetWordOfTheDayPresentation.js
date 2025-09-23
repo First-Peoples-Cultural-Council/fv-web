@@ -29,7 +29,7 @@ function WidgetWordOfTheDayPresentation({
           <div className="mt-2 inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800">
             <Link to={relativeUrl}>{wordTitle}</Link>
             {audio && (
-              <span className="ml-2 text-black">
+              <span className="ml-2 text-charcoal-900">
                 <AudioButton audioArray={audio} />
               </span>
             )}

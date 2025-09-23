@@ -50,7 +50,9 @@ function SearchDomainSelectorPresentation({
                     type="button"
                     onClick={() => handleSearchDomainChange(key)}
                     className={`${
-                      focus ? 'bg-charcoal-100 text-black' : 'text-charcoal-900'
+                      focus
+                        ? 'bg-charcoal-100 text-charcoal-900'
+                        : 'text-charcoal-900'
                     } font-medium group flex rounded-lg items-center w-full px-2 py-2 text-sm`}
                   >
                     {label}
