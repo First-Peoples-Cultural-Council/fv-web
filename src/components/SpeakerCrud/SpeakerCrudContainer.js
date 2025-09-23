@@ -10,9 +10,20 @@ function SpeakerCrudContainer() {
   const { backHandler, dataToEdit, isLoading, submitHandler, deleteHandler } =
     SpeakerCrudData()
 
+  const isCreate = !(
+    dataToEdit &&
+    (dataToEdit.id || dataToEdit.uuid || dataToEdit.title || dataToEdit.name)
+  )
+  const action = isCreate ? 'Create' : 'Edit'
+  const entryLabel = dataToEdit?.name || dataToEdit?.title
+
   return (
     <Loading.Container isLoading={isLoading}>
-      <SiteDocHead titleArray={['Create Speaker']} />
+      <SiteDocHead
+        titleArray={[`${action} Speaker`, !isCreate ? entryLabel : null].filter(
+          Boolean,
+        )}
+      />
       <SpeakerCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}

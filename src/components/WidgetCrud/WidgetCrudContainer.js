@@ -15,9 +15,20 @@ function WidgetCrudContainer() {
     deleteHandler,
     widgetTypes,
   } = WidgetCrudData()
+  const isCreate = !(
+    dataToEdit &&
+    (dataToEdit.id || dataToEdit.uuid || dataToEdit.title || dataToEdit.name)
+  )
+  const action = isCreate ? 'Create' : 'Edit'
+  const entryLabel = dataToEdit?.title || dataToEdit?.name
+
   return (
     <Loading.Container isLoading={isLoading}>
-      <SiteDocHead titleArray={['Create Widget']} />
+      <SiteDocHead
+        titleArray={[`${action} Widget`, !isCreate ? entryLabel : null].filter(
+          Boolean,
+        )}
+      />
       <WidgetCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}

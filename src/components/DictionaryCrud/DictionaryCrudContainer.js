@@ -6,6 +6,7 @@ import DictionaryCrudPresentation from 'components/DictionaryCrud/DictionaryCrud
 import DictionaryCrudData from 'components/DictionaryCrud/DictionaryCrudData'
 import Loading from 'components/Loading'
 import SiteDocHead from 'components/SiteDocHead'
+import { getFriendlyType } from 'common/utils/stringHelpers'
 
 function DictionaryCrudContainer({ type, isCreate }) {
   const {
@@ -19,15 +20,15 @@ function DictionaryCrudContainer({ type, isCreate }) {
 
   return (
     <Loading.Container isLoading={isLoading}>
-      {isCreate ? (
-        <SiteDocHead
-          titleArray={[
-            `${isCreate ? 'Create' : 'Edit'} ${
-              type ? type.charAt(0).toUpperCase() + type.slice(1) : ''
-            }`,
-          ]}
-        />
-      ) : null}
+      <SiteDocHead
+        titleArray={[
+          `${isCreate ? 'Create' : 'Edit'} ${getFriendlyType({
+            type,
+            titleCase: true,
+          })}`,
+          dataToEdit?.title,
+        ].filter(Boolean)}
+      />
       <DictionaryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}

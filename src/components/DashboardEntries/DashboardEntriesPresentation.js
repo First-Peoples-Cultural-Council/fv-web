@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SiteDocHead from 'components/SiteDocHead'
+import { makePlural } from 'common/utils/urlHelpers'
 
 // FPCC
 import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
@@ -20,22 +21,23 @@ function DashboardEntriesPresentation({
   setShowAdvancedSearch,
   showAdvancedSearch,
 }) {
+  const rawType = String(searchType || initialSearchType || 'entries')
+    .toLowerCase()
+    .replace(/[_-]/g, ' ')
+
+  const typeTitle = rawType.replace(/(^|\s)\S/g, (s) => s.toUpperCase())
+
+  // Always pluralize on the LIST page (except the literal "Entries")
+  const listLabel = typeTitle === 'Entries' ? 'Entries' : makePlural(typeTitle)
+
+  const isReports =
+    (typeof window !== 'undefined' &&
+      /\/(?:dashboard\/)?reports?(?:\/|$)/i.test(window.location.pathname)) ||
+    /,/.test(String(searchType || initialSearchType || ''))
+
   return (
     <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
-      <SiteDocHead
-        titleArray={[
-          (typeof window !== 'undefined' &&
-            /\/(?:dashboard\/)?reports?(?:\/|$)/i.test(
-              window.location.pathname,
-            )) ||
-          /,/.test(String(searchType || initialSearchType || ''))
-            ? 'Reports'
-            : `Edit ${String(searchType || initialSearchType || 'entries')
-                .toLowerCase()
-                .replace(/[_-]/g, ' ')
-                .replace(/(^|\s)\S/g, (s) => s.toUpperCase())}`,
-        ]}
-      />
+      <SiteDocHead titleArray={[isReports ? 'Reports' : `Edit ${listLabel}`]} />
 
       <section className="inline-flex w-full space-x-5 items-center justify-between print:hidden">
         <div className="w-1/2">

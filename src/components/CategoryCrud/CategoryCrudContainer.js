@@ -16,9 +16,21 @@ function CategoryCrudContainer() {
     parentCategoryOptions,
   } = CategoryCrudData()
 
+  const isCreate = !(
+    dataToEdit &&
+    (dataToEdit.id || dataToEdit.uuid || dataToEdit.title || dataToEdit.name)
+  )
+  const action = isCreate ? 'Create' : 'Edit'
+  const entryLabel = dataToEdit?.title || dataToEdit?.name
+
   return (
     <LoadOrError queryResponse={categoriesQueryResponse}>
-      <SiteDocHead titleArray={['Create Category']} />
+      <SiteDocHead
+        titleArray={[
+          `${action} Category`,
+          !isCreate ? entryLabel : null,
+        ].filter(Boolean)}
+      />
       <CategoryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}

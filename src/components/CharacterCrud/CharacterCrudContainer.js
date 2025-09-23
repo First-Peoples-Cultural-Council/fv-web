@@ -4,6 +4,7 @@ import React from 'react'
 import CharacterCrudPresentation from 'components/CharacterCrud/CharacterCrudPresentation'
 import CharacterCrudData from 'components/CharacterCrud/CharacterCrudData'
 import LoadOrError from 'components/LoadOrError'
+import SiteDocHead from 'components/SiteDocHead'
 
 function CharacterCrudContainer() {
   const { backHandler, characterQueryResponse, submitHandler } =
@@ -11,6 +12,7 @@ function CharacterCrudContainer() {
 
   return (
     <LoadOrError queryResponse={characterQueryResponse}>
+      <SiteDocHead titleArray={['Edit Alphabet']} />
       <CharacterCrudPresentation
         backHandler={backHandler}
         dataToEdit={characterQueryResponse?.data || null}

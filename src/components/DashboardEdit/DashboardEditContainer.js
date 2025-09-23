@@ -118,7 +118,10 @@ function DashboardEditContainer() {
           path={AUDIO_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <AudioCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Audio']} />
+                <AudioCrud.Container />
+              </>
             </RequireAuth>
           }
         />
@@ -142,7 +145,10 @@ function DashboardEditContainer() {
           path={DOCUMENT_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DocumentCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Document']} />
+                <DocumentCrud.Container />
+              </>
             </RequireAuth>
           }
         />
@@ -166,7 +172,10 @@ function DashboardEditContainer() {
           path={IMAGE_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <ImageCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Image']} />
+                <ImageCrud.Container />
+              </>
             </RequireAuth>
           }
         />
@@ -214,7 +223,10 @@ function DashboardEditContainer() {
           path={VIDEO_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <VideoCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Video']} />
+                <VideoCrud.Container />
+              </>
             </RequireAuth>
           }
         />
