@@ -30,45 +30,17 @@
 }
 
 @layer base {
-  .wysiwyg {
-    @apply text-left;
-  }
-  .wysiwyg h2 {
-    @apply border-b border-charcoal-500 font-bold my-6 py-5 text-2xl text-blumine-800;
-  }
-  .wysiwyg h3 {
-    @apply font-bold my-4 text-xl text-blumine-800;
-  }
-  .wysiwyg ol {
-    @apply list-decimal pl-6;
-  }
-  .wysiwyg ul {
-    @apply list-disc pl-6;
-  }
-  .wysiwyg div {
-    @apply my-4;
-  }
-  .wysiwyg p {
-    @apply my-4;
-  }
-  .wysiwyg a {
-    @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
-  }
-  /* Prevent blue focus outline in tiptap editor */
-  .wysiwyg .ProseMirror:focus {
-    outline: none;
-    box-shadow: none;
-  }
-
-  /* Prevent clickable links while editing in tiptap editor */
-  .wysiwyg .ProseMirror a {
-    pointer-events: none;
+  /* Default cursor for buttons */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
   }
 }
 
 @utility ql-video {
   @apply w-full h-96;
 }
+
 @utility inline-url {
   @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
 }
@@ -85,17 +57,48 @@
   clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
 }
 
-@utility uppy-Root {
-  & label {
-    font-family: 'BCSans', sans-serif;
+@utility wysiwyg {
+  /* Styling for Wysiwyg Fields */
+  @apply text-left;
+
+  & h2 {
+    @apply border-b border-charcoal-500 font-bold my-6 py-5 text-2xl text-blumine-800;
   }
-  & .uppy-u-reset {
-    font-family: 'BCSans', sans-serif;
+  & h3 {
+    @apply font-bold my-4 text-xl text-blumine-800;
+  }
+  & ol {
+    @apply list-decimal pl-6;
+  }
+  & ul {
+    @apply list-disc pl-6;
+  }
+  & div {
+    @apply my-4;
+  }
+  & p {
+    @apply my-4;
+  }
+  & a {
+    @apply inline-url;
   }
 }
 
-@utility uppy-u-reset {
-  .uppy-Root & {
-    font-family: 'BCSans', sans-serif;
-  }
+/* Prevent blue focus outline in tiptap editor */
+.wysiwyg .ProseMirror:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Prevent clickable links while editing in tiptap editor */
+.wysiwyg .ProseMirror a {
+  pointer-events: none;
+}
+
+/* Ensure Uppy uses BCSans */
+.uppy-Root label {
+  font-family: 'BCSans', sans-serif;
+}
+.uppy-Root .uppy-u-reset {
+  font-family: 'BCSans', sans-serif;
 }
