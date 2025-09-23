@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
@@ -58,13 +57,6 @@ function LandingWhyPresentation() {
       </div>
     </section>
   )
-}
-
-// PROPTYPES
-const { object } = PropTypes
-
-LandingWhyPresentation.propTypes = {
-  widgetData: object,
 }
 
 export default LandingWhyPresentation
