@@ -1,71 +1,14 @@
 @import '@bcgov/bc-sans/css/BCSans.css' layer(base);
 @import 'tailwindcss';
+@import './buttons.css';
+@import './colors.css';
+
 @plugin "@tailwindcss/forms";
 
 @theme {
   --font-sans: 'BCSans', sans-serif;
 
-  /* Core Colors */
-  --color-blumine-50: #f0f9fb;
-  --color-blumine-100: #daeef3;
-  --color-blumine-200: #badee7;
-  --color-blumine-300: #89c5d7;
-  --color-blumine-400: #52a3be;
-  --color-blumine-500: #3787a3;
-  --color-blumine-600: #306d8a;
-  --color-blumine-700: #2d5b72;
-  --color-blumine-800: #2c4c5e;
-  --color-blumine-900: #284151;
-  --color-blumine-950: #162936;
-
-  --color-scarlet-50: #fff0f1;
-  --color-scarlet-100: #ffdcdf;
-  --color-scarlet-200: #ffc0c6;
-  --color-scarlet-300: #ff949e;
-  --color-scarlet-400: #ff5665;
-  --color-scarlet-500: #ff2236;
-  --color-scarlet-600: #ff0219;
-  --color-scarlet-700: #d80013;
-  --color-scarlet-800: #b40212;
-  --color-scarlet-900: #920a16;
-  --color-scarlet-950: #510007;
-
-  --color-charcoal-50: #f5f5f6;
-  --color-charcoal-100: #e6e6e7;
-  --color-charcoal-200: #cfd0d2;
-  --color-charcoal-300: #aeafb2;
-  --color-charcoal-400: #85868b;
-  --color-charcoal-500: #6a6b70;
-  --color-charcoal-600: #5a5b60;
-  --color-charcoal-700: #4d4d51;
-  --color-charcoal-800: #434347;
-  --color-charcoal-900: #313133;
-  --color-charcoal-950: #252527;
-
-  --color-jade-50: #effaf6;
-  --color-jade-100: #d9f2e6;
-  --color-jade-200: #b6e4d1;
-  --color-jade-300: #86cfb5;
-  --color-jade-400: #53b494;
-  --color-jade-500: #2c876d;
-  --color-jade-600: #227962;
-  --color-jade-700: #1b6150;
-  --color-jade-800: #184d40;
-  --color-jade-900: #144036;
-  --color-jade-950: #0a241f;
-
-  --color-ochre-50: #fcf9ee;
-  --color-ochre-100: #f5edd0;
-  --color-ochre-200: #ebd99c;
-  --color-ochre-300: #e1c268;
-  --color-ochre-400: #daad45;
-  --color-ochre-500: #d1912f;
-  --color-ochre-600: #c37829;
-  --color-ochre-700: #995424;
-  --color-ochre-800: #7e4322;
-  --color-ochre-900: #68381f;
-  --color-ochre-950: #3b1c0d;
-
+  /* Theme Animations */
   --animate-pulse-blur: pulse-blur 2.5s linear infinite;
 
   @keyframes pulse-blur {
@@ -86,43 +29,6 @@
   }
 }
 
-/* Color variables referencing other variables */
-@theme inline {
-  --color-wordsy-correct: var(--color-jade-500);
-  --color-wordsy-present: var(--color-ochre-600);
-
-  --color-phrase-color-100: var(--color-ochre-100);
-  --color-phrase-color-500: var(--color-ochre-500);
-  --color-phrase-color-600: var(--color-ochre-600);
-  --color-phrase-color-700: var(--color-ochre-700);
-  --color-phrase-color-800: var(--color-ochre-800);
-  --color-phrase-color-900: var(--color-ochre-900);
-
-  --color-word-color-100: var(--color-jade-100);
-  --color-word-color-500: var(--color-jade-500);
-  --color-word-color-600: var(--color-jade-600);
-  --color-word-color-700: var(--color-jade-700);
-  --color-word-color-800: var(--color-jade-800);
-  --color-word-color-900: var(--color-jade-900);
-
-  --color-song-color-100: var(--color-scarlet-100);
-  --color-song-color-700: var(--color-scarlet-700);
-  --color-song-color-800: var(--color-scarlet-800);
-  --color-song-color-900: var(--color-scarlet-900);
-
-  --color-story-color-100: var(--color-blumine-100);
-  --color-story-color-700: var(--color-blumine-700);
-  --color-story-color-800: var(--color-blumine-800);
-  --color-story-color-900: var(--color-blumine-900);
-}
-
-/* Safelisting for dynamically generated type classes */
-@source inline("{focus:,}{text,bg,border,to,from,ring}-phrase-color-{100,500,600,700,800,900}");
-@source inline("{focus:,}{text,bg,border,to,from,ring}-word-color-{100,500,600,700,800,900}");
-@source inline("{focus:,}{text,bg,border,ring}-song-color-{100,700,800,900}");
-@source inline("{focus:,}{text,bg,border,ring}-story-color-{100,700,800,900}");
-
-/* Changes to wysiwyg classes need to be mirrored in the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
 @layer base {
   .wysiwyg {
     @apply text-left;
@@ -165,108 +71,6 @@
 }
 @utility inline-url {
   @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
-}
-
-/* Button base class */
-@utility btn {
-  @apply rounded-3xl inline-flex justify-center items-center space-x-2 disabled:pointer-events-none;
-}
-
-/* Button base class for icon only buttons */
-@utility btn-icon-base {
-  @apply rounded-full inline-flex justify-center items-center disabled:pointer-events-none;
-
-  /* Auto-formatting for icon-only buttons (Do not use directly) */
-  & svg {
-    @apply block align-middle w-full h-full p-0 m-0;
-  }
-}
-
-/* Button styles */
-@utility btn-primary {
-  @apply btn bg-blumine-600 text-blumine-100 disabled:bg-charcoal-300 disabled:text-charcoal-50 hover:bg-blumine-800 focus:outline-hidden focus:ring-2 focus:ring-blumine-300;
-}
-@utility btn-secondary {
-  @apply btn bg-white border border-blumine-900 text-blumine-900 disabled:border-charcoal-300 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900;
-}
-@utility btn-tertiary {
-  @apply btn bg-white text-blumine-900 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900 m-1;
-}
-
-/* Button sizes */
-/* Combine with btn-primary, btn-secondary, or btn-tertiary */
-@utility btn-sm {
-  @apply py-1.5 px-3
-           text-xs min-w-24 h-9 /* Mobile and tablet ~(88x36) 12px font */
-           xl:text-sm xl:min-w-32 xl:h-8; /* Desktop ~(120x32) 14px font */
-  & svg {
-    @apply fill-current w-3.5 h-3.5; /* All ~14px */
-  }
-}
-@utility btn-md {
-  @apply py-2 px-3
-           text-base min-w-32 h-11 /* Mobile and tablet ~(120x44) 16px font */
-           xl:text-base xl:min-w-40 xl:h-10; /* Desktop ~(160x40) 16px font */
-  & svg {
-    @apply fill-current w-4 h-4; /* All ~16px */
-  }
-}
-@utility btn-lg {
-  @apply py-2 px-3
-           text-base min-w-40 h-14 /* Mobile and tablet ~(160x52) 16px font */
-           xl:text-lg xl:min-w-52 xl:h-12; /* Desktop ~(200x48) 18px font */
-  & svg {
-    @apply fill-current w-5 h-5; /* All ~20px */
-  }
-}
-@utility btn-xl {
-  @apply py-3 px-5
-           text-lg min-w-52 h-16 /* Mobile and tablet ~(200x60) 18px font */
-           xl:text-xl xl:min-w-80 xl:h-14; /* Desktop ~(300x56) 22px font */
-  & svg {
-    @apply fill-current
-           w-5 h-5 /* Mobile and tablet ~18px */
-           xl:w-6 xl:h-6; /* Desktop ~22px */
-  }
-}
-
-/* Icon only buttons */
-@utility btn-sm-icon {
-  @apply btn-icon-base
-           w-11 h-11 /* Mobile and tablet ~44x44 */
-           xl:w-8 xl:h-8; /* Desktop ~32x32 */
-  & svg {
-    @apply fill-current
-           w-5 h-5 /* Mobile and tablet ~20px */
-           xl:w-3 xl:h-3; /* Desktop ~12px */
-  }
-}
-@utility btn-md-icon {
-  @apply btn-icon-base
-           w-12 h-12 /* Mobile ~48x48 */
-           md:w-14 md:h-14 /* Tablet ~56x56 */
-           xl:w-10 xl:h-10; /* Desktop ~40x40 */
-  & svg {
-    @apply fill-current w-6 h-6; /* All ~24px */
-  }
-}
-@utility btn-lg-icon {
-  @apply btn-icon-base
-           w-14 h-14 /* Mobile ~56x56 */
-           md:w-16 md:h-16 /* Tablet ~64x64 */
-           xl:w-12 xl:h-12; /* Desktop ~48x48 */
-  & svg {
-    @apply fill-current w-7 h-7; /* All ~28px */
-  }
-}
-@utility btn-xl-icon {
-  @apply btn-icon-base
-           w-16 h-16 /* Mobile ~64x64 */
-           md:w-20 md:h-20 /* Tablet ~72x72 */
-           xl:w-14 xl:h-14 /* Desktop ~56x56 */;
-  & svg {
-    @apply fill-current w-8 h-8; /* All ~32px */
-  }
 }
 
 @utility breakAfter {

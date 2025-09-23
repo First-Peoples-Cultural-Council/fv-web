@@ -1,0 +1,101 @@
+/* Button base class */
+@utility btn {
+  @apply rounded-3xl inline-flex justify-center items-center space-x-2 disabled:pointer-events-none;
+}
+
+/* Button base class for icon only buttons */
+@utility btn-icon-base {
+  @apply rounded-full inline-flex justify-center items-center disabled:pointer-events-none;
+
+  /* Auto-formatting for icon-only buttons (Do not use directly) */
+  & svg {
+    @apply block align-middle w-full h-full p-0 m-0;
+  }
+}
+
+/* Button styles */
+@utility btn-primary {
+  @apply btn bg-blumine-600 text-blumine-100 disabled:bg-charcoal-300 disabled:text-charcoal-50 hover:bg-blumine-800 focus:outline-hidden focus:ring-2 focus:ring-blumine-300;
+}
+@utility btn-secondary {
+  @apply btn bg-white border border-blumine-900 text-blumine-900 disabled:border-charcoal-300 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900;
+}
+@utility btn-tertiary {
+  @apply btn bg-white text-blumine-900 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900 m-1;
+}
+
+/* Button sizes */
+/* Combine with btn-primary, btn-secondary, or btn-tertiary */
+@utility btn-sm {
+  @apply py-1.5 px-3
+           text-xs min-w-24 h-9 /* Mobile and tablet ~(88x36) 12px font */
+           xl:text-sm xl:min-w-32 xl:h-8; /* Desktop ~(120x32) 14px font */
+  & svg {
+    @apply fill-current w-3.5 h-3.5; /* All ~14px */
+  }
+}
+@utility btn-md {
+  @apply py-2 px-3
+           text-base min-w-32 h-11 /* Mobile and tablet ~(120x44) 16px font */
+           xl:text-base xl:min-w-40 xl:h-10; /* Desktop ~(160x40) 16px font */
+  & svg {
+    @apply fill-current w-4 h-4; /* All ~16px */
+  }
+}
+@utility btn-lg {
+  @apply py-2 px-3
+           text-base min-w-40 h-14 /* Mobile and tablet ~(160x52) 16px font */
+           xl:text-lg xl:min-w-52 xl:h-12; /* Desktop ~(200x48) 18px font */
+  & svg {
+    @apply fill-current w-5 h-5; /* All ~20px */
+  }
+}
+@utility btn-xl {
+  @apply py-3 px-5
+           text-lg min-w-52 h-16 /* Mobile and tablet ~(200x60) 18px font */
+           xl:text-xl xl:min-w-80 xl:h-14; /* Desktop ~(300x56) 22px font */
+  & svg {
+    @apply fill-current
+           w-5 h-5 /* Mobile and tablet ~18px */
+           xl:w-6 xl:h-6; /* Desktop ~22px */
+  }
+}
+
+/* Icon only buttons */
+@utility btn-sm-icon {
+  @apply btn-icon-base
+           w-11 h-11 /* Mobile and tablet ~44x44 */
+           xl:w-8 xl:h-8; /* Desktop ~32x32 */
+  & svg {
+    @apply fill-current
+           w-5 h-5 /* Mobile and tablet ~20px */
+           xl:w-3 xl:h-3; /* Desktop ~12px */
+  }
+}
+@utility btn-md-icon {
+  @apply btn-icon-base
+           w-12 h-12 /* Mobile ~48x48 */
+           md:w-14 md:h-14 /* Tablet ~56x56 */
+           xl:w-10 xl:h-10; /* Desktop ~40x40 */
+  & svg {
+    @apply fill-current w-6 h-6; /* All ~24px */
+  }
+}
+@utility btn-lg-icon {
+  @apply btn-icon-base
+           w-14 h-14 /* Mobile ~56x56 */
+           md:w-16 md:h-16 /* Tablet ~64x64 */
+           xl:w-12 xl:h-12; /* Desktop ~48x48 */
+  & svg {
+    @apply fill-current w-7 h-7; /* All ~28px */
+  }
+}
+@utility btn-xl-icon {
+  @apply btn-icon-base
+           w-16 h-16 /* Mobile ~64x64 */
+           md:w-20 md:h-20 /* Tablet ~72x72 */
+           xl:w-14 xl:h-14 /* Desktop ~56x56 */;
+  & svg {
+    @apply fill-current w-8 h-8; /* All ~32px */
+  }
+}
