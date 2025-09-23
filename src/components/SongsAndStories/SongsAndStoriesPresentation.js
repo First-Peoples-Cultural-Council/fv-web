@@ -15,7 +15,8 @@ import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
   const { sitename } = useParams()
-  const accentColor = labels?.textColor
+  const accentColor =
+    labels?.slug === 'songs' ? 'song-color-900' : 'story-color-900'
   const [isGridView, setIsGridView] = useState(true)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})

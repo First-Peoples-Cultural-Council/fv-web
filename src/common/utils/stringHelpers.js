@@ -136,8 +136,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Words',
         singular: 'word',
         slug: 'words',
-        color: 'word-color-500',
-        textColor: 'word-color-700',
       }
     case TYPE_PHRASE:
       return {
@@ -146,8 +144,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Phrases',
         singular: 'phrase',
         slug: 'phrases',
-        color: 'phrase-color-600',
-        textColor: 'phrase-color-800',
       }
     case TYPE_SONG:
       return {
@@ -156,8 +152,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Songs',
         singular: 'song',
         slug: 'songs',
-        color: 'song-color-800',
-        textColor: 'song-color-900',
       }
     case TYPE_STORY:
       return {
@@ -166,8 +160,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Stories',
         singular: 'story',
         slug: 'stories',
-        color: 'story-color-700',
-        textColor: 'story-color-900',
       }
     case TYPE_DICTIONARY:
       return {
@@ -176,8 +168,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Dictionary',
         singular: 'word / phrase',
         slug: 'dictionary',
-        color: 'word-color-500',
-        textColor: 'word-color-700',
       }
     case TYPE_MEDIA:
       return {
@@ -186,8 +176,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Media',
         singular: 'media',
         slug: 'search',
-        color: 'charcoal-500',
-        textColor: 'charcoal-900',
       }
     case TYPE_AUDIO:
       return {
@@ -196,8 +184,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Audio',
         singular: 'audio',
         slug: 'audio',
-        color: 'charcoal-500',
-        textColor: 'charcoal-900',
       }
     case TYPE_IMAGE:
       return {
@@ -206,8 +192,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Images',
         singular: 'image',
         slug: 'image',
-        color: 'charcoal-500',
-        textColor: 'charcoal-900',
       }
     case TYPE_VIDEO:
       return {
@@ -216,8 +200,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Videos',
         singular: 'video',
         slug: 'video',
-        color: 'charcoal-500',
-        textColor: 'charcoal-900',
       }
     case TYPE_ENTRY:
     default:
@@ -227,8 +209,6 @@ export const getPresentationPropertiesForType = (type) => {
         titlecase: 'Language Entries',
         singular: 'language entry',
         slug: 'search',
-        color: 'charcoal-500',
-        textColor: 'charcoal-900',
       }
   }
 }

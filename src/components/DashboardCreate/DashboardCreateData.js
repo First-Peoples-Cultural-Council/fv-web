@@ -19,7 +19,7 @@ function DashboardCreateData({ urlPrefix = '' }) {
       name: 'Create a word',
       description: 'Add a new word to your dictionary',
       href: addUrlPrefix('word'),
-      iconColor: 'word-color-800',
+      iconColor: 'word-color-700',
       auth: ASSISTANT,
     },
     PHRASE: {
