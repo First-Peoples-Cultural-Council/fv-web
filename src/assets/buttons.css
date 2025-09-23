@@ -7,7 +7,6 @@
 @utility btn-icon {
   @apply rounded-full inline-flex justify-center items-center disabled:pointer-events-none;
 
-  /* Auto-formatting for icon-only buttons (Do not use directly) */
   & svg {
     @apply block align-middle w-full h-full p-0 m-0;
   }
@@ -61,7 +60,8 @@
   }
 }
 
-/* Icon only buttons */
+/* Icon only button sizes */
+/* Combine with btn-primary, btn-secondary, or btn-tertiary */
 @utility btn-sm-icon {
   @apply btn-icon
            w-11 h-11 /* Mobile and tablet ~44x44 */
