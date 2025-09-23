@@ -124,10 +124,10 @@ function DictionaryListPresentation({
 
                           return (
                             <tr key={entry?.id}>
-                              <td className={`px-6 py-4 ${ifLastEntryStyling}`}>
+                              <td>
                                 <button
                                   type="button"
-                                  className="text-left font-medium text-charcoal-900 lg:mr-2"
+                                  className={`px-6 py-4 ${ifLastEntryStyling} w-full h-full text-left font-medium text-charcoal-900 lg:mr-2`}
                                   onClick={() => handleItemClick(entry)}
                                   data-testid="DictionaryListEntry"
                                 >
