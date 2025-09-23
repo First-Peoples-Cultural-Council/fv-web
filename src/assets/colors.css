@@ -82,17 +82,15 @@
 
   --color-song-color-100: var(--color-scarlet-100);
   --color-song-color-700: var(--color-scarlet-700);
-  --color-song-color-800: var(--color-scarlet-800);
   --color-song-color-900: var(--color-scarlet-900);
 
   --color-story-color-100: var(--color-blumine-100);
   --color-story-color-700: var(--color-blumine-700);
-  --color-story-color-800: var(--color-blumine-800);
   --color-story-color-900: var(--color-blumine-900);
 }
 
 /* Safelisting for dynamically generated type classes */
 @source inline("{focus:,}{text,bg,border,to,from,ring}-phrase-color-{100,500,600,700,800,900}");
 @source inline("{focus:,}{text,bg,border,to,from,ring}-word-color-{100,500,600,700,800,900}");
-@source inline("{focus:,}{text,bg,border,ring}-song-color-{100,700,800,900}");
-@source inline("{focus:,}{text,bg,border,ring}-story-color-{100,700,800,900}");
+@source inline("{focus:,}{text,bg,border,ring}-song-color-{100,700,900}");
+@source inline("{focus:,}{text,bg,border,ring}-story-color-{100,700,900}");
