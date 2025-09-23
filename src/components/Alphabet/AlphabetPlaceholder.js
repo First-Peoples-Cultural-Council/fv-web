@@ -11,108 +11,14 @@ function AlphabetPlaceholder() {
         <div className="grid grid-cols-7 gap-2">
           <div className="col-span-7 md:col-span-4 md:pr-4 xl:pr-8 md:border-r-2 border-charcoal-200">
             <div className="grid grid-cols-7 md:grid-cols-5 lg:grid-cols-7">
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
-              <span className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl">
-                &nbsp;
-              </span>
+              {[...Array(34)].map((_, i) => (
+                <span
+                  key={i}
+                  className="bg-charcoal-50 text-charcoal-50 col-span-1 font-medium inline-flex justify-center m-1 p-5 rounded-sm text-2xl"
+                >
+                  &nbsp;
+                </span>
+              ))}
             </div>
           </div>
           <div className="col-span-7 md:col-span-3 mt-8 md:mt-0">
