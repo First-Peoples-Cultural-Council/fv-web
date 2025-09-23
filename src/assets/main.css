@@ -23,6 +23,72 @@
       filter: blur(2px);
     }
   }
+
+  /* Core Colors */
+  --color-blumine-50: #f0f9fb;
+  --color-blumine-100: #daeef3;
+  --color-blumine-200: #badee7;
+  --color-blumine-300: #89c5d7;
+  --color-blumine-400: #52a3be;
+  --color-blumine-500: #3787a3;
+  --color-blumine-600: #306d8a;
+  --color-blumine-700: #2d5b72;
+  --color-blumine-800: #2c4c5e;
+  --color-blumine-900: #284151;
+  --color-blumine-950: #162936;
+
+  --color-scarlet-50: #fff0f1;
+  --color-scarlet-100: #ffdcdf;
+  --color-scarlet-200: #ffc0c6;
+  --color-scarlet-300: #ff949e;
+  --color-scarlet-400: #ff5665;
+  --color-scarlet-500: #ff2236;
+  --color-scarlet-600: #ff0219;
+  --color-scarlet-700: #d80013;
+  --color-scarlet-800: #b40212;
+  --color-scarlet-900: #920a16;
+  --color-scarlet-950: #510007;
+
+  --color-charcoal-50: #f5f5f6;
+  --color-charcoal-100: #e6e6e7;
+  --color-charcoal-200: #cfd0d2;
+  --color-charcoal-300: #aeafb2;
+  --color-charcoal-400: #85868b;
+  --color-charcoal-500: #6a6b70;
+  --color-charcoal-600: #5a5b60;
+  --color-charcoal-700: #4d4d51;
+  --color-charcoal-800: #434347;
+  --color-charcoal-900: #313133;
+  --color-charcoal-950: #252527;
+
+  --color-jade-50: #effaf6;
+  --color-jade-100: #d9f2e6;
+  --color-jade-200: #b6e4d1;
+  --color-jade-300: #86cfb5;
+  --color-jade-400: #53b494;
+  --color-jade-500: #2c876d;
+  --color-jade-600: #227962;
+  --color-jade-700: #1b6150;
+  --color-jade-800: #184d40;
+  --color-jade-900: #144036;
+  --color-jade-950: #0a241f;
+
+  --color-ochre-50: #fcf9ee;
+  --color-ochre-100: #f5edd0;
+  --color-ochre-200: #ebd99c;
+  --color-ochre-300: #e1c268;
+  --color-ochre-400: #daad45;
+  --color-ochre-500: #d1912f;
+  --color-ochre-600: #c37829;
+  --color-ochre-700: #995424;
+  --color-ochre-800: #7e4322;
+  --color-ochre-900: #68381f;
+  --color-ochre-950: #3b1c0d;
+}
+
+@theme inline {
+  --color-wordsy-correct: var(--color-jade-500);
+  --color-wordsy-present: var(--color-ochre-600);
 }
 
 /* Changes to wysiwyg classes need to be mirrored in the function passed to the editor e.g.`frontend/app_v2/src/components/Form/WysiwygField.js` */
