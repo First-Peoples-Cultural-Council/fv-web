@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SiteDocHead from 'components/SiteDocHead'
-import { makePlural } from 'common/utils/urlHelpers'
+import {
+  makePlural,
+  makeTitleCase,
+  normalizeSpaces,
+} from 'common/utils/stringHelpers'
 
 // FPCC
 import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
@@ -21,19 +25,21 @@ function DashboardEntriesPresentation({
   setShowAdvancedSearch,
   showAdvancedSearch,
 }) {
-  const rawType = String(searchType || initialSearchType || 'entries')
-    .toLowerCase()
-    .replace(/[_-]/g, ' ')
+  const rawType = normalizeSpaces(
+    String(searchType || initialSearchType || 'entries')
+      .toLowerCase()
+      .replaceAll('_', ' ')
+      .replaceAll('-', ' '),
+  )
 
-  const typeTitle = rawType.replace(/(^|\s)\S/g, (s) => s.toUpperCase())
+  const typeTitle = makeTitleCase(rawType)
 
-  // Always pluralize on the LIST page (except the literal "Entries")
   const listLabel = typeTitle === 'Entries' ? 'Entries' : makePlural(typeTitle)
 
   const isReports =
-    (typeof window !== 'undefined' &&
-      /\/(?:dashboard\/)?reports?(?:\/|$)/i.test(window.location.pathname)) ||
-    /,/.test(String(searchType || initialSearchType || ''))
+    /\/(?:dashboard\/)?reports?(?:\/|$)/i.test(
+      String(globalThis?.window?.location?.pathname ?? ''),
+    ) || /,/.test(String(searchType || initialSearchType || ''))
 
   return (
     <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
