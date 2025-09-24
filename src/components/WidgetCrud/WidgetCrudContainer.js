@@ -15,17 +15,19 @@ function WidgetCrudContainer() {
     deleteHandler,
     widgetTypes,
   } = WidgetCrudData()
-  const isCreate = !(
+
+  const isEdit = Boolean(
     dataToEdit &&
-    (dataToEdit.id || dataToEdit.uuid || dataToEdit.title || dataToEdit.name)
+      (dataToEdit.id || dataToEdit.uuid || dataToEdit.title || dataToEdit.name),
   )
-  const action = isCreate ? 'Create' : 'Edit'
-  const entryLabel = dataToEdit?.title || dataToEdit?.name
+
+  const action = isEdit ? 'Edit' : 'Create'
+  const entryLabel = isEdit ? dataToEdit?.title || dataToEdit?.name : null
 
   return (
     <Loading.Container isLoading={isLoading}>
       <SiteDocHead
-        titleArray={[`${action} Widget`, !isCreate ? entryLabel : null].filter(
+        titleArray={[`${action} Widget`, isEdit ? entryLabel : null].filter(
           Boolean,
         )}
       />
