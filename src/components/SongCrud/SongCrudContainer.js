@@ -10,19 +10,19 @@ function SongCrudContainer() {
   const { backHandler, dataToEdit, deleteHandler, isLoading, submitHandler } =
     SongCrudData()
 
-  const isCreate = !(
-    dataToEdit &&
-    (dataToEdit.id || dataToEdit.uuid || dataToEdit.title)
+  const isEdit = Boolean(
+    dataToEdit && (dataToEdit.id || dataToEdit.uuid || dataToEdit.title),
   )
-  const action = isCreate ? 'Create' : 'Edit'
+
+  const action = isEdit ? 'Edit' : 'Create'
+  const entryLabel = isEdit ? dataToEdit?.title : null
 
   return (
     <Loading.Container isLoading={isLoading}>
       <SiteDocHead
-        titleArray={[
-          `${action} Song`,
-          !isCreate ? dataToEdit?.title : null,
-        ].filter(Boolean)}
+        titleArray={[`${action} Song`, isEdit ? entryLabel : null].filter(
+          Boolean,
+        )}
       />
       <SongCrudPresentation
         backHandler={backHandler}
