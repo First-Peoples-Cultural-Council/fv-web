@@ -96,6 +96,9 @@
 }
 
 /* Ensure Uppy uses BCSans */
+.uppy-Root {
+  font-family: 'BCSans', sans-serif;
+}
 .uppy-Root label {
   font-family: 'BCSans', sans-serif;
 }
