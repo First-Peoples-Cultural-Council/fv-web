@@ -4,6 +4,7 @@ import React from 'react'
 import CategoryCrudPresentation from 'components/CategoryCrud/CategoryCrudPresentation'
 import CategoryCrudData from 'components/CategoryCrud/CategoryCrudData'
 import LoadOrError from 'components/LoadOrError'
+import SiteDocHead from 'components/SiteDocHead'
 
 function CategoryCrudContainer() {
   const {
@@ -15,8 +16,18 @@ function CategoryCrudContainer() {
     parentCategoryOptions,
   } = CategoryCrudData()
 
+  const isEdit = Boolean(dataToEdit && (dataToEdit.id || dataToEdit.title))
+
+  const action = isEdit ? 'Edit' : 'Create'
+  const entryLabel = isEdit ? dataToEdit?.title || dataToEdit?.name : null
+
   return (
     <LoadOrError queryResponse={categoriesQueryResponse}>
+      <SiteDocHead
+        titleArray={[`${action} Category`, isEdit ? entryLabel : null].filter(
+          Boolean,
+        )}
+      />
       <CategoryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}

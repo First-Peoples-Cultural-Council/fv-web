@@ -8,6 +8,7 @@ import StoryAudienceCrud from 'components/StoryAudienceCrud'
 import StoryCoverCrud from 'components/StoryCoverCrud'
 import StoryPagesCrud from 'components/StoryPagesCrud'
 import DeleteButton from 'components/DeleteButton'
+import SiteDocHead from 'components/SiteDocHead'
 
 function StoryCrudContainer() {
   const { activeStep, storyData, deleteHandler } = StoryCrudData()
@@ -33,6 +34,7 @@ function StoryCrudContainer() {
 
   return (
     <section id="StoryCrudPresentation">
+      {!storyData?.id && <SiteDocHead titleArray={['Create Story']} />}
       {storyData?.id ? (
         <div className="flex w-full justify-end -mb-14 pt-8 pr-8 z-10">
           <DeleteButton.Presentation

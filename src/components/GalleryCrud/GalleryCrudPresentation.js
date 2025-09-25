@@ -7,6 +7,7 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
+import SiteDocHead from 'components/SiteDocHead'
 
 function GalleryCrudPresentation({
   backHandler,
@@ -120,6 +121,7 @@ function GalleryCrudPresentation({
           </div>
         </div>
       </form>
+      {isCreateMode && <SiteDocHead titleArray={['Create Gallery']} />}
     </div>
   )
 }

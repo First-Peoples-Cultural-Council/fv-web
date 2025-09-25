@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
@@ -9,6 +10,7 @@ import getIcon from 'common/utils/getIcon'
 function HomeCrudPresentation({ site }) {
   return (
     <div data-testid="HomeCrud" className="bg-charcoal-50 min-h-screen">
+      <SiteDocHead titleArray={['Edit Homepage']} />
       {/* Page header */}
       <div className="w-full shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between space-x-5 p-5">
