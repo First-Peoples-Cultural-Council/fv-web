@@ -10,10 +10,7 @@ function SpeakerCrudContainer() {
   const { backHandler, dataToEdit, isLoading, submitHandler, deleteHandler } =
     SpeakerCrudData()
 
-  const isEdit = Boolean(
-    dataToEdit &&
-      (dataToEdit.id || dataToEdit.uuid || dataToEdit.title || dataToEdit.name),
-  )
+  const isEdit = Boolean(dataToEdit && (dataToEdit.id || dataToEdit.name))
 
   const action = isEdit ? 'Edit' : 'Create'
   const entryLabel = isEdit ? dataToEdit?.name || dataToEdit?.title : null

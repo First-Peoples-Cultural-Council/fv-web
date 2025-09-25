@@ -10,9 +10,7 @@ function SongCrudContainer() {
   const { backHandler, dataToEdit, deleteHandler, isLoading, submitHandler } =
     SongCrudData()
 
-  const isEdit = Boolean(
-    dataToEdit && (dataToEdit.id || dataToEdit.uuid || dataToEdit.title),
-  )
+  const isEdit = Boolean(dataToEdit && (dataToEdit.id || dataToEdit.title))
 
   const action = isEdit ? 'Edit' : 'Create'
   const entryLabel = isEdit ? dataToEdit?.title : null
