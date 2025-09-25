@@ -1,5 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
+import {
+  makePlural,
+  makeTitleCase,
+  normalizeSpaces,
+} from 'common/utils/stringHelpers'
 
 // FPCC
 import AdvancedSearchOptions from 'components/AdvancedSearchOptions'
@@ -19,8 +25,26 @@ function DashboardEntriesPresentation({
   setShowAdvancedSearch,
   showAdvancedSearch,
 }) {
+  const rawType = normalizeSpaces(
+    String(searchType || initialSearchType || 'entries')
+      .toLowerCase()
+      .replaceAll('_', ' ')
+      .replaceAll('-', ' '),
+  )
+
+  const typeTitle = makeTitleCase(rawType)
+
+  const listLabel = typeTitle === 'Entries' ? 'Entries' : makePlural(typeTitle)
+
+  const isReports =
+    /\/(?:dashboard\/)?reports?(?:\/|$)/i.test(
+      String(globalThis?.window?.location?.pathname ?? ''),
+    ) || /,/.test(String(searchType || initialSearchType || ''))
+
   return (
     <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
+      <SiteDocHead titleArray={[isReports ? 'Reports' : `Edit ${listLabel}`]} />
+
       <section className="inline-flex w-full space-x-5 items-center justify-between print:hidden">
         <div className="w-1/2">
           <SearchDictionaryForm.Container

@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router'
 import RequireAuth from 'common/RequireAuth'
 import DashboardEditPresentation from 'components/DashboardEdit/DashboardEditPresentation'
 import DashboardEditData from 'components/DashboardEdit/DashboardEditData'
+import SiteDocHead from 'components/SiteDocHead'
 import {
   TYPE_WORD,
   TYPE_PHRASE,
@@ -45,6 +46,7 @@ function DashboardEditContainer() {
   })
   return (
     <div id="DashboardEditContainer">
+      <SiteDocHead titleArray={['Edit']} />
       <Routes>
         {/* Search and Lists */}
         <Route
@@ -116,7 +118,10 @@ function DashboardEditContainer() {
           path={AUDIO_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <AudioCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Audio']} />
+                <AudioCrud.Container />
+              </>
             </RequireAuth>
           }
         />
@@ -140,7 +145,10 @@ function DashboardEditContainer() {
           path={DOCUMENT_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DocumentCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Document']} />
+                <DocumentCrud.Container />
+              </>
             </RequireAuth>
           }
         />
@@ -164,7 +172,10 @@ function DashboardEditContainer() {
           path={IMAGE_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <ImageCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Image']} />
+                <ImageCrud.Container />
+              </>
             </RequireAuth>
           }
         />
@@ -212,7 +223,10 @@ function DashboardEditContainer() {
           path={VIDEO_PATH}
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <VideoCrud.Container />
+              <>
+                <SiteDocHead titleArray={['Edit Video']} />
+                <VideoCrud.Container />
+              </>
             </RequireAuth>
           }
         />

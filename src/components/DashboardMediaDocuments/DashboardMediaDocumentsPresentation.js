@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import { DOCUMENT_PATH } from 'common/constants'
@@ -18,6 +19,7 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
       id="DashboardMediaDocumentsPresentation"
       className="grid grid-cols-3 w-full"
     >
+      <SiteDocHead titleArray={['Documents']} />
       <main className="col-span-2 pt-2 mx-2">
         <section className="p-2 h-full" aria-labelledby="results-header">
           <h1

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import DashboardMediaVisualPresentation from 'components/DashboardMediaVisual/DashboardMediaVisualPresentation'
@@ -19,11 +20,20 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
     ? `shared ${infiniteQueryResponse?.typePlural}`
     : infiniteQueryResponse?.typePlural
 
+  let pageTitle
+  if (searchSharedMedia) {
+    pageTitle = 'Shared Images'
+  } else if (type === TYPE_VIDEO) {
+    pageTitle = 'Videos'
+  } else {
+    pageTitle = 'Images'
+  }
   return (
     <div
       data-testid="DashboardMediaAudioContainer"
       className="h-full min-h-screen bg-charcoal-50"
     >
+      <SiteDocHead titleArray={[pageTitle]} />
       <div className="h-full w-full flex flex-col">
         <div className="w-full sticky top-0 z-30 bg-white">
           <SelectorSearchbox.Presentation

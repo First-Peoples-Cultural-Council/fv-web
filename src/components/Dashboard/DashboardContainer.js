@@ -97,12 +97,15 @@ function DashboardContainer() {
         <Route
           path="*"
           element={
-            <DashboardHome.Presentation
-              tiles={homeTiles}
-              currentUser={currentUser}
-              site={site}
-              logout={logout}
-            />
+            <>
+              <SiteDocHead titleArray={['Dashboard']} />
+              <DashboardHome.Presentation
+                tiles={homeTiles}
+                currentUser={currentUser}
+                site={site}
+                logout={logout}
+              />
+            </>
           }
         />
       </Routes>
