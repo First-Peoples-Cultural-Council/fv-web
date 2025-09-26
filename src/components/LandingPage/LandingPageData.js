@@ -8,7 +8,6 @@ import {
   WIDGET_TEXT,
   WIDGET_TEXTICONS,
   WIDGET_QUOTES,
-  FIRSTVOICESLINK,
   FORMAT_RIGHT,
 } from 'src/common/constants'
 
@@ -66,7 +65,7 @@ function LandingPageData() {
       mockData: true,
       image: appsImage,
       title: 'FIRSTVOICES APPS',
-      url: `https://${FIRSTVOICESLINK}/apps`,
+      url: `/apps`,
       urlLabel: 'Learn more',
       textWithFormatting:
         '<p>The wealth of language data uploaded by Indigenous communities onto their FirstVoices language sites can now also be accessed through mobile and desktop apps. The app pulls content directly from entries on FirstVoices and functions with offline capabilities. The apps are updated throughout the year in order to ensure that the latest content that has been added to a language site also appears on the app.</p>',
