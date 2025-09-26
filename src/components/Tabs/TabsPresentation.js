@@ -25,6 +25,7 @@ function TabsPresentation({
       >
         {tabs?.map((tab, tabIndex) => (
           <button
+            data-testid={`${tab?.value}-tab-btn`}
             type="button"
             key={tab?.value}
             value={tab?.value}
@@ -35,7 +36,7 @@ function TabsPresentation({
                 : 'text-charcoal-500 bg-white hover:text-charcoal-700 hover:bg-charcoal-50 border-charcoal-100',
               tabIndex === 0 ? 'rounded-l-lg border-r-0' : '',
               tabIndex === tabs.length - 1 ? 'rounded-r-lg border-l-0' : '',
-              'group relative min-w-auto flex items-center border-2 py-2 px-4 font-medium text-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-500',
+              'group relative min-w-auto flex items-center border-2 py-2 px-4 font-medium text-center focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-charcoal-500',
             )}
             aria-current={tab?.value === selectedValue ? tab?.label : undefined}
           >

@@ -15,7 +15,6 @@ import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
 function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
   const { sitename } = useParams()
-  const accentColor = labels?.textColor
   const [isGridView, setIsGridView] = useState(true)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
@@ -47,10 +46,7 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
         data-testid="SongsAndStoriesPresentation"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle.Presentation
-            title={labels?.uppercase}
-            accentColor={accentColor}
-          />
+          <SectionTitle.Presentation title={labels?.uppercase} />
           <LoadOrError queryResponse={infiniteQueryResponse}>
             <div className="flex-1 flex items-stretch overflow-hidden">
               <main className="flex-1 overflow-y-auto lg:px-8">
@@ -60,7 +56,6 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
                       <GridListToggle.Presentation
                         isGridView={isGridView}
                         setIsGridView={setIsGridView}
-                        accentColor={accentColor}
                       />
                     </div>
                   </div>

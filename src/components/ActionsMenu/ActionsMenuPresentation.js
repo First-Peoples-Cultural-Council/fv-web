@@ -68,7 +68,7 @@ function ActionsMenuPresentation({
                 >
                   <MenuItems
                     static
-                    className="z-10 origin-top-right absolute top-10 right-0 w-40 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="z-10 origin-top-right absolute top-10 right-0 w-40 rounded-lg shadow-lg bg-white ring-1 ring-black/50 focus:outline-hidden"
                   >
                     <div className="py-1">
                       {moreActions.includes('share') && (

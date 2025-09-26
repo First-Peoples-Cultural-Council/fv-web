@@ -11,7 +11,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       return (
         <div className="rounded-lg bg-jade-50 p-4">
           <div className="flex">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               {getIcon(
                 'CheckCircleSolid',
                 'fill-current h-5 w-5 text-jade-500',
@@ -42,7 +42,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       return (
         <div className="rounded-lg bg-scarlet-50 p-4">
           <div className="flex">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               {getIcon(
                 'TimesCircleSolid',
                 'fill-current h-5 w-5 text-scarlet-700',
@@ -73,7 +73,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       return (
         <div className="rounded-lg bg-ochre-50 p-4">
           <div className="flex">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               {getIcon(
                 'ExclamationTriangleSolid',
                 'fill-current h-5 w-5 text-ochre-500',
@@ -104,7 +104,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       return (
         <div className="rounded-lg bg-blumine-50 p-4">
           <div className="flex">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               {getIcon(
                 'InfoCircleSolid',
                 'fill-current h-5 w-5 text-blumine-500',
@@ -136,7 +136,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
       return (
         <div className="rounded-lg bg-charcoal-50 shadow-lg p-4">
           <div className="flex">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               {getIcon(
                 'InfoCircleSolid',
                 'fill-current h-5 w-5 text-charcoal-500',

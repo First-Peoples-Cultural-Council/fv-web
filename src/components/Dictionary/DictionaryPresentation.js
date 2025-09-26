@@ -5,7 +5,7 @@ import DictionaryList from 'components/DictionaryList'
 import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import DictionaryLinks from 'components/DictionaryLinks'
-import { TYPE_DICTIONARY } from 'common/constants'
+import { TYPE_DICTIONARY, TYPE_PHRASE } from 'common/constants'
 
 function DictionaryPresentation({
   searchType,
@@ -19,11 +19,19 @@ function DictionaryPresentation({
       ? infiniteQueryResponse?.data?.pages?.[0]?.count
       : '10000+'
 
+  const bannerColor =
+    searchType === TYPE_PHRASE
+      ? 'from-phrase-color-600 to-phrase-color-800'
+      : 'from-word-color-500 to-word-color-700'
+
+  const titleColor =
+    searchType === TYPE_PHRASE ? 'text-phrase-color-800' : 'text-word-color-700'
+
   return (
     <>
       <section
         id="DictionaryPresentation"
-        className={`bg-gradient-to-b from-${labels.color} to-${labels.textColor} p-5 print:hidden`}
+        className={`bg-linear-to-b ${bannerColor} p-5 print:hidden`}
       >
         <div className="mx-auto lg:w-3/5">
           <SearchDictionaryForm.Container
@@ -45,7 +53,7 @@ function DictionaryPresentation({
         <div className="grid grid-cols-12">
           <div className="hidden lg:block print:hidden col-span-2 mt-5">
             <div className="mb-12 ml-4 xl:ml-7 space-y-2">
-              <h1 className={`text-3xl xl:text-4xl text-${labels.textColor}`}>
+              <h1 className={`text-3xl xl:text-4xl ${titleColor}`}>
                 {labels.uppercase}
               </h1>
               <div

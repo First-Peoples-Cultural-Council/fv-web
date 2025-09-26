@@ -8,7 +8,7 @@ import { AUDIO } from 'common/constants'
 
 function AudioNativePresentation({
   audioObject,
-  styling = 'text-black mx-auto print:hidden',
+  styling = 'text-charcoal-900 mx-auto print:hidden',
 }) {
   const src = audioObject
     ? getMediaPath({ mediaObject: audioObject, type: AUDIO })

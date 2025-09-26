@@ -35,10 +35,10 @@ function AlphabetPresentation({
             </ul>
           </div>
         )}
-        <div className="mb-5 grid grid-cols-6 sm:grid-cols-8 xl:grid-cols-12 gap-2 max-w-screen-lg mx-auto items-center">
+        <div className="mb-5 grid grid-cols-6 sm:grid-cols-8 xl:grid-cols-12 gap-2 max-w-4xl mx-auto items-center">
           {characters?.map(({ title, id }) => (
             <Link
-              className={`border col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
+              className={`border border-charcoal-200 col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
                 selectedData?.title === title ? 'bg-blumine-600 text-white' : ''
               } `}
               key={id}

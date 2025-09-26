@@ -23,7 +23,7 @@ function TextAreaField({
         name={nameId}
         {...register(nameId)}
         rows={rows}
-        className="shadow-sm focus:ring-scarlet-800 focus:border-scarlet-800 block w-full border border-charcoal-200 rounded-lg"
+        className="shadow-xs focus:ring-scarlet-800 focus:border-scarlet-800 block w-full border border-charcoal-200 rounded-lg"
         defaultValue={defaultValue}
       />
       <HelpText text={helpText} />

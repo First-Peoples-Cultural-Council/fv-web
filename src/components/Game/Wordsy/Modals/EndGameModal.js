@@ -10,12 +10,12 @@ function EndGameModal({ status, solution, text }) {
   const statusColor = status === 'win' ? 'wordsy-correct' : 'wordsy-present'
 
   return (
-    <div className="bg-white space-y-10 text-charcoal-900 rounded-lg p-6 lg:p-20 overflow-hidden shadow-xl transform transition-all lg:w-1/3-screen">
+    <div className="bg-white space-y-10 text-charcoal-900 rounded-lg p-6 lg:p-20 overflow-hidden shadow-xl transform transition-all lg:w-[33vw]">
       <div className="space-y-4">
         <h3 className={`text-center text-4xl font-bold text-${statusColor}`}>
           {text}
         </h3>
-        <hr className="bg-blumine-800 w-48 h-1 border-0 rounded mx-auto" />
+        <hr className="bg-blumine-800 w-48 h-1 border-0 rounded-sm mx-auto" />
       </div>
       <div className="space-y-2">
         <div>Today&apos;s word is:</div>

@@ -35,14 +35,14 @@ function NotificationBanner() {
         <div className="min-h-screen p-4 text-center sm:p-0">
           {/* This element is to trick the browser into placing the alert at the bottom. */}
           <span
-            className="inline-block h-9/10-screen align-middle"
+            className="inline-block h-[90vh] align-middle"
             aria-hidden="true"
           >
             &#8203;
           </span>
           <DialogPanel
             transition
-            className="relative transform transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            className="relative transform transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-leave:duration-200 data-enter:ease-out data-leave:ease-in sm:data-closed:translate-y-0 sm:data-closed:scale-95"
           >
             <div className="max-w-4xl mx-auto">
               <AlertBanner.Presentation

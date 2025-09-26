@@ -19,7 +19,8 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
       ? site?.checkForEnabledFeature(IMMERSION)
       : false
 
-  const menuItemActiveClass = 'bg-charcoal-100 text-black rounded ring-black'
+  const menuItemActiveClass =
+    'bg-charcoal-100 text-charcoal-900 rounded-sm ring-black'
   const menuItemInactiveClass = 'text-charcoal-900'
   const menuItemBaseClass =
     'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'
@@ -45,7 +46,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <MenuItems className="absolute top-14 right-0 w-72 p-2 space-y-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <MenuItems className="absolute top-14 right-0 w-72 p-2 space-y-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black/25 focus:outline-hidden">
             <MenuItem className="text-charcoal-900 px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-charcoal-100">
               <div>
                 Welcome
@@ -96,7 +97,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
               )}
             </MenuItem>
             {currentUser?.isAnonymous ? (
-              <MenuItem className="w-full flex border-t-2">
+              <MenuItem className="w-full flex border-t-2 border-charcoal-100">
                 {({ focus }) => (
                   <button
                     data-testid="login-btn"
@@ -115,7 +116,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
                 )}
               </MenuItem>
             ) : (
-              <MenuItem className="w-full flex border-t-2">
+              <MenuItem className="w-full flex border-t-2 border-charcoal-100">
                 {({ focus }) => (
                   <button
                     data-testid="logout-btn"

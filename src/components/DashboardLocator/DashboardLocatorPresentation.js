@@ -11,7 +11,7 @@ function DashboardLocatorPresentation({ site }) {
         <p className="text-xl font-bold text-charcoal-900">You are on:</p>
         <p className="text-xl font-medium text-charcoal-500">{site?.title}</p>
       </div>
-      <div className="flex-shrink-0">
+      <div className="shrink-0">
         {site?.logo?.id ? (
           <div className="h-20 w-20">
             <SiteLogo.Presentation />

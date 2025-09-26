@@ -39,7 +39,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   const audioQueryResponse = useAudio({ id: audio })
   const audioObject = audioQueryResponse?.data
-  const imgStyling = 'w-full h-64 sm:h-72 md:h-96 lg:h-3/4-screen object-cover'
+  const imgStyling = 'w-full h-64 sm:h-72 md:h-96 lg:h-[75vh] object-cover'
 
   const getImageElement = () => {
     if (!isUUID(image) && !mockData) return ''
@@ -92,7 +92,7 @@ function WidgetTextPresentation({ widgetData }) {
         </div>
         {url && (
           <div className="mt-2 lg:mt-6 flex justify-left">
-            <div className="rounded-full shadow">
+            <div className="rounded-full shadow-sm">
               <a
                 href={url}
                 {...(url.startsWith('/') ||
@@ -118,7 +118,7 @@ function WidgetTextPresentation({ widgetData }) {
   if (format === FORMAT_RIGHT) {
     return (
       <section className="w-full" data-testid="WidgetTextPresentation">
-        <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
+        <div className="flex flex-col md:flex-row bg-linear-to-b from-white to-charcoal-50">
           {getTextElement()}
           {getImageElement()}
         </div>
@@ -128,7 +128,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   return (
     <section className="w-full" data-testid="WidgetTextPresentation">
-      <div className="flex flex-col md:flex-row bg-gradient-to-b from-white to-charcoal-50">
+      <div className="flex flex-col md:flex-row bg-linear-to-b from-white to-charcoal-50">
         {getImageElement()}
         {getTextElement()}
       </div>

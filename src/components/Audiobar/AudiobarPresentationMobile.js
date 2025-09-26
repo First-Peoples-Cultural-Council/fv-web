@@ -23,8 +23,9 @@ function AudiobarPresentationMobile({
       <div className="w-full h-full text-white flex align-center items-center">
         <div className="w-full space-y-1">
           <button
+            data-testid="audiobar-close-btn"
             type="button"
-            className="float-right text-charcoal-500 hover:text-charcoal-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
+            className="float-right text-charcoal-500 hover:text-charcoal-900 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-charcoal-300"
             onClick={() => close()}
           >
             {getIcon('Close', 'fill-current h-7 w-7')}
@@ -38,6 +39,7 @@ function AudiobarPresentationMobile({
           </div>
           <div className="flex justify-center items-center space-x-5">
             <button
+              data-testid="audiobar-play-pause-btn"
               type="button"
               onClick={() => onPlayPauseClick()}
               className="text-charcoal-900 p-3 rounded-full bg-white shadow-lg"
@@ -53,10 +55,11 @@ function AudiobarPresentationMobile({
             <div className="text-white text-center w-2/6 pr-6">{`${curTime} / ${duration}`}</div>
             <div className="w-2/6 flex justify-end">
               <button
+                data-testid="audiobar-rate-btn"
                 type="button"
                 id="#"
                 aria-label="rate"
-                className="mr-2 font-bold text-black bg-white rounded px-2 py-1"
+                className="mr-2 font-bold text-charcoal-900 bg-white rounded-sm px-2 py-1"
                 onClick={() => onRateChange()}
               >
                 {`${rate.toString()}x`}

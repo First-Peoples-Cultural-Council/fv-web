@@ -23,7 +23,7 @@ function DrawerPresentation({
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
             <DialogPanel
               transition
-              className={`pointer-events-auto w-screen ${maxWidth} transform transition duration-100 sm:duration-200 ease-in-out data-[closed]:translate-x-full`}
+              className={`pointer-events-auto w-screen ${maxWidth} transform transition duration-100 sm:duration-200 ease-in-out data-closed:translate-x-full`}
             >
               <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll touch-auto">
                 <div className="flex justify-end items-center mt-12 mr-2 space-x-2">

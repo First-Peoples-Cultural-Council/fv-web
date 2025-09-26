@@ -13,7 +13,7 @@ function SectionTitlePresentation({
         className={`relative z-10 text-center text-2xl md:text-4xl lg:text-5xl text-${accentColor} font-bold`}
       >
         <span
-          className={`max-w-screen-lg inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
+          className={`max-w-5xl inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
         >
           {title}
           {placeholder && (

@@ -99,7 +99,7 @@ function StoryCrudPreview({ storyData }) {
 
   return (
     <div id="StoryCrudPreview" className="space-y-4">
-      <section className="bg-white p-8 rounded">
+      <section className="bg-white p-8 rounded-sm">
         <h2 className={headingStyle}>Story Info</h2>
         <div className="text-charcoal-900 space-y-6">
           <div className={detailStyle}>
@@ -164,7 +164,7 @@ function StoryCrudPreview({ storyData }) {
         </div>
       </section>
       {currentPage && (
-        <section className="relative bg-white p-8 rounded">
+        <section className="relative bg-white p-8 rounded-sm">
           <h2 className={headingStyle}>Story Pages</h2>
           <div className="text-charcoal-500 grid grid-cols-2">
             <div className="col-span-1 inline-flex">
@@ -216,7 +216,7 @@ function StoryCrudPreview({ storyData }) {
           </div>
         </section>
       )}
-      <section className="bg-white p-8 rounded">
+      <section className="bg-white p-8 rounded-sm">
         <h2 className={headingStyle}>Privacy</h2>
         <div className="text-charcoal-900 space-y-6">
           <div className={detailStyle}>

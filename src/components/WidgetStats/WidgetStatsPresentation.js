@@ -21,7 +21,7 @@ function WidgetStatsPresentation({ data }) {
           accentColor="white"
         />
       </div>
-      <div className="w-full bg-gradient-to-b from-blumine-800 to-blumine-500 pb-8">
+      <div className="w-full bg-linear-to-b from-blumine-800 to-blumine-500 pb-8">
         <div className="max-w-6xl grid grid-cols-4 mx-auto text-white text-center">
           <div className="flex-col justify-center mx-auto col-span-1 space-y-5">
             <div>{getIcon('word', iconStyling)}</div>

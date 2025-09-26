@@ -304,17 +304,15 @@ function DictionaryDetailPresentation({
                 : null}
               {entry?.relatedVideoLinks
                 ? entry?.relatedVideoLinks?.map((video) => (
-                    <li key={video.id} className="my-2 p-3">
-                      <div className="rounded-lg relative pb-videoAspect h-0">
-                        <iframe
-                          className="rounded-lg absolute t-0 l-0 w-full h-full"
-                          src={video?.embedLink}
-                          title="video"
-                          allowFullScreen
-                        >
-                          Your browser does not support the iframe tag.
-                        </iframe>
-                      </div>
+                    <li key={video.id} className="my-2">
+                      <iframe
+                        className="aspect-3/2 rounded-lg w-full"
+                        src={video?.embedLink}
+                        title="video"
+                        allowFullScreen
+                      >
+                        Your browser does not support the iframe tag.
+                      </iframe>
                     </li>
                   ))
                 : null}

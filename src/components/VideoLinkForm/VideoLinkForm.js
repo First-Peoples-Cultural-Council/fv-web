@@ -39,7 +39,7 @@ function VideoLinkForm({
     <form data-testid="VideoLinkForm" onReset={reset}>
       <div className="col-span-12">
         {relatedVideoLinks?.length < maxLinks ? (
-          <div className="max-w-screen-lg mx-auto">
+          <div className="max-w-5xl mx-auto">
             <p className="block text-sm font-small text-charcoal-900 italic">
               Add a link to a video below (currently YouTube and Vimeo links are
               supported).

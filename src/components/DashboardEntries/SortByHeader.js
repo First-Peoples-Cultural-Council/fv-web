@@ -57,7 +57,7 @@ function SortByHeader({ title, asc, desc }) {
       </span>
       {getIcon(
         iconName,
-        'text-charcoal-500 ml-1 h-5 w-5 flex-none rounded fill-current group-hover:text-charcoal-900 group-focus:text-charcoal-900',
+        'text-charcoal-500 ml-1 h-5 w-5 flex-none rounded-sm fill-current group-hover:text-charcoal-900 group-focus:text-charcoal-900',
       )}
     </button>
   )

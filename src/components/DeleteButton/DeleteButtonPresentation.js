@@ -59,7 +59,7 @@ function DeleteButtonPresentation({
               <button
                 data-testid="delete-confirm"
                 type="button"
-                className="btn-primary btn-md bg-scarlet-800 text-scarlet-50 hover:bg-scarlet-900 focus:outline-none focus:ring-2 focus:ring-scarlet-500"
+                className="btn-primary btn-md bg-scarlet-800 text-scarlet-50 hover:bg-scarlet-900 focus:outline-hidden focus:ring-2 focus:ring-scarlet-500"
                 onClick={() => {
                   setDeleteModalOpen(false)
                   deleteHandler()

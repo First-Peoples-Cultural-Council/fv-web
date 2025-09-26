@@ -28,7 +28,7 @@ function RadioButtonGroupPresentation({
             <Field key={option?.value} as={Fragment}>
               <Radio
                 value={option?.value}
-                className="inline-flex relative cursor-pointer focus:outline-none"
+                className="inline-flex relative cursor-pointer focus:outline-hidden"
               >
                 {({ checked }) => (
                   <div className="flex items-center">

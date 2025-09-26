@@ -6,7 +6,7 @@ import { DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import getIcon from 'common/utils/getIcon'
 function ExpandablePreviewPresentation({ open, preview, full }) {
   return (
-    <div className="rounded-lg shadow overflow-hidden bg-white p-4 w-full">
+    <div className="rounded-lg shadow-sm overflow-hidden bg-white p-4 w-full">
       <DisclosureButton as="div" className="flex w-full justify-between">
         <div className="w-full">{open ? '' : preview}</div>
         {getIcon(

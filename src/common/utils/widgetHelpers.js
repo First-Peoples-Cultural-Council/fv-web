@@ -14,7 +14,6 @@ import {
   WIDGET_TEXT,
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
-  WIDGET_TEXTICONS,
   WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
@@ -32,7 +31,6 @@ export const getEditableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXT,
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
-    isSuperAdmin && WIDGET_TEXTICONS,
     WIDGET_VIDEO,
   ].filter(Boolean)
 
@@ -51,7 +49,6 @@ export const getCreatableWidgetsForUser = (isSuperAdmin) =>
     WIDGET_TEXT,
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
-    isSuperAdmin && WIDGET_TEXTICONS,
     WIDGET_VIDEO,
     isSuperAdmin && WIDGET_WOTD,
   ].filter(Boolean)
@@ -84,8 +81,6 @@ export const getWidgetTypeLabel = (type) => {
       return 'Short Text'
     case WIDGET_TEXTFULL:
       return 'Page Text'
-    case WIDGET_TEXTICONS:
-      return 'Text with Icons'
     case WIDGET_VIDEO:
       return 'Video'
     case WIDGET_WOTD:

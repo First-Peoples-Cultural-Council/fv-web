@@ -38,8 +38,8 @@ function DashboardTilesPresentation({ tileContent }) {
 
   const gridClass = () =>
     tileCount === 1
-      ? 'max-w-lg rounded-lg bg-charcoal-100 overflow-hidden shadow'
-      : `divide-y divide-charcoal-100 divide-y-0 grid grid-cols-${rowSize} gap-px rounded-lg bg-charcoal-100 overflow-hidden shadow`
+      ? 'max-w-lg rounded-lg bg-charcoal-100 overflow-hidden shadow-sm'
+      : `divide-y divide-charcoal-100 divide-y-0 grid grid-cols-${rowSize} gap-px rounded-lg bg-charcoal-100 overflow-hidden shadow-sm`
   return (
     <section id="DashboardTilesPresentation">
       <div className={gridClass()}>
@@ -64,7 +64,7 @@ function DashboardTilesPresentation({ tileContent }) {
                   {tile?.externalLink ? (
                     <a
                       href={tile.href}
-                      className="focus:outline-none"
+                      className="focus:outline-hidden"
                       target="_blank"
                       rel="noreferrer noopener"
                     >
@@ -73,7 +73,7 @@ function DashboardTilesPresentation({ tileContent }) {
                       {tile.name}
                     </a>
                   ) : (
-                    <Link to={tile.href} className="focus:outline-none">
+                    <Link to={tile.href} className="focus:outline-hidden">
                       {/* Extend touch target to entire panel */}
                       <span className="absolute inset-0" aria-hidden="true" />
                       {tile.name}

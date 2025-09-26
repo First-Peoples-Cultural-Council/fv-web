@@ -18,7 +18,7 @@ function GalleriesPresentation({ galleriesQueryResponse }) {
     >
       <SiteDocHead titleArray={['Galleries']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="GALLERIES" accentColor="ochre-800" />
+        <SectionTitle.Presentation title="GALLERIES" />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <div className="flex-1 overflow-y-auto">
             <div className="lg:px-8">

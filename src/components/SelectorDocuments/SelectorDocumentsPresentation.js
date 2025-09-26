@@ -49,7 +49,7 @@ function SelectorDocumentsPresentation({
                         data-testid="media-select-btn"
                         type="button"
                         onClick={() => mediaSelectHandler(mediaObject)}
-                        className="group flex items-center justify-between space-x-3 rounded-lg border border-charcoal-300 bg-white px-6 py-5 shadow-xs focus-within:ring-2 focus-within:ring-scarlet-800 focus-within:ring-offset-2 hover:border-charcoal-400"
+                        className="group flex items-center justify-between space-x-3 rounded-lg border border-charcoal-300 bg-white px-6 py-5 shadow-2xs focus-within:ring-2 focus-within:ring-scarlet-800 focus-within:ring-offset-2 hover:border-charcoal-400"
                       >
                         {getIcon(
                           'Reports',

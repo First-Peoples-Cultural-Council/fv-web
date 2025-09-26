@@ -31,7 +31,6 @@ const recognisedCategories = {
   WIDGET_TEXT: ImageText,
   WIDGET_TEXTCONCISE: Lines,
   WIDGET_TEXTFULL: TextBlock,
-  WIDGET_TEXTICONS: ImageText,
   WIDGET_VIDEO: Video,
   WIDGET_WOTD: Calendar,
 }

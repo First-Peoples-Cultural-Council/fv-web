@@ -41,7 +41,7 @@ function TextTranslationArrayField({
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
+                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-xs"
                       {...register(`${nameId}.${index}.text`)}
                     />
                     {errors?.[nameId]?.[index]?.text?.message && (
@@ -60,7 +60,7 @@ function TextTranslationArrayField({
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-sm"
+                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-xs"
                       {...register(`${nameId}.${index}.translation`)}
                     />
                     {errors?.[nameId]?.[index]?.translation?.message && (

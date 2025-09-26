@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 function getClassList(status, value) {
   let baseClasses =
-    'w-10 h-10 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded'
+    'w-10 h-10 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded-sm'
   if (!status) {
     baseClasses += ' bg-white border-charcoal-100'
   }

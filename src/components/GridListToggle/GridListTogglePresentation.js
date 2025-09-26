@@ -17,9 +17,9 @@ function GridListTogglePresentation({
         onClick={() => setIsGridView(false)}
         className={`${
           !isGridView
-            ? `bg-white shadow-sm text-${accentColor}`
-            : 'hover:bg-white hover:shadow-sm text-charcoal-500'
-        } p-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-inset focus:ring-${accentColor}`}
+            ? `bg-white shadow-xs text-${accentColor}`
+            : 'hover:bg-white hover:shadow-xs text-charcoal-500'
+        } p-1.5 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-${accentColor}`}
       >
         {getIcon('HamburgerMenu', 'fill-current h-5 w-5')}
         <span className="sr-only">Use list view</span>
@@ -30,9 +30,9 @@ function GridListTogglePresentation({
         onClick={() => setIsGridView(true)}
         className={`${
           isGridView
-            ? `bg-white shadow-sm text-${accentColor}`
-            : 'hover:bg-white hover:shadow-sm text-charcoal-500'
-        } ml-0.5 p-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-inset focus:ring-${accentColor}`}
+            ? `bg-white shadow-xs text-${accentColor}`
+            : 'hover:bg-white hover:shadow-xs text-charcoal-500'
+        } ml-0.5 p-1.5 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-${accentColor}`}
       >
         {getIcon('Grid', 'fill-current h-5 w-5')}
         <span className="sr-only">Use grid view</span>

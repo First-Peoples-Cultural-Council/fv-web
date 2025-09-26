@@ -86,7 +86,7 @@ function DashboardWidgetsPresentation({
           isOpen={previewModalOpen}
           closeHandler={() => setPreviewModalOpen(false)}
         >
-          <div className="bg-white w-4/5-screen mx-auto p-5 rounded-lg">
+          <div className="bg-white w-[80vw] mx-auto p-5 rounded-lg">
             <Widget.Container data={currentWidget} />
           </div>
         </Modal.Presentation>

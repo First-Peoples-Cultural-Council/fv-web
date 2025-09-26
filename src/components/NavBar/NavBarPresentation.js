@@ -34,7 +34,7 @@ function NavBarPresentation({
 
   return (
     <nav id="NavBar" className="relative z-10" role="navigation">
-      <div className="bg-charcoal-900 max-w-screen-2xl mx-auto px-2 xl:px-16">
+      <div className="bg-charcoal-900 mx-auto px-2 xl:px-16">
         {site?.sitename && (
           <div className="h-16 flex justify-between items-center">
             {/* Home Links */}

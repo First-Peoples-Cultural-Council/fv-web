@@ -36,16 +36,16 @@ function SelectorVisualMediaGridPresentation({
                   })
                   return (
                     <li key={mediaObject?.id} className="relative group">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800 block w-full aspect-w-10 aspect-h-7 rounded-lg bg-charcoal-50 overflow-hidden">
+                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800 block w-full rounded-lg bg-charcoal-50 overflow-hidden">
                         <img
                           src={mediaSrc}
                           alt={mediaObject?.title}
-                          className="group-hover:opacity-75 object-cover pointer-events-none"
+                          className="group-hover:opacity-75 aspect-3/2 w-full object-cover pointer-events-none"
                         />
                         <button
                           data-testid="media-select-btn"
                           type="button"
-                          className="absolute inset-0 focus:outline-none"
+                          className="absolute inset-0 focus:outline-hidden"
                           onClick={() => mediaSelectHandler(mediaObject)}
                         >
                           <span className="sr-only">

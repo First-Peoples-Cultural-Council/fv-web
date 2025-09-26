@@ -83,7 +83,7 @@ function ParachutePresentation({
           key={letter?.id}
           className={`${
             guessed
-              ? 'bg-scarlet-800 text-white'
+              ? 'bg-scarlet-800 border-scarlet-800 text-white'
               : 'border-charcoal-500 text-charcoal-900 hover:bg-charcoal-50'
           } bg-white text-center text-2xl border-solid border inline-block pr-4 pl-4 rounded m-1 leading-10`}
           onClick={() => guessLetter(letter?.title)}

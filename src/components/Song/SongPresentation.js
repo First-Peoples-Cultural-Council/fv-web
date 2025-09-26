@@ -128,7 +128,7 @@ function SongPresentation({ entry }) {
                   pictures: entry?.relatedImages,
                   videos: entry?.relatedVideos,
                   videoLinks: entry?.relatedVideoLinks,
-                  videoLinksClassname: 'w-[95vw] pr-[2.5rem]',
+                  videoLinksClassname: 'w-[95vw] pr-10',
                 })}
               </div>
             )}
@@ -174,16 +174,14 @@ const getMedia = ({ pictures, videos, videoLinks, videoLinksClassname }) => (
       <div className="space-y-4">
         {videoLinks?.map((video) => (
           <div key={video.id} className={videoLinksClassname}>
-            <div className="relative pb-videoAspect h-0">
-              <iframe
-                className="absolute t-0 l-0 w-full h-full"
-                src={video?.embedLink}
-                title="video"
-                allowFullScreen
-              >
-                Your browser does not support the iframe tag.
-              </iframe>
-            </div>
+            <iframe
+              className="aspect-3/2 rounded-lg w-full"
+              src={video?.embedLink}
+              title="video"
+              allowFullScreen
+            >
+              Your browser does not support the iframe tag.
+            </iframe>
           </div>
         ))}
       </div>

@@ -26,6 +26,7 @@ function Stepper({ steps, onClickCallback }) {
           <li key={step.title} className="relative md:flex md:flex-1">
             {activeStepNumber > stepIdx && (
               <button
+                data-testid={`step-${step.title}-btn`}
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
@@ -42,13 +43,14 @@ function Stepper({ steps, onClickCallback }) {
             )}
             {activeStepNumber === stepIdx && (
               <button
+                data-testid={`step-${step.title}-btn`}
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
                 aria-current="step"
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-blumine-800">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-blumine-800">
                     <span className="text-blumine-800">{`0${
                       stepIdx + 1
                     }`}</span>
@@ -61,12 +63,13 @@ function Stepper({ steps, onClickCallback }) {
             )}
             {activeStepNumber < stepIdx && (
               <button
+                data-testid={`step-${step.title}-btn`}
                 type="button"
                 onClick={() => onStepClick(stepIdx)}
                 className={buttonClass}
               >
                 <span className="flex items-center px-6 py-4 text-sm font-medium">
-                  <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-charcoal-200 group-hover:border-charcoal-500">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-charcoal-200 group-hover:border-charcoal-500">
                     <span className="text-charcoal-500 group-hover:text-charcoal-900">{`0${
                       stepIdx + 1
                     }`}</span>

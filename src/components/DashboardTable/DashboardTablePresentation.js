@@ -16,7 +16,7 @@ function DashboardTablePresentation({
         data-testid="DashboardTablePresentation"
         className="mx-auto h-full px-8"
       >
-        <div className="bg-white shadow rounded-md overflow-hidden">
+        <div className="bg-white shadow-sm rounded-md overflow-hidden">
           {title && (
             <div className="my-5 px-6">
               <h2
@@ -30,7 +30,7 @@ function DashboardTablePresentation({
           <div className="flex flex-col ">
             <div className="-my-2 sm:-mx-6 lg:-mx-8">
               <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="border-t border-charcoal-100 max-h-3/4-screen overflow-auto">
+                <div className="border-t border-charcoal-100 max-h-[75vh] overflow-auto">
                   <table className="min-w-full divide-y divide-charcoal-100">
                     <thead className="bg-charcoal-50">{tableHead}</thead>
                     <tbody className="bg-white divide-y divide-charcoal-100">

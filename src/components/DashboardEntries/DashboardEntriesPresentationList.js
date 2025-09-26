@@ -241,7 +241,7 @@ function DashboardEntriesPresentationList({
                 </Link>
               ) : (
                 <div className="btn-secondary btn-md">
-                  <span className="tooltip rounded shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-10">
+                  <span className="tooltip rounded-sm shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-10">
                     You do not have access to edit this.
                   </span>
                   {getIcon('Pencil')}

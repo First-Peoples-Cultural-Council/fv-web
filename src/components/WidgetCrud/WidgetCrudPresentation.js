@@ -16,7 +16,6 @@ import {
   WIDGET_TEXT,
   WIDGET_TEXTCONCISE,
   WIDGET_TEXTFULL,
-  WIDGET_TEXTICONS,
   WIDGET_VIDEO,
   WIDGET_WOTD,
 } from 'common/constants'
@@ -31,7 +30,6 @@ import WidgetFormQuotes from 'components/WidgetCrud/WidgetFormQuotes'
 import WidgetFormText from 'components/WidgetCrud/WidgetFormText'
 import WidgetFormTextConcise from 'components/WidgetCrud/WidgetFormTextConcise'
 import WidgetFormTextFull from 'components/WidgetCrud/WidgetFormTextFull'
-import WidgetFormTextIcons from 'components/WidgetCrud/WidgetFormTextIcons'
 import WidgetFormApps from 'components/WidgetCrud/WidgetFormApps'
 import WidgetFormVideo from 'components/WidgetCrud/WidgetFormVideo'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
@@ -237,15 +235,6 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
         />
       )
 
-    case WIDGET_TEXTICONS:
-      return (
-        <WidgetFormTextIcons
-          cancelHandler={cancelHandler}
-          dataToEdit={dataToEdit}
-          submitHandler={submitHandler}
-        />
-      )
-
     case WIDGET_VIDEO:
       return (
         <WidgetFormVideo
@@ -304,7 +293,6 @@ WidgetForm.propTypes = {
     WIDGET_TEXT,
     WIDGET_TEXTCONCISE,
     WIDGET_TEXTFULL,
-    WIDGET_TEXTICONS,
     WIDGET_VIDEO,
     WIDGET_WOTD,
   ]),

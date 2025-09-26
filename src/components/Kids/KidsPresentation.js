@@ -26,14 +26,16 @@ function KidsPresentation({ links, sitename, site }) {
                       >
                         <Link
                           to={`/${sitename}/kids/${link.path}`}
-                          className={`bg-${link.color} group w-full py-2 md:py-4 flex flex-col items-center font-medium group-hover:opacity-75`}
+                          style={{ 'background-color': link.color }}
+                          className="group w-full py-2 md:py-4 flex flex-col items-center font-medium group-hover:opacity-75"
                         >
                           {getIcon(
                             link.icon,
                             'fill-current text-white h-20 md:h-40',
                           )}
                           <span
-                            className={`w-full p-1 md:p-3 bg-white text-center text-xl lg:text-4xl font-bold text-${link.textColor} m-2 md:m-5`}
+                            style={{ color: link.textColor }}
+                            className="w-full p-1 md:p-3 bg-white text-center text-xl lg:text-4xl font-bold m-2 md:m-5"
                           >
                             {link.title}
                           </span>

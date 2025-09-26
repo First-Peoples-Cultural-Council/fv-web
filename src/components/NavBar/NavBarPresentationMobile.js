@@ -39,7 +39,7 @@ function NavBarPresentationMobile({ site }) {
     sitename: site.sitename,
     roleRegex: atLeastMember,
   })
-  const buttonStyling = 'w-full px-1 py-2 flex items-center rounded'
+  const buttonStyling = 'w-full px-1 py-2 flex items-center rounded-sm'
   const labelStyling = 'truncate ml-3 font-medium'
   const iconStyling = 'fill-current h-12 w-8 flex-none'
 

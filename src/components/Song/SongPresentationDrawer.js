@@ -41,7 +41,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
         </div>
       )}
       {entry.coverVisual?.type === VIDEO && (
-        <div className="my-2 md:my-6 flex mx-auto px-4">
+        <div className="my-2 md:my-6 flex mx-auto px-6">
           <video
             className="shrink-0 h-40 md:h-96 mx-auto"
             src={getMediaPath({
@@ -56,9 +56,9 @@ function SongPresentationDrawer({ entry, isDashboard }) {
         </div>
       )}
       {entry.coverVisual?.type === VIDEO_LINK && (
-        <div className="my-2 md:my-6 mx-auto px-4 relative pb-videoAspect h-0">
+        <div className="my-2 md:my-6 mx-auto px-6">
           <iframe
-            className="pr-8 absolute t-0 l-0 w-full h-full mx-auto"
+            className="aspect-3/2 w-full rounded-lg"
             src={entry?.coverVisual?.entry?.embedLink}
             title="video"
             allowFullScreen
@@ -85,7 +85,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
           entry?.relatedAudio?.map((audio) => (
             <AudioNative
               key={audio?.id}
-              styling="w-96 text-black mx-auto print:hidden"
+              styling="w-96 text-charcoal-900 mx-auto print:hidden"
               audioObject={audio}
             />
           ))}

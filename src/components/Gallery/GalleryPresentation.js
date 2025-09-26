@@ -14,10 +14,7 @@ function GalleryPresentation({ data }) {
       className="py-3 lg:py-6 px-4 lg:px-10 bg-white space-y-1 lg:space-y-4"
     >
       <SiteDocHead titleArray={[data?.title, 'Galleries']} />
-      <SectionTitle.Presentation
-        title={data?.title}
-        accentColor="charcoal-900"
-      />
+      <SectionTitle.Presentation title={data?.title} />
       <div className="text-center text-charcoal-900 text-base lg:text-xl">
         {data?.titleTranslation}
       </div>

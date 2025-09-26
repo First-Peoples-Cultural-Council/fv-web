@@ -86,7 +86,7 @@ function SearchSitesFilter() {
             'h-2 w-2 fill-current text-white',
           )}
         </span>
-        <span className="inline-flex truncate data-[focus]:font-bold text-sm text-charcoal-900">
+        <span className="inline-flex truncate data-focus:font-bold text-sm text-charcoal-900">
           {item?.title || item?.language}
         </span>
       </div>
@@ -100,7 +100,7 @@ function SearchSitesFilter() {
           <div className="relative text-charcoal-700">
             <div className="relative">
               <ComboboxInput
-                className="opacity-100 relative w-full cursor-default block border border-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800"
+                className="opacity-100 relative w-full cursor-default block border border-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800"
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search languages"
               />
@@ -115,7 +115,7 @@ function SearchSitesFilter() {
               leaveTo="opacity-0"
               afterLeave={() => setQuery('')}
             >
-              <ComboboxOptions className="focus:outline-none h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md bg-white py-1 shadow-lg">
+              <ComboboxOptions className="focus:outline-hidden h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md bg-white py-1 shadow-lg">
                 {options?.length === 0 && query !== '' ? (
                   <div className="relative cursor-default select-none py-2 px-4">
                     Nothing found.
@@ -126,7 +126,7 @@ function SearchSitesFilter() {
                       {!option?.noLanguageAssigned &&
                         option?.sites?.length > 0 && (
                           <ComboboxOption
-                            className="cursor-default select-none p-2 data-[focus]:bg-charcoal-100"
+                            className="cursor-default select-none p-2 data-focus:bg-charcoal-100"
                             value={option.sites}
                             onClick={() => handleLanguageToggle(option.sites)}
                           >
@@ -141,7 +141,7 @@ function SearchSitesFilter() {
                             key={site?.id}
                             className={`${
                               site?.language ? 'pl-6 pr-2' : 'px-2'
-                            } cursor-default select-none py-2 data-[focus]:bg-charcoal-100`}
+                            } cursor-default select-none py-2 data-focus:bg-charcoal-100`}
                             value={site}
                             onClick={() => handleSiteToggle(site)}
                           >
@@ -169,7 +169,7 @@ function SearchSitesFilter() {
                     data-testid={`remove-site-btn-${siteFilter?.slug}`}
                     type="button"
                     onClick={() => handleRemoveItem(siteFilter)}
-                    className="text-blumine-800 rounded-lg shadow-sm py-2 px-4 inline-flex justify-center items-center space-x-2 text-sm border border-transparent bg-blumine-100"
+                    className="text-blumine-800 rounded-lg shadow-xs py-2 px-4 inline-flex justify-center items-center space-x-2 text-sm border border-transparent bg-blumine-100"
                   >
                     <span>{siteFilter?.title}</span>
                     {getIcon('Close', 'fill-current h-5 w-5')}

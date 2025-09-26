@@ -22,7 +22,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
     <div data-testid="ListboxPresentation">
       <Listbox value={selectedValue} onChange={setValue}>
         <div className="relative w-full">
-          <ListboxButton className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-none focus:ring-scarlet-800 focus:border-scarlet-800">
+          <ListboxButton className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800">
             <span className="inline-flex items-center capitalize">
               {getIcon(selectedOption?.icon, 'h-5 w-5 mr-2 fill-current')}
               {selectedOption?.transKey
@@ -42,7 +42,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <ListboxOptions className="z-10 focus:outline-none absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+            <ListboxOptions className="z-10 focus:outline-hidden absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/50 sm:text-sm">
               {options.map((option) => (
                 <ListboxOption
                   key={option?.value}

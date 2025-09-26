@@ -33,7 +33,7 @@ function SearchSiteContainer() {
     <>
       <SiteDocHead titleArray={['Search']} />
       <div data-testid="SearchSiteContainer">
-        <section className="bg-gradient-to-b from-jade-500 to-jade-700 p-5">
+        <section className="bg-linear-to-b from-jade-500 to-jade-700 p-5">
           <div className="mx-auto lg:w-3/5">
             <SearchSiteForm.Container />
           </div>
