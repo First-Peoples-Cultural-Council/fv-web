@@ -93,7 +93,7 @@
     "@uppy/dashboard": "^5.0.1",
     "@uppy/image-editor": "^4.0.0",
     "@uppy/react": "^5.0.2",
-    "@uppy/xhr-upload": "^5.0.0",
+    "@uppy/xhr-upload": "^5.0.1",
     "babel-loader": "^10.0.0",
     "common": "^0.2.5",
     "compression-webpack-plugin": "^11.1.0",
