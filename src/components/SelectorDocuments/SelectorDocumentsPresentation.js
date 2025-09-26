@@ -62,21 +62,22 @@ function SelectorDocumentsPresentation({
                           <p className="text-sm text-charcoal-500 truncate">
                             {mediaObject?.mimeType}
                           </p>
+                          <p className="text-sm text-charcoal-500">
+                            {mediaObject?.created}
+                          </p>
                         </div>
 
-                        <div className="h-8 w-8 rounded-full bg-white">
+                        <div className="size-10">
                           {selectedMedia?.some(
                             (elem) => elem?.id === mediaObject?.id,
                           ) && (
                             <>
-                              {getIcon(
-                                'TimesCircleSolid',
-                                'hidden group-hover:block h-8 w-8 fill-scarlet-800',
-                              )}
-                              {getIcon(
-                                'CheckCircleSolid',
-                                'group-hover:hidden h-8 w-8 fill-jade-500',
-                              )}
+                              <div className="btn-primary btn-md-icon hidden group-hover:flex">
+                                {getIcon('Close')}
+                              </div>
+                              <div className="btn-primary btn-md-icon group-hover:hidden">
+                                {getIcon('Checkmark')}
+                              </div>
                             </>
                           )}
                         </div>
