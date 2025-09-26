@@ -48,6 +48,9 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                     <th scope="col" className={headerClass}>
                       Description
                     </th>
+                    <th scope="col" className={headerClass}>
+                      Date Created
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-100">
@@ -72,7 +75,7 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                               aria-label="list"
                             >
                               <AudioNative
-                                styling="w-full "
+                                styling="w-full rounded-lg"
                                 audioObject={audioFile}
                               />
                             </td>
@@ -81,6 +84,9 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                             </td>
                             <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
                               {audioFile?.description}
+                            </td>
+                            <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
+                              {audioFile?.created}
                             </td>
                           </tr>
                         ))}

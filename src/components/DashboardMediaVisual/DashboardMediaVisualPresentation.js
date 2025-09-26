@@ -73,7 +73,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                                   infiniteQueryResponse?.currentFile?.id
                                     ? ''
                                     : 'group-hover:opacity-75'
-                                } aspect-3/2 w-full object-cover pointer-events-none`}
+                                } aspect-3/2 w-full object-cover`}
                               />
                               <button
                                 data-testid=""
@@ -90,12 +90,15 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                                 </span>
                               </button>
                             </div>
-                            <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
-                              {mediaObject?.title}
-                            </p>
-                            {mediaObject?.width && mediaObject?.height && (
-                              <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
-                            )}
+                            <div className="my-2 space-y-1 text-xs text-charcoal-900 truncate">
+                              <p className="truncate text-sm">
+                                {mediaObject?.title}
+                              </p>
+                              {mediaObject?.width && mediaObject?.height && (
+                                <p className="truncate">{`${mediaObject?.width} x ${mediaObject?.height}`}</p>
+                              )}
+                              <p className="truncate">{mediaObject?.created}</p>
+                            </div>
                           </li>
                         )
                       })}
