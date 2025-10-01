@@ -43,7 +43,7 @@ function SelectorAudioPresentation({
             </tr>
           </thead>
           <tbody className="divide-y divide-charcoal-100">
-            {infiniteQueryResponse?.hasResults &&
+            {infiniteQueryResponse?.data?.hasResults &&
               infiniteQueryResponse?.data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>
                   {page.results.map((audioObject) => {

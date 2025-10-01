@@ -45,7 +45,7 @@ function DashboardEntriesPresentationList({
         data-testid="EntriesListPresentation"
         className="bg-white min-h-screen w-full rounded-lg overflow-hidden"
       >
-        {searchInfiniteQueryResponse?.hasResults ? (
+        {searchInfiniteQueryResponse?.data?.hasResults ? (
           <div className="flex flex-col w-full">
             <div className="border-b border-charcoal-200">
               <table className="table-auto w-full divide-y divide-charcoal-200">

@@ -31,7 +31,7 @@ function SelectorDocumentsPresentation({
           className="p-4 pt-2 overflow-y-auto h-full"
         >
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {infiniteQueryResponse?.hasResults &&
+            {infiniteQueryResponse?.data?.hasResults &&
               infiniteQueryResponse?.data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>
                   {page.results.map((mediaObject) => {
