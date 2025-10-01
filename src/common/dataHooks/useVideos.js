@@ -13,13 +13,11 @@ export function useVideo({ id, edit = false }) {
   const response = useQuery({
     queryKey: [VIDEO_PATH, sitename, id],
     queryFn: () => api.videos.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? videoForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? videoForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return response
 }
 
 export function useVideoUpdate({ id }) {
