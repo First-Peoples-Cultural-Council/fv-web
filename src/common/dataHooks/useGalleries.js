@@ -10,22 +10,21 @@ import {
   galleryForApi,
 } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { isUUID } from 'common/utils/stringHelpers'
 
-export function useGallery({ id }) {
+export function useGallery({ id, edit = false }) {
   const { sitename } = useParams()
   const response = useQuery({
     queryKey: [GALLERIES, sitename, id],
     queryFn: () => api.galleries.get({ sitename, id }),
-    ...{ enabled: !!id },
-  })
-  const dataToEdit = galleryForEditing({
-    item: response?.data,
-  })
-  const dataForViewing = galleryForViewing({
-    item: response?.data,
+    select: (data) =>
+      edit
+        ? galleryForEditing({ item: data })
+        : galleryForViewing({ item: data }),
+    enabled: !!isUUID(id),
   })
 
-  return { ...response, data: dataForViewing, dataToEdit }
+  return response
 }
 
 export function useGalleries() {
@@ -34,12 +33,10 @@ export function useGalleries() {
   const response = useQuery({
     queryKey: [GALLERIES, sitename],
     queryFn: () => api.galleries.getAll({ sitename }),
-    ...{ enabled: !!sitename },
+    enabled: !!sitename,
   })
 
-  return {
-    ...response,
-  }
+  return response
 }
 
 export function useGalleryCreate() {
