@@ -20,6 +20,7 @@ export function widgetAdaptor({ widgetData, sitename }) {
 }
 
 export function widgetListAdaptor({ widgetList, sitename }) {
+  if (!widgetList) return null
   return widgetList?.map((widgetData) =>
     widgetAdaptor({ widgetData, sitename }),
   )

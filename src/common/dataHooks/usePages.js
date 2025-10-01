@@ -17,17 +17,17 @@ export function usePage({ pageSlug }) {
   const response = useQuery({
     queryKey: [PAGES, sitename, pageSlug],
     queryFn: () => api.pages.get({ sitename, slug: pageSlug }),
-    ...{ enabled: !!pageSlug },
+    select: (data) => ({
+      ...data,
+      widgets: widgetListAdaptor({
+        widgetList: data?.widgets,
+        sitename,
+      }),
+    }),
+    enabled: !!pageSlug,
   })
 
-  const widgets = response?.data?.widgets
-    ? widgetListAdaptor({
-        widgetList: response?.data?.widgets,
-        sitename,
-      })
-    : null
-
-  return { ...response, data: { ...response?.data, widgets } }
+  return response
 }
 
 export function usePages() {
@@ -36,21 +36,23 @@ export function usePages() {
   const response = useQuery({
     queryKey: [PAGES, sitename],
     queryFn: () => api.pages.getAll({ sitename }),
-    ...{ enabled: !!sitename },
+    select: (data) => ({
+      ...data,
+      results: data?.results?.map((page) => ({
+        id: page?.id,
+        title: page?.title,
+        subtitle: page?.subtitle,
+        url: page?.slug,
+        href: getCustomPageHref({
+          sitename,
+          pageSlug: page?.slug,
+        }),
+      })),
+    }),
+    enabled: !!sitename,
   })
 
-  const formattedPages = response?.data?.results?.map((page) => ({
-    id: page?.id,
-    title: page?.title,
-    subtitle: page?.subtitle,
-    url: page?.slug,
-    href: getCustomPageHref({
-      sitename,
-      pageSlug: page?.slug,
-    }),
-  }))
-
-  return { ...response, data: { ...response?.data, results: formattedPages } }
+  return response
 }
 
 export function usePageCreate() {
