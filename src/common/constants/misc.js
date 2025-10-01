@@ -10,6 +10,7 @@ export const DISPLAYABLE_PROPS_MEDIA = [
   'description',
   'dimensions',
   'speakers',
+  'created',
 ]
 export const ABOUT_LINK =
   'https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704813/About+FirstVoices'

@@ -25,10 +25,10 @@ function SelectorAudioPresentation({
         Audio
       </h2>
       <div>
-        <table className="w-full table-fixed divide-y divide-charcoal-100">
-          <thead className="bg-charcoal-50">
+        <table className="bg-white w-full divide-y divide-charcoal-100 rounded-lg">
+          <thead className="">
             <tr>
-              <th scope="col" className={headerClass}>
+              <th scope="col" className="sr-only">
                 Selected
               </th>
               <th scope="col" className={headerClass}>
@@ -38,49 +38,45 @@ function SelectorAudioPresentation({
                 Title
               </th>
               <th scope="col" className={headerClass}>
-                Description
+                Created
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-charcoal-100">
+          <tbody className="divide-y divide-charcoal-100">
             {infiniteQueryResponse?.hasResults &&
               infiniteQueryResponse?.data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>
-                  {page.results.map((audioFile) => {
-                    if (formMedia?.some((elemId) => elemId === audioFile?.id)) {
+                  {page.results.map((audioObject) => {
+                    if (formMedia?.includes(audioObject?.id)) {
                       // If a media file is already in the form
                       // it will not be presented as a choice in the selectMedia dialog box
                       return null
                     }
                     return (
                       <tr
-                        key={audioFile?.id}
+                        data-testid="DashboardMediaItemsRow"
+                        key={audioObject?.id}
                         className="rounded-lg relative cursor-pointer"
-                        onClick={() => mediaSelectHandler(audioFile?.id)}
+                        onClick={() => mediaSelectHandler(audioObject?.id)}
                       >
-                        <td data-testid="DashboardMediaItemsRow">
-                          {selectedMedia?.some(
-                            (elemId) => elemId === audioFile?.id,
-                          ) && // Add a small checkIcon on the top-right if it is selected
-                            getIcon(
-                              'CheckCircleSolid',
-                              'h-8 w-8 fill-jade-500',
-                            )}
+                        <td className="p-4 w-20 h-16 flex items-centre justify-centre">
+                          {selectedMedia?.includes(audioObject?.id) && (
+                            <div className="btn-primary btn-md-icon">
+                              {getIcon('Checkmark')}
+                            </div>
+                          )}
                         </td>
-                        <td
-                          className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
-                          aria-label="list"
-                        >
+                        <td className="p-2 overflow-visible w-80 text-sm text-charcoal-900">
                           <AudioNative
                             styling="w-full "
-                            audioObject={audioFile}
+                            audioObject={audioObject}
                           />
                         </td>
                         <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
-                          {audioFile.title}
+                          {audioObject?.title}
                         </td>
                         <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
-                          {audioFile?.description}
+                          {audioObject?.created}
                         </td>
                       </tr>
                     )

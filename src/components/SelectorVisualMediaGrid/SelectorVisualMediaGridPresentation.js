@@ -36,46 +36,41 @@ function SelectorVisualMediaGridPresentation({
                   })
                   return (
                     <li key={mediaObject?.id} className="relative group">
-                      <div className="focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800 block w-full rounded-lg bg-charcoal-50 overflow-hidden">
+                      <div className="block w-full rounded-lg bg-charcoal-50 overflow-hidden">
                         <img
                           src={mediaSrc}
                           alt={mediaObject?.title}
-                          className="group-hover:opacity-75 aspect-3/2 w-full object-cover pointer-events-none"
+                          className="group-hover:opacity-75 aspect-3/2 w-full object-cover"
                         />
                         <button
                           data-testid="media-select-btn"
                           type="button"
                           className="absolute inset-0 focus:outline-hidden"
                           onClick={() => mediaSelectHandler(mediaObject)}
-                        >
-                          <span className="sr-only">
-                            View details for {mediaObject?.title}
-                          </span>
-                        </button>
+                        />
                       </div>
-                      <p className="mt-2 block text-sm font-medium text-charcoal-900 truncate pointer-events-none">
-                        {mediaObject?.title}
-                      </p>
-                      {mediaObject?.width && mediaObject?.height && (
-                        <p className="mt-2 block text-sm font-medium text-charcoal-500 truncate pointer-events-none">{`${mediaObject?.width}x${mediaObject?.height}`}</p>
-                      )}
+                      <div className="my-2 space-y-1 text-xs text-charcoal-900 truncate">
+                        <p className="truncate text-sm">{mediaObject?.title}</p>
+                        {mediaObject?.width && mediaObject?.height && (
+                          <p className="truncate">{`${mediaObject?.width} x ${mediaObject?.height}`}</p>
+                        )}
+                        <p className="truncate">{mediaObject?.created}</p>
+                      </div>
                       {selectedMedia?.some(
                         (elem) => elem?.id === mediaObject?.id,
                       ) && (
                         <button
                           data-testid="media-select-btn"
                           type="button"
-                          className="absolute top-0 right-0 h-8 w-8 rounded-full bg-white"
+                          className="absolute top-1 right-1"
                           onClick={() => mediaSelectHandler(mediaObject)}
                         >
-                          {getIcon(
-                            'TimesCircleSolid',
-                            'hidden group-hover:block h-8 w-8 fill-scarlet-800',
-                          )}
-                          {getIcon(
-                            'CheckCircleSolid',
-                            'group-hover:hidden h-8 w-8 fill-jade-500',
-                          )}
+                          <div className="btn-primary btn-md-icon hidden group-hover:flex">
+                            {getIcon('Close')}
+                          </div>
+                          <div className="btn-primary btn-md-icon group-hover:hidden">
+                            {getIcon('Checkmark')}
+                          </div>
                         </button>
                       )}
                     </li>

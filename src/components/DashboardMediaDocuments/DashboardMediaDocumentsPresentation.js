@@ -39,6 +39,9 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                     <th scope="col" className={headerClass}>
                       Type
                     </th>
+                    <th scope="col" className={headerClass}>
+                      Date Created
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-100">
@@ -59,6 +62,7 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                           >
                             <td className={columnClass}>{doc.title}</td>
                             <td className={columnClass}>{doc.mimeType}</td>
+                            <td className={columnClass}>{doc.created}</td>
                           </tr>
                         ))}
                       </React.Fragment>
