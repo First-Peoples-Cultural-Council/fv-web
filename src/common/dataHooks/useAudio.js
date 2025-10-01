@@ -13,13 +13,11 @@ export function useAudio({ id, edit = false }) {
   const response = useQuery({
     queryKey: [AUDIO_PATH, sitename, id],
     queryFn: () => api.audio.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? audioForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? audioForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return response
 }
 
 export function useAudioCreate(options = {}) {

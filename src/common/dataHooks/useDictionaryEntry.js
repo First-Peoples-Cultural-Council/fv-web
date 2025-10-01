@@ -6,7 +6,7 @@ import { DICTIONARY, TYPE_DICTIONARY } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { getDictionaryEntryUrl } from 'common/utils/urlHelpers'
-
+import { isUUID } from 'common/utils/stringHelpers'
 import {
   entryForEditing,
   entryForViewing,
@@ -20,16 +20,12 @@ export function useDictionaryEntry({ id, sitename, edit = false }) {
   const response = useQuery({
     queryKey: [DICTIONARY, sitenameToSend, id],
     queryFn: () => api.dictionary.get({ sitename: sitenameToSend, id }),
-    ...{ enabled: !!id },
+    select: (data) =>
+      edit ? entryForEditing({ item: data }) : entryForViewing({ item: data }),
+    enabled: !!isUUID(id),
   })
-  const formattedEntry = edit
-    ? entryForEditing({ item: response?.data })
-    : entryForViewing({ item: response?.data })
 
-  return {
-    ...response,
-    data: formattedEntry,
-  }
+  return response
 }
 
 const getRedirectFromResponse = ({ response, navigate }) => {

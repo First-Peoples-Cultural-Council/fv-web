@@ -16,13 +16,11 @@ export function useDocument({ id, edit = false }) {
   const response = useQuery({
     queryKey: [DOCUMENT_PATH, sitename, id],
     queryFn: () => api.documents.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? documentForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? documentForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return response
 }
 
 export function useDocumentUpdate({ id }) {

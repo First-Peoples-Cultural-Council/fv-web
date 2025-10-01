@@ -13,13 +13,11 @@ export function useImage({ id, edit = false }) {
   const response = useQuery({
     queryKey: [IMAGE_PATH, sitename, id],
     queryFn: () => api.images.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? imageForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? imageForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return response
 }
 
 export function useImageUpdate({ id }) {
