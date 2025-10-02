@@ -44,7 +44,7 @@ function DashboardCategoriesPresentation({
               </th>
             </tr>
           }
-          tableBody={queryResponse?.allCategories?.map((category) => (
+          tableBody={queryResponse?.data?.results?.map((category) => (
             <tr key={category.id}>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
                 {category.title}

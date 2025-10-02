@@ -6,44 +6,56 @@ import { CATEGORIES } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { categoryForApi } from 'common/dataAdaptors/categoriesAdaptors'
+import { isUUID } from 'common/utils/stringHelpers'
 
 export function useCategory({ id }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [CATEGORIES, sitename, id],
     queryFn: () => api.categories.get({ sitename, id }),
-    ...{ enabled: !!id },
+    select: (data) => ({ ...data, parentId: data?.parent?.id }),
+    enabled: !!isUUID(id),
   })
-  return {
-    ...response,
-    data: { ...response?.data, parentId: response?.data?.parent?.id },
-  }
+  return queryResponse
 }
 
-export function useCategories() {
+export function useCategoriesNested() {
   const { sitename } = useParams()
-  const response = useQuery({
-    queryKey: [CATEGORIES, sitename],
-    queryFn: () => api.categories.getAll({ sitename }),
-    ...{ enabled: !!sitename },
-  })
-  const allCategories = []
-  response?.data?.results?.forEach((category) => {
-    allCategories.push({
-      ...category,
-    })
-    if (category?.children?.length > 0) {
-      category?.children?.forEach((child) => {
-        allCategories.push({
-          ...child,
-          parentId: category.id,
-          parentTitle: category.title,
-        })
-      })
-    }
+  const queryResponse = useQuery({
+    queryKey: [CATEGORIES, sitename, 'nested'],
+    queryFn: () => api.categories.getAll({ sitename, nested: 'true' }),
+    enabled: !!sitename,
   })
 
-  return { ...response, allCategories }
+  return queryResponse
+}
+
+export function useCategoriesFlat() {
+  const { sitename } = useParams()
+
+  const categoriesAdaptor = (category, data) => {
+    const parentCategory = data?.results?.find(
+      (parentCategory) => parentCategory?.id === category?.parent,
+    )
+    return {
+      ...category,
+      parentTitle: parentCategory ? parentCategory?.title : null,
+    }
+  }
+
+  const queryResponse = useQuery({
+    queryKey: [CATEGORIES, sitename, 'flat'],
+    queryFn: () => api.categories.getAll({ sitename, nested: 'false' }),
+    select: (data) => ({
+      ...data,
+      results: data?.results?.map((category) =>
+        categoriesAdaptor(category, data),
+      ),
+    }),
+    enabled: !!sitename,
+  })
+
+  return queryResponse
 }
 
 export function useCategoryCreate() {
