@@ -14,7 +14,7 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 
 export function usePage({ pageSlug }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [PAGES, sitename, pageSlug],
     queryFn: () => api.pages.get({ sitename, slug: pageSlug }),
     select: (data) => ({
@@ -27,13 +27,13 @@ export function usePage({ pageSlug }) {
     enabled: !!pageSlug,
   })
 
-  return response
+  return queryResponse
 }
 
 export function usePages() {
   const { sitename } = useParams()
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [PAGES, sitename],
     queryFn: () => api.pages.getAll({ sitename }),
     select: (data) => ({
@@ -52,7 +52,7 @@ export function usePages() {
     enabled: !!sitename,
   })
 
-  return response
+  return queryResponse
 }
 
 export function usePageCreate() {

@@ -10,14 +10,14 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 export function useVideo({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [VIDEO_PATH, sitename, id],
     queryFn: () => api.videos.get({ sitename, id }),
     select: (data) => (edit ? videoForEditing({ data: data }) : data),
     enabled: !!isUUID(id),
   })
 
-  return response
+  return queryResponse
 }
 
 export function useVideoUpdate({ id }) {

@@ -11,23 +11,23 @@ import { useSiteDispatch } from 'context/SiteContext'
 
 export function useSite() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [SITES, sitename],
     queryFn: () => api.sites.get({ sitename }),
     select: (data) => siteAdaptor({ siteData: data }),
     enabled: !!sitename,
   })
 
-  return response
+  return queryResponse
 }
 
 export function useSites({ pageSize = 100 }) {
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [SITES, pageSize],
     queryFn: () => api.sites.getAll({ pageSize }),
   })
 
-  return response
+  return queryResponse
 }
 
 export function useSiteUpdateBanner() {

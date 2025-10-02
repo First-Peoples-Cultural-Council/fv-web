@@ -17,7 +17,7 @@ export function useDictionaryEntry({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [DICTIONARY, sitenameToSend, id],
     queryFn: () => api.dictionary.get({ sitename: sitenameToSend, id }),
     select: (data) =>
@@ -25,7 +25,7 @@ export function useDictionaryEntry({ id, sitename, edit = false }) {
     enabled: !!isUUID(id),
   })
 
-  return response
+  return queryResponse
 }
 
 const getRedirectFromResponse = ({ response, navigate }) => {

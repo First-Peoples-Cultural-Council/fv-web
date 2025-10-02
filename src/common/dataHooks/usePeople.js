@@ -10,12 +10,12 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 export function usePerson({ id }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [PEOPLE, sitename, id],
     queryFn: () => api.people.get({ sitename, id }),
     enabled: !!isUUID(id),
   })
-  return response
+  return queryResponse
 }
 
 export function usePeople() {

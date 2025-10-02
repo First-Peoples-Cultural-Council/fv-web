@@ -7,13 +7,13 @@ import { useParams } from 'react-router'
 
 export function useStats() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [STATS, sitename],
     queryFn: () => api.stats.get({ sitename }),
     select: (data) => statsAdaptor(data),
   })
 
-  return response
+  return queryResponse
 }
 
 const statsAdaptor = (data) => {

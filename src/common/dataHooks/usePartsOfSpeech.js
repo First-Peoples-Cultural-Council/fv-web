@@ -5,7 +5,7 @@ import { PARTS_OF_SPEECH } from 'common/constants'
 import api from 'services/api'
 
 export function usePartsOfSpeech() {
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [PARTS_OF_SPEECH],
     queryFn: () => api.partsOfSpeech.get(),
     select: (data) =>
@@ -15,5 +15,5 @@ export function usePartsOfSpeech() {
       })),
   })
 
-  return response
+  return queryResponse
 }

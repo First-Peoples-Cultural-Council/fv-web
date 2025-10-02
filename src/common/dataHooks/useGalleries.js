@@ -14,7 +14,7 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 export function useGallery({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [GALLERIES, sitename, id],
     queryFn: () => api.galleries.get({ sitename, id }),
     select: (data) =>
@@ -24,19 +24,19 @@ export function useGallery({ id, edit = false }) {
     enabled: !!isUUID(id),
   })
 
-  return response
+  return queryResponse
 }
 
 export function useGalleries() {
   const { sitename } = useParams()
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [GALLERIES, sitename],
     queryFn: () => api.galleries.getAll({ sitename }),
     enabled: !!sitename,
   })
 
-  return response
+  return queryResponse
 }
 
 export function useGalleryCreate() {

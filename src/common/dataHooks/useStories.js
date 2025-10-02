@@ -36,7 +36,7 @@ export function useStory({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [STORIES, sitenameToSend, id],
     queryFn: () => api.stories.get({ sitename: sitenameToSend, id }),
 
@@ -45,7 +45,7 @@ export function useStory({ id, sitename, edit = false }) {
     enabled: !!isUUID(id),
   })
 
-  return response
+  return queryResponse
 }
 
 export function useStoryCreate() {

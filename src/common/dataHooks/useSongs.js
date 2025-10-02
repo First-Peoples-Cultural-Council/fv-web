@@ -40,7 +40,7 @@ export function useSong({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [SONGS, sitenameToSend, id],
     queryFn: () => api.songs.get({ sitename: sitenameToSend, id }),
     select: (data) =>
@@ -48,7 +48,7 @@ export function useSong({ id, sitename, edit = false }) {
     enabled: !!isUUID(id),
   })
 
-  return response
+  return queryResponse
 }
 
 export function useSongCreate() {
