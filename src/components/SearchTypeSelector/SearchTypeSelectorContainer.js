@@ -5,11 +5,7 @@ import PropTypes from 'prop-types'
 import Tabs from 'components/Tabs'
 import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
-function SearchTypeSelectorContainer({
-  accentColor,
-  selectedSearchType,
-  setSearchType,
-}) {
+function SearchTypeSelectorContainer({ selectedSearchType, setSearchType }) {
   const dictionaryTypes = [
     { label: 'WORDS', icon: 'Word', value: TYPE_WORD },
     {
@@ -30,16 +26,14 @@ function SearchTypeSelectorContainer({
         tabs={dictionaryTypes}
         selectedValue={selectedSearchType}
         setValue={setSearchType}
-        accentColor={accentColor}
       />
     </div>
   )
 }
 
 // PROPTYPES
-const { func, oneOf, string } = PropTypes
+const { func, oneOf } = PropTypes
 SearchTypeSelectorContainer.propTypes = {
-  accentColor: string,
   setSearchType: func,
   selectedSearchType: oneOf([TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD]),
 }
