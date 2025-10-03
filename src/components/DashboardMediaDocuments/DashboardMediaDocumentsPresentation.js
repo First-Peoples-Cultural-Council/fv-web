@@ -8,7 +8,11 @@ import DashboardMediaDetails from 'components/DashboardMediaDetails'
 import getIcon from 'common/utils/getIcon'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
-function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
+function DashboardMediaDocumentsPresentation({
+  infiniteQueryResponse,
+  currentFile,
+  setCurrentFile,
+}) {
   const headerClass =
     'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   const columnClass =
@@ -52,13 +56,11 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
                           <tr
                             key={doc?.id}
                             className={`${
-                              doc?.id === infiniteQueryResponse?.currentFile?.id
+                              doc?.id === currentFile?.id
                                 ? 'ring-2 ring-scarlet-800'
                                 : ''
                             } m-2 rounded-lg relative`}
-                            onClick={() =>
-                              infiniteQueryResponse?.setCurrentFile(doc)
-                            }
+                            onClick={() => setCurrentFile(doc)}
                           >
                             <td className={columnClass}>{doc.title}</td>
                             <td className={columnClass}>{doc.mimeType}</td>
@@ -77,7 +79,7 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
       <aside className="col-span-1">
         <DashboardMediaDetails
           mediaTypePath={DOCUMENT_PATH}
-          file={infiniteQueryResponse?.currentFile}
+          file={currentFile}
           thumbnail={
             <div className="block w-full">
               {getIcon(
@@ -93,9 +95,11 @@ function DashboardMediaDocumentsPresentation({ infiniteQueryResponse }) {
 }
 
 // PROPTYPES
-const { object } = PropTypes
+const { func, object } = PropTypes
 DashboardMediaDocumentsPresentation.propTypes = {
   infiniteQueryResponse: object,
+  currentFile: object,
+  setCurrentFile: func,
 }
 
 export default DashboardMediaDocumentsPresentation

@@ -53,7 +53,7 @@ function useMediaSearchWithUrlSync({ type, searchSharedMedia = false }) {
   }, [currentFile, infiniteQueryResponse?.data, type])
 
   return {
-    ...infiniteQueryResponse,
+    infiniteQueryResponse,
     displayedSearchTerm,
     handleSearchSubmitWithUrlSync,
     handleSearchTermChange,

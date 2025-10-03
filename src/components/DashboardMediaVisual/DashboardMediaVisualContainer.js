@@ -11,14 +11,22 @@ import { TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
 import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
 function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
-  const infiniteQueryResponse = useMediaSearchWithUrlSync({
+  const {
+    infiniteQueryResponse,
+    displayedSearchTerm,
+    handleSearchSubmitWithUrlSync,
+    handleSearchTermChange,
+    currentFile,
+    setCurrentFile,
+    typePlural,
+  } = useMediaSearchWithUrlSync({
     type,
     searchSharedMedia,
   })
 
   const typeDisplayName = searchSharedMedia
-    ? `shared ${infiniteQueryResponse?.typePlural}`
-    : infiniteQueryResponse?.typePlural
+    ? `shared ${typePlural}`
+    : typePlural
 
   let pageTitle
   if (searchSharedMedia) {
@@ -37,12 +45,10 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
       <div className="h-full w-full flex flex-col">
         <div className="w-full sticky top-0 z-30 bg-white">
           <SelectorSearchbox.Presentation
-            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
-            onSearchSubmit={
-              infiniteQueryResponse?.handleSearchSubmitWithUrlSync
-            }
+            onSearchChange={handleSearchTermChange}
+            onSearchSubmit={handleSearchSubmitWithUrlSync}
             searchPlaceholder={`Search all ${typeDisplayName}`}
-            searchValue={infiniteQueryResponse?.displayedSearchTerm}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div>
@@ -57,6 +63,8 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
             resultsSection={
               <DashboardMediaVisualPresentation
                 infiniteQueryResponse={infiniteQueryResponse}
+                currentFile={currentFile}
+                setCurrentFile={setCurrentFile}
                 type={type}
               />
             }

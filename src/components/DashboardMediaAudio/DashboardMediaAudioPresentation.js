@@ -8,16 +8,17 @@ import DashboardMediaDetails from 'components/DashboardMediaDetails'
 import { AUDIO_PATH } from 'common/constants'
 import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 
-function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
+function DashboardMediaAudioPresentation({
+  infiniteQueryResponse,
+  currentFile,
+  setCurrentFile,
+}) {
   const headerClass =
     'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
-  const speakersForDisplay = infiniteQueryResponse?.currentFile?.speakers
-    ?.map((speaker) => speaker?.name)
-    .join(', ')
   const file = {
-    ...infiniteQueryResponse?.currentFile,
-    speakers: speakersForDisplay,
+    ...currentFile,
+    speakers: currentFile?.speakers?.map((speaker) => speaker?.name).join(', '),
   }
 
   return (
@@ -61,14 +62,11 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
                           <tr
                             key={audioFile?.id}
                             className={`${
-                              audioFile?.id ===
-                              infiniteQueryResponse?.currentFile?.id
+                              audioFile?.id === currentFile?.id
                                 ? 'ring-2 ring-scarlet-800'
                                 : ''
                             } m-2 rounded-lg relative`}
-                            onClick={() =>
-                              infiniteQueryResponse?.setCurrentFile(audioFile)
-                            }
+                            onClick={() => setCurrentFile(audioFile)}
                           >
                             <td
                               className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
@@ -115,9 +113,11 @@ function DashboardMediaAudioPresentation({ infiniteQueryResponse }) {
 }
 
 // PROPTYPES
-const { object } = PropTypes
+const { func, object } = PropTypes
 DashboardMediaAudioPresentation.propTypes = {
   infiniteQueryResponse: object,
+  currentFile: object,
+  setCurrentFile: func,
 }
 
 export default DashboardMediaAudioPresentation
