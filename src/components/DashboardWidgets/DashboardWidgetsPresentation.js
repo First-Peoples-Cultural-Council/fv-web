@@ -47,7 +47,7 @@ function DashboardWidgetsPresentation({
               </th>
             </tr>
           }
-          tableBody={queryResponse?.widgets?.map((widget) => (
+          tableBody={queryResponse?.data?.results?.map((widget) => (
             <tr key={widget?.id}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
                 {widget?.nickname}
