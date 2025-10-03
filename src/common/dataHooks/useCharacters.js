@@ -6,6 +6,7 @@ import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { isUUID } from 'common/utils/stringHelpers'
 import {
   relatedMediaForApi,
   relatedMediaForViewing,
@@ -14,50 +15,36 @@ import {
 
 export function useCharacter({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [CHARACTERS, sitename, id],
     queryFn: () => api.characters.get({ sitename, id }),
-    ...{ enabled: !!id },
+    select: (data) => {
+      const relatedMedia = edit
+        ? relatedMediaForEditing({ item: data })
+        : relatedMediaForViewing({ item: data })
+      return {
+        id: data?.id,
+        title: data?.title,
+        relatedDictionaryEntries: data?.relatedDictionaryEntries,
+        note: data?.note,
+        ...relatedMedia,
+      }
+    },
+    enabled: !!isUUID(id),
   })
-  const relatedMedia = edit
-    ? relatedMediaForEditing({ item: response?.data })
-    : relatedMediaForViewing({ item: response?.data })
 
-  const formattedData = {
-    id: response?.data?.id,
-    title: response?.data?.title,
-    relatedDictionaryEntries: response?.data?.relatedDictionaryEntries,
-    generalNote: response?.data?.note,
-    ...relatedMedia,
-  }
-  return {
-    ...response,
-    data: formattedData,
-  }
+  return queryResponse
 }
 
 export function useCharacters() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [CHARACTERS, sitename],
     queryFn: () => api.characters.getAll({ sitename }),
-    ...{ enabled: !!sitename },
+    enabled: !!sitename,
   })
-  const formattedResults = response?.data?.results?.map((character) => ({
-    id: character?.id,
-    title: character?.title,
-    relatedDictionaryEntries: character?.relatedDictionaryEntries,
-    relatedAudio: character?.relatedAudio,
-    relatedDocuments: character?.relatedDocuments,
-    relatedVideo: character?.relatedVideos?.[0] || null,
-    relatedImage: character?.relatedImages?.[0] || null,
-    relatedVideoLinks: character?.relatedVideoLinks || null,
-    generalNote: character?.note,
-  }))
-  return {
-    ...response,
-    data: { ...response.data, characters: formattedResults },
-  }
+
+  return queryResponse
 }
 
 export function useCharacterPartialUpdate() {
@@ -66,7 +53,7 @@ export function useCharacterPartialUpdate() {
   const partialUpdateCharacter = async (formData) => {
     const properties = {
       ...relatedMediaForApi({ item: formData }),
-      note: formData?.generalNote || '',
+      note: formData?.note || '',
       related_dictionary_entries: objectsToIdsAdaptor(
         formData?.relatedDictionaryEntries,
       ),
