@@ -38,24 +38,14 @@ export function useParachuteSearch({ perPage, kids }) {
   }
   const searchParamString = _searchParams.toString()
 
-  const response = useQuery({
-    queryKey: [SEARCH, sitename],
-    queryFn: () =>
-      api.search.getParachute({
-        sitename,
-        searchParams: searchParamString,
-        perPage,
-      }),
-  })
-
-  const getPuzzles = () => {
+  const getPuzzles = (data) => {
     const puzzles = []
     // If no words are found during the search then return an array with a single empty puzzle
-    if (response?.data?.count === 0) {
+    if (data?.count === 0) {
       return puzzles
     }
 
-    response?.data?.results?.forEach((item) => {
+    data?.results?.forEach((item) => {
       const splitCharsBaseArray = item?.entry?.splitCharsBase
       // If the splitCharsBase is not empty, generate a puzzle
       if (splitCharsBaseArray?.length > 4) {
@@ -73,10 +63,18 @@ export function useParachuteSearch({ perPage, kids }) {
     return puzzles
   }
 
-  return {
-    ...response,
-    puzzles: getPuzzles(),
-  }
+  const queryResponse = useQuery({
+    queryKey: [SEARCH, sitename, searchParamString, perPage],
+    queryFn: () =>
+      api.search.getParachute({
+        sitename,
+        searchParams: searchParamString,
+        perPage,
+      }),
+    select: (data) => ({ ...data, puzzles: getPuzzles(data) }),
+  })
+
+  return queryResponse
 }
 
 export function usePhraseScramblerSearch({ kids }) {
@@ -119,13 +117,11 @@ export function useWordsySearch({ kids }) {
         sitename,
         searchParams: _searchParams.toString(),
       }),
+    select: (data) => ({
+      ...data,
+      orthographyPattern: getOrthographyPattern(data?.orthography),
+    }),
   })
 
-  const languageConfig = {
-    orthography: queryResponse?.data?.orthography,
-    orthographyPattern: getOrthographyPattern(queryResponse?.data?.orthography),
-    words: queryResponse?.data?.words,
-    validGuesses: queryResponse?.data?.validGuesses,
-  }
-  return { ...queryResponse, languageConfig }
+  return queryResponse
 }
