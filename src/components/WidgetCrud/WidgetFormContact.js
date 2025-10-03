@@ -8,7 +8,7 @@ import Form from 'components/Form'
 import { WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { useContactUsEmailList } from 'common/dataHooks/useContactUs'
+import { useContactUs } from 'common/dataHooks/useContactUs'
 
 function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -47,7 +47,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     dataToEdit,
   })
 
-  const { emailListAsString } = useContactUsEmailList()
+  const { data } = useContactUs()
 
   return (
     <div data-testid="WidgetFormContact">
@@ -97,7 +97,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               errors={errors}
             />
           </div>
-          {emailListAsString?.length > 0 ? (
+          {data?.emailListAsString?.length > 0 ? (
             <div className="col-span-12 mt-2 text-sm text-charcoal-500">
               <div className="block text-sm font-medium text-charcoal-900">
                 Contact list
@@ -109,7 +109,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               <div className="mt-2 text-sm text-charcoal-500">
                 Contact us emails will be sent to the following addresses:
               </div>
-              <div>{emailListAsString}</div>
+              <div>{data?.emailListAsString}</div>
             </div>
           ) : (
             <div className="col-span-12">

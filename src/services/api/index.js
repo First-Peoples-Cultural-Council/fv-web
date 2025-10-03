@@ -2,6 +2,7 @@ import audio from 'services/api/audio'
 import blog from 'services/api/blog'
 import categories from 'services/api/categories'
 import characters from 'services/api/characters'
+import contactUs from 'services/api/contactUs'
 import dictionary from 'services/api/dictionary'
 import documents from 'services/api/documents'
 import galleries from 'services/api/galleries'
@@ -10,7 +11,6 @@ import images from 'services/api/images'
 import immersionLabels from 'services/api/immersionLabels'
 import joinRequests from 'services/api/joinRequests'
 import languages from 'services/api/languages'
-import mail from 'services/api/mail'
 import memberships from 'services/api/memberships'
 import mySites from 'services/api/mySites'
 import pages from 'services/api/pages'
@@ -33,6 +33,7 @@ export default {
   blog,
   categories,
   characters,
+  contactUs,
   dictionary,
   documents,
   galleries,
@@ -41,7 +42,6 @@ export default {
   immersionLabels,
   joinRequests,
   languages,
-  mail,
   memberships,
   mySites,
   pages,

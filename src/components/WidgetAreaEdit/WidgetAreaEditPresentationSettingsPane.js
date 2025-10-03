@@ -19,7 +19,7 @@ import {
   SETTING_IMAGE,
 } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
-import { useContactUsEmailList } from 'common/dataHooks/useContactUs'
+import { useContactUs } from 'common/dataHooks/useContactUs'
 
 function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
@@ -34,7 +34,7 @@ function WidgetAreaEditPresentationSettingsPane({
     setRemoveModalOpen(false)
   }
 
-  const { emailListAsString } = useContactUsEmailList()
+  const { data } = useContactUs()
 
   const settingLabelStyling =
     'mb-1 text-sm font-bold text-blumine-600 capitalize'
@@ -175,8 +175,8 @@ function WidgetAreaEditPresentationSettingsPane({
                     </div>
                   </div>
                   <div className={settingDetailStyling}>
-                    {emailListAsString?.length > 0
-                      ? emailListAsString
+                    {data?.emailListAsString?.length > 0
+                      ? data?.emailListAsString
                       : 'No email addresses registered. Please contact FirstVoices Support to register an email address for this form.'}
                   </div>
                 </div>
