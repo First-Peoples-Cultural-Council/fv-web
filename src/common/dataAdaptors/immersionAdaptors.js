@@ -29,7 +29,7 @@ export function immersionLabelsAdaptor(data) {
         )}/${found?.dictionaryEntry?.id}`,
         transKey: found?.key || '',
         english: en?.translation?.[key],
-        relatedAudio: found?.dictionaryEntry?.related_audio || [],
+        relatedAudio: found?.dictionaryEntry?.relatedAudio || [],
       })
     }
   })

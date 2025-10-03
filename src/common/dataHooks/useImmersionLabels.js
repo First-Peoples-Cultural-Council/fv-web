@@ -10,39 +10,38 @@ import { immersionLabelsAdaptor } from 'common/dataAdaptors/immersionAdaptors'
 export function useImmersionLabels() {
   const { sitename } = useParams()
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [IMMERSION_LABELS, sitename],
     queryFn: () => api.immersionLabels.getAll({ sitename }),
-    ...{ enabled: !!sitename },
+    select: (data) => ({ ...data, labels: immersionLabelsAdaptor(data) }),
+    enabled: !!sitename,
   })
 
-  const formattedLabels = immersionLabelsAdaptor(response?.data)
-
-  return { ...response, labels: formattedLabels }
+  return queryResponse
 }
 
 export function useImmersionMap() {
   const { sitename } = useParams()
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [IMMERSION_LABELS, sitename, 'mapped'],
     queryFn: () => api.immersionLabels.getMapped({ sitename }),
-    ...{ enabled: !!sitename },
+    enabled: !!sitename,
   })
 
-  return response
+  return queryResponse
 }
 
 export function useImmersionLabel({ key }) {
   const { sitename } = useParams()
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [IMMERSION_LABELS, sitename, key],
     queryFn: () => api.immersionLabels.get({ sitename, key }),
-    ...{ enabled: !!key },
+    enabled: !!key,
   })
 
-  return response
+  return queryResponse
 }
 
 export function useImmersionLabelCreate() {

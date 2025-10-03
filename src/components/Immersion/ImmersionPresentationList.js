@@ -10,7 +10,7 @@ function ImmersionPresentationList({ labels }) {
   return (
     <div className="flex flex-col">
       <div className="py-2 align-middle inline-block min-w-full">
-        <div className="shadow-md overflow-hidden border-b border-charcoal-200 sm:rounded-lg">
+        <div className="overflow-hidden border border-charcoal-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-charcoal-200">
             <thead className="bg-charcoal-50">
               <tr>
