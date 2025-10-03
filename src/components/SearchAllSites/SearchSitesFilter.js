@@ -42,11 +42,11 @@ function SearchSitesFilter() {
   }, [selectedItems, sitesInUrl, setSitesInUrl])
 
   const [query, setQuery] = useState('')
-  const { data } = useLanguages({
+  const languagesQueryResponse = useLanguages({
     query,
   })
 
-  const options = data?.results
+  const options = languagesQueryResponse?.data?.results
 
   const handleSiteToggle = (site) => {
     let selected = isItemSelected(site)

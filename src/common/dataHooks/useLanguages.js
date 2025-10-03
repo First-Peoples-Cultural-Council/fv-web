@@ -6,26 +6,24 @@ import api from 'services/api'
 import { languagesListAdaptor } from 'common/dataAdaptors'
 
 export function useLanguage({ id }) {
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [LANGUAGES, id],
     queryFn: () => api.languages.get({ id }),
-    ...{ enabled: !!id },
+    enabled: !!id,
   })
 
-  return { ...response }
+  return queryResponse
 }
 
 export function useLanguages({ query, explorable }) {
-  const allLanguagesResponse = useQuery({
+  const queryResponse = useQuery({
     queryKey: [LANGUAGES, query, explorable],
     queryFn: () => api.languages.getAll({ query, explorable }),
-  })
-  const formattedLanguagesData = languagesListAdaptor({
-    languagesData: allLanguagesResponse?.data,
+    select: (data) => ({
+      ...data,
+      results: languagesListAdaptor({ languagesData: data }),
+    }),
   })
 
-  return {
-    ...allLanguagesResponse,
-    languagesData: formattedLanguagesData,
-  }
+  return queryResponse
 }

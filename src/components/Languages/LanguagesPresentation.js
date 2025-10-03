@@ -13,7 +13,7 @@ import SearchLanguagesForm from 'components/SearchLanguagesForm'
 import LoadOrError from 'components/LoadOrError'
 
 function LanguagesPresentation({ languagesQueryResponse, user }) {
-  const languagesList = languagesQueryResponse?.languagesData
+  const languagesList = languagesQueryResponse?.data?.results
   return (
     <section
       data-testid="LanguagesPresentation"
