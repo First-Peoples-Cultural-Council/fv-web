@@ -47,7 +47,6 @@ function ByCategoryPresentation({
             <SearchTypeSelector.Container
               selectedSearchType={searchType}
               setSearchType={setSearchType}
-              accentColor="charcoal-700"
             />
           </div>
           <div className="hidden md:block p-2 print:block">

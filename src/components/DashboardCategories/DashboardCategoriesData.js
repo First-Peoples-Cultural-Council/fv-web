@@ -2,7 +2,7 @@ import { useParams } from 'react-router'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { useCategories } from 'common/dataHooks/useCategories'
+import { useCategoriesFlat } from 'common/dataHooks/useCategories'
 import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
 function DashboardCategoriesData() {
@@ -11,7 +11,7 @@ function DashboardCategoriesData() {
 
   // Data fetch
 
-  const queryResponse = useCategories()
+  const queryResponse = useCategoriesFlat()
 
   const tileContent = [
     {

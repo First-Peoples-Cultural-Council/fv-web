@@ -9,7 +9,7 @@ import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 function ByCategoryContainer({ kids = null }) {
   const {
-    categoriesQueryResponse,
+    nestedCategories,
     categoryQueryResponse,
     currentCategory,
     currentParentCategory,
@@ -26,7 +26,7 @@ function ByCategoryContainer({ kids = null }) {
       <SiteDocHead titleArray={[currentCategory?.title, 'Category']} />
       {kids ? (
         <ByCategoryKids
-          categories={categoriesQueryResponse?.data?.results || []}
+          categories={nestedCategories}
           currentCategory={currentCategory}
           currentParentCategory={currentParentCategory}
           searchInfiniteQueryResponse={searchInfiniteQueryResponse}
@@ -35,7 +35,7 @@ function ByCategoryContainer({ kids = null }) {
         />
       ) : (
         <ByCategoryPresentation
-          categories={categoriesQueryResponse?.data?.results || []}
+          categories={nestedCategories}
           currentCategory={currentCategory}
           currentParentCategory={currentParentCategory}
           searchInfiniteQueryResponse={searchInfiniteQueryResponse}

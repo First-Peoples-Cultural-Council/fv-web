@@ -3,14 +3,14 @@ import { useParams } from 'react-router'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { useCategories } from 'common/dataHooks/useCategories'
+import { useCategoriesFlat } from 'common/dataHooks/useCategories'
 
 function CategoriesBrowserData() {
   const { site } = useSiteStore()
   const { sitename } = useParams()
 
   // Data fetch
-  const categoriesQueryResponse = useCategories()
+  const categoriesQueryResponse = useCategoriesFlat()
 
   const [currentCategory, setCurrentCategory] = useState()
 
@@ -18,8 +18,8 @@ function CategoriesBrowserData() {
 
   const filteredCategories =
     query === ''
-      ? categoriesQueryResponse?.allCategories
-      : categoriesQueryResponse?.allCategories?.filter(
+      ? categoriesQueryResponse?.data?.results
+      : categoriesQueryResponse?.data?.results?.filter(
           (category) =>
             category.title
               .toLowerCase()

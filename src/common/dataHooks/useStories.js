@@ -14,6 +14,7 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 import { audienceForApi } from 'common/dataAdaptors/audienceAdaptors'
 import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
 import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
+import { isUUID } from 'common/utils/stringHelpers'
 
 export function useStories() {
   const { sitename } = useParams()
@@ -35,17 +36,16 @@ export function useStory({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [STORIES, sitenameToSend, id],
     queryFn: () => api.stories.get({ sitename: sitenameToSend, id }),
-    ...{ enabled: !!id },
+
+    select: (data) =>
+      edit ? storyForEditing({ item: data }) : storyForViewing({ item: data }),
+    enabled: !!isUUID(id),
   })
 
-  const formatted = edit
-    ? storyForEditing({ item: response?.data })
-    : storyForViewing({ item: response?.data })
-
-  return { ...response, data: formatted }
+  return queryResponse
 }
 
 export function useStoryCreate() {

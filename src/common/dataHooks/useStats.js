@@ -7,13 +7,19 @@ import { useParams } from 'react-router'
 
 export function useStats() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [STATS, sitename],
     queryFn: () => api.stats.get({ sitename }),
+    select: (data) => statsAdaptor(data),
   })
+
+  return queryResponse
+}
+
+const statsAdaptor = (data) => {
   const types = ['words', 'phrases', 'songs', 'stories']
-  const temporal = response?.data?.temporal
-  const aggregate = response?.data?.aggregate
+  const temporal = data?.temporal
+  const aggregate = data?.aggregate
 
   const getPeriodTotalForType = (period, modelType) =>
     temporal?.[modelType]?.[period]?.created
@@ -33,34 +39,26 @@ export function useStats() {
     })
     return totals
   }
+  const weekTotal = getPeriodTotal('lastWeek')
+  const monthTotal = getPeriodTotal('lastMonth')
 
-  const formattedStats = () => {
-    const weekTotal = getPeriodTotal('lastWeek')
-    const monthTotal = getPeriodTotal('lastMonth')
-
-    if (weekTotal > 4) {
-      return {
-        ...getPeriodTotalsForAllTypes('lastWeek'),
-        header: 'NEW THIS WEEK',
-      }
-    }
-    if (monthTotal > 4) {
-      return {
-        ...getPeriodTotalsForAllTypes('lastMonth'),
-        header: 'NEW THIS MONTH',
-      }
-    }
+  if (weekTotal > 4) {
     return {
-      words: aggregate?.words?.total,
-      phrases: aggregate?.phrases?.total,
-      songs: aggregate?.songs?.total,
-      stories: aggregate?.stories?.total,
-      header: 'ON THIS SITE',
+      ...getPeriodTotalsForAllTypes('lastWeek'),
+      header: 'NEW THIS WEEK',
     }
   }
-
+  if (monthTotal > 4) {
+    return {
+      ...getPeriodTotalsForAllTypes('lastMonth'),
+      header: 'NEW THIS MONTH',
+    }
+  }
   return {
-    ...response,
-    data: formattedStats(),
+    words: aggregate?.words?.total,
+    phrases: aggregate?.phrases?.total,
+    songs: aggregate?.songs?.total,
+    stories: aggregate?.stories?.total,
+    header: 'ON THIS SITE',
   }
 }

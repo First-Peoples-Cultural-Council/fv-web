@@ -1,13 +1,13 @@
 import { useParams } from 'react-router'
 
 // FPCC
-import { useCategories } from 'common/dataHooks/useCategories'
+import { useCategoriesNested } from 'common/dataHooks/useCategories'
 
 function CategoriesData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const categoryQueryResponse = useCategories()
+  const categoryQueryResponse = useCategoriesNested()
 
   return {
     categoryQueryResponse,

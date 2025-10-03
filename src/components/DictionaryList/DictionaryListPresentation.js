@@ -61,7 +61,7 @@ function DictionaryListPresentation({
         data-testid="DictionaryListPresentation"
         className="bg-white min-h-screen w-full"
       >
-        {infiniteQueryResponse?.hasResults ? (
+        {infiniteQueryResponse?.data?.hasResults ? (
           <div className="flex flex-col w-full py-2">
             <div className="border-b border-charcoal-200 rounded-lg overflow-hidden">
               <table className="table-auto w-full divide-y divide-charcoal-200">

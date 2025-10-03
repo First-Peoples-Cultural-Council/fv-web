@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router'
 
 // FPCC
 import {
-  useCategories,
+  useCategoriesNested,
   useCategory,
   useCategoryCreate,
   useCategoryUpdate,
@@ -18,7 +18,7 @@ function CategoryCrudData() {
   const categoryId = searchParams.get('id')
 
   // Fetch Data
-  const categoriesQueryResponse = useCategories()
+  const categoriesQueryResponse = useCategoriesNested()
   const categoryQueryResponse = useCategory({ id: categoryId })
 
   const getParentCategoryOptions = () => {

@@ -20,7 +20,7 @@ function SelectorVisualMediaGridPresentation({
     >
       <div className="h-3/4 overflow-y-auto">
         <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
-          {infiniteQueryResponse?.hasResults &&
+          {infiniteQueryResponse?.data?.hasResults &&
             infiniteQueryResponse?.data?.pages?.map((page) => (
               <React.Fragment key={page?.pageNumber}>
                 {page.results.map((mediaObject) => {

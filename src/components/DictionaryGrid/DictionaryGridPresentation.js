@@ -27,7 +27,7 @@ function DictionaryGridPresentation({
 
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
-      {infiniteQueryResponse?.hasResults ? (
+      {infiniteQueryResponse?.data?.hasResults ? (
         <div id="DictionaryGridPresentation" className="mx-auto flex flex-col">
           <div className="p-4 align-middle inline-block min-w-full relative">
             {/* Hiding print button until custom print view has been created */}

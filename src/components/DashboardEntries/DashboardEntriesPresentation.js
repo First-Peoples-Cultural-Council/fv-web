@@ -73,7 +73,6 @@ function DashboardEntriesPresentation({
               </button>
             )}
             <SearchTypeSelector.Container
-              accentColor="charcoal-500"
               selectedSearchType={searchType}
               setSearchType={setSearchType}
             />

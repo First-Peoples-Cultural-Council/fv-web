@@ -5,15 +5,15 @@ import { PARTS_OF_SPEECH } from 'common/constants'
 import api from 'services/api'
 
 export function usePartsOfSpeech() {
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [PARTS_OF_SPEECH],
     queryFn: () => api.partsOfSpeech.get(),
-  })
-  const formattedData = response?.data?.results
-    ? response?.data.results?.map((entry) => ({
+    select: (data) =>
+      data?.results?.map((entry) => ({
         label: entry?.title,
         value: entry?.id,
-      }))
-    : []
-  return { ...response, data: formattedData }
+      })),
+  })
+
+  return queryResponse
 }

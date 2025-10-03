@@ -6,34 +6,28 @@ import { SITES } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { selectOneMediaFormHelper } from 'common/utils/mediaHelpers'
-import { siteAdaptor, languagesListAdaptor } from 'common/dataAdaptors'
+import { siteAdaptor } from 'common/dataAdaptors'
 import { useSiteDispatch } from 'context/SiteContext'
 
 export function useSite() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [SITES, sitename],
     queryFn: () => api.sites.get({ sitename }),
-    ...{ enabled: !!sitename },
+    select: (data) => siteAdaptor({ siteData: data }),
+    enabled: !!sitename,
   })
-  const formattedSiteData = siteAdaptor({ siteData: response?.data })
 
-  return { ...response, data: formattedSiteData }
+  return queryResponse
 }
 
 export function useSites({ pageSize = 100 }) {
-  const allSitesResponse = useQuery({
+  const queryResponse = useQuery({
     queryKey: [SITES, pageSize],
     queryFn: () => api.sites.getAll({ pageSize }),
   })
-  const formattedSitesData = languagesListAdaptor({
-    languagesData: allSitesResponse?.data,
-  })
 
-  return {
-    ...allSitesResponse,
-    allSitesData: formattedSitesData,
-  }
+  return queryResponse
 }
 
 export function useSiteUpdateBanner() {

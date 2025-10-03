@@ -22,7 +22,7 @@ function ByCategoryFilters({
         className="inline-block lg:block transition duration-500 ease-in-out lg:my-2 lg:mx-5 grow "
       >
         <Link
-          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-charcoal-700"
+          className="transition duration-500 ease-in-out flex items-center cursor-pointer rounded-lg text-blumine-800 hover:bg-charcoal-100"
           to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
             category.id
           }?types=${searchType}`}
@@ -44,7 +44,7 @@ function ByCategoryFilters({
         <ul
           className={`list-none m-2 px-2 lg:space-y-2 ${
             currentCategory?.id === currentParentCategory?.id
-              ? 'border-l-4 md:border-l-0 lg:border-l-4 border-charcoal-700'
+              ? 'border-l-4 md:border-l-0 lg:border-l-4 border-blumine-800'
               : ''
           }`}
         >
@@ -54,7 +54,7 @@ function ByCategoryFilters({
             className="inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow"
           >
             <Link
-              className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-charcoal-700 bg-charcoal-200"
+              className="transition duration-500 ease-in-out rounded-lg pr-4 flex items-center cursor-pointer text-blumine-800 bg-charcoal-100"
               to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                 currentParentCategory.id
               }?types=${searchType}`}
@@ -75,13 +75,15 @@ function ByCategoryFilters({
                   id={`SearchFilter${child.id}`}
                   className={`inline-block md:inline-flex lg:block w-full md:w-auto lg:w-full transition duration-500 ease-in-out lg:my-2 grow ${
                     child.id === currentCategory.id
-                      ? 'border-l-4 md:border-l-0 lg:border-l-4 border-charcoal-700'
+                      ? 'border-l-4 md:border-l-0 lg:border-l-4 border-blumine-800'
                       : ''
                   }`}
                 >
                   <Link
-                    className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-charcoal-700 ${
-                      child.id === currentCategory.id ? 'bg-charcoal-200' : ''
+                    className={`transition duration-500 ease-in-out ml-4 lg:ml-8 pr-4 lg:px-0 rounded-lg flex items-center cursor-pointer text-blumine-800 ${
+                      child.id === currentCategory.id
+                        ? 'bg-charcoal-100'
+                        : 'hover:bg-charcoal-100'
                     }`}
                     to={`/${sitename}/${kids ? 'kids/' : ''}categories/${
                       child.id
@@ -101,7 +103,7 @@ function ByCategoryFilters({
         </ul>
       </div>
       <div className="hidden lg:block lg:p-3">
-        <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-charcoal-200">
+        <ul className="list-none m-2 pt-5 lg:space-y-4 border-t-2 border-charcoal-100">
           {getParentCategoriesList()}
         </ul>
       </div>

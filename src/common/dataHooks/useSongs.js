@@ -18,6 +18,7 @@ import {
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import useAuthCheck from 'common/hooks/useAuthCheck'
 import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
+import { isUUID } from 'common/utils/stringHelpers'
 
 export function useSongs() {
   const { sitename } = useParams()
@@ -39,20 +40,15 @@ export function useSong({ id, sitename, edit = false }) {
   const { sitename: paramsSitename } = useParams()
   const sitenameToSend = sitename || paramsSitename
 
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [SONGS, sitenameToSend, id],
     queryFn: () => api.songs.get({ sitename: sitenameToSend, id }),
-    ...{ enabled: !!id },
+    select: (data) =>
+      edit ? songForEditing({ item: data }) : songForViewing({ item: data }),
+    enabled: !!isUUID(id),
   })
 
-  const formattedSong = edit
-    ? songForEditing({ item: response?.data })
-    : songForViewing({ item: response?.data })
-
-  return {
-    ...response,
-    data: formattedSong,
-  }
+  return queryResponse
 }
 
 export function useSongCreate() {
