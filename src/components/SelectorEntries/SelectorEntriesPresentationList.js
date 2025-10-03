@@ -37,7 +37,7 @@ function SelectorEntriesPresentationList({
   return (
     <div id="SelectorEntriesPresentationList" className="w-full my-4 px-2">
       <h2 className="sr-only">Search results</h2>
-      {infiniteQueryResponse?.hasResults && (
+      {infiniteQueryResponse?.data?.hasResults && (
         <>
           <table className="min-w-full divide-y divide-charcoal-100">
             <thead className="bg-charcoal-50">

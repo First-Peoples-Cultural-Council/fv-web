@@ -5,7 +5,10 @@ import PropTypes from 'prop-types'
 // FPCC
 import useSearchType from 'common/hooks/useSearchType'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
-import { useCategories, useCategory } from 'common/dataHooks/useCategories'
+import {
+  useCategoriesNested,
+  useCategory,
+} from 'common/dataHooks/useCategories'
 import { CATEGORY, KIDS, TYPES, TYPE_DICTIONARY } from 'common/constants'
 import { getPresentationPropertiesForType } from 'common/utils/stringHelpers'
 function ByCategoryData({ kids = null }) {
@@ -28,33 +31,38 @@ function ByCategoryData({ kids = null }) {
     searchParams: _searchParams,
   })
 
-  const categoriesQueryResponse = useCategories()
+  const categoriesNestedQueryResponse = useCategoriesNested()
   const categoryQueryResponse = useCategory({ id: categoryId })
 
   const [currentCategory, setCurrentCategory] = useState({})
   const [currentParentCategory, setCurrentParentCategory] = useState({})
 
   useEffect(() => {
-    if (categoriesQueryResponse?.allCategories?.length > 0 && categoryId) {
-      const selectedCategory = categoriesQueryResponse?.allCategories?.find(
-        (category) => category?.id === categoryId,
-      )
-      const parentCategory = selectedCategory?.parentId
-        ? categoriesQueryResponse?.allCategories?.find(
+    if (
+      categoriesNestedQueryResponse?.data?.results?.length > 0 &&
+      categoryId &&
+      categoryQueryResponse?.data?.id
+    ) {
+      const selectedCategory = categoryQueryResponse?.data
+      const parentCategory = selectedCategory?.parent
+        ? categoriesNestedQueryResponse?.data?.results?.find(
             (category) => category?.id === selectedCategory.parentId,
           )
         : selectedCategory
       if (selectedCategory?.id !== currentCategory?.id) {
         setCurrentCategory(selectedCategory)
-        if (parentCategory) {
-          setCurrentParentCategory(parentCategory)
-        }
+        setCurrentParentCategory(parentCategory)
       }
     }
-  }, [categoriesQueryResponse, currentCategory, categoryId])
+  }, [
+    categoryQueryResponse,
+    categoriesNestedQueryResponse,
+    currentCategory,
+    categoryId,
+  ])
 
   return {
-    categoriesQueryResponse,
+    nestedCategories: categoriesNestedQueryResponse?.data?.results || [],
     categoryQueryResponse,
     searchInfiniteQueryResponse,
     sitename,

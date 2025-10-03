@@ -13,16 +13,14 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 export function useDocument({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [DOCUMENT_PATH, sitename, id],
     queryFn: () => api.documents.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? documentForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? documentForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return queryResponse
 }
 
 export function useDocumentUpdate({ id }) {

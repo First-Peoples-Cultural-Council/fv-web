@@ -6,15 +6,16 @@ import { PEOPLE } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
+import { isUUID } from 'common/utils/stringHelpers'
 
 export function usePerson({ id }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [PEOPLE, sitename, id],
     queryFn: () => api.people.get({ sitename, id }),
-    ...{ enabled: !!id },
+    enabled: !!isUUID(id),
   })
-  return response
+  return queryResponse
 }
 
 export function usePeople() {

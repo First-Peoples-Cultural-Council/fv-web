@@ -6,12 +6,7 @@ import { useTranslation } from 'react-i18next'
 import getIcon from 'common/utils/getIcon'
 import Listbox from 'components/Listbox'
 
-function TabsPresentation({
-  accentColor = 'blumine-800',
-  selectedValue,
-  tabs,
-  setValue,
-}) {
+function TabsPresentation({ selectedValue, tabs, setValue }) {
   const [t] = useTranslation()
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -32,7 +27,7 @@ function TabsPresentation({
             onClick={() => setValue(tab?.value)}
             className={classNames(
               tab?.value === selectedValue
-                ? `text-white bg-${accentColor} border-${accentColor}`
+                ? `text-white bg-blumine-800 border-blumine-800`
                 : 'text-charcoal-500 bg-white hover:text-charcoal-700 hover:bg-charcoal-50 border-charcoal-100',
               tabIndex === 0 ? 'rounded-l-lg border-r-0' : '',
               tabIndex === tabs.length - 1 ? 'rounded-r-lg border-l-0' : '',
@@ -60,7 +55,6 @@ function TabsPresentation({
 // PROPTYPES
 const { arrayOf, func, shape, string } = PropTypes
 TabsPresentation.propTypes = {
-  accentColor: string,
   tabs: arrayOf(
     shape({
       label: string,

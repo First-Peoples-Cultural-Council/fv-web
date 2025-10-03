@@ -10,16 +10,14 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 export function useImage({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [IMAGE_PATH, sitename, id],
     queryFn: () => api.images.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? imageForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? imageForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return queryResponse
 }
 
 export function useImageUpdate({ id }) {

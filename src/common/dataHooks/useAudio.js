@@ -10,16 +10,14 @@ import { isUUID } from 'common/utils/stringHelpers'
 
 export function useAudio({ id, edit = false }) {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [AUDIO_PATH, sitename, id],
     queryFn: () => api.audio.get({ sitename, id }),
-    ...{ enabled: !!isUUID(id) },
+    select: (data) => (edit ? audioForEditing({ data: data }) : data),
+    enabled: !!isUUID(id),
   })
-  const formattedData = edit
-    ? audioForEditing({ data: response?.data })
-    : response?.data
 
-  return { ...response, data: formattedData }
+  return queryResponse
 }
 
 export function useAudioCreate(options = {}) {

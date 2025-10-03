@@ -30,19 +30,16 @@ function useInfiniteScroll({
     queryFn,
     enabled,
     getNextPageParam: (currentPage) => currentPage.next,
-    select: (responseData) => ({
-      pages: pagesDataAdaptor(responseData.pages),
-      pageParams: responseData.pageParams,
+    select: (data) => ({
+      pages: pagesDataAdaptor(data.pages),
+      pageParams: data.pageParams,
+      hasResults: Boolean(
+        data?.pages !== undefined && data?.pages?.[0]?.results?.length > 0,
+      ),
     }),
   })
 
-  return {
-    ...infiniteQueryResponse,
-    hasResults: Boolean(
-      infiniteQueryResponse?.data?.pages !== undefined &&
-        infiniteQueryResponse?.data?.pages?.[0]?.results?.length > 0,
-    ),
-  }
+  return infiniteQueryResponse
 }
 
 export default useInfiniteScroll
