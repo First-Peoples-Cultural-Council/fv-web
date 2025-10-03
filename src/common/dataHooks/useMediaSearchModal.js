@@ -36,7 +36,7 @@ function useMediaSearchModal({ type, searchSharedMedia }) {
   }
 
   return {
-    ...infiniteQueryResponse,
+    infiniteQueryResponse,
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,

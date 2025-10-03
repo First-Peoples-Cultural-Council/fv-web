@@ -17,7 +17,12 @@ function SelectorImagesContainer({
 }) {
   const [searchSharedMedia, setSearchSharedMedia] = useState('false')
 
-  const infiniteQueryResponse = useMediaSearchModal({
+  const {
+    infiniteQueryResponse,
+    displayedSearchTerm,
+    handleSearchSubmit,
+    handleSearchTermChange,
+  } = useMediaSearchModal({
     type: TYPE_IMAGE,
     searchSharedMedia: searchSharedMedia === 'true',
   })
@@ -35,14 +40,14 @@ function SelectorImagesContainer({
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
-            onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
+            onSearchChange={handleSearchTermChange}
+            onSearchSubmit={handleSearchSubmit}
             searchPlaceholder={
               searchSharedMedia === 'true'
                 ? 'Search shared images'
                 : 'Search your image library'
             }
-            searchValue={infiniteQueryResponse?.displayedSearchTerm}
+            searchValue={displayedSearchTerm}
           />
         </div>
         {!hideSharedMedia && (
