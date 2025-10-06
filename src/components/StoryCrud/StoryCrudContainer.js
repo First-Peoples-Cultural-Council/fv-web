@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router'
 
 // FPCC
 import StoryCrudData from 'components/StoryCrud/StoryCrudData'
@@ -12,7 +13,7 @@ import SiteDocHead from 'components/SiteDocHead'
 
 function StoryCrudContainer() {
   const { activeStep, storyData, deleteHandler } = StoryCrudData()
-  const { sitename } = storyData
+  const { sitename } = useParams()
 
   function getStepContent(step) {
     switch (step) {
