@@ -123,6 +123,6 @@
     "tailwindcss": "^4.1.13",
     "webpack": "^5.99.7",
     "webpack-merge": "^6.0.1",
-    "yup": "^1.6.1"
+    "yup": "^1.7.1"
   }
 }
