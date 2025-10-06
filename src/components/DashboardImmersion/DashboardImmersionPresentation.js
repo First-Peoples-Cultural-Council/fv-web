@@ -17,7 +17,6 @@ function DashboardImmersionPresentation({
   setCurrentLabel,
   submitHandler,
 }) {
-  console.log({ data: queryResponse?.data })
   const tableHeaderClass =
     'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
