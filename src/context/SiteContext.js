@@ -9,7 +9,7 @@ export const siteInitialState = {
     menu: {},
     title: '',
     sitename: '',
-    parentLanguageTitle: '',
+    language: '',
     bannerImage: null,
     bannerVideo: null,
     joinText: null,

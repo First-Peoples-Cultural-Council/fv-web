@@ -16,7 +16,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
     relatedDictionaryEntries: definitions.objectArray(),
-    generalNote: definitions.paragraph({ charCount: 120 }),
+    note: definitions.paragraph({ charCount: 120 }),
   })
 
   const defaultValues = {
@@ -26,7 +26,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     relatedVideos: [],
     relatedVideoLinks: [],
     relatedDictionaryEntries: [],
-    generalNote: '',
+    note: '',
   }
 
   const { control, errors, handleSubmit, register, reset } = useEditForm({
@@ -94,7 +94,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
           <div className="col-span-12">
             <Form.TextField
               label="Notes"
-              nameId="generalNote"
+              nameId="note"
               register={register}
               errors={errors}
             />

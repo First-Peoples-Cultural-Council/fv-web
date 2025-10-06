@@ -19,7 +19,7 @@ function AppData() {
         // Set Auth/User and user sites in context store
         userDispatch({
           type: 'SET',
-          data: { auth, memberships: mySitesQueryResponse?.mySitesData },
+          data: { auth, memberships: mySitesQueryResponse?.data },
         })
       }
       // Handle 401 error from server (edge case since we support anon users, can happen due to misconfiguration)

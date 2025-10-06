@@ -54,7 +54,7 @@ function DashboardImmersionPresentation({
                   </th>
                 </tr>
               }
-              tableBody={queryResponse?.labels.map((label) => (
+              tableBody={queryResponse?.data?.labels.map((label) => (
                 <tr
                   key={label?.transKey}
                   onClick={() => setCurrentLabel(label)}

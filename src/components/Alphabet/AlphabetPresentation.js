@@ -63,10 +63,10 @@ function AlphabetPresentation({
               relatedDictionaryEntries={selectedData?.relatedDictionaryEntries}
               relatedAudio={selectedData?.relatedAudio}
               relatedDocuments={selectedData?.relatedDocuments}
-              relatedVideo={selectedData?.relatedVideo}
+              relatedVideo={selectedData?.relatedVideos?.[0]}
               relatedVideoLink={selectedData?.relatedVideoLinks}
-              relatedImage={selectedData?.relatedImage}
-              generalNote={selectedData?.generalNote}
+              relatedImage={selectedData?.relatedImages?.[0]}
+              note={selectedData?.note}
               onVideoClick={onVideoClick}
               videoIsOpen={videoIsOpen}
               kids={kids}

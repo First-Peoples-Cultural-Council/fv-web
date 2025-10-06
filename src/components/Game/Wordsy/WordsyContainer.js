@@ -28,8 +28,7 @@ function WordsyContainer({ kids }) {
       <LoadOrError queryResponse={queryResponse}>
         <WordsyPresentation
           tries={tries}
-          solution={queryResponse?.data?.solution}
-          languageConfig={queryResponse?.languageConfig}
+          data={queryResponse?.data}
           guesses={guesses}
           currentGuess={currentGuess}
           wordLength={wordLength}

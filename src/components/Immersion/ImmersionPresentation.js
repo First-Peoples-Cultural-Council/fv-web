@@ -26,7 +26,9 @@ function ImmersionPresentation({ queryResponse }) {
                   <h2 className="text-center text-charcoal-900 text-2xl pb-2">
                     Immersion Labels
                   </h2>
-                  <ImmersionPresentationList labels={queryResponse?.labels} />
+                  <ImmersionPresentationList
+                    labels={queryResponse?.data?.labels}
+                  />
                 </div>
               </main>
             </div>

@@ -54,7 +54,7 @@ function AlphabetPresentationWidget({
             ) : (
               <AlphabetPresentationSelected
                 title={selectedData?.title}
-                generalNote={selectedData?.generalNote}
+                note={selectedData?.note}
                 relatedDictionaryEntries={
                   selectedData?.relatedDictionaryEntries
                 }

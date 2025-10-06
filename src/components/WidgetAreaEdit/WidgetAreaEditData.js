@@ -14,32 +14,35 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   const [currentWidget, setCurrentWidget] = useState()
   const [addModalOpen, setAddModalOpen] = useState(false)
 
-  const { data, error, isInitialLoading } = usePage({
+  const pageQueryResponse = usePage({
     pageSlug,
   })
 
   // Fetch all widgets for this site
-  const {
-    widgets,
-    isInitialLoading: widgetsIsInitialLoading,
-    error: widgetsError,
-  } = useWidgets()
+  const widgetsQueryResponse = useWidgets()
 
   // If custom page set list of widget IDs in state
   useEffect(() => {
-    if (pageSlug && isInitialLoading === false && error === null) {
-      const ids = data?.widgets?.map((w) => w.id) || []
+    if (
+      pageSlug &&
+      pageQueryResponse?.isInitialLoading === false &&
+      pageQueryResponse?.error === null
+    ) {
+      const ids = pageQueryResponse?.data?.widgets?.map((w) => w.id) || []
       setWidgetIds(ids)
     }
-  }, [isInitialLoading, error])
+  }, [pageQueryResponse, pageSlug])
 
   // Set widget objects in state
   useEffect(() => {
-    if (widgetsIsInitialLoading === false && widgetsError === null) {
-      const values = widgetDataAdaptor(widgets)
+    if (
+      widgetsQueryResponse?.isInitialLoading === false &&
+      widgetsQueryResponse?.error === null
+    ) {
+      const values = widgetDataAdaptor(widgetsQueryResponse?.data?.results)
       setWidgetValues(values)
     }
-  }, [widgetsIsInitialLoading, widgetsError])
+  }, [widgetsQueryResponse])
 
   // If homepage set list of widget IDs in state
   useEffect(() => {
@@ -92,10 +95,12 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
     setAddModalOpen,
     currentWidget,
     setCurrentWidget,
-    destinationTitle: isHomepage ? 'Home' : data?.title,
+    destinationTitle: isHomepage ? 'Home' : pageQueryResponse?.data?.title,
     handleRemoveWidget,
     handleAddWidget,
-    isLoading: isInitialLoading || widgetsIsInitialLoading,
+    isLoading:
+      pageQueryResponse?.isInitialLoading ||
+      widgetsQueryResponse?.isInitialLoading,
     widgetData: widgetValues,
     widgetIds,
     setWidgetIds: updateWidgetOrder,

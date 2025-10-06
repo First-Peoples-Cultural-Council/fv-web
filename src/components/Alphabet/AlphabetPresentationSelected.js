@@ -19,7 +19,7 @@ function AlphabetPresentationSelected({
   relatedVideo,
   relatedVideoLink,
   relatedImage,
-  generalNote,
+  note,
   videoIsOpen = false,
   alphabetLink,
   entriesCount,
@@ -92,10 +92,10 @@ function AlphabetPresentationSelected({
           })}
         </div>
       )}
-      {generalNote?.length > 0 && (
+      {note?.length > 0 && (
         <div className="flex-col justify-center mx-auto my-5 w-3/4">
           <h2 className={labelStyling}>Notes</h2>
-          <p className="text-center">{generalNote}</p>
+          <p className="text-center">{note}</p>
         </div>
       )}
       {relatedDocuments?.length > 0 && (
@@ -206,7 +206,7 @@ const { array, bool, func, number, object, string } = PropTypes
 AlphabetPresentationSelected.propTypes = {
   title: string,
   relatedImage: object,
-  generalNote: string,
+  note: string,
   relatedAudio: array,
   relatedDocuments: array,
   relatedVideo: object,

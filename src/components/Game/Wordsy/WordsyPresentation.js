@@ -15,8 +15,7 @@ const MIN_VALID_WORDS = 30
 
 function WordsyPresentation({
   tries,
-  solution,
-  languageConfig,
+  data,
   guesses,
   currentGuess,
   wordLength,
@@ -36,7 +35,7 @@ function WordsyPresentation({
           <EndGameModal
             status={modalData?.status}
             text={modalData?.text}
-            solution={solution}
+            solution={data?.solution}
           />
         )
       case 'warning':
@@ -59,6 +58,7 @@ function WordsyPresentation({
       <SectionTitle.Presentation title="WORDSY" />
 
       <button
+        data-testid="info-btn"
         type="button"
         onClick={() => openInfoModal()}
         onKeyDown={() => openInfoModal()}
@@ -71,26 +71,26 @@ function WordsyPresentation({
       </button>
 
       {/* If less than 30 words or valid guesses present, display error message */}
-      {languageConfig?.words?.length >= MIN_VALID_WORDS &&
-      languageConfig?.validGuesses?.length >= MIN_VALID_WORDS ? (
+      {data?.words?.length >= MIN_VALID_WORDS &&
+      data?.validGuesses?.length >= MIN_VALID_WORDS ? (
         <div className="space-y-2 lg:space-y-4">
           <Grid
             tries={tries}
             guesses={guesses}
-            solution={solution}
+            solution={data?.solution}
             currentGuess={currentGuess}
-            orthographyPattern={languageConfig?.orthographyPattern}
+            orthographyPattern={data?.orthographyPattern}
             wordLength={wordLength}
           />
 
           <Keyboard
-            orthography={languageConfig?.orthography}
+            orthography={data?.orthography}
             onChar={onChar}
             onEnter={onEnter}
             onDelete={onDelete}
-            solution={solution}
+            solution={data?.solution}
             guesses={guesses}
-            orthographyPattern={languageConfig?.orthographyPattern}
+            orthographyPattern={data?.orthographyPattern}
           />
         </div>
       ) : (
@@ -116,14 +116,13 @@ function WordsyPresentation({
   )
 }
 
-const { array, bool, func, number, object, string } = PropTypes
+const { array, bool, func, number, object } = PropTypes
 
 WordsyPresentation.propTypes = {
+  data: object,
   tries: number,
-  solution: string,
   guesses: array,
   currentGuess: array,
-  languageConfig: object,
   wordLength: number,
   onChar: func,
   onEnter: func,

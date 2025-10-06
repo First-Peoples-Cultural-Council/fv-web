@@ -7,20 +7,21 @@ import api from 'services/api'
 import { contactUsAdaptor } from 'common/dataAdaptors/contactUsAdaptor'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 
-export function useContactUsEmailList() {
+export function useContactUs() {
   const { sitename } = useParams()
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [CONTACT_US, sitename],
-    queryFn: () => api.mail.get({ sitename }),
-    ...{ enabled: !!sitename },
+    queryFn: () => api.contactUs.get({ sitename }),
+    select: (data) => ({
+      ...data,
+      emailListAsString: data?.[0]?.emailList
+        ?.map((v) => Object.values(v).join(''))
+        .join(' - '),
+    }),
+    enabled: !!sitename,
   })
 
-  const emailList = response?.data?.[0]?.emailList
-  const emailListAsString = emailList
-    ?.map((v) => Object.values(v).join(''))
-    .join(' - ')
-
-  return { ...response, emailListAsString }
+  return queryResponse
 }
 
 export function useContactUsSendEmail() {
@@ -28,7 +29,7 @@ export function useContactUsSendEmail() {
 
   const sendMail = async (formData) => {
     const properties = contactUsAdaptor({ formData })
-    return api.mail.post({
+    return api.contactUs.post({
       sitename,
       properties,
     })

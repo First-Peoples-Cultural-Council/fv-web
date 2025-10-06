@@ -10,7 +10,7 @@ function WidgetBrowserData({ isHomepage, currentWidgets }) {
   const queryResponse = useWidgets()
 
   // Don't include widgets that are already active on the page
-  const widgetsNotOnThisPage = queryResponse?.widgets?.filter(
+  const widgetsNotOnThisPage = queryResponse?.data?.results?.filter(
     (widget) => !currentWidgets?.includes(widget?.id),
   )
 

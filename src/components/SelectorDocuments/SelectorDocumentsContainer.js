@@ -13,7 +13,12 @@ function SelectorDocumentsContainer({
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const infiniteQueryResponse = useMediaSearchModal({ type: TYPE_DOCUMENT })
+  const {
+    infiniteQueryResponse,
+    displayedSearchTerm,
+    handleSearchSubmit,
+    handleSearchTermChange,
+  } = useMediaSearchModal({ type: TYPE_DOCUMENT })
 
   return (
     <div
@@ -23,10 +28,10 @@ function SelectorDocumentsContainer({
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
-            onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
+            onSearchChange={handleSearchTermChange}
+            onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all documents"
-            searchValue={infiniteQueryResponse?.displayedSearchTerm}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div className="grow h-72 overflow-y-scroll">

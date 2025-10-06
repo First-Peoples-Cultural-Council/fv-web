@@ -6,15 +6,14 @@ import api from 'services/api'
 import { sitesListAdaptor } from 'common/dataAdaptors/siteAdaptors'
 
 export function useMySites() {
-  const response = useQuery({
+  const queryResponse = useQuery({
     queryKey: [MY_SITES],
     queryFn: () => api.mySites.get(),
+    select: (data) =>
+      sitesListAdaptor({
+        sitesData: data?.results,
+      }),
   })
-  const formattedUserSitesData = sitesListAdaptor({
-    sitesData: response?.data?.results,
-  })
-  return {
-    ...response,
-    mySitesData: formattedUserSitesData,
-  }
+
+  return queryResponse
 }

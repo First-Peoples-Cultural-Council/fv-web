@@ -25,8 +25,8 @@ function WordsyData({ kids }) {
 
   const isValidGuess = () =>
     isWordInWordList(
-      queryResponse?.languageConfig?.words,
-      queryResponse?.languageConfig?.validGuesses,
+      queryResponse?.data?.words,
+      queryResponse?.data?.validGuesses,
       currentGuess.join(''),
     )
 

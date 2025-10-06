@@ -7,6 +7,7 @@ export function languagesListAdaptor({ languagesData }) {
   return languagesData?.results?.map((language) => ({
     id: language?.id,
     title: language?.language,
+    language: language?.language,
     languageCode: language?.languageCode,
     sites: sitesListAdaptor({ sitesData: language?.sites }),
     noLanguageAssigned: language?.noLanguageAssigned,
@@ -18,9 +19,10 @@ export function sitesListAdaptor({ sitesData }) {
     id: site?.id,
     title: site?.title,
     sitename: site?.slug,
+    slug: site?.slug,
     visibility: site?.visibility,
     ...logoAdaptor({ item: site }),
-    parentLanguageTitle: site?.language,
+    language: site?.language,
     features: site?.enabledFeatures,
     role: site?.role, // Data for this will only be included in the my-sites response
   }))
@@ -38,7 +40,7 @@ export function siteAdaptor({ siteData }) {
     menu: siteData?.menu,
     title: siteData?.title,
     sitename: siteData?.slug,
-    parentLanguageTitle: siteData?.language,
+    language: siteData?.language,
     ...logoAdaptor({ item: siteData }),
     bannerImage,
     bannerVideo,

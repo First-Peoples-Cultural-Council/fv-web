@@ -55,7 +55,7 @@ function DashboardAlphabetPresentation({
               </th>
             </tr>
           }
-          tableBody={queryResponse?.data?.characters?.map((character) => (
+          tableBody={queryResponse?.data?.results?.map((character) => (
             <tr key={character.id}>
               <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 {character.title}
@@ -67,14 +67,14 @@ function DashboardAlphabetPresentation({
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 <div className="flex justify-center">
-                  {character?.relatedVideo
-                    ? getIndicatorIcon(character?.relatedVideo)
+                  {character?.relatedVideos?.[0]
+                    ? getIndicatorIcon(character?.relatedVideos)
                     : getIndicatorIcon(character?.relatedVideoLinks)}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
                 <div className="flex justify-center">
-                  {getIndicatorIcon(character?.relatedImage)}
+                  {getIndicatorIcon(character?.relatedImages)}
                 </div>
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">

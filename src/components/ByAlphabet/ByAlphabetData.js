@@ -35,27 +35,27 @@ function ByAlphabetData({ kids = null }) {
     searchParams: _searchParams,
   })
 
-  const characterQueryResponse = useCharacters()
+  const charactersQueryResponse = useCharacters()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
   useEffect(() => {
     if (
-      characterQueryResponse?.data &&
-      !characterQueryResponse?.isPending &&
-      !characterQueryResponse?.isError
+      charactersQueryResponse?.data &&
+      !charactersQueryResponse?.isPending &&
+      !charactersQueryResponse?.isError
     ) {
-      const selectedCharacter = characterQueryResponse?.data?.characters?.find(
+      const selectedCharacter = charactersQueryResponse?.data?.results?.find(
         (char) => char?.title === character,
       )
       if (selectedCharacter?.id !== currentCharacter?.id) {
         setCurrentCharacter(selectedCharacter)
       }
     }
-  }, [currentCharacter, character, characterQueryResponse])
+  }, [currentCharacter, character, charactersQueryResponse])
 
   return {
-    characterQueryResponse,
+    charactersQueryResponse,
     searchInfiniteQueryResponse,
     sitename,
     currentCharacter,

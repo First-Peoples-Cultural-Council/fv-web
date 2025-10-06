@@ -7,9 +7,12 @@ import InfiniteLoadBtn from 'components/InfiniteLoadBtn'
 import { getMediaPath, getPathForMediaType } from 'common/utils/mediaHelpers'
 import DashboardMediaDetails from 'components/DashboardMediaDetails'
 
-function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
-  const file = infiniteQueryResponse?.currentFile
-
+function DashboardMediaVisualPresentation({
+  infiniteQueryResponse,
+  currentFile,
+  setCurrentFile,
+  type,
+}) {
   const mediaTypePath = getPathForMediaType(type)
 
   const thumbnail = (
@@ -17,17 +20,17 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
       {type === TYPE_IMAGE ? (
         <img
           src={getMediaPath({
-            mediaObject: file,
+            mediaObject: currentFile,
             type: TYPE_IMAGE,
             size: SMALL,
           })}
-          alt={file?.title}
+          alt={currentFile?.title}
           className="object-contain w-full max-h-80"
         />
       ) : (
         <video
           className="w-full aspect-video"
-          src={getMediaPath({ mediaObject: file, type: TYPE_VIDEO })}
+          src={getMediaPath({ mediaObject: currentFile, type: TYPE_VIDEO })}
           controls
         />
       )}
@@ -59,8 +62,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                           <li key={mediaObject?.id} className="relative">
                             <div
                               className={`${
-                                mediaObject?.id ===
-                                infiniteQueryResponse?.currentFile?.id
+                                mediaObject?.id === currentFile?.id
                                   ? 'ring-4 ring-offset-2 ring-scarlet-800'
                                   : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
                               } group block w-full rounded-lg bg-charcoal-50 overflow-hidden`}
@@ -69,8 +71,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                                 src={src}
                                 alt={mediaObject?.title}
                                 className={`${
-                                  mediaObject?.id ===
-                                  infiniteQueryResponse?.currentFile?.id
+                                  mediaObject?.id === currentFile?.id
                                     ? ''
                                     : 'group-hover:opacity-75'
                                 } aspect-3/2 w-full object-cover`}
@@ -79,11 +80,7 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
                                 data-testid=""
                                 type="button"
                                 className="absolute inset-0 focus:outline-hidden"
-                                onClick={() =>
-                                  infiniteQueryResponse?.setCurrentFile(
-                                    mediaObject,
-                                  )
-                                }
+                                onClick={() => setCurrentFile(mediaObject)}
                               >
                                 <span className="sr-only">
                                   View details for {mediaObject?.title}
@@ -113,7 +110,10 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
       <aside className="col-span-1">
         <DashboardMediaDetails
           mediaTypePath={mediaTypePath}
-          file={{ ...file, dimensions: `${file?.width} x ${file?.height}` }}
+          file={{
+            ...currentFile,
+            dimensions: `${currentFile?.width} x ${currentFile?.height}`,
+          }}
           thumbnail={thumbnail}
         />
       </aside>
@@ -121,10 +121,12 @@ function DashboardMediaVisualPresentation({ infiniteQueryResponse, type }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { func, object, string } = PropTypes
 DashboardMediaVisualPresentation.propTypes = {
   infiniteQueryResponse: object,
   type: string,
+  currentFile: object,
+  setCurrentFile: func,
 }
 
 export default DashboardMediaVisualPresentation

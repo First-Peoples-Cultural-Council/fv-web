@@ -19,15 +19,16 @@ function ParachuteData({ kids }) {
     kids,
   })
 
-  const { data: characterData } = useCharacters()
+  const charactersQueryResponse = useCharacters()
 
   const goToNextPuzzle = useCallback(() => {
-    const numberOfPuzzlesReturned = parachuteQueryResponse?.puzzles?.length || 0
+    const numberOfPuzzlesReturned =
+      parachuteQueryResponse?.data?.puzzles?.length || 0
 
     if (currentPuzzleIndex < numberOfPuzzlesReturned - 1) {
       const nextPuzzleIndex = currentPuzzleIndex + 1
       setCurrentPuzzleIndex(nextPuzzleIndex)
-      setCurrentPuzzle(parachuteQueryResponse?.puzzles[nextPuzzleIndex])
+      setCurrentPuzzle(parachuteQueryResponse?.data?.puzzles[nextPuzzleIndex])
     } else if (responsesWithoutPuzzles < MAX_FETCHES_WITHOUT_USABLE_PUZZLE) {
       // If we run out of puzzles trigger a fetch for another page
       parachuteQueryResponse?.refetch()
@@ -37,18 +38,18 @@ function ParachuteData({ kids }) {
   }, [currentPuzzleIndex, responsesWithoutPuzzles, parachuteQueryResponse])
 
   useEffect(() => {
-    if (!currentPuzzle && parachuteQueryResponse?.puzzles?.length > 0) {
+    if (!currentPuzzle && parachuteQueryResponse?.data?.puzzles?.length > 0) {
       setResponsesWithoutPuzzles(0)
-      setCurrentPuzzle(parachuteQueryResponse?.puzzles?.[0])
+      setCurrentPuzzle(parachuteQueryResponse?.data?.puzzles?.[0])
     }
-  }, [currentPuzzle, parachuteQueryResponse?.puzzles])
+  }, [currentPuzzle, parachuteQueryResponse?.data?.puzzles])
 
   return {
     parachuteQueryResponse,
     puzzle: currentPuzzle?.puzzleParts,
     translation: currentPuzzle?.entry?.translations?.[0]?.text,
     audio: currentPuzzle?.entry?.relatedAudio?.[0],
-    alphabet: characterData?.characters,
+    alphabet: charactersQueryResponse?.data?.results,
     goToNextPuzzle,
   }
 }

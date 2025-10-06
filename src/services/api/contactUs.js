@@ -1,7 +1,7 @@
 import { apiBase } from 'services/config'
 import { SITES, CONTACT_US } from 'common/constants'
 
-const mail = {
+const contactUs = {
   post: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${CONTACT_US}/`, { json: properties })
@@ -10,4 +10,4 @@ const mail = {
     apiBase().get(`${SITES}/${sitename}/${CONTACT_US}/`).json(),
 }
 
-export default mail
+export default contactUs

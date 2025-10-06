@@ -13,7 +13,12 @@ function SelectorVideosContainer({
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const infiniteQueryResponse = useMediaSearchModal({ type: TYPE_VIDEO })
+  const {
+    infiniteQueryResponse,
+    displayedSearchTerm,
+    handleSearchSubmit,
+    handleSearchTermChange,
+  } = useMediaSearchModal({ type: TYPE_VIDEO })
 
   return (
     <div
@@ -23,10 +28,10 @@ function SelectorVideosContainer({
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
-            onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
-            onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
+            onSearchChange={handleSearchTermChange}
+            onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all videos"
-            searchValue={infiniteQueryResponse?.displayedSearchTerm}
+            searchValue={displayedSearchTerm}
           />
         </div>
         <div className="grow mt-2 h-72 overflow-y-scroll">
