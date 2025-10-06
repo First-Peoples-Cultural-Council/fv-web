@@ -41,11 +41,11 @@ export function useParachuteSearch({ perPage, kids }) {
   const getPuzzles = (data) => {
     const puzzles = []
     // If no words are found during the search then return an array with a single empty puzzle
-    if (data?.count === 0) {
+    if (data?.count === 0 || !data?.results) {
       return puzzles
     }
 
-    data?.results?.forEach((item) => {
+    for (const item of data?.results || []) {
       const splitCharsBaseArray = item?.entry?.splitCharsBase
       // If the splitCharsBase is not empty, generate a puzzle
       if (splitCharsBaseArray?.length > 4) {
@@ -59,7 +59,7 @@ export function useParachuteSearch({ perPage, kids }) {
         })
         puzzles.push({ ...item, puzzleParts })
       }
-    })
+    }
     return puzzles
   }
 
