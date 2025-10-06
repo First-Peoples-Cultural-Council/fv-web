@@ -43,7 +43,7 @@ function useSearchModal({ types, visibility = '', displayValue = '' }) {
   }
 
   return {
-    ...infiniteQueryResponse,
+    infiniteQueryResponse,
     displayedSearchTerm,
     handleSearchTermChange,
     handleSearchSubmit,

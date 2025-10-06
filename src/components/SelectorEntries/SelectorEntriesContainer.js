@@ -19,7 +19,14 @@ function SelectorEntriesContainer({
   visibility,
   maxItems = 30,
 }) {
-  const infiniteQueryResponse = useSearchModal({
+  const {
+    infiniteQueryResponse,
+    displayedSearchTerm,
+    handleSearchTermChange,
+    handleSearchSubmit,
+    clearSearchTerm,
+    submittedSearchTerm,
+  } = useSearchModal({
     types,
     visibility,
     displayValue,
@@ -65,14 +72,12 @@ function SelectorEntriesContainer({
             <div className="h-full w-full flex flex-col">
               <div className="w-3/4 mx-auto">
                 <SelectorSearchbox.Presentation
-                  onSearchChange={infiniteQueryResponse?.handleSearchTermChange}
-                  onSearchSubmit={infiniteQueryResponse?.handleSearchSubmit}
+                  onSearchChange={handleSearchTermChange}
+                  onSearchSubmit={handleSearchSubmit}
                   searchPlaceholder="Search all words and phrases"
-                  searchValue={infiniteQueryResponse?.displayedSearchTerm}
-                  clearSearchTerm={infiniteQueryResponse?.clearSearchTerm}
-                  submittedSearchTerm={
-                    infiniteQueryResponse?.submittedSearchTerm
-                  }
+                  searchValue={displayedSearchTerm}
+                  clearSearchTerm={clearSearchTerm}
+                  submittedSearchTerm={submittedSearchTerm}
                 />
               </div>
               <div className="grow h-72 overflow-y-scroll">
