@@ -14,7 +14,6 @@ import useMutationWithNotification from 'common/dataHooks/useMutationWithNotific
 import { audienceForApi } from 'common/dataAdaptors/audienceAdaptors'
 import { visibilityAdaptor } from 'common/dataAdaptors/visibilityAdaptor'
 import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
-import { isUUID } from 'common/utils/stringHelpers'
 
 export function useStories() {
   const { sitename } = useParams()
@@ -42,7 +41,7 @@ export function useStory({ id, sitename, edit = false }) {
 
     select: (data) =>
       edit ? storyForEditing({ item: data }) : storyForViewing({ item: data }),
-    enabled: !!isUUID(id),
+    enabled: !!id,
   })
 
   return queryResponse

@@ -6,7 +6,6 @@ import { CATEGORIES } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { categoryForApi } from 'common/dataAdaptors/categoriesAdaptors'
-import { isUUID } from 'common/utils/stringHelpers'
 
 export function useCategory({ id }) {
   const { sitename } = useParams()
@@ -14,7 +13,7 @@ export function useCategory({ id }) {
     queryKey: [CATEGORIES, sitename, id],
     queryFn: () => api.categories.get({ sitename, id }),
     select: (data) => ({ ...data, parentId: data?.parent?.id }),
-    enabled: !!isUUID(id),
+    enabled: !!id,
   })
   return queryResponse
 }

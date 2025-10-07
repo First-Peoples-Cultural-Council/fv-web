@@ -6,7 +6,6 @@ import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
-import { isUUID } from 'common/utils/stringHelpers'
 import {
   relatedMediaForApi,
   relatedMediaForViewing,
@@ -30,7 +29,7 @@ export function useCharacter({ id, edit = false }) {
         ...relatedMedia,
       }
     },
-    enabled: !!isUUID(id),
+    enabled: !!id,
   })
 
   return queryResponse
