@@ -47,7 +47,9 @@ function SelectorAudioPresentation({
               infiniteQueryResponse?.data?.pages?.map((page) => (
                 <React.Fragment key={page?.pageNumber}>
                   {page.results.map((audioObject) => {
-                    if (formMedia?.includes(audioObject?.id)) {
+                    if (
+                      formMedia?.some((elem) => elem?.id === audioObject?.id)
+                    ) {
                       // If a media file is already in the form
                       // it will not be presented as a choice in the selectMedia dialog box
                       return null
@@ -57,10 +59,12 @@ function SelectorAudioPresentation({
                         data-testid="DashboardMediaItemsRow"
                         key={audioObject?.id}
                         className="rounded-lg relative cursor-pointer"
-                        onClick={() => mediaSelectHandler(audioObject?.id)}
+                        onClick={() => mediaSelectHandler(audioObject)}
                       >
                         <td className="p-4 w-20 h-16 flex items-centre justify-centre">
-                          {selectedMedia?.includes(audioObject?.id) && (
+                          {selectedMedia?.some(
+                            (elem) => elem?.id === audioObject?.id,
+                          ) && (
                             <div className="btn-primary btn-md-icon">
                               {getIcon('Checkmark')}
                             </div>

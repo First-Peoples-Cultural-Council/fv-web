@@ -53,7 +53,7 @@ function AudioIdFieldButton({ value, onChange }) {
         onClickHandler={() => setModalOpen(true)}
       />
       <AddAudioModal.Container
-        formMedia={[value]}
+        formMedia={[{ id: value }]}
         updateFormMedia={updateFormMedia}
         modalOpen={modalOpen}
         closeModal={() => setModalOpen(false)}
