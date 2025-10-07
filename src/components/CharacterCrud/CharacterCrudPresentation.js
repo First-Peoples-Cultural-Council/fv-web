@@ -10,7 +10,7 @@ import useEditForm from 'common/hooks/useEditForm'
 
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
-    relatedAudio: definitions.idArray(),
+    relatedAudio: definitions.objectArray(),
     relatedDocuments: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),

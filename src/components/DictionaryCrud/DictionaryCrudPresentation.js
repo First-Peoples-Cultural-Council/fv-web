@@ -35,7 +35,7 @@ function DictionaryCrudPresentation({
     notes: definitions.textArray({ charCount: 500 }),
     partOfSpeech: definitions.uuid(),
     pronunciations: definitions.textArray(),
-    relatedAudio: definitions.idArray(),
+    relatedAudio: definitions.objectArray(),
     relatedDocuments: definitions.objectArray(),
     relatedEntries: definitions.objectArray(),
     relatedImages: definitions.objectArray(),

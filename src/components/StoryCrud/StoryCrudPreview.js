@@ -90,8 +90,8 @@ function StoryCrudPreview({ storyData }) {
 
   const audioThumbnails = (audio) => {
     if (audio?.length > 0) {
-      return audio?.map((audioId) => (
-        <MediaThumbnail.Audio key={audioId} id={audioId} />
+      return audio?.map((audioObject) => (
+        <MediaThumbnail.Audio key={audioObject?.id} audioObject={audioObject} />
       ))
     }
     return null

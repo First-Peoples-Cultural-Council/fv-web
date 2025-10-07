@@ -18,7 +18,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
     author: yup.string(),
     intro: definitions.wysiwyg({ charCount: 1200 }),
     introTranslation: definitions.wysiwyg({ charCount: 1200 }),
-    relatedAudio: definitions.idArray(),
+    relatedAudio: definitions.objectArray(),
     relatedDocuments: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),
