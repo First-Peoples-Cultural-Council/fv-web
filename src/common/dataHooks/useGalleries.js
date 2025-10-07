@@ -10,7 +10,6 @@ import {
   galleryForApi,
 } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import { isUUID } from 'common/utils/stringHelpers'
 
 export function useGallery({ id, edit = false }) {
   const { sitename } = useParams()
@@ -21,7 +20,7 @@ export function useGallery({ id, edit = false }) {
       edit
         ? galleryForEditing({ item: data })
         : galleryForViewing({ item: data }),
-    enabled: !!isUUID(id),
+    enabled: !!id,
   })
 
   return queryResponse

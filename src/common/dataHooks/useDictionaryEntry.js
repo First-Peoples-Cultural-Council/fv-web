@@ -6,7 +6,6 @@ import { DICTIONARY, TYPE_DICTIONARY } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { getDictionaryEntryUrl } from 'common/utils/urlHelpers'
-import { isUUID } from 'common/utils/stringHelpers'
 import {
   entryForEditing,
   entryForViewing,
@@ -22,7 +21,7 @@ export function useDictionaryEntry({ id, sitename, edit = false }) {
     queryFn: () => api.dictionary.get({ sitename: sitenameToSend, id }),
     select: (data) =>
       edit ? entryForEditing({ item: data }) : entryForViewing({ item: data }),
-    enabled: !!isUUID(id),
+    enabled: !!id,
   })
 
   return queryResponse
