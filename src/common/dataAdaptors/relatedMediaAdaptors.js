@@ -24,7 +24,7 @@ export function relatedMediaForEditing({ item }) {
     thumbnail: el.thumbnail,
   }))
   return {
-    relatedAudio: objectsToIdsAdaptor(item?.relatedAudio),
+    relatedAudio: item?.relatedAudio || [],
     relatedDocuments: item?.relatedDocuments || [],
     relatedImages: item?.relatedImages || [],
     relatedVideos: item?.relatedVideos || [],
@@ -35,7 +35,7 @@ export function relatedMediaForEditing({ item }) {
 export function relatedMediaForApi({ item }) {
   const relatedVideoLinks = item?.relatedVideoLinks?.map((el) => el.text)
   return {
-    related_audio: item?.relatedAudio || [],
+    related_audio: objectsToIdsAdaptor(item?.relatedAudio),
     related_documents: objectsToIdsAdaptor(item?.relatedDocuments),
     related_images: objectsToIdsAdaptor(item?.relatedImages),
     related_videos: objectsToIdsAdaptor(item?.relatedVideos),

@@ -15,19 +15,6 @@ function useModalController() {
 
 export default useModalController
 
-export function useModalControllerWithCallback({ onCloseCallback = () => {} }) {
-  const { modalOpen, openModal, closeModal } = useModalController()
-  return {
-    modalOpen,
-    openModal,
-    closeModal,
-    closeWithCallback: (params) => {
-      onCloseCallback(params)
-      closeModal()
-    },
-  }
-}
-
 export function useModalWithFieldArray({ control, nameId }) {
   const { modalOpen, openModal, closeModal } = useModalController()
 

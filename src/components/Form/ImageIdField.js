@@ -56,7 +56,6 @@ function ImageIdFieldButton({ value, onChange }) {
         onClickHandler={() => setModalOpen(true)}
       />
       <AddImageModal.Container
-        isDashboard
         formMedia={[{ id: value }]}
         updateFormMedia={updateFormMedia}
         modalOpen={modalOpen}

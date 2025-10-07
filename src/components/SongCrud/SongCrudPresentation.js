@@ -28,7 +28,7 @@ function SongCrudPresentation({
     ),
     acknowledgments: definitions.textArray({ charCount: 500 }),
     notes: definitions.textArray({ charCount: 500 }),
-    relatedAudio: definitions.idArray(),
+    relatedAudio: definitions.objectArray(),
     relatedDocuments: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),

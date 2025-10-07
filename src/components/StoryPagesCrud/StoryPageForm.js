@@ -20,7 +20,7 @@ function StoryPageForm({
     text: definitions.wysiwygRequired({ charCount: 5000 }),
     textTranslation: definitions.wysiwyg({ charCount: 5000 }),
     notes: definitions.textArray({ charCount: 500 }),
-    relatedAudio: definitions.idArray(),
+    relatedAudio: definitions.objectArray(),
     relatedImages: definitions.objectArray(),
     relatedVideos: definitions.objectArray(),
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
