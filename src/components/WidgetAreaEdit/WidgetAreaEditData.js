@@ -8,8 +8,8 @@ import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
 import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function WidgetAreaEditData({ pageSlug, isHomepage }) {
-  const [widgetIds, setWidgetIds] = useState([])
-  const [widgetValues, setWidgetValues] = useState({})
+  const [widgetIds, setWidgetIds] = useState()
+  const [widgetValues, setWidgetValues] = useState()
   const { site } = useSiteStore()
   const [currentWidget, setCurrentWidget] = useState()
   const [addModalOpen, setAddModalOpen] = useState(false)
@@ -24,6 +24,7 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
   // If custom page set list of widget IDs in state
   useEffect(() => {
     if (
+      !widgetIds &&
       pageSlug &&
       pageQueryResponse?.isInitialLoading === false &&
       pageQueryResponse?.error === null
@@ -31,18 +32,19 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
       const ids = pageQueryResponse?.data?.widgets?.map((w) => w.id) || []
       setWidgetIds(ids)
     }
-  }, [pageQueryResponse, pageSlug])
+  }, [pageQueryResponse, pageSlug, widgetIds])
 
   // Set widget objects in state
   useEffect(() => {
     if (
+      !widgetValues &&
       widgetsQueryResponse?.isInitialLoading === false &&
       widgetsQueryResponse?.error === null
     ) {
       const values = widgetDataAdaptor(widgetsQueryResponse?.data?.results)
       setWidgetValues(values)
     }
-  }, [widgetsQueryResponse])
+  }, [widgetsQueryResponse, widgetValues])
 
   // If homepage set list of widget IDs in state
   useEffect(() => {
