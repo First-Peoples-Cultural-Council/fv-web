@@ -221,10 +221,10 @@ export const isStringWithLength = (str) => {
 }
 
 export const isUUID = (str) => {
-  if (!str) {
+  if (!isStringWithLength(str)) {
     return false
   }
-  const isId = str.match(UUID_REGEX)
+  const isId = str?.match(UUID_REGEX)
   return !!isId
 }
 

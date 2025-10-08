@@ -35,8 +35,8 @@ function AudioIdFieldButton({ value, onChange }) {
   const [modalOpen, setModalOpen] = useState(false)
 
   const updateFormMedia = (id) => {
-    if (isUUID(id[0])) {
-      onChange(id[0])
+    if (isUUID(id[0]?.id)) {
+      onChange(id[0]?.id)
     }
     setModalOpen(false)
   }
