@@ -22,7 +22,7 @@ function PageContainer({ pageSlug }) {
     pageSlug,
   })
 
-  const hasMedia = bannerImage || bannerVideo
+  const hasMedia = bannerImage || bannerVideo ? true : false
 
   return (
     <LoadOrError queryResponse={pageQueryResponse}>
