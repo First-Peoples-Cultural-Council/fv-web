@@ -1,13 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
-import {
-  Menu,
-  MenuButton,
-  MenuItems,
-  MenuItem,
-  Transition,
-} from '@headlessui/react'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 
 // FPCC
 import ImmersionToggle from 'components/ImmersionToggle'
@@ -19,125 +13,71 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
       ? site?.checkForEnabledFeature(IMMERSION)
       : false
 
-  const menuItemActiveClass =
-    'bg-charcoal-100 text-charcoal-900 rounded-sm ring-black'
-  const menuItemInactiveClass = 'text-charcoal-900'
-  const menuItemBaseClass =
-    'px-2 py-1 w-full text-lg whitespace-nowrap font-medium'
+  const menuItemStyling =
+    'w-full flex hover:bg-charcoal-100 text-charcoal-900 rounded-sm ring-black p-2 w-full text-lg text-left whitespace-nowrap font-medium'
 
   return (
     <div id="NavUser" className="relative inline-flex">
-      <Menu as="div" className="relative inline-block text-left">
-        <div>
-          <MenuButton className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center">
-            {currentUser?.isAnonymous ? (
-              <span className="text-xs">GUEST</span>
-            ) : (
-              currentUser?.userInitials
-            )}
-          </MenuButton>
-        </div>
-        <Transition
-          as={Fragment}
-          enter="transition ease-out duration-100"
-          enterFrom="transform opacity-0 scale-95"
-          enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-300"
-          leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-95"
+      <Popover as="div" className="relative inline-block text-left">
+        <PopoverButton className="flex max-w-xs p-3 bg-scarlet-800 hover:bg-scarlet-900 text-white text-xl rounded-full h-12 w-12 items-center justify-center">
+          {currentUser?.isAnonymous ? (
+            <span className="text-xs">GUEST</span>
+          ) : (
+            currentUser?.userInitials
+          )}
+        </PopoverButton>
+
+        <PopoverPanel
+          transition
+          className="absolute top-14 right-0 w-72 p-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-charcoal-200"
         >
-          <MenuItems className="absolute top-14 right-0 w-72 p-2 space-y-2 transform lg:-translate-x-0 bg-white rounded-lg shadow-lg ring-1 ring-black/25 focus:outline-hidden">
-            <MenuItem className="text-charcoal-900 px-2 py-1 w-full text-lg whitespace-nowrap font-medium border-b-2 border-charcoal-100">
-              <div>
-                Welcome
-                {currentUser?.displayName && !currentUser?.isAnonymous
-                  ? `, ${currentUser?.displayName}!`
-                  : '!'}
-              </div>
-            </MenuItem>
+          <div className="w-full flex text-charcoal-900 p-2 text-lg text-left whitespace-nowrap font-medium">
+            Welcome
+            {currentUser?.displayName && !currentUser?.isAnonymous
+              ? `, ${currentUser?.displayName}!`
+              : '!'}
+          </div>
+          <div className="py-1 border-y-2 border-charcoal-100">
             {currentUser?.isTeam && (
-              <MenuItem className="w-full flex">
-                {({ focus }) => (
-                  <Link to={currentUser?.dashboardLink}>
-                    <div
-                      className={`${
-                        focus ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass}`}
-                    >
-                      Dashboard
-                    </div>
-                  </Link>
-                )}
-              </MenuItem>
+              <Link to={currentUser?.dashboardLink} className={menuItemStyling}>
+                Dashboard
+              </Link>
             )}
             {hasImmersion && (
-              <MenuItem className="w-full flex">
-                {({ focus }) => (
-                  <div
-                    className={`${
-                      focus ? menuItemActiveClass : menuItemInactiveClass
-                    } ${menuItemBaseClass} flex`}
-                  >
-                    <ImmersionToggle site={site} />
-                  </div>
-                )}
-              </MenuItem>
+              <div className={menuItemStyling}>
+                <ImmersionToggle site={site} />
+              </div>
             )}
-            <MenuItem className="w-full flex">
-              {({ focus }) => (
-                <Link to="/support">
-                  <div
-                    className={`${
-                      focus ? menuItemActiveClass : menuItemInactiveClass
-                    } ${menuItemBaseClass}`}
-                  >
-                    Support
-                  </div>
-                </Link>
-              )}
-            </MenuItem>
+
+            <Link to="/support" className={menuItemStyling}>
+              Support
+            </Link>
+          </div>
+          <div className="mt-1">
             {currentUser?.isAnonymous ? (
-              <MenuItem className="w-full flex border-t-2 border-charcoal-100">
-                {({ focus }) => (
-                  <button
-                    data-testid="login-btn"
-                    type="button"
-                    onClick={login}
-                    onKeyDown={login}
-                  >
-                    <div
-                      className={`${
-                        focus ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass} flex justify-start`}
-                    >
-                      Sign In / Register
-                    </div>
-                  </button>
-                )}
-              </MenuItem>
+              <button
+                data-testid="login-btn"
+                type="button"
+                onClick={login}
+                onKeyDown={login}
+                className={menuItemStyling}
+              >
+                Sign In / Register
+              </button>
             ) : (
-              <MenuItem className="w-full flex border-t-2 border-charcoal-100">
-                {({ focus }) => (
-                  <button
-                    data-testid="logout-btn"
-                    type="button"
-                    onClick={logout}
-                    onKeyDown={logout}
-                  >
-                    <div
-                      className={`${
-                        focus ? menuItemActiveClass : menuItemInactiveClass
-                      } ${menuItemBaseClass} flex justify-start`}
-                    >
-                      Sign out
-                    </div>
-                  </button>
-                )}
-              </MenuItem>
+              <button
+                data-testid="logout-btn"
+                type="button"
+                onClick={logout}
+                onKeyDown={logout}
+                className={menuItemStyling}
+              >
+                Sign out
+              </button>
             )}
-          </MenuItems>
-        </Transition>
-      </Menu>
+          </div>
+        </PopoverPanel>
+      </Popover>
     </div>
   )
 }
