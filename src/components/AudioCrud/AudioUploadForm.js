@@ -64,7 +64,7 @@ function AudioUploadForm({ setSelectedAudio }) {
       })
       setIsUploading(false)
       setFileUploaded(true)
-      setSelectedAudio((oldArray) => [...oldArray, response?.id])
+      setSelectedAudio(response)
     },
     onError: (error) => {
       setIsUploading(false)
