@@ -8,10 +8,7 @@ import { isUUID } from 'common/utils/stringHelpers'
 function useEditForm({ defaultValues, validator, dataToEdit }) {
   const isEditMode = isUUID(dataToEdit?.id)
 
-  const data = useMemo(
-    () => (dataToEdit?.id ? dataToEdit : null),
-    [dataToEdit?.id],
-  )
+  const data = useMemo(() => (dataToEdit?.id ? dataToEdit : null), [dataToEdit])
 
   const {
     control,
