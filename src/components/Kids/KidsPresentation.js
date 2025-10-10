@@ -26,7 +26,7 @@ function KidsPresentation({ links, sitename, site }) {
                       >
                         <Link
                           to={`/${sitename}/kids/${link.path}`}
-                          style={{ 'background-color': link.color }}
+                          style={{ backgroundColor: link.color }}
                           className="group w-full py-2 md:py-4 flex flex-col items-center font-medium group-hover:opacity-75"
                         >
                           {getIcon(
