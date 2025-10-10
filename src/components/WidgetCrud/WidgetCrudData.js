@@ -22,7 +22,7 @@ function WidgetCrudData() {
   const backHandler = () => navigate(-1)
 
   const _widgetId = searchParams.get('id') || null
-  const { data } = useWidget({ id: _widgetId })
+  const queryResponse = useWidget({ id: _widgetId })
 
   const { onSubmit: createWidget } = useWidgetsCreate()
   const { onSubmit: updateWidget } = useWidgetsUpdate()
@@ -30,7 +30,7 @@ function WidgetCrudData() {
 
   const submitHandler = (formData) => {
     const formattedFormData = widgetFormDataAdaptor({ formData })
-    if (_widgetId && data) {
+    if (_widgetId && queryResponse?.data) {
       updateWidget(formattedFormData)
     } else {
       createWidget(formattedFormData)
@@ -41,9 +41,8 @@ function WidgetCrudData() {
     submitHandler,
     widgetTypes,
     backHandler,
-    dataToEdit: data,
-    deleteHandler: () => deleteWidget(data?.id),
-    isLoading: !(!_widgetId || data),
+    queryResponse,
+    deleteHandler: () => deleteWidget(queryResponse?.data?.id),
   }
 }
 
