@@ -54,7 +54,7 @@ function DashboardCreateContainer() {
           path="phrase"
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DictionaryCrud.Container type={TYPE_PHRASE} isCreate />
+              <DictionaryCrud.Container type={TYPE_PHRASE} />
             </RequireAuth>
           }
         />
@@ -94,7 +94,7 @@ function DashboardCreateContainer() {
           path="word"
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
-              <DictionaryCrud.Container type={TYPE_WORD} isCreate />
+              <DictionaryCrud.Container type={TYPE_WORD} />
             </RequireAuth>
           }
         />
