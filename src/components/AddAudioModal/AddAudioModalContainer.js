@@ -55,7 +55,7 @@ function AddAudioModalContainer({
     >
       <>
         {currentTab.id === 'upload-tab' && (
-          <AudioUploadForm setSelectedAudio={setSelectedItems} />
+          <AudioUploadForm setSelectedAudio={handleSelectAdditionalItem} />
         )}
         {currentTab.id === 'search-tab' && (
           <SelectorAudio.Container
