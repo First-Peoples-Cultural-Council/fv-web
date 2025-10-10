@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router'
 
 // FPCC
 import DictionaryCrudPresentation from 'components/DictionaryCrud/DictionaryCrudPresentation'
@@ -8,7 +9,7 @@ import Loading from 'components/Loading'
 import SiteDocHead from 'components/SiteDocHead'
 import { getFriendlyType } from 'common/utils/stringHelpers'
 
-function DictionaryCrudContainer({ type, isCreate }) {
+function DictionaryCrudContainer({ type }) {
   const {
     backHandler,
     dataToEdit,
@@ -16,19 +17,19 @@ function DictionaryCrudContainer({ type, isCreate }) {
     partsOfSpeech,
     submitHandler,
     deleteHandler,
-  } = DictionaryCrudData({ type, isCreate })
+  } = DictionaryCrudData({ type })
+
+  const { pathname } = useLocation()
+  const isCreate = pathname?.includes('/create/')
+
+  const friendlyType = getFriendlyType({ type, titleCase: true })
+  const titleArray = isCreate
+    ? [`Create ${friendlyType}`]
+    : [`Edit ${friendlyType}`, dataToEdit?.title || null]
 
   return (
     <Loading.Container isLoading={isLoading}>
-      <SiteDocHead
-        titleArray={[
-          `${isCreate ? 'Create' : 'Edit'} ${getFriendlyType({
-            type,
-            titleCase: true,
-          })}`,
-          dataToEdit?.title,
-        ].filter(Boolean)}
-      />
+      <SiteDocHead titleArray={titleArray} />
       <DictionaryCrudPresentation
         backHandler={backHandler}
         dataToEdit={dataToEdit}
@@ -43,10 +44,9 @@ function DictionaryCrudContainer({ type, isCreate }) {
 }
 
 // PROPTYPES
-const { bool, string } = PropTypes
+const { string } = PropTypes
 DictionaryCrudContainer.propTypes = {
   type: string,
-  isCreate: bool,
 }
 
 export default DictionaryCrudContainer
