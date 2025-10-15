@@ -28,7 +28,7 @@ export default defineConfig([
       pluginCypress.configs.recommended,
       pluginImport.flatConfigs.recommended,
       pluginJsxA11y.flatConfigs.recommended,
-      pluginReactHooks.configs['recommended-latest'],
+      pluginReactHooks.configs.flat.recommended,
       pluginQuery.configs['flat/recommended'],
       pluginReact.configs.flat.recommended,
       pluginPrettierRecommended,
