@@ -46,6 +46,7 @@ import ImagesNone from 'common/icons/ImagesNone'
 import InfoCircleSolid from 'common/icons/InfoCircleSolid'
 import Instagram from 'common/icons/Instagram'
 import Kids from 'common/icons/Kids'
+import KidsExclude from 'common/icons/KidsExclude'
 import Learn from 'common/icons/Learn'
 import Lessons from 'common/icons/Lessons'
 import Link from 'common/icons/Link'
@@ -181,6 +182,7 @@ function getIcon(iconName, iconStyling, title) {
     Instagram,
     Jigsaw,
     Kids,
+    KidsExclude,
     Learn,
     Lessons,
     Link,
