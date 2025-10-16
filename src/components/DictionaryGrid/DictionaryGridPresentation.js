@@ -13,6 +13,7 @@ function DictionaryGridPresentation({
   hasSideNav,
   kids = null,
   noResultsMessage = 'Sorry, no results were found for this search.',
+  wholeDomain = false,
 }) {
   const [loadAll, setLoadAll] = useState(false)
 
@@ -48,7 +49,11 @@ function DictionaryGridPresentation({
               >
                 {page.results.map((result) => (
                   <LazyLoader key={result.id} forceLoad={loadAll}>
-                    <DictionaryGridTile.Container kids={kids} entry={result} />
+                    <DictionaryGridTile.Container
+                      kids={kids}
+                      entry={result}
+                      wholeDomain={wholeDomain}
+                    />
                   </LazyLoader>
                 ))}
               </div>
@@ -72,6 +77,7 @@ DictionaryGridPresentation.propTypes = {
   infiniteQueryResponse: object,
   kids: bool,
   noResultsMessage: node,
+  wholeDomain: bool,
 }
 
 export default DictionaryGridPresentation
