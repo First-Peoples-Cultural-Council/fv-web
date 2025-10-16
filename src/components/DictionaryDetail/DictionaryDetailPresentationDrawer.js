@@ -16,6 +16,8 @@ import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
+import Tooltip from 'components/Tooltip'
+import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
 function DictionaryDetailPresentationDrawer({ entry, sitename, isDashboard }) {
   const labelStyling =
@@ -29,7 +31,7 @@ function DictionaryDetailPresentationDrawer({ entry, sitename, isDashboard }) {
   const shortTitle = entry?.title.length < 16
   return (
     <div data-testid="DictionaryDetailPresentationDrawer">
-      <div id="WordDetails" className="px-6">
+      <div className="px-6">
         <section>
           <div className="py-3 flex items-center">
             <div
@@ -44,12 +46,16 @@ function DictionaryDetailPresentationDrawer({ entry, sitename, isDashboard }) {
                 withLabels
               />
             </div>
-            {entry?.visibility === PUBLIC || !entry?.visibility
-              ? ''
-              : getIcon(
+            {entry?.visibility && entry?.visibility !== PUBLIC && (
+              <Tooltip
+                message={`${capitalizeFirstLetter(entry?.visibility)} only`}
+              >
+                {getIcon(
                   entry?.visibility,
-                  'fill-current text-scarlet-900 h-6 w-6 ml-3 mb-1',
+                  'fill-current text-scarlet-900 h-6 w-6 ml-3',
                 )}
+              </Tooltip>
+            )}
           </div>
 
           {/* Translations/Definitions */}
