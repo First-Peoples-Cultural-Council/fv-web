@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router'
 import LoadOrError from 'components/LoadOrError'
 import EntryDetail from 'components/EntryDetail'
 import getIcon from 'common/utils/getIcon'
-import Drawer from 'components/Drawer'
+import DashboardDrawer from 'components/DashboardDrawer'
 import { makePlural } from 'common/utils/urlHelpers'
 import SortByHeader from 'components/DashboardEntries/SortByHeader'
 import useAuthCheck from 'common/hooks/useAuthCheck'
@@ -221,7 +221,7 @@ function DashboardEntriesPresentationList({
         )}
       </section>
 
-      <Drawer.Presentation
+      <DashboardDrawer.Presentation
         isOpen={drawerOpen}
         closeHandler={() => setDrawerOpen(false)}
       >
@@ -268,7 +268,7 @@ function DashboardEntriesPresentationList({
             />
           </>
         )}
-      </Drawer.Presentation>
+      </DashboardDrawer.Presentation>
     </LoadOrError>
   )
 }
