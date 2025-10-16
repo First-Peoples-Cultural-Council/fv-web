@@ -34,10 +34,13 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
-      cy.contains('Explore Languages').click()
     })
 
     it('Create/Edit/Delete Category', () => {
+      cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
+
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Create').click()

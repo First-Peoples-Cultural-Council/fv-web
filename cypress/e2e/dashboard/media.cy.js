@@ -122,9 +122,11 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
       cy.get('[data-testid="EntryDrawerEdit"]').click()
 
-      cy.get('#XButton > [data-testid="Remove-btn"]').each((_el) => {
-        cy.wrap(_el).click()
-      })
+      cy.get('[data-testid="AudioArrayField"]')
+        .find('[data-testid="Remove-btn"]')
+        .each((_el) => {
+          cy.wrap(_el).click()
+        })
 
       cy.contains('Save changes').click()
     })
@@ -150,6 +152,20 @@ describe(
       cy.contains('Complete').should('exist')
       cy.get('[data-testid="upload-tab-btn"]').click()
       cy.contains('Save changes').click()
+
+      cy.go('back')
+
+      cy.get('[data-testid="EntryRow"] td button').eq(0).click()
+      cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
+      cy.get('[data-testid="EntryDrawerEdit"]').click()
+
+      cy.get('[data-testid="ImageArrayField"]')
+        .find('[data-testid="Remove-btn"]')
+        .each((_el) => {
+          cy.wrap(_el).click()
+        })
+
+      cy.contains('Save changes').click()
     })
 
     it('upload video', () => {
@@ -172,6 +188,20 @@ describe(
       cy.contains('Upload 1 file').click({ timeout: 120000 })
       cy.contains('Complete').should('exist')
       cy.get('[data-testid="upload-tab-btn"]').click()
+      cy.contains('Save changes').click()
+
+      cy.go('back')
+
+      cy.get('[data-testid="EntryRow"] td button').eq(0).click()
+      cy.get('[data-testid="EntryDrawerEdit"]').invoke('removeAttr', 'target')
+      cy.get('[data-testid="EntryDrawerEdit"]').click()
+
+      cy.get('[data-testid="VideoArrayField"]')
+        .find('[data-testid="Remove-btn"]')
+        .each((_el) => {
+          cy.wrap(_el).click()
+        })
+
       cy.contains('Save changes').click()
     })
   },
