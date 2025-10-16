@@ -17,13 +17,7 @@ import ImageWithLightbox from 'components/ImageWithLightbox'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
 
-function DictionaryDetailPresentationDrawer({
-  actions,
-  moreActions,
-  entry,
-  sitename,
-  isDashboard,
-}) {
+function DictionaryDetailPresentationDrawer({ entry, sitename, isDashboard }) {
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
   const contentStyling = 'text-sm text-charcoal-900 sm:mt-0 sm:ml-6'
@@ -47,8 +41,6 @@ function DictionaryDetailPresentationDrawer({
               <ActionsMenu.Presentation
                 entry={entry}
                 sitename={sitename}
-                actions={actions}
-                moreActions={moreActions}
                 withLabels
               />
             </div>
@@ -317,11 +309,9 @@ function DictionaryDetailPresentationDrawer({
   )
 }
 // PROPTYPES
-const { array, object, string, bool } = PropTypes
+const { object, string, bool } = PropTypes
 DictionaryDetailPresentationDrawer.propTypes = {
-  actions: array,
   entry: object,
-  moreActions: array,
   sitename: string,
   isDashboard: bool,
 }

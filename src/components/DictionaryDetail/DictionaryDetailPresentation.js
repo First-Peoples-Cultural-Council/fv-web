@@ -18,12 +18,7 @@ import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import SiteDocHead from 'components/SiteDocHead'
 
-function DictionaryDetailPresentation({
-  actions,
-  moreActions,
-  entry,
-  sitename,
-}) {
+function DictionaryDetailPresentation({ entry, sitename }) {
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
   const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6 sm:col-span-2'
@@ -62,8 +57,6 @@ function DictionaryDetailPresentation({
                 <ActionsMenu.Presentation
                   entry={entry}
                   sitename={sitename}
-                  actions={actions}
-                  moreActions={moreActions}
                   withLabels
                 />
               </div>
@@ -324,11 +317,9 @@ function DictionaryDetailPresentation({
   )
 }
 // PROPTYPES
-const { array, object, string } = PropTypes
+const { object, string } = PropTypes
 DictionaryDetailPresentation.propTypes = {
-  actions: array,
   entry: object,
-  moreActions: array,
   sitename: string,
 }
 

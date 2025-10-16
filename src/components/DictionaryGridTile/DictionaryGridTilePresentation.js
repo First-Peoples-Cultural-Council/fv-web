@@ -7,7 +7,7 @@ import { makePlural } from 'common/utils/urlHelpers'
 import ActionsMenu from 'components/ActionsMenu'
 import AudioButton from 'components/AudioButton'
 
-function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
+function DictionaryGridTilePresentation({ entry }) {
   const title = entry?.title || ''
   // The string iterator that is used here iterates over characters,
   // not mere code units
@@ -32,8 +32,6 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
             <ActionsMenu.Presentation
               entry={entry}
               sitename={entry?.sitename}
-              actions={actions}
-              moreActions={moreActions}
             />
           </div>
           {/* Translations/Definitions */}
@@ -60,11 +58,9 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
   )
 }
 // PROPTYPES
-const { array, object } = PropTypes
+const { object } = PropTypes
 DictionaryGridTilePresentation.propTypes = {
   entry: object,
-  actions: array,
-  moreActions: array,
 }
 
 export default DictionaryGridTilePresentation

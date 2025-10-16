@@ -10,8 +10,6 @@ import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DictionaryGridPresentation({
   infiniteQueryResponse,
-  actions = ['copy'],
-  moreActions = ['share', 'qrcode'],
   hasSideNav,
   kids = null,
   noResultsMessage = 'Sorry, no results were found for this search.',
@@ -50,12 +48,7 @@ function DictionaryGridPresentation({
               >
                 {page.results.map((result) => (
                   <LazyLoader key={result.id} forceLoad={loadAll}>
-                    <DictionaryGridTile.Container
-                      kids={kids}
-                      entry={result}
-                      actions={actions}
-                      moreActions={moreActions}
-                    />
+                    <DictionaryGridTile.Container kids={kids} entry={result} />
                   </LazyLoader>
                 ))}
               </div>
@@ -73,14 +66,12 @@ function DictionaryGridPresentation({
 }
 
 // PROPTYPES
-const { array, bool, node, object } = PropTypes
+const { bool, node, object } = PropTypes
 DictionaryGridPresentation.propTypes = {
   hasSideNav: bool,
   infiniteQueryResponse: object,
   kids: bool,
   noResultsMessage: node,
-  actions: array,
-  moreActions: array,
 }
 
 export default DictionaryGridPresentation
