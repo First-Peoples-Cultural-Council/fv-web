@@ -6,6 +6,7 @@ import {
   HAS_AUDIO,
   HAS_IMAGE,
   HAS_CATEGORIES,
+  KIDS,
   SORT,
   SORT_CREATED_DESC,
   SORT_MODIFIED_DESC,
@@ -37,7 +38,7 @@ function DashboardReportsData() {
       name: 'Recently created',
       description: 'New words and phrases at the top',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_CREATED_DESC}`,
-      iconColor: 'ochre-500',
+      iconColor: 'scarlet-800',
       auth: ASSISTANT,
     },
     {
@@ -45,7 +46,7 @@ function DashboardReportsData() {
       name: 'Recently modified',
       description: 'Recently edited words and phrases at the top',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${SORT}=${SORT_MODIFIED_DESC}`,
-      iconColor: 'jade-500',
+      iconColor: 'blumine-800',
       auth: ASSISTANT,
     },
     {
@@ -77,7 +78,7 @@ function DashboardReportsData() {
       name: 'Team content',
       description: 'Content only available to the language team',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_TEAM}`,
-      iconColor: 'blumine-700',
+      iconColor: 'scarlet-800',
       auth: ASSISTANT,
     },
     {
@@ -93,7 +94,15 @@ function DashboardReportsData() {
       name: 'Public content',
       description: 'Content available to the general public',
       href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${VISIBILITY}=${VISIBILITY_PUBLIC}`,
-      iconColor: 'blumine-500',
+      iconColor: 'blumine-800',
+      auth: ASSISTANT,
+    },
+    {
+      icon: 'KidsExclude',
+      name: 'Not on Kids site',
+      description: 'Words and phrases that are excluded from the Kids site',
+      href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}&${KIDS}=${FALSE}`,
+      iconColor: 'blumine-800',
       auth: ASSISTANT,
     },
   ]

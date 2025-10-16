@@ -10,6 +10,7 @@ import {
   HAS_TRANSLATION,
   HAS_CATEGORIES,
   HAS_RELATED_ENTRIES,
+  KIDS,
   TRUE,
   FALSE,
   VISIBILITY,
@@ -42,6 +43,14 @@ function AdvancedSearchOptionsPresentation({ items }) {
             </div>
 
             <div className="flex items-baseline space-x-8">
+              <SingleSelect
+                id={KIDS}
+                options={[
+                  { value: null, label: 'Kids' },
+                  { value: TRUE, label: 'On Kids site' },
+                  { value: FALSE, label: 'Not on Kids site' },
+                ]}
+              />
               <SingleSelect
                 id={HAS_AUDIO}
                 options={[
