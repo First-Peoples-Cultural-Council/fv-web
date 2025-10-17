@@ -7,16 +7,14 @@ import { usePage, usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
 import { useWidgets } from 'common/dataHooks/useWidgets'
 
-function WidgetAreaEditData({ pageSlug, isHomepage }) {
+function WidgetAreaEditData({ pageSlug }) {
   const [widgetIds, setWidgetIds] = useState()
   const [widgetValues, setWidgetValues] = useState()
   const { site } = useSiteStore()
   const [currentWidget, setCurrentWidget] = useState()
   const [addModalOpen, setAddModalOpen] = useState(false)
 
-  const pageQueryResponse = usePage({
-    pageSlug,
-  })
+  const pageQueryResponse = usePage({ pageSlug })
 
   // Fetch all widgets for this site
   const widgetsQueryResponse = useWidgets()
@@ -46,6 +44,7 @@ function WidgetAreaEditData({ pageSlug, isHomepage }) {
     }
   }, [widgetsQueryResponse, widgetValues])
 
+  const isHomepage = !pageSlug
   // If homepage set list of widget IDs in state
   useEffect(() => {
     if (isHomepage) {

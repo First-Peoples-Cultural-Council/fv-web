@@ -7,15 +7,20 @@ import getIcon from 'common/utils/getIcon'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 
-function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
+function WidgetBrowserPresentation({
+  chooseWidgetHandler,
+  pageSlug,
+  site,
+  widgets,
+}) {
   const [selectedWidget, setSelectedWidget] = useState()
   return (
     <div
       id="WidgetBrowserPresentation"
-      className="inline-block align-bottom space-y-5 bg-charcoal-50 border-charcoal-100 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
+      className="inline-block align-bottom bg-charcoal-50 border-charcoal-100 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
     >
       {widgets?.length > 0 ? (
-        <>
+        <div className="space-y-5">
           <div className="text-center font-medium">
             <h2 className="text-2xl text-charcoal-900">Available Widgets</h2>
             <p className="text-xl text-charcoal-900">
@@ -23,7 +28,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
             </p>
           </div>
 
-          <div className="max-w-7xl grid gap-5 grid-cols-4">
+          <div className="max-w-4xl grid gap-3 grid-cols-4">
             {widgets?.map((widget) => (
               <button
                 data-testid="selectWidgetBtn"
@@ -34,17 +39,19 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
                   selectedWidget === widget?.id
                     ? 'btn-primary'
                     : 'btn-secondary'
-                } col-span-1 w-full p-6 flex items-center align-center justify-center shadow`}
+                } col-span-1 w-full h-24 p-3 flex items-center align-center justify-center shadow`}
               >
-                <div className="space-y-1 truncate">
-                  {getWidgetIcon(
-                    widget?.type,
-                    'w-10 h-10 fill-current inline-flex mx-2',
-                  )}
-                  <p className="text-lg font-bold">
-                    {getWidgetTypeLabel(widget?.type)}
-                  </p>
-                  <p>Name: {widget?.nickname}</p>
+                <div className="space-y-1">
+                  <div className="inline-flex items-center justify-center space-x-2">
+                    {getWidgetIcon(
+                      widget?.type,
+                      'w-6 h-6 fill-current inline-flex',
+                    )}
+                    <span className="text-lg font-bold">
+                      {getWidgetTypeLabel(widget?.type)}
+                    </span>
+                  </div>
+                  <p className="text-wrap">{widget?.nickname}</p>
                 </div>
               </button>
             ))}
@@ -61,7 +68,7 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
             </button>
             <div className="justify-center text-xl">OR</div>
           </div>
-        </>
+        </div>
       ) : (
         <div className="text-center font-medium">
           <p className="text-xl text-charcoal-900">
@@ -73,8 +80,8 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
         </div>
       )}
       <Link
-        to={`/${site?.sitename}/dashboard/create/widget`}
-        className="btn-primary btn-md"
+        to={`/${site?.sitename}/dashboard/create/widget?destination=${pageSlug || 'isHomePage'}`}
+        className="btn-primary btn-md mt-3"
       >
         {getIcon('Add')}
         <span>Create a New Widget</span>
@@ -84,10 +91,11 @@ function WidgetBrowserPresentation({ site, chooseWidgetHandler, widgets }) {
 }
 
 // PROPTYPES
-const { array, func, object } = PropTypes
+const { array, func, object, string } = PropTypes
 
 WidgetBrowserPresentation.propTypes = {
   chooseWidgetHandler: func,
+  pageSlug: string,
   widgets: array,
   site: object,
 }

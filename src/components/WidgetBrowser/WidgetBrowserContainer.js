@@ -9,28 +9,26 @@ import LoadOrError from 'components/LoadOrError'
 function WidgetBrowserContainer({
   chooseWidgetHandler,
   currentWidgets,
-  isHomepage,
+  pageSlug,
 }) {
-  const { queryResponse, site, widgets } = WidgetBrowserData({
-    isHomepage,
-    currentWidgets,
-  })
+  const { queryResponse, site, widgets } = WidgetBrowserData({ currentWidgets })
   return (
     <LoadOrError queryResponse={queryResponse}>
       <WidgetBrowserPresentation
         chooseWidgetHandler={chooseWidgetHandler}
         widgets={widgets}
         site={site}
+        pageSlug={pageSlug}
       />
     </LoadOrError>
   )
 }
 // PROPTYPES
-const { array, func, bool } = PropTypes
+const { array, func, string } = PropTypes
 WidgetBrowserContainer.propTypes = {
   chooseWidgetHandler: func,
-  isHomepage: bool,
   currentWidgets: array,
+  pageSlug: string,
 }
 
 export default WidgetBrowserContainer

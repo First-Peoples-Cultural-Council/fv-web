@@ -7,7 +7,7 @@ import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/Wi
 import WidgetAreaEditData from 'components/WidgetAreaEdit/WidgetAreaEditData'
 import Loading from 'components/Loading'
 
-function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
+function WidgetAreaEditContainer({ pageSlug }) {
   const {
     addModalOpen,
     setAddModalOpen,
@@ -21,10 +21,7 @@ function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
     setWidgetIds,
     site,
     isLoading,
-  } = WidgetAreaEditData({
-    pageSlug,
-    isHomepage,
-  })
+  } = WidgetAreaEditData({ pageSlug })
 
   return (
     <Loading.Container isLoading={isLoading}>
@@ -36,7 +33,7 @@ function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
         currentWidget={currentWidget}
         setCurrentWidget={setCurrentWidget}
         handleAddWidget={handleAddWidget}
-        isHomepage={isHomepage}
+        pageSlug={pageSlug}
         addModalOpen={addModalOpen}
         setAddModalOpen={setAddModalOpen}
       >

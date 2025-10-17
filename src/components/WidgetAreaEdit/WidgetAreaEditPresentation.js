@@ -20,8 +20,8 @@ function WidgetAreaEditPresentation({
   widgetIds,
   setWidgetIds,
   destinationTitle,
+  pageSlug,
   handleAddWidget,
-  isHomepage,
 }) {
   return (
     <div data-testid="WidgetAreaEdit">
@@ -43,7 +43,7 @@ function WidgetAreaEditPresentation({
                 className="btn-primary btn-md"
               >
                 {getIcon('Add')}
-                <span className="truncate">Widget</span>
+                <span>Widget</span>
               </button>
             </div>
           </div>
@@ -154,7 +154,7 @@ function WidgetAreaEditPresentation({
         <WidgetBrowser.Container
           chooseWidgetHandler={handleAddWidget}
           currentWidgets={widgetIds}
-          isHomepage={isHomepage}
+          pageSlug={pageSlug}
         />
       </Modal.Presentation>
     </div>
@@ -173,7 +173,7 @@ WidgetAreaEditPresentation.propTypes = {
   currentWidget: object,
   setCurrentWidget: func,
   handleAddWidget: func,
-  isHomepage: bool,
+  pageSlug: string,
 }
 
 export default WidgetAreaEditPresentation
