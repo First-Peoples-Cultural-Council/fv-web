@@ -33,26 +33,25 @@ function DictionaryDetailPresentationDrawer({ entry, sitename, isDashboard }) {
     <div data-testid="DictionaryDetailPresentationDrawer">
       <div className="px-6">
         <section>
-          <div className="py-3 flex items-center">
+          <div className="py-3 flex items-center space-x-3">
             <div
               className={`font-bold ${shortTitle ? 'text-4xl' : 'text-2xl'}`}
             >
-              <span>{entry?.title}</span>
+              {entry?.title}
             </div>
-            <div className="ml-5">
-              <ActionsMenu.Presentation
-                entry={entry}
-                sitename={sitename}
-                withLabels
-              />
-            </div>
+            <ActionsMenu.Presentation
+              entry={entry}
+              sitename={sitename}
+              withLabels
+            />
             {entry?.visibility && entry?.visibility !== PUBLIC && (
               <Tooltip
+                position="left-1/2 bottom-5"
                 message={`${capitalizeFirstLetter(entry?.visibility)} only`}
               >
                 {getIcon(
                   entry?.visibility,
-                  'fill-current text-scarlet-900 h-6 w-6 ml-3',
+                  'fill-current text-scarlet-900 h-6 w-6',
                 )}
               </Tooltip>
             )}

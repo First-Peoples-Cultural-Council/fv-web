@@ -58,6 +58,7 @@ function DictionaryDetailPresentation({ entry, sitename }) {
               />
               {entry?.visibility && entry?.visibility !== PUBLIC && (
                 <Tooltip
+                  position="left-1/2 bottom-5"
                   message={`${capitalizeFirstLetter(entry?.visibility)} only`}
                 >
                   {getIcon(
