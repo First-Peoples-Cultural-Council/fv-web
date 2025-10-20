@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -12,17 +12,17 @@ import SortableItem from 'components/SortableItem'
 
 function WidgetAreaEditPresentation({
   children,
-  addModalOpen,
-  setAddModalOpen,
   currentWidget,
   setCurrentWidget,
-  widgetData,
+  mappedWidgets,
   widgetIds,
-  setWidgetIds,
+  handleSetWidgetOrder,
   destinationTitle,
   pageSlug,
   handleAddWidget,
 }) {
+  const [addModalOpen, setAddModalOpen] = useState(false)
+
   return (
     <div data-testid="WidgetAreaEdit">
       {widgetIds?.length > 0 ? (
@@ -50,12 +50,12 @@ function WidgetAreaEditPresentation({
 
           <div className="grid grid-cols-8">
             <section
-              className="col-span-4 xl:col-span-3 space-y-3 px-3  pb-2"
+              className="col-span-4 xl:col-span-3 space-y-3 px-3 pb-2 text-blumine-800"
               aria-label="Widget List"
             >
               <SortableContainer.Presentation
                 items={widgetIds}
-                setItems={setWidgetIds}
+                setItems={handleSetWidgetOrder}
               >
                 {widgetIds?.map((id) => (
                   <SortableItem.Presentation
@@ -67,49 +67,43 @@ function WidgetAreaEditPresentation({
                       <button
                         data-testid={`widget-${currentWidget?.id}`}
                         type="button"
-                        onClick={() => setCurrentWidget(widgetData?.[id])}
+                        onClick={() => setCurrentWidget(mappedWidgets?.[id])}
                         className={`${
-                          currentWidget?.id === widgetData?.[id]?.id
-                            ? 'border-4 border-blumine-800'
-                            : 'hover:bg-charcoal-50'
-                        } bg-white flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
+                          currentWidget?.id === mappedWidgets?.[id]?.id &&
+                          'border-4'
+                        } btn-secondary flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
                       >
                         <div className="grid grid-cols-6 gap-6 text-left">
                           <div className="flex items-center text-left col-span-1">
                             {getWidgetIcon(
-                              widgetData?.[id]?.type,
-                              'w-12 h-12 fill-current text-blumine-800',
+                              mappedWidgets?.[id]?.type,
+                              'w-12 h-12 fill-current',
                             )}
                           </div>
                           <div className="flex items-center text-left col-span-5">
                             <div className="truncate">
-                              <p className="text-lg font-bold text-blumine-800">
-                                {getWidgetTypeLabel(widgetData?.[id]?.type)}
+                              <p className="text-lg font-bold">
+                                {getWidgetTypeLabel(mappedWidgets?.[id]?.type)}
                               </p>
-                              <p className="text-charcoal-500">
-                                {widgetData?.[id]?.nickname}
-                              </p>
+                              <p>{mappedWidgets?.[id]?.nickname}</p>
                             </div>
                           </div>
                         </div>
                         <div className="flex items-center text-left">
                           {getIcon(
-                            widgetData?.[id]?.visibility,
-                            'w-5 h-5 fill-current text-blumine-800',
+                            mappedWidgets?.[id]?.visibility,
+                            'w-5 h-5 fill-current',
                           )}
                         </div>
                       </button>
                       <div
                         className={`inline-flex ${
-                          currentWidget?.id === widgetData?.[id]?.id
-                            ? 'opacity-100'
-                            : 'opacity-0'
+                          currentWidget?.id === mappedWidgets?.[id]?.id
+                            ? 'visible'
+                            : 'invisible'
                         }`}
                       >
-                        {getIcon(
-                          'ChevronRight',
-                          'fill-current h-10 w-10 text-blumine-800',
-                        )}
+                        {getIcon('ChevronRight', 'fill-current h-10 w-10')}
                       </div>
                     </div>
                   </SortableItem.Presentation>
@@ -152,7 +146,10 @@ function WidgetAreaEditPresentation({
         closeHandler={() => setAddModalOpen(false)}
       >
         <WidgetBrowser.Container
-          chooseWidgetHandler={handleAddWidget}
+          chooseWidgetHandler={(id) => {
+            handleAddWidget(id)
+            setAddModalOpen(false)
+          }}
           currentWidgets={widgetIds}
           pageSlug={pageSlug}
         />
@@ -166,10 +163,10 @@ WidgetAreaEditPresentation.propTypes = {
   children: node,
   addModalOpen: bool,
   setAddModalOpen: func,
-  widgetData: object,
+  mappedWidgets: object,
   widgetIds: array,
   destinationTitle: string,
-  setWidgetIds: func,
+  handleSetWidgetOrder: func,
   currentWidget: object,
   setCurrentWidget: func,
   handleAddWidget: func,

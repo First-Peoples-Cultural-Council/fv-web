@@ -43,7 +43,10 @@ function PageCrudPresentation({ dataToEdit, site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container pageSlug={dataToEdit?.slug} />
+      <WidgetAreaEdit.Container
+        pageSlug={dataToEdit?.slug}
+        destinationTitle={dataToEdit?.title}
+      />
     </div>
   )
 }

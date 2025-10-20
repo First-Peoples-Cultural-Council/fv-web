@@ -1,56 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import WidgetAreaEditPresentation from 'components/WidgetAreaEdit/WidgetAreaEditPresentation'
 import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/WidgetAreaEditPresentationSettingsPane'
-import WidgetAreaEditData from 'components/WidgetAreaEdit/WidgetAreaEditData'
-import Loading from 'components/Loading'
+import { useWidgetAreaEdit } from 'common/dataHooks//useWidgetAreaEdit'
+import LoadOrError from 'components/LoadOrError'
 
-function WidgetAreaEditContainer({ pageSlug }) {
+function WidgetAreaEditContainer({ pageSlug, destinationTitle }) {
   const {
-    addModalOpen,
-    setAddModalOpen,
-    currentWidget,
-    setCurrentWidget,
-    destinationTitle,
     handleAddWidget,
     handleRemoveWidget,
-    widgetData,
-    widgetIds,
-    setWidgetIds,
+    handleSetWidgetOrder,
     site,
-    isLoading,
-  } = WidgetAreaEditData({ pageSlug })
+    mappedWidgets,
+    widgetIds,
+    widgetsQueryResponse,
+  } = useWidgetAreaEdit({ destination: pageSlug })
+
+  const [currentWidget, setCurrentWidget] = useState()
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={widgetsQueryResponse}>
       <WidgetAreaEditPresentation
         destinationTitle={destinationTitle}
-        widgetData={widgetData}
-        widgetIds={widgetIds}
-        setWidgetIds={setWidgetIds}
         currentWidget={currentWidget}
         setCurrentWidget={setCurrentWidget}
         handleAddWidget={handleAddWidget}
+        handleSetWidgetOrder={handleSetWidgetOrder}
         pageSlug={pageSlug}
-        addModalOpen={addModalOpen}
-        setAddModalOpen={setAddModalOpen}
+        mappedWidgets={mappedWidgets}
+        widgetIds={widgetIds}
       >
         <WidgetAreaEditPresentationSettingsPane
-          handleRemoveWidget={handleRemoveWidget}
+          handleRemoveWidget={() => {
+            handleRemoveWidget(currentWidget?.id)
+            setCurrentWidget(null)
+          }}
           currentWidget={currentWidget}
           site={site}
         />
       </WidgetAreaEditPresentation>
-    </Loading.Container>
+    </LoadOrError>
   )
 }
 // PROPTYPES
-const { bool, string } = PropTypes
+const { string } = PropTypes
 WidgetAreaEditContainer.propTypes = {
+  destinationTitle: string,
   pageSlug: string,
-  isHomepage: bool,
 }
 
 export default WidgetAreaEditContainer
