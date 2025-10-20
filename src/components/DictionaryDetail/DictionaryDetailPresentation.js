@@ -17,13 +17,10 @@ import { ORIGINAL, VIDEO, PUBLIC } from 'common/constants'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import SiteDocHead from 'components/SiteDocHead'
+import Tooltip from 'components/Tooltip'
+import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
-function DictionaryDetailPresentation({
-  actions,
-  moreActions,
-  entry,
-  sitename,
-}) {
+function DictionaryDetailPresentation({ entry, sitename }) {
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
   const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6 sm:col-span-2'
@@ -43,39 +40,32 @@ function DictionaryDetailPresentation({
       <SiteDocHead titleArray={[entry.title, 'Dictionary']} />
       <div className="grid grid-cols-8 gap-4">
         <div
-          id="WordDetails"
-          className={`col-span-8 md:col-span-5 ${
-            noMedia ? 'md:col-start-3' : ''
-          }`}
+          className={`col-span-8  ${noMedia ? 'md:col-span-6 md:col-start-2' : 'md:col-span-5'}`}
         >
           <section className="lg:mb-3">
-            <div className="py-2 md:p-3 md:flex items-top">
-              <span
+            <div className="py-2 md:p-3 md:flex items-center space-x-5">
+              <div
                 className={`font-bold ${
                   shortTitle ? 'text-2xl md:text-5xl' : 'text-xl md:text-2xl'
                 }`}
               >
                 {entry.title}
-              </span>
-
-              <div className="mt-4 md:mt-1 md:ml-4">
-                <ActionsMenu.Presentation
-                  entry={entry}
-                  sitename={sitename}
-                  actions={actions}
-                  moreActions={moreActions}
-                  withLabels
-                />
               </div>
-              {entry?.visibility === PUBLIC || !entry?.visibility ? (
-                ''
-              ) : (
-                <div className="mt-4 md:mt-1 md:ml-4 flex items-top text-scarlet-900">
+              <ActionsMenu.Presentation
+                entry={entry}
+                sitename={sitename}
+                withLabels
+              />
+              {entry?.visibility && entry?.visibility !== PUBLIC && (
+                <Tooltip
+                  position="left-1/2 bottom-5"
+                  message={`${capitalizeFirstLetter(entry?.visibility)} only`}
+                >
                   {getIcon(
                     entry?.visibility,
-                    'fill-current inline-flex h-6 w-6 mr-2',
+                    'fill-current text-scarlet-900 h-6 w-6',
                   )}
-                </div>
+                </Tooltip>
               )}
             </div>
 
@@ -324,11 +314,9 @@ function DictionaryDetailPresentation({
   )
 }
 // PROPTYPES
-const { array, object, string } = PropTypes
+const { object, string } = PropTypes
 DictionaryDetailPresentation.propTypes = {
-  actions: array,
   entry: object,
-  moreActions: array,
   sitename: string,
 }
 

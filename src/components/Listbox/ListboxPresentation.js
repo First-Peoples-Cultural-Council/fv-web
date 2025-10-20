@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Listbox,
   ListboxButton,
   ListboxOptions,
   ListboxOption,
-  Transition,
 } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 
@@ -22,7 +21,7 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
     <div data-testid="ListboxPresentation">
       <Listbox value={selectedValue} onChange={setValue}>
         <div className="relative w-full">
-          <ListboxButton className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800">
+          <ListboxButton className="relative w-full inline-flex items-center text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-600 focus:border-blumine-600">
             <span className="inline-flex items-center capitalize">
               {getIcon(selectedOption?.icon, 'h-5 w-5 mr-2 fill-current')}
               {selectedOption?.transKey
@@ -36,48 +35,25 @@ function ListboxPresentation({ selectedValue, options = [], setValue }) {
               )}
             </span>
           </ListboxButton>
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <ListboxOptions className="z-10 focus:outline-hidden absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/50 sm:text-sm">
-              {options.map((option) => (
-                <ListboxOption
-                  key={option?.value}
-                  className={({ focus }) =>
-                    `relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 ${
-                      focus
-                        ? 'bg-charcoal-50 text-scarlet-800'
-                        : 'text-charcoal-900'
-                    }`
-                  }
-                  value={option?.value}
-                >
-                  {({ selected }) => (
-                    <>
-                      <div
-                        className={`inline-flex truncate items-center capitalize ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
-                      >
-                        {option?.icon &&
-                          getIcon(option?.icon, 'h-5 w-5 mr-2 fill-current')}
-                        {option?.transKey ? t(option?.transKey) : option?.label}
-                      </div>
-                      {selected
-                        ? getIcon(
-                            'Checkmark',
-                            'absolute left-2 h-5 w-5 fill-current',
-                          )
-                        : null}
-                    </>
-                  )}
-                </ListboxOption>
-              ))}
-            </ListboxOptions>
-          </Transition>
+          <ListboxOptions className="z-10 focus:outline-hidden absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-charcoal-300 sm:text-sm transition duration-100 ease-in data-leave:data-closed:opacity-0">
+            {options.map((option) => (
+              <ListboxOption
+                key={option?.value}
+                className="group relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 text-charcoal-900 hover:bg-charcoal-50 hover:text-blumine-600 hover:cursor-pointer"
+                value={option?.value}
+              >
+                <div className="inline-flex truncate items-center capitalize group-data-selected:text-blumine-600 group-data-selected:font-bold">
+                  {option?.icon &&
+                    getIcon(option?.icon, 'h-5 w-5 mr-2 fill-current')}
+                  {option?.transKey ? t(option?.transKey) : option?.label}
+                </div>
+                {getIcon(
+                  'Checkmark',
+                  'invisible absolute left-2 h-5 w-5 text-blumine-600 fill-current group-data-selected:visible',
+                )}
+              </ListboxOption>
+            ))}
+          </ListboxOptions>
         </div>
       </Listbox>
     </div>

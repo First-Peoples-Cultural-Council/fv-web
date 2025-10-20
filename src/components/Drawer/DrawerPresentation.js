@@ -12,7 +12,7 @@ function DrawerPresentation({
   fullScreenPath,
 }) {
   return (
-    <Dialog open={isOpen} onClose={closeHandler} className="relative z-10">
+    <Dialog open={isOpen} onClose={closeHandler} className="relative z-50">
       <div className="fixed inset-0" />
 
       <div
@@ -25,8 +25,8 @@ function DrawerPresentation({
               transition
               className={`pointer-events-auto w-screen ${maxWidth} transform transition duration-100 sm:duration-200 ease-in-out data-closed:translate-x-full`}
             >
-              <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll touch-auto">
-                <div className="flex justify-end items-center mt-12 mr-2 space-x-2">
+              <div className="h-full flex flex-col py-3 bg-white shadow-xl overflow-y-scroll touch-auto">
+                <div className="flex justify-end items-center mr-2 space-x-2">
                   {fullScreenPath && (
                     <Link
                       data-testid="full-screen-link"
@@ -34,7 +34,7 @@ function DrawerPresentation({
                       to={fullScreenPath}
                     >
                       <span className="sr-only">Full screen</span>
-                      {getIcon('Fullscreen', '-translate-x-1')}
+                      {getIcon('Fullscreen')}
                     </Link>
                   )}
                   <button
@@ -45,7 +45,7 @@ function DrawerPresentation({
                     onClick={closeHandler}
                   >
                     <span className="sr-only">Close panel</span>
-                    {getIcon('Close', '-translate-x-1')}
+                    {getIcon('Close')}
                   </button>
                 </div>
                 {children}
