@@ -4,9 +4,9 @@ import { useNavigate, useSearchParams } from 'react-router'
 import { useUserStore } from 'context/UserContext'
 import {
   useWidget,
-  useWidgetsCreate,
-  useWidgetsUpdate,
-  useWidgetsDelete,
+  useWidgetCreate,
+  useWidgetUpdate,
+  useWidgetDelete,
 } from 'common/dataHooks/useWidgets'
 import { getCreatableWidgetsForUser } from 'common/utils/widgetHelpers'
 import { widgetFormDataAdaptor } from 'common/dataAdaptors/widgetAdaptors'
@@ -24,9 +24,9 @@ function WidgetCrudData() {
   const _widgetId = searchParams.get('id') || null
   const queryResponse = useWidget({ id: _widgetId })
 
-  const { onSubmit: createWidget } = useWidgetsCreate()
-  const { onSubmit: updateWidget } = useWidgetsUpdate()
-  const { onSubmit: deleteWidget } = useWidgetsDelete()
+  const { onSubmit: createWidget } = useWidgetCreate()
+  const { onSubmit: updateWidget } = useWidgetUpdate()
+  const { onSubmit: deleteWidget } = useWidgetDelete()
 
   const submitHandler = (formData) => {
     const formattedFormData = widgetFormDataAdaptor({ formData })

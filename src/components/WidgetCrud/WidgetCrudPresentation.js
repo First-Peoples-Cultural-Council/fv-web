@@ -53,7 +53,7 @@ function WidgetCrudPresentation({
             title="Create a new Widget"
             subtitle="1. Choose what type of widget you'd like to create."
           />
-          <div className="grid gap-4 grid-cols-4 place-content-center">
+          <div className="grid gap-5 grid-cols-4 place-content-center p-3">
             {widgetTypes?.length > 0 &&
               widgetTypes?.map((type) => (
                 <button
@@ -61,20 +61,11 @@ function WidgetCrudPresentation({
                   type="button"
                   key={type}
                   onClick={() => setSelectedType(type)}
-                  className={`${
-                    selectedType === type
-                      ? 'bg-scarlet-800 text-white border-scarlet-800'
-                      : 'hover:bg-charcoal-50 text-blumine-800 bg-white border-blumine-800'
-                  } w-full my-2 mx-1 h-16 font-medium flex items-center rounded shadow-lg border-2`}
+                  className="p-3 bg-white border-2 border-blumine-900 text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900 w-full h-16 font-medium flex items-center rounded"
                 >
-                  <div>
-                    <div className="p-2 flex items-center">
-                      {getWidgetIcon(
-                        type,
-                        'w-10 h-10 fill-current inline-flex mx-2',
-                      )}{' '}
-                      {getWidgetTypeLabel(type)}
-                    </div>
+                  <div className="flex items-center space-x-3">
+                    {getWidgetIcon(type, 'w-10 h-10 fill-current')}
+                    <span>{getWidgetTypeLabel(type)}</span>
                   </div>
                 </button>
               ))}

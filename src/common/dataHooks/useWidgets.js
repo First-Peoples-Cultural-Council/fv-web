@@ -48,7 +48,7 @@ export function useWidgets() {
   return queryResponse
 }
 
-export function useWidgetsCreate() {
+export function useWidgetCreate() {
   const { sitename } = useParams()
 
   const createWidget = async (formData) =>
@@ -67,7 +67,7 @@ export function useWidgetsCreate() {
   return { onSubmit }
 }
 
-export function useWidgetsUpdate() {
+export function useWidgetUpdate() {
   const { sitename } = useParams()
 
   const updateWidget = async (formData) => {
@@ -91,7 +91,7 @@ export function useWidgetsUpdate() {
   return { onSubmit }
 }
 
-export function useWidgetsDelete() {
+export function useWidgetDelete() {
   const { sitename } = useParams()
 
   const deleteWidget = async (widgetId) =>
