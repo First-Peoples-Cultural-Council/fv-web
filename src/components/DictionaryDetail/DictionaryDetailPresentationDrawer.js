@@ -16,14 +16,10 @@ import ActionsMenu from 'components/ActionsMenu'
 import ImageWithLightbox from 'components/ImageWithLightbox'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
+import Tooltip from 'components/Tooltip'
+import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
-function DictionaryDetailPresentationDrawer({
-  actions,
-  moreActions,
-  entry,
-  sitename,
-  isDashboard,
-}) {
+function DictionaryDetailPresentationDrawer({ entry, sitename, isDashboard }) {
   const labelStyling =
     'text-left font-medium text-lg uppercase text-charcoal-900'
   const contentStyling = 'text-sm text-charcoal-900 sm:mt-0 sm:ml-6'
@@ -35,29 +31,30 @@ function DictionaryDetailPresentationDrawer({
   const shortTitle = entry?.title.length < 16
   return (
     <div data-testid="DictionaryDetailPresentationDrawer">
-      <div id="WordDetails" className="px-6">
+      <div className="px-6">
         <section>
-          <div className="py-3 flex items-center">
+          <div className="py-3 flex items-center space-x-3">
             <div
               className={`font-bold ${shortTitle ? 'text-4xl' : 'text-2xl'}`}
             >
-              <span>{entry?.title}</span>
+              {entry?.title}
             </div>
-            <div className="ml-5">
-              <ActionsMenu.Presentation
-                entry={entry}
-                sitename={sitename}
-                actions={actions}
-                moreActions={moreActions}
-                withLabels
-              />
-            </div>
-            {entry?.visibility === PUBLIC || !entry?.visibility
-              ? ''
-              : getIcon(
+            <ActionsMenu.Presentation
+              entry={entry}
+              sitename={sitename}
+              withLabels
+            />
+            {entry?.visibility && entry?.visibility !== PUBLIC && (
+              <Tooltip
+                position="left-1/2 bottom-5"
+                message={`${capitalizeFirstLetter(entry?.visibility)} only`}
+              >
+                {getIcon(
                   entry?.visibility,
-                  'fill-current text-scarlet-900 h-6 w-6 ml-3 mb-1',
+                  'fill-current text-scarlet-900 h-6 w-6',
                 )}
+              </Tooltip>
+            )}
           </div>
 
           {/* Translations/Definitions */}
@@ -317,11 +314,9 @@ function DictionaryDetailPresentationDrawer({
   )
 }
 // PROPTYPES
-const { array, object, string, bool } = PropTypes
+const { object, string, bool } = PropTypes
 DictionaryDetailPresentationDrawer.propTypes = {
-  actions: array,
   entry: object,
-  moreActions: array,
   sitename: string,
   isDashboard: bool,
 }

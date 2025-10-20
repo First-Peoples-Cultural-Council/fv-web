@@ -15,8 +15,6 @@ import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DictionaryListPresentation({
   infiniteQueryResponse,
-  actions = ['copy'],
-  moreActions = ['share', 'qrcode'],
   noResultsMessage = 'Sorry, no results were found for this search.',
   onSortByClick,
   showType,
@@ -209,8 +207,6 @@ function DictionaryListPresentation({
                                   entry={entry}
                                   sitename={entry?.sitename}
                                   siteVisibility={entry?.siteVisibility}
-                                  actions={actions}
-                                  moreActions={moreActions}
                                 />
                               </td>
                             </tr>
@@ -256,11 +252,9 @@ function DictionaryListPresentation({
 }
 
 // PROPTYPES
-const { array, bool, func, node, object, string } = PropTypes
+const { bool, func, node, object, string } = PropTypes
 DictionaryListPresentation.propTypes = {
   infiniteQueryResponse: object,
-  actions: array,
-  moreActions: array,
   noResultsMessage: node,
   onSortByClick: func,
   showType: bool,

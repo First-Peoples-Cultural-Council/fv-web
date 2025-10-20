@@ -23,8 +23,6 @@ function DictionaryDetailData({ id, sitename }) {
     entry: dictionaryEntryQueryResponse?.data?.title
       ? dictionaryEntryQueryResponse?.data
       : {},
-    actions: ['copy'],
-    moreActions: ['share', 'qrcode'],
     sitename: sitenameToSend,
     backHandler,
   }

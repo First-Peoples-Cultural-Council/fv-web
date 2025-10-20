@@ -7,13 +7,13 @@ import { makePlural } from 'common/utils/urlHelpers'
 import ActionsMenu from 'components/ActionsMenu'
 import AudioButton from 'components/AudioButton'
 
-function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
+function DictionaryGridTilePresentation({ entry, wholeDomain }) {
   const title = entry?.title || ''
   // The string iterator that is used here iterates over characters,
   // not mere code units
   return (
     <div
-      className="h-full w-full bg-white mx-auto flex items-center pb-2 relative border-b-2 border-charcoal-100"
+      className="h-full w-full bg-white mx-auto flex items-center py-2 relative border-b-2 border-charcoal-100"
       data-testid="DictionaryGridTilePresentation"
     >
       <section
@@ -21,6 +21,12 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
         className="w-full flex items-center text-charcoal-900"
       >
         <div className="w-full">
+          {wholeDomain && (
+            <div className="p-1 inline-flex items-center justify-center text-xs font-medium rounded-md bg-blumine-100 capitalize text-blumine-color-700">
+              {entry?.siteTitle}
+            </div>
+          )}
+
           {/* Title */}
           <div className="flex justify-between items-center w-full font-medium text-charcoal-900 text-xl">
             <Link
@@ -29,13 +35,13 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
             >
               {title}
             </Link>
+
             <ActionsMenu.Presentation
               entry={entry}
               sitename={entry?.sitename}
-              actions={actions}
-              moreActions={moreActions}
             />
           </div>
+
           {/* Translations/Definitions */}
           {entry?.translations?.length > 0 && (
             <ol
@@ -60,11 +66,10 @@ function DictionaryGridTilePresentation({ actions, moreActions, entry }) {
   )
 }
 // PROPTYPES
-const { array, object } = PropTypes
+const { bool, object } = PropTypes
 DictionaryGridTilePresentation.propTypes = {
   entry: object,
-  actions: array,
-  moreActions: array,
+  wholeDomain: bool,
 }
 
 export default DictionaryGridTilePresentation

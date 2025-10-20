@@ -17,8 +17,8 @@ function ActionsMenuPresentation({
   entry,
   sitename,
   siteVisibility,
-  actions = [],
-  moreActions = [],
+  actions = ['copy'],
+  moreActions = ['share', 'qrcode'],
   withLabels,
 }) {
   const [qrcodeModalOpen, setQrcodeModalOpen] = useState(false)

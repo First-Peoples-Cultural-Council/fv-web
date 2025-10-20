@@ -80,9 +80,9 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
   return (
     <div
       id="MembershipCrudPresentation"
-      className="inline-block align-bottom space-y-6 divide-y divide-charcoal-300 bg-white rounded-3xl py-6 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full"
+      className="inline-block align-bottom divide-y divide-charcoal-300 bg-white rounded-3xl overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full"
     >
-      <div className="space-y-4 text-left px-6">
+      <div className="space-y-3 text-left px-8 py-5">
         <h3 className="text-xl font-bold text-charcoal-700">
           Choose a role for{' '}
           {membership?.user?.firstName || membership?.user?.email}
@@ -99,7 +99,7 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
           to learn more about user roles and permissions.
         </p>
       </div>
-      <form onReset={reset} className="px-6">
+      <form onReset={reset} className="px-6 py-3">
         <Fieldset>
           <RadioGroup
             name="role"

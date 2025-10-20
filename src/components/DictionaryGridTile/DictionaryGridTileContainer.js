@@ -5,30 +5,20 @@ import PropTypes from 'prop-types'
 import DictionaryGridTilePresentationKids from 'components/DictionaryGridTile/DictionaryGridTilePresentationKids'
 import DictionaryGridTilePresentation from 'components/DictionaryGridTile/DictionaryGridTilePresentation'
 
-function DictionaryGridTileContainer({
-  actions = [],
-  moreActions = [],
-  entry,
-  kids = null,
-}) {
+function DictionaryGridTileContainer({ entry, wholeDomain, kids = null }) {
   return kids ? (
     <DictionaryGridTilePresentationKids entry={entry} />
   ) : (
-    <DictionaryGridTilePresentation
-      entry={entry}
-      actions={actions}
-      moreActions={moreActions}
-    />
+    <DictionaryGridTilePresentation entry={entry} wholeDomain={wholeDomain} />
   )
 }
 
 // PROPTYPES
-const { array, bool, object } = PropTypes
+const { bool, object } = PropTypes
 DictionaryGridTileContainer.propTypes = {
   entry: object,
   kids: bool,
-  actions: array,
-  moreActions: array,
+  wholeDomain: bool,
 }
 
 export default DictionaryGridTileContainer

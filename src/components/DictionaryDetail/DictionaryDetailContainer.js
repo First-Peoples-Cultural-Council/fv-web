@@ -17,21 +17,14 @@ function DictionaryDetailContainer({
   const { sitename: sitenameParams } = useParams()
   const sitenameToSend = sitename || sitenameParams
 
-  const {
-    actions,
-    backHandler,
-    dictionaryEntryQueryResponse,
-    entry,
-    moreActions,
-  } = DictionaryDetailData({ id, sitename: sitenameToSend })
+  const { backHandler, dictionaryEntryQueryResponse, entry } =
+    DictionaryDetailData({ id, sitename: sitenameToSend })
 
   return (
     <LoadOrError queryResponse={dictionaryEntryQueryResponse}>
       {isDrawer && (
         <DictionaryDetailPresentationDrawer
-          actions={actions}
           entry={entry}
-          moreActions={moreActions}
           sitename={sitenameToSend}
           isDashboard={isDashboard}
         />
@@ -43,12 +36,7 @@ function DictionaryDetailContainer({
         />
       )}
       {!isDrawer && !kids && (
-        <DictionaryDetailPresentation
-          actions={actions}
-          entry={entry}
-          moreActions={moreActions}
-          sitename={sitenameToSend}
-        />
+        <DictionaryDetailPresentation entry={entry} sitename={sitenameToSend} />
       )}
     </LoadOrError>
   )

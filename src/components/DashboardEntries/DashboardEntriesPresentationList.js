@@ -227,7 +227,7 @@ function DashboardEntriesPresentationList({
       >
         {selectedItem?.type && (
           <>
-            <div className="flex justify-center my-2 space-x-2">
+            <div className="flex justify-center mb-2 space-x-2">
               {checkIfUserCanEdit(selectedItem) ? (
                 <Link
                   to={`/${sitename}/dashboard/edit/${selectedItem?.type}?id=${selectedItem?.id}`}
@@ -240,13 +240,17 @@ function DashboardEntriesPresentationList({
                   <span>Edit</span>
                 </Link>
               ) : (
-                <div className="btn-secondary btn-md">
-                  <span className="tooltip rounded-sm shadow-lg p-1 bg-charcoal-50 text-charcoal-900 text-xs -mt-10 -ml-10">
-                    You do not have access to edit this.
-                  </span>
-                  {getIcon('Pencil')}
-                  <span>Edit</span>
-                </div>
+                <Tooltip message="You do not have access to edit this.">
+                  <button
+                    data-testid="edit-link"
+                    type="button"
+                    disabled
+                    className="btn-secondary btn-md"
+                  >
+                    {getIcon('Pencil')}
+                    <span>Edit</span>
+                  </button>
+                </Tooltip>
               )}
               <Link
                 to={`/${sitename}/${makePlural(selectedItem?.type)}/${

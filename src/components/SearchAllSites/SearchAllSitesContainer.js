@@ -63,6 +63,7 @@ function SearchAllSitesContainer() {
             <DictionaryGrid.Presentation
               infiniteQueryResponse={infiniteQueryResponse}
               showType
+              wholeDomain
             />
           </div>
         </div>
