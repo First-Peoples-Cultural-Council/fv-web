@@ -1,4 +1,4 @@
-import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 
 export function relatedMediaForViewing({ item }) {
   const relatedVideoLinks = item?.relatedVideoLinks?.map((el) => ({

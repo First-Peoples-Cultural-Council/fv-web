@@ -5,7 +5,7 @@ import { useParams } from 'react-router'
 import { CHARACTERS } from 'common/constants'
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 import {
   relatedMediaForApi,
   relatedMediaForViewing,
