@@ -11,7 +11,6 @@ import SiteDocHead from 'components/SiteDocHead'
 function PageCrudContainer() {
   const {
     backHandler,
-    dataToEdit,
     isWidgetAreaEdit,
     site,
     submitHandler,
@@ -29,7 +28,7 @@ function PageCrudContainer() {
       <SiteDocHead titleArray={titleArray} />
       {isWidgetAreaEdit ? (
         <PageCrudPresentation
-          dataToEdit={dataToEdit}
+          dataToEdit={queryResponse?.data}
           site={site}
           queryResponse={queryResponse}
         />
@@ -37,7 +36,7 @@ function PageCrudContainer() {
         <PageForm
           cancelHandler={backHandler}
           submitHandler={submitHandler}
-          dataToEdit={dataToEdit}
+          dataToEdit={queryResponse?.data}
           deleteHandler={deleteHandler}
         />
       )}
