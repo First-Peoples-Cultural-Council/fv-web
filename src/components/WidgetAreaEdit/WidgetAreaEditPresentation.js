@@ -120,23 +120,22 @@ function WidgetAreaEditPresentation({
       ) : (
         <main
           data-testid="WidgetAreaEdit"
-          className="max-w-7xl mx-auto flex w-full h-screen"
+          className="max-w-7xl flex w-full flex-col space-y-6 mt-16 justify-center"
         >
-          <div className="w-full space-y-4 mt-16">
-            <div className="text-center">
-              Your page currently has no widgets on it. Click the button below
-              to add one.
-            </div>
-            <button
-              data-testid="add-widget"
-              type="button"
-              onClick={() => setAddModalOpen(true)}
-              className="btn-primary btn-md m-6"
-            >
-              {getIcon('Add')}
-              <span className="truncate">Widget</span>
-            </button>
-          </div>
+          <p className="text-center">
+            Your page currently has no widgets on it. Click the button below to
+            add one.
+          </p>
+
+          <button
+            data-testid="add-widget"
+            type="button"
+            onClick={() => setAddModalOpen(true)}
+            className="btn-primary btn-md mx-auto"
+          >
+            {getIcon('Add')}
+            <span>Widget</span>
+          </button>
         </main>
       )}
 
