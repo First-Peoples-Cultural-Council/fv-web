@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 import { Field, Fieldset, Label, Radio, RadioGroup } from '@headlessui/react'
-import { useController } from 'react-hook-form'
+import { useController, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useTranslation } from 'react-i18next'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
-import useEditForm from 'common/hooks/useEditForm'
 import { useMembershipUpdateRole } from 'common/dataHooks/useMemberships'
 import ValidationError from 'components/Form/ValidationError'
 import {
@@ -22,23 +22,18 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
   const [t] = useTranslation()
   const mutation = useMembershipUpdateRole()
 
-  const dataToEdit = {
-    id: membership?.id,
-    role: membership?.role,
-  }
-
   const validator = yup.object().shape({
+    id: definitions.uuid(),
     role: definitions.role(),
   })
 
-  const defaultValues = {
-    role: dataToEdit?.role || '',
-  }
-
-  const { control, errors, handleSubmit, reset } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
+  const { control, errors, handleSubmit, register, reset } = useForm({
+    defaultValues: {
+      id: membership?.id,
+      role: membership?.role,
+    },
+    mode: 'onSubmit',
+    resolver: yupResolver(validator),
   })
 
   const { field } = useController({
@@ -100,11 +95,11 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
         </p>
       </div>
       <form onReset={reset} className="px-6 py-3">
+        <input name="id" type="hidden" value="default" {...register('id')} />
         <Fieldset>
           <RadioGroup
             name="role"
             value={field?.value}
-            defaultValue={dataToEdit?.role}
             onChange={field?.onChange}
           >
             {roleOptions.map((role) => (
