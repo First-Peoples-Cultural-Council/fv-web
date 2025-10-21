@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
 import getIcon from 'common/utils/getIcon'
 
-function PageCrudPresentation({ dataToEdit, site }) {
+function PageCrudPresentation({ dataToEdit, queryResponse, site }) {
   return (
     <div
       data-testid="PageCrudPresentation"
@@ -44,8 +44,9 @@ function PageCrudPresentation({ dataToEdit, site }) {
         </div>
       </div>
       <WidgetAreaEdit.Container
-        pageSlug={dataToEdit?.slug}
-        destinationTitle={dataToEdit?.title}
+        pageSlug={queryResponse?.data?.slug}
+        destinationTitle={queryResponse?.data?.title}
+        currentWidgets={queryResponse?.data?.widgets}
       />
     </div>
   )
@@ -56,6 +57,7 @@ const { object } = PropTypes
 
 PageCrudPresentation.propTypes = {
   dataToEdit: object,
+  queryResponse: object,
   site: object,
 }
 

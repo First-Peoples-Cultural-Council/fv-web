@@ -24,18 +24,18 @@ function PageCrudData() {
     : null
 
   // retrieve data
-  const { data } = usePage({ pageSlug })
+  const queryResponse = usePage({ pageSlug })
 
   const mediaObject = selectOneMediaDataHelper(
-    data?.bannerImage,
-    data?.bannerVideo,
+    queryResponse?.data?.bannerImage,
+    queryResponse?.data?.bannerVideo,
   )
 
   const dataForForm = {
-    ...data,
+    ...queryResponse?.data,
     banner: mediaObject,
     href: getCustomPageHref({
-      sitename: data?.site?.slug,
+      sitename: queryResponse?.data?.site?.slug,
       pageSlug,
     }),
   }
@@ -45,7 +45,7 @@ function PageCrudData() {
   const { onSubmit: deletePage } = usePageDelete()
 
   const submitHandler = (formData) => {
-    if (pageSlug && data?.slug) {
+    if (pageSlug && queryResponse?.data?.slug) {
       update(formData)
     } else {
       create(formData)
@@ -56,6 +56,7 @@ function PageCrudData() {
     submitHandler,
     backHandler,
     site,
+    queryResponse,
     dataToEdit: dataForForm,
     isWidgetAreaEdit: !!(pageSlug && !editHeader),
     deleteHandler: () => deletePage(pageSlug),
