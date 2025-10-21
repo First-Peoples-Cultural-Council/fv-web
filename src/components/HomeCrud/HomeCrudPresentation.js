@@ -33,7 +33,11 @@ function HomeCrudPresentation({ site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container destinationTitle="Home" />
+      <WidgetAreaEdit.Container
+        pageSlug="isHomePage"
+        destinationTitle="Home"
+        currentWidgets={site?.homepageWidgets}
+      />
     </div>
   )
 }

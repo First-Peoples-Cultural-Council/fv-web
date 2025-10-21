@@ -1,59 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 // FPCC
 import { useSiteStore } from 'context/SiteContext'
-import { usePage, usePageWidgetsUpdate } from 'common/dataHooks/usePages'
+import { usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
 import { useWidgets } from 'common/dataHooks/useWidgets'
+import {
+  objectsToIdsAdaptor,
+  arrayToObjectWithIdKeys,
+} from 'common/dataAdaptors/misc'
 
-export function useWidgetAreaEdit({ destination }) {
-  const [widgetIds, setWidgetIds] = useState()
+export function useWidgetAreaEdit({ destination, currentWidgets }) {
+  const [widgetIds, setWidgetIds] = useState(
+    objectsToIdsAdaptor(currentWidgets),
+  )
   const { site } = useSiteStore()
 
-  const isHomepage = pageSlug === 'isHomePage'
-  const pageSlug = !isHomepage ? destination : null
-
-  // Fetch the custom page if pageSlug
-  const pageQueryResponse = usePage({ pageSlug })
+  const isHomePage = destination === 'isHomePage'
+  const pageSlug = !isHomePage ? destination : null
 
   // Fetch all widgets for this site
   const widgetsQueryResponse = useWidgets()
 
-  // If custom page set list of widget IDs in state
-  useEffect(() => {
-    if (!widgetIds && pageSlug && pageQueryResponse?.data?.widgets) {
-      const ids = pageQueryResponse?.data?.widgets?.map((w) => w.id) || []
-      setWidgetIds(ids)
-    }
-  }, [pageQueryResponse, pageSlug, widgetIds])
-
-  // If homepage set list of widget IDs in state
-  useEffect(() => {
-    if (isHomepage) {
-      const ids = site?.homepageWidgets?.map((w) => w.id)
-      setWidgetIds(ids)
-    }
-  }, [isHomepage, site])
-
-  const widgetsDataAdaptor = (widgetsArray) => {
-    const widgetsObject = {}
-    widgetsArray?.forEach((w) => {
-      if (w?.id) {
-        widgetsObject[w.id] = w
-      }
-    })
-    return widgetsObject
-  }
-
-  // event handlers
   const { onSubmit: pageWidgetsUpdate } = usePageWidgetsUpdate({ pageSlug })
   const { onSubmit: homepageWidgetsUpdate } = useSiteUpdateWidgets()
 
   const saveWidgetOrder = async (idArray) => {
     setWidgetIds(idArray)
-    if (pageSlug) {
-      pageWidgetsUpdate({ widgets: idArray })
-    } else if (isHomepage) homepageWidgetsUpdate({ widgets: idArray })
+    if (isHomePage) {
+      homepageWidgetsUpdate({ widgets: idArray })
+    } else if (pageSlug) pageWidgetsUpdate({ widgets: idArray })
   }
 
   const handleSetWidgetOrder = (idArray) => {
@@ -76,7 +52,7 @@ export function useWidgetAreaEdit({ destination }) {
     handleAddWidget,
     handleRemoveWidget,
     widgetsQueryResponse,
-    mappedWidgets: widgetsDataAdaptor(widgetsQueryResponse?.data?.results),
+    mappedWidgets: arrayToObjectWithIdKeys(widgetsQueryResponse?.data?.results),
     widgetIds,
     handleSetWidgetOrder,
     site,

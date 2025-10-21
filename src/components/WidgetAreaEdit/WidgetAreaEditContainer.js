@@ -7,7 +7,11 @@ import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/Wi
 import { useWidgetAreaEdit } from 'common/dataHooks//useWidgetAreaEdit'
 import LoadOrError from 'components/LoadOrError'
 
-function WidgetAreaEditContainer({ pageSlug, destinationTitle }) {
+function WidgetAreaEditContainer({
+  pageSlug,
+  destinationTitle,
+  currentWidgets,
+}) {
   const {
     handleAddWidget,
     handleRemoveWidget,
@@ -16,7 +20,7 @@ function WidgetAreaEditContainer({ pageSlug, destinationTitle }) {
     mappedWidgets,
     widgetIds,
     widgetsQueryResponse,
-  } = useWidgetAreaEdit({ destination: pageSlug })
+  } = useWidgetAreaEdit({ destination: pageSlug, currentWidgets })
 
   const [currentWidget, setCurrentWidget] = useState()
 
@@ -45,8 +49,9 @@ function WidgetAreaEditContainer({ pageSlug, destinationTitle }) {
   )
 }
 // PROPTYPES
-const { string } = PropTypes
+const { array, string } = PropTypes
 WidgetAreaEditContainer.propTypes = {
+  currentWidgets: array,
   destinationTitle: string,
   pageSlug: string,
 }
