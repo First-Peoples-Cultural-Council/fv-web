@@ -83,7 +83,7 @@ export default defineConfig([
       'max-len': 'off',
       'newline-per-chained-call': 'off',
       'no-confusing-arrow': 'off',
-      'no-console': 'warn',
+      'no-console': 'error',
       'no-unused-vars': 'error',
       'no-use-before-define': 'off',
       'prefer-template': 'error',
