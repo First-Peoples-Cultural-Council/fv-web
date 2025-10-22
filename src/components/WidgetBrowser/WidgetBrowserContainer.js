@@ -3,32 +3,32 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import WidgetBrowserPresentation from 'components/WidgetBrowser/WidgetBrowserPresentation'
-import WidgetBrowserData from 'components/WidgetBrowser/WidgetBrowserData'
-import LoadOrError from 'components/LoadOrError'
 
 function WidgetBrowserContainer({
   chooseWidgetHandler,
   currentWidgets,
   pageSlug,
+  widgetsQueryResponse,
 }) {
-  const { queryResponse, site, widgets } = WidgetBrowserData({ currentWidgets })
+  const widgetsNotOnThisPage = widgetsQueryResponse?.data?.results?.filter(
+    (widget) => !currentWidgets?.includes(widget?.id),
+  )
+
   return (
-    <LoadOrError queryResponse={queryResponse}>
-      <WidgetBrowserPresentation
-        chooseWidgetHandler={chooseWidgetHandler}
-        widgets={widgets}
-        site={site}
-        pageSlug={pageSlug}
-      />
-    </LoadOrError>
+    <WidgetBrowserPresentation
+      chooseWidgetHandler={chooseWidgetHandler}
+      pageSlug={pageSlug}
+      widgets={widgetsNotOnThisPage || []}
+    />
   )
 }
 // PROPTYPES
-const { array, func, string } = PropTypes
+const { array, func, object, string } = PropTypes
 WidgetBrowserContainer.propTypes = {
   chooseWidgetHandler: func,
   currentWidgets: array,
   pageSlug: string,
+  widgetsQueryResponse: object,
 }
 
 export default WidgetBrowserContainer

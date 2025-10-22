@@ -57,6 +57,7 @@ function WidgetAreaEditContainer({
           }}
           currentWidgets={widgetIds}
           pageSlug={pageSlug}
+          widgetsQueryResponse={widgetsQueryResponse}
         />
       </Modal.Presentation>
     </LoadOrError>

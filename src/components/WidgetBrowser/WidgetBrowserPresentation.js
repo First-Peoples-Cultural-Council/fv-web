@@ -7,12 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 
-function WidgetBrowserPresentation({
-  chooseWidgetHandler,
-  pageSlug,
-  site,
-  widgets,
-}) {
+function WidgetBrowserPresentation({ chooseWidgetHandler, pageSlug, widgets }) {
   const [selectedWidget, setSelectedWidget] = useState()
   return (
     <div
@@ -80,7 +75,7 @@ function WidgetBrowserPresentation({
         </div>
       )}
       <Link
-        to={`/${site?.sitename}/dashboard/create/widget?destination=${pageSlug || 'isHomePage'}`}
+        to={`/${widgets?.[0]?.sitename}/dashboard/create/widget?destination=${pageSlug || 'isHomePage'}`}
         className="btn-primary btn-md mt-3"
       >
         {getIcon('Add')}
@@ -91,13 +86,12 @@ function WidgetBrowserPresentation({
 }
 
 // PROPTYPES
-const { array, func, object, string } = PropTypes
+const { array, func, string } = PropTypes
 
 WidgetBrowserPresentation.propTypes = {
   chooseWidgetHandler: func,
   pageSlug: string,
   widgets: array,
-  site: object,
 }
 
 export default WidgetBrowserPresentation
