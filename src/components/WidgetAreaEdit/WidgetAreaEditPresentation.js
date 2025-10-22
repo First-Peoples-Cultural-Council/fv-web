@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import Modal from 'components/Modal'
-import WidgetBrowser from 'components/WidgetBrowser'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import SortableContainer from 'components/SortableContainer'
@@ -18,11 +16,8 @@ function WidgetAreaEditPresentation({
   widgetIds,
   handleSetWidgetOrder,
   destinationTitle,
-  pageSlug,
-  handleAddWidget,
+  setAddModalOpen,
 }) {
-  const [addModalOpen, setAddModalOpen] = useState(false)
-
   return (
     <div data-testid="WidgetAreaEdit">
       {widgetIds?.length > 0 ? (
@@ -138,29 +133,13 @@ function WidgetAreaEditPresentation({
           </button>
         </main>
       )}
-
-      {/* Add Modal */}
-      <Modal.Presentation
-        isOpen={addModalOpen}
-        closeHandler={() => setAddModalOpen(false)}
-      >
-        <WidgetBrowser.Container
-          chooseWidgetHandler={(id) => {
-            handleAddWidget(id)
-            setAddModalOpen(false)
-          }}
-          currentWidgets={widgetIds}
-          pageSlug={pageSlug}
-        />
-      </Modal.Presentation>
     </div>
   )
 }
 // PROPTYPES
-const { array, bool, func, node, object, string } = PropTypes
+const { array, func, node, object, string } = PropTypes
 WidgetAreaEditPresentation.propTypes = {
   children: node,
-  addModalOpen: bool,
   setAddModalOpen: func,
   mappedWidgets: object,
   widgetIds: array,
@@ -168,8 +147,6 @@ WidgetAreaEditPresentation.propTypes = {
   handleSetWidgetOrder: func,
   currentWidget: object,
   setCurrentWidget: func,
-  handleAddWidget: func,
-  pageSlug: string,
 }
 
 export default WidgetAreaEditPresentation

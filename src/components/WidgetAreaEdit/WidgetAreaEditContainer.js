@@ -6,6 +6,8 @@ import WidgetAreaEditPresentation from 'components/WidgetAreaEdit/WidgetAreaEdit
 import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/WidgetAreaEditPresentationSettingsPane'
 import { useWidgetAreaEdit } from 'common/dataHooks//useWidgetAreaEdit'
 import LoadOrError from 'components/LoadOrError'
+import Modal from 'components/Modal'
+import WidgetBrowser from 'components/WidgetBrowser'
 
 function WidgetAreaEditContainer({
   pageSlug,
@@ -22,6 +24,7 @@ function WidgetAreaEditContainer({
   } = useWidgetAreaEdit({ destination: pageSlug, currentWidgets })
 
   const [currentWidget, setCurrentWidget] = useState()
+  const [addModalOpen, setAddModalOpen] = useState(false)
 
   return (
     <LoadOrError queryResponse={widgetsQueryResponse}>
@@ -29,9 +32,8 @@ function WidgetAreaEditContainer({
         destinationTitle={destinationTitle}
         currentWidget={currentWidget}
         setCurrentWidget={setCurrentWidget}
-        handleAddWidget={handleAddWidget}
         handleSetWidgetOrder={handleSetWidgetOrder}
-        pageSlug={pageSlug}
+        setAddModalOpen={setAddModalOpen}
         mappedWidgets={mappedWidgets}
         widgetIds={widgetIds}
       >
@@ -43,6 +45,20 @@ function WidgetAreaEditContainer({
           currentWidget={currentWidget}
         />
       </WidgetAreaEditPresentation>
+      {/* Add Modal */}
+      <Modal.Presentation
+        isOpen={addModalOpen}
+        closeHandler={() => setAddModalOpen(false)}
+      >
+        <WidgetBrowser.Container
+          chooseWidgetHandler={(id) => {
+            handleAddWidget(id)
+            setAddModalOpen(false)
+          }}
+          currentWidgets={widgetIds}
+          pageSlug={pageSlug}
+        />
+      </Modal.Presentation>
     </LoadOrError>
   )
 }
