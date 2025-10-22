@@ -16,7 +16,6 @@ function WidgetAreaEditContainer({
     handleAddWidget,
     handleRemoveWidget,
     handleSetWidgetOrder,
-    site,
     mappedWidgets,
     widgetIds,
     widgetsQueryResponse,
@@ -42,7 +41,6 @@ function WidgetAreaEditContainer({
             setCurrentWidget(null)
           }}
           currentWidget={currentWidget}
-          site={site}
         />
       </WidgetAreaEditPresentation>
     </LoadOrError>

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 // FPCC
-import { useSiteStore } from 'context/SiteContext'
 import { usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
 import { useWidgets } from 'common/dataHooks/useWidgets'
@@ -14,7 +13,6 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
   const [widgetIds, setWidgetIds] = useState(
     objectsToIdsAdaptor(currentWidgets),
   )
-  const { site } = useSiteStore()
 
   const isHomePage = destination === 'isHomePage'
   const pageSlug = !isHomePage ? destination : null
@@ -55,6 +53,5 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
     mappedWidgets: arrayToObjectWithIdKeys(widgetsQueryResponse?.data?.results),
     widgetIds,
     handleSetWidgetOrder,
-    site,
   }
 }

@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
-
+import { useSiteStore } from 'context/SiteContext'
 import getIcon from 'common/utils/getIcon'
 import { isUUID } from 'common/utils/stringHelpers'
 import { getWidgetLabel, getWidgetTypeLabel } from 'common/utils/widgetHelpers'
@@ -24,10 +24,10 @@ import { useContactUs } from 'common/dataHooks/useContactUs'
 function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
   handleRemoveWidget,
-  site,
 }) {
   const [removeModalOpen, setRemoveModalOpen] = useState(false)
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
+  const { site } = useSiteStore()
 
   const onRemoveConfirmationClick = () => {
     handleRemoveWidget()
@@ -246,7 +246,6 @@ const { func, object } = PropTypes
 WidgetAreaEditPresentationSettingsPane.propTypes = {
   currentWidget: object,
   handleRemoveWidget: func,
-  site: object,
 }
 
 export default WidgetAreaEditPresentationSettingsPane
