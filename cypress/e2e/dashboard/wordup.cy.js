@@ -52,6 +52,7 @@ describe(
 
     it('3.0 edit words phrases', () => {
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
@@ -69,6 +70,7 @@ describe(
       cy.viewport(1024, 768)
 
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
@@ -81,6 +83,7 @@ describe(
 
     it('7.1a - delete word', () => {
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()

@@ -34,17 +34,18 @@ describe(
         )
       })
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
     })
 
     it('1.1 - signin/signout', () => {
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      //  cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').should('exist')
       cy.contains('Sign out', { timeout: 12000 }).click()
     })
 
     it('1.2 - signin - no redirect', () => {
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      //cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Sign out', { timeout: 12000 }).click()
       cy.contains('Sign in').click()

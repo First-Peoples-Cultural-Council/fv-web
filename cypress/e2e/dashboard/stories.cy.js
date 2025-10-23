@@ -41,6 +41,7 @@ describe(
         )
       })
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
