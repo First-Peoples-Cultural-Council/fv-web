@@ -25,10 +25,7 @@ export function usePage({ pageSlug }) {
         sitename,
         pageSlug,
       }),
-      widgets: widgetListAdaptor({
-        widgetList: data?.widgets,
-        sitename,
-      }),
+      widgets: widgetListAdaptor({ widgetList: data?.widgets }),
     }),
     enabled: !!pageSlug,
   })

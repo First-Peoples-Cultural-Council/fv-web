@@ -2,20 +2,27 @@ import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
 // FPCC
-import { WIDGETS } from 'common/constants'
 import api from 'services/api'
-import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
-import { useUserStore } from 'context/UserContext'
-import { widgetAdaptor } from 'common/dataAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import { useUserStore } from 'context/UserContext'
+import { WIDGETS } from 'common/constants'
+import {
+  widgetForApi,
+  widgetForEditing,
+  widgetForViewing,
+  widgetListAdaptor,
+} from 'common/dataAdaptors'
 
-export function useWidget({ id }) {
+export function useWidget({ id, edit = false }) {
   const { sitename } = useParams()
 
   const queryResponse = useQuery({
     queryKey: [WIDGETS, sitename, id],
     queryFn: () => api.widgets.get({ sitename, id }),
-    select: (data) => widgetAdaptor({ widgetData: data, sitename }),
+    select: (data) =>
+      edit
+        ? widgetForEditing({ item: data })
+        : widgetForViewing({ item: data }),
     enabled: !!id,
   })
 
@@ -26,21 +33,13 @@ export function useWidgets() {
   const { sitename } = useParams()
   const { user } = useUserStore()
   const { isSuperAdmin } = user
-  const editableWidgets = getEditableWidgetsForUser(isSuperAdmin)
-
-  const widgetAdaptorWithEditable = (widget) => ({
-    ...widgetAdaptor({ widgetData: widget, sitename }),
-    editable: editableWidgets.includes(widget?.type),
-  })
 
   const queryResponse = useQuery({
     queryKey: [WIDGETS, sitename],
     queryFn: () => api.widgets.getAll({ sitename }),
     select: (data) => ({
       ...data,
-      results: data?.results?.map((widget) =>
-        widgetAdaptorWithEditable(widget),
-      ),
+      results: widgetListAdaptor({ widgetList: data?.results, isSuperAdmin }),
     }),
     enabled: !!sitename,
   })
@@ -51,8 +50,13 @@ export function useWidgets() {
 export function useWidgetCreate() {
   const { sitename } = useParams()
 
-  const createWidget = async (formData) =>
-    api.widgets.create({ sitename, formData })
+  const createWidget = async (formData) => {
+    const properties = widgetForApi({ formData })
+    return api.widgets.create({
+      sitename,
+      properties,
+    })
+  }
 
   const mutation = useMutationWithNotification({
     mutationFn: createWidget,
@@ -62,19 +66,18 @@ export function useWidgetCreate() {
     type: 'widget',
   })
 
-  const onSubmit = (formData) => mutation.mutate(formData)
-
-  return { onSubmit }
+  return mutation
 }
 
 export function useWidgetUpdate() {
   const { sitename } = useParams()
 
   const updateWidget = async (formData) => {
+    const properties = widgetForApi({ formData })
     api.widgets.update({
       sitename,
-      widgetId: formData?.id,
-      formData,
+      id: formData?.id,
+      properties,
     })
   }
 
@@ -86,26 +89,19 @@ export function useWidgetUpdate() {
     type: 'widget',
   })
 
-  const onSubmit = (formData) => mutation.mutate(formData)
-
-  return { onSubmit }
+  return mutation
 }
 
 export function useWidgetDelete() {
   const { sitename } = useParams()
 
-  const deleteWidget = async (widgetId) =>
-    api.widgets.delete({ sitename, widgetId })
-
   const mutation = useMutationWithNotification({
-    mutationFn: deleteWidget,
+    mutationFn: async (id) => api.widgets.delete({ sitename, id }),
     redirectTo: `/${sitename}/dashboard/edit/widgets`,
     queryKeyToInvalidate: [WIDGETS, sitename],
     actionWord: 'deleted',
     type: 'widget',
   })
 
-  const onSubmit = (widgetId) => mutation.mutate(widgetId)
-
-  return { onSubmit }
+  return mutation
 }

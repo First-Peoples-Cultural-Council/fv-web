@@ -6,16 +6,16 @@ const widgets = {
     apiBase().get(`${SITES}/${sitename}/${WIDGETS}/${id}`).json(),
   getAll: async ({ sitename }) =>
     apiBase().get(`${SITES}/${sitename}/${WIDGETS}/`).json(),
-  create: async ({ sitename, formData }) =>
+  create: async ({ sitename, properties }) =>
     apiBase()
-      .post(`${SITES}/${sitename}/${WIDGETS}/`, { json: formData })
+      .post(`${SITES}/${sitename}/${WIDGETS}/`, { json: properties })
       .json(),
-  update: async ({ sitename, widgetId, formData }) =>
+  update: async ({ sitename, id, properties }) =>
     apiBase()
-      .put(`${SITES}/${sitename}/${WIDGETS}/${widgetId}/`, { json: formData })
+      .put(`${SITES}/${sitename}/${WIDGETS}/${id}/`, { json: properties })
       .json(),
-  delete: async ({ sitename, widgetId }) =>
-    apiBase().delete(`${SITES}/${sitename}/${WIDGETS}/${widgetId}/`).json(),
+  delete: async ({ sitename, id }) =>
+    apiBase().delete(`${SITES}/${sitename}/${WIDGETS}/${id}/`).json(),
 }
 
 export default widgets

@@ -9,7 +9,6 @@ import {
   useWidgetDelete,
 } from 'common/dataHooks/useWidgets'
 import { getCreatableWidgetsForUser } from 'common/utils/widgetHelpers'
-import { widgetFormDataAdaptor } from 'common/dataAdaptors/widgetAdaptors'
 
 function WidgetCrudData() {
   const { user } = useUserStore()
@@ -22,18 +21,17 @@ function WidgetCrudData() {
   const backHandler = () => navigate(-1)
 
   const _widgetId = searchParams.get('id') || null
-  const queryResponse = useWidget({ id: _widgetId })
+  const queryResponse = useWidget({ id: _widgetId, edit: true })
 
-  const { onSubmit: createWidget } = useWidgetCreate()
-  const { onSubmit: updateWidget } = useWidgetUpdate()
-  const { onSubmit: deleteWidget } = useWidgetDelete()
+  const { mutate: createWidget } = useWidgetCreate()
+  const { mutate: updateWidget } = useWidgetUpdate()
+  const { mutate: deleteWidget } = useWidgetDelete()
 
   const submitHandler = (formData) => {
-    const formattedFormData = widgetFormDataAdaptor({ formData })
-    if (_widgetId && queryResponse?.data) {
-      updateWidget(formattedFormData)
+    if (_widgetId && queryResponse?.data?.id) {
+      updateWidget(formData)
     } else {
-      createWidget(formattedFormData)
+      createWidget(formData)
     }
   }
 
