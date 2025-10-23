@@ -23,11 +23,20 @@ describe(
           'an individual who fought for a warrior challenging a ruling of the Klingon High Council',
         )
 
+        let _translationsBtn = 0
+        do {
+          cy.contains('Add word translations').click()
+          _translationsBtn += 1
+          cy.get(`[name="translations.${_translationsBtn}.text"]`).type(
+            'an individual who fought for a warrior challenging a ruling of the Klingon High Council',
+          )
+        } while (_translationsBtn < 9)
+
         cy.contains('Next step').click()
 
         cy.contains('Next step').click()
         cy.contains('Finish').click()
-        cy.contains('Dismiss').should('not.exist')
+        cy.contains('Success').should('exist')
       })
       cy.viewport(1024, 768)
       cy.visit(`${Cypress.env('baseUrl')}`)
@@ -79,11 +88,6 @@ describe(
       cy.contains('Finish').click()
       cy.get('#title').type(name)
       cy.middlestuff('Add word translation')
-    })
-
-    it('7.1a - delete word', () => {
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()
