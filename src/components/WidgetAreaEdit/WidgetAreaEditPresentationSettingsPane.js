@@ -187,7 +187,7 @@ function WidgetAreaEditPresentationSettingsPane({
       ) : (
         <div className="mt-6 mx-auto px-6 h-screen">
           <h2 className="mt-6 text-2xl text-center font-bold text-blumine-800">
-            Select a Widget to see details.
+            Select a widget to see details.
           </h2>
         </div>
       )}

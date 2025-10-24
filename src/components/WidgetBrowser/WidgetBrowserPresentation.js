@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import getIcon from 'common/utils/getIcon'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
+import { DESTINATION } from 'common/constants'
 
 function WidgetBrowserPresentation({ chooseWidgetHandler, pageSlug, widgets }) {
   const [selectedWidget, setSelectedWidget] = useState()
@@ -17,9 +18,9 @@ function WidgetBrowserPresentation({ chooseWidgetHandler, pageSlug, widgets }) {
       {widgets?.length > 0 ? (
         <div className="space-y-5">
           <div className="text-center font-medium">
-            <h2 className="text-2xl text-charcoal-900">Available Widgets</h2>
-            <p className="text-xl text-charcoal-900">
-              Select a Widget to add to your page.
+            <h2 className="text-2xl text-blumine-900">Available Widgets</h2>
+            <p className="text-xl text-blumine-900">
+              Select a widget to add to your page.
             </p>
           </div>
 
@@ -66,20 +67,20 @@ function WidgetBrowserPresentation({ chooseWidgetHandler, pageSlug, widgets }) {
         </div>
       ) : (
         <div className="text-center font-medium">
-          <p className="text-xl text-charcoal-900">
-            There are no existing Widgets available to add to your page.
+          <p className="text-xl text-blumine-900">
+            There are no existing widgets available to add to your page.
           </p>
-          <p className="text-xl text-charcoal-900">
-            Would you like to create a new Widget?
+          <p className="text-xl text-blumine-900">
+            Would you like to create a new widget?
           </p>
         </div>
       )}
       <Link
-        to={`/${widgets?.[0]?.sitename}/dashboard/create/widget?destination=${pageSlug || 'isHomePage'}`}
+        to={`/${widgets?.[0]?.sitename}/dashboard/create/widget?${DESTINATION}=${pageSlug}`}
         className="btn-primary btn-md mt-3"
       >
         {getIcon('Add')}
-        <span>Create a New Widget</span>
+        <span>Create a new widget</span>
       </Link>
     </div>
   )

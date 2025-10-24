@@ -19,3 +19,10 @@ export const SUPPORT_LINK =
 
 // the key for storing a post-login redirect location
 export const ORIGINAL_DESTINATION = 'original_destination'
+
+// key for destination param used for indicating intended destination for a created item e.g. widget
+export const DESTINATION = 'destination'
+// key for id param used for adding created item to a destination
+export const ID_TO_ADD = 'idToAdd'
+// the value for identifying page as the site home page
+export const HOME = 'isHomePage'

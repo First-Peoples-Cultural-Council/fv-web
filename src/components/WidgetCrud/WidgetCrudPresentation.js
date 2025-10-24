@@ -88,14 +88,13 @@ function WidgetCrudPresentation({
         <div>
           <Form.Header
             title={
-              !dataToEdit?.type ? 'Create a new widget' : 'Edit your widget'
+              !dataToEdit?.type
+                ? 'Create a new widget'
+                : `Edit your ${getWidgetTypeLabel(dataToEdit?.type)} widget`
             }
             subtitle={
-              !dataToEdit?.type
-                ? `2. Enter the details for your new ${getWidgetTypeLabel(
-                    dataToEdit?.type || selectedType,
-                  )} widget.`
-                : ''
+              !dataToEdit?.type &&
+              `2. Enter the details for your new ${getWidgetTypeLabel(selectedType)} widget.`
             }
           />
 

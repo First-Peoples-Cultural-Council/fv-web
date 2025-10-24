@@ -6,6 +6,7 @@ import SiteDocHead from 'components/SiteDocHead'
 // FPCC
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
 import getIcon from 'common/utils/getIcon'
+import { HOME } from 'common/constants'
 
 function HomeCrudPresentation({ site }) {
   return (
@@ -34,7 +35,7 @@ function HomeCrudPresentation({ site }) {
         </div>
       </div>
       <WidgetAreaEdit.Container
-        pageSlug="isHomePage"
+        pageSlug={HOME}
         destinationTitle="Home"
         currentWidgets={site?.homepageWidgets}
       />
