@@ -20,7 +20,7 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
   )
 
   const isHomePage = destination === HOME
-  const pageSlug = !isHomePage ? destination : null
+  const pageSlug = isHomePage ? null : destination
 
   // Fetch all widgets for this site
   const widgetsQueryResponse = useWidgets()

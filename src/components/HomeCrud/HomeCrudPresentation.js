@@ -26,7 +26,7 @@ function HomeCrudPresentation({ site }) {
             <Link
               type="button"
               to={`/${site?.sitename}/dashboard/edit/home?editHeader=true`}
-              className="btn-primary btn-md"
+              className="btn-secondary btn-md"
             >
               {getIcon('Pencil')}
               <span>Edit banner and logo</span>

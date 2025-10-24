@@ -1,7 +1,9 @@
 // FPCC
-import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
+import {
+  getWidgetTypeLabel,
+  getEditableWidgetsForUser,
+} from 'common/utils/widgetHelpers'
 import { FORMAT_DEFAULT, PUBLIC } from 'common/constants'
-import { getEditableWidgetsForUser } from 'common/utils/widgetHelpers'
 
 export const getObjectFromSettingsArray = (settingsArray) => {
   const settingsObject = {}
@@ -45,7 +47,7 @@ export function widgetForEditing({ item }) {
 
 export function widgetForApi({ formData }) {
   const settings = []
-  Object.entries(formData).forEach(([key, value]) => {
+  for (const key of Object.keys(formData)) {
     // Properties not to include in settings
     const widgetProperties = [
       'id',
@@ -57,14 +59,14 @@ export function widgetForApi({ formData }) {
       'sitename', // Previously added to widget settings as the result of a widget data adaptor bug - fixed in PR for FW-4835
       'typeLabel', // Previously added to widget settings as the result of a widget data adaptor bug - fixed in PR for FW-4835
     ]
-    const validValue = value || ''
+    const validValue = formData[key] || ''
     if (!widgetProperties.includes(key)) {
       settings.push({
         key,
         value: validValue,
       })
     }
-  })
+  }
 
   const formattedFormData = {
     id: formData?.id,

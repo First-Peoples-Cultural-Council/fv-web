@@ -73,7 +73,7 @@ function WidgetAreaEditPresentation({
                           } btn-secondary flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
                         >
                           <div
-                            className={`${!widgetDataFound ? 'invisible' : 'visible'} grid grid-cols-6 gap-6 text-left`}
+                            className={`${widgetDataFound ? 'visible' : 'invisible'} grid grid-cols-6 gap-6 text-left`}
                           >
                             <div className="flex items-center text-left col-span-1">
                               {getWidgetIcon(
