@@ -52,57 +52,66 @@ function WidgetAreaEditPresentation({
                 items={widgetIds}
                 setItems={handleSetWidgetOrder}
               >
-                {widgetIds?.map((id) => (
-                  <SortableItem.Presentation
-                    key={`sortable-${id}`}
-                    id={id}
-                    handle
-                  >
-                    <div className="flex w-full items-center">
-                      <button
-                        data-testid={`widget-${currentWidget?.id}`}
-                        type="button"
-                        onClick={() => setCurrentWidget(mappedWidgets?.[id])}
-                        className={`${
-                          currentWidget?.id === mappedWidgets?.[id]?.id &&
-                          'border-4'
-                        } btn-secondary flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
-                      >
-                        <div className="grid grid-cols-6 gap-6 text-left">
-                          <div className="flex items-center text-left col-span-1">
-                            {getWidgetIcon(
-                              mappedWidgets?.[id]?.type,
-                              'w-12 h-12 fill-current',
-                            )}
-                          </div>
-                          <div className="flex items-center text-left col-span-5">
-                            <div className="truncate">
-                              <p className="text-lg font-bold">
-                                {getWidgetTypeLabel(mappedWidgets?.[id]?.type)}
-                              </p>
-                              <p>{mappedWidgets?.[id]?.nickname}</p>
+                {widgetIds?.map((id) => {
+                  const widgetDataFound = mappedWidgets?.[id]
+                  const isCurrentWidget =
+                    currentWidget &&
+                    currentWidget?.id === mappedWidgets?.[id]?.id
+                  return (
+                    <SortableItem.Presentation
+                      key={`sortable-${id}`}
+                      id={id}
+                      handle
+                    >
+                      <div className="flex w-full items-center">
+                        <button
+                          data-testid={`widget-${currentWidget?.id}`}
+                          type="button"
+                          onClick={() => setCurrentWidget(mappedWidgets?.[id])}
+                          className={`${
+                            isCurrentWidget && 'border-4'
+                          } btn-secondary flex justify-between w-full h-32 p-5 text-left rounded-lg shadow-md`}
+                        >
+                          <div
+                            className={`${!widgetDataFound ? 'invisible' : 'visible'} grid grid-cols-6 gap-6 text-left`}
+                          >
+                            <div className="flex items-center text-left col-span-1">
+                              {getWidgetIcon(
+                                mappedWidgets?.[id]?.type,
+                                'w-12 h-12 fill-current',
+                              )}
+                            </div>
+                            <div className="flex items-center text-left col-span-5">
+                              <div className="truncate">
+                                <p className="text-lg font-bold">
+                                  {mappedWidgets?.[id]?.type
+                                    ? getWidgetTypeLabel(
+                                        mappedWidgets?.[id]?.type,
+                                      )
+                                    : 'Loading widget details...'}
+                                </p>
+                                <p>{mappedWidgets?.[id]?.nickname}</p>
+                              </div>
                             </div>
                           </div>
+                          <div className="flex items-center text-left">
+                            {getIcon(
+                              mappedWidgets?.[id]?.visibility,
+                              'w-5 h-5 fill-current',
+                            )}
+                          </div>
+                        </button>
+                        <div
+                          className={`inline-flex ${
+                            isCurrentWidget ? 'visible' : 'invisible'
+                          }`}
+                        >
+                          {getIcon('ChevronRight', 'fill-current h-10 w-10')}
                         </div>
-                        <div className="flex items-center text-left">
-                          {getIcon(
-                            mappedWidgets?.[id]?.visibility,
-                            'w-5 h-5 fill-current',
-                          )}
-                        </div>
-                      </button>
-                      <div
-                        className={`inline-flex ${
-                          currentWidget?.id === mappedWidgets?.[id]?.id
-                            ? 'visible'
-                            : 'invisible'
-                        }`}
-                      >
-                        {getIcon('ChevronRight', 'fill-current h-10 w-10')}
                       </div>
-                    </div>
-                  </SortableItem.Presentation>
-                ))}
+                    </SortableItem.Presentation>
+                  )
+                })}
               </SortableContainer.Presentation>
             </section>
 
