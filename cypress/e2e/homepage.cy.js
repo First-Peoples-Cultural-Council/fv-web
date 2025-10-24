@@ -36,7 +36,7 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('404').should('not.exist')
       cy.get(
-        '[data-testid="AlphabetPresentationSelected__header"] > button',
+        '[data-testid="AlphabetPresentationSelected__header"] > div',
       ).should('have.length', 2)
     })
 

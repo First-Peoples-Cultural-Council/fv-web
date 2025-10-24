@@ -80,19 +80,12 @@ describe(
       })
 
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.get('[data-testid="DashboardPresentationReports"]').click()
     })
-
-    // it('check page loaded', () => {
-    //   cy.contains('Reports').should('exist')
-
-    //   _reportTypes.forEach((_rt) => {
-    //     cy.contains(_rt).should('exist')
-    //   })
-    // })
 
     it('check recently created', () => {
       cy.contains(_reportTypes[0]).click()

@@ -49,6 +49,7 @@ describe(
 
     it('3.1 edit homepage', () => {
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
@@ -59,6 +60,7 @@ describe(
 
     it('12.2 - Page Text', () => {
       cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
@@ -68,7 +70,7 @@ describe(
 
     it('3.1 edit homepage - widget', () => {
       cy.contains('Explore Languages').click()
-
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit homepage').click()

@@ -52,7 +52,7 @@ describe(
 
     it('8.1 - create phrase', () => {
       cy.contains('Explore Languages').click()
-
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
@@ -65,7 +65,7 @@ describe(
 
     it('8.1a - delete phrase', () => {
       cy.contains('Explore Languages').click()
-
+      cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.get('[data-testid="DashboardPresentationEdit"]').click()

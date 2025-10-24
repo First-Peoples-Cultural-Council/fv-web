@@ -41,6 +41,7 @@ describe(
         )
 
         cy.contains('Explore Languages').click()
+        cy.title().should('eq', 'FirstVoices')
       })
       Cypress.Commands.add('checkValidation', (widgetName) => {
         cy.contains(widgetName).click()
