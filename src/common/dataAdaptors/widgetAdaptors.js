@@ -37,7 +37,6 @@ export function widgetForEditing({ item }) {
     visibility: item?.visibility,
     format: item?.format,
     type: item?.type,
-    typeLabel: getWidgetTypeLabel(item?.type),
     ...widgetSettings,
   }
 
@@ -47,6 +46,7 @@ export function widgetForEditing({ item }) {
 export function widgetForApi({ formData }) {
   const settings = []
   Object.entries(formData).forEach(([key, value]) => {
+    // Properties not to include in settings
     const widgetProperties = [
       'id',
       'format',
@@ -54,6 +54,8 @@ export function widgetForApi({ formData }) {
       'visibility',
       'settings',
       'nickname',
+      'sitename', // Previously added to widget settings as the result of a widget data adaptor bug - fixed in PR for FW-4835
+      'typeLabel', // Previously added to widget settings as the result of a widget data adaptor bug - fixed in PR for FW-4835
     ]
     const validValue = value || ''
     if (!widgetProperties.includes(key)) {
