@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 
 // FPCC
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
 import { useUserStore } from 'context/UserContext'
-import { WIDGETS } from 'common/constants'
+import { HOME, ID_TO_ADD, WIDGETS } from 'common/constants'
 import {
   widgetForApi,
   widgetForEditing,
@@ -47,8 +47,9 @@ export function useWidgets() {
   return queryResponse
 }
 
-export function useWidgetCreate() {
+export function useWidgetCreate({ destination }) {
   const { sitename } = useParams()
+  const navigate = useNavigate()
 
   const createWidget = async (formData) => {
     const properties = widgetForApi({ formData })
@@ -58,9 +59,21 @@ export function useWidgetCreate() {
     })
   }
 
+  const onSuccessCallback = (response) => {
+    if (destination === HOME) {
+      navigate(`/${sitename}/dashboard/edit/home?${ID_TO_ADD}=${response?.id}`)
+    } else if (destination) {
+      navigate(
+        `/${sitename}/dashboard/edit/page?slug=${destination}&${ID_TO_ADD}=${response?.id}`,
+      )
+    } else {
+      navigate(`/${sitename}/dashboard/edit/widgets`)
+    }
+  }
+
   const mutation = useMutationWithNotification({
     mutationFn: createWidget,
-    redirectTo: `/${sitename}/dashboard/edit/widgets`,
+    onSuccessCallback,
     queryKeyToInvalidate: [WIDGETS, sitename],
     actionWord: 'created',
     type: 'widget',

@@ -9,6 +9,7 @@ import {
   useWidgetDelete,
 } from 'common/dataHooks/useWidgets'
 import { getCreatableWidgetsForUser } from 'common/utils/widgetHelpers'
+import { DESTINATION } from 'common/constants'
 
 function WidgetCrudData() {
   const { user } = useUserStore()
@@ -21,9 +22,10 @@ function WidgetCrudData() {
   const backHandler = () => navigate(-1)
 
   const _widgetId = searchParams.get('id') || null
+  const destination = searchParams.get(DESTINATION) || null
   const queryResponse = useWidget({ id: _widgetId, edit: true })
 
-  const { mutate: createWidget } = useWidgetCreate()
+  const { mutate: createWidget } = useWidgetCreate({ destination })
   const { mutate: updateWidget } = useWidgetUpdate()
   const { mutate: deleteWidget } = useWidgetDelete()
 
