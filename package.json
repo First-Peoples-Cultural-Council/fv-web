@@ -89,7 +89,7 @@
     "@tiptap/react": "^3.7.2",
     "@tiptap/starter-kit": "^3.7.0",
     "@uppy/core": "^5.1.0",
-    "@uppy/dashboard": "^5.0.2",
+    "@uppy/dashboard": "^5.0.3",
     "@uppy/image-editor": "^4.0.1",
     "@uppy/react": "^5.1.0",
     "@uppy/xhr-upload": "^5.0.1",
