@@ -7,6 +7,19 @@ import Form from 'components/Form'
 import DeleteButton from 'components/DeleteButton'
 import { getFriendlyType } from 'common/utils/stringHelpers'
 import { TYPE_WORD, TYPE_PHRASE, WARNING } from 'common/constants'
+import {
+  MAX_ACKNOWLEDGEMENTS,
+  MAX_AUDIO,
+  MAX_CATEGORIES,
+  MAX_DOCUMENTS,
+  MAX_IMAGES,
+  MAX_NOTES,
+  MAX_PRONUNCIATIONS,
+  MAX_RELATED_ENTRIES,
+  MAX_SPELLINGS,
+  MAX_TRANSLATIONS,
+  MAX_VIDEOS,
+} from 'common/constants/limits'
 import getIcon from 'common/utils/getIcon'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
@@ -138,6 +151,7 @@ function DictionaryCrudPresentation({
                 register={register}
                 control={control}
                 errors={errors}
+                maxItems={MAX_TRANSLATIONS}
                 hideLabel
               />
             </div>
@@ -147,7 +161,7 @@ function DictionaryCrudPresentation({
                 nameId="relatedAudio"
                 control={control}
                 errors={errors}
-                maxItems={10}
+                maxItems={MAX_AUDIO}
               />
             </div>
             <div className="col-span-12">
@@ -156,7 +170,7 @@ function DictionaryCrudPresentation({
                 nameId="categories"
                 control={control}
                 register={register}
-                maxItems={8}
+                maxItems={MAX_CATEGORIES}
                 errors={errors}
               />
             </div>
@@ -169,7 +183,7 @@ function DictionaryCrudPresentation({
                 helpText={`Words and phrases related to your ${getFriendlyType({
                   type,
                 })}`}
-                maxItems={10}
+                maxItems={MAX_RELATED_ENTRIES}
                 types={[TYPE_WORD, TYPE_PHRASE]}
                 displayValue={dataToEdit?.title}
                 errors={errors}
@@ -182,7 +196,7 @@ function DictionaryCrudPresentation({
                 register={register}
                 control={control}
                 errors={errors}
-                maxItems={10}
+                maxItems={MAX_NOTES}
               />
             </div>
             <div className="col-span-12">
@@ -192,7 +206,7 @@ function DictionaryCrudPresentation({
                 register={register}
                 control={control}
                 errors={errors}
-                maxItems={6}
+                maxItems={MAX_ACKNOWLEDGEMENTS}
               />
             </div>
           </Fragment>
@@ -206,7 +220,7 @@ function DictionaryCrudPresentation({
                 nameId="relatedImages"
                 control={control}
                 errors={errors}
-                maxItems={10}
+                maxItems={MAX_IMAGES}
               />
             </div>
             <div className="col-span-12">
@@ -215,7 +229,7 @@ function DictionaryCrudPresentation({
                 nameId="relatedVideos"
                 control={control}
                 errors={errors}
-                maxItems={10}
+                maxItems={MAX_VIDEOS}
               />
             </div>
             <div className="col-span-12">
@@ -224,7 +238,7 @@ function DictionaryCrudPresentation({
                 nameId="relatedDocuments"
                 control={control}
                 errors={errors}
-                maxItems={10}
+                maxItems={MAX_DOCUMENTS}
               />
             </div>
             {type === TYPE_WORD && (
@@ -245,7 +259,7 @@ function DictionaryCrudPresentation({
                     register={register}
                     control={control}
                     errors={errors}
-                    maxItems={3}
+                    maxItems={MAX_PRONUNCIATIONS}
                   />
                 </div>
                 <div className="col-span-12">
@@ -255,7 +269,7 @@ function DictionaryCrudPresentation({
                     register={register}
                     control={control}
                     errors={errors}
-                    maxItems={3}
+                    maxItems={MAX_SPELLINGS}
                   />
                 </div>
               </>
