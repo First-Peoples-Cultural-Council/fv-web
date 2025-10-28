@@ -12,7 +12,7 @@ function DrawerPresentation({
   fullScreenPath,
 }) {
   return (
-    <Dialog open={isOpen} onClose={closeHandler} className="relative z-50">
+    <Dialog open={isOpen} onClose={closeHandler} className="relative z-20">
       <div className="fixed inset-0" />
 
       <div
