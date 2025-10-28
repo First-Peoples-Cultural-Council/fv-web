@@ -36,6 +36,7 @@ import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import Form from 'components/Form'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import DeleteButton from 'components/DeleteButton'
+import getIcon from 'common/utils/getIcon'
 
 function WidgetCrudPresentation({
   backHandler,
@@ -110,10 +111,11 @@ function WidgetCrudPresentation({
               <button
                 data-testid="cancel"
                 type="button"
-                className="btn-primary btn-md"
+                className="btn-secondary btn-md"
                 onClick={backHandler}
               >
-                Cancel
+                {getIcon('Close')}
+                <span>Cancel</span>
               </button>
             </div>
           </div>

@@ -42,7 +42,7 @@ function SiteFrame() {
   return (
     <div className="overflow-hidden">
       <SiteDocHead />
-      <header className="fixed w-full top-0 z-50 print:hidden bg-charcoal-900 h-16">
+      <header className="fixed w-full top-0 z-10 print:hidden bg-charcoal-900 h-16">
         <NavBar.Container />
       </header>
       <main role="main" className="relative pt-16 z-0 min-h-screen">
