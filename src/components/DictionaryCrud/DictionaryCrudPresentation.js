@@ -390,12 +390,10 @@ function DictionaryCrudPresentation({
         <section className="flex w-full justify-end">
           <div>
             <Form.SubmitButtons
-              submitLabel={
-                isCreate ? `Add ${getFriendlyType({ type })}` : 'Save changes'
-              }
-              submitIcon={isCreate ? 'Add' : 'Save'}
-              cancelIcon={isCreate ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreate ? 'Go back' : 'Cancel'}
+              submitLabel="Save changes"
+              submitIcon="Save"
+              cancelIcon="Close"
+              cancelLabel="Cancel"
               onCancelClick={backHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />

@@ -137,8 +137,8 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
             <Form.SubmitButtons
               submitLabel={isCreateMode ? 'Create page' : 'Save changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
-              cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
+              cancelIcon="Close"
+              cancelLabel="Cancel"
               onCancelClick={cancelHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />
