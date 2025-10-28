@@ -3,7 +3,7 @@ export function objectsToIdsAdaptor(arrayOfObjects) {
   return arrayOfIds || []
 }
 
-// Converts an array of objects with ids to an object oj objects with the ids as keys
+// Converts an array of objects with ids to an object of objects with the ids as keys
 export function arrayToObjectWithIdKeys(arrayOfObjects) {
   const mappedData = {}
   for (const obj of arrayOfObjects || []) {
