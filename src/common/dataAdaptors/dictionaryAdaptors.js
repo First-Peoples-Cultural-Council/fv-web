@@ -4,7 +4,7 @@ import {
   relatedMediaForApi,
 } from 'common/dataAdaptors/relatedMediaAdaptors'
 import { notesAcknowledgementsAdaptor } from 'common/dataAdaptors/notesAcknowledgementsAdaptor'
-import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 import {
   audienceForViewing,
   audienceForEditing,

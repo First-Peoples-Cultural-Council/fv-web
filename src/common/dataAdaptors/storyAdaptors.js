@@ -20,7 +20,7 @@ import {
   storyPageForViewing,
   storyPageForEditing,
 } from 'common/dataAdaptors/storyPageAdaptors'
-import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 
 export function storySummaryAdaptor({ item }) {
   return {

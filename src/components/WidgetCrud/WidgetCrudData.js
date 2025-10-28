@@ -4,12 +4,12 @@ import { useNavigate, useSearchParams } from 'react-router'
 import { useUserStore } from 'context/UserContext'
 import {
   useWidget,
-  useWidgetsCreate,
-  useWidgetsUpdate,
-  useWidgetsDelete,
+  useWidgetCreate,
+  useWidgetUpdate,
+  useWidgetDelete,
 } from 'common/dataHooks/useWidgets'
 import { getCreatableWidgetsForUser } from 'common/utils/widgetHelpers'
-import { widgetFormDataAdaptor } from 'common/dataAdaptors/widgetAdaptors'
+import { DESTINATION } from 'common/constants'
 
 function WidgetCrudData() {
   const { user } = useUserStore()
@@ -22,18 +22,18 @@ function WidgetCrudData() {
   const backHandler = () => navigate(-1)
 
   const _widgetId = searchParams.get('id') || null
-  const queryResponse = useWidget({ id: _widgetId })
+  const destination = searchParams.get(DESTINATION) || null
+  const queryResponse = useWidget({ id: _widgetId, edit: true })
 
-  const { onSubmit: createWidget } = useWidgetsCreate()
-  const { onSubmit: updateWidget } = useWidgetsUpdate()
-  const { onSubmit: deleteWidget } = useWidgetsDelete()
+  const { mutate: createWidget } = useWidgetCreate({ destination })
+  const { mutate: updateWidget } = useWidgetUpdate()
+  const { mutate: deleteWidget } = useWidgetDelete()
 
   const submitHandler = (formData) => {
-    const formattedFormData = widgetFormDataAdaptor({ formData })
-    if (_widgetId && queryResponse?.data) {
-      updateWidget(formattedFormData)
+    if (_widgetId && queryResponse?.data?.id) {
+      updateWidget(formData)
     } else {
-      createWidget(formattedFormData)
+      createWidget(formData)
     }
   }
 

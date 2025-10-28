@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import { PAGES } from 'common/constants'
 import api from 'services/api'
 import { getCustomPageHref } from 'common/utils/urlHelpers'
+import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
 import {
   widgetListAdaptor,
   pageInfoAdaptor,
@@ -19,10 +20,12 @@ export function usePage({ pageSlug }) {
     queryFn: () => api.pages.get({ sitename, slug: pageSlug }),
     select: (data) => ({
       ...data,
-      widgets: widgetListAdaptor({
-        widgetList: data?.widgets,
+      banner: selectOneMediaDataHelper(data?.bannerImage, data?.bannerVideo),
+      href: getCustomPageHref({
         sitename,
+        pageSlug,
       }),
+      widgets: widgetListAdaptor({ widgetList: data?.widgets }),
     }),
     enabled: !!pageSlug,
   })

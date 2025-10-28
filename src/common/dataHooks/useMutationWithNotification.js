@@ -29,9 +29,7 @@ export default function useMutationWithNotification({
         onSuccessCallback(response)
       }
       if (redirectTo) {
-        setTimeout(() => {
-          navigate(redirectTo)
-        }, 1000)
+        navigate(redirectTo)
       }
     },
     onError: async (error) => {

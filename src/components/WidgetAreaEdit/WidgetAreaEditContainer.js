@@ -1,59 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import WidgetAreaEditPresentation from 'components/WidgetAreaEdit/WidgetAreaEditPresentation'
 import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/WidgetAreaEditPresentationSettingsPane'
-import WidgetAreaEditData from 'components/WidgetAreaEdit/WidgetAreaEditData'
-import Loading from 'components/Loading'
+import { useWidgetAreaEdit } from 'common/dataHooks//useWidgetAreaEdit'
+import LoadOrError from 'components/LoadOrError'
+import Modal from 'components/Modal'
+import WidgetBrowser from 'components/WidgetBrowser'
 
-function WidgetAreaEditContainer({ pageSlug, isHomepage = false }) {
+function WidgetAreaEditContainer({
+  pageSlug,
+  destinationTitle,
+  currentWidgets,
+}) {
   const {
-    addModalOpen,
-    setAddModalOpen,
-    currentWidget,
-    setCurrentWidget,
-    destinationTitle,
     handleAddWidget,
     handleRemoveWidget,
-    widgetData,
+    handleSetWidgetOrder,
+    mappedWidgets,
     widgetIds,
-    setWidgetIds,
-    site,
-    isLoading,
-  } = WidgetAreaEditData({
-    pageSlug,
-    isHomepage,
-  })
+    widgetsQueryResponse,
+  } = useWidgetAreaEdit({ destination: pageSlug, currentWidgets })
+
+  const [currentWidget, setCurrentWidget] = useState()
+  const [addModalOpen, setAddModalOpen] = useState(false)
 
   return (
-    <Loading.Container isLoading={isLoading}>
+    <LoadOrError queryResponse={widgetsQueryResponse}>
       <WidgetAreaEditPresentation
         destinationTitle={destinationTitle}
-        widgetData={widgetData}
-        widgetIds={widgetIds}
-        setWidgetIds={setWidgetIds}
         currentWidget={currentWidget}
         setCurrentWidget={setCurrentWidget}
-        handleAddWidget={handleAddWidget}
-        isHomepage={isHomepage}
-        addModalOpen={addModalOpen}
+        handleSetWidgetOrder={handleSetWidgetOrder}
         setAddModalOpen={setAddModalOpen}
+        mappedWidgets={mappedWidgets}
+        widgetIds={widgetIds}
       >
         <WidgetAreaEditPresentationSettingsPane
-          handleRemoveWidget={handleRemoveWidget}
+          handleRemoveWidget={() => {
+            handleRemoveWidget(currentWidget?.id)
+            setCurrentWidget(null)
+          }}
           currentWidget={currentWidget}
-          site={site}
         />
       </WidgetAreaEditPresentation>
-    </Loading.Container>
+      {/* Add Modal */}
+      <Modal.Presentation
+        isOpen={addModalOpen}
+        closeHandler={() => setAddModalOpen(false)}
+      >
+        <WidgetBrowser.Container
+          chooseWidgetHandler={(id) => {
+            handleAddWidget(id)
+            setAddModalOpen(false)
+          }}
+          currentWidgets={widgetIds}
+          pageSlug={pageSlug}
+          widgetsQueryResponse={widgetsQueryResponse}
+        />
+      </Modal.Presentation>
+    </LoadOrError>
   )
 }
 // PROPTYPES
-const { bool, string } = PropTypes
+const { array, string } = PropTypes
 WidgetAreaEditContainer.propTypes = {
+  currentWidgets: array,
+  destinationTitle: string,
   pageSlug: string,
-  isHomepage: bool,
 }
 
 export default WidgetAreaEditContainer

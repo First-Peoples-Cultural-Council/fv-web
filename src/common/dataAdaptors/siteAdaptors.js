@@ -47,10 +47,7 @@ export function siteAdaptor({ siteData }) {
     visibility: siteData?.visibility,
     visibilityOptions: constructVisibilityOptions(siteData?.visibility),
     features: siteData?.enabledFeatures,
-    homepageWidgets: widgetListAdaptor({
-      widgetList: siteData?.homepage,
-      sitename: siteData?.slug,
-    }),
+    homepageWidgets: widgetListAdaptor({ widgetList: siteData?.homepage }),
     checkForEnabledFeature: (featureKey) => {
       const feature = siteData?.enabledFeatures?.find(
         (e) => e?.key === featureKey,

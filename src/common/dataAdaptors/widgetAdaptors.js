@@ -1,30 +1,9 @@
 // FPCC
-import { getWidgetTypeLabel } from 'common/utils/widgetHelpers'
-
-export function widgetAdaptor({ widgetData, sitename }) {
-  const widgetSettings = getObjectFromSettingsArray(widgetData?.settings)
-  const data = {
-    sitename,
-    id: widgetData?.id,
-    nickname: widgetData?.title,
-    visibility: widgetData?.visibility,
-    format: widgetData?.format,
-    type: widgetData?.type,
-    typeLabel: getWidgetTypeLabel(widgetData?.type),
-    settings: widgetSettings,
-  }
-  Object.keys(widgetSettings).forEach((key) => {
-    data[key] = widgetSettings[key]
-  })
-  return data
-}
-
-export function widgetListAdaptor({ widgetList, sitename }) {
-  if (!widgetList) return null
-  return widgetList?.map((widgetData) =>
-    widgetAdaptor({ widgetData, sitename }),
-  )
-}
+import {
+  getWidgetTypeLabel,
+  getEditableWidgetsForUser,
+} from 'common/utils/widgetHelpers'
+import { FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 
 export const getObjectFromSettingsArray = (settingsArray) => {
   const settingsObject = {}
@@ -34,28 +13,76 @@ export const getObjectFromSettingsArray = (settingsArray) => {
   return settingsObject
 }
 
-export function widgetFormDataAdaptor({ formData }) {
+export function widgetForViewing({ item, isSuperAdmin = false }) {
+  const editableWidgets = getEditableWidgetsForUser(isSuperAdmin)
+  const widgetSettings = getObjectFromSettingsArray(item?.settings)
+
+  const data = {
+    sitename: item?.site?.slug,
+    id: item?.id,
+    nickname: item?.title,
+    visibility: item?.visibility,
+    format: item?.format,
+    type: item?.type,
+    typeLabel: getWidgetTypeLabel(item?.type),
+    editable: editableWidgets.includes(item?.type),
+    settings: widgetSettings,
+  }
+  return data
+}
+
+export function widgetForEditing({ item }) {
+  const widgetSettings = getObjectFromSettingsArray(item?.settings)
+  const data = {
+    id: item?.id,
+    nickname: item?.title,
+    visibility: item?.visibility,
+    format: item?.format,
+    type: item?.type,
+    ...widgetSettings,
+  }
+
+  return data
+}
+
+export function widgetForApi({ formData }) {
+  const settings = []
+  for (const key of Object.keys(formData)) {
+    // Properties not to include in settings
+    const widgetProperties = [
+      'id',
+      'format',
+      'type',
+      'visibility',
+      'settings',
+      'nickname',
+      'sitename', // Previously added to widget settings as the result of a widget data adaptor bug - fixed in PR for FW-4835
+      'typeLabel', // Previously added to widget settings as the result of a widget data adaptor bug - fixed in PR for FW-4835
+    ]
+    const validValue = formData[key] || ''
+    if (!widgetProperties.includes(key)) {
+      settings.push({
+        key,
+        value: validValue,
+      })
+    }
+  }
+
   const formattedFormData = {
     id: formData?.id,
     title: formData?.nickname,
     type: formData?.type,
-    format: formData?.format,
-    visibility: formData?.visibility,
+    visibility: formData?.visibility || PUBLIC,
+    format: formData?.format || FORMAT_DEFAULT,
+    settings,
   }
 
-  const settings = []
-  Object.entries(formData).forEach(([key, value]) => {
-    const widgetProperties = ['id', 'format', 'type', 'visibility', 'settings']
-    const validValue = value || ''
-    if (!key.startsWith('widget') && !widgetProperties.includes(key)) {
-      settings.push({
-        key,
-        value: validValue,
-        category: 'general',
-      })
-    }
-  })
-
-  formattedFormData.settings = settings
   return formattedFormData
+}
+
+export function widgetListAdaptor({ widgetList, isSuperAdmin }) {
+  if (!widgetList) return null
+  return widgetList?.map((widgetData) =>
+    widgetForViewing({ item: widgetData, isSuperAdmin }),
+  )
 }

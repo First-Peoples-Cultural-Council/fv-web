@@ -6,6 +6,7 @@ import SiteDocHead from 'components/SiteDocHead'
 // FPCC
 import WidgetAreaEdit from 'components/WidgetAreaEdit'
 import getIcon from 'common/utils/getIcon'
+import { HOME } from 'common/constants'
 
 function HomeCrudPresentation({ site }) {
   return (
@@ -25,7 +26,7 @@ function HomeCrudPresentation({ site }) {
             <Link
               type="button"
               to={`/${site?.sitename}/dashboard/edit/home?editHeader=true`}
-              className="btn-primary btn-md"
+              className="btn-secondary btn-md"
             >
               {getIcon('Pencil')}
               <span>Edit banner and logo</span>
@@ -33,7 +34,11 @@ function HomeCrudPresentation({ site }) {
           </div>
         </div>
       </div>
-      <WidgetAreaEdit.Container isHomepage />
+      <WidgetAreaEdit.Container
+        pageSlug={HOME}
+        destinationTitle="Home"
+        currentWidgets={site?.homepageWidgets}
+      />
     </div>
   )
 }

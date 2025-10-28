@@ -1,5 +1,5 @@
 import { titleForEditing, titleForApi } from 'common/dataAdaptors/titleAdaptors'
-import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 
 export function galleryForViewing({ item }) {
   return {

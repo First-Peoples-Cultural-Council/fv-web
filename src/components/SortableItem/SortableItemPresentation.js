@@ -25,8 +25,9 @@ export function SortableItemPresentation({ id, children }) {
     <div ref={setNodeRef} style={style} className="flex items-center">
       <div className="p-2">
         <button
-          data-testid="DashboardWidgetMoveButton"
+          data-testid="sortable-item-btn"
           type="button"
+          className="btn-tertiary btn-md-icon"
           {...attributes}
           {...listeners}
         >

@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
-
+import { useSiteStore } from 'context/SiteContext'
 import getIcon from 'common/utils/getIcon'
 import { isUUID } from 'common/utils/stringHelpers'
 import { getWidgetLabel, getWidgetTypeLabel } from 'common/utils/widgetHelpers'
@@ -24,10 +24,10 @@ import { useContactUs } from 'common/dataHooks/useContactUs'
 function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
   handleRemoveWidget,
-  site,
 }) {
   const [removeModalOpen, setRemoveModalOpen] = useState(false)
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
+  const { site } = useSiteStore()
 
   const onRemoveConfirmationClick = () => {
     handleRemoveWidget()
@@ -187,7 +187,7 @@ function WidgetAreaEditPresentationSettingsPane({
       ) : (
         <div className="mt-6 mx-auto px-6 h-screen">
           <h2 className="mt-6 text-2xl text-center font-bold text-blumine-800">
-            Select a Widget to see details.
+            Select a widget to see details.
           </h2>
         </div>
       )}
@@ -246,7 +246,6 @@ const { func, object } = PropTypes
 WidgetAreaEditPresentationSettingsPane.propTypes = {
   currentWidget: object,
   handleRemoveWidget: func,
-  site: object,
 }
 
 export default WidgetAreaEditPresentationSettingsPane

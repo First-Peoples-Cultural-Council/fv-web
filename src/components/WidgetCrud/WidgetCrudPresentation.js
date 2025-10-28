@@ -47,64 +47,18 @@ function WidgetCrudPresentation({
   const [selectedType, setSelectedType] = useState(null)
   return (
     <div id="WidgetCrudPresentation" className="max-w-5xl p-8">
-      {!selectedType && !dataToEdit?.type ? (
-        <div className="space-y-2 p-6">
-          <Form.Header
-            title="Create a new Widget"
-            subtitle="1. Choose what type of widget you'd like to create."
-          />
-          <div className="grid gap-4 grid-cols-4 place-content-center">
-            {widgetTypes?.length > 0 &&
-              widgetTypes?.map((type) => (
-                <button
-                  data-testid={`select-${type}-btn`}
-                  type="button"
-                  key={type}
-                  onClick={() => setSelectedType(type)}
-                  className={`${
-                    selectedType === type
-                      ? 'bg-scarlet-800 text-white border-scarlet-800'
-                      : 'hover:bg-charcoal-50 text-blumine-800 bg-white border-blumine-800'
-                  } w-full my-2 mx-1 h-16 font-medium flex items-center rounded shadow-lg border-2`}
-                >
-                  <div>
-                    <div className="p-2 flex items-center">
-                      {getWidgetIcon(
-                        type,
-                        'w-10 h-10 fill-current inline-flex mx-2',
-                      )}{' '}
-                      {getWidgetTypeLabel(type)}
-                    </div>
-                  </div>
-                </button>
-              ))}
-          </div>
-
-          <div className="p-4">
-            <div className="flex justify-center space-x-4">
-              <button
-                data-testid="cancel"
-                type="button"
-                className="btn-primary btn-md"
-                onClick={backHandler}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : (
+      {selectedType || dataToEdit?.type ? (
         <div>
           <Form.Header
             title={
-              !dataToEdit?.type ? 'Create a new widget' : 'Edit your widget'
+              dataToEdit?.type
+                ? `Edit your ${getWidgetTypeLabel(dataToEdit?.type)} widget`
+                : 'Create a new widget'
             }
             subtitle={
-              !dataToEdit?.type
-                ? `2. Enter the details for your new ${getWidgetTypeLabel(
-                    dataToEdit?.type || selectedType,
-                  )} widget.`
-                : ''
+              dataToEdit?.type
+                ? ''
+                : `2. Enter the details for your new ${getWidgetTypeLabel(selectedType)} widget.`
             }
           />
 
@@ -122,10 +76,47 @@ function WidgetCrudPresentation({
             submitHandler={submitHandler}
             type={dataToEdit?.type ? dataToEdit?.type : selectedType}
             cancelHandler={
-              dataToEdit?.type ? backHandler : () => setSelectedType(null)
+              dataToEdit?.id ? backHandler : () => setSelectedType(null)
             }
             dataToEdit={dataToEdit}
           />
+        </div>
+      ) : (
+        <div className="space-y-2 p-6">
+          <Form.Header
+            title="Create a new Widget"
+            subtitle="1. Choose what type of widget you'd like to create."
+          />
+          <div className="grid gap-5 grid-cols-4 place-content-center p-3">
+            {widgetTypes?.length > 0 &&
+              widgetTypes?.map((type) => (
+                <button
+                  data-testid={`select-${type}-btn`}
+                  type="button"
+                  key={type}
+                  onClick={() => setSelectedType(type)}
+                  className="p-3 bg-white border-2 border-blumine-900 text-blumine-900 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900 w-full h-16 font-medium flex items-center rounded"
+                >
+                  <div className="flex items-center space-x-3">
+                    {getWidgetIcon(type, 'w-10 h-10 fill-current')}
+                    <span>{getWidgetTypeLabel(type)}</span>
+                  </div>
+                </button>
+              ))}
+          </div>
+
+          <div className="p-4">
+            <div className="flex justify-center space-x-4">
+              <button
+                data-testid="cancel"
+                type="button"
+                className="btn-primary btn-md"
+                onClick={backHandler}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

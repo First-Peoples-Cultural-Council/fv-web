@@ -2,7 +2,7 @@ import {
   audienceForEditing,
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
-import { objectsToIdsAdaptor } from 'common/dataAdaptors/objectsToIdsAdaptor'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 import { AUDIO, DOCUMENT, IMAGE, VIDEO } from 'common/constants'
 
 export const mediaSearchAdaptor = ({ type, data }) => {
