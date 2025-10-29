@@ -113,8 +113,8 @@ function GalleryCrudPresentation({
             <Form.SubmitButtons
               submitLabel={isCreateMode ? 'Create gallery' : 'Save changes'}
               submitIcon={isCreateMode ? 'Add' : 'Save'}
-              cancelIcon={isCreateMode ? 'BackArrow' : 'Close'}
-              cancelLabel={isCreateMode ? 'Go back' : 'Cancel'}
+              cancelIcon="Close"
+              cancelLabel="Cancel"
               onCancelClick={backHandler}
               onSubmitClick={handleSubmit(submitHandler)}
             />

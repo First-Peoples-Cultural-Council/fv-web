@@ -45,7 +45,7 @@ runs:
         echo "version: $REMOTE_HELM_RELEASE_VERSION" | sudo tee -a ./helm/fv-be/Chart.yaml >/dev/null
 
 
-    -   uses: azure/setup-helm@v4.2.0
+    -   uses: azure/setup-helm@v4.3.0
         id: install
 
     -   name: helm upgrade

@@ -8,6 +8,7 @@ const _reportTypes = [
   'Team content',
   'Members only content',
   'Public content',
+  'Not on Kids site',
 ]
 
 describe(
@@ -125,6 +126,11 @@ describe(
       cy.contains(_reportTypes[7]).click()
       cy.checkHeaderCSS([_reportTypes[7], 500, 500, 500, 500, 500, 700])
       cy.contains('Public', { matchCase: false }).should('be.visible')
+      cy.go('back')
+
+      cy.contains(_reportTypes[8]).click()
+      cy.checkHeaderCSS([_reportTypes[7], 700, 500, 500, 500, 500, 500])
+      cy.contains('on kids site', { matchCase: false }).should('be.visible')
       cy.go('back')
     })
   },
