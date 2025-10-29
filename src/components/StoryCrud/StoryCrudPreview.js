@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -24,13 +24,7 @@ function StoryCrudPreview({ storyData }) {
   } = storyData
 
   const [translate, setTranslate] = useState(false)
-  const [currentPage, setCurrentPage] = useState()
-
-  useEffect(() => {
-    if (!currentPage) {
-      setCurrentPage(pagesData?.[pages?.[0]])
-    }
-  }, [currentPage, pages, pagesData])
+  const [currentPage, setCurrentPage] = useState(pagesData?.[pages?.[0]])
 
   const labelStyle = 'text-charcoal-500 font-semibold'
   const headingStyle = 'font-bold pb-8 text-xl'
@@ -40,7 +34,7 @@ function StoryCrudPreview({ storyData }) {
     <button
       data-testid="translate"
       type="button"
-      className="text-blumine-600 text-sm font-semibold"
+      className="btn-tertiary btn-sm -ml-3"
       onClick={() => setTranslate(!translate)}
     >
       View {translate ? 'language' : 'translation'}
@@ -80,7 +74,7 @@ function StoryCrudPreview({ storyData }) {
           videoLinks?.map((videoLink) => (
             <MediaThumbnail.VideoLink
               key={videoLink?.id}
-              link={videoLink?.thumbnail}
+              link={videoLink}
               containerStyles="w-40 h-40 mr-2"
             />
           ))}
@@ -99,29 +93,32 @@ function StoryCrudPreview({ storyData }) {
 
   return (
     <div id="StoryCrudPreview" className="space-y-4">
-      <section className="bg-white p-8 rounded-sm">
+      <section className="bg-white px-8 py-6 rounded-lg">
         <h2 className={headingStyle}>Story Info</h2>
         <div className="text-charcoal-900 space-y-6">
           <div className={detailStyle}>
             <h3 className={labelStyle}>Story title</h3>
             <p>{translate ? titleTranslation : title}</p>
+          </div>
+          <div>
+            <div className={detailStyle}>
+              <h3 className={labelStyle}>Author</h3>
+              <p>{author || 'No author specified'}</p>
+            </div>
             {translateButton()}
           </div>
-          <div className={detailStyle}>
-            <h3 className={labelStyle}>Author</h3>
-            <p>{author}</p>
-          </div>
-          <div className={detailStyle}>
-            <h3 className={`${labelStyle} -mb-3`}>Story introduction</h3>
-
-            <WysiwygBlock htmlString={translate ? introTranslation : intro} />
+          <div>
+            <div className={detailStyle}>
+              <h3 className={labelStyle}>Story introduction</h3>
+              <WysiwygBlock htmlString={translate ? introTranslation : intro} />
+            </div>
             {translateButton()}
           </div>
 
           {acknowledgements?.length > 0 && (
             <div className={detailStyle}>
               <h3 className={labelStyle}>Acknowledgements</h3>
-              <ul>
+              <ul className="list-inside list-disc">
                 {acknowledgements?.map((ack) => (
                   <li key={ack?.id} className="text-sm">
                     {ack?.text}
@@ -133,7 +130,7 @@ function StoryCrudPreview({ storyData }) {
           {notes?.length > 0 && (
             <div className={detailStyle}>
               <h3 className={labelStyle}>Notes</h3>
-              <ul>
+              <ul className="list-inside list-disc">
                 {notes?.map((note) => (
                   <li key={note?.id} className="text-sm">
                     {note?.text}
@@ -164,10 +161,10 @@ function StoryCrudPreview({ storyData }) {
         </div>
       </section>
       {currentPage && (
-        <section className="relative bg-white p-8 rounded-sm">
+        <section className="relative bg-white px-8 py-6 rounded-lg">
           <h2 className={headingStyle}>Story Pages</h2>
-          <div className="text-charcoal-500 grid grid-cols-2">
-            <div className="col-span-1 inline-flex">
+          <div className="text-charcoal-500 grid grid-cols-2 border-2 border-charcoal-200 rounded-lg p-2">
+            <div className="col-span-1 inline-flex items-center justify-center">
               {relatedVisualMediaThumbnails({
                 images: currentPage?.relatedImages,
                 videos: currentPage?.relatedVideos,
@@ -176,34 +173,36 @@ function StoryCrudPreview({ storyData }) {
             </div>
             <div className="col-span-1 space-y-4">
               {currentPage?.text && (
-                <div className={detailStyle}>
-                  <h3 className={`${labelStyle} -mb-3`}>Page text</h3>
-                  <WysiwygBlock
-                    htmlString={
-                      translate
-                        ? currentPage?.textTranslation
-                        : currentPage?.text
-                    }
-                  />
+                <div>
+                  <div className={detailStyle}>
+                    <h3 className={labelStyle}>Page text</h3>
+                    <WysiwygBlock
+                      htmlString={
+                        translate
+                          ? currentPage?.textTranslation
+                          : currentPage?.text
+                      }
+                    />
+                  </div>
                   {translateButton()}
                 </div>
               )}
               {audioThumbnails(currentPage?.relatedAudio)}
             </div>
           </div>
-          <div className="flex top-4 justify-center py-2 gap-x-2 text-charcoal-500">
-            Page
+          <div className="flex items-center justify-center mt-6 mb-4 gap-x-2">
+            <span className="text-blumine-900">Page</span>
             {pages?.map((pageId, pageIndex) => (
               <button
                 type="button"
                 data-testid={`page-${pageIndex + 1}-btn`}
                 key={pageId}
                 onClick={() => setCurrentPage(pagesData?.[pageId])}
-                className={`cursor-pointer ${
+                className={
                   pageId === currentPage?.id
-                    ? 'text-charcoal-900 font-bold'
-                    : 'text-charcoal-500'
-                }`}
+                    ? 'btn-primary btn-sm-icon'
+                    : 'btn-secondary btn-sm-icon'
+                }
               >
                 {pageIndex + 1}
               </button>
@@ -216,7 +215,7 @@ function StoryCrudPreview({ storyData }) {
           </div>
         </section>
       )}
-      <section className="bg-white p-8 rounded-sm">
+      <section className="bg-white px-8 py-6 rounded-lg">
         <h2 className={headingStyle}>Privacy</h2>
         <div className="text-charcoal-900 space-y-6">
           <div className={detailStyle}>
