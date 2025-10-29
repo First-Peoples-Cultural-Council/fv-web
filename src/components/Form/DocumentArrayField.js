@@ -15,7 +15,7 @@ function DocumentArrayField({
   nameId,
   helpText,
   control,
-  maxItems = 10,
+  maxItems,
   errors,
 }) {
   const {

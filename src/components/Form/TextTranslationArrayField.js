@@ -12,7 +12,7 @@ function TextTranslationArrayField({
   label = '',
   nameId,
   helpText,
-  maxItems = 10,
+  maxItems,
   register,
   control,
   errors,

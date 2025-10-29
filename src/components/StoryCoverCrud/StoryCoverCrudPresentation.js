@@ -8,6 +8,7 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import { TEAM } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
+import { MAX_ACKNOWLEDGEMENTS, MAX_NOTES } from 'common/constants/limits'
 
 function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -169,6 +170,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 register={register}
                 control={control}
                 errors={errors}
+                maxItems={MAX_ACKNOWLEDGEMENTS}
               />
             </div>
             <div className="col-span-12">
@@ -178,6 +180,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 register={register}
                 control={control}
                 errors={errors}
+                maxItems={MAX_NOTES}
               />
             </div>
             <div className="col-span-8">

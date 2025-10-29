@@ -16,7 +16,7 @@ function CategoryArrayField({
   errors,
   helpText,
   label,
-  maxItems = 6,
+  maxItems,
   nameId,
   register,
 }) {
