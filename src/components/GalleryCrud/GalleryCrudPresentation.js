@@ -8,6 +8,7 @@ import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import SiteDocHead from 'components/SiteDocHead'
+import { MAX_GALLERY_ITEMS } from 'common/constants/limits'
 
 function GalleryCrudPresentation({
   backHandler,
@@ -106,7 +107,7 @@ function GalleryCrudPresentation({
               nameId="galleryItems"
               control={control}
               errors={errors}
-              maxItems={50}
+              maxItems={MAX_GALLERY_ITEMS}
             />
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">

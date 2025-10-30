@@ -8,6 +8,15 @@ import DeleteButton from 'components/DeleteButton'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import { PUBLIC } from 'common/constants'
+import {
+  MAX_AUDIO,
+  MAX_VIDEOS,
+  MAX_IMAGES,
+  MAX_DOCUMENTS,
+  MAX_ACKNOWLEDGEMENTS,
+  MAX_NOTES,
+  MAX_LYRICS,
+} from 'common/constants/limits'
 
 function SongCrudPresentation({
   backHandler,
@@ -123,7 +132,7 @@ function SongCrudPresentation({
               nameId="relatedAudio"
               control={control}
               errors={errors}
-              maxItems={10}
+              maxItems={MAX_AUDIO}
             />
           </div>
           <div className="col-span-12">
@@ -133,7 +142,7 @@ function SongCrudPresentation({
               register={register}
               control={control}
               errors={errors}
-              maxItems={25}
+              maxItems={MAX_LYRICS}
             />
           </div>
           <div className="col-span-6">
@@ -142,7 +151,7 @@ function SongCrudPresentation({
               nameId="relatedImages"
               control={control}
               errors={errors}
-              maxItems={10}
+              maxItems={MAX_IMAGES}
             />
           </div>
           <div className="col-span-6">
@@ -151,7 +160,7 @@ function SongCrudPresentation({
               nameId="relatedVideos"
               control={control}
               errors={errors}
-              maxItems={10}
+              maxItems={MAX_VIDEOS}
             />
           </div>
           <div className="col-span-12">
@@ -160,7 +169,7 @@ function SongCrudPresentation({
               nameId="relatedDocuments"
               control={control}
               errors={errors}
-              maxItems={10}
+              maxItems={MAX_DOCUMENTS}
             />
           </div>
           <div className="col-span-12">
@@ -170,7 +179,7 @@ function SongCrudPresentation({
               register={register}
               control={control}
               errors={errors}
-              maxItems={6}
+              maxItems={MAX_NOTES}
             />
           </div>
           <div className="col-span-12">
@@ -180,7 +189,7 @@ function SongCrudPresentation({
               register={register}
               control={control}
               errors={errors}
-              maxItems={6}
+              maxItems={MAX_ACKNOWLEDGEMENTS}
             />
           </div>
           <div className="col-span-12">

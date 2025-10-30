@@ -8,7 +8,11 @@ import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import { TEAM } from 'common/constants'
 import StoryCrudStepWrapper from 'components/StoryCrud/StoryCrudStepWrapper'
-import { MAX_ACKNOWLEDGEMENTS, MAX_NOTES } from 'common/constants/limits'
+import {
+  MAX_ACKNOWLEDGEMENTS,
+  MAX_AUDIO_BASIC,
+  MAX_NOTES,
+} from 'common/constants/limits'
 
 function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -132,7 +136,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 nameId="relatedAudio"
                 control={control}
                 errors={errors}
-                maxItems={3}
+                maxItems={MAX_AUDIO_BASIC}
               />
             </div>
             <div className="col-span-12">

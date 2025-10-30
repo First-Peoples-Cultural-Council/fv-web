@@ -7,6 +7,7 @@ import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 import DeleteButton from 'components/DeleteButton'
+import { MAX_AUDIO_BASIC } from 'common/constants/limits'
 
 function StoryPageForm({
   cancelHandler,
@@ -88,7 +89,7 @@ function StoryPageForm({
             nameId="relatedAudio"
             control={control}
             errors={errors}
-            maxItems={3}
+            maxItems={MAX_AUDIO_BASIC}
           />
         </div>
         <div className="col-span-12">
