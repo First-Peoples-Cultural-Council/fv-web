@@ -34,7 +34,7 @@ function StoryCrudPreview({ storyData }) {
     <button
       data-testid="translate"
       type="button"
-      className="btn-tertiary btn-sm -ml-3"
+      className="text-blumine-600 text-sm font-semibold "
       onClick={() => setTranslate(!translate)}
     >
       View {translate ? 'language' : 'translation'}
@@ -99,13 +99,13 @@ function StoryCrudPreview({ storyData }) {
           <div className={detailStyle}>
             <h3 className={labelStyle}>Story title</h3>
             <p>{translate ? titleTranslation : title}</p>
+            {translateButton()}
           </div>
           <div>
             <div className={detailStyle}>
               <h3 className={labelStyle}>Author</h3>
               <p>{author || 'No author specified'}</p>
             </div>
-            {translateButton()}
           </div>
           <div>
             <div className={detailStyle}>
