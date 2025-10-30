@@ -20,9 +20,8 @@ function VideoLinkThumbnail({
 
     return queryResponse?.data?.thumbnail_url || ''
   }
-  const thumbnail = link?.thumbnail
-    ? link?.thumbnail
-    : getThumbnailFromLink(link)
+
+  const thumbnail = link?.thumbnail ? link?.thumbnail : getThumbnailFromLink()
 
   return (
     <div className={containerStyles}>
