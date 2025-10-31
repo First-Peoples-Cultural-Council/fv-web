@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Check if token works
         run: |
           git ls-remote https://x-access-token:${{ secrets.PULL_CONFIG_SECRET }}@github.com/First-Peoples-Cultural-Council/fv-apps-config.git
