@@ -5,7 +5,7 @@ on:
       - typo-fonts
 jobs:
   setup:
-    environment: prod
+    environment: typo-fonts
     name: Base setup
     timeout-minutes: 60
     runs-on: ubuntu-latest
