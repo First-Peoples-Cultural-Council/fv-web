@@ -16,7 +16,7 @@ function EntryArrayField({
   label = '',
   nameId,
   helpText,
-  maxItems = 6,
+  maxItems,
   register,
   control,
   types = [TYPE_PHRASE, TYPE_WORD],

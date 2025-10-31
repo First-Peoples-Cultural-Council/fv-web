@@ -12,14 +12,14 @@ function StoryCrudData() {
 
   const { onSubmit: deleteStory } = useStoryDelete()
 
-  const { data } = useStory({
+  const queryResponse = useStory({
     id: storyId,
     edit: true,
   })
 
   return {
     activeStep: Number(activeStep),
-    storyData: data,
+    queryResponse,
     deleteHandler: () => deleteStory(storyId),
   }
 }

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { useFieldArray } from 'react-hook-form'
 
@@ -6,7 +6,6 @@ import { useFieldArray } from 'react-hook-form'
 import MediaThumbnail from 'components/MediaThumbnail'
 import { useModalWithFieldArray } from 'common/hooks/useModalController'
 import AddVideoModal from 'components/AddVideoModal'
-import api from 'services/api'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
@@ -18,7 +17,7 @@ function VideoArrayField({
   nameId,
   helpText,
   control,
-  maxItems = 3,
+  maxItems,
   errors,
 }) {
   const {
@@ -39,41 +38,8 @@ function VideoArrayField({
     name: 'relatedVideoLinks',
   })
 
-  const [relatedVideoLinks, setRelatedVideoLinks] = useState(videoLinksFields)
-
-  useEffect(() => {
-    setRelatedVideoLinks(videoLinksFields)
-
-    const getThumbnailFromLink = ({ link, index }) => {
-      if (link.toLowerCase().includes('youtu')) {
-        const updatedRelatedVideoLinks = [...relatedVideoLinks]
-        const id = link.match(
-          /(?:^(?:https?:\/\/)?|^)(?:www.)?(?:(?:(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))(.{11}?)))/,
-        )[1]
-        updatedRelatedVideoLinks[index].thumbnail =
-          `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
-        setRelatedVideoLinks(updatedRelatedVideoLinks)
-      }
-      if (link.toLowerCase().includes('vimeo')) {
-        const response = api.vimeoThumbnail.get(link)
-        response.then((data) => {
-          const updatedRelatedVideoLinks = [...relatedVideoLinks]
-          updatedRelatedVideoLinks[index].thumbnail = data?.thumbnail_url
-          setRelatedVideoLinks(updatedRelatedVideoLinks)
-        })
-      }
-    }
-
-    const updatedRelatedVideoLinks = [...relatedVideoLinks]
-    updatedRelatedVideoLinks.forEach((item, index) => {
-      if (!item.thumbnail) {
-        getThumbnailFromLink({ link: item.text, index })
-      }
-    })
-  }, [control, videoLinksFields, relatedVideoLinks])
-
   const totalNumberOfVideos =
-    (fields?.length || 0) + (relatedVideoLinks?.length || 0)
+    (fields?.length || 0) + (videoLinksFields?.length || 0)
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
@@ -97,18 +63,18 @@ function VideoArrayField({
             </div>
           </div>
         )}
-        {relatedVideoLinks?.length > 0 && (
+        {videoLinksFields?.length > 0 && (
           <div>
             <p className="block text-sm font-small text-charcoal-900 italic">
               Linked Videos
             </p>
             <div>
-              {relatedVideoLinks?.map((mediaLink, index) => (
+              {videoLinksFields?.map((mediaLink, index) => (
                 <div
                   key={`${mediaLink?.text}`}
                   className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1 mr-2 mb-2"
                 >
-                  <MediaThumbnail.VideoLink link={mediaLink?.thumbnail} />
+                  <MediaThumbnail.VideoLink link={mediaLink} />
                   <XButton onClickHandler={() => removeVideoLinks(index)} />
                 </div>
               ))}
@@ -125,7 +91,7 @@ function VideoArrayField({
               isDashboard
               formMedia={fields}
               updateFormMedia={appendToFormAndClose}
-              relatedVideoLinks={relatedVideoLinks}
+              relatedVideoLinks={videoLinksFields}
               appendVideoLinks={appendVideoLinks}
               modalOpen={modalOpen}
               closeModal={closeModal}

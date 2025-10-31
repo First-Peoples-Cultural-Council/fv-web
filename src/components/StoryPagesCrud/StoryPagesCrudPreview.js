@@ -13,11 +13,7 @@ function StoryPagesCrudPreview({ page, pageNumber }) {
       return <MediaThumbnail.Video videoObject={page?.relatedVideos?.[0]} />
     }
     if (page?.relatedVideoLinks?.length > 0) {
-      return (
-        <MediaThumbnail.VideoLink
-          link={page?.relatedVideoLinks?.[0]?.thumbnail}
-        />
-      )
+      return <MediaThumbnail.VideoLink link={page?.relatedVideoLinks?.[0]} />
     }
     return ''
   }

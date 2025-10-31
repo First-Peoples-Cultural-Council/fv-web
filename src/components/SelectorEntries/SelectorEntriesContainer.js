@@ -17,7 +17,7 @@ function SelectorEntriesContainer({
   types,
   updateFormEntries,
   visibility,
-  maxItems = 30,
+  maxItems,
 }) {
   const {
     infiniteQueryResponse,

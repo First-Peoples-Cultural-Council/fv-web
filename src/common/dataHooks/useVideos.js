@@ -20,6 +20,17 @@ export function useVideo({ id, edit = false }) {
   return queryResponse
 }
 
+export function useVimeoThumbnail({ link }) {
+  const isVimeoLink = link?.text?.toLowerCase()?.includes('vimeo')
+  const queryResponse = useQuery({
+    queryKey: [link?.text],
+    queryFn: () => api.vimeoThumbnail.get(link?.text),
+    enabled: !!isVimeoLink,
+  })
+
+  return queryResponse
+}
+
 export function useVideoUpdate({ id }) {
   const { sitename } = useParams()
   const updateVideo = async (formData) => {

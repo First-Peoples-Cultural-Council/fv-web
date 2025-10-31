@@ -88,7 +88,7 @@ function AddVideoModalContainer({
             relatedVideoLinks={relatedVideoLinks}
             appendVideoLinks={appendVideoLinks}
             closeModal={closeModal}
-            maxLinks={maxItems}
+            maxItems={maxItems}
           />
         )}
       </>

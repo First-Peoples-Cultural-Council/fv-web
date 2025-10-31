@@ -7,6 +7,7 @@ import Form from 'components/Form'
 import { TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
+import { MAX_AUDIO_BASIC, MAX_RELATED_ENTRIES } from 'common/constants/limits'
 
 function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   const validator = yup.object().shape({
@@ -51,7 +52,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               errors={errors}
               register={register}
               helpText="Words and phrases related to your alphabet character"
-              maxItems={10}
+              maxItems={MAX_RELATED_ENTRIES}
               types={[TYPE_WORD, TYPE_PHRASE]}
             />
           </div>
@@ -61,7 +62,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               nameId="relatedAudio"
               control={control}
               errors={errors}
-              maxItems={3}
+              maxItems={MAX_AUDIO_BASIC}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">

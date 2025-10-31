@@ -16,7 +16,7 @@ function AudioArrayField({
   nameId,
   helpText,
   control,
-  maxItems = 3,
+  maxItems,
   errors,
 }) {
   const {

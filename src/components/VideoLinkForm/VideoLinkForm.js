@@ -11,7 +11,7 @@ function VideoLinkForm({
   relatedVideoLinks,
   appendVideoLinks,
   closeModal,
-  maxLinks,
+  maxItems,
 }) {
   const defaultValues = {
     relatedVideoLinks,
@@ -38,7 +38,7 @@ function VideoLinkForm({
   return (
     <form data-testid="VideoLinkForm" onReset={reset}>
       <div className="col-span-12">
-        {relatedVideoLinks?.length < maxLinks ? (
+        {relatedVideoLinks?.length < maxItems ? (
           <div className="max-w-5xl mx-auto">
             <p className="block text-sm font-small text-charcoal-900 italic">
               Add a link to a video below (currently YouTube and Vimeo links are
@@ -49,7 +49,7 @@ function VideoLinkForm({
               register={register}
               control={control}
               errors={errors}
-              maxItems={maxLinks}
+              maxItems={maxItems}
               placeholder="Example links: https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
               disableExistingEdits
             />
@@ -79,7 +79,7 @@ VideoLinkForm.propTypes = {
   relatedVideoLinks: array,
   appendVideoLinks: func,
   closeModal: func,
-  maxLinks: number,
+  maxItems: number,
 }
 
 export default VideoLinkForm

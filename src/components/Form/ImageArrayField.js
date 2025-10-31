@@ -16,7 +16,7 @@ function ImageArrayField({
   nameId,
   helpText,
   control,
-  maxItems = 3,
+  maxItems,
   errors,
   hideSharedMedia = false,
 }) {
