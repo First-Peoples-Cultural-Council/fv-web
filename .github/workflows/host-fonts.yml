@@ -1,0 +1,154 @@
+name: Host-Fonts
+on:
+  push:
+    branches:
+      - typo-fonts
+jobs:
+  setup:
+    environment: prod
+    name: Base setup
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
+      - name: Clone config repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          repository: First-Peoples-Cultural-Council/fv-apps-config
+          token: ${{ secrets.PULL_CONFIG_SECRET }}
+          path: fv-apps-config
+      - name: Set variables
+        run: |
+          mkdir modules
+          ls -a;
+  #         mv ./fv-apps-config/prod-config/public/*  ./public/
+  #         mv ./fv-apps-config/modules/*  ./modules/
+  #         rm -rf .env
+  #         touch .env
+  #         ls -a
+  #         printf "%s\n" "REACT_APP_VERSION_NUMBER=\"${{vars.REACT_APP_VERSION_NUMBER}}\"" >> .env 
+  #         printf "%s\n" "REACT_APP_ABOUT_APP_NAME=\"${{vars.REACT_APP_ABOUT_APP_NAME}}\"" >> .env
+  #         printf "%s\n" "REACT_APP_ABOUT_ORG_NAME=\"${{vars.REACT_APP_ABOUT_ORG_NAME}}\"" >> .env
+  #         printf "%s\n" "REACT_APP_BASE_HOST=\"${{vars.REACT_APP_BASE_HOST}}\"" >> .env
+  #         printf "%s\n" "REACT_APP_BASE_API_URL=\"${{vars.REACT_APP_BASE_API_URL}}\"" >> .env
+  #         touch modules/prod.auto.tfvars
+  #         printf "%s\n" "aws_profile = \"default\"" >> modules/prod.auto.tfvars 
+  #         printf "%s\n" "domain = \"${{vars.DOMAIN}}\"" >> modules/prod.auto.tfvars 
+  #         printf "%s\n" "application_name = \"${{vars.APPLICATION_NAME}}\"" >> modules/prod.auto.tfvars 
+  #         printf "%s\n" "website_path  = \"${{vars.WEBSITE_PATH}}\"" >> modules/prod.auto.tfvars 
+  #         printf "%s\n" "subdomains = ${{vars.SUBDOMAINS}}" >> modules/prod.auto.tfvars 
+  #         printf "%s\n" "default_root_index_file = \"index.html\"" >> modules/prod.auto.tfvars
+  #         printf "%s\n" "env_name = \"${{vars.ENV_NAME}}\"" >> modules/prod.auto.tfvars
+  #     - name: Install dependencies
+  #       run: npm ci
+  #     - name: Start server in background
+  #       run: npm run start & sleep 10
+  #     - name: Build Application
+  #       env:
+  #         CI: false
+  #       run: |
+  #         ls
+  #         npm run build
+  #         mkdir uploads 
+  #         mv modules/* uploads/
+  #         mv build uploads/build
+  #     # - name: Run Tests
+  #     #   run: npm test
+  #     - uses: actions/upload-artifact@v4
+  #       if: always()
+  #       with:
+  #         name: uploads
+  #         path: uploads/
+  #     - run: ls ;cd modules; ls;
+  # inspect_changes:
+  #   environment: prod
+  #   if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')))
+  #   name: Inspect Infra Changes
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   steps:
+  #     - uses: hashicorp/setup-terraform@v3
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: uploads
+  #         path: downloads/
+  #     - name: Check directory files
+  #       run: |
+  #         ls
+  #         mkdir modules
+  #         mv downloads/* modules/
+  #         rm -rf modules/pre-prod-terraform.tf
+  #         rm -rf modules/dev-terraform.tf
+  #         mv modules/prod-terraform.tf modules/terraform.tf
+  #         cd modules
+  #         ls
+  #         cd build
+  #         ls
+  #         cd ../..
+  #     - name: Terraform plan
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+  #       run: |
+  #         ls
+  #         cd modules
+  #         ls
+  #         terraform init -lock=false
+  #         terraform fmt
+  #         terraform plan
+  # update_infra_changes:
+  #   environment: prod
+  #   name: Update Infra and App Changes
+  #   runs-on: ubuntu-latest
+  #   needs: inspect_changes
+  #   if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')))
+  #   steps:
+  #     - uses: hashicorp/setup-terraform@v3
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: uploads
+  #         path: downloads/
+  #     - name: Check directory files
+  #       run: |
+  #         ls
+  #         mkdir modules
+  #         mv downloads/* modules/
+  #         rm -rf modules/pre-prod-terraform.tf
+  #         rm -rf modules/dev-terraform.tf
+  #         mv modules/prod-terraform.tf modules/terraform.tf
+  #         cd modules
+  #         ls
+  #         cd build
+  #         ls
+  #         cd ../..
+  #     - name: Terraform plan and apply
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+  #       run: |
+  #         cd modules
+  #         terraform init -lock=false
+  #         terraform fmt
+  #         terraform plan
+  #         terraform apply -auto-approve -lock=false
+  #         echo "Distro_ID=$(terraform output cloudfront_discribution)" >> "$GITHUB_ENV";
+  #     - name: Invalidate cloudfront cache
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+  #         AWS_EC2_METADATA_DISABLED: true
+  #       run: |
+  #         aws cloudfront create-invalidation --distribution-id ${{  env.Distro_ID  }} --paths "/*"
+  #         echo "Invalidation_ID=$(aws cloudfront list-invalidations --distribution-id ${{  env.Distro_ID  }} | jq -c '.InvalidationList.Items | .[] | select(.Status | contains("InProgress")) | .Id' | head -n 1)" >> "$GITHUB_ENV";
+  #     - name: Wait for invalidation completion
+  #       env:
+  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+  #         AWS_EC2_METADATA_DISABLED: true
+  #       run: |
+  #         aws cloudfront wait invalidation-completed --id ${{  env.Invalidation_ID  }} --distribution-id ${{  env.Distro_ID  }}
+  #         echo "Deployment Completed"
