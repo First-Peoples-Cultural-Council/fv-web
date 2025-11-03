@@ -11,12 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      # - name: Check if token works
-      #   run: |
-      #     git ls-remote https://x-access-token:${{ secrets.PULL_CONFIG_SECRET }}@github.com/First-Peoples-Cultural-Council/fv-apps-config.git
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
       - name: Clone config repository
         uses: actions/checkout@v4
         with:
@@ -28,24 +25,25 @@ jobs:
         run: |
           mkdir modules
           ls -a;
-  #         mv ./fv-apps-config/prod-config/public/*  ./public/
-  #         mv ./fv-apps-config/modules/*  ./modules/
-  #         rm -rf .env
-  #         touch .env
-  #         ls -a
-  #         printf "%s\n" "REACT_APP_VERSION_NUMBER=\"${{vars.REACT_APP_VERSION_NUMBER}}\"" >> .env 
-  #         printf "%s\n" "REACT_APP_ABOUT_APP_NAME=\"${{vars.REACT_APP_ABOUT_APP_NAME}}\"" >> .env
-  #         printf "%s\n" "REACT_APP_ABOUT_ORG_NAME=\"${{vars.REACT_APP_ABOUT_ORG_NAME}}\"" >> .env
-  #         printf "%s\n" "REACT_APP_BASE_HOST=\"${{vars.REACT_APP_BASE_HOST}}\"" >> .env
-  #         printf "%s\n" "REACT_APP_BASE_API_URL=\"${{vars.REACT_APP_BASE_API_URL}}\"" >> .env
-  #         touch modules/prod.auto.tfvars
-  #         printf "%s\n" "aws_profile = \"default\"" >> modules/prod.auto.tfvars 
-  #         printf "%s\n" "domain = \"${{vars.DOMAIN}}\"" >> modules/prod.auto.tfvars 
-  #         printf "%s\n" "application_name = \"${{vars.APPLICATION_NAME}}\"" >> modules/prod.auto.tfvars 
-  #         printf "%s\n" "website_path  = \"${{vars.WEBSITE_PATH}}\"" >> modules/prod.auto.tfvars 
-  #         printf "%s\n" "subdomains = ${{vars.SUBDOMAINS}}" >> modules/prod.auto.tfvars 
-  #         printf "%s\n" "default_root_index_file = \"index.html\"" >> modules/prod.auto.tfvars
-  #         printf "%s\n" "env_name = \"${{vars.ENV_NAME}}\"" >> modules/prod.auto.tfvars
+          mv ./fv-apps-config/prod-config/public/*  ./public/
+          mv ./fv-apps-config/modules/*  ./modules/
+          # rm -rf .env
+          # touch .env
+          # ls -a
+          # # printf "%s\n" "REACT_APP_VERSION_NUMBER=\"${{vars.REACT_APP_VERSION_NUMBER}}\"" >> .env 
+          # printf "%s\n" "REACT_APP_ABOUT_APP_NAME=\"${{vars.REACT_APP_ABOUT_APP_NAME}}\"" >> .env
+          # printf "%s\n" "REACT_APP_ABOUT_ORG_NAME=\"${{vars.REACT_APP_ABOUT_ORG_NAME}}\"" >> .env
+          # printf "%s\n" "REACT_APP_BASE_HOST=\"${{vars.REACT_APP_BASE_HOST}}\"" >> .env
+          # printf "%s\n" "REACT_APP_BASE_API_URL=\"${{vars.REACT_APP_BASE_API_URL}}\"" >> .env
+          touch modules/prod.auto.tfvars
+          printf "%s\n" "aws_profile = \"default\"" >> modules/prod.auto.tfvars 
+          printf "%s\n" "domain = \"${{vars.DOMAIN}}\"" >> modules/prod.auto.tfvars 
+          printf "%s\n" "application_name = \"${{vars.APPLICATION_NAME}}\"" >> modules/prod.auto.tfvars 
+          printf "%s\n" "website_path  = \"${{vars.WEBSITE_PATH}}\"" >> modules/prod.auto.tfvars 
+          printf "%s\n" "subdomains = ${{vars.SUBDOMAINS}}" >> modules/prod.auto.tfvars 
+          printf "%s\n" "default_root_index_file = \"index.html\"" >> modules/prod.auto.tfvars
+          printf "%s\n" "env_name = \"${{vars.ENV_NAME}}\"" >> modules/prod.auto.tfvars
+          mv modules/* uploads/
   #     - name: Install dependencies
   #       run: npm ci
   #     - name: Start server in background
@@ -61,14 +59,14 @@ jobs:
   #         mv build uploads/build
   #     # - name: Run Tests
   #     #   run: npm test
-  #     - uses: actions/upload-artifact@v4
-  #       if: always()
-  #       with:
-  #         name: uploads
-  #         path: uploads/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: uploads
+          path: uploads/
   #     - run: ls ;cd modules; ls;
   # inspect_changes:
-  #   environment: prod
+  #   environment: typo-fonts
   #   if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')))
   #   name: Inspect Infra Changes
   #   runs-on: ubuntu-latest
