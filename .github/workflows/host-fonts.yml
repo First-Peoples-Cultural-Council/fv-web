@@ -88,20 +88,17 @@ jobs:
           mv modules/prod-terraform.tf modules/terraform.tf
           cd modules
           ls
-  #         cd build
-  #         ls
-  #         cd ../..
-  #     - name: Terraform plan
-  #       env:
-  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
-  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
-  #       run: |
-  #         ls
-  #         cd modules
-  #         ls
-  #         terraform init -lock=false
-  #         terraform fmt
-  #         terraform plan
+      - name: Terraform plan
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          ls
+          cd modules
+          ls
+          terraform init -lock=false
+          terraform fmt
+          terraform plan
   # update_infra_changes:
   #   environment: prod
   #   name: Update Infra and App Changes
