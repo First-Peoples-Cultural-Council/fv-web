@@ -40,7 +40,7 @@ jobs:
           printf "%s\n" "domain = \"${{vars.DOMAIN}}\"" >> modules/prod.auto.tfvars 
           printf "%s\n" "application_name = \"${{vars.APPLICATION_NAME}}\"" >> modules/prod.auto.tfvars 
           printf "%s\n" "website_path  = \"${{vars.WEBSITE_PATH}}\"" >> modules/prod.auto.tfvars 
-          printf "%s\n" "subdomains = """ >> modules/prod.auto.tfvars 
+          printf "%s\n" "subdomains = \"\"" >> modules/prod.auto.tfvars 
           printf "%s\n" "default_root_index_file = \"index.html\"" >> modules/prod.auto.tfvars
           printf "%s\n" "env_name = \"${{vars.ENV_NAME}}\"" >> modules/prod.auto.tfvars
           mkdir uploads
