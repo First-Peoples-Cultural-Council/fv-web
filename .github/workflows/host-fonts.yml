@@ -43,6 +43,7 @@ jobs:
           printf "%s\n" "subdomains = ${{vars.SUBDOMAINS}}" >> modules/prod.auto.tfvars 
           printf "%s\n" "default_root_index_file = \"index.html\"" >> modules/prod.auto.tfvars
           printf "%s\n" "env_name = \"${{vars.ENV_NAME}}\"" >> modules/prod.auto.tfvars
+          mkdir uploads
           mv modules/* uploads/
   #     - name: Install dependencies
   #       run: npm ci
