@@ -68,7 +68,7 @@ jobs:
   #     - run: ls ;cd modules; ls;
   inspect_changes:
     environment: typo-fonts
-    if: (github.base_ref == 'typo-fonts')
+    if: github.ref == 'refs/heads/typo-fonts'
     name: Inspect Infra Changes
     runs-on: ubuntu-latest
     needs: setup
