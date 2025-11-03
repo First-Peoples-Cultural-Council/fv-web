@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16
       - name: Clone config repository
         uses: actions/checkout@v4
         with:
@@ -81,11 +78,14 @@ jobs:
       - name: Check directory files
         run: |
           ls
+          mkdir fonts
+          touch fonts/test-font-file.ttf
           mkdir modules
           mv downloads/* modules/
           rm -rf modules/pre-prod-terraform.tf
           rm -rf modules/dev-terraform.tf
-          mv modules/prod-terraform.tf modules/terraform.tf
+          rm -rf modules/prod-terraform.tf
+          mv modules/host-fonts-terraform.tf modules/terraform.tf
           cd modules
           ls
       - name: Terraform plan
