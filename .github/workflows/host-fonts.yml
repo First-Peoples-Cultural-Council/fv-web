@@ -66,28 +66,28 @@ jobs:
           name: uploads
           path: uploads/
   #     - run: ls ;cd modules; ls;
-  # inspect_changes:
-  #   environment: typo-fonts
-  #   if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')))
-  #   name: Inspect Infra Changes
-  #   runs-on: ubuntu-latest
-  #   needs: test
-  #   steps:
-  #     - uses: hashicorp/setup-terraform@v3
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: uploads
-  #         path: downloads/
-  #     - name: Check directory files
-  #       run: |
-  #         ls
-  #         mkdir modules
-  #         mv downloads/* modules/
-  #         rm -rf modules/pre-prod-terraform.tf
-  #         rm -rf modules/dev-terraform.tf
-  #         mv modules/prod-terraform.tf modules/terraform.tf
-  #         cd modules
-  #         ls
+  inspect_changes:
+    environment: typo-fonts
+    if: (github.base_ref == 'typo-fonts')
+    name: Inspect Infra Changes
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/download-artifact@v4
+        with:
+          name: uploads
+          path: downloads/
+      - name: Check directory files
+        run: |
+          ls
+          mkdir modules
+          mv downloads/* modules/
+          rm -rf modules/pre-prod-terraform.tf
+          rm -rf modules/dev-terraform.tf
+          mv modules/prod-terraform.tf modules/terraform.tf
+          cd modules
+          ls
   #         cd build
   #         ls
   #         cd ../..
