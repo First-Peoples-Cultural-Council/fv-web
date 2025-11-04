@@ -24,14 +24,6 @@ jobs:
           ls -a;
           mv ./fv-apps-config/prod-config/public/*  ./public/
           mv ./fv-apps-config/modules/*  ./modules/
-          # rm -rf .env
-          # touch .env
-          # ls -a
-          # # printf "%s\n" "REACT_APP_VERSION_NUMBER=\"${{vars.REACT_APP_VERSION_NUMBER}}\"" >> .env 
-          # printf "%s\n" "REACT_APP_ABOUT_APP_NAME=\"${{vars.REACT_APP_ABOUT_APP_NAME}}\"" >> .env
-          # printf "%s\n" "REACT_APP_ABOUT_ORG_NAME=\"${{vars.REACT_APP_ABOUT_ORG_NAME}}\"" >> .env
-          # printf "%s\n" "REACT_APP_BASE_HOST=\"${{vars.REACT_APP_BASE_HOST}}\"" >> .env
-          # printf "%s\n" "REACT_APP_BASE_API_URL=\"${{vars.REACT_APP_BASE_API_URL}}\"" >> .env
           touch modules/prod.auto.tfvars
           printf "%s\n" "aws_profile = \"default\"" >> modules/prod.auto.tfvars 
           printf "%s\n" "domain = \"${{vars.DOMAIN}}\"" >> modules/prod.auto.tfvars 
@@ -42,23 +34,13 @@ jobs:
           EOF
           printf "%s\n" "default_root_index_file = \"index.html\"" >> modules/prod.auto.tfvars
           printf "%s\n" "env_name = \"${{vars.ENV_NAME}}\"" >> modules/prod.auto.tfvars
+          rm -rf modules/pre-prod-terraform.tf
+          rm -rf modules/dev-terraform.tf
+          rm -rf modules/prod-terraform.tf
+          mv modules/host-fonts-terraform.tf modules/terraform.tf
           mkdir uploads
           mv modules/* uploads/
-  #     - name: Install dependencies
-  #       run: npm ci
-  #     - name: Start server in background
-  #       run: npm run start & sleep 10
-  #     - name: Build Application
-  #       env:
-  #         CI: false
-  #       run: |
-  #         ls
-  #         npm run build
-  #         mkdir uploads 
-  #         mv modules/* uploads/
-  #         mv build uploads/build
-  #     # - name: Run Tests
-  #     #   run: npm test
+          mv typo-fonts uploads/typo-fonts
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -80,15 +62,11 @@ jobs:
       - name: Check directory files
         run: |
           ls
-          mkdir fonts
-          touch fonts/test-font-file.ttf
           mkdir modules
           mv downloads/* modules/
-          rm -rf modules/pre-prod-terraform.tf
-          rm -rf modules/dev-terraform.tf
-          rm -rf modules/prod-terraform.tf
-          mv modules/host-fonts-terraform.tf modules/terraform.tf
           cd modules
+          ls
+          cd typo-fonts
           ls
       - name: Terraform plan
         env:
@@ -101,55 +79,51 @@ jobs:
           terraform init -lock=false
           terraform fmt
           terraform plan
-  # update_infra_changes:
-  #   environment: prod
-  #   name: Update Infra and App Changes
-  #   runs-on: ubuntu-latest
-  #   needs: inspect_changes
-  #   if: ((github.ref_type == 'tag') && (startsWith(github.ref_name, 'r-')))
-  #   steps:
-  #     - uses: hashicorp/setup-terraform@v3
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: uploads
-  #         path: downloads/
-  #     - name: Check directory files
-  #       run: |
-  #         ls
-  #         mkdir modules
-  #         mv downloads/* modules/
-  #         rm -rf modules/pre-prod-terraform.tf
-  #         rm -rf modules/dev-terraform.tf
-  #         mv modules/prod-terraform.tf modules/terraform.tf
-  #         cd modules
-  #         ls
-  #         cd build
-  #         ls
-  #         cd ../..
-  #     - name: Terraform plan and apply
-  #       env:
-  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
-  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
-  #       run: |
-  #         cd modules
-  #         terraform init -lock=false
-  #         terraform fmt
-  #         terraform plan
-  #         terraform apply -auto-approve -lock=false
-  #         echo "Distro_ID=$(terraform output cloudfront_discribution)" >> "$GITHUB_ENV";
-  #     - name: Invalidate cloudfront cache
-  #       env:
-  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
-  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
-  #         AWS_EC2_METADATA_DISABLED: true
-  #       run: |
-  #         aws cloudfront create-invalidation --distribution-id ${{  env.Distro_ID  }} --paths "/*"
-  #         echo "Invalidation_ID=$(aws cloudfront list-invalidations --distribution-id ${{  env.Distro_ID  }} | jq -c '.InvalidationList.Items | .[] | select(.Status | contains("InProgress")) | .Id' | head -n 1)" >> "$GITHUB_ENV";
-  #     - name: Wait for invalidation completion
-  #       env:
-  #         AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
-  #         AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
-  #         AWS_EC2_METADATA_DISABLED: true
-  #       run: |
-  #         aws cloudfront wait invalidation-completed --id ${{  env.Invalidation_ID  }} --distribution-id ${{  env.Distro_ID  }}
-  #         echo "Deployment Completed"
+  update_infra_changes:
+    environment: typo-fonts
+    name: Update Infra and App Changes
+    runs-on: ubuntu-latest
+    needs: inspect_changes
+    if: github.ref == 'refs/heads/typo-fonts'
+    steps:
+      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/download-artifact@v4
+        with:
+          name: uploads
+          path: downloads/
+      - name: Check directory files
+        run: |
+          ls
+          mkdir modules
+          mv downloads/* modules/
+          cd modules
+          ls
+          cd typo-fonts
+          ls
+      - name: Terraform plan and apply
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          cd modules
+          terraform init -lock=false
+          terraform fmt
+          terraform plan
+          terraform apply -auto-approve -lock=false
+          echo "Distro_ID=$(terraform output cloudfront_discribution)" >> "$GITHUB_ENV";
+      - name: Invalidate cloudfront cache
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+          AWS_EC2_METADATA_DISABLED: true
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{  env.Distro_ID  }} --paths "/*"
+          echo "Invalidation_ID=$(aws cloudfront list-invalidations --distribution-id ${{  env.Distro_ID  }} | jq -c '.InvalidationList.Items | .[] | select(.Status | contains("InProgress")) | .Id' | head -n 1)" >> "$GITHUB_ENV";
+      - name: Wait for invalidation completion
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
+          AWS_EC2_METADATA_DISABLED: true
+        run: |
+          aws cloudfront wait invalidation-completed --id ${{  env.Invalidation_ID  }} --distribution-id ${{  env.Distro_ID  }}
+          echo "Deployment Completed"
