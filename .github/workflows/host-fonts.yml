@@ -24,6 +24,7 @@ jobs:
           ls -a;
           mv ./fv-apps-config/prod-config/public/*  ./public/
           mv ./fv-apps-config/modules/*  ./modules/
+          mv ./fv-apps-config/typo-fonts/*  ./typo-fonts/
           touch modules/prod.auto.tfvars
           printf "%s\n" "aws_profile = \"default\"" >> modules/prod.auto.tfvars 
           printf "%s\n" "domain = \"${{vars.DOMAIN}}\"" >> modules/prod.auto.tfvars 
