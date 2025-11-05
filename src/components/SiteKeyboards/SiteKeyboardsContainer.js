@@ -5,9 +5,8 @@ import SiteKeyboardsPresentation from 'components/SiteKeyboards/SiteKeyboardsPre
 import { useSiteStore } from 'context/SiteContext'
 import { usePage } from 'common/dataHooks/usePages'
 import SectionTitle from 'components/SectionTitle'
-import Widget from 'components/Widget'
 import SiteDocHead from 'components/SiteDocHead'
-import LoadOrError from 'components/LoadOrError'
+import WidgetArea from 'components/WidgetArea'
 
 function SiteKeyboardsContainer() {
   const { site } = useSiteStore()
@@ -19,18 +18,16 @@ function SiteKeyboardsContainer() {
   return (
     <div
       data-testid="SiteKeyboardsContainer"
-      className="pt-2 md:pt-4 lg:pt-8 bg-white"
+      className="max-w-7xl mx-auto pt-2 md:pt-4 lg:pt-8 bg-white"
     >
       <SiteDocHead titleArray={['Keyboards']} />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8 space-y-4">
         <SectionTitle.Presentation title="KEYBOARDS" />
-        <LoadOrError queryResponse={queryResponse}>
-          {queryResponse?.data?.widgets?.map((widget) => (
-            <div key={widget?.id} className="flex lg:my-4">
-              <Widget.Container data={widget} />
-            </div>
-          ))}
-        </LoadOrError>
+
+        {queryResponse?.data?.widgets?.length > 0 && (
+          <WidgetArea.Container widgetData={queryResponse?.data?.widgets} />
+        )}
+
         <SiteKeyboardsPresentation title={site?.title} />
       </div>
     </div>
