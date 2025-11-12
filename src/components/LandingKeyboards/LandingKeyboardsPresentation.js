@@ -69,7 +69,7 @@ function LandingKeyboardsPresentation() {
             mobile devices, with over 100 Indigenous language keyboards
             currently available. Users are able to select their keyboard(s) of
             choice within their email, social media, word processing or other
-            apps, enabling unlimited communication in their mother language.,
+            apps, enabling unlimited communication in their mother language.
           </p>
           <div className="m-4">
             <a
