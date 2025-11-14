@@ -10,7 +10,7 @@ function AppWrapper({ children, isHome = false }) {
   const { login, logout } = useLoginLogout()
   return (
     <div id="AppWrapper" className="overflow-hidden bg-white">
-      <header className="fixed w-full top-0 z-50 print:hidden">
+      <header className="fixed w-full top-0 z-20 print:hidden">
         <AppNavBar.Presentation isHome={isHome} login={login} logout={logout} />
       </header>
       <div className={isHome ? '' : 'pt-16 min-h-screen'}>{children}</div>
