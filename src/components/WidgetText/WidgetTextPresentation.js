@@ -76,12 +76,21 @@ function WidgetTextPresentation({ widgetData }) {
     >
       <div className="max-w-5xl mx-auto text-center px-8 py-4">
         <h2
-          className={`text-xl md:text-2xl lg:text-3xl text-${
-            bgColor ? 'white' : 'black'
-          } font-bold flex items-center mb-4`}
+          className={`text-xl md:text-2xl lg:text-3xl ${
+            bgColor ? 'text-white' : 'text-black'
+          } font-bold flex items-center mb-4 space-x-2`}
         >
           <span className="inline-block">{title}</span>
-          {audio && <AudioButton audioArray={[audioObject]} />}
+          {audio && (
+            <AudioButton
+              audioArray={[audioObject]}
+              styling={
+                bgColor
+                  ? 'btn-lg-icon bg-transparent text-white hover:backdrop-brightness-75'
+                  : 'btn-tertiary btn-lg-icon'
+              }
+            />
+          )}
         </h2>
         <div
           className={`inline-block text-bold text-base text-left md:text-lg text-${

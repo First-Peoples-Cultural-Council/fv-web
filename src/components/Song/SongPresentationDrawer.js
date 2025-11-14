@@ -80,7 +80,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
         </div>
       </div>
 
-      <div className="flex mt-2 md:mt-6 px-6 space-y-2">
+      <div className="flex-col mt-2 md:mt-6 px-6 space-y-2">
         {entry?.relatedAudio?.length > 0 &&
           entry?.relatedAudio?.map((audio) => (
             <AudioNative

@@ -6,7 +6,10 @@ import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
 import Tooltip from 'components/Tooltip'
 
-function AudioButton({ audioArray }) {
+function AudioButton({
+  audioArray,
+  styling = 'btn-tertiary btn-md-icon bg-transparent',
+}) {
   const { setCurrentAudio } = useAudiobar()
 
   return audioArray?.map((audioObject) =>
@@ -20,7 +23,7 @@ function AudioButton({ audioArray }) {
           id={`audio-btn-${audioObject.id}`}
           data-testid={`audio-btn-${audioObject.id}`}
           key={audioObject?.id}
-          className="btn-tertiary btn-md-icon"
+          className={styling}
           onClick={() => setCurrentAudio(audioObject)}
         >
           {getIcon('Audio')}
@@ -30,9 +33,10 @@ function AudioButton({ audioArray }) {
   )
 }
 // PROPTYPES
-const { array } = PropTypes
+const { array, string } = PropTypes
 AudioButton.propTypes = {
   audioArray: array,
+  styling: string,
 }
 
 export default AudioButton
