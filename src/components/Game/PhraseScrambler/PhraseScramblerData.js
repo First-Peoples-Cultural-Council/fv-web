@@ -28,7 +28,7 @@ function PhraseScramblerData({ kids }) {
     setInputData({
       translations,
       title: phraseTitle,
-      relatedAudio: newPhrase?.relatedAudio.slice(0, 3), // take at max 3 audio files for hints
+      relatedAudio: newPhrase?.relatedAudio,
     })
     let correctAnswer = phraseTitle.split(' ')
     correctAnswer = correctAnswer.map((text, index) => ({
