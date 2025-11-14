@@ -18,38 +18,32 @@ function PhraseScramblerPresentation({
   resetGame,
   newGame,
 }) {
-  let gameStatus = ''
+  let gameStatus = 'In progress'
+  let selectedBoxAdditionalStyling = 'bg-charcoal-50 border-charcoal-200'
+
   if (gameCompleted) {
     gameStatus = validAnswer ? 'Won' : 'Lost'
+    selectedBoxAdditionalStyling = validAnswer
+      ? 'bg-jade-500 border-jade-600'
+      : 'bg-ochre-600 border-ochre-700'
   }
 
-  // Conditional styling
-  const baseTextBlockStyling =
-    'border-black flex items-center justify-center my-2 mr-2 px-4 py-2 rounded-sm h-12 w-min-12'
-  const baseButtonStyling =
-    'border border-charcoal-200 rounded-lg shadow-xs py-2 px-4 mx-2 text-sm font-medium text-charcoal-900 hover:opacity-75 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-scarlet-400'
-  const checkAnswerButtonStyling = `${baseButtonStyling} bg-blumine-700 text-white`
-  let selectedBoxAdditionalStyling = 'bg-charcoal-50'
-  if (gameStatus === 'Won') {
-    selectedBoxAdditionalStyling = 'bg-jade-500'
-  } else if (gameStatus === 'Lost') {
-    selectedBoxAdditionalStyling = 'bg-ochre-600'
-  }
+  const wordBlockStyling =
+    'flex items-center justify-center my-2 mr-2 px-4 py-2 rounded-lg h-12 w-min-12 bg-charcoal-50 shadow-md border border-charcoal-200'
 
   return (
     <section
       data-testid="PhraseScramblerPresentation"
-      className="mt-4 py-2 md:py-4 lg:py-8 bg-white"
+      className="py-2 md:py-4 lg:py-8 bg-white"
     >
-      <div className="max-w-7xl text-center mx-auto px-4 sm:px-6 lg:px-8">
-        <div>
-          <SectionTitle.Presentation title="PHRASE SCRAMBLER" />
-          <p className="italic text-charcoal-900 mt-2">Unscramble to win !!</p>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <SectionTitle.Presentation title="PHRASE SCRAMBLER" />
+        <p className="italic text-charcoal-900 mt-2">Unscramble to win !!</p>
+
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
         {translations?.length && jumbledWords?.length ? (
           <div>
-            <div className="mx-auto mt-16 w-full rounded-lg bg-white shadow-md border-2 border-charcoal-50">
+            <div className="mx-auto mt-16 w-full rounded-lg bg-white shadow-md border-2 border-charcoal-100">
               <div className="px-4 py-5 sm:p-6" data-testid="card-content">
                 <div className="header" data-testid="translations">
                   {translations?.map((translation, index) => (
@@ -61,28 +55,26 @@ function PhraseScramblerPresentation({
                   ))}
                 </div>
                 <div
-                  data-testid="selected-boxes"
-                  className={`shadow-sm my-4 border-[0.5px] border-charcoal-200 rounded-sm px-2 ${selectedBoxAdditionalStyling}`}
+                  data-testid="selected-words"
+                  className={`my-4 border rounded-lg py-2 px-4 ${selectedBoxAdditionalStyling}`}
                 >
-                  {/* Placeholder till a user selects does any action to maintain styling. */}
-                  {selectedWords?.length === 0 && (
-                    <div className={`${baseTextBlockStyling} bg-transparent`}>
-                      {' '}
-                    </div>
-                  )}
                   <div className="flex md:flex-row flex-col flex-wrap">
-                    {selectedWords?.map((wordObj) => (
-                      <button
-                        data-testid="word-btn"
-                        type="button"
-                        key={`selectedWords-${wordObj?.id}`}
-                        className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-[0.5px] border-charcoal-200`}
-                        onClick={() => wordClicked(wordObj)}
-                        disabled={gameCompleted && validAnswer}
-                      >
-                        {wordObj?.text}
-                      </button>
-                    ))}
+                    {selectedWords?.length < 1 ? (
+                      <div className={`${wordBlockStyling} invisible`}> </div>
+                    ) : (
+                      selectedWords?.map((wordObj) => (
+                        <button
+                          data-testid="word-btn"
+                          type="button"
+                          key={`selectedWords-${wordObj?.id}`}
+                          className={wordBlockStyling}
+                          onClick={() => wordClicked(wordObj)}
+                          disabled={gameCompleted && validAnswer}
+                        >
+                          {wordObj?.text}
+                        </button>
+                      ))
+                    )}
                   </div>
                 </div>
                 <div data-testid="jumbled-words">
@@ -94,7 +86,7 @@ function PhraseScramblerPresentation({
                       ) ? (
                         <div
                           key={`disabledWords-${wordObj?.id}`}
-                          className={`${baseTextBlockStyling} invisible flex flex-wrap`}
+                          className={`${wordBlockStyling} invisible`}
                         >
                           {wordObj?.text}
                         </div>
@@ -103,7 +95,7 @@ function PhraseScramblerPresentation({
                           data-testid="word-btn"
                           type="button"
                           key={`jumbledWords-${wordObj?.id}`}
-                          className={`${baseTextBlockStyling} bg-charcoal-50 shadow-md border-[0.5px] border-charcoal-200`}
+                          className={wordBlockStyling}
                           onClick={() => wordClicked(wordObj)}
                           onKeyDown={() => wordClicked(wordObj)}
                           disabled={gameCompleted && validAnswer}
@@ -120,61 +112,54 @@ function PhraseScramblerPresentation({
                 className="flex flex-row bg-charcoal-50 px-4 py-4 sm:px-6 justify-center"
               >
                 {gameStatus === 'Won' && (
-                  <div>
-                    <p className="inline">
-                      {getIcon(
-                        'CheckCircleSolid',
-                        'h-8 w-8 inline fill-jade-500 mx-2',
-                      )}
-                      Great Job!
-                    </p>
-                    {relatedAudio?.length > 0 && (
-                      <AudioButton audioArray={relatedAudio} />
-                    )}
+                  <div className="flex items-center justify-center w-full mx-auto space-x-2 text-xl">
+                    {getIcon('CheckCircleSolid', 'h-8 w-8 fill-jade-500')}
+                    <span>Great Job!</span>
                   </div>
                 )}
                 {gameStatus === 'Lost' && (
-                  <div className="flex flex-row justify-around w-3/4">
-                    <button
-                      data-testid="TryAgainButton"
-                      type="button"
-                      onClick={() => resetGame()}
-                      className="inline font-bold py-2 pl-4 pr-6 border-charcoal-100 shadow-md rounded-md"
-                    >
-                      {getIcon(
-                        'TryAgain',
-                        'h-8 w-8 inline fill-ochre-600 mx-2 stroke-2',
-                      )}
-                      Try again!
-                    </button>
-                    {relatedAudio?.length > 0 && (
-                      <div className="mt-4">
-                        <p className="inline align-center">
-                          Need a hint? Listen to the phrase:
-                        </p>
-                        <AudioButton audioArray={relatedAudio} />
-                      </div>
-                    )}
-                  </div>
+                  <button
+                    data-testid="TryAgainButton"
+                    type="button"
+                    onClick={() => resetGame()}
+                    className="btn-md btn-primary bg-ochre-600 hover:bg-ochre-800 text-white"
+                  >
+                    {getIcon('TryAgain')}
+                    <span>Try again!</span>
+                  </button>
                 )}
                 {!gameCompleted && (
-                  <div data-testid="action-buttons">
-                    <button
-                      data-testid="checkButton"
-                      type="button"
-                      onClick={() => checkAnswer()}
-                      className={checkAnswerButtonStyling}
-                    >
-                      Check
-                    </button>
-                    <button
-                      data-testid="resetButton"
-                      type="button"
-                      onClick={() => resetGame()}
-                      className={baseButtonStyling}
-                    >
-                      Reset
-                    </button>
+                  <div className="flex-col justify-center space-y-4">
+                    <div className="flex justify-center">
+                      <div className="flex items-center justify-center space-x-2 h-10">
+                        <span>
+                          {relatedAudio?.length > 0
+                            ? 'Need a hint? Listen to the phrase'
+                            : 'No audio.'}
+                        </span>
+                        <AudioButton audioArray={relatedAudio} />
+                      </div>
+                    </div>
+
+                    <div className="space-x-2">
+                      <button
+                        data-testid="resetButton"
+                        type="button"
+                        onClick={() => resetGame()}
+                        className="btn-secondary btn-md"
+                      >
+                        {getIcon('TryAgain')}
+                        <span>Reset</span>
+                      </button>
+                      <button
+                        data-testid="checkButton"
+                        type="button"
+                        onClick={() => checkAnswer()}
+                        className="btn-primary btn-md"
+                      >
+                        Check
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -183,7 +168,7 @@ function PhraseScramblerPresentation({
               data-testid="loadButton"
               type="button"
               onClick={() => newGame()}
-              className={`${checkAnswerButtonStyling} mt-4 py-4 px-8`}
+              className="btn-secondary btn-md mt-4"
             >
               Load a new phrase
             </button>
