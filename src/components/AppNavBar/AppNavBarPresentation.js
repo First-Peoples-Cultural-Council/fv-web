@@ -38,11 +38,11 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
     setMobileLandingNavbarOpen(!mobileLandingNavbarOpen)
   }
 
-  useEffect(() => {
-    if (mobileLandingNavbarOpen) {
-      setMobileLandingNavbarOpen(false)
-    }
-  }, [location, setMobileLandingNavbarOpen])
+  const [prevLocation, setPrevLocation] = useState(location)
+  if (location !== prevLocation && mobileLandingNavbarOpen) {
+    setPrevLocation(location)
+    openCloseMobileLandingNavbar()
+  }
 
   const menuItemStyling =
     'h-8 xl:h-10 group p-1 inline-flex items-center text-base xl:text-lg font-medium text-white hover:text-charcoal-200'
@@ -129,7 +129,11 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
               </li>
             )}
 
-            {!isGuest && <UserMenu.Container />}
+            {!isGuest && (
+              <li>
+                <UserMenu.Container />
+              </li>
+            )}
           </ul>
           {/* Landing Mobile Menu Button */}
           <div
@@ -137,6 +141,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
             className="flex items-center md:hidden"
           >
             <button
+              data-testid="open-close-mobile-menu-btn"
               type="button"
               onClick={() => openCloseMobileLandingNavbar()}
               className="bg-charcoal-900 rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"
@@ -191,6 +196,7 @@ function AppNavBarPresentation({ isHome = false, login, logout }) {
 
             <li>
               <button
+                data-testid="login-logout-btn"
                 type="button"
                 className={mobileMenuItemStyling}
                 onClick={isGuest ? login : logout}
