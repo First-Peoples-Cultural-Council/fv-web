@@ -87,6 +87,26 @@ Sentry.init({
 
 const SentryRoutes = Sentry.withSentryReactRouterV7Routing(Routes)
 
+// Dynamic font injection
+const fontUrl = GlobalConfiguration.FONT_FAMILY_URL
+if (fontUrl) {
+  const style = document.createElement('style')
+  style.innerHTML = `
+    @font-face {
+      font-family: 'Dynamic Font';
+      font-style: normal;
+      font-weight: 100 1000;
+      font-display: swap;
+      src: url('${fontUrl}') format('truetype');
+    }
+
+    :root {
+      --font-sans: 'Dynamic Font', 'BCSans', sans-serif;
+    }
+  `
+  document.head.appendChild(style)
+}
+
 const container = document.getElementById('root')
 const root = createRoot(container)
 
