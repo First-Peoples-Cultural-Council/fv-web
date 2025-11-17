@@ -11,7 +11,7 @@ function LandingPageContainer() {
   const { aboutData, quotesData, appsData } = LandingPageData()
   return (
     <div id="LandingPageContainer">
-      <LandingBanner.Container />
+      <LandingBanner.Presentation />
       <LandingWhy.Presentation />
       <WidgetArea.Container widgetData={[aboutData, quotesData, appsData]} />
       <LandingKeyboards.Presentation />
