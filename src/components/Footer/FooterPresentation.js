@@ -12,9 +12,9 @@ function FooterPresentation() {
     <nav id="footer" className="bg-charcoal-900 print:hidden">
       <div className="mx-auto grid grid-cols-8 md:pt-8 md:pb-4 md:px-4">
         <div className="col-span-8 md:col-span-3 lg:col-start-2 lg:col-span-3 xl:col-start-2 xl:col-span-4 p-2 md:p-0">
-          <h4 className="text-white text-xs md:text-base md:mb-2">
+          <p className="text-white text-xs md:text-base md:mb-2">
             An initiative of
-          </h4>
+          </p>
           <a href="https://www.fpcc.ca/" target="_blank" rel="noreferrer">
             <img
               className="h-14 inline mr-5 mb-2 md:mb-0"
