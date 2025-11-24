@@ -31,19 +31,20 @@ function PrivateSiteCard({ site, user }) {
         h-16 md:h-24 w-64 lg:w-72 m-5 md:ml-12 lg:ml-16 hover:bg-ochre-600 hover:border-ochre-600"
         onClick={() => setPrivateSiteModalOpen(true)}
       >
-        <div className="absolute h-16 w-16 md:w-24 md:h-24 -left-8 md:-left-10">
+        <div className="absolute h-16 w-16 md:w-24 md:h-24 -left-8 md:-left-12">
           <SiteLogo.Presentation
             size={THUMBNAIL}
             logo={site?.logo || null}
             additionalStyling="ring-1 ring-charcoal-100"
           />
         </div>
-        <p className="w-full ml-24 mr-8 md:mr-4 tracking-tight text-center break-word">
+        <div className="w-10 md:w-14" />
+        <p className="w-full px-2 tracking-tight text-center break-word">
           {site?.title}
         </p>
         {getIcon(
           'Lock',
-          'absolute bottom-2 right-2 h-5 w-5 fill-ochre-400 group-hover:fill-white',
+          'absolute bottom-1 right-1 md:bottom-1 md:right-1 h-4 w-4 md:h-5 md:w-5 fill-ochre-400 group-hover:fill-white',
         )}
       </button>
 
