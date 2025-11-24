@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
-import { Transition } from '@headlessui/react'
 
 // FPCC
 import NavBarPresentationMenu from 'components/NavBar/NavBarPresentationMenu'
@@ -80,22 +79,13 @@ function NavBarPresentation({
             </div>
           </div>
         )}
+        {/* -- Mobile Menu -- */}
+        <NavBarPresentationMobile
+          site={site}
+          open={mobileNavbarOpen}
+          onClose={() => openCloseMobileNavbar()}
+        />
       </div>
-      {/* -- Mobile Menu -- */}
-      <Transition
-        as="div"
-        show={mobileNavbarOpen}
-        enter="transform transition ease-in-out duration-500"
-        enterFrom="translate-x-full"
-        enterTo="translate-x-0"
-        leave="transform transition ease-in-out duration-500"
-        leaveFrom="translate-x-0"
-        leaveTo="translate-x-full"
-      >
-        <div className="lg:hidden">
-          <NavBarPresentationMobile site={site} />
-        </div>
-      </Transition>
     </nav>
   )
 }
