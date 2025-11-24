@@ -36,6 +36,7 @@ function SearchSiteFormContainer({ kids = null, minimal = false }) {
           displayedSearchTerm={displayedSearchTerm}
           handleSearchNavigation={submitSearchClearParams}
           handleSearchTermChange={handleSearchTermChange}
+          placeholder={sitename ? 'Search language site' : 'Search FirstVoices'}
         />
       ) : (
         <>
