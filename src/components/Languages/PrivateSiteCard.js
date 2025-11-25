@@ -44,7 +44,7 @@ function PrivateSiteCard({ site, user }) {
         </p>
         {getIcon(
           'Lock',
-          'absolute bottom-1 right-1 md:bottom-1 md:right-1 h-4 w-4 md:h-5 md:w-5 fill-ochre-400 group-hover:fill-white',
+          'absolute bottom-1 right-1 md:bottom-2 md:right-2 h-4 w-4 md:h-5 md:w-5 fill-ochre-400 group-hover:fill-white',
         )}
       </button>
 
