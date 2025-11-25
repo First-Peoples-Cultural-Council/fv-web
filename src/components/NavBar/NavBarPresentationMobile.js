@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router'
 import PropTypes from 'prop-types'
-import { Transition } from '@headlessui/react'
+import { Dialog, DialogPanel } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 
 // FPCC
@@ -13,10 +13,8 @@ import { isAtLeastRole } from 'common/utils/membershipHelpers'
 import { IMMERSION } from 'common/constants'
 import ImmersionToggle from 'components/ImmersionToggle'
 
-function NavBarPresentationMobile({ site }) {
+function NavBarPresentationMobile({ site, open, onClose }) {
   const { user } = useUserStore()
-  const [selectedSubMenu, setSelectedSubMenu] = useState({})
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const isGuest = user.isAnonymous
   const { login, logout } = useLoginLogout()
   const [t] = useTranslation()
@@ -26,168 +24,133 @@ function NavBarPresentationMobile({ site }) {
       ? site?.checkForEnabledFeature(IMMERSION)
       : false
 
-  const onMenuClick = (event, menuObject) => {
-    event.stopPropagation()
-    event.preventDefault()
-    setSelectedSubMenu(menuObject)
-    setIsSubMenuOpen(!isSubMenuOpen)
-  }
-
   const menuData = site?.menu || {}
   const member = isAtLeastRole({
     user,
     sitename: site.sitename,
     roleRegex: atLeastMember,
   })
-  const buttonStyling = 'w-full px-1 py-2 flex items-center rounded-sm'
-  const labelStyling = 'truncate ml-3 font-medium'
-  const iconStyling = 'fill-current h-12 w-8 flex-none'
+  const linkStyling =
+    'flex gap-x-4 p-4 text-base font-semibold text-blumine-800'
 
-  function generateMenuItem(menuItem) {
-    const hasItems = menuItem?.itemsData?.length > 0
+  function generateMenuLink(menuItem) {
     return (
-      <li key={`${menuItem.title}_id`}>
-        {hasItems ? (
-          <button
-            data-testid={`${menuItem.title}-button`}
-            type="button"
-            onClick={(e) => {
-              onMenuClick(e, menuItem)
-            }}
-            className={buttonStyling}
-          >
-            {getIcon(menuItem.title, iconStyling)}
-            <span className={labelStyling}>
-              {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
-            </span>
-            {getIcon('ChevronRight', 'absolute right-3 fill-current w-10')}
-          </button>
-        ) : (
-          <Link
-            data-testid={`${menuItem.title}-link`}
-            className={buttonStyling}
-            to={`/${site.sitename + menuItem.href}`}
-          >
-            {getIcon(menuItem.title, iconStyling)}{' '}
-            <span className={labelStyling}>
-              {menuItem.transKey ? t(menuItem.transKey) : menuItem.title}
-            </span>
-          </Link>
-        )}
-      </li>
+      <Link
+        data-testid={`${menuItem?.title}-link`}
+        to={`/${site?.sitename + menuItem?.href}`}
+        className={linkStyling}
+      >
+        <span className="truncate">
+          {menuItem?.transKey ? t(menuItem?.transKey) : menuItem?.title}
+        </span>
+      </Link>
     )
   }
-
+  function generateMenuGroup(menuItem) {
+    return (
+      <div key={`${menuItem?.title}_id`} className="py-2 sm:py-4">
+        <h3 className="py-2 sm:py-4 text-base font-medium text-charcoal-500">
+          {menuItem?.transKey ? t(menuItem?.transKey) : menuItem?.title}
+        </h3>
+        <ul className="flow-root">
+          {menuItem?.itemsData?.map((item) => (
+            <li key={item.title}>{generateMenuLink(item)}</li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
   return (
-    <div className="min-h-screen bg-white text-charcoal-900">
-      <Transition
-        as="div"
-        show={!isSubMenuOpen}
-        enter="transform transition ease-in-out duration-500"
-        enterFrom="-translate-x-full"
-        enterTo="-translate-x-0"
+    <Dialog
+      data-testid="NavBarPresentationMobile"
+      open={open}
+      onClose={onClose}
+      className="lg:hidden"
+    >
+      <DialogPanel
+        transition
+        className="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white transition data-closed:-translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-leave:duration-150 data-enter:ease-out data-leave:ease-in"
       >
-        <ul className="divide-y-2 divide-charcoal-100 bg-white p-2 overflow-y-auto">
-          {!isGuest && (
-            <li className={buttonStyling}>
-              Welcome
-              {user?.displayName ? `, ${user?.displayName}!` : '!'}
-            </li>
+        <div className="flex h-16 p-2 items-center justify-between bg-charcoal-900">
+          <Link
+            to={`/${site?.sitename}`}
+            className="rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"
+          >
+            {site?.title}
+          </Link>
+          <button
+            data-testid="close-mobile-nav-btn"
+            type="button"
+            onClick={onClose}
+            className="rounded-lg p-2 inline-flex items-center justify-center text-white hover:text-charcoal-50 focus:ring-2"
+          >
+            <span className="sr-only">Close menu</span>
+            {getIcon('Close', 'size-6')}
+          </button>
+        </div>
+        <div className="relative bg-white">
+          {!isGuest && !member && (
+            <div className="max-w-3xl mx-auto border-b border-charcoal-300">
+              <div className="py-4 px-6">
+                <div className="flex w-full items-center justify-center">
+                  {generateMenuLink({
+                    title: `Join ${site?.title}`,
+                    href: '/join',
+                  })}
+                </div>
+              </div>
+            </div>
           )}
-          {menuData?.dictionary && generateMenuItem(menuData?.dictionary)}
-          {menuData?.learn && generateMenuItem(menuData?.learn)}
-          {menuData?.resources && generateMenuItem(menuData?.resources)}
-          {menuData?.about && generateMenuItem(menuData?.about)}
-          {menuData?.kids && generateMenuItem(menuData?.kids)}
+          <div className="max-w-3xl mx-auto border-b border-charcoal-300">
+            <div className="py-4 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 sm:gap-x-4">
+              {menuData?.dictionary && generateMenuGroup(menuData?.dictionary)}
+              {menuData?.learn && generateMenuGroup(menuData?.learn)}
+              {menuData?.resources && generateMenuGroup(menuData?.resources)}
+              {menuData?.about && generateMenuGroup(menuData?.about)}
+            </div>
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <div className="py-4 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 sm:gap-x-4">
+              {menuData?.kids && generateMenuLink(menuData?.kids)}
 
-          {isGuest ? (
-            <li>
-              <button
-                data-testid="login-button"
-                className={buttonStyling}
-                type="button"
-                onClick={login}
-                onKeyDown={login}
-              >
-                {getIcon('Login', iconStyling)}
-                <span className={labelStyling}>Sign in / Register</span>
-              </button>
-            </li>
-          ) : (
-            <>
-              {!member && (
-                <li>
-                  <Link
-                    data-testid="join-link"
-                    className={buttonStyling}
-                    to={`/${site?.sitename}/join`}
-                  >
-                    {getIcon('Members', iconStyling)}{' '}
-                    <span
-                      className={labelStyling}
-                    >{`Join ${site?.title}`}</span>
-                  </Link>
-                </li>
-              )}
-              <li>
+              {isGuest ? (
+                <button
+                  data-testid="login-button"
+                  className={linkStyling}
+                  type="button"
+                  onClick={login}
+                  onKeyDown={login}
+                >
+                  <span>Sign in / Register</span>
+                </button>
+              ) : (
                 <button
                   data-testid="logout-button"
-                  className={buttonStyling}
+                  className={linkStyling}
                   type="button"
                   onClick={logout}
                   onKeyDown={logout}
                 >
-                  {getIcon('LogOut', iconStyling)}
-                  <span className={labelStyling}>Sign Out</span>
+                  <span>Sign Out</span>
                 </button>
-              </li>
-            </>
-          )}
-          {hasImmersion && (
-            <li>
-              <div className={`${buttonStyling} px-2 my-2`}>
-                <ImmersionToggle site={site} />
-              </div>
-            </li>
-          )}
-        </ul>
-      </Transition>
-      <Transition
-        as="div"
-        show={isSubMenuOpen}
-        enter="transform transition ease-in-out duration-500"
-        enterFrom="translate-x-full"
-        enterTo="translate-x-0"
-        leave="transform transition ease-in-out duration-500"
-        leaveFrom="translate-x-0"
-        leaveTo="translate-x-full"
-      >
-        <div className="shadow-lg min-h-screen bg-white">
-          <ul className="grid grid-rows-3 divide-y-2 divide-charcoal-100 bg-white p-2">
-            {selectedSubMenu?.itemsData?.length > 0
-              ? selectedSubMenu?.itemsData.map((item) => generateMenuItem(item))
-              : null}
-            <li>
-              <button
-                data-testid="close-button"
-                type="button"
-                onClick={() => setIsSubMenuOpen(false)}
-                onKeyDown={() => setIsSubMenuOpen(false)}
-                className={buttonStyling}
-              >
-                {getIcon('ChevronLeft', iconStyling)}
-                <span className={labelStyling}>Back</span>
-              </button>
-            </li>
-          </ul>
+              )}
+              {hasImmersion && (
+                <div className={`${linkStyling} col-span-2 max-w-72`}>
+                  <ImmersionToggle site={site} />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </Transition>
-    </div>
+      </DialogPanel>
+    </Dialog>
   )
 }
 // PROPTYPES
-const { object } = PropTypes
+const { object, func, bool } = PropTypes
 NavBarPresentationMobile.propTypes = {
+  open: bool,
+  onClose: func,
   site: object.isRequired,
 }
 

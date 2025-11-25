@@ -40,14 +40,9 @@ function FooterPresentation() {
             <Link className={linkClass} to="/conditions-of-use">
               Conditions of use
             </Link>
-            <a
-              className={linkClass}
-              href="https://firstvoices.atlassian.net/servicedesk/customer/portals"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link className={linkClass} to="/support">
               Help
-            </a>
+            </Link>
             <a
               className={linkClass}
               href=" https://fpcf.ca/take-action/ways-to-give"
