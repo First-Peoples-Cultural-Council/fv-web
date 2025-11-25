@@ -56,11 +56,13 @@ function AppNavBarPresentationMobile({ open, onClose }) {
           </button>
         </div>
         <div className="relative bg-white">
-          <div className="py-4 px-6 mx-auto max-w-lg">
-            <SearchSiteForm.Container minimal />
+          <div className="max-w-lg mx-auto border-b border-charcoal-300">
+            <div className="p-6 mx-auto max-w-lg">
+              <SearchSiteForm.Container minimal />
+            </div>
           </div>
-          <div className="mx-auto max-w-7xl grid gap-4 px-6 py-4 divide-y divide-charcoal-400">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 pb-4 sm:gap-x-4">
+          <div className="max-w-lg mx-auto border-b border-charcoal-300">
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 sm:gap-x-4">
               {generateMenuLink({
                 title: 'Explore Languages',
                 href: '/languages',
@@ -82,7 +84,9 @@ function AppNavBarPresentationMobile({ open, onClose }) {
                 href: '/support',
               })}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 sm:gap-x-4">
+          </div>
+          <div className="max-w-lg mx-auto">
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 sm:gap-x-4">
               {isGuest ? (
                 <button
                   data-testid="login-button"

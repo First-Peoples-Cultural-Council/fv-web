@@ -48,11 +48,11 @@ function NavBarPresentationMobile({ site, open, onClose }) {
   }
   function generateMenuGroup(menuItem) {
     return (
-      <div key={`${menuItem?.title}_id`}>
-        <h3 className="text-base font-medium text-charcoal-500">
+      <div key={`${menuItem?.title}_id`} className="py-2 sm:py-4">
+        <h3 className="py-2 sm:py-4 text-base font-medium text-charcoal-500">
           {menuItem?.transKey ? t(menuItem?.transKey) : menuItem?.title}
         </h3>
-        <ul className="mt-3 sm:mt-4 flow-root">
+        <ul className="flow-root">
           {menuItem?.itemsData?.map((item) => (
             <li key={item.title}>{generateMenuLink(item)}</li>
           ))}
@@ -89,22 +89,28 @@ function NavBarPresentationMobile({ site, open, onClose }) {
           </button>
         </div>
         <div className="relative bg-white">
-          <div className="mx-auto max-w-7xl grid gap-4 px-6 py-4 divide-y divide-charcoal-400">
-            {!isGuest && !member && (
-              <div className="flex w-full items-center justify-center -mt-2 pb-2">
-                {generateMenuLink({
-                  title: `Join ${site?.title}`,
-                  href: '/join',
-                })}
+          {!isGuest && !member && (
+            <div className="max-w-3xl mx-auto border-b border-charcoal-300">
+              <div className="py-4 px-6">
+                <div className="flex w-full items-center justify-center">
+                  {generateMenuLink({
+                    title: `Join ${site?.title}`,
+                    href: '/join',
+                  })}
+                </div>
               </div>
-            )}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-4 pb-4 sm:gap-x-4">
+            </div>
+          )}
+          <div className="max-w-3xl mx-auto border-b border-charcoal-300">
+            <div className="py-4 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 sm:gap-x-4">
               {menuData?.dictionary && generateMenuGroup(menuData?.dictionary)}
               {menuData?.learn && generateMenuGroup(menuData?.learn)}
               {menuData?.resources && generateMenuGroup(menuData?.resources)}
               {menuData?.about && generateMenuGroup(menuData?.about)}
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 sm:gap-x-4">
+          </div>
+          <div className="max-w-3xl mx-auto">
+            <div className="py-4 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 sm:gap-x-4">
               {menuData?.kids && generateMenuLink(menuData?.kids)}
 
               {isGuest ? (
