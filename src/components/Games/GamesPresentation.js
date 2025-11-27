@@ -43,7 +43,7 @@ function GamesPresentation({ kids = null }) {
                           to={`/${sitename}/${kids ? 'kids/' : ''}games/${
                             game.pathname
                           }`}
-                          className="bg-blumine-800 text-white text-4xl group w-full px-5 py-10 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
+                          className="bg-blumine-800 text-white text-center text-4xl group w-full px-5 py-10 rounded-lg flex flex-col items-center font-medium group-hover:opacity-75"
                         >
                           {getIcon(game.icon, 'fill-current h-28')}
                           <span className="m-2">{game.title}</span>
