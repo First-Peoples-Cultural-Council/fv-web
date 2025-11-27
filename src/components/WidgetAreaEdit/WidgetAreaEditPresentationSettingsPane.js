@@ -196,7 +196,7 @@ function WidgetAreaEditPresentationSettingsPane({
         isOpen={previewModalOpen}
         closeHandler={() => setPreviewModalOpen(false)}
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="bg-white w-[90vw] mx-auto">
           <Widget.Container data={currentWidget} />
         </div>
       </Modal.Presentation>
