@@ -128,3 +128,4 @@ jobs:
         run: |
           aws cloudfront wait invalidation-completed --id ${{  env.Invalidation_ID  }} --distribution-id ${{  env.Distro_ID  }}
           echo "Deployment Completed"
+
