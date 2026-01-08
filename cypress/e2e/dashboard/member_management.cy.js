@@ -37,29 +37,30 @@ describe(
       })
     })
 
-    // const findMember = (_memberEmail, _role) => {
-    //     cy.get('table tbody tr dl dd').then(($rows) => {
-    //         let _found = $rows.text().includes(_memberEmail)
-    //         _found && $rows.each(($el, $em) => {
-    //             if ($em.innerText === _memberEmail){
-    //                 cy.get('[data-testid="MembershipEditButton"]').eq($el).click()
-    //                 cy.get('#assistant').then(() => {
-    //                     cy.get(`#${_role}`).click()
-    //                     cy.contains('Update').click()
-    //                     cy.get('[data-testid="page-1-btn"]').click({timeout:20000})
-    //                     return
-    //                 })
-    //             }
-    //         })
-    //         if (!_found){
-    //             cy.get('[data-testid="next-page-btn"]').then(($nextBtn) => {
-    //               cy.wrap($nextBtn).click()
-    //               cy.wait('@getNext')
-    //             })
-    //             findMember(_memberEmail, _role)
-    //          }
-    //     })
-    // }
+    const findMember = (_memberEmail, _role) => {
+      cy.get('table tbody tr dl dd').then(($rows) => {
+        let _found = $rows.text().includes(_memberEmail)
+        _found &&
+          $rows.each(($el, $em) => {
+            if ($em.innerText === _memberEmail) {
+              cy.get('[data-testid="MembershipEditButton"]').eq($el).click()
+              cy.get('#assistant').then(() => {
+                cy.get(`#${_role}`).click()
+                cy.contains('Update').click()
+                cy.get('[data-testid="page-1-btn"]').click({ timeout: 20000 })
+                return
+              })
+            }
+          })
+        if (!_found) {
+          cy.get('[data-testid="next-page-btn"]').then(($nextBtn) => {
+            cy.wrap($nextBtn).click()
+            cy.wait('@getNext')
+          })
+          findMember(_memberEmail, _role)
+        }
+      })
+    }
 
     it('member - find member', () => {
       cy.contains('Explore Languages').click()
@@ -69,16 +70,14 @@ describe(
       cy.contains('Dashboard').click()
       cy.contains('Member Management').click()
       cy.get('[data-testid="next-page-btn"]').click()
-      // cy.get('[data-testid^="page"]').each((_page) => {
-      //   // eslint-disable-next-line
-      //   cy.wrap(_page).realClick()
-      //   cy.wait('@getNext')
-      // }).then(()=>{
-      // cy.get('[data-testid="page-1-btn"]').click()
+      cy.get('[data-testid^="page"]').each((_page) => {
+        cy.wrap(_page).realClick()
+        cy.wait('@getNext')
+      })
+      cy.get('[data-testid="page-1-btn"]').click()
 
-      // findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'assistant')
-      // findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'member')
-      // })
+      findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'assistant')
+      findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'member')
     })
   },
 ) // end of describe
