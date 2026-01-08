@@ -23,7 +23,6 @@ describe(
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
         Cypress.Commands.add('login', (email, password) => {
           cy.get('#signInFormUsername').type(email, { force: true })
-          // lets try an incorrect password
           cy.get('#signInFormPassword').type(`${password}{enter}`, {
             force: true,
           })
@@ -52,6 +51,7 @@ describe(
       cy.contains('Create category').click()
       cy.contains('Dismiss').should('be.visible')
 
+      cy.get(`[data-testid="${_title}-edit-link"]`).scrollIntoView()
       cy.get(`[data-testid="${_title}-edit-link"]`).click()
 
       cy.get('#description').type('test qa data')

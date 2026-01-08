@@ -9,36 +9,39 @@ describe(
   () => {
     beforeEach(() => {})
 
+    const checkMenu = (_vp, _viewSize) => {
+      cy.viewport(_vp)
+      if (_viewSize === 2) {
+        cy.get('#NavUser').should('be.visible')
+      } else {
+        cy.get('[data-testid="MobileMenu-button"]').should('be.visible')
+      }
+    }
+
     it('rotate between view ports ', () => {
       cy.on('uncaught:exception', () => false)
 
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
 
-      cy.viewport('macbook-15')
+      checkMenu('macbook-15', 2)
 
-      cy.viewport('macbook-13')
+      checkMenu('macbook-13', 2)
 
-      cy.viewport('macbook-11')
+      checkMenu('macbook-11', 2)
 
-      cy.viewport('ipad-2')
+      checkMenu('ipad-2', 1)
 
-      cy.viewport('ipad-mini')
+      checkMenu('ipad-mini', 1)
 
-      cy.viewport('iphone-6+')
+      checkMenu('iphone-6+', 1)
 
-      cy.viewport('iphone-6')
+      checkMenu('iphone-6', 1)
 
-      cy.viewport('iphone-5')
+      checkMenu('iphone-5', 1)
 
-      cy.viewport('iphone-4')
+      checkMenu('iphone-4', 1)
 
-      cy.viewport('iphone-3')
-
-      // cy.viewport() accepts an orientation for all presets
-      // the default orientation is 'portrait'
-      cy.viewport('ipad-2', 'portrait')
-
-      cy.viewport('iphone-4', 'landscape')
+      checkMenu('iphone-3', 1)
     })
   },
 ) // end of describe

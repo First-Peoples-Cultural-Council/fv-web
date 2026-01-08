@@ -65,15 +65,14 @@ describe(
 
     it('14.7 kids search', () => {
       cy.contains('Dictionary').click()
-      cy.get(
-        ':nth-child(2) > [data-testid="DictionaryGridTilePresentationKids"] > .grid > #EntryDetails > .w-full > .inline-flex > a',
-      )
+      cy.get('[data-testid="DictionaryGridTileKids"] ')
+        .first()
         .invoke('text')
         .then((_text) => {
           cy.get('[data-testid="SearchSubmit"]').click()
           cy.contains(_text).should('exist')
+          cy.contains(_text).click()
         })
-      cy.log('crashes until word is found')
     })
   },
 ) // end of describe

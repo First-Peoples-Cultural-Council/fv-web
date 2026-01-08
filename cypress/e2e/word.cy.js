@@ -41,6 +41,7 @@ describe(
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
 
+      cy.get('[data-testid="DictionaryListEntry"]').should('be.visible')
       cy.get('[data-testid="DictionaryListEntry"]')
         .first()
         .invoke('text')
