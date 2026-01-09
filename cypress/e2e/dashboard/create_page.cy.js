@@ -12,8 +12,8 @@ describe('Dashboard - Page testing', () => {
       [], // and force the response to be: []
     )
 
-    Cypress.Commands.add('deletePage', (name) => {
-      cy.contains(name).parent().children().eq(3).children().click()
+    Cypress.Commands.add('deletePage', (_slug, name) => {
+      cy.get(`a[href$="slug=${_slug}"]`).click()
       cy.contains('Edit Page Header').click()
       cy.get('#title').should('contain.value', name)
       cy.contains('Delete Page').click()
@@ -55,13 +55,13 @@ describe('Dashboard - Page testing', () => {
     cy.contains('Edit custom pages').click()
     cy.contains('Create a Custom Page').click()
 
-    const _slug = String.fromCharCode(97 + Math.floor(Math.random() * 26))
+    const _slug = `testQA${String.fromCharCode(97 + Math.floor(Math.random() * 26))}`
 
     cy.get('#title').type('testQApage')
     cy.get('#subtitle').type(Cypress._.uniqueId('Subtitle_'))
     cy.get('#slug').type(_slug)
 
     cy.contains('Create page').click()
-    cy.deletePage('testQApage')
+    cy.deletePage(_slug, 'testQApage')
   })
 })
