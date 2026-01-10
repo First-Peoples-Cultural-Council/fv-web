@@ -54,30 +54,39 @@ function LandingKeyboardsPresentation() {
       </div>
       {/* Desktop View */}
       <div
-        className="hidden lg:flex bg-scarlet-800 flex-row p-16 justify-center"
+        className="hidden lg:flex bg-scarlet-800 p-16 justify-center"
         style={{
           backgroundImage: `url(${landingKeyboardBg})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
         }}
       >
-        <img src={macDevice} alt="computer monitor" className="w-1/3" />
-        <div className="text-white text-bold text-base md:text-lg w-1/2 px-4 pt-4 flex flex-col">
-          <h2 className="text-4xl font-semibold m-4">FIRSTVOICES KEYBOARDS</h2>
-          <p className="pt-8 pb-4 m-4">
-            FirstVoices keyboards have been developed for both desktop and
-            mobile devices, with over 100 Indigenous language keyboards
-            currently available. Users are able to select their keyboard(s) of
-            choice within their email, social media, word processing or other
-            apps, enabling unlimited communication in their mother language.
-          </p>
-          <div className="m-4">
-            <a
-              href="/keyboards"
-              className="btn-primary btn-lg bg-ochre-600 hover:bg-ochre-700"
-            >
-              Learn more
-            </a>
+        <div className="flex items-center justify-center max-w-5xl space-x-8 xl:space-x-12">
+          <div className="w-1/2 flex items-center">
+            <img
+              src={macDevice}
+              alt="computer monitor"
+              className="w-full h-auto"
+            />
+          </div>
+          <div className="w-1/2 flex flex-col my-8 xl:my-10 space-y-8 xl:space-y-10 text-white text-bold text-base md:text-lg">
+            <h2 className="text-4xl font-semibold">FIRSTVOICES KEYBOARDS</h2>
+            <p>
+              FirstVoices keyboards have been developed for both desktop and
+              mobile devices, with over 100 Indigenous language keyboards
+              currently available. Users are able to select their keyboard(s) of
+              choice within their email, social media, word processing or other
+              apps, enabling unlimited communication in their mother language.
+            </p>
+
+            <div>
+              <a
+                href="/keyboards"
+                className="btn-primary btn-lg bg-ochre-600 hover:bg-ochre-700"
+              >
+                Learn more
+              </a>
+            </div>
           </div>
         </div>
       </div>
