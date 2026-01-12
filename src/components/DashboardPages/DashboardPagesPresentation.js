@@ -58,6 +58,7 @@ function DashboardPagesPresentation({
               </td>
               <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link
+                  data-testid={`${page.title}-edit-btn`}
                   to={`/${site?.sitename}/dashboard/edit/page?slug=${page?.url}`}
                   className="btn-tertiary btn-md-icon"
                 >
