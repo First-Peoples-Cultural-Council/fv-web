@@ -11,7 +11,6 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.viewport(1024, 768)
       cy.intercept(
         {
@@ -69,6 +68,7 @@ describe(
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Member Management').click()
+      cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).realClick()
