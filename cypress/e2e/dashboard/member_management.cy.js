@@ -66,9 +66,9 @@ describe(
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
+      cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.contains('Member Management').click()
       cy.get('#PaginationControlsPresentation').should('be.visible')
-      cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).scrollIntoView()
