@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-import 'cypress-real-events'
 
 describe(
   'Dashboard - Member Management',
@@ -73,7 +72,7 @@ describe(
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).scrollIntoView()
-        cy.wrap(_page).realClick()
+        cy.wrap(_page).click()
         cy.wait('@getNext')
       })
       cy.get('[data-testid="page-1-btn"]').click()
