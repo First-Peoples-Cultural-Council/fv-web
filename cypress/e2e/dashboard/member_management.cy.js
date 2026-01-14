@@ -71,6 +71,7 @@ describe(
       cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
+        cy.wrap(_page).scrollIntoView()
         cy.wrap(_page).realClick()
         cy.wait('@getNext')
       })
