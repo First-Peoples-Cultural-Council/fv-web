@@ -60,7 +60,7 @@ describe(
       })
     }
 
-    it('member - find member', () => {
+    it.only('member - find member', () => {
       cy.contains('Explore Languages').click()
       cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
@@ -69,6 +69,7 @@ describe(
       cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.contains('Member Management').click()
       cy.get('#PaginationControlsPresentation').should('be.visible')
+      cy.get('[data-testid^="page"]').should('have.length.greaterThan', 1)
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).scrollIntoView()
