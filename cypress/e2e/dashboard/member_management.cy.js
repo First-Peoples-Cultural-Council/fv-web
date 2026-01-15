@@ -73,7 +73,7 @@ describe(
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).scrollIntoView()
-        cy.wrap(_page).click()
+        cy.wrap(_page).click({ force: true })
         cy.wait('@getNext')
       })
       cy.get('[data-testid="page-1-btn"]').click()
