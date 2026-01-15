@@ -10,7 +10,7 @@ describe(
   },
   () => {
     beforeEach(() => {
-      cy.viewport(1024, 768)
+      cy.viewport(1920, 1080)
       cy.intercept(
         {
           method: 'GET', // Route all GET requests
