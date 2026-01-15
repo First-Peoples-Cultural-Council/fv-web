@@ -71,7 +71,7 @@ describe(
       cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
       cy.contains('Member Management').realClick()
       cy.get('#PaginationControlsPresentation').should('be.visible')
-      cy.get('[data-testid^="page"]').should('have.length.greaterThan', 3)
+      cy.get('[data-testid^="page"]').should('have.length.greaterThan', 8)
       cy.get('[data-testid="next-page-btn"]').should('not.be.disabled')
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
