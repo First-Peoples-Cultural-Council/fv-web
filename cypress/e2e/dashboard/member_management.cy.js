@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+import 'cypress-real-events'
 describe(
   'Dashboard - Member Management',
   {
@@ -41,18 +41,20 @@ describe(
         _found &&
           $rows.each(($el, $em) => {
             if ($em.innerText === _memberEmail) {
-              cy.get('[data-testid="MembershipEditButton"]').eq($el).click()
+              cy.get('[data-testid="MembershipEditButton"]').eq($el).realClick()
               cy.get('#assistant').then(() => {
-                cy.get(`#${_role}`).click()
-                cy.contains('Update').click()
-                cy.get('[data-testid="page-1-btn"]').click({ timeout: 20000 })
+                cy.get(`#${_role}`).realClick()
+                cy.contains('Update').realClick()
+                cy.get('[data-testid="page-1-btn"]').realClick({
+                  timeout: 20000,
+                })
                 return
               })
             }
           })
         if (!_found) {
           cy.get('[data-testid="next-page-btn"]').then(($nextBtn) => {
-            cy.wrap($nextBtn).click()
+            cy.wrap($nextBtn).realClick()
             cy.wait('@getNext')
           })
           findMember(_memberEmail, _role)
@@ -61,23 +63,24 @@ describe(
     }
 
     it.only('member - find member', () => {
-      cy.contains('Explore Languages').click()
+      cy.contains('Explore Languages').realClick()
       cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Dashboard').click()
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).realClick()
+      cy.contains('Dashboard').realClick()
       cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
-      cy.contains('Member Management').click()
+      cy.contains('Member Management').realClick()
       cy.get('#PaginationControlsPresentation').should('be.visible')
-      cy.get('[data-testid^="page"]').should('have.length.greaterThan', 1)
-      cy.get('[data-testid="next-page-btn"]').should('be.visible')
-      cy.get('[data-testid="next-page-btn"]').click({ force: true })
+      cy.get('[data-testid^="page"]').should('have.length.greaterThan', 3)
+      cy.get('[data-testid="next-page-btn"]').should('not.be.disabled')
+      cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).scrollIntoView()
-        cy.wrap(_page).click({ force: true })
+        cy.wrap(_page).should('not.be.disabled')
+        cy.wrap(_page).click()
         cy.wait('@getNext')
       })
-      cy.get('[data-testid="page-1-btn"]').click()
+      cy.get('[data-testid="page-1-btn"]').realClick()
 
       findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'assistant')
       findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'member')
