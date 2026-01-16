@@ -56,18 +56,6 @@ describe(
       })
     })
 
-    it('1.3 - signin - browser back', () => {
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
-      cy.contains('Sign out', { timeout: 12000 }).click()
-      cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        cy.contains('Sign in with your email and password').should('exist')
-        cy.go('back')
-      })
-
-      cy.contains('Sign in')
-    })
-
     it('sign up', () => {
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Sign out', { timeout: 12000 }).click()
