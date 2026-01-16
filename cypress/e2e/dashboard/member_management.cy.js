@@ -72,7 +72,7 @@ describe(
       cy.contains('Member Management').realClick()
       cy.get('#PaginationControlsPresentation').should('be.visible')
       cy.get('[data-testid^="page"]').should('have.length.greaterThan', 1)
-      cy.get('[data-testid="next-page-btn"]').should('not.be.disabled')
+      cy.get('[data-testid="page-2-btn"]').should('be.visible')
       cy.get('[data-testid="next-page-btn"]').click()
       cy.get('[data-testid^="page"]').each((_page) => {
         cy.wrap(_page).scrollIntoView()
