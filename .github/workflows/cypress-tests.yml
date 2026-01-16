@@ -23,7 +23,7 @@ jobs:
 
       - name: Run tests
         run: |
-          npx  cypress run --browser chrome -c defaultCommandTimeout=10000,projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://dev.firstvoices.com/',CYPRESS_DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}},retries=2 -s "cypress/e2e/core_suite_master.cy.js"
+          npx  cypress run --browser chrome -c defaultCommandTimeout=10000,projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://dev.firstvoices.com/',CYPRESS_DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}},retries=2,CYPRESS_SERVER=${{secrets.CYPRESS_SERVER}} -s "cypress/e2e/core_suite_master.cy.js"
         env:
           baseUrl: 'https://dev.firstvoices.com/'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
