@@ -8,9 +8,7 @@ import SectionTitle from 'components/SectionTitle'
 function WidgetStatsPresentation({ data }) {
   const iconStyling =
     'fill-current text-ochre-500 h-10 md:h-12 lg:h-14 w-auto mx-auto'
-  const totalStyling = data?.words
-    ? 'text-4xl md:text-5xl lg:text-6xl font-medium'
-    : 'text-4xl md:text-5xl lg:text-6xl font-medium opacity-0'
+  const totalStyling = 'text-4xl md:text-5xl lg:text-6xl font-medium'
   const labelStyling = 'text-base font-thin'
   return (
     <section className="bg-blumine-800 pt-3 md:pt-6">
