@@ -62,7 +62,7 @@ describe(
       })
     }
 
-    it.only('member - find member', () => {
+    it('member - find member', () => {
       cy.contains('Explore Languages').realClick()
       cy.title().should('eq', 'FirstVoices')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
