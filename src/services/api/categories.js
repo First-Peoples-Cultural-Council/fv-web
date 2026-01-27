@@ -4,9 +4,11 @@ import { SITES, CATEGORIES } from 'common/constants'
 const categories = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${CATEGORIES}/${id}`).json(),
-  getAll: async ({ sitename, nested }) =>
+  getAll: async ({ sitename, nested, pageSize = 250 }) =>
     apiBase()
-      .get(`${SITES}/${sitename}/${CATEGORIES}/?nested=${nested}`)
+      .get(
+        `${SITES}/${sitename}/${CATEGORIES}/?nested=${nested}&&pageSize=${pageSize}`,
+      )
       .json(),
   create: async ({ sitename, properties }) =>
     apiBase()
