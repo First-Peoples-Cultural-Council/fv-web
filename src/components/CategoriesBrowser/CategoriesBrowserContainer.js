@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import { MAX_CATEGORIES } from 'common/constants/limits'
 import CategoriesBrowserData from 'components/CategoriesBrowser/CategoriesBrowserData'
 import CategoriesBrowserPresentation from 'components/CategoriesBrowser/CategoriesBrowserPresentation'
 import useArrayStateManager from 'common/hooks/useArrayStateManager'
 
-function CategoriesBrowserContainer({ chooseDocHandler }) {
+function CategoriesBrowserContainer({ chooseDocHandler, formCategories }) {
   const {
     categoriesQueryResponse,
     site,
@@ -16,7 +17,10 @@ function CategoriesBrowserContainer({ chooseDocHandler }) {
   } = CategoriesBrowserData()
 
   const { selectedItems: selectedCategories, handleSelectAdditionalItem } =
-    useArrayStateManager({ maxItems: 8 })
+    useArrayStateManager({
+      maxItems: MAX_CATEGORIES,
+      formItems: formCategories,
+    })
 
   return (
     <CategoriesBrowserPresentation
@@ -33,9 +37,10 @@ function CategoriesBrowserContainer({ chooseDocHandler }) {
 }
 
 // PROPTYPES
-const { func } = PropTypes
+const { func, array } = PropTypes
 CategoriesBrowserContainer.propTypes = {
   chooseDocHandler: func,
+  formCategories: array,
 }
 
 export default CategoriesBrowserContainer

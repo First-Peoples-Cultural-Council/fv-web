@@ -60,6 +60,7 @@ function CategoryArrayField({
         <div className="w-[50vw] h-screen mx-auto rounded-lg overflow-hidden">
           <CategoriesBrowser.Container
             chooseDocHandler={appendToFormAndClose}
+            formCategories={fields}
           />
         </div>
       </Modal.Presentation>
