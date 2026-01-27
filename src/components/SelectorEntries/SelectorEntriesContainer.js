@@ -33,7 +33,7 @@ function SelectorEntriesContainer({
   })
 
   const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
-    useArrayStateManager({ maxItems: maxItems })
+    useArrayStateManager({ maxItems: maxItems, formItems: formEntries })
 
   // Clear the Selected items when the modal closes
   useEffect(() => {
