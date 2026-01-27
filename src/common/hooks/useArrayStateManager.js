@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-function useArrayStateManager({ maxItems, formItems = [] } = {}) {
+function useArrayStateManager({ maxItems, formItems = [] }) {
   const [selectedItems, setSelectedItems] = useState([])
 
   const removeItemFromArray = (array, item) =>
