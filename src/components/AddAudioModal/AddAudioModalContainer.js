@@ -16,7 +16,7 @@ function AddAudioModalContainer({
   closeModal,
 }) {
   const { selectedItems, setSelectedItems, handleSelectAdditionalItem } =
-    useArrayStateManager({ maxItems })
+    useArrayStateManager({ maxItems, formItems: formMedia })
 
   // Clear the Selected items when the modal closes
   useEffect(() => {

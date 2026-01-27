@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-function useArrayStateManager({ maxItems }) {
+function useArrayStateManager({ maxItems, formItems = [] } = {}) {
   const [selectedItems, setSelectedItems] = useState([])
 
   const removeItemFromArray = (array, item) =>
@@ -27,7 +27,7 @@ function useArrayStateManager({ maxItems }) {
       return
     }
 
-    if (maxItems && selectedItems.length >= maxItems) {
+    if (maxItems && selectedItems.length + formItems.length >= maxItems) {
       return
     }
 
