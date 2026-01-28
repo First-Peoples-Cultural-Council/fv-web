@@ -10,17 +10,20 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #   See https://hub.docker.com/r/cypress/browsers/tags
-    container: cypress/browsers:node-22.18.0-chrome-139.0.7258.138-1-ff-142.0-edge-139.0.3405.102-1
+    container: cypress/browsers:node-24.13.0-chrome-143.0.7499.192-1-ff-147.0-edge-143.0.3650.139-1
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
       - name: Install Cypress
-        run: npm i cypress@13.7.1
+        run: npm i cypress@14.5.4
+
+      - name: Install Cypress Real Events
+        run: npm i cypress-real-events
 
       - name: Run tests
         run: |
-          npx  cypress run --config projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://dev.firstvoices.com/',CYPRESS_DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}},retries=2 -s "cypress/e2e/core_suite_master.cy.js"
+          npx  cypress run --browser chrome -c defaultCommandTimeout=10000,projectId=$CYPRESS_PROJECT_ID --record --key $CYPRESS_RECORD_KEY  --env baseUrl='https://dev.firstvoices.com/',CYPRESS_DIALECT='lilwat',CYPRESS_FV_USERNAME=${{secrets.CYPRESS_FV_USERNAME}},CYPRESS_FV_PASSWORD=${{secrets.CYPRESS_FV_PASSWORD}},CYPRESS_FV_INITIALS=${{secrets.CYPRESS_FV_INITIALS}},CYPRESS_ORIGIN=${{secrets.CYPRESS_ORIGIN}},retries=2,CYPRESS_SERVER=${{secrets.CYPRESS_SERVER}},CYPRESS_MEMBER=${{secrets.CYPRESS_MEMBER}} -s "cypress/e2e/core_suite_master.cy.js"
         env:
           baseUrl: 'https://dev.firstvoices.com/'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

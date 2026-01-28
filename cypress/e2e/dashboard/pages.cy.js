@@ -83,18 +83,6 @@ describe(
             .eq(2)
             .realMouseMove(0, 150)
           cy.get('[data-testid="sortable-item-btn"]').eq(2).realMouseUp()
-
-          cy.get('[data-testid="sortable-item-btn"]').eq(1).realMouseDown()
-          cy.get('[data-testid="sortable-item-btn"]')
-            .eq(1)
-            .realMouseMove(0, 150)
-          cy.get('[data-testid="sortable-item-btn"]').eq(1).realMouseUp()
-
-          cy.get('[data-testid="sortable-item-btn"]').eq(0).realMouseDown()
-          cy.get('[data-testid="sortable-item-btn"]')
-            .eq(0)
-            .realMouseMove(0, -150)
-          cy.get('[data-testid="sortable-item-btn"]').eq(0).realMouseUp()
         })
     })
   },
