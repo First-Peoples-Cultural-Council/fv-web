@@ -21,30 +21,26 @@ describe(
       Cypress.Commands.add('_login', () => {
         cy.visit(`${Cypress.env('baseUrl')}`)
         cy.contains('Sign in').click()
-        cy.origin(
-          'https://fpcc-dev.auth.ca-central-1.amazoncognito.com',
-          () => {
-            Cypress.Commands.add('login', (email, password) => {
-              cy.get('#signInFormUsername').type(email, { force: true })
-              // lets try an incorrect password
-              cy.get('#signInFormPassword').type(`${password}{enter}`, {
-                force: true,
-              })
+        cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
+          Cypress.Commands.add('login', (email, password) => {
+            cy.get('#signInFormUsername').type(email, { force: true })
+            cy.get('#signInFormPassword').type(`${password}{enter}`, {
+              force: true,
             })
+          })
 
-            cy.contains('Sign in with your email and password').should('exist')
-            cy.login(
-              Cypress.env('CYPRESS_FV_USERNAME'),
-              Cypress.env('CYPRESS_FV_PASSWORD'),
-            )
-          },
-        )
+          cy.contains('Sign in with your email and password').should('exist')
+          cy.login(
+            Cypress.env('CYPRESS_FV_USERNAME'),
+            Cypress.env('CYPRESS_FV_PASSWORD'),
+          )
+        })
 
         cy.contains('Explore Languages').click()
       })
     })
 
-    it.only('adding speaker to audio', () => {
+    it('adding speaker to audio', () => {
       cy._login()
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
@@ -54,27 +50,19 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]')
         .invoke('removeAttr', 'target')
         .click()
-      cy.get('[data-testid="label-speakers"]')
-        .parent()
-        .find('[data-testid="autocomplete-input"]')
-      cy.get('[data-testid="label-speakers"]')
-        .parent()
-        .find('button[aria-haspopup="listbox"]')
-        .click()
+      cy.get('[data-testid="autocomplete-input"]').type(' ')
       cy.get('[role="option"]').first().click()
-      cy.get('body').click(0, 0)
+      cy.get('[data-testid="autocomplete-input"]').type('{esc}')
       cy.contains('Save changes').click()
+
       // Remove Speaker from audio
       cy.get('[data-testid="EntryDrawerEdit"]')
         .first()
         .invoke('removeAttr', 'target')
         .click()
-      cy.get('[data-testid="label-speakers"]')
-        .parent()
-        .find('button[aria-haspopup="listbox"]')
-        .click()
+      cy.get('[data-testid="autocomplete-input"]').type(' ')
       cy.get('[role="option"]').first().click()
-      cy.get('body').click(0, 0)
+      cy.get('[data-testid="autocomplete-input"]').type('{esc}')
       cy.contains('Save changes').click()
     })
   },
