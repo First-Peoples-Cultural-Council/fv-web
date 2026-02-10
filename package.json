@@ -88,7 +88,7 @@
     "@tiptap/extension-link": "^3.8.0",
     "@tiptap/pm": "^3.8.0",
     "@tiptap/react": "^3.8.0",
-    "@tiptap/starter-kit": "^3.8.0",
+    "@tiptap/starter-kit": "^3.19.0",
     "@uppy/core": "^5.1.1",
     "@uppy/dashboard": "^5.0.3",
     "@uppy/image-editor": "^4.0.2",
