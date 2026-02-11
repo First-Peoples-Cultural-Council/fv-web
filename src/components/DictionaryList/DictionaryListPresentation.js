@@ -120,7 +120,7 @@ function DictionaryListPresentation({
                               ? 'pb-20'
                               : ''
 
-                          return (
+                          return entry?.siteIsHidden && wholeDomain ? null : (
                             <tr key={entry?.id}>
                               <td>
                                 <button

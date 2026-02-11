@@ -23,6 +23,7 @@ export function searchResultAdaptor(result) {
     siteTitle: result?.entry?.site?.title,
     visibility: result?.entry?.visibility,
     siteVisibility: result?.entry?.site?.visibility,
+    siteIsHidden: result?.entry?.site?.isHidden,
     ...basicDatesAdaptor({ item: result?.entry }),
   }
   switch (result?.type) {
