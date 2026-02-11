@@ -47,15 +47,17 @@ function DictionaryGridPresentation({
                     : 'md:grid-cols-2 xl:grid-cols-3'
                 } gap-4 md:gap-6`}
               >
-                {page.results.map((result) => (
-                  <LazyLoader key={result.id} forceLoad={loadAll}>
-                    <DictionaryGridTile.Container
-                      kids={kids}
-                      entry={result}
-                      wholeDomain={wholeDomain}
-                    />
-                  </LazyLoader>
-                ))}
+                {page.results.map((result) =>
+                  result?.siteIsHidden && wholeDomain ? null : (
+                    <LazyLoader key={result.id} forceLoad={loadAll}>
+                      <DictionaryGridTile.Container
+                        kids={kids}
+                        entry={result}
+                        wholeDomain={wholeDomain}
+                      />
+                    </LazyLoader>
+                  ),
+                )}
               </div>
             ))}
           </div>
