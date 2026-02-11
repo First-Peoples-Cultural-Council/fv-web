@@ -14,13 +14,6 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Test SonarCloud token
-        run: |
-          echo "Token length: ${SONAR_TOKEN:?}"
-          curl -v -u "${SONAR_TOKEN}:" "https://api.sonarcloud.io/api/me"
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
