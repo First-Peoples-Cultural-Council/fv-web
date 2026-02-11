@@ -86,7 +86,7 @@
     "@tailwindcss/postcss": "^4.1.16",
     "@tanstack/react-query": "^5.90.5",
     "@tiptap/extension-link": "^3.8.0",
-    "@tiptap/pm": "^3.8.0",
+    "@tiptap/pm": "^3.19.0",
     "@tiptap/react": "^3.8.0",
     "@tiptap/starter-kit": "^3.8.0",
     "@uppy/core": "^5.1.1",
