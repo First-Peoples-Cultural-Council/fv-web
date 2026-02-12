@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Dashboard } from '@uppy/react'
+import Dashboard from '@uppy/react/dashboard'
 
 // FPCC
 import useCreateUppy from 'common/dataHooks/useCreateUppy'
