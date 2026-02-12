@@ -56,6 +56,7 @@ describe(
       cy.contains('Save changes').click()
 
       // Remove Speaker from audio
+      cy.contains('Dismiss').click()
       cy.get('[data-testid="EntryDrawerEdit"]')
         .first()
         .invoke('removeAttr', 'target')
