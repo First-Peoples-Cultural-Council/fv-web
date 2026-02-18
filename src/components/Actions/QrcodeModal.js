@@ -7,9 +7,7 @@ import Loading from 'components/Loading'
 import { MEMBERS, TEAM } from 'common/constants'
 
 // Modal content kept in separate file and lazy loaded to prevent loading of QR library before onClick
-const QrcodeModalContent = lazy(
-  () => import('components/Actions/QrcodeModalContent'),
-)
+const QrcodeCanvas = lazy(() => import('components/Actions/QrcodeCanvas'))
 
 function QrcodeModal({ entry, url, isOpen = false, onClose }) {
   return (
@@ -28,7 +26,25 @@ function QrcodeModal({ entry, url, isOpen = false, onClose }) {
         </div>
       ) : (
         <Suspense fallback={<Loading.Container isLoading />}>
-          <QrcodeModalContent closeHandler={onClose} url={url} />
+          <div
+            id="QrcodeCanvas"
+            className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
+          >
+            <h3 className="text-center text-xl font-medium text-charcoal-900">
+              QR Code:
+            </h3>
+            <div className="w-full flex justify-center p-2">
+              <QrcodeCanvas url={url} />
+            </div>
+            <button
+              data-testid="cancel"
+              type="button"
+              className="btn-primary btn-md"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+          </div>
         </Suspense>
       )}
     </Modal.Presentation>
