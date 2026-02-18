@@ -6,6 +6,7 @@ import { useSiteStore } from 'context/SiteContext'
 import getIcon from 'common/utils/getIcon'
 import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
 import LogoPresentation from 'components/SiteLogo/LogoPresentation'
+import QrcodeCanvas from 'components/Actions/QrcodeCanvas'
 
 function WidgetAppsPresentation() {
   const { site } = useSiteStore()
@@ -78,12 +79,15 @@ function WidgetAppsPresentation() {
           </p>
         </div>
         <div className="col-span-7 md:col-span-3">
-          <div className="flex-col items-center justify-center space-y-6 md:space-y-20">
+          <div className="flex-col items-center justify-center space-y-2">
             <LogoPresentation
               imgSrc={appLogoSrc}
               altText={`${site?.title} Logo`}
               additionalStyling="h-44 w-44 mx-auto border"
             />
+            <div className="flex justify-center w-full">
+              <QrcodeCanvas url={appUrl} />
+            </div>
             <div className="flex justify-center w-full">
               <a
                 href={appUrl}
