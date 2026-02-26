@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router'
 import Form from 'components/Form'
 
 function StoryCrudStepWrapper({ children, onClickCallback, sitename }) {
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const storyFormSteps = [
     { title: 'Cover Page' },
     { title: 'Pages' },
@@ -14,33 +14,17 @@ function StoryCrudStepWrapper({ children, onClickCallback, sitename }) {
     { title: 'Preview' },
   ]
   const id = searchParams.get('id')
-  const defaultOnClick = (step) => {
-    if (id) {
-      setSearchParams({ step, id })
-    }
-  }
+  const title = id ? 'Edit Your Story' : 'Add A New Story'
 
   return (
-    <div
-      data-testid="StoryCrudStepWrapper"
-      className="flex flex-col p-8 space-y-4 min-h-screen max-w-5xl"
+    <Form.StepWrapper
+      onClickCallback={onClickCallback}
+      sitename={sitename}
+      title={title}
+      stepTitlesArray={storyFormSteps}
     >
-      <div className="w-full flex justify-center">
-        <Form.Header title={id ? 'Edit Your Story' : 'Add A New Story'} />
-      </div>
-      <div className="my-5">
-        <Form.Stepper
-          steps={storyFormSteps}
-          onClickCallback={onClickCallback || defaultOnClick}
-        />
-      </div>
-      <section>{children}</section>
-      <Form.NextPrevious
-        numberOfSteps={storyFormSteps?.length}
-        onClickCallback={onClickCallback || defaultOnClick}
-        sitename={sitename}
-      />
-    </div>
+      {children}
+    </Form.StepWrapper>
   )
 }
 
