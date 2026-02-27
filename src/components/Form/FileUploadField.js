@@ -21,7 +21,7 @@ function FileUploadField({
         {...register(nameId)}
         type="file"
         disabled={disabled}
-        className="block w-full border border-charcoal-200 rounded-lg shadow-xs p-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800
+        className="bg-white block w-full border border-charcoal-200 rounded-lg shadow-xs p-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800
             file:mr-5 file:btn-md file:btn-primary hover:file:bg-blumine-800
             disabled:file:bg-charcoal-300 disabled:file:text-charcoal-50"
       />
