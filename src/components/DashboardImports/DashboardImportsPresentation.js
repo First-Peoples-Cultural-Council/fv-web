@@ -8,6 +8,7 @@ import { getLastPathSegment } from 'common/utils/urlHelpers'
 import DeleteButton from 'components/DeleteButton'
 import PaginationControls from 'components/PaginationControls'
 import Tooltip from 'components/Tooltip'
+import ValidationReportBtn from 'components/DashboardImports/ValidationReportBtn'
 
 function DashboardImportsPresentation({
   queryResponse,
@@ -83,9 +84,11 @@ function DashboardImportsPresentation({
                                 {localDateMDYTwords(result?.created)}
                               </td>
                               <td className="px-3 py-2 text-center">
-                                {result?.validationStatus ? (
-                                  <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${result?.validationStatus}`}</p>
-                                ) : (
+                                {result?.validationStatus &&
+                                  result?.validationStatus !== 'complete' && (
+                                    <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${result?.validationStatus}`}</p>
+                                  )}
+                                {!result?.validationStatus && (
                                   <Tooltip
                                     hide={Boolean(result?.validationStatus)}
                                     message="To edit the role of a Language Admin please contact FirstVoices Support"
@@ -94,11 +97,14 @@ function DashboardImportsPresentation({
                                       data-testid="import-validate-btn"
                                       type="button"
                                       onClick={() => validateImport(result?.id)}
-                                      className="btn-primary btn-md"
+                                      className="btn-primary btn-sm"
                                     >
                                       Submit for validation
                                     </button>
                                   </Tooltip>
+                                )}
+                                {result?.validationStatus === 'complete' && (
+                                  <ValidationReportBtn importJob={result} />
                                 )}
                               </td>
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-center text-charcoal-500 capitalize">
