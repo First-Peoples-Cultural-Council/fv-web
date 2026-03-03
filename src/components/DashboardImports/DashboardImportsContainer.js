@@ -24,7 +24,7 @@ function DashboardImportsContainer() {
         headerContent={headerContent}
         site={site}
       >
-        <SiteDocHead titleArray={['Reports']} />
+        <SiteDocHead titleArray={['Imports']} />
         <div className="px-2">
           <DashboardImportsPresentation
             queryResponse={queryResponse}
