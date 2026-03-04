@@ -14,9 +14,11 @@ const importJobs = {
     apiBase()
       .post(`${SITES}/${sitename}/${IMPORT_JOBS}/`, { body: formData })
       .json(),
-  addMedia: async ({ sitename, formData }) =>
+  addMedia: async ({ sitename, id, formData }) =>
     apiBase()
-      .post(`${SITES}/${sitename}/${IMPORT_JOBS}/media`, { body: formData })
+      .post(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}/media`, {
+        body: formData,
+      })
       .json(),
   validate: async ({ sitename, id }) =>
     apiBase().post(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}/validate`).json(),
