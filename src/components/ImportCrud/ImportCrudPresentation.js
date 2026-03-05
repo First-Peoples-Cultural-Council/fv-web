@@ -65,7 +65,7 @@ function ImportCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             </div>
             <div className="col-span-12 flex justify-end mt-6 px-6">
               <Form.SubmitButtons
-                submitLabel="Upload CSV"
+                submitLabel="Create import job"
                 submitIcon="Add"
                 cancelIcon="Close"
                 cancelLabel="Cancel"

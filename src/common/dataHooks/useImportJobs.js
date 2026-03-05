@@ -86,6 +86,7 @@ export function useImportJobAddMedia() {
 
   const mutation = useMutationWithNotification({
     mutationFn: addMedia,
+    redirectTo: `/${sitename}/dashboard/imports`,
     queryKeyToInvalidate: [IMPORT_JOBS, sitename],
     actionWord: 'uploaded',
     type: 'media',

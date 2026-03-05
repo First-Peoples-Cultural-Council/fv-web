@@ -11,7 +11,7 @@ function ImportCrudData() {
   const { site } = useSiteStore()
 
   const navigate = useNavigate()
-  const backHandler = () => navigate(-1)
+  const backHandler = () => navigate(`/${site?.sitename}/dashboard/imports`)
 
   const [searchParams] = useSearchParams()
   const importJobId = searchParams.get('id') || null
