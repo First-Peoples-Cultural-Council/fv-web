@@ -113,7 +113,7 @@ function ImportCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
                 type="file"
                 {...mediaForm.register('files')}
                 multiple
-                className="block w-full text-sm text-charcoal-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blumine-50 file:text-blumine-700 hover:file:bg-blumine-100"
+                className="bg-white block w-full border border-charcoal-200 rounded-lg shadow-xs p-3 file:mr-5 file:btn-md file:btn-primary hover:file:bg-blumine-800"
               />
             </div>
             <div className="col-span-12 flex justify-end mt-6 px-6">
