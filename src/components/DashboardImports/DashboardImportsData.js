@@ -5,7 +5,6 @@ import { useSiteStore } from 'context/SiteContext'
 import {
   useImportJobs,
   useImportJobDelete,
-  useImportJobValidate,
 } from 'common/dataHooks/useImportJobs'
 import { LANGUAGE_ADMIN } from 'common/constants/roles'
 
@@ -14,7 +13,6 @@ function DashboardImportsData() {
   const [page, setPage] = useState(1)
   const queryResponse = useImportJobs({ page })
   const { mutate: deleteImportJob } = useImportJobDelete()
-  const { mutate: validateImportJob } = useImportJobValidate()
 
   const headerContent = {
     title: 'Batch Imports',
@@ -37,7 +35,6 @@ function DashboardImportsData() {
 
   return {
     deleteImport: (id) => deleteImportJob(id),
-    validateImport: (id) => validateImportJob(id),
     headerContent,
     tileContent,
     site,

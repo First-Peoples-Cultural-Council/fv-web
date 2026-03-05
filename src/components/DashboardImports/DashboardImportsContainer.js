@@ -15,7 +15,6 @@ function DashboardImportsContainer() {
     site,
     page,
     setPage,
-    validateImport,
   } = DashboardImportsData()
   return (
     <div id="DashboardImportsContainer">
@@ -31,7 +30,6 @@ function DashboardImportsContainer() {
             deleteImport={deleteImport}
             page={page}
             setPage={setPage}
-            validateImport={validateImport}
           />
         </div>
       </DashboardLanding.Presentation>

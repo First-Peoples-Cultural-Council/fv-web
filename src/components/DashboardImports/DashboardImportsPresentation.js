@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 // FPCC
 import LoadOrError from 'components/LoadOrError'
@@ -8,14 +9,14 @@ import { getLastPathSegment } from 'common/utils/urlHelpers'
 import DeleteButton from 'components/DeleteButton'
 import PaginationControls from 'components/PaginationControls'
 import Tooltip from 'components/Tooltip'
-import ValidationReportBtn from 'components/DashboardImports/ValidationReportBtn'
+import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
+import getIcon from 'common/utils/getIcon'
 
 function DashboardImportsPresentation({
   queryResponse,
   deleteImport,
   page,
   setPage,
-  validateImport,
 }) {
   return (
     <div id="DashboardImportsPresentation">
@@ -43,6 +44,12 @@ function DashboardImportsPresentation({
                           </th>
                           <th
                             scope="col"
+                            className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
+                          >
+                            Add media
+                          </th>
+                          <th
+                            scope="col"
                             className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
                           >
                             Validation Status
@@ -57,7 +64,7 @@ function DashboardImportsPresentation({
                             scope="col"
                             className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
                           >
-                            Cancel
+                            Delete
                           </th>
                         </tr>
                       </thead>
@@ -83,28 +90,24 @@ function DashboardImportsPresentation({
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
                                 {localDateMDYTwords(result?.created)}
                               </td>
-                              <td className="px-3 py-2 text-center">
-                                {result?.validationStatus &&
-                                  result?.validationStatus !== 'complete' && (
-                                    <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${result?.validationStatus}`}</p>
-                                  )}
-                                {!result?.validationStatus && (
-                                  <Tooltip
-                                    hide={Boolean(result?.validationStatus)}
-                                    message="To edit the role of a Language Admin please contact FirstVoices Support"
+                              <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                                {result?.status ? (
+                                  '-'
+                                ) : (
+                                  <Link
+                                    data-testid="add-import-media-btn"
+                                    to={`/${result?.site?.slug}/dashboard/edit/import?id=${result?.id}`}
+                                    className="btn-secondary btn-sm-icon"
                                   >
-                                    <button
-                                      data-testid="import-validate-btn"
-                                      type="button"
-                                      onClick={() => validateImport(result?.id)}
-                                      className="btn-primary btn-sm"
-                                    >
-                                      Submit for validation
-                                    </button>
-                                  </Tooltip>
+                                    {getIcon('Add')}
+                                  </Link>
                                 )}
-                                {result?.validationStatus === 'complete' && (
-                                  <ValidationReportBtn importJob={result} />
+                              </td>
+                              <td className="px-3 py-2 text-center">
+                                {result?.status ? (
+                                  '-'
+                                ) : (
+                                  <ValidationStatusBtn importJob={result} />
                                 )}
                               </td>
                               <td className="whitespace-nowrap px-3 py-2 text-sm text-center text-charcoal-500 capitalize">
@@ -113,19 +116,22 @@ function DashboardImportsPresentation({
                                     ? 'See validation status'
                                     : 'Needs Validating')}
                               </td>
+
                               <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                                {canBeDeleted && (
-                                  <Tooltip message="Only imports that have not been processed by the FirstVoices staff can be deleted.">
-                                    <DeleteButton.Presentation
-                                      deleteHandler={() =>
-                                        deleteImport(result?.id)
-                                      }
-                                      message="Cancel this import?"
-                                      note="This will remove any related import files from the FirstVoices server and cancel this import. This cannot be undone."
-                                      styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
-                                    />
-                                  </Tooltip>
-                                )}
+                                <Tooltip
+                                  hide={canBeDeleted}
+                                  message="Once an import is complete it cannot be deleted."
+                                >
+                                  <DeleteButton.Presentation
+                                    deleteHandler={() =>
+                                      deleteImport(result?.id)
+                                    }
+                                    disabled={!canBeDeleted}
+                                    message="Cancel this import?"
+                                    note="This will remove any related import files from the FirstVoices server and cancel this import. This cannot be undone."
+                                    styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
+                                  />
+                                </Tooltip>
                               </td>
                             </tr>
                           )
@@ -158,7 +164,6 @@ const { func, object, number } = PropTypes
 DashboardImportsPresentation.propTypes = {
   queryResponse: object,
   deleteImport: func,
-  validateImport: func,
   headerContent: object,
   site: object,
   page: number,
