@@ -145,15 +145,16 @@ function DashboardImportsPresentation({
           </div>
         </div>
         <PaginationControls
-          hasNextPage={queryResponse?.data?.next ? true : false}
+          hasNextPage={Boolean(queryResponse?.data?.next)}
           isPlaceholderData={queryResponse?.isPlaceholderData}
           numberOfPages={queryResponse?.data?.pages}
           page={page}
           setPage={setPage}
         />
         <div className="text-charcoal-500 p-8 mt-6">
-          If you want to remove or change the membership of a language admin
-          please contact hello@firstvoices.com
+          Once you have validated your batch import and are ready to proceed
+          with the import please contact hello@firstvoices.com to have the
+          import processed
         </div>
       </div>
     </div>
@@ -164,8 +165,6 @@ const { func, object, number } = PropTypes
 DashboardImportsPresentation.propTypes = {
   queryResponse: object,
   deleteImport: func,
-  headerContent: object,
-  site: object,
   page: number,
   setPage: func,
 }
