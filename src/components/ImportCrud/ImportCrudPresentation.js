@@ -119,9 +119,9 @@ function ImportCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
             <div className="col-span-12 flex justify-end mt-6 px-6">
               <Form.SubmitButtons
                 submitLabel="Upload media"
-                submitIcon="Add"
-                cancelIcon="Close"
-                cancelLabel="Cancel"
+                submitIcon="Upload"
+                cancelIcon="RightArrow"
+                cancelLabel="Skip"
                 onCancelClick={backHandler}
                 onSubmitClick={mediaForm.handleSubmit(mediaSubmitHandler)}
               />
