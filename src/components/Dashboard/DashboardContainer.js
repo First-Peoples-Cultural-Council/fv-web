@@ -4,11 +4,13 @@ import { Route, Routes } from 'react-router'
 // FPCC
 import DashboardPresentation from 'components/Dashboard/DashboardPresentation'
 import DashboardData from 'components/Dashboard/DashboardData'
+
 import RequireAuth from 'common/RequireAuth'
-import DashboardHome from 'components/DashboardHome'
+import DashboardCreate from 'components/DashboardCreate'
 import DashboardEdit from 'components/DashboardEdit'
 import DashboardEntries from 'components/DashboardEntries'
-import DashboardCreate from 'components/DashboardCreate'
+import DashboardHome from 'components/DashboardHome'
+import DashboardImports from 'components/DashboardImports'
 import DashboardMedia from 'components/DashboardMedia'
 import DashboardMembership from 'components/DashboardMembership'
 import DashboardReports from 'components/DashboardReports'
@@ -59,6 +61,14 @@ function DashboardContainer() {
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DashboardEdit.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="imports/*"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <DashboardImports.Container />
             </RequireAuth>
           }
         />

@@ -69,3 +69,15 @@ export const updateSearchParams = (originalParams, newParams) => {
 // creates url for redirect after editing or creating a word or phrase
 export const getDictionaryEntryUrl = ({ sitename, type, id }) =>
   `/${sitename}/${makePlural(type)}/${id}`
+
+export const getLastPathSegment = (urlStr) => {
+  const url = new URL(urlStr)
+  const pathname = url.pathname
+  const segments = pathname?.split('/')
+
+  // Filter out any empty strings that might result from leading or trailing slashes
+  const filteredSegments = segments?.filter((segment) => segment.length > 0)
+
+  // Get the last element
+  return filteredSegments?.at(-1)
+}

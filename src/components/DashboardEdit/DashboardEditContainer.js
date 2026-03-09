@@ -23,6 +23,7 @@ import DocumentCrud from 'components/DocumentCrud'
 import GalleryCrud from 'components/GalleryCrud'
 import HomeCrud from 'components/HomeCrud'
 import ImageCrud from 'components/ImageCrud'
+import ImportCrud from 'components/ImportCrud'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
@@ -86,6 +87,15 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardImmersiom.Container />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="import"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <ImportCrud.Container />
             </RequireAuth>
           }
         />

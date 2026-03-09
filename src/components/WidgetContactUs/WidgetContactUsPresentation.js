@@ -92,30 +92,31 @@ function ContactUsPresentation({
           title={title || `Contact ${siteTitle} Team`}
         />
       </div>
-      {user.isAnonymous ? (
+      <div>
         <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
-          Please{' '}
-          <button
-            data-testid="login-button"
-            className="underline cursor-pointer"
-            type="button"
-            onClick={login}
-            onKeyDown={login}
-          >
-            sign in
-          </button>{' '}
-          to use the contact us form.
+          {subtitle ||
+            'Please contact us if you have any suggestions or feedback regarding our language content.'}
         </div>
-      ) : (
-        <div>
-          <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
-            {subtitle ||
-              'Please contact us if you have any suggestions or feedback regarding our language content.'}
-          </div>
-          <div className="max-w-7xl mx-auto px-3 md:px-6 lg:px-8">
-            <div className="grid grid-cols-6">
+        <div className="max-w-7xl mx-auto px-3 md:px-6 lg:px-8">
+          <div className="grid grid-cols-6">
+            {user.isAnonymous ? (
+              <div className="col-span-6 md:col-span-3">
+                <div className="w-full p-8 text-blumine-800 md:text-xl text-center bg-charcoal-100 rounded-lg">
+                  <button
+                    data-testid="login-button"
+                    className="inline-url cursor-pointer"
+                    type="button"
+                    onClick={login}
+                    onKeyDown={login}
+                  >
+                    Sign in
+                  </button>{' '}
+                  if you would like to contact us using our online form.
+                </div>
+              </div>
+            ) : (
               <form className="col-span-6 md:col-span-3">
-                <div className="">
+                <div>
                   <div className="grid grid-cols-7">
                     <label
                       className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
@@ -191,28 +192,28 @@ function ContactUsPresentation({
                   </div>
                 </div>
               </form>
-              <div className="col-span-6 sm:col-start-5 sm:col-span-2 mt-8 sm:mt-0">
-                {textWithFormatting && (
-                  <>
-                    <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
-                      ADDRESS
-                    </h3>
-                    <div className="block mb-6">
-                      <WysiwygBlock htmlString={textWithFormatting} />
-                    </div>
-                  </>
-                )}
-                {links?.length > 0 && (
+            )}
+            <div className="col-span-6 sm:col-start-5 sm:col-span-2 mt-8 sm:mt-0">
+              {textWithFormatting && (
+                <>
                   <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
-                    FOLLOW US
+                    ADDRESS
                   </h3>
-                )}
-                <ul className="block">{socialIcons}</ul>
-              </div>
+                  <div className="block mb-6">
+                    <WysiwygBlock htmlString={textWithFormatting} />
+                  </div>
+                </>
+              )}
+              {links?.length > 0 && (
+                <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
+                  FOLLOW US
+                </h3>
+              )}
+              <ul className="block">{socialIcons}</ul>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </section>
   )
 }

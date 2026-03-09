@@ -9,6 +9,7 @@ import galleries from 'services/api/galleries'
 import gameContent from 'services/api/gameContent'
 import images from 'services/api/images'
 import immersionLabels from 'services/api/immersionLabels'
+import importJobs from 'services/api/importJobs'
 import joinRequests from 'services/api/joinRequests'
 import languages from 'services/api/languages'
 import memberships from 'services/api/memberships'
@@ -40,6 +41,7 @@ export default {
   gameContent,
   images,
   immersionLabels,
+  importJobs,
   joinRequests,
   languages,
   memberships,

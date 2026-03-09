@@ -21,6 +21,7 @@ import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
 import SelectOneMedia from 'components/Form/SelectOneMedia'
 import Stepper from 'components/Form/Stepper'
+import StepWrapper from 'components/Form/StepWrapper'
 import SubmitButtons from 'components/Form/SubmitButtons'
 import TextField from 'components/Form/TextField'
 import TextAreaField from 'components/Form/TextAreaField'
@@ -57,6 +58,7 @@ export default {
   Select,
   SelectOneMedia,
   Stepper,
+  StepWrapper,
   SubmitButtons,
   TextField,
   TextAreaField,

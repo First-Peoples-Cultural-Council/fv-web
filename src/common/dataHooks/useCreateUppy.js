@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Uppy from '@uppy/core'
 import XHR from '@uppy/xhr-upload'
@@ -12,7 +12,6 @@ import '@uppy/image-editor/css/style.min.css'
 // FPCC
 import GlobalConfiguration from 'src/GlobalConfiguration'
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
-import { getFileExtensions } from 'common/utils/stringHelpers'
 import {
   getPathForMediaType,
   getSupportedExtensionsForMediaType,
@@ -31,6 +30,8 @@ function useCreateUppy({ maxItems, setSelectedMedia, type }) {
     GlobalConfiguration.API_URL,
   )
 
+  const allowedFileTypes = extensionList?.map((extension) => `.${extension}`)
+
   // IMPORTANT: passing an initializer function to prevent Uppy from being reinstantiated on every render.
   const [uppy] = useState(() =>
     new Uppy({
@@ -40,24 +41,7 @@ function useCreateUppy({ maxItems, setSelectedMedia, type }) {
       restrictions: {
         maxNumberOfFiles: maxItems,
         requiredMetaFields: ['title'],
-      },
-      // eslint-disable-next-line no-unused-vars
-      onBeforeFileAdded: (currentFile, _files) => {
-        if (!extensionList.includes(getFileExtensions(currentFile.name))) {
-          uppy.info(
-            {
-              message: `Unsupported file type. Please upload media with the extension ${extensionList.join(
-                ', ',
-              )}`,
-              details:
-                'File couldn’t be uploaded because it was of unsupported type.',
-            },
-            'error',
-            5000,
-          )
-          return false
-        }
-        return true
+        allowedFileTypes: allowedFileTypes,
       },
     })
       .use(ImageEditor, {
@@ -94,14 +78,19 @@ function useCreateUppy({ maxItems, setSelectedMedia, type }) {
             setSelectedMedia((oldArray) => [...oldArray, parsedResponse])
           }
         },
-      })
-      .on('file-added', (file) => {
-        uppy.setFileMeta(file.id, {
-          ...file.meta,
-          title: file.name,
-        })
       }),
   )
+
+  useEffect(() => {
+    uppy.on('file-added', (file) => {
+      uppy.setFileMeta(file.id, {
+        ...file.meta,
+        title: file.name,
+      })
+    })
+
+    return () => uppy.off('file-added')
+  }, [uppy])
 
   return uppy
 }
