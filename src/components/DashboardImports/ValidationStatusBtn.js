@@ -32,7 +32,7 @@ function ValidationStatusBtn({ importJob }) {
                 data-testid="import-validate-btn"
                 type="button"
                 onClick={() => validateImportJob(importJob?.id)}
-                className="btn-primary btn-sm-icon"
+                className="btn-tertiary btn-md-icon"
               >
                 {getIcon('TryAgain')}
               </button>
