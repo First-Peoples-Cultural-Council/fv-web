@@ -20,56 +20,56 @@ function DashboardImportsPresentation({
 }) {
   return (
     <div id="DashboardImportsPresentation">
-      <div className="px-4 xl:px-6 w-full">
-        <div className="sm:flex sm:items-center">
+      <div className="w-full">
+        <div className="flex items-center">
           <div className="flow-root w-full">
-            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-3 align-middle sm:px-6 lg:px-8">
-                <div className="shadow outline-solid outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
+            <div className="overflow-x-auto">
+              <div className="inline-block min-w-full align-middle py-1 px-6">
+                <div className="shadow outline-solid outline-1 outline-black/5 sm:rounded-lg bg-white p-4">
                   <LoadOrError queryResponse={queryResponse}>
                     <table className="relative min-w-full">
                       <thead className="">
                         <tr>
                           <th
                             scope="col"
-                            className="py-3.5 pl-4 pr-3 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
+                            className="p-3 pl-6 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
                           >
                             Title
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
+                            className="p-3 text-left text-charcoal-500 bg-charcoal-50"
                           >
                             Date Created
                           </th>
                           <th
                             scope="col"
-                            className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
+                            className="p-3 text-charcoal-500 bg-charcoal-50"
                           >
                             Add media
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
+                            className="p-3 text-charcoal-500 bg-charcoal-50"
                           >
                             Validation Status
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
+                            className="p-3 text-charcoal-500 bg-charcoal-50"
                           >
                             Import Status
                           </th>
                           <th
                             scope="col"
-                            className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
+                            className="p-3 pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
                           >
                             Delete
                           </th>
                         </tr>
                       </thead>
 
-                      <tbody className="bg-white">
+                      <tbody className="divide-y divide-charcoal-200 bg-white">
                         {queryResponse?.data?.results?.map((result) => {
                           const validationInProgress =
                             result?.validationStatus === 'accepted' ||
@@ -78,19 +78,24 @@ function DashboardImportsPresentation({
                             !validationInProgress && !result?.status
                           return (
                             <tr key={result?.id}>
-                              <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-bold text-charcoal-500 sm:pl-6">
-                                {result?.title}
-                                <dl className="font-normal">
-                                  <dt className="sr-only">File Name</dt>
-                                  <dd className="mt-1 text-charcoal-700">
-                                    {getLastPathSegment(result?.data?.path)}
-                                  </dd>
-                                </dl>
+                              <td className="whitespace-nowrap p-3 pl-6 text-sm">
+                                <div className="text-charcoal-900">
+                                  {result?.title ||
+                                    getLastPathSegment(result?.data?.path)}
+                                </div>
+                                {result?.title && (
+                                  <dl>
+                                    <dt className="sr-only">File Name</dt>
+                                    <dd className="mt-1 text-charcoal-500 text-xs">
+                                      {getLastPathSegment(result?.data?.path)}
+                                    </dd>
+                                  </dl>
+                                )}
                               </td>
-                              <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
+                              <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
                                 {localDateMDYTwords(result?.created)}
                               </td>
-                              <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                              <td className="whitespace-nowrap p-3 text-sm text-center text-charcoal-500">
                                 {result?.status ? (
                                   '-'
                                 ) : (
@@ -103,21 +108,21 @@ function DashboardImportsPresentation({
                                   </Link>
                                 )}
                               </td>
-                              <td className="px-3 py-2 text-center">
+                              <td className="whitespace-nowrap p-3 text-sm text-center text-charcoal-500">
                                 {result?.status ? (
                                   '-'
                                 ) : (
                                   <ValidationStatusBtn importJob={result} />
                                 )}
                               </td>
-                              <td className="whitespace-nowrap px-3 py-2 text-sm text-center text-charcoal-500 capitalize">
+                              <td className="whitespace-nowrap p-3 text-sm text-center text-charcoal-500 capitalize">
                                 {result?.status ||
                                   (result?.validationStatus
                                     ? 'See validation status'
                                     : 'Needs Validating')}
                               </td>
 
-                              <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                              <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
                                 <Tooltip
                                   hide={canBeDeleted}
                                   message="Once an import is complete it cannot be deleted."
@@ -151,10 +156,9 @@ function DashboardImportsPresentation({
           page={page}
           setPage={setPage}
         />
-        <div className="text-charcoal-500 p-8 mt-6">
-          Once you have validated your batch import and are ready to proceed
-          with the import please contact hello@firstvoices.com to have the
-          import processed
+        <div className="text-charcoal-500 px-8 py-6 mt-6">
+          Once you have validated your import and are ready to proceed please
+          contact hello@firstvoices.com to have the import processed.
         </div>
       </div>
     </div>
