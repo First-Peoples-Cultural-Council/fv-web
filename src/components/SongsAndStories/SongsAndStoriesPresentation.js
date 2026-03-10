@@ -45,7 +45,7 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
         className="pt-2 md:pt-4 lg:pt-8 bg-white"
         data-testid="SongsAndStoriesPresentation"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
           <SectionTitle.Presentation title={labels?.uppercase} />
           <LoadOrError queryResponse={infiniteQueryResponse}>
             <div className="flex-1 flex items-stretch overflow-hidden">

@@ -51,17 +51,20 @@ function SongsAndStoriesGrid({ labels, data, handleItemClick }) {
         {labels?.titlecase}
       </h2>
 
-      <ul className="grid grid-cols-1 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 md:grid-cols-4 md:gap-4 lg:gap-6 xl:gap-8">
         {data?.pages?.map((page) => (
           <React.Fragment key={page.pageNumber}>
             {page?.results?.map((item) => (
-              <li key={item.id} className="relative">
+              <li
+                key={item.id}
+                className="relative flex items-center justify-center "
+              >
                 <button
                   type="button"
                   style={getConditionalStyle({ item })}
                   className={`${getConditonalClass({
                     item,
-                  })} group h-44 lg:h-60 flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-ochre-800 group w-full rounded-lg overflow-hidden`}
+                  })} group grow aspect-square flex items-center justify-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-ochre-800 group rounded-lg overflow-hidden`}
                   onClick={() => handleItemClick(item)}
                   data-testid="SongAndStoriesGridTile"
                 >
