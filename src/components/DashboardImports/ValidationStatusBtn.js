@@ -169,15 +169,15 @@ function ValidationStatusBtn({ importJob }) {
                       </thead>
                       <tbody className="divide-y divide-charcoal-200 bg-white">
                         {importJob?.validationReport?.errorDetails?.map(
-                          (row, index) => (
-                            <tr key={index} className="">
+                          (row) => (
+                            <tr key={row?.rowNumber}>
                               <td className="whitespace-nowrap py-4 pl-6 pr-3 text-sm font-medium text-charcoal-900">
                                 {row?.rowNumber}
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-charcoal-500">
-                                <ul className="">
-                                  {row?.errors?.map((error, errorIndex) => (
-                                    <li key={errorIndex}>{error}</li>
+                                <ul>
+                                  {row?.errors?.map((error) => (
+                                    <li key={error}>{error}</li>
                                   ))}
                                 </ul>
                               </td>
