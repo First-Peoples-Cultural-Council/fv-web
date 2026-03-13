@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react'
-
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import {
   Combobox,
   ComboboxInput,
@@ -7,7 +7,6 @@ import {
   ComboboxOptions,
   ComboboxOption,
 } from '@headlessui/react'
-import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -44,10 +43,10 @@ function AutocompleteMultiSelect({
 
   return (
     <Combobox value={selectedOptions} multiple>
-      <div className="relative">
+      <div className="relative text-charcoal-700">
         <ComboboxInput
           data-testid="autocomplete-multi-input"
-          className="relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800"
+          className="opacity-100 relative w-full cursor-default block border border-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800"
           onChange={(event) => setQuery(event.target.value)}
           placeholder={placeholder}
           onBlur={onBlur}
@@ -61,25 +60,32 @@ function AutocompleteMultiSelect({
 
         <ComboboxOptions
           transition
-          className="transition duration-100 ease-in data-leave:data-closed:opacity-0 focus:outline-hidden h-32 absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/50"
+          className="transition-opacity duration-100 ease-in focus:outline-hidden max-h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md bg-white py-1 shadow-lg"
         >
           {filteredOptions?.map((option) => (
             <ComboboxOption
               key={option?.value}
               data-testid={`option-btn-${option?.label}`}
-              className="relative group cursor-default select-none py-2 pl-10 pr-4 hover:bg-blumine-500 hover:text-white text-charcoal-900"
+              className="cursor-default select-none p-2 data-focus:bg-charcoal-100"
               value={option?.value}
               onClick={() => onOptionClick(option?.value)}
             >
               {({ selected }) => (
-                <>
-                  <span className="inline-flex truncate">{option?.label}</span>
-                  {selected ? (
-                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                      {getIcon('Checkmark', 'h-5 w-5 fill-current')}
-                    </span>
-                  ) : null}
-                </>
+                <div className="inline-flex items-center space-x-2">
+                  <span
+                    className={`flex items-center rounded-md p-1 border border-blumine-800 ${
+                      selected ? 'bg-blumine-800' : 'bg-white'
+                    }`}
+                  >
+                    {getIcon(
+                      selected ? 'Checkmark' : '',
+                      'h-2 w-2 fill-current text-white',
+                    )}
+                  </span>
+                  <span className="inline-flex truncate data-focus:font-bold text-sm text-charcoal-900">
+                    {option?.label}
+                  </span>
+                </div>
               )}
             </ComboboxOption>
           ))}
