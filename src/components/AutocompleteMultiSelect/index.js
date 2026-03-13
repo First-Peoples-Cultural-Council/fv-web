@@ -1,0 +1,3 @@
+import AutocompleteMultiSelect from 'components/AutocompleteMultiSelect/AutocompleteMultiSelect'
+
+export default AutocompleteMultiSelect
