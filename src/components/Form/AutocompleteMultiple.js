@@ -29,7 +29,7 @@ function AutocompleteMultiple({
   }
 
   return (
-    <Fragment data-testid="FormAutocompleteMultiple">
+    <Fragment key="FormAutocompleteMultiple">
       <FieldLabel nameId={nameId} text={label} />
       <div className="w-full">
         <div className="grid grid-cols-12 gap-6">
