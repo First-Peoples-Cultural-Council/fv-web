@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
+import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
 import {
   HAS_AUDIO,
   HAS_IMAGE,
@@ -36,6 +37,12 @@ function AdvancedSearchOptionsPresentation({ items }) {
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
           </h2>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-baseline space-x-8">
+              <SearchSpeakersFilter />
+            </div>
+          </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-baseline space-x-8">
