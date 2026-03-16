@@ -50,13 +50,13 @@ function DashboardImportsPresentation({
                           </th>
                           <th
                             scope="col"
-                            className="p-3 text-charcoal-500 bg-charcoal-50"
+                            className="p-3 text-left text-charcoal-500 bg-charcoal-50"
                           >
                             Validation Status
                           </th>
                           <th
                             scope="col"
-                            className="p-3 text-charcoal-500 bg-charcoal-50"
+                            className="p-3 text-left text-charcoal-500 bg-charcoal-50"
                           >
                             Import Status
                           </th>
@@ -95,9 +95,9 @@ function DashboardImportsPresentation({
                               <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
                                 {localDateMDYTwords(result?.created)}
                               </td>
-                              <td className="whitespace-nowrap p-3 text-sm text-center text-charcoal-500">
+                              <td className="whitespace-nowrap p-3 text-center text-sm text-charcoal-500">
                                 {result?.status ? (
-                                  '-'
+                                  ''
                                 ) : (
                                   <Link
                                     data-testid="add-import-media-btn"
@@ -108,14 +108,14 @@ function DashboardImportsPresentation({
                                   </Link>
                                 )}
                               </td>
-                              <td className="whitespace-nowrap p-3 text-sm text-center text-charcoal-500">
+                              <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
                                 {result?.status ? (
-                                  '-'
+                                  ''
                                 ) : (
                                   <ValidationStatusBtn importJob={result} />
                                 )}
                               </td>
-                              <td className="whitespace-nowrap p-3 text-sm text-center text-charcoal-500 capitalize">
+                              <td className="whitespace-nowrap p-3 text-sm text-charcoal-500 capitalize">
                                 {result?.status ||
                                   (result?.validationStatus
                                     ? 'See validation status'

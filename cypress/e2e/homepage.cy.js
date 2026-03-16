@@ -29,7 +29,7 @@ describe(
     it('Test contact form', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('404').should('not.exist')
-      cy.contains('Please sign in to use the contact us form').should('exist')
+      cy.get('[data-testid="contact-form-hidden"]').should('exist')
     })
 
     it('check icons on alphabet widget', () => {
