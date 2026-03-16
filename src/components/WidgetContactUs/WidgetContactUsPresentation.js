@@ -100,7 +100,10 @@ function ContactUsPresentation({
         <div className="max-w-7xl mx-auto px-3 md:px-6 lg:px-8">
           <div className="grid grid-cols-6">
             {user.isAnonymous ? (
-              <div className="col-span-6 md:col-span-3">
+              <div
+                data-testid="contact-form-hidden"
+                className="col-span-6 md:col-span-3"
+              >
                 <div className="w-full p-8 text-blumine-800 md:text-xl text-center bg-charcoal-100 rounded-lg">
                   <button
                     data-testid="login-button"
@@ -115,7 +118,10 @@ function ContactUsPresentation({
                 </div>
               </div>
             ) : (
-              <form className="col-span-6 md:col-span-3">
+              <form
+                data-testid="contact-us-form"
+                className="col-span-6 md:col-span-3"
+              >
                 <div>
                   <div className="grid grid-cols-7">
                     <label
