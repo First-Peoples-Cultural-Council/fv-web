@@ -46,7 +46,7 @@ function AutocompleteMultiSelect({
       <div className="relative text-charcoal-700">
         <ComboboxInput
           data-testid="autocomplete-multi-input"
-          className="text-sm opacity-100 relative w-full cursor-default block border rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800"
+          className="text-sm opacity-100 relative w-full cursor-default block border border-charcoal-200 rounded-lg shadow-xs p-2 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800"
           onChange={(event) => setQuery(event.target.value)}
           placeholder={placeholder}
           onBlur={onBlur}

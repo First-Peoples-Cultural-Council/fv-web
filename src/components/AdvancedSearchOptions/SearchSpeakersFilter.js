@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -14,26 +14,70 @@ function SearchSpeakersFilter() {
     defaultValue: '',
   })
 
-  const { selectedItems, handleSelectArray, handleRemoveItem } =
-    useArrayStateManager({ maxItems: 3 })
-
-  // This is to keep selectedItems and speakersInUrl in sync
-  useEffect(() => {
-    const speakerIdsArray = selectedItems?.map((speaker) => speaker?.id)
-    const speakerIdsString = speakerIdsArray?.join()
-
-    if (speakersInUrl !== speakerIdsString) {
-      setSpeakersInUrl(speakerIdsString)
-    }
-  }, [selectedItems, speakersInUrl, setSpeakersInUrl])
-
-  const speakerInfiniteQueryResponse = usePeople()
+  const { data } = usePeople()
 
   const options =
-    speakerInfiniteQueryResponse?.data?.pages?.[0]?.results?.map((speaker) => ({
+    data?.pages?.[0]?.results?.map((speaker) => ({
       label: speaker?.name,
       value: speaker,
     })) || []
+
+  const getSelectedFromUrl = useCallback(
+    (results) => {
+      if (!speakersInUrl) {
+        return []
+      }
+
+      const speakerIdsArray = speakersInUrl?.split(',')
+      const speakerObjectsArray = speakerIdsArray?.map((id, index) => {
+        const speakerObject = results?.find((speaker) => id === speaker?.id)
+
+        return (
+          speakerObject || {
+            name: `Speaker ${index + 1}`,
+            id,
+          }
+        )
+      })
+      return speakerObjectsArray
+    },
+    [speakersInUrl],
+  )
+
+  const { selectedItems, setSelectedItems, handleRemoveItem } =
+    useArrayStateManager({ maxItems: 3 })
+
+  useEffect(() => {
+    if (!speakersInUrl) {
+      setSelectedItems([])
+    }
+  }, [speakersInUrl, setSelectedItems])
+
+  useEffect(() => {
+    if (data) {
+      setSelectedItems(getSelectedFromUrl(data?.pages?.[0]?.results))
+    }
+  }, [data, getSelectedFromUrl, setSelectedItems])
+
+  const getIdsForSearchParams = (arrayOfSpeakers) => {
+    const speakerIdsArray = arrayOfSpeakers?.map((speaker) => speaker?.id)
+    return speakerIdsArray?.length > 0 ? speakerIdsArray?.join() : ''
+  }
+
+  const onSpeakersSelectChange = (speakersSelectedArray) => {
+    setSelectedItems(speakersSelectedArray)
+    const speakerIdsString = getIdsForSearchParams(speakersSelectedArray)
+    setSpeakersInUrl(speakerIdsString)
+  }
+
+  const onRemoveClick = (speaker) => {
+    handleRemoveItem(speaker)
+    const newSelectedItems = selectedItems?.filter(
+      (obj) => obj.id !== speaker?.id,
+    )
+    const speakerIdsString = getIdsForSearchParams(newSelectedItems)
+    setSpeakersInUrl(speakerIdsString)
+  }
 
   return (
     <div data-testid="FormSearchSpeakersFilter" className="w-full">
@@ -42,7 +86,7 @@ function SearchSpeakersFilter() {
           selectedOptions={selectedItems}
           placeholder="Filter by speaker"
           options={options}
-          onChange={handleSelectArray}
+          onChange={onSpeakersSelectChange}
           onBlur={() => {}}
         />
         {selectedItems?.length > 0 && (
@@ -52,7 +96,7 @@ function SearchSpeakersFilter() {
                 <button
                   data-testid={`remove-speaker-filter-btn-${speaker?.name}`}
                   type="button"
-                  onClick={() => handleRemoveItem(speaker)}
+                  onClick={() => onRemoveClick(speaker)}
                   className="text-blumine-800 rounded-lg shadow-xs py-1 px-2 inline-flex justify-center items-center space-x-1 text-xs border border-transparent bg-blumine-100"
                 >
                   <span>{speaker?.name}</span>

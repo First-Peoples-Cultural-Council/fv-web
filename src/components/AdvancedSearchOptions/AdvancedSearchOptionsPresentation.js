@@ -37,13 +37,6 @@ function AdvancedSearchOptionsPresentation({ items }) {
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
           </h2>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-baseline space-x-8">
-              <SearchSpeakersFilter />
-            </div>
-          </div>
-
           <div className="flex items-center justify-between">
             <div className="flex items-baseline space-x-8">
               <p className="text-sm text-charcoal-500">Results : {countStr}</p>
@@ -115,6 +108,11 @@ function AdvancedSearchOptionsPresentation({ items }) {
                   { value: VISIBILITY_TEAM, label: 'Team Only' },
                 ]}
               />
+            </div>
+          </div>
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-baseline space-x-8">
+              <SearchSpeakersFilter />
             </div>
           </div>
         </section>
