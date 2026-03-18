@@ -7,6 +7,7 @@ import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import AutocompleteMultiSelect from 'components/AutocompleteMultiSelect'
 import { SPEAKERS } from 'common/constants'
+import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 
 function SearchSpeakersFilter() {
   const [speakersInUrl, setSpeakersInUrl] = useSearchParamsState({
@@ -22,16 +23,20 @@ function SearchSpeakersFilter() {
       value: speaker,
     })) || []
 
-  const getSelectedFromUrl = useCallback(
+  const { selectedItems, setSelectedItems } = useArrayStateManager({
+    maxItems: 3,
+  })
+
+  const matchSelectedItemsToUrl = useCallback(
     (results) => {
       if (!speakersInUrl) {
-        return []
+        setSelectedItems()
+        return
       }
 
       const speakerIdsArray = speakersInUrl?.split(',')
       const speakerObjectsArray = speakerIdsArray?.map((id, index) => {
         const speakerObject = results?.find((speaker) => id === speaker?.id)
-
         return (
           speakerObject || {
             name: `Speaker ${index + 1}`,
@@ -39,44 +44,41 @@ function SearchSpeakersFilter() {
           }
         )
       })
-      return speakerObjectsArray
+      setSelectedItems(speakerObjectsArray)
+      return
     },
-    [speakersInUrl],
+    [speakersInUrl, setSelectedItems],
   )
 
-  const { selectedItems, setSelectedItems, handleRemoveItem } =
-    useArrayStateManager({ maxItems: 3 })
-
+  // This is to ensure that speakers are cleared from filters if the speakers param is entirely removed,
+  // in particular by an external component e.g. "Remove Filters"
   useEffect(() => {
     if (!speakersInUrl) {
       setSelectedItems([])
     }
   }, [speakersInUrl, setSelectedItems])
 
+  // On data load ensure filters match searchParams
   useEffect(() => {
     if (data) {
-      setSelectedItems(getSelectedFromUrl(data?.pages?.[0]?.results))
+      matchSelectedItemsToUrl(data?.pages?.[0]?.results)
     }
-  }, [data, getSelectedFromUrl, setSelectedItems])
-
-  const getIdsForSearchParams = (arrayOfSpeakers) => {
-    const speakerIdsArray = arrayOfSpeakers?.map((speaker) => speaker?.id)
-    return speakerIdsArray?.length > 0 ? speakerIdsArray?.join() : ''
-  }
+  }, [data, matchSelectedItemsToUrl])
 
   const onSpeakersSelectChange = (speakersSelectedArray) => {
     setSelectedItems(speakersSelectedArray)
-    const speakerIdsString = getIdsForSearchParams(speakersSelectedArray)
+    const speakerIdsArray = objectsToIdsAdaptor(speakersSelectedArray)
+    const speakerIdsString =
+      speakerIdsArray?.length > 0 ? speakerIdsArray?.join() : ''
+
     setSpeakersInUrl(speakerIdsString)
   }
 
   const onRemoveClick = (speaker) => {
-    handleRemoveItem(speaker)
     const newSelectedItems = selectedItems?.filter(
       (obj) => obj.id !== speaker?.id,
     )
-    const speakerIdsString = getIdsForSearchParams(newSelectedItems)
-    setSpeakersInUrl(speakerIdsString)
+    onSpeakersSelectChange(newSelectedItems)
   }
 
   return (
