@@ -70,6 +70,7 @@ export default defineConfig([
       'jsx-a11y/aria-role': ['warn'],
       'jsx-a11y/media-has-caption': ['off'],
       'custom-rules/require-data-testid': ['warn'],
+      'react-hooks/set-state-in-effect': ['warn'],
       // Rules below credited to @imaginary-cloud - see https://www.npmjs.com/package/@imaginary-cloud/eslint-config-react?activeTab=code
       'arrow-body-style': ['error', 'as-needed'],
       'class-methods-use-this': 'off',

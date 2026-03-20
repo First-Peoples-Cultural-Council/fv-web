@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { usePeople } from 'common/dataHooks/usePeople'
-import useArrayStateManager from 'common/hooks/useArrayStateManager'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import AutocompleteMultiSelect from 'components/AutocompleteMultiSelect'
 import { SPEAKERS } from 'common/constants'
@@ -23,9 +22,7 @@ function SearchSpeakersFilter() {
       value: speaker,
     })) || []
 
-  const { selectedItems, setSelectedItems } = useArrayStateManager({
-    maxItems: 3,
-  })
+  const [selectedItems, setSelectedItems] = useState([])
 
   const matchSelectedItemsToUrl = useCallback(
     (results) => {
@@ -91,24 +88,24 @@ function SearchSpeakersFilter() {
           onChange={onSpeakersSelectChange}
           onBlur={() => {}}
         />
-        {selectedItems?.length > 0 && (
-          <ul className="flex items-center space-x-2">
-            {selectedItems?.map((speaker) => (
-              <li key={speaker?.id} className="inline-flex">
-                <button
-                  data-testid={`remove-speaker-filter-btn-${speaker?.name}`}
-                  type="button"
-                  onClick={() => onRemoveClick(speaker)}
-                  className="text-blumine-800 rounded-lg shadow-xs py-1 px-2 inline-flex justify-center items-center space-x-1 text-xs border border-transparent bg-blumine-100"
-                >
-                  <span>{speaker?.name}</span>
-                  {getIcon('Close', 'fill-current h-3 w-3')}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
+      {selectedItems?.length > 0 && (
+        <ul className="flex flex-wrap items-center space-x-2">
+          {selectedItems?.map((speaker) => (
+            <li key={speaker?.id}>
+              <button
+                data-testid={`remove-speaker-filter-btn-${speaker?.name}`}
+                type="button"
+                onClick={() => onRemoveClick(speaker)}
+                className="btn-tertiary btn-xs bg-blumine-100"
+              >
+                <span>{speaker?.name}</span>
+                {getIcon('Close')}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
