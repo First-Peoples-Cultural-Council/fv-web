@@ -42,7 +42,6 @@ function SearchSpeakersFilter() {
         )
       })
       setSelectedItems(speakerObjectsArray)
-      return
     },
     [speakersInUrl, setSelectedItems],
   )
@@ -80,7 +79,7 @@ function SearchSpeakersFilter() {
 
   return (
     <div data-testid="FormSearchSpeakersFilter" className="w-full">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center">
         <AutocompleteMultiSelect
           selectedOptions={selectedItems}
           placeholder="Filter by speaker"

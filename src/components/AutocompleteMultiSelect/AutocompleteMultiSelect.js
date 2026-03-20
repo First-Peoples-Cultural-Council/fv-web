@@ -24,16 +24,16 @@ function AutocompleteMultiSelect({
   const filteredOptions = _options.filter((option) =>
     option?.label
       .toLowerCase()
-      .replace(/\s+/g, '')
-      .includes(query.toLowerCase().replace(/\s+/g, '')),
+      .replaceAll(' ', '')
+      .includes(query.toLowerCase().replaceAll(' ', '')),
   )
 
-  const onOptionClick = (e) => {
-    const hasItem = selectedOptions?.some((option) => option === e)
+  const onOptionClick = (option) => {
+    const hasItem = selectedOptions?.includes(option)
     // Remove item if already in array otherwise add item
     const updatedSelection = hasItem
-      ? [...selectedOptions].filter((option) => option !== e)
-      : [...selectedOptions, e]
+      ? [...selectedOptions].filter((option) => option !== option)
+      : [...selectedOptions, option]
     // Update form state
     onChange(updatedSelection)
   }
