@@ -79,7 +79,7 @@ function SearchSpeakersFilter() {
 
   return (
     <div data-testid="FormSearchSpeakersFilter" className="w-full">
-      <div className="flex items-center">
+      <div className="flex items-center mb-1">
         <AutocompleteMultiSelect
           selectedOptions={selectedItems}
           placeholder="Filter by speaker"
@@ -89,7 +89,7 @@ function SearchSpeakersFilter() {
         />
       </div>
       {selectedItems?.length > 0 && (
-        <ul className="flex flex-wrap items-center space-x-2">
+        <ul className="flex flex-wrap items-center space-x-2 ml-1">
           {selectedItems?.map((speaker) => (
             <li key={speaker?.id}>
               <button

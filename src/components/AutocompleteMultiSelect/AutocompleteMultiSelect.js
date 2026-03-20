@@ -28,12 +28,12 @@ function AutocompleteMultiSelect({
       .includes(query.toLowerCase().replaceAll(' ', '')),
   )
 
-  const onOptionClick = (option) => {
-    const hasItem = selectedOptions?.includes(option)
+  const onOptionClick = (e) => {
+    const hasItem = selectedOptions?.some((option) => option === e)
     // Remove item if already in array otherwise add item
     const updatedSelection = hasItem
-      ? [...selectedOptions].filter((option) => option !== option)
-      : [...selectedOptions, option]
+      ? [...selectedOptions].filter((option) => option !== e)
+      : [...selectedOptions, e]
     // Update form state
     onChange(updatedSelection)
   }
