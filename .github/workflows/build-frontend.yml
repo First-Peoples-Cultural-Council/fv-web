@@ -398,4 +398,3 @@ jobs:
           aws-secret-access-key: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}
           ecr_repo_name: 'fv-web'
           
-
