@@ -60,7 +60,7 @@ function AutocompleteMultiSelect({
 
         <ComboboxOptions
           transition
-          className="transition-opacity duration-100 ease-in text-left focus:outline-hidden max-h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md bg-white py-1 shadow-lg"
+          className="transition-opacity duration-100 ease-in text-left focus:outline-hidden max-h-72 min-w-full absolute z-10 mt-1 overflow-auto rounded-md bg-white py-1 shadow-lg"
         >
           {filteredOptions?.map((option) => (
             <ComboboxOption
