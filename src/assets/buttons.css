@@ -20,7 +20,7 @@
   @apply btn bg-white border border-blumine-900 text-blumine-900 disabled:border-charcoal-300 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900;
 }
 @utility btn-tertiary {
-  @apply btn bg-white text-blumine-900 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900 m-1;
+  @apply btn bg-white border border-transparent text-blumine-900 disabled:text-charcoal-300 hover:bg-blumine-100 focus:bg-blumine-200 focus:outline-hidden focus:ring-2 focus:ring-blumine-900;
 }
 
 /* Button sizes */
