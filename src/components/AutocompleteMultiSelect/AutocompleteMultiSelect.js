@@ -29,7 +29,7 @@ function AutocompleteMultiSelect({
   )
 
   const onOptionClick = (e) => {
-    const hasItem = selectedOptions?.some((option) => option === e)
+    const hasItem = selectedOptions?.includes(e)
     // Remove item if already in array otherwise add item
     const updatedSelection = hasItem
       ? [...selectedOptions].filter((option) => option !== e)
