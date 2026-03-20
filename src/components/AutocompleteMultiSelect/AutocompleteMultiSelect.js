@@ -21,15 +21,12 @@ function AutocompleteMultiSelect({
   const [query, setQuery] = useState('')
 
   const _options = [...options]
-  const filteredOptions =
-    query === ''
-      ? _options
-      : _options.filter((option) =>
-          option?.label
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, '')),
-        )
+  const filteredOptions = _options.filter((option) =>
+    option?.label
+      .toLowerCase()
+      .replace(/\s+/g, '')
+      .includes(query.toLowerCase().replace(/\s+/g, '')),
+  )
 
   const onOptionClick = (e) => {
     const hasItem = selectedOptions?.some((option) => option === e)
@@ -42,18 +39,23 @@ function AutocompleteMultiSelect({
   }
 
   return (
-    <Combobox value={selectedOptions} multiple>
+    <Combobox
+      value={selectedOptions}
+      onClose={() => setQuery('')}
+      multiple
+      immediate
+    >
       <div className="relative text-charcoal-700">
         <ComboboxInput
           data-testid="autocomplete-multi-input"
-          className="text-sm opacity-100 relative w-full cursor-default block border border-charcoal-200 rounded-lg shadow-xs p-2 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800"
+          className="text-sm relative w-full cursor-text block border-none rounded-lg p-2 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800"
           onChange={(event) => setQuery(event.target.value)}
           placeholder={placeholder}
           onBlur={onBlur}
         />
         <ComboboxButton
           data-testid="autocomplete-multi-btn"
-          className="absolute inset-y-0 right-0 flex items-center pr-2"
+          className="absolute inset-y-0 right-0 cursor-pointer flex items-center pr-2"
         >
           {getIcon('ChevronUpDown', 'h-5 w-5 fill-current')}
         </ComboboxButton>

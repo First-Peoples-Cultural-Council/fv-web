@@ -33,7 +33,7 @@ function AutocompleteMultiple({
       <FieldLabel nameId={nameId} text={label} />
       <div className="w-full">
         <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-6">
+          <div className="col-span-6 border border-charcoal-200 rounded-lg shadow-xs bg-white">
             <AutocompleteMultiSelect
               selectedOptions={field?.value}
               placeholder={placeholder}
