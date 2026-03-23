@@ -40,13 +40,13 @@ function DashboardMediaVisualPresentation({
   return (
     <div
       id="DashboardMediaVisualPresentation"
-      className="grid grid-cols-3 w-full"
+      className="grid grid-cols-3 gap-2 w-full p-3"
     >
       <section className="col-span-2">
-        <div className="p-3 h-full">
+        <div className="h-full">
           <div className="overflow-y-auto h-full">
             <div>
-              <ul className="grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
+              <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
                 {infiniteQueryResponse?.data?.pages !== undefined &&
                   infiniteQueryResponse?.data?.pages?.[0]?.results?.length >
                     0 &&
@@ -63,8 +63,8 @@ function DashboardMediaVisualPresentation({
                             <div
                               className={`${
                                 mediaObject?.id === currentFile?.id
-                                  ? 'ring-4 ring-offset-2 ring-scarlet-800'
-                                  : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-scarlet-800'
+                                  ? 'ring-4 ring-offset-2 ring-blumine-600'
+                                  : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-charcoal-50 focus-within:ring-blumine-600'
                               } group block w-full rounded-lg bg-charcoal-50 overflow-hidden`}
                             >
                               <img

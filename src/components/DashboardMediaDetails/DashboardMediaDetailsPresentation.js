@@ -20,7 +20,7 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
   return (
     <div
       id="DashboardMediaDetailsPresentation"
-      className="min-h-screen w-full pb-16 px-8 sticky top-20 bg-white border-l border-charcoal-100"
+      className="min-h-screen w-full pb-16 px-8 sticky top-20 bg-white rounded-lg"
     >
       <div className="flex justify-center space-x-2 py-5">
         {belongsToCurrentSite && (

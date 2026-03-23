@@ -21,85 +21,86 @@ function DashboardMediaAudioPresentation({
   }
 
   return (
-    <div
-      id="DashboardMediaAudioPresentation"
-      className="grid grid-cols-3 w-full bg-white"
-    >
-      <main className="col-span-2 mx-2">
-        <section className="p-2 h-full">
-          <div>
+    <div id="DashboardMediaAudioPresentation" className="px-3">
+      <div className="grid grid-cols-3 w-full bg-white rounded-lg divide-x divide-charcoal-200">
+        <main className="col-span-2">
+          <section className="p-2 h-full">
             <div>
-              <table className="w-full table-fixed divide-y divide-charcoal-100">
-                <thead className="bg-charcoal-50">
-                  <tr>
-                    <th scope="col" className={headerClass}>
-                      Audio
-                    </th>
-                    <th scope="col" className={headerClass}>
-                      Title
-                    </th>
-                    <th scope="col" className={headerClass}>
-                      Description
-                    </th>
-                    <th scope="col" className={headerClass}>
-                      Date Created
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-charcoal-100">
-                  {infiniteQueryResponse?.data?.pages?.[0]?.results?.length &&
-                    infiniteQueryResponse?.data?.pages?.map((page) => (
-                      <React.Fragment key={page?.pageNumber}>
-                        {page.results.map((audioFile) => (
-                          <tr
-                            key={audioFile?.id}
-                            className={`${
-                              audioFile?.id === currentFile?.id
-                                ? 'ring-2 ring-scarlet-800'
-                                : ''
-                            } m-2 rounded-lg relative`}
-                            onClick={() => setCurrentFile(audioFile)}
-                          >
-                            <td
-                              className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
-                              aria-label="list"
+              <div>
+                <table className="w-full table-fixed divide-y divide-charcoal-100">
+                  <thead className="bg-charcoal-50">
+                    <tr>
+                      <th scope="col" className={headerClass}>
+                        Audio
+                      </th>
+                      <th scope="col" className={headerClass}>
+                        Title
+                      </th>
+                      <th scope="col" className={headerClass}>
+                        Description
+                      </th>
+                      <th scope="col" className={headerClass}>
+                        Date Created
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-charcoal-100">
+                    {infiniteQueryResponse?.data?.pages?.[0]?.results?.length &&
+                      infiniteQueryResponse?.data?.pages?.map((page) => (
+                        <React.Fragment key={page?.pageNumber}>
+                          {page.results.map((audioFile) => (
+                            <tr
+                              key={audioFile?.id}
+                              className={`${
+                                audioFile?.id === currentFile?.id
+                                  ? 'ring-2 ring-blumine-600'
+                                  : ''
+                              } m-2 rounded-lg relative`}
+                              onClick={() => setCurrentFile(audioFile)}
                             >
-                              <AudioNative
-                                styling="w-full rounded-lg"
-                                audioObject={audioFile}
-                              />
-                            </td>
-                            <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
-                              {audioFile.title}
-                            </td>
-                            <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
-                              {audioFile?.description}
-                            </td>
-                            <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
-                              {audioFile?.created}
-                            </td>
-                          </tr>
-                        ))}
-                      </React.Fragment>
-                    ))}
-                </tbody>
-              </table>
-              <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
+                              <td
+                                className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
+                                aria-label="list"
+                              >
+                                <AudioNative
+                                  styling="w-full rounded-lg"
+                                  audioObject={audioFile}
+                                />
+                              </td>
+                              <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
+                                {audioFile.title}
+                              </td>
+                              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
+                                {audioFile?.description}
+                              </td>
+                              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">
+                                {audioFile?.created}
+                              </td>
+                            </tr>
+                          ))}
+                        </React.Fragment>
+                      ))}
+                  </tbody>
+                </table>
+                <InfiniteLoadBtn
+                  infiniteQueryResponse={infiniteQueryResponse}
+                />
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
-      <aside className="col-span-1">
-        <DashboardMediaDetails
-          mediaTypePath={AUDIO_PATH}
-          file={file}
-          thumbnail={
-            <div className="block w-full rounded-lg overflow-hidden">
-              <AudioNative styling="w-full" audioObject={file} />
-            </div>
-          }
-        />
-      </aside>
+          </section>
+        </main>
+        <aside className="col-span-1">
+          <DashboardMediaDetails
+            mediaTypePath={AUDIO_PATH}
+            file={file}
+            thumbnail={
+              <div className="block w-full rounded-lg overflow-hidden">
+                <AudioNative styling="w-full" audioObject={file} />
+              </div>
+            }
+          />
+        </aside>
+      </div>
     </div>
   )
 }

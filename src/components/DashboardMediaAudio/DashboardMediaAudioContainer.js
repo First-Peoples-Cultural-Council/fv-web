@@ -28,7 +28,7 @@ function DashboardMediaAudioContainer() {
     >
       <SiteDocHead titleArray={['Audio']} />
 
-      <section className="sticky top-0 z-30 p-3 space-y-2 print:hidden">
+      <section className="sticky top-0 z-30 p-3 space-y-2 bg-charcoal-100 print:hidden">
         <h1 className="sr-only">Audio</h1>
         <SelectorSearchbox.Presentation
           onSearchChange={handleSearchTermChange}
