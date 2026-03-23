@@ -17,6 +17,7 @@ export const PAGE = 'page'
 export const PAGE_SIZE = 'pageSize'
 export const SITES_FILTER = 'sites'
 export const SORT = 'sort'
+export const SPEAKERS = 'speakers'
 export const STARTS_WITH_CHAR = 'startsWithChar'
 export const TYPES = 'types'
 export const VISIBILITY = 'visibility'
@@ -29,11 +30,14 @@ export const SEARCH_FILTERS = [
   DOMAIN,
   GAMES,
   HAS_AUDIO,
+  HAS_CATEGORIES,
   HAS_IMAGE,
-  HAS_VIDEO,
+  HAS_RELATED_ENTRIES,
   HAS_TRANSLATION,
   HAS_UNRECOGNIZED_CHARS,
+  HAS_VIDEO,
   KIDS,
+  SPEAKERS,
   STARTS_WITH_CHAR,
   VISIBILITY,
 ]

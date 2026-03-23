@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router'
 
 // FPCC
-import DashboardMediaPresentation from 'components/DashboardMedia/DashboardMediaPresentation'
+import DashboardLanding from 'components/DashboardLanding'
 import DashboardMediaData from 'components/DashboardMedia/DashboardMediaData'
 import DashboardMediaAudio from 'components/DashboardMediaAudio'
 import DashboardMediaDocuments from 'components/DashboardMediaDocuments'
@@ -50,7 +50,7 @@ function DashboardMediaContainer() {
         <Route
           path=""
           element={
-            <DashboardMediaPresentation
+            <DashboardLanding.Presentation
               tileContent={tileContent}
               headerContent={headerContent}
               site={site}

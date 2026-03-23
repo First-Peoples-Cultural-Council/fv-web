@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
+import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
 import {
   HAS_AUDIO,
   HAS_IMAGE,
@@ -31,18 +32,19 @@ function AdvancedSearchOptionsPresentation({ items }) {
       data-testid="AdvancedSearchOptionsPresentation"
       className="bg-white rounded-lg"
     >
-      <div className="mx-auto px-6 py-3 text-center">
+      <div className="mx-auto px-2 py-1 text-center">
         <section aria-labelledby="filter-heading">
           <h2 id="filter-heading" className="sr-only">
             Dictionary filters
           </h2>
-
           <div className="flex items-center justify-between">
             <div className="flex items-baseline space-x-8">
-              <p className="text-sm text-charcoal-500">Results : {countStr}</p>
+              <p className="p-2 text-sm text-charcoal-500">
+                Results : {countStr}
+              </p>
             </div>
 
-            <div className="flex items-baseline space-x-8">
+            <div className="flex items-baseline space-x-4">
               <SingleSelect
                 id={KIDS}
                 options={[
@@ -108,6 +110,11 @@ function AdvancedSearchOptionsPresentation({ items }) {
                   { value: VISIBILITY_TEAM, label: 'Team Only' },
                 ]}
               />
+            </div>
+          </div>
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-baseline space-x-8">
+              <SearchSpeakersFilter />
             </div>
           </div>
         </section>
