@@ -15,40 +15,43 @@ function SelectorSearchboxPresentation({
   return (
     <div
       data-testid="SelectorSearchboxPresentation"
-      className="w-full relative z-10 flex items-center h-16 mx-auto bg-white border-b border-charcoal-100 shadow-xs px-6"
+      className="flex w-full rounded-lg"
     >
-      <form onSubmit={onSearchSubmit} className="w-full flex">
-        <div className="relative w-full text-charcoal-500 focus-within:text-charcoal-700">
+      <div className="flex w-full rounded-lg">
+        <form onSubmit={onSearchSubmit} className="flex items-stretch grow">
+          <div className="relative w-full text-charcoal-500 focus-within:text-charcoal-700">
+            <input
+              name="search-field"
+              id="search-field"
+              className="block w-full placeholder:text-charcoal-400 text-charcoal-700 rounded-none rounded-l-md pl-4 py-4 overflow-visible truncate border-0"
+              type="text"
+              placeholder={searchPlaceholder}
+              onInput={onSearchChange}
+              value={searchValue}
+            />
+          </div>
+        </form>
+        <div className="relative inline-flex items-center px-2 py-1.5 text-charcoal-500 border-charcoal-200 rounded-r-md bg-charcoal-50 hover:bg-charcoal-50">
           <button
             data-testid="search-submit-btn"
             type="submit"
-            className="absolute inset-y-0 left-0 flex items-center"
+            aria-label="Search"
           >
             {getIcon('Search', 'fill-current shrink-0 h-5 w-5')}
           </button>
-          <input
-            name="search-field"
-            id="search-field"
-            className="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-charcoal-900 placeholder-charcoal-500 focus:outline-hidden focus:ring-0 focus:border-transparent focus:placeholder-charcoal-300 sm:block"
-            placeholder={searchPlaceholder}
-            type="text"
-            onInput={onSearchChange}
-            value={searchValue}
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center">
-            {submittedSearchTerm && (
-              <button
-                data-testid="reset-search"
-                type="button"
-                className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
-                onClick={clearSearchTerm}
-              >
-                Clear Search
-              </button>
-            )}
-          </div>
         </div>
-      </form>
+      </div>
+
+      {submittedSearchTerm && (
+        <button
+          data-testid="reset-search"
+          type="button"
+          className="inline-flex items-center ml-4 my-1 px-2 text-charcoal-500 border-charcoal-200 text-sm font-medium rounded-lg bg-charcoal-50 hover:bg-charcoal-100"
+          onClick={clearSearchTerm}
+        >
+          Clear Search
+        </button>
+      )}
     </div>
   )
 }
