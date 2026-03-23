@@ -18,13 +18,12 @@ function SelectorDocumentsContainer({
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,
+    submittedSearchTerm,
+    clearSearchTerm,
   } = useMediaSearchModal({ type: TYPE_DOCUMENT })
 
   return (
-    <div
-      data-testid="SelectorDocumentsContainer"
-      className="h-full bg-charcoal-50"
-    >
+    <div data-testid="SelectorDocumentsContainer" className="h-full">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
@@ -32,6 +31,8 @@ function SelectorDocumentsContainer({
             onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all documents"
             searchValue={displayedSearchTerm}
+            submittedSearchTerm={submittedSearchTerm}
+            clearSearchTerm={clearSearchTerm}
           />
         </div>
         <div className="grow h-72 overflow-y-scroll">
