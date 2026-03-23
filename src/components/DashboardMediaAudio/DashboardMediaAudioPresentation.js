@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SiteDocHead from 'components/SiteDocHead'
 
 // FPCC
 import AudioNative from 'components/AudioNative'
@@ -24,17 +23,10 @@ function DashboardMediaAudioPresentation({
   return (
     <div
       id="DashboardMediaAudioPresentation"
-      className="grid grid-cols-3 w-full"
+      className="grid grid-cols-3 w-full bg-white"
     >
-      <SiteDocHead titleArray={['Audio']} />
-      <main className="col-span-2 pt-2 mx-2">
-        <section className="p-2 h-full" aria-labelledby="results-header">
-          <h1
-            id="results-header"
-            className="capitalize flex text-2xl font-bold text-charcoal-900 mb-2"
-          >
-            Audio
-          </h1>
+      <main className="col-span-2 mx-2">
+        <section className="p-2 h-full">
           <div>
             <div>
               <table className="w-full table-fixed divide-y divide-charcoal-100">
