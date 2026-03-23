@@ -18,7 +18,9 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
     handleSearchTermChange,
     currentFile,
     setCurrentFile,
+    submittedSearchTerm,
     typePlural,
+    clearSearchTerm,
   } = useMediaSearchWithUrlSync({
     type,
     searchSharedMedia,
@@ -38,39 +40,34 @@ function DashboardMediaVisualContainer({ type, searchSharedMedia }) {
   }
   return (
     <div
-      data-testid="DashboardMediaAudioContainer"
-      className="h-full min-h-screen bg-charcoal-50"
+      data-testid="DashboardMediaVisualContainer"
+      className="h-full min-h-screen bg-charcoal-100"
     >
       <SiteDocHead titleArray={[pageTitle]} />
-      <div className="h-full w-full flex flex-col">
-        <div className="w-full sticky top-0 z-30 bg-white">
-          <SelectorSearchbox.Presentation
-            onSearchChange={handleSearchTermChange}
-            onSearchSubmit={handleSearchSubmitWithUrlSync}
-            searchPlaceholder={`Search all ${typeDisplayName}`}
-            searchValue={displayedSearchTerm}
-          />
-        </div>
-        <div>
-          <h1
-            id="results-header"
-            className="flex text-2xl font-bold text-charcoal-900 px-4 py-2"
-          >
-            {capitalizeFirstLetter(typeDisplayName)}
-          </h1>
-          <SelectorResultsWrapper.Presentation
+
+      <section className="sticky top-0 z-30 p-3 space-y-2 print:hidden">
+        <h1 className="sr-only">{capitalizeFirstLetter(typeDisplayName)}</h1>
+        <SelectorSearchbox.Presentation
+          onSearchChange={handleSearchTermChange}
+          onSearchSubmit={handleSearchSubmitWithUrlSync}
+          searchPlaceholder={`Search all ${typeDisplayName}`}
+          searchValue={displayedSearchTerm}
+          submittedSearchTerm={submittedSearchTerm}
+          clearSearchTerm={clearSearchTerm}
+        />
+      </section>
+
+      <SelectorResultsWrapper.Presentation
+        infiniteQueryResponse={infiniteQueryResponse}
+        resultsSection={
+          <DashboardMediaVisualPresentation
             infiniteQueryResponse={infiniteQueryResponse}
-            resultsSection={
-              <DashboardMediaVisualPresentation
-                infiniteQueryResponse={infiniteQueryResponse}
-                currentFile={currentFile}
-                setCurrentFile={setCurrentFile}
-                type={type}
-              />
-            }
+            currentFile={currentFile}
+            setCurrentFile={setCurrentFile}
+            type={type}
           />
-        </div>
-      </div>
+        }
+      />
     </div>
   )
 }

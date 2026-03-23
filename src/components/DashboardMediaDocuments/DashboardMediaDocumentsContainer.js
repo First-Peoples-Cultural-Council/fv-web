@@ -6,6 +6,7 @@ import useMediaSearchWithUrlSync from 'common/dataHooks/useMediaSearchWithUrlSyn
 import { TYPE_DOCUMENT } from 'common/constants'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DashboardMediaDocumentsContainer() {
   const {
@@ -15,6 +16,8 @@ function DashboardMediaDocumentsContainer() {
     handleSearchTermChange,
     currentFile,
     setCurrentFile,
+    submittedSearchTerm,
+    clearSearchTerm,
   } = useMediaSearchWithUrlSync({
     type: TYPE_DOCUMENT,
   })
@@ -22,30 +25,32 @@ function DashboardMediaDocumentsContainer() {
   return (
     <div
       data-testid="DashboardMediaDocumentsContainer"
-      className="h-full min-h-screen bg-charcoal-50"
+      className="h-full min-h-screen bg-charcoal-100"
     >
-      <div className="h-full w-full flex flex-col">
-        <div className="w-full sticky top-0 z-30 bg-white">
-          <SelectorSearchbox.Presentation
-            onSearchChange={handleSearchTermChange}
-            onSearchSubmit={handleSearchSubmitWithUrlSync}
-            searchPlaceholder="Search all documents"
-            searchValue={displayedSearchTerm}
-          />
-        </div>
-        <div>
-          <SelectorResultsWrapper.Presentation
+      <SiteDocHead titleArray={['Documents']} />
+
+      <section className="sticky top-0 z-30 p-3 space-y-2 print:hidden">
+        <h1 className="sr-only">Documents</h1>
+        <SelectorSearchbox.Presentation
+          onSearchChange={handleSearchTermChange}
+          onSearchSubmit={handleSearchSubmitWithUrlSync}
+          searchPlaceholder="Search all documents"
+          searchValue={displayedSearchTerm}
+          submittedSearchTerm={submittedSearchTerm}
+          clearSearchTerm={clearSearchTerm}
+        />
+      </section>
+
+      <SelectorResultsWrapper.Presentation
+        infiniteQueryResponse={infiniteQueryResponse}
+        resultsSection={
+          <DashboardMediaDocumentsPresentation
             infiniteQueryResponse={infiniteQueryResponse}
-            resultsSection={
-              <DashboardMediaDocumentsPresentation
-                infiniteQueryResponse={infiniteQueryResponse}
-                currentFile={currentFile}
-                setCurrentFile={setCurrentFile}
-              />
-            }
+            currentFile={currentFile}
+            setCurrentFile={setCurrentFile}
           />
-        </div>
-      </div>
+        }
+      />
     </div>
   )
 }

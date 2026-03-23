@@ -43,10 +43,10 @@ function DashboardMediaVisualPresentation({
       className="grid grid-cols-3 w-full"
     >
       <section className="col-span-2">
-        <div className="p-4 h-full">
+        <div className="p-3 h-full">
           <div className="overflow-y-auto h-full">
             <div>
-              <ul className="p-2 grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
+              <ul className="grid grid-cols-4 gap-y-8 gap-x-6 xl:gap-x-8">
                 {infiniteQueryResponse?.data?.pages !== undefined &&
                   infiniteQueryResponse?.data?.pages?.[0]?.results?.length >
                     0 &&
