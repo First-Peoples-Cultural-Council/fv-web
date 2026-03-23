@@ -16,6 +16,7 @@ function useMediaSearchWithUrlSync({ type, searchSharedMedia = false }) {
     displayedSearchTerm,
     handleSearchTermChange,
     submittedSearchTerm,
+    clearSearchTerm,
     setSubmittedSearchTerm,
     searchTermInUrl,
     setSearchTermInUrl,
@@ -59,6 +60,8 @@ function useMediaSearchWithUrlSync({ type, searchSharedMedia = false }) {
     handleSearchTermChange,
     currentFile,
     setCurrentFile,
+    submittedSearchTerm,
+    clearSearchTerm,
     typePlural: path,
   }
 }

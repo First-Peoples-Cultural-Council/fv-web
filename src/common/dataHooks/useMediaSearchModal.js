@@ -13,6 +13,7 @@ function useMediaSearchModal({ type, searchSharedMedia }) {
     handleSearchTermChange,
     submittedSearchTerm,
     setSubmittedSearchTerm,
+    clearSearchTerm,
   } = useSearchTerm()
 
   // Fetch search results
@@ -40,6 +41,8 @@ function useMediaSearchModal({ type, searchSharedMedia }) {
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,
+    submittedSearchTerm,
+    clearSearchTerm,
   }
 }
 
