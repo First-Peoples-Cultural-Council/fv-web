@@ -93,9 +93,8 @@ function ContactUsPresentation({
         />
       </div>
       <div>
-        <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8">
-          {subtitle ||
-            'Please contact us if you have any suggestions or feedback regarding our language content.'}
+        <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8 min-h-5">
+          {subtitle || ''}
         </div>
         <div className="max-w-7xl mx-auto px-3 md:px-6 lg:px-8">
           <div className="grid grid-cols-6">
