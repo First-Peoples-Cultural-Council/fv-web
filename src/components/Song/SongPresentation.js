@@ -64,11 +64,7 @@ function SongPresentation({ entry }) {
             {entry?.relatedAudio?.length > 0 && (
               <div className="py-5 space-y-5">
                 {entry.relatedAudio?.map((audio) => (
-                  <AudioNative
-                    key={audio.id}
-                    styling="w-full print:hidden"
-                    audioObject={audio}
-                  />
+                  <AudioNative key={audio.id} audioObject={audio} />
                 ))}
               </div>
             )}

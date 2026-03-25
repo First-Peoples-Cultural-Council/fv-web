@@ -71,10 +71,7 @@ function SelectorAudioPresentation({
                           )}
                         </td>
                         <td className="p-2 overflow-visible w-80 text-sm text-charcoal-900">
-                          <AudioNative
-                            styling="w-full "
-                            audioObject={audioObject}
-                          />
+                          <AudioNative audioObject={audioObject} />
                         </td>
                         <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
                           {audioObject?.title}

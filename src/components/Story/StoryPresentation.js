@@ -151,13 +151,9 @@ function StoryPresentation({ entry }) {
                 >
                   <h4 className={labelStyling}>Introduction</h4>
                   {entry?.relatedAudio?.length > 0 && (
-                    <div className="space-y-5">
+                    <div className="space-y-5 max-w-96">
                       {entry?.relatedAudio?.map((audio) => (
-                        <AudioNative
-                          key={`${audio}}`}
-                          styling="lg:w-96 print:hidden"
-                          audioObject={audio}
-                        />
+                        <AudioNative key={`${audio}}`} audioObject={audio} />
                       ))}
                     </div>
                   )}
@@ -198,13 +194,9 @@ function StoryPresentation({ entry }) {
                       className={`${blockBgStyling} flex-1 text-charcoal-900 rounded-t-lg rounded-b-none p-4 lg:p-10 space-y-5`}
                     >
                       {page?.relatedAudio?.length > 0 && (
-                        <div className="space-y-5">
+                        <div className="space-y-5  max-w-96">
                           {page?.relatedAudio?.map((audio) => (
-                            <AudioNative
-                              key={audio.id}
-                              styling="lg:w-96 print:hidden"
-                              audioObject={audio}
-                            />
+                            <AudioNative key={audio.id} audioObject={audio} />
                           ))}
                         </div>
                       )}

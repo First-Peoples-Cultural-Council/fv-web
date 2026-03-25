@@ -46,9 +46,9 @@ function AudioEditForm({
         subtitle="Edit the details for your audio file."
       />
       <form onReset={reset}>
-        <div className="grid grid-cols-12 py-6">
-          <div className="col-span-6">
-            <AudioNative styling="mt-4" audioObject={dataToEdit} />
+        <div className="grid grid-cols-12 gap-6 py-6">
+          <div className="col-span-6 mt-4">
+            <AudioNative audioObject={dataToEdit} />
           </div>
           <div className="grid grid-cols-12 gap-6 col-span-12">
             <AudioBaseForm

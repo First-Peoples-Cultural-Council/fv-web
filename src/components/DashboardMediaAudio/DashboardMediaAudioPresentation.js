@@ -62,10 +62,7 @@ function DashboardMediaAudioPresentation({
                                 className="px-2 py-2 overflow-visible w-80 text-sm text-charcoal-900"
                                 aria-label="list"
                               >
-                                <AudioNative
-                                  styling="w-full rounded-lg"
-                                  audioObject={audioFile}
-                                />
+                                <AudioNative audioObject={audioFile} />
                               </td>
                               <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
                                 {audioFile.title}
@@ -93,11 +90,7 @@ function DashboardMediaAudioPresentation({
           <DashboardMediaDetails
             mediaTypePath={AUDIO_PATH}
             file={file}
-            thumbnail={
-              <div className="block w-full rounded-lg overflow-hidden">
-                <AudioNative styling="w-full" audioObject={file} />
-              </div>
-            }
+            thumbnail={<AudioNative audioObject={file} />}
           />
         </aside>
       </div>
