@@ -131,7 +131,7 @@ function StoryPresentation({ entry }) {
         </div>
       )}
 
-      <div className="container max-w-4xl xl:max-w-7xl mx-auto pb-4 divide-y-2 md:text-lg">
+      <div className="container max-w-4xl xl:max-w-7xl mx-auto pb-4 md:text-lg">
         {/* Introduction */}
         {(entry?.intro?.length > 0 ||
           entry?.introTranslation?.length > 0 ||
