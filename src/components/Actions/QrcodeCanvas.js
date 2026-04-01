@@ -9,7 +9,15 @@ function QrcodeCanvas({ url }) {
 
   useEffect(() => {
     const canvas = qrCodeRef.current
-    if (canvas) QRCode.toCanvas(canvas, url)
+    if (canvas) {
+      QRCode.toCanvas(canvas, url, {
+        margin: 0, // Remove padding
+        color: {
+          dark: '#000000', // Keep dots black
+          light: '#FFFFFF00', // Make background transparent
+        },
+      })
+    }
   }, [url])
 
   return <canvas data-testid="QRCode" ref={qrCodeRef} />
