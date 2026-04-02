@@ -1,25 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSearchParams } from 'react-router'
 
 // FPCC
 import DashboardMediaAudioPresentation from 'components/DashboardMediaAudio/DashboardMediaAudioPresentation'
 import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
-import useMediaSearchWithUrlSync from 'common/dataHooks/useMediaSearchWithUrlSync'
-import { TYPE_AUDIO } from 'common/constants'
+import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
+import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import SelectorSearchbox from 'components/SelectorSearchbox'
 import SelectorResultsWrapper from 'components/SelectorResultsWrapper'
 import SiteDocHead from 'components/SiteDocHead'
+import { TYPES, TYPE_AUDIO, SORT, SORT_CREATED_DESC } from 'common/constants'
 
 function DashboardMediaAudioContainer() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [currentFile, setCurrentFile] = useState(null)
+
+  const defaultSearchParams = new URLSearchParams({
+    [TYPES]: TYPE_AUDIO,
+    [SORT]: SORT_CREATED_DESC,
+  })
+
+  // Search fetch
+  const infiniteQueryResponse = useSearchLoader({
+    searchParams: searchParams?.size === 0 ? defaultSearchParams : searchParams,
+  })
+
   const {
-    infiniteQueryResponse,
+    handleSearchNavigation,
     displayedSearchTerm,
-    handleSearchSubmitWithUrlSync,
-    handleSearchTermChange,
-    currentFile,
-    setCurrentFile,
     submittedSearchTerm,
+    handleSearchTermChange,
     clearSearchTerm,
-  } = useMediaSearchWithUrlSync({ type: TYPE_AUDIO })
+  } = useSearchBoxNavigation({ initialSearchType: TYPE_AUDIO })
+
+  const handleSearchSubmitWithUrlSync = (event) => {
+    handleSearchNavigation(event)
+    setCurrentFile(null)
+  }
+
+  const clearSearch = (event) => {
+    clearSearchTerm(event)
+    setSearchParams(defaultSearchParams)
+    setCurrentFile(null)
+  }
 
   return (
     <div
@@ -33,10 +56,10 @@ function DashboardMediaAudioContainer() {
         <SelectorSearchbox.Presentation
           onSearchChange={handleSearchTermChange}
           onSearchSubmit={handleSearchSubmitWithUrlSync}
-          searchPlaceholder="Search all audio"
+          searchPlaceholder="Search for audio"
           searchValue={displayedSearchTerm}
           submittedSearchTerm={submittedSearchTerm}
-          clearSearchTerm={clearSearchTerm}
+          clearSearchTerm={clearSearch}
         />
 
         <SearchSpeakersFilter />
@@ -47,7 +70,10 @@ function DashboardMediaAudioContainer() {
         resultsSection={
           <DashboardMediaAudioPresentation
             infiniteQueryResponse={infiniteQueryResponse}
-            currentFile={currentFile}
+            currentFile={
+              currentFile ||
+              infiniteQueryResponse?.data?.pages?.[0]?.results?.[0]
+            }
             setCurrentFile={setCurrentFile}
           />
         }
