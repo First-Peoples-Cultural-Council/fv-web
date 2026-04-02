@@ -14,8 +14,8 @@ import {
 } from 'common/constants'
 
 function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
-  const { sitename } = useParams()
-  const belongsToCurrentSite = file?.downloadLink?.includes(sitename)
+  const params = useParams()
+  const isSharedGallery = params?.['*']?.includes('shared')
 
   return (
     <div
@@ -23,7 +23,7 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
       className="min-h-screen w-full pb-16 px-8 sticky top-20 bg-white rounded-lg"
     >
       <div className="flex justify-center space-x-2 py-5">
-        {belongsToCurrentSite && (
+        {!isSharedGallery && (
           <>
             <a
               href={file?.downloadLink}
@@ -34,7 +34,7 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
             </a>
 
             <Link
-              to={`/${sitename}/dashboard/edit/${mediaTypePath}?id=${file?.id}`}
+              to={`/${params?.sitename}/dashboard/edit/${mediaTypePath}?id=${file?.id}`}
               data-testid="EntryDrawerEdit"
               target="_blank"
               rel="noopener noreferrer"
