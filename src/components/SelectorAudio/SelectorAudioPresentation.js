@@ -25,8 +25,8 @@ function SelectorAudioPresentation({
         Audio
       </h2>
       <div>
-        <table className="bg-white w-full divide-y divide-charcoal-100 rounded-lg">
-          <thead className="">
+        <table className="bg-white p-2 w-full divide-y divide-charcoal-100 rounded-lg">
+          <thead className="bg-charcoal-50">
             <tr>
               <th scope="col" className="sr-only">
                 Selected
