@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router'
 
 // FPCC
@@ -29,19 +29,19 @@ export function useWidget({ id, edit = false }) {
   return queryResponse
 }
 
-export function useWidgets() {
+export function useWidgets({ page }) {
   const { sitename } = useParams()
   const { user } = useUserStore()
   const { isSuperAdmin } = user
 
   const queryResponse = useQuery({
-    queryKey: [WIDGETS, sitename],
-    queryFn: () => api.widgets.getAll({ sitename }),
+    queryKey: [WIDGETS, sitename, page],
+    queryFn: () => api.widgets.getAll({ sitename, pageParam: page }),
+    placeholderData: keepPreviousData,
     select: (data) => ({
       ...data,
       results: widgetListAdaptor({ widgetList: data?.results, isSuperAdmin }),
     }),
-    enabled: !!sitename,
   })
 
   return queryResponse
