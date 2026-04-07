@@ -1,0 +1,3 @@
+import DashboardTablePaginatedPresentation from 'components/DashboardTablePaginated/DashboardTablePaginatedPresentation'
+
+export default DashboardTablePaginatedPresentation
