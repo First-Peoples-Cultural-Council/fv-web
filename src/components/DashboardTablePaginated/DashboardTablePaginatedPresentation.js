@@ -20,7 +20,7 @@ function DashboardTablePaginatedPresentation({
       <div className="flex items-center">
         <div className="flow-root w-full">
           <div className="overflow-x-auto">
-            <div className="inline-block min-w-full py-3 align-middle">
+            <div className="inline-block min-w-full py-3 align-middle px-6 lg:px-8">
               <div className="shadow outline-solid outline-1 outline-black/5 rounded-lg bg-white p-4 lg:p-8">
                 <LoadOrError queryResponse={queryResponse}>
                   <table className="relative min-w-full">
