@@ -12,7 +12,6 @@ import SiteDocHead from 'components/SiteDocHead'
 import { TYPES, TYPE_AUDIO, SORT, SORT_CREATED_DESC } from 'common/constants'
 
 function DashboardMediaAudioContainer() {
-  const [searchParams, setSearchParams] = useSearchParams()
   const [currentFile, setCurrentFile] = useState(null)
 
   const defaultSearchParams = new URLSearchParams({
@@ -20,9 +19,11 @@ function DashboardMediaAudioContainer() {
     [SORT]: SORT_CREATED_DESC,
   })
 
+  const [searchParams, setSearchParams] = useSearchParams(defaultSearchParams)
+
   // Search fetch
   const infiniteQueryResponse = useSearchLoader({
-    searchParams: searchParams?.size === 0 ? defaultSearchParams : searchParams,
+    searchParams,
   })
 
   const {
@@ -51,7 +52,7 @@ function DashboardMediaAudioContainer() {
     >
       <SiteDocHead titleArray={['Audio']} />
 
-      <section className="sticky top-0 z-30 p-3 space-y-2 bg-charcoal-100 print:hidden">
+      <section className="sticky top-0 z-30 p-3 space-y-3 bg-charcoal-100 print:hidden">
         <h1 className="sr-only">Audio</h1>
         <SelectorSearchbox.Presentation
           onSearchChange={handleSearchTermChange}

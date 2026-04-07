@@ -78,8 +78,8 @@ function SearchSpeakersFilter() {
   }
 
   return (
-    <div data-testid="FormSearchSpeakersFilter" className="w-full">
-      <div className="flex items-center mb-1">
+    <div data-testid="FormSearchSpeakersFilter" className="w-full space-y-1">
+      <div className="flex items-center">
         <AutocompleteMultiSelect
           selectedOptions={selectedItems}
           placeholder="Filter by speaker"
