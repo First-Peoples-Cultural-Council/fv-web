@@ -28,7 +28,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
     title: 'CONTACT US',
-    text: 'Please use the form below to contact our language team. We will try and get back to you as soon as possible.',
+    text: 'Please contact us if you have any suggestions or feedback regarding our language content.',
     textWithFormatting: '',
     urls: '',
   }

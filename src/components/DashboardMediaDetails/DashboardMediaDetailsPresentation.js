@@ -14,16 +14,16 @@ import {
 } from 'common/constants'
 
 function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
-  const { sitename } = useParams()
-  const belongsToCurrentSite = file?.downloadLink?.includes(sitename)
+  const params = useParams()
+  const isSharedGallery = params?.['*']?.includes('shared')
 
   return (
     <div
       id="DashboardMediaDetailsPresentation"
-      className="min-h-screen w-full pb-16 px-8 sticky top-16 bg-white border border-charcoal-100"
+      className="min-h-screen w-full pb-16 px-8 sticky top-20 bg-white rounded-lg"
     >
       <div className="flex justify-center space-x-2 py-5">
-        {belongsToCurrentSite && (
+        {!isSharedGallery && (
           <>
             <a
               href={file?.downloadLink}
@@ -34,7 +34,7 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
             </a>
 
             <Link
-              to={`/${sitename}/dashboard/edit/${mediaTypePath}?id=${file?.id}`}
+              to={`/${params?.sitename}/dashboard/edit/${mediaTypePath}?id=${file?.id}`}
               data-testid="EntryDrawerEdit"
               target="_blank"
               rel="noopener noreferrer"
@@ -79,10 +79,9 @@ function DashboardMediaDetailsPresentation({ file, mediaTypePath, thumbnail }) {
                 return null
               })}
             {file?.id && (
-              <div className="py-3 grid grid-cols-3 gap-1 text-sm font-medium items-center">
-                <dt className="col-span-1 text-charcoal-500 capitalize truncate h-24 flex items-center">
-                  ID
-                  <Copy textToCopy={file.id} />
+              <div className="py-3 grid grid-cols-3 gap-1 text-sm font-medium">
+                <dt className="col-span-1 text-charcoal-500 capitalize truncate flex items-center space-x-2">
+                  ID <Copy textToCopy={file.id} />
                 </dt>
                 <dd className="col-span-2 text-charcoal-900">{file.id}</dd>
               </div>

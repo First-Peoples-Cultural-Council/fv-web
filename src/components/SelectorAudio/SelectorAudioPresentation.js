@@ -25,8 +25,8 @@ function SelectorAudioPresentation({
         Audio
       </h2>
       <div>
-        <table className="bg-white w-full divide-y divide-charcoal-100 rounded-lg">
-          <thead className="">
+        <table className="bg-white p-2 w-full divide-y divide-charcoal-100 rounded-lg">
+          <thead className="bg-charcoal-50">
             <tr>
               <th scope="col" className="sr-only">
                 Selected
@@ -71,10 +71,7 @@ function SelectorAudioPresentation({
                           )}
                         </td>
                         <td className="p-2 overflow-visible w-80 text-sm text-charcoal-900">
-                          <AudioNative
-                            styling="w-full "
-                            audioObject={audioObject}
-                          />
+                          <AudioNative audioObject={audioObject} />
                         </td>
                         <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
                           {audioObject?.title}

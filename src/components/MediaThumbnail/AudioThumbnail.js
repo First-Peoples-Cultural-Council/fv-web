@@ -9,7 +9,6 @@ function AudioThumbnail(props) {
   const {
     id,
     containerStyles = 'relative w-72 block overflow-hidden',
-    audioStyles = 'w-full',
     labelStyles = '',
     audioObject,
     ...other
@@ -21,11 +20,7 @@ function AudioThumbnail(props) {
 
   return (
     <div className={containerStyles}>
-      <AudioNative
-        styling={audioStyles}
-        audioObject={audioObject || fetchedAudioObject}
-        {...other}
-      />
+      <AudioNative audioObject={audioObject || fetchedAudioObject} {...other} />
       <p className={labelStyles}>
         {audioObject?.title || fetchedAudioObject?.title}
       </p>

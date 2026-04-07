@@ -18,13 +18,12 @@ function SelectorVideosContainer({
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,
+    submittedSearchTerm,
+    clearSearchTerm,
   } = useMediaSearchModal({ type: TYPE_VIDEO })
 
   return (
-    <div
-      data-testid="SelectorVideosContainer"
-      className="h-full bg-charcoal-50"
-    >
+    <div data-testid="SelectorVideosContainer" className="h-full">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
@@ -32,6 +31,8 @@ function SelectorVideosContainer({
             onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all videos"
             searchValue={displayedSearchTerm}
+            submittedSearchTerm={submittedSearchTerm}
+            clearSearchTerm={clearSearchTerm}
           />
         </div>
         <div className="grow mt-2 h-72 overflow-y-scroll">

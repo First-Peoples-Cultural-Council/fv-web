@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/purity */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
@@ -5,8 +6,7 @@ import PropTypes from 'prop-types'
 import { convertMsToTimeWords } from 'common/utils/stringHelpers'
 import { importAll } from 'common/utils/functionHelpers'
 import SectionTitle from 'components/SectionTitle'
-import { AUDIO, ORIGINAL } from 'common/constants'
-import { getMediaPath } from 'common/utils/mediaHelpers'
+import AudioNative from 'components/AudioNative'
 
 function ParachutePresentation({
   alphabet,
@@ -192,16 +192,10 @@ function ParachutePresentation({
                 ),
               )}
             </div>
+            <div className="max-w-md mx-auto my-4">
+              <AudioNative key={audio?.id} audioObject={audio} />
+            </div>
 
-            <audio
-              className="max-w-md mx-auto my-4"
-              src={getMediaPath({
-                mediaObject: audio,
-                type: AUDIO,
-                size: ORIGINAL,
-              })}
-              controls
-            />
             <div>Hint: {translation}</div>
 
             <div className="w-full m-auto max-w-lg my-4">

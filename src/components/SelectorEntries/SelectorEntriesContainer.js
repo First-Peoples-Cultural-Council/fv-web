@@ -45,13 +45,13 @@ function SelectorEntriesContainer({
   return (
     <div
       id="SelectorEntriesContainer"
-      className="h-[80vh] w-[75vw] mx-auto rounded-lg overflow-y-scroll bg-charcoal-50 p-6"
+      className="h-[80vh] w-[75vw] mx-auto rounded-lg overflow-y-scroll bg-charcoal-100 p-6"
     >
       <div className="h-full flex flex-col space-y-4">
         <h2 className="text-center text-2xl font-bold text-charcoal-900">
           Search dictionary entries
         </h2>
-        <div className="w-full bg-charcoal-50 flex justify-center space-x-4">
+        <div className="w-full flex justify-center space-x-4">
           <button
             data-testid="add-btn"
             type="button"
@@ -68,7 +68,7 @@ function SelectorEntriesContainer({
           </button>
         </div>
         <div className="grow">
-          <section className="h-full bg-charcoal-50">
+          <section className="h-full">
             <div className="h-full w-full flex flex-col">
               <div className="w-3/4 mx-auto">
                 <SelectorSearchbox.Presentation

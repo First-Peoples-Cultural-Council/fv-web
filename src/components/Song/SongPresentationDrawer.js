@@ -83,11 +83,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
       <div className="flex-col mt-2 md:mt-6 px-6 space-y-2">
         {entry?.relatedAudio?.length > 0 &&
           entry?.relatedAudio?.map((audio) => (
-            <AudioNative
-              key={audio?.id}
-              styling="w-96 text-charcoal-900 mx-auto print:hidden"
-              audioObject={audio}
-            />
+            <AudioNative key={audio?.id} audioObject={audio} />
           ))}
       </div>
       <div className="mt-2 md:mt-6">

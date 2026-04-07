@@ -22,6 +22,8 @@ function SelectorImagesContainer({
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,
+    submittedSearchTerm,
+    clearSearchTerm,
   } = useMediaSearchModal({
     type: TYPE_IMAGE,
     searchSharedMedia: searchSharedMedia === 'true',
@@ -33,10 +35,7 @@ function SelectorImagesContainer({
   ]
 
   return (
-    <div
-      data-testid="SelectorImagesContainer"
-      className="h-full bg-charcoal-50"
-    >
+    <div data-testid="SelectorImagesContainer" className="h-full">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
@@ -48,6 +47,8 @@ function SelectorImagesContainer({
                 : 'Search your image library'
             }
             searchValue={displayedSearchTerm}
+            submittedSearchTerm={submittedSearchTerm}
+            clearSearchTerm={clearSearchTerm}
           />
         </div>
         {!hideSharedMedia && (

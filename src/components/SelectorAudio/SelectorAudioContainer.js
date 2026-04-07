@@ -18,10 +18,12 @@ function SelectorAudioContainer({
     displayedSearchTerm,
     handleSearchSubmit,
     handleSearchTermChange,
+    submittedSearchTerm,
+    clearSearchTerm,
   } = useMediaSearchModal({ type: TYPE_AUDIO })
 
   return (
-    <div data-testid="SelectorAudioContainer" className="h-full bg-charcoal-50">
+    <div data-testid="SelectorAudioContainer" className="h-full">
       <div className="h-full w-full flex flex-col">
         <div className="w-3/4 mx-auto">
           <SelectorSearchbox.Presentation
@@ -29,6 +31,8 @@ function SelectorAudioContainer({
             onSearchSubmit={handleSearchSubmit}
             searchPlaceholder="Search all audio"
             searchValue={displayedSearchTerm}
+            submittedSearchTerm={submittedSearchTerm}
+            clearSearchTerm={clearSearchTerm}
           />
         </div>
         <div className="grow mt-2 h-72 overflow-y-scroll">
