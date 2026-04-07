@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams } from 'react-router'
 
 // FPCC
@@ -7,9 +8,10 @@ import { useWidgets } from 'common/dataHooks/useWidgets'
 function DashboardWidgetsData() {
   const { site } = useSiteStore()
   const { sitename } = useParams()
+  const [page, setPage] = useState(1)
 
   // Data fetch
-  const queryResponse = useWidgets()
+  const queryResponse = useWidgets({ page })
 
   const tileContent = [
     {
@@ -33,6 +35,8 @@ function DashboardWidgetsData() {
     headerContent,
     site,
     tileContent,
+    page,
+    setPage,
   }
 }
 

@@ -5,7 +5,7 @@ import DashboardWidgetsData from 'components/DashboardWidgets/DashboardWidgetsDa
 import DashboardWidgetsPresentation from 'components/DashboardWidgets/DashboardWidgetsPresentation'
 
 function DashboardWidgetsContainer() {
-  const { queryResponse, headerContent, site, tileContent } =
+  const { queryResponse, headerContent, site, tileContent, page, setPage } =
     DashboardWidgetsData()
   return (
     <DashboardWidgetsPresentation
@@ -13,6 +13,8 @@ function DashboardWidgetsContainer() {
       headerContent={headerContent}
       tileContent={tileContent}
       site={site}
+      page={page}
+      setPage={setPage}
     />
   )
 }
