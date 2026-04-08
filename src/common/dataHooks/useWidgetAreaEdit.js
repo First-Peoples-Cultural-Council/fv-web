@@ -23,7 +23,7 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
   const pageSlug = isHomePage ? null : destination
 
   // Fetch all widgets for this site
-  const widgetsQueryResponse = useWidgets()
+  const infiniteQueryResponse = useWidgets()
 
   const { onSubmit: pageWidgetsUpdate } = usePageWidgetsUpdate({ pageSlug })
   const { onSubmit: homepageWidgetsUpdate } = useSiteUpdateWidgets()
@@ -61,8 +61,10 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
   return {
     handleAddWidget,
     handleRemoveWidget,
-    widgetsQueryResponse,
-    mappedWidgets: arrayToObjectWithIdKeys(widgetsQueryResponse?.data?.results),
+    infiniteQueryResponse,
+    mappedWidgets: arrayToObjectWithIdKeys(
+      infiniteQueryResponse?.data?.pages?.[0]?.results,
+    ),
     widgetIds,
     handleSetWidgetOrder,
   }

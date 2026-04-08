@@ -8,11 +8,12 @@ function WidgetBrowserContainer({
   chooseWidgetHandler,
   currentWidgets,
   pageSlug,
-  widgetsQueryResponse,
+  infiniteQueryResponse,
 }) {
-  const widgetsNotOnThisPage = widgetsQueryResponse?.data?.results?.filter(
-    (widget) => !currentWidgets?.includes(widget?.id),
-  )
+  const widgetsNotOnThisPage =
+    infiniteQueryResponse?.data?.pages?.[0]?.results?.filter(
+      (widget) => !currentWidgets?.includes(widget?.id),
+    )
 
   return (
     <WidgetBrowserPresentation
@@ -28,7 +29,7 @@ WidgetBrowserContainer.propTypes = {
   chooseWidgetHandler: func,
   currentWidgets: array,
   pageSlug: string,
-  widgetsQueryResponse: object,
+  infiniteQueryResponse: object,
 }
 
 export default WidgetBrowserContainer

@@ -20,14 +20,14 @@ function WidgetAreaEditContainer({
     handleSetWidgetOrder,
     mappedWidgets,
     widgetIds,
-    widgetsQueryResponse,
+    infiniteQueryResponse,
   } = useWidgetAreaEdit({ destination: pageSlug, currentWidgets })
 
   const [currentWidget, setCurrentWidget] = useState()
   const [addModalOpen, setAddModalOpen] = useState(false)
 
   return (
-    <LoadOrError queryResponse={widgetsQueryResponse}>
+    <LoadOrError queryResponse={infiniteQueryResponse}>
       <WidgetAreaEditPresentation
         destinationTitle={destinationTitle}
         currentWidget={currentWidget}
@@ -57,7 +57,7 @@ function WidgetAreaEditContainer({
           }}
           currentWidgets={widgetIds}
           pageSlug={pageSlug}
-          widgetsQueryResponse={widgetsQueryResponse}
+          infiniteQueryResponse={infiniteQueryResponse}
         />
       </Modal.Presentation>
     </LoadOrError>
