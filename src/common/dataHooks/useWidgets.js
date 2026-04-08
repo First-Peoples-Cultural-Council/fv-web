@@ -1,16 +1,16 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { useParams, useNavigate } from 'react-router'
 
 // FPCC
 import api from 'services/api'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
+import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 import { useUserStore } from 'context/UserContext'
 import { HOME, ID_TO_ADD, WIDGETS } from 'common/constants'
 import {
   widgetForApi,
   widgetForEditing,
   widgetForViewing,
-  widgetListAdaptor,
 } from 'common/dataAdaptors'
 
 export function useWidget({ id, edit = false }) {
@@ -29,22 +29,21 @@ export function useWidget({ id, edit = false }) {
   return queryResponse
 }
 
-export function useWidgets({ page }) {
+export function useWidgets() {
   const { sitename } = useParams()
   const { user } = useUserStore()
   const { isSuperAdmin } = user
-
-  const queryResponse = useQuery({
-    queryKey: [WIDGETS, sitename, page],
-    queryFn: () => api.widgets.getAll({ sitename, pageParam: page }),
-    placeholderData: keepPreviousData,
-    select: (data) => ({
-      ...data,
-      results: widgetListAdaptor({ widgetList: data?.results, isSuperAdmin }),
-    }),
+  const infiniteQueryResponse = useInfiniteScroll({
+    queryKey: [WIDGETS, sitename],
+    queryFn: ({ pageParam = 1 }) =>
+      api.widgets.getAll({
+        sitename,
+        pageParam,
+      }),
+    resultAdaptor: (result) => widgetForViewing({ item: result, isSuperAdmin }),
   })
 
-  return queryResponse
+  return infiniteQueryResponse
 }
 
 export function useWidgetCreate({ destination }) {

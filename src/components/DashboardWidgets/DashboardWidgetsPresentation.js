@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
 // FPCC
 import DashboardLanding from 'components/DashboardLanding'
-import DashboardTablePaginated from 'components/DashboardTablePaginated'
+import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DashboardWidgetsPresentation({
-  queryResponse,
+  infiniteQueryResponse,
   headerContent,
   tileContent,
   site,
-  page,
-  setPage,
 }) {
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
   const [currentWidget, setCurrentWidget] = useState({})
@@ -27,43 +26,39 @@ function DashboardWidgetsPresentation({
         headerContent={headerContent}
         site={site}
       >
-        <DashboardTablePaginated
-          queryResponse={queryResponse}
-          page={page}
-          setPage={setPage}
+        <DashboardTable.Presentation
+          queryResponse={infiniteQueryResponse}
           tableHead={
-            <thead>
-              <tr>
-                <th
-                  scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
-                >
-                  Name
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
-                >
-                  Type
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
-                >
-                  Edit
-                </th>
-                <th
-                  scope="col"
-                  className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
-                >
-                  Preview
-                </th>
-              </tr>
-            </thead>
+            <tr>
+              <th
+                scope="col"
+                className="py-3.5 pl-4 pr-3 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
+              >
+                Type
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
+              >
+                Edit
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
+              >
+                Preview
+              </th>
+            </tr>
           }
-          tableBody={
-            <tbody>
-              {queryResponse?.data?.results?.map((widget) => (
+          tableBody={infiniteQueryResponse?.data?.pages?.map((page) => (
+            <Fragment key={page.pageNumber}>
+              {page?.results?.map((widget) => (
                 <tr key={widget?.id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
                     {widget?.nickname}
@@ -97,7 +92,10 @@ function DashboardWidgetsPresentation({
                   </td>
                 </tr>
               ))}
-            </tbody>
+            </Fragment>
+          ))}
+          infiniteLoadBtn={
+            <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
           }
         />
         {/* Preview Modal */}
@@ -114,14 +112,12 @@ function DashboardWidgetsPresentation({
   )
 }
 // PROPTYPES
-const { array, func, number, object } = PropTypes
+const { array, object } = PropTypes
 DashboardWidgetsPresentation.propTypes = {
-  queryResponse: object,
+  infiniteQueryResponse: object,
   headerContent: object,
   site: object,
   tileContent: array,
-  page: number,
-  setPage: func,
 }
 
 export default DashboardWidgetsPresentation
