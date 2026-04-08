@@ -16,7 +16,7 @@ function DashboardReportsContainer() {
       site={site}
     >
       <SiteDocHead titleArray={['Reports']} />
-      <div className="mx-auto max-w-7xl px-8">
+      <div className="max-w-7xl">
         <DashboardTiles.Presentation tileContent={reportTiles} />
       </div>
     </DashboardLanding.Presentation>

@@ -13,15 +13,12 @@ function DashboardTablePaginatedPresentation({
   setPage,
 }) {
   return (
-    <div
-      id="DashboardTablePaginatedPresentation"
-      className="px-4 xl:px-6 w-full"
-    >
+    <div id="DashboardTablePaginatedPresentation" className="w-full">
       <div className="flex items-center">
         <div className="flow-root w-full">
-          <div className="overflow-x-auto">
-            <div className="inline-block min-w-full py-3 align-middle px-6 lg:px-8">
-              <div className="shadow outline-solid outline-1 outline-black/5 rounded-lg bg-white p-4 lg:p-8">
+          <div>
+            <div className="inline-block min-w-full align-middle">
+              <div className="shadow outline-solid outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
                 <LoadOrError queryResponse={queryResponse}>
                   <table className="relative min-w-full">
                     {tableHead}

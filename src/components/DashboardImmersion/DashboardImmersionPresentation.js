@@ -32,7 +32,7 @@ function DashboardImmersionPresentation({
         headerContent={headerContent}
         site={site}
       >
-        <div className="grid grid-cols-6">
+        <div className="grid grid-cols-6 gap-8">
           <div className="col-span-4">
             <DashboardTable.Presentation
               queryResponse={queryResponse}
