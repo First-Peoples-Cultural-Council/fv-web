@@ -56,16 +56,16 @@ function DashboardImmersionPresentation({
                   onClick={() => setCurrentLabel(label)}
                   className="hover:bg-charcoal-50 cursor-pointer"
                 >
-                  <td className="px-6 py-4">{label?.immersionLabel || '-'}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-3">{label?.immersionLabel || '-'}</td>
+                  <td className="px-6 py-3 whitespace-nowrap">
                     {label?.english}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-3">
                     <div className="flex justify-center">
                       {getIndicatorIcon(label?.relatedAudio)}
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-6 py-3 text-center">
                     <div className="btn-md-icon btn-tertiary">
                       {getIcon('Pencil')}
                     </div>

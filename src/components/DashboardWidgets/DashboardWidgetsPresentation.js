@@ -51,13 +51,13 @@ function DashboardWidgetsPresentation({
             <Fragment key={page.pageNumber}>
               {page?.results?.map((widget) => (
                 <tr key={widget?.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="pl-6 pr-3 py-3 whitespace-nowrap">
                     {widget?.nickname}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-3 whitespace-nowrap">
                     {widget?.typeLabel}
                   </td>
-                  <td className="px-3 py-2 text-center">
+                  <td className="px-3 py-3 text-center">
                     {widget?.editable ? (
                       <Link
                         to={`/${site?.sitename}/dashboard/edit/widget?id=${widget?.id}`}
@@ -68,7 +68,7 @@ function DashboardWidgetsPresentation({
                       </Link>
                     ) : null}
                   </td>
-                  <td className="px-3 py-2 text-center">
+                  <td className="pl-3 pr-6 py-3 text-center">
                     <button
                       data-testid="widget-preview-btn"
                       type="button"

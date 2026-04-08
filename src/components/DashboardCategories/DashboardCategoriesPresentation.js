@@ -42,11 +42,11 @@ function DashboardCategoriesPresentation({
           }
           tableBody={queryResponse?.data?.results?.map((category) => (
             <tr key={category.id}>
-              <td className="px-6 py-4 whitespace-nowrap">{category.title}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-3 whitespace-nowrap">{category.title}</td>
+              <td className="px-6 py-3 whitespace-nowrap">
                 {category.parentTitle || '-------'}
               </td>
-              <td className="px-6 py-4 text-center">
+              <td className="px-6 py-3 text-center">
                 <Link
                   data-testid={`${category.title}-edit-link`}
                   to={`/${site?.sitename}/dashboard/edit/category?id=${category?.id}`}
@@ -55,7 +55,7 @@ function DashboardCategoriesPresentation({
                   {getIcon('Pencil')}
                 </Link>
               </td>
-              <td className="px-6 py-4 text-center">
+              <td className="px-6 py-3 text-center">
                 <Link
                   data-testid={`${category.title}-link`}
                   to={`/${site?.sitename}/categories/${category?.id}?type=${TYPE_DICTIONARY}`}

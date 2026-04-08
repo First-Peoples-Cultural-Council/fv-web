@@ -41,13 +41,13 @@ function DashboardSpeakersPresentation({
             <Fragment key={page.pageNumber}>
               {page.results.map((speaker) => (
                 <tr key={speaker?.id}>
-                  <td className="px-6 py-4 whitespace-normal">
+                  <td className="px-6 py-3 whitespace-normal">
                     {speaker?.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-normal">
+                  <td className="px-6 py-3 whitespace-normal">
                     {speaker?.bio || '-'}
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-6 py-3 text-center">
                     <Link
                       data-testid={`edit-speaker-${speaker?.name}`}
                       to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}

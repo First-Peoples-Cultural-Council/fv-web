@@ -53,25 +53,25 @@ function DashboardAlphabetPresentation({
           }
           tableBody={queryResponse?.data?.results?.map((character) => (
             <tr key={character.id}>
-              <td className="px-6 py-4 whitespace-nowrap">{character.title}</td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-3 whitespace-nowrap">{character.title}</td>
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedAudio)}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="flex justify-center">
                   {character?.relatedVideos?.[0]
                     ? getIndicatorIcon(character?.relatedVideos)
                     : getIndicatorIcon(character?.relatedVideoLinks)}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedImages)}
                 </div>
               </td>
-              <td className="px-6 py-4 text-center">
+              <td className="px-6 py-3 text-center">
                 <Link
                   to={`/${site?.sitename}/dashboard/edit/character?id=${character?.id}`}
                   className="btn-tertiary btn-md-icon"
@@ -79,7 +79,7 @@ function DashboardAlphabetPresentation({
                   {getIcon('Pencil')}
                 </Link>
               </td>
-              <td className="px-6 py-4 text-center">
+              <td className="px-6 py-3 text-center">
                 <Link
                   to={`/${site?.sitename}/alphabet?${CHAR}=${character?.title}`}
                   target="_blank"

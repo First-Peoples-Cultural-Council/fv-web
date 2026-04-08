@@ -47,10 +47,10 @@ function DashboardPagesPresentation({
           }
           tableBody={queryResponse?.data?.results?.map((page) => (
             <tr key={page.id}>
-              <td className="px-6 py-4 whitespace-normal">{page.title}</td>
-              <td className="px-6 py-4 whitespace-normal">{page.subtitle}</td>
-              <td className="px-6 py-4 whitespace-nowrap">{page.url}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-center">
+              <td className="px-6 py-3 whitespace-normal">{page.title}</td>
+              <td className="px-6 py-3 whitespace-normal">{page.subtitle}</td>
+              <td className="px-6 py-3 whitespace-nowrap">{page.url}</td>
+              <td className="px-6 py-3 whitespace-nowrap text-center">
                 <Link
                   data-testid={`${page.title}-edit-btn`}
                   to={`/${site?.sitename}/dashboard/edit/page?slug=${page?.url}`}
@@ -59,7 +59,7 @@ function DashboardPagesPresentation({
                   {getIcon('Pencil')}
                 </Link>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-center">
+              <td className="px-6 py-3 whitespace-nowrap text-center">
                 <Link
                   to={page.href}
                   target="_blank"
