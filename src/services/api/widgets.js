@@ -4,7 +4,7 @@ import { SITES, WIDGETS, PAGE, PAGE_SIZE } from 'common/constants'
 const widgets = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${WIDGETS}/${id}`).json(),
-  getAll: async ({ sitename, pageParam = 1, perPage = 100 }) =>
+  getAll: async ({ sitename, pageParam, perPage = 1000 }) =>
     apiBase()
       .get(
         `${SITES}/${sitename}/${WIDGETS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
