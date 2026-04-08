@@ -14,8 +14,6 @@ function DashboardSpeakersPresentation({
   tileContent,
   site,
 }) {
-  const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   return (
     <div id="DashboardSpeakersPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -28,15 +26,14 @@ function DashboardSpeakersPresentation({
           title="Speakers"
           tableHead={
             <tr>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Name
               </th>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Bio
               </th>
-              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Edit speaker</span>
+              <th scope="col" className="px-6 py-3">
+                Edit
               </th>
             </tr>
           }
@@ -44,17 +41,17 @@ function DashboardSpeakersPresentation({
             <Fragment key={page.pageNumber}>
               {page.results.map((speaker) => (
                 <tr key={speaker?.id}>
-                  <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
+                  <td className="px-6 py-4 whitespace-normal">
                     {speaker?.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
+                  <td className="px-6 py-4 whitespace-normal">
                     {speaker?.bio || '-'}
                   </td>
-                  <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-6 py-4 text-center">
                     <Link
                       data-testid={`edit-speaker-${speaker?.name}`}
                       to={`/${site?.sitename}/dashboard/edit/speaker?id=${speaker?.id}`}
-                      className="btn-tertiary btn-md-icon mr-6"
+                      className="btn-tertiary btn-md-icon"
                     >
                       {getIcon('Pencil')}
                     </Link>

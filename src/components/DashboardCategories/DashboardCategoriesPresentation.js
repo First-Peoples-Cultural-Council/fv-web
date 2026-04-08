@@ -14,9 +14,6 @@ function DashboardCategoriesPresentation({
   tileContent,
   site,
 }) {
-  const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
-
   return (
     <div id="DashboardCategoriesPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -29,30 +26,27 @@ function DashboardCategoriesPresentation({
           title="Categories"
           tableHead={
             <tr>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Title
               </th>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Parent Category
               </th>
-              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Edit category</span>
+              <th scope="col" className="px-6 py-3">
+                Edit
               </th>
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Go to category</span>
+              <th scope="col" className="px-6 py-3">
+                Go to
               </th>
             </tr>
           }
           tableBody={queryResponse?.data?.results?.map((category) => (
             <tr key={category.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
-                {category.title}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
+              <td className="px-6 py-4 whitespace-nowrap">{category.title}</td>
+              <td className="px-6 py-4 whitespace-nowrap">
                 {category.parentTitle || '-------'}
               </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-4 text-center">
                 <Link
                   data-testid={`${category.title}-edit-link`}
                   to={`/${site?.sitename}/dashboard/edit/category?id=${category?.id}`}
@@ -61,7 +55,7 @@ function DashboardCategoriesPresentation({
                   {getIcon('Pencil')}
                 </Link>
               </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-4 text-center">
                 <Link
                   data-testid={`${category.title}-link`}
                   to={`/${site?.sitename}/categories/${category?.id}?type=${TYPE_DICTIONARY}`}

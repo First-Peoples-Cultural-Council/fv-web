@@ -13,8 +13,6 @@ function DashboardPagesPresentation({
   tileContent,
   site,
 }) {
-  const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
   return (
     <div data-testid="DashboardPagesPresentation" className="space-y-5">
       <DashboardLanding.Presentation
@@ -27,36 +25,32 @@ function DashboardPagesPresentation({
           title="Custom Pages"
           tableHead={
             <tr>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Title
               </th>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Subtitle
               </th>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-6 py-3 text-left">
                 URL
               </th>
-              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Edit page</span>
+              <th scope="col" className="px-6 py-3 text-center">
+                Edit
               </th>
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Go to page</span>
+              <th
+                scope="col"
+                className="px-6 py-3 whitespace-nowrap text-center"
+              >
+                Go to
               </th>
             </tr>
           }
           tableBody={queryResponse?.data?.results?.map((page) => (
             <tr key={page.id}>
-              <td className="px-6 py-4 whitespace-normal text-sm font-medium text-charcoal-900">
-                {page.title}
-              </td>
-              <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900">
-                {page.subtitle}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
-                {page.url}
-              </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-4 whitespace-normal">{page.title}</td>
+              <td className="px-6 py-4 whitespace-normal">{page.subtitle}</td>
+              <td className="px-6 py-4 whitespace-nowrap">{page.url}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-center">
                 <Link
                   data-testid={`${page.title}-edit-btn`}
                   to={`/${site?.sitename}/dashboard/edit/page?slug=${page?.url}`}
@@ -65,12 +59,12 @@ function DashboardPagesPresentation({
                   {getIcon('Pencil')}
                 </Link>
               </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-4 whitespace-nowrap text-center">
                 <Link
                   to={page.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-tertiary btn-md-icon mr-6"
+                  className="btn-tertiary btn-md-icon"
                 >
                   {getIcon('Link')}
                 </Link>

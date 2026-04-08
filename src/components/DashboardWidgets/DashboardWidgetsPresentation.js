@@ -32,26 +32,17 @@ function DashboardWidgetsPresentation({
             <tr>
               <th
                 scope="col"
-                className="py-3.5 pl-4 pr-3 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
+                className="py-3.5 pr-3 pl-6 rounded-l-lg text-left"
               >
                 Name
               </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
-              >
+              <th scope="col" className="px-3 py-3.5 text-left">
                 Type
               </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
-              >
+              <th scope="col" className="px-3 py-3.5">
                 Edit
               </th>
-              <th
-                scope="col"
-                className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
-              >
+              <th scope="col" className="py-3.5 pl-3 pr-6 rounded-r-lg">
                 Preview
               </th>
             </tr>
@@ -60,10 +51,10 @@ function DashboardWidgetsPresentation({
             <Fragment key={page.pageNumber}>
               {page?.results?.map((widget) => (
                 <tr key={widget?.id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
+                  <td className="px-6 py-4 whitespace-nowrap">
                     {widget?.nickname}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
+                  <td className="px-6 py-4 whitespace-nowrap">
                     {widget?.typeLabel}
                   </td>
                   <td className="px-3 py-2 text-center">

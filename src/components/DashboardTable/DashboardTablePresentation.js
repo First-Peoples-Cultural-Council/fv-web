@@ -20,8 +20,10 @@ function DashboardTablePresentation({
               <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="border-t border-charcoal-100 max-h-[75vh] overflow-auto">
                   <table className="min-w-full divide-y divide-charcoal-100">
-                    <thead className="bg-charcoal-50">{tableHead}</thead>
-                    <tbody className="bg-white divide-y divide-charcoal-100">
+                    <thead className="bg-charcoal-50 text-charcoal-500">
+                      {tableHead}
+                    </thead>
+                    <tbody className="bg-white divide-y divide-charcoal-100 text-sm text-charcoal-900">
                       {tableBody}
                     </tbody>
                   </table>
