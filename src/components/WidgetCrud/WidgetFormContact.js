@@ -18,7 +18,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     title: definitions.title().required('A title is required'),
     text: definitions.paragraph(),
     textWithFormatting: definitions.wysiwyg({ charCount: 200 }),
-    urls: yup.string().max(500).trim(),
+    urls: definitions.urlsArray(),
     visibility: definitions.visibility(),
   })
 
@@ -30,7 +30,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     title: 'CONTACT US',
     text: 'Please contact us if you have any suggestions or feedback regarding our language content.',
     textWithFormatting: '',
-    urls: '',
+    urls: [],
   }
 
   const {
@@ -89,12 +89,14 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
             />
           </div>
           <div className="col-span-12">
-            <Form.TextField
+            <Form.TextArrayField
               label="Social media links"
               nameId="urls"
-              helpText="Enter any URLs you would like to include separated by commas."
+              helpText="Enter a maximum of 5 links."
               register={register}
+              control={control}
               errors={errors}
+              maxItems={5}
             />
           </div>
           {data?.emailListAsString?.length > 0 ? (

@@ -122,10 +122,7 @@ export const definitions = {
       .array()
       .of(
         yup.object({
-          text: stringWithMax(charCount).min(
-            1,
-            'This field cannot be empty. Remove it if you do not want to include it.',
-          ),
+          text: stringWithMax(charCount),
         }),
       )
       .compact((item) => {
@@ -137,10 +134,10 @@ export const definitions = {
     required
       ? yup
           .string()
-          .url('URL must be valid')
+          .url('Must be a valid URL')
           .trim()
           .required('At least one URL is required')
-      : yup.string().url('URL must be valid').trim(),
+      : yup.string().url('Must be a valid URL').trim(),
   uuid: () => uuid,
   nickname: ({ charCount = 45 } = {}) =>
     yup
@@ -212,4 +209,17 @@ export const definitions = {
           ],
         ]),
     ),
+  urlsArray: () =>
+    yup
+      .array()
+      .of(
+        yup.object({
+          text: yup.string().url('Must be a valid URL').trim(),
+        }),
+      )
+      .compact((item) => {
+        const tx = item?.text
+        return typeof tx !== 'string' || tx.trim() === ''
+      })
+      .default([]),
 }
