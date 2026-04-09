@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import WidgetBrowserPresentation from 'components/WidgetBrowser/WidgetBrowserPresentation'
+import { useWidgets } from 'common/dataHooks/useWidgets'
 
 function WidgetBrowserContainer({
   chooseWidgetHandler,
   currentWidgets,
   pageSlug,
-  infiniteQueryResponse,
 }) {
+  const infiniteQueryResponse = useWidgets()
   const widgetsNotOnThisPage =
     infiniteQueryResponse?.data?.pages?.[0]?.results?.filter(
       (widget) => !currentWidgets?.includes(widget?.id),
@@ -20,6 +21,7 @@ function WidgetBrowserContainer({
       chooseWidgetHandler={chooseWidgetHandler}
       pageSlug={pageSlug}
       widgets={widgetsNotOnThisPage || []}
+      infiniteQueryResponse={infiniteQueryResponse}
     />
   )
 }

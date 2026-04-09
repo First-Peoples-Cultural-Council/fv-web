@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import WidgetAreaEditPresentation from 'components/WidgetAreaEdit/WidgetAreaEditPresentation'
 import WidgetAreaEditPresentationSettingsPane from 'components/WidgetAreaEdit/WidgetAreaEditPresentationSettingsPane'
 import { useWidgetAreaEdit } from 'common/dataHooks//useWidgetAreaEdit'
-import LoadOrError from 'components/LoadOrError'
 import Modal from 'components/Modal'
 import WidgetBrowser from 'components/WidgetBrowser'
 
@@ -20,14 +19,13 @@ function WidgetAreaEditContainer({
     handleSetWidgetOrder,
     mappedWidgets,
     widgetIds,
-    infiniteQueryResponse,
   } = useWidgetAreaEdit({ destination: pageSlug, currentWidgets })
 
   const [currentWidget, setCurrentWidget] = useState()
   const [addModalOpen, setAddModalOpen] = useState(false)
 
   return (
-    <LoadOrError queryResponse={infiniteQueryResponse}>
+    <div id="WidgetAreaEditContainer">
       <WidgetAreaEditPresentation
         destinationTitle={destinationTitle}
         currentWidget={currentWidget}
@@ -57,10 +55,9 @@ function WidgetAreaEditContainer({
           }}
           currentWidgets={widgetIds}
           pageSlug={pageSlug}
-          infiniteQueryResponse={infiniteQueryResponse}
         />
       </Modal.Presentation>
-    </LoadOrError>
+    </div>
   )
 }
 // PROPTYPES
