@@ -18,7 +18,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     title: definitions.title().required('A title is required'),
     text: definitions.paragraph(),
     textWithFormatting: definitions.wysiwyg({ charCount: 200 }),
-    urls: definitions.textArray(),
+    urls: definitions.urlsArray(),
     visibility: definitions.visibility(),
   })
 
@@ -92,6 +92,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.TextArrayField
               label="Social media links"
               nameId="urls"
+              helpText="Enter a maximum of 5 links."
               register={register}
               control={control}
               errors={errors}
