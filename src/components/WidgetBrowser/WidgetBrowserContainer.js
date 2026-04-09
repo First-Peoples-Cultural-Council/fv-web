@@ -26,12 +26,11 @@ function WidgetBrowserContainer({
   )
 }
 // PROPTYPES
-const { array, func, object, string } = PropTypes
+const { array, func, string } = PropTypes
 WidgetBrowserContainer.propTypes = {
   chooseWidgetHandler: func,
   currentWidgets: array,
   pageSlug: string,
-  infiniteQueryResponse: object,
 }
 
 export default WidgetBrowserContainer

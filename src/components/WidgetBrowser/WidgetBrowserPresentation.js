@@ -19,7 +19,7 @@ function WidgetBrowserPresentation({
   return (
     <div
       id="WidgetBrowserPresentation"
-      className="inline-block align-bottom bg-charcoal-50 border-charcoal-100 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
+      className="inline-block align-bottom bg-charcoal-50 min-w-4xl border-charcoal-100 rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle"
     >
       <LoadOrError queryResponse={infiniteQueryResponse}>
         {widgets?.length > 0 ? (
