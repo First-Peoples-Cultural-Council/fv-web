@@ -5,11 +5,11 @@ import DashboardWidgetsData from 'components/DashboardWidgets/DashboardWidgetsDa
 import DashboardWidgetsPresentation from 'components/DashboardWidgets/DashboardWidgetsPresentation'
 
 function DashboardWidgetsContainer() {
-  const { queryResponse, headerContent, site, tileContent } =
+  const { infiniteQueryResponse, headerContent, site, tileContent } =
     DashboardWidgetsData()
   return (
     <DashboardWidgetsPresentation
-      queryResponse={queryResponse}
+      infiniteQueryResponse={infiniteQueryResponse}
       headerContent={headerContent}
       tileContent={tileContent}
       site={site}

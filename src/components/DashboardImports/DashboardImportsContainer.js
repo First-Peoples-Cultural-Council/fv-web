@@ -24,14 +24,12 @@ function DashboardImportsContainer() {
         site={site}
       >
         <SiteDocHead titleArray={['Imports']} />
-        <div className="px-2">
-          <DashboardImportsPresentation
-            queryResponse={queryResponse}
-            deleteImport={deleteImport}
-            page={page}
-            setPage={setPage}
-          />
-        </div>
+        <DashboardImportsPresentation
+          queryResponse={queryResponse}
+          deleteImport={deleteImport}
+          page={page}
+          setPage={setPage}
+        />
       </DashboardLanding.Presentation>
     </div>
   )

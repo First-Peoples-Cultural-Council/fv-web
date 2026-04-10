@@ -28,7 +28,7 @@ function DashboardLandingPresentation({
         />
         <div className="w-full bg-white shadow-sm">
           <h1 className="sr-only">{headerContent?.title}</h1>
-          <div className="mx-auto max-w-7xl px-8 py-6">
+          <div className="mx-auto px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="sm:flex sm:space-x-5 items-center">
                 <div className="shrink-0">
@@ -54,11 +54,11 @@ function DashboardLandingPresentation({
           </div>
         </div>
         {tileContent?.length > 0 && (
-          <div className="mx-auto max-w-7xl px-8">
+          <div className="max-w-7xl px-8">
             <DashboardTiles.Presentation tileContent={tileContent} />
           </div>
         )}
-        <div>{children}</div>
+        <div className="px-8">{children}</div>
       </main>
       <DashboardFooter.Presentation />
     </div>

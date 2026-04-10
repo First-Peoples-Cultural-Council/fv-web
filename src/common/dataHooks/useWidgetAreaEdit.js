@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router'
 // FPCC
 import { usePageWidgetsUpdate } from 'common/dataHooks/usePages'
 import { useSiteUpdateWidgets } from 'common/dataHooks/useSites'
-import { useWidgets } from 'common/dataHooks/useWidgets'
 import {
   objectsToIdsAdaptor,
   arrayToObjectWithIdKeys,
@@ -21,9 +20,6 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
 
   const isHomePage = destination === HOME
   const pageSlug = isHomePage ? null : destination
-
-  // Fetch all widgets for this site
-  const widgetsQueryResponse = useWidgets()
 
   const { onSubmit: pageWidgetsUpdate } = usePageWidgetsUpdate({ pageSlug })
   const { onSubmit: homepageWidgetsUpdate } = useSiteUpdateWidgets()
@@ -61,8 +57,7 @@ export function useWidgetAreaEdit({ destination, currentWidgets }) {
   return {
     handleAddWidget,
     handleRemoveWidget,
-    widgetsQueryResponse,
-    mappedWidgets: arrayToObjectWithIdKeys(widgetsQueryResponse?.data?.results),
+    mappedWidgets: arrayToObjectWithIdKeys(currentWidgets),
     widgetIds,
     handleSetWidgetOrder,
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -8,78 +8,86 @@ import DashboardTable from 'components/DashboardTable'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
+import InfiniteLoadBtn from 'components/InfiniteLoadBtn/InfiniteLoadBtn'
 
 function DashboardWidgetsPresentation({
-  queryResponse,
+  infiniteQueryResponse,
   headerContent,
   tileContent,
   site,
 }) {
   const [previewModalOpen, setPreviewModalOpen] = useState(false)
   const [currentWidget, setCurrentWidget] = useState({})
-  const tableHeaderClass =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
 
   return (
-    <div id="DashboardWidgetsPresentation" className="space-y-5">
+    <div id="DashboardWidgetsPresentation">
       <DashboardLanding.Presentation
         tileContent={tileContent}
         headerContent={headerContent}
         site={site}
       >
         <DashboardTable.Presentation
-          queryResponse={queryResponse}
-          title="Widgets"
+          queryResponse={infiniteQueryResponse}
           tableHead={
             <tr>
-              <th scope="col" className={tableHeaderClass}>
+              <th
+                scope="col"
+                className="py-3.5 pr-3 pl-6 rounded-l-lg text-left"
+              >
                 Name
               </th>
-              <th scope="col" className={tableHeaderClass}>
+              <th scope="col" className="px-3 py-3.5 text-left">
                 Type
               </th>
-              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Edit Widget</span>
+              <th scope="col" className="px-3 py-3.5">
+                Edit
               </th>
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Preview Widget</span>
+              <th scope="col" className="py-3.5 pl-3 pr-6 rounded-r-lg">
+                Preview
               </th>
             </tr>
           }
-          tableBody={queryResponse?.data?.results?.map((widget) => (
-            <tr key={widget?.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-charcoal-900">
-                {widget?.nickname}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900">
-                {widget?.typeLabel}
-              </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                {widget?.editable ? (
-                  <Link
-                    to={`/${site?.sitename}/dashboard/edit/widget?id=${widget?.id}`}
-                    className="btn-tertiary btn-md-icon"
-                  >
-                    {getIcon('Pencil')}
-                  </Link>
-                ) : null}
-              </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button
-                  data-testid="widget-preview-btn"
-                  type="button"
-                  onClick={() => {
-                    setCurrentWidget(widget)
-                    setPreviewModalOpen(true)
-                  }}
-                  className="btn-tertiary btn-md-icon mr-6"
-                >
-                  {getIcon('Preview')}
-                </button>
-              </td>
-            </tr>
+          tableBody={infiniteQueryResponse?.data?.pages?.map((page) => (
+            <Fragment key={page.pageNumber}>
+              {page?.results?.map((widget) => (
+                <tr key={widget?.id}>
+                  <td className="pl-6 pr-3 py-3 whitespace-nowrap">
+                    {widget?.nickname}
+                  </td>
+                  <td className="px-3 py-3 whitespace-nowrap">
+                    {widget?.typeLabel}
+                  </td>
+                  <td className="px-3 py-3 text-center">
+                    {widget?.editable ? (
+                      <Link
+                        to={`/${site?.sitename}/dashboard/edit/widget?id=${widget?.id}`}
+                        data-testid="widget-edit-link"
+                        className="btn-tertiary btn-md-icon"
+                      >
+                        {getIcon('Pencil')}
+                      </Link>
+                    ) : null}
+                  </td>
+                  <td className="pl-3 pr-6 py-3 text-center">
+                    <button
+                      data-testid="widget-preview-btn"
+                      type="button"
+                      onClick={() => {
+                        setCurrentWidget(widget)
+                        setPreviewModalOpen(true)
+                      }}
+                      className="btn-tertiary btn-md-icon"
+                    >
+                      {getIcon('Preview')}
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </Fragment>
           ))}
+          infiniteLoadBtn={
+            <InfiniteLoadBtn infiniteQueryResponse={infiniteQueryResponse} />
+          }
         />
         {/* Preview Modal */}
         <Modal.Presentation
@@ -97,7 +105,7 @@ function DashboardWidgetsPresentation({
 // PROPTYPES
 const { array, object } = PropTypes
 DashboardWidgetsPresentation.propTypes = {
-  queryResponse: object,
+  infiniteQueryResponse: object,
   headerContent: object,
   site: object,
   tileContent: array,

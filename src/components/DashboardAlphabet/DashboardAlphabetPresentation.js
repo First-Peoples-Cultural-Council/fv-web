@@ -14,9 +14,6 @@ function DashboardAlphabetPresentation({
   tileContent,
   site,
 }) {
-  const tableHeaderClass =
-    'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
-
   const getIndicatorIcon = (data) => {
     const icon = data?.length > 0 || data?.id ? 'Checkmark' : 'Minus'
     return getIcon(icon, 'fill-current w-6 h-6')
@@ -34,50 +31,47 @@ function DashboardAlphabetPresentation({
           title="Characters"
           tableHead={
             <tr>
-              <th scope="col" className={`${tableHeaderClass} text-left`}>
+              <th scope="col" className="px-6 py-3 text-left">
                 Character
               </th>
-              <th scope="col" className={`${tableHeaderClass} text-center`}>
+              <th scope="col" className="px-6 py-3">
                 Audio
               </th>
-              <th scope="col" className={`${tableHeaderClass} text-center`}>
+              <th scope="col" className="px-6 py-3">
                 Video
               </th>
-              <th scope="col" className={`${tableHeaderClass} text-center`}>
+              <th scope="col" className="px-6 py-3">
                 Image
               </th>
-              {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Edit character</span>
+              <th scope="col" className="px-6 py-3">
+                Edit
               </th>
-              <th scope="col" className={`relative ${tableHeaderClass}`}>
-                <span className="sr-only">Go to character</span>
+              <th scope="col" className="px-6 py-3">
+                Go to
               </th>
             </tr>
           }
           tableBody={queryResponse?.data?.results?.map((character) => (
             <tr key={character.id}>
-              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
-                {character.title}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
+              <td className="px-6 py-3 whitespace-nowrap">{character.title}</td>
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedAudio)}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="flex justify-center">
                   {character?.relatedVideos?.[0]
                     ? getIndicatorIcon(character?.relatedVideos)
                     : getIndicatorIcon(character?.relatedVideoLinks)}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
+              <td className="px-6 py-3 whitespace-nowrap">
                 <div className="flex justify-center">
                   {getIndicatorIcon(character?.relatedImages)}
                 </div>
               </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-3 text-center">
                 <Link
                   to={`/${site?.sitename}/dashboard/edit/character?id=${character?.id}`}
                   className="btn-tertiary btn-md-icon"
@@ -85,12 +79,12 @@ function DashboardAlphabetPresentation({
                   {getIcon('Pencil')}
                 </Link>
               </td>
-              <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <td className="px-6 py-3 text-center">
                 <Link
                   to={`/${site?.sitename}/alphabet?${CHAR}=${character?.title}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-tertiary btn-md-icon mr-6"
+                  className="btn-tertiary btn-md-icon"
                 >
                   {getIcon('Link')}
                 </Link>

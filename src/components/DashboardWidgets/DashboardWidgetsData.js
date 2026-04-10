@@ -9,7 +9,7 @@ function DashboardWidgetsData() {
   const { sitename } = useParams()
 
   // Data fetch
-  const queryResponse = useWidgets()
+  const infiniteQueryResponse = useWidgets()
 
   const tileContent = [
     {
@@ -29,7 +29,7 @@ function DashboardWidgetsData() {
   }
 
   return {
-    queryResponse,
+    infiniteQueryResponse,
     headerContent,
     site,
     tileContent,

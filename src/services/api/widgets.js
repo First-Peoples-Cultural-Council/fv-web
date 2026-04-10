@@ -1,11 +1,15 @@
 import { apiBase } from 'services/config'
-import { SITES, WIDGETS } from 'common/constants'
+import { SITES, WIDGETS, PAGE, PAGE_SIZE } from 'common/constants'
 
 const widgets = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${WIDGETS}/${id}`).json(),
-  getAll: async ({ sitename }) =>
-    apiBase().get(`${SITES}/${sitename}/${WIDGETS}/`).json(),
+  getAll: async ({ sitename, pageParam, perPage = 1000 }) =>
+    apiBase()
+      .get(
+        `${SITES}/${sitename}/${WIDGETS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
+      )
+      .json(),
   create: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${WIDGETS}/`, { json: properties })

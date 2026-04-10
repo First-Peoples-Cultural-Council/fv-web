@@ -17,9 +17,6 @@ function DashboardImmersionPresentation({
   setCurrentLabel,
   submitHandler,
 }) {
-  const tableHeaderClass =
-    'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
-
   const getIndicatorIcon = (dataArray) => {
     const icon = dataArray?.length > 0 ? 'Checkmark' : 'Minus'
     return getIcon(icon, 'fill-current w-6 h-6')
@@ -32,25 +29,24 @@ function DashboardImmersionPresentation({
         headerContent={headerContent}
         site={site}
       >
-        <div className="grid grid-cols-6">
+        <div className="grid grid-cols-6 gap-8">
           <div className="col-span-4">
             <DashboardTable.Presentation
               queryResponse={queryResponse}
               title="Immersion Labels"
               tableHead={
                 <tr>
-                  <th scope="col" className={`${tableHeaderClass} text-left`}>
+                  <th scope="col" className="px-6 py-3 text-left">
                     Label
                   </th>
-                  <th scope="col" className={`${tableHeaderClass} text-left`}>
+                  <th scope="col" className="px-6 py-3 text-left">
                     English Label
                   </th>
-                  <th scope="col" className={`${tableHeaderClass} text-center`}>
+                  <th scope="col" className="px-6 py-3">
                     Audio
                   </th>
-                  {/* `relative` is added here due to a weird bug in Safari that causes `sr-only` headings to introduce overflow on the body on mobile. */}
-                  <th scope="col" className={`relative ${tableHeaderClass}`}>
-                    <span className="sr-only">Edit character</span>
+                  <th scope="col" className="px-6 py-3">
+                    Edit
                   </th>
                 </tr>
               }
@@ -60,19 +56,17 @@ function DashboardImmersionPresentation({
                   onClick={() => setCurrentLabel(label)}
                   className="hover:bg-charcoal-50 cursor-pointer"
                 >
-                  <td className="px-6 py-4 text-charcoal-900">
-                    {label?.immersionLabel || '-'}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
+                  <td className="px-6 py-3">{label?.immersionLabel || '-'}</td>
+                  <td className="px-6 py-3 whitespace-nowrap">
                     {label?.english}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-charcoal-900">
+                  <td className="px-6 py-3">
                     <div className="flex justify-center">
                       {getIndicatorIcon(label?.relatedAudio)}
                     </div>
                   </td>
-                  <td className="px-1 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <div className="btn-md-icon btn-tertiary m-6">
+                  <td className="px-6 py-3 text-center">
+                    <div className="btn-md-icon btn-tertiary">
                       {getIcon('Pencil')}
                     </div>
                   </td>

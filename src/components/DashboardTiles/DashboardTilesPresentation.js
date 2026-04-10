@@ -17,7 +17,7 @@ function DashboardTilesPresentation({ tileContent }) {
 
   const tileClass = (index) => {
     const baseClass =
-      'relative group bg-white p-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-scarlet-800'
+      'relative group bg-white p-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blumine-600'
 
     let tileStyle = baseClass
     if (index === topLeft) {
