@@ -7,20 +7,11 @@ import { makePlural } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioMinimal from 'components/AudioMinimal'
 
-function RelatedEntriesTablePresentation({
-  entries,
-  sitename,
-  labelStyling = 'text-left font-medium text-lg uppercase text-charcoal-900',
-}) {
+function RelatedEntriesTablePresentation({ entries, sitename }) {
   return (
     entries?.length > 0 && (
       <table className="w-full">
         <thead>
-          <tr>
-            <th colSpan="2" className={`${labelStyling} pb-2`}>
-              Related Content
-            </th>
-          </tr>
           <tr>
             <th className="hidden">Title</th>
             <th className="hidden">Audio</th>
@@ -69,7 +60,6 @@ const { array, string } = PropTypes
 RelatedEntriesTablePresentation.propTypes = {
   entries: array,
   sitename: string,
-  labelStyling: string,
 }
 
 export default RelatedEntriesTablePresentation
