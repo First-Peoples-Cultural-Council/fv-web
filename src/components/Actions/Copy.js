@@ -17,7 +17,7 @@ function Copy({ textToCopy, withLabels = false }) {
     }, 1000)
   }
 
-  const buttonClass = `btn-tertiary ${withLabels ? ' btn-sm' : 'btn-md-icon'}`
+  const buttonClass = `btn-tertiary ${withLabels ? ' btn-sm min-w-0' : 'btn-md-icon'}`
 
   return (
     <Tooltip hide={withLabels} message={confirmation ? 'Copied' : 'Copy'}>
@@ -32,7 +32,7 @@ function Copy({ textToCopy, withLabels = false }) {
         }
       >
         {getIcon('Copy')}
-        {withLabels ? <span>{confirmation ? 'COPIED' : 'COPY'}</span> : null}
+        {withLabels ? <span>{confirmation ? 'Copied' : 'Copy'}</span> : null}
       </button>
     </Tooltip>
   )
