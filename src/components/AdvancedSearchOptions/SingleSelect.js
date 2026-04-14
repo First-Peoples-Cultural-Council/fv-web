@@ -51,7 +51,7 @@ function SingleSelect({ id, options }) {
 
       <ListboxOptions
         transition
-        className="origin-top-right transition duration-300 ease-in-out data-closed:opacity-0 data-closed:scal-95 absolute right-0 z-10 mt-2 rounded-md bg-white py-1 shadow-2xl ring-1 ring-black/50 focus:outline-hidden"
+        className="origin-top-right transition duration-300 ease-in-out data-closed:opacity-0 data-closed:scale-95 absolute right-0 z-10 mt-2 rounded-md bg-white py-1 shadow-2xl ring-1 ring-black/50 focus:outline-hidden"
       >
         <div className="space-y-2">
           {options?.map((option) => (
