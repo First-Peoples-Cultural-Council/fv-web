@@ -21,7 +21,7 @@ function RelatedEntriesTablePresentation({ entries, sitename }) {
         </thead>
         <tbody>
           {entries?.map((entry, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
+            const zebraStripe = index % 2 === 0 ? 'bg-blumine-50' : ''
             return (
               <tr key={entry?.id}>
                 <td className={`py-2 pl-3 pr-2 rounded-l-lg ${zebraStripe}`}>
