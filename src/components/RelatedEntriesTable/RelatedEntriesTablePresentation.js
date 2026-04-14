@@ -13,39 +13,48 @@ function RelatedEntriesTablePresentation({ entries, sitename }) {
       <table className="w-full">
         <thead>
           <tr>
-            <th className="hidden">Title</th>
-            <th className="hidden">Audio</th>
-            <th className="hidden">Translation</th>
+            <th className="sr-only">Title</th>
+            <th className="sr-only">Audio</th>
+            <th className="sr-only">Translation</th>
+            <th className="sr-only">Go to</th>
           </tr>
         </thead>
         <tbody>
           {entries?.map((entry, index) => {
             const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
-              <tr key={entry?.id} className={zebraStripe}>
-                <td className="p-2">
+              <tr key={entry?.id}>
+                <td className={`py-2 pl-3 pr-2 rounded-l-lg ${zebraStripe}`}>
                   <Link
                     to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
                   >
                     {entry ? entry?.title : null}
                   </Link>
                 </td>
-                <td className="p-2">
-                  <div className="inline-flex h-full items-center space-x-2">
-                    {entry?.relatedAudio?.map((audioObject) => (
-                      <AudioMinimal.Container
-                        key={audioObject?.id}
-                        icons={{
-                          Play: getIcon('Audio', 'fill-current h-8 w-8'),
-                          Stop: getIcon('StopCircle', 'fill-current h-8 w-8'),
-                        }}
-                        audioObject={audioObject}
-                      />
-                    ))}
-                  </div>
+                <td className={`p-2 text-center ${zebraStripe}`}>
+                  {entry?.relatedAudio?.length > 0 && (
+                    <AudioMinimal.Container
+                      key={entry?.relatedAudio?.[0]?.id}
+                      icons={{
+                        Play: getIcon('Audio'),
+                        Stop: getIcon('StopCircle'),
+                      }}
+                      audioObject={entry?.relatedAudio?.[0]}
+                    />
+                  )}
                 </td>
-                <td className="p-2">
+                <td className={`p-2 ${zebraStripe}`}>
                   <span>{entry?.translations?.[0]?.text}</span>
+                </td>
+                <td
+                  className={`py-2 pl-2 pr-3 text-center rounded-r-lg ${zebraStripe}`}
+                >
+                  <Link
+                    className="btn-tertiary btn-md-icon bg-inherit"
+                    to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
+                  >
+                    {getIcon('RightArrow')}
+                  </Link>
                 </td>
               </tr>
             )
