@@ -132,7 +132,7 @@ import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
 // a helper function that given a string name returns an icon, if no string is supplied it will return a blank placeholder icon
 
 function getIcon(iconName, iconStyling, title) {
-  const styling = iconStyling || 'fill-current h-12 w-8'
+  const styling = iconStyling || 'fill-current'
   const icons = {
     About,
     Add,
