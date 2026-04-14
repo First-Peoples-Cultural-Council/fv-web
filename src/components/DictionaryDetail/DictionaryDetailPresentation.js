@@ -22,9 +22,9 @@ import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
 function DictionaryDetailPresentation({ entry, sitename }) {
   const labelStyling =
-    'text-left font-medium text-lg uppercase text-charcoal-900'
-  const contentStyling = 'text-charcoal-900 sm:mt-0 sm:ml-6 sm:col-span-2'
-  const listStyling = 'list-none md:list-disc space-y-1'
+    'justify-start text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide mb-3'
+  const contentStyling =
+    'justify-start text-black text-base font-normal leading-5 sm:col-span-2'
   const noMedia = !(
     entry?.relatedImages?.length > 0 ||
     entry?.relatedVideos?.length > 0 ||
@@ -34,159 +34,170 @@ function DictionaryDetailPresentation({ entry, sitename }) {
 
   return (
     <div
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 md:mt-10 bg-white"
+      className="max-w-6xl mx-auto px-4 sm:px-6 mt-4 md:mt-16 bg-white"
       data-testid="DictionaryDetailPresentation"
     >
       <SiteDocHead titleArray={[entry.title, 'Dictionary']} />
       <div className="grid grid-cols-8 gap-4">
         <div
-          className={`col-span-8  ${noMedia ? 'md:col-span-6 md:col-start-2' : 'md:col-span-5'}`}
+          className={`max-w-2xl col-span-8  ${noMedia ? 'md:col-span-6 md:col-start-2' : 'md:col-span-5'}`}
         >
-          <section className="lg:mb-3">
-            <div className="py-2 md:p-3 md:flex items-center space-x-5">
-              <div
-                className={`font-bold ${
-                  shortTitle ? 'text-2xl md:text-5xl' : 'text-xl md:text-2xl'
-                }`}
-              >
-                {entry.title}
-              </div>
-              <ActionsMenu.Presentation
-                entry={entry}
-                sitename={sitename}
-                withLabels
-              />
-              {entry?.visibility && entry?.visibility !== PUBLIC && (
-                <Tooltip
-                  position="left-1/2 bottom-5"
-                  message={`${capitalizeFirstLetter(entry?.visibility)} only`}
+          <section>
+            <div className="md:flex md:justify-between md:items-start space-x-5">
+              <div className="space-y-1.5">
+                <div
+                  className={`justify-start text-black font-bold leading-10 ${
+                    shortTitle ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'
+                  }`}
                 >
-                  {getIcon(
-                    entry?.visibility,
-                    'fill-current text-scarlet-900 h-6 w-6',
-                  )}
-                </Tooltip>
-              )}
-            </div>
-
-            {/* Translations/Definitions */}
-            {entry?.translations?.length > 0 && (
-              <div className="py-2 md:p-3">
+                  {entry.title}
+                </div>
                 {/* Part of Speech */}
                 {entry?.partOfSpeech?.title && (
-                  <div className="text-xl italic">
+                  <div className="justify-start text-black text-base font-light leading-5">
                     {entry?.partOfSpeech?.title?.toLowerCase()}
                   </div>
                 )}
+              </div>
+              <div className="flex items-center space-x-2">
+                {entry?.visibility && entry?.visibility !== PUBLIC && (
+                  <Tooltip
+                    position="left-1/2 bottom-5"
+                    message={`${capitalizeFirstLetter(entry?.visibility)} only`}
+                  >
+                    {getIcon(
+                      entry?.visibility,
+                      'fill-current text-blumine-900 h-6 w-6',
+                    )}
+                  </Tooltip>
+                )}
+                <ActionsMenu.Presentation
+                  entry={entry}
+                  sitename={sitename}
+                  withLabels
+                />
+              </div>
+            </div>
+          </section>
+          <section className="space-y-7 my-5">
+            {/* Translations/Definitions */}
+            {entry?.translations?.length > 0 && (
+              <div>
+                <h4 className={labelStyling}>Translation</h4>
                 <ol
                   className={`${
                     entry?.translations?.length === 1
                       ? 'list-none'
-                      : 'list-decimal'
-                  } list-inside text-lg ${
-                    shortTitle ? 'md:text-2xl' : 'md:text-xl'
-                  }`}
+                      : 'list-decimal list-inside'
+                  } ${contentStyling}`}
                 >
                   {entry?.translations?.map((translation) => (
-                    <li key={translation?.text} className="p-0.5">
-                      <span className={contentStyling}>
-                        {translation?.text}
-                      </span>
+                    <li key={translation?.text} className={contentStyling}>
+                      {translation?.text}
                     </li>
                   ))}
                 </ol>
               </div>
             )}
-            {/* Audio */}
-            {entry?.relatedAudio?.length > 0 && (
-              <div className="py-2 md:p-3">
-                {entry?.relatedAudio?.map((audioObject) => (
-                  <AudioMinimal.Container
-                    key={audioObject?.id}
-                    icons={{
-                      Play: getIcon(
-                        'Audio',
-                        `fill-current h-6 w-6 ${
-                          audioObject?.speakers?.length > 0 ? 'mr-2' : ''
-                        }`,
-                      ),
-                      Stop: getIcon(
-                        'Stop',
-                        `fill-current h-6 w-6 ${
-                          audioObject?.speakers?.length > 0 ? 'mr-2' : ''
-                        }`,
-                      ),
-                    }}
-                    buttonStyling="btn-primary btn-sm mr-2 my-1"
-                    label={audioObject?.speakers?.[0]?.name}
-                    audioObject={audioObject}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-
-          <section>
-            {/* Alternate Spellings */}
-            {entry?.alternateSpellings?.length > 0 && (
-              <div className="py-2 md:p-4">
-                <h4 className={labelStyling}>Alternate Spellings</h4>
-                <ul className={listStyling}>
-                  {entry?.alternateSpellings?.map((alt) => (
-                    <li key={alt?.text} className={contentStyling}>
-                      {alt?.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
 
             {/* Pronunciations */}
             {entry?.pronunciations?.length > 0 && (
-              <div className="py-2 md:p-4">
+              <div>
                 <h4 className={labelStyling}>Pronunciation</h4>
-                <ul className={listStyling}>
-                  {entry?.pronunciations?.map((pronunciation) => (
-                    <li key={pronunciation?.text} className={contentStyling}>
-                      {pronunciation?.text}
-                    </li>
+                <div className="inline-flex">
+                  {entry?.pronunciations?.map((pronunciation, index) => {
+                    const isLast = index === entry?.pronunciations?.length - 1
+                    return (
+                      <div key={`${index}-${pronunciation?.text}`}>
+                        <span
+                          key={pronunciation?.text}
+                          className={contentStyling}
+                        >
+                          {pronunciation?.text}
+                        </span>
+                        {!isLast && <span className="mx-3">/</span>}
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Audio */}
+            {entry?.relatedAudio?.length > 0 && (
+              <div>
+                <h4 className={labelStyling}>Audio</h4>
+                <div className="space-y-3">
+                  {entry?.relatedAudio?.map((audioObject) => (
+                    <AudioMinimal.Container
+                      key={audioObject?.id}
+                      icons={{
+                        Play: getIcon('Audio'),
+                        Stop: getIcon('Stop'),
+                      }}
+                      buttonStyling="btn-primary btn-sm mr-4 min-w-0"
+                      label={audioObject?.speakers?.[0]?.name || 'Speaker'}
+                      audioObject={audioObject}
+                    />
                   ))}
-                </ul>
+                </div>
+              </div>
+            )}
+
+            {/* Alternate Spellings */}
+            {entry?.alternateSpellings?.length > 0 && (
+              <div>
+                <h4 className={labelStyling}>Alternate Spellings</h4>
+                <div className="inline-flex">
+                  {entry?.alternateSpellings?.map((spelling, index) => {
+                    const isLast = index === entry?.pronunciations?.length - 1
+                    return (
+                      <div key={`${index}-${spelling?.text}`}>
+                        <span key={spelling?.text} className={contentStyling}>
+                          {spelling?.text}
+                        </span>
+                        {!isLast && <span className="mx-3">/</span>}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             )}
 
             {/* Categories */}
             {entry?.categories?.length > 0 && (
-              <div className="py-2 md:p-4">
+              <div>
                 <h4 className={labelStyling}>Categories</h4>
-                {entry?.categories?.map((category) => (
-                  <Link
-                    key={category.id}
-                    to={`/${sitename}/categories/${category.id}`}
-                    className="p-1.5 inline-flex text-sm font-medium rounded-lg bg-charcoal-500 hover:bg-charcoal-900 text-white mr-1 mb-1"
-                  >
-                    {category?.title}
-                    <span className="sr-only">,&nbsp;</span>
-                  </Link>
-                ))}
+                <div className="space-y-3">
+                  {entry?.categories?.map((category) => (
+                    <Link
+                      key={category.id}
+                      to={`/${sitename}/categories/${category.id}`}
+                      className="btn-secondary btn-sm mr-4 min-w-0"
+                    >
+                      {category?.title}
+                      <span className="sr-only">,&nbsp;</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
+
             {/* Related Content */}
-            <div className="py-2 md:p-4">
+            <div>
+              <h4 className={labelStyling}>Related Entries</h4>
               <RelatedEntriesTable.Presentation
                 entries={entry?.relatedEntries || []}
                 sitename={sitename}
                 labelStyling={labelStyling}
               />
             </div>
-          </section>
-          {/* Other Information */}
-          <section>
+
             {/* Acknowledgements */}
             {entry?.acknowledgements?.length > 0 && (
-              <div className="py-2 md:p-4">
+              <div>
                 <h4 className={labelStyling}>Acknowledgement</h4>
-                <ul className={listStyling}>
+                <ul className="list-none space-y-1">
                   {entry?.acknowledgements?.map((acknowledgement) => (
                     <li key={acknowledgement?.text} className={contentStyling}>
                       {acknowledgement?.text}
@@ -195,11 +206,12 @@ function DictionaryDetailPresentation({ entry, sitename }) {
                 </ul>
               </div>
             )}
+
             {/* Notes */}
             {entry?.notes?.length > 0 && (
-              <div className="py-2 md:p-4">
+              <div>
                 <h4 className={labelStyling}>Notes</h4>
-                <ul className={listStyling}>
+                <ul className="list-none space-y-1">
                   {entry?.notes?.map((note) => (
                     <li key={note?.id} className={contentStyling}>
                       {note?.text}
@@ -208,11 +220,10 @@ function DictionaryDetailPresentation({ entry, sitename }) {
                 </ul>
               </div>
             )}
-          </section>
-          <section>
+
             {/* Related Documents */}
             {entry?.relatedDocuments?.length > 0 && (
-              <div className="py-2 md:p-4 space-y-2">
+              <div>
                 <h4 className={labelStyling}>Related Documents</h4>
                 <RelatedDocumentsList.Presentation
                   documents={entry?.relatedDocuments || []}
