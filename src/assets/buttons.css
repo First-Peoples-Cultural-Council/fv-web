@@ -5,7 +5,7 @@
 
 /* Button base class for icon only buttons */
 @utility btn-icon {
-  @apply rounded-full inline-flex justify-center items-center disabled:pointer-events-none;
+  @apply rounded-lg inline-flex justify-center items-center disabled:pointer-events-none;
 
   & svg {
     @apply block align-middle w-full h-full p-0 m-0;

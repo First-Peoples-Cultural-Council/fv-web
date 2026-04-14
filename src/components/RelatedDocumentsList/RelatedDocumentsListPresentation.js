@@ -34,13 +34,10 @@ function RelatedDocumentsListPresentation({ documents }) {
             </div>
             <div className="col-span-2 flex items-center justify-center">
               <Link
-                className="rounded-lg bg-blumine-100 flex items-center justify-center h-10 w-10"
+                className="btn-tertiary btn-md-icon bg-blumine-100 hover:bg-blumine-200"
                 to={document?.original.path}
               >
-                {getIcon(
-                  'Download',
-                  'fill-current h-5 w-5 inline-flex text-blumine-900',
-                )}
+                {getIcon('Download')}
               </Link>
             </div>
           </li>
