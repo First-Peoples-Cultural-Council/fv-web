@@ -5,20 +5,16 @@ import { Link } from 'react-router'
 // FPCC
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
+import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 
 function DictionaryDetailSecondary({ entry, sitename }) {
-  const labelStyling =
-    'justify-start text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide mb-3'
-  const contentStyling =
-    'justify-start text-black text-base font-normal leading-5'
-
   return (
     <div className="w-full" data-testid="DictionaryDetailSecondary">
       <section className="space-y-7 mt-7">
         {/* Categories */}
         {entry?.categories?.length > 0 && (
           <div>
-            <h4 className={labelStyling}>Categories</h4>
+            <DictionaryDetailLabel label="Categories" />
             <div className="space-y-3">
               {entry?.categories?.map((category) => (
                 <Link
@@ -36,23 +32,20 @@ function DictionaryDetailSecondary({ entry, sitename }) {
 
         {/* Related Content */}
         <div>
-          <h4 className={labelStyling}>Related Entries</h4>
+          <DictionaryDetailLabel label="Related Entries" />
           <RelatedEntriesTable.Presentation
             entries={entry?.relatedEntries || []}
             sitename={sitename}
-            labelStyling={labelStyling}
           />
         </div>
 
         {/* Acknowledgements */}
         {entry?.acknowledgements?.length > 0 && (
           <div>
-            <h4 className={labelStyling}>Acknowledgement</h4>
+            <DictionaryDetailLabel label="Acknowledgement" />
             <ul className="list-none space-y-1">
               {entry?.acknowledgements?.map((acknowledgement) => (
-                <li key={acknowledgement?.text} className={contentStyling}>
-                  {acknowledgement?.text}
-                </li>
+                <li key={acknowledgement?.text}>{acknowledgement?.text}</li>
               ))}
             </ul>
           </div>
@@ -61,12 +54,10 @@ function DictionaryDetailSecondary({ entry, sitename }) {
         {/* Notes */}
         {entry?.notes?.length > 0 && (
           <div>
-            <h4 className={labelStyling}>Notes</h4>
+            <DictionaryDetailLabel label="Notes" />
             <ul className="list-none space-y-1">
               {entry?.notes?.map((note) => (
-                <li key={note?.id} className={contentStyling}>
-                  {note?.text}
-                </li>
+                <li key={note?.id}>{note?.text}</li>
               ))}
             </ul>
           </div>
@@ -75,7 +66,7 @@ function DictionaryDetailSecondary({ entry, sitename }) {
         {/* Related Documents */}
         {entry?.relatedDocuments?.length > 0 && (
           <div>
-            <h4 className={labelStyling}>Related Documents</h4>
+            <DictionaryDetailLabel label="Related Documents" />
             <RelatedDocumentsList.Presentation
               documents={entry?.relatedDocuments || []}
             />
