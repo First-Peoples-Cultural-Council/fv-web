@@ -20,7 +20,7 @@ import { ORIGINAL, VIDEO } from 'common/constants'
 
 function DictionaryDetailMedia({ entry }) {
   return (
-    <div data-testid="DictionaryDetailMedia" className="w-full space-y-5">
+    <div data-testid="DictionaryDetailMedia" className="w-full space-y-7">
       {/* Related Images */}
       {entry?.relatedImages?.length > 0 && (
         <div className="flex w-full justify-center">

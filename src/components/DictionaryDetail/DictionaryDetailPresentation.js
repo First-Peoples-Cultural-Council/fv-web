@@ -20,9 +20,9 @@ function DictionaryDetailPresentation({ entry, sitename }) {
       data-testid="DictionaryDetailPresentation"
     >
       <SiteDocHead titleArray={[entry.title, 'Dictionary']} />
-      <div className="grid grid-cols-8 gap-8 lg:gap-20">
+      <div className="grid grid-cols-8 gap-7 lg:gap-20">
         <div
-          className={`max-w-2xl col-span-8  ${noMedia ? 'md:col-span-6 md:col-start-2' : 'md:col-span-5'}`}
+          className={`max-w-2xl col-span-8 space-y-7  ${noMedia ? 'md:col-span-6 md:col-start-2' : 'md:col-span-5'}`}
         >
           <DictionaryDetailPrimary entry={entry} sitename={sitename} />
           <DictionaryDetailSecondary entry={entry} sitename={sitename} />
