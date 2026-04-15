@@ -264,12 +264,27 @@ function DashboardEntriesPresentationList({
                 <span>View on site</span>
               </Link>
             </div>
+
             <EntryDetail.Container
               id={selectedItem?.id}
               type={selectedItem?.type}
               isDrawer
               isDashboard
             />
+            <section className="border-t text-sm p-4">
+              {selectedItem?.created && (
+                <p>
+                  Created: {selectedItem?.created} by{' '}
+                  {selectedItem?.createdBy || 'unknown'}
+                </p>
+              )}
+              {selectedItem?.lastModified && (
+                <p>
+                  Last modified: {selectedItem?.lastModified} by{' '}
+                  {selectedItem?.lastModifiedBy || 'unknown'}
+                </p>
+              )}
+            </section>
           </>
         )}
       </Drawer.Presentation>

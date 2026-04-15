@@ -16,7 +16,6 @@ function EntryDetailContainer({ id, type, sitename, isDrawer, isDashboard }) {
           id={id}
           sitename={sitename}
           isDrawer={isDrawer}
-          isDashboard={isDashboard}
         />
       )
     case TYPE_SONG:
