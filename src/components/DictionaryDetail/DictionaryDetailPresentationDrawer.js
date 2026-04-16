@@ -7,19 +7,14 @@ import DictionaryDetailSecondary from 'components/DictionaryDetail/DictionaryDet
 import DictionaryDetailMedia from 'components/DictionaryDetail/DictionaryDetailMedia'
 
 function DictionaryDetailPresentationDrawer({ entry, sitename }) {
-  const noMedia = !(
-    entry?.relatedImages?.length > 0 ||
-    entry?.relatedVideos?.length > 0 ||
-    entry?.relatedVideoLinks?.length > 0
-  )
   return (
     <div
       data-testid="DictionaryDetailPresentationDrawer"
       className="max-w-2xl py-6 px-14 space-y-7"
     >
       <DictionaryDetailPrimary entry={entry} sitename={sitename} />
-      {noMedia ? null : <DictionaryDetailMedia entry={entry} />}
       <DictionaryDetailSecondary entry={entry} sitename={sitename} />
+      <DictionaryDetailMedia entry={entry} />
     </div>
   )
 }

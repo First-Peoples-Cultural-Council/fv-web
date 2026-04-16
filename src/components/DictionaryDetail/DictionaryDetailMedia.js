@@ -19,7 +19,12 @@ import MediaThumbnail from 'components/MediaThumbnail'
 import { ORIGINAL, VIDEO } from 'common/constants'
 
 function DictionaryDetailMedia({ entry }) {
-  return (
+  const noMedia = !(
+    entry?.relatedImages?.length > 0 ||
+    entry?.relatedVideos?.length > 0 ||
+    entry?.relatedVideoLinks?.length > 0
+  )
+  return noMedia ? null : (
     <div data-testid="DictionaryDetailMedia" className="w-full space-y-7">
       {/* Related Images */}
       {entry?.relatedImages?.length > 0 && (
