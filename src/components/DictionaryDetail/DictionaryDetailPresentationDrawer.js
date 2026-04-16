@@ -15,7 +15,7 @@ function DictionaryDetailPresentationDrawer({ entry, sitename }) {
   return (
     <div
       data-testid="DictionaryDetailPresentationDrawer"
-      className="p-6 space-y-7"
+      className="max-w-2xl py-6 px-14 space-y-7"
     >
       <DictionaryDetailPrimary entry={entry} sitename={sitename} />
       {noMedia ? null : <DictionaryDetailMedia entry={entry} />}

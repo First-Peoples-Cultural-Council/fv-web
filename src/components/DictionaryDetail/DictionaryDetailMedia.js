@@ -31,23 +31,27 @@ function DictionaryDetailMedia({ entry }) {
                 {entry?.relatedImages?.map((image) => (
                   <TabPanel
                     key={image?.id}
-                    className="aspect-square flex items-center rounded-lg bg-charcoal-100 overflow-hidden"
+                    className="aspect-video max-h-78 w-full flex items-center rounded-lg bg-charcoal-100 overflow-hidden"
                   >
-                    <ImageWithLightbox.Presentation image={image} withIcon />
+                    <ImageWithLightbox.Presentation
+                      image={image}
+                      imgStyling="object-contain rounded-lg w-full"
+                      withIcon
+                    />
                   </TabPanel>
                 ))}
               </TabPanels>
-              <TabList className="inline-flex gap-4">
+              <TabList className="flex overflow-x-auto space-x-4 snap-x">
                 {entry?.relatedImages?.map((image) => (
                   <Tab
                     key={image?.id}
-                    className="rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                    className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
                   >
                     <MediaThumbnail.Image
                       key={image?.id}
                       imageObject={image}
                       containerStyles=""
-                      imageStyles="aspect-square w-full"
+                      imageStyles="w-18 h-18 object-cover"
                     />
                   </Tab>
                 ))}
@@ -66,21 +70,20 @@ function DictionaryDetailMedia({ entry }) {
                 {entry?.relatedVideos?.map((video) => (
                   <TabPanel
                     key={video?.id}
-                    className="rounded-lg overflow-hidden"
+                    className="aspect-video max-h-78 w-full inline-flex rounded-lg overflow-hidden"
                   >
-                    <div className="inline-flex rounded-lg overflow-hidden">
-                      <video
-                        className="shrink-0 w-full h-auto"
-                        src={getMediaPath({
-                          mediaObject: video,
-                          type: VIDEO,
-                          size: ORIGINAL,
-                        })}
-                        controls
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
+                    <video
+                      className="shrink-0 w-full h-auto"
+                      src={getMediaPath({
+                        mediaObject: video,
+                        type: VIDEO,
+                        size: ORIGINAL,
+                      })}
+                      controls
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+
                     <Disclosure>
                       <div className="flex justify-end">
                         <DisclosureButton>
@@ -112,17 +115,17 @@ function DictionaryDetailMedia({ entry }) {
                   </TabPanel>
                 ))}
               </TabPanels>
-              <TabList className="inline-flex gap-4">
+              <TabList className="flex overflow-x-auto space-x-4 snap-x">
                 {entry?.relatedVideos?.map((video) => (
                   <Tab
                     key={video?.id}
-                    className="rounded-lg overflow-hidden w-18 h-12 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                    className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
                   >
                     <MediaThumbnail.Video
                       key={video?.id}
                       videoObject={video}
                       containerStyles=""
-                      imageStyles="aspect-video w-full"
+                      videoStyles="w-18 h-18 object-cover"
                     />
                   </Tab>
                 ))}
@@ -144,7 +147,7 @@ function DictionaryDetailMedia({ entry }) {
                     className="rounded-lg overflow-hidden"
                   >
                     <iframe
-                      className="aspect-3/2 rounded-lg w-full"
+                      className="aspect-3/2 max-h-60 w-full"
                       src={link?.embedLink}
                       title="video"
                       allowFullScreen
@@ -154,17 +157,17 @@ function DictionaryDetailMedia({ entry }) {
                   </TabPanel>
                 ))}
               </TabPanels>
-              <TabList className="inline-flex gap-4">
+              <TabList className="flex overflow-x-auto space-x-4 snap-x">
                 {entry?.relatedVideoLinks?.map((link) => (
                   <Tab
                     key={link?.id}
-                    className="rounded-lg overflow-hidden w-18 h-12 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                    className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
                   >
                     <MediaThumbnail.VideoLink
                       key={link?.id}
                       link={link}
                       containerStyles=""
-                      imageStyles="aspect-video w-full"
+                      imageStyles="w-18 h-18 object-cover"
                     />
                   </Tab>
                 ))}
