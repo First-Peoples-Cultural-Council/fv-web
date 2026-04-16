@@ -13,7 +13,7 @@ function RelatedDocumentsListPresentation({ documents }) {
         {documents?.map((document) => (
           <li
             key={document?.id}
-            className="grid grid-cols-11 w-full h-28 items-center py-5 border-b border-blumine-900 last:border-b-0 p-2"
+            className="grid grid-cols-11 w-full min-h-22 items-center py-4 border-b border-blumine-900 last:border-b-0 p-2"
           >
             <div className="col-span-1 flex items-center justify-center">
               {getIcon(
@@ -34,7 +34,7 @@ function RelatedDocumentsListPresentation({ documents }) {
             </div>
             <div className="col-span-2 flex items-center justify-center">
               <Link
-                className="btn-tertiary btn-md-icon bg-blumine-100 hover:bg-blumine-200"
+                className="btn-tertiary btn-md-icon"
                 to={document?.original.path}
               >
                 {getIcon('Download')}
