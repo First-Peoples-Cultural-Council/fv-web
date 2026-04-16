@@ -136,22 +136,9 @@ function DictionaryListPresentation({
                                 className={`py-4 ${ifLastEntryStyling}`}
                                 aria-label="list"
                               >
-                                <div
-                                  className={`inline-flex items-center ${Array.isArray(entry?.audio) && entry.audio.length > 3 ? 'md:hidden lg:flex' : ''}`}
-                                >
+                                <div className="flex flex-wrap items-center">
                                   <AudioButton audioArray={entry?.audio} />
                                 </div>
-                                {Array.isArray(entry?.audio) &&
-                                  entry.audio.length > 3 && (
-                                    <div className="hidden md:grid lg:hidden grid-cols-3 gap-1 place-items-center">
-                                      {entry.audio.map((a, i) => (
-                                        <AudioButton
-                                          key={a?.id || i}
-                                          audioArray={[a]}
-                                        />
-                                      ))}
-                                    </div>
-                                  )}
                               </td>
                               <td className={`px-6 py-4 ${ifLastEntryStyling}`}>
                                 {/* For Dictionary Entries */}
