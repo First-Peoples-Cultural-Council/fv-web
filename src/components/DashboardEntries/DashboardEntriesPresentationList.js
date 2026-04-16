@@ -115,7 +115,7 @@ function DashboardEntriesPresentationList({
                               data-testid="click-title"
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="btn-teriary btn-md text-left pl-6"
+                              className="w-full h-full text-left pl-6"
                             >
                               {entry?.title}
                             </button>
@@ -124,7 +124,7 @@ function DashboardEntriesPresentationList({
                             <button
                               data-testid="click-translations"
                               type="button"
-                              className="btn-tertairy btn-md"
+                              className="w-full h-full text-left"
                               onClick={() => handleItemClick(entry)}
                             >
                               {/* For Dictionary Entries */}
