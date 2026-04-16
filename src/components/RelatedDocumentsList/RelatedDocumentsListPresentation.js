@@ -9,7 +9,7 @@ import { getReadableFileSize } from 'common/utils/mediaHelpers'
 function RelatedDocumentsListPresentation({ documents }) {
   return (
     documents?.length > 0 && (
-      <ul className="border border-blumine-900 rounded-lg max-w-2xl w-full">
+      <ul className="border border-blumine-900 rounded-lg w-full">
         {documents?.map((document) => (
           <li
             key={document?.id}

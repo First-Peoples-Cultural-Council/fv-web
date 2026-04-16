@@ -17,19 +17,13 @@ function DictionaryDetailPrimary({ entry, sitename }) {
     <div className="w-full" data-testid="DictionaryDetailPrimary">
       <section>
         <div className="md:flex md:justify-between md:items-start space-x-5">
-          <div className="space-y-1.5">
-            <div
-              className={`font-bold leading-10 ${
-                shortTitle ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'
-              }`}
-            >
-              {entry.title}
-            </div>
-            {/* Part of Speech */}
-            {entry?.partOfSpeech?.title && (
-              <div>{entry?.partOfSpeech?.title?.toLowerCase()}</div>
-            )}
-          </div>
+          <h1
+            className={`font-bold leading-10 ${
+              shortTitle ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'
+            }`}
+          >
+            {entry.title}
+          </h1>
           <div className="flex items-center space-x-2">
             {entry?.visibility && entry?.visibility !== PUBLIC && (
               <Tooltip
@@ -50,7 +44,11 @@ function DictionaryDetailPrimary({ entry, sitename }) {
           </div>
         </div>
       </section>
-      <section className="space-y-7 mt-5">
+      <section className="space-y-7 mt-1.5">
+        {/* Part of Speech */}
+        <div className="font-light">
+          {entry?.partOfSpeech?.title?.toLowerCase() || ' '}
+        </div>
         {/* Translations/Definitions */}
         {entry?.translations?.length > 0 && (
           <div>
