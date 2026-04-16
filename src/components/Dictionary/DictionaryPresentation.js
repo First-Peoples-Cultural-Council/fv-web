@@ -53,13 +53,11 @@ function DictionaryPresentation({
         <div className="grid grid-cols-12">
           <div className="hidden lg:block print:hidden col-span-2 mt-5">
             <div className="mb-12 ml-4 xl:ml-7 space-y-2">
-              <h1 className={`text-3xl xl:text-4xl ${titleColor}`}>
-                {labels.uppercase}
-              </h1>
+              <h1 className={`text-3xl ${titleColor}`}>{labels.titlecase}</h1>
               <div
                 className={`${
                   count ? '' : 'opacity-0'
-                } text-sm xl:text-base text-charcoal-900`}
+                } text-sm xl:text-base font-light`}
               >
                 Results: {count}
               </div>

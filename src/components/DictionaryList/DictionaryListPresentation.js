@@ -51,7 +51,7 @@ function DictionaryListPresentation({
   }
 
   const tableHeaderStyling =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
+    'px-4 py-5 text-left font-normal capitalize bg-charcoal-50'
 
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
@@ -62,33 +62,32 @@ function DictionaryListPresentation({
         {infiniteQueryResponse?.data?.hasResults ? (
           <div className="flex flex-col w-full py-2">
             <div className="border-b border-charcoal-200 rounded-lg overflow-hidden">
-              <table className="table-auto w-full divide-y divide-charcoal-200">
-                <thead className="bg-charcoal-50">
+              <table className="table-auto w-full">
+                <thead>
                   <tr>
-                    <th scope="col" className="px-6 py-3">
+                    <th
+                      scope="col"
+                      className={`${tableHeaderStyling} rounded-l-lg`}
+                    >
                       {sorting ? (
                         <button
                           data-testid="sort-btn"
                           type="button"
                           onClick={() => onSortByClick('ENTRY')}
-                          className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider"
+                          className="flex items-center"
                         >
-                          <div className="inline-flex">
-                            {entryLabel.toUpperCase()}
-                          </div>
-                          {getSortingIcon('ENTRY')}
+                          <div className="inline-flex">{entryLabel}</div>
+                          {getSortingIcon('Entry')}
                         </button>
                       ) : (
-                        <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
-                          <div className="inline-flex">
-                            {entryLabel.toUpperCase()}
-                          </div>
-                          {getSortingIcon('ENTRY')}
+                        <div className="flex items-center">
+                          <div className="inline-flex">{entryLabel}</div>
+                          {getSortingIcon('Entry')}
                         </div>
                       )}
                     </th>
                     <th scope="col" className={tableHeaderStyling}>
-                      <span className="sr-only">Audio</span>
+                      Audio
                     </th>
                     <th scope="col" className={tableHeaderStyling}>
                       Translation
@@ -103,8 +102,11 @@ function DictionaryListPresentation({
                         Language Site
                       </th>
                     )}
-                    <th scope="col" className={tableHeaderStyling}>
-                      <span className="sr-only">Actions</span>
+                    <th
+                      scope="col"
+                      className="text-center px-4 py-5 font-normal bg-charcoal-50 rounded-r-lg"
+                    >
+                      More
                     </th>
                   </tr>
                 </thead>
@@ -120,7 +122,7 @@ function DictionaryListPresentation({
                             <td>
                               <button
                                 type="button"
-                                className="px-6 py-4 w-full h-full text-left font-medium text-charcoal-900 lg:mr-2"
+                                className="p-4 w-full h-full text-left font-bold text-charcoal-900"
                                 onClick={() => handleItemClick(entry)}
                                 data-testid="DictionaryListEntry"
                               >
@@ -128,11 +130,11 @@ function DictionaryListPresentation({
                               </button>
                             </td>
                             <td aria-label="list">
-                              <div className="flex flex-wrap items-center">
+                              <div className="pl-4 flex flex-wrap">
                                 <AudioButton audioArray={entry?.audio} />
                               </div>
                             </td>
-                            <td className="px-6 py-4">
+                            <td className="p-4">
                               {/* For Dictionary Entries */}
                               {entry?.translations ? (
                                 <ol className="text-charcoal-900">
@@ -156,7 +158,7 @@ function DictionaryListPresentation({
                               )}
                             </td>
                             {showType && (
-                              <td className="px-6 py-4 whitespace-nowrap">
+                              <td className="p-4 whitespace-nowrap">
                                 <span
                                   className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                                 >
@@ -165,7 +167,7 @@ function DictionaryListPresentation({
                               </td>
                             )}
                             {wholeDomain && (
-                              <td className="px-6 py-4 whitespace-nowrap">
+                              <td className="p-4 whitespace-nowrap">
                                 <Link
                                   className="text-left text-sm text-charcoal-900"
                                   to={`/${entry?.sitename}`}
@@ -174,10 +176,7 @@ function DictionaryListPresentation({
                                 </Link>
                               </td>
                             )}
-                            <td
-                              className="text-right px-6 py-4"
-                              aria-label="list"
-                            >
+                            <td className="text-right p-4" aria-label="list">
                               <ActionsMenu.Presentation
                                 entry={entry}
                                 sitename={entry?.sitename}
