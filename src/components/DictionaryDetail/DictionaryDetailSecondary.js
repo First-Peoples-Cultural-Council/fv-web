@@ -31,13 +31,15 @@ function DictionaryDetailSecondary({ entry, sitename }) {
         )}
 
         {/* Related Content */}
-        <div>
-          <DictionaryDetailLabel label="Related Entries" />
-          <RelatedEntriesTable.Presentation
-            entries={entry?.relatedEntries || []}
-            sitename={sitename}
-          />
-        </div>
+        {entry?.relatedEntries?.length > 0 && (
+          <div>
+            <DictionaryDetailLabel label="Related Entries" />
+            <RelatedEntriesTable.Presentation
+              entries={entry?.relatedEntries || []}
+              sitename={sitename}
+            />
+          </div>
+        )}
 
         {/* Acknowledgements */}
         {entry?.acknowledgements?.length > 0 && (
