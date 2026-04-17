@@ -60,7 +60,9 @@ describe(
       cy.get(`[data-testid="${_title}-edit-link"]`).scrollIntoView()
       cy.get(`[data-testid="${_title}-edit-link"]`).click({ force: true })
       cy.contains('Delete category').click()
-      cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
+      cy.get('[data-testid="DeleteModal"]')
+        .contains('Delete')
+        .click({ force: true })
     })
   },
 )
