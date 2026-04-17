@@ -9,6 +9,7 @@ inputs:
   job_sort_order: { required: true }
   tekton_namespace: { required: true }
   tekton_interceptor_name: { required: true }
+  pipeline_name: {required: true}
   webhook_prefix: { required: true }
   pipeline_step1: { required: true }
   pipeline_step2: { required: true }
@@ -36,12 +37,11 @@ runs:
         WEBHOOK_PREFIX="${{ inputs.webhook_prefix }}"
         echo "Looking for PipelineRuns matching: $WEBHOOK_PREFIX"
         
-        RUNID=$(kubectl -n "${{ inputs.tekton_namespace }}" get pr \
-          --sort-by=.status.completionTime \
-          -l triggers.tekton.dev/trigger="${{ inputs.tekton_interceptor_name }}" \
-          | grep "$WEBHOOK_PREFIX" \
-          | $SORT_CMD -n 1 \
-          | awk '{print $1}')
+        RUNID=$(kubectl get pr -n "${{ inputs.tekton_namespace }}" \
+          -l tekton.dev/pipeline="${{ inputs.pipeline_name }}",triggers.tekton.dev/trigger="${{ inputs.tekton_interceptor_name }}" \
+          --sort-by=.metadata.creationTimestamp \
+          -o jsonpath='{.items[*].metadata.name}' | awk '{print $NF}')
+
 
         echo "RUNID=$RUNID" >> "$GITHUB_ENV"
         echo "$RUNID" > runid.txt

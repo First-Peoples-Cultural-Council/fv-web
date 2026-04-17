@@ -117,6 +117,7 @@ jobs:
           tekton_namespace: ${{ secrets.TEKTON_NAMESPACE }}
           tekton_interceptor_name: ${{ secrets.TEKTON_INTERCEPTOR_NAME }}
           webhook_prefix: 'fv-web-webhook-'
+          pipeline_name: "build-and-deploy-fv-web"
           job_sort_order: 'head'
           pipeline_step1: ${{ vars.PIPELINE_STEP1 }}
           pipeline_step2: ${{ vars.PIPELINE_STEP2 }}
@@ -140,6 +141,7 @@ jobs:
           tekton_namespace: ${{ secrets.TEKTON_NAMESPACE }}
           tekton_interceptor_name: ${{ secrets.TEKTON_INTERCEPTOR_NAME }}
           webhook_prefix: 'fv-web-webhook-'
+          pipeline_name: "build-and-deploy-fv-web"
           job_sort_order: 'head'
           pipeline_step1: ${{ vars.PIPELINE_STEP1 }}
           pipeline_step2: ${{ vars.PIPELINE_STEP2 }}
@@ -163,6 +165,7 @@ jobs:
           tekton_namespace: ${{ secrets.TEKTON_NAMESPACE }}
           tekton_interceptor_name: ${{ secrets.TEKTON_INTERCEPTOR_NAME }}
           webhook_prefix: 'fv-web-webhook-'
+          pipeline_name: "build-and-deploy-fv-web"
           job_sort_order: 'head'
           pipeline_step1: ${{ vars.PIPELINE_STEP1 }}
           pipeline_step2: ${{ vars.PIPELINE_STEP2 }}
