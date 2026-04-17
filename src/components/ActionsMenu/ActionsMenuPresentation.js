@@ -21,7 +21,11 @@ function ActionsMenuPresentation({
       className="inline-flex items-center print:hidden space-x-2"
     >
       {/* Pinned Action Buttons */}
-      <CopyButton textToCopy={entry?.title} withLabels={withLabels} />
+      <CopyButton
+        textToCopy={entry?.title}
+        withLabels={withLabels}
+        buttonStyling={`btn-tertiary ${withLabels ? ' btn-sm min-w-0' : 'btn-md-icon'}`}
+      />
 
       {/* More Menu button and Action items */}
       {moreActions.length > 0 ? (
