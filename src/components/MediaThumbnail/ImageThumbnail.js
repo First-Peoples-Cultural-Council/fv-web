@@ -37,6 +37,7 @@ function ImageThumbnail({
         src={src}
         alt={imageObject?.title || fetchedImageObject?.title}
         className={imageStyles}
+        loading="lazy"
         {...other}
       />
     </div>

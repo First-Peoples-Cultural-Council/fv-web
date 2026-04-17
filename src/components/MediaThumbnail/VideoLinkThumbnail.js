@@ -26,7 +26,12 @@ function VideoLinkThumbnail({
 
   return (
     <div className={containerStyles}>
-      <img src={thumbnail} alt="video thumbnail" className={imageStyles} />
+      <img
+        src={thumbnail}
+        alt="video thumbnail"
+        loading="lazy"
+        className={imageStyles}
+      />
     </div>
   )
 }
