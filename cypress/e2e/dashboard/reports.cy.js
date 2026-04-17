@@ -36,25 +36,27 @@ describe(
             `${fontWeightStrength[1]}`,
           )
         }
-        cy.get('[id="SingleSelect-hasAudio"] > div > button > span').should(
+        cy.get('[id="SingleSelect-hasAudio"] span').should(
           'have.css',
           'font-weight',
           `${fontWeightStrength[2]}`,
         )
-        cy.get('[id="SingleSelect-hasImage"] > div > button > span').should(
+        cy.get('[id="SingleSelect-hasImage"] span').should(
           'have.css',
           'font-weight',
           `${fontWeightStrength[3]}`,
         )
-        cy.get('[id="SingleSelect-hasVideo"] > div > button > span').should(
+        cy.get('[id="SingleSelect-hasVideo"] span').should(
           'have.css',
           'font-weight',
           `${fontWeightStrength[4]}`,
         )
-        cy.get(
-          '[id="SingleSelect-hasTranslation"] > div > button > span',
-        ).should('have.css', 'font-weight', `${fontWeightStrength[5]}`)
-        cy.get('[id="SingleSelect-visibility"] > div > button > span').should(
+        cy.get('[id="SingleSelect-hasTranslation"] span').should(
+          'have.css',
+          'font-weight',
+          `${fontWeightStrength[5]}`,
+        )
+        cy.get('[id="SingleSelect-visibility"] span').should(
           'have.css',
           'font-weight',
           `${fontWeightStrength[6]}`,
