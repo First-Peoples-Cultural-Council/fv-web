@@ -24,7 +24,9 @@ function RelatedEntriesTablePresentation({ entries, sitename }) {
             const zebraStripe = index % 2 === 0 ? 'bg-blumine-50' : ''
             return (
               <tr key={entry?.id}>
-                <td className={`py-2 pl-3 pr-2 rounded-l-lg ${zebraStripe}`}>
+                <td
+                  className={`py-2 pl-3 pr-2 rounded-l-lg text-sm md:text-base wrap-anywhere ${zebraStripe}`}
+                >
                   <Link
                     to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
                   >
@@ -43,7 +45,9 @@ function RelatedEntriesTablePresentation({ entries, sitename }) {
                     />
                   )}
                 </td>
-                <td className={`p-2 ${zebraStripe}`}>
+                <td
+                  className={`p-2 text-sm md:text-base wrap-anywhere ${zebraStripe}`}
+                >
                   <span>{entry?.translations?.[0]?.text}</span>
                 </td>
                 <td

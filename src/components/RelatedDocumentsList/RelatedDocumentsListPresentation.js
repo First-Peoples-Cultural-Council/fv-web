@@ -23,7 +23,10 @@ function RelatedDocumentsListPresentation({ documents }) {
             </div>
             <div className="col-span-8">
               <div className="wrap-break-word space-y-2 pl-5 border-l-2 border-charcoal-300">
-                <div className="text-base truncate" title={document?.title}>
+                <div
+                  className="text-sm md:text-base truncate"
+                  title={document?.title}
+                >
                   {document?.title}{' '}
                   {`(${getReadableFileSize(document?.original?.size)})`}
                 </div>
