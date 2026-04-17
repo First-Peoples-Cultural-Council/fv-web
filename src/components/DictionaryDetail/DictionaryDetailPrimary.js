@@ -9,6 +9,7 @@ import Tooltip from 'components/Tooltip'
 import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 import { PUBLIC } from 'common/constants'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
+import { CopyButton, WebShareButton, QrcodeButton } from 'components/Actions'
 
 function DictionaryDetailPrimary({ entry }) {
   const shortTitle = entry?.title.length < 20
@@ -41,9 +42,18 @@ function DictionaryDetailPrimary({ entry }) {
 
             <ActionsMenu.Presentation entry={entry} withLabels />
           </div>
+          <div className="flex space-x-4 my-4 -ml-4 sm:hidden ">
+            <CopyButton
+              textToCopy={entry?.title}
+              withLabels
+              buttonStyling="btn-tertiary btn-sm"
+            />
+            <QrcodeButton entry={entry} withLabels />
+            <WebShareButton entry={entry} withLabels />
+          </div>
         </div>
       </section>
-      <section className="space-y-7 mt-1.5">
+      <section className="space-y-4 md:space-y-7 mt-1.5">
         {/* Part of Speech */}
         <div className="font-light">
           {entry?.partOfSpeech?.title?.toLowerCase() || ' '}

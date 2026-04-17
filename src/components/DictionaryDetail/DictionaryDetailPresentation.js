@@ -16,18 +16,18 @@ function DictionaryDetailPresentation({ entry, sitename }) {
 
   return (
     <div
-      className="max-w-6xl mx-auto px-4 sm:px-6 xl:px-0 my-4 md:my-10 lg:my-16 bg-white"
+      className="md:max-w-6xl mx-auto px-8 xl:px-0 my-4 md:my-10 lg:my-16 bg-white"
       data-testid="DictionaryDetailPresentation"
     >
       <SiteDocHead titleArray={[entry.title, 'Dictionary']} />
-      <div className="grid grid-cols-16 gap-7 lg:gap-16 mx-auto">
+      <div className="grid grid-cols-16 gap-4 md:gap-7 lg:gap-16 mx-auto">
         <div
-          className={`space-y-7 col-span-16 ${noMedia ? 'max-w-3xl mx-auto' : 'max-w-2xl md:col-span-9'}`}
+          className={`space-y-4 md:space-y-7 col-span-16 ${noMedia ? 'md:max-w-3xl mx-auto' : 'md:max-w-2xl md:col-span-9'}`}
         >
           <DictionaryDetailPrimary entry={entry} />
           <DictionaryDetailSecondary entry={entry} sitename={sitename} />
         </div>
-        {/* Pictures and Video */}
+        {/* Images and Video */}
         {noMedia ? null : (
           <div className="col-span-16 md:col-span-7">
             <DictionaryDetailMedia entry={entry} />
