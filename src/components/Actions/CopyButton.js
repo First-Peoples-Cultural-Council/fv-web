@@ -6,7 +6,7 @@ import getIcon from 'common/utils/getIcon'
 import copyToClipboard from 'common/utils/copyToClipboard'
 import Tooltip from 'components/Tooltip'
 
-function Copy({ textToCopy, withLabels = false }) {
+function CopyButton({ textToCopy, withLabels = false }) {
   const [confirmation, setConfirmation] = useState(false)
 
   const confirmationCallback = () => {
@@ -39,9 +39,9 @@ function Copy({ textToCopy, withLabels = false }) {
 }
 // PROPTYPES
 const { bool, string } = PropTypes
-Copy.propTypes = {
+CopyButton.propTypes = {
   textToCopy: string,
   withLabels: bool,
 }
 
-export default Copy
+export default CopyButton

@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { Copy, ShareModal, QrcodeModal } from 'components/Actions'
+import { CopyButton, ShareModal, QrcodeModal } from 'components/Actions'
 import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
@@ -21,7 +21,7 @@ function ActionsMenuPresentation({
       className="inline-flex items-center print:hidden space-x-2"
     >
       {/* Pinned Action Buttons */}
-      <Copy textToCopy={entry?.title} withLabels={withLabels} />
+      <CopyButton textToCopy={entry?.title} withLabels={withLabels} />
 
       {/* More Menu button and Action items */}
       {moreActions.length > 0 ? (
