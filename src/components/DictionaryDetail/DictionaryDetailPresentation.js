@@ -24,7 +24,7 @@ function DictionaryDetailPresentation({ entry, sitename }) {
         <div
           className={`space-y-7 col-span-16 ${noMedia ? 'max-w-3xl mx-auto' : 'max-w-2xl md:col-span-9'}`}
         >
-          <DictionaryDetailPrimary entry={entry} sitename={sitename} />
+          <DictionaryDetailPrimary entry={entry} />
           <DictionaryDetailSecondary entry={entry} sitename={sitename} />
         </div>
         {/* Pictures and Video */}

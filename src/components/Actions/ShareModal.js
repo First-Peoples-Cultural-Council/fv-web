@@ -8,13 +8,9 @@ import ShareLinks from 'components/ShareLinks'
 import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
 
-function ShareModal({
-  entry,
-  sitename,
-  siteVisibility,
-  isOpen = false,
-  onClose,
-}) {
+function ShareModal({ entry, isOpen = false, onClose }) {
+  const sitename = entry?.site?.slug
+  const siteVisibility = entry?.site?.visibility
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={onClose}>
       <div
@@ -71,11 +67,9 @@ function ShareModal({
 }
 
 // PROPTYPES
-const { bool, object, string, func } = PropTypes
+const { bool, object, func } = PropTypes
 ShareModal.propTypes = {
   entry: object,
-  sitename: string,
-  siteVisibility: string,
   isOpen: bool,
   onClose: func,
 }

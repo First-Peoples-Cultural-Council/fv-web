@@ -9,14 +9,11 @@ import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
   entry,
-  sitename,
-  siteVisibility,
   moreActions = ['share', 'qrcode'],
   withLabels,
 }) {
   const [qrcodeModalOpen, setQrcodeModalOpen] = useState(false)
   const [shareModalOpen, setShareModalOpen] = useState(false)
-  const menuItemIconStyling = 'fill-current h-8 w-8 md:h-6 md:w-6'
 
   return (
     <div
@@ -48,11 +45,11 @@ function ActionsMenuPresentation({
                   <button
                     type="button"
                     data-testid="share-btn"
-                    className="data-focus:bg-blumine-100 text-blumine-900 w-full group flex items-center px-4 py-2 text-sm"
+                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start"
                     onClick={() => setShareModalOpen(true)}
                   >
-                    {getIcon('WebShare', menuItemIconStyling)}
-                    <span className="ml-3">Share</span>
+                    {getIcon('WebShare')}
+                    <span>Share</span>
                   </button>
                 </MenuItem>
               )}
@@ -62,11 +59,11 @@ function ActionsMenuPresentation({
                     data-testid="QrcodeButton"
                     type="button"
                     id="QrcodeButton"
-                    className="data-focus:bg-blumine-100 text-blumine-900 w-full group flex items-center px-4 py-2 text-sm"
+                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start"
                     onClick={() => setQrcodeModalOpen(true)}
                   >
-                    {getIcon('Qrcode', menuItemIconStyling)}
-                    <span className="ml-3">QR code</span>
+                    {getIcon('Qrcode')}
+                    <span>QR code</span>
                   </button>
                 </MenuItem>
               )}
@@ -76,14 +73,12 @@ function ActionsMenuPresentation({
       ) : null}
       <ShareModal
         entry={entry}
-        sitename={sitename}
-        siteVisibility={siteVisibility}
         isOpen={shareModalOpen}
         onClose={() => setShareModalOpen(false)}
       />
       <QrcodeModal
         entry={entry}
-        url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+        url={`${window.location.origin.toString()}/${entry?.site?.slug}/${makePlural(
           entry?.type,
         )}/${entry?.id}`}
         isOpen={qrcodeModalOpen}
@@ -93,11 +88,9 @@ function ActionsMenuPresentation({
   )
 }
 // PROPTYPES
-const { array, bool, object, string } = PropTypes
+const { array, bool, object } = PropTypes
 ActionsMenuPresentation.propTypes = {
   entry: object,
-  sitename: string,
-  siteVisibility: string,
   moreActions: array,
   withLabels: bool,
 }

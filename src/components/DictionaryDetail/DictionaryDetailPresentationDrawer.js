@@ -12,7 +12,7 @@ function DictionaryDetailPresentationDrawer({ entry, sitename }) {
       data-testid="DictionaryDetailPresentationDrawer"
       className="max-w-2xl py-6 px-14 space-y-7"
     >
-      <DictionaryDetailPrimary entry={entry} sitename={sitename} />
+      <DictionaryDetailPrimary entry={entry} />
       <DictionaryDetailSecondary entry={entry} sitename={sitename} />
       <DictionaryDetailMedia entry={entry} />
     </div>

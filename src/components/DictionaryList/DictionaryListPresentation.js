@@ -177,11 +177,7 @@ function DictionaryListPresentation({
                               </td>
                             )}
                             <td className="text-right p-4" aria-label="list">
-                              <ActionsMenu.Presentation
-                                entry={entry}
-                                sitename={entry?.sitename}
-                                siteVisibility={entry?.siteVisibility}
-                              />
+                              <ActionsMenu.Presentation entry={entry} />
                             </td>
                           </tr>
                         )

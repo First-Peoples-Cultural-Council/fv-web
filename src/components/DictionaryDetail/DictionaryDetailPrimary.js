@@ -10,7 +10,7 @@ import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 import { PUBLIC } from 'common/constants'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 
-function DictionaryDetailPrimary({ entry, sitename }) {
+function DictionaryDetailPrimary({ entry }) {
   const shortTitle = entry?.title.length < 20
 
   return (
@@ -26,7 +26,7 @@ function DictionaryDetailPrimary({ entry, sitename }) {
           >
             {entry.title}
           </h1>
-          <div className="flex items-center space-x-2">
+          <div className="hidden sm:flex items-center space-x-2">
             {entry?.visibility && entry?.visibility !== PUBLIC && (
               <Tooltip
                 position="left-1/2 bottom-5"
@@ -38,11 +38,8 @@ function DictionaryDetailPrimary({ entry, sitename }) {
                 )}
               </Tooltip>
             )}
-            <ActionsMenu.Presentation
-              entry={entry}
-              sitename={sitename}
-              withLabels
-            />
+
+            <ActionsMenu.Presentation entry={entry} withLabels />
           </div>
         </div>
       </section>
@@ -130,10 +127,9 @@ function DictionaryDetailPrimary({ entry, sitename }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
+const { object } = PropTypes
 DictionaryDetailPrimary.propTypes = {
   entry: object,
-  sitename: string,
 }
 
 export default DictionaryDetailPrimary
