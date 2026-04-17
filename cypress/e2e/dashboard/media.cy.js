@@ -98,18 +98,13 @@ describe(
       cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio', {
         force: true,
       })
-      cy.contains('Upload File').click()
-      //
       cy.get('[data-testid="label-speakers"]')
         .parent()
-        .find('[data-testid="autocomplete-input"]')
-      cy.get('[data-testid="label-speakers"]')
-        .parent()
-        .find('button[aria-haspopup="listbox"]')
+        .find('[data-testid="autocomplete-multi-input"]')
         .click()
-      cy.get('[role="option"]').first().click()
+      cy.get('div[data-testid^="option-btn"]').first().click()
       cy.get('body').click(0, 0)
-      //
+      cy.contains('Upload File').click()
       cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
 

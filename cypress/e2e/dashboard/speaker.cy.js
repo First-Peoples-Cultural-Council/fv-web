@@ -55,7 +55,9 @@ describe(
       cy.contains('Add Speaker').click()
       cy.contains('Dismiss').should('be.visible')
 
-      cy.get('[data-testid="edit-speaker-qatestspeaker"]').eq(0).click()
+      cy.get('[data-testid="edit-speaker-qatestspeaker"]')
+        .eq(0)
+        .click({ force: true })
       cy.get('#bio').type('this is the new value')
       cy.contains('Save Changes').click()
 

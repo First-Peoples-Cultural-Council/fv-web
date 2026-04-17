@@ -50,9 +50,9 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]')
         .invoke('removeAttr', 'target')
         .click()
-      cy.get('[data-testid="autocomplete-input"]').type(' ')
+      cy.get('[data-testid="autocomplete-multi-input"]').type(' ')
       cy.get('[role="option"]').first().click()
-      cy.get('[data-testid="autocomplete-input"]').type('{esc}')
+      cy.get('[data-testid="autocomplete-multi-input"]').type('{esc}')
       cy.contains('Save changes').click()
 
       // Remove Speaker from audio
@@ -61,9 +61,9 @@ describe(
         .first()
         .invoke('removeAttr', 'target')
         .click()
-      cy.get('[data-testid="autocomplete-input"]').type(' ')
+      cy.get('[data-testid="autocomplete-multi-input"]').type(' ')
       cy.get('[role="option"]').first().click()
-      cy.get('[data-testid="autocomplete-input"]').type('{esc}')
+      cy.get('[data-testid="autocomplete-multi-input"]').type('{esc}')
       cy.contains('Save changes').click()
     })
   },

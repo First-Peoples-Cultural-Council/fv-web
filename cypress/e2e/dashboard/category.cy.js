@@ -52,12 +52,13 @@ describe(
       cy.contains('Dismiss').should('be.visible')
 
       cy.get(`[data-testid="${_title}-edit-link"]`).scrollIntoView()
-      cy.get(`[data-testid="${_title}-edit-link"]`).click()
+      cy.get(`[data-testid="${_title}-edit-link"]`).click({ force: true })
 
       cy.get('#description').type('test qa data')
       cy.contains('Save changes').click()
 
-      cy.get(`[data-testid="${_title}-edit-link"]`).click()
+      cy.get(`[data-testid="${_title}-edit-link"]`).scrollIntoView()
+      cy.get(`[data-testid="${_title}-edit-link"]`).click({ force: true })
       cy.contains('Delete category').click()
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
