@@ -9,8 +9,8 @@ import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
 
 function ShareModal({ entry, isOpen = false, onClose }) {
-  const sitename = entry?.site?.slug
-  const siteVisibility = entry?.site?.visibility
+  const sitename = entry?.sitename || entry?.site?.slug
+  const siteVisibility = entry?.siteVisibility || entry?.site?.visibility
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={onClose}>
       <div
@@ -32,7 +32,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
               className="btn-tertiary btn-lg-icon"
               href={`mailto:?subject=${
                 entry?.title
-              }&body=${window.location.origin.toString()}/${sitename}/${makePlural(
+              }&body=${globalThis.location.origin.toString()}/${sitename}/${makePlural(
                 entry?.type,
               )}/${entry?.id}`}
             >
@@ -45,7 +45,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
               Share <em>{entry?.title}</em> on:
             </h3>
             <ShareLinks.Presentation
-              url={`${window.location.origin.toString()}/${sitename}/${makePlural(
+              url={`${globalThis.location.origin.toString()}/${sitename}/${makePlural(
                 entry?.type,
               )}/${entry?.id}`}
               title={entry?.title}

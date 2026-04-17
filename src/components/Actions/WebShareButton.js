@@ -20,7 +20,7 @@ function WebShareButton({
         onClick={() =>
           navigator.share({
             title: entry?.title,
-            url: `${window.location.origin.toString()}/${entry?.site?.slug}/${makePlural(
+            url: `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
               entry?.type,
             )}/${entry?.id}`,
           })

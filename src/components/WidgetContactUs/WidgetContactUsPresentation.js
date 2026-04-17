@@ -65,7 +65,7 @@ function ContactUsPresentation({
   const socialIcons = links
     ? links.map((link) => (
         <li
-          key={getIconName(link)}
+          key={link}
           className="mr-3 h-9 w-9 inline-flex align-center rounded-sm text-blumine-800"
         >
           <a
