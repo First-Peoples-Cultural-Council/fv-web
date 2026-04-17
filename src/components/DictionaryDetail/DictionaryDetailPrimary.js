@@ -19,7 +19,9 @@ function DictionaryDetailPrimary({ entry, sitename }) {
         <div className="md:flex md:justify-between md:items-start space-x-5">
           <h1
             className={`font-bold leading-10 ${
-              shortTitle ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'
+              shortTitle
+                ? 'text-2xl md:text-4xl'
+                : 'text-xl md:text-2xl wrap-anywhere'
             }`}
           >
             {entry.title}
@@ -28,7 +30,7 @@ function DictionaryDetailPrimary({ entry, sitename }) {
             {entry?.visibility && entry?.visibility !== PUBLIC && (
               <Tooltip
                 position="left-1/2 bottom-5"
-                message={`${capitalizeFirstLetter(entry?.visibility)} only`}
+                message={`${capitalizeFirstLetter(entry?.visibility)} only content`}
               >
                 {getIcon(
                   entry?.visibility,
