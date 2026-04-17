@@ -10,8 +10,8 @@ import AudioMinimal from 'components/AudioMinimal'
 function RelatedEntriesTablePresentation({ entries, sitename }) {
   return (
     entries?.length > 0 && (
-      <table className="w-full">
-        <thead>
+      <table className="w-full border-separate border-spacing-y-4 -mt-4">
+        <thead className="collapse">
           <tr>
             <th className="sr-only">Title</th>
             <th className="sr-only">Audio</th>
@@ -20,49 +20,40 @@ function RelatedEntriesTablePresentation({ entries, sitename }) {
           </tr>
         </thead>
         <tbody>
-          {entries?.map((entry, index) => {
-            const zebraStripe = index % 2 === 0 ? 'bg-blumine-50' : ''
-            return (
-              <tr key={entry?.id}>
-                <td
-                  className={`py-2 pl-3 pr-2 rounded-l-lg text-sm md:text-base wrap-anywhere ${zebraStripe}`}
+          {entries?.map((entry) => (
+            <tr key={entry?.id}>
+              <td className="py-2 pl-3 pr-2 rounded-l-lg text-sm md:text-base wrap-anywhere bg-blumine-50">
+                <Link
+                  to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
                 >
-                  <Link
-                    to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
-                  >
-                    {entry ? entry?.title : null}
-                  </Link>
-                </td>
-                <td className={`p-2 text-center ${zebraStripe}`}>
-                  {entry?.relatedAudio?.length > 0 && (
-                    <AudioMinimal.Container
-                      key={entry?.relatedAudio?.[0]?.id}
-                      icons={{
-                        Play: getIcon('Audio'),
-                        Stop: getIcon('StopCircle'),
-                      }}
-                      audioObject={entry?.relatedAudio?.[0]}
-                    />
-                  )}
-                </td>
-                <td
-                  className={`p-2 text-sm md:text-base wrap-anywhere ${zebraStripe}`}
+                  {entry ? entry?.title : null}
+                </Link>
+              </td>
+              <td className="p-2 text-center bg-blumine-50">
+                {entry?.relatedAudio?.length > 0 && (
+                  <AudioMinimal.Container
+                    key={entry?.relatedAudio?.[0]?.id}
+                    icons={{
+                      Play: getIcon('Audio'),
+                      Stop: getIcon('StopCircle'),
+                    }}
+                    audioObject={entry?.relatedAudio?.[0]}
+                  />
+                )}
+              </td>
+              <td className="p-2 text-sm md:text-base wrap-anywhere bg-blumine-50">
+                <span>{entry?.translations?.[0]?.text || ''}</span>
+              </td>
+              <td className="py-2 pl-2 pr-3 text-center rounded-r-lg bg-blumine-50">
+                <Link
+                  className="btn-tertiary btn-md-icon bg-inherit"
+                  to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
                 >
-                  <span>{entry?.translations?.[0]?.text}</span>
-                </td>
-                <td
-                  className={`py-2 pl-2 pr-3 text-center rounded-r-lg ${zebraStripe}`}
-                >
-                  <Link
-                    className="btn-tertiary btn-md-icon bg-inherit"
-                    to={`/${sitename}/${makePlural(entry?.type)}/${entry?.id}`}
-                  >
-                    {getIcon('RightArrow')}
-                  </Link>
-                </td>
-              </tr>
-            )
-          })}
+                  {getIcon('RightArrow')}
+                </Link>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     )

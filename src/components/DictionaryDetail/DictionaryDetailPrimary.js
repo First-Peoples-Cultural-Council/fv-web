@@ -53,7 +53,7 @@ function DictionaryDetailPrimary({ entry }) {
           </div>
         </div>
       </section>
-      <section className="space-y-4 md:space-y-7 mt-1.5">
+      <section className="space-y-5 md:space-y-7 mt-1.5">
         {/* Part of Speech */}
         <div className="font-light">
           {entry?.partOfSpeech?.title?.toLowerCase() || ' '}

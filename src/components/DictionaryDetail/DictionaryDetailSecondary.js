@@ -10,7 +10,7 @@ import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailL
 function DictionaryDetailSecondary({ entry, sitename }) {
   return (
     <div className="w-full" data-testid="DictionaryDetailSecondary">
-      <section className="space-y-4 md:space-y-7">
+      <section className="space-y-5 md:space-y-7">
         {/* Categories */}
         {entry?.categories?.length > 0 && (
           <div>
