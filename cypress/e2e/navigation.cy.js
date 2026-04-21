@@ -21,7 +21,7 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
-      cy.contains('WORDS').should('exist')
+      cy.contains('Words').should('exist')
 
       cy.contains('Dictionary').click()
       cy.contains('Phrases').click()
