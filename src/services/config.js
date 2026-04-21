@@ -7,7 +7,7 @@ import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 export function apiBase() {
   return ky.create({
     prefixUrl: GlobalConfiguration.API_URL,
-    timeout: 60000,
+    timeout: 180000,
     headers: getAuthHeaderIfTokenExists(),
   })
 }
