@@ -36,10 +36,7 @@ function DictionaryGridTilePresentation({ entry, wholeDomain }) {
               {title}
             </Link>
 
-            <ActionsMenu.Presentation
-              entry={entry}
-              sitename={entry?.sitename}
-            />
+            <ActionsMenu.Presentation entry={entry} />
           </div>
 
           {/* Translations/Definitions */}

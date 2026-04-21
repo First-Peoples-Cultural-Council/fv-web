@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router'
 import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
-import { Copy } from 'components/Actions'
+import CopyButton from 'components/Actions/CopyButton'
 import { CHAR, IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 function AlphabetPresentationSelected({
@@ -40,7 +40,7 @@ function AlphabetPresentationSelected({
       >
         {title}
         {relatedAudio?.length > 0 && <AudioButton audioArray={relatedAudio} />}
-        {title ? <Copy textToCopy={title} /> : null}
+        {title ? <CopyButton textToCopy={title} /> : null}
       </h1>
       {relatedImage && (
         <div className="flex justify-center m-8">

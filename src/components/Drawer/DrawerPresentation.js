@@ -25,7 +25,7 @@ function DrawerPresentation({
               transition
               className={`pointer-events-auto w-screen ${maxWidth} transform transition duration-100 sm:duration-200 ease-in-out data-closed:translate-x-full`}
             >
-              <div className="h-full flex flex-col py-3 bg-white shadow-xl overflow-y-scroll touch-auto">
+              <div className="h-full flex flex-col py-3 bg-white rounded-l-lg border border-charcoal-900 my-4 shadow-xl overflow-y-scroll touch-auto">
                 <div className="flex justify-end items-center mr-2 space-x-2">
                   {fullScreenPath && (
                     <Link

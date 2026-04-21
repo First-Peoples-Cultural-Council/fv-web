@@ -25,17 +25,18 @@ function ByAlphabetData({ kids = null }) {
     initialSearchType: urlSearchType,
   })
 
+  const charactersQueryResponse = useCharacters()
+
   const _searchParams = new URLSearchParams({
     [TYPES]: searchType,
     [KIDS]: kids,
-    [STARTS_WITH_CHAR]: character,
+    [STARTS_WITH_CHAR]:
+      character || charactersQueryResponse?.data?.results?.[0]?.title,
   })
 
   const searchInfiniteQueryResponse = useSearchLoader({
     searchParams: _searchParams,
   })
-
-  const charactersQueryResponse = useCharacters()
 
   const [currentCharacter, setCurrentCharacter] = useState({})
 
@@ -45,9 +46,10 @@ function ByAlphabetData({ kids = null }) {
       !charactersQueryResponse?.isPending &&
       !charactersQueryResponse?.isError
     ) {
-      const selectedCharacter = charactersQueryResponse?.data?.results?.find(
-        (char) => char?.title === character,
-      )
+      const selectedCharacter =
+        charactersQueryResponse?.data?.results?.find(
+          (char) => char?.title === character,
+        ) || charactersQueryResponse?.data?.results?.[0]
       if (selectedCharacter?.id !== currentCharacter?.id) {
         setCurrentCharacter(selectedCharacter)
       }

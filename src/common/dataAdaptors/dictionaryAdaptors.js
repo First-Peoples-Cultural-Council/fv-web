@@ -10,6 +10,7 @@ import {
   audienceForEditing,
   audienceForApi,
 } from 'common/dataAdaptors/audienceAdaptors'
+import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
 import { TYPE_WORD } from 'common/constants'
 
 function coreEntry({ item }) {
@@ -40,11 +41,8 @@ export function entryForEditing({ item }) {
 export function entryForViewing({ item }) {
   return {
     partOfSpeech: item?.partOfSpeech || '',
-    created: item?.created,
-    createdBy: item?.createdBy,
-    lastModified: item?.lastModified,
-    lastModifiedBy: item?.lastModifiedBy,
     ...coreEntry({ item }),
+    ...basicDatesAdaptor({ item }),
     ...audienceForViewing({ item }),
     ...relatedMediaForViewing({ item }),
   }

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 
 function AudioMinimalPresentation({
+  audioId,
   buttonRef,
   buttonStyling = 'btn-tertiary btn-md-icon bg-inherit',
   icons,
@@ -21,6 +22,7 @@ function AudioMinimalPresentation({
 
   return (
     <button
+      data-testid={`audio-btn-${audioId}`}
       type="button"
       onClick={onClick}
       onKeyDown={onKeyPress}
@@ -30,13 +32,14 @@ function AudioMinimalPresentation({
       className={buttonStyling}
     >
       {isPlaying === true ? Icons.Stop : Icons.Play}
-      {label}
+      {label && <span>{label}</span>}
     </button>
   )
 }
 // PROPTYPES
 const { func, bool, object, string } = PropTypes
 AudioMinimalPresentation.propTypes = {
+  audioId: string,
   /** Use to override the default icons. Eg: icons={{Play: jsx, Pause: jsx, Error: jsx}}  */
   icons: object,
   /** Use to style icons */

@@ -33,7 +33,13 @@ function VideoThumbnail({
 
   return (
     <div className={containerStyles}>
-      <video className={videoStyles} src={src} {...other} disableRemotePlayback>
+      <video
+        className={videoStyles}
+        src={src}
+        loading="lazy"
+        {...other}
+        disableRemotePlayback
+      >
         Your browser does not support the video tag.
       </video>
     </div>

@@ -25,6 +25,7 @@ function AudioMinimalContainer({
       iconStyling={iconStyling}
       label={label}
       buttonStyling={buttonStyling}
+      audioId={audioObject?.id}
     />
   )
 }

@@ -115,7 +115,7 @@ function DashboardEntriesPresentationList({
                               data-testid="click-title"
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="btn-teriary btn-md text-left pl-6"
+                              className="w-full h-full text-left pl-6"
                             >
                               {entry?.title}
                             </button>
@@ -124,7 +124,7 @@ function DashboardEntriesPresentationList({
                             <button
                               data-testid="click-translations"
                               type="button"
-                              className="btn-tertairy btn-md"
+                              className="w-full h-full text-left"
                               onClick={() => handleItemClick(entry)}
                             >
                               {/* For Dictionary Entries */}
@@ -264,12 +264,27 @@ function DashboardEntriesPresentationList({
                 <span>View on site</span>
               </Link>
             </div>
+
             <EntryDetail.Container
               id={selectedItem?.id}
               type={selectedItem?.type}
               isDrawer
               isDashboard
             />
+            <section className="border-t text-sm p-4">
+              {selectedItem?.created && (
+                <p>
+                  Created: {selectedItem?.created} by{' '}
+                  {selectedItem?.createdBy || 'unknown'}
+                </p>
+              )}
+              {selectedItem?.lastModified && (
+                <p>
+                  Last modified: {selectedItem?.lastModified} by{' '}
+                  {selectedItem?.lastModifiedBy || 'unknown'}
+                </p>
+              )}
+            </section>
           </>
         )}
       </Drawer.Presentation>

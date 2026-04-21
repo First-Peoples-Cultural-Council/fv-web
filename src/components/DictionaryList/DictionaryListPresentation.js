@@ -51,7 +51,7 @@ function DictionaryListPresentation({
   }
 
   const tableHeaderStyling =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-500 uppercase tracking-wider'
+    'px-4 py-5 text-left font-normal capitalize bg-charcoal-50'
 
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
@@ -62,33 +62,32 @@ function DictionaryListPresentation({
         {infiniteQueryResponse?.data?.hasResults ? (
           <div className="flex flex-col w-full py-2">
             <div className="border-b border-charcoal-200 rounded-lg overflow-hidden">
-              <table className="table-auto w-full divide-y divide-charcoal-200">
-                <thead className="bg-charcoal-50">
+              <table className="table-auto w-full">
+                <thead>
                   <tr>
-                    <th scope="col" className="px-6 py-3">
+                    <th
+                      scope="col"
+                      className={`${tableHeaderStyling} rounded-l-lg`}
+                    >
                       {sorting ? (
                         <button
                           data-testid="sort-btn"
                           type="button"
                           onClick={() => onSortByClick('ENTRY')}
-                          className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider"
+                          className="flex items-center"
                         >
-                          <div className="inline-flex">
-                            {entryLabel.toUpperCase()}
-                          </div>
-                          {getSortingIcon('ENTRY')}
+                          <div className="inline-flex">{entryLabel}</div>
+                          {getSortingIcon('Entry')}
                         </button>
                       ) : (
-                        <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
-                          <div className="inline-flex">
-                            {entryLabel.toUpperCase()}
-                          </div>
-                          {getSortingIcon('ENTRY')}
+                        <div className="flex items-center">
+                          <div className="inline-flex">{entryLabel}</div>
+                          {getSortingIcon('Entry')}
                         </div>
                       )}
                     </th>
                     <th scope="col" className={tableHeaderStyling}>
-                      <span className="sr-only">Audio</span>
+                      Audio
                     </th>
                     <th scope="col" className={tableHeaderStyling}>
                       Translation
@@ -103,118 +102,88 @@ function DictionaryListPresentation({
                         Language Site
                       </th>
                     )}
-                    <th scope="col" className={tableHeaderStyling}>
-                      <span className="sr-only">Actions</span>
+                    <th
+                      scope="col"
+                      className="text-center px-4 py-5 font-normal bg-charcoal-50 rounded-r-lg"
+                    >
+                      More
                     </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-charcoal-200">
-                  {infiniteQueryResponse?.data?.pages?.map(
-                    (page, pageIndex) => (
-                      <Fragment key={page.pageNumber}>
-                        {page.results.map((entry, resultIndex) => {
-                          const ifLastEntryStyling =
-                            resultIndex === page.results.length - 1 &&
-                            pageIndex ===
-                              infiniteQueryResponse.data.pages.length - 1
-                              ? 'pb-20'
-                              : ''
-
-                          return entry?.siteIsHidden && wholeDomain ? null : (
-                            <tr key={entry?.id}>
-                              <td>
-                                <button
-                                  type="button"
-                                  className={`px-6 py-4 ${ifLastEntryStyling} w-full h-full text-left font-medium text-charcoal-900 lg:mr-2`}
-                                  onClick={() => handleItemClick(entry)}
-                                  data-testid="DictionaryListEntry"
-                                >
-                                  {entry?.title}
-                                </button>
-                              </td>
-                              <td
-                                className={`py-4 ${ifLastEntryStyling}`}
-                                aria-label="list"
+                  {infiniteQueryResponse?.data?.pages?.map((page) => (
+                    <Fragment key={page?.pageNumber}>
+                      {page?.results?.map((entry) => {
+                        if (entry?.siteIsHidden && wholeDomain) {
+                          return null
+                        }
+                        return (
+                          <tr key={entry?.id}>
+                            <td>
+                              <button
+                                type="button"
+                                className="p-4 w-full h-full text-left font-bold text-charcoal-900"
+                                onClick={() => handleItemClick(entry)}
+                                data-testid="DictionaryListEntry"
                               >
-                                <div
-                                  className={`inline-flex items-center ${Array.isArray(entry?.audio) && entry.audio.length > 3 ? 'md:hidden lg:flex' : ''}`}
-                                >
-                                  <AudioButton audioArray={entry?.audio} />
-                                </div>
-                                {Array.isArray(entry?.audio) &&
-                                  entry.audio.length > 3 && (
-                                    <div className="hidden md:grid lg:hidden grid-cols-3 gap-1 place-items-center">
-                                      {entry.audio.map((a, i) => (
-                                        <AudioButton
-                                          key={a?.id || i}
-                                          audioArray={[a]}
-                                        />
-                                      ))}
-                                    </div>
+                                {entry?.title}
+                              </button>
+                            </td>
+                            <td aria-label="list">
+                              <div className="pl-4 flex flex-wrap">
+                                <AudioButton audioArray={entry?.audio} />
+                              </div>
+                            </td>
+                            <td className="p-4">
+                              {/* For Dictionary Entries */}
+                              {entry?.translations ? (
+                                <ol className="text-charcoal-900">
+                                  {entry?.translations?.map(
+                                    (translation, i) => (
+                                      <li key={translation?.text}>
+                                        {entry?.translations?.length > 1
+                                          ? `${i + 1}. `
+                                          : null}{' '}
+                                        {translation?.text}
+                                      </li>
+                                    ),
                                   )}
-                              </td>
-                              <td className={`px-6 py-4 ${ifLastEntryStyling}`}>
-                                {/* For Dictionary Entries */}
-                                {entry?.translations ? (
-                                  <ol className="text-charcoal-900">
-                                    {entry?.translations?.map(
-                                      (translation, i) => (
-                                        <li key={translation?.text}>
-                                          {entry?.translations?.length > 1
-                                            ? `${i + 1}. `
-                                            : null}{' '}
-                                          {translation?.text}
-                                        </li>
-                                      ),
-                                    )}
-                                  </ol>
-                                ) : null}
-                                {/* For Songs and Stories */}
-                                {entry?.titleTranslation && (
-                                  <div className="text-charcoal-900">
-                                    {entry?.titleTranslation}
-                                  </div>
-                                )}
-                              </td>
-                              {showType && (
-                                <td
-                                  className={`px-6 py-4 whitespace-nowrap ${ifLastEntryStyling}`}
-                                >
-                                  <span
-                                    className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
-                                  >
-                                    <span>{entry?.type}</span>
-                                  </span>
-                                </td>
+                                </ol>
+                              ) : null}
+                              {/* For Songs and Stories */}
+                              {entry?.titleTranslation && (
+                                <div className="text-charcoal-900">
+                                  {entry?.titleTranslation}
+                                </div>
                               )}
-                              {wholeDomain && (
-                                <td
-                                  className={`px-6 py-4 whitespace-nowrap ${ifLastEntryStyling}`}
+                            </td>
+                            {showType && (
+                              <td className="p-4 whitespace-nowrap">
+                                <span
+                                  className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-md border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                                 >
-                                  <Link
-                                    className="text-left text-sm text-charcoal-900"
-                                    to={`/${entry?.sitename}`}
-                                  >
-                                    {entry?.siteTitle}
-                                  </Link>
-                                </td>
-                              )}
-                              <td
-                                className={`text-right px-6 py-4 ${ifLastEntryStyling}`}
-                                aria-label="list"
-                              >
-                                <ActionsMenu.Presentation
-                                  entry={entry}
-                                  sitename={entry?.sitename}
-                                  siteVisibility={entry?.siteVisibility}
-                                />
+                                  <span>{entry?.type}</span>
+                                </span>
                               </td>
-                            </tr>
-                          )
-                        })}
-                      </Fragment>
-                    ),
-                  )}
+                            )}
+                            {wholeDomain && (
+                              <td className="p-4 whitespace-nowrap">
+                                <Link
+                                  className="text-left text-sm text-charcoal-900"
+                                  to={`/${entry?.sitename}`}
+                                >
+                                  {entry?.siteTitle}
+                                </Link>
+                              </td>
+                            )}
+                            <td className="text-right p-4" aria-label="list">
+                              <ActionsMenu.Presentation entry={entry} />
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </Fragment>
+                  ))}
                 </tbody>
               </table>
             </div>

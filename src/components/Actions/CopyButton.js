@@ -6,7 +6,11 @@ import getIcon from 'common/utils/getIcon'
 import copyToClipboard from 'common/utils/copyToClipboard'
 import Tooltip from 'components/Tooltip'
 
-function Copy({ textToCopy, withLabels = false }) {
+function CopyButton({
+  textToCopy,
+  buttonStyling = 'btn-tertiary btn-md-icon',
+  withLabels = false,
+}) {
   const [confirmation, setConfirmation] = useState(false)
 
   const confirmationCallback = () => {
@@ -17,8 +21,6 @@ function Copy({ textToCopy, withLabels = false }) {
     }, 1000)
   }
 
-  const buttonClass = `btn-tertiary ${withLabels ? ' btn-sm' : 'btn-md-icon'}`
-
   return (
     <Tooltip hide={withLabels} message={confirmation ? 'Copied' : 'Copy'}>
       <button
@@ -26,22 +28,23 @@ function Copy({ textToCopy, withLabels = false }) {
         id="CopyAction"
         data-testid={`copy-btn-${textToCopy}`}
         aria-label="Copy to clipboard"
-        className={buttonClass}
+        className={buttonStyling}
         onClick={() =>
           copyToClipboard({ text: textToCopy, confirmationCallback })
         }
       >
         {getIcon('Copy')}
-        {withLabels ? <span>{confirmation ? 'COPIED' : 'COPY'}</span> : null}
+        {withLabels ? <span>{confirmation ? 'Copied' : 'Copy'}</span> : null}
       </button>
     </Tooltip>
   )
 }
 // PROPTYPES
 const { bool, string } = PropTypes
-Copy.propTypes = {
+CopyButton.propTypes = {
   textToCopy: string,
   withLabels: bool,
+  buttonStyling: string,
 }
 
-export default Copy
+export default CopyButton

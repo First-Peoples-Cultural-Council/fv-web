@@ -37,7 +37,13 @@ function AudioNativePresentation({
   }
 
   return (
-    <audio className={styling} src={src} controls onPlay={() => onPlay()} />
+    <audio
+      className={styling}
+      src={src}
+      controls
+      onPlay={() => onPlay()}
+      loading="lazy"
+    />
   )
 }
 // PROPTYPES

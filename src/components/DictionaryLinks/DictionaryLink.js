@@ -5,29 +5,24 @@ import { Link } from 'react-router'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function DictionaryLink({ linkProperties }) {
+function DictionaryLink({ current, linkProperties }) {
   return (
-    <li
-      id={linkProperties?.id}
-      className="transition duration-500 ease-in-out ml-5 xl:ml-8"
-    >
+    <li id={linkProperties?.id} className="transition duration-500 ease-in-out">
       <Link
-        className="flex items-center transition duration-500 ease-in-out p-2 grow rounded-lg capitalize cursor-pointer text-lg xl:text-xl text-charcoal-900"
+        className={`${current ? 'btn-primary' : 'btn-tertiary'} btn-md justify-start transition duration-500 ease-in-out`}
         to={linkProperties?.linkTo}
       >
-        {getIcon(
-          linkProperties?.iconId,
-          'inline-flex fill-current w-6 xl:w-8 mr-2 xl:mr-5',
-        )}
+        {getIcon(linkProperties?.iconId)}
         <span>{linkProperties?.label}</span>
       </Link>
     </li>
   )
 }
 // PROPTYPES
-const { object } = PropTypes
+const { bool, object } = PropTypes
 DictionaryLink.propTypes = {
   linkProperties: object,
+  current: bool,
 }
 
 export default DictionaryLink

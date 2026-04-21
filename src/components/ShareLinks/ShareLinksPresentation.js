@@ -5,7 +5,7 @@ import copyToClipboard from 'common/utils/copyToClipboard'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { useNotification } from 'context/NotificationContext'
-import { QrcodeModal } from 'components/Actions'
+import QrcodeModal from 'components/Actions/QrcodeModal'
 
 function ShareLinksPresentation({ url, title, modalCloseHandler, entry }) {
   const { setNotification } = useNotification()

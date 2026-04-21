@@ -6,6 +6,7 @@ import { useVimeoThumbnail } from 'common/dataHooks/useVideos'
 
 function VideoLinkThumbnail({
   link,
+  imageStyles = 'group-hover:opacity-75 aspect-3/2 w-full object-cover pointer-events-none',
   containerStyles = 'block relative w-48 h-32 rounded-lg bg-charcoal-50 overflow-hidden',
 }) {
   const queryResponse = useVimeoThumbnail({ link })
@@ -28,7 +29,8 @@ function VideoLinkThumbnail({
       <img
         src={thumbnail}
         alt="video thumbnail"
-        className="group-hover:opacity-75 aspect-3/2 w-full object-cover pointer-events-none"
+        loading="lazy"
+        className={imageStyles}
       />
     </div>
   )
@@ -37,6 +39,7 @@ function VideoLinkThumbnail({
 const { string, object } = PropTypes
 VideoLinkThumbnail.propTypes = {
   link: object,
+  imageStyles: string,
   containerStyles: string,
 }
 
