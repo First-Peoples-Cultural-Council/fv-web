@@ -32,6 +32,7 @@ function ActionsMenuPresentation({
         <Menu as="div" className="relative inline-flex text-left">
           <MenuButton
             id="More"
+            data-testid="more-menu-btn"
             aria-label="More Options"
             className="relative btn-tertiary btn-md-icon"
           >

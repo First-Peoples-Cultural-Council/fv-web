@@ -30,7 +30,7 @@ describe(
         'be.visible',
       )
 
-      cy.contains('MORE').click()
+      cy.get('[data-testid="more-menu-btn"]').first().click()
       cy.contains('QR CODE').should('be.visible')
       cy.contains('SHARE').click()
       cy.contains('Cancel').click()
