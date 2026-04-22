@@ -77,10 +77,11 @@ runs:
       shell: bash
       run: |
         echo "Gathering event details"
+        NAMESPACE="${{ inputs.tekton_namespace }}"
         for STEP in "${{ inputs.pipeline_step1 }}" "${{ inputs.pipeline_step2 }}" "${{ inputs.pipeline_step3 }}"
         do
           if [ -n "$STEP" ]; then
-            echo "Developers with access to CI client can locally run tkn taskrun logs -f ${RUNID}-${STEP} -n ${{ inputs.tekton_namespace }} for more details, else check events below"
+            echo "Developers with access to CI client can locally run tkn taskrun logs -f ${RUNID}-${STEP} -n ${NAMESPACE} for more details, else check events below"
           fi
         done
         sleep 30
