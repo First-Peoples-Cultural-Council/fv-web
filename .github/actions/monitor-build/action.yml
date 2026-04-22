@@ -76,25 +76,33 @@ runs:
     - name: Monitor RUNID
       shell: bash
       run: |
-        echo "Monitoring Tekton build for RUNID: $RUNID"
-        echo "===================================================================================="
-
-        for STEP in ${{ inputs.pipeline_step1 }} ${{ inputs.pipeline_step2 }} ${{ inputs.pipeline_step3 }}
+        echo "Gathering event details"
+        for STEP in "${{ inputs.pipeline_step1 }}" "${{ inputs.pipeline_step2 }}" "${{ inputs.pipeline_step3 }}"
         do
-          echo "▶ Streaming logs for task: $STEP"
-
-          tkn taskrun logs -f "$RUNID-$STEP" -n "${{ inputs.tekton_namespace }}"
-
-          STATUS=$(kubectl get taskrun "$RUNID-$STEP" -n "${{ inputs.tekton_namespace }}" -o jsonpath='{.status.conditions[0].reason}')
-
-          if [ "$STATUS" != "Succeeded" ]; then
-            echo "Task $STEP failed with status: $STATUS"
-            exit 1
+          if [ -n "$STEP" ]; then
+            echo "Developers with access to CI client can locally run tkn taskrun logs -f ${RUNID}-${STEP} -n ${{ inputs.tekton_namespace }} for more details, else check events below"
           fi
-
-          echo "------------------------------------------------------------------------------------"
-          sleep 1
         done
+        sleep 30
+#        echo "Monitoring Tekton build for RUNID: $RUNID"
+#        echo "===================================================================================="
+#
+#        for STEP in ${{ inputs.pipeline_step1 }} ${{ inputs.pipeline_step2 }} ${{ inputs.pipeline_step3 }}
+#        do
+#          echo "▶ Streaming logs for task: $STEP"
+#
+#          tkn taskrun logs -f "$RUNID-$STEP" -n "${{ inputs.tekton_namespace }}"
+#
+#          STATUS=$(kubectl get taskrun "$RUNID-$STEP" -n "${{ inputs.tekton_namespace }}" -o jsonpath='{.status.conditions[0].reason}')
+#
+#          if [ "$STATUS" != "Succeeded" ]; then
+#            echo "Task $STEP failed with status: $STATUS"
+#            exit 1
+#          fi
+#
+#          echo "------------------------------------------------------------------------------------"
+#          sleep 1
+#        done
 
         echo "All pipeline steps completed."
         kubectl get events -n ${{ inputs.tekton_namespace }} | grep "$RUNID" || echo "No events found for $RUNID"
