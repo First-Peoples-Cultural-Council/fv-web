@@ -1,5 +1,5 @@
 name: "Monitor Tekton Build"
-description: "Setup EKS, derive RUNID from Tekton, and monitor pipeline steps"
+description: "Monitors a Tekton pipeline run by detecting the latest PipelineRun and streaming logs for each step."
 
 inputs:
   aws_region: { required: true }
@@ -28,51 +28,73 @@ runs:
     - name: Setup kubectl
       shell: bash
       run: |
-        aws eks update-kubeconfig --name "${{ inputs.cluster_name }}" --region "${{ inputs.aws_region }}"
+        aws eks update-kubeconfig --name ${{ inputs.cluster_name }} --region ${{ inputs.aws_region }}
+
+    - name: Install tkn CLI
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        VERSION=$(curl -s https://api.github.com/repos/tektoncd/cli/releases/latest | jq -r .tag_name)
+        VERSION_NO_V=${VERSION#v}
+
+        curl -L -o tkn.tar.gz "https://github.com/tektoncd/cli/releases/download/${VERSION}/tkn_${VERSION_NO_V}_Linux_x86_64.tar.gz"
+
+        tar -xzf tkn.tar.gz
+        chmod +x tkn
+        sudo mv tkn /usr/local/bin/tkn
+
+        tkn version
 
     - name: Setup RUNID
       shell: bash
       run: |
         SORT_CMD="${{ inputs.job_sort_order }}"
-        WEBHOOK_PREFIX="${{ inputs.webhook_prefix }}"
-        echo "Looking for PipelineRuns matching: $WEBHOOK_PREFIX"
-        
+        PREFIX="${{ inputs.webhook_prefix }}"
+
+        echo "Sorting jobs using: $SORT_CMD"
+        echo "Filtering PipelineRuns with prefix: $PREFIX"
+
         RUNID=$(kubectl get pr -n "${{ inputs.tekton_namespace }}" \
           -l tekton.dev/pipeline="${{ inputs.pipeline_name }}",triggers.tekton.dev/trigger="${{ inputs.tekton_interceptor_name }}" \
           --sort-by=.metadata.creationTimestamp \
           -o jsonpath='{.items[*].metadata.name}' | awk '{print $NF}')
 
-
+        echo "Found RUNID: $RUNID"
         echo "RUNID=$RUNID" >> "$GITHUB_ENV"
-        echo "$RUNID" > runid.txt
 
     - name: Check RUNID Validity
       shell: bash
       run: |
-        RUNID=$(cat runid.txt)
-        echo "The run ID associated with this deployment is $RUNID"
         if [ -z "$RUNID" ]; then
-          echo "No valid PipelineRun found. Exiting."
+          echo "No matching PipelineRun found. Aborting."
           exit 1
+        else
+          echo "RUNID is valid: $RUNID"
         fi
 
-    - name: Monitor Tekton Tasks
+    - name: Monitor RUNID
       shell: bash
       run: |
-        RUNID=$(cat runid.txt)
-        NS="${{ inputs.tekton_namespace }}"
+        echo "Monitoring Tekton build for RUNID: $RUNID"
+        echo "===================================================================================="
 
-        echo "Monitoring Tekton RUNID: $RUNID"
-        kubectl get events -n "$NS" | grep "$RUNID" || true
+        for STEP in ${{ inputs.pipeline_step1 }} ${{ inputs.pipeline_step2 }} ${{ inputs.pipeline_step3 }}
+        do
+          echo "▶ Streaming logs for task: $STEP"
 
-        for STEP in "${{ inputs.pipeline_step1 }}" "${{ inputs.pipeline_step2 }}" "${{ inputs.pipeline_step3 }}"; do
-          echo "===================================================================================="
-          echo "Waiting for step: $STEP"
-          kubectl wait --for=condition=Succeeded TaskRun "$RUNID-$STEP" --timeout=300s -n "$NS"
-          kubectl logs "pod/$RUNID-$STEP-pod" -n "$NS" || echo "Logs for $STEP not found"
+          tkn taskrun logs -f "$RUNID-$STEP" -n "${{ inputs.tekton_namespace }}"
+
+          STATUS=$(kubectl get taskrun "$RUNID-$STEP" -n "${{ inputs.tekton_namespace }}" -o jsonpath='{.status.conditions[0].reason}')
+
+          if [ "$STATUS" != "Succeeded" ]; then
+            echo "Task $STEP failed with status: $STATUS"
+            exit 1
+          fi
+
+          echo "------------------------------------------------------------------------------------"
           sleep 1
         done
 
-        echo "===================================================================================="
-        kubectl get events -n "$NS" | grep "$RUNID" || true
-        echo "Tekton pipeline monitoring complete."
+        echo "All pipeline steps completed."
+        kubectl get events -n ${{ inputs.tekton_namespace }} | grep "$RUNID" || echo "No events found for $RUNID"
