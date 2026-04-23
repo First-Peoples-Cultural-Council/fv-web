@@ -7,7 +7,15 @@ import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 export function apiBase() {
   return ky.create({
     prefixUrl: GlobalConfiguration.API_URL,
-    timeout: 180000,
+    timeout: 60000,
+    headers: getAuthHeaderIfTokenExists(),
+  })
+}
+
+export function audioUploadApi() {
+  return ky.create({
+    prefixUrl: GlobalConfiguration.API_URL,
+    timeout: 300000,
     headers: getAuthHeaderIfTokenExists(),
   })
 }
