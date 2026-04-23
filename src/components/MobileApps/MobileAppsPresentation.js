@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types'
 import SectionTitle from 'components/SectionTitle'
 import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 import getIcon from 'common/utils/getIcon'
-import { getAppUrl, getAppLogoUrl } from 'common/utils/getAppUrl'
+import { getAppUrl, getAppLogoUrl } from 'common/utils/appHelpers'
 
 function MobileAppsPresentation({ sitesWithApps }) {
   const headerStyle = 'text-xl font-bold mb-1 mt-4'
