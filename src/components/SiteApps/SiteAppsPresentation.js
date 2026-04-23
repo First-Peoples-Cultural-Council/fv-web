@@ -103,9 +103,8 @@ function SiteAppsPresentation() {
                       rel="noopener noreferrer"
                       className="inline-url"
                     >
-                      app website
+                      app website.
                     </a>
-                    .
                   </li>
                   <li>Tap the three-dot menu ( ⋮ ) in the top right corner.</li>
                   <li>
@@ -130,9 +129,8 @@ function SiteAppsPresentation() {
                       rel="noopener noreferrer"
                       className="inline-url"
                     >
-                      app website
+                      app website.
                     </a>
-                    .
                   </li>
                   <li>
                     Tap the three-dot menu (⋯) in the bottom right corner.
@@ -179,9 +177,8 @@ function SiteAppsPresentation() {
                       rel="noopener noreferrer"
                       className="inline-url"
                     >
-                      app website
+                      app website.
                     </a>
-                    .
                   </li>
                   <li>
                     Go to the menu bar and select &quot;File&quot; &gt;
