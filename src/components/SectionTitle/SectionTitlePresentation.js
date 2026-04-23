@@ -5,20 +5,16 @@ function SectionTitlePresentation({
   accentColor = 'blumine-800',
   bgColor = 'white',
   title,
-  placeholder = false,
 }) {
   return (
     <div data-testid="SectionTitlePresentation" className="relative">
       <h2
-        className={`relative z-10 text-center text-2xl md:text-4xl lg:text-5xl text-${accentColor} font-bold`}
+        className={`relative z-10 text-center text-2xl md:text-4xl lg:text-5xl text-${accentColor}`}
       >
         <span
           className={`max-w-5xl inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
         >
-          {title}
-          {placeholder && (
-            <span className="bg-charcoal-50 text-charcoal-50 px-28" />
-          )}
+          {title || <span className="bg-charcoal-50 px-28" />}
         </span>
       </h2>
       <hr
@@ -29,12 +25,11 @@ function SectionTitlePresentation({
   )
 }
 // PROPTYPES
-const { string, bool } = PropTypes
+const { string } = PropTypes
 SectionTitlePresentation.propTypes = {
   accentColor: string,
   bgColor: string,
   title: string,
-  placeholder: bool,
 }
 
 export default SectionTitlePresentation

@@ -5,7 +5,7 @@ function AlphabetPlaceholder() {
   return (
     <section className="py-12 bg-white" data-testid="AlphabetPlaceholder">
       <div className="mx-10 mb-12">
-        <SectionTitle.Presentation placeholder />
+        <SectionTitle.Presentation />
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-7 gap-2">
