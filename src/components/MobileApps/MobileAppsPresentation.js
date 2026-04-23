@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
+import DocHead from 'components/DocHead'
 import LogoPresentation from 'components/SiteLogo/LogoPresentation'
 import getIcon from 'common/utils/getIcon'
 import { getAppUrl, getAppLogoUrl } from 'common/utils/appHelpers'
@@ -13,10 +14,11 @@ function MobileAppsPresentation({ sitesWithApps }) {
 
   return (
     <section
+      data-testid="MobileAppsPresentation"
       className="pt-2 md:pt-4 lg:pt-8 bg-white"
-      data-testid="FirstVoicesApps"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <DocHead titleArray={['Apps']} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="FIRSTVOICES APPS" />
         <div className="max-w-4xl mx-auto">
           <div className="text-charcoal-900 space-y-4 py-8 text-pretty">

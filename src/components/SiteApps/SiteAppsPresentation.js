@@ -18,10 +18,10 @@ function SiteAppsPresentation() {
   return (
     <div
       data-testid="SiteAppsPresentation"
-      className="max-w-7xl mx-auto pt-2 md:pt-4 lg:pt-8 bg-white"
+      className="pt-2 md:pt-4 lg:pt-8 bg-white"
     >
       <SiteDocHead titleArray={['Mobile App']} />
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle.Presentation title="MOBILE APP" />
         <div className="max-w-4xl mx-auto space-y-4 md:space-y-6 lg:space-y-10 mt-4 sm:mt-6 lg:mt-10">
           <div className="bg-white space-y-4">
