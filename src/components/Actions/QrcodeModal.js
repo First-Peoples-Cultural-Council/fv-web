@@ -37,7 +37,7 @@ function QrcodeModal({ entry, url, isOpen = false, onClose }) {
               <QrcodeCanvas url={url} />
             </div>
             <button
-              data-testid="cancel"
+              data-testid="cancel-btn"
               type="button"
               className="btn-primary btn-md"
               onClick={onClose}

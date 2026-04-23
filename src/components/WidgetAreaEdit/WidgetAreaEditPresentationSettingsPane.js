@@ -219,7 +219,7 @@ function WidgetAreaEditPresentationSettingsPane({
           </p>
           <div className="w-full justify-center flex space-x-2">
             <button
-              data-testid="cancel"
+              data-testid="cancel-btn"
               type="button"
               className="btn-secondary btn-md"
               onClick={() => setRemoveModalOpen(false)}

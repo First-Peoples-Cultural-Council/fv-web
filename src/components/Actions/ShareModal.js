@@ -54,7 +54,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
           </>
         )}
         <button
-          data-testid="cancel"
+          data-testid="cancel-btn"
           type="button"
           className="btn-primary btn-md"
           onClick={onClose}
