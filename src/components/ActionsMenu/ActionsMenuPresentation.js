@@ -61,7 +61,7 @@ function ActionsMenuPresentation({
               {moreActions.includes('qrcode') && (
                 <MenuItem>
                   <button
-                    data-testid="QrcodeButton"
+                    data-testid="qrcode-btn"
                     type="button"
                     id="QrcodeButton"
                     className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start"

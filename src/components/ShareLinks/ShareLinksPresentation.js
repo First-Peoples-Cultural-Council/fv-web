@@ -96,7 +96,7 @@ function ShareLinksPresentation({ url, title, modalCloseHandler, entry }) {
         </li>
         <li>
           <button
-            data-testid="QrcodeButton"
+            data-testid="qrcode-btn"
             type="button"
             id="QrcodeButton"
             className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-white bg-charcoal-500"

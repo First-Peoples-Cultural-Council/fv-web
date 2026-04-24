@@ -109,7 +109,7 @@ function WidgetCrudPresentation({
           <div className="p-4">
             <div className="flex justify-center space-x-4">
               <button
-                data-testid="cancel"
+                data-testid="cancel-btn"
                 type="button"
                 className="btn-secondary btn-md"
                 onClick={backHandler}

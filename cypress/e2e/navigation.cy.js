@@ -21,11 +21,11 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
-      cy.contains('Words').should('exist')
+      cy.get('[data-testid="word-header"]').should('exist')
 
       cy.contains('Dictionary').click()
       cy.contains('Phrases').click()
-      cy.contains('PHRASES').should('exist')
+      cy.get('[data-testid="phrase-header"]').should('exist')
       cy.contains('Dictionary').click()
       cy.contains('Categories').click()
       cy.contains('CATEGORIES').should('exist')

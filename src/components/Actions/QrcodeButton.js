@@ -19,7 +19,7 @@ function QrcodeButton({
     <>
       <Tooltip hide={withLabels} message="QR Code">
         <button
-          data-testid="QrcodeButton"
+          data-testid="qrcode-btn"
           type="button"
           id="QrcodeButton"
           className={buttonStyling}

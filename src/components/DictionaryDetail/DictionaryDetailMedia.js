@@ -32,7 +32,7 @@ function DictionaryDetailMedia({ entry }) {
           <div className="w-full">
             <DictionaryDetailLabel label="Images" />
             <TabGroup>
-              <TabPanels className="mb-3">
+              <TabPanels>
                 {entry?.relatedImages?.map((image) => (
                   <TabPanel
                     key={image?.id}
@@ -46,21 +46,23 @@ function DictionaryDetailMedia({ entry }) {
                   </TabPanel>
                 ))}
               </TabPanels>
-              <TabList className="flex overflow-x-auto space-x-4 snap-x">
-                {entry?.relatedImages?.map((image) => (
-                  <Tab
-                    key={image?.id}
-                    className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
-                  >
-                    <MediaThumbnail.Image
+              {entry?.relatedImages?.length > 1 && (
+                <TabList className="flex overflow-x-auto space-x-4 snap-x mt-3">
+                  {entry?.relatedImages?.map((image) => (
+                    <Tab
                       key={image?.id}
-                      imageObject={image}
-                      containerStyles=""
-                      imageStyles="w-18 h-18 object-cover"
-                    />
-                  </Tab>
-                ))}
-              </TabList>
+                      className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                    >
+                      <MediaThumbnail.Image
+                        key={image?.id}
+                        imageObject={image}
+                        containerStyles=""
+                        imageStyles="w-18 h-18 object-cover"
+                      />
+                    </Tab>
+                  ))}
+                </TabList>
+              )}
             </TabGroup>
           </div>
         </div>
@@ -98,7 +100,7 @@ function DictionaryDetailMedia({ entry }) {
                         </DisclosureButton>
                       </div>
                       <DisclosurePanel>
-                        <div className="text-charcoal-900 -mt-5 mb-2 pr-5">
+                        <div className="text-charcoal-900 -mt-5 pr-5">
                           {video?.title && (
                             <div>
                               <div className="text-base">{video?.title}</div>
@@ -120,21 +122,23 @@ function DictionaryDetailMedia({ entry }) {
                   </TabPanel>
                 ))}
               </TabPanels>
-              <TabList className="flex overflow-x-auto space-x-4 snap-x">
-                {entry?.relatedVideos?.map((video) => (
-                  <Tab
-                    key={video?.id}
-                    className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
-                  >
-                    <MediaThumbnail.Video
+              {entry?.relatedVideos?.length > 1 && (
+                <TabList className="flex overflow-x-auto space-x-4 snap-x mt-2">
+                  {entry?.relatedVideos?.map((video) => (
+                    <Tab
                       key={video?.id}
-                      videoObject={video}
-                      containerStyles=""
-                      videoStyles="w-18 h-18 object-cover"
-                    />
-                  </Tab>
-                ))}
-              </TabList>
+                      className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                    >
+                      <MediaThumbnail.Video
+                        key={video?.id}
+                        videoObject={video}
+                        containerStyles=""
+                        videoStyles="w-18 h-18 object-cover"
+                      />
+                    </Tab>
+                  ))}
+                </TabList>
+              )}
             </TabGroup>
           </div>
         </div>
@@ -145,7 +149,7 @@ function DictionaryDetailMedia({ entry }) {
           <div className="w-full">
             <DictionaryDetailLabel label="Video Links" />
             <TabGroup>
-              <TabPanels className="mb-3">
+              <TabPanels>
                 {entry?.relatedVideoLinks?.map((link) => (
                   <TabPanel
                     key={link?.id}
@@ -162,21 +166,23 @@ function DictionaryDetailMedia({ entry }) {
                   </TabPanel>
                 ))}
               </TabPanels>
-              <TabList className="flex overflow-x-auto space-x-4 snap-x">
-                {entry?.relatedVideoLinks?.map((link) => (
-                  <Tab
-                    key={link?.id}
-                    className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
-                  >
-                    <MediaThumbnail.VideoLink
+              {entry?.relatedVideoLinks?.length > 1 && (
+                <TabList className="flex overflow-x-auto space-x-4 snap-x mt-3">
+                  {entry?.relatedVideoLinks?.map((link) => (
+                    <Tab
                       key={link?.id}
-                      link={link}
-                      containerStyles=""
-                      imageStyles="w-18 h-18 object-cover"
-                    />
-                  </Tab>
-                ))}
-              </TabList>
+                      className="shrink-0 snap-start rounded-lg overflow-hidden w-18 h-18 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                    >
+                      <MediaThumbnail.VideoLink
+                        key={link?.id}
+                        link={link}
+                        containerStyles=""
+                        imageStyles="w-18 h-18 object-cover"
+                      />
+                    </Tab>
+                  ))}
+                </TabList>
+              )}
             </TabGroup>
           </div>
         </div>
