@@ -12,6 +12,14 @@ export function apiBase() {
   })
 }
 
+export function audioUploadApi() {
+  return ky.create({
+    prefixUrl: GlobalConfiguration.API_URL,
+    timeout: 300000,
+    headers: getAuthHeaderIfTokenExists(),
+  })
+}
+
 export const externalApi = ky.create({
   timeout: 60000,
 })
