@@ -30,7 +30,7 @@ describe(
         'be.visible',
       )
 
-      cy.get('[data-testid="more-menu-btn"]').first().click()
+      cy.get('[data-testid="more-menu-btn"]').click()
       cy.get('[data-testid="qrcode-btn"]').should('be.visible')
       cy.get('[data-testid="share-btn"]').click()
       cy.get('[data-testid="cancel-btn"]').click()
