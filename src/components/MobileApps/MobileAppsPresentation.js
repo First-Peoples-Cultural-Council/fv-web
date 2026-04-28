@@ -37,8 +37,8 @@ function MobileAppsPresentation({ sitesWithApps }) {
               to Homescreen” in your browser.
             </p>
             <p>
-              For detailed instructions on how to download your community
-              language site, go here:{' '}
+              For detailed instructions on how to install the app for a
+              FirstVoices language site, go here:{' '}
               <a
                 className="inline-url"
                 target="_blank"
@@ -51,7 +51,7 @@ function MobileAppsPresentation({ sitesWithApps }) {
           </div>
 
           {sitesWithApps && (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 py-8">
               {sitesWithApps?.map(({ id, title, slug }) => {
                 const appUrl = getAppUrl({ slug })
                 const appLogoSrc = getAppLogoUrl({ slug })
@@ -97,7 +97,7 @@ function MobileAppsPresentation({ sitesWithApps }) {
             </div>
           )}
 
-          <div className="px-4 sm:px-6 lg:px-8">
+          <div className="p-4 sm:p-6 lg:p-8">
             <h2 className={headerStyle}>Legacy Apps</h2>
             <p className={paraStyle}>
               Note: The FirstVoices apps in the iOS and Android app stores are
