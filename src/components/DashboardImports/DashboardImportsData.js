@@ -23,6 +23,7 @@ function DashboardImportsData() {
 
   const tileContent = [
     {
+      id: 'import-create',
       icon: 'Create',
       name: 'Add a new import',
       description:

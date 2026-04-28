@@ -13,6 +13,7 @@ function DashboardMediaData() {
 
   const tileContent = [
     {
+      id: 'audio-gallery',
       icon: 'Microphone',
       name: 'Audio',
       description: 'Manage your audio files',
@@ -20,6 +21,7 @@ function DashboardMediaData() {
       iconColor: 'scarlet-900',
     },
     {
+      id: 'image-gallery',
       icon: 'Images',
       name: 'Images',
       description: 'Manage your images',
@@ -27,6 +29,7 @@ function DashboardMediaData() {
       iconColor: 'blumine-800',
     },
     {
+      id: 'video-gallery',
       icon: 'Video',
       name: 'Videos',
       description: 'Manage your videos',
@@ -34,6 +37,7 @@ function DashboardMediaData() {
       iconColor: 'ochre-800',
     },
     {
+      id: 'documents-gallery',
       icon: 'Reports',
       name: 'Documents',
       description: 'Manage your pdfs, csvs, and text files.',
@@ -41,6 +45,7 @@ function DashboardMediaData() {
       iconColor: 'jade-800',
     },
     {
+      id: 'shared-image-gallery',
       icon: 'Images',
       name: 'Shared images',
       description: 'Browse images provided by FirstVoices.',

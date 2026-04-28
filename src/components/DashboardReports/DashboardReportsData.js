@@ -23,6 +23,7 @@ function DashboardReportsData() {
 
   const tileContent = [
     {
+      id: 'advanced-search',
       icon: 'Wrench',
       name: 'Build your own',
       description: 'Use the advanced search filters to create your own report',
@@ -34,6 +35,7 @@ function DashboardReportsData() {
 
   const reportTiles = [
     {
+      id: 'report-recently-created',
       icon: 'Star',
       name: 'Recently created',
       description: 'New words and phrases at the top',
@@ -42,6 +44,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-recently-modified',
       icon: 'Pencil',
       name: 'Recently modified',
       description: 'Recently edited words and phrases at the top',
@@ -50,6 +53,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-no-audio',
       icon: 'MicrophoneOff',
       name: 'No audio',
       description: 'Words and phrases without audio files',
@@ -58,6 +62,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-no-image',
       icon: 'ImagesNone',
       name: 'No images',
       description: 'Words and phrases without images',
@@ -66,6 +71,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-no-category',
       icon: 'CategoriesNone',
       name: 'No categories',
       description: 'Words and phrases without categories',
@@ -74,6 +80,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-team',
       icon: 'Team',
       name: 'Team content',
       description: 'Content only available to the language team',
@@ -82,6 +89,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-members',
       icon: 'Members',
       name: 'Members only content',
       description: 'Content only available to site members',
@@ -90,6 +98,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-public',
       icon: 'Public',
       name: 'Public content',
       description: 'Content available to the general public',
@@ -98,6 +107,7 @@ function DashboardReportsData() {
       auth: ASSISTANT,
     },
     {
+      id: 'report-no-kids',
       icon: 'KidsExclude',
       name: 'Not on Kids site',
       description: 'Words and phrases that are excluded from the Kids site',

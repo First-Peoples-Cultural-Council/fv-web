@@ -14,6 +14,7 @@ function DashboardPagesData() {
 
   const tileContent = [
     {
+      id: 'home-edit',
       icon: 'Home',
       name: 'Edit Homepage',
       description: 'Edit the main homepage for your site',
@@ -22,6 +23,7 @@ function DashboardPagesData() {
       auth: LANGUAGE_ADMIN,
     },
     {
+      id: 'page-create',
       icon: 'Create',
       name: 'Create a Custom Page',
       description: 'Add a new page to your site',
