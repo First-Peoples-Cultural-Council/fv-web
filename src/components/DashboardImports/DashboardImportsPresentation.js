@@ -11,6 +11,14 @@ import Tooltip from 'components/Tooltip'
 import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
 import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
+import {
+  ACCEPTED,
+  STARTED,
+  COMPLETE,
+  FAILED,
+  CANCELLED,
+  EXPIRED,
+} from 'common/constants/jobs'
 
 function DashboardImportsPresentation({
   queryResponse,
@@ -19,6 +27,28 @@ function DashboardImportsPresentation({
   setPage,
   tileContent,
 }) {
+  const getStatusLabel = (importJob) => {
+    if (
+      !importJob?.validationStatus ||
+      importJob?.validationStatus !== COMPLETE
+    ) {
+      return 'Needs Validating'
+    }
+    switch (importJob?.status) {
+      case null:
+        return 'Contact support to proceed with this import'
+      case ACCEPTED:
+      case STARTED:
+        return 'Your import has been queued. Contact support for more information'
+      case FAILED:
+      case EXPIRED:
+        return `This import has ${importJob?.status}. Contact support for more information`
+      case CANCELLED:
+        return `This import was ${importJob?.status}. Contact support for more information`
+      default:
+        return <span className="capitalize">{importJob?.status}</span> || ''
+    }
+  }
   return (
     <div id="DashboardImportsPresentation">
       <div className="grid grid-cols-6 gap-4 mb-4">
@@ -147,11 +177,8 @@ function DashboardImportsPresentation({
                       <ValidationStatusBtn importJob={result} />
                     )}
                   </td>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-500 capitalize">
-                    {result?.status ||
-                      (result?.validationStatus
-                        ? 'See validation status'
-                        : 'Needs Validating')}
+                  <td className="p-3 text-sm text-charcoal-500">
+                    {getStatusLabel(result)}
                   </td>
 
                   <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
