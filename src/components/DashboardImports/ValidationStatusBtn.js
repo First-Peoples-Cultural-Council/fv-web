@@ -7,6 +7,8 @@ import { getLastPathSegment } from 'common/utils/urlHelpers'
 import Tooltip from 'components/Tooltip'
 import getIcon from 'common/utils/getIcon'
 import { useImportJobValidate } from 'common/dataHooks/useImportJobs'
+import AlertBanner from 'components/AlertBanner'
+import { WARNING } from 'common/constants'
 
 function ValidationStatusBtn({ importJob }) {
   const [modalOpen, setModalOpen] = useState(false)
@@ -25,8 +27,21 @@ function ValidationStatusBtn({ importJob }) {
               onClick={() => setModalOpen(true)}
               className="btn-secondary btn-sm text-nowrap"
             >
-              View results
+              <span>View results</span>
             </button>
+            {importJob?.validationReport?.errorRows > 0 ? (
+              <Tooltip message="Errors found">
+                {getIcon(
+                  'ExclamationTriangleSolid',
+                  'fill-current text-ochre-600 size-6',
+                )}
+              </Tooltip>
+            ) : (
+              getIcon(
+                'CheckCircleSolid',
+                'fill-current text-blumine-800 size-6',
+              )
+            )}
             <Tooltip message="Re-validate">
               <button
                 data-testid="import-validate-btn"
@@ -41,10 +56,13 @@ function ValidationStatusBtn({ importJob }) {
         )
       case 'started':
       case 'accepted':
+        return (
+          <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${importJob?.validationStatus}`}</p>
+        )
       case 'failed':
       case 'cancelled':
         return (
-          <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${importJob?.validationStatus}`}</p>
+          <p className="whitespace-nowrap text-sm text-scarlet-800">{`Validation ${importJob?.validationStatus}!`}</p>
         )
       default:
         return (
@@ -69,13 +87,21 @@ function ValidationStatusBtn({ importJob }) {
       >
         <div
           data-testid="ImportValidationReportModal"
-          className="bg-white rounded-md"
+          className="bg-white rounded-md max-w-5xl px-8"
         >
-          <h2 className="text-center text-3xl text-blumine-800 py-4">
-            {importJob?.title}
-            <div className="text-xl mt-1">Validation Report</div>
-          </h2>
-          <div className="text-left px-8 pb-8 min-w-3xl max-w-5xl">
+          <div className="text-center py-4">
+            <h2 className="text-3xl text-blumine-800">{importJob?.title}</h2>
+            <p className="text-xl mt-1">Validation Report</p>
+            {importJob?.validationReport?.errorRows > 0 && (
+              <p className="mt-3 mx-auto">
+                <AlertBanner.Presentation
+                  alertType={WARNING}
+                  message="There are errors in your import! Review them at the bottom of this report before proceeding."
+                />
+              </p>
+            )}
+          </div>
+          <div className="text-left pb-8 min-w-3xl">
             <div className="text-left divide-y-2 divide-charcoal-200 space-y-4">
               <div>
                 <div data-testid="fileName" className={labelStyling}>
@@ -127,14 +153,6 @@ function ValidationStatusBtn({ importJob }) {
                   </div>
                 </div>
                 <div className="col-span-1">
-                  <div data-testid="updatedRows" className={labelStyling}>
-                    Total number of rows to be updated
-                  </div>
-                  <div className={contentStyling}>
-                    {importJob?.validationReport?.updatedRows || 'N/A'}
-                  </div>
-                </div>
-                <div className="col-span-1">
                   <div data-testid="errorRows" className={labelStyling}>
                     Total number of rows with errors
                   </div>
@@ -142,10 +160,29 @@ function ValidationStatusBtn({ importJob }) {
                     {importJob?.validationReport?.errorRows}
                   </div>
                 </div>
+                <div className="col-span-1 invisible">
+                  <div data-testid="updatedRows" className={labelStyling}>
+                    Total number of rows to be updated
+                  </div>
+                  <div className={contentStyling}>
+                    {importJob?.validationReport?.updatedRows || 'N/A'}
+                  </div>
+                </div>
               </div>
             </div>
             <div className="mt-6">
               <div className={labelStyling}>Error details</div>
+              <p className="text-base text-pretty mt-3 max-w-2xl mx-auto">
+                <span className="font-bold">Missing media?</span> you can upload
+                it and re-validate.{' '}
+                <span className="font-bold">Missing category?</span> Create the
+                category on your site and then re-validate.{' '}
+                <span className="font-bold">
+                  Need to make corrections in the CSV?
+                </span>{' '}
+                Delete this import and start a new import after you have made
+                the corrections.
+              </p>
               <div>
                 {importJob?.validationReport?.errorDetails?.length > 0 ? (
                   <div className="overflow-hidden shadow outline-1 outline-charcoal-300 rounded-md">
