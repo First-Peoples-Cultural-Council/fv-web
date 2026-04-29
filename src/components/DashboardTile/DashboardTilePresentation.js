@@ -19,7 +19,7 @@ function DashboardTilePresentation({ tile }) {
           {getIcon(tile.icon, 'h-12 w-12 fill-current')}
         </span>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 space-y-2 text-pretty">
         <h3 className="text-lg font-medium">
           {tile?.externalLink ? (
             <a
@@ -40,7 +40,7 @@ function DashboardTilePresentation({ tile }) {
             </Link>
           )}
         </h3>
-        <p className="mt-2 text-sm text-charcoal-500">{tile.description}</p>
+        <p className="text-sm text-charcoal-500 ">{tile.description}</p>
       </div>
       <span
         className="pointer-events-none absolute top-6 right-6 text-charcoal-200 group-hover:text-charcoal-500"

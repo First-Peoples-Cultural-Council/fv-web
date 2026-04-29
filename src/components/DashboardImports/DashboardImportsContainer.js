@@ -18,17 +18,15 @@ function DashboardImportsContainer() {
   } = DashboardImportsData()
   return (
     <div id="DashboardImportsContainer">
-      <DashboardLanding.Presentation
-        tileContent={tileContent}
-        headerContent={headerContent}
-        site={site}
-      >
+      <DashboardLanding.Presentation headerContent={headerContent} site={site}>
         <SiteDocHead titleArray={['Imports']} />
+
         <DashboardImportsPresentation
           queryResponse={queryResponse}
           deleteImport={deleteImport}
           page={page}
           setPage={setPage}
+          tileContent={tileContent}
         />
       </DashboardLanding.Presentation>
     </div>
