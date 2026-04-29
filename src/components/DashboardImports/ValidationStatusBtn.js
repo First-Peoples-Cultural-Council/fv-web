@@ -181,19 +181,26 @@ function ValidationStatusBtn({ importJob }) {
             </div>
             <div className="mt-6">
               <div className={labelStyling}>Error details</div>
-              <p className="text-base text-pretty mt-3 max-w-2xl mx-auto">
-                <span className="font-bold">Missing media?</span> you can upload
-                it and re-validate.{' '}
-                <span className="font-bold">Missing category?</span> Create the
-                category on your site and then re-validate.{' '}
-                <span className="font-bold">
-                  Need to make corrections in the CSV?
-                </span>{' '}
-                Delete this import and start a new import after you have made
-                the corrections.
-              </p>
-              <div>
-                {importJob?.validationReport?.errorDetails?.length > 0 ? (
+
+              {importJob?.validationReport?.errorDetails?.length > 0 ? (
+                <div>
+                  <div className="text-base text-pretty my-2 max-w-2xl">
+                    <p>
+                      <span className="font-bold">Missing media?</span> You can
+                      add the missing media and re-validate.
+                    </p>
+                    <p>
+                      <span className="font-bold">Missing categories?</span>{' '}
+                      Create the categories on your site and then re-validate.
+                    </p>
+                    <p>
+                      <span className="font-bold">
+                        Need to make corrections in the CSV?
+                      </span>{' '}
+                      Delete this import and start a new import once you have
+                      made the corrections.
+                    </p>
+                  </div>
                   <div className="overflow-hidden shadow outline-1 outline-charcoal-300 rounded-md">
                     <table className="relative min-w-full divide-y divide-charcoal-300">
                       <caption className="sr-only">
@@ -235,10 +242,10 @@ function ValidationStatusBtn({ importJob }) {
                       </tbody>
                     </table>
                   </div>
-                ) : (
-                  'None'
-                )}
-              </div>
+                </div>
+              ) : (
+                'None'
+              )}
             </div>
           </div>
         </div>
