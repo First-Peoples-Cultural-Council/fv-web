@@ -9,6 +9,14 @@ import getIcon from 'common/utils/getIcon'
 import { useImportJobValidate } from 'common/dataHooks/useImportJobs'
 import AlertBanner from 'components/AlertBanner'
 import { WARNING } from 'common/constants'
+import {
+  ACCEPTED,
+  STARTED,
+  COMPLETE,
+  FAILED,
+  CANCELLED,
+  EXPIRED,
+} from 'common/constants/jobs'
 
 function ValidationStatusBtn({ importJob }) {
   const [modalOpen, setModalOpen] = useState(false)
@@ -18,7 +26,7 @@ function ValidationStatusBtn({ importJob }) {
 
   function getButton(validationStatus) {
     switch (validationStatus) {
-      case 'complete':
+      case COMPLETE:
         return (
           <div className="inline-flex items-center justify-center space-x-2">
             <button
@@ -54,13 +62,14 @@ function ValidationStatusBtn({ importJob }) {
             </Tooltip>
           </div>
         )
-      case 'started':
-      case 'accepted':
+      case STARTED:
+      case ACCEPTED:
         return (
           <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${importJob?.validationStatus}`}</p>
         )
-      case 'failed':
-      case 'cancelled':
+      case FAILED:
+      case CANCELLED:
+      case EXPIRED:
         return (
           <p className="whitespace-nowrap text-sm text-scarlet-800">{`Validation ${importJob?.validationStatus}!`}</p>
         )
