@@ -33,6 +33,8 @@ export function useImportJobs({ page }) {
         pageParam: page,
       }),
     placeholderData: keepPreviousData,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
   })
   return queryResponse
 }
