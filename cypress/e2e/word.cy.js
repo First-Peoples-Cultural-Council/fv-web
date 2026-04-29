@@ -30,10 +30,12 @@ describe(
         'be.visible',
       )
 
-      cy.get('[data-testid="more-menu-btn"]').click()
-      cy.get('[data-testid="qrcode-btn"]').should('be.visible')
-      cy.get('[data-testid="share-btn"]').click()
-      cy.get('[data-testid="cancel-btn"]').click()
+      cy.get('[data-testid=DictionaryDetailPresentationDrawer]').within(() => {
+        cy.get('[data-testid="more-menu-btn"]').click()
+        cy.get('[data-testid="qrcode-btn"]').should('be.visible')
+        cy.get('[data-testid="share-btn"]').click()
+        cy.get('[data-testid="cancel-btn"]').click()
+      })
     })
 
     it('9.1 - Get first word and search for it', () => {
