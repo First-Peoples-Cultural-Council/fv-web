@@ -48,11 +48,11 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
           <ul className="grid grid-cols-3 lg:grid-cols-4  gap-3">
             {tiles.map((tile) => (
               <RequireAuth
-                key={tile.name}
+                key={tile.id}
                 siteMembership={tile?.auth ? tile?.auth : MEMBER}
               >
                 <li
-                  key={tile?.name}
+                  data-testid={`dashboard-home-tile-${tile?.id}`}
                   className="relative group col-span-1 flex rounded-lg"
                 >
                   <div

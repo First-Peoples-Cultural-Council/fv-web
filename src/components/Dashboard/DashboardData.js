@@ -29,6 +29,7 @@ function DashboardData() {
     createTiles.WORD,
     createTiles.PHRASE,
     {
+      id: 'dictionary-edit',
       icon: 'Phrase',
       name: 'Edit words and phrases',
       description: 'Edit the words and phrases in your dictionary',
@@ -44,6 +45,7 @@ function DashboardData() {
     editTiles.PAGES,
     editTiles.HOMEPAGE,
     {
+      id: 'reports',
       icon: 'Reports',
       name: 'Reports',
       description:
@@ -53,6 +55,7 @@ function DashboardData() {
       auth: ASSISTANT,
     },
     {
+      id: 'support',
       icon: 'QuestionCircleSolid',
       name: 'Support',
       description:

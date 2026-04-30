@@ -21,17 +21,16 @@ function DashboardImportsData() {
     icon: 'Document',
   }
 
-  const tileContent = [
-    {
-      icon: 'Create',
-      name: 'Add a new import',
-      description:
-        'Upload a completed batch template to initiate a batch dictionary import job.',
-      href: `/${site?.sitename}/dashboard/create/import`,
-      iconColor: 'blumine-800',
-      auth: LANGUAGE_ADMIN,
-    },
-  ]
+  const tileContent = {
+    id: 'import-create',
+    icon: 'Create',
+    name: 'Begin a new batch import',
+    description:
+      'Upload a completed csv, along with any related media, and start the validation process.',
+    href: `/${site?.sitename}/dashboard/create/import`,
+    iconColor: 'blumine-800',
+    auth: LANGUAGE_ADMIN,
+  }
 
   return {
     deleteImport: (id) => deleteImportJob(id),

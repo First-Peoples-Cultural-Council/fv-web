@@ -29,6 +29,7 @@ function DashboardEditData({ urlPrefix = '' }) {
 
   const editTiles = {
     WORDS: {
+      id: 'word-edit',
       icon: 'Word',
       name: 'Edit words',
       description: 'Edit the words in your dictionary',
@@ -43,6 +44,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     PHRASES: {
+      id: 'phrase-edit',
       icon: 'Phrase',
       name: 'Edit phrases',
       description: 'Edit the phrases in your dictionary',
@@ -57,6 +59,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     SONGS: {
+      id: 'song-edit',
       icon: 'Song',
       name: 'Edit songs',
       description: 'Edit the songs on your site',
@@ -71,6 +74,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     STORIES: {
+      id: 'story-edit',
       icon: 'Story',
       name: 'Edit stories',
       description: 'Edit the stories on your site',
@@ -85,6 +89,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: ASSISTANT,
     },
     SPEAKERS: {
+      id: 'speaker-edit',
       icon: 'Speak',
       name: 'Edit speakers',
       description: 'Edit the speakers on your site',
@@ -93,6 +98,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: EDITOR,
     },
     CATEGORIES: {
+      id: 'category-edit',
       icon: 'Categories',
       name: 'Edit categories',
       description:
@@ -102,6 +108,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     WIDGETS: {
+      id: 'widget-edit',
       icon: 'Widget',
       name: 'Edit widgets',
       description: 'Manage and edit the widgets on your site',
@@ -110,6 +117,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     PAGES: {
+      id: 'page-edit',
       icon: 'WebPages',
       name: 'Edit custom pages',
       description: 'Manage and edit the custom pages on your site',
@@ -118,6 +126,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     HOMEPAGE: {
+      id: 'home-edit',
       icon: 'Home',
       name: 'Edit homepage',
       description: 'Edit the main homepage for your site',
@@ -126,6 +135,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     ALPHABET: {
+      id: 'alphabet-edit',
       icon: 'Alphabet',
       name: 'Edit alphabet',
       description:
@@ -135,6 +145,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     IMMERSION: {
+      id: 'immersion-edit',
       icon: 'Translate',
       name: 'Edit immersion labels',
       description: 'Update the labels used in immersion mode on your site',
@@ -143,6 +154,7 @@ function DashboardEditData({ urlPrefix = '' }) {
       auth: LANGUAGE_ADMIN,
     },
     GALLERY: {
+      id: 'gallery-edit',
       icon: 'Images',
       name: 'Edit a gallery',
       description: 'Edit an image gallery on your site',

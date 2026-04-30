@@ -9,16 +9,86 @@ import DeleteButton from 'components/DeleteButton'
 import DashboardTablePaginated from 'components/DashboardTablePaginated'
 import Tooltip from 'components/Tooltip'
 import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
+import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
+import {
+  ACCEPTED,
+  STARTED,
+  COMPLETE,
+  FAILED,
+  CANCELLED,
+  EXPIRED,
+} from 'common/constants/jobs'
 
 function DashboardImportsPresentation({
   queryResponse,
   deleteImport,
   page,
   setPage,
+  tileContent,
 }) {
+  const getStatusLabel = (importJob) => {
+    if (
+      !importJob?.validationStatus ||
+      importJob?.validationStatus !== COMPLETE
+    ) {
+      return 'Needs Validating'
+    }
+    switch (importJob?.status) {
+      case null:
+        return 'Contact support to proceed with this import'
+      case ACCEPTED:
+      case STARTED:
+        return 'Your import has been queued. Contact support for more information'
+      case FAILED:
+      case EXPIRED:
+        return `This import has ${importJob?.status}. Contact support for more information`
+      case CANCELLED:
+        return `This import was ${importJob?.status}. Contact support for more information`
+      default:
+        return <span className="capitalize">{importJob?.status}</span> || ''
+    }
+  }
   return (
     <div id="DashboardImportsPresentation">
+      <div className="grid grid-cols-6 gap-4 mb-4">
+        <div className="col-span-2 bg-white rounded-lg overflow-hidden shadow-lg">
+          <DashboardTile.Presentation tile={tileContent} />
+        </div>
+        <div className="col-span-4 p-5 bg-white rounded-lg overflow-hidden shadow-lg">
+          <div>
+            <h3 className="text-lg font-medium">What is a batch import?</h3>
+            <div className="mt-2 text-sm text-charcoal-500 space-y-2 text-pretty">
+              <p>
+                In addition to creating words and phrases one at a time online,
+                you can also add them to a spreadsheet and upload them in large
+                batches to your FirstVoices language site.
+              </p>
+              <p>
+                For more information on how to structure your language data into
+                a spreadsheet that will be accepted by the batch uploader, see
+                our FirstVoices Knowledge Base:
+              </p>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/17664196/Prepare+batch+upload+spreadsheets+for+words+and+phrases"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Prepare a batch upload spreadsheet
+              </a>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/17664196/Prepare+batch+upload+spreadsheets+for+words+and+phrases#Resources"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                CSV templates and example batches
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
       <DashboardTablePaginated
         queryResponse={queryResponse}
         page={page}
@@ -107,11 +177,8 @@ function DashboardImportsPresentation({
                       <ValidationStatusBtn importJob={result} />
                     )}
                   </td>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-500 capitalize">
-                    {result?.status ||
-                      (result?.validationStatus
-                        ? 'See validation status'
-                        : 'Needs Validating')}
+                  <td className="p-3 text-sm text-charcoal-500">
+                    {getStatusLabel(result)}
                   </td>
 
                   <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
@@ -144,6 +211,7 @@ DashboardImportsPresentation.propTypes = {
   deleteImport: func,
   page: number,
   setPage: func,
+  tileContent: object,
 }
 
 export default DashboardImportsPresentation
