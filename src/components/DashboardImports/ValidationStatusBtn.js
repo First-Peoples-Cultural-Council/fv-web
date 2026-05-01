@@ -100,15 +100,15 @@ function ValidationStatusBtn({ importJob }) {
           className="bg-white rounded-md max-w-5xl px-12 py-6"
         >
           <div className="text-center pb-2">
-            <h2 className="text-3xl text-blumine-800">{importJob?.title}</h2>
-            <p className="text-xl mt-1">Validation Report</p>
+            <h1 className="text-3xl text-blumine-800">{importJob?.title}</h1>
+            <h2 className="text-xl mt-1">Validation Report</h2>
             {importJob?.validationReport?.errorRows > 0 && (
-              <p className="mt-3 mx-auto">
+              <div className="mt-3 mx-auto">
                 <AlertBanner.Presentation
                   alertType={WARNING}
                   message="There are errors in your import! Review them at the bottom of this report before proceeding."
                 />
-              </p>
+              </div>
             )}
           </div>
           <div className="text-left min-w-3xl ">
@@ -282,8 +282,12 @@ function ValidationStatusBtn({ importJob }) {
                               </td>
                               <td className="px-3 py-4 text-left text-sm text-charcoal-500">
                                 <ul className="list-disc">
-                                  {row?.errors?.map((error) => (
-                                    <li key={error}>{error}</li>
+                                  {row?.errors?.map((error, index) => (
+                                    <li
+                                      key={`${row?.rowNumber}-${index}-${error}`}
+                                    >
+                                      {error}
+                                    </li>
                                   ))}
                                 </ul>
                               </td>

@@ -18,7 +18,7 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-jade-800">{message}</p>
+              <div className="text-sm font-medium text-jade-800">{message}</div>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -49,7 +49,9 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-scarlet-900">{message}</p>
+              <div className="text-sm font-medium text-scarlet-900">
+                {message}
+              </div>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -80,7 +82,9 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-ochre-800">{message}</p>
+              <div className="text-sm font-medium text-ochre-800">
+                {message}
+              </div>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -111,7 +115,9 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-blumine-800">{message}</p>
+              <div className="text-sm font-medium text-blumine-800">
+                {message}
+              </div>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -143,7 +149,9 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-charcoal-900">{message}</p>
+              <div className="text-sm font-medium text-charcoal-900">
+                {message}
+              </div>
             </div>
             <div className="ml-auto pl-3">
               <div className="-mx-1.5 -my-1.5">
@@ -166,9 +174,9 @@ function AlertBannerPresentation({ alertType, handleClose, message }) {
   }
 }
 // PROPTYPES
-const { func, string, oneOf } = PropTypes
+const { func, node, oneOf } = PropTypes
 AlertBannerPresentation.propTypes = {
-  message: string,
+  message: node,
   alertType: oneOf([ERROR, SUCCESS, WARNING, INFO, NEUTRAL]),
   handleClose: func,
 }
