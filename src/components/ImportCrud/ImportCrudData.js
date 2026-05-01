@@ -1,7 +1,22 @@
 import { useNavigate, useSearchParams } from 'react-router'
+import { useState } from 'react'
+import Uppy from '@uppy/core'
+import XHR from '@uppy/xhr-upload'
+
+// Uppy
+import '@uppy/core/css/style.min.css'
+import '@uppy/dashboard/css/style.min.css'
+import '@uppy/image-editor/css/style.min.css'
 
 // FPCC
+import GlobalConfiguration from 'src/GlobalConfiguration'
+import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
 import { useSiteStore } from 'context/SiteContext'
+import {
+  IMPORT_JOBS,
+  SITES,
+  SUPPORTED_IMPORT_MEDIA_EXTENSIONS,
+} from 'common/constants'
 import {
   useImportJob,
   useImportJobCreate,
@@ -21,12 +36,46 @@ function ImportCrudData() {
 
   const submitHandler = (formData) => create(formData)
 
+  const uploadEndpoint = new URL(
+    `${SITES}/${site?.sitename}/${IMPORT_JOBS}/${importJobId}/media/`,
+    GlobalConfiguration.API_URL,
+  )
+
+  const allowedFileTypes = SUPPORTED_IMPORT_MEDIA_EXTENSIONS.map(
+    (extension) => `.${extension}`,
+  )
+
+  // IMPORTANT: passing an initializer function to prevent Uppy from being reinstantiated on every render.
+  const [uppy] = useState(() =>
+    new Uppy({
+      id: 'mediaUpload',
+      autoProceed: false,
+      allowMultipleUploadBatches: true,
+      restrictions: {
+        requiredMetaFields: ['title'],
+        allowedFileTypes: allowedFileTypes,
+      },
+    }).use(XHR, {
+      endpoint: uploadEndpoint.href,
+      fieldName: 'file',
+      formData: true,
+      headers: getAuthHeaderIfTokenExists(),
+      async getResponseData(xhr) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          return { ok: true, status: xhr.status }
+        }
+        return { ok: false, status: xhr.status }
+      },
+    }),
+  )
+
   return {
     submitHandler,
     backHandler,
     site,
     queryResponse,
     importJobId,
+    uppy,
   }
 }
 

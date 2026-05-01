@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form'
+import Dashboard from '@uppy/react/dashboard'
 
 // FPCC
 import Form from 'components/Form'
@@ -9,9 +10,13 @@ import useEditForm from 'common/hooks/useEditForm'
 import { definitions } from 'common/utils/validationHelpers'
 import { getLastPathSegment } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
-import { useImportJobAddMedia } from 'common/dataHooks/useImportJobs'
 
-function ImportCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
+function ImportCrudPresentation({
+  backHandler,
+  dataToEdit,
+  submitHandler,
+  uppy,
+}) {
   const SUPPORTED_IMPORT_EXTENSIONS = ['csv']
   const validator = yup.object().shape({
     title: definitions.title().required('A name is required'),
@@ -32,8 +37,6 @@ function ImportCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
   })
 
   const mediaForm = useForm()
-  const mutation = useImportJobAddMedia()
-  const mediaSubmitHandler = (formJson) => mutation.mutate(formJson)
 
   return (
     <div id="ImportCrudPresentation" className="max-w-5xl p-8">
@@ -109,22 +112,24 @@ function ImportCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
                 nameId="media"
                 text="Add any media referenced in your csv:"
               />
-              <input
-                type="file"
-                {...mediaForm.register('files')}
-                multiple
-                className="bg-white block w-full border border-charcoal-200 rounded-lg shadow-xs p-3 file:mr-5 file:btn-md file:btn-primary hover:file:bg-blumine-800"
+              <Dashboard
+                uppy={uppy}
+                width="100%"
+                height={300}
+                doneButtonHandler={null}
+                fileManagerSelectionType="files"
+                showSelectedFiles
               />
             </div>
             <div className="col-span-12 flex justify-end mt-6 px-6">
-              <Form.SubmitButtons
-                submitLabel="Upload media"
-                submitIcon="Upload"
-                cancelIcon="RightArrow"
-                cancelLabel="Skip"
-                onCancelClick={backHandler}
-                onSubmitClick={mediaForm.handleSubmit(mediaSubmitHandler)}
-              />
+              <button
+                type="button"
+                data-testid="done-btn"
+                className="btn-primary btn-md"
+                onClick={backHandler}
+              >
+                <span>Done</span>
+              </button>
             </div>
           </form>
         </div>

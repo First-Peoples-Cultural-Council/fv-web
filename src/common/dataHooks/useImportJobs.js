@@ -71,32 +71,6 @@ export function useImportJobCreate(options = {}) {
   return mutation
 }
 
-export function useImportJobAddMedia() {
-  const { sitename } = useParams()
-
-  const addMedia = async (formJson) => {
-    const formData = new FormData()
-    for (const file of Array.from(formJson.files)) {
-      formData.append('file', file)
-    }
-    return api.importJobs.addMedia({
-      sitename,
-      id: formJson?.id,
-      formData,
-    })
-  }
-
-  const mutation = useMutationWithNotification({
-    mutationFn: addMedia,
-    redirectTo: `/${sitename}/dashboard/imports`,
-    queryKeyToInvalidate: [IMPORT_JOBS, sitename],
-    actionWord: 'uploaded',
-    type: 'media',
-  })
-
-  return mutation
-}
-
 // VALIDATE
 export function useImportJobValidate() {
   const { sitename } = useParams()
