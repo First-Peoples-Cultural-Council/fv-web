@@ -12,25 +12,22 @@ function DashboardTablePresentation({
 }) {
   return (
     <LoadOrError queryResponse={queryResponse}>
-      <section data-testid="DashboardTablePresentation" className="h-full">
-        <div className="bg-white shadow-sm rounded-md overflow-hidden">
+      <section data-testid="DashboardTablePresentation">
+        <div className="bg-white shadow-sm rounded-lg">
           {title && <h2 className="sr-only">{title}</h2>}
-          <div className="flex flex-col ">
-            <div className="-my-2 sm:-mx-6 lg:-mx-8">
-              <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className="border-t border-charcoal-100 max-h-[75vh] overflow-auto">
-                  <table className="min-w-full divide-y divide-charcoal-100">
-                    <thead className="bg-charcoal-50 text-charcoal-500">
-                      {tableHead}
-                    </thead>
-                    <tbody className="bg-white divide-y divide-charcoal-100 text-sm text-charcoal-900">
-                      {tableBody}
-                    </tbody>
-                  </table>
-                  {infiniteLoadBtn && <div>{infiniteLoadBtn}</div>}
-                </div>
-              </div>
-            </div>
+
+          <div className="max-h-[75vh] overflow-auto pt-2 bg-charcoal-50 shadow-sm rounded-lg">
+            <table className="min-w-full divide-y divide-charcoal-100">
+              <thead className="text-charcoal-500 rounded-lg overflow-hidden">
+                {tableHead}
+              </thead>
+              <tbody className="bg-white divide-y divide-charcoal-100 text-sm text-charcoal-900">
+                {tableBody}
+              </tbody>
+            </table>
+            {infiniteLoadBtn && (
+              <div className="bg-white">{infiniteLoadBtn}</div>
+            )}
           </div>
         </div>
       </section>
