@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
 import { useState } from 'react'
 import Uppy from '@uppy/core'
 import XHR from '@uppy/xhr-upload'
@@ -24,9 +24,10 @@ import {
 
 function ImportCrudData() {
   const { site } = useSiteStore()
+  const { sitename } = useParams()
 
   const navigate = useNavigate()
-  const backHandler = () => navigate(`/${site?.sitename}/dashboard/imports`)
+  const backHandler = () => navigate(`/${sitename}/dashboard/imports`)
 
   const [searchParams] = useSearchParams()
   const importJobId = searchParams.get('id') || null
@@ -37,7 +38,7 @@ function ImportCrudData() {
   const submitHandler = (formData) => create(formData)
 
   const uploadEndpoint = new URL(
-    `${SITES}/${site?.sitename}/${IMPORT_JOBS}/${importJobId}/media/`,
+    `${SITES}/${sitename}/${IMPORT_JOBS}/${importJobId}/media/`,
     GlobalConfiguration.API_URL,
   )
 
@@ -52,21 +53,32 @@ function ImportCrudData() {
       autoProceed: false,
       allowMultipleUploadBatches: true,
       restrictions: {
-        requiredMetaFields: ['title'],
         allowedFileTypes: allowedFileTypes,
       },
-    }).use(XHR, {
-      endpoint: uploadEndpoint.href,
-      fieldName: 'file',
-      formData: true,
-      headers: getAuthHeaderIfTokenExists(),
-      async getResponseData(xhr) {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          return { ok: true, status: xhr.status }
+    })
+      .on('upload-error', (file, error, xhr) => {
+        if (xhr) {
+          const parsedResponse = JSON.parse(xhr?.response)
+          const serverMessage = parsedResponse?.[0]
+            ? parsedResponse?.[0]
+            : `Server-side validation failed: ${xhr?.responseText}`
+
+          // Display the message in the Uppy UI
+          uppy.info(serverMessage, 'error', 6000)
         }
-        return { ok: false, status: xhr.status }
-      },
-    }),
+      })
+      .use(XHR, {
+        endpoint: uploadEndpoint.href,
+        fieldName: 'file',
+        formData: true,
+        headers: getAuthHeaderIfTokenExists(),
+        async getResponseData(xhr) {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            return { ok: true, status: xhr.status }
+          }
+          return { ok: false, status: xhr.status }
+        },
+      }),
   )
 
   return {
