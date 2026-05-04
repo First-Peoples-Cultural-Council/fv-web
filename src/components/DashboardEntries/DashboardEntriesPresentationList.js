@@ -38,10 +38,13 @@ function DashboardEntriesPresentationList({
 
   return (
     <LoadOrError queryResponse={searchInfiniteQueryResponse}>
-      <section data-testid="EntriesListPresentation">
+      <section
+        data-testid="EntriesListPresentation"
+        className="flex-1 overflow-y-auto  shadow-sm rounded-lg"
+      >
         {searchInfiniteQueryResponse?.data?.hasResults ? (
           <div className="bg-white shadow-sm rounded-lg">
-            <div className="max-h-[75vh] overflow-auto pt-2 bg-charcoal-50 shadow-sm rounded-lg">
+            <div className="pt-2 bg-charcoal-50">
               <table className="min-w-full divide-y divide-charcoal-100">
                 <thead className="text-charcoal-500 rounded-lg overflow-hidden">
                   <tr className="text-xs uppercase tracking-wider">
@@ -157,9 +160,9 @@ function DashboardEntriesPresentationList({
                           </td>
                           <td className="p-3 whitespace-nowrap text-center">
                             <span
-                              className={`px-2 py-1 inline-flex text-xs font-medium rounded-full bg-${entry?.type?.toLowerCase()}-color-700 capitalize text-white`}
+                              className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-lg border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                             >
-                              {entry?.type}
+                              <span>{entry?.type}</span>
                             </span>
                           </td>
                           <td className="p-3 text-center">
@@ -201,9 +204,11 @@ function DashboardEntriesPresentationList({
                   ))}
                 </tbody>
               </table>
-              <InfiniteLoadBtn
-                infiniteQueryResponse={searchInfiniteQueryResponse}
-              />
+              <div className="bg-white">
+                <InfiniteLoadBtn
+                  infiniteQueryResponse={searchInfiniteQueryResponse}
+                />
+              </div>
             </div>
           </div>
         ) : (
