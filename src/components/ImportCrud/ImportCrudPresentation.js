@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
-import { useForm } from 'react-hook-form'
 import Dashboard from '@uppy/react/dashboard'
 
 // FPCC
@@ -36,17 +35,19 @@ function ImportCrudPresentation({
     dataToEdit,
   })
 
-  const mediaForm = useForm()
-
   return (
     <div id="ImportCrudPresentation" className="max-w-5xl p-8">
       <Form.Header
-        title="New import job"
-        subtitle="Add the csv and any new media files it references"
+        title={isCreateMode ? 'New import job' : 'Upload Media'}
+        subtitle={
+          isCreateMode
+            ? 'Upload your batch csv and a unique title for your import'
+            : 'Upload all the media that is referenced in your csv'
+        }
       />
       {isCreateMode ? (
         <form id="CreateImportJobForm" onReset={reset}>
-          <div className="mt-6 grid grid-cols-12 gap-6 bg-white p-8 rounded-md">
+          <div className="mt-6 grid grid-cols-12 gap-6 bg-white p-8 rounded-lg">
             <div className="col-span-12">
               <Form.TextField
                 label="Title"
@@ -79,10 +80,10 @@ function ImportCrudPresentation({
           </div>
         </form>
       ) : (
-        <div className="mt-6 bg-white p-8 rounded-md">
+        <div className="mt-6 bg-white p-8 rounded-lg">
           {/* Import Job Details */}
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+          <div className="flex flex-col gap-6">
+            <div>
               <Form.FieldLabel nameId="title" text="Title" />
               <div className="text-charcoal-700">{dataToEdit?.title}</div>
             </div>
@@ -95,33 +96,19 @@ function ImportCrudPresentation({
                 </div>
               </div>
             </div>
-          </div>
-          {/* Add Media Form */}
-          <form id="AddMediaForm" className="grid grid-cols-12 gap-6 mt-6">
-            <div className="hidden">
-              <input
-                id="type"
-                name="type"
-                type="hidden"
-                value={dataToEdit?.id}
-                {...mediaForm.register('id')}
-              />
-            </div>
-            <div className="col-span-12">
-              <Form.FieldLabel
-                nameId="media"
-                text="Add any media referenced in your csv:"
-              />
+
+            {/* Add Media Form */}
+            <div>
+              <Form.FieldLabel nameId="upload" text="Upload Media" />
               <Dashboard
                 uppy={uppy}
                 width="100%"
-                height={300}
+                height={400}
                 doneButtonHandler={null}
-                fileManagerSelectionType="files"
                 showSelectedFiles
               />
             </div>
-            <div className="col-span-12 flex justify-end mt-6 px-6">
+            <div className="w-full flex justify-end px-6">
               <button
                 type="button"
                 data-testid="done-btn"
@@ -129,9 +116,10 @@ function ImportCrudPresentation({
                 onClick={backHandler}
               >
                 <span>Done</span>
+                {getIcon('RightArrow')}
               </button>
             </div>
-          </form>
+          </div>
         </div>
       )}
     </div>
