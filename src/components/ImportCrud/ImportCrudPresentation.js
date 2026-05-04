@@ -82,13 +82,13 @@ function ImportCrudPresentation({
       ) : (
         <div className="mt-6 bg-white p-8 rounded-lg">
           {/* Import Job Details */}
-          <div className="flex flex-col gap-6">
-            <div>
-              <Form.FieldLabel nameId="title" text="Title" />
+          <div className="grid grid-cols-2 gap-6">
+            <div className="col-span-1">
+              <Form.FieldLabel nameId="title" text="Import title" />
               <div className="text-charcoal-700">{dataToEdit?.title}</div>
             </div>
-            <div className="col-span-12">
-              <Form.FieldLabel nameId="csvFile" text="CSV File" />
+            <div className="col-span-1">
+              <Form.FieldLabel nameId="csvFile" text="Import CSV" />
               <div>
                 <div className="inline-flex items-center justify-center space-x-2">
                   {getIcon('Document', 'size-5 text-charcoal-400')}
@@ -98,7 +98,7 @@ function ImportCrudPresentation({
             </div>
 
             {/* Add Media Form */}
-            <div>
+            <div className="col-span-2">
               <Form.FieldLabel nameId="upload" text="Upload Media" />
               <Dashboard
                 uppy={uppy}
@@ -108,7 +108,7 @@ function ImportCrudPresentation({
                 showSelectedFiles
               />
             </div>
-            <div className="w-full flex justify-end px-6">
+            <div className="col-span-2 flex justify-end px-6">
               <button
                 type="button"
                 data-testid="done-btn"
