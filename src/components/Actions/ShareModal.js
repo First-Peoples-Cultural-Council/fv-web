@@ -49,7 +49,6 @@ function ShareModal({ entry, isOpen = false, onClose }) {
                 entry?.type,
               )}/${entry?.id}`}
               title={entry?.title}
-              modalCloseHandler={onClose}
             />
           </>
         )}
