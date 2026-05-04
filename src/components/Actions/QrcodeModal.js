@@ -5,11 +5,16 @@ import PropTypes from 'prop-types'
 import Modal from 'components/Modal'
 import Loading from 'components/Loading'
 import { MEMBERS, TEAM } from 'common/constants'
+import { makePlural } from 'common/utils/urlHelpers'
 
 // Modal content kept in separate file and lazy loaded to prevent loading of QR library before onClick
 const QrcodeCanvas = lazy(() => import('components/Actions/QrcodeCanvas'))
 
-function QrcodeModal({ entry, url, isOpen = false, onClose }) {
+function QrcodeModal({ entry, isOpen = false, onClose }) {
+  const url = `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
+    entry?.type,
+  )}/${entry?.id}`
+
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={onClose}>
       {entry?.visibility === TEAM || entry?.visibility === MEMBERS ? (
@@ -52,10 +57,9 @@ function QrcodeModal({ entry, url, isOpen = false, onClose }) {
 }
 
 // PROPTYPES
-const { bool, object, string, func } = PropTypes
+const { bool, object, func } = PropTypes
 QrcodeModal.propTypes = {
   entry: object,
-  url: string,
   isOpen: bool,
   onClose: func,
 }

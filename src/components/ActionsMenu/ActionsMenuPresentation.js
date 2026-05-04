@@ -5,7 +5,6 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { CopyButton, ShareModal, QrcodeModal } from 'components/Actions'
-import { makePlural } from 'common/utils/urlHelpers'
 
 function ActionsMenuPresentation({
   entry,
@@ -83,9 +82,6 @@ function ActionsMenuPresentation({
       />
       <QrcodeModal
         entry={entry}
-        url={`${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
-          entry?.type,
-        )}/${entry?.id}`}
         isOpen={qrcodeModalOpen}
         onClose={() => setQrcodeModalOpen(false)}
       />
