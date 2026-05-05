@@ -94,15 +94,18 @@ function SearchSitesFilter() {
   }
 
   return (
-    <div data-testid="FormSearchSitesFilter" className="w-full">
-      <div className="lg:space-y-6 mx-2 xl:ml-8 xl:pr-8">
+    <div
+      data-testid="FormSearchSitesFilter"
+      className="mx-2 sm:mx-auto lg:mx-4 xl:ml-7 sm:max-w-lg"
+    >
+      <div className="lg:space-y-6">
         <Combobox value={selectedItems} multiple>
           <div className="relative text-charcoal-700">
             <div className="relative">
               <ComboboxInput
                 className="opacity-100 relative w-full cursor-default block border border-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800"
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search languages"
+                placeholder="Filter by languages"
               />
               <ComboboxButton className="absolute inset-y-0 right-0 flex items-center pr-2">
                 {getIcon('ChevronUpDown', 'h-5 w-5 fill-current')}
@@ -115,7 +118,7 @@ function SearchSitesFilter() {
               leaveTo="opacity-0"
               afterLeave={() => setQuery('')}
             >
-              <ComboboxOptions className="focus:outline-hidden h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md bg-white py-1 shadow-lg">
+              <ComboboxOptions className="focus:outline-hidden h-72 w-full md:w-auto absolute z-10 mt-1 overflow-auto rounded-md bg-white py-1 shadow-lg">
                 {options?.length === 0 && query !== '' ? (
                   <div className="relative cursor-default select-none py-2 px-4">
                     Nothing found.
