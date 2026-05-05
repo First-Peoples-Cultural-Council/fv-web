@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense, lazy } from 'react'
 import PropTypes from 'prop-types'
-import copyToClipboard from 'common/utils/copyToClipboard'
+import { useClose } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import { useNotification } from 'context/NotificationContext'
-import QrcodeModal from 'components/Actions/QrcodeModal'
+import Modal from 'components/Modal'
+import Loading from 'components/Loading'
+import copyToClipboard from 'common/utils/copyToClipboard'
 
-function ShareLinksPresentation({ url, title, modalCloseHandler, entry }) {
+const QrcodeCanvas = lazy(() => import('components/Actions/QrcodeCanvas'))
+
+function ShareLinksPresentation({ url, title }) {
   const { setNotification } = useNotification()
-  function confirmationCallback() {
-    if (typeof modalCloseHandler !== 'undefined') {
-      modalCloseHandler()
-    }
+  let close = useClose()
+
+  function copyToClipboardCallback() {
+    // If inside modal - close nearest parent Dialog
+    close()
+    // Set notification
     setTimeout(() => {
       setNotification({
         type: 'SUCCESS',
@@ -89,7 +95,12 @@ function ShareLinksPresentation({ url, title, modalCloseHandler, entry }) {
             data-testid="CopyUrl"
             aria-label="Copy to clipboard"
             className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-white bg-ochre-600"
-            onClick={() => copyToClipboard({ text: url, confirmationCallback })}
+            onClick={() =>
+              copyToClipboard({
+                text: url,
+                confirmationCallback: copyToClipboardCallback,
+              })
+            }
           >
             {getIcon('Link', 'fill-current h-7 w-7')}
           </button>
@@ -107,23 +118,42 @@ function ShareLinksPresentation({ url, title, modalCloseHandler, entry }) {
           </button>
         </li>
       </ul>
-      <QrcodeModal
-        entry={entry}
-        url={url}
+
+      <Modal.Presentation
         isOpen={qrcodeModalOpen}
-        onClose={() => setQrcodeModalOpen(false)}
-      />
+        closeHandler={() => setQrcodeModalOpen(false)}
+      >
+        <Suspense fallback={<Loading.Container isLoading />}>
+          <div
+            id="qrcode-share-links-modal"
+            className="inline-block align-bottom space-y-5 bg-white rounded-lg p-6 lg:p-8 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-sm sm:w-full"
+          >
+            <h3 className="text-center text-xl font-medium text-charcoal-900">
+              &quot;{title}&quot; QR Code:
+            </h3>
+            <div className="w-full flex justify-center p-2">
+              <QrcodeCanvas url={url} />
+            </div>
+            <button
+              data-testid="cancel-btn"
+              type="button"
+              className="btn-primary btn-md"
+              onClick={() => setQrcodeModalOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </Suspense>
+      </Modal.Presentation>
     </>
   )
 }
 // PROPTYPES
-const { string, func, object } = PropTypes
+const { string } = PropTypes
 ShareLinksPresentation.propTypes = {
   url: string,
   title: string,
-  modalCloseHandler: func,
   sitename: string,
-  entry: object,
 }
 
 export default ShareLinksPresentation

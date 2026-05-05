@@ -18,7 +18,7 @@ function DashboardTablePaginatedPresentation({
         <div className="flow-root w-full">
           <div>
             <div className="inline-block min-w-full align-middle">
-              <div className="shadow outline-solid outline-1 outline-black/5 sm:rounded-lg bg-white p-4 lg:p-8">
+              <div className="shadow outline-solid outline-1 outline-black/5 sm:rounded-lg bg-white p-4">
                 <LoadOrError queryResponse={queryResponse}>
                   <table className="relative min-w-full">
                     {tableHead}

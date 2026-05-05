@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import Tooltip from 'components/Tooltip'
 import QrcodeModal from 'components/Actions/QrcodeModal'
-import { makePlural } from 'common/utils/urlHelpers'
 
 // NB: This button CANNOT be used inside a modal
 function QrcodeButton({
@@ -31,9 +30,6 @@ function QrcodeButton({
       </Tooltip>
       <QrcodeModal
         entry={entry}
-        url={`${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
-          entry?.type,
-        )}/${entry?.id}`}
         isOpen={qrcodeModalOpen}
         onClose={() => setQrcodeModalOpen(false)}
       />

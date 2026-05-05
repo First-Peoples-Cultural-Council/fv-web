@@ -36,25 +36,22 @@ function DashboardEntriesPresentationList({
     setDrawerOpen(true)
   }
 
-  const tableHeaderClass =
-    'p-4 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
-
   return (
     <LoadOrError queryResponse={searchInfiniteQueryResponse}>
       <section
         data-testid="EntriesListPresentation"
-        className="bg-white min-h-screen w-full rounded-lg overflow-hidden"
+        className="flex-1 overflow-y-auto  shadow-sm rounded-lg"
       >
         {searchInfiniteQueryResponse?.data?.hasResults ? (
-          <div className="flex flex-col w-full">
-            <div className="border-b border-charcoal-200">
-              <table className="table-auto w-full divide-y divide-charcoal-200">
-                <thead className="bg-charcoal-50">
-                  <tr>
+          <div className="bg-white shadow-sm rounded-lg">
+            <div className="pt-2 bg-charcoal-50">
+              <table className="min-w-full divide-y divide-charcoal-100">
+                <thead className="text-charcoal-500 rounded-lg overflow-hidden">
+                  <tr className="text-xs uppercase tracking-wider">
                     <th
                       scope="col"
                       aria-labelledby={SORT_ALPHABETICAL}
-                      className="pl-6 pr-4 py-4 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider"
+                      className="pl-6 pr-3.5 py-3.5 text-left font-medium"
                     >
                       <SortByHeader
                         id={SORT_ALPHABETICAL}
@@ -63,13 +60,13 @@ function DashboardEntriesPresentationList({
                         desc={SORT_ALPHABETICAL_DESC}
                       />
                     </th>
-                    <th scope="col" className={tableHeaderClass}>
+                    <th scope="col" className="text-left font-medium p-3.5">
                       Translation
                     </th>
                     <th
                       scope="col"
                       aria-labelledby={SORT_CREATED}
-                      className={tableHeaderClass}
+                      className="text-left font-medium p-3.5"
                     >
                       <SortByHeader
                         id={SORT_CREATED}
@@ -81,7 +78,7 @@ function DashboardEntriesPresentationList({
                     <th
                       scope="col"
                       aria-labelledby={SORT_MODIFIED}
-                      className={tableHeaderClass}
+                      className="text-left font-medium p-3.5"
                     >
                       <SortByHeader
                         id={SORT_MODIFIED}
@@ -90,32 +87,32 @@ function DashboardEntriesPresentationList({
                         desc={SORT_MODIFIED_DESC}
                       />
                     </th>
-                    <th scope="col" className={tableHeaderClass}>
+                    <th scope="col" className="text-center font-medium p-3.5">
                       Type
                     </th>
-                    <th scope="col" className={`relative ${tableHeaderClass}`}>
+                    <th scope="col" className="text-center font-medium p-3.5">
                       Edit
                     </th>
-                    <th scope="col" className={`relative ${tableHeaderClass}`}>
+                    <th scope="col" className="text-center font-medium p-3.5">
                       Preview
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-charcoal-200 text-charcoal-900">
+                <tbody className="bg-white divide-y divide-charcoal-100 text-sm text-charcoal-900">
                   {searchInfiniteQueryResponse?.data?.pages.map((page) => (
                     <Fragment key={page?.pageNumber}>
                       {page.results.map((entry) => (
                         <tr
                           data-testid="EntryRow"
                           key={entry?.id}
-                          className="w-full hover:bg-charcoal-50"
+                          className="w-full hover:bg-blumine-50"
                         >
                           <td>
                             <button
                               data-testid="click-title"
                               type="button"
                               onClick={() => handleItemClick(entry)}
-                              className="w-full h-full text-left pl-6"
+                              className="w-full h-full text-left pl-6 pr-3 py-3"
                             >
                               {entry?.title}
                             </button>
@@ -124,7 +121,7 @@ function DashboardEntriesPresentationList({
                             <button
                               data-testid="click-translations"
                               type="button"
-                              className="w-full h-full text-left"
+                              className="p-3 w-full h-full text-left"
                               onClick={() => handleItemClick(entry)}
                             >
                               {/* For Dictionary Entries */}
@@ -148,27 +145,27 @@ function DashboardEntriesPresentationList({
                               )}
                             </button>
                           </td>
-                          <td className="p-4 text-charcoal-900 text-xs text-left">
+                          <td className="p-3 text-charcoal-900 text-xs text-left">
                             <p>{entry?.created}</p>
                             <p className="whitespace-nowrap">
                               {entry?.createdBy && `by ${entry.createdBy}`}
                             </p>
                           </td>
-                          <td className="p-4 text-charcoal-900 text-xs text-left">
+                          <td className="p-3 text-charcoal-900 text-xs text-left">
                             <p>{entry?.lastModified}</p>
                             <p className="whitespace-nowrap">
                               {entry?.lastModifiedBy &&
                                 `by ${entry?.lastModifiedBy}`}
                             </p>
                           </td>
-                          <td className="p-4 whitespace-nowrap">
+                          <td className="p-3 whitespace-nowrap text-center">
                             <span
-                              className={`px-2 py-1 inline-flex text-xs font-medium rounded-full bg-${entry?.type?.toLowerCase()}-color-700 capitalize text-white`}
+                              className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-lg border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                             >
-                              {entry?.type}
+                              <span>{entry?.type}</span>
                             </span>
                           </td>
-                          <td>
+                          <td className="p-3 text-center">
                             {checkIfUserCanEdit(entry) ? (
                               <Link
                                 to={`/${sitename}/dashboard/edit/${entry?.type}?id=${entry?.id}`}
@@ -191,7 +188,7 @@ function DashboardEntriesPresentationList({
                               </Tooltip>
                             )}
                           </td>
-                          <td>
+                          <td className="p-3 text-center">
                             <button
                               data-testid={`${entry?.title}-preview`}
                               type="button"
@@ -207,10 +204,12 @@ function DashboardEntriesPresentationList({
                   ))}
                 </tbody>
               </table>
+              <div className="bg-white">
+                <InfiniteLoadBtn
+                  infiniteQueryResponse={searchInfiniteQueryResponse}
+                />
+              </div>
             </div>
-            <InfiniteLoadBtn
-              infiniteQueryResponse={searchInfiniteQueryResponse}
-            />
           </div>
         ) : (
           <div className="w-full flex">

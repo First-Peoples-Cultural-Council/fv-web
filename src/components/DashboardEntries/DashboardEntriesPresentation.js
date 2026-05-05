@@ -42,7 +42,10 @@ function DashboardEntriesPresentation({
     ) || /,/.test(String(searchType || initialSearchType || ''))
 
   return (
-    <div id="DashboardEntriesPresentation" className="p-5 space-y-3">
+    <div
+      id="DashboardEntriesPresentation"
+      className="p-3 space-y-3 flex flex-col h-screen overflow-hidden"
+    >
       <SiteDocHead titleArray={[isReports ? 'Reports' : `Edit ${listLabel}`]} />
 
       <section className="inline-flex w-full space-x-5 items-center justify-between print:hidden">

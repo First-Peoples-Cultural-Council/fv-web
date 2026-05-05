@@ -21,7 +21,7 @@ import {
 function ValidationStatusBtn({ importJob }) {
   const [modalOpen, setModalOpen] = useState(false)
   const labelStyling = 'text-sm text-blumine-700 mb-2'
-  const contentStyling = 'text-base text-charcoal-900 pb-4'
+  const contentStyling = 'text-base text-charcoal-900'
   const { mutate: validateImportJob } = useImportJobValidate()
 
   function getButton(validationStatus) {
@@ -92,27 +92,28 @@ function ValidationStatusBtn({ importJob }) {
       {getButton(importJob?.validationStatus)}
       <Modal.Presentation
         isOpen={modalOpen}
+        isDashboard
         closeHandler={() => setModalOpen(false)}
       >
         <div
           data-testid="ImportValidationReportModal"
-          className="bg-white rounded-md max-w-5xl px-8"
+          className="bg-white rounded-md max-w-5xl px-12 py-6"
         >
-          <div className="text-center py-4">
-            <h2 className="text-3xl text-blumine-800">{importJob?.title}</h2>
-            <p className="text-xl mt-1">Validation Report</p>
+          <div className="text-center pb-2">
+            <h1 className="text-3xl text-blumine-800">{importJob?.title}</h1>
+            <h2 className="text-xl mt-1">Validation Report</h2>
             {importJob?.validationReport?.errorRows > 0 && (
-              <p className="mt-3 mx-auto">
+              <div className="mt-3 mx-auto">
                 <AlertBanner.Presentation
                   alertType={WARNING}
                   message="There are errors in your import! Review them at the bottom of this report before proceeding."
                 />
-              </p>
+              </div>
             )}
           </div>
-          <div className="text-left pb-8 min-w-3xl">
-            <div className="text-left divide-y-2 divide-charcoal-200 space-y-4">
-              <div>
+          <div className="text-left min-w-3xl ">
+            <div className="space-y-4">
+              <div className="p-3 border-b border-charcoal-300">
                 <div data-testid="fileName" className={labelStyling}>
                   File name
                 </div>
@@ -120,11 +121,11 @@ function ValidationStatusBtn({ importJob }) {
                   {getLastPathSegment(importJob?.data?.path)}
                 </div>
               </div>
-              <div>
+              <div className="p-3 border-b border-charcoal-300">
                 <div data-testid="acceptedColumns" className={labelStyling}>
                   Accepted columns
                 </div>
-                <div className={`${contentStyling}  grid grid-cols-3 gap-x-4`}>
+                <div className={`${contentStyling} columns-4`}>
                   {importJob?.validationReport?.acceptedColumns?.length > 0
                     ? importJob?.validationReport?.acceptedColumns?.map(
                         (col) => (
@@ -136,11 +137,17 @@ function ValidationStatusBtn({ importJob }) {
                     : 'None'}
                 </div>
               </div>
-              <div>
+              <div
+                className={`p-3 ${
+                  importJob?.validationReport?.ignoredColumns?.length > 0
+                    ? 'bg-ochre-50 border border-ochre-500 rounded-lg'
+                    : 'border-b border-charcoal-300'
+                } `}
+              >
                 <div data-testid="ignoredColumns" className={labelStyling}>
                   Ignored Columns
                 </div>
-                <div className={`${contentStyling}  grid grid-cols-3 gap-x-4`}>
+                <div className={`${contentStyling}  columns-4`}>
                   {importJob?.validationReport?.ignoredColumns?.length > 0
                     ? importJob?.validationReport?.ignoredColumns?.map(
                         (col) => (
@@ -152,24 +159,48 @@ function ValidationStatusBtn({ importJob }) {
                     : 'None'}
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-4 border-b-2 border-charcoal-200">
-                <div className="col-span-1">
+              <div className="grid grid-cols-3 gap-3">
+                <div
+                  className={`col-span-1 p-3 rounded-lg border ${
+                    importJob?.validationReport?.newRows > 0
+                      ? 'bg-jade-50 border-jade-500'
+                      : 'border-charcoal-300'
+                  } `}
+                >
                   <div data-testid="newRows" className={labelStyling}>
-                    Total number of new rows
+                    Total number of valid rows
                   </div>
                   <div className={contentStyling}>
                     {importJob?.validationReport?.newRows}
                   </div>
                 </div>
-                <div className="col-span-1">
+                <div
+                  className={`col-span-1 p-3 rounded-lg border ${
+                    importJob?.validationReport?.errorRows > 0
+                      ? 'bg-scarlet-50 border-scarlet-800'
+                      : 'border-charcoal-300'
+                  } `}
+                >
                   <div data-testid="errorRows" className={labelStyling}>
                     Total number of rows with errors
                   </div>
+
                   <div className={contentStyling}>
                     {importJob?.validationReport?.errorRows}
                   </div>
+                  <div className="text-xs font-light">
+                    {importJob?.validationReport?.errorRows > 0
+                      ? '*These will not be imported!'
+                      : 'Congratulations! 🎉'}
+                  </div>
                 </div>
-                <div className="col-span-1 invisible">
+                <div
+                  className={`col-span-1 p-3 rounded-lg border ${
+                    importJob?.validationReport?.updatedRows > 0
+                      ? 'bg-jade-50 border-jade-800'
+                      : 'invisible' // Hiding update section until Batch Edit MVP is ready
+                  } `}
+                >
                   <div data-testid="updatedRows" className={labelStyling}>
                     Total number of rows to be updated
                   </div>
@@ -178,20 +209,27 @@ function ValidationStatusBtn({ importJob }) {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="mt-6">
-              <div className={labelStyling}>Error details</div>
 
-              {importJob?.validationReport?.errorDetails?.length > 0 ? (
+              {importJob?.validationReport?.errorDetails?.length > 0 && (
                 <div>
-                  <div className="text-base text-pretty my-2 max-w-2xl">
+                  <div className="text-xl text-blumine-700 mb-2">
+                    Error details
+                  </div>
+
+                  <div className={`${contentStyling} text-pretty mb-3`}>
                     <p>
                       <span className="font-bold">Missing media?</span> You can
                       add the missing media and re-validate.
                     </p>
                     <p>
-                      <span className="font-bold">Missing categories?</span>{' '}
-                      Create the categories on your site and then re-validate.
+                      <span className="font-bold">Missing category?</span> If
+                      the spelling is correct, create the category on your site
+                      and then re-validate.
+                    </p>
+                    <p>
+                      <span className="font-bold">Missing speaker?</span> If the
+                      spelling is correct, add the speakers on your site and
+                      then re-validate.
                     </p>
                     <p>
                       <span className="font-bold">
@@ -201,38 +239,55 @@ function ValidationStatusBtn({ importJob }) {
                       made the corrections.
                     </p>
                   </div>
+
                   <div className="overflow-hidden shadow outline-1 outline-charcoal-300 rounded-md">
                     <table className="relative min-w-full divide-y divide-charcoal-300">
                       <caption className="sr-only">
                         Import Error Details
                       </caption>
-                      <thead className="bg-charcoal-100">
+                      <thead className="bg-scarlet-50">
                         <tr>
                           <th
                             scope="col"
-                            className="py-3.5 pl-6 pr-3 text-left text-sm font-semibold text-charcoal-900"
+                            className="py-3.5 pl-6 pr-3 text-left text-charcoal-900"
                           >
-                            Row Number
+                            <div className="font-semibold ">Row Number*</div>
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold text-charcoal-900"
+                            className="px-3 py-3.5 text-left font-semibold text-charcoal-900"
                           >
                             Errors
                           </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-charcoal-200 bg-white">
+                        <tr>
+                          <td
+                            colSpan="2"
+                            className="py-2 pl-6 pr-3 text-left text-sm text-charcoal-500 text-pretty"
+                          >
+                            <span className="font-semibold">*</span>These row
+                            numbers assume that the column headers are counted
+                            as row number 1. Some csv readers will ignore the
+                            header row in their numbering in which case you will
+                            need to subtract 1 from the row number listed below.
+                          </td>
+                        </tr>
                         {importJob?.validationReport?.errorDetails?.map(
                           (row) => (
                             <tr key={row?.rowNumber}>
-                              <td className="whitespace-nowrap py-4 pl-6 pr-3 text-left justify-start text-sm font-medium text-charcoal-900">
-                                {row?.rowNumber}
+                              <td className="whitespace-nowrap py-4 pl-6 text-left justify-start text-charcoal-900">
+                                {row?.rowNumber + 1}
                               </td>
                               <td className="px-3 py-4 text-left text-sm text-charcoal-500">
                                 <ul className="list-disc">
-                                  {row?.errors?.map((error) => (
-                                    <li key={error}>{error}</li>
+                                  {row?.errors?.map((error, index) => (
+                                    <li
+                                      key={`${row?.rowNumber}-${index}-${error}`}
+                                    >
+                                      {error}
+                                    </li>
                                   ))}
                                 </ul>
                               </td>
@@ -243,8 +298,6 @@ function ValidationStatusBtn({ importJob }) {
                     </table>
                   </div>
                 </div>
-              ) : (
-                'None'
               )}
             </div>
           </div>

@@ -7,7 +7,7 @@ import LoadOrError from 'components/LoadOrError'
 import SiteDocHead from 'components/SiteDocHead'
 
 function ImportCrudContainer() {
-  const { backHandler, importJobId, queryResponse, submitHandler } =
+  const { backHandler, importJobId, queryResponse, submitHandler, uppy } =
     ImportCrudData()
 
   const action = importJobId ? 'Edit' : 'Create'
@@ -19,6 +19,7 @@ function ImportCrudContainer() {
         backHandler={backHandler}
         dataToEdit={queryResponse?.data}
         submitHandler={submitHandler}
+        uppy={uppy}
       />
     </LoadOrError>
   )

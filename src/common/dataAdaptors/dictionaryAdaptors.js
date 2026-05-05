@@ -41,6 +41,10 @@ export function entryForEditing({ item }) {
 export function entryForViewing({ item }) {
   return {
     partOfSpeech: item?.partOfSpeech || '',
+    sitename: item?.site?.slug,
+    siteTitle: item?.site?.title,
+    siteVisibility: item?.site?.visibility,
+    site: item?.site,
     ...coreEntry({ item }),
     ...basicDatesAdaptor({ item }),
     ...audienceForViewing({ item }),
