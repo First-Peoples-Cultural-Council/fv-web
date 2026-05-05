@@ -6,7 +6,7 @@ import getIcon from 'common/utils/getIcon'
 import Tooltip from 'components/Tooltip'
 import QrcodeModal from 'components/Actions/QrcodeModal'
 
-// NB: This button CANNOT be used inside a modal
+// NB: IMPORTANT! This modal button combo CANNOT be used inside a modal or other headlessui menus
 function QrcodeButton({
   entry,
   buttonStyling = 'btn-tertiary btn-sm',

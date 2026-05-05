@@ -4,7 +4,12 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { CopyButton, ShareModal, QrcodeModal } from 'components/Actions'
+import {
+  CopyButton,
+  ShareModal,
+  QrcodeModal,
+  WebShareButton,
+} from 'components/Actions'
 
 function ActionsMenuPresentation({
   entry,
@@ -43,18 +48,15 @@ function ActionsMenuPresentation({
             anchor="bottom end"
             className="z-10 origin-top-right transition duration-300 ease-in-out data-closed:opacity-0 data-closed:scale-95 absolute top-10 right-0 w-40 rounded-lg shadow-lg bg-white ring-1 ring-black/50 focus:outline-hidden"
           >
-            <div className="py-1">
+            <div className="py-2 space-y-1">
               {moreActions.includes('share') && (
                 <MenuItem>
-                  <button
-                    type="button"
-                    data-testid="share-btn"
-                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start"
-                    onClick={() => setShareModalOpen(true)}
-                  >
-                    {getIcon('WebShare')}
-                    <span>Share</span>
-                  </button>
+                  <WebShareButton
+                    buttonStyling="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none"
+                    fallBackOnClick={() => setShareModalOpen(true)}
+                    entry={entry}
+                    withLabels={withLabels}
+                  />
                 </MenuItem>
               )}
               {moreActions.includes('qrcode') && (
@@ -63,7 +65,7 @@ function ActionsMenuPresentation({
                     data-testid="qrcode-btn"
                     type="button"
                     id="QrcodeButton"
-                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start"
+                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none"
                     onClick={() => setQrcodeModalOpen(true)}
                   >
                     {getIcon('Qrcode')}
