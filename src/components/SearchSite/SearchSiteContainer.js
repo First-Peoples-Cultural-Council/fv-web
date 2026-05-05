@@ -39,7 +39,7 @@ function SearchSiteContainer() {
           </div>
         </section>
         <div className="grid grid-cols-11 lg:p-2">
-          <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-charcoal-100 md:border-0">
+          <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-charcoal-100 md:border-0 py-3">
             <SearchTypeFilters
               searchType={searchTypeInUrl}
               filters={typeFilters}

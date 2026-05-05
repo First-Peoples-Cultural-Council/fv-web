@@ -9,7 +9,7 @@ import Tooltip from 'components/Tooltip'
 import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 import { PUBLIC } from 'common/constants'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
-import { CopyButton, WebShareButton, QrcodeButton } from 'components/Actions'
+import { CopyButton, ShareButton, QrcodeButton } from 'components/Actions'
 
 function DictionaryDetailPrimary({ entry }) {
   const shortTitle = entry?.title.length < 20
@@ -49,7 +49,7 @@ function DictionaryDetailPrimary({ entry }) {
               buttonStyling="btn-tertiary btn-sm"
             />
             <QrcodeButton entry={entry} withLabels />
-            <WebShareButton entry={entry} withLabels />
+            <ShareButton entry={entry} withLabels />
           </div>
         </div>
       </section>

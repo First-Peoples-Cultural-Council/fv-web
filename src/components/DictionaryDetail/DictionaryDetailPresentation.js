@@ -16,7 +16,7 @@ function DictionaryDetailPresentation({ entry, sitename }) {
 
   return (
     <div
-      className="md:max-w-6xl mx-auto px-8 xl:px-0 my-4 md:my-10 lg:my-16 bg-white"
+      className="md:max-w-6xl mx-auto px-8 xl:px-0 py-4 md:py-10 lg:py-16 bg-white"
       data-testid="DictionaryDetailPresentation"
     >
       <SiteDocHead titleArray={[entry.title, 'Dictionary']} />

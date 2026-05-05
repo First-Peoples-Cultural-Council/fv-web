@@ -9,35 +9,39 @@ function WebShareButton({
   entry,
   buttonStyling = 'btn-tertiary btn-sm',
   withLabels = false,
+  fallBackOnClick = () => {},
 }) {
-  // Displays on browsers with Web share only - most modern mobile device browsers
+  const handleShareClick = () => {
+    // If user's browser has Web share use that - most modern mobile device browsers
+    if (navigator?.share) {
+      navigator.share({
+        title: entry?.title,
+        url: `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
+          entry?.type,
+        )}/${entry?.id}`,
+      })
+    } else fallBackOnClick()
+  }
+
   return (
-    navigator?.share && (
-      <button
-        type="button"
-        data-testid="share-btn"
-        className={buttonStyling}
-        onClick={() =>
-          navigator.share({
-            title: entry?.title,
-            url: `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
-              entry?.type,
-            )}/${entry?.id}`,
-          })
-        }
-      >
-        {getIcon('WebShare')}
-        {withLabels ? <span>Share</span> : null}
-      </button>
-    )
+    <button
+      type="button"
+      data-testid="share-btn"
+      className={buttonStyling}
+      onClick={() => handleShareClick()}
+    >
+      {getIcon('WebShare')}
+      {withLabels ? <span>Share</span> : null}
+    </button>
   )
 }
 // PROPTYPES
-const { bool, object, string } = PropTypes
+const { bool, func, object, string } = PropTypes
 WebShareButton.propTypes = {
   entry: object,
   buttonStyling: string,
   withLabels: bool,
+  fallBackOnClick: func,
 }
 
 export default WebShareButton
