@@ -52,7 +52,7 @@ function ActionsMenuPresentation({
               {moreActions.includes('share') && (
                 <MenuItem>
                   <WebShareButton
-                    buttonStyling="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none"
+                    buttonStyling="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none w-full"
                     fallBackOnClick={() => setShareModalOpen(true)}
                     entry={entry}
                     withLabels
@@ -65,7 +65,7 @@ function ActionsMenuPresentation({
                     data-testid="qrcode-btn"
                     type="button"
                     id="QrcodeButton"
-                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none"
+                    className="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none w-full"
                     onClick={() => setQrcodeModalOpen(true)}
                   >
                     {getIcon('Qrcode')}
