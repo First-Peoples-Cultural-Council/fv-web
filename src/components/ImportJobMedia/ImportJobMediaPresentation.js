@@ -63,10 +63,9 @@ function ImportJobMediaPresentation({ importJob, uppy }) {
 }
 
 // PROPTYPES
-const { func, object } = PropTypes
+const { object } = PropTypes
 
 ImportJobMediaPresentation.propTypes = {
-  backHandler: func,
   importJob: object,
   uppy: object,
 }
