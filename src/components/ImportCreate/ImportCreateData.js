@@ -8,7 +8,7 @@ import '@uppy/image-editor/css/style.min.css'
 // FPCC
 import { useImportJobCreate } from 'common/dataHooks/useImportJobs'
 
-function ImportCrudData() {
+function ImportCreateData() {
   const { sitename } = useParams()
 
   const navigate = useNavigate()
@@ -24,4 +24,4 @@ function ImportCrudData() {
   }
 }
 
-export default ImportCrudData
+export default ImportCreateData

@@ -8,7 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import Form from 'components/Form'
 import { definitions } from 'common/utils/validationHelpers'
 
-function ImportCrudPresentation({ backHandler, submitHandler }) {
+function ImportCreatePresentation({ backHandler, submitHandler }) {
   const SUPPORTED_IMPORT_EXTENSIONS = ['csv']
   const validator = yup.object().shape({
     title: definitions.title().required('A title for your import is required'),
@@ -34,7 +34,7 @@ function ImportCrudPresentation({ backHandler, submitHandler }) {
   })
 
   return (
-    <div id="ImportCrudPresentation" className="max-w-5xl p-8">
+    <div id="ImportCreatePresentation" className="max-w-5xl p-8">
       <Form.Header
         title="New import job"
         subtitle="Upload your batch csv and a unique title for your import"
@@ -78,9 +78,9 @@ function ImportCrudPresentation({ backHandler, submitHandler }) {
 // PROPTYPES
 const { func } = PropTypes
 
-ImportCrudPresentation.propTypes = {
+ImportCreatePresentation.propTypes = {
   backHandler: func,
   submitHandler: func,
 }
 
-export default ImportCrudPresentation
+export default ImportCreatePresentation
