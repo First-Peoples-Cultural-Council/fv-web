@@ -60,7 +60,7 @@ function StoryPresentationDrawer({ entry, isDashboard }) {
             className="aspect-3/2 rounded-lg w-full"
             src={entry?.coverVisual?.entry?.embedLink}
             title="video"
-            allowFullScreen
+            allow="fullscreen"
           >
             Your browser does not support the iframe tag.
           </iframe>

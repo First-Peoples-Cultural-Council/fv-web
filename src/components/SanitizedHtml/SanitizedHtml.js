@@ -29,14 +29,7 @@ DOMPurify.addHook('uponSanitizeElement', (node, data) => {
 const Sanitize = (content) =>
   DOMPurify.sanitize(content, {
     ADD_TAGS: ['iframe'],
-    ADD_ATTR: [
-      'allow',
-      'allowfullscreen',
-      'frameborder',
-      'scrolling',
-      'target',
-      'rel',
-    ],
+    ADD_ATTR: ['allow', 'frameborder', 'scrolling', 'target', 'rel'],
   })
 
 function SanitizedHtml({ htmlString = '', className, tagName = 'div' }) {

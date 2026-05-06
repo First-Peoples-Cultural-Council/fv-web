@@ -231,9 +231,8 @@ function Keyboards() {
             <iframe
               src="https://www.youtube.com/embed/hvRHyL3rBzg?si=YN4puM40b6EmXr9N"
               title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
               className="w-full aspect-video"
-              allowfullscreen
             ></iframe>
           </section>
 
@@ -242,9 +241,8 @@ function Keyboards() {
             <iframe
               src="https://www.youtube.com/embed/GG_VnxTf5ZQ?si=kgLzyI89rRLA7t36"
               title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
               className="w-full aspect-video"
-              allowfullscreen
             ></iframe>
           </section>
 

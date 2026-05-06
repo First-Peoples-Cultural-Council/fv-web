@@ -92,7 +92,7 @@ function StoryPresentation({ entry }) {
                   className="absolute t-0 l-0 w-full h-full"
                   src={entry?.coverVisual?.entry?.embedLink}
                   title="video"
-                  allowFullScreen
+                  allow="fullscreen"
                 >
                   Your browser does not support the iframe tag.
                 </iframe>
@@ -319,7 +319,7 @@ const getMedia = ({ images = [], videos = [], videoLinks = [] }) => {
         className="aspect-3/2 w-full"
         src={videoLink?.embedLink}
         title="video"
-        allowFullScreen
+        allow="fullscreen"
       >
         Your browser does not support the iframe tag.
       </iframe>

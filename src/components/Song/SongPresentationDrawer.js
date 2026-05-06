@@ -61,7 +61,7 @@ function SongPresentationDrawer({ entry, isDashboard }) {
             className="aspect-3/2 w-full rounded-lg"
             src={entry?.coverVisual?.entry?.embedLink}
             title="video"
-            allowFullScreen
+            allow="fullscreen"
           >
             Your browser does not support the iframe tag.
           </iframe>

@@ -24,8 +24,7 @@ function SiteKeyboardsPresentation({ title }) {
           width="700"
           src="https://www.youtube-nocookie.com/embed/hvRHyL3rBzg"
           title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
         ></iframe>
       </p>
       <h2>Installation Instructions for PC computers</h2>
@@ -36,8 +35,7 @@ function SiteKeyboardsPresentation({ title }) {
           width="700"
           src="https://www.youtube-nocookie.com/embed/GG_VnxTf5ZQ"
           title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture"
         ></iframe>
       </p>
       <h2>iPhone / iPad / Android Mobile Device</h2>
