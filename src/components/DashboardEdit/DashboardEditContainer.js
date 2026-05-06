@@ -23,7 +23,7 @@ import DocumentCrud from 'components/DocumentCrud'
 import GalleryCrud from 'components/GalleryCrud'
 import HomeCrud from 'components/HomeCrud'
 import ImageCrud from 'components/ImageCrud'
-import ImportCrud from 'components/ImportCrud'
+import ImportJobMedia from 'components/ImportJobMedia'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
@@ -36,6 +36,7 @@ import DashboardCategories from 'components/DashboardCategories'
 import DashboardEntries from 'components/DashboardEntries'
 import DashboardGalleries from 'components/DashboardGalleries'
 import DashboardImmersiom from 'components/DashboardImmersion'
+import DashboardImports from 'components/DashboardImports'
 import DashboardPages from 'components/DashboardPages'
 import DashboardSpeakers from 'components/DashboardSpeakers'
 import DashboardWidgets from 'components/DashboardWidgets'
@@ -90,12 +91,11 @@ function DashboardEditContainer() {
             </RequireAuth>
           }
         />
-
         <Route
-          path="import"
+          path="imports"
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
-              <ImportCrud.Container />
+              <DashboardImports.Container />
             </RequireAuth>
           }
         />
@@ -186,6 +186,14 @@ function DashboardEditContainer() {
                 <SiteDocHead titleArray={['Edit Image']} />
                 <ImageCrud.Container />
               </>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="import/:id/media"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <ImportJobMedia.Container />
             </RequireAuth>
           }
         />
