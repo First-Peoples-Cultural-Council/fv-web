@@ -55,7 +55,7 @@ function ActionsMenuPresentation({
                     buttonStyling="btn-tertiary btn-md data-focus:bg-blumine-100 justify-start rounded-none"
                     fallBackOnClick={() => setShareModalOpen(true)}
                     entry={entry}
-                    withLabels={withLabels}
+                    withLabels
                   />
                 </MenuItem>
               )}
