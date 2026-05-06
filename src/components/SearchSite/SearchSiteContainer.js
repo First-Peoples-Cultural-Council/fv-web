@@ -30,25 +30,25 @@ function SearchSiteContainer() {
   })
 
   return (
-    <>
+    <div data-testid="SearchSiteContainer">
       <SiteDocHead titleArray={['Search']} />
-      <div data-testid="SearchSiteContainer">
-        <section className="bg-linear-to-b from-jade-500 to-jade-700 p-5">
-          <div className="mx-auto lg:w-3/5">
-            <SearchSiteForm.Container />
-          </div>
-        </section>
-        <div className="grid grid-cols-11 lg:p-2">
-          <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-charcoal-100 md:border-0 py-3">
-            <SearchTypeFilters
-              searchType={searchTypeInUrl}
-              filters={typeFilters}
-              handleFilter={(filter) => {
-                setSearchTypeInUrl(filter)
-              }}
-            />
-          </div>
-          <div className="hidden md:block col-span-11 lg:col-span-9">
+      <section className="bg-linear-to-b from-jade-500 to-jade-700 p-5 print:hidden">
+        <div className="mx-auto lg:w-3/5">
+          <SearchSiteForm.Container />
+        </div>
+      </section>
+      <div className="grid grid-cols-11 lg:p-2">
+        <div className="col-span-11 lg:col-span-2 lg:mt-2 border-b-2 border-charcoal-100 md:border-0 py-3">
+          <SearchTypeFilters
+            searchType={searchTypeInUrl}
+            filters={typeFilters}
+            handleFilter={(filter) => {
+              setSearchTypeInUrl(filter)
+            }}
+          />
+        </div>
+        <div className="col-span-11 lg:col-span-9">
+          <div className="hidden md:block p-2 print:block">
             <DictionaryList.Presentation
               infiniteQueryResponse={infiniteQueryResponse}
               sitename={sitename}
@@ -56,7 +56,7 @@ function SearchSiteContainer() {
               entryLabel={getSearchTypeLabel({ searchTypeInUrl })}
             />
           </div>
-          <div className="block md:hidden col-span-11">
+          <div className="block md:hidden print:hidden">
             <DictionaryGrid.Presentation
               infiniteQueryResponse={infiniteQueryResponse}
               sitename={sitename}
@@ -65,7 +65,7 @@ function SearchSiteContainer() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

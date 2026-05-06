@@ -159,7 +159,7 @@ function DictionaryDetailMedia({ entry }) {
                       className="aspect-3/2 max-h-60 w-full"
                       src={link?.embedLink}
                       title="video"
-                      allowFullScreen
+                      allow="fullscreen"
                     >
                       Your browser does not support the iframe tag.
                     </iframe>

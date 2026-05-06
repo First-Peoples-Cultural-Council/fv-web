@@ -16,10 +16,7 @@ function WidgetIframePresentation({ widgetData }) {
             <div className="mx-auto max-w-3xl lg:max-w-none">
               <iframe
                 title="Map"
-                allow="geolocation"
-                allowfullscreen="true"
-                mozallowfullscreen="true"
-                webkitallowfullscreen="true"
+                allow="fullscreen; geolocation"
                 className="aspect-3/2 w-full object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-900 bg-white"
                 src={src}
               />

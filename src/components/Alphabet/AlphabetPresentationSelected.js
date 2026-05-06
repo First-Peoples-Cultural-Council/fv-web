@@ -183,7 +183,7 @@ function AlphabetPresentationSelected({
                         className="absolute t-0 l-0 w-full h-full"
                         src={relatedVideoLink?.[0]?.embedLink}
                         title="video"
-                        allowFullScreen
+                        allow="fullscreen"
                       >
                         Your browser does not support the iframe tag.
                       </iframe>

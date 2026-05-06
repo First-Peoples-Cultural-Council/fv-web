@@ -174,7 +174,7 @@ const getMedia = ({ pictures, videos, videoLinks, videoLinksClassname }) => (
               className="aspect-3/2 rounded-lg w-full"
               src={video?.embedLink}
               title="video"
-              allowFullScreen
+              allow="fullscreen"
             >
               Your browser does not support the iframe tag.
             </iframe>
