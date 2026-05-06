@@ -6,6 +6,7 @@ import DictionaryGrid from 'components/DictionaryGrid'
 import SearchDictionaryForm from 'components/SearchDictionaryForm'
 import DictionaryLinks from 'components/DictionaryLinks'
 import { TYPE_DICTIONARY, TYPE_PHRASE } from 'common/constants'
+import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryPresentation({
   searchType,
@@ -15,9 +16,9 @@ function DictionaryPresentation({
   sitename,
 }) {
   const count =
-    infiniteQueryResponse?.data?.pages?.[0]?.count < 10000
-      ? infiniteQueryResponse?.data?.pages?.[0]?.count
-      : '10000+'
+    infiniteQueryResponse?.data?.pages?.[0]?.count > 9999
+      ? '10000+'
+      : infiniteQueryResponse?.data?.pages?.[0]?.count
 
   const bannerColor =
     searchType === TYPE_PHRASE
@@ -28,11 +29,9 @@ function DictionaryPresentation({
     searchType === TYPE_PHRASE ? 'text-phrase-color-800' : 'text-word-color-700'
 
   return (
-    <>
-      <section
-        id="DictionaryPresentation"
-        className={`bg-linear-to-b ${bannerColor} p-5 print:hidden`}
-      >
+    <div data-testid="DictionaryPresentation">
+      <SiteDocHead titleArray={[labels.titlecase]} />
+      <section className={`bg-linear-to-b ${bannerColor} p-5 print:hidden`}>
         <div className="mx-auto lg:w-3/5">
           <SearchDictionaryForm.Container
             kids={kids}
@@ -50,8 +49,8 @@ function DictionaryPresentation({
           />
         </div>
       ) : (
-        <div className="grid grid-cols-12">
-          <div className="hidden lg:block print:hidden col-span-2 mt-5">
+        <div className="grid grid-cols-11 lg:p-2">
+          <div className="hidden lg:block col-span-2 lg:mt-2 py-3">
             <div className="mb-12 ml-4 xl:ml-7 space-y-2">
               <h1
                 data-testid={`${searchType}-header`}
@@ -61,7 +60,7 @@ function DictionaryPresentation({
               </h1>
               <div
                 className={`${
-                  count ? '' : 'opacity-0'
+                  count ? '' : 'invisible'
                 } text-sm xl:text-base font-light`}
               >
                 Results: {count}
@@ -69,7 +68,7 @@ function DictionaryPresentation({
             </div>
             <DictionaryLinks />
           </div>
-          <div className="col-span-12 lg:col-span-10">
+          <div className="col-span-11 lg:col-span-9">
             <div className="hidden md:block p-2 print:block">
               <DictionaryList.Presentation
                 infiniteQueryResponse={infiniteQueryResponse}
@@ -88,7 +87,7 @@ function DictionaryPresentation({
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 // PROPTYPES

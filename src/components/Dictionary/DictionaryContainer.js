@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import DictionaryPresentation from 'components/Dictionary/DictionaryPresentation'
 import DictionaryData from 'components/Dictionary/DictionaryData'
 import { TYPE_DICTIONARY } from 'common/constants'
-import SiteDocHead from 'components/SiteDocHead'
 
 function DictionaryContainer({ searchType = TYPE_DICTIONARY, kids = null }) {
   const { infiniteQueryResponse, labels, sitename } = DictionaryData({
@@ -13,16 +12,13 @@ function DictionaryContainer({ searchType = TYPE_DICTIONARY, kids = null }) {
     kids,
   })
   return (
-    <>
-      <SiteDocHead titleArray={[labels.titlecase]} />
-      <DictionaryPresentation
-        searchType={searchType}
-        infiniteQueryResponse={infiniteQueryResponse}
-        kids={kids}
-        labels={labels}
-        sitename={sitename}
-      />
-    </>
+    <DictionaryPresentation
+      searchType={searchType}
+      infiniteQueryResponse={infiniteQueryResponse}
+      kids={kids}
+      labels={labels}
+      sitename={sitename}
+    />
   )
 }
 
