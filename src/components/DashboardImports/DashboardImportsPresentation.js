@@ -163,7 +163,7 @@ function DashboardImportsPresentation({
                     ) : (
                       <Link
                         data-testid="add-import-media-btn"
-                        to={`/${result?.site?.slug}/dashboard/edit/import?id=${result?.id}`}
+                        to={`/${result?.site?.slug}/dashboard/edit/import/${result?.id}/media`}
                         className="btn-tertiary btn-md-icon"
                       >
                         {getIcon('Add')}

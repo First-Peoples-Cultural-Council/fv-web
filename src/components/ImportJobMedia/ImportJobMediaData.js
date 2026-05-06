@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useState } from 'react'
 import Uppy from '@uppy/core'
 import XHR from '@uppy/xhr-upload'
@@ -11,34 +11,20 @@ import '@uppy/image-editor/css/style.min.css'
 // FPCC
 import GlobalConfiguration from 'src/GlobalConfiguration'
 import { getAuthHeaderIfTokenExists } from 'common/utils/authHelpers'
-import { useSiteStore } from 'context/SiteContext'
 import {
   IMPORT_JOBS,
   SITES,
   SUPPORTED_IMPORT_MEDIA_EXTENSIONS,
 } from 'common/constants'
-import {
-  useImportJob,
-  useImportJobCreate,
-} from 'common/dataHooks/useImportJobs'
+import { useImportJob } from 'common/dataHooks/useImportJobs'
 
-function ImportCrudData() {
-  const { site } = useSiteStore()
-  const { sitename } = useParams()
+function ImportJobMediaData() {
+  const { sitename, id } = useParams()
 
-  const navigate = useNavigate()
-  const backHandler = () => navigate(`/${sitename}/dashboard/imports`)
-
-  const [searchParams] = useSearchParams()
-  const importJobId = searchParams.get('id') || null
-
-  const queryResponse = useImportJob({ id: importJobId })
-  const { mutate: create } = useImportJobCreate()
-
-  const submitHandler = (formData) => create(formData)
+  const queryResponse = useImportJob({ id })
 
   const uploadEndpoint = new URL(
-    `${SITES}/${sitename}/${IMPORT_JOBS}/${importJobId}/media/`,
+    `${SITES}/${sitename}/${IMPORT_JOBS}/${id}/media/`,
     GlobalConfiguration.API_URL,
   )
 
@@ -82,13 +68,9 @@ function ImportCrudData() {
   )
 
   return {
-    submitHandler,
-    backHandler,
-    site,
     queryResponse,
-    importJobId,
     uppy,
   }
 }
 
-export default ImportCrudData
+export default ImportJobMediaData

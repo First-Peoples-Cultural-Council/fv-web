@@ -1,10 +1,5 @@
-import {
-  keepPreviousData,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
-import { useParams, useSearchParams } from 'react-router'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useParams, useNavigate } from 'react-router'
 
 // FPCC
 import api from 'services/api'
@@ -40,11 +35,9 @@ export function useImportJobs({ page }) {
 }
 
 // CREATE
-export function useImportJobCreate(options = {}) {
+export function useImportJobCreate() {
+  const navigate = useNavigate()
   const { sitename } = useParams()
-  const queryClient = useQueryClient()
-  // eslint-disable-next-line no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams() // NOSONAR
 
   const createImportJob = async (formJson) => {
     const formData = new FormData()
@@ -57,15 +50,16 @@ export function useImportJobCreate(options = {}) {
     })
   }
 
-  const mutation = useMutation({
+  const mutation = useMutationWithNotification({
     mutationFn: createImportJob,
-    onSuccess: (response) => {
-      queryClient.invalidateQueries({
-        queryKey: [IMPORT_JOBS, sitename],
-      })
-      setSearchParams({ id: response?.id })
+    queryKeyToInvalidate: [IMPORT_JOBS, sitename],
+    actionWord: 'created',
+    type: 'import job',
+    onSuccessCallback: (response) => {
+      if (response?.id) {
+        navigate(`/${sitename}/dashboard/edit/import/${response?.id}/media`)
+      }
     },
-    ...options,
   })
 
   return mutation
