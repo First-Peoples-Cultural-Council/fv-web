@@ -130,18 +130,16 @@ function PhraseScramblerPresentation({
                 )}
                 {!gameCompleted && (
                   <div className="flex-col justify-center space-y-4">
-                    <div className="flex justify-center">
-                      <div className="flex items-center justify-center space-x-2 h-10">
-                        <span>
-                          {relatedAudio?.length > 0
-                            ? 'Need a hint? Listen to the phrase'
-                            : 'No audio.'}
-                        </span>
-                        <AudioButton audioArray={relatedAudio} />
-                      </div>
+                    <div className="flex items-center justify-center space-x-1 h-10">
+                      <span>
+                        {relatedAudio?.length > 0
+                          ? 'Need a hint? Listen to the phrase'
+                          : 'No audio.'}
+                      </span>
+                      <AudioButton audioArray={relatedAudio} />
                     </div>
 
-                    <div className="space-x-2">
+                    <div className="flex items-center justify-center space-x-2">
                       <button
                         data-testid="resetButton"
                         type="button"
@@ -157,7 +155,7 @@ function PhraseScramblerPresentation({
                         onClick={() => checkAnswer()}
                         className="btn-primary btn-md"
                       >
-                        Check
+                        <span>Check your answer</span>
                       </button>
                     </div>
                   </div>
