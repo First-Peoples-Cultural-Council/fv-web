@@ -56,7 +56,6 @@ function VideoIdFieldButton({ value, onChange }) {
         onClickHandler={() => setModalOpen(true)}
       />
       <AddVideoModal.Container
-        isDashboard
         formMedia={[{ id: value }]}
         updateFormMedia={updateFormMedia}
         modalOpen={modalOpen}

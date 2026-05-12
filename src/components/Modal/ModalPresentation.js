@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react'
+import { useLocation } from 'react-router'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 
-function ModalPresentation({
-  children,
-  isOpen = false,
-  closeHandler,
-  isDashboard = false,
-}) {
+function ModalPresentation({ children, isOpen = false, closeHandler }) {
+  const { pathname } = useLocation()
+  const isInDashboard = pathname?.includes('/dashboard/')
+
   return (
     <Dialog open={isOpen} onClose={closeHandler} className="relative z-30">
       <DialogBackdrop
@@ -25,7 +24,7 @@ function ModalPresentation({
           >
             <div
               className={` ${
-                isDashboard ? 'mt-8' : 'mt-24'
+                isInDashboard ? 'mt-8' : 'mt-24'
               } relative inline-block transform transition-all`}
             >
               {children}
@@ -50,7 +49,6 @@ ModalPresentation.propTypes = {
   children: node,
   isOpen: bool,
   closeHandler: func,
-  isDashboard: bool,
 }
 
 export default ModalPresentation

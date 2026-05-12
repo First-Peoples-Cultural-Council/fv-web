@@ -92,7 +92,6 @@ function ValidationStatusBtn({ importJob }) {
       {getButton(importJob?.validationStatus)}
       <Modal.Presentation
         isOpen={modalOpen}
-        isDashboard
         closeHandler={() => setModalOpen(false)}
       >
         <div
