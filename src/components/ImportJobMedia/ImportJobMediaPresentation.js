@@ -35,8 +35,9 @@ function ImportJobMediaPresentation({ importJob, uppy }) {
           </div>
 
           {/* Add Media Form */}
-          <div className="col-span-2">
+          <div className="col-span-2 space-y-2">
             <Form.FieldLabel nameId="upload" text="Upload Media" />
+            <Form.HelpText text="⚠️ The Firstvoices file size limit is 1GB" />
             <Dashboard
               uppy={uppy}
               width="100%"
