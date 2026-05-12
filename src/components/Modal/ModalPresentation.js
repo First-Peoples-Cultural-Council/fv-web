@@ -25,7 +25,7 @@ function ModalPresentation({
           >
             <div
               className={` ${
-                isDashboard ? 'w-[75vw] mt-8' : 'mt-24'
+                isDashboard ? 'mt-8' : 'mt-24'
               } relative inline-block transform transition-all`}
             >
               {children}
