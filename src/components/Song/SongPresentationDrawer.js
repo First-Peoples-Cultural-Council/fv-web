@@ -8,7 +8,7 @@ import AudioNative from 'components/AudioNative'
 import WysiwygBlock from 'components/WysiwygBlock'
 import { IMAGE, VIDEO, VIDEO_LINK, SMALL, ORIGINAL } from 'common/constants'
 
-function SongPresentationDrawer({ entry, isDashboard }) {
+function SongPresentationDrawer({ entry }) {
   return (
     <div data-testid="SongPresentationDrawer">
       <div className="sm:flex sm:items-end sm:px-6 py-1 sm:py-4">
@@ -100,31 +100,13 @@ function SongPresentationDrawer({ entry, isDashboard }) {
           </div>
         )}
       </div>
-      {/* created and modified */}
-      {isDashboard && (
-        <div className="border-t text-sm px-6">
-          {entry?.createdBy && (
-            <div className="py-4">
-              <p>
-                Created: {entry?.created} by {entry?.createdBy}
-              </p>
-            </div>
-          )}
-          {entry?.lastModifiedBy && (
-            <p>
-              Modified: {entry?.lastModified} by {entry?.lastModifiedBy}
-            </p>
-          )}
-        </div>
-      )}
     </div>
   )
 }
 // PROPTYPES
-const { object, bool } = PropTypes
+const { object } = PropTypes
 SongPresentationDrawer.propTypes = {
   entry: object,
-  isDashboard: bool,
 }
 
 export default SongPresentationDrawer

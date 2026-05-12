@@ -5,7 +5,7 @@ import StoryPresentation from 'components/Story/StoryPresentation'
 import StoryPresentationDrawer from 'components/Story/StoryPresentationDrawer'
 import LoadOrError from 'components/LoadOrError'
 
-function StoryContainer({ id, sitename, isDrawer, isDashboard }) {
+function StoryContainer({ id, sitename, isDrawer }) {
   const { entry, storyQueryResponse } = StoryData({
     id,
     sitename,
@@ -14,7 +14,7 @@ function StoryContainer({ id, sitename, isDrawer, isDashboard }) {
   return (
     <LoadOrError queryResponse={storyQueryResponse}>
       {isDrawer ? (
-        <StoryPresentationDrawer entry={entry} isDashboard={isDashboard} />
+        <StoryPresentationDrawer entry={entry} />
       ) : (
         <StoryPresentation entry={entry} />
       )}
@@ -28,7 +28,6 @@ StoryContainer.propTypes = {
   id: string,
   sitename: string,
   isDrawer: bool,
-  isDashboard: bool,
 }
 
 export default StoryContainer
