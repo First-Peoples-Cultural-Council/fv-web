@@ -48,19 +48,20 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
           <SectionTitle.Presentation title={labels?.uppercase} />
           <LoadOrError queryResponse={infiniteQueryResponse}>
-            <div className="flex-1 flex items-stretch overflow-hidden">
-              <main className="flex-1 overflow-y-auto lg:px-8">
-                {!kids && (
-                  <div className="hidden md:block border-b border-charcoal-100 pb-2 lg:py-4">
-                    <div className="flex justify-end">
-                      <GridListToggle.Presentation
-                        isGridView={isGridView}
-                        setIsGridView={setIsGridView}
-                      />
+            <main className="flex-1 flex items-stretch overflow-hidden">
+              {infiniteQueryResponse?.data?.pages?.[0]?.count > 0 ? (
+                <div className="flex-1 overflow-y-auto lg:px-8">
+                  {!kids && (
+                    <div className="hidden md:block border-b border-charcoal-100 pb-2 lg:py-4">
+                      <div className="flex justify-end">
+                        <GridListToggle.Presentation
+                          isGridView={isGridView}
+                          setIsGridView={setIsGridView}
+                        />
+                      </div>
                     </div>
-                  </div>
-                )}
-                {infiniteQueryResponse?.data?.pages?.[0]?.count > 0 ? (
+                  )}
+
                   <div className="pb-16">
                     {isGridView ? (
                       <SongsAndStoriesGrid
@@ -79,15 +80,13 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
                       infiniteQueryResponse={infiniteQueryResponse}
                     />
                   </div>
-                ) : (
-                  <div className="w-full flex col-span-1 md:col-span-3 xl:col-span-4">
-                    <div className="mx-6 mt-4 text-lg text-center md:mx-auto md:mt-20">
-                      No {labels?.lowercase} have been added to this site yet!
-                    </div>
-                  </div>
-                )}
-              </main>
-            </div>
+                </div>
+              ) : (
+                <div className="w-full text-lg text-center mx-6 mt-4 md:mt-14">
+                  No {labels?.lowercase} have been added to this site yet!
+                </div>
+              )}
+            </main>
           </LoadOrError>
         </div>
       </section>
