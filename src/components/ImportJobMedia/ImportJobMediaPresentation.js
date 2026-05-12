@@ -46,7 +46,7 @@ function ImportJobMediaPresentation({ importJob, uppy }) {
               showSelectedFiles
             />
           </div>
-          <div className="col-span-2 flex justify-end px-6">
+          <div className="col-span-2 flex justify-end px-6 space-x-2">
             <Link
               type="button"
               data-testid="done-btn"
@@ -54,6 +54,14 @@ function ImportJobMediaPresentation({ importJob, uppy }) {
               to={`/${sitename}/dashboard/imports`}
             >
               <span>Done</span>
+            </Link>
+            <Link
+              type="button"
+              data-testid="skip-btn"
+              className="btn-tertiary btn-md"
+              to={`/${sitename}/dashboard/imports`}
+            >
+              <span>Skip</span>
               {getIcon('RightArrow')}
             </Link>
           </div>
