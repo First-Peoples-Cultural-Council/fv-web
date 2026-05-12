@@ -62,7 +62,7 @@ describe(
           `${fontWeightStrength[6]}`,
         )
       })
-      cy.viewport(1024, 768)
+      cy.viewport(1920, 1080)
       cy.visit(`${Cypress.env('baseUrl')}`)
       cy.contains('Sign in').click()
       cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
