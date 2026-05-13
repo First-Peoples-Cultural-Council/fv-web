@@ -16,7 +16,7 @@ import {
   EXPIRED,
 } from 'common/constants/jobs'
 
-function ValidationStatusBtn({ importJob }) {
+function ValidationStatusBtn({ importJob, handleRefetch }) {
   const [modalOpen, setModalOpen] = useState(false)
   const { mutate: validateImportJob } = useImportJobValidate()
 
@@ -26,29 +26,27 @@ function ValidationStatusBtn({ importJob }) {
         return (
           <div className="inline-flex items-center justify-center space-x-2">
             <button
-              data-testid="ValidationStatusBtn"
+              data-testid="validation-results-btn"
               type="button"
               onClick={() => setModalOpen(true)}
               className="btn-secondary btn-sm text-nowrap"
             >
               <span>View results</span>
+              {importJob?.validationReport?.errorRows > 0 ? (
+                <Tooltip message="Errors found">
+                  {getIcon(
+                    'ExclamationTriangleSolid',
+                    'fill-current text-ochre-600',
+                  )}
+                </Tooltip>
+              ) : (
+                getIcon('CheckCircleSolid')
+              )}
             </button>
-            {importJob?.validationReport?.errorRows > 0 ? (
-              <Tooltip message="Errors found">
-                {getIcon(
-                  'ExclamationTriangleSolid',
-                  'fill-current text-ochre-600 size-6',
-                )}
-              </Tooltip>
-            ) : (
-              getIcon(
-                'CheckCircleSolid',
-                'fill-current text-blumine-800 size-6',
-              )
-            )}
+
             <Tooltip message="Re-validate">
               <button
-                data-testid="import-validate-btn"
+                data-testid="revalidate-btn"
                 type="button"
                 onClick={() => validateImportJob(importJob?.id)}
                 className="btn-tertiary btn-md-icon"
@@ -61,7 +59,16 @@ function ValidationStatusBtn({ importJob }) {
       case STARTED:
       case ACCEPTED:
         return (
-          <p className="whitespace-nowrap text-sm text-charcoal-500">{`Validation ${importJob?.validationStatus}`}</p>
+          <Tooltip message="Click to check if validation is complete">
+            <button
+              data-testid="validate-btn"
+              type="button"
+              onClick={handleRefetch}
+              className="btn-tertiary btn-sm"
+            >
+              <span>In progress</span>
+            </button>
+          </Tooltip>
         )
       case FAILED:
       case CANCELLED:
@@ -72,12 +79,12 @@ function ValidationStatusBtn({ importJob }) {
       default:
         return (
           <button
-            data-testid="import-validate-btn"
+            data-testid="validate-btn"
             type="button"
             onClick={() => validateImportJob(importJob?.id)}
             className="btn-primary btn-sm"
           >
-            Validate
+            <span>Validate</span>
           </button>
         )
     }
@@ -96,9 +103,10 @@ function ValidationStatusBtn({ importJob }) {
   )
 }
 // PROPTYPES
-const { object } = PropTypes
+const { func, object } = PropTypes
 ValidationStatusBtn.propTypes = {
   importJob: object,
+  handleRefetch: func,
 }
 
 export default ValidationStatusBtn
