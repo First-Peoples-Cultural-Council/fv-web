@@ -18,20 +18,13 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           errors={errors}
         />
       </div>
-      <div className="col-span-6">
+      <div className="col-span-12">
         <TextAreaField
           label="Description"
           nameId="description"
           register={register}
           errors={errors}
-        />
-      </div>
-      <div className="col-span-6">
-        <TextAreaField
-          label="Acknowledgement"
-          nameId="acknowledgement"
-          register={register}
-          errors={errors}
+          rows={2}
         />
       </div>
       <div className="col-span-12">
@@ -42,6 +35,15 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           options={speakerOptions}
           errors={errors}
           placeholder="Find speakers to add.."
+        />
+      </div>
+      <div className="col-span-12">
+        <TextAreaField
+          label="Acknowledgement"
+          nameId="acknowledgement"
+          register={register}
+          errors={errors}
+          rows={2}
         />
       </div>
 
