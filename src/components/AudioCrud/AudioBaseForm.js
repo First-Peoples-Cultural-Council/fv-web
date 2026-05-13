@@ -2,13 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Form from 'components/Form'
+import TextField from 'components/Form/TextField'
+import TextAreaField from 'components/Form/TextAreaField'
+import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
+import Audience from 'components/Form/Audience'
 
 function AudioBaseForm({ register, control, errors, speakerOptions }) {
   return (
     <>
       <div className="col-span-12">
-        <Form.TextField
+        <TextField
           label="Title"
           nameId="title"
           register={register}
@@ -16,15 +19,16 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
         />
       </div>
       <div className="col-span-12">
-        <Form.TextAreaField
+        <TextAreaField
           label="Description"
           nameId="description"
           register={register}
           errors={errors}
+          rows={2}
         />
       </div>
       <div className="col-span-12">
-        <Form.AutocompleteMultiple
+        <AutocompleteMultiple
           label="Speakers"
           nameId="speakers"
           control={control}
@@ -34,14 +38,16 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
         />
       </div>
       <div className="col-span-12">
-        <Form.TextAreaField
+        <TextAreaField
           label="Acknowledgement"
           nameId="acknowledgement"
           register={register}
           errors={errors}
+          rows={2}
         />
       </div>
-      <Form.Audience control={control} errors={errors} />
+
+      <Audience control={control} errors={errors} />
     </>
   )
 }
