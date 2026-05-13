@@ -268,7 +268,6 @@ function DashboardEntriesPresentationList({
               id={selectedItem?.id}
               type={selectedItem?.type}
               isDrawer
-              isDashboard
             />
             <section className="border-t text-sm p-4">
               {selectedItem?.created && (

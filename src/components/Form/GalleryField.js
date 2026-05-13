@@ -60,7 +60,6 @@ function AddGalleryButton({ value, onChange }) {
       <Modal.Presentation
         isOpen={modalOpen}
         closeHandler={() => setModalOpen(false)}
-        isDashboard
       >
         <div
           id="AddGalleryModalWrapper"

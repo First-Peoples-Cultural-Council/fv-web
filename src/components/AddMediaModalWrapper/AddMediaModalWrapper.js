@@ -60,11 +60,7 @@ function AddMediaModalWrapper({
   }
 
   return (
-    <Modal.Presentation
-      isOpen={modalOpen}
-      closeHandler={closeModal}
-      isDashboard
-    >
+    <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
       <div
         id="AddMediaModalWrapper"
         className="h-[80vh] w-[75vw] mx-auto rounded-lg overflow-y-scroll bg-charcoal-100 p-6"
