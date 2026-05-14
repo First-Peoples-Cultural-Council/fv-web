@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router'
 
@@ -11,7 +11,6 @@ import { CHAR, IMAGE, VIDEO, SMALL, ORIGINAL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 function AlphabetPresentationSelected({
   kids,
-  onVideoClick = () => {},
   title,
   relatedDictionaryEntries,
   relatedAudio,
@@ -20,18 +19,14 @@ function AlphabetPresentationSelected({
   relatedVideoLink,
   relatedImage,
   note,
-  videoIsOpen = false,
   alphabetLink,
-  entriesCount,
 }) {
   const labelStyling =
     'sm:text-2xl font-medium text-xl text-center text-blumine-800 p-3'
   const { sitename } = useParams()
-  let entriesToDisplay = relatedDictionaryEntries // To not make changes to a param variable if we get entriesCount
+  const [videoIsOpen, setVideoIsOpen] = useState(false)
+  const onVideoClick = () => setVideoIsOpen(!videoIsOpen)
 
-  if (entriesCount) {
-    entriesToDisplay = entriesToDisplay?.slice(0, entriesCount)
-  }
   return (
     <>
       <h1
@@ -56,10 +51,10 @@ function AlphabetPresentationSelected({
           />
         </div>
       )}
-      {entriesToDisplay?.length > 0 && (
+      {relatedDictionaryEntries?.length > 0 && (
         <div className="mx-auto my-5 w-4/5 max-w-4xl">
           <h2 className={labelStyling}>Example words</h2>
-          {entriesToDisplay?.map((word, index) => {
+          {relatedDictionaryEntries?.map((word, index) => {
             const zebraStripe = index % 2 === 0 ? 'bg-charcoal-50' : ''
             return (
               <div
@@ -201,7 +196,7 @@ function AlphabetPresentationSelected({
 }
 
 // PROPTYPES
-const { array, bool, func, number, object, string } = PropTypes
+const { array, bool, object, string } = PropTypes
 
 AlphabetPresentationSelected.propTypes = {
   title: string,
@@ -212,11 +207,8 @@ AlphabetPresentationSelected.propTypes = {
   relatedVideo: object,
   relatedVideoLink: array,
   relatedDictionaryEntries: array,
-  onVideoClick: func,
-  videoIsOpen: bool,
   kids: bool,
   alphabetLink: bool,
-  entriesCount: number,
 }
 
 export default AlphabetPresentationSelected

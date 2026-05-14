@@ -12,9 +12,7 @@ function AlphabetPresentation({
   selectedData,
   kids,
   links,
-  onVideoClick = () => {},
   sitename,
-  videoIsOpen,
 }) {
   return (
     <section
@@ -67,8 +65,6 @@ function AlphabetPresentation({
               relatedVideoLink={selectedData?.relatedVideoLinks}
               relatedImage={selectedData?.relatedImages?.[0]}
               note={selectedData?.note}
-              onVideoClick={onVideoClick}
-              videoIsOpen={videoIsOpen}
               kids={kids}
             />
           )}
@@ -78,7 +74,7 @@ function AlphabetPresentation({
   )
 }
 // PROPTYPES
-const { bool, array, func, string, shape, arrayOf, object } = PropTypes
+const { bool, array, string, shape, arrayOf, object } = PropTypes
 AlphabetPresentation.propTypes = {
   characters: arrayOf(
     shape({
@@ -95,8 +91,6 @@ AlphabetPresentation.propTypes = {
   sitename: string,
   selectedData: object,
   links: array,
-  onVideoClick: func,
-  videoIsOpen: bool,
 }
 
 export default AlphabetPresentation

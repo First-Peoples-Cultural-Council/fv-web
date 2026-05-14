@@ -26,7 +26,7 @@ const AlphabetData = () => {
     [queryResponse?.data],
   )
 
-  // Set selected character data based on the url - only relevant to Alphabet Page
+  // Set selected character data based on the url
   useEffect(() => {
     if (queryResponse?.data?.results?.length > 0) {
       if (character && character !== selectedData?.title) {
@@ -43,26 +43,10 @@ const AlphabetData = () => {
     }
   }, [queryResponse?.data, selectedData])
 
-  // Video Modal
-  const [videoIsOpen, setVideoIsOpen] = useState(false)
-
-  // onCharacterClick is only used in Widget mode - Alphabet page is url driven
-  const onCharacterClick = (clickedCharacter) => {
-    if (clickedCharacter !== selectedData?.title) {
-      const dataToDisplay = getCharacterDataToDisplay(clickedCharacter)
-      if (dataToDisplay) setSelectedData(dataToDisplay)
-    }
-  }
-
   return {
-    characters: queryResponse?.data?.results || [],
-    links: queryResponse?.data?.relatedLinks || [],
     queryResponse,
     sitename,
-    onCharacterClick,
-    onVideoClick: () => setVideoIsOpen(!videoIsOpen),
     selectedData,
-    videoIsOpen,
   }
 }
 

@@ -2,49 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import AlphabetPresentation from 'components/Alphabet/AlphabetPresentation'
-import AlphabetPlaceholder from 'components/Alphabet/AlphabetPlaceholder'
 import AlphabetData from 'components/Alphabet/AlphabetData'
-import AlphabetPresentationWidget from 'components/Alphabet/AlphabetPresentationWidget'
 import LoadOrError from 'components/LoadOrError'
 
-function AlphabetContainer({ widgetView = false, kids = null }) {
-  const {
-    characters,
-    queryResponse,
-    links,
-    onCharacterClick,
-    onVideoClick,
-    selectedData,
-    sitename,
-    videoIsOpen,
-  } = AlphabetData()
-
-  if (widgetView && queryResponse?.isPending) {
-    return <AlphabetPlaceholder />
-  }
+function AlphabetContainer({ kids = null }) {
+  const { queryResponse, selectedData, sitename } = AlphabetData()
 
   return (
     <LoadOrError queryResponse={queryResponse}>
-      {widgetView ? (
-        <AlphabetPresentationWidget
-          characters={characters}
-          links={links}
-          onVideoClick={onVideoClick}
-          onCharacterClick={onCharacterClick}
-          selectedData={selectedData}
-          videoIsOpen={videoIsOpen}
-        />
-      ) : (
-        <AlphabetPresentation
-          characters={characters}
-          links={links}
-          onVideoClick={onVideoClick}
-          selectedData={selectedData}
-          sitename={sitename}
-          videoIsOpen={videoIsOpen}
-          kids={kids}
-        />
-      )}
+      <AlphabetPresentation
+        characters={queryResponse?.data?.results || []}
+        links={queryResponse?.data?.relatedLinks || []}
+        selectedData={selectedData}
+        sitename={sitename}
+        kids={kids}
+      />
     </LoadOrError>
   )
 }
