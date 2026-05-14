@@ -66,7 +66,7 @@ function UploadVisualMedia({ maxItems, setSelectedMedia, type }) {
   return (
     <div id="UploadVisualMedia" className="h-full pb-4 px-4">
       <p className="py-2 text-charcoal-700">
-        ⚠️ The Firstvoices file size limit is 1GB
+        ⚠️ The FirstVoices file size limit is 1GB
       </p>
       <Dashboard
         uppy={uppy}

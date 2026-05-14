@@ -9,7 +9,7 @@ import HelpText from 'components/Form/HelpText'
 function FileUploadField({
   label = '',
   nameId,
-  helpText = '⚠️ The Firstvoices file size limit is 1GB',
+  helpText = '⚠️ The FirstVoices file size limit is 1GB',
   disabled = false,
   register,
   errors,
