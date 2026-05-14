@@ -19,15 +19,23 @@ function WidgetWordOfTheDayPresentation({
   queryResponse,
 }) {
   return (
-    <section className="py-3 md:py-6 bg-white">
+    <section
+      id="WidgetWordOfTheDayPresentation"
+      className="py-3 md:py-6 bg-white"
+    >
       <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
         <SectionTitle.Presentation title={title} />
       </div>
 
       {!queryResponse?.isError ? (
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div
+          data-testid="wotd-success"
+          className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        >
           <div className="mt-2 inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800">
-            <Link to={relativeUrl}>{wordTitle}</Link>
+            <Link data-testid="wotd-link" to={relativeUrl}>
+              {wordTitle}
+            </Link>
             {audio && (
               <span className="ml-2 text-charcoal-900">
                 <AudioButton audioArray={audio} />
@@ -42,7 +50,10 @@ function WidgetWordOfTheDayPresentation({
           <ShareLinks.Presentation url={url} title={wordTitle} entry={entry} />
         </div>
       ) : (
-        <div className="mt-2 inline-flex items-center text-2xl">
+        <div
+          data-testid="wotd-error"
+          className="mt-2 inline-flex items-center text-2xl"
+        >
           Oops! We seem to be having trouble finding a word for the day. <br />
           If this problem persists please contact hello@firstvoices.com
         </div>
