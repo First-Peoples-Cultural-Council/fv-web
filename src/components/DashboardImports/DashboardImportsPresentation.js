@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -19,6 +19,8 @@ import {
   CANCELLED,
   EXPIRED,
 } from 'common/constants/jobs'
+import AlertBanner from 'components/AlertBanner'
+import { INFO } from 'common/constants'
 
 function DashboardImportsPresentation({
   queryResponse,
@@ -27,6 +29,19 @@ function DashboardImportsPresentation({
   setPage,
   tileContent,
 }) {
+  const isValidating = (importJob) =>
+    importJob?.validationStatus === ACCEPTED ||
+    importJob?.validationStatus === STARTED
+
+  const validationsPending = useMemo(
+    () => queryResponse?.data?.results?.some(isValidating),
+    [queryResponse?.data?.results],
+  )
+
+  const handleRefetch = () => {
+    queryResponse?.refetch()
+  }
+
   const getStatusLabel = (importJob) => {
     if (
       !importJob?.validationStatus ||
@@ -34,6 +49,7 @@ function DashboardImportsPresentation({
     ) {
       return 'Needs Validating'
     }
+
     switch (importJob?.status) {
       case null:
         return 'Contact support to proceed with this import'
@@ -89,6 +105,25 @@ function DashboardImportsPresentation({
           </div>
         </div>
       </div>
+      {validationsPending && (
+        <div className="mb-2 mx-auto">
+          <AlertBanner.Presentation
+            alertType={INFO}
+            message={
+              <button
+                type="button"
+                data-testid="refresh-imports-btn"
+                className="text-blumine-700"
+                onClick={handleRefetch}
+              >
+                You have imports being validated. Click{' '}
+                <span className="font-bold">here</span> to refresh and check if
+                the results are ready.
+              </button>
+            }
+          />
+        </div>
+      )}
       <DashboardTablePaginated
         queryResponse={queryResponse}
         page={page}
@@ -174,7 +209,10 @@ function DashboardImportsPresentation({
                     {result?.status ? (
                       ''
                     ) : (
-                      <ValidationStatusBtn importJob={result} />
+                      <ValidationStatusBtn
+                        importJob={result}
+                        handleRefetch={handleRefetch}
+                      />
                     )}
                   </td>
                   <td className="p-3 text-sm text-charcoal-500">

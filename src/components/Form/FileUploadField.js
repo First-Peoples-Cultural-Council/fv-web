@@ -24,7 +24,7 @@ function FileUploadField({
         type="file"
         disabled={disabled}
         className="bg-white block w-full border border-charcoal-200 rounded-lg shadow-xs p-3 focus:outline-hidden focus:ring-blumine-600 focus:border-blumine-600
-            file:mr-5 file:btn-md file:btn-secondary hover:file:bg-blumine-100
+            file:mr-5 file:btn-md file:btn-secondary hover:file:bg-blumine-100 hover:file:cursor-pointer
             disabled:file:bg-charcoal-300 disabled:file:text-charcoal-50"
       />
       <HelpText text={helpText} />
