@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import CharacterDetail from 'components/CharacterDetail'
 import SectionTitle from 'components/SectionTitle'
 import SiteDocHead from 'components/SiteDocHead'
+import Drawer from 'components/Drawer'
 
 function AlphabetPresentation({
   characters,
@@ -13,6 +14,8 @@ function AlphabetPresentation({
   kids,
   links,
   sitename,
+  drawerOpen,
+  setDrawerOpen,
 }) {
   return (
     <section
@@ -46,27 +49,22 @@ function AlphabetPresentation({
             </Link>
           ))}
         </div>
-        <div className="p-2 pb-4 lg:pb-10">
-          {selectedData?.title === undefined && (
-            <div
-              data-testid="AlphabetPresentation__noCharacter"
-              className="text-center font-bold sm:text-3xl text-2xl text-blumine-800 m-10"
-            >
-              Please select a character
-            </div>
-          )}
-          {selectedData?.id && (
-            <div className="max-w-2xl mx-auto">
-              <CharacterDetail characterData={selectedData} kids={kids} />
-            </div>
-          )}
-        </div>
       </div>
+
+      <Drawer.Presentation
+        isOpen={drawerOpen}
+        closeHandler={() => setDrawerOpen(false)}
+        fullScreenPath={`/${sitename}/${kids ? 'kids/' : ''}alphabet/${selectedData?.id}`}
+      >
+        <div className="max-w-2xl py-6 px-14 space-y-7">
+          <CharacterDetail characterData={selectedData} kids={kids} />
+        </div>
+      </Drawer.Presentation>
     </section>
   )
 }
 // PROPTYPES
-const { bool, array, string, shape, arrayOf, object } = PropTypes
+const { array, arrayOf, bool, func, object, shape, string } = PropTypes
 AlphabetPresentation.propTypes = {
   characters: arrayOf(
     shape({
@@ -83,6 +81,8 @@ AlphabetPresentation.propTypes = {
   sitename: string,
   selectedData: object,
   links: array,
+  drawerOpen: bool,
+  setDrawerOpen: func,
 }
 
 export default AlphabetPresentation

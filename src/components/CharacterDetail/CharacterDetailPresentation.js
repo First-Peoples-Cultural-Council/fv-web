@@ -31,16 +31,20 @@ function CharacterDetailPresentation({ characterData, kids }) {
       </h1>
       {characterData?.relatedImages?.[0] && (
         <div className="mb-8">
-          <img
-            className="rounded-lg"
-            src={getMediaPath({
-              mediaObject: characterData?.relatedImages?.[0],
-              type: IMAGE,
-              size: SMALL,
-            })}
-            alt={characterData?.relatedImages?.[0]?.title}
-            loading="lazy"
-          />
+          <div className="aspect-video max-h-78 w-full flex items-center rounded-lg bg-blumine-50 overflow-hidden">
+            <div className="relative group flex w-full h-full">
+              <img
+                className="object-contain rounded-lg w-full"
+                src={getMediaPath({
+                  mediaObject: characterData?.relatedImages?.[0],
+                  type: IMAGE,
+                  size: SMALL,
+                })}
+                alt={characterData?.relatedImages?.[0]?.title}
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       )}
       {characterData?.relatedDictionaryEntries?.length > 0 && (

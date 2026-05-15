@@ -9,6 +9,7 @@ const AlphabetData = () => {
   const { sitename } = useParams()
   const [selectedData, setSelectedData] = useState()
   const [searchParams] = useSearchParams()
+  const [drawerOpen, setDrawerOpen] = useState(false)
 
   const character = searchParams.get(CHAR) || null
 
@@ -31,7 +32,10 @@ const AlphabetData = () => {
     if (queryResponse?.data?.results?.length > 0) {
       if (character && character !== selectedData?.title) {
         const dataToDisplay = getCharacterDataToDisplay(character)
-        if (dataToDisplay) setSelectedData(dataToDisplay)
+        if (dataToDisplay) {
+          setSelectedData(dataToDisplay)
+          setDrawerOpen(true)
+        }
       }
     }
   }, [character, queryResponse?.data, selectedData, getCharacterDataToDisplay])
@@ -47,6 +51,8 @@ const AlphabetData = () => {
     queryResponse,
     sitename,
     selectedData,
+    drawerOpen,
+    setDrawerOpen,
   }
 }
 
