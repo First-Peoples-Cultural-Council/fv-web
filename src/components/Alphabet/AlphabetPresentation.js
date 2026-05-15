@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
 // FPCC
-import AlphabetPresentationSelected from 'components/Alphabet/AlphabetPresentationSelected'
+import CharacterDetail from 'components/CharacterDetail'
 import SectionTitle from 'components/SectionTitle'
 import SiteDocHead from 'components/SiteDocHead'
 
@@ -46,7 +46,7 @@ function AlphabetPresentation({
             </Link>
           ))}
         </div>
-        <div className="p-2  pb-4 lg:pb-10">
+        <div className="p-2 pb-4 lg:pb-10">
           {selectedData?.title === undefined && (
             <div
               data-testid="AlphabetPresentation__noCharacter"
@@ -56,17 +56,9 @@ function AlphabetPresentation({
             </div>
           )}
           {selectedData?.id && (
-            <AlphabetPresentationSelected
-              title={selectedData?.title}
-              relatedDictionaryEntries={selectedData?.relatedDictionaryEntries}
-              relatedAudio={selectedData?.relatedAudio}
-              relatedDocuments={selectedData?.relatedDocuments}
-              relatedVideo={selectedData?.relatedVideos?.[0]}
-              relatedVideoLink={selectedData?.relatedVideoLinks}
-              relatedImage={selectedData?.relatedImages?.[0]}
-              note={selectedData?.note}
-              kids={kids}
-            />
+            <div className="max-w-2xl mx-auto">
+              <CharacterDetail characterData={selectedData} kids={kids} />
+            </div>
           )}
         </div>
       </div>
