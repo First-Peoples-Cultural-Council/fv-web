@@ -4,31 +4,19 @@ import { Link, useParams } from 'react-router'
 
 // FPCC
 import VideoWithMeta from 'components/VideoWithMeta'
-import AudioButton from 'components/AudioButton'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
-
-import CopyButton from 'components/Actions/CopyButton'
+import CharacterDetailHeader from 'components/CharacterDetail/CharacterDetailHeader'
 import { CHAR, IMAGE, SMALL } from 'common/constants'
 import { getMediaPath } from 'common/utils/mediaHelpers'
+
 function CharacterDetailPresentation({ characterData, kids }) {
   const { sitename } = useParams()
 
   return (
     <div id="CharacterDetailPresentation">
-      <h1
-        data-testid="character-detail-header"
-        className="flex font-bold items-center justify-start text-5xl text-center text-charcoal-900 mb-8 space-x-11"
-      >
-        <span>{characterData?.title}</span>
-        {characterData?.relatedAudio?.length > 0 && (
-          <AudioButton audioArray={characterData?.relatedAudio} />
-        )}
-        {characterData?.title && (
-          <CopyButton textToCopy={characterData?.title} />
-        )}
-      </h1>
+      <CharacterDetailHeader characterData={characterData} />
       {characterData?.relatedImages?.[0] && (
         <div className="mb-8">
           <div className="aspect-video max-h-78 w-full flex items-center rounded-lg bg-blumine-50 overflow-hidden">

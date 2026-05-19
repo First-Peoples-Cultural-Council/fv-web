@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { Link, useParams } from 'react-router'
 
 // FPCC
-import AudioButton from 'components/AudioButton'
-import CopyButton from 'components/Actions/CopyButton'
+import CharacterDetailHeader from 'components/CharacterDetail/CharacterDetailHeader'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 import { CHAR, IMAGE, SMALL } from 'common/constants'
@@ -18,18 +17,8 @@ function WidgetAlphabetCharacterDetails({ characterDetails }) {
 
   return (
     <div id="WidgetAlphabetCharacterDetails">
-      <h1
-        data-testid="WidgetAlphabetCharacterDetails__header"
-        className="flex font-bold items-center justify-start text-5xl text-center text-charcoal-900 mb-8 space-x-11"
-      >
-        <span>{characterDetails?.title}</span>
-        {characterDetails?.relatedAudio?.length > 0 && (
-          <AudioButton audioArray={characterDetails?.relatedAudio} />
-        )}
-        {characterDetails?.title && (
-          <CopyButton textToCopy={characterDetails?.title} />
-        )}
-      </h1>
+      <CharacterDetailHeader characterData={characterDetails} />
+
       {characterDetails?.relatedImages?.[0] && (
         <div className="mb-8">
           <img
@@ -65,7 +54,7 @@ function WidgetAlphabetCharacterDetails({ characterDetails }) {
         </div>
         <div>
           <Link
-            to={`/${sitename}/alphabet?char=${characterDetails?.title}`}
+            to={`/${sitename}/alphabet/${characterDetails?.id}`}
             className="btn-primary btn-lg"
           >
             <span>Learn more about</span>
