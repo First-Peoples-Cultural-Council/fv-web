@@ -7,6 +7,7 @@ import Audiobar from 'components/Audiobar'
 import ByAlphabet from 'components/ByAlphabet'
 import ByCategory from 'components/ByCategory'
 import Categories from 'components/Categories'
+import Character from 'components/Character'
 import Dictionary from 'components/Dictionary'
 import DictionaryDetail from 'components/DictionaryDetail'
 import ErrorHandler from 'components/ErrorHandler'
@@ -66,6 +67,7 @@ function SiteFrame() {
             path="alphabet/startsWith"
             element={<ByAlphabet.Container />}
           />
+          <Route path="alphabet/:id" element={<Character.Container />} />
           <Route path="alphabet" element={<Alphabet.Container />} />
           <Route
             path="categories/:categoryId"
