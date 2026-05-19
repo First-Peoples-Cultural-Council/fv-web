@@ -6,8 +6,13 @@ import AlphabetData from 'components/Alphabet/AlphabetData'
 import LoadOrError from 'components/LoadOrError'
 
 function AlphabetContainer({ kids = null }) {
-  const { queryResponse, selectedData, sitename, drawerOpen, setDrawerOpen } =
-    AlphabetData()
+  const {
+    queryResponse,
+    selectedData,
+    sitename,
+    isDrawerOpen,
+    drawerCloseHandler,
+  } = AlphabetData()
 
   return (
     <LoadOrError queryResponse={queryResponse}>
@@ -17,8 +22,8 @@ function AlphabetContainer({ kids = null }) {
         selectedData={selectedData}
         sitename={sitename}
         kids={kids}
-        drawerOpen={drawerOpen}
-        setDrawerOpen={setDrawerOpen}
+        isDrawerOpen={isDrawerOpen}
+        drawerCloseHandler={drawerCloseHandler}
       />
     </LoadOrError>
   )

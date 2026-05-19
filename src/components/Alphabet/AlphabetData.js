@@ -7,9 +7,9 @@ import { CHAR } from 'common/constants'
 
 const AlphabetData = () => {
   const { sitename } = useParams()
-  const [selectedData, setSelectedData] = useState()
-  const [searchParams] = useSearchParams()
-  const [drawerOpen, setDrawerOpen] = useState(false)
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [selectedData, setSelectedData] = useState(null)
 
   const character = searchParams.get(CHAR) || null
 
@@ -30,29 +30,28 @@ const AlphabetData = () => {
   // Set selected character data based on the url
   useEffect(() => {
     if (queryResponse?.data?.results?.length > 0) {
-      if (character && character !== selectedData?.title) {
+      if (!character) {
+        // Clear data to close drawer
+        setSelectedData(null)
+      } else if (character !== selectedData?.title) {
         const dataToDisplay = getCharacterDataToDisplay(character)
         if (dataToDisplay) {
           setSelectedData(dataToDisplay)
-          setDrawerOpen(true)
         }
       }
     }
   }, [character, queryResponse?.data, selectedData, getCharacterDataToDisplay])
 
-  // If no character selected then select the first character
-  useEffect(() => {
-    if (queryResponse?.data?.results?.length > 0 && !selectedData) {
-      setSelectedData(queryResponse?.data?.results?.[0])
-    }
-  }, [queryResponse?.data, selectedData])
+  const drawerCloseHandler = () => {
+    setSearchParams(null)
+  }
 
   return {
     queryResponse,
     sitename,
     selectedData,
-    drawerOpen,
-    setDrawerOpen,
+    isDrawerOpen: selectedData ? true : false,
+    drawerCloseHandler,
   }
 }
 

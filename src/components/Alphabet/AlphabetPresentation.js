@@ -14,8 +14,8 @@ function AlphabetPresentation({
   kids,
   links,
   sitename,
-  drawerOpen,
-  setDrawerOpen,
+  isDrawerOpen,
+  drawerCloseHandler,
 }) {
   return (
     <section
@@ -36,11 +36,13 @@ function AlphabetPresentation({
             </ul>
           </div>
         )}
-        <div className="mb-5 grid grid-cols-6 sm:grid-cols-8 xl:grid-cols-12 gap-2 max-w-4xl mx-auto items-center">
+        <div className="mb-5 grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-10 gap-3 max-w-4xl mx-auto items-center">
           {characters?.map(({ title, id }) => (
             <Link
-              className={`border border-charcoal-200 col-span-1 font-medium inline-flex justify-center p-3 sm:p-5 xl:p-3 rounded shadow text-2xl ${
-                selectedData?.title === title ? 'bg-blumine-600 text-white' : ''
+              className={`col-span-1 font-medium inline-flex justify-center p-4 rounded-sm text-2xl text-charcoal-900 hover:bg-blumine-300 transition duration-300 ease-in-out ${
+                selectedData?.title === title
+                  ? 'bg-blumine-600 text-white'
+                  : 'bg-blumine-100'
               } `}
               key={id}
               to={`/${sitename}/${kids ? 'kids/' : ''}alphabet?char=${title}`}
@@ -52,8 +54,8 @@ function AlphabetPresentation({
       </div>
 
       <Drawer.Presentation
-        isOpen={drawerOpen}
-        closeHandler={() => setDrawerOpen(false)}
+        isOpen={isDrawerOpen}
+        closeHandler={drawerCloseHandler}
         fullScreenPath={`/${sitename}/${kids ? 'kids/' : ''}alphabet/${selectedData?.id}`}
       >
         <div className="max-w-2xl py-6 px-14 space-y-7">
@@ -81,8 +83,8 @@ AlphabetPresentation.propTypes = {
   sitename: string,
   selectedData: object,
   links: array,
-  drawerOpen: bool,
-  setDrawerOpen: func,
+  isDrawerOpen: bool,
+  drawerCloseHandler: func,
 }
 
 export default AlphabetPresentation
