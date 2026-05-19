@@ -43,7 +43,7 @@ const AlphabetData = () => {
   }, [character, queryResponse?.data, selectedData, getCharacterDataToDisplay])
 
   const drawerCloseHandler = () => {
-    setSearchParams(null)
+    setSearchParams()
   }
 
   return {
