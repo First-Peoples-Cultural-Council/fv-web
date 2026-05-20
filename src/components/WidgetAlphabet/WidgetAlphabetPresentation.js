@@ -1,12 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+// FPCC
 import WidgetAlphabetCharacterDetail from 'components/WidgetAlphabet/WidgetAlphabetCharacterDetail'
 import SectionTitle from 'components/SectionTitle'
+import CharacterDetail from 'components/CharacterDetail'
+import Drawer from 'components/Drawer'
 
 function WidgetAlphabetPresentation({
   characters,
   onCharacterClick,
   selectedCharacterData,
+  isDrawerOpen,
+  drawerCloseHandler,
 }) {
   return characters ? (
     <section id="WidgetAlphabetPresentation" className="py-3 md:py-6 bg-white">
@@ -15,7 +21,7 @@ function WidgetAlphabetPresentation({
       </div>
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-12 gap-6 lg:gap-11">
-          <div className="col-span-7 py-3 pr-6 lg:pr-11 border-r-2 border-charcoal-200 content-center">
+          <div className="col-span-12 md:col-span-7 py-3 md:pr-6 lg:pr-11 md:border-r-2 border-charcoal-200 content-center">
             <div className="grid grid-cols-6 lg:grid-cols-7 gap-3">
               {characters?.map((char) => (
                 <button
@@ -34,10 +40,21 @@ function WidgetAlphabetPresentation({
               ))}
             </div>
           </div>
-          <div className="col-span-5 content-center">
+          <div className="hidden md:block md:col-span-5 content-center">
             <WidgetAlphabetCharacterDetail
               characterData={selectedCharacterData}
             />
+          </div>
+          <div className="block md:hidden">
+            <Drawer.Presentation
+              isOpen={isDrawerOpen}
+              closeHandler={drawerCloseHandler}
+              fullScreenPath={`/${selectedCharacterData?.site?.slug}/alphabet/${selectedCharacterData?.id}`}
+            >
+              <div className="max-w-2xl py-6 px-14 space-y-7">
+                <CharacterDetail characterData={selectedCharacterData} />
+              </div>
+            </Drawer.Presentation>
           </div>
         </div>
       </div>
@@ -45,18 +62,24 @@ function WidgetAlphabetPresentation({
   ) : null
 }
 // PROPTYPES
-const { array, func, string, shape, arrayOf, object } = PropTypes
+const { array, bool, func, string, shape, arrayOf, object } = PropTypes
 WidgetAlphabetPresentation.propTypes = {
   characters: arrayOf(
     shape({
       title: string,
       id: string,
-      src: string,
+      note: string,
       relatedEntries: array,
+      relatedImages: array,
+      relatedDocuments: array,
+      relatedVideos: array,
+      relatedVideoLinks: array,
     }),
   ),
   onCharacterClick: func,
   selectedCharacterData: object,
+  isDrawerOpen: bool,
+  drawerCloseHandler: func,
 }
 
 export default WidgetAlphabetPresentation

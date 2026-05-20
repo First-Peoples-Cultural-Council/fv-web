@@ -6,8 +6,13 @@ import WidgetAlphabetPresentation from 'components/WidgetAlphabet/WidgetAlphabet
 import LoadOrError from 'components/LoadOrError'
 
 function WidgetAlphabetContainer() {
-  const { queryResponse, onCharacterClick, selectedCharacterData } =
-    WidgetAlphabetData()
+  const {
+    queryResponse,
+    onCharacterClick,
+    selectedCharacterData,
+    isDrawerOpen,
+    drawerCloseHandler,
+  } = WidgetAlphabetData()
 
   if (queryResponse?.isPending) {
     return <WidgetAlphabetPlaceholder />
@@ -19,6 +24,8 @@ function WidgetAlphabetContainer() {
         characters={queryResponse?.data?.results || []}
         onCharacterClick={onCharacterClick}
         selectedCharacterData={selectedCharacterData}
+        isDrawerOpen={isDrawerOpen}
+        drawerCloseHandler={drawerCloseHandler}
       />
     </LoadOrError>
   )

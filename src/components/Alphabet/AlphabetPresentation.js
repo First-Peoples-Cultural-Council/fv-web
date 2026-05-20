@@ -19,7 +19,7 @@ function AlphabetPresentation({
 }) {
   return (
     <section
-      className="pt-2 md:pt-4 lg:pt-8 bg-white"
+      className="py-2 md:py-4 lg:py-8 bg-white"
       data-testid="AlphabetPresentation"
     >
       <SiteDocHead titleArray={['Alphabet']} />
