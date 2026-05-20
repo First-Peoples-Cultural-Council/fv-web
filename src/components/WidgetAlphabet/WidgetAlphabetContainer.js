@@ -6,7 +6,7 @@ import WidgetAlphabetPresentation from 'components/WidgetAlphabet/WidgetAlphabet
 import LoadOrError from 'components/LoadOrError'
 
 function WidgetAlphabetContainer() {
-  const { queryResponse, onCharacterClick, selectedCharacterDetails } =
+  const { queryResponse, onCharacterClick, selectedCharacterData } =
     WidgetAlphabetData()
 
   if (queryResponse?.isPending) {
@@ -18,7 +18,7 @@ function WidgetAlphabetContainer() {
       <WidgetAlphabetPresentation
         characters={queryResponse?.data?.results || []}
         onCharacterClick={onCharacterClick}
-        selectedCharacterDetails={selectedCharacterDetails}
+        selectedCharacterData={selectedCharacterData}
       />
     </LoadOrError>
   )

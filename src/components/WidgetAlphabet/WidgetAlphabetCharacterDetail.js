@@ -6,30 +6,23 @@ import { Link, useParams } from 'react-router'
 import CharacterDetailHeader from 'components/CharacterDetail/CharacterDetailHeader'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
-import { CHAR, IMAGE, SMALL } from 'common/constants'
-import { getMediaPath } from 'common/utils/mediaHelpers'
-function WidgetAlphabetCharacterDetails({ characterDetails }) {
+import { CHAR } from 'common/constants'
+import ImageWithLightbox from 'components/ImageWithLightbox'
+
+function WidgetAlphabetCharacterDetail({ characterData }) {
   const { sitename } = useParams()
-  const entriesToDisplay = characterDetails?.relatedDictionaryEntries?.slice(
-    0,
-    1,
-  )
+  const entriesToDisplay = characterData?.relatedDictionaryEntries?.slice(0, 1)
 
   return (
-    <div id="WidgetAlphabetCharacterDetails">
-      <CharacterDetailHeader characterData={characterDetails} />
+    <div id="WidgetAlphabetCharacterDetail">
+      <CharacterDetailHeader characterData={characterData} />
 
-      {characterDetails?.relatedImages?.[0] && (
+      {characterData?.relatedImages?.[0] && (
         <div className="mb-8">
-          <img
-            className="rounded-lg"
-            src={getMediaPath({
-              mediaObject: characterDetails?.relatedImages?.[0],
-              type: IMAGE,
-              size: SMALL,
-            })}
-            alt={characterDetails?.relatedImages?.[0]?.title}
-            loading="lazy"
+          <ImageWithLightbox.Presentation
+            image={characterData?.relatedImages?.[0]}
+            imgStyling="object-contain rounded-lg max-h-78 w-auto"
+            withIcon
           />
         </div>
       )}
@@ -45,20 +38,20 @@ function WidgetAlphabetCharacterDetails({ characterDetails }) {
       <div className="flex flex-col space-y-4">
         <div>
           <Link
-            to={`/${sitename}/alphabet/startsWith?${CHAR}=${characterDetails?.title}&types=word`}
+            to={`/${sitename}/alphabet/startsWith?${CHAR}=${characterData?.title}&types=word`}
             className="btn-secondary btn-lg"
           >
             <span>See all words starting with</span>
-            <div className="font-bold">{characterDetails?.title}</div>
+            <div className="font-bold">{characterData?.title}</div>
           </Link>
         </div>
         <div>
           <Link
-            to={`/${sitename}/alphabet/${characterDetails?.id}`}
+            to={`/${sitename}/alphabet/${characterData?.id}`}
             className="btn-primary btn-lg"
           >
             <span>Learn more about</span>
-            <div className="font-bold">{characterDetails?.title}</div>
+            <div className="font-bold">{characterData?.title}</div>
           </Link>
         </div>
       </div>
@@ -69,8 +62,8 @@ function WidgetAlphabetCharacterDetails({ characterDetails }) {
 // PROPTYPES
 const { object } = PropTypes
 
-WidgetAlphabetCharacterDetails.propTypes = {
-  characterDetails: object,
+WidgetAlphabetCharacterDetail.propTypes = {
+  characterData: object,
 }
 
-export default WidgetAlphabetCharacterDetails
+export default WidgetAlphabetCharacterDetail

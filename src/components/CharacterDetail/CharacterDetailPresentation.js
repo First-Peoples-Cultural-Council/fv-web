@@ -4,12 +4,12 @@ import { Link, useParams } from 'react-router'
 
 // FPCC
 import VideoWithMeta from 'components/VideoWithMeta'
+import ImageWithLightbox from 'components/ImageWithLightbox'
 import RelatedDocumentsList from 'components/RelatedDocumentsList'
 import RelatedEntriesTable from 'components/RelatedEntriesTable'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 import CharacterDetailHeader from 'components/CharacterDetail/CharacterDetailHeader'
-import { CHAR, IMAGE, SMALL } from 'common/constants'
-import { getMediaPath } from 'common/utils/mediaHelpers'
+import { CHAR } from 'common/constants'
 
 function CharacterDetailPresentation({ characterData, kids }) {
   const { sitename } = useParams()
@@ -19,20 +19,11 @@ function CharacterDetailPresentation({ characterData, kids }) {
       <CharacterDetailHeader characterData={characterData} />
       {characterData?.relatedImages?.[0] && (
         <div className="mb-8">
-          <div className="aspect-video max-h-78 w-full flex items-center rounded-lg bg-blumine-50 overflow-hidden">
-            <div className="relative group flex w-full h-full">
-              <img
-                className="object-contain rounded-lg w-full"
-                src={getMediaPath({
-                  mediaObject: characterData?.relatedImages?.[0],
-                  type: IMAGE,
-                  size: SMALL,
-                })}
-                alt={characterData?.relatedImages?.[0]?.title}
-                loading="lazy"
-              />
-            </div>
-          </div>
+          <ImageWithLightbox.Presentation
+            image={characterData?.relatedImages?.[0]}
+            imgStyling="object-contain rounded-lg max-h-78 w-auto"
+            withIcon
+          />
         </div>
       )}
       {characterData?.relatedDictionaryEntries?.length > 0 && (

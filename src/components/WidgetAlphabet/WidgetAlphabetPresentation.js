@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import WidgetAlphabetCharacterDetails from 'components/WidgetAlphabet/WidgetAlphabetCharacterDetails'
+import WidgetAlphabetCharacterDetail from 'components/WidgetAlphabet/WidgetAlphabetCharacterDetail'
 import SectionTitle from 'components/SectionTitle'
 
 function WidgetAlphabetPresentation({
   characters,
   onCharacterClick,
-  selectedCharacterDetails,
+  selectedCharacterData,
 }) {
   return characters ? (
     <section id="WidgetAlphabetPresentation" className="py-3 md:py-6 bg-white">
@@ -22,7 +22,7 @@ function WidgetAlphabetPresentation({
                   type="button"
                   data-testid={`character-btn-${char?.title}`}
                   className={`col-span-1 font-medium inline-flex justify-center p-4 rounded-sm text-2xl text-charcoal-900 hover:bg-blumine-300 transition duration-300 ease-in-out ${
-                    selectedCharacterDetails?.title === char?.title
+                    selectedCharacterData?.title === char?.title
                       ? 'bg-blumine-600 text-white'
                       : 'bg-blumine-100'
                   }`}
@@ -35,8 +35,8 @@ function WidgetAlphabetPresentation({
             </div>
           </div>
           <div className="col-span-5 content-center">
-            <WidgetAlphabetCharacterDetails
-              characterDetails={selectedCharacterDetails}
+            <WidgetAlphabetCharacterDetail
+              characterData={selectedCharacterData}
             />
           </div>
         </div>
@@ -56,7 +56,7 @@ WidgetAlphabetPresentation.propTypes = {
     }),
   ),
   onCharacterClick: func,
-  selectedCharacterDetails: object,
+  selectedCharacterData: object,
 }
 
 export default WidgetAlphabetPresentation
