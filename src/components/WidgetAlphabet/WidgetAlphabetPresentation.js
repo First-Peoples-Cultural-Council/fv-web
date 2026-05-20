@@ -21,10 +21,10 @@ function WidgetAlphabetPresentation({
                 <button
                   type="button"
                   data-testid={`character-btn-${char?.title}`}
-                  className={`col-span-1 font-medium inline-flex justify-center p-4 rounded-sm text-2xl ${
+                  className={`col-span-1 font-medium inline-flex justify-center p-4 rounded-sm text-2xl text-charcoal-900 hover:bg-blumine-300 transition duration-300 ease-in-out ${
                     selectedCharacterDetails?.title === char?.title
                       ? 'bg-blumine-600 text-white'
-                      : 'bg-blumine-50'
+                      : 'bg-blumine-100'
                   }`}
                   key={char?.id}
                   onClick={() => onCharacterClick(char)}

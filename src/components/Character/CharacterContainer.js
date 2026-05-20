@@ -22,7 +22,7 @@ function CharacterContainer({ kids = false }) {
       />
       <div
         id="CharacterContainer"
-        className="max-w-2xl py-6 lg:py-12 px-14 lg:px-0 space-y-7 mx-auto"
+        className="max-w-2xl py-4 lg:py-6 px-6 lg:px-0 space-y-7 mx-auto"
       >
         <CharacterDetail
           characterData={characterQueryResponse?.data}

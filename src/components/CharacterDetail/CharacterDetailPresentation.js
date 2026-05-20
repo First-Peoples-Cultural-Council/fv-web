@@ -70,7 +70,6 @@ function CharacterDetailPresentation({ characterData, kids }) {
           />
         </div>
       )}
-
       {characterData?.relatedVideos?.[0] && (
         <div className="space-y-4 mb-8">
           <DictionaryDetailLabel label="Video" />
