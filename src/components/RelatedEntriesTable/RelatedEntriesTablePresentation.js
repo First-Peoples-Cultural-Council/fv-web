@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 // FPCC
 import { makePlural } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
-import AudioMinimal from 'components/AudioMinimal'
+import AudioButton from 'components/AudioButton'
 
 function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
   return (
@@ -33,14 +33,7 @@ function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
               </td>
               <td className="p-2 text-center bg-blumine-50">
                 {entry?.relatedAudio?.length > 0 && (
-                  <AudioMinimal.Container
-                    key={entry?.relatedAudio?.[0]?.id}
-                    icons={{
-                      Play: getIcon('Audio'),
-                      Stop: getIcon('StopCircle'),
-                    }}
-                    audioObject={entry?.relatedAudio?.[0]}
-                  />
+                  <AudioButton audioArray={entry.relatedAudio?.slice(0, 1)} />
                 )}
               </td>
               <td className="p-2 text-sm md:text-base wrap-anywhere bg-blumine-50">
