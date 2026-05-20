@@ -35,48 +35,55 @@ function AudiobarPresentation({
         >
           {getIcon('Close', 'fill-current h-7 w-7')}
         </button>
-        <div className="max-w-7xl mx-auto py-5">
-          <div className="mb-4 font-bold">
-            <div className="text-4xl">About this audio</div>
-            {data?.title && (
-              <div className="text-2xl">Title: {data?.title}</div>
-            )}
+        <div className="max-w-7xl mx-auto py-5 px-2">
+          <div className="mb-2 font-bold">
+            <div className="text-xl">About this audio</div>
           </div>
-          <div className="grid grid-cols-2">
-            <div className="col-span-1 space-y-2 text-lg">
-              {data?.description && (
-                <>
-                  <div className="font-bold">Description:</div>
-                  <div>{data?.description}</div>
-                </>
-              )}
-              {data?.acknowledgement && (
-                <>
-                  <div className="font-bold">Acknowledgement:</div>
-                  <div>{data?.acknowledgement}</div>
-                </>
-              )}
-            </div>
-            <div className="col-span-1 text-lg space-y-2">
-              {data?.speakers?.length > 0 && (
-                <div className="grid grid-cols-4 text-lg">
-                  <div className="font-bold col-span-1">
-                    {data?.speakers?.length === 1 ? 'Speaker:' : 'Speakers:'}
+          <div className="space-y-2">
+            {data?.title && (
+              <div className="grid grid-cols-5 gap-2">
+                <div className="col-span-1 text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide">
+                  Title:
+                </div>
+                <div className="col-span-4">{data?.title}</div>
+              </div>
+            )}
+            {data?.speakers?.length > 0 && (
+              <div className="grid grid-cols-5 gap-2">
+                <div className="col-span-1 text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide">
+                  {data?.speakers?.length === 1 ? 'Speaker:' : 'Speakers:'}
+                </div>
+                {data?.speakers.map((speaker) => (
+                  <div key={speaker?.id} className="col-span-4">
+                    {speaker?.name}
                   </div>
-                  {data?.speakers.map((speaker) => (
-                    <div key={speaker?.id} className="col-span-3">
-                      {speaker?.name}
-                    </div>
-                  ))}
+                ))}
+              </div>
+            )}
+            {data?.description && (
+              <div className="grid grid-cols-5 gap-2">
+                <div className="col-span-1 text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide">
+                  Description:
                 </div>
-              )}
-              {data?.fileSize && (
-                <div className="grid grid-cols-4 text-lg">
-                  <div className="font-bold col-span-1">File Size:</div>
-                  <div className="col-span-3">{data?.fileSize}</div>
+                <div className="col-span-4">{data?.description}</div>
+              </div>
+            )}
+            {data?.acknowledgement && (
+              <div className="grid grid-cols-5 gap-2">
+                <div className="col-span-1 text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide">
+                  Acknowledgement:
                 </div>
-              )}
-            </div>
+                <div className="col-span-4">{data?.acknowledgement}</div>
+              </div>
+            )}
+            {data?.fileSize && (
+              <div className="grid grid-cols-5 gap-2">
+                <div className="col-span-1 text-blumine-800 text-sm font-bold uppercase leading-4 tracking-wide">
+                  File Size:
+                </div>
+                <div className="col-span-4">{data?.fileSize}</div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -107,7 +114,7 @@ function AudiobarPresentation({
                   type="button"
                   aria-label="Play/Pause"
                   onClick={() => onPlayPauseClick()}
-                  className="btn-sm-icon btn-tertiary"
+                  className="btn-sm-icon btn-tertiary rounded-full"
                 >
                   {getIcon(`${isPlaying ? 'Pause' : 'Play'}`)}
                 </button>
