@@ -15,7 +15,7 @@ function AudioButton({
 
   return audioArray?.map((audioObject) =>
     audioObject?.id ? (
-      <Tooltip key={audioObject?.id} message="Play audio">
+      <Tooltip key={audioObject?.id} hide={withLabels} message="Play audio">
         <label htmlFor={`audio-btn-${audioObject.id}`} className="sr-only">
           Play audio
         </label>
