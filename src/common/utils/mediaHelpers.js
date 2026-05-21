@@ -32,6 +32,7 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   }
 
   const path = mediaObject?.original?.path
+  const isTiffFile = path?.toLowerCase().match(/\.tiff?$/)
 
   switch (type) {
     case AUDIO:
@@ -40,10 +41,7 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
     case VIDEO:
       return mediaObject?.[size]?.path
     case IMAGE:
-      if (
-        (path.endsWith('.tif') || path.endsWith('.tiff')) &&
-        size === ORIGINAL
-      ) {
+      if (isTiffFile && size === ORIGINAL) {
         return mediaObject?.[MEDIUM]?.path
       }
       return mediaObject?.[size]?.path || mediaObject?.original?.path
