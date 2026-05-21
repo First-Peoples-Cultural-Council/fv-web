@@ -1,0 +1,97 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link, useParams } from 'react-router'
+
+// FPCC
+import VideoWithMeta from 'components/VideoWithMeta'
+import ImageWithLightbox from 'components/ImageWithLightbox'
+import RelatedDocumentsList from 'components/RelatedDocumentsList'
+import RelatedEntriesTable from 'components/RelatedEntriesTable'
+import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
+import CharacterDetailHeader from 'components/CharacterDetail/CharacterDetailHeader'
+import { CHAR } from 'common/constants'
+
+function CharacterDetailPresentation({ characterData, kids }) {
+  const { sitename } = useParams()
+
+  return (
+    <div id="CharacterDetailPresentation">
+      <CharacterDetailHeader characterData={characterData} />
+      {characterData?.relatedImages?.[0] && (
+        <div className="mb-8">
+          <ImageWithLightbox.Presentation
+            image={characterData?.relatedImages?.[0]}
+            imgStyling="object-contain rounded-lg max-h-78 w-auto"
+            withIcon
+          />
+        </div>
+      )}
+      {characterData?.relatedDictionaryEntries?.length > 0 && (
+        <div className="space-y-4 mb-4">
+          <DictionaryDetailLabel label="Examples" />
+          <RelatedEntriesTable.Presentation
+            entries={characterData?.relatedDictionaryEntries || []}
+            sitename={sitename}
+            kids={kids}
+          />
+        </div>
+      )}
+      <div className="mb-8">
+        <Link
+          to={`/${sitename}/${
+            kids ? 'kids/' : ''
+          }alphabet/startsWith?${CHAR}=${characterData?.title}&types=word`}
+          className="btn-primary btn-md"
+        >
+          <span>See all words starting with</span>
+          <div className="font-bold">{characterData?.title}</div>
+        </Link>
+      </div>
+      {characterData?.note?.length > 0 && (
+        <div className="space-y-4 mb-8">
+          <DictionaryDetailLabel label="Notes" />
+          <p className="">{characterData?.note}</p>
+        </div>
+      )}
+      {characterData?.relatedDocuments?.length > 0 && (
+        <div className="space-y-4 mb-8">
+          <DictionaryDetailLabel label="Related Documents" />
+          <RelatedDocumentsList.Presentation
+            documents={characterData?.relatedDocuments}
+          />
+        </div>
+      )}
+      {characterData?.relatedVideos?.[0] && (
+        <div className="space-y-4 mb-8">
+          <DictionaryDetailLabel label="Video" />
+          <VideoWithMeta video={characterData?.relatedVideos?.[0]} />
+        </div>
+      )}
+      {characterData?.relatedVideoLinks?.[0] && (
+        <div className="space-y-4 mb-8">
+          <DictionaryDetailLabel label="Video Link" />
+          <div className="rounded-lg overflow-hidden">
+            <iframe
+              className="aspect-3/2 max-h-60 w-full"
+              src={characterData?.relatedVideoLinks?.[0]?.embedLink}
+              title="video"
+              allow="fullscreen"
+            >
+              Your browser does not support the iframe tag.
+            </iframe>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// PROPTYPES
+const { bool, object } = PropTypes
+
+CharacterDetailPresentation.propTypes = {
+  characterData: object,
+  kids: bool,
+}
+
+export default CharacterDetailPresentation

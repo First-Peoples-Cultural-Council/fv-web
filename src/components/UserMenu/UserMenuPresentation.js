@@ -19,7 +19,7 @@ function UserMenuPresentation({ currentUser, site, login, logout }) {
   return (
     <div id="NavUser" className="relative inline-flex">
       <Popover as="div" className="relative inline-block text-left">
-        <PopoverButton className="inline-flex size-12 items-center justify-center rounded-full  bg-scarlet-800 hover:bg-scarlet-900 font-medium text-white outline -outline-offset-1 outline-charcoal-900">
+        <PopoverButton className="inline-flex size-12 items-center justify-center rounded-full  bg-scarlet-800 hover:bg-scarlet-900 font-medium text-white outline -outline-offset-1 outline-none">
           {currentUser?.isAnonymous ? (
             <span className="text-xs">GUEST</span>
           ) : (

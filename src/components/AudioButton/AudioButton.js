@@ -9,12 +9,13 @@ import Tooltip from 'components/Tooltip'
 function AudioButton({
   audioArray,
   styling = 'btn-tertiary btn-md-icon bg-transparent',
+  withLabels = false,
 }) {
   const { setCurrentAudio } = useAudiobar()
 
   return audioArray?.map((audioObject) =>
     audioObject?.id ? (
-      <Tooltip key={audioObject?.id} message="Play audio">
+      <Tooltip key={audioObject?.id} hide={withLabels} message="Play audio">
         <label htmlFor={`audio-btn-${audioObject.id}`} className="sr-only">
           Play audio
         </label>
@@ -27,16 +28,20 @@ function AudioButton({
           onClick={() => setCurrentAudio(audioObject)}
         >
           {getIcon('Audio')}
+          {withLabels && (
+            <span>{audioObject?.speakers?.[0]?.name || 'Speaker'}</span>
+          )}
         </button>
       </Tooltip>
     ) : null,
   )
 }
 // PROPTYPES
-const { array, string } = PropTypes
+const { array, bool, string } = PropTypes
 AudioButton.propTypes = {
   audioArray: array,
   styling: string,
+  withLabels: bool,
 }
 
 export default AudioButton

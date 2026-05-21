@@ -7,6 +7,7 @@ import Audiobar from 'components/Audiobar'
 import ByAlphabet from 'components/ByAlphabet'
 import ByCategory from 'components/ByCategory'
 import Categories from 'components/Categories'
+import Character from 'components/Character'
 import DictionaryDetail from 'components/DictionaryDetail'
 import KidsFooter from 'components/KidsFooter'
 import Game from 'components/Game'
@@ -63,6 +64,7 @@ function SiteFrameKids() {
             path="alphabet/startsWith"
             element={<ByAlphabet.Container kids />}
           />
+          <Route path="alphabet/:id" element={<Character.Container kids />} />
           <Route path="alphabet" element={<Alphabet.Container kids />} />
           <Route
             path="categories/:categoryId"

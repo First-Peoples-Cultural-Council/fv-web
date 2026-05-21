@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import AudioMinimal from 'components/AudioMinimal'
+import AudioButton from 'components/AudioButton'
 import ActionsMenu from 'components/ActionsMenu'
 import Tooltip from 'components/Tooltip'
 import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
@@ -99,18 +99,11 @@ function DictionaryDetailPrimary({ entry }) {
           <div>
             <DictionaryDetailLabel label="Audio" />
             <div className="space-y-3">
-              {entry?.relatedAudio?.map((audioObject) => (
-                <AudioMinimal.Container
-                  key={audioObject?.id}
-                  icons={{
-                    Play: getIcon('Audio'),
-                    Stop: getIcon('Stop'),
-                  }}
-                  buttonStyling="btn-primary btn-sm mr-4 min-w-0"
-                  label={audioObject?.speakers?.[0]?.name || 'Speaker'}
-                  audioObject={audioObject}
-                />
-              ))}
+              <AudioButton
+                audioArray={entry.relatedAudio}
+                styling="btn-primary btn-sm mr-4 min-w-0"
+                withLabels
+              />
             </div>
           </div>
         )}

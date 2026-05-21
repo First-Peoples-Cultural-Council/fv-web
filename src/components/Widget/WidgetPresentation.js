@@ -20,7 +20,7 @@ import {
   WIDGET_WOTD,
 } from 'common/constants'
 
-import Alphabet from 'components/Alphabet'
+import WidgetAlphabet from 'components/WidgetAlphabet'
 import WidgetApps from 'components/WidgetApps'
 import WidgetContactUs from 'components/WidgetContactUs'
 import Gallery from 'components/Gallery'
@@ -39,7 +39,7 @@ import WidgetWordOfTheDay from 'components/WidgetWordOfTheDay'
 function WidgetPresentation({ data, type }) {
   switch (type) {
     case WIDGET_ALPHABET:
-      return <Alphabet.Container widgetView />
+      return <WidgetAlphabet.Container />
 
     case WIDGET_APPS:
       return <WidgetApps.Presentation />
