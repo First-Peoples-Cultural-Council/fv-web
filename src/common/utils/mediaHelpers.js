@@ -24,13 +24,15 @@ import {
 } from 'common/constants'
 // NB ALL sizes supplied for VIDEO or images of mime-type 'gif' will return a static image src except for ORIGINAL
 export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
-  const path = mediaObject?.original?.path
   if (!mediaObject?.original) {
     return `${type} object with the property of 'original' must be supplied to retrieve a src path.`
   }
   if (![ORIGINAL, SMALL, MEDIUM, THUMBNAIL].includes(size)) {
     return 'Only ORIGINAL, SMALL, MEDIUM, or THUMBNAIL are accepted as sizes for media.'
   }
+
+  const path = mediaObject?.original?.path
+
   switch (type) {
     case AUDIO:
     case DOCUMENT:

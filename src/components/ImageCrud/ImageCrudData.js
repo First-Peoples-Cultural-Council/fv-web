@@ -10,7 +10,7 @@ function ImageCrudData() {
   const { sitename } = useParams()
   const id = searchParams.get('id')
 
-  const queryResponse = useImage({ id })
+  const queryResponse = useImage({ id, edit: true })
 
   const { onSubmit } = useImageUpdate({ id })
   const submitHandler = (formData) => onSubmit(formData)
