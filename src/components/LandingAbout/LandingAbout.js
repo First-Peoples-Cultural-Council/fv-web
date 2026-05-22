@@ -49,10 +49,7 @@ function LandingAbout() {
 
             <div className="mt-6 lg:mt-10 flex justify-left">
               <div className="rounded-full shadow-sm">
-                <Link
-                  to="/about"
-                  className={`w-full flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-full md:text-lg btn-lg btn-tertiary`}
-                >
+                <Link to="/about" className="btn-lg btn-tertiary">
                   Learn more
                 </Link>
               </div>

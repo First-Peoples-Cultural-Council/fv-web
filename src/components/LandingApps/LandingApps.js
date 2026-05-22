@@ -31,8 +31,8 @@ function LandingApps() {
             <div className="mt-2 lg:mt-6 flex justify-left">
               <div className="rounded-full shadow-sm">
                 <Link
-                  href="/apps"
-                  className="w-full flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-full md:text-lg btn-lg btn-primary bg-scarlet-800 hover:bg-scarlet-900"
+                  to="/apps"
+                  className="btn-lg btn-primary bg-scarlet-800 hover:bg-scarlet-900"
                 >
                   Learn more
                 </Link>
