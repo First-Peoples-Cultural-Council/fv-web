@@ -58,7 +58,7 @@ function AlphabetPresentation({
         closeHandler={drawerCloseHandler}
         fullScreenPath={`/${sitename}/${kids ? 'kids/' : ''}alphabet/${selectedData?.id}`}
       >
-        <div className="max-w-2xl py-6 px-14 space-y-7">
+        <div className="max-w-2xl p-4 md:px-8 lg:px-14">
           <CharacterDetail characterData={selectedData} kids={kids} />
         </div>
       </Drawer.Presentation>

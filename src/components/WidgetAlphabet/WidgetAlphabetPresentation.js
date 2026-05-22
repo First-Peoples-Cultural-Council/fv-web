@@ -51,7 +51,7 @@ function WidgetAlphabetPresentation({
               closeHandler={drawerCloseHandler}
               fullScreenPath={`/${selectedCharacterData?.site?.slug}/alphabet/${selectedCharacterData?.id}`}
             >
-              <div className="max-w-2xl py-6 px-14 space-y-7">
+              <div className="max-w-2xl p-4 md:px-8 lg:px-14">
                 <CharacterDetail characterData={selectedCharacterData} />
               </div>
             </Drawer.Presentation>
