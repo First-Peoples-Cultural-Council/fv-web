@@ -21,7 +21,7 @@ function WidgetAlphabetCharacterDetail({ characterData }) {
         <div className="mb-8">
           <ImageWithLightbox.Presentation
             image={characterData?.relatedImages?.[0]}
-            imgStyling="object-contain rounded-lg max-h-78 w-auto"
+            imgStyling="object-contain rounded-lg max-h-68 w-auto"
             withIcon
           />
         </div>
