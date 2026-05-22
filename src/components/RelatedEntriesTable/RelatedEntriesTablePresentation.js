@@ -22,7 +22,7 @@ function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
         <tbody>
           {entries?.map((entry) => (
             <tr key={entry?.id}>
-              <td className="py-2 pl-3 pr-2 rounded-l-lg text-sm md:text-base wrap-anywhere bg-blumine-50">
+              <td className="py-2 pl-3 pr-2 rounded-l-lg text-sm md:text-base wrap-anywhere min-w-30 bg-blumine-50">
                 <Link
                   to={`/${sitename}/${
                     kids ? 'kids/' : ''
