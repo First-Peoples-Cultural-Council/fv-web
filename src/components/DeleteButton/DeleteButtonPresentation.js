@@ -41,11 +41,12 @@ function DeleteButtonPresentation({
             data-testid="DeleteModal"
             className="inline-block align-bottom space-y-8 bg-white rounded-3xl p-6 lg:py-11 lg:px-16 overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-xl sm:w-full"
           >
-            <div className="space-y-5 text-blumine-900">
-              <h3 className="text-center text-xl font-bold">{message}</h3>
-              <p className="text-center text-pretty">
-                {note ? `${note} ` : ''}You can&apos;t undo this action.
-              </p>
+            <div className="space-y-5 text-blumine-900 text-center">
+              <h3 className="text-xl font-bold">{message}</h3>
+              <div className="text-pretty">
+                {note && <p>{note}</p>}
+                <p>You cannot undo this action.</p>
+              </div>
             </div>
             <div className="w-full justify-center flex space-x-2">
               <button
