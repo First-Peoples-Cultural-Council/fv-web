@@ -22,7 +22,7 @@ function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
         <tbody>
           {entries?.map((entry) => (
             <tr key={entry?.id}>
-              <td className="py-2 pl-3 pr-2 rounded-l-lg text-sm md:text-base wrap-anywhere min-w-30 bg-blumine-50">
+              <td className="py-2 pl-3 pr-2 min-w-30 rounded-l-lg text-sm md:text-base wrap-anywhere bg-blumine-50">
                 <Link
                   to={`/${sitename}/${
                     kids ? 'kids/' : ''
@@ -31,15 +31,15 @@ function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
                   {entry ? entry?.title : null}
                 </Link>
               </td>
-              <td className="p-2 text-center bg-blumine-50">
+              <td className="md:p-2 text-center bg-blumine-50">
                 {entry?.relatedAudio?.length > 0 && (
                   <AudioButton audioArray={entry.relatedAudio?.slice(0, 1)} />
                 )}
               </td>
-              <td className="p-2 text-sm md:text-base wrap-anywhere bg-blumine-50">
+              <td className="md:p-2 min-w-30 text-sm md:text-base wrap-anywhere bg-blumine-50">
                 <span>{entry?.translations?.[0]?.text || ''}</span>
               </td>
-              <td className="py-2 pl-2 pr-3 text-center rounded-r-lg bg-blumine-50">
+              <td className="py-2 md:pl-2 pr-3 text-center rounded-r-lg bg-blumine-50">
                 <Link
                   className="btn-tertiary btn-md-icon bg-inherit"
                   to={`/${sitename}/${
