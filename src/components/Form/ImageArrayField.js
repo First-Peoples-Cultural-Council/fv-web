@@ -36,16 +36,18 @@ function ImageArrayField({
         <ul>
           {fields?.length > 0 &&
             fields?.map((image, index) => (
-              <li
-                key={image?.key}
-                className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1 mr-2 mb-2"
-              >
-                <MediaThumbnail.Image
-                  imageObject={image}
-                  imageStyles="object-cover pointer-events-none"
-                />
-
-                <XButton onClickHandler={() => remove(index)} />
+              <li key={image?.key} className="inline-block align-top mr-2 mb-2">
+                <div className="flex items-start border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 pr-0 space-x-1">
+                  <div className="shrink-0">
+                    <MediaThumbnail.Image
+                      imageObject={image}
+                      imageStyles="w-full aspect-3/2 object-cover pointer-events-none"
+                    />
+                  </div>
+                  <div className="shrink-0">
+                    <XButton onClickHandler={() => remove(index)} />
+                  </div>
+                </div>
               </li>
             ))}
         </ul>

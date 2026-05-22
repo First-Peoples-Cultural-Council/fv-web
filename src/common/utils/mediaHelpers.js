@@ -30,6 +30,10 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
   if (![ORIGINAL, SMALL, MEDIUM, THUMBNAIL].includes(size)) {
     return 'Only ORIGINAL, SMALL, MEDIUM, or THUMBNAIL are accepted as sizes for media.'
   }
+
+  const path = mediaObject?.original?.path
+  const isTiffFile = path?.toLowerCase().match(/\.tiff?$/)
+
   switch (type) {
     case AUDIO:
     case DOCUMENT:
@@ -37,6 +41,9 @@ export const getMediaPath = ({ mediaObject, type, size = ORIGINAL }) => {
     case VIDEO:
       return mediaObject?.[size]?.path
     case IMAGE:
+      if (isTiffFile && size === ORIGINAL) {
+        return mediaObject?.[MEDIUM]?.path
+      }
       return mediaObject?.[size]?.path || mediaObject?.original?.path
 
     default:
