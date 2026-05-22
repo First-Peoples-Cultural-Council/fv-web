@@ -1,19 +1,21 @@
 import React from 'react'
 
 // FPCC
-import LandingPageData from 'components/LandingPage/LandingPageData'
+import LandingAbout from 'components/LandingAbout'
+import LandingApps from 'components/LandingApps'
 import LandingBanner from 'components/LandingBanner'
 import LandingKeyboards from 'components/LandingKeyboards'
+import LandingQuotes from 'components/LandingQuotes'
 import LandingWhy from 'components/LandingWhy'
-import WidgetArea from 'components/WidgetArea'
 
 function LandingPageContainer() {
-  const { aboutData, quotesData, appsData } = LandingPageData()
   return (
     <div id="LandingPageContainer">
       <LandingBanner.Presentation />
       <LandingWhy.Presentation />
-      <WidgetArea.Container widgetData={[aboutData, quotesData, appsData]} />
+      <LandingAbout />
+      <LandingQuotes />
+      <LandingApps />
       <LandingKeyboards.Presentation />
     </div>
   )
