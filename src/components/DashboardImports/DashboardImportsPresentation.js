@@ -228,7 +228,7 @@ function DashboardImportsPresentation({
                         deleteHandler={() => deleteImport(result?.id)}
                         disabled={!canBeDeleted}
                         message="Cancel this import?"
-                        note="This will remove any related import files from the FirstVoices server and cancel this import. This cannot be undone."
+                        note="This will delete the import csv and any media files you have uploaded for this batch from the FirstVoices server. Are you sure you want to cancel this import?"
                         styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
                       />
                     </Tooltip>
