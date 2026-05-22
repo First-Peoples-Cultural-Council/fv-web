@@ -37,10 +37,11 @@ function WidgetTextPresentation({ widgetData }) {
     )
   }
 
+  const bgColorClass = bgColor ? `bg-${bgColor}` : 'bg-white'
+
   const getTextElement = () => (
     <div
-      className={`${image ? 'md:w-1/2' : 'mx-auto max-w-5xl'} 
-      ${bgColor ? `bg-${bgColor}` : 'bg-white'} content-center text-left`}
+      className={`${image ? 'md:w-1/2' : 'mx-auto max-w-5xl'} ${bgColorClass} content-center text-left`}
     >
       <div className="px-8 lg:px-14 py-4 lg:py-10 space-y-5 lg:space-y-8">
         <div className="space-y-2 lg:space-y-4">
