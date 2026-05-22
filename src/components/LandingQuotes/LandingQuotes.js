@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 // FPCC
 import languages from 'assets/images/languages-background.png'
@@ -55,13 +54,6 @@ function LandingQuotes() {
       ))}
     </section>
   )
-}
-
-// PROPTYPES
-const { object } = PropTypes
-
-LandingQuotes.propTypes = {
-  data: object,
 }
 
 export default LandingQuotes
