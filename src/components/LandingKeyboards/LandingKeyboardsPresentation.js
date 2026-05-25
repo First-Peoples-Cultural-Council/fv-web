@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
@@ -80,12 +81,12 @@ function LandingKeyboardsPresentation() {
             </p>
 
             <div>
-              <a
-                href="/keyboards"
+              <Link
+                to="/keyboards"
                 className="btn-primary btn-lg bg-ochre-600 hover:bg-ochre-700"
               >
                 Learn more
-              </a>
+              </Link>
             </div>
           </div>
         </div>

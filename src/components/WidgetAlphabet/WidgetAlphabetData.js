@@ -31,6 +31,7 @@ const WidgetAlphabetData = () => {
 
   const drawerCloseHandler = () => {
     setIsDrawerOpen(false)
+    setSelectedCharacterData()
   }
 
   return {

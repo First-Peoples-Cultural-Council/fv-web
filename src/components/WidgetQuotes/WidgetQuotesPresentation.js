@@ -5,15 +5,8 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 
 function WidgetQuotesPresentation({ widgetData }) {
-  const {
-    backgroundImage, // Only used for FV Landing page
-    quote1,
-    quote1By,
-    quote2,
-    quote2By,
-    quote3,
-    quote3By,
-  } = widgetData.settings
+  const { quote1, quote1By, quote2, quote2By, quote3, quote3By } =
+    widgetData.settings
 
   const makeQuote = (quote, quoteBy) => (
     <div className="relative w-4/5 md:w-[30%] h-80 mt-24 md:my-20 bg-white rounded-t-xl rounded-br-xl flex flex-col justify-center items-center">
@@ -33,13 +26,6 @@ function WidgetQuotesPresentation({ widgetData }) {
     <section
       id="WidgetQuotesPresentation"
       className="bg-ochre-600 flex flex-col md:flex-row justify-evenly items-center pb-16 md:pb-0"
-      style={
-        backgroundImage && {
-          backgroundImage: `url(${backgroundImage}`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }
-      }
     >
       {makeQuote(quote1, quote1By)}
       {makeQuote(quote2, quote2By)}
