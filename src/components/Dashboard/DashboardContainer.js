@@ -9,6 +9,7 @@ import RequireAuth from 'common/RequireAuth'
 import DashboardCreate from 'components/DashboardCreate'
 import DashboardEdit from 'components/DashboardEdit'
 import DashboardEntries from 'components/DashboardEntries'
+import DashboardExports from 'components/DashboardExports'
 import DashboardHome from 'components/DashboardHome'
 import DashboardImports from 'components/DashboardImports'
 import DashboardMedia from 'components/DashboardMedia'
@@ -61,6 +62,14 @@ function DashboardContainer() {
           element={
             <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DashboardEdit.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="exports/*"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <DashboardExports.Container />
             </RequireAuth>
           }
         />
