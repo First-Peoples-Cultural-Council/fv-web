@@ -86,18 +86,6 @@ function DashboardExportsPresentation({
 
   return (
     <div id="DashboardExportsPresentation">
-      <div className="grid grid-cols-6 gap-4 mb-4 p-5 bg-white rounded-lg overflow-hidden shadow-lg">
-        <div className="col-span-2">
-          <div className="text-sm text-charcoal-500 space-y-2">
-            <p>Export controls</p>
-          </div>
-        </div>
-        <div className="col-span-4">
-          <div className="text-sm text-charcoal-500 space-y-2">
-            <p>Export controls</p>
-          </div>
-        </div>
-      </div>
       {exportsPending && (
         <div className="mb-2 mx-auto">
           <AlertBanner.Presentation
