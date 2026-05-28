@@ -16,7 +16,7 @@ import {
   EXPIRED,
 } from 'common/constants/jobs'
 import AlertBanner from 'components/AlertBanner'
-import { INFO } from 'common/constants'
+import { DOMAIN, INFO, SITES_FILTER, PAGE, PAGE_SIZE } from 'common/constants'
 
 function DashboardExportsPresentation({
   queryResponse,
@@ -36,7 +36,7 @@ function DashboardExportsPresentation({
     queryResponse?.refetch()
   }
 
-  const getStatus = (exportJob) => {
+  const generateStatusNode = (exportJob) => {
     switch (exportJob?.status) {
       case ACCEPTED:
       case STARTED:
@@ -54,7 +54,7 @@ function DashboardExportsPresentation({
         )
       case COMPLETE:
         return (
-          <a href={exportJob?.exportCsv?.path} className="btn-sm btn-primary">
+          <a href={exportJob?.exportCsv?.path} className="btn-sm btn-secondary">
             {getIcon('Download')}
             <span>Download</span>
           </a>
@@ -62,11 +62,28 @@ function DashboardExportsPresentation({
       case FAILED:
       case EXPIRED:
       case CANCELLED:
-        return `Export ${exportJob?.status}. Contact support for more information`
+        return (
+          <span>
+            Export {exportJob?.status}. Contact support for more information
+          </span>
+        )
       default:
         return <span className="capitalize">{exportJob?.status}</span> || ''
     }
   }
+
+  const generateParamListItem = ([key, value]) => {
+    if (value === null || value === '') return null
+    const hiddenParams = ['start', DOMAIN, SITES_FILTER, PAGE, PAGE_SIZE]
+    if (hiddenParams.includes(key)) return null
+    return (
+      <li key={key}>
+        <strong>{key}:</strong>{' '}
+        {Array.isArray(value) ? value.join(', ') : new String(value)}
+      </li>
+    )
+  }
+
   return (
     <div id="DashboardExportsPresentation">
       <div className="grid grid-cols-6 gap-4 mb-4 p-5 bg-white rounded-lg overflow-hidden shadow-lg">
@@ -94,7 +111,8 @@ function DashboardExportsPresentation({
               >
                 You have exports being validated. Click{' '}
                 <span className="font-bold">here</span> to refresh and check if
-                the results are ready.
+                the results are ready. Large exports may take a few minutes to
+                prepare.
               </button>
             }
           />
@@ -145,20 +163,12 @@ function DashboardExportsPresentation({
                     <ul className="list-disc list-inside text-charcoal-500 text-xs">
                       {result?.exportParams &&
                         Object.entries(result?.exportParams)?.map(
-                          ([key, value]) => {
-                            if (value === null || value === '') return null
-                            if (key === 'sites' || key === 'start') return null
-                            return (
-                              <li key={key}>
-                                <strong>{key}:</strong> {value}
-                              </li>
-                            )
-                          },
+                          generateParamListItem,
                         )}
                     </ul>
                   </td>
                   <td className="p-3 text-sm text-charcoal-500 text-center">
-                    {getStatus(result)}
+                    {generateStatusNode(result)}
                   </td>
 
                   <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
