@@ -36,11 +36,11 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
   const [searchParams] = useSearchParams()
   const { mutate } = useExportJobCreate()
 
-  const [exportLimitWarning, setExpertLimitWarning] = useState(false)
+  const [exportLimitWarning, setExportLimitWarning] = useState(false)
 
   const onExportClick = () => {
     if (count >= EXPORT_LIMIT) {
-      setExpertLimitWarning(true)
+      setExportLimitWarning(true)
       return
     }
     const _searchParams = searchParams
@@ -50,7 +50,7 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
 
   useEffect(() => {
     if (exportLimitWarning && count < EXPORT_LIMIT) {
-      setExpertLimitWarning(false)
+      setExportLimitWarning(false)
     }
   }, [count, exportLimitWarning])
 
@@ -153,7 +153,7 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
           {exportLimitWarning && (
             <AlertBanner.Presentation
               alertType={WARNING}
-              handleClose={() => setExpertLimitWarning(false)}
+              handleClose={() => setExportLimitWarning(false)}
               message={
                 <div className="">
                   <p>
