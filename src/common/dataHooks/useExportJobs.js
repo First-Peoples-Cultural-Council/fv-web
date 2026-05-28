@@ -39,8 +39,8 @@ export function useExportJobCreate() {
   const navigate = useNavigate()
   const { sitename } = useParams()
 
-  const createImportJob = async (formJson) => {
-    const searchParamString = formJson.toString()
+  const createImportJob = async (searchParams) => {
+    const searchParamString = searchParams?.toString()
 
     return api.exportJobs.create({
       sitename,
@@ -55,7 +55,7 @@ export function useExportJobCreate() {
     type: 'export job',
     onSuccessCallback: (response) => {
       if (response?.id) {
-        navigate(`/${sitename}/dashboard/edit/export/${response?.id}`)
+        navigate(`/${sitename}/dashboard/exports`)
       }
     },
   })

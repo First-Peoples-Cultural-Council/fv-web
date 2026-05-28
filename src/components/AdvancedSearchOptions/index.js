@@ -1,5 +1,5 @@
-import AdvancedSearchOptionsPresentation from 'components/AdvancedSearchOptions/AdvancedSearchOptionsPresentation'
+import AdvancedSearchOptionsContainer from 'components/AdvancedSearchOptions/AdvancedSearchOptionsContainer'
 
 export default {
-  Presentation: AdvancedSearchOptionsPresentation,
+  Container: AdvancedSearchOptionsContainer,
 }

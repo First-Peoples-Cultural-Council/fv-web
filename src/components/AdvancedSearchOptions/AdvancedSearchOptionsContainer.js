@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useSearchParams } from 'react-router'
 
 // FPCC
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
 import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
+import AlertBanner from 'components/AlertBanner'
+import { useExportJobCreate } from 'common/dataHooks/useExportJobs'
 import {
+  EXPORT_LIMIT,
   HAS_AUDIO,
   HAS_IMAGE,
   HAS_VIDEO,
@@ -12,26 +16,46 @@ import {
   HAS_CATEGORIES,
   HAS_RELATED_ENTRIES,
   KIDS,
+  PAGE_SIZE,
   TRUE,
   FALSE,
   VISIBILITY,
   VISIBILITY_PUBLIC,
   VISIBILITY_MEMBERS,
   VISIBILITY_TEAM,
+  WARNING,
 } from 'common/constants'
 
-function AdvancedSearchOptionsPresentation({ items }) {
-  const count = items?.pages[0]?.count
+function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
+  const count = infiniteQueryResponse?.data?.pages[0]?.count
   let countStr = count
   if (count >= 10000) {
     countStr = '10000+'
   }
 
+  const [searchParams] = useSearchParams()
+  const { mutate } = useExportJobCreate()
+
+  const [exportLimitWarning, setExpertLimitWarning] = useState(false)
+
+  const onExportClick = () => {
+    if (count >= EXPORT_LIMIT) {
+      setExpertLimitWarning(true)
+      return
+    }
+    const _searchParams = searchParams
+    _searchParams.append(PAGE_SIZE, EXPORT_LIMIT)
+    mutate(_searchParams)
+  }
+
+  useEffect(() => {
+    if (exportLimitWarning && count < EXPORT_LIMIT) {
+      setExpertLimitWarning(false)
+    }
+  }, [count, exportLimitWarning])
+
   return (
-    <div
-      data-testid="AdvancedSearchOptionsPresentation"
-      className="bg-white rounded-lg"
-    >
+    <div id="AdvancedSearchOptionsContainer" className="bg-white rounded-lg">
       <div className="mx-auto px-2 py-1 text-center">
         <section aria-labelledby="filter-heading">
           <h2 id="filter-heading" className="sr-only">
@@ -116,7 +140,35 @@ function AdvancedSearchOptionsPresentation({ items }) {
             <div className="flex items-baseline space-x-8">
               <SearchSpeakersFilter />
             </div>
+            <button
+              data-testid="export-btn"
+              type="button"
+              className="btn-sm btn-secondary"
+              onClick={onExportClick}
+            >
+              <span>Export results</span>
+            </button>
           </div>
+
+          {exportLimitWarning && (
+            <AlertBanner.Presentation
+              alertType={WARNING}
+              handleClose={() => setExpertLimitWarning(false)}
+              message={
+                <div className="">
+                  <p>
+                    The maximum number of dictionary entries that you can export
+                    via self-serve is <strong>{EXPORT_LIMIT}</strong>.
+                  </p>
+                  <p>
+                    Please adjust your selected filters to reduce the number of
+                    results for your search, or contact hello@firstvoices.com if
+                    you require a larger export of your site dictionary.
+                  </p>
+                </div>
+              }
+            />
+          )}
         </section>
       </div>
     </div>
@@ -125,8 +177,8 @@ function AdvancedSearchOptionsPresentation({ items }) {
 
 // PROPTYPES
 const { object } = PropTypes
-AdvancedSearchOptionsPresentation.propTypes = {
-  items: object,
+AdvancedSearchOptionsContainer.propTypes = {
+  infiniteQueryResponse: object,
 }
 
-export default AdvancedSearchOptionsPresentation
+export default AdvancedSearchOptionsContainer
