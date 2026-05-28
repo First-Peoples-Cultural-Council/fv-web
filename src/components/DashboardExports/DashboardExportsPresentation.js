@@ -79,7 +79,7 @@ function DashboardExportsPresentation({
     return (
       <li key={key}>
         <strong>{key}:</strong>{' '}
-        {Array.isArray(value) ? value.join(', ') : new String(value)}
+        {Array.isArray(value) ? value.join(', ') : String(value)}
       </li>
     )
   }
