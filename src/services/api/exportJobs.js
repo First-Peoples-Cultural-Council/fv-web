@@ -1,5 +1,5 @@
 import { apiBase } from 'services/config'
-import { SITES, EXPORT_JOBS } from 'common/constants'
+import { PAGE, PAGE_SIZE, SITES, EXPORT_JOBS } from 'common/constants'
 
 const exportJobs = {
   get: async ({ sitename, id }) =>
@@ -7,7 +7,7 @@ const exportJobs = {
   getAll: async ({ sitename, pageParam, perPage = 48 }) =>
     apiBase()
       .get(
-        `${SITES}/${sitename}/${EXPORT_JOBS}/?page=${pageParam}&pageSize=${perPage}`,
+        `${SITES}/${sitename}/${EXPORT_JOBS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
       )
       .json(),
   create: async ({ sitename, searchParams }) =>
