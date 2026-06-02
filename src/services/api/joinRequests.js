@@ -1,5 +1,5 @@
 import { apiBase } from 'services/config'
-import { SITES, JOIN_REQUESTS } from 'common/constants'
+import { PAGE, PAGE_SIZE, SITES, JOIN_REQUESTS } from 'common/constants'
 
 const joinRequests = {
   get: async ({ sitename, id }) =>
@@ -7,7 +7,7 @@ const joinRequests = {
   getAll: async ({ sitename, pageParam, perPage = 48 }) =>
     apiBase()
       .get(
-        `${SITES}/${sitename}/${JOIN_REQUESTS}/?page=${pageParam}&pageSize=${perPage}`,
+        `${SITES}/${sitename}/${JOIN_REQUESTS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
       )
       .json(),
   create: async ({ sitename, properties }) =>

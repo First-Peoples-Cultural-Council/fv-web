@@ -1,0 +1,189 @@
+import React, { useMemo } from 'react'
+import PropTypes from 'prop-types'
+
+// FPCC
+import { localDateMDYTwords } from 'common/utils/stringHelpers'
+import DeleteButton from 'components/DeleteButton'
+import DashboardTablePaginated from 'components/DashboardTablePaginated'
+import Tooltip from 'components/Tooltip'
+import getIcon from 'common/utils/getIcon'
+import {
+  ACCEPTED,
+  STARTED,
+  COMPLETE,
+  FAILED,
+  CANCELLED,
+  EXPIRED,
+} from 'common/constants/jobs'
+import AlertBanner from 'components/AlertBanner'
+import { DOMAIN, INFO, SITES_FILTER, PAGE, PAGE_SIZE } from 'common/constants'
+
+function DashboardExportsPresentation({
+  queryResponse,
+  deleteExport,
+  page,
+  setPage,
+}) {
+  const isProcessing = (exportJob) =>
+    exportJob?.status === ACCEPTED || exportJob?.status === STARTED
+
+  const exportsPending = useMemo(
+    () => queryResponse?.data?.results?.some(isProcessing),
+    [queryResponse?.data?.results],
+  )
+
+  const handleRefetch = () => {
+    queryResponse?.refetch()
+  }
+
+  const generateStatusNode = (exportJob) => {
+    switch (exportJob?.status) {
+      case ACCEPTED:
+      case STARTED:
+        return (
+          <Tooltip message="Click to check if validation is complete">
+            <button
+              data-testid="validate-btn"
+              type="button"
+              onClick={handleRefetch}
+              className="btn-tertiary btn-sm"
+            >
+              <span>Preparing export</span>
+            </button>
+          </Tooltip>
+        )
+      case COMPLETE:
+        return (
+          <a href={exportJob?.exportCsv?.path} className="btn-sm btn-secondary">
+            {getIcon('Download')}
+            <span>Download</span>
+          </a>
+        )
+      case FAILED:
+      case EXPIRED:
+      case CANCELLED:
+        return (
+          <span>
+            Export {exportJob?.status}. Contact support for more information
+          </span>
+        )
+      default:
+        return <span className="capitalize">{exportJob?.status}</span> || ''
+    }
+  }
+
+  const generateParamListItem = ([key, value]) => {
+    if (value === null || value === '') return null
+    const hiddenParams = ['start', DOMAIN, SITES_FILTER, PAGE, PAGE_SIZE]
+    if (hiddenParams.includes(key)) return null
+    return (
+      <li key={key}>
+        <strong>{key}:</strong>{' '}
+        {Array.isArray(value) ? value.join(', ') : String(value)}
+      </li>
+    )
+  }
+
+  return (
+    <div id="DashboardExportsPresentation">
+      {exportsPending && (
+        <div className="mb-2 mx-auto">
+          <AlertBanner.Presentation
+            alertType={INFO}
+            message={
+              <button
+                type="button"
+                data-testid="refresh-exports-btn"
+                className="text-blumine-700"
+                onClick={handleRefetch}
+              >
+                You have exports being validated. Click{' '}
+                <span className="font-bold">here</span> to refresh and check if
+                the results are ready. Large exports may take a few minutes to
+                prepare.
+              </button>
+            }
+          />
+        </div>
+      )}
+      <DashboardTablePaginated
+        queryResponse={queryResponse}
+        page={page}
+        setPage={setPage}
+        tableHead={
+          <thead className="">
+            <tr>
+              <th
+                scope="col"
+                className="p-3 text-left text-charcoal-500 bg-charcoal-50"
+              >
+                Date of Export
+              </th>
+              <th
+                scope="col"
+                className="p-3 pl-6 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
+              >
+                Parameters
+              </th>
+              <th scope="col" className="p-3 text-charcoal-500 bg-charcoal-50">
+                Export Status
+              </th>
+              <th
+                scope="col"
+                className="p-3 pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
+              >
+                Delete
+              </th>
+            </tr>
+          </thead>
+        }
+        tableBody={
+          <tbody className="divide-y divide-charcoal-200 bg-white">
+            {queryResponse?.data?.results?.map((result) => {
+              const exportInProgress = isProcessing(result)
+              const canBeDeleted = !exportInProgress
+              return (
+                <tr key={result?.id}>
+                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-900">
+                    {localDateMDYTwords(result?.created)}
+                  </td>
+                  <td className="whitespace-nowrap p-3 pl-6 text-sm">
+                    <ul className="list-disc list-inside text-charcoal-500 text-xs">
+                      {result?.exportParams &&
+                        Object.entries(result?.exportParams)?.map(
+                          generateParamListItem,
+                        )}
+                    </ul>
+                  </td>
+                  <td className="p-3 text-sm text-charcoal-500 text-center">
+                    {generateStatusNode(result)}
+                  </td>
+
+                  <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
+                    <DeleteButton.Presentation
+                      deleteHandler={() => deleteExport(result?.id)}
+                      disabled={!canBeDeleted}
+                      message="Delete this export?"
+                      note="This will delete the export csv. Are you sure you want to delete this export?"
+                      styling="btn-tertiary btn-md-icon"
+                    />
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        }
+      />
+    </div>
+  )
+}
+// PROPTYPES
+const { func, object, number } = PropTypes
+DashboardExportsPresentation.propTypes = {
+  queryResponse: object,
+  deleteExport: func,
+  page: number,
+  setPage: func,
+}
+
+export default DashboardExportsPresentation
