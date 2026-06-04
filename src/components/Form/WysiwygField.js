@@ -104,9 +104,14 @@ function WysiwygField({
 
     const url = normalizeUrl(rawUrl)
     if (url === '') {
-      editor.chain().focus().unsetLink().run()
+      editor.chain().focus().extendMarkRange('link').unsetLink().run()
     } else {
-      editor.chain().focus().setLink({ href: url }).run()
+      editor
+        .chain()
+        .focus()
+        .extendMarkRange('link')
+        .setLink({ href: url })
+        .run()
     }
   }, [editor])
 
