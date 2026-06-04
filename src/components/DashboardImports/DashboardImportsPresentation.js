@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -38,8 +38,14 @@ function DashboardImportsPresentation({
     [queryResponse?.data?.results],
   )
 
+  const [mockFetching, setMockFetching] = useState(false)
+
   const handleRefetch = () => {
+    setMockFetching(true)
     queryResponse?.refetch()
+    setTimeout(() => {
+      setMockFetching(false)
+    }, 2000)
   }
 
   const getStatusLabel = (importJob) => {
@@ -106,20 +112,30 @@ function DashboardImportsPresentation({
         </div>
       </div>
       {validationsPending && (
-        <div className="mb-2 mx-auto">
+        <div className="mb-2 mx-auto max-h-72">
           <AlertBanner.Presentation
             alertType={INFO}
             message={
-              <button
-                type="button"
-                data-testid="refresh-imports-btn"
-                className="text-blumine-700"
-                onClick={handleRefetch}
-              >
-                You have imports being validated. Click{' '}
-                <span className="font-bold">here</span> to refresh and check if
-                the results are ready.
-              </button>
+              mockFetching ? (
+                <div className="btn-sm btn-tertiary bg-transparent">
+                  <span>Checking</span>
+                  {getIcon(
+                    'TryAgain',
+                    'size-5 fill-current text-blumine-700 animate-spin',
+                  )}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="refresh-imports-btn"
+                  className="btn-sm btn-tertiary bg-transparent"
+                  onClick={handleRefetch}
+                >
+                  You have imports being validated. Click{' '}
+                  <span className="font-bold mx-1"> here </span> to refresh and
+                  check if the results are ready.
+                </button>
+              )
             }
           />
         </div>
