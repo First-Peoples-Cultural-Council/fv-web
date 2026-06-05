@@ -63,7 +63,7 @@ function AddGalleryButton({ value, onChange }) {
       >
         <div
           id="AddGalleryModalWrapper"
-          className="mx-auto rounded-lg bg-charcoal-50 py-6 mb-20"
+          className="min-w-md mx-auto rounded-lg bg-charcoal-50 py-6 mb-20"
         >
           <h2 className="text-2xl leading-6 font-bold text-center text-blumine-800 pb-6">
             Choose a gallery

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -32,8 +32,14 @@ function DashboardExportsPresentation({
     [queryResponse?.data?.results],
   )
 
+  const [mockFetching, setMockFetching] = useState(false)
+
   const handleRefetch = () => {
+    setMockFetching(true)
     queryResponse?.refetch()
+    setTimeout(() => {
+      setMockFetching(false)
+    }, 2000)
   }
 
   const generateStatusNode = (exportJob) => {
@@ -91,17 +97,27 @@ function DashboardExportsPresentation({
           <AlertBanner.Presentation
             alertType={INFO}
             message={
-              <button
-                type="button"
-                data-testid="refresh-exports-btn"
-                className="text-blumine-700"
-                onClick={handleRefetch}
-              >
-                You have exports being validated. Click{' '}
-                <span className="font-bold">here</span> to refresh and check if
-                the results are ready. Large exports may take a few minutes to
-                prepare.
-              </button>
+              mockFetching ? (
+                <div className="btn-sm btn-tertiary bg-transparent">
+                  <span>Checking</span>
+                  {getIcon(
+                    'TryAgain',
+                    'size-5 fill-current text-blumine-700 animate-spin',
+                  )}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="refresh-exports-btn"
+                  className="text-blumine-700"
+                  onClick={handleRefetch}
+                >
+                  You have exports being prepared. Click{' '}
+                  <span className="font-bold mx-1">here</span> to refresh and
+                  check if the export is ready. Large exports may take a few
+                  minutes to prepare.
+                </button>
+              )
             }
           />
         </div>
