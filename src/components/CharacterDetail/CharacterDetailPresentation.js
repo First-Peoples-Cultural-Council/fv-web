@@ -16,7 +16,9 @@ function CharacterDetailPresentation({ characterData, kids }) {
 
   return (
     <div id="CharacterDetailPresentation">
-      <CharacterDetailHeader characterData={characterData} />
+      <div className="mb-8">
+        <CharacterDetailHeader characterData={characterData} />
+      </div>
       {characterData?.relatedImages?.[0] && (
         <div className="mb-8">
           <ImageWithLightbox.Presentation
