@@ -7,7 +7,7 @@ function WidgetAlphabetPlaceholder() {
       data-testid="WidgetAlphabetPlaceholder"
       className="py-3 md:py-6 bg-white"
     >
-      <div className="mx-5 lg:mx-10 mb-6 lg:mb-12">
+      <div className="mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation title="ALPHABET" />
       </div>
       <div className="max-w-7xl mx-auto px-4 lg:px-8">

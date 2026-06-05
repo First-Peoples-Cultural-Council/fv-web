@@ -15,44 +15,43 @@ function WidgetAlphabetCharacterDetail({ characterData }) {
 
   return (
     <div id="WidgetAlphabetCharacterDetail">
-      <CharacterDetailHeader characterData={characterData} />
-
-      {characterData?.relatedImages?.[0] && (
-        <div className="mb-8">
+      <div className="space-y-4">
+        <CharacterDetailHeader characterData={characterData} />
+        {characterData?.relatedImages?.[0] && (
           <ImageWithLightbox.Presentation
             image={characterData?.relatedImages?.[0]}
             imgStyling="object-contain rounded-lg max-h-68 w-auto"
             withIcon
           />
-        </div>
-      )}
-      {entriesToDisplay?.length > 0 && (
-        <div className="space-y-4 mb-4">
-          <DictionaryDetailLabel label="Example" />
-          <RelatedEntriesTable.Presentation
-            entries={entriesToDisplay}
-            sitename={sitename}
-          />
-        </div>
-      )}
-      <div className="flex flex-col space-y-4">
-        <div>
-          <Link
-            to={`/${sitename}/alphabet/startsWith?${CHAR}=${characterData?.title}&types=word`}
-            className="btn-secondary btn-lg"
-          >
-            <span>See all words starting with</span>
-            <div className="font-bold">{characterData?.title}</div>
-          </Link>
-        </div>
-        <div>
-          <Link
-            to={`/${sitename}/alphabet/${characterData?.id}`}
-            className="btn-primary btn-lg"
-          >
-            <span>Learn more about</span>
-            <div className="font-bold">{characterData?.title}</div>
-          </Link>
+        )}
+        {entriesToDisplay?.length > 0 && (
+          <div className="space-y-4">
+            <DictionaryDetailLabel label="Example" />
+            <RelatedEntriesTable.Presentation
+              entries={entriesToDisplay}
+              sitename={sitename}
+            />
+          </div>
+        )}
+        <div className="flex flex-col space-y-3">
+          <div>
+            <Link
+              to={`/${sitename}/alphabet/startsWith?${CHAR}=${characterData?.title}&types=word`}
+              className="btn-secondary btn-md"
+            >
+              <span>See all words starting with</span>
+              <div className="font-bold">{characterData?.title}</div>
+            </Link>
+          </div>
+          <div>
+            <Link
+              to={`/${sitename}/alphabet/${characterData?.id}`}
+              className="btn-primary btn-md"
+            >
+              <span>Learn more about</span>
+              <div className="font-bold">{characterData?.title}</div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
