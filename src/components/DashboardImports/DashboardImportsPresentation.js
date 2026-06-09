@@ -14,6 +14,7 @@ import getIcon from 'common/utils/getIcon'
 import {
   ACCEPTED,
   STARTED,
+  READY_FOR_IMPORT,
   COMPLETE,
   FAILED,
   CANCELLED,
@@ -67,6 +68,7 @@ function DashboardImportsPresentation({
         return `This import has ${importJob?.status}. Contact support for more information`
       case CANCELLED:
         return `This import was ${importJob?.status}. Contact support for more information`
+      case READY_FOR_IMPORT:
       default:
         return <span className="capitalize">{importJob?.status}</span> || ''
     }
