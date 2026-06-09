@@ -12,7 +12,7 @@ function ImportJobMediaContainer() {
   return (
     <LoadOrError queryResponse={queryResponse}>
       <SiteDocHead titleArray={['Edit', 'Import Job Media']} />
-      <ImportJobMediaPresentation importJob={queryResponse?.data} uppy={uppy} />
+      <ImportJobMediaPresentation queryResponse={queryResponse} uppy={uppy} />
     </LoadOrError>
   )
 }

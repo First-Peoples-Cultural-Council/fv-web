@@ -1,6 +1,7 @@
 // Job Statuses
 export const ACCEPTED = 'accepted'
 export const STARTED = 'started'
+export const READY_FOR_IMPORT = 'ready for import'
 export const COMPLETE = 'complete'
 export const FAILED = 'failed'
 export const CANCELLED = 'cancelled'
