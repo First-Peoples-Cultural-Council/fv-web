@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router'
 import PropTypes from 'prop-types'
-import Dashboard from '@uppy/react/dashboard'
+import DashboardModal from '@uppy/react/dashboard-modal'
 
 // FPCC
 import Form from 'components/Form'
 import { getLastPathSegment } from 'common/utils/urlHelpers'
 import getIcon from 'common/utils/getIcon'
-import Modal from 'components/Modal'
 
 function ImportJobMediaPresentation({ queryResponse, uppy }) {
   const { sitename } = useParams()
-  const [mediaModalOpen, setMediaModalOpen] = useState(false)
   const importJob = queryResponse?.data
+
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
+
+  const handleUploadModalClose = () => {
+    queryResponse?.refetch()
+    setIsUploadModalOpen(false)
+  }
 
   return (
     <div id="ImportJobMediaPresentation" className="max-w-5xl p-8">
@@ -36,61 +41,43 @@ function ImportJobMediaPresentation({ queryResponse, uppy }) {
               </div>
             </div>
           </div>
-          {importJob?.media?.length > 0 && (
-            <div className="col-span-2">
-              <Form.FieldLabel nameId="media" text="Batch Media" />
-              <button
-                data-testid="media-modal-btn"
-                type="button"
-                onClick={() => {
-                  queryResponse?.refetch()
-                  setMediaModalOpen(true)
-                }}
-                className="btn-secondary btn-sm"
-              >
-                View uploaded files
-              </button>
-              <Modal.Presentation
-                isOpen={mediaModalOpen}
-                closeHandler={() => setMediaModalOpen(false)}
-              >
-                <div className="bg-white rounded-lg p-6 lg:py-8 lg:px-12 overflow-hidden shadow-xl transform transition-all min-w-md max-w-5xl">
-                  <div className="pb-3 mb-5 space-y-2 border-b border-charcoal-300">
-                    <h1 className="text-3xl text-blumine-800">
-                      {importJob?.title}
-                    </h1>
-                    <h2 className="text-lg">
-                      Media files uploaded:{' '}
-                      <strong>{importJob?.media?.length}</strong>
-                    </h2>
-                  </div>
-                  <ul className="columns-2 gap-4 space-y-2 text-left">
-                    {importJob?.media?.map((mediaFile) => (
-                      <li
-                        key={mediaFile?.id}
-                        className="list-disc list-inside col-span-1 truncate"
-                      >
-                        {mediaFile?.filename}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Modal.Presentation>
-            </div>
-          )}
-
           {/* Add Media Form */}
           <div className="col-span-2 space-y-2">
             <Form.FieldLabel
               nameId="upload"
-              text={`Upload ${importJob?.media?.length > 0 && 'more '}media`}
+              text="New media files for the import"
             />
+            {importJob?.media?.length > 0 && (
+              <div className="p-5 border border-charcoal-200 rounded-lg space-y-4">
+                <Form.FieldLabel nameId="upload" text="Uploaded files" />
+                <ul className="columns-2 gap-4 space-y-2 text-left">
+                  {importJob?.media?.map((mediaFile) => (
+                    <li
+                      key={mediaFile?.id}
+                      className="list-disc list-inside col-span-1 text-sm truncate"
+                    >
+                      {mediaFile?.filename}
+                    </li>
+                  ))}
+                </ul>
+                <div>
+                  Total: <strong>{importJob?.media?.length}</strong>
+                </div>
+              </div>
+            )}
+            <button
+              data-testid="upload-open-btn"
+              className="btn-secondary btn-md"
+              onClick={() => setIsUploadModalOpen(true)}
+            >
+              {getIcon('Add')}
+              <span>Upload files</span>
+            </button>
             <Form.HelpText text="⚠️ The FirstVoices file size limit is 1GB" />
-            <Dashboard
+            <DashboardModal
               uppy={uppy}
-              width="100%"
-              height={400}
-              doneButtonHandler={null}
+              open={isUploadModalOpen}
+              onRequestClose={handleUploadModalClose}
               showSelectedFiles
             />
           </div>
