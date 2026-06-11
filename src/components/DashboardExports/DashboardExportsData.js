@@ -6,7 +6,7 @@ import {
   useExportJobs,
   useExportJobDelete,
 } from 'common/dataHooks/useExportJobs'
-import { LANGUAGE_ADMIN, TYPES, TYPE_DICTIONARY } from 'common/constants'
+import { ASSISTANT, TYPES, TYPE_DICTIONARY } from 'common/constants'
 
 function DashboardExportsData() {
   const { site } = useSiteStore()
@@ -28,7 +28,7 @@ function DashboardExportsData() {
       'Set the parameters for your export on the dictionary search page and then export the results.',
     href: `/${site?.sitename}/dashboard/advanced-search?${TYPES}=${TYPE_DICTIONARY}`,
     iconColor: 'blumine-800',
-    auth: LANGUAGE_ADMIN,
+    auth: ASSISTANT,
   }
 
   return {
