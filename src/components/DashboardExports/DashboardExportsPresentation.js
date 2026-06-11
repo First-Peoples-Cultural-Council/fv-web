@@ -14,15 +14,25 @@ import {
   FAILED,
   CANCELLED,
   EXPIRED,
+  EXPORT_JOBS_PER_USER_LIMIT,
 } from 'common/constants/jobs'
 import AlertBanner from 'components/AlertBanner'
-import { DOMAIN, INFO, SITES_FILTER, PAGE, PAGE_SIZE } from 'common/constants'
+import DashboardTile from 'components/DashboardTile'
+import {
+  DOMAIN,
+  INFO,
+  SITES_FILTER,
+  PAGE,
+  PAGE_SIZE,
+  WARNING,
+} from 'common/constants'
 
 function DashboardExportsPresentation({
   queryResponse,
   deleteExport,
   page,
   setPage,
+  tileContent,
 }) {
   const isProcessing = (exportJob) =>
     exportJob?.status === ACCEPTED || exportJob?.status === STARTED
@@ -92,6 +102,53 @@ function DashboardExportsPresentation({
 
   return (
     <div id="DashboardExportsPresentation">
+      <div className="grid grid-cols-6 gap-4 mb-4">
+        <div className="col-span-2 bg-white rounded-lg overflow-hidden shadow-lg">
+          <DashboardTile.Presentation tile={tileContent} />
+        </div>
+        <div className="col-span-4 p-5 bg-white rounded-lg overflow-hidden shadow-lg">
+          <div>
+            <h3 className="text-lg font-medium">Opening export csvs</h3>
+            <div className="mt-2 text-sm text-charcoal-500 space-y-2 text-pretty">
+              <p>
+                When possible use Open Office or LibreOffice when opening export
+                csvs. Microsoft Excel will corrupt UTF-8 language data unless
+                steps are taken to import the data appropriately when opening
+                the file.
+              </p>
+              <p>NB: Exports are periodically deleted, after 7 days.</p>
+              <p>
+                For more information on handling language data csvs and fonts
+                see our knowledge base:
+              </p>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705966/Save+spreadsheets+in+UTF-8+CSV+format#Opening-CSV-spreadsheets-that-contain-language-data"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Opening export CSVs
+              </a>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705752/Install+fonts+and+keyboards+for+Indigenous+languages#Installing-the-correct-font"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Installing a suitable font
+              </a>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705966/Save+spreadsheets+in+UTF-8+CSV+format"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Saving spreadsheets in UTF-8
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
       {exportsPending && (
         <div className="mb-2 mx-auto">
           <AlertBanner.Presentation
@@ -122,12 +179,32 @@ function DashboardExportsPresentation({
           />
         </div>
       )}
+      {queryResponse?.data?.count >= 10 && (
+        <div className="mb-2 mx-auto">
+          <AlertBanner.Presentation
+            alertType={WARNING}
+            message={
+              <div
+                data-testid="limit-reached-warning"
+                className="text-blumine-700 text-pretty text-center"
+              >
+                <p>
+                  You have reached your allocated limit for export csvs:{' '}
+                  <strong>{EXPORT_JOBS_PER_USER_LIMIT}</strong>. You will need
+                  to free up some space by deleting an old export before you can
+                  perform any more.
+                </p>
+              </div>
+            }
+          />
+        </div>
+      )}
       <DashboardTablePaginated
         queryResponse={queryResponse}
         page={page}
         setPage={setPage}
         tableHead={
-          <thead className="">
+          <thead>
             <tr>
               <th
                 scope="col"
@@ -155,38 +232,46 @@ function DashboardExportsPresentation({
         }
         tableBody={
           <tbody className="divide-y divide-charcoal-200 bg-white">
-            {queryResponse?.data?.results?.map((result) => {
-              const exportInProgress = isProcessing(result)
-              const canBeDeleted = !exportInProgress
-              return (
-                <tr key={result?.id}>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-900">
-                    {localDateMDYTwords(result?.created)}
-                  </td>
-                  <td className="whitespace-nowrap p-3 pl-6 text-sm">
-                    <ul className="list-disc list-inside text-charcoal-500 text-xs">
-                      {result?.exportParams &&
-                        Object.entries(result?.exportParams)?.map(
-                          generateParamListItem,
-                        )}
-                    </ul>
-                  </td>
-                  <td className="p-3 text-sm text-charcoal-500 text-center">
-                    {generateStatusNode(result)}
-                  </td>
+            {queryResponse?.data?.results?.length > 0 ? (
+              queryResponse?.data?.results?.map((result) => {
+                const exportInProgress = isProcessing(result)
+                const canBeDeleted = !exportInProgress
+                return (
+                  <tr key={result?.id}>
+                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-900">
+                      {localDateMDYTwords(result?.created)}
+                    </td>
+                    <td className="whitespace-nowrap p-3 pl-6 text-sm">
+                      <ul className="list-disc list-inside text-charcoal-500 text-xs">
+                        {result?.exportParams &&
+                          Object.entries(result?.exportParams)?.map(
+                            generateParamListItem,
+                          )}
+                      </ul>
+                    </td>
+                    <td className="p-3 text-sm text-charcoal-500 text-center">
+                      {generateStatusNode(result)}
+                    </td>
 
-                  <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
-                    <DeleteButton.Presentation
-                      deleteHandler={() => deleteExport(result?.id)}
-                      disabled={!canBeDeleted}
-                      message="Delete this export?"
-                      note="This will delete the export csv. Are you sure you want to delete this export?"
-                      styling="btn-tertiary btn-md-icon"
-                    />
-                  </td>
-                </tr>
-              )
-            })}
+                    <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
+                      <DeleteButton.Presentation
+                        deleteHandler={() => deleteExport(result?.id)}
+                        disabled={!canBeDeleted}
+                        message="Delete this export?"
+                        note="This will delete the export csv. Are you sure you want to delete this export?"
+                        styling="btn-tertiary btn-md-icon"
+                      />
+                    </td>
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan="4" className="p-6 text-charcoal-500 text-center">
+                  No exports to show.
+                </td>
+              </tr>
+            )}
           </tbody>
         }
       />
@@ -200,6 +285,7 @@ DashboardExportsPresentation.propTypes = {
   deleteExport: func,
   page: number,
   setPage: func,
+  tileContent: object,
 }
 
 export default DashboardExportsPresentation

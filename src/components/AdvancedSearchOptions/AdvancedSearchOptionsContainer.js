@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { useSearchParams } from 'react-router'
 
 // FPCC
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
 import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
-import AlertBanner from 'components/AlertBanner'
-import { useExportJobCreate } from 'common/dataHooks/useExportJobs'
+import ExportButton from 'components/AdvancedSearchOptions/ExportButton'
 import {
-  EXPORT_LIMIT,
   HAS_AUDIO,
   HAS_IMAGE,
   HAS_VIDEO,
@@ -16,14 +13,12 @@ import {
   HAS_CATEGORIES,
   HAS_RELATED_ENTRIES,
   KIDS,
-  PAGE_SIZE,
   TRUE,
   FALSE,
   VISIBILITY,
   VISIBILITY_PUBLIC,
   VISIBILITY_MEMBERS,
   VISIBILITY_TEAM,
-  WARNING,
 } from 'common/constants'
 
 function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
@@ -32,27 +27,6 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
   if (count >= 10000) {
     countStr = '10000+'
   }
-
-  const [searchParams] = useSearchParams()
-  const { mutate } = useExportJobCreate()
-
-  const [exportLimitWarning, setExportLimitWarning] = useState(false)
-
-  const onExportClick = () => {
-    if (count >= EXPORT_LIMIT) {
-      setExportLimitWarning(true)
-      return
-    }
-    const _searchParams = searchParams
-    _searchParams.append(PAGE_SIZE, EXPORT_LIMIT)
-    mutate(_searchParams)
-  }
-
-  useEffect(() => {
-    if (exportLimitWarning && count < EXPORT_LIMIT) {
-      setExportLimitWarning(false)
-    }
-  }, [count, exportLimitWarning])
 
   return (
     <div id="AdvancedSearchOptionsContainer" className="bg-white rounded-lg">
@@ -140,35 +114,8 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
             <div className="flex items-baseline space-x-8">
               <SearchSpeakersFilter />
             </div>
-            <button
-              data-testid="export-btn"
-              type="button"
-              className="btn-sm btn-secondary"
-              onClick={onExportClick}
-            >
-              <span>Export results</span>
-            </button>
+            <ExportButton infiniteQueryResponse={infiniteQueryResponse} />
           </div>
-
-          {exportLimitWarning && (
-            <AlertBanner.Presentation
-              alertType={WARNING}
-              handleClose={() => setExportLimitWarning(false)}
-              message={
-                <div className="">
-                  <p>
-                    The maximum number of dictionary entries that you can export
-                    via self-serve is <strong>{EXPORT_LIMIT}</strong>.
-                  </p>
-                  <p>
-                    Please adjust your selected filters to reduce the number of
-                    results for your search, or contact hello@firstvoices.com if
-                    you require a larger export of your site dictionary.
-                  </p>
-                </div>
-              }
-            />
-          )}
         </section>
       </div>
     </div>

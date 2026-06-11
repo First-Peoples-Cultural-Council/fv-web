@@ -68,7 +68,7 @@ function DashboardContainer() {
         <Route
           path="exports/*"
           element={
-            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+            <RequireAuth siteMembership={ASSISTANT} withMessage>
               <DashboardExports.Container />
             </RequireAuth>
           }
