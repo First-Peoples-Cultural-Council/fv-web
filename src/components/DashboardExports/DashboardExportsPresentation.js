@@ -14,10 +14,18 @@ import {
   FAILED,
   CANCELLED,
   EXPIRED,
+  EXPORT_JOBS_PER_USER_LIMIT,
 } from 'common/constants/jobs'
 import AlertBanner from 'components/AlertBanner'
 import DashboardTile from 'components/DashboardTile'
-import { DOMAIN, INFO, SITES_FILTER, PAGE, PAGE_SIZE } from 'common/constants'
+import {
+  DOMAIN,
+  INFO,
+  SITES_FILTER,
+  PAGE,
+  PAGE_SIZE,
+  WARNING,
+} from 'common/constants'
 
 function DashboardExportsPresentation({
   queryResponse,
@@ -166,6 +174,26 @@ function DashboardExportsPresentation({
                   minutes to prepare.
                 </button>
               )
+            }
+          />
+        </div>
+      )}
+      {queryResponse?.data?.count >= 10 && (
+        <div className="mb-2 mx-auto">
+          <AlertBanner.Presentation
+            alertType={WARNING}
+            message={
+              <div
+                data-testid="limit-reached-warning"
+                className="text-blumine-700 text-pretty text-center"
+              >
+                <p>
+                  You have reached your allocated limit for export csvs:{' '}
+                  <strong>{EXPORT_JOBS_PER_USER_LIMIT}</strong>. You will need
+                  to free up some space by deleting an old export before you can
+                  perform any more.
+                </p>
+              </div>
             }
           />
         </div>
