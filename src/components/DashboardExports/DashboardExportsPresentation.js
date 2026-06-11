@@ -16,6 +16,7 @@ import {
   EXPIRED,
 } from 'common/constants/jobs'
 import AlertBanner from 'components/AlertBanner'
+import DashboardTile from 'components/DashboardTile'
 import { DOMAIN, INFO, SITES_FILTER, PAGE, PAGE_SIZE } from 'common/constants'
 
 function DashboardExportsPresentation({
@@ -23,6 +24,7 @@ function DashboardExportsPresentation({
   deleteExport,
   page,
   setPage,
+  tileContent,
 }) {
   const isProcessing = (exportJob) =>
     exportJob?.status === ACCEPTED || exportJob?.status === STARTED
@@ -92,6 +94,52 @@ function DashboardExportsPresentation({
 
   return (
     <div id="DashboardExportsPresentation">
+      <div className="grid grid-cols-6 gap-4 mb-4">
+        <div className="col-span-2 bg-white rounded-lg overflow-hidden shadow-lg">
+          <DashboardTile.Presentation tile={tileContent} />
+        </div>
+        <div className="col-span-4 p-5 bg-white rounded-lg overflow-hidden shadow-lg">
+          <div>
+            <h3 className="text-lg font-medium">Opening export csvs</h3>
+            <div className="mt-2 text-sm text-charcoal-500 space-y-2 text-pretty">
+              <p>
+                When possible use Open Office or LibreOffice when opening export
+                csvs. Microsoft Excel will corrupt UTF-8 language data unless
+                steps are taken to import the data appropriately when opening
+                the file.
+              </p>
+              <p>
+                For more information on handling language data csvs and fonts
+                see our knowledge base:
+              </p>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705966/Save+spreadsheets+in+UTF-8+CSV+format#Opening-CSV-spreadsheets-that-contain-language-data"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Opening export CSVs
+              </a>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705752/Install+fonts+and+keyboards+for+Indigenous+languages#Installing-the-correct-font"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Installing a suitable font
+              </a>
+              <a
+                href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1705966/Save+spreadsheets+in+UTF-8+CSV+format"
+                className="inline-url text-sm block"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Saving spreadsheets in UTF-8
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
       {exportsPending && (
         <div className="mb-2 mx-auto">
           <AlertBanner.Presentation
@@ -127,7 +175,7 @@ function DashboardExportsPresentation({
         page={page}
         setPage={setPage}
         tableHead={
-          <thead className="">
+          <thead>
             <tr>
               <th
                 scope="col"
@@ -200,6 +248,7 @@ DashboardExportsPresentation.propTypes = {
   deleteExport: func,
   page: number,
   setPage: func,
+  tileContent: object,
 }
 
 export default DashboardExportsPresentation

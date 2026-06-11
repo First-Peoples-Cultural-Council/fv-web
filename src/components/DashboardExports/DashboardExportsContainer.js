@@ -7,8 +7,15 @@ import DashboardLanding from 'components/DashboardLanding'
 import SiteDocHead from 'components/SiteDocHead'
 
 function DashboardExportsContainer() {
-  const { queryResponse, deleteExport, headerContent, site, page, setPage } =
-    DashboardExportsData()
+  const {
+    queryResponse,
+    deleteExport,
+    headerContent,
+    tileContent,
+    site,
+    page,
+    setPage,
+  } = DashboardExportsData()
   return (
     <div id="DashboardExportsContainer">
       <DashboardLanding.Presentation headerContent={headerContent} site={site}>
@@ -19,6 +26,7 @@ function DashboardExportsContainer() {
           deleteExport={deleteExport}
           page={page}
           setPage={setPage}
+          tileContent={tileContent}
         />
       </DashboardLanding.Presentation>
     </div>
