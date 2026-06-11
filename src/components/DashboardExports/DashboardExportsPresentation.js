@@ -116,6 +116,7 @@ function DashboardExportsPresentation({
                 steps are taken to import the data appropriately when opening
                 the file.
               </p>
+              <p>NB: Exports are periodically deleted, after 7 days.</p>
               <p>
                 For more information on handling language data csvs and fonts
                 see our knowledge base:
