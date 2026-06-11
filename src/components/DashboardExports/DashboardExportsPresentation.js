@@ -231,38 +231,46 @@ function DashboardExportsPresentation({
         }
         tableBody={
           <tbody className="divide-y divide-charcoal-200 bg-white">
-            {queryResponse?.data?.results?.map((result) => {
-              const exportInProgress = isProcessing(result)
-              const canBeDeleted = !exportInProgress
-              return (
-                <tr key={result?.id}>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-900">
-                    {localDateMDYTwords(result?.created)}
-                  </td>
-                  <td className="whitespace-nowrap p-3 pl-6 text-sm">
-                    <ul className="list-disc list-inside text-charcoal-500 text-xs">
-                      {result?.exportParams &&
-                        Object.entries(result?.exportParams)?.map(
-                          generateParamListItem,
-                        )}
-                    </ul>
-                  </td>
-                  <td className="p-3 text-sm text-charcoal-500 text-center">
-                    {generateStatusNode(result)}
-                  </td>
+            {queryResponse?.data?.results?.length > 0 ? (
+              queryResponse?.data?.results?.map((result) => {
+                const exportInProgress = isProcessing(result)
+                const canBeDeleted = !exportInProgress
+                return (
+                  <tr key={result?.id}>
+                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-900">
+                      {localDateMDYTwords(result?.created)}
+                    </td>
+                    <td className="whitespace-nowrap p-3 pl-6 text-sm">
+                      <ul className="list-disc list-inside text-charcoal-500 text-xs">
+                        {result?.exportParams &&
+                          Object.entries(result?.exportParams)?.map(
+                            generateParamListItem,
+                          )}
+                      </ul>
+                    </td>
+                    <td className="p-3 text-sm text-charcoal-500 text-center">
+                      {generateStatusNode(result)}
+                    </td>
 
-                  <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
-                    <DeleteButton.Presentation
-                      deleteHandler={() => deleteExport(result?.id)}
-                      disabled={!canBeDeleted}
-                      message="Delete this export?"
-                      note="This will delete the export csv. Are you sure you want to delete this export?"
-                      styling="btn-tertiary btn-md-icon"
-                    />
-                  </td>
-                </tr>
-              )
-            })}
+                    <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
+                      <DeleteButton.Presentation
+                        deleteHandler={() => deleteExport(result?.id)}
+                        disabled={!canBeDeleted}
+                        message="Delete this export?"
+                        note="This will delete the export csv. Are you sure you want to delete this export?"
+                        styling="btn-tertiary btn-md-icon"
+                      />
+                    </td>
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan="4" className="p-6 text-charcoal-500 text-center">
+                  No exports to show.
+                </td>
+              </tr>
+            )}
           </tbody>
         }
       />
