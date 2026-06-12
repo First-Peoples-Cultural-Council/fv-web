@@ -8,20 +8,12 @@ import { getLastPathSegment } from 'common/utils/urlHelpers'
 import DeleteButton from 'components/DeleteButton'
 import DashboardTablePaginated from 'components/DashboardTablePaginated'
 import Tooltip from 'components/Tooltip'
+import ImportStatusBtn from 'components/DashboardImports/ImportStatusBtn'
 import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
 import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
-import {
-  ACCEPTED,
-  STARTED,
-  READY_FOR_IMPORT,
-  COMPLETE,
-  FAILED,
-  CANCELLED,
-  EXPIRED,
-} from 'common/constants/jobs'
 import AlertBanner from 'components/AlertBanner'
-import { INFO } from 'common/constants'
+import { INFO, ACCEPTED, STARTED } from 'common/constants'
 
 function DashboardImportsPresentation({
   queryResponse,
@@ -49,30 +41,6 @@ function DashboardImportsPresentation({
     }, 2000)
   }
 
-  const getStatusLabel = (importJob) => {
-    if (
-      !importJob?.validationStatus ||
-      importJob?.validationStatus !== COMPLETE
-    ) {
-      return 'Needs Validating'
-    }
-
-    switch (importJob?.status) {
-      case null:
-        return 'Contact support to proceed with this import'
-      case ACCEPTED:
-      case STARTED:
-        return 'Your import has been queued. Contact support for more information'
-      case FAILED:
-      case EXPIRED:
-        return `This import has ${importJob?.status}. Contact support for more information`
-      case CANCELLED:
-        return `This import was ${importJob?.status}. Contact support for more information`
-      case READY_FOR_IMPORT:
-      default:
-        return <span className="capitalize">{importJob?.status}</span> || ''
-    }
-  }
   return (
     <div id="DashboardImportsPresentation">
       <div className="grid grid-cols-6 gap-4 mb-4">
@@ -234,7 +202,7 @@ function DashboardImportsPresentation({
                     )}
                   </td>
                   <td className="p-3 text-sm text-charcoal-500">
-                    {getStatusLabel(result)}
+                    <ImportStatusBtn importJob={result} />
                   </td>
 
                   <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
