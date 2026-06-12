@@ -22,6 +22,8 @@ const importJobs = {
       .json(),
   validate: async ({ sitename, id }) =>
     apiBase().post(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}/validate`).json(),
+  notify: async ({ sitename, id }) =>
+    apiBase().post(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}/notify`).json(),
   delete: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}`).json(),
 }
