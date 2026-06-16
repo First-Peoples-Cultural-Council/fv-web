@@ -9,7 +9,7 @@ import DeleteButton from 'components/DeleteButton'
 import DashboardTablePaginated from 'components/DashboardTablePaginated'
 import Tooltip from 'components/Tooltip'
 import ImportStatus from 'components/DashboardImports/ImportStatus'
-import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
+import ValidationStatus from 'components/DashboardImports/ValidationStatus'
 import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
 import AlertBanner from 'components/AlertBanner'
@@ -194,7 +194,7 @@ function DashboardImportsPresentation({
                       )}
                     </td>
                     <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                      <ValidationStatusBtn
+                      <ValidationStatus
                         importJob={result}
                         handleRefetch={handleRefetch}
                       />

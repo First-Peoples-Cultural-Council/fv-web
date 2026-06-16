@@ -16,7 +16,7 @@ import {
   EXPIRED,
 } from 'common/constants/jobs'
 
-function ValidationStatusBtn({ importJob, handleRefetch }) {
+function ValidationStatus({ importJob, handleRefetch }) {
   const [modalOpen, setModalOpen] = useState(false)
   const { mutate: validateImportJob } = useImportJobValidate()
 
@@ -101,9 +101,9 @@ function ValidationStatusBtn({ importJob, handleRefetch }) {
 }
 // PROPTYPES
 const { func, object } = PropTypes
-ValidationStatusBtn.propTypes = {
+ValidationStatus.propTypes = {
   importJob: object,
   handleRefetch: func,
 }
 
-export default ValidationStatusBtn
+export default ValidationStatus
