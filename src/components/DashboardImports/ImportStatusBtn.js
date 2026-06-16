@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import Modal from 'components/Modal'
 import getIcon from 'common/utils/getIcon'
 import { useImportJobNotify } from 'common/dataHooks/useImportJobs'
+import Tooltip from 'components/Tooltip'
 import {
   READY_FOR_IMPORT,
   ACCEPTED,
@@ -29,15 +30,12 @@ function ImportStatusBtn({ importJob }) {
   switch (importJob?.status) {
     case null:
       return (
-        <div
-          data-testid="import-status-null"
-          className="inline-flex items-center justify-center space-x-2"
-        >
+        <div data-testid="import-status-null">
           <button
             data-testid="validation-results-btn"
             type="button"
             onClick={() => setIsModalOpen(true)}
-            className="btn-secondary btn-sm text-nowrap"
+            className="btn-primary btn-sm text-nowrap"
           >
             <span>Submit for import</span>
             {getIcon('Mail')}
@@ -55,9 +53,22 @@ function ImportStatusBtn({ importJob }) {
                 <div className="px-2">
                   <div className="text-blumine-800 text-left">
                     <h3 className="mt-3 text-lg font-semibold">
-                      Submit batch to FirstVoices Support for import
+                      Submit this batch to FirstVoices Support for import
                     </h3>
                     <div className="my-2 text-pretty space-y-2">
+                      {importJob?.validationReport?.errorRows > 0 && (
+                        <div className="p-3 bg-scarlet-50 border border-scarlet-800 rounded-lg">
+                          <div
+                            data-testid="error-warning"
+                            className="text-charcoal-900"
+                          >
+                            <strong>
+                              {importJob?.validationReport?.errorRows}
+                            </strong>{' '}
+                            rows with errors will be skipped.
+                          </div>
+                        </div>
+                      )}
                       <div className="p-3 bg-jade-50 border border-jade-500 rounded-lg">
                         <div
                           data-testid="new-entries"
@@ -84,19 +95,6 @@ function ImportStatusBtn({ importJob }) {
                               }
                             </strong>{' '}
                             columns will be ignored.
-                          </div>
-                        </div>
-                      )}
-                      {importJob?.validationReport?.errorRows > 0 && (
-                        <div className="p-3 bg-scarlet-50 border border-scarlet-800 rounded-lg">
-                          <div
-                            data-testid="error-warning"
-                            className="text-charcoal-900"
-                          >
-                            <strong>
-                              {importJob?.validationReport?.errorRows}
-                            </strong>{' '}
-                            rows with errors will be skipped.
                           </div>
                         </div>
                       )}
@@ -149,23 +147,24 @@ function ImportStatusBtn({ importJob }) {
     case ACCEPTED:
       return (
         <span data-testid="import-status-started">
-          Your import is being processed.
+          Your import is in progress.
         </span>
       )
     case FAILED:
     case CANCELLED:
     case EXPIRED:
       return (
-        <span
-          data-testid="import-status-error"
-          className="text-sm text-scarlet-800"
-        >{`Validation ${importJob?.status}! Contact support for more information`}</span>
+        <Tooltip message="Contact hello@firstvoices.com for more information">
+          <span data-testid="import-status-error" className="text-scarlet-800">
+            {`Import ${importJob?.status}!`}
+          </span>
+        </Tooltip>
       )
     case READY_FOR_IMPORT:
       return (
-        <span data-testid="import-status-error" className="text-sm">
-          Queued for import
-        </span>
+        <Tooltip message="Contact hello@firstvoices.com if you need assistance">
+          <span data-testid="import-status-ready">Queued for import</span>
+        </Tooltip>
       )
     case COMPLETE:
     default:
