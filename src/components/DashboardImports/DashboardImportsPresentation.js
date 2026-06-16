@@ -163,7 +163,7 @@ function DashboardImportsPresentation({
                 const canBeDeleted = !validationInProgress && !result?.status
                 return (
                   <tr key={result?.id}>
-                    <td className="whitespace-nowrap p-3 pl-6 text-sm">
+                    <td className="p-3 pl-6 text-sm">
                       <div className="text-charcoal-900">
                         {result?.title ||
                           getLastPathSegment(result?.data?.path)}
@@ -180,7 +180,7 @@ function DashboardImportsPresentation({
                     <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
                       {localDateMDYTwords(result?.created)}
                     </td>
-                    <td className="whitespace-nowrap p-3 text-center text-sm text-charcoal-500">
+                    <td className="p-3 text-center">
                       {result?.status ? (
                         ''
                       ) : (
@@ -193,7 +193,7 @@ function DashboardImportsPresentation({
                         </Link>
                       )}
                     </td>
-                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
+                    <td className="p-3 text-sm">
                       <ValidationStatus
                         importJob={result}
                         handleRefetch={handleRefetch}
@@ -203,7 +203,7 @@ function DashboardImportsPresentation({
                       <ImportStatus importJob={result} />
                     </td>
 
-                    <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
+                    <td className="p-3 pr-6 text-sm text-center">
                       <Tooltip
                         hide={canBeDeleted}
                         message="Once an import is complete it cannot be deleted."
