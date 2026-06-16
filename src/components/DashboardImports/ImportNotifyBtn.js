@@ -27,7 +27,7 @@ function ImportNotifyBtn({ importJob }) {
       >
         <div
           id="ImportNotifyModal"
-          className=" bg-white max-w-xl min-w-md rounded-lg p-5 pb-4 shadow-xl transform transition-all"
+          className=" bg-white max-w-xl min-w-md rounded-lg p-8 pb-6 shadow-xl transform transition-all"
         >
           <div className="px-2">
             <div className="px-2">
@@ -35,7 +35,7 @@ function ImportNotifyBtn({ importJob }) {
                 <h3 className="mt-3 text-lg font-semibold">
                   Submit this batch to FirstVoices Support for import
                 </h3>
-                <div className="my-2 text-pretty space-y-2">
+                <div className="mt-4 mb-4 text-pretty space-y-2">
                   {importJob?.validationReport?.errorRows > 0 && (
                     <div className="p-3 bg-scarlet-50 border border-scarlet-800 rounded-lg">
                       <div
@@ -84,7 +84,7 @@ function ImportNotifyBtn({ importJob }) {
                     .
                   </div>
                 </div>
-                <div className="text-pretty space-y-2">
+                <div className="text-pretty">
                   <p>Would you like to proceed with this import?</p>
                   <p>This cannot be undone.</p>
                 </div>
