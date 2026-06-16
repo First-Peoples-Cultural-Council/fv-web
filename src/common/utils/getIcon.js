@@ -43,6 +43,7 @@ import HamburgerMenu from 'common/icons/HamburgerMenu'
 import Home from 'common/icons/Home'
 import Images from 'common/icons/Images'
 import ImagesNone from 'common/icons/ImagesNone'
+import ImportData from 'common/icons/ImportData'
 import InfoCircleSolid from 'common/icons/InfoCircleSolid'
 import Instagram from 'common/icons/Instagram'
 import Kids from 'common/icons/Kids'
@@ -179,6 +180,7 @@ function getIcon(iconName, iconStyling, title) {
     Home,
     Images,
     ImagesNone,
+    ImportData,
     InfoCircleSolid,
     Instagram,
     Jigsaw,
