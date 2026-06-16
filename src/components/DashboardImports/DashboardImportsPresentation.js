@@ -155,73 +155,82 @@ function DashboardImportsPresentation({
         }
         tableBody={
           <tbody className="divide-y divide-charcoal-200 bg-white">
-            {queryResponse?.data?.results?.map((result) => {
-              const validationInProgress =
-                result?.validationStatus === 'accepted' ||
-                result?.validationStatus === 'started'
-              const canBeDeleted = !validationInProgress && !result?.status
-              return (
-                <tr key={result?.id}>
-                  <td className="whitespace-nowrap p-3 pl-6 text-sm">
-                    <div className="text-charcoal-900">
-                      {result?.title || getLastPathSegment(result?.data?.path)}
-                    </div>
-                    {result?.title && (
-                      <dl>
-                        <dt className="sr-only">File Name</dt>
-                        <dd className="mt-1 text-charcoal-500 text-xs">
-                          {getLastPathSegment(result?.data?.path)}
-                        </dd>
-                      </dl>
-                    )}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                    {localDateMDYTwords(result?.created)}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-center text-sm text-charcoal-500">
-                    {result?.status ? (
-                      ''
-                    ) : (
-                      <Link
-                        data-testid="add-import-media-btn"
-                        to={`/${result?.site?.slug}/dashboard/edit/import/${result?.id}/media`}
-                        className="btn-tertiary btn-md-icon"
-                      >
-                        {getIcon('Add')}
-                      </Link>
-                    )}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                    {result?.status ? (
-                      ''
-                    ) : (
-                      <ValidationStatusBtn
-                        importJob={result}
-                        handleRefetch={handleRefetch}
-                      />
-                    )}
-                  </td>
-                  <td className="p-3 text-sm text-charcoal-500">
-                    <ImportStatusBtn importJob={result} />
-                  </td>
+            {queryResponse?.data?.results?.length > 0 ? (
+              queryResponse?.data?.results?.map((result) => {
+                const validationInProgress =
+                  result?.validationStatus === 'accepted' ||
+                  result?.validationStatus === 'started'
+                const canBeDeleted = !validationInProgress && !result?.status
+                return (
+                  <tr key={result?.id}>
+                    <td className="whitespace-nowrap p-3 pl-6 text-sm">
+                      <div className="text-charcoal-900">
+                        {result?.title ||
+                          getLastPathSegment(result?.data?.path)}
+                      </div>
+                      {result?.title && (
+                        <dl>
+                          <dt className="sr-only">File Name</dt>
+                          <dd className="mt-1 text-charcoal-500 text-xs">
+                            {getLastPathSegment(result?.data?.path)}
+                          </dd>
+                        </dl>
+                      )}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
+                      {localDateMDYTwords(result?.created)}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-center text-sm text-charcoal-500">
+                      {result?.status ? (
+                        ''
+                      ) : (
+                        <Link
+                          data-testid="add-import-media-btn"
+                          to={`/${result?.site?.slug}/dashboard/edit/import/${result?.id}/media`}
+                          className="btn-tertiary btn-md-icon"
+                        >
+                          {getIcon('Add')}
+                        </Link>
+                      )}
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
+                      {result?.status ? (
+                        ''
+                      ) : (
+                        <ValidationStatusBtn
+                          importJob={result}
+                          handleRefetch={handleRefetch}
+                        />
+                      )}
+                    </td>
+                    <td className="p-3 text-sm">
+                      <ImportStatusBtn importJob={result} />
+                    </td>
 
-                  <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
-                    <Tooltip
-                      hide={canBeDeleted}
-                      message="Once an import is complete it cannot be deleted."
-                    >
-                      <DeleteButton.Presentation
-                        deleteHandler={() => deleteImport(result?.id)}
-                        disabled={!canBeDeleted}
-                        message="Cancel this import?"
-                        note="This will delete the import csv and any media files you have uploaded for this batch from the FirstVoices server. Are you sure you want to cancel this import?"
-                        styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
-                      />
-                    </Tooltip>
-                  </td>
-                </tr>
-              )
-            })}
+                    <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
+                      <Tooltip
+                        hide={canBeDeleted}
+                        message="Once an import is complete it cannot be deleted."
+                      >
+                        <DeleteButton.Presentation
+                          deleteHandler={() => deleteImport(result?.id)}
+                          disabled={!canBeDeleted}
+                          message="Cancel this import?"
+                          note="This will delete the import csv and any media files you have uploaded for this batch from the FirstVoices server. Are you sure you want to cancel this import?"
+                          styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
+                        />
+                      </Tooltip>
+                    </td>
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan="6" className="p-6 text-charcoal-500 text-center">
+                  No imports to show.
+                </td>
+              </tr>
+            )}
           </tbody>
         }
       />
