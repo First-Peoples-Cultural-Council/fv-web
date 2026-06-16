@@ -8,7 +8,7 @@ import { getLastPathSegment } from 'common/utils/urlHelpers'
 import DeleteButton from 'components/DeleteButton'
 import DashboardTablePaginated from 'components/DashboardTablePaginated'
 import Tooltip from 'components/Tooltip'
-import ImportStatusBtn from 'components/DashboardImports/ImportStatusBtn'
+import ImportStatus from 'components/DashboardImports/ImportStatus'
 import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
 import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
@@ -194,17 +194,13 @@ function DashboardImportsPresentation({
                       )}
                     </td>
                     <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                      {result?.status ? (
-                        ''
-                      ) : (
-                        <ValidationStatusBtn
-                          importJob={result}
-                          handleRefetch={handleRefetch}
-                        />
-                      )}
+                      <ValidationStatusBtn
+                        importJob={result}
+                        handleRefetch={handleRefetch}
+                      />
                     </td>
                     <td className="p-3 text-sm">
-                      <ImportStatusBtn importJob={result} />
+                      <ImportStatus importJob={result} />
                     </td>
 
                     <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">

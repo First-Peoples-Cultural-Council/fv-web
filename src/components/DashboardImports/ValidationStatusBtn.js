@@ -20,6 +20,10 @@ function ValidationStatusBtn({ importJob, handleRefetch }) {
   const [modalOpen, setModalOpen] = useState(false)
   const { mutate: validateImportJob } = useImportJobValidate()
 
+  if (importJob?.status) {
+    return ''
+  }
+
   switch (importJob?.validationStatus) {
     case COMPLETE:
       return (
