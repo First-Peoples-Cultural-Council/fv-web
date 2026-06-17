@@ -13,7 +13,7 @@ import ValidationStatus from 'components/DashboardImports/ValidationStatus'
 import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
 import AlertBanner from 'components/AlertBanner'
-import { INFO, ACCEPTED, STARTED } from 'common/constants'
+import { COMPLETE, INFO, ACCEPTED, STARTED } from 'common/constants'
 
 function DashboardImportsPresentation({
   queryResponse,
@@ -158,8 +158,8 @@ function DashboardImportsPresentation({
             {queryResponse?.data?.results?.length > 0 ? (
               queryResponse?.data?.results?.map((result) => {
                 const validationInProgress =
-                  result?.validationStatus === 'accepted' ||
-                  result?.validationStatus === 'started'
+                  result?.validationStatus === ACCEPTED ||
+                  result?.validationStatus === STARTED
                 const canBeDeleted = !validationInProgress && !result?.status
                 return (
                   <tr key={result?.id}>
@@ -206,7 +206,7 @@ function DashboardImportsPresentation({
                     <td className="p-3 pr-6 text-sm text-center">
                       <Tooltip
                         hide={canBeDeleted}
-                        message="Once an import is complete it cannot be deleted."
+                        message={`Once an import has been ${result?.status === COMPLETE ? 'completed' : 'queued'} it cannot be deleted.`}
                       >
                         <DeleteButton.Presentation
                           deleteHandler={() => deleteImport(result?.id)}
