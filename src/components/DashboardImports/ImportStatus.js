@@ -46,14 +46,24 @@ function ImportStatus({ importJob }) {
       )
     case READY_FOR_IMPORT:
       return (
-        <Tooltip message="Contact hello@firstvoices.com if you need assistance">
+        <Tooltip message="Contact hello@firstvoices.com if you have questions">
           <span data-testid="import-status-ready">Queued for import</span>
         </Tooltip>
       )
     case COMPLETE:
+      return (
+        <Tooltip message="Your import is complete. Review the new entries on your site.">
+          <span data-testid="import-status-complete" className="capitalize">
+            {importJob?.status}
+          </span>
+        </Tooltip>
+      )
     default:
       return (
-        <span data-testid="import-status-complete" className="capitalize">
+        <span
+          data-testid={`import-status-${importJob?.status}`}
+          className="capitalize"
+        >
           {importJob?.status}
         </span>
       )
