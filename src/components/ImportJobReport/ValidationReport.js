@@ -25,7 +25,7 @@ function ValidationReport({ importJob }) {
         <div className="space-y-6">
           <div className="px-4 py-2">
             <div data-testid="fileName" className={labelStyling}>
-              File name
+              Filename
             </div>
             <div className={contentStyling}>
               {getLastPathSegment(importJob?.data?.path)}
