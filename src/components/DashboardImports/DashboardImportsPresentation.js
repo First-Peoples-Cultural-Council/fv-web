@@ -121,13 +121,7 @@ function DashboardImportsPresentation({
                 scope="col"
                 className="p-3 pl-6 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
               >
-                Title
-              </th>
-              <th
-                scope="col"
-                className="p-3 text-left text-charcoal-500 bg-charcoal-50"
-              >
-                Date Created
+                Batch Details
               </th>
               <th scope="col" className="p-3 text-charcoal-500 bg-charcoal-50">
                 Add media
@@ -163,22 +157,25 @@ function DashboardImportsPresentation({
                 const canBeDeleted = !validationInProgress && !result?.status
                 return (
                   <tr key={result?.id}>
-                    <td className="p-3 pl-6 text-sm">
-                      <div className="text-charcoal-900">
+                    <td className="p-3 pl-6">
+                      <div className="text-base text-charcoal-900">
                         {result?.title ||
                           getLastPathSegment(result?.data?.path)}
                       </div>
                       {result?.title && (
                         <dl>
-                          <dt className="sr-only">File Name</dt>
+                          <dt className="sr-only">Filename</dt>
                           <dd className="mt-1 text-charcoal-500 text-xs">
                             {getLastPathSegment(result?.data?.path)}
                           </dd>
                         </dl>
                       )}
-                    </td>
-                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                      {localDateMDYTwords(result?.created)}
+                      <dl>
+                        <dt className="sr-only">Date Created</dt>
+                        <dd className="mt-2 text-charcoal-500 text-xs">
+                          {localDateMDYTwords(result?.created)}
+                        </dd>
+                      </dl>
                     </td>
                     <td className="p-3 text-center">
                       {result?.status ? (
