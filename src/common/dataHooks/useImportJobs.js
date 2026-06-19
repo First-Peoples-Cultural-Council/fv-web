@@ -98,6 +98,7 @@ export function useImportJobNotify() {
   const mutation = useMutationWithNotification({
     mutationFn: notifyImportJob,
     queryKeyToInvalidate: [IMPORT_JOBS, sitename],
+    redirectTo: `/${sitename}/dashboard/imports`,
     actionWord: 'submitted to FirstVoices Support to be imported',
     type: 'import',
   })
