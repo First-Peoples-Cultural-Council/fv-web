@@ -158,21 +158,27 @@ function DashboardImportsPresentation({
                 return (
                   <tr key={result?.id}>
                     <td className="p-3 pl-6">
-                      <div className="text-base text-charcoal-900">
+                      <div className="text-base text-charcoal-900 mb-2">
                         {result?.title ||
                           getLastPathSegment(result?.data?.path)}
                       </div>
                       {result?.title && (
                         <dl>
                           <dt className="sr-only">Filename</dt>
-                          <dd className="mt-1 text-charcoal-500 text-xs">
+                          <dd className="text-charcoal-500 text-xs mb-1">
                             {getLastPathSegment(result?.data?.path)}
                           </dd>
                         </dl>
                       )}
                       <dl>
+                        <dt className="sr-only">Import Job Id</dt>
+                        <dd className="text-charcoal-500 text-xs mb-1">
+                          ID: {result?.id}
+                        </dd>
+                      </dl>
+                      <dl>
                         <dt className="sr-only">Date Created</dt>
-                        <dd className="mt-2 text-charcoal-500 text-xs">
+                        <dd className="text-charcoal-500 text-xs mb-1">
                           {localDateMDYTwords(result?.created)}
                         </dd>
                       </dl>
