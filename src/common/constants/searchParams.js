@@ -12,6 +12,7 @@ export const HAS_CATEGORIES = 'hasCategories'
 export const HAS_RELATED_ENTRIES = 'hasRelatedEntries'
 export const HAS_UNRECOGNIZED_CHARS = 'hasUnrecognizedChars'
 export const HAS_SITE_FEATURE = 'hasSiteFeature'
+export const IMPORT_JOB_ID = 'importJobId'
 export const KIDS = 'kids'
 export const PAGE = 'page'
 export const PAGE_SIZE = 'pageSize'
@@ -36,6 +37,7 @@ export const SEARCH_FILTERS = [
   HAS_TRANSLATION,
   HAS_UNRECOGNIZED_CHARS,
   HAS_VIDEO,
+  IMPORT_JOB_ID,
   KIDS,
   SPEAKERS,
   STARTS_WITH_CHAR,

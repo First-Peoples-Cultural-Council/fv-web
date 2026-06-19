@@ -42,7 +42,7 @@ function ValidationStatus({ importJob, handleRefetch }) {
                     'ExclamationTriangleSolid',
                     'fill-current text-ochre-600',
                   )
-                : getIcon('CheckCircleSolid')}
+                : getIcon('Checkmark')}
             </Link>
           </Tooltip>
           <Tooltip message="Re-validate">
