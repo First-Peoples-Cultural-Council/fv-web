@@ -85,6 +85,27 @@ export function useImportJobValidate() {
   return mutation
 }
 
+// NOTIFY
+export function useImportJobNotify() {
+  const { sitename } = useParams()
+
+  const notifyImportJob = async (id) =>
+    api.importJobs.notify({
+      id,
+      sitename,
+    })
+
+  const mutation = useMutationWithNotification({
+    mutationFn: notifyImportJob,
+    queryKeyToInvalidate: [IMPORT_JOBS, sitename],
+    redirectTo: `/${sitename}/dashboard/imports`,
+    actionWord: 'submitted to FirstVoices Support to be imported',
+    type: 'import',
+  })
+
+  return mutation
+}
+
 // DELETE
 export function useImportJobDelete() {
   const { sitename } = useParams()

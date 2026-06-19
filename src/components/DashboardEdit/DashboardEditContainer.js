@@ -24,6 +24,7 @@ import GalleryCrud from 'components/GalleryCrud'
 import HomeCrud from 'components/HomeCrud'
 import ImageCrud from 'components/ImageCrud'
 import ImportJobMedia from 'components/ImportJobMedia'
+import ImportJobReport from 'components/ImportJobReport'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
@@ -194,6 +195,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <ImportJobMedia.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="import/:id/report"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <ImportJobReport.Container />
             </RequireAuth>
           }
         />

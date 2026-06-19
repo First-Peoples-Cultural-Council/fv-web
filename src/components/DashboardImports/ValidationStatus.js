@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 // FPCC
-import Modal from 'components/Modal'
-import ValidationReport from 'components/DashboardImports/ValidationReport'
 import Tooltip from 'components/Tooltip'
 import getIcon from 'common/utils/getIcon'
 import { useImportJobValidate } from 'common/dataHooks/useImportJobs'
@@ -16,40 +15,36 @@ import {
   EXPIRED,
 } from 'common/constants/jobs'
 
-function ValidationStatusBtn({ importJob, handleRefetch }) {
-  const [modalOpen, setModalOpen] = useState(false)
+function ValidationStatus({ importJob, handleRefetch }) {
   const { mutate: validateImportJob } = useImportJobValidate()
+
+  if (importJob?.status) {
+    return ''
+  }
 
   switch (importJob?.validationStatus) {
     case COMPLETE:
       return (
         <div className="inline-flex items-center justify-center space-x-2">
-          <button
-            data-testid="validation-results-btn"
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="btn-secondary btn-sm text-nowrap"
+          <Tooltip
+            message="Errors found ⚠️"
+            hide={(importJob?.validationReport?.errorRows ?? 0) < 1}
           >
-            <span>View results</span>
-            {importJob?.validationReport?.errorRows > 0 ? (
-              <Tooltip message="Errors found">
-                {getIcon(
-                  'ExclamationTriangleSolid',
-                  'fill-current text-ochre-600',
-                )}
-              </Tooltip>
-            ) : (
-              getIcon('CheckCircleSolid')
-            )}
-          </button>
-
-          <Modal.Presentation
-            isOpen={modalOpen}
-            closeHandler={() => setModalOpen(false)}
-          >
-            <ValidationReport importJob={importJob} />
-          </Modal.Presentation>
-
+            <Link
+              data-testid="validation-results-btn"
+              type="button"
+              to={`/${importJob?.site?.slug}/dashboard/edit/import/${importJob?.id}/report`}
+              className="btn-secondary btn-sm text-nowrap"
+            >
+              <span>View results</span>
+              {importJob?.validationReport?.errorRows > 0
+                ? getIcon(
+                    'ExclamationTriangleSolid',
+                    'fill-current text-ochre-600',
+                  )
+                : getIcon('Checkmark')}
+            </Link>
+          </Tooltip>
           <Tooltip message="Re-validate">
             <button
               data-testid="revalidate-btn"
@@ -97,9 +92,9 @@ function ValidationStatusBtn({ importJob, handleRefetch }) {
 }
 // PROPTYPES
 const { func, object } = PropTypes
-ValidationStatusBtn.propTypes = {
+ValidationStatus.propTypes = {
   importJob: object,
   handleRefetch: func,
 }
 
-export default ValidationStatusBtn
+export default ValidationStatus

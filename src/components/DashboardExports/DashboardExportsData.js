@@ -17,7 +17,7 @@ function DashboardExportsData() {
   const headerContent = {
     title: 'Exports',
     subtitle: 'Export dictionary content from your site to csv.',
-    icon: 'Document',
+    icon: 'Spreadsheet',
   }
 
   const tileContent = {
