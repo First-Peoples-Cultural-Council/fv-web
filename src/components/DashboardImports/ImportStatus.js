@@ -54,7 +54,7 @@ function ImportStatus({ importJob }) {
     case CANCELLED:
     case EXPIRED:
       return (
-        <Tooltip message="Contact hello@firstvoices.com for more information">
+        <Tooltip message="Contact support for more info">
           <span data-testid="import-status-error" className="text-scarlet-800">
             {`Import ${importJob?.status}!`}
           </span>
@@ -62,7 +62,7 @@ function ImportStatus({ importJob }) {
       )
     case READY_FOR_IMPORT:
       return (
-        <Tooltip message="Contact hello@firstvoices.com if you have questions">
+        <Tooltip message="Contact support if you have questions">
           <span data-testid="import-status-ready">Queued for import</span>
         </Tooltip>
       )
