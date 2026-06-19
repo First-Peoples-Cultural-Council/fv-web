@@ -8,8 +8,11 @@ import DeleteButton from 'components/DeleteButton'
 import getIcon from 'common/utils/getIcon'
 import ValidationReport from 'components/ImportJobReport/ValidationReport'
 import ImportNotifyBtn from 'components/ImportJobReport/ImportNotifyBtn'
+import { useImportJobDelete } from 'common/dataHooks/useImportJobs'
 
 function ImportJobReportPresentation({ importJob, sitename }) {
+  const { mutate: deleteImportJob } = useImportJobDelete()
+
   return (
     <div id="ImportJobReportPresentation" className="max-w-5xl p-8">
       <Form.Header
@@ -103,9 +106,7 @@ function ImportJobReportPresentation({ importJob, sitename }) {
             </div>
             <div className="flex flex-none items-center gap-x-4">
               <DeleteButton.Presentation
-                deleteHandler={() => {
-                  importJob?.id
-                }}
+                deleteHandler={() => deleteImportJob(importJob?.id)}
                 disabled={importJob?.status}
                 label="Delete"
                 message="Cancel this import?"
