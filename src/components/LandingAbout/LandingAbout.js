@@ -26,10 +26,10 @@ function LandingAbout() {
           }}
         >
           <div className="max-w-5xl mx-auto text-center px-8 py-4">
-            <h2 className="text-xl md:text-2xl lg:text-3xl text-white font-bold flex items-center mb-8 space-x-2">
-              <span className="inline-block">ABOUT FIRSTVOICES</span>
+            <h2 className="text-xl md:text-2xl lg:text-3xl text-white flex items-center mb-8 space-x-2">
+              About FirstVoices
             </h2>
-            <div className="inline-block text-bold text-base text-left md:text-lg text-white max-w-md md:max-w-4xl mx-auto space-y-4">
+            <div className="inline-block text-base text-left md:text-lg text-white max-w-md md:max-w-4xl mx-auto space-y-4">
               <p>
                 On FirstVoices, interactive language learning resources are
                 uploaded to secure, community-owned sites.
