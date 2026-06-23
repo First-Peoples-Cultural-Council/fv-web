@@ -2,17 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function SectionTitlePresentation({
-  accentColor = 'blumine-800',
+  accentColor = 'blumine-900',
   bgColor = 'white',
   title,
 }) {
   return (
     <div data-testid="SectionTitlePresentation" className="relative">
       <h2
-        className={`relative z-10 text-center text-2xl md:text-4xl lg:text-5xl text-${accentColor}`}
+        className={`relative z-10 text-center text-2xl md:text-3xl lg:text-4xl text-${accentColor}`}
       >
         <span
-          className={`max-w-5xl inline-block px-4 sm:px-8 md:px-12 lg:px-16 bg-${bgColor}`}
+          className={`max-w-sm md:max-w-2xl lg:max-w-5xl inline-block px-3 sm:px-5 md:px-7 lg:px-9 bg-${bgColor}`}
         >
           {title || <span className="bg-charcoal-50 px-28" />}
         </span>
@@ -25,11 +25,11 @@ function SectionTitlePresentation({
   )
 }
 // PROPTYPES
-const { string } = PropTypes
+const { node, string } = PropTypes
 SectionTitlePresentation.propTypes = {
   accentColor: string,
   bgColor: string,
-  title: string,
+  title: node,
 }
 
 export default SectionTitlePresentation
