@@ -7,20 +7,16 @@ function SectionTitlePresentation({
   title,
 }) {
   return (
-    <div data-testid="SectionTitlePresentation" className="relative">
-      <h2
-        className={`relative z-10 text-center text-2xl md:text-3xl lg:text-4xl text-${accentColor}`}
-      >
+    <div data-testid="SectionTitlePresentation">
+      <h2 className={`relative flex items-center text-center`}>
+        <div className={`grow border-t border-${accentColor}`} />
         <span
-          className={`max-w-sm md:max-w-2xl lg:max-w-5xl inline-block px-3 sm:px-5 md:px-7 lg:px-9 bg-${bgColor}`}
+          className={`shrink max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-5xl px-3 sm:px-5 md:px-7 lg:px-9 bg-${bgColor} text-2xl md:text-3xl lg:text-4xl text-${accentColor}`}
         >
           {title || <span className="bg-charcoal-50 px-28" />}
         </span>
+        <div className={`grow border-t border-${accentColor}`} />
       </h2>
-      <hr
-        className={`absolute z-0 w-full border-${accentColor}`}
-        style={{ top: '50%' }}
-      />
     </div>
   )
 }
