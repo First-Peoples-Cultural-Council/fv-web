@@ -16,7 +16,7 @@ function CategoriesPresentation({ categories, kids, sitename }) {
       data-testid="CategoriesPresentation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="CATEGORIES" />
+        <SectionTitle.Presentation title="Categories" />
         <div className="flex-1 flex items-stretch overflow-hidden">
           <main className="flex-1 overflow-y-auto">
             <div className="lg:px-8">

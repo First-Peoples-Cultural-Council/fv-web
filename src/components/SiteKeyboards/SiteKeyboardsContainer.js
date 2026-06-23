@@ -22,7 +22,7 @@ function SiteKeyboardsContainer() {
     >
       <SiteDocHead titleArray={['Keyboards']} />
       <div className="px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="KEYBOARDS" />
+        <SectionTitle.Presentation title="Keyboards" />
         {queryResponse?.data?.widgets?.length > 0 && (
           <WidgetArea.Container widgetData={queryResponse?.data?.widgets} />
         )}

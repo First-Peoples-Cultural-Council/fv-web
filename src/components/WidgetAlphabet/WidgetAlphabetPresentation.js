@@ -18,7 +18,7 @@ function WidgetAlphabetPresentation({
   return characters ? (
     <section id="WidgetAlphabetPresentation" className="py-3 md:py-6 bg-white">
       <div className="mx-5 lg:mx-10 mb-6 lg:mb-10">
-        <SectionTitle.Presentation title="ALPHABET" />
+        <SectionTitle.Presentation title="Alphabet" />
       </div>
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-12 gap-6 lg:gap-11">

@@ -10,13 +10,10 @@ function LandingApps() {
       <div className="flex flex-col md:flex-row bg-linear-to-b from-white to-charcoal-50">
         <div className="md:w-1/2 inline-flex items-center">
           <div className="max-w-5xl mx-auto text-center px-8 py-4">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold flex items-center mb-4 space-x-2">
-              <span className="inline-block">FIRSTVOICES APPS</span>
+            <h2 className="text-xl md:text-2xl lg:text-3xl flex items-center mb-4 space-x-2">
+              FirstVoices Apps
             </h2>
-            <div
-              className="inline-block text-bold text-base text-left md:text-lg
-               max-w-md md:max-w-4xl mx-auto"
-            >
+            <div className="inline-block text-base text-left md:text-lg max-w-md md:max-w-4xl mx-auto">
               <p className="my-4">
                 The wealth of language data uploaded by Indigenous communities
                 onto their FirstVoices language sites can now also be accessed

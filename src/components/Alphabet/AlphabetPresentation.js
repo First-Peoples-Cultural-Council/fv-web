@@ -24,7 +24,7 @@ function AlphabetPresentation({
     >
       <SiteDocHead titleArray={['Alphabet']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="ALPHABET" />
+        <SectionTitle.Presentation title="Alphabet" />
         {links && (
           <div className="flex font-bold items-center justify-center text-center text-blumine-800 mb-5">
             <ul className="flex text-center">

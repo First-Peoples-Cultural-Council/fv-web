@@ -46,7 +46,7 @@ function SongsAndStoriesPresentation({ infiniteQueryResponse, kids, labels }) {
         data-testid="SongsAndStoriesPresentation"
       >
         <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8">
-          <SectionTitle.Presentation title={labels?.uppercase} />
+          <SectionTitle.Presentation title={labels?.titlecase} />
           <LoadOrError queryResponse={infiniteQueryResponse}>
             <main className="flex-1 flex items-stretch overflow-hidden">
               {infiniteQueryResponse?.data?.pages?.[0]?.count > 0 ? (
