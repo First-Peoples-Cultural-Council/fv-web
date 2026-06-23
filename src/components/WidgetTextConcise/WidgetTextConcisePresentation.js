@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import AudioButton from 'components/AudioButton'
 import { useAudio } from 'common/dataHooks/useAudio'
 import { FIRSTVOICESLINK } from 'common/constants'
+import SectionTitle from 'components/SectionTitle'
 
 function WidgetTextConcisePresentation({ widgetData }) {
   const { audio, title, text, url, urlLabel } = widgetData.settings
@@ -17,16 +18,24 @@ function WidgetTextConcisePresentation({ widgetData }) {
     <section
       id="WidgetTextConcisePresentation"
       key={widgetData?.id}
-      className="py-3 md:py-6 bg-white"
+      className="py-8 md:py-12 bg-white"
     >
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-3 text-center">
-        <div className="flex w-full mx-auto items-center justify-center text-blumine-800">
-          <span className="leading-loose text-2xl md:text-4xl lg:text-5xl text-center font-bold">
-            {title}
-          </span>
-          {audio && <AudioButton audioArray={[audioObject]} />}
+      <div className="text-center space-y-8">
+        <div className="mx-2 md:mx-5 lg:mx-10">
+          <SectionTitle.Presentation
+            title={
+              <div className="flex w-full mx-auto items-start justify-center">
+                <span>{title}</span>
+                {audio && <AudioButton audioArray={[audioObject]} />}
+              </div>
+            }
+          />
         </div>
-        <p className="text-center text-lg md:text-xl lg:text-2xl">{text}</p>
+        {text && (
+          <p className="max-w-6xl px-4 md:px-6 xl:px-0 mx-auto text-center text-base md:text-xl lg:text-2xl text-charcoal-800">
+            {text}
+          </p>
+        )}
         {url && (
           <a
             href={url}
