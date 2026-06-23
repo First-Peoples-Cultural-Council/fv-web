@@ -14,7 +14,7 @@ function Support() {
     <section className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Support">
       <DocHead titleArray={['Support']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="FIRSTVOICES SUPPORT" />
+        <SectionTitle.Presentation title="FirstVoices Support" />
         <div>
           <div className="max-w-3xl mx-auto text-charcoal-900 space-y-4 py-8">
             <p className={paraStyle}>

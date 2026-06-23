@@ -17,7 +17,7 @@ function Keyboards() {
     <main className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Keyboards">
       <DocHead titleArray={['Fonts & Keyboards']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="FONTS & KEYBOARDS" />
+        <SectionTitle.Presentation title="Fonts & Keyboards" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-6 md:space-y-8 pt-2 pb-6 md:py-8">
           <section className={sectionStyle}>
             <h2 className={headerStyle}>

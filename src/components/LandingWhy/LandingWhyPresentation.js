@@ -12,7 +12,7 @@ function LandingWhyPresentation() {
       className="bg-white pt-3 md:pt-6 pb-8 md:pb-14"
     >
       <div className="p-4">
-        <SectionTitle.Presentation title="WHY FIRSTVOICES?" />
+        <SectionTitle.Presentation title="Why FirstVoices?" />
       </div>
       <div className="md:flex md:flex-row-reverse">
         <div className="px-8 lg:pt-12 lg:pb-8 text-base md:text-lg">

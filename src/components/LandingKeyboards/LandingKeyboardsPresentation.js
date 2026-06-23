@@ -16,7 +16,7 @@ function LandingKeyboardsPresentation() {
       <div className="bg-white text-charcoal-900 flex flex-col items-center lg:hidden">
         <p className="text-sm pt-10">Type in your language using</p>
         <div className="pt-2 pb-6 w-full">
-          <SectionTitle.Presentation title="FIRSTVOICES KEYBOARDS" />
+          <SectionTitle.Presentation title="FirstVoices Keyboards" />
         </div>
         <div className="flex flex-row h-40">
           <div className="w-2/3 pl-10">

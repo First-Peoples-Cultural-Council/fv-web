@@ -14,14 +14,16 @@ function About() {
     >
       <DocHead titleArray={['About FirstVoices']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="ABOUT FIRSTVOICES" />
+        <SectionTitle.Presentation title="About FirstVoices" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <p className={paraStyle}>
             FirstVoices.com is an online space for communities to share and
             promote their language, oral culture and linguistic history.
             Communities create secure, interactive language sites online by
             uploading audio recordings, words, phrases, songs and stories to be
-            shared with others. Operating since 2003, FirstVoices is a joint initiative of the First Peoples‘ Cultural Council and the First Peoples‘ Cultural Foundation.
+            shared with others. Operating since 2003, FirstVoices is a joint
+            initiative of the First Peoples‘ Cultural Council and the First
+            Peoples‘ Cultural Foundation.
           </p>
           <h2 className={headerStyle}>Community Sites</h2>
           <p className={paraStyle}>

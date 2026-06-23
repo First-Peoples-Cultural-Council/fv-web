@@ -37,7 +37,7 @@ function PhraseScramblerPresentation({
       className="py-2 md:py-4 lg:py-8 bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <SectionTitle.Presentation title="PHRASE SCRAMBLER" />
+        <SectionTitle.Presentation title="Phrase Scrambler" />
         <p className="italic text-charcoal-900 mt-2">Unscramble to win !!</p>
 
         {/* If no entry is present that satisfies the condition for the game to be played, display an error message */}
