@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import PropTypes from 'prop-types'
 
 // FPCC
@@ -8,10 +8,15 @@ import DeleteButton from 'components/DeleteButton'
 import getIcon from 'common/utils/getIcon'
 import ValidationReport from 'components/ImportJobReport/ValidationReport'
 import ImportNotifyBtn from 'components/ImportJobReport/ImportNotifyBtn'
-import { useImportJobDelete } from 'common/dataHooks/useImportJobs'
+import {
+  useImportJobDelete,
+  useImportJobValidate,
+} from 'common/dataHooks/useImportJobs'
 
 function ImportJobReportPresentation({ importJob, sitename }) {
   const { mutate: deleteImportJob } = useImportJobDelete()
+  const { mutate: validateImportJob } = useImportJobValidate()
+  const navigate = useNavigate()
 
   return (
     <div id="ImportJobReportPresentation" className="max-w-5xl p-8">
@@ -128,7 +133,10 @@ function ImportJobReportPresentation({ importJob, sitename }) {
           <button
             data-testid="validate-btn"
             className="btn-secondary btn-md"
-            onClick={() => {}}
+            onClick={() => {
+              validateImportJob(importJob?.id)
+              navigate(`/${sitename}/dashboard/imports`)
+            }}
           >
             {getIcon('TryAgain')}
             <span>Re-validate</span>
