@@ -34,7 +34,7 @@ function ValidationReport({ importJob }) {
           <div>
             <div className="p-4 rounded-lg border border-charcoal-300">
               <div data-testid="acceptedColumns" className={labelStyling}>
-                Accepted columns
+                Accepted Columns
               </div>
               <div className={`${contentStyling} columns-4`}>
                 {importJob?.validationReport?.acceptedColumns?.length > 0
