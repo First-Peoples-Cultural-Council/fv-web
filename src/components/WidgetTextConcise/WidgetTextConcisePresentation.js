@@ -18,13 +18,15 @@ function WidgetTextConcisePresentation({ widgetData }) {
     <section
       id="WidgetTextConcisePresentation"
       key={widgetData?.id}
-      className="py-8 md:py-12 bg-white"
+      className="pt-8 md:pt-12 pb-4 md:pb-8 bg-white"
     >
-      <div className="text-center space-y-8">
+      <div className="text-center space-y-6 lg:space-y-8">
         <div className="mx-2 md:mx-5 lg:mx-10">
           <SectionTitle.Presentation
             title={
-              <div className="flex w-full mx-auto items-start justify-center">
+              <div
+                className={`flex w-full mx-auto ${title?.length > 28 ? 'items-start' : 'items-center'} justify-center`}
+              >
                 <span>{title}</span>
                 {audio && <AudioButton audioArray={[audioObject]} />}
               </div>

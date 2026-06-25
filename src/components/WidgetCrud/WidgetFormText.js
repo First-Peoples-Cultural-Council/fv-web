@@ -92,6 +92,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.ImageIdField
               label="Image"
               nameId="image"
+              helpText="Choose images with a 4:3 aspect ratio to avoid cropping."
               control={control}
               errors={errors}
             />

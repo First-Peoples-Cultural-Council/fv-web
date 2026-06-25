@@ -27,47 +27,46 @@ function WidgetTextPresentation({ widgetData }) {
   const getImageElement = () => {
     if (!isUUID(image)) return ''
     return (
-      <div className="md:w-1/2 overflow-hidden inline-flex items-center">
+      <div className="w-full lg:w-1/2 flex items-center rounded-lg overflow-hidden">
         <ImgFromId.Container
           id={image}
           alt={title}
-          className="w-full h-64 sm:h-72 md:h-96 lg:h-[70vh] object-cover"
+          className="aspect-4/3 grow object-cover rounded-lg overflow-hidden backdrop-brightness-90"
         />
       </div>
     )
   }
 
-  const bgColorClass = bgColor ? `bg-${bgColor}` : 'bg-white'
+  const bgColorClass = bgColor ? 'bg-jade-600 my-6 md:my-8' : 'bg-white'
 
   const getTextElement = () => (
     <div
-      className={`${image ? 'md:w-1/2' : 'mx-auto max-w-5xl'} ${bgColorClass} content-center text-left`}
+      className={`${image ? 'lg:w-1/2' : 'mx-auto max-w-5xl'} content-center text-left`}
     >
-      <div className="px-8 lg:px-14 py-4 lg:py-10 space-y-5 lg:space-y-8">
-        <div className="space-y-2 lg:space-y-4">
-          <h2
-            className={`text-xl md:text-2xl lg:text-3xl ${
-              bgColor ? 'text-white' : 'text-black'
-            } font-bold flex items-center space-x-2`}
-          >
-            <span>{title}</span>
-            {audio && (
-              <AudioButton
-                audioArray={[audioObject]}
-                styling={
-                  bgColor
-                    ? 'btn-lg-icon bg-transparent text-white hover:backdrop-brightness-75'
-                    : 'btn-tertiary btn-lg-icon'
-                }
-              />
-            )}
-          </h2>
-          <div
-            className={`text-base md:text-lg text-${bgColor ? 'white' : 'black'}`}
-          >
-            <WysiwygBlock htmlString={textWithFormatting} />
-          </div>
+      <div className="space-y-5 lg:space-y-8">
+        <h2
+          className={`text-xl md:text-2xl lg:text-3xl ${
+            bgColor ? 'text-white' : 'text-blumine-800'
+          } font-bold flex items-center space-x-2`}
+        >
+          <span>{title}</span>
+          {audio && (
+            <AudioButton
+              audioArray={[audioObject]}
+              styling={
+                bgColor
+                  ? 'btn-lg-icon bg-transparent text-white hover:backdrop-brightness-75'
+                  : 'btn-tertiary btn-lg-icon'
+              }
+            />
+          )}
+        </h2>
+        <div
+          className={`text-base xl:text-lg ${bgColor ? 'text-white' : 'text-blumine-800'}`}
+        >
+          <WysiwygBlock htmlString={textWithFormatting} />
         </div>
+
         {url && (
           <div className="flex justify-start">
             <a
@@ -89,8 +88,13 @@ function WidgetTextPresentation({ widgetData }) {
 
   if (format === FORMAT_RIGHT) {
     return (
-      <section className="w-full" data-testid="WidgetTextPresentation">
-        <div className="flex flex-col md:flex-row">
+      <section
+        className="w-full px-2 md:px-12"
+        data-testid="WidgetTextPresentation"
+      >
+        <div
+          className={`${bgColorClass} rounded-lg flex flex-col lg:flex-row p-6 md:p-12 gap-8`}
+        >
           {getTextElement()}
           {getImageElement()}
         </div>
@@ -99,8 +103,13 @@ function WidgetTextPresentation({ widgetData }) {
   }
 
   return (
-    <section className="w-full" data-testid="WidgetTextPresentation">
-      <div className="flex flex-col md:flex-row">
+    <section
+      className="w-full px-2 md:px-12"
+      data-testid="WidgetTextPresentation"
+    >
+      <div
+        className={`${bgColorClass} rounded-lg flex flex-col lg:flex-row p-6 md:p-12 gap-8`}
+      >
         {getImageElement()}
         {getTextElement()}
       </div>
