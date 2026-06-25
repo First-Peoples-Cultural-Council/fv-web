@@ -37,7 +37,7 @@ function WidgetTextPresentation({ widgetData }) {
     )
   }
 
-  const bgColorClass = bgColor ? 'bg-jade-600 my-8' : 'bg-white'
+  const bgColorClass = bgColor ? 'bg-jade-600 my-6 md:my-8' : 'bg-white'
 
   const getTextElement = () => (
     <div
