@@ -46,7 +46,7 @@ function WidgetTextPresentation({ widgetData }) {
       <div className="space-y-5 lg:space-y-8">
         <h2
           className={`text-xl md:text-2xl lg:text-3xl ${
-            bgColor ? 'text-white' : 'text-black'
+            bgColor ? 'text-white' : 'text-blumine-800'
           } font-bold flex items-center space-x-2`}
         >
           <span>{title}</span>
@@ -62,7 +62,7 @@ function WidgetTextPresentation({ widgetData }) {
           )}
         </h2>
         <div
-          className={`text-base xl:text-lg text-${bgColor ? 'white' : 'black'}`}
+          className={`text-base xl:text-lg ${bgColor ? 'text-white' : 'text-blumine-800'}`}
         >
           <WysiwygBlock htmlString={textWithFormatting} />
         </div>
