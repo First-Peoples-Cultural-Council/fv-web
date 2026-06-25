@@ -27,11 +27,11 @@ function WidgetTextPresentation({ widgetData }) {
   const getImageElement = () => {
     if (!isUUID(image)) return ''
     return (
-      <div className="w-full md:w-1/2 flex items-center rounded-lg overflow-hidden">
+      <div className="w-full lg:w-1/2 flex items-center rounded-lg overflow-hidden">
         <ImgFromId.Container
           id={image}
           alt={title}
-          className="aspect-4/3 grow object-contain rounded-lg overflow-hidden backdrop-brightness-90"
+          className="aspect-4/3 grow object-cover rounded-lg overflow-hidden backdrop-brightness-90"
         />
       </div>
     )
@@ -41,7 +41,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   const getTextElement = () => (
     <div
-      className={`${image ? 'md:w-1/2' : 'mx-auto max-w-5xl'} content-center text-left`}
+      className={`${image ? 'lg:w-1/2' : 'mx-auto max-w-5xl'} content-center text-left`}
     >
       <div className="space-y-5 lg:space-y-8">
         <h2
@@ -62,7 +62,7 @@ function WidgetTextPresentation({ widgetData }) {
           )}
         </h2>
         <div
-          className={`text-base md:text-lg text-${bgColor ? 'white' : 'black'}`}
+          className={`text-base xl:text-lg text-${bgColor ? 'white' : 'black'}`}
         >
           <WysiwygBlock htmlString={textWithFormatting} />
         </div>
@@ -93,7 +93,7 @@ function WidgetTextPresentation({ widgetData }) {
         data-testid="WidgetTextPresentation"
       >
         <div
-          className={`${bgColorClass} rounded-lg flex flex-col md:flex-row p-6 md:p-12 gap-8`}
+          className={`${bgColorClass} rounded-lg flex flex-col lg:flex-row p-6 md:p-12 gap-8`}
         >
           {getTextElement()}
           {getImageElement()}
@@ -108,7 +108,7 @@ function WidgetTextPresentation({ widgetData }) {
       data-testid="WidgetTextPresentation"
     >
       <div
-        className={`${bgColorClass} rounded-lg flex flex-col md:flex-row p-6 md:p-12 gap-8`}
+        className={`${bgColorClass} rounded-lg flex flex-col lg:flex-row p-6 md:p-12 gap-8`}
       >
         {getImageElement()}
         {getTextElement()}
