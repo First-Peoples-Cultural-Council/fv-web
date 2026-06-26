@@ -45,13 +45,13 @@ const statsAdaptor = (data) => {
   if (weekTotal > 4) {
     return {
       ...getPeriodTotalsForAllTypes('lastWeek'),
-      header: 'NEW THIS WEEK',
+      header: 'New This Week',
     }
   }
   if (monthTotal > 4) {
     return {
       ...getPeriodTotalsForAllTypes('lastMonth'),
-      header: 'NEW THIS MONTH',
+      header: 'New This Month',
     }
   }
   return {
@@ -59,6 +59,6 @@ const statsAdaptor = (data) => {
     phrases: aggregate?.phrases?.total,
     songs: aggregate?.songs?.total,
     stories: aggregate?.stories?.total,
-    header: 'ON THIS SITE',
+    header: 'On This Site',
   }
 }
