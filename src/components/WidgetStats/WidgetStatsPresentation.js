@@ -12,7 +12,7 @@ function WidgetStatsPresentation({ data }) {
   const labelStyling = 'text-base font-thin'
   return (
     <section className="bg-blumine-800 pt-3 md:pt-6">
-      <div className="mx-5 lg:mx-10 mb-2 md:mb-6 lg:mb-8 xl:mb-12">
+      <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation
           title={data?.header}
           bgColor="blumine-800"
