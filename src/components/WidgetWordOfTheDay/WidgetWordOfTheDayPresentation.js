@@ -23,7 +23,7 @@ function WidgetWordOfTheDayPresentation({
       id="WidgetWordOfTheDayPresentation"
       className="py-3 md:py-6 bg-white"
     >
-      <div className="mx-5 lg:mx-10 mb-4 md:mb-6 lg:mb-8 xl:mb-12">
+      <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation title={title} />
       </div>
 
