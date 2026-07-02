@@ -10,6 +10,7 @@ import ScrollToTopOnMount from 'common/ScrollToTopOnMount'
 import SiteData from 'components/Site/SiteData'
 import LoadOrError from 'components/LoadOrError'
 import { ASSISTANT } from 'common/constants/roles'
+import { AudiobarProvider } from 'context/AudiobarContext'
 
 const Dashboard = lazy(() => import('components/Dashboard/DashboardContainer'))
 
@@ -19,19 +20,21 @@ function SiteContainer() {
     <div id="SiteContainer">
       <ScrollToTopOnMount />
       <LoadOrError queryResponse={siteQueryResponse}>
-        <Routes>
-          <Route
-            path="dashboard/*"
-            element={
-              <RequireAuth siteMembership={ASSISTANT} withMessage>
-                <Dashboard />
-              </RequireAuth>
-            }
-          />
-          <Route path="kids/*" element={<SiteFrameKids />} />
-          <Route path="widgets/*" element={<SiteFrameEmbed />} />
-          <Route path="*" element={<SiteFrame />} />
-        </Routes>
+        <AudiobarProvider>
+          <Routes>
+            <Route
+              path="dashboard/*"
+              element={
+                <RequireAuth siteMembership={ASSISTANT} withMessage>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+            <Route path="kids/*" element={<SiteFrameKids />} />
+            <Route path="widgets/*" element={<SiteFrameEmbed />} />
+            <Route path="*" element={<SiteFrame />} />
+          </Routes>
+        </AudiobarProvider>
       </LoadOrError>
     </div>
   )
