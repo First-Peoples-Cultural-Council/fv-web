@@ -12,14 +12,30 @@ import {
   useImportJobDelete,
   useImportJobValidate,
 } from 'common/dataHooks/useImportJobs'
+import { ACCEPTED, STARTED } from 'common/constants'
 
 function ImportJobReportPresentation({ importJob, sitename }) {
   const { mutate: deleteImportJob } = useImportJobDelete()
   const { mutate: validateImportJob } = useImportJobValidate()
   const navigate = useNavigate()
 
+  const validationInProgress =
+    importJob?.validationStatus === ACCEPTED ||
+    importJob?.validationStatus === STARTED
+  const cannotBeDeleted = validationInProgress || importJob?.status
+
+  const deleteHandler = () => {
+    deleteImportJob(importJob?.id)
+    navigate(`/${sitename}/dashboard/imports`)
+  }
+
+  const validateHandler = () => {
+    validateImportJob(importJob?.id)
+    navigate(`/${sitename}/dashboard/imports`)
+  }
+
   return (
-    <div id="ImportJobReportPresentation" className="max-w-5xl p-8">
+    <div id="ImportJobReportPresentation" className="max-w-6xl p-8">
       <Form.Header
         title={`${importJob?.title} Validation Report`}
         subtitle="Your import has been scanned for any potential errors. Please review the results below."
@@ -111,8 +127,8 @@ function ImportJobReportPresentation({ importJob, sitename }) {
             </div>
             <div className="flex flex-none items-center gap-x-4">
               <DeleteButton.Presentation
-                deleteHandler={() => deleteImportJob(importJob?.id)}
-                disabled={importJob?.status}
+                deleteHandler={deleteHandler}
+                disabled={cannotBeDeleted}
                 label="Delete"
                 message="Cancel this import?"
                 note="This will delete the import csv and any media files you have uploaded for this batch from the FirstVoices server. Are you sure you want to cancel this import?"
@@ -133,10 +149,8 @@ function ImportJobReportPresentation({ importJob, sitename }) {
           <button
             data-testid="validate-btn"
             className="btn-secondary btn-md"
-            onClick={() => {
-              validateImportJob(importJob?.id)
-              navigate(`/${sitename}/dashboard/imports`)
-            }}
+            onClick={validateHandler}
+            disabled={validationInProgress}
           >
             {getIcon('TryAgain')}
             <span>Re-validate</span>
