@@ -151,9 +151,7 @@ function DashboardImportsPresentation({
           <tbody className="divide-y divide-charcoal-200 bg-white">
             {queryResponse?.data?.results?.length > 0 ? (
               queryResponse?.data?.results?.map((result) => {
-                const validationInProgress =
-                  result?.validationStatus === ACCEPTED ||
-                  result?.validationStatus === STARTED
+                const validationInProgress = isValidating(result)
                 const canBeDeleted = !validationInProgress && !result?.status
                 return (
                   <tr key={result?.id}>
