@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Audiobar from 'components/Audiobar'
 import Footer from 'components/Footer'
 import AppNavBar from 'components/AppNavBar'
 
@@ -15,7 +14,6 @@ function AppWrapper({ children, isHome = false }) {
       <footer>
         <Footer.Presentation />
       </footer>
-      <Audiobar.Container />
     </div>
   )
 }

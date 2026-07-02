@@ -42,7 +42,7 @@ function ValidationReport({ importJob }) {
           <div>
             <div className="p-4 rounded-lg border border-charcoal-300">
               <div data-testid="acceptedColumns" className={labelStyling}>
-                Accepted Columns
+                Accepted columns
               </div>
               <div className={`${contentStyling} columns-3`}>
                 {importJob?.validationReport?.acceptedColumns?.length > 0
@@ -64,7 +64,7 @@ function ValidationReport({ importJob }) {
               } `}
             >
               <div data-testid="ignoredColumns" className={labelStyling}>
-                Ignored Columns
+                Ignored columns
               </div>
               <div className={`${contentStyling} columns-3`}>
                 {importJob?.validationReport?.ignoredColumns?.length > 0
@@ -133,14 +133,14 @@ function ValidationReport({ importJob }) {
               <div className={labelStyling}>Error details</div>
               <div className="overflow-hidden shadow outline-1 outline-charcoal-300 rounded-md">
                 <table className="relative min-w-full divide-y divide-charcoal-300">
-                  <caption className="sr-only">Import Error Details</caption>
+                  <caption className="sr-only">Import error details</caption>
                   <thead className="bg-scarlet-50">
                     <tr>
                       <th
                         scope="col"
                         className="py-3.5 pl-6 pr-3 text-left text-charcoal-900"
                       >
-                        <div className="font-semibold ">Row Number*</div>
+                        <div className="font-semibold ">Row number*</div>
                       </th>
                       <th
                         scope="col"

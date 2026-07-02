@@ -39,7 +39,7 @@ function ImportStatus({ importJob }) {
             to={`/${importJob?.site?.slug}/dashboard/edit/import/${importJob?.id}/report`}
             className="btn-primary btn-sm"
           >
-            <span>Submit Import</span>
+            <span>Submit import</span>
           </Link>
         </Tooltip>
       )

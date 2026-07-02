@@ -26,6 +26,7 @@ function AudiobarData() {
     }
 
     return function cleanup() {
+      sound?.howl?.stop()
       setCurrentAudio()
     }
   }, [currentAudio, generateSound, setCurrentAudio, sound])
