@@ -124,7 +124,7 @@ function DashboardImportsPresentation({
                 Batch Details
               </th>
               <th scope="col" className="p-3 text-charcoal-500 bg-charcoal-50">
-                Add media
+                Add Media
               </th>
               <th
                 scope="col"
