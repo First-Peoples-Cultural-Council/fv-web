@@ -23,12 +23,20 @@ function ValidationReport({ importJob }) {
 
       <div className="text-left min-w-3xl ">
         <div className="space-y-6">
-          <div className="px-4 py-2">
-            <div data-testid="fileName" className={labelStyling}>
-              Filename
+          <div className="px-4 py-2 grid grid-cols-2 gap-2">
+            <div className="col-span-1">
+              <div data-testid="fileName" className={labelStyling}>
+                Filename
+              </div>
+              <div className={contentStyling}>
+                {getLastPathSegment(importJob?.data?.path)}
+              </div>
             </div>
-            <div className={contentStyling}>
-              {getLastPathSegment(importJob?.data?.path)}
+            <div className="col-span-1">
+              <div data-testid="fileName" className={labelStyling}>
+                ID
+              </div>
+              <div className={contentStyling}>{importJob?.id}</div>
             </div>
           </div>
           <div>
@@ -36,7 +44,7 @@ function ValidationReport({ importJob }) {
               <div data-testid="acceptedColumns" className={labelStyling}>
                 Accepted Columns
               </div>
-              <div className={`${contentStyling} columns-4`}>
+              <div className={`${contentStyling} columns-3`}>
                 {importJob?.validationReport?.acceptedColumns?.length > 0
                   ? importJob?.validationReport?.acceptedColumns?.map((col) => (
                       <div key={col} className="col-span-1">
@@ -58,7 +66,7 @@ function ValidationReport({ importJob }) {
               <div data-testid="ignoredColumns" className={labelStyling}>
                 Ignored Columns
               </div>
-              <div className={`${contentStyling}  columns-4`}>
+              <div className={`${contentStyling} columns-3`}>
                 {importJob?.validationReport?.ignoredColumns?.length > 0
                   ? importJob?.validationReport?.ignoredColumns?.map((col) => (
                       <div key={col} className="col-span-1">
