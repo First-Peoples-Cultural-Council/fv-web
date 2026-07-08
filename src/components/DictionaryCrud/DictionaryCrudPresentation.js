@@ -143,10 +143,7 @@ function DictionaryCrudPresentation({
             </div>
             <div className="col-span-12">
               <Form.TextArrayField
-                label={`${getFriendlyType({
-                  type,
-                  titleCase: true,
-                })} translations`}
+                label="Translations"
                 nameId="translations"
                 register={register}
                 control={control}
@@ -284,6 +281,23 @@ function DictionaryCrudPresentation({
               />
             </div>
             <Form.Audience control={control} errors={errors} />
+            {!isCreate && (
+              <div className="col-span-12">
+                <div className="rounded-lg">
+                  <Form.RadioButtons
+                    label="Type"
+                    control={control}
+                    errors={errors}
+                    nameId="type"
+                    options={[
+                      { label: 'Word', value: TYPE_WORD },
+                      { label: 'Phrase', value: TYPE_PHRASE },
+                    ]}
+                    helpText="⚠️ Changing this will impact where your entry appears on your site."
+                  />
+                </div>
+              </div>
+            )}
           </Fragment>
         )
       default:
