@@ -241,39 +241,36 @@ function DictionaryCrudPresentation({
                 maxItems={MAX_DOCUMENTS}
               />
             </div>
-            {type === TYPE_WORD && (
-              <>
-                <div className="col-span-6">
-                  <Form.Autocomplete
-                    label="Part of speech"
-                    nameId="partOfSpeech"
-                    control={control}
-                    options={partsOfSpeech}
-                    errors={errors}
-                  />
-                </div>
-                <div className="col-span-12">
-                  <Form.TextArrayField
-                    label="Pronunciations"
-                    nameId="pronunciations"
-                    register={register}
-                    control={control}
-                    errors={errors}
-                    maxItems={MAX_PRONUNCIATIONS}
-                  />
-                </div>
-                <div className="col-span-12">
-                  <Form.TextArrayField
-                    label="Alternate spellings"
-                    nameId="alternateSpellings"
-                    register={register}
-                    control={control}
-                    errors={errors}
-                    maxItems={MAX_SPELLINGS}
-                  />
-                </div>
-              </>
-            )}
+            <div className="col-span-6">
+              <Form.Autocomplete
+                label="Part of speech"
+                nameId="partOfSpeech"
+                control={control}
+                options={partsOfSpeech}
+                errors={errors}
+                helpText="NB: Most commonly applied to words and not phrases."
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextArrayField
+                label="Pronunciations"
+                nameId="pronunciations"
+                register={register}
+                control={control}
+                errors={errors}
+                maxItems={MAX_PRONUNCIATIONS}
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextArrayField
+                label="Alternate spellings"
+                nameId="alternateSpellings"
+                register={register}
+                control={control}
+                errors={errors}
+                maxItems={MAX_SPELLINGS}
+              />
+            </div>
           </Fragment>
         )
       case 2:
