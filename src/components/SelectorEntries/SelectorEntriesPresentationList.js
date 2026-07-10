@@ -19,9 +19,6 @@ function SelectorEntriesPresentationList({
 
   const isMultiDocType = types.length > 1
 
-  const headerClass =
-    'px-6 py-3 text-left text-xs font-medium text-charcoal-900 uppercase tracking-wider'
-
   // List of results not including the current entry being edited
   const filteredResults =
     infiniteQueryResponse?.data?.pages
@@ -41,20 +38,20 @@ function SelectorEntriesPresentationList({
         <>
           <table className="min-w-full divide-y divide-charcoal-100">
             <thead className="bg-charcoal-50">
-              <tr>
-                <th scope="col" className={headerClass}>
+              <tr className="text-charcoal-500">
+                <th scope="col" className="text-left p-3.5">
                   <span className="sr-only">Is Selected</span>
                 </th>
-                <th scope="col" className={headerClass}>
+                <th scope="col" className="text-left p-3.5">
                   {isMultiDocType
                     ? 'Language Entry'
                     : getFriendlyType({ type: types[0] })}
                 </th>
-                <th scope="col" className={headerClass}>
+                <th scope="col" className="text-left p-3.5">
                   Translation
                 </th>
                 {isMultiDocType ? (
-                  <th scope="col" className={headerClass}>
+                  <th scope="col" className="text-left p-3.5">
                     Type
                   </th>
                 ) : null}
@@ -89,17 +86,17 @@ function SelectorEntriesPresentationList({
                             : 'focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-offset-charcoal-50 focus-within:ring-blumine-800 rounded-lg'
                         }
                       >
-                        <td className="px-2 py-2 overflow-visible w-10 text-sm text-charcoal-900">
+                        <td className="p-3.5 overflow-visible w-10 text-sm text-charcoal-900">
                           {isSelected &&
                             getIcon(
                               'CheckCircleSolid',
                               'h-6 w-6 fill-jade-500',
                             )}
                         </td>
-                        <td className="px-2 py-2 text-left overflow-visible w-80 text-sm text-charcoal-900">
+                        <td className="p-3.5 text-left overflow-visible w-80 text-sm text-charcoal-900">
                           {entry.title}
                         </td>
-                        <td className="px-6 py-4 text-left whitespace-normal text-sm text-charcoal-900">
+                        <td className="p-3.5 text-left whitespace-normal text-sm text-charcoal-900">
                           {entry?.translations ? (
                             <ol className="text-charcoal-900">
                               {entry.translations.map((translation, i) => (
@@ -114,7 +111,7 @@ function SelectorEntriesPresentationList({
                           ) : null}
                         </td>
                         {isMultiDocType ? (
-                          <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left">
+                          <td className="p-3.5 whitespace-normal text-sm text-charcoal-900 text-left">
                             <span
                               className={`px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-${entry.type}-color-700 capitalize text-white`}
                             >

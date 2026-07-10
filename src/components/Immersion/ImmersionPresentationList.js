@@ -13,18 +13,14 @@ function ImmersionPresentationList({ labels }) {
         <div className="overflow-hidden border border-charcoal-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-charcoal-200">
             <thead className="bg-charcoal-50">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
-                    LABEL
-                  </div>
+              <tr className="text-charcoal-500">
+                <th scope="col" className="pl-6 pr-3.5 py-3.5 text-left">
+                  Label
                 </th>
-                <th scope="col" className="px-6 py-3">
-                  <div className="flex items-center text-left text-xs font-medium text-charcoal-500 tracking-wider">
-                    ENGLISH LABEL
-                  </div>
+                <th scope="col" className="p-3.5 text-left">
+                  English Label
                 </th>
-                <th scope="col" className="relative px-6 py-3">
+                <th scope="col" className="relative pr-6 pl-3.5 p-3.5">
                   <span className="sr-only">Actions</span>
                 </th>
               </tr>
@@ -41,7 +37,7 @@ function ImmersionPresentationList({ labels }) {
                 }) =>
                   immersionLabel ? (
                     <tr key={transKey}>
-                      <td className="px-6 py-4 flex items-center">
+                      <td className="pl-6 pr-3.5 py-3.5 flex items-center">
                         <Link
                           to={link}
                           className="font-medium text-charcoal-900 mr-2"
@@ -52,8 +48,8 @@ function ImmersionPresentationList({ labels }) {
                           <AudioButton audioArray={relatedAudio} />
                         )}
                       </td>
-                      <td className="px-6 py-4 text-charcoal-900">{english}</td>
-                      <td className="text-right px-6" aria-label="list">
+                      <td className="p-3.5 text-charcoal-900">{english}</td>
+                      <td className="text-right pl-3.5 pr-6" aria-label="list">
                         <ActionsMenu.Presentation
                           entry={dictionaryEntry?.[0]}
                           actions={['copy']}
