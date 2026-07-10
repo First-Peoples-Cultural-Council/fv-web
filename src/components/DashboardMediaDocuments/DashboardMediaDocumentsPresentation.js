@@ -12,10 +12,9 @@ function DashboardMediaDocumentsPresentation({
   currentFile,
   setCurrentFile,
 }) {
-  const headerClass =
-    'px-6 py-3 text-xs font-medium text-charcoal-900 uppercase tracking-wider'
+  const headerClass = 'px-6 py-3 text-left text-charcoal-500'
   const columnClass =
-    'px-6 py-4 text-sm text-charcoal-900 whitespace-nowrap truncate text-center align-middle'
+    'px-6 py-4 text-sm text-charcoal-900 whitespace-nowrap truncate text-left align-middle'
 
   return (
     <div id="DashboardMediaDocumentsPresentation" className="px-3">

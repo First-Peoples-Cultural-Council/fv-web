@@ -12,8 +12,7 @@ function DashboardMediaAudioPresentation({
   currentFile,
   setCurrentFile,
 }) {
-  const headerClass =
-    'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
+  const headerClass = 'px-6 py-3 text-left text-charcoal-500'
 
   const file = {
     ...currentFile,
@@ -55,7 +54,7 @@ function DashboardMediaAudioPresentation({
                                 audioFile?.id === currentFile?.id
                                   ? 'ring-2 ring-blumine-600'
                                   : ''
-                              } m-2 rounded-lg relative`}
+                              } m-3 rounded-lg relative`}
                               onClick={() => setCurrentFile(audioFile)}
                             >
                               <td
@@ -64,7 +63,7 @@ function DashboardMediaAudioPresentation({
                               >
                                 <AudioNative audioObject={audioFile} />
                               </td>
-                              <td className="px-6 py-4 text-center whitespace-nowrap text-sm text-charcoal-900 truncate">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-charcoal-900 truncate">
                                 {audioFile.title}
                               </td>
                               <td className="px-6 py-4 whitespace-normal text-sm text-charcoal-900 text-left truncate">

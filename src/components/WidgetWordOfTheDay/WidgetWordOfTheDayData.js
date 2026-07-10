@@ -22,7 +22,7 @@ function WidgetWordOfTheDayData() {
     queryResponse,
     translations: translationArray?.join('; '),
     partOfSpeech,
-    title: 'WORD OF THE DAY',
+    title: 'Word of the Day',
     url: `${globalThis.location.origin.toString()}/${sitename}/words/${word?.id}`,
     relativeUrl: `/${sitename}/words/${word?.id}`,
     sitename,

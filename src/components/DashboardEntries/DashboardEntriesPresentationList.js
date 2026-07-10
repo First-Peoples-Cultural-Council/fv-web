@@ -47,11 +47,11 @@ function DashboardEntriesPresentationList({
             <div className="pt-2 bg-charcoal-50">
               <table className="min-w-full divide-y divide-charcoal-100">
                 <thead className="text-charcoal-500 rounded-lg overflow-hidden">
-                  <tr className="text-xs uppercase tracking-wider">
+                  <tr className="text-charcoal-500">
                     <th
                       scope="col"
                       aria-labelledby={SORT_ALPHABETICAL}
-                      className="pl-6 pr-3.5 py-3.5 text-left font-medium"
+                      className="pl-6 pr-3 py-3 text-left"
                     >
                       <SortByHeader
                         id={SORT_ALPHABETICAL}
@@ -60,13 +60,13 @@ function DashboardEntriesPresentationList({
                         desc={SORT_ALPHABETICAL_DESC}
                       />
                     </th>
-                    <th scope="col" className="text-left font-medium p-3.5">
+                    <th scope="col" className="text-left p-3">
                       Translation
                     </th>
                     <th
                       scope="col"
                       aria-labelledby={SORT_CREATED}
-                      className="text-left font-medium p-3.5"
+                      className="text-left p-3"
                     >
                       <SortByHeader
                         id={SORT_CREATED}
@@ -78,7 +78,7 @@ function DashboardEntriesPresentationList({
                     <th
                       scope="col"
                       aria-labelledby={SORT_MODIFIED}
-                      className="text-left font-medium p-3.5"
+                      className="text-left p-3"
                     >
                       <SortByHeader
                         id={SORT_MODIFIED}
@@ -87,13 +87,13 @@ function DashboardEntriesPresentationList({
                         desc={SORT_MODIFIED_DESC}
                       />
                     </th>
-                    <th scope="col" className="text-center font-medium p-3.5">
+                    <th scope="col" className="text-center p-3">
                       Type
                     </th>
-                    <th scope="col" className="text-center font-medium p-3.5">
+                    <th scope="col" className="text-center p-3">
                       Edit
                     </th>
-                    <th scope="col" className="text-center font-medium p-3.5">
+                    <th scope="col" className="text-center p-3">
                       Preview
                     </th>
                   </tr>
@@ -160,7 +160,7 @@ function DashboardEntriesPresentationList({
                           </td>
                           <td className="p-3 whitespace-nowrap text-center">
                             <span
-                              className={`py-1 w-14 items-center justify-center inline-flex text-xs font-medium rounded-lg border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
+                              className={`py-1 w-14 items-center justify-center inline-flex text-xs rounded-lg border border-${entry?.type}-color-700 bg-${entry?.type}-color-100 capitalize text-${entry?.type}-color-700`}
                             >
                               <span>{entry?.type}</span>
                             </span>
