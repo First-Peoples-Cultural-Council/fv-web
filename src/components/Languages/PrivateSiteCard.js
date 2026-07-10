@@ -66,14 +66,14 @@ function PrivateSiteCard({ site, user }) {
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-charcoal-900 sm:text-4xl">
                   {site?.title} <br />
-                  is Private
+                  is private
                 </h2>
 
                 <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-charcoal-500">
                   You need to be {isAnonymous && 'logged in and '}a registered
                   member of this site to see its content.
                 </p>
-                <div className="mt-5 md:mt-10 flex items-center justify-center gap-x-3 md:gap-x-6">
+                <div className="mt-5 md:mt-10 space-y-2 sm:flex items-center justify-center gap-3 md:gap-x-6">
                   <button
                     data-testid="login-join"
                     type="button"
