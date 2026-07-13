@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.29.6",
-    "@babel/eslint-parser": "^7.28.6",
+    "@babel/eslint-parser": "^8.0.1",
     "@babel/eslint-plugin": "^7.27.0",
     "@babel/plugin-transform-runtime": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
