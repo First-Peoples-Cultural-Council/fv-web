@@ -80,7 +80,7 @@ function StoryPresentationDrawer({ entry }) {
           </div>
         </div>
       )}
-      <div className="px-4 sm:mt-6 sm:flex sm:items-end sm:px-6">
+      <div className="px-4 sm:mt-6 sm:flex sm:items-end sm:px-6 md:pb-6">
         <div className="sm:flex-1">
           <div className="flex flex-wrap">
             <Link
