@@ -163,10 +163,10 @@ export const getPresentationPropertiesForType = (type) => {
       }
     case TYPE_DICTIONARY:
       return {
-        lowercase: 'words and phrases',
-        uppercase: 'DICTIONARY',
-        titlecase: 'Dictionary',
-        singular: 'word / phrase',
+        lowercase: 'language entries',
+        uppercase: 'LANGUAGE ENTRIES',
+        titlecase: 'Language Entries',
+        singular: 'language entry',
         slug: 'dictionary',
       }
     case TYPE_MEDIA:

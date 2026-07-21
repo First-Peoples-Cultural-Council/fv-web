@@ -86,3 +86,89 @@ export const VISIBILITY_TEAM = 'Team'
 
 /* Param Keys Frontend ONLY */
 export const CHAR = 'char'
+
+export const getReadableParams = (paramsObject) =>
+  Object.entries(paramsObject)?.map(_getReadableParam)
+
+const _getReadableParam = ([param, value]) => {
+  if (value === null || value === '') return null
+
+  const _value = Array.isArray(value) ? value.join(', ') : String(value)
+  switch (param) {
+    case PAGE:
+    case PAGE_SIZE:
+    case SITES_FILTER:
+      return null
+    case CATEGORY:
+      return { id: CATEGORY, label: 'Category', value: _value }
+    case DOMAIN:
+      return _value === DOMAIN_BOTH
+        ? null
+        : {
+            id: DOMAIN,
+            label: 'Domain',
+            value: `${_value === DOMAIN_LANGUAGE ? 'Language Entries' : 'Translation'}`,
+          }
+    case GAMES:
+      return value
+        ? { id: GAMES, label: 'Included in games' }
+        : { id: GAMES, label: 'Not included in games' }
+    case HAS_AUDIO:
+      return value
+        ? { id: HAS_AUDIO, label: 'Has audio' }
+        : { id: HAS_AUDIO, label: 'Has no audio' }
+    case HAS_IMAGE:
+      return value
+        ? { id: HAS_IMAGE, label: 'Has image' }
+        : { id: HAS_IMAGE, label: 'Has no image' }
+    case HAS_VIDEO:
+      return value
+        ? { id: HAS_VIDEO, label: 'Has video' }
+        : { id: HAS_VIDEO, label: 'Has no video' }
+    case HAS_TRANSLATION:
+      return value
+        ? { id: HAS_TRANSLATION, label: 'Has translation' }
+        : { id: HAS_TRANSLATION, label: 'Has no translation' }
+    case HAS_CATEGORIES:
+      return value
+        ? { id: HAS_CATEGORIES, label: 'Has category' }
+        : { id: HAS_CATEGORIES, label: 'Has no category' }
+    case HAS_RELATED_ENTRIES:
+      return value
+        ? { id: HAS_RELATED_ENTRIES, label: 'Has related entries' }
+        : { id: HAS_RELATED_ENTRIES, label: 'Has no related entries' }
+    case HAS_UNRECOGNIZED_CHARS:
+      return value
+        ? { id: HAS_UNRECOGNIZED_CHARS, label: 'Has unrecognized characters' }
+        : {
+            id: HAS_UNRECOGNIZED_CHARS,
+            label: 'Has no unrecognized characters',
+          }
+    case IMPORT_JOB_ID:
+      return { id: IMPORT_JOB_ID, label: 'Import batch id', value: _value }
+    case KIDS:
+      return value
+        ? { id: KIDS, label: 'On kids site' }
+        : { id: KIDS, label: 'Not on kids site' }
+    case SORT:
+      return { id: SORT, label: 'Sort', value: _value }
+    case SPEAKERS:
+      return { id: SPEAKERS, label: 'Speakers', value: _value }
+    case STARTS_WITH_CHAR:
+      return {
+        id: STARTS_WITH_CHAR,
+        label: 'Starts with character',
+        value: _value,
+      }
+    case TYPES:
+      return { id: TYPES, label: 'Types', value: _value }
+    case VISIBILITY:
+      return { id: VISIBILITY, label: 'Visibility', value: _value }
+    case MINWORDS:
+      return { id: MINWORDS, label: 'Min words', value: _value }
+    case MAXWORDS:
+      return { id: MAXWORDS, label: 'Max words', value: _value }
+    default:
+      return param
+  }
+}
