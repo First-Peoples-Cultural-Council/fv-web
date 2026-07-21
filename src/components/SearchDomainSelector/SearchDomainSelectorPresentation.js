@@ -25,10 +25,7 @@ function SearchDomainSelectorPresentation({
       <div aria-label="Search/Go">
         <MenuButton className="inline-flex justify-center w-full px-2 lg:px-4 py-2 font-medium text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white/75">
           {searchDomainOptions[searchDomain]}
-          {getIcon(
-            'ChevronDown',
-            'w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100',
-          )}
+          {getIcon('ChevronDown', 'w-5 h-5 ml-2 -mr-1 fill-current')}
         </MenuButton>
       </div>
       <Transition

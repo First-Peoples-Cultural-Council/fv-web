@@ -18,14 +18,7 @@ import {
 } from 'common/constants/jobs'
 import AlertBanner from 'components/AlertBanner'
 import DashboardTile from 'components/DashboardTile'
-import {
-  DOMAIN,
-  INFO,
-  SITES_FILTER,
-  PAGE,
-  PAGE_SIZE,
-  WARNING,
-} from 'common/constants'
+import { INFO, WARNING, getReadableParams } from 'common/constants'
 
 function DashboardExportsPresentation({
   queryResponse,
@@ -86,18 +79,6 @@ function DashboardExportsPresentation({
       default:
         return <span className="capitalize">{exportJob?.status}</span> || ''
     }
-  }
-
-  const generateParamListItem = ([key, value]) => {
-    if (value === null || value === '') return null
-    const hiddenParams = ['start', DOMAIN, SITES_FILTER, PAGE, PAGE_SIZE]
-    if (hiddenParams.includes(key)) return null
-    return (
-      <li key={key}>
-        <strong>{key}:</strong>{' '}
-        {Array.isArray(value) ? value.join(', ') : String(value)}
-      </li>
-    )
   }
 
   return (
@@ -236,6 +217,7 @@ function DashboardExportsPresentation({
               queryResponse?.data?.results?.map((result) => {
                 const exportInProgress = isProcessing(result)
                 const canBeDeleted = !exportInProgress
+                const readableParams = getReadableParams(result?.exportParams)
                 return (
                   <tr key={result?.id}>
                     <td className="whitespace-nowrap p-3 text-sm text-charcoal-900">
@@ -243,10 +225,22 @@ function DashboardExportsPresentation({
                     </td>
                     <td className="whitespace-nowrap p-3 pl-6 text-sm">
                       <ul className="list-disc list-inside text-charcoal-500 text-xs">
-                        {result?.exportParams &&
-                          Object.entries(result?.exportParams)?.map(
-                            generateParamListItem,
-                          )}
+                        {readableParams?.length > 0 &&
+                          readableParams?.map((param) => {
+                            if (param?.label) {
+                              return (
+                                <li key={param?.id}>
+                                  <strong>
+                                    {param?.label}
+                                    {param?.value && ':'}
+                                  </strong>{' '}
+                                  {param?.value}
+                                </li>
+                              )
+                            } else {
+                              return null
+                            }
+                          })}
                       </ul>
                     </td>
                     <td className="p-3 text-sm text-charcoal-500 text-center">

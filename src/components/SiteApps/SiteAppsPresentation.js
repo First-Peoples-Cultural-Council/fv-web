@@ -62,8 +62,9 @@ function SiteAppsPresentation() {
                   The wealth of language data uploaded onto the {site?.title}{' '}
                   FirstVoices language site can now also be accessed through our
                   mobile app. The app pulls dictionary entries, songs, and
-                  stories directly from FirstVoices and always has the latest
-                  content. The app can be installed directly from the web.
+                  stories straight from FirstVoices and can be installed
+                  directly from the web. Audio and images can be downloaded to
+                  your device, and the dictionary can be browsed offline.
                 </p>
               </div>
               <div className="mx-auto mt-10 max-w-2xl sm:mt-14 lg:mt-18 lg:max-w-4xl">
