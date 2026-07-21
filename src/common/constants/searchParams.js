@@ -114,36 +114,23 @@ const _getReadableParam = ([param, value]) => {
         ? { id: GAMES, label: 'Included in games' }
         : { id: GAMES, label: 'Not included in games' }
     case HAS_AUDIO:
-      return value
-        ? { id: HAS_AUDIO, label: 'Has audio' }
-        : { id: HAS_AUDIO, label: 'Has no audio' }
+      return _getHasLabel(HAS_AUDIO, value, 'audio')
     case HAS_IMAGE:
-      return value
-        ? { id: HAS_IMAGE, label: 'Has image' }
-        : { id: HAS_IMAGE, label: 'Has no image' }
+      return _getHasLabel(HAS_IMAGE, value, 'image')
     case HAS_VIDEO:
-      return value
-        ? { id: HAS_VIDEO, label: 'Has video' }
-        : { id: HAS_VIDEO, label: 'Has no video' }
+      return _getHasLabel(HAS_VIDEO, value, 'video')
     case HAS_TRANSLATION:
-      return value
-        ? { id: HAS_TRANSLATION, label: 'Has translation' }
-        : { id: HAS_TRANSLATION, label: 'Has no translation' }
+      return _getHasLabel(HAS_TRANSLATION, value, 'translation')
     case HAS_CATEGORIES:
-      return value
-        ? { id: HAS_CATEGORIES, label: 'Has category' }
-        : { id: HAS_CATEGORIES, label: 'Has no category' }
+      return _getHasLabel(HAS_CATEGORIES, value, 'category')
     case HAS_RELATED_ENTRIES:
-      return value
-        ? { id: HAS_RELATED_ENTRIES, label: 'Has related entries' }
-        : { id: HAS_RELATED_ENTRIES, label: 'Has no related entries' }
+      return _getHasLabel(HAS_RELATED_ENTRIES, value, 'related entries')
     case HAS_UNRECOGNIZED_CHARS:
-      return value
-        ? { id: HAS_UNRECOGNIZED_CHARS, label: 'Has unrecognized characters' }
-        : {
-            id: HAS_UNRECOGNIZED_CHARS,
-            label: 'Has no unrecognized characters',
-          }
+      return _getHasLabel(
+        HAS_UNRECOGNIZED_CHARS,
+        value,
+        'unrecognized characters',
+      )
     case IMPORT_JOB_ID:
       return { id: IMPORT_JOB_ID, label: 'Import batch id', value: _value }
     case KIDS:
@@ -171,4 +158,11 @@ const _getReadableParam = ([param, value]) => {
     default:
       return param
   }
+}
+
+const _getHasLabel = (param, value, type) => {
+  if (value) {
+    return { id: param, label: `Has ${type}` }
+  }
+  return { id: param, label: `Has no ${type}` }
 }
