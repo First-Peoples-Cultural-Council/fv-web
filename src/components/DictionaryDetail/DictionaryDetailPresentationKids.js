@@ -68,16 +68,6 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                     {entry?.relatedAudio?.map((audioObject) => (
                       <AudioMinimal.Container
                         key={audioObject?.id}
-                        icons={{
-                          Play: getIcon(
-                            'Audio',
-                            'fill-current h-9 w-9 sm:w-12 sm:h-12',
-                          ),
-                          Stop: getIcon(
-                            'StopCircle',
-                            'fill-current h-9 w-9 sm:w-12 sm:h-12',
-                          ),
-                        }}
                         audioObject={audioObject}
                       />
                     ))}

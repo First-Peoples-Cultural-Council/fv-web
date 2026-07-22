@@ -8,18 +8,11 @@ function AudioMinimalPresentation({
   audioId,
   buttonRef,
   buttonStyling = 'btn-tertiary btn-md-icon bg-inherit',
-  icons,
   isPlaying = false,
   label,
   onClick = () => {},
   onKeyPress = () => {},
 }) {
-  const iconsDefault = {
-    Play: getIcon('PlayCircle'),
-    Stop: getIcon('StopCircle'),
-  }
-  const Icons = { ...iconsDefault, ...icons }
-
   return (
     <button
       data-testid={`audio-btn-${audioId}`}
@@ -31,7 +24,7 @@ function AudioMinimalPresentation({
       aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
       className={buttonStyling}
     >
-      {isPlaying === true ? Icons.Stop : Icons.Play}
+      {isPlaying === true ? getIcon('StopCircle') : getIcon('Audio')}
       {label && <span>{label}</span>}
     </button>
   )
@@ -40,14 +33,8 @@ function AudioMinimalPresentation({
 const { func, bool, object, string } = PropTypes
 AudioMinimalPresentation.propTypes = {
   audioId: string,
-  /** Use to override the default icons. Eg: icons={{Play: jsx, Pause: jsx, Error: jsx}}  */
-  icons: object,
-  /** Use to style icons */
-  iconStyling: string,
-  /** Use to style encasing button */
   buttonStyling: string,
   isPlaying: bool,
-  /** Optional abel for button */
   label: string,
   buttonRef: object,
   onClick: func,
