@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import AudioMinimalPresentation from './AudioMinimalPresentation'
 import AudioMinimalData from './AudioMinimalData'
 
-function AudioMinimalContainer({ audioObject, buttonStyling, label }) {
+function AudioMinimalContainer({ audioObject, styling, withLabel }) {
   const { buttonRef, isPlaying, onClick, onKeyPress } = AudioMinimalData({
     audioObject,
   })
@@ -15,18 +15,18 @@ function AudioMinimalContainer({ audioObject, buttonStyling, label }) {
       isPlaying={isPlaying}
       onClick={onClick}
       onKeyPress={onKeyPress}
-      label={label}
-      buttonStyling={buttonStyling}
-      audioId={audioObject?.id}
+      withLabel={withLabel}
+      styling={styling}
+      audioObject={audioObject}
     />
   )
 }
 // PROPTYPES
-const { string, object } = PropTypes
+const { bool, string, object } = PropTypes
 AudioMinimalContainer.propTypes = {
   audioObject: object,
-  label: string,
-  buttonStyling: string,
+  withLabel: bool,
+  styling: string,
 }
 
 export default AudioMinimalContainer

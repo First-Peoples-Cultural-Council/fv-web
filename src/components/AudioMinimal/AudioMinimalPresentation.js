@@ -5,37 +5,39 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 
 function AudioMinimalPresentation({
-  audioId,
+  audioObject,
   buttonRef,
-  buttonStyling = 'btn-tertiary btn-md-icon bg-inherit',
+  styling = 'btn-tertiary btn-md-icon bg-inherit',
   isPlaying = false,
-  label,
+  withLabel = false,
   onClick = () => {},
   onKeyPress = () => {},
 }) {
   return (
     <button
-      data-testid={`audio-btn-${audioId}`}
+      data-testid={`audio-btn-${audioObject?.id}`}
       type="button"
       onClick={onClick}
       onKeyDown={onKeyPress}
       ref={buttonRef}
       aria-live="off"
       aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
-      className={buttonStyling}
+      className={styling}
     >
       {isPlaying === true ? getIcon('StopCircle') : getIcon('Audio')}
-      {label && <span>{label}</span>}
+      {withLabel && (
+        <span>{audioObject?.speakers?.[0]?.name || 'Speaker'}</span>
+      )}
     </button>
   )
 }
 // PROPTYPES
 const { func, bool, object, string } = PropTypes
 AudioMinimalPresentation.propTypes = {
-  audioId: string,
-  buttonStyling: string,
+  audioObject: object,
+  styling: string,
   isPlaying: bool,
-  label: string,
+  withLabel: bool,
   buttonRef: object,
   onClick: func,
   onKeyPress: func,
