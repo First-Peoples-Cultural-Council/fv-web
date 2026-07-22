@@ -87,6 +87,7 @@ export const VISIBILITY_TEAM = 'Team'
 /* Param Keys Frontend ONLY */
 export const CHAR = 'char'
 
+/* Param parse for readability */
 export const getReadableParams = (paramsObject) =>
   Object.entries(paramsObject)?.map(_getReadableParam)
 

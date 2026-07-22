@@ -14,6 +14,7 @@ import {
 } from 'common/constants'
 import Modal from 'components/Modal'
 import getIcon from 'common/utils/getIcon'
+import { getReadableParams } from 'common/constants/searchParams'
 
 function ExportButton({ infiniteQueryResponse }) {
   const count = infiniteQueryResponse?.data?.pages[0]?.count
@@ -30,15 +31,6 @@ function ExportButton({ infiniteQueryResponse }) {
     const _searchParams = searchParams
     _searchParams.append(PAGE_SIZE, EXPORT_SIZE_LIMIT)
     mutate(_searchParams)
-  }
-
-  const generateParamListItem = ([key, value]) => {
-    if (value === null || value === '') return null
-    return (
-      <li key={key}>
-        <strong>{key}:</strong> {String(value).replaceAll(',', ', ')}
-      </li>
-    )
   }
 
   const getModalContents = () => {
@@ -122,6 +114,9 @@ function ExportButton({ infiniteQueryResponse }) {
         </div>
       )
     }
+    const readableParams = getReadableParams(
+      Object.fromEntries(searchParams.entries()),
+    )
     return (
       <div className="px-2">
         <div className="px-2">
@@ -136,9 +131,19 @@ function ExportButton({ infiniteQueryResponse }) {
               </p>
               <div className="py-2 pl-6 text-left">
                 <ul className="list-disc list-inside text-charcoal-500 text-sm">
-                  {Object.entries(
-                    Object.fromEntries(searchParams.entries()),
-                  )?.map(generateParamListItem)}
+                  {readableParams?.length > 0 &&
+                    readableParams?.map((param) => {
+                      if (!param?.label) return null
+                      return param?.label === 'Speakers' || !param?.value ? (
+                        <li key={param?.id}>
+                          <strong>{param?.label}</strong>
+                        </li>
+                      ) : (
+                        <li key={param?.id}>
+                          <strong>{param?.label}:</strong> {param?.value}
+                        </li>
+                      )
+                    })}
                 </ul>
               </div>
               <p>Would you like to proceed with this export?</p>
