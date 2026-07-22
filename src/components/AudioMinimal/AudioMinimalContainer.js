@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import AudioMinimalPresentation from './AudioMinimalPresentation'
 import AudioMinimalData from './AudioMinimalData'
 
+// NB: This button DOESN'T trigger the Audiobar - primarily for use in Dashboard and on Kids site
 function AudioMinimalContainer({ audioObject, styling, withLabel }) {
   const { buttonRef, isPlaying, onClick, onKeyPress } = AudioMinimalData({
     audioObject,

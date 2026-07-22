@@ -6,6 +6,7 @@ import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
 import Tooltip from 'components/Tooltip'
 
+// NB: This button triggers the Audiobar - avoid use in Dashboard or on Kids site
 function AudioButton({
   audioArray,
   styling = 'btn-tertiary btn-md-icon bg-transparent mr-1',
