@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
@@ -10,9 +11,13 @@ import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 import { PUBLIC } from 'common/constants'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 import { CopyButton, ShareButton, QrcodeButton } from 'components/Actions'
+import AudioMinimal from 'components/AudioMinimal'
 
 function DictionaryDetailPrimary({ entry }) {
   const shortTitle = entry?.title.length < 20
+
+  const { pathname } = useLocation()
+  const isDashboard = pathname?.includes('/dashboard/')
 
   return (
     <div className="w-full" data-testid="DictionaryDetailPrimary">
@@ -99,11 +104,22 @@ function DictionaryDetailPrimary({ entry }) {
           <div>
             <DictionaryDetailLabel label="Audio" />
             <div className="space-y-3">
-              <AudioButton
-                audioArray={entry.relatedAudio}
-                styling="btn-primary btn-sm mr-4 min-w-0"
-                withLabels
-              />
+              {isDashboard ? (
+                entry.relatedAudio?.map((audio) => (
+                  <AudioMinimal.Container
+                    key={audio.id}
+                    audioObject={audio}
+                    styling="btn-primary btn-sm mr-4 min-w-0"
+                    withLabel
+                  />
+                ))
+              ) : (
+                <AudioButton
+                  audioArray={entry.relatedAudio}
+                  styling="btn-primary btn-sm mr-4 min-w-0"
+                  withLabels
+                />
+              )}
             </div>
           </div>
         )}

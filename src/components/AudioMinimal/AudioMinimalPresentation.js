@@ -24,7 +24,7 @@ function AudioMinimalPresentation({
       aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
       className={styling}
     >
-      {isPlaying === true ? getIcon('StopCircle') : getIcon('Audio')}
+      {isPlaying === true ? getIcon('Stop') : getIcon('Audio')}
       {withLabel && (
         <span>{audioObject?.speakers?.[0]?.name || 'Speaker'}</span>
       )}
