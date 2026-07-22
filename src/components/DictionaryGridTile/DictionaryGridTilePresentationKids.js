@@ -92,7 +92,7 @@ function DictionaryGridTilePresentationKids({ entry }) {
               </ol>
             )}
             {/* Entry Audio */}
-            <div>
+            <div className="space-x-1">
               {entry?.audio?.length > 0 &&
                 entry?.audio.map((audioObject) => (
                   <AudioMinimal.Container

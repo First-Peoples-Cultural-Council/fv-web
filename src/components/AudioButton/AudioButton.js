@@ -8,7 +8,7 @@ import Tooltip from 'components/Tooltip'
 
 function AudioButton({
   audioArray,
-  styling = 'btn-tertiary btn-md-icon bg-transparent',
+  styling = 'btn-tertiary btn-md-icon bg-transparent mr-1',
   withLabels = false,
 }) {
   const { setCurrentAudio } = useAudiobar()
