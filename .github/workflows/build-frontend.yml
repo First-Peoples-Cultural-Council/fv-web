@@ -26,7 +26,7 @@ jobs:
 
       # Installs the correct Node version for the project
       - name: Setup Node.js for use with actions
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
 
@@ -93,7 +93,7 @@ jobs:
           path: helm
 
       - name: Upload Helm charts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: helm
@@ -242,7 +242,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Download Helm charts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm
           path: ./
@@ -273,12 +273,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Download Helm charts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm
           path: ./
       - name: Download Helm values file
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm-values
           path: ./downloads
@@ -303,12 +303,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Download Helm charts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm
           path: ./
       - name: Download Helm values file
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm-values
           path: ./downloads
@@ -333,12 +333,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Download Helm charts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm
           path: ./
       - name: Download Helm values file
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm-values
           path: ./downloads
@@ -383,10 +383,10 @@ jobs:
     if: needs.set-environment.outputs.environment == 'dev'
     environment: dev
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Download Helm values file
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm-values
           path: ./downloads
