@@ -40,7 +40,7 @@ runs:
         fi
 
     - name: Setup Python and pip tools
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
         python-version: '3.x'
 
