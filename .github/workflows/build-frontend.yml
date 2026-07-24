@@ -22,7 +22,7 @@ jobs:
     steps:
       # Checkout the current working code base
       - name: Checkout working branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Installs the correct Node version for the project
       - name: Setup Node.js for use with actions
@@ -85,7 +85,7 @@ jobs:
           echo "fv_infra_ref=$INFRA_REF" >> "$GITHUB_OUTPUT"
 
       - name: Checkout fv-infra
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ steps.set-environment.outputs.fv_infra_ref }}
           repository: First-Peoples-Cultural-Council/fv-infra
@@ -106,7 +106,7 @@ jobs:
     if: github.ref == 'refs/heads/dev' && github.event_name != 'pull_request' && github.actor != 'dependabot[bot]'
     needs: [build, set-environment]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Monitor Tekton Build
         uses: ./.github/actions/monitor-build
         with:
@@ -130,7 +130,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && github.actor != 'dependabot[bot]'
     needs: [set-environment]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Monitor Tekton Build
         uses: ./.github/actions/monitor-build
         with:
@@ -154,7 +154,7 @@ jobs:
     needs: [set-environment]
     if: github.ref_type == 'tag' && startsWith(github.ref_name, 'r-') && github.event_name != 'pull_request' && github.actor != 'dependabot[bot]'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Monitor Tekton Build
         uses: ./.github/actions/monitor-build
         with:
@@ -178,9 +178,9 @@ jobs:
     if: needs.set-environment.outputs.environment == 'dev'
     environment: dev
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download Helm charts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm
           path: ./
@@ -209,9 +209,9 @@ jobs:
     if: needs.set-environment.outputs.environment == 'preprod'
     environment: preprod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download Helm charts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: helm
           path: ./
@@ -240,7 +240,7 @@ jobs:
     if: needs.set-environment.outputs.environment == 'prod'
     environment: prod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download Helm charts
         uses: actions/download-artifact@v4
         with:
@@ -271,7 +271,7 @@ jobs:
     if: needs.set-environment.outputs.environment == 'dev'
     environment: dev
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download Helm charts
         uses: actions/download-artifact@v4
         with:
@@ -301,7 +301,7 @@ jobs:
     if: needs.set-environment.outputs.environment == 'prod'
     environment: prod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download Helm charts
         uses: actions/download-artifact@v4
         with:
@@ -331,7 +331,7 @@ jobs:
     if: needs.set-environment.outputs.environment == 'preprod'
     environment: preprod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Download Helm charts
         uses: actions/download-artifact@v4
         with:
@@ -362,7 +362,7 @@ jobs:
     if: ((github.ref == 'refs/heads/dev') && (github.event_name != 'pull_request'))
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.FPCC_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.FPCC_AWS_SECRET_ACCESS_KEY }}

@@ -12,7 +12,7 @@ jobs:
     container: cypress/browsers:node-22.18.0-chrome-139.0.7258.138-1-ff-142.0-edge-139.0.3405.102-1
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Cypress
         run: npm i cypress@13.7.1
