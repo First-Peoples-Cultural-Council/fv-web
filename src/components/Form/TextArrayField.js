@@ -48,11 +48,13 @@ function TextArrayField({
                     onKeyDown={handleKeyDown}
                   />
 
-                  <Tooltip message={`Delete ${label.slice(0, -1)}`}>
+                  <Tooltip
+                    message={`Delete ${label.slice(0, -1).toLowerCase()}`}
+                  >
                     <button
-                      data-testid={`Delete ${label.slice(0, -1)}`}
+                      data-testid={`Delete ${label.slice(0, -1).toLowerCase()}`}
                       type="button"
-                      aria-label={`Delete ${label.slice(0, -1)}`}
+                      aria-label={`Delete ${label.slice(0, -1).toLowerCase()}`}
                       className="btn-tertiary btn-md-icon"
                       onClick={() => remove(index)}
                     >
