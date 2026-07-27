@@ -53,7 +53,7 @@ function TextArrayField({
 
                   <Tooltip message={`Delete ${updatedLabel}`}>
                     <button
-                      data-testid={`Delete ${updatedLabel}`}
+                      data-testid={`Delete ${label.slice(0, -1)}`}
                       type="button"
                       aria-label={`Delete ${updatedLabel}`}
                       className="btn-tertiary btn-md-icon"
