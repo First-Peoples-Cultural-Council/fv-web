@@ -22,6 +22,7 @@ function AudioUploadForm({ setSelectedAudio }) {
   const [uploadError, setUploadError] = useState(null)
   const errorRef = useRef(null)
   const queryClient = useQueryClient()
+  const [attemptedFileType, setAttemptedFileType] = useState('unknown')
 
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
@@ -70,7 +71,8 @@ function AudioUploadForm({ setSelectedAudio }) {
       setIsUploading(false)
       setUploadError(
         error?.response?.data?.message ||
-          'Audio upload failed. Please try again.',
+          `Audio upload failed. Your input was '${attemptedFileType}' type. 
+         Please try again. Supported file types are: .mp3, .wav, .ogg, .flac, .m4a, .aac.`,
       )
       setTimeout(() => {
         if (errorRef.current) {
@@ -84,6 +86,12 @@ function AudioUploadForm({ setSelectedAudio }) {
     if (!formData?.audioFile?.[0]) {
       return
     }
+    const inputFileType =
+      formData?.audioFile?.[0]?.name?.split('.').pop()?.toLowerCase() ||
+      'unknown'
+    const cleanInputFileType =
+      inputFileType !== 'unknown' ? `.${inputFileType}` : inputFileType
+    setAttemptedFileType(cleanInputFileType)
     setIsUploading(true)
     setUploadError(null)
     mutate(formData)
