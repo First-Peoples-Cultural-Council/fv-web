@@ -111,7 +111,7 @@ const _getReadableParam = ([param, value]) => {
             value: `${_value === DOMAIN_LANGUAGE ? 'Language Entries' : 'Translation'}`,
           }
     case GAMES:
-      return value
+      return _isValueTrue(value)
         ? { id: GAMES, label: 'Included in games' }
         : { id: GAMES, label: 'Not included in games' }
     case HAS_AUDIO:
@@ -135,7 +135,7 @@ const _getReadableParam = ([param, value]) => {
     case IMPORT_JOB_ID:
       return { id: IMPORT_JOB_ID, label: 'Import batch id', value: _value }
     case KIDS:
-      return value
+      return _isValueTrue(value)
         ? { id: KIDS, label: 'On kids site' }
         : { id: KIDS, label: 'Not on kids site' }
     case SORT:
@@ -161,8 +161,11 @@ const _getReadableParam = ([param, value]) => {
   }
 }
 
+const _isValueTrue = (value) =>
+  value === true || String(value).toLowerCase() === 'true'
+
 const _getHasLabel = (param, value, type) => {
-  if (value) {
+  if (_isValueTrue(value)) {
     return { id: param, label: `Has ${type}` }
   }
   return { id: param, label: `Has no ${type}` }
