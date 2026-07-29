@@ -72,7 +72,7 @@ function AudioUploadForm({ setSelectedAudio }) {
       setUploadError(
         error?.response?.data?.message ||
           `Audio upload failed. Your input was '${attemptedFileType}' type. 
-         Please try again. Supported file types are: .mp3, .wav, .ogg, .flac, .m4a, .aac.`,
+         Please try again. Supported file types are: .mp3 (preferred), .wav, .opus, .oga, .weba.`,
       )
       setTimeout(() => {
         if (errorRef.current) {
