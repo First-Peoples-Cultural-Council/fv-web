@@ -25,7 +25,7 @@ describe(
 
         let _translationsBtn = 0
         do {
-          cy.contains('Add word translations').click()
+          cy.contains('Add translation').click()
           _translationsBtn += 1
           cy.get(`[name="translations.${_translationsBtn}.text"]`).type(
             'an individual who fought for a warrior challenging a ruling of the Klingon High Council',
@@ -87,7 +87,7 @@ describe(
       cy.contains('Create a word').click()
       cy.contains('Finish').click()
       cy.get('#title').type(name)
-      cy.middlestuff('Add word translation')
+      cy.middlestuff('Add translation')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()

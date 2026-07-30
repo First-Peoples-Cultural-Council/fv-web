@@ -92,7 +92,7 @@ describe(
 
     it('check recently created', () => {
       cy.contains(_reportTypes[0]).click()
-      cy.checkHeaderCSS([_reportTypes[0], 500, 500, 500, 500, 500, 500])
+      cy.checkHeaderCSS([_reportTypes[0], 700, 500, 500, 500, 500, 500])
       cy.go('back')
 
       cy.contains(_reportTypes[1]).click()

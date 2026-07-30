@@ -51,5 +51,13 @@ describe(
           cy.contains(text)
         })
     })
+
+    it('Words - Loading more', () => {
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.contains('Dictionary').click()
+      cy.contains('Words').click()
+      cy.get('table tbody tr').should('have.length.greaterThan', 1)
+      cy.scrollTo('bottom')
+    })
   },
 ) // end of describe

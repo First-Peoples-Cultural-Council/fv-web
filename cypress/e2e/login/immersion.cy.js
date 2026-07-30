@@ -34,17 +34,18 @@ describe(
           Cypress.env('CYPRESS_FV_PASSWORD'),
         )
       })
+      cy.contains('Explore Languages').click()
     })
 
     it('Check button exists', () => {
       cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Immersion Mode').should('exist')
     })
 
     it('enable it, check, then disable it', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
 
       cy.contains('Immersion Mode').click()
@@ -59,12 +60,13 @@ describe(
     })
 
     it('check dashboard', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('DIALECT')}`)
+      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
       cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
       cy.contains('Dashboard').click()
-      cy.get('[href="/lilwat/dashboard/edit"]').click()
+      cy.contains(/^Edit$/).click()
 
-      cy.contains('Edit your Immersion Labels').click()
+      cy.contains('Edit immersion labels').click()
     })
   },
 ) // end of describe

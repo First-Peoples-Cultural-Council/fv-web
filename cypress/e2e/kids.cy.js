@@ -32,6 +32,7 @@ describe(
       cy.contains('Kids').click()
       cy.contains('Alphabet').click()
       cy.contains(' 404').should('not.exist')
+      cy.get('[data-testid="AlphabetPresentation"] a').first().click()
       cy.contains('See all words').click()
       cy.contains(' 404').should('not.exist')
       cy.get('a[data-testid^="SearchFilter"]').each((_letter) => {

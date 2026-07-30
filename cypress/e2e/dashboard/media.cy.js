@@ -210,5 +210,35 @@ describe(
 
       cy.contains('Save changes').click()
     })
+
+    it('test audio playback in drawer', () => {
+      cy._login()
+      cy.contains('Explore Languages').click()
+      cy.title().should('eq', 'FirstVoices')
+      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.contains('Dashboard').should('be.visible')
+      cy.contains('Dashboard').click()
+      cy.contains('Edit').click()
+      cy.contains('Edit words').click()
+
+      cy.contains('Advanced search').click()
+      cy.contains('Audio').click()
+      cy.contains('Has audio').click()
+
+      cy.get('[data-testid="EntryRow"]:first > td:first-child').click() // FW-5206
+      cy.get('[data-testid^="audio-btn-"]').click()
+
+      cy.get('[data-testid="close-drawer-btn"]').click()
+
+      cy.contains('Edit').click()
+      cy.contains('Edit phrases').click()
+
+      cy.contains('Advanced search').click()
+      cy.contains('Audio').click()
+      cy.contains('Has audio').click()
+
+      cy.get('[data-testid="EntryRow"]:first > td:first-child').click() // FW-5206
+      cy.get('[data-testid^="audio-btn-"]').click()
+    }) //eot test audio playback
   },
 )
