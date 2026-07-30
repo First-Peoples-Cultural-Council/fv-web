@@ -6,7 +6,7 @@ function Tooltip({ children, hide, message, position = 'left-1/2 bottom-9' }) {
     <div className="inline-flex items-center justify-center">
       <div className="group relative flex max-w-max flex-col items-center justify-center">
         <div
-          className={`absolute z-40 ${position} ml-auto mr-auto min-w-max -translate-x-1/2 scale-0 transform rounded-lg px-3 py-2 text-xs font-medium transition-all duration-300 group-hover:scale-100`}
+          className={`absolute z-40 ${position} ml-auto mr-auto min-w-max -translate-x-1/2 scale-0 transform rounded-lg px-3 py-2 text-xs font-medium transition-all duration-300 group-hover:scale-100 pointer-events-none`}
         >
           {!hide && (
             <div className="flex max-w-32 flex-col items-center">
