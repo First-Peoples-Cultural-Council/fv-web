@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router'
 
 // FPCC
 import DashboardMediaAudioPresentation from 'components/DashboardMediaAudio/DashboardMediaAudioPresentation'
-import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
+import SearchSpeakersFilter from 'components/SearchSpeakersFilter'
 import useSearchBoxNavigation from 'common/hooks/useSearchBoxNavigation'
 import useSearchLoader from 'common/dataHooks/useSearchLoader'
 import SelectorSearchbox from 'components/SelectorSearchbox'

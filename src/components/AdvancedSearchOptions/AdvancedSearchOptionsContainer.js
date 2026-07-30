@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import SearchSpeakersFilter from 'components/SearchSpeakersFilter'
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
-import SearchSpeakersFilter from 'components/AdvancedSearchOptions/SearchSpeakersFilter'
 import ExportButton from 'components/AdvancedSearchOptions/ExportButton'
 import {
   HAS_AUDIO,
