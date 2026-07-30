@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 import AutocompleteMultiSelect from 'components/AutocompleteMultiSelect'
-
 import { objectsToIdsAdaptor } from 'common/dataAdaptors/misc'
 
 function SearchMultiSelectFilter({ options, param, placeholder }) {
