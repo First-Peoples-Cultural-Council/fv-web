@@ -72,7 +72,7 @@ function DashboardEntriesPresentation({
                 className="text-sm underline"
                 onClick={() => removeFilters()}
               >
-                Remove Filters
+                Remove filters
               </button>
             )}
             <SearchTypeSelector.Container

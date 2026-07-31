@@ -1,0 +1,3 @@
+import SearchSpeakersFilter from 'components/SearchSpeakersFilter/SearchSpeakersFilter'
+
+export default SearchSpeakersFilter

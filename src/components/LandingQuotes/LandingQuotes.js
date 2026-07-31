@@ -16,7 +16,7 @@ function LandingQuotes() {
       id: '002',
       quote:
         'FirstVoices helps us to support the legacy of those that paved the way for our language. We are able to share what they left us with so many more learners and teachers.',
-      quoteBy: '- c̕išaaʔatḥ Language Team Member',
+      quoteBy: '- c̓išaaʔatḥ Language Team Member',
     },
     {
       id: '003',
