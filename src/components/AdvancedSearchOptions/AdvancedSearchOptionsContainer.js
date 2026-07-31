@@ -112,9 +112,13 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
             </div>
           </div>
           <div className="flex justify-between mt-2">
-            <div className="w-full flex space-x-1">
-              <SearchSpeakersFilter />
-              <SearchCategoriesFilter />
+            <div className="w-full grid grid-cols-2">
+              <div className="col-span-1">
+                <SearchSpeakersFilter />
+              </div>
+              <div className="col-span-1">
+                <SearchCategoriesFilter />
+              </div>
             </div>
             <ExportButton infiniteQueryResponse={infiniteQueryResponse} />
           </div>

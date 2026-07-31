@@ -82,7 +82,7 @@ function SearchMultiSelectFilter({ options, param, placeholder }) {
         />
       </div>
       {selectedOptions?.length > 0 && (
-        <ul className="flex flex-wrap items-center space-x-2 ml-1">
+        <ul className="flex flex-wrap items-center space-x-1 space-y-1 ml-1">
           {selectedOptions?.map((option) => (
             <li key={option?.id}>
               <button
