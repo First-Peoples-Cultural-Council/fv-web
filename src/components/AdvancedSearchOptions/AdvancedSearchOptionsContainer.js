@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import SearchCategoriesFilter from 'components/SearchCategoriesFilter'
 import SearchSpeakersFilter from 'components/SearchSpeakersFilter'
 import SingleSelect from 'components/AdvancedSearchOptions/SingleSelect'
 import ExportButton from 'components/AdvancedSearchOptions/ExportButton'
@@ -110,9 +111,10 @@ function AdvancedSearchOptionsContainer({ infiniteQueryResponse }) {
               />
             </div>
           </div>
-          <div className="flex items-center justify-between mt-2">
-            <div className="flex items-baseline space-x-8">
+          <div className="flex justify-between mt-2">
+            <div className="w-full flex space-x-1">
               <SearchSpeakersFilter />
+              <SearchCategoriesFilter />
             </div>
             <ExportButton infiniteQueryResponse={infiniteQueryResponse} />
           </div>
