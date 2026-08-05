@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Key from 'components/Game/Wordsy/Keyboard/Key'
+import { CHAR_CORRECT, CHAR_ABSENT, CHAR_PRESENT } from 'common/constants'
 
 function Keyboard({
   orthography,
@@ -13,17 +14,17 @@ function Keyboard({
   guesses,
   orthographyPattern,
 }) {
-  const getCharStatuses = (solution, guesses, orthographyPattern) => {
+  const getCharStatuses = () => {
     const charObj = {}
     const solutionChars = solution?.split(orthographyPattern).filter((i) => i)
     guesses?.forEach((word) => {
       word.forEach((letter, i) => {
         if (!solutionChars.includes(letter)) {
-          charObj[letter] = 'absent'
+          charObj[letter] = CHAR_ABSENT
         } else if (letter === solutionChars[i]) {
-          charObj[letter] = 'correct'
-        } else if (charObj[letter] !== 'correct') {
-          charObj[letter] = 'present'
+          charObj[letter] = CHAR_CORRECT
+        } else if (charObj[letter] !== CHAR_CORRECT) {
+          charObj[letter] = CHAR_PRESENT
         }
       })
     })
@@ -31,7 +32,7 @@ function Keyboard({
     return charObj
   }
 
-  const charStatuses = getCharStatuses(solution, guesses, orthographyPattern)
+  const charStatuses = getCharStatuses()
 
   useEffect(() => {
     const listener = (e) => {

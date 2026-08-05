@@ -1,14 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// FPCC
+import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
+
 function Cell({ status, value }) {
   function getStatusStyling(status, value) {
     switch (status) {
-      case 'absent':
+      case CHAR_ABSENT:
         return 'bg-charcoal-300 border-charcoal-300 text-white'
-      case 'correct':
+      case CHAR_CORRECT:
         return 'bg-wordsy-correct border-wordsy-correct text-white'
-      case 'present':
+      case CHAR_PRESENT:
         return 'bg-wordsy-present border-wordsy-present text-white '
       default:
         return `bg-white ${value ? 'border-black' : 'border-charcoal-100'}`

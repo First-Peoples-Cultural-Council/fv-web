@@ -1,14 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// FPCC
+import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
+
 function Key({ status, value, onClick }) {
   const getKeyColors = () => {
     switch (status) {
-      case 'absent':
+      case CHAR_ABSENT:
         return 'bg-charcoal-300 text-white'
-      case 'correct':
+      case CHAR_CORRECT:
         return 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
-      case 'present':
+      case CHAR_PRESENT:
         return 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
       default:
         return 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'

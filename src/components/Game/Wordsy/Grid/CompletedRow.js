@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
 import Cell from 'components/Game/Wordsy/Grid/Cell'
 
 function getGuessStatuses(solution, guess, orthographyPattern) {
@@ -16,7 +17,7 @@ function getGuessStatuses(solution, guess, orthographyPattern) {
   // handle all correct cases first
   splitGuess.forEach((letter, i) => {
     if (letter === splitSolution[i]) {
-      statuses[i] = 'correct'
+      statuses[i] = CHAR_CORRECT
       solutionCharsTaken[i] = true
     }
   })
@@ -25,21 +26,21 @@ function getGuessStatuses(solution, guess, orthographyPattern) {
     if (statuses[i]) return
 
     if (!splitSolution.includes(letter)) {
-      // handles the absent case
-      statuses[i] = 'absent'
+      // handles the absent status
+      statuses[i] = CHAR_ABSENT
       return
     }
 
-    // handles the present's case
+    // handles the present status
     const indexOfPresentChar = splitSolution.findIndex(
       (x, index) => x === letter && !solutionCharsTaken[index],
     )
 
     if (indexOfPresentChar > -1) {
-      statuses[i] = 'present'
+      statuses[i] = CHAR_PRESENT
       solutionCharsTaken[indexOfPresentChar] = true
     } else {
-      statuses[i] = 'absent'
+      statuses[i] = CHAR_ABSENT
     }
   })
 
@@ -52,7 +53,7 @@ function CompletedRow({ solution, guess, orthographyPattern }) {
     <div className="flex justify-center mb-1">
       {guess.map((letter, index) => (
         // Non-unique cells for non-unique guesses, using index in the key
-        // eslint-disable-next-line react/no-array-index-key
+
         <Cell key={`guess-${index}`} value={letter} status={statuses[index]} /> // NOSONAR
       ))}
     </div>

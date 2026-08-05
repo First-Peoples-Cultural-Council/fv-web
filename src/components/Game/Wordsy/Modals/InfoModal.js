@@ -3,12 +3,13 @@ import { useParams, Link } from 'react-router'
 
 // FPCC
 import Cell from 'components/Game/Wordsy/Grid/Cell'
+import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
 
 function InfoModal() {
   const { sitename } = useParams()
 
   return (
-    <div className="bg-white rounded-lg p-6 space-y-6 overflow-hidden shadow-xl transform transition-all sm:align-middle md:max-w-md md:w-full">
+    <div className="bg-white rounded-lg p-6 space-y-6 overflow-hidden shadow-xl transform transition-all sm:align-middle max-w-md w-full">
       {/* Rules */}
       <div className="space-y-2">
         <h3 className="text-xl text-charcoal-900">What are the rules?</h3>
@@ -24,11 +25,11 @@ function InfoModal() {
       {/* Example 1 */}
       <div className="space-y-2">
         <div className="flex justify-center">
-          <Cell value="kw" status="absent" />
-          <Cell value="é" status="correct" />
-          <Cell value="kw" status="absent" />
-          <Cell value="a" status="absent" />
-          <Cell value="7" status="absent" />
+          <Cell value="kw" status={CHAR_ABSENT} />
+          <Cell value="é" status={CHAR_CORRECT} />
+          <Cell value="kw" status={CHAR_ABSENT} />
+          <Cell value="a" status={CHAR_ABSENT} />
+          <Cell value="7" status={CHAR_ABSENT} />
         </div>
         <p className="text-sm text-charcoal-500">
           The letter <span className="font-bold">é</span> is in today&apos;s
@@ -46,11 +47,11 @@ function InfoModal() {
       {/* Example 2 */}
       <div className="space-y-2">
         <div className="flex justify-center">
-          <Cell value="k̓" status="present" />
-          <Cell value="ú" status="absent" />
-          <Cell value="n" status="absent" />
-          <Cell value="a" status="absent" />
-          <Cell value="7" status="absent" />
+          <Cell value="k̓" status={CHAR_PRESENT} />
+          <Cell value="ú" status={CHAR_ABSENT} />
+          <Cell value="n" status={CHAR_ABSENT} />
+          <Cell value="a" status={CHAR_ABSENT} />
+          <Cell value="7" status={CHAR_ABSENT} />
         </div>
         <p className="text-sm text-charcoal-500">
           The letter <span className="font-bold">k̓</span> is in today&apos;s
