@@ -134,7 +134,9 @@ function ExportButton({ infiniteQueryResponse }) {
                   {readableParams?.length > 0 &&
                     readableParams?.map((param) => {
                       if (!param?.label) return null
-                      return param?.label === 'Speakers' || !param?.value ? (
+                      return param?.label === 'Speakers' ||
+                        param?.label === 'Category' ||
+                        !param?.value ? (
                         <li key={param?.id}>
                           <strong>{param?.label}</strong>
                         </li>
