@@ -1,24 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Key({ children, status, value, onClick, width = 40 }) {
-  const classes = `flex items-center justify-center rounded mx-0.5 text-base cursor-pointer select-none 
-  ${
-    !status
-      ? 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'
-      : ''
+function Key({ status, value, onClick }) {
+  const getKeyColors = () => {
+    switch (status) {
+      case 'absent':
+        return 'bg-charcoal-300 text-white'
+      case 'correct':
+        return 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
+      case 'present':
+        return 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
+      default:
+        return 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'
+    }
   }
-  ${status === 'absent' ? 'bg-charcoal-300 text-white' : ''}
-  ${
-    status === 'correct'
-      ? 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
-      : ''
-  }
-  ${
-    status === 'present'
-      ? 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
-      : ''
-  }`
+
+  const classes = getKeyColors()
 
   const handleClick = (event) => {
     onClick(value)
@@ -27,12 +24,12 @@ function Key({ children, status, value, onClick, width = 40 }) {
 
   return (
     <button
+      data-testid={`${value}-char-btn`}
       type="button"
-      style={{ width: `${width}px`, height: '58px' }}
-      className={classes}
+      className={`flex shrink-0 h-12 w-8 text-base items-center justify-center rounded-sm cursor-pointer select-none ${classes}`}
       onClick={handleClick}
     >
-      {children || value}
+      {value}
     </button>
   )
 }
@@ -40,7 +37,6 @@ function Key({ children, status, value, onClick, width = 40 }) {
 const { any } = PropTypes
 
 Key.propTypes = {
-  children: any,
   status: any,
   value: any,
   onClick: any,
