@@ -4,10 +4,11 @@ import { Link, useParams } from 'react-router'
 
 // FPCC
 import CountdownTimer from 'components/Game/Wordsy/Utils/CountdownTimer'
+import { GAME_WON } from 'common/constants'
 
 function EndGameModal({ status, solution, text }) {
   const { sitename } = useParams()
-  const statusColor = status === 'win' ? 'wordsy-correct' : 'wordsy-present'
+  const statusColor = status === GAME_WON ? 'wordsy-correct' : 'wordsy-present'
 
   return (
     <div className="bg-white space-y-10 text-blumine-800 rounded-lg p-6 lg:p-20 overflow-hidden shadow-xl transform transition-all lg:w-[33vw]">

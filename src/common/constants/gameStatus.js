@@ -1,8 +1,8 @@
 // WORDSY
 
 // Game Status
-export const GAME_WIN = 'win'
-export const GAME_LOSE = 'lose'
+export const GAME_WON = 'win'
+export const GAME_LOST = 'lose'
 export const GAME_WARNING = 'warning'
 
 // Character Status
