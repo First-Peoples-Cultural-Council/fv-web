@@ -5,20 +5,7 @@ import PropTypes from 'prop-types'
 import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
 
 function Key({ status, value, onClick }) {
-  const getKeyColors = () => {
-    switch (status) {
-      case CHAR_ABSENT:
-        return 'bg-charcoal-300 text-white'
-      case CHAR_CORRECT:
-        return 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
-      case CHAR_PRESENT:
-        return 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
-      default:
-        return 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'
-    }
-  }
-
-  const classes = getKeyColors()
+  const statusStyling = getStatusStyling(status)
 
   const handleClick = (event) => {
     onClick(value)
@@ -29,7 +16,7 @@ function Key({ status, value, onClick }) {
     <button
       data-testid={`${value}-char-btn`}
       type="button"
-      className={`flex shrink-0 h-12 w-8 text-base items-center justify-center rounded-sm cursor-pointer select-none ${classes}`}
+      className={`flex shrink-0 h-12 w-8 text-base items-center justify-center rounded-sm cursor-pointer select-none ${statusStyling}`}
       onClick={handleClick}
     >
       {value}
@@ -37,13 +24,25 @@ function Key({ status, value, onClick }) {
   )
 }
 
-const { any } = PropTypes
+function getStatusStyling(status) {
+  switch (status) {
+    case CHAR_ABSENT:
+      return 'bg-charcoal-300 text-white'
+    case CHAR_CORRECT:
+      return 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
+    case CHAR_PRESENT:
+      return 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
+    default:
+      return 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'
+  }
+}
+
+const { func, string } = PropTypes
 
 Key.propTypes = {
-  status: any,
-  value: any,
-  onClick: any,
-  width: any,
+  status: string,
+  value: string,
+  onClick: func,
 }
 
 export default Key
