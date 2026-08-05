@@ -7,7 +7,7 @@ import Cell from 'components/Game/Wordsy/Grid/Cell'
 
 function getGuessStatuses(solution, guess, orthographyPattern) {
   // Utility function to get status for each guess
-  const splitSolution = solution.split(orthographyPattern).filter((i) => i)
+  const splitSolution = solution.split(orthographyPattern).filter(Boolean)
   const splitGuess = guess
 
   const solutionCharsTaken = Array(splitSolution.length).fill(false)

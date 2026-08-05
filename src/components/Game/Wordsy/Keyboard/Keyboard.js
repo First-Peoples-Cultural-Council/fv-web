@@ -16,7 +16,7 @@ function Keyboard({
 }) {
   const getCharStatuses = () => {
     const charObj = {}
-    const solutionChars = solution?.split(orthographyPattern).filter((i) => i)
+    const solutionChars = solution?.split(orthographyPattern).filter(Boolean)
     guesses?.forEach((word) => {
       word.forEach((letter, i) => {
         if (!solutionChars.includes(letter)) {
