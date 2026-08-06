@@ -1,3 +1,4 @@
+export * from './gameStatus'
 export * from './jobs'
 export * from './join'
 export * from './limits'

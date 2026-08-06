@@ -1,24 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Key({ children, status, value, onClick, width = 40 }) {
-  const classes = `flex items-center justify-center rounded mx-0.5 text-base cursor-pointer select-none 
-  ${
-    !status
-      ? 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'
-      : ''
-  }
-  ${status === 'absent' ? 'bg-charcoal-300 text-white' : ''}
-  ${
-    status === 'correct'
-      ? 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
-      : ''
-  }
-  ${
-    status === 'present'
-      ? 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
-      : ''
-  }`
+// FPCC
+import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
+
+function Key({ status, value, onClick }) {
+  const statusStyling = getStatusStyling(status)
 
   const handleClick = (event) => {
     onClick(value)
@@ -27,24 +14,35 @@ function Key({ children, status, value, onClick, width = 40 }) {
 
   return (
     <button
+      data-testid={`${value}-char-btn`}
       type="button"
-      style={{ width: `${width}px`, height: '58px' }}
-      className={classes}
+      className={`flex shrink-0 h-12 w-8 text-base items-center justify-center rounded-sm cursor-pointer select-none ${statusStyling}`}
       onClick={handleClick}
     >
-      {children || value}
+      {value}
     </button>
   )
 }
 
-const { any } = PropTypes
+function getStatusStyling(status) {
+  switch (status) {
+    case CHAR_ABSENT:
+      return 'bg-charcoal-300 text-white'
+    case CHAR_CORRECT:
+      return 'bg-wordsy-correct hover:opacity-80 active:opacity-100 text-white'
+    case CHAR_PRESENT:
+      return 'bg-wordsy-present hover:opacity-80 active:opacity-100 text-white'
+    default:
+      return 'bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300'
+  }
+}
+
+const { func, string } = PropTypes
 
 Key.propTypes = {
-  children: any,
-  status: any,
-  value: any,
-  onClick: any,
-  width: any,
+  status: string,
+  value: string,
+  onClick: func,
 }
 
 export default Key

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // FPCC
 import { useWordsySearch } from 'common/dataHooks/useGamesSearch'
 import { isWordInWordList } from 'components/Game/Wordsy/Utils/helpers'
+import { GAME_WON, GAME_LOST, GAME_WARNING } from 'common/constants'
 
 const MAX_TRIES = 7
 const WORD_LENGTH = 5
@@ -32,7 +33,7 @@ function WordsyData({ kids }) {
 
   const openWarningModal = (text) => {
     setModalData({
-      status: 'warning',
+      status: GAME_WARNING,
       text,
     })
     setIsModalOpen(true)
@@ -51,14 +52,14 @@ function WordsyData({ kids }) {
     if (currentGuess.join('') === queryResponse?.data?.solution) {
       setIsGameOver(true)
       setModalData({
-        status: 'win',
+        status: GAME_WON,
         text: 'Well done!',
       })
       setIsModalOpen(true)
     } else if (guesses.length === MAX_TRIES - 1) {
       setIsGameOver(true)
       setModalData({
-        status: 'lost',
+        status: GAME_LOST,
         text: 'Maybe next time!',
       })
       setIsModalOpen(true)
