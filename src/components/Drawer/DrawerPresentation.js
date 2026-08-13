@@ -20,12 +20,12 @@ function DrawerPresentation({
         className="fixed inset-0 overflow-hidden"
       >
         <div className="absolute inset-0 overflow-hidden">
-          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
+          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full ">
             <DialogPanel
               transition
               className={`pointer-events-auto w-screen ${maxWidth} transform transition duration-100 sm:duration-200 ease-in-out data-closed:translate-x-full`}
             >
-              <div className="h-full flex flex-col py-3 bg-white rounded-l-lg border border-charcoal-900 my-4 shadow-xl overflow-y-scroll touch-auto">
+              <div className="h-full flex flex-col py-3 bg-white rounded-l-lg border border-charcoal-900 ml-4 my-4 shadow-xl overflow-y-scroll touch-auto">
                 <div className="flex justify-end items-center mr-2 space-x-2">
                   {fullScreenPath && (
                     <Link

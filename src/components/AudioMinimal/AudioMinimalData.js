@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Howl, Howler } from 'howler'
 
@@ -15,6 +15,29 @@ function AudioMinimalData({ audioObject }) {
   })
   const [sound, setSound] = useState({ id: '', howl: null })
 
+  const newHowl = new Howl({
+    src: [src],
+    html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
+    onplay() {
+      setIsPlaying(true)
+    },
+    onend() {
+      setIsPlaying(false)
+    },
+    onstop() {
+      setIsPlaying(false)
+    },
+  })
+
+  useEffect(() => {
+    const currentHowl = sound?.howl
+    return () => {
+      if (currentHowl) {
+        currentHowl?.unload()
+      }
+    }
+  }, [sound?.howl])
+
   const onAudioClick = () => {
     Howler.stop()
     if (isPlaying) {
@@ -24,19 +47,6 @@ function AudioMinimalData({ audioObject }) {
     if (sound?.howl) {
       soundToPlay = sound.howl
     } else {
-      const newHowl = new Howl({
-        src: [src],
-        html5: true, // Force to HTML5 so that the audio can stream in (best for large files).
-        onplay() {
-          setIsPlaying(true)
-        },
-        onend() {
-          setIsPlaying(false)
-        },
-        onstop() {
-          setIsPlaying(false)
-        },
-      })
       soundToPlay = newHowl
       setSound({ id: audioObject?.id, howl: newHowl })
     }

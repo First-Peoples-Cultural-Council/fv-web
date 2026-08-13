@@ -87,7 +87,7 @@ function ContactUsPresentation({
       className="py-3 md:py-6 bg-white"
       data-testid="ContactUsPresentationWidget"
     >
-      <div className="mx-5 lg:mx-10 mb-1 md:mb-4">
+      <div className="mx-2 md:mx-5 lg:mx-10 mb-1 md:mb-4">
         <SectionTitle.Presentation
           title={title || `Contact ${siteTitle} Team`}
         />

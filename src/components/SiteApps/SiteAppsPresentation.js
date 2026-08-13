@@ -22,7 +22,7 @@ function SiteAppsPresentation() {
     >
       <SiteDocHead titleArray={['Mobile App']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="MOBILE APP" />
+        <SectionTitle.Presentation title="Mobile App" />
         <div className="max-w-4xl mx-auto space-y-4 md:space-y-6 lg:space-y-10 mt-4 sm:mt-6 lg:mt-10">
           <div className="bg-white space-y-4">
             <div className="h-full w-full flex items-center justify-center p-5">
@@ -62,8 +62,9 @@ function SiteAppsPresentation() {
                   The wealth of language data uploaded onto the {site?.title}{' '}
                   FirstVoices language site can now also be accessed through our
                   mobile app. The app pulls dictionary entries, songs, and
-                  stories directly from FirstVoices and always has the latest
-                  content. The app can be installed directly from the web.
+                  stories straight from FirstVoices and can be installed
+                  directly from the web. Audio and images can be downloaded to
+                  your device, and the dictionary can be browsed offline.
                 </p>
               </div>
               <div className="mx-auto mt-10 max-w-2xl sm:mt-14 lg:mt-18 lg:max-w-4xl">

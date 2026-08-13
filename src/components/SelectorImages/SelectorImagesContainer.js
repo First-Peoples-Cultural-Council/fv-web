@@ -54,7 +54,6 @@ function SelectorImagesContainer({
         {!hideSharedMedia && (
           <div className="my-4 mx-auto">
             <RadioButtonGroup.Presentation
-              accentColor="blumine-800"
               onChange={setSearchSharedMedia}
               options={sharedMediaOptions}
               value={searchSharedMedia}

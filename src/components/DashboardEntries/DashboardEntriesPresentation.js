@@ -72,7 +72,7 @@ function DashboardEntriesPresentation({
                 className="text-sm underline"
                 onClick={() => removeFilters()}
               >
-                Remove Filters
+                Remove filters
               </button>
             )}
             <SearchTypeSelector.Container
@@ -84,8 +84,8 @@ function DashboardEntriesPresentation({
       </section>
       {showAdvancedSearch && (
         <section className="w-full">
-          <AdvancedSearchOptions.Presentation
-            items={searchInfiniteQueryResponse?.data}
+          <AdvancedSearchOptions.Container
+            infiniteQueryResponse={searchInfiniteQueryResponse}
           />
         </section>
       )}

@@ -143,10 +143,7 @@ function DictionaryCrudPresentation({
             </div>
             <div className="col-span-12">
               <Form.TextArrayField
-                label={`${getFriendlyType({
-                  type,
-                  titleCase: true,
-                })} translations`}
+                label="Translations"
                 nameId="translations"
                 register={register}
                 control={control}
@@ -241,39 +238,36 @@ function DictionaryCrudPresentation({
                 maxItems={MAX_DOCUMENTS}
               />
             </div>
-            {type === TYPE_WORD && (
-              <>
-                <div className="col-span-6">
-                  <Form.Autocomplete
-                    label="Part of speech"
-                    nameId="partOfSpeech"
-                    control={control}
-                    options={partsOfSpeech}
-                    errors={errors}
-                  />
-                </div>
-                <div className="col-span-12">
-                  <Form.TextArrayField
-                    label="Pronunciations"
-                    nameId="pronunciations"
-                    register={register}
-                    control={control}
-                    errors={errors}
-                    maxItems={MAX_PRONUNCIATIONS}
-                  />
-                </div>
-                <div className="col-span-12">
-                  <Form.TextArrayField
-                    label="Alternate spellings"
-                    nameId="alternateSpellings"
-                    register={register}
-                    control={control}
-                    errors={errors}
-                    maxItems={MAX_SPELLINGS}
-                  />
-                </div>
-              </>
-            )}
+            <div className="col-span-6">
+              <Form.Autocomplete
+                label="Part of speech"
+                nameId="partOfSpeech"
+                control={control}
+                options={partsOfSpeech}
+                errors={errors}
+                helpText="NB: Most commonly applied to words and not phrases."
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextArrayField
+                label="Pronunciations"
+                nameId="pronunciations"
+                register={register}
+                control={control}
+                errors={errors}
+                maxItems={MAX_PRONUNCIATIONS}
+              />
+            </div>
+            <div className="col-span-12">
+              <Form.TextArrayField
+                label="Alternate spellings"
+                nameId="alternateSpellings"
+                register={register}
+                control={control}
+                errors={errors}
+                maxItems={MAX_SPELLINGS}
+              />
+            </div>
           </Fragment>
         )
       case 2:
@@ -287,6 +281,23 @@ function DictionaryCrudPresentation({
               />
             </div>
             <Form.Audience control={control} errors={errors} />
+            {!isCreate && (
+              <div className="col-span-12">
+                <div className="rounded-lg">
+                  <Form.RadioButtons
+                    label="Type"
+                    control={control}
+                    errors={errors}
+                    nameId="type"
+                    options={[
+                      { label: 'Word', value: TYPE_WORD },
+                      { label: 'Phrase', value: TYPE_PHRASE },
+                    ]}
+                    helpText="⚠️ Changing this will impact where your entry appears on your site."
+                  />
+                </div>
+              </div>
+            )}
           </Fragment>
         )
       default:

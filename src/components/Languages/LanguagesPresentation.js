@@ -24,7 +24,7 @@ function LanguagesPresentation({ languagesQueryResponse, user }) {
         {user?.sites?.length > 0 && (
           <div className="pb-8">
             <div className="pb-8 items-center">
-              <SectionTitle.Presentation title="YOUR LANGUAGES" />
+              <SectionTitle.Presentation title="Your Languages" />
             </div>
             <div className="flex flex-wrap justify-start pl-10">
               {user?.sites?.map((site) => (
@@ -38,7 +38,7 @@ function LanguagesPresentation({ languagesQueryResponse, user }) {
 
         <div>
           <div className="pb-8 space-y-8 items-center">
-            <SectionTitle.Presentation title="EXPLORE LANGUAGES" />
+            <SectionTitle.Presentation title="Explore Languages" />
             <SearchLanguagesForm.Container />
           </div>
           <LoadOrError queryResponse={languagesQueryResponse}>

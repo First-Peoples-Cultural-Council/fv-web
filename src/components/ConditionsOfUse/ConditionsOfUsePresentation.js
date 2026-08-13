@@ -14,7 +14,7 @@ function ConditionsOfUsePresentation() {
     >
       <DocHead titleArray={['Conditions of Use']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="CONDITIONS OF USE" />
+        <SectionTitle.Presentation title="Conditions of Use" />
         <div className="max-w-4xl mx-auto text-charcoal-900 space-y-4 py-8">
           <p className={paraStyle}>
             By accessing this site, or by downloading the language data, the

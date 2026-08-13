@@ -24,7 +24,7 @@ function ByAlphabetPresentation({
       data-testid="ByAlphabetPresentation"
       className="grid grid-cols-11 lg:p-2"
     >
-      <div className="col-span-11 lg:col-span-3 mt-2 lg:mt-5 print:hidden">
+      <div className="col-span-11 lg:col-span-3 mt-2 lg:mt-0 print:hidden">
         <ByAlphabetFilters
           currentCharacter={currentCharacter}
           sitename={sitename}
@@ -38,14 +38,14 @@ function ByAlphabetPresentation({
       </div>
 
       <div className="col-span-11 lg:col-span-8 border-l-2 border-charcoal-200 lg:pl-3 xl:pl-6">
-        <div className="block py-4">
-          <div className="flex items-center border-b border-charcoal-100 px-3 pb-5 print:hidden">
+        <div className="block">
+          <div className="flex items-center justify-center lg:justify-start border-b border-charcoal-100 px-2 py-3 lg:px-3 lg:py-5 print:hidden">
             <SearchTypeSelector.Container
               selectedSearchType={searchType}
               setSearchType={setSearchType}
             />
           </div>
-          <div className="hidden md:block p-2 print:block">
+          <div className="hidden md:block px-2 print:block">
             <DictionaryList.Presentation
               infiniteQueryResponse={searchInfiniteQueryResponse}
               noResultsMessage={

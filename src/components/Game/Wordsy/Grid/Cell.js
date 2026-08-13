@@ -1,32 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function getClassList(status, value) {
-  let baseClasses =
-    'w-10 h-10 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded-sm'
-  if (!status) {
-    baseClasses += ' bg-white border-charcoal-100'
-  }
-  if (value && !status) {
-    baseClasses += ' border-black'
-  }
-  if (status === 'absent') {
-    baseClasses += ' bg-charcoal-300 text-white border-charcoal-300'
-  }
-  if (status === 'correct') {
-    baseClasses += ' bg-wordsy-correct text-white border-wordsy-correct'
-  }
-  if (status === 'present') {
-    baseClasses += ' bg-wordsy-present text-white border-wordsy-present'
-  }
-  if (value) {
-    baseClasses += ' cell-animation'
-  }
-  return baseClasses
+// FPCC
+import { CHAR_ABSENT, CHAR_CORRECT, CHAR_PRESENT } from 'common/constants'
+function Cell({ status, value }) {
+  const statusStyling = getStatusStyling(status, value)
+
+  return (
+    <div
+      id="WordsyCell"
+      className={`w-10 h-10 border-solid border-2 flex items-center justify-center mx-0.5 text-lg font-bold rounded-sm ${statusStyling}`}
+    >
+      {value}
+    </div>
+  )
 }
 
-function Cell({ status, value }) {
-  return <div className={getClassList(status, value)}>{value}</div>
+function getStatusStyling(status, value) {
+  switch (status) {
+    case CHAR_ABSENT:
+      return 'bg-charcoal-300 border-charcoal-300 text-white'
+    case CHAR_CORRECT:
+      return 'bg-wordsy-correct border-wordsy-correct text-white'
+    case CHAR_PRESENT:
+      return 'bg-wordsy-present border-wordsy-present text-white '
+    default:
+      return `bg-white ${value ? 'border-black' : 'border-charcoal-100'}`
+  }
 }
 
 const { string } = PropTypes

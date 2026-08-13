@@ -18,7 +18,7 @@ function DashboardImportsData() {
     title: 'Batch Imports',
     subtitle:
       'Validate and submit batch imports to the FirstVoices Staff for upload to your site',
-    icon: 'Document',
+    icon: 'ImportData',
   }
 
   const tileContent = {

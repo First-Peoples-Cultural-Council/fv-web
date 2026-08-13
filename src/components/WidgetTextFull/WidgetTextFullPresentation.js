@@ -5,11 +5,9 @@ import PropTypes from 'prop-types'
 import WysiwygBlock from 'components/WysiwygBlock'
 
 function WidgetTextFullPresentation({ widgetData }) {
-  const { textWithFormatting } = widgetData?.settings
-
   return (
-    <div className="w-screen text-base text-charcoal-900 max-w-md md:max-w-4xl mx-auto bg-white p-4">
-      <WysiwygBlock htmlString={textWithFormatting} />
+    <div className="max-w-md md:max-w-4xl mx-auto text-base text-charcoal-900 bg-white p-4">
+      <WysiwygBlock htmlString={widgetData?.settings?.textWithFormatting} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -8,17 +8,12 @@ import { getLastPathSegment } from 'common/utils/urlHelpers'
 import DeleteButton from 'components/DeleteButton'
 import DashboardTablePaginated from 'components/DashboardTablePaginated'
 import Tooltip from 'components/Tooltip'
-import ValidationStatusBtn from 'components/DashboardImports/ValidationStatusBtn'
+import ImportStatus from 'components/DashboardImports/ImportStatus'
+import ValidationStatus from 'components/DashboardImports/ValidationStatus'
 import DashboardTile from 'components/DashboardTile'
 import getIcon from 'common/utils/getIcon'
-import {
-  ACCEPTED,
-  STARTED,
-  COMPLETE,
-  FAILED,
-  CANCELLED,
-  EXPIRED,
-} from 'common/constants/jobs'
+import AlertBanner from 'components/AlertBanner'
+import { COMPLETE, INFO, ACCEPTED, STARTED } from 'common/constants'
 
 function DashboardImportsPresentation({
   queryResponse,
@@ -27,28 +22,25 @@ function DashboardImportsPresentation({
   setPage,
   tileContent,
 }) {
-  const getStatusLabel = (importJob) => {
-    if (
-      !importJob?.validationStatus ||
-      importJob?.validationStatus !== COMPLETE
-    ) {
-      return 'Needs Validating'
-    }
-    switch (importJob?.status) {
-      case null:
-        return 'Contact support to proceed with this import'
-      case ACCEPTED:
-      case STARTED:
-        return 'Your import has been queued. Contact support for more information'
-      case FAILED:
-      case EXPIRED:
-        return `This import has ${importJob?.status}. Contact support for more information`
-      case CANCELLED:
-        return `This import was ${importJob?.status}. Contact support for more information`
-      default:
-        return <span className="capitalize">{importJob?.status}</span> || ''
-    }
+  const isValidating = (importJob) =>
+    importJob?.validationStatus === ACCEPTED ||
+    importJob?.validationStatus === STARTED
+
+  const validationsPending = useMemo(
+    () => queryResponse?.data?.results?.some(isValidating),
+    [queryResponse?.data?.results],
+  )
+
+  const [mockFetching, setMockFetching] = useState(false)
+
+  const handleRefetch = () => {
+    setMockFetching(true)
+    queryResponse?.refetch()
+    setTimeout(() => {
+      setMockFetching(false)
+    }, 2000)
   }
+
   return (
     <div id="DashboardImportsPresentation">
       <div className="grid grid-cols-6 gap-4 mb-4">
@@ -89,6 +81,35 @@ function DashboardImportsPresentation({
           </div>
         </div>
       </div>
+      {validationsPending && (
+        <div className="mb-2 mx-auto max-h-72">
+          <AlertBanner.Presentation
+            alertType={INFO}
+            message={
+              mockFetching ? (
+                <div className="btn-sm btn-tertiary bg-transparent">
+                  <span>Checking</span>
+                  {getIcon(
+                    'TryAgain',
+                    'size-5 fill-current text-blumine-700 animate-spin',
+                  )}
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  data-testid="refresh-imports-btn"
+                  className="btn-sm btn-tertiary bg-transparent"
+                  onClick={handleRefetch}
+                >
+                  You have imports being validated. Click{' '}
+                  <span className="font-bold mx-1"> here </span> to refresh and
+                  check if the results are ready.
+                </button>
+              )
+            }
+          />
+        </div>
+      )}
       <DashboardTablePaginated
         queryResponse={queryResponse}
         page={page}
@@ -100,16 +121,10 @@ function DashboardImportsPresentation({
                 scope="col"
                 className="p-3 pl-6 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
               >
-                Title
-              </th>
-              <th
-                scope="col"
-                className="p-3 text-left text-charcoal-500 bg-charcoal-50"
-              >
-                Date Created
+                Batch Details
               </th>
               <th scope="col" className="p-3 text-charcoal-500 bg-charcoal-50">
-                Add media
+                Add Media
               </th>
               <th
                 scope="col"
@@ -134,70 +149,85 @@ function DashboardImportsPresentation({
         }
         tableBody={
           <tbody className="divide-y divide-charcoal-200 bg-white">
-            {queryResponse?.data?.results?.map((result) => {
-              const validationInProgress =
-                result?.validationStatus === 'accepted' ||
-                result?.validationStatus === 'started'
-              const canBeDeleted = !validationInProgress && !result?.status
-              return (
-                <tr key={result?.id}>
-                  <td className="whitespace-nowrap p-3 pl-6 text-sm">
-                    <div className="text-charcoal-900">
-                      {result?.title || getLastPathSegment(result?.data?.path)}
-                    </div>
-                    {result?.title && (
+            {queryResponse?.data?.results?.length > 0 ? (
+              queryResponse?.data?.results?.map((result) => {
+                const validationInProgress = isValidating(result)
+                const canBeDeleted = !validationInProgress && !result?.status
+                return (
+                  <tr key={result?.id}>
+                    <td className="p-3 pl-6">
+                      <div className="text-base text-charcoal-900 mb-2">
+                        {result?.title ||
+                          getLastPathSegment(result?.data?.path)}
+                      </div>
+                      {result?.title && (
+                        <dl>
+                          <dt className="sr-only">Filename</dt>
+                          <dd className="text-charcoal-500 text-xs mb-1">
+                            {getLastPathSegment(result?.data?.path)}
+                          </dd>
+                        </dl>
+                      )}
                       <dl>
-                        <dt className="sr-only">File Name</dt>
-                        <dd className="mt-1 text-charcoal-500 text-xs">
-                          {getLastPathSegment(result?.data?.path)}
+                        <dt className="sr-only">Import Job Id</dt>
+                        <dd className="text-charcoal-500 text-xs mb-1">
+                          ID: {result?.id}
                         </dd>
                       </dl>
-                    )}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                    {localDateMDYTwords(result?.created)}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-center text-sm text-charcoal-500">
-                    {result?.status ? (
-                      ''
-                    ) : (
-                      <Link
-                        data-testid="add-import-media-btn"
-                        to={`/${result?.site?.slug}/dashboard/edit/import/${result?.id}/media`}
-                        className="btn-tertiary btn-md-icon"
-                      >
-                        {getIcon('Add')}
-                      </Link>
-                    )}
-                  </td>
-                  <td className="whitespace-nowrap p-3 text-sm text-charcoal-500">
-                    {result?.status ? (
-                      ''
-                    ) : (
-                      <ValidationStatusBtn importJob={result} />
-                    )}
-                  </td>
-                  <td className="p-3 text-sm text-charcoal-500">
-                    {getStatusLabel(result)}
-                  </td>
-
-                  <td className="whitespace-nowrap p-3 pr-6 text-sm text-center">
-                    <Tooltip
-                      hide={canBeDeleted}
-                      message="Once an import is complete it cannot be deleted."
-                    >
-                      <DeleteButton.Presentation
-                        deleteHandler={() => deleteImport(result?.id)}
-                        disabled={!canBeDeleted}
-                        message="Cancel this import?"
-                        note="This will remove any related import files from the FirstVoices server and cancel this import. This cannot be undone."
-                        styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
+                      <dl>
+                        <dt className="sr-only">Date Created</dt>
+                        <dd className="text-charcoal-500 text-xs mb-1">
+                          {localDateMDYTwords(result?.created)}
+                        </dd>
+                      </dl>
+                    </td>
+                    <td className="p-3 text-center">
+                      {result?.status ? (
+                        ''
+                      ) : (
+                        <Link
+                          data-testid="add-import-media-btn"
+                          to={`/${result?.site?.slug}/dashboard/edit/import/${result?.id}/media`}
+                          className="btn-tertiary btn-md-icon"
+                        >
+                          {getIcon('Add')}
+                        </Link>
+                      )}
+                    </td>
+                    <td className="p-3 text-sm">
+                      <ValidationStatus
+                        importJob={result}
+                        handleRefetch={handleRefetch}
                       />
-                    </Tooltip>
-                  </td>
-                </tr>
-              )
-            })}
+                    </td>
+                    <td className="p-3 text-sm">
+                      <ImportStatus importJob={result} />
+                    </td>
+
+                    <td className="p-3 pr-6 text-sm text-center">
+                      <Tooltip
+                        hide={canBeDeleted}
+                        message={`Once an import has been ${result?.status === COMPLETE ? 'completed' : 'queued'} it cannot be deleted.`}
+                      >
+                        <DeleteButton.Presentation
+                          deleteHandler={() => deleteImport(result?.id)}
+                          disabled={!canBeDeleted}
+                          message="Cancel this import?"
+                          note="This will delete the import csv and any media files you have uploaded for this batch from the FirstVoices server. Are you sure you want to cancel this import?"
+                          styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
+                        />
+                      </Tooltip>
+                    </td>
+                  </tr>
+                )
+              })
+            ) : (
+              <tr>
+                <td colSpan="6" className="p-6 text-charcoal-500 text-center">
+                  No imports to show.
+                </td>
+              </tr>
+            )}
           </tbody>
         }
       />

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
@@ -15,7 +16,7 @@ function LandingKeyboardsPresentation() {
       <div className="bg-white text-charcoal-900 flex flex-col items-center lg:hidden">
         <p className="text-sm pt-10">Type in your language using</p>
         <div className="pt-2 pb-6 w-full">
-          <SectionTitle.Presentation title="FIRSTVOICES KEYBOARDS" />
+          <SectionTitle.Presentation title="FirstVoices Keyboards" />
         </div>
         <div className="flex flex-row h-40">
           <div className="w-2/3 pl-10">
@@ -69,23 +70,30 @@ function LandingKeyboardsPresentation() {
               className="w-full h-auto"
             />
           </div>
-          <div className="w-1/2 flex flex-col my-8 xl:my-10 space-y-8 xl:space-y-10 text-white text-bold text-base md:text-lg">
-            <h2 className="text-4xl font-semibold">FIRSTVOICES KEYBOARDS</h2>
-            <p>
-              FirstVoices keyboards have been developed for both desktop and
-              mobile devices, with over 100 Indigenous language keyboards
-              currently available. Users are able to select their keyboard(s) of
-              choice within their email, social media, word processing or other
-              apps, enabling unlimited communication in their mother language.
-            </p>
+          <div className="w-1/2 flex flex-col my-8 xl:my-10 text-white text-base md:text-lg">
+            <h2 className="text-xl md:text-2xl lg:text-3xl flex items-center mb-4 space-x-2">
+              FirstVoices Keyboards
+            </h2>
+            <div className="inline-block text-base text-left md:text-lg max-w-md md:max-w-4xl mx-auto">
+              <p className="my-4">
+                FirstVoices keyboards have been developed for both desktop and
+                mobile devices, with over 100 Indigenous language keyboards
+                currently available. Users are able to select their keyboard(s)
+                of choice within their email, social media, word processing or
+                other apps, enabling unlimited communication in their mother
+                language.
+              </p>
+            </div>
 
-            <div>
-              <a
-                href="/keyboards"
-                className="btn-primary btn-lg bg-ochre-600 hover:bg-ochre-700"
-              >
-                Learn more
-              </a>
+            <div className="mt-2 lg:mt-6 flex justify-left">
+              <div className="rounded-full shadow-sm">
+                <Link
+                  to="/keyboards"
+                  className="btn-primary btn-lg bg-ochre-600 hover:bg-ochre-700"
+                >
+                  Learn more
+                </Link>
+              </div>
             </div>
           </div>
         </div>

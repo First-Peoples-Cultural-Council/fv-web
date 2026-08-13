@@ -1,5 +1,5 @@
 import { apiBase } from 'services/config'
-import { SITES, IMPORT_JOBS } from 'common/constants'
+import { PAGE, PAGE_SIZE, SITES, IMPORT_JOBS } from 'common/constants'
 
 const importJobs = {
   get: async ({ sitename, id }) =>
@@ -7,7 +7,7 @@ const importJobs = {
   getAll: async ({ sitename, pageParam, perPage = 48 }) =>
     apiBase()
       .get(
-        `${SITES}/${sitename}/${IMPORT_JOBS}/?page=${pageParam}&pageSize=${perPage}`,
+        `${SITES}/${sitename}/${IMPORT_JOBS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
       )
       .json(),
   create: async ({ sitename, formData }) =>
@@ -22,6 +22,8 @@ const importJobs = {
       .json(),
   validate: async ({ sitename, id }) =>
     apiBase().post(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}/validate`).json(),
+  notify: async ({ sitename, id }) =>
+    apiBase().post(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}/notify`).json(),
   delete: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${IMPORT_JOBS}/${id}`).json(),
 }

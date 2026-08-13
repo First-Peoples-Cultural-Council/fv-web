@@ -19,7 +19,7 @@ function MobileAppsPresentation({ sitesWithApps }) {
     >
       <DocHead titleArray={['Apps']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="FIRSTVOICES APPS" />
+        <SectionTitle.Presentation title="FirstVoices Apps" />
         <div className="max-w-4xl mx-auto">
           <div className="text-charcoal-900 space-y-4 py-8 text-pretty">
             <h2 className={headerStyle}>FirstVoices Language Apps.</h2>

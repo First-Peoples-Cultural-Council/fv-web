@@ -1,0 +1,3 @@
+import SearchMultiSelectFilter from 'components/SearchMultiSelectFilter/SearchMultiSelectFilter'
+
+export default SearchMultiSelectFilter

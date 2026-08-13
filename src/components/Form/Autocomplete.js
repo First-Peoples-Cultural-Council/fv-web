@@ -62,7 +62,7 @@ function Autocomplete({
                   <ComboboxInput
                     className={`${
                       disabled ? 'opacity-50' : 'opacity-100'
-                    } relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800`}
+                    } relative w-full cursor-default block border border-charcoal-200 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-700 focus:border-blumine-700`}
                     displayValue={() => getCurrentLabel(value)}
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder="Type to find a part of speech..."
@@ -90,7 +90,7 @@ function Autocomplete({
                           className={({ focus }) =>
                             `relative cursor-default select-none py-2 pl-10 pr-4 ${
                               focus
-                                ? 'bg-scarlet-800 text-white'
+                                ? 'bg-blumine-700 text-white'
                                 : 'text-charcoal-900'
                             }`
                           }

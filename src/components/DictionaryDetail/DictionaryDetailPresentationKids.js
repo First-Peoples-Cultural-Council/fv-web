@@ -64,20 +64,10 @@ function DictionaryDetailPresentationKids({ entry, backHandler }) {
                 </div>
                 {/* Audio */}
                 {entry?.relatedAudio?.length > 0 && (
-                  <div className="ml-4 inline-flex text-charcoal-900">
+                  <div className="ml-4 inline-flex text-charcoal-900 space-x-1">
                     {entry?.relatedAudio?.map((audioObject) => (
                       <AudioMinimal.Container
                         key={audioObject?.id}
-                        icons={{
-                          Play: getIcon(
-                            'Audio',
-                            'fill-current h-9 w-9 sm:w-12 sm:h-12',
-                          ),
-                          Stop: getIcon(
-                            'StopCircle',
-                            'fill-current h-9 w-9 sm:w-12 sm:h-12',
-                          ),
-                        }}
                         audioObject={audioObject}
                       />
                     ))}

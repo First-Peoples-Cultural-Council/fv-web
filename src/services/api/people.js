@@ -1,5 +1,5 @@
 import { apiBase } from 'services/config'
-import { SITES, PEOPLE } from 'common/constants'
+import { PAGE, PAGE_SIZE, SITES, PEOPLE } from 'common/constants'
 
 const people = {
   get: async ({ sitename, id }) =>
@@ -7,7 +7,7 @@ const people = {
   getAll: async ({ sitename, pageParam, perPage = 1000 }) =>
     apiBase()
       .get(
-        `${SITES}/${sitename}/${PEOPLE}/?page=${pageParam}&pageSize=${perPage}`,
+        `${SITES}/${sitename}/${PEOPLE}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
       )
       .json(),
   create: async ({ sitename, properties }) => {

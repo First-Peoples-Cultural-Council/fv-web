@@ -3,24 +3,7 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import Key from 'components/Game/Wordsy/Keyboard/Key'
-
-export const getStatuses = (solution, guesses, orthographyPattern) => {
-  const charObj = {}
-  const solutionChars = solution?.split(orthographyPattern).filter((i) => i)
-  guesses?.forEach((word) => {
-    word.forEach((letter, i) => {
-      if (!solutionChars.includes(letter)) {
-        charObj[letter] = 'absent'
-      } else if (letter === solutionChars[i]) {
-        charObj[letter] = 'correct'
-      } else if (charObj[letter] !== 'correct') {
-        charObj[letter] = 'present'
-      }
-    })
-  })
-
-  return charObj
-}
+import { CHAR_CORRECT, CHAR_ABSENT, CHAR_PRESENT } from 'common/constants'
 
 function Keyboard({
   orthography,
@@ -31,40 +14,33 @@ function Keyboard({
   guesses,
   orthographyPattern,
 }) {
-  const firstRow = orthography?.slice(0, Math.floor(orthography.length * 0.4))
-  const secondRow = orthography?.slice(
-    Math.floor(orthography.length * 0.4),
-    Math.floor(orthography.length * 0.7),
-  )
-  const thirdRow = orthography?.slice(
-    Math.floor(orthography.length * 0.7),
-    orthography.length,
-  )
+  const getCharStatuses = () => {
+    const charObj = {}
+    const solutionChars = solution?.split(orthographyPattern).filter(Boolean)
+    guesses?.forEach((word) => {
+      word.forEach((letter, i) => {
+        if (!solutionChars.includes(letter)) {
+          charObj[letter] = CHAR_ABSENT
+        } else if (letter === solutionChars[i]) {
+          charObj[letter] = CHAR_CORRECT
+        } else if (charObj[letter] !== CHAR_CORRECT) {
+          charObj[letter] = CHAR_PRESENT
+        }
+      })
+    })
 
-  const onClick = (value) => {
-    if (value === 'ENTER') {
-      onEnter()
-    } else if (value === 'DELETE') {
-      onDelete()
-    } else {
-      onChar(value)
-    }
+    return charObj
   }
+
+  const charStatuses = getCharStatuses()
 
   useEffect(() => {
     const listener = (e) => {
       if (e.code === 'Enter') {
         onEnter()
-      } else if (e.code === 'Backspace') {
+      } else if (e.code === 'Backspace' || e.code === 'Delete') {
         onDelete()
       }
-      // To be confirmed if we want to accept input from keyboard
-      // else {
-      //   const key = e.key.toUpperCase()
-      //   if (key.length === 1 && key >= 'A' && key <= 'Z') {
-      //     onChar(key)
-      //   }
-      // }
     }
     window.addEventListener('keyup', listener)
     return () => {
@@ -72,45 +48,39 @@ function Keyboard({
     }
   }, [onEnter, onDelete, onChar])
 
-  const charStatuses = getStatuses(solution, guesses, orthographyPattern)
-
   return (
-    <div>
-      <div className="flex justify-center mb-1">
-        {firstRow?.map((char) => (
-          <Key
-            value={char}
-            key={`key-${char}`}
-            onClick={onClick}
-            status={charStatuses[char]}
-          />
-        ))}
+    <div className="py-1 md:py-2">
+      <div className="flex justify-center max-w-xl mx-auto px-1">
+        <div className="flex flex-wrap justify-center gap-x-1.5 gap-y-2">
+          {orthography?.map((char) => (
+            <Key
+              value={char}
+              key={`key-${char}`}
+              onClick={onChar}
+              status={charStatuses[char]}
+            />
+          ))}
+        </div>
       </div>
-      <div className="flex justify-center mb-1">
-        {secondRow?.map((char) => (
-          <Key
-            value={char}
-            key={`key-${char}`}
-            onClick={onClick}
-            status={charStatuses[char]}
-          />
-        ))}
-      </div>
-      <div className="flex justify-center">
-        <Key width={65.4} value="DELETE" onClick={onClick}>
-          Delete
-        </Key>
-        {thirdRow?.map((char) => (
-          <Key
-            value={char}
-            key={`key-${char}`}
-            onClick={onClick}
-            status={charStatuses[char]}
-          />
-        ))}
-        <Key width={65.4} value="ENTER" onClick={onClick}>
-          Enter
-        </Key>
+      <div>
+        <div className="flex justify-center space-x-1.5 my-2">
+          <button
+            data-testid="enter-btn"
+            type="button"
+            className="flex items-center justify-center rounded-sm text-base cursor-pointer select-none h-10 w-16 bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300"
+            onClick={() => onDelete()}
+          >
+            Delete
+          </button>
+          <button
+            data-testid="enter-btn"
+            type="button"
+            className="flex items-center justify-center rounded-sm text-base cursor-pointer select-none h-10 w-16 bg-charcoal-100 hover:bg-charcoal-200 active:bg-charcoal-300"
+            onClick={() => onEnter()}
+          >
+            Enter
+          </button>
+        </div>
       </div>
     </div>
   )

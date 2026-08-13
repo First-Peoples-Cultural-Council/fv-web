@@ -12,8 +12,7 @@ function SelectorAudioPresentation({
   selectedMedia,
   mediaSelectHandler,
 }) {
-  const headerClass =
-    'px-6 py-3 text-center text-xs font-medium text-charcoal-900 uppercase tracking-wider'
+  const headerClass = 'px-6 py-3 text-center text-charcoal-500'
 
   return (
     <div

@@ -1,5 +1,5 @@
 import { apiBase } from 'services/config'
-import { SITES, CATEGORIES } from 'common/constants'
+import { PAGE_SIZE, SITES, CATEGORIES } from 'common/constants'
 
 const categories = {
   get: async ({ sitename, id }) =>
@@ -7,7 +7,7 @@ const categories = {
   getAll: async ({ sitename, nested, pageSize = 250 }) =>
     apiBase()
       .get(
-        `${SITES}/${sitename}/${CATEGORIES}/?nested=${nested}&&pageSize=${pageSize}`,
+        `${SITES}/${sitename}/${CATEGORIES}/?nested=${nested}&${PAGE_SIZE}=${pageSize}`,
       )
       .json(),
   create: async ({ sitename, properties }) =>

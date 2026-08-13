@@ -1,32 +1,64 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 // FPCC
-import Tabs from 'components/Tabs'
+import getIcon from 'common/utils/getIcon'
 import { TYPE_DICTIONARY, TYPE_PHRASE, TYPE_WORD } from 'common/constants'
 
 function SearchTypeSelectorContainer({ selectedSearchType, setSearchType }) {
   const dictionaryTypes = [
-    { label: 'WORDS', icon: 'Word', value: TYPE_WORD },
+    {
+      label: 'WORDS',
+      icon: 'Word',
+      value: TYPE_WORD,
+      tabStyling: 'rounded-l-lg border-r-0',
+    },
     {
       label: 'PHRASES',
       icon: 'Phrase',
       value: TYPE_PHRASE,
+      tabStyling: '',
     },
     {
       label: 'BOTH',
       icon: 'All',
       value: TYPE_DICTIONARY,
+      tabStyling: 'rounded-r-lg border-l-0',
     },
   ]
 
+  const [t] = useTranslation()
+
   return (
     <div id="SearchTypeSelectorContainer">
-      <Tabs.Presentation
-        tabs={dictionaryTypes}
-        selectedValue={selectedSearchType}
-        setValue={setSearchType}
-      />
+      <nav
+        className="flex items-center relative w-auto rounded-lg"
+        aria-label="Tabs"
+      >
+        {dictionaryTypes?.map((tab) => (
+          <button
+            data-testid={`${tab?.value}-tab-btn`}
+            type="button"
+            key={tab?.value}
+            value={tab?.value}
+            onClick={() => setSearchType(tab?.value)}
+            className={`${
+              tab?.value === selectedSearchType
+                ? `text-white bg-blumine-800 border-blumine-800`
+                : 'text-charcoal-500 bg-white hover:text-charcoal-700 hover:bg-charcoal-50 border-charcoal-100'
+            } ${tab?.tabStyling} group relative min-w-auto flex items-center border-2 py-2 px-4 font-medium text-center focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-charcoal-500`}
+            aria-current={
+              tab?.value === selectedSearchType ? tab?.label : undefined
+            }
+          >
+            {tab?.icon !== 'All'
+              ? getIcon(tab?.icon, 'inline-flex fill-current w-5 h-5 mr-2')
+              : ''}
+            {tab?.transKey ? t(tab?.transKey) : tab?.label}
+          </button>
+        ))}
+      </nav>
     </div>
   )
 }

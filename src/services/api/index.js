@@ -5,6 +5,7 @@ import characters from 'services/api/characters'
 import contactUs from 'services/api/contactUs'
 import dictionary from 'services/api/dictionary'
 import documents from 'services/api/documents'
+import exportJobs from 'services/api/exportJobs'
 import galleries from 'services/api/galleries'
 import gameContent from 'services/api/gameContent'
 import images from 'services/api/images'
@@ -37,6 +38,7 @@ export default {
   contactUs,
   dictionary,
   documents,
+  exportJobs,
   galleries,
   gameContent,
   images,

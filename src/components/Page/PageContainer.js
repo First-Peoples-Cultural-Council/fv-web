@@ -40,9 +40,7 @@ function PageContainer({ pageSlug }) {
             showLogo={showLogo}
           />
         </BannerBackground>
-        <div className="pb-16 max-w-7xl mx-auto">
-          <WidgetArea.Container widgetData={widgets} />
-        </div>
+        <WidgetArea.Container widgetData={widgets} />
       </main>
     </LoadOrError>
   )

@@ -5,50 +5,39 @@ import PropTypes from 'prop-types'
 import getIcon from 'common/utils/getIcon'
 
 function AudioMinimalPresentation({
-  audioId,
+  audioObject,
   buttonRef,
-  buttonStyling = 'btn-tertiary btn-md-icon bg-inherit',
-  icons,
+  styling = 'btn-tertiary btn-md-icon bg-inherit',
   isPlaying = false,
-  label,
+  withLabel = false,
   onClick = () => {},
   onKeyPress = () => {},
 }) {
-  const iconsDefault = {
-    Play: getIcon('PlayCircle'),
-    Stop: getIcon('StopCircle'),
-  }
-  const Icons = { ...iconsDefault, ...icons }
-
   return (
     <button
-      data-testid={`audio-btn-${audioId}`}
+      data-testid={`audio-btn-${audioObject?.id}`}
       type="button"
       onClick={onClick}
       onKeyDown={onKeyPress}
       ref={buttonRef}
       aria-live="off"
       aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
-      className={buttonStyling}
+      className={styling}
     >
-      {isPlaying === true ? Icons.Stop : Icons.Play}
-      {label && <span>{label}</span>}
+      {isPlaying === true ? getIcon('Stop') : getIcon('Audio')}
+      {withLabel && (
+        <span>{audioObject?.speakers?.[0]?.name || 'Speaker'}</span>
+      )}
     </button>
   )
 }
 // PROPTYPES
 const { func, bool, object, string } = PropTypes
 AudioMinimalPresentation.propTypes = {
-  audioId: string,
-  /** Use to override the default icons. Eg: icons={{Play: jsx, Pause: jsx, Error: jsx}}  */
-  icons: object,
-  /** Use to style icons */
-  iconStyling: string,
-  /** Use to style encasing button */
-  buttonStyling: string,
+  audioObject: object,
+  styling: string,
   isPlaying: bool,
-  /** Optional abel for button */
-  label: string,
+  withLabel: bool,
   buttonRef: object,
   onClick: func,
   onKeyPress: func,

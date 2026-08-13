@@ -48,7 +48,7 @@ function AutocompleteMultiSelect({
       <div className="relative text-charcoal-700">
         <ComboboxInput
           data-testid="autocomplete-multi-input"
-          className="text-sm relative w-full cursor-text block border-none rounded-lg p-2 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800"
+          className="text-sm relative w-full cursor-text block border-none rounded-lg p-2 focus:outline-hidden focus:ring-blumine-700 focus:border-blumine-700"
           onChange={(event) => setQuery(event.target.value)}
           placeholder={placeholder}
           onBlur={onBlur}
@@ -75,8 +75,8 @@ function AutocompleteMultiSelect({
               {({ selected }) => (
                 <div className="inline-flex items-center space-x-2">
                   <span
-                    className={`flex items-center rounded-md p-1 border border-blumine-800 ${
-                      selected ? 'bg-blumine-800' : 'bg-white'
+                    className={`flex items-center rounded-md p-1 border border-blumine-700 ${
+                      selected ? 'bg-blumine-700' : 'bg-white'
                     }`}
                   >
                     {getIcon(

@@ -1,0 +1,3 @@
+import SearchCategoriesFilter from 'components/SearchCategoriesFilter/SearchCategoriesFilter'
+
+export default SearchCategoriesFilter

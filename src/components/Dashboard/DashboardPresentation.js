@@ -96,6 +96,18 @@ const primaryNavigationItems = (currentSitename) => {
       auth: ASSISTANT,
     },
     {
+      name: 'Exports',
+      href: `/${currentSitename}/dashboard/exports`,
+      icon: 'Spreadsheet',
+      auth: ASSISTANT,
+    },
+    {
+      name: 'Batch Imports',
+      href: `/${currentSitename}/dashboard/imports`,
+      icon: 'ImportData',
+      auth: LANGUAGE_ADMIN,
+    },
+    {
       name: 'Member Management',
       href: `/${currentSitename}/dashboard/memberships`,
       icon: 'Members',

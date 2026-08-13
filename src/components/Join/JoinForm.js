@@ -122,8 +122,8 @@ function JoinForm({ site, submitHandler }) {
               name="reasons"
               render={({ field: { value, onChange } }) => (
                 <Listbox value={value} onChange={onChange} by="reason" multiple>
-                  <div className="relative max-w-xs">
-                    <ListboxButton className="relative w-full text-left pr-10 bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800">
+                  <div className="relative max-w-sm">
+                    <ListboxButton className="relative w-full text-left bg-white border border-charcoal-200 text-blumine-800 rounded-lg py-2 px-3 focus:outline-hidden focus:ring-blumine-800 focus:border-blumine-800">
                       <div className="w-full inline-flex items-center">
                         <span className="truncate">
                           {value?.length < 1
@@ -142,7 +142,7 @@ function JoinForm({ site, submitHandler }) {
                       {reasonOptions.map((option) => (
                         <ListboxOption key={option?.reason} value={option}>
                           {({ selected }) => (
-                            <div className="w-full inline-flex items-center space-x-2 py-2 pl-8 pr-4 hover:bg-charcoal-50 hover:text-blumine-800 text-charcoal-900">
+                            <div className="w-full inline-flex items-center space-x-2 p-2 hover:bg-charcoal-50 hover:text-blumine-800 text-charcoal-900">
                               {getIcon(
                                 'Checkmark',
                                 `h-5 w-5 fill-current ${selected ? '' : 'opacity-0'}`,

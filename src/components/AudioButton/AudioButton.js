@@ -6,15 +6,17 @@ import { useAudiobar } from 'context/AudiobarContext'
 import getIcon from 'common/utils/getIcon'
 import Tooltip from 'components/Tooltip'
 
+// NB: This button triggers the Audiobar - avoid use in Dashboard or on Kids site
 function AudioButton({
   audioArray,
-  styling = 'btn-tertiary btn-md-icon bg-transparent',
+  styling = 'btn-tertiary btn-md-icon bg-transparent mr-1',
+  withLabels = false,
 }) {
   const { setCurrentAudio } = useAudiobar()
 
   return audioArray?.map((audioObject) =>
     audioObject?.id ? (
-      <Tooltip key={audioObject?.id} message="Play audio">
+      <Tooltip key={audioObject?.id} hide={withLabels} message="Play audio">
         <label htmlFor={`audio-btn-${audioObject.id}`} className="sr-only">
           Play audio
         </label>
@@ -27,16 +29,20 @@ function AudioButton({
           onClick={() => setCurrentAudio(audioObject)}
         >
           {getIcon('Audio')}
+          {withLabels && (
+            <span>{audioObject?.speakers?.[0]?.name || 'Speaker'}</span>
+          )}
         </button>
       </Tooltip>
     ) : null,
   )
 }
 // PROPTYPES
-const { array, string } = PropTypes
+const { array, bool, string } = PropTypes
 AudioButton.propTypes = {
   audioArray: array,
   styling: string,
+  withLabels: bool,
 }
 
 export default AudioButton

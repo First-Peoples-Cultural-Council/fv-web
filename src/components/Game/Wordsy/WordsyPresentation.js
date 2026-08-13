@@ -10,6 +10,7 @@ import Modal from 'components/Modal'
 import InfoModal from 'components/Game/Wordsy/Modals/InfoModal'
 import EndGameModal from 'components/Game/Wordsy/Modals/EndGameModal'
 import WarningModal from 'components/Game/Wordsy/Modals/WarningModal'
+import { GAME_WON, GAME_LOST, GAME_WARNING } from 'common/constants'
 
 const MIN_VALID_WORDS = 30
 
@@ -29,8 +30,8 @@ function WordsyPresentation({
 }) {
   const getModalContent = (status) => {
     switch (status) {
-      case 'win':
-      case 'lost':
+      case GAME_WON:
+      case GAME_LOST:
         return (
           <EndGameModal
             status={modalData?.status}
@@ -38,7 +39,7 @@ function WordsyPresentation({
             solution={data?.solution}
           />
         )
-      case 'warning':
+      case GAME_WARNING:
         return <WarningModal text={modalData?.text} />
       default:
         return <InfoModal />
@@ -55,7 +56,7 @@ function WordsyPresentation({
       className="py-8 max-w-7xl mx-auto sm:px-6 lg:px-8 bg-white"
       data-testid="WordsyContainer"
     >
-      <SectionTitle.Presentation title="WORDSY" />
+      <SectionTitle.Presentation title="Wordsy" />
 
       <button
         data-testid="info-btn"

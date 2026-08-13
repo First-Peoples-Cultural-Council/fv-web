@@ -11,7 +11,7 @@ function DisclaimerPresentation() {
     <section className="pt-2 md:pt-4 lg:pt-8 bg-white" data-testid="Disclaimer">
       <DocHead titleArray={['Disclaimer']} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle.Presentation title="DISCLAIMER" />
+        <SectionTitle.Presentation title="Disclaimer" />
         <div className="max-w-5xl mx-auto text-charcoal-900 space-y-4 py-8">
           <div>
             <h2 className={headerStyle}>Liability and Warranty Disclaimer</h2>

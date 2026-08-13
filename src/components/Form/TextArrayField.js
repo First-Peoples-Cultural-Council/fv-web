@@ -26,6 +26,9 @@ function TextArrayField({
     name: nameId,
   })
 
+  // updated label with loewrcase and remove 's' if it ends with 's' (e.g. "Notes" -> "note")
+  const updatedLabel = label ? label.toLowerCase().replace(/s$/, '') : ''
+
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault()
@@ -48,11 +51,11 @@ function TextArrayField({
                     onKeyDown={handleKeyDown}
                   />
 
-                  <Tooltip message={`Delete ${label.slice(0, -1)}`}>
+                  <Tooltip message={`Delete ${updatedLabel}`}>
                     <button
                       data-testid={`Delete ${label.slice(0, -1)}`}
                       type="button"
-                      aria-label={`Delete ${label.slice(0, -1)}`}
+                      aria-label={`Delete ${updatedLabel}`}
                       className="btn-tertiary btn-md-icon"
                       onClick={() => remove(index)}
                     >
@@ -72,7 +75,7 @@ function TextArrayField({
           </ul>
           {fields?.length < maxItems && (
             <FieldButton
-              label={`Add ${label?.toLowerCase()}`}
+              label={`Add ${updatedLabel}`}
               onClickHandler={() => append({ text: '' })}
             />
           )}

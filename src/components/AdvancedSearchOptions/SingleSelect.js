@@ -38,7 +38,7 @@ function SingleSelect({ id, options }) {
       onChange={handleChange}
     >
       <ListboxButton
-        className={`group cursor-pointer inline-flex items-center justify-center text-sm p-2 rounded-lg hover:text-charcoal-900 ${
+        className={`group cursor-pointer inline-flex items-center justify-center text-sm border-none rounded-lg p-2 focus:outline-hidden hover:text-charcoal-900 ${
           selectedOption?.value
             ? 'font-bold text-charcoal-900'
             : 'font-medium text-charcoal-500'
@@ -60,7 +60,7 @@ function SingleSelect({ id, options }) {
               className={({ focus }) =>
                 `flex items-center cursor-default p-2 text-sm font-medium ${
                   focus
-                    ? 'bg-charcoal-50 text-scarlet-800'
+                    ? 'bg-charcoal-50 text-blumine-700'
                     : 'text-charcoal-900'
                 }`
               }
@@ -70,9 +70,11 @@ function SingleSelect({ id, options }) {
                 <div className="px-4 space-x-4 flex items-center">
                   {getIcon(
                     selected ? 'Checkmark' : '',
-                    'h-4 w-4 fill-current text-scarlet-800',
+                    'h-4 w-4 fill-current  text-blumine-700',
                   )}
-                  <span className="whitespace-nowrap">
+                  <span
+                    className={`whitespace-nowrap ${selected ? 'font-bold text-blumine-700' : ''}`}
+                  >
                     {option?.value ? option?.label : '--------'}
                   </span>
                 </div>

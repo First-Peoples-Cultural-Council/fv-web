@@ -138,7 +138,7 @@ function ParachutePresentation({
         {/* If no puzzle then render an error message, else render the puzzle. */}
         {!puzzle?.length ? (
           <div>
-            <SectionTitle.Presentation title="PULL TOGETHER" />
+            <SectionTitle.Presentation title="Pull Together" />
             <p className="text-charcoal-900 mt-2">
               This site does not currently have enough dictionary content for
               the game.
@@ -153,7 +153,7 @@ function ParachutePresentation({
         ) : (
           <div>
             <div>
-              <SectionTitle.Presentation title="PULL TOGETHER" />
+              <SectionTitle.Presentation title="Pull Together" />
               <p className="text-charcoal-900 mt-2">
                 Guess the word to make it to the beach
               </p>

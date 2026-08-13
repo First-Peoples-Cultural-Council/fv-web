@@ -43,6 +43,7 @@ import HamburgerMenu from 'common/icons/HamburgerMenu'
 import Home from 'common/icons/Home'
 import Images from 'common/icons/Images'
 import ImagesNone from 'common/icons/ImagesNone'
+import ImportData from 'common/icons/ImportData'
 import InfoCircleSolid from 'common/icons/InfoCircleSolid'
 import Instagram from 'common/icons/Instagram'
 import Kids from 'common/icons/Kids'
@@ -85,6 +86,7 @@ import Save from 'common/icons/Save'
 import Search from 'common/icons/Search'
 import Speak from 'common/icons/Speak'
 import Spinner from 'common/icons/Spinner'
+import Spreadsheet from 'common/icons/Spreadsheet'
 import Star from 'common/icons/Star'
 import Stop from 'common/icons/Stop'
 import StopCircle from 'common/icons/StopCircle'
@@ -178,6 +180,7 @@ function getIcon(iconName, iconStyling, title) {
     Home,
     Images,
     ImagesNone,
+    ImportData,
     InfoCircleSolid,
     Instagram,
     Jigsaw,
@@ -228,6 +231,7 @@ function getIcon(iconName, iconStyling, title) {
     Song,
     Speak,
     Spinner,
+    Spreadsheet,
     Star,
     Stop,
     StopCircle,

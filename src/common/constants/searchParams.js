@@ -12,6 +12,7 @@ export const HAS_CATEGORIES = 'hasCategories'
 export const HAS_RELATED_ENTRIES = 'hasRelatedEntries'
 export const HAS_UNRECOGNIZED_CHARS = 'hasUnrecognizedChars'
 export const HAS_SITE_FEATURE = 'hasSiteFeature'
+export const IMPORT_JOB_ID = 'importJobId'
 export const KIDS = 'kids'
 export const PAGE = 'page'
 export const PAGE_SIZE = 'pageSize'
@@ -36,6 +37,7 @@ export const SEARCH_FILTERS = [
   HAS_TRANSLATION,
   HAS_UNRECOGNIZED_CHARS,
   HAS_VIDEO,
+  IMPORT_JOB_ID,
   KIDS,
   SPEAKERS,
   STARTS_WITH_CHAR,
@@ -84,3 +86,87 @@ export const VISIBILITY_TEAM = 'Team'
 
 /* Param Keys Frontend ONLY */
 export const CHAR = 'char'
+
+/* Param parse for readability */
+export const getReadableParams = (paramsObject) =>
+  Object.entries(paramsObject)?.map(_getReadableParam)
+
+const _getReadableParam = ([param, value]) => {
+  if (value === null || value === '') return null
+
+  const _value = Array.isArray(value) ? value.join(', ') : String(value)
+  switch (param) {
+    case PAGE:
+    case PAGE_SIZE:
+    case SITES_FILTER:
+      return null
+    case CATEGORY:
+      return { id: CATEGORY, label: 'Category', value: _value }
+    case DOMAIN:
+      return _value === DOMAIN_BOTH
+        ? null
+        : {
+            id: DOMAIN,
+            label: 'Domain',
+            value: `${_value === DOMAIN_LANGUAGE ? 'Language Entries' : 'Translation'}`,
+          }
+    case GAMES:
+      return _isValueTrue(value)
+        ? { id: GAMES, label: 'Included in games' }
+        : { id: GAMES, label: 'Not included in games' }
+    case HAS_AUDIO:
+      return _getHasLabel(HAS_AUDIO, value, 'audio')
+    case HAS_IMAGE:
+      return _getHasLabel(HAS_IMAGE, value, 'image')
+    case HAS_VIDEO:
+      return _getHasLabel(HAS_VIDEO, value, 'video')
+    case HAS_TRANSLATION:
+      return _getHasLabel(HAS_TRANSLATION, value, 'translation')
+    case HAS_CATEGORIES:
+      return _getHasLabel(HAS_CATEGORIES, value, 'category')
+    case HAS_RELATED_ENTRIES:
+      return _getHasLabel(HAS_RELATED_ENTRIES, value, 'related entries')
+    case HAS_UNRECOGNIZED_CHARS:
+      return _getHasLabel(
+        HAS_UNRECOGNIZED_CHARS,
+        value,
+        'unrecognized characters',
+      )
+    case IMPORT_JOB_ID:
+      return { id: IMPORT_JOB_ID, label: 'Import batch id', value: _value }
+    case KIDS:
+      return _isValueTrue(value)
+        ? { id: KIDS, label: 'On kids site' }
+        : { id: KIDS, label: 'Not on kids site' }
+    case SORT:
+      return { id: SORT, label: 'Sort', value: _value }
+    case SPEAKERS:
+      return { id: SPEAKERS, label: 'Speakers', value: _value }
+    case STARTS_WITH_CHAR:
+      return {
+        id: STARTS_WITH_CHAR,
+        label: 'Starts with character',
+        value: _value,
+      }
+    case TYPES:
+      return { id: TYPES, label: 'Types', value: _value }
+    case VISIBILITY:
+      return { id: VISIBILITY, label: 'Visibility', value: _value }
+    case MINWORDS:
+      return { id: MINWORDS, label: 'Min words', value: _value }
+    case MAXWORDS:
+      return { id: MAXWORDS, label: 'Max words', value: _value }
+    default:
+      return param
+  }
+}
+
+const _isValueTrue = (value) =>
+  value === true || String(value).toLowerCase() === 'true'
+
+const _getHasLabel = (param, value, type) => {
+  if (_isValueTrue(value)) {
+    return { id: param, label: `Has ${type}` }
+  }
+  return { id: param, label: `Has no ${type}` }
+}

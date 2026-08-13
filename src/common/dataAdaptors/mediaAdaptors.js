@@ -39,6 +39,12 @@ const baseMediaAdaptor = ({ data }) => {
   return formattedData
 }
 
+const thumbnailAdaptor = ({ data }) => ({
+  thumbnail: data?.thumbnail || {},
+  small: data?.small || {},
+  medium: data?.medium || {},
+})
+
 export const audioForEditing = ({ data }) => {
   const formattedData = {
     ...baseMediaAdaptor({ data }),
@@ -65,6 +71,7 @@ export const imageForEditing = ({ data }) => {
   const formattedData = {
     ...baseMediaAdaptor({ data }),
     ...audienceForEditing({ item: data }),
+    ...thumbnailAdaptor({ data }),
   }
   return formattedData
 }

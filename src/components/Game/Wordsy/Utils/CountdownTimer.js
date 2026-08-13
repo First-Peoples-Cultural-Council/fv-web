@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function convertTimeToLocalString(time) {
   return time.toLocaleString('en-US', {
@@ -41,7 +41,11 @@ function CountdownTimer() {
     )
   }, [countDown])
 
-  return hours === 'NaN' ? '' : `Next word in ${hours}:${minutes}:${seconds}`
+  return (
+    <div id="CountdownTimer" className="h-5 text-center">
+      {hours === 'NaN' ? '' : `Next word in ${hours}:${minutes}:${seconds}`}
+    </div>
+  )
 }
 
 export default CountdownTimer
