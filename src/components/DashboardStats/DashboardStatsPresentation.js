@@ -75,7 +75,7 @@ function DashboardStatsPresentation({ data }) {
 
   return (
     <div>
-      <h3 className="text-base font-semibold text-charcoal-900">
+      <h3 className="text-base text-charcoal-900">
         <SingleSelect
           id="stats-time-period"
           selectedOption={selectedTimePeriod}
@@ -106,7 +106,7 @@ function DashboardStatsPresentation({ data }) {
             {selectedTimePeriod?.value ? (
               <div className="grid grid-cols-2 gap-4 text-center">
                 <div>
-                  <div className="text-4xl font-bold text-charcoal-900">
+                  <div className="text-3xl text-charcoal-900">
                     {item.temporalData?.[selectedTimePeriod?.value]?.created > 0
                       ? '+'
                       : ''}
@@ -117,7 +117,7 @@ function DashboardStatsPresentation({ data }) {
                   </div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-charcoal-900">
+                  <div className="text-3xl text-charcoal-900">
                     {/* `lastModified` includes `created` - subtracting created to get updates only */}
                     {item.temporalData?.[selectedTimePeriod?.value]
                       ?.lastModified -
@@ -135,7 +135,7 @@ function DashboardStatsPresentation({ data }) {
             <div>
               <div className="flex justify-between px-1">
                 <div className="text-center text-charcoal-600">
-                  <div className="font-bold text-xl">
+                  <div className="text-xl">
                     {selectedTimePeriod?.value
                       ? item.temporalData?.[selectedTimePeriod?.value]?.team
                       : item.aggregateData?.team}
@@ -146,7 +146,7 @@ function DashboardStatsPresentation({ data }) {
                   </div>
                 </div>
                 <div className="text-center text-charcoal-600">
-                  <div className="font-bold text-xl">
+                  <div className="text-xl">
                     {selectedTimePeriod?.value
                       ? item.temporalData?.[selectedTimePeriod?.value]?.members
                       : item.aggregateData?.members}
@@ -157,7 +157,7 @@ function DashboardStatsPresentation({ data }) {
                   </div>
                 </div>
                 <div className="text-center text-charcoal-600">
-                  <div className="font-bold text-xl">
+                  <div className="text-xl">
                     {selectedTimePeriod?.value
                       ? item.temporalData?.[selectedTimePeriod?.value]?.public
                       : item.aggregateData?.public}
