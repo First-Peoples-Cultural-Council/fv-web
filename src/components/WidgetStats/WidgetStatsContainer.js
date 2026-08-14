@@ -1,10 +1,10 @@
 import React from 'react'
 
 import WidgetStatsPresentation from 'components/WidgetStats/WidgetStatsPresentation'
-import { useStats } from 'common/dataHooks/useStats'
+import { useStatsForWidget } from 'common/dataHooks/useStats'
 
 function WidgetStatsContainer() {
-  const queryResponse = useStats()
+  const queryResponse = useStatsForWidget()
   return <WidgetStatsPresentation data={queryResponse?.data} />
 }
 
