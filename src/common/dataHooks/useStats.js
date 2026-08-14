@@ -10,6 +10,16 @@ export function useStats() {
   const queryResponse = useQuery({
     queryKey: [STATS, sitename],
     queryFn: () => api.stats.get({ sitename }),
+  })
+
+  return queryResponse
+}
+
+export function useStatsForWidget() {
+  const { sitename } = useParams()
+  const queryResponse = useQuery({
+    queryKey: [STATS, sitename],
+    queryFn: () => api.stats.get({ sitename }),
     select: (data) => statsAdaptor(data),
   })
 
