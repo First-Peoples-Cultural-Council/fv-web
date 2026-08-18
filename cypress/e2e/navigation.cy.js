@@ -28,16 +28,16 @@ describe(
       cy.get('[data-testid="phrase-header"]').should('exist')
       cy.contains('Dictionary').click()
       cy.contains('Categories').click()
-      cy.contains('CATEGORIES').should('exist')
+      cy.contains('Categories').should('exist')
 
       cy.contains('Dictionary').click()
       cy.contains('Alphabet').click()
-      cy.contains('ALPHABET').should('exist')
+      cy.contains('Alphabet').should('exist')
     })
 
     it('12.1 - alphabet', () => {
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
-      cy.contains('ALPHABET').should('exist')
+      cy.contains('Alphabet').should('exist')
       cy.get('[data-testid="character-detail-header"] button').should(
         'have.length',
         2,

@@ -63,6 +63,9 @@ describe(
       cy.get('[data-testid="DeleteModal"]')
         .contains('Delete')
         .click({ force: true })
+      cy.contains('delete').should('exist')
+
+      cy.get(`[data-testid="${_title}-edit-link"]`).should('not.exist')
     })
   },
 )

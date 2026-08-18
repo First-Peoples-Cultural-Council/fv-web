@@ -60,7 +60,7 @@ describe(
       cy.contains('Create a phrase').click()
       cy.contains('Finish').click()
       cy.get('#title').type(name2)
-      cy.middlestuff('Add phrase translation')
+      cy.middlestuff('Add translation')
     })
 
     it('8.1a - delete phrase', () => {

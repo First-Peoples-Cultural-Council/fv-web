@@ -32,8 +32,8 @@ describe(
       cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
       cy.contains('Learn').click()
       cy.contains('Songs').click()
-      cy.get('di7[485v.text-lg')
-        .eq(0)
+      cy.get('[data-testid="SongAndStoriesGridTile"]')
+        .first()
         .invoke('text')
         .then((_text) => {
           cy.log(_text)
