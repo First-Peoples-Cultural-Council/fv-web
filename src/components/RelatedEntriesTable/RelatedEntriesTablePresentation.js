@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 
 // FPCC
 import { makePlural } from 'common/utils/stringHelpers'
 import getIcon from 'common/utils/getIcon'
 import AudioButton from 'components/AudioButton'
+import AudioMinimal from 'components/AudioMinimal'
 
 function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
+  const { pathname } = useLocation()
+  const isDashboard = pathname?.includes('/dashboard/')
+
   return (
     entries?.length > 0 && (
       <table className="w-full border-separate border-spacing-y-4 -mt-4">
@@ -32,8 +36,13 @@ function RelatedEntriesTablePresentation({ entries, sitename, kids = false }) {
                 </Link>
               </td>
               <td className="md:p-2 text-center bg-blumine-50">
-                {entry?.relatedAudio?.length > 0 && (
+                {entry?.relatedAudio?.length > 0 && !isDashboard && (
                   <AudioButton audioArray={entry.relatedAudio?.slice(0, 1)} />
+                )}
+                {entry?.relatedAudio?.length > 0 && isDashboard && (
+                  <AudioMinimal.Container
+                    audioObject={entry?.relatedAudio?.[0]}
+                  />
                 )}
               </td>
               <td className="md:p-2 min-w-30 text-sm md:text-base wrap-anywhere bg-blumine-50">
