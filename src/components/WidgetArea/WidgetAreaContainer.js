@@ -7,7 +7,7 @@ import LazyLoader from 'components/LazyLoader'
 
 function WidgetAreaContainer({ widgetData }) {
   return (
-    <section>
+    <section id="WidgetAreaContainer">
       {widgetData?.length > 0 &&
         widgetData.map((widget) => (
           <LazyLoader key={widget?.id}>
