@@ -25,16 +25,16 @@ function GalleryPresentationWidget({ data, sitename }) {
       </div>
 
       {/* Desktop View */}
-      <div className="hidden md:block px-24">
-        <div className="columns-1 md:columns-3 xl:columns-4 gap-6">
+      <div className="hidden lg:block px-24">
+        <div className="columns-4 gap-6 xl:gap-8">
           {images?.length > 0 &&
             images?.map((image) => (
-              <div key={image?.id} className="inline-flex m-2">
+              <div key={image?.id} className="inline-flex my-3">
                 <ImageWithLightbox.Presentation image={image} />
               </div>
             ))}
         </div>
-        <div className="flex justify-center mt-15">
+        <div className="flex justify-center mt-10 xl:mt-14">
           <Link
             className="btn-primary btn-lg"
             to={`/${sitename}/galleries/${data?.id}`}
@@ -45,7 +45,7 @@ function GalleryPresentationWidget({ data, sitename }) {
       </div>
 
       {/* Mobile View */}
-      <div className="block md:hidden px-8">
+      <div className="block lg:hidden px-8">
         <TabGroup>
           <TabPanels>
             {images?.map((image) => (
