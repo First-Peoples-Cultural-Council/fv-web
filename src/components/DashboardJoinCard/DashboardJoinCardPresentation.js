@@ -10,7 +10,7 @@ import {
   MEMBER_ENUM_NAME,
 } from 'common/constants'
 import getIcon from 'common/utils/getIcon'
-import Listbox from 'components/Listbox'
+import CustomListbox from 'components/CustomListbox'
 
 function DashboardJoinCardPresentation({
   joinRequest,
@@ -66,10 +66,11 @@ function DashboardJoinCardPresentation({
         <div className="p-5 col-span-1">
           <div className="inline-flex items-center justify-end space-x-1 w-full">
             <div data-testid="role-select" className="w-72">
-              <Listbox.Presentation
+              <CustomListbox
                 selectedValue={selectedRole}
+                onChange={(role) => setSelectedRole(role)}
                 options={options}
-                setValue={(role) => setSelectedRole(role)}
+                buttonStyling="w-full btn-secondary btn-sm"
               />
             </div>
 
