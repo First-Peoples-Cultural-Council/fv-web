@@ -22,18 +22,20 @@ function CustomListbox({
     options?.slice(-1) || { label: '------', value: '' }
 
   return (
-    <Listbox value={selectedValue} onChange={onChange}>
+    <Listbox
+      id="CustomListbox"
+      data-testid={`select-${options?.[0]?.label}`}
+      value={selectedValue}
+      onChange={onChange}
+    >
       <div className="relative w-full">
         <ListboxButton
-          className={`${buttonStyling} relative justify-start pr-10`}
+          className={`${buttonStyling} relative justify-start pr-6`}
         >
           {selectedOption?.icon && getIcon(selectedOption?.icon)}
           <span>{selectedOption?.label}</span>
-          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-            {getIcon(
-              'ChevronUpDown',
-              'h-5 w-5 mr-2 text-charcoal-900 fill-current',
-            )}
+          <span className="absolute inset-y-0 right-2 flex items-center">
+            {getIcon('ChevronDown', 'size-6 shrink-none fill-current')}
           </span>
         </ListboxButton>
         <ListboxOptions
