@@ -2,6 +2,7 @@
 import { PUBLIC, MEMBERS, TEAM } from 'common/constants'
 import { widgetListAdaptor } from 'common/dataAdaptors/widgetAdaptors'
 import { selectOneMediaDataHelper } from 'common/utils/mediaHelpers'
+import { capitalizeFirstLetter } from 'common/utils/stringHelpers'
 
 export function languagesListAdaptor({ languagesData }) {
   return languagesData?.results?.map((language) => ({
@@ -64,7 +65,7 @@ export const formattedVisibilityOptions = (optionsArray) =>
   optionsArray.map((option) => ({
     icon: option,
     value: option,
-    label: option,
+    label: capitalizeFirstLetter(option),
   }))
 
 const constructVisibilityOptions = (siteVisibility) => {
