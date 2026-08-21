@@ -7,10 +7,31 @@ import { getMediaPath } from 'common/utils/mediaHelpers'
 import getIcon from 'common/utils/getIcon'
 import { IMAGE, MEDIUM, SMALL } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
+import { useSwipe } from 'common/hooks/useSwipe'
 
 function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(startingIndex)
+
+  const nextImage = () => {
+    if (currentImageIndex === imageArray?.length - 1) {
+      return
+    }
+    setCurrentImageIndex(currentImageIndex + 1)
+  }
+
+  const previousImage = () => {
+    if (currentImageIndex === 0) {
+      return
+    }
+    setCurrentImageIndex(currentImageIndex - 1)
+  }
+
+  const swipeHandlers = useSwipe({
+    onSwipeLeft: () => nextImage(),
+    onSwipeRight: () => previousImage(),
+  })
+
   return (
     <>
       <button
@@ -62,22 +83,25 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                   {getIcon('Close', 'fill-current h-7 w-7')}
                 </button>
 
-                <div className="row-span-5 grid grid-cols-5 grid-rows-1">
+                <div
+                  {...swipeHandlers}
+                  className="row-span-5 grid grid-cols-7 grid-rows-1"
+                >
                   <button
                     data-testid="previous-btn"
                     type="button"
                     disabled={currentImageIndex === 0}
                     className="col-span-1 flex w-full h-full items-center justify-center opacity-0 hover:opacity-80 transition-opacity duration-200 ease-in disabled:opacity-0"
-                    onClick={() => setCurrentImageIndex(currentImageIndex - 1)}
+                    onClick={() => previousImage()}
                   >
                     {getIcon(
                       'RightArrowCircle',
                       'rotate-180 text-white fill-current size-12 ',
                     )}
                   </button>
-                  <div className="col-span-3 row-span-1">
+                  <div className="col-span-5 row-span-1">
                     <img
-                      className="object-contain w-full h-full mx-auto"
+                      className="object-contain h-full mx-auto"
                       src={getMediaPath({
                         mediaObject: imageArray?.[currentImageIndex],
                         type: IMAGE,
@@ -91,7 +115,7 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                     type="button"
                     disabled={currentImageIndex === imageArray?.length - 1}
                     className="col-span-1 flex w-full h-full items-center justify-center opacity-0 hover:opacity-80 transition-opacity duration-200 ease-in disabled:opacity-0"
-                    onClick={() => setCurrentImageIndex(currentImageIndex + 1)}
+                    onClick={() => nextImage()}
                   >
                     {getIcon(
                       'RightArrowCircle',
@@ -101,8 +125,8 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                 </div>
 
                 <div className="row-span-1 flex items-start justify-center">
-                  <div className="flex-col max-w-4xl mx-auto text-center text-white space-y-2 xl:space-y-4 my-1">
-                    <div className="space-y-1 xl:space-y-2">
+                  <div className="flex-col max-w-4xl mx-auto text-center text-white space-y-4 my-1">
+                    <div className="space-y-2">
                       <div className="text-lg xl:text-xl font-bold">
                         {imageArray?.[currentImageIndex]?.title}
                       </div>
