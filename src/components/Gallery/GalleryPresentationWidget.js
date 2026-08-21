@@ -5,7 +5,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 
 // FPCC
 import SectionTitle from 'components/SectionTitle'
-import ImageWithLightbox from 'components/ImageWithLightbox'
+import ImageWithGalleryLightbox from 'components/ImageWithGalleryLightbox'
 import MediaThumbnail from 'components/MediaThumbnail'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, SMALL } from 'common/constants'
@@ -28,9 +28,12 @@ function GalleryPresentationWidget({ data, sitename }) {
       <div className="hidden lg:block px-24">
         <div className="columns-4 gap-6 xl:gap-8">
           {images?.length > 0 &&
-            images?.map((image) => (
+            images?.map((image, index) => (
               <div key={image?.id} className="inline-flex my-3">
-                <ImageWithLightbox.Presentation image={image} />
+                <ImageWithGalleryLightbox
+                  imageArray={data?.galleryItems}
+                  startingIndex={index}
+                />
               </div>
             ))}
         </div>
