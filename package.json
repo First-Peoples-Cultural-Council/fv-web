@@ -60,7 +60,7 @@
     "globals": "^17.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "mochawesome": "^7.1.4",
+    "mochawesome": "^8.0.1",
     "prettier": "^3.8.1",
     "webpack-cli": "^7.2.1",
     "webpack-dev-server": "^5.2.5"
