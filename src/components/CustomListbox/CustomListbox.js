@@ -48,7 +48,7 @@ function CustomListbox({
               className="group relative w-full inline-flex items-center select-none py-2 pl-10 pr-4 text-charcoal-900 hover:bg-charcoal-50 hover:text-blumine-600 hover:cursor-pointer"
               value={option?.value}
             >
-              <div className="inline-flex truncate items-center capitalize group-data-selected:text-blumine-600 group-data-selected:font-bold">
+              <div className="inline-flex truncate items-center group-data-selected:text-blumine-600 group-data-selected:font-bold">
                 {option?.icon &&
                   getIcon(option?.icon, 'h-5 w-5 mr-2 fill-current')}
                 {option?.label}
