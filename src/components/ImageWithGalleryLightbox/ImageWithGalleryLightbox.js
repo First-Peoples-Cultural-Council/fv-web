@@ -41,10 +41,9 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
           setCurrentImageIndex(startingIndex)
           setLightboxOpen(true)
         }}
-        className="relative group flex w-full h-full"
       >
         <img
-          className="h-auto w-full object-cover object-center rounded-xl"
+          className="w-full object-cover rounded-xl"
           src={getMediaPath({
             mediaObject: imageArray?.[startingIndex],
             type: IMAGE,
