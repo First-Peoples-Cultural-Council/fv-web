@@ -24,7 +24,7 @@ function InfiniteLoadBtn({ infiniteQueryResponse, isResultsEmpty = false }) {
   }
   return (
     <div data-testid="InfiniteLoadBtn" className="text-center w-full">
-      <div ref={loadRef} className="w-full h-10" />
+      <div ref={loadRef} className="w-full h-5" />
       <button
         data-testid="load-btn"
         type="button"
@@ -39,6 +39,7 @@ function InfiniteLoadBtn({ infiniteQueryResponse, isResultsEmpty = false }) {
       >
         {getLoadLabel()}
       </button>
+      <div className="w-full h-5" />
     </div>
   )
 }

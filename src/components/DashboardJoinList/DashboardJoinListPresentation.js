@@ -22,7 +22,6 @@ function DashboardJoinListPresentation({ joinRequestsInfiniteQueryResponse }) {
                   ))}
                 </Fragment>
               ))}
-              <div className="w-full h-14" />
             </ul>
             <InfiniteLoadBtn
               infiniteQueryResponse={joinRequestsInfiniteQueryResponse}

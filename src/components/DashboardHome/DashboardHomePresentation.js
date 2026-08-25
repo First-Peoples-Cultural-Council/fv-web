@@ -14,7 +14,7 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
   return (
     <main id="DashboardHome">
       <h1 className="sr-only">Dashboard Landing Page</h1>
-      <div className="mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+      <div className="mx-auto p-6 space-y-4">
         <section>
           <div className="rounded-lg bg-white overflow-hidden shadow-sm">
             <div className="bg-white p-6">
