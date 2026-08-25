@@ -3,10 +3,10 @@ import { Controller } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 // FPCC
-import Listbox from 'components/Listbox'
 import ValidationError from 'components/Form/ValidationError'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
+import CustomListbox from 'components/CustomListbox'
 
 function Select({ control, helpText, label = '', nameId, options, errors }) {
   return (
@@ -19,10 +19,11 @@ function Select({ control, helpText, label = '', nameId, options, errors }) {
           id={nameId}
           name={nameId}
           render={({ field: { value, onChange } }) => (
-            <Listbox.Presentation
+            <CustomListbox
               selectedValue={value}
               options={options}
-              setValue={onChange}
+              onChange={onChange}
+              buttonStyling="w-full btn-secondary btn-md"
             />
           )}
         />
@@ -32,8 +33,10 @@ function Select({ control, helpText, label = '', nameId, options, errors }) {
     </Fragment>
   )
 }
+
 // PROPTYPES
 const { any, arrayOf, object, shape, string } = PropTypes
+
 Select.propTypes = {
   label: string,
   nameId: string.isRequired,
