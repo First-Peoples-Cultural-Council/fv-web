@@ -57,7 +57,7 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
       <Dialog
         open={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
-        className="relative z-30"
+        className="relative z-30 hidden lg:block"
       >
         <DialogBackdrop
           transition
@@ -94,8 +94,8 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                     onClick={() => previousImage()}
                   >
                     {getIcon(
-                      'RightArrowCircle',
-                      'rotate-180 text-white fill-current size-12 ',
+                      'RightArrow',
+                      'rotate-180 text-white fill-current size-8',
                     )}
                   </button>
                   <div className="col-span-5 row-span-1">
@@ -116,10 +116,7 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                     className="col-span-1 flex w-full h-full items-center justify-center opacity-0 hover:opacity-80 transition-opacity duration-200 ease-in disabled:opacity-0"
                     onClick={() => nextImage()}
                   >
-                    {getIcon(
-                      'RightArrowCircle',
-                      'text-white fill-current size-12',
-                    )}
+                    {getIcon('RightArrow', 'text-white fill-current size-8')}
                   </button>
                 </div>
 
@@ -152,7 +149,7 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                           key={image?.id}
                           data-testid={`image-btn-${index}`}
                           onClick={() => setCurrentImageIndex(index)}
-                          className="shrink-0 snap-start rounded-lg overflow-hidden w-20 h-20 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-blumine-600 data-selected:border-4 data-selected:border-blumine-500"
+                          className={`shrink-0 snap-center rounded-lg overflow-hidden w-20 h-20 ${index === currentImageIndex && 'border-4 border-blumine-500'}`}
                         >
                           <MediaThumbnail.Image
                             key={image?.id}
