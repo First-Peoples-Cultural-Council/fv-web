@@ -5,23 +5,23 @@ import { useParams } from 'react-router'
 // FPCC
 import { useGallery } from 'common/dataHooks/useGalleries'
 import GalleryPresentation from 'components/Gallery/GalleryPresentation'
-import GalleryPresentationThumbnail from 'components/Gallery/GalleryPresentationThumbnail'
+import LoadOrError from 'components/LoadOrError'
 
-function GalleryContainer({ id, view }) {
+function GalleryContainer({ id }) {
   const { id: paramsId } = useParams()
-  const { data } = useGallery({ id: id || paramsId })
+  const queryResponse = useGallery({ id: id || paramsId })
 
-  if (view === 'thumbnail') {
-    return <GalleryPresentationThumbnail data={data} />
-  }
-  return <GalleryPresentation data={data} />
+  return (
+    <LoadOrError queryResponse={queryResponse}>
+      <GalleryPresentation data={queryResponse?.data} />
+    </LoadOrError>
+  )
 }
 
 // PROPTYPES
 const { string } = PropTypes
 GalleryContainer.propTypes = {
   id: string,
-  view: string,
 }
 
 export default GalleryContainer
