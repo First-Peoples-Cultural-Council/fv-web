@@ -1,20 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useParams } from 'react-router'
 import PropTypes from 'prop-types'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 
 // FPCC
+import { useGallery } from 'common/dataHooks/useGalleries'
 import SectionTitle from 'components/SectionTitle'
 import ImageWithGalleryLightbox from 'components/ImageWithGalleryLightbox'
 import MediaThumbnail from 'components/MediaThumbnail'
 import { getMediaPath } from 'common/utils/mediaHelpers'
 import { IMAGE, SMALL } from 'common/constants'
 
-function GalleryPresentationWidget({ data, sitename }) {
+function WidgetGalleryPresentation({ id }) {
+  const { sitename } = useParams()
+  const { data } = useGallery({ id })
   const images = data?.galleryItems?.slice(0, 8)
+
   return (
     <section
-      data-testid="GalleryPresentationWidget"
+      data-testid="WidgetGalleryPresentation"
       className="pt-3 pb-6 md:py-6"
     >
       <div className="mx-2 md:mx-5 lg:mx-10">
@@ -101,10 +105,9 @@ function GalleryPresentationWidget({ data, sitename }) {
   )
 }
 // PROPTYPES
-const { object, string } = PropTypes
-GalleryPresentationWidget.propTypes = {
-  data: object,
-  sitename: string,
+const { string } = PropTypes
+WidgetGalleryPresentation.propTypes = {
+  id: string,
 }
 
-export default GalleryPresentationWidget
+export default WidgetGalleryPresentation

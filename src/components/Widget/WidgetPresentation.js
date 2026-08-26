@@ -23,7 +23,7 @@ import {
 import WidgetAlphabet from 'components/WidgetAlphabet'
 import WidgetApps from 'components/WidgetApps'
 import WidgetContactUs from 'components/WidgetContactUs'
-import Gallery from 'components/Gallery'
+import WidgetGallery from 'components/WidgetGallery'
 import WidgetIframe from 'components/WidgetIframe'
 import WidgetImage from 'components/WidgetImage'
 import WidgetKeyboards from 'components/WidgetKeyboards'
@@ -48,7 +48,7 @@ function WidgetPresentation({ data, type }) {
       return <WidgetContactUs.Container widgetData={data} />
 
     case WIDGET_GALLERY:
-      return <Gallery.Container id={data?.settings?.galleryId} view="widget" />
+      return <WidgetGallery.Presentation id={data?.settings?.galleryId} />
 
     case WIDGET_IFRAME:
       return <WidgetIframe.Presentation widgetData={data} />
