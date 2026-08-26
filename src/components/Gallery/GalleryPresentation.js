@@ -30,7 +30,7 @@ function GalleryPresentation({ data }) {
             <LazyLoader key={image?.id}>
               <div className="mb-6 space-y-2 break-inside-avoid-column">
                 <ImageWithLightbox.Presentation image={image} />
-                <p className="text-sm break-words">{image.title}</p>
+                <p className="text-sm wrap-break-word">{image.title}</p>
               </div>
             </LazyLoader>
           ))}
