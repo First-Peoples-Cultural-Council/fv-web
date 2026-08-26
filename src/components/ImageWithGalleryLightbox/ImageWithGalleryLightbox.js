@@ -148,6 +148,7 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
                         <button
                           key={image?.id}
                           data-testid={`image-btn-${index}`}
+                          type="button"
                           onClick={() => setCurrentImageIndex(index)}
                           className={`shrink-0 snap-center rounded-lg overflow-hidden w-20 h-20 ${index === currentImageIndex && 'border-4 border-blumine-500'}`}
                         >
