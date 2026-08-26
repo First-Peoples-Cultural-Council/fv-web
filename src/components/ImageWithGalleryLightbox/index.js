@@ -1,0 +1,3 @@
+import ImageWithGalleryLightbox from 'components/ImageWithGalleryLightbox/ImageWithGalleryLightbox'
+
+export default ImageWithGalleryLightbox

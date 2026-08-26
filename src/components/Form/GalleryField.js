@@ -69,7 +69,7 @@ function AddGalleryButton({ value, onChange }) {
             Choose a gallery
           </h2>
           {data?.results?.length > 0 ? (
-            <div className="h-[80vh] mx-auto space-x-4 space-y-4 overflow-y-scroll size-full">
+            <div className="h-[80vh] mx-auto space-x-4 space-y-4 overflow-y-scroll size-full p-4">
               {data?.results?.map((gallery) => (
                 <button
                   key={gallery?.id}

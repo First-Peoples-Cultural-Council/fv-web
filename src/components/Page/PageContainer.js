@@ -40,7 +40,9 @@ function PageContainer({ pageSlug }) {
             showLogo={showLogo}
           />
         </BannerBackground>
-        <WidgetArea.Container widgetData={widgets} />
+        <section className="py-3 md:py-6">
+          <WidgetArea.Container widgetData={widgets} />
+        </section>
       </main>
     </LoadOrError>
   )

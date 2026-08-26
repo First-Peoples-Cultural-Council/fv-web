@@ -17,7 +17,9 @@ function HomeContainer() {
       <BannerBackground bannerImage={bannerImage} bannerVideo={bannerVideo}>
         <HomePresentation site={site} />
       </BannerBackground>
-      <WidgetArea.Container widgetData={homepageWidgets} />
+      <section className="py-3 md:py-6">
+        <WidgetArea.Container widgetData={homepageWidgets} />
+      </section>
     </div>
   )
 }

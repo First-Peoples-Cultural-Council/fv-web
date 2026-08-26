@@ -23,11 +23,13 @@ function GalleryPresentationThumbnail({ data }) {
     <div
       data-testid={`GalleryPresentationThumbnail_${data?.id}`}
       style={conditionalStyle}
-      className={`${conditionalClass} h-44 w-44 flex items-center rounded-lg overflow-hidden`}
+      className={`${conditionalClass} h-44 w-44 rounded-lg overflow-hidden px-3 py-6 lg:py-10 `}
     >
-      <div className="w-full px-3 py-6 lg:py-10 rounded-lg flex flex-col text-center items-center">
+      <div className="h-full flex-col items-center justify-center text-center">
         <div className="text-lg font-medium mb-2">{data?.title}</div>
-        <div className="text-base font-light">{data?.titleTranslation}</div>
+        <div className="text-sm font-light truncate">
+          {data?.titleTranslation}
+        </div>
       </div>
     </div>
   )
