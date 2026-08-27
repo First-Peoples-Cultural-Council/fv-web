@@ -67,6 +67,7 @@
   --color-wordsy-present: var(--color-ochre-600);
 
   --color-phrase-color-100: var(--color-ochre-100);
+  --color-phrase-color-200: var(--color-ochre-200);
   --color-phrase-color-500: var(--color-ochre-500);
   --color-phrase-color-600: var(--color-ochre-600);
   --color-phrase-color-700: var(--color-ochre-700);
@@ -74,6 +75,7 @@
   --color-phrase-color-900: var(--color-ochre-900);
 
   --color-word-color-100: var(--color-jade-100);
+  --color-word-color-200: var(--color-jade-200);
   --color-word-color-500: var(--color-jade-500);
   --color-word-color-600: var(--color-jade-600);
   --color-word-color-700: var(--color-jade-700);
@@ -81,16 +83,22 @@
   --color-word-color-900: var(--color-jade-900);
 
   --color-song-color-100: var(--color-scarlet-100);
+  --color-song-color-200: var(--color-scarlet-200);
+  --color-song-color-600: var(--color-scarlet-600);
   --color-song-color-700: var(--color-scarlet-700);
+  --color-song-color-800: var(--color-scarlet-800);
   --color-song-color-900: var(--color-scarlet-900);
 
   --color-story-color-100: var(--color-blumine-100);
+  --color-story-color-200: var(--color-blumine-200);
+  --color-story-color-600: var(--color-blumine-600);
   --color-story-color-700: var(--color-blumine-700);
+  --color-story-color-800: var(--color-blumine-800);
   --color-story-color-900: var(--color-blumine-900);
 }
 
 /* Safelisting for dynamically generated type classes */
-@source inline("{focus:,}{text,bg,border,to,from,ring}-phrase-color-{100,500,600,700,800,900}");
-@source inline("{focus:,}{text,bg,border,to,from,ring}-word-color-{100,500,600,700,800,900}");
-@source inline("{focus:,}{text,bg,border,ring}-song-color-{100,700,900}");
-@source inline("{focus:,}{text,bg,border,ring}-story-color-{100,700,900}");
+@source inline("{focus:,}{text,bg,border,to,from,ring}-phrase-color-{100,200,500,600,700,800,900}");
+@source inline("{focus:,}{text,bg,border,to,from,ring}-word-color-{100,200,500,600,700,800,900}");
+@source inline("{focus:,}{text,bg,border,ring}-song-color-{100,200,500,600,700,800,900}");
+@source inline("{focus:,}{text,bg,border,ring}-story-color-{100,200,500,600,700,800,900}");
