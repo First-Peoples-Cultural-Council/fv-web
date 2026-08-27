@@ -41,9 +41,10 @@ function ImageWithGalleryLightbox({ imageArray, startingIndex = 0 }) {
           setCurrentImageIndex(startingIndex)
           setLightboxOpen(true)
         }}
+        className="w-full"
       >
         <img
-          className="w-full object-cover rounded-xl"
+          className="w-full object-cover rounded-xl border border-charcoal-200"
           src={getMediaPath({
             mediaObject: imageArray?.[startingIndex],
             type: IMAGE,

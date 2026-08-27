@@ -7,12 +7,13 @@ import { Link, useParams } from 'react-router'
 import Modal from 'components/Modal'
 import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
-import Gallery from 'components/Gallery'
 import { useGalleries } from 'common/dataHooks/useGalleries'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
+import GalleryThumbnail from 'components/GalleryThumbnail'
+import LoadOrError from 'components/LoadOrError'
 
 function GalleryField({ label, nameId, helpText, control, errors }) {
   return (
@@ -36,7 +37,7 @@ function GalleryField({ label, nameId, helpText, control, errors }) {
 function AddGalleryButton({ value, onChange }) {
   const [modalOpen, setModalOpen] = useState(false)
   const { sitename } = useParams()
-  const { data } = useGalleries()
+  const queryResponse = useGalleries()
 
   const chooseGalleryHandler = (id) => {
     if (isUUID(id)) {
@@ -45,61 +46,70 @@ function AddGalleryButton({ value, onChange }) {
     setModalOpen(false)
   }
 
-  return value ? (
-    <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
-      <Gallery.Container view="thumbnail" id={value} />
-      <XButton onClickHandler={() => onChange('')} />
-    </div>
-  ) : (
-    <Fragment key="AddGalleryButton">
-      <FieldButton
-        label="Add gallery"
-        onClickHandler={() => setModalOpen(true)}
-      />
-      {/* Add Modal */}
-      <Modal.Presentation
-        isOpen={modalOpen}
-        closeHandler={() => setModalOpen(false)}
-      >
-        <div
-          id="AddGalleryModalWrapper"
-          className="min-w-md mx-auto rounded-lg bg-charcoal-50 py-6 mb-20"
-        >
-          <h2 className="text-2xl leading-6 font-bold text-center text-blumine-800 pb-6">
-            Choose a gallery
-          </h2>
-          {data?.results?.length > 0 ? (
-            <div className="h-[80vh] mx-auto space-x-4 space-y-4 overflow-y-scroll size-full p-4">
-              {data?.results?.map((gallery) => (
-                <button
-                  key={gallery?.id}
-                  data-testid={`${gallery?.id}-choose`}
-                  type="button"
-                  onClick={() => chooseGalleryHandler(gallery?.id)}
-                >
-                  <span className="sr-only">{gallery?.titleTranslation}</span>
-                  <Gallery.PresentationThumbnail data={gallery} />
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="text-xl text-center text-charcoal-900 mb-6">
-              There are currently no galleries on your site. You can create a
-              gallery{' '}
-              <Link
-                to={`/${sitename}/dashboard/create/gallery`}
-                className="inline-url"
-              >
-                here
-              </Link>
-              .
-            </div>
-          )}
+  const gallery = queryResponse?.data?.results?.find((obj) => obj?.id === value)
+
+  return (
+    <LoadOrError queryResponse={queryResponse} height="h-48">
+      {value && gallery ? (
+        <div className="inline-flex border border-transparent bg-white rounded-lg shadow-md text-sm font-medium p-2 space-x-1">
+          <GalleryThumbnail.Presentation data={gallery} />
+          <XButton onClickHandler={() => onChange('')} />
         </div>
-      </Modal.Presentation>
-    </Fragment>
+      ) : (
+        <Fragment key="AddGalleryButton">
+          <FieldButton
+            label="Add gallery"
+            onClickHandler={() => setModalOpen(true)}
+          />
+          {/* Add Modal */}
+          <Modal.Presentation
+            isOpen={modalOpen}
+            closeHandler={() => setModalOpen(false)}
+          >
+            <div
+              id="AddGalleryModalWrapper"
+              className="min-w-md mx-auto rounded-lg bg-charcoal-50 py-6 mb-20"
+            >
+              <h2 className="text-2xl leading-6 font-bold text-center text-blumine-800 pb-6">
+                Choose a gallery
+              </h2>
+              {queryResponse?.data?.results?.length > 0 ? (
+                <div className="h-[80vh] mx-auto space-x-4 space-y-4 overflow-y-scroll size-full p-4">
+                  {queryResponse?.data?.results?.map((gallery) => (
+                    <button
+                      key={gallery?.id}
+                      data-testid={`${gallery?.id}-choose`}
+                      type="button"
+                      onClick={() => chooseGalleryHandler(gallery?.id)}
+                    >
+                      <span className="sr-only">
+                        {gallery?.titleTranslation}
+                      </span>
+                      <GalleryThumbnail.Presentation data={gallery} />
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-xl text-center text-charcoal-900 mb-6">
+                  There are currently no galleries on your site. You can create
+                  a gallery{' '}
+                  <Link
+                    to={`/${sitename}/dashboard/create/gallery`}
+                    className="inline-url"
+                  >
+                    here
+                  </Link>
+                  .
+                </div>
+              )}
+            </div>
+          </Modal.Presentation>
+        </Fragment>
+      )}
+    </LoadOrError>
   )
 }
+
 // PROPTYPES
 const { func, object, string } = PropTypes
 GalleryField.propTypes = {

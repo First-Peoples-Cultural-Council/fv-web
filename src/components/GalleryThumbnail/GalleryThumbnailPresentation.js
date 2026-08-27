@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import { getMediaPath } from 'common/utils/mediaHelpers'
-import { SMALL, IMAGE } from 'common/constants'
+import { IMAGE, SMALL } from 'common/constants'
 
-function GalleryPresentationThumbnail({ data }) {
+function GalleryThumbnailPresentation({ data }) {
   const imageUrl = getMediaPath({
     type: IMAGE,
     mediaObject: data?.coverImage,
@@ -21,7 +21,7 @@ function GalleryPresentationThumbnail({ data }) {
 
   return (
     <div
-      data-testid={`GalleryPresentationThumbnail_${data?.id}`}
+      data-testid={`GalleryThumbnail_${data?.id}`}
       style={conditionalStyle}
       className={`${conditionalClass} h-44 w-44 rounded-lg overflow-hidden px-3 py-6 lg:py-10 `}
     >
@@ -36,8 +36,8 @@ function GalleryPresentationThumbnail({ data }) {
 }
 // PROPTYPES
 const { object } = PropTypes
-GalleryPresentationThumbnail.propTypes = {
+GalleryThumbnailPresentation.propTypes = {
   data: object,
 }
 
-export default GalleryPresentationThumbnail
+export default GalleryThumbnailPresentation
