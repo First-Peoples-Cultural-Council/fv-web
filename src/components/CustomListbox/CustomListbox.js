@@ -24,12 +24,13 @@ function CustomListbox({
   return (
     <Listbox
       id="CustomListbox"
-      data-testid={`select-${options?.[0]?.label}`}
+      data-testid="custom-listbox"
       value={selectedValue}
       onChange={onChange}
     >
       <div className="relative w-full">
         <ListboxButton
+          data-testid="custom-listbox-btn"
           className={`${buttonStyling} relative justify-start pr-6`}
         >
           {selectedOption?.icon && getIcon(selectedOption?.icon)}
@@ -39,7 +40,7 @@ function CustomListbox({
           </span>
         </ListboxButton>
         <ListboxOptions
-          data-testid="CustomListbox"
+          data-testid="custom-listbox-list"
           className="z-10 focus:outline-hidden absolute mt-1 max-h-60 flex-col overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-charcoal-300 sm:text-sm transition duration-100 ease-in data-leave:data-closed:opacity-0"
         >
           {options.map((option) => (
