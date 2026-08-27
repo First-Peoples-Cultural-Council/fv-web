@@ -1,17 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import SectionTitle from 'components/SectionTitle'
+import { useStatsForWidget } from 'common/dataHooks/useStats'
 
-function WidgetStatsPresentation({ data }) {
+function WidgetStats() {
+  const { data } = useStatsForWidget()
+
   const iconStyling =
     'fill-current text-ochre-500 h-10 md:h-12 lg:h-14 w-auto mx-auto'
   const totalStyling = 'text-4xl md:text-5xl lg:text-6xl font-medium'
   const labelStyling = 'text-base font-thin'
+
   return (
-    <section className="bg-blumine-800 pt-3 md:pt-6">
+    <section id="WidgetStats" className="bg-blumine-800 pt-3 md:pt-6">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation
           title={data?.header}
@@ -46,10 +49,5 @@ function WidgetStatsPresentation({ data }) {
     </section>
   )
 }
-// PROPTYPES
-const { object } = PropTypes
-WidgetStatsPresentation.propTypes = {
-  data: object,
-}
 
-export default WidgetStatsPresentation
+export default WidgetStats

@@ -66,7 +66,7 @@ function WidgetPresentation({ data, type }) {
       return <WidgetQuotes.Presentation widgetData={data} />
 
     case WIDGET_STATS:
-      return <WidgetStats.Container widgetData={data} />
+      return <WidgetStats />
 
     case WIDGET_TEXT:
       return <WidgetText.Presentation widgetData={data} />

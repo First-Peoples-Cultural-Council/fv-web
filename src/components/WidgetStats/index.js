@@ -1,7 +1,3 @@
-import WidgetStatsContainer from 'components/WidgetStats/WidgetStatsContainer'
-import WidgetStatsPresentation from 'components/WidgetStats/WidgetStatsPresentation'
+import WidgetStats from 'components/WidgetStats/WidgetStats'
 
-export default {
-  Container: WidgetStatsContainer,
-  Presentation: WidgetStatsPresentation,
-}
+export default WidgetStats
