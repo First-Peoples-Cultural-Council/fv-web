@@ -65,32 +65,33 @@ function WidgetStats() {
               return (
                 <div
                   key={type}
-                  className={`flex-col w-full justify-center mx-auto col-span-1 rounded-md border ${colors.border} space-y-5 pt-5`}
+                  className={`flex-col w-full justify-center mx-auto col-span-1 rounded-md border ${colors.border} pt-5 sm:pt-8`}
                 >
-                  <div>
-                    {getIcon(
-                      type,
-                      `fill-current ${colors.textLight} h-10 w-auto mx-auto`,
-                    )}
-                  </div>
-                  <div className={`text-5xl font-bold ${colors.textLight}`}>
+                  {getIcon(
+                    type,
+                    `fill-current ${colors.textLight} h-7 sm:h-10 w-auto mx-auto mb-3 sm:mb-5`,
+                  )}
+
+                  <div
+                    className={`text-3xl sm:text-5xl font-bold mb-2 ${colors.textLight}`}
+                  >
                     {queryResponse?.data?.[type]?.total}
                   </div>
                   <div
-                    className={`text-xl uppercase font-bold ${colors.textLight}`}
+                    className={`text-base sm:text-xl uppercase font-bold mb-4 sm:mb-7 ${colors.textLight}`}
                   >
                     {type}
                   </div>
                   <div
-                    className={`text-base ${colors.textDark} ${queryResponse?.data?.[type]?.recent > 0 ? 'visible' : 'invisible'}`}
+                    className={`text-sm sm:text-base mb-7 sm:mb-11 ${colors.textDark} ${queryResponse?.data?.[type]?.recent > 0 ? 'visible' : 'invisible'}`}
                   >
                     Recently updated: {queryResponse?.data?.[type]?.recent}
                   </div>
                   <Link
                     to={`/${sitename}/${type}`}
-                    className={`w-full flex items-center justify-center space-x-4 border-t py-6 ${colors.border} ${colors.background} ${colors.textDark}`}
+                    className={`w-full flex items-center justify-center space-x-4 border-t py-4 sm:py-6 ${colors.border} ${colors.background} ${colors.textDark}`}
                   >
-                    <span>View all</span>
+                    <span className="text-base sm:text-xl">View all</span>
                     {getIcon('RightArrowCircle', 'fill-current size-5')}
                   </Link>
                 </div>
