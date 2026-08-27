@@ -82,7 +82,7 @@ function WidgetStats() {
                     {type}
                   </div>
                   <div
-                    className={`text-base ${colors.textLight} ${queryResponse?.data?.[type]?.recent > 0 ? 'visible' : 'invisible'}`}
+                    className={`text-base ${colors.textDark} ${queryResponse?.data?.[type]?.recent > 0 ? 'visible' : 'invisible'}`}
                   >
                     Recently updated: {queryResponse?.data?.[type]?.recent}
                   </div>
