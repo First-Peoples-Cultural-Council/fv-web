@@ -73,7 +73,8 @@ function DashboardExportsPresentation({
       case CANCELLED:
         return (
           <span>
-            Export {exportJob?.status}. Contact support for more information
+            Export {exportJob?.status} as there are no results to export. Please
+            adjust parameters and try again.
           </span>
         )
       default:
