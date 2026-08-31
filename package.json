@@ -46,7 +46,7 @@
     "@eslint/markdown": "^8.0.3",
     "@tanstack/eslint-plugin-query": "^5.102.5",
     "cypress": "^15.21.1",
-    "eslint": "^9.39.5",
+    "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-webpack": "^0.13.11",
