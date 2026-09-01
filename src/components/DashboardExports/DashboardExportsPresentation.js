@@ -201,6 +201,9 @@ function DashboardExportsPresentation({
                 Parameters
               </th>
               <th scope="col" className="p-3 text-charcoal-500 bg-charcoal-50">
+                Results
+              </th>
+              <th scope="col" className="p-3 text-charcoal-500 bg-charcoal-50">
                 Export Status
               </th>
               <th
@@ -243,6 +246,9 @@ function DashboardExportsPresentation({
                             }
                           })}
                       </ul>
+                    </td>
+                    <td className="whitespace-nowrap p-3 text-sm text-charcoal-900 text-center">
+                      {exportInProgress ? '-' : result?.rowCount}
                     </td>
                     <td className="p-3 text-sm text-charcoal-500 text-center">
                       {generateStatusNode(result)}
