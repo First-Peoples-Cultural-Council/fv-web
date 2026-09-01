@@ -85,7 +85,7 @@ function WidgetStats() {
                   <div
                     className={`text-sm sm:text-base mb-7 sm:mb-11 ${colors.textDark} ${queryResponse?.data?.[type]?.recent > 0 ? 'visible' : 'invisible'}`}
                   >
-                    Recently updated: {queryResponse?.data?.[type]?.recent}
+                    Recently added: {queryResponse?.data?.[type]?.recent}
                   </div>
                   <Link
                     to={`/${sitename}/${type}`}
