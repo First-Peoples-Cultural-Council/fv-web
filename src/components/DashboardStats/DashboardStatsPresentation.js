@@ -105,10 +105,10 @@ function DashboardStatsPresentation({ data }) {
               <div className="grid grid-cols-2 gap-4 text-center">
                 <div>
                   <div className="text-3xl text-charcoal-900">
-                    {item.temporalData?.[selectedTimePeriod]?.created > 0
+                    {item.temporalData?.[selectedTimePeriod]?.created?.total > 0
                       ? '+'
                       : ''}
-                    {item.temporalData?.[selectedTimePeriod]?.created}
+                    {item.temporalData?.[selectedTimePeriod]?.created?.total}
                   </div>
                   <div className="text-sm text-charcoal-500">
                     New <span className="sr-only"> {item.name}</span>
@@ -117,8 +117,9 @@ function DashboardStatsPresentation({ data }) {
                 <div>
                   <div className="text-3xl text-charcoal-900">
                     {/* `lastModified` includes `created` - subtracting created to get updates only */}
-                    {item.temporalData?.[selectedTimePeriod]?.lastModified -
-                      item.temporalData?.[selectedTimePeriod]?.created}
+                    {item.temporalData?.[selectedTimePeriod]?.lastModified
+                      ?.total -
+                      item.temporalData?.[selectedTimePeriod]?.created?.total}
                   </div>
                   <div className="text-sm text-charcoal-500">
                     Updated <span className="sr-only"> {item.name}</span>
@@ -134,7 +135,7 @@ function DashboardStatsPresentation({ data }) {
                 <div className="text-center text-charcoal-600">
                   <div className="text-xl">
                     {selectedTimePeriod
-                      ? item.temporalData?.[selectedTimePeriod]?.team
+                      ? item.temporalData?.[selectedTimePeriod]?.created?.team
                       : item.aggregateData?.team}
                   </div>
                   {getIcon('Team', 'size-5 mx-auto fill-current')}
@@ -145,7 +146,8 @@ function DashboardStatsPresentation({ data }) {
                 <div className="text-center text-charcoal-600">
                   <div className="text-xl">
                     {selectedTimePeriod
-                      ? item.temporalData?.[selectedTimePeriod]?.members
+                      ? item.temporalData?.[selectedTimePeriod]?.created
+                          ?.members
                       : item.aggregateData?.members}
                   </div>
                   {getIcon('Members', 'size-5 mx-auto fill-current')}
@@ -156,7 +158,7 @@ function DashboardStatsPresentation({ data }) {
                 <div className="text-center text-charcoal-600">
                   <div className="text-xl">
                     {selectedTimePeriod
-                      ? item.temporalData?.[selectedTimePeriod]?.public
+                      ? item.temporalData?.[selectedTimePeriod]?.created?.public
                       : item.aggregateData?.public}
                   </div>
                   {getIcon('Public', 'size-5 mx-auto fill-current')}
