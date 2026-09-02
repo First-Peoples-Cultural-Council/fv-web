@@ -135,7 +135,8 @@ function DashboardStatsPresentation({ data }) {
                 <div className="text-center text-charcoal-600">
                   <div className="text-xl">
                     {selectedTimePeriod
-                      ? item.temporalData?.[selectedTimePeriod]?.created?.team
+                      ? item.temporalData?.[selectedTimePeriod]?.lastModified
+                          ?.team
                       : item.aggregateData?.team}
                   </div>
                   {getIcon('Team', 'size-5 mx-auto fill-current')}
@@ -146,7 +147,7 @@ function DashboardStatsPresentation({ data }) {
                 <div className="text-center text-charcoal-600">
                   <div className="text-xl">
                     {selectedTimePeriod
-                      ? item.temporalData?.[selectedTimePeriod]?.created
+                      ? item.temporalData?.[selectedTimePeriod]?.lastModified
                           ?.members
                       : item.aggregateData?.members}
                   </div>
@@ -158,7 +159,8 @@ function DashboardStatsPresentation({ data }) {
                 <div className="text-center text-charcoal-600">
                   <div className="text-xl">
                     {selectedTimePeriod
-                      ? item.temporalData?.[selectedTimePeriod]?.created?.public
+                      ? item.temporalData?.[selectedTimePeriod]?.lastModified
+                          ?.public
                       : item.aggregateData?.public}
                   </div>
                   {getIcon('Public', 'size-5 mx-auto fill-current')}
