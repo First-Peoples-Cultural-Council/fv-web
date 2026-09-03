@@ -39,6 +39,7 @@ function NavBarPresentationMobile({ site, open, onClose }) {
         data-testid={`${menuItem?.title}-link`}
         to={`/${site?.sitename + menuItem?.href}`}
         className={linkStyling}
+        onClick={onClose}
       >
         <span className="truncate">
           {menuItem?.transKey ? t(menuItem?.transKey) : menuItem?.title}
