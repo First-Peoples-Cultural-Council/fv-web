@@ -9,36 +9,41 @@ function WidgetLogoPresentation({ widgetData }) {
   const { text } = widgetData?.settings || {}
   const format = widgetData?.format ? widgetData?.format : FORMAT_RIGHT
   return (
-    <section className="w-full bg-white" data-testid="WidgetLogoPresentation">
-      <div className="lg:my-20 py-8 bg-blumine-800 lg:py-0 lg:z-10 lg:relative">
-        <div className="mx-auto lg:max-w-7xl lg:px-8 grid grid-cols-3 lg:gap-8">
-          {format === FORMAT_LEFT && (
-            <div className="relative lg:-my-8 col-span-3 sm:col-span-1 sm:col-start-2 lg:col-start-1">
-              <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
-                <SiteLogo.Presentation
-                  size={MEDIUM}
-                  additionalStyling="shadow-xl"
-                />
+    <section
+      data-testid="WidgetLogoPresentation"
+      className="w-full bg-white py-6 lg:py-12"
+    >
+      <div className="bg-blumine-800 py-8 lg:py-0 lg:my-8">
+        <div className="mx-auto max-w-7xl px-2 md:px-12">
+          <div className="px-6 md:px-12 grid grid-cols-6 gap-8">
+            {format === FORMAT_LEFT && (
+              <div className="flex items-center lg:-my-8 col-span-6 sm:col-span-4 sm:col-start-2 lg:col-span-2 lg:col-start-1">
+                <div className="mx-auto w-sm lg::w-2xl">
+                  <SiteLogo.Presentation
+                    size={MEDIUM}
+                    additionalStyling="shadow-xl"
+                  />
+                </div>
+              </div>
+            )}
+            <div className="lg:m-0 col-span-6 flex items-center lg:col-span-4 lg:pl-8">
+              <div className="mx-auto lg:py-5">
+                <p className="my-1 text-white lg:text-lg font-medium  whitespace-pre-line">
+                  {text}
+                </p>
               </div>
             </div>
-          )}
-          <div className="lg:m-0 col-span-3 flex items-center lg:col-span-2 lg:pl-8">
-            <div className="mx-auto max-w-md sm:max-w-2xl px-4 sm:px-6 lg:px-0 lg:py-5 lg:max-w-none">
-              <p className="my-1 lg:text-lg font-medium text-white whitespace-pre-line">
-                {text}
-              </p>
-            </div>
+            {format === FORMAT_RIGHT && (
+              <div className="flex items-center lg:-my-8 col-span-6 sm:col-span-4 sm:col-start-2 lg:col-span-2 lg:col-start-5">
+                <div className="mx-auto w-sm lg:w-2xl">
+                  <SiteLogo.Presentation
+                    size={MEDIUM}
+                    additionalStyling="shadow-xl"
+                  />
+                </div>
+              </div>
+            )}
           </div>
-          {format === FORMAT_RIGHT && (
-            <div className="relative lg:-my-8 col-span-3 sm:col-span-1 sm:col-start-2 lg:col-start-3">
-              <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:p-0 lg:h-full">
-                <SiteLogo.Presentation
-                  size={MEDIUM}
-                  additionalStyling="shadow-xl"
-                />
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>
