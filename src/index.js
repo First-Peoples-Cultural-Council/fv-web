@@ -56,7 +56,6 @@ const oidcConfig = {
     } else {
       // remove url params to complete the login
       window.history.replaceState({}, document.title, window.location.pathname)
-      window.location.reload()
     }
   },
 }
