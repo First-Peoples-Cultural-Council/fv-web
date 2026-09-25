@@ -43,7 +43,7 @@ function AppData() {
   }, [auth])
 
   return {
-    appIsLoading: mySitesQueryResponse?.isPending,
+    appIsLoading: mySitesQueryResponse?.isPending || auth?.isLoading,
   }
 }
 
