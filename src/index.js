@@ -1,12 +1,17 @@
 import 'core-js'
 import React, { Suspense, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQueryClient,
+} from '@tanstack/react-query'
 import {
   Routes,
   Route,
   BrowserRouter,
   useLocation,
+  useNavigate,
   useNavigationType,
   createRoutesFromChildren,
   matchRoutes,
@@ -14,6 +19,7 @@ import {
 import { AuthProvider } from 'react-oidc-context'
 import { WebStorageStateStore } from 'oidc-client-ts'
 import * as Sentry from '@sentry/react'
+import PropTypes from 'prop-types'
 import './i18n'
 
 // FPCC
@@ -24,7 +30,7 @@ import ScrollToTopOnMount from 'common/ScrollToTopOnMount'
 import GlobalConfiguration from 'src/GlobalConfiguration'
 import { SiteProvider } from 'context/SiteContext'
 import { UserProvider } from 'context/UserContext'
-import { ORIGINAL_DESTINATION } from 'common/constants'
+import { MY_SITES, ORIGINAL_DESTINATION } from 'common/constants'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,18 +53,40 @@ const oidcConfig = {
   redirect_uri: GlobalConfiguration.OAUTH2_REDIRECT_URL,
   userStore: new WebStorageStateStore({ store: window.localStorage }),
   automaticSilentRenew: true,
-  onSigninCallback: () => {
+}
+
+// Handles the redirect back from the login provider using react-router's
+// navigate instead of window.location, so returning from login doesn't
+// force a full page reload.
+function AuthProviderWithRedirect({ children }) {
+  const navigate = useNavigate()
+  const reactQueryClient = useQueryClient()
+
+  function onSigninCallback() {
+    // my-sites was fetched anonymously before sign-in resolved; refetch now that we're authenticated
+    reactQueryClient.invalidateQueries({ queryKey: [MY_SITES] })
+
     // redirect to original location
     const url = window.sessionStorage.getItem(ORIGINAL_DESTINATION)
     if (url) {
       window.sessionStorage.removeItem(ORIGINAL_DESTINATION)
-      window.location.replace(url)
+      navigate(url, { replace: true })
     } else {
       // remove url params to complete the login
-      window.history.replaceState({}, document.title, window.location.pathname)
-      window.location.reload()
+      navigate(window.location.pathname, { replace: true })
     }
-  },
+  }
+
+  return (
+    <AuthProvider {...oidcConfig} onSigninCallback={onSigninCallback}>
+      {children}
+    </AuthProvider>
+  )
+}
+
+const { node } = PropTypes
+AuthProviderWithRedirect.propTypes = {
+  children: node,
 }
 
 // Sentry Config
@@ -112,19 +140,19 @@ const root = createRoot(container)
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <AuthProvider {...oidcConfig}>
-      <UserProvider>
-        <SiteProvider>
-          <BrowserRouter>
+    <BrowserRouter>
+      <AuthProviderWithRedirect>
+        <UserProvider>
+          <SiteProvider>
             <ScrollToTopOnMount />
             <Suspense fallback={<Loading.Container isLoading />}>
               <SentryRoutes>
                 <Route path="*" element={<App.Container />} />
               </SentryRoutes>
             </Suspense>
-          </BrowserRouter>
-        </SiteProvider>
-      </UserProvider>
-    </AuthProvider>
+          </SiteProvider>
+        </UserProvider>
+      </AuthProviderWithRedirect>
+    </BrowserRouter>
   </QueryClientProvider>,
 )

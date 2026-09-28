@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from 'react-oidc-context'
 
 // FPCC
@@ -10,6 +10,11 @@ function AppData() {
   const userDispatch = useUserDispatch()
   const auth = useAuth()
   const { logout } = useLoginLogout()
+
+  // which auth.isAuthenticated value UserContext currently reflects -
+  // NavBar reads UserContext, not auth directly, so we hold the loading
+  // gate open until the dispatch below has actually landed
+  const [syncedIsAuthenticated, setSyncedIsAuthenticated] = useState(false)
 
   const mySitesQueryResponse = useMySites()
 
@@ -30,6 +35,7 @@ function AppData() {
         // Don't just remove the token; sign the user out so they can try signing in again
         logout()
       }
+      setSyncedIsAuthenticated(auth?.isAuthenticated)
     }
   }, [mySitesQueryResponse, auth, userDispatch, logout])
 
@@ -43,7 +49,10 @@ function AppData() {
   }, [auth])
 
   return {
-    appIsLoading: mySitesQueryResponse?.isPending || auth?.isLoading,
+    appIsLoading:
+      mySitesQueryResponse?.isPending ||
+      auth?.isLoading ||
+      syncedIsAuthenticated !== auth?.isAuthenticated,
   }
 }
 

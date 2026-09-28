@@ -56,13 +56,13 @@
       }
 
       .tempNav {
-        min-height: 66px;
-        background-color: rgb(49, 49, 51);
+        display: none;
       }
     </style>
 
     <!-- Matomo -->
     <script>
+
       var _paq = (window._paq = window._paq || [])
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(['setDocumentTitle', document.domain + '/' + document.title])
@@ -85,7 +85,7 @@
 
   <body class="h-full">
     <div id="root" class="root">
-      <div class="tempNav"></div>
+      <div class="tempNav" id="tempNav"></div>
     </div>
   </body>
 </html>
