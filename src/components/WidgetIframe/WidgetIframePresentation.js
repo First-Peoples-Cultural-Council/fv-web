@@ -38,7 +38,7 @@ function WidgetIframePresentation({ widgetData }) {
               href={settings?.src}
               target="_blank"
               rel="noreferrer noopener"
-              className="absolute inset-0 bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+              className="absolute inset-0 rounded-xl bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
               aria-label="Clickable overlay link"
             >
               <span>Go to {url?.hostname}</span>
@@ -69,7 +69,7 @@ function WidgetIframePresentation({ widgetData }) {
                   href={settings?.src}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="absolute inset-0 bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+                  className="absolute inset-0 rounded-xl bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
                   aria-label="Clickable overlay link"
                 >
                   <span>Go to {url?.hostname}</span>
