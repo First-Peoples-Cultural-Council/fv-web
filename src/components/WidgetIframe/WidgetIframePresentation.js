@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import getIcon from 'common/utils/getIcon'
 
 function WidgetIframePresentation({ widgetData }) {
   const settings = widgetData?.settings
@@ -15,13 +16,26 @@ function WidgetIframePresentation({ widgetData }) {
         className="mx-auto max-w-7xl w-full px-2 md:px-12"
       >
         <div className="rounded-lg p-6 md:p-12">
-          <iframe
-            title="Map"
-            allow="fullscreen; geolocation"
-            className="aspect-video w-full object-cover object-center rounded-xl p-1 border-2 border-blumine-800 bg-white"
-            src={settings?.src}
-            sandbox
-          />
+          <div className="relative w-full h-auto">
+            <iframe
+              title="Map"
+              allow="geolocation"
+              className="aspect-video w-full object-cover object-center rounded-xl p-1 border-2 border-blumine-800 bg-white"
+              src={settings?.src}
+            />
+
+            {/* The Link Overlay */}
+            <a
+              href={settings?.src}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+              aria-label="Clickable overlay link"
+            >
+              <span>Go to map</span>
+              {getIcon('GoTo', 'fill-current size-6')}
+            </a>
+          </div>
         </div>
       </section>
     )
@@ -33,12 +47,25 @@ function WidgetIframePresentation({ widgetData }) {
         <div className="space-y-6 lg:grid lg:grid-cols-6 gap-8">
           <div className="flex lg:col-span-4 h-full lg:items-center">
             {isMapSrc && (
-              <iframe
-                title={settings?.src}
-                className="aspect-3/2 w-full object-cover object-center rounded-xl border-2 p-1 border-blumine-800 bg-white"
-                src={settings?.src}
-                sandbox
-              />
+              <div className="relative w-full h-auto">
+                <iframe
+                  title="Map"
+                  className="aspect-3/2 w-full object-cover object-center rounded-xl border-2 p-1 border-blumine-800 bg-white"
+                  src={settings?.src}
+                />
+
+                {/* The Link Overlay */}
+                <a
+                  href={settings?.src}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+                  aria-label="Clickable overlay link"
+                >
+                  <span>Go to map</span>
+                  {getIcon('GoTo', 'fill-current size-6')}
+                </a>
+              </div>
             )}
           </div>
           <div className="lg:col-span-2 lg:rounded-xl lg:grid lg:items-center">
