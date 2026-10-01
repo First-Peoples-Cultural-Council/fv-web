@@ -10,7 +10,7 @@ export default function useLoginLogout() {
   function saveOriginalLocation() {
     window.sessionStorage.setItem(
       ORIGINAL_DESTINATION,
-      window.location.toString(),
+      window.location.pathname + window.location.search + window.location.hash,
     )
   }
 
