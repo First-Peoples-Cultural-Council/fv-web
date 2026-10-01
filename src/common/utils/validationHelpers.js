@@ -195,7 +195,8 @@ export const definitions = {
         message:
           'Only FPCC Maps links are currently supported (e.g. https://maps.fpcc.ca/languages/my-language)',
         excludeEmptyString: true,
-      }),
+      })
+      .required('A map url is required.'),
   relatedVideoUrlsArray: () =>
     yup.array().of(
       yup

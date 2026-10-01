@@ -2,57 +2,95 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import getIcon from 'common/utils/getIcon'
 
 function WidgetIframePresentation({ widgetData }) {
-  const { title, text, src } = widgetData?.settings
-  const iframeOnly = !title && !text
-  const isMapSrc = src.startsWith('https://maps.fpcc.ca/')
+  const settings = widgetData?.settings
+  const iframeOnly = !settings?.title && !settings?.text
+  const isMapSrc = settings?.src.startsWith('https://maps.fpcc.ca/')
+
+  //   Add params for pared back embedded map
+  const url = URL.parse(settings?.src)
+  if (url) {
+    url.searchParams.set('embed', 1)
+    url.searchParams.set('sc', 1)
+    url.searchParams.set('ap', 1)
+    url.searchParams.set('shp', 1)
+  }
 
   if (iframeOnly && isMapSrc) {
     return (
-      <div className="bg-scarlet-900 lg:bg-transparent p-6 lg:py-6 lg:px-0">
-        <div className="lg:grid lg:grid-cols-12">
-          <div className="z-10 lg:col-start-4 lg:row-start-1 lg:col-span-6 lg:bg-transparent">
-            <div className="mx-auto max-w-3xl lg:max-w-none">
-              <iframe
-                title="Map"
-                allow="fullscreen; geolocation"
-                className="aspect-3/2 w-full object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-900 bg-white"
-                src={src}
-              />
-            </div>
-          </div>
+      <section
+        id="WidgetIframePresentation"
+        className="mx-auto max-w-7xl w-full px-2 md:px-12"
+      >
+        <div className="rounded-lg p-6 md:p-12">
+          <div className="relative w-full h-auto">
+            <iframe
+              title="Map"
+              allow="geolocation"
+              className="aspect-video w-full object-cover object-center rounded-xl p-1 border-2 border-blumine-800 bg-white"
+              src={url?.href}
+            />
 
-          <div className="lg:my-20 relative bg-scarlet-900 lg:col-start-1 lg:row-start-1 lg:col-span-12 lg:flex lg:items-center lg:py-4"></div>
+            {/* The Link Overlay */}
+            <a
+              href={settings?.src}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="absolute inset-0 rounded-xl bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+              aria-label="Clickable overlay link"
+            >
+              <span>Go to {url?.hostname}</span>
+              {getIcon('GoTo', 'fill-current size-6')}
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
     )
   }
 
   return (
-    <div className="max-w-7xl mx-auto bg-scarlet-900 lg:bg-transparent p-6 lg:px-8">
-      <div className="lg:grid lg:grid-cols-12">
-        <div className="relative z-10 lg:col-start-1 lg:row-start-1 lg:col-span-8 lg:py-10 lg:bg-transparent">
-          <div className="mx-auto max-w-3xl lg:max-w-none">
+    <section id="WidgetIframePresentation" className="w-full px-2 md:px-12">
+      <div className="rounded-lg p-6 md:p-12">
+        <div className="space-y-6 lg:grid lg:grid-cols-6 gap-8">
+          <div className="flex lg:col-span-4 h-full lg:items-center">
             {isMapSrc && (
-              <iframe
-                title={src}
-                className="aspect-3/2 w-full object-cover object-center rounded-xl shadow-2xl border-2 border-scarlet-900 bg-white"
-                src={src}
-              />
+              <div className="relative w-full h-auto">
+                <iframe
+                  title="Map"
+                  allow="geolocation"
+                  className="aspect-3/2 w-full object-cover object-center rounded-xl border-2 p-1 border-blumine-800 bg-white"
+                  src={url?.href}
+                />
+
+                {/* The Link Overlay */}
+                <a
+                  href={settings?.src}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="absolute inset-0 rounded-xl bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+                  aria-label="Clickable overlay link"
+                >
+                  <span>Go to {url?.hostname}</span>
+                  {getIcon('GoTo', 'fill-current size-6')}
+                </a>
+              </div>
             )}
           </div>
-        </div>
-        <div className="bg-scarlet-900 lg:col-start-3 lg:row-start-1 lg:col-span-10 lg:rounded-xl lg:grid lg:grid-cols-10 lg:items-center md:py-4">
-          <div className="mx-auto pt-6 space-y-2 sm:space-y-6 max-w-3xl lg:max-w-none lg:p-10 lg:col-start-7 lg:col-span-4">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-              {title}
-            </h2>
-            <div className="text-lg text-white">{text}</div>
+          <div className="lg:col-span-2 lg:rounded-xl lg:grid lg:items-center">
+            <div className="mx-auto space-y-2 md:space-y-6">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-blumine-800">
+                {settings?.title}
+              </h2>
+              <div className="text-base xl:text-lg text-blumine-800">
+                {settings?.text}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
