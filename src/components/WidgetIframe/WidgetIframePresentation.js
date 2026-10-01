@@ -10,7 +10,10 @@ function WidgetIframePresentation({ widgetData }) {
 
   if (iframeOnly && isMapSrc) {
     return (
-      <section id="WidgetIframePresentation" className="w-full px-2 md:px-12">
+      <section
+        id="WidgetIframePresentation"
+        className="mx-auto max-w-7xl w-full px-2 md:px-12"
+      >
         <div className="rounded-lg p-6 md:p-12">
           <iframe
             title="Map"
