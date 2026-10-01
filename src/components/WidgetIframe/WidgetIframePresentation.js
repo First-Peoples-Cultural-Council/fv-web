@@ -9,6 +9,15 @@ function WidgetIframePresentation({ widgetData }) {
   const iframeOnly = !settings?.title && !settings?.text
   const isMapSrc = settings?.src.startsWith('https://maps.fpcc.ca/')
 
+  //   Add params for pared back embedded map
+  const url = URL.parse(settings?.src)
+  if (url) {
+    url.searchParams.set('embed', 1)
+    url.searchParams.set('sc', 1)
+    url.searchParams.set('ap', 1)
+    url.searchParams.set('shp', 1)
+  }
+
   if (iframeOnly && isMapSrc) {
     return (
       <section
@@ -21,7 +30,7 @@ function WidgetIframePresentation({ widgetData }) {
               title="Map"
               allow="geolocation"
               className="aspect-video w-full object-cover object-center rounded-xl p-1 border-2 border-blumine-800 bg-white"
-              src={settings?.src}
+              src={url?.href}
             />
 
             {/* The Link Overlay */}
@@ -32,7 +41,7 @@ function WidgetIframePresentation({ widgetData }) {
               className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
               aria-label="Clickable overlay link"
             >
-              <span>Go to map</span>
+              <span>Go to First Peoples&apos; Map</span>
               {getIcon('GoTo', 'fill-current size-6')}
             </a>
           </div>
@@ -51,7 +60,7 @@ function WidgetIframePresentation({ widgetData }) {
                 <iframe
                   title="Map"
                   className="aspect-3/2 w-full object-cover object-center rounded-xl border-2 p-1 border-blumine-800 bg-white"
-                  src={settings?.src}
+                  src={url?.href}
                 />
 
                 {/* The Link Overlay */}
@@ -62,7 +71,7 @@ function WidgetIframePresentation({ widgetData }) {
                   className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
                   aria-label="Clickable overlay link"
                 >
-                  <span>Go to map</span>
+                  <span>Go to First Peoples&apos; Map</span>
                   {getIcon('GoTo', 'fill-current size-6')}
                 </a>
               </div>
