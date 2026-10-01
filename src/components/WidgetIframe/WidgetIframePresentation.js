@@ -38,10 +38,10 @@ function WidgetIframePresentation({ widgetData }) {
               href={settings?.src}
               target="_blank"
               rel="noreferrer noopener"
-              className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+              className="absolute inset-0 bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
               aria-label="Clickable overlay link"
             >
-              <span>Go to First Peoples&apos; Map</span>
+              <span>Go to {url?.hostname}</span>
               {getIcon('GoTo', 'fill-current size-6')}
             </a>
           </div>
@@ -59,6 +59,7 @@ function WidgetIframePresentation({ widgetData }) {
               <div className="relative w-full h-auto">
                 <iframe
                   title="Map"
+                  allow="geolocation"
                   className="aspect-3/2 w-full object-cover object-center rounded-xl border-2 p-1 border-blumine-800 bg-white"
                   src={url?.href}
                 />
@@ -68,10 +69,10 @@ function WidgetIframePresentation({ widgetData }) {
                   href={settings?.src}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
+                  className="absolute inset-0 bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
                   aria-label="Clickable overlay link"
                 >
-                  <span>Go to First Peoples&apos; Map</span>
+                  <span>Go to {url?.hostname}</span>
                   {getIcon('GoTo', 'fill-current size-6')}
                 </a>
               </div>
