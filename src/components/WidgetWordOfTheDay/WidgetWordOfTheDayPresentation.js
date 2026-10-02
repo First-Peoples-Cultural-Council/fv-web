@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
@@ -8,11 +8,9 @@ import SectionTitle from 'components/SectionTitle'
 import AudioButton from 'components/AudioButton'
 import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 
-import { CopyButton, ShareModal, WebShareButton } from 'components/Actions'
+import { CopyButton, ShareButton } from 'components/Actions'
 
 function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
-  const [shareModalOpen, setShareModalOpen] = useState(false)
-
   return (
     <section id="WidgetWordOfTheDayPresentation" className="py-6 md:py-12">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
@@ -25,8 +23,8 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
             data-testid="wotd-success"
             className="max-w-7xl mx-auto px-4 lg:px-8"
           >
-            <div className="grid grid-cols-3 gap-8">
-              <div className="col-span-1 flex-col space-y-6">
+            <div className="grid grid-cols-4 gap-8">
+              <div className="col-start-2 col-span-1 flex-col space-y-6">
                 <div>
                   <div className="inline-flex items-center text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
                     <Link
@@ -46,10 +44,9 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
                 <div className="pt-3">
                   <div className="inline-flex items-center text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
                     <CopyButton textToCopy={entry?.title} />
-                    <WebShareButton
-                      buttonStyling="btn-md-icon btn-tertiary"
-                      fallBackOnClick={() => setShareModalOpen(true)}
+                    <ShareButton
                       entry={entry}
+                      buttonStyling="btn-md-icon btn-tertiary"
                     />
                   </div>
                 </div>
@@ -70,11 +67,6 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
               </div>
             </div>
           </div>
-          <ShareModal
-            entry={entry}
-            isOpen={shareModalOpen}
-            onClose={() => setShareModalOpen(false)}
-          />
         </LoadOrError>
       ) : (
         <div
