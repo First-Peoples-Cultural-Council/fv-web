@@ -83,139 +83,134 @@ function ContactUsPresentation({
   const { login } = useLoginLogout()
 
   return (
-    <section
-      className="py-3 md:py-6 bg-white"
-      data-testid="ContactUsPresentationWidget"
-    >
-      <div className="mx-2 md:mx-5 lg:mx-10 mb-1 md:mb-4">
+    <section id="ContactUsPresentationWidget" className="py-6 md:py-12">
+      <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation
           title={title || `Contact ${siteTitle} Team`}
         />
       </div>
-      <div>
-        <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8 min-h-5">
+      <div className="max-w-7xl mx-4 sm:mx-8 lg:mx-10 xl:mx-auto">
+        <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 min-h-5">
           {subtitle || ''}
         </div>
-        <div className="max-w-7xl mx-auto px-3 md:px-6 lg:px-8">
-          <div className="grid grid-cols-6">
-            {user.isAnonymous ? (
-              <div
-                data-testid="contact-form-hidden"
-                className="col-span-6 md:col-span-3"
-              >
-                <div className="w-full p-8 text-blumine-800 md:text-xl text-center bg-charcoal-100 rounded-lg">
-                  <button
-                    data-testid="login-button"
-                    className="inline-url cursor-pointer"
-                    type="button"
-                    onClick={login}
-                    onKeyDown={login}
+        <div className="grid grid-cols-6">
+          {user.isAnonymous ? (
+            <div
+              data-testid="contact-form-hidden"
+              className="col-span-6 md:col-span-3"
+            >
+              <div className="w-full p-8 text-blumine-800 md:text-xl text-center bg-charcoal-100 rounded-lg">
+                <button
+                  data-testid="login-button"
+                  className="inline-url cursor-pointer"
+                  type="button"
+                  onClick={login}
+                  onKeyDown={login}
+                >
+                  Sign in
+                </button>{' '}
+                if you would like to contact us using our online form.
+              </div>
+            </div>
+          ) : (
+            <form
+              data-testid="contact-us-form"
+              className="col-span-6 md:col-span-3"
+            >
+              <div>
+                <div className="grid grid-cols-7">
+                  <label
+                    className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
+                    htmlFor="name"
                   >
-                    Sign in
-                  </button>{' '}
-                  if you would like to contact us using our online form.
+                    NAME:
+                  </label>
+                  <input
+                    className="col-span-5 bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
+                    id="name"
+                    name="name"
+                    type="text"
+                    {...register('name')}
+                  />
+                </div>
+                {errors?.name && (
+                  <div className="text-scarlet-700 text-right">
+                    {errors?.name?.message}
+                  </div>
+                )}
+
+                <div className="mt-2 grid grid-cols-7">
+                  <label
+                    className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
+                    htmlFor="email"
+                  >
+                    EMAIL:
+                  </label>
+                  <input
+                    className="col-span-5 inline bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
+                    id="email"
+                    name="email"
+                    type="email"
+                    {...register('email')}
+                  />
+                </div>
+                {errors?.email && (
+                  <div className="text-scarlet-700 text-right">
+                    {errors?.email?.message}
+                  </div>
+                )}
+
+                <div className="mt-2 grid grid-cols-7">
+                  <label
+                    className="block tracking-wide text-blumine-800 text-xl font-bold mb-2"
+                    htmlFor="message"
+                  >
+                    MESSAGE:
+                  </label>
+                  <textarea
+                    className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-charcoal-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-hidden focus:bg-white focus:border-charcoal-500 resize-none col-span-7"
+                    id="message"
+                    name="message"
+                    defaultValue=""
+                    {...register('message')}
+                  />
+                </div>
+                {errors?.message && (
+                  <div className="text-scarlet-700 text-right">
+                    {errors?.message?.message}
+                  </div>
+                )}
+
+                <div className="col-span-7 justify-start flex">
+                  <button
+                    data-testid="submit"
+                    type="submit"
+                    className="btn-primary btn-lg"
+                    onClick={handleSubmit(submitHandler)}
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
-            ) : (
-              <form
-                data-testid="contact-us-form"
-                className="col-span-6 md:col-span-3"
-              >
-                <div>
-                  <div className="grid grid-cols-7">
-                    <label
-                      className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
-                      htmlFor="name"
-                    >
-                      NAME:
-                    </label>
-                    <input
-                      className="col-span-5 bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
-                      id="name"
-                      name="name"
-                      type="text"
-                      {...register('name')}
-                    />
-                  </div>
-                  {errors?.name && (
-                    <div className="text-scarlet-700 text-right">
-                      {errors?.name?.message}
-                    </div>
-                  )}
-
-                  <div className="mt-2 grid grid-cols-7">
-                    <label
-                      className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
-                      htmlFor="email"
-                    >
-                      EMAIL:
-                    </label>
-                    <input
-                      className="col-span-5 inline bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
-                      id="email"
-                      name="email"
-                      type="email"
-                      {...register('email')}
-                    />
-                  </div>
-                  {errors?.email && (
-                    <div className="text-scarlet-700 text-right">
-                      {errors?.email?.message}
-                    </div>
-                  )}
-
-                  <div className="mt-2 grid grid-cols-7">
-                    <label
-                      className="block tracking-wide text-blumine-800 text-xl font-bold mb-2"
-                      htmlFor="message"
-                    >
-                      MESSAGE:
-                    </label>
-                    <textarea
-                      className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-charcoal-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-hidden focus:bg-white focus:border-charcoal-500 resize-none col-span-7"
-                      id="message"
-                      name="message"
-                      defaultValue=""
-                      {...register('message')}
-                    />
-                  </div>
-                  {errors?.message && (
-                    <div className="text-scarlet-700 text-right">
-                      {errors?.message?.message}
-                    </div>
-                  )}
-
-                  <div className="col-span-7 justify-start flex">
-                    <button
-                      data-testid="submit"
-                      type="submit"
-                      className="btn-primary btn-lg"
-                      onClick={handleSubmit(submitHandler)}
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </form>
-            )}
-            <div className="col-span-6 sm:col-start-5 sm:col-span-2 mt-8 sm:mt-0">
-              {textWithFormatting && (
-                <>
-                  <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
-                    ADDRESS
-                  </h3>
-                  <div className="block mb-6">
-                    <WysiwygBlock htmlString={textWithFormatting} />
-                  </div>
-                </>
-              )}
-              {links?.length > 0 && (
+            </form>
+          )}
+          <div className="col-span-6 sm:col-start-5 sm:col-span-2 mt-8 sm:mt-0">
+            {textWithFormatting && (
+              <>
                 <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
-                  FOLLOW US
+                  ADDRESS
                 </h3>
-              )}
-              <ul className="block">{socialIcons}</ul>
-            </div>
+                <div className="block mb-6">
+                  <WysiwygBlock htmlString={textWithFormatting} />
+                </div>
+              </>
+            )}
+            {links?.length > 0 && (
+              <h3 className="block tracking-wide text-blumine-800 text-xl font-bold mb-2">
+                FOLLOW US
+              </h3>
+            )}
+            <ul className="block">{socialIcons}</ul>
           </div>
         </div>
       </div>

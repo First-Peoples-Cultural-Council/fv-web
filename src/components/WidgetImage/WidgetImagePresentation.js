@@ -8,18 +8,16 @@ function WidgetImagePresentation({ widgetData }) {
   const { caption, image } = widgetData.settings
 
   return (
-    <section className="py-3 md:py-6" data-testid="WidgetImagePresentation">
-      <figure className="flex flex-col mx-auto px-3 md:px-0 space-y-2">
+    <section id="WidgetImagePresentation" className="py-6 md:py-12">
+      <figure className="max-w-7xl mx-auto px-4 lg:px-8 flex flex-col space-y-4">
         {image && (
           <ImgFromId.Container
-            className="max-h-[80vh] object-contain"
+            className="max-h-[80vh] overflow-hidden rounded-xl bg-charcoal-100 object-contain"
             id={image}
           />
         )}
         {caption && (
-          <figcaption className="text-center max-w-4xl mx-auto">
-            {caption}
-          </figcaption>
+          <figcaption className="flex flex-wrap">{caption}</figcaption>
         )}
       </figure>
     </section>

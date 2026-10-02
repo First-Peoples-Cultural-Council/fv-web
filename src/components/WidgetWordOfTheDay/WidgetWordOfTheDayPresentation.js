@@ -19,10 +19,7 @@ function WidgetWordOfTheDayPresentation({
   queryResponse,
 }) {
   return (
-    <section
-      id="WidgetWordOfTheDayPresentation"
-      className="py-3 md:py-6 bg-white"
-    >
+    <section id="WidgetWordOfTheDayPresentation" className="py-6 md:py-12">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation title={title} />
       </div>
@@ -30,9 +27,9 @@ function WidgetWordOfTheDayPresentation({
       {!queryResponse?.isError ? (
         <div
           data-testid="wotd-success"
-          className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="max-w-7xl mx-auto px-4 lg:px-8 text-center"
         >
-          <div className="mt-2 inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800">
+          <div className="inline-flex items-center text-2xl md:text-4xl lg:text-5xl font-bold text-scarlet-800">
             <Link data-testid="wotd-link" to={relativeUrl}>
               {wordTitle}
             </Link>

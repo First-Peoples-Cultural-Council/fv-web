@@ -53,7 +53,7 @@ function WidgetStats() {
   }
 
   return (
-    <section id="WidgetStats" className="py-3 md:py-6">
+    <section id="WidgetStats" className="py-6 md:py-12">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation title="On This Site" />
       </div>

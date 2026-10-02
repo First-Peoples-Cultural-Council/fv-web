@@ -17,10 +17,7 @@ function WidgetGalleryPresentation({ id }) {
   const images = data?.galleryItems?.slice(0, 8)
 
   return (
-    <section
-      data-testid="WidgetGalleryPresentation"
-      className="pt-3 pb-6 md:py-6"
-    >
+    <section id="WidgetGalleryPresentation" className="py-6 md:py-12">
       <div className="mx-2 md:mx-5 lg:mx-10">
         <SectionTitle.Presentation title={data?.title} />
         <div className="px-16 text-center text-charcoal-800 text-xl my-7 md:my-8">

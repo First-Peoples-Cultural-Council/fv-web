@@ -3,10 +3,7 @@ import SectionTitle from 'components/SectionTitle'
 
 function WidgetAlphabetPlaceholder() {
   return (
-    <section
-      data-testid="WidgetAlphabetPlaceholder"
-      className="py-3 md:py-6 bg-white"
-    >
+    <section id="WidgetAlphabetPlaceholder" className="py-6 md:py-12 bg-white">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation title="Alphabet" />
       </div>

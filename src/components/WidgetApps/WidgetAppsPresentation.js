@@ -13,12 +13,9 @@ function WidgetAppsPresentation() {
   const appDetails = getAppDetails({ site })
 
   return (
-    <section
-      id="WidgetAppsPresentation"
-      className="mx-auto max-w-7xl w-full px-2 md:px-12"
-    >
+    <section id="WidgetAppsPresentation" className="w-full px-2 md:px-12">
       <div className="rounded-lg p-6 md:p-12">
-        <div className="grid grid-cols-2 gap-8 md:gap-4 lg:gap-8">
+        <div className="mx-auto max-w-7xl grid grid-cols-2 gap-8 md:gap-4 lg:gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="mx-auto text-center md:mx-0 md:flex-auto md:py-0 md:text-left">
               <h2 className="text-balance text-blumine-700 text-3xl md:text-4xl font-semibold tracking-tight">

@@ -16,7 +16,7 @@ function WidgetAlphabetPresentation({
 }) {
   const longAlphabet = characters?.length > 42
   return characters ? (
-    <section id="WidgetAlphabetPresentation" className="py-3 md:py-6 bg-white">
+    <section id="WidgetAlphabetPresentation" className="py-6 md:py-12">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
         <SectionTitle.Presentation title="Alphabet" />
       </div>

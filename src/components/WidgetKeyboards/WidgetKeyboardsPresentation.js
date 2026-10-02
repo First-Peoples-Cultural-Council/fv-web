@@ -10,12 +10,9 @@ import fvKeyboardsLogo from 'images/fv-keyboards.png'
 
 function WidgetKeyboardsPresentation({ header, urls }) {
   return (
-    <section
-      id="WidgetKeyboardsPresentation"
-      className="mx-auto max-w-7xl w-full px-2 md:px-12"
-    >
-      <div className="relative rounded-lg p-6 md:p-12">
-        <div className="grid grid-cols-2 gap-8 md:gap-4 lg:gap-8">
+    <section id="WidgetKeyboardsPresentation" className="w-full px-2 md:px-12">
+      <div className="rounded-lg p-6 md:p-12">
+        <div className="mx-auto max-w-7xl grid grid-cols-2 gap-8 md:gap-4 lg:gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="space-y-8 md:space-y-10">
               <h2 className="text-center md:text-left text-balance text-blumine-700 text-3xl md:text-4xl font-semibold tracking-tight">
@@ -120,7 +117,6 @@ function WidgetKeyboardsPresentation({ header, urls }) {
             </div>
           </div>
         </div>
-        <div className="hidden absolute -z-10 bottom-0 right-0 w-full h-full border-l-[80vw] border-l-transparent border-b-[50vh] border-b-scarlet-100 border-r-0 border-r-transparent"></div>
       </div>
     </section>
   )
