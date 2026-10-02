@@ -10,8 +10,9 @@ import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailL
 
 import { CopyButton, ShareModal, WebShareButton } from 'components/Actions'
 
-function WidgetWordOfTheDayPresentation({ relativeUrl, entry, queryResponse }) {
+function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
   const [shareModalOpen, setShareModalOpen] = useState(false)
+
   return (
     <section id="WidgetWordOfTheDayPresentation" className="py-6 md:py-12">
       <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
@@ -28,7 +29,10 @@ function WidgetWordOfTheDayPresentation({ relativeUrl, entry, queryResponse }) {
               <div className="col-span-1 flex-col space-y-6">
                 <div>
                   <div className="inline-flex items-center text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
-                    <Link data-testid="wotd-link" to={relativeUrl}>
+                    <Link
+                      data-testid="wotd-link"
+                      to={`/${entry?.site?.slug}/words/${entry?.id}`}
+                    >
                       {entry?.title}
                     </Link>
                     <div>
@@ -66,6 +70,11 @@ function WidgetWordOfTheDayPresentation({ relativeUrl, entry, queryResponse }) {
               </div>
             </div>
           </div>
+          <ShareModal
+            entry={entry}
+            isOpen={shareModalOpen}
+            onClose={() => setShareModalOpen(false)}
+          />
         </LoadOrError>
       ) : (
         <div
@@ -76,18 +85,12 @@ function WidgetWordOfTheDayPresentation({ relativeUrl, entry, queryResponse }) {
           If this problem persists please contact hello@firstvoices.com
         </div>
       )}
-      <ShareModal
-        entry={entry}
-        isOpen={shareModalOpen}
-        onClose={() => setShareModalOpen(false)}
-      />
     </section>
   )
 }
 // PROPTYPES
-const { string, object } = PropTypes
+const { object } = PropTypes
 WidgetWordOfTheDayPresentation.propTypes = {
-  relativeUrl: string,
   entry: object,
   queryResponse: object,
 }
