@@ -32,14 +32,14 @@ function ShareLinksPresentation({ url, title }) {
     <>
       <ul
         id="ShareLinksPresentation"
-        className="flex align-center justify-center z-50"
+        className="flex align-center justify-center z-50 space-x-1"
       >
         {navigator.share ? (
           <li>
             <button
               data-testid="webshare-btn"
               type="button"
-              className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-white bg-charcoal-500"
+              className="btn-lg-icon btn-tertiary"
               onClick={() =>
                 navigator.share({
                   title,
@@ -47,46 +47,46 @@ function ShareLinksPresentation({ url, title }) {
                 })
               }
             >
-              {getIcon('WebShare', 'fill-current h-7 w-7')}
+              {getIcon('WebShare')}
             </button>
           </li>
         ) : null}
         <li>
           <a
-            className="my-2 mx-1 h-9 w-9 inline-flex align-center justify-center rounded-sm text-blue-300"
+            className="btn-lg-icon btn-tertiary"
             href={`https://twitter.com/intent/tweet?url=${url}&text=${title}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {getIcon('Twitter', 'fill-current h-9 w-9')}
+            {getIcon('Twitter')}
           </a>
         </li>
         <li>
           <a
-            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-blue-900"
+            className="btn-lg-icon btn-tertiary"
             href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {getIcon('Facebook', 'fill-current h-9 w-9')}
+            {getIcon('Facebook')}
           </a>
         </li>
         <li>
           <a
-            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-blue-700"
+            className="btn-lg-icon btn-tertiary"
             href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {getIcon('LinkedIn', 'fill-current h-9 w-9')}
+            {getIcon('LinkedIn')}
           </a>
         </li>
         <li>
           <a
-            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-white bg-scarlet-800"
+            className="btn-lg-icon btn-tertiary"
             href={`mailto:?subject=${title}&body=${url}`}
           >
-            {getIcon('Mail', 'fill-current h-7 w-7')}
+            {getIcon('Mail')}
           </a>
         </li>
         <li>
@@ -94,7 +94,7 @@ function ShareLinksPresentation({ url, title }) {
             type="button"
             data-testid="CopyUrl"
             aria-label="Copy to clipboard"
-            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-white bg-ochre-600"
+            className="btn-lg-icon btn-tertiary"
             onClick={() =>
               copyToClipboard({
                 text: url,
@@ -102,7 +102,7 @@ function ShareLinksPresentation({ url, title }) {
               })
             }
           >
-            {getIcon('Link', 'fill-current h-7 w-7')}
+            {getIcon('Link')}
           </button>
         </li>
         <li>
@@ -110,11 +110,11 @@ function ShareLinksPresentation({ url, title }) {
             data-testid="qrcode-btn"
             type="button"
             id="QrcodeButton"
-            className="my-2 mx-1 h-9 w-9 inline-flex items-center align-center justify-center rounded-sm text-white bg-charcoal-500"
+            className="btn-lg-icon btn-tertiary"
             onClick={() => setQrcodeModalOpen(true)}
           >
             <span className="sr-only">QR Code</span>
-            {getIcon('Qrcode', 'fill-current h-7 w-7')}
+            {getIcon('Qrcode')}
           </button>
         </li>
       </ul>
@@ -153,7 +153,6 @@ const { string } = PropTypes
 ShareLinksPresentation.propTypes = {
   url: string,
   title: string,
-  sitename: string,
 }
 
 export default ShareLinksPresentation
