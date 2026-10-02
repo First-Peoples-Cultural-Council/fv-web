@@ -140,7 +140,7 @@ function DictionaryListPresentation({
                                 <ol className="text-charcoal-900">
                                   {entry?.translations?.map(
                                     (translation, i) => (
-                                      <li key={translation?.text}>
+                                      <li key={translation?.id}>
                                         {entry?.translations?.length > 1
                                           ? `${i + 1}. `
                                           : null}{' '}
