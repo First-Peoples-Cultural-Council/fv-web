@@ -50,7 +50,7 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
                   </div>
                 </div>
               </div>
-              <div className="col-span-2 space-y-4 md:space-y-6">
+              <div className="col-span-2 space-y-4 md:space-y-6 md:pt-2">
                 <div>
                   <DictionaryDetailLabel label="Translation" />
                   <ol
