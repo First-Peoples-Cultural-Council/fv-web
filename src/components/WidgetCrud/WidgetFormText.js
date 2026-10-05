@@ -119,12 +119,12 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
           </div>
           <div className="col-span-12">
             <Form.RadioButtons
-              label="Would you like a green background color?"
+              label="Would you like a dark background color?"
               control={control}
               errors={errors}
               nameId="bgColor"
               options={[
-                { label: 'Yes', value: 'jade-500' },
+                { label: 'Yes', value: 'true' },
                 { label: 'No', value: '' },
               ]}
             />
