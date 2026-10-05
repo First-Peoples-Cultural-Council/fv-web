@@ -6,8 +6,12 @@ import WysiwygBlock from 'components/WysiwygBlock'
 
 function WidgetTextFullPresentation({ widgetData }) {
   return (
-    <div className="max-w-md md:max-w-4xl mx-auto text-base text-charcoal-900 bg-white p-4">
-      <WysiwygBlock htmlString={widgetData?.settings?.textWithFormatting} />
+    <div id="WidgetTextFullPresentation" className="p-6 md:p-12">
+      <div className="px-6 md:px-12">
+        <div className="max-w-7xl mx-auto text-base text-charcoal-900">
+          <WysiwygBlock htmlString={widgetData?.settings?.textWithFormatting} />
+        </div>
+      </div>
     </div>
   )
 }

@@ -53,13 +53,13 @@ function WidgetStats() {
   }
 
   return (
-    <section id="WidgetStats" className="py-6 md:py-12">
-      <div className="mx-2 md:mx-5 lg:mx-10 mb-6 lg:mb-10">
+    <section id="WidgetStats" className="p-6 md:p-12">
+      <div className="mb-6 lg:mb-10">
         <SectionTitle.Presentation title="On This Site" />
       </div>
       <LoadOrError queryResponse={queryResponse} height="h-60">
-        <div className="w-full">
-          <div className="max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mx-4 sm:mx-8 lg:mx-10 xl:mx-auto text-center">
+        <div className="w-full md:px-12">
+          <div className="max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mx-auto text-center">
             {STATS_TYPES_FOR_WIDGET.map((type) => {
               const colors = getColorsForType(type)
               return (
