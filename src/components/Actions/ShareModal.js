@@ -42,7 +42,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
         ) : (
           <>
             <h3 className="text-center text-xl font-medium text-charcoal-900">
-              Share <em>{entry?.title}</em> on:
+              Share <strong className="mx-2">{entry?.title}</strong> on:
             </h3>
             <ShareLinks.Presentation
               url={`${globalThis.location.origin.toString()}/${sitename}/${makePlural(
