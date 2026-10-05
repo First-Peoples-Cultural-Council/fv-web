@@ -13,6 +13,7 @@ import getIcon from 'common/utils/getIcon'
 
 function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
   const relatedEntriesToDisplay = entry?.relatedDictionaryEntries?.slice(0, 2)
+  const translationsToDisplay = entry?.translations?.slice(0, 3)
   const audioLength = entry?.relatedAudio?.length || 0
   const longEntry = entry?.title?.length + audioLength * 4 > 16
   return (
@@ -30,12 +31,7 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
               >
                 <div>
                   <div className="inline-flex items-center text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
-                    <Link
-                      data-testid="wotd-link"
-                      to={`/${entry?.site?.slug}/words/${entry?.id}`}
-                    >
-                      {entry?.title}
-                    </Link>
+                    <div>{entry?.title}</div>
                     <div>
                       <AudioButton audioArray={entry?.relatedAudio} />
                     </div>
@@ -59,12 +55,12 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
                   <DictionaryDetailLabel label="Translation" />
                   <ol
                     className={
-                      entry?.translations?.length === 1
+                      translationsToDisplay?.length === 1
                         ? 'list-none'
                         : 'list-decimal list-inside'
                     }
                   >
-                    {entry?.translations?.map((translation) => (
+                    {translationsToDisplay?.map((translation) => (
                       <li key={translation?.id}>{translation?.text}</li>
                     ))}
                   </ol>
@@ -82,9 +78,9 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
                 <Link
                   data-testid="wotd-btn"
                   to={`/${entry?.site?.slug}/words/${entry?.id}`}
-                  className="btn-primary btn-md"
+                  className="btn-secondary btn-md"
                 >
-                  <span>Go to word</span>
+                  <span>More details</span>
                   {getIcon('Fullscreen')}
                 </Link>
               </div>
