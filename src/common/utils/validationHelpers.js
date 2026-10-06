@@ -100,7 +100,7 @@ export const definitions = {
       .required(message)
       .matches(
         /^[aA-zZ-]+$/,
-        'Only Latin alphabet characters and hyphens are allowed in this field (e.g. our-people)',
+        'Only Latin alphabet characters and hyphens are allowed in this field e.g. our-people',
       ),
   role: () =>
     yup
@@ -192,8 +192,7 @@ export const definitions = {
       .string()
       .trim()
       .matches(/(^(https:\/\/)?|^)maps\.fpcc\.ca\/(.*)/, {
-        message:
-          'Only FPCC Maps links are currently supported (e.g. https://maps.fpcc.ca/languages/my-language)',
+        message: 'Only maps.fpcc.ca links are currently supported',
         excludeEmptyString: true,
       })
       .required('A map url is required.'),

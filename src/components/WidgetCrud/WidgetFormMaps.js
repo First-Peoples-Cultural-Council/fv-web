@@ -78,7 +78,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
           <Form.TextField
             label="URL"
             nameId="src"
-            helpText="Enter a URL linking to the map you would like to add (e.g. https://maps.fpcc.ca/languages/my-language)"
+            helpText="Enter a URL linking to the map you would like to add e.g. https://maps.fpcc.ca/languages/my-language"
             register={register}
             errors={errors}
           />
