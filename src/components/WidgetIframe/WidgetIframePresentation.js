@@ -20,12 +20,9 @@ function WidgetIframePresentation({ widgetData }) {
 
   if (iframeOnly && isMapSrc) {
     return (
-      <section
-        id="WidgetIframePresentation"
-        className="mx-auto max-w-7xl w-full px-2 md:px-12"
-      >
-        <div className="rounded-lg p-6 md:p-12">
-          <div className="relative w-full h-auto">
+      <section id="WidgetIframePresentation" className="p-6 md:p-12">
+        <div className="px-6 md:px-12">
+          <div className="relative mx-auto max-w-7xl h-auto">
             <iframe
               title="Map"
               allow="geolocation"
@@ -51,8 +48,8 @@ function WidgetIframePresentation({ widgetData }) {
   }
 
   return (
-    <section id="WidgetIframePresentation" className="w-full px-2 md:px-12">
-      <div className="rounded-lg p-6 md:p-12">
+    <section id="WidgetIframePresentation" className="p-6 md:p-12">
+      <div className="px-6 md:px-12">
         <div className="space-y-6 lg:grid lg:grid-cols-6 gap-8">
           <div className="flex lg:col-span-4 h-full lg:items-center">
             {isMapSrc && (

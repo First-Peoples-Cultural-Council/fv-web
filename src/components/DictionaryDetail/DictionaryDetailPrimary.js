@@ -75,7 +75,7 @@ function DictionaryDetailPrimary({ entry }) {
               }
             >
               {entry?.translations?.map((translation) => (
-                <li key={translation?.text}>{translation?.text}</li>
+                <li key={translation?.id}>{translation?.text}</li>
               ))}
             </ol>
           </div>

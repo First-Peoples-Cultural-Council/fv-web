@@ -17,19 +17,16 @@ function WidgetGalleryPresentation({ id }) {
   const images = data?.galleryItems?.slice(0, 8)
 
   return (
-    <section
-      data-testid="WidgetGalleryPresentation"
-      className="pt-3 pb-6 md:py-6"
-    >
-      <div className="mx-2 md:mx-5 lg:mx-10">
+    <section id="WidgetGalleryPresentation" className="p-6 md:p-12">
+      <div className="mb-6 lg:mb-10 space-y-4">
         <SectionTitle.Presentation title={data?.title} />
-        <div className="px-16 text-center text-charcoal-800 text-xl my-7 md:my-8">
+        <div className="px-16 text-center text-charcoal-800 text-xl">
           {data?.titleTranslation}
         </div>
       </div>
 
       {/* Desktop View */}
-      <div className="hidden lg:block px-24">
+      <div className="hidden lg:block px-12">
         <div className="columns-4 gap-6 xl:gap-8">
           {images?.length > 0 &&
             images?.map((image, index) => (
@@ -52,7 +49,7 @@ function WidgetGalleryPresentation({ id }) {
       </div>
 
       {/* Mobile View */}
-      <div className="block lg:hidden px-8">
+      <div className="block lg:hidden px-6">
         <TabGroup>
           <TabPanels>
             {images?.map((image) => (

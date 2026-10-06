@@ -28,14 +28,17 @@ function WidgetVideoPresentation({ widgetData }) {
   }, [src, setSrc, videoObject])
 
   return (
-    <section
-      className="w-full py-3 md:py-6"
-      data-testid="WidgetVideoPresentation"
-    >
-      <div className="rounded overflow-hidden flex flex-col mx-auto max-w-2xl">
-        <div className="flex flex-col mx-auto overflow-hidden px-6 md:px-0">
-          {src && <video className="flex w-auto h-auto" controls src={src} />}
-          {caption && <div className="flex flex-wrap pt-4">{caption}</div>}
+    <section id="WidgetVideoPresentation" className="p-6 md:p-12">
+      <div className="px-6 md:px-12">
+        <div className="max-w-7xl mx-auto flex flex-col space-y-4">
+          {src && (
+            <video
+              className="flex aspect-video overflow-hidden rounded-xl"
+              controls
+              src={src}
+            />
+          )}
+          {caption && <div className="flex flex-wrap">{caption}</div>}
         </div>
       </div>
     </section>

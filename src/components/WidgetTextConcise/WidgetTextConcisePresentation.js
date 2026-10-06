@@ -18,25 +18,27 @@ function WidgetTextConcisePresentation({ widgetData }) {
     <section
       id="WidgetTextConcisePresentation"
       key={widgetData?.id}
-      className="pt-8 md:pt-12 pb-4 md:pb-8 bg-white"
+      className="p-6 md:p-12"
     >
-      <div className="text-center space-y-6 lg:space-y-8">
-        <div className="mx-2 md:mx-5 lg:mx-10">
-          <SectionTitle.Presentation
-            title={
-              <div
-                className={`flex w-full mx-auto ${title?.length > 28 ? 'items-start' : 'items-center'} justify-center`}
-              >
-                <span>{title}</span>
-                {audio && <AudioButton audioArray={[audioObject]} />}
-              </div>
-            }
-          />
-        </div>
+      <div className="mb-6 lg:mb-10">
+        <SectionTitle.Presentation
+          title={
+            <div
+              className={`flex w-full mx-auto ${title?.length > 28 ? 'items-start' : 'items-center'} justify-center`}
+            >
+              <span>{title}</span>
+              {audio && <AudioButton audioArray={[audioObject]} />}
+            </div>
+          }
+        />
+      </div>
+      <div className="text-center space-y-6 lg:space-y-10">
         {text && (
-          <p className="max-w-6xl px-4 md:px-6 xl:px-0 mx-auto text-center text-base md:text-xl lg:text-2xl text-charcoal-800">
-            {text}
-          </p>
+          <div className="px-6 md:px-12">
+            <p className="max-w-7xl mx-auto text-center text-base md:text-xl lg:text-2xl text-charcoal-800">
+              {text}
+            </p>
+          </div>
         )}
         {url && (
           <a

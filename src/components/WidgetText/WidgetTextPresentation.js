@@ -40,7 +40,9 @@ function WidgetTextPresentation({ widgetData }) {
   const bgColorClass = bgColor ? 'bg-jade-600 my-6 md:my-8' : 'bg-white'
 
   const getTextElement = () => (
-    <div className={`${image ? 'lg:w-1/2' : ''} content-center text-left`}>
+    <div
+      className={`${image ? 'lg:w-1/2' : 'max-w-7xl mx-auto'} content-center text-left`}
+    >
       <div className="space-y-5 lg:space-y-8">
         <h2
           className={`text-xl md:text-2xl lg:text-3xl ${
@@ -101,10 +103,7 @@ function WidgetTextPresentation({ widgetData }) {
   }
 
   return (
-    <section
-      className="w-full px-2 md:px-12"
-      data-testid="WidgetTextPresentation"
-    >
+    <section id="WidgetTextPresentation" className="w-full px-2 md:px-12">
       <div
         className={`${bgColorClass} rounded-lg flex flex-col lg:flex-row p-6 md:p-12 gap-8`}
       >

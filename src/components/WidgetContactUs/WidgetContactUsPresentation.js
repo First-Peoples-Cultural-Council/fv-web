@@ -83,20 +83,17 @@ function ContactUsPresentation({
   const { login } = useLoginLogout()
 
   return (
-    <section
-      className="py-3 md:py-6 bg-white"
-      data-testid="ContactUsPresentationWidget"
-    >
-      <div className="mx-2 md:mx-5 lg:mx-10 mb-1 md:mb-4">
+    <section id="ContactUsPresentationWidget" className="p-6 md:p-12">
+      <div className="mb-6 lg:mb-10 space-y-4">
         <SectionTitle.Presentation
           title={title || `Contact ${siteTitle} Team`}
         />
-      </div>
-      <div>
-        <div className="text-blumine-800 md:text-xl text-center mb-2 md:mb-6 px-2 lg:px-8 min-h-5">
+        <div className="px-16 text-center text-charcoal-800 text-xl">
           {subtitle || ''}
         </div>
-        <div className="max-w-7xl mx-auto px-3 md:px-6 lg:px-8">
+      </div>
+      <div className="px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-6">
             {user.isAnonymous ? (
               <div

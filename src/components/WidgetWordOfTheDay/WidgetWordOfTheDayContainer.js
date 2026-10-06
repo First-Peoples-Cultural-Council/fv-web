@@ -1,30 +1,24 @@
 import React from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router'
 
+// FPCC
+import api from 'services/api'
+import { WORD_OF_THE_DAY } from 'common/constants/paths'
 import WidgetWordOfTheDayPresentation from 'components/WidgetWordOfTheDay/WidgetWordOfTheDayPresentation'
-import WidgetWordOfTheDayData from 'components/WidgetWordOfTheDay/WidgetWordOfTheDayData'
 
 function WidgetWordOfTheDayContainer() {
-  const {
-    audio,
-    wordTitle,
-    translations,
-    partOfSpeech,
-    relativeUrl,
-    title,
-    url,
-    queryResponse,
-    entry,
-  } = WidgetWordOfTheDayData()
+  const { sitename } = useParams()
+
+  const queryResponse = useQuery({
+    queryKey: [WORD_OF_THE_DAY, sitename],
+    queryFn: () => api.wordOfTheDay.get({ sitename }),
+    enabled: !!sitename,
+  })
+
   return (
     <WidgetWordOfTheDayPresentation
-      audio={audio}
-      wordTitle={wordTitle}
-      translations={translations}
-      partOfSpeech={partOfSpeech}
-      relativeUrl={relativeUrl}
-      title={title}
-      url={url}
-      entry={entry}
+      entry={queryResponse?.data?.[0]?.dictionaryEntry}
       queryResponse={queryResponse}
     />
   )
