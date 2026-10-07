@@ -22,25 +22,24 @@ function WidgetIframePresentation({ widgetData }) {
     return (
       <section id="WidgetIframePresentation" className="p-6 md:p-12">
         <div className="px-6 md:px-12">
-          <div className="relative mx-auto max-w-7xl h-auto">
+          <div className="relative max-w-7xl mx-auto flex flex-col space-y-6">
             <iframe
               title="Map"
               allow="geolocation"
               className="aspect-video w-full object-cover object-center rounded-xl p-1 border-2 border-blumine-800 bg-white"
               src={url?.href}
             />
-
-            {/* The Link Overlay */}
-            <a
-              href={settings?.src}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="absolute inset-0 rounded-xl bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
-              aria-label="Clickable overlay link"
-            >
-              <span>Go to {url?.hostname}</span>
-              {getIcon('GoTo', 'fill-current size-6')}
-            </a>
+            <div className="w-full text-center">
+              <a
+                href={settings?.src}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="btn-primary btn-md mx-auto"
+              >
+                <span>Go to {url?.hostname}</span>
+                {getIcon('GoTo')}
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -60,29 +59,26 @@ function WidgetIframePresentation({ widgetData }) {
                   className="aspect-3/2 w-full object-cover object-center rounded-xl border-2 p-1 border-blumine-800 bg-white"
                   src={url?.href}
                 />
-
-                {/* The Link Overlay */}
-                <a
-                  href={settings?.src}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="absolute inset-0 rounded-xl bg-black/0 hover:bg-black/60 transition-colors duration-300 flex items-center justify-center space-x-2 text-transparent hover:text-white text-lg z-10"
-                  aria-label="Clickable overlay link"
-                >
-                  <span>Go to {url?.hostname}</span>
-                  {getIcon('GoTo', 'fill-current size-6')}
-                </a>
               </div>
             )}
           </div>
           <div className="lg:col-span-2 lg:rounded-xl lg:grid lg:items-center">
-            <div className="mx-auto space-y-2 md:space-y-6">
+            <div className="mx-auto space-y-6 lg:space-y-8">
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-blumine-800">
                 {settings?.title}
               </h2>
               <div className="text-base xl:text-lg text-blumine-800">
                 {settings?.text}
               </div>
+              <a
+                href={settings?.src}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="btn-primary btn-md mx-auto"
+              >
+                <span>Go to {url?.hostname}</span>
+                {getIcon('GoTo')}
+              </a>
             </div>
           </div>
         </div>
