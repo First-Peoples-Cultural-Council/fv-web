@@ -29,18 +29,18 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
               <div
                 className={`col-start-1 col-span-2 ${longEntry ? '' : 'xl:col-start-2 xl:col-span-1'}  flex-col space-y-4 md:space-y-6`}
               >
-                <div>
-                  <div className="inline-flex items-center text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
-                    <div>{entry?.title}</div>
-                    <div>
-                      <AudioButton audioArray={entry?.relatedAudio} />
-                    </div>
+                <div className="wrap-break-word text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
+                  <span>{entry?.title}</span>
+
+                  <AudioButton audioArray={entry?.relatedAudio} />
+                </div>
+
+                {entry?.partOfSpeech?.title && (
+                  <div className="text-base font-light italic">
+                    {entry?.partOfSpeech?.title}
                   </div>
-                </div>
-                <div className="text-base font-light italic">
-                  {entry?.partOfSpeech?.title}
-                </div>
-                <div className="pt-2 md:pt-4">
+                )}
+                <div>
                   <div className="inline-flex items-center text-2xl md:text-3xl font-bold text-blumine-800 space-x-2">
                     <CopyButton textToCopy={entry?.title} />
                     <ShareButton
@@ -81,7 +81,7 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
                   className="btn-secondary btn-md"
                 >
                   <span>More details</span>
-                  {getIcon('Fullscreen')}
+                  {getIcon('GoTo')}
                 </Link>
               </div>
             </div>

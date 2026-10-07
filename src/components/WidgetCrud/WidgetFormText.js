@@ -133,7 +133,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.TextField
               label="URL"
               nameId="url"
-              helpText="Enter a URL you would like to link to (e.g. https://www.firstvoices.com/smalgyax-beta/words)"
+              helpText="Enter a URL you would like to link to e.g. https://www.firstvoices.com/smalgyax/words"
               register={register}
               errors={errors}
             />

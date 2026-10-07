@@ -23,13 +23,12 @@ function WidgetQuotesPresentation({ widgetData }) {
     </div>
   )
   return (
-    <section
-      id="WidgetQuotesPresentation"
-      className="bg-ochre-600 flex flex-col md:flex-row justify-evenly items-center pb-16 md:pb-0"
-    >
-      {makeQuote(quote1, quote1By)}
-      {makeQuote(quote2, quote2By)}
-      {makeQuote(quote3, quote3By)}
+    <section id="WidgetQuotesPresentation" className="py-6 md:py-12">
+      <div className="bg-ochre-600 flex flex-col md:flex-row justify-evenly items-center pb-16 md:pb-0 px-12 md:px-24">
+        {makeQuote(quote1, quote1By)}
+        {makeQuote(quote2, quote2By)}
+        {makeQuote(quote3, quote3By)}
+      </div>
     </section>
   )
 }
