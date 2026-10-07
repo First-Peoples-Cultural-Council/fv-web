@@ -62,7 +62,7 @@ function WidgetIframePresentation({ widgetData }) {
               </div>
             )}
           </div>
-          <div className="lg:col-span-2 lg:rounded-xl lg:grid lg:items-center">
+          <div className="lg:col-span-2 lg:rounded-xl lg:grid lg:items-center lg:justify-start">
             <div className="mx-auto space-y-6 lg:space-y-8">
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-blumine-800">
                 {settings?.title}
