@@ -43,7 +43,7 @@ function WidgetTextPresentation({ widgetData }) {
     <div
       className={`${image ? 'lg:w-1/2' : 'max-w-7xl mx-auto'} content-center text-left`}
     >
-      <div className="space-y-5 lg:space-y-8">
+      <div className="space-y-6 lg:space-y-8">
         <h2
           className={`text-xl md:text-2xl lg:text-3xl ${
             bgColor ? 'text-white' : 'text-blumine-800'

@@ -81,7 +81,7 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
                   className="btn-secondary btn-md"
                 >
                   <span>More details</span>
-                  {getIcon('Fullscreen')}
+                  {getIcon('GoTo')}
                 </Link>
               </div>
             </div>
