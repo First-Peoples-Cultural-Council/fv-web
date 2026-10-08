@@ -25,7 +25,7 @@ function WidgetLogoPresentation({ widgetData }) {
                 </div>
               )}
               <div className="col-span-6 lg:col-span-4 flex items-center">
-                <div className="mx-auto lg:py-5">
+                <div className="mx-auto lg:py-6">
                   <p className="my-1 text-white lg:text-lg font-medium  whitespace-pre-line">
                     {text}
                   </p>
