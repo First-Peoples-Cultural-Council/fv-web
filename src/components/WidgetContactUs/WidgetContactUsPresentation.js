@@ -92,7 +92,7 @@ function ContactUsPresentation({
           {subtitle || ''}
         </div>
       </div>
-      <div className="px-6 md:px-12">
+      <div className="px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-6">
             {user.isAnonymous ? (

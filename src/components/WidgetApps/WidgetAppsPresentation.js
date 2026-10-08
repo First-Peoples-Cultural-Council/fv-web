@@ -14,7 +14,7 @@ function WidgetAppsPresentation() {
 
   return (
     <section id="WidgetAppsPresentation" className="p-6 md:p-12">
-      <div className="px-6 md:px-12">
+      <div className="px-6 lg:px-12">
         <div className="mx-auto max-w-7xl grid grid-cols-2 gap-8 md:gap-4 lg:gap-8">
           <div className="col-span-2 md:col-span-1">
             <div className="mx-auto text-center md:mx-0 md:flex-auto md:py-0 md:text-left">

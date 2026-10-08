@@ -29,7 +29,7 @@ function WidgetVideoPresentation({ widgetData }) {
 
   return (
     <section id="WidgetVideoPresentation" className="p-6 md:p-12">
-      <div className="px-6 md:px-12">
+      <div className="px-6 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col space-y-4">
           {src && (
             <video

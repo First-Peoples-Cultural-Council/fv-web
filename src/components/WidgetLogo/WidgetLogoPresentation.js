@@ -9,9 +9,9 @@ function WidgetLogoPresentation({ widgetData }) {
   const { text } = widgetData?.settings || {}
   const format = widgetData?.format ? widgetData?.format : FORMAT_RIGHT
   return (
-    <section data-testid="WidgetLogoPresentation" className="py-6 lg:py-12">
+    <section id="WidgetLogoPresentation" className="py-6 lg:py-12">
       <div className="bg-blumine-800 py-8 lg:py-0 lg:my-8">
-        <div className="px-12 md:px-24">
+        <div className="px-12 lg:px-24">
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-6 gap-8">
               {format === FORMAT_LEFT && (

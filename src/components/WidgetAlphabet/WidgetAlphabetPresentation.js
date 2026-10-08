@@ -20,7 +20,7 @@ function WidgetAlphabetPresentation({
       <div className="mb-6 lg:mb-10">
         <SectionTitle.Presentation title="Alphabet" />
       </div>
-      <div className="px-6 md:px-12">
+      <div className="px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-12 gap-6 lg:gap-11">
             <div

@@ -24,7 +24,7 @@ function WidgetWordOfTheDayPresentation({ entry, queryResponse }) {
 
       {!queryResponse?.isError ? (
         <LoadOrError queryResponse={queryResponse} height="h-40">
-          <div data-testid="wotd-success" className="px-6 md:px-12">
+          <div data-testid="wotd-success" className="px-6 lg:px-12">
             <div className="mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
               <div
                 className={`col-start-1 col-span-2 ${longEntry ? '' : 'xl:col-start-2 xl:col-span-1'}  flex-col space-y-4 md:space-y-6`}
