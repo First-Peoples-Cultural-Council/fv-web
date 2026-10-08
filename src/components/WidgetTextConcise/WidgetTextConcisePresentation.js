@@ -34,7 +34,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
       </div>
       <div className="text-center space-y-6 lg:space-y-10">
         {text && (
-          <div className="px-6 md:px-12">
+          <div className="px-6 lg:px-12">
             <p className="max-w-7xl mx-auto text-center text-base md:text-xl lg:text-2xl text-charcoal-800">
               {text}
             </p>

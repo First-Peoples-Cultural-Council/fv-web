@@ -21,7 +21,7 @@ function WidgetIframePresentation({ widgetData }) {
   if (iframeOnly && isMapSrc) {
     return (
       <section id="WidgetIframePresentation" className="p-6 md:p-12">
-        <div className="px-6 md:px-12">
+        <div className="px-6 lg:px-12">
           <div className="relative max-w-7xl mx-auto flex flex-col space-y-6">
             <iframe
               title="Map"
@@ -48,7 +48,7 @@ function WidgetIframePresentation({ widgetData }) {
 
   return (
     <section id="WidgetIframePresentation" className="p-6 md:p-12">
-      <div className="px-6 md:px-12">
+      <div className="px-6 lg:px-12">
         <div className="space-y-6 lg:grid lg:grid-cols-6 gap-8">
           <div className="flex lg:col-span-4 h-full lg:items-center">
             {isMapSrc && (

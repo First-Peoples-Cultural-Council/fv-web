@@ -37,7 +37,7 @@ function WidgetTextPresentation({ widgetData }) {
     )
   }
 
-  const bgColorClass = bgColor ? 'bg-jade-600 my-6 md:my-8' : 'bg-white'
+  const bgColorClass = bgColor ? 'bg-blumine-800 my-6 md:my-8' : 'bg-white'
 
   const getTextElement = () => (
     <div
@@ -88,10 +88,7 @@ function WidgetTextPresentation({ widgetData }) {
 
   if (format === FORMAT_RIGHT) {
     return (
-      <section
-        className="w-full px-2 md:px-12"
-        data-testid="WidgetTextPresentation"
-      >
+      <section className="w-full px-2 md:px-12" id="WidgetTextPresentation">
         <div
           className={`${bgColorClass} rounded-lg flex flex-col lg:flex-row p-6 md:p-12 gap-8`}
         >
