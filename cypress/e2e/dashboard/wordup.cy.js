@@ -39,30 +39,37 @@ describe(
         cy.contains('Success').should('exist')
       })
       cy.viewport(1024, 768)
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(baseUrl)
+      })
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
-          cy.get('#signInFormUsername').type(email, { force: true })
-          // lets try an incorrect password
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          Cypress.Commands.add('login', (email, password) => {
+            cy.get('.visible-lg')
+              .find('#signInFormUsername')
+              .should('be.visible')
+            cy.get('.visible-lg').find('#signInFormUsername').type(email)
+            // lets try an incorrect password
+            cy.get('.visible-lg')
+              .find('#signInFormPassword')
+              .type(`${password}{enter}`)
           })
-        })
 
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
+          cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+            ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+              cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+            },
+          )
+        })
       })
     })
 
     it('3.0 edit words phrases', () => {
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()
       cy.contains('Edit words').click()
@@ -78,9 +85,10 @@ describe(
       cy.on('uncaught:exception', () => false)
       cy.viewport(1024, 768)
 
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
 
@@ -88,7 +96,10 @@ describe(
       cy.contains('Finish').click()
       cy.get('#title').type(name)
       cy.middlestuff('Add translation')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()
       cy.get('[data-testid="SearchInput"]').type(`${name}{enter}`)

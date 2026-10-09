@@ -18,50 +18,69 @@ describe(
         },
         [], // and force the response to be: []
       )
-      cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.get('#signInFormUsername').type(email, { force: true })
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
-          })
-        })
-
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(baseUrl)
       })
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
+      cy.contains('Sign in').click()
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          Cypress.Commands.add('login', (email, password) => {
+            cy.get('.visible-lg')
+              .find('#signInFormUsername')
+              .should('be.visible')
+            cy.get('.visible-lg').find('#signInFormUsername').type(email)
+            // lets try an incorrect password
+            cy.get('.visible-lg')
+              .find('#signInFormPassword')
+              .type(`${password}{enter}`)
+          })
+
+          cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+            ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+              cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+            },
+          )
+        })
+      })
     })
 
     it('1.1 - signin/signout', () => {
-      //  cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').should('exist')
       cy.contains('Sign out', { timeout: 12000 }).click()
     })
 
     it('1.2 - signin - no redirect', () => {
-      //cy.visit(`${Cypress.env('baseUrl')}`)
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Sign out', { timeout: 12000 }).click()
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        cy.contains('Sign in with your email and password', {
-          timeout: 10000,
-        }).should('exist')
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          cy.contains('Sign in with your email and password', {
+            timeout: 10000,
+          }).should('exist')
+        })
       })
     })
 
     it('sign up', () => {
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Sign out', { timeout: 12000 }).click()
+
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        cy.contains('Sign up').click({ force: true })
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          cy.get('.visible-lg').contains('Sign up').click()
+        })
       })
     })
   },

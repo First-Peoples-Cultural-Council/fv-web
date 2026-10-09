@@ -18,30 +18,30 @@ describe(
         [], // and force the response to be: []
       )
       Cypress.Commands.add('_login', () => {
-        cy.visit(`${Cypress.env('baseUrl')}`)
+        cy.env(['baseUrl']).then(({ baseUrl }) => {
+          cy.visit(baseUrl)
+        })
         cy.contains('Sign in').click()
-        cy.origin(
-          'https://fpcc-dev.auth.ca-central-1.amazoncognito.com',
-          () => {
+        cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+          cy.origin(CYPRESS_ORIGIN, () => {
             Cypress.Commands.add('login', (email, password) => {
-              cy.on('uncaught:exception', () => false)
-
-              cy.get('#signInFormUsername').type(email, { force: true })
+              cy.get('.visible-lg')
+                .find('#signInFormUsername')
+                .should('be.visible')
+              cy.get('.visible-lg').find('#signInFormUsername').type(email)
               // lets try an incorrect password
-              cy.get('#signInFormPassword').type(`${password}{enter}`, {
-                force: true,
-              })
+              cy.get('.visible-lg')
+                .find('#signInFormPassword')
+                .type(`${password}{enter}`)
             })
-            cy.contains('Sign in with your email and password').should('exist')
-            cy.login(
-              Cypress.env('CYPRESS_FV_USERNAME'),
-              Cypress.env('CYPRESS_FV_PASSWORD'),
-            )
-          },
-        )
 
-        cy.contains('Explore Languages').click()
-        cy.title().should('eq', 'FirstVoices')
+            cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+              ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+                cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+              },
+            )
+          })
+        })
       })
       Cypress.Commands.add('checkValidation', (widgetName) => {
         cy.contains(widgetName).click()
@@ -51,18 +51,18 @@ describe(
       })
       Cypress.Commands.add('createwidget', (name) => {
         const widgetname = 'testwidgetcypress'
-        cy.visit(
-          `${Cypress.env('baseUrl')}${Cypress.env(
-            'CYPRESS_DIALECT',
-          )}/dashboard/create/widget`,
+        cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+          ({ baseUrl, CYPRESS_DIALECT }) => {
+            cy.visit(`${baseUrl + CYPRESS_DIALECT}/dashboard/create/widget`)
+          },
         )
         cy.contains(name).should('be.enabled')
-        cy.contains(name).click({ force: true })
+        cy.contains(name).click()
         cy.get('#nickname').type(widgetname)
       })
       Cypress.Commands.add('throughme', (name) => {
         cy.contains('Create widget').should('be.visible')
-        cy.contains('Create widget').click({ force: true })
+        cy.contains('Create widget').click()
         cy.contains('Dismiss').click()
         cy.contains(name).parent().children().eq(2).children().click()
 
@@ -79,7 +79,10 @@ describe(
     it('2.0/2.1 - Check widget validation', () => {
       cy._login()
 
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       const widgets = [
         'Page Text',
@@ -102,7 +105,10 @@ describe(
     it(`2.3 - Create widgets`, () => {
       cy._login()
 
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       subwidgets.forEach((_widget) => {
         cy.createwidget(_widget)

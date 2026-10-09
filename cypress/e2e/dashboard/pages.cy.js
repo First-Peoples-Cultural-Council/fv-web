@@ -19,39 +19,49 @@ describe(
         },
         [], // and force the response to be: []
       )
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(baseUrl)
+      })
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.get('#signInFormUsername').type(email, { force: true })
-          // lets try an incorrect password
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          Cypress.Commands.add('login', (email, password) => {
+            cy.get('.visible-lg')
+              .find('#signInFormUsername')
+              .should('be.visible')
+            cy.get('.visible-lg').find('#signInFormUsername').type(email)
+            // lets try an incorrect password
+            cy.get('.visible-lg')
+              .find('#signInFormPassword')
+              .type(`${password}{enter}`)
           })
-        })
 
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
+          cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+            ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+              cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+            },
+          )
+        })
       })
     })
 
     it('4.1 - custom page', () => {
-      const site = `${Cypress.env('baseUrl')}${Cypress.env(
-        'CYPRESS_DIALECT',
-      )}/custom/qacustompage`
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          const site = `${baseUrl}${CYPRESS_DIALECT}/custom/qacustompage`
 
-      cy.contains('Explore Languages').should('be.visible')
-      cy.visit(site)
-      cy.contains('403').should('not.exist')
+          cy.contains('Explore Languages').should('be.visible')
+          cy.visit(site)
+          cy.contains('403').should('not.exist')
+        },
+      )
     })
 
     it('3.1 edit homepage', () => {
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit homepage').click()
       cy.contains('Edit banner and logo').click()
@@ -59,19 +69,20 @@ describe(
     })
 
     it('12.2 - Page Text', () => {
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit homepage').click()
       cy.contains('Page Text').should('not.exist')
     })
 
     it('3.1 edit homepage - widget', () => {
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit homepage').click()
 

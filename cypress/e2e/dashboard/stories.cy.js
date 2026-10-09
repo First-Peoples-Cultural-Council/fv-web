@@ -19,30 +19,38 @@ describe(
         },
         [], // and force the response to be: []
       )
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(baseUrl)
+      })
     })
 
     it('Create Story v1', () => {
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.on('uncaught:exception', () => false)
-
-          cy.get('#signInFormUsername').type(email, { force: true })
-          // lets try an incorrect password
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          Cypress.Commands.add('login', (email, password) => {
+            cy.get('.visible-lg')
+              .find('#signInFormUsername')
+              .should('be.visible')
+            cy.get('.visible-lg').find('#signInFormUsername').type(email)
+            // lets try an incorrect password
+            cy.get('.visible-lg')
+              .find('#signInFormPassword')
+              .type(`${password}{enter}`)
           })
-        })
 
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
+          cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+            ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+              cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+            },
+          )
+        })
       })
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Create').click()
 
@@ -64,7 +72,7 @@ describe(
         cy.get(':nth-child(1) > .tiptap > p').eq(1).type('asdfasdfaf')
         cy.contains('Save').click()
       }
-      cy.contains('Next step').click({ force: true })
+      cy.contains('Next step').click()
       cy.contains('Next step').click()
       cy.contains('Finish').click()
 

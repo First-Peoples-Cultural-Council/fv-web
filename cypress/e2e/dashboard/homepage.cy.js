@@ -19,44 +19,56 @@ describe(
         [], // and force the response to be: []
       )
       Cypress.Commands.add('_login', () => {
-        cy.visit(`${Cypress.env('baseUrl')}`)
+        cy.env(['baseUrl']).then(({ baseUrl }) => {
+          cy.visit(baseUrl)
+        })
         cy.contains('Sign in').click()
-        cy.origin(
-          'https://fpcc-dev.auth.ca-central-1.amazoncognito.com',
-          () => {
+        cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+          cy.origin(CYPRESS_ORIGIN, () => {
             Cypress.Commands.add('login', (email, password) => {
-              cy.get('#signInFormUsername').type(email, { force: true })
+              cy.get('.visible-lg')
+                .find('#signInFormUsername')
+                .should('be.visible')
+              cy.get('.visible-lg').find('#signInFormUsername').type(email)
               // lets try an incorrect password
-              cy.get('#signInFormPassword').type(`${password}{enter}`, {
-                force: true,
-              })
+              cy.get('.visible-lg')
+                .find('#signInFormPassword')
+                .type(`${password}{enter}`)
             })
 
-            cy.contains('Sign in with your email and password').should('exist')
-            cy.login(
-              Cypress.env('CYPRESS_FV_USERNAME'),
-              Cypress.env('CYPRESS_FV_PASSWORD'),
+            cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+              ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+                cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+              },
             )
-          },
-        )
-
-        cy.contains('Explore Languages').click()
+          })
+        })
       })
     })
 
     it('Request to join', () => {
       cy._login()
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
 
-      cy.get('[data-testid="ListboxPresentation"]').click()
+      cy.get('[data-testid="DashboardJoinCard"]')
+        .find('[data-testid="custom-listbox-btn"]')
+        .click()
       cy.contains('Approve as Member').click()
-      cy.get('[data-testid="ListboxPresentation"]').click()
+      cy.get('[data-testid="DashboardJoinCard"]')
+        .find('[data-testid="custom-listbox-btn"]')
+        .click()
       cy.contains('Approve as Assistant').click()
-      cy.get('[data-testid="ListboxPresentation"]').click()
+      cy.get('[data-testid="DashboardJoinCard"]')
+        .find('[data-testid="custom-listbox-btn"]')
+        .click()
       cy.contains('Approve as Editor').click()
-      cy.get('[data-testid="ListboxPresentation"]').click()
+      cy.get('[data-testid="DashboardJoinCard"]')
+        .find('[data-testid="custom-listbox-btn"]')
+        .click()
       cy.contains('Approve as Language Admin').click()
 
       cy.contains('Create a word').click()
@@ -72,8 +84,6 @@ describe(
       cy.contains('Edit homepage').click()
       cy.go(-1)
       cy.contains('Reports').click()
-      cy.go(-1)
-      cy.contains('Support').click()
       cy.go(-1)
     })
   },

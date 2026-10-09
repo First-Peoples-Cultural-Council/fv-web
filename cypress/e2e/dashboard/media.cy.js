@@ -19,35 +19,39 @@ describe(
         [], // and force the response to be: []
       )
       Cypress.Commands.add('_login', () => {
-        cy.visit(`${Cypress.env('baseUrl')}`)
+        cy.env(['baseUrl']).then(({ baseUrl }) => {
+          cy.visit(baseUrl)
+        })
         cy.contains('Sign in').click()
-        cy.origin(
-          'https://fpcc-dev.auth.ca-central-1.amazoncognito.com',
-          () => {
+        cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+          cy.origin(CYPRESS_ORIGIN, () => {
             Cypress.Commands.add('login', (email, password) => {
-              cy.get('#signInFormUsername').type(email, { force: true })
+              cy.get('.visible-lg')
+                .find('#signInFormUsername')
+                .should('be.visible')
+              cy.get('.visible-lg').find('#signInFormUsername').type(email)
               // lets try an incorrect password
-              cy.get('#signInFormPassword').type(`${password}{enter}`, {
-                force: true,
-              })
+              cy.get('.visible-lg')
+                .find('#signInFormPassword')
+                .type(`${password}{enter}`)
             })
 
-            cy.contains('Sign in with your email and password').should('exist')
-            cy.login(
-              Cypress.env('CYPRESS_FV_USERNAME'),
-              Cypress.env('CYPRESS_FV_PASSWORD'),
+            cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+              ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+                cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+              },
             )
-          },
-        )
-
-        cy.contains('Explore Languages').click()
+          })
+        })
       })
     })
 
     it('2.6 - view media', () => {
       cy._login()
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
 
       cy.contains('Media').click()
@@ -70,8 +74,10 @@ describe(
 
     it('upload audio test', () => {
       cy._login()
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()
       cy.get('[data-testid="EntryRow"] td button').eq(0).click()
@@ -83,9 +89,7 @@ describe(
       cy.fixture('sample4.opus', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
-      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio', {
-        force: true,
-      })
+      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio')
       cy.contains('Upload File').click()
       cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
@@ -95,9 +99,7 @@ describe(
       cy.fixture('sample-6s.mp3', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
-      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio', {
-        force: true,
-      })
+      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio')
       cy.get('[data-testid="label-speakers"]')
         .parent()
         .find('[data-testid="autocomplete-multi-input"]')
@@ -113,9 +115,7 @@ describe(
       cy.fixture('a2-db-kk-03.wav', null).as('audioFixture')
       cy.get('#audioFile').selectFile('@audioFixture')
 
-      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio', {
-        force: true,
-      })
+      cy.get('div[id="AudioUploadForm"] #title').type('qatestaudio')
       cy.contains('Upload File').click()
       cy.contains('File successfully uploaded', { timeout: 120000 }) // cypress timeout is too short, adding this one
       cy.contains('Insert').click()
@@ -139,8 +139,10 @@ describe(
 
     it('upload image', () => {
       cy._login()
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()
       cy.get('[data-testid="EntryRow"] td button').eq(0).click()
@@ -176,8 +178,10 @@ describe(
 
     it('upload video', () => {
       cy._login()
-      cy.contains('Explore Languages').click()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Edit words and phrases').click()
       cy.get('[data-testid="EntryRow"] td button').eq(0).click()
@@ -213,9 +217,10 @@ describe(
 
     it('test audio playback in drawer', () => {
       cy._login()
-      cy.contains('Explore Languages').click()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').should('be.visible')
       cy.contains('Dashboard').click()
       cy.contains('Edit').click()

@@ -21,7 +21,11 @@ describe(
     it('rotate between view ports ', () => {
       cy.on('uncaught:exception', () => false)
 
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
 
       checkMenu('macbook-15', 2)
 

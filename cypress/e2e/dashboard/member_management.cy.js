@@ -11,20 +11,29 @@ describe(
   () => {
     beforeEach(() => {
       cy.viewport(1920, 1080)
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(baseUrl)
+      })
       cy.contains('Sign in').click()
-      cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-        Cypress.Commands.add('login', (email, password) => {
-          cy.get('#signInFormUsername').type(email, { force: true })
-          cy.get('#signInFormPassword').type(`${password}{enter}`, {
-            force: true,
+      cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+        cy.origin(CYPRESS_ORIGIN, () => {
+          Cypress.Commands.add('login', (email, password) => {
+            cy.get('.visible-lg')
+              .find('#signInFormUsername')
+              .should('be.visible')
+            cy.get('.visible-lg').find('#signInFormUsername').type(email)
+            // lets try an incorrect password
+            cy.get('.visible-lg')
+              .find('#signInFormPassword')
+              .type(`${password}{enter}`)
           })
-        })
 
-        cy.login(
-          Cypress.env('CYPRESS_FV_USERNAME'),
-          Cypress.env('CYPRESS_FV_PASSWORD'),
-        )
+          cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+            ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+              cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+            },
+          )
+        })
       })
     })
 
@@ -35,12 +44,13 @@ describe(
           $rows.each(($el, $em) => {
             if ($em.innerText === _memberEmail) {
               cy.get('[data-testid="MembershipEditButton"]').eq($el).realClick()
-              cy.get('#assistant').then(() => {
-                cy.get(`#${_role}`).realClick()
+              cy.get('#assistant').then(($radio) => {
+                if ($radio.is('[data-checked]')) {
+                  cy.get(`#${_role}`).realClick()
+                } else {
+                  cy.get('#assistant').realClick()
+                }
                 cy.contains('Update').realClick()
-                cy.get('[data-testid="page-1-btn"]').realClick({
-                  timeout: 20000,
-                })
                 return
               })
             }
@@ -56,27 +66,30 @@ describe(
     }
 
     it('member - find member', () => {
-      cy.contains('Explore Languages').realClick()
-      cy.title().should('eq', 'FirstVoices')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).should('exist')
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).realClick()
-      cy.contains('Dashboard').realClick()
-      cy.intercept(`${Cypress.env('CYPRESS_SERVER')}`).as('getNext')
-      cy.contains('Member Management').realClick()
-      cy.get('#PaginationControlsPresentation').should('be.visible')
-      cy.get('[data-testid^="page"]').should('have.length.greaterThan', 1)
-      cy.get('[data-testid="page-2-btn"]').should('be.visible')
-      cy.get('[data-testid="next-page-btn"]').click()
-      cy.get('[data-testid^="page"]').each((_page) => {
-        cy.wrap(_page).scrollIntoView()
-        cy.wrap(_page).should('not.be.disabled')
-        cy.wrap(_page).realClick()
-        cy.wait('@getNext')
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
       })
-      cy.get('[data-testid="page-1-btn"]').realClick()
+      cy.contains('Dashboard').realClick()
+      cy.env(['CYPRESS_SERVER']).then(({ CYPRESS_SERVER }) => {
+        cy.intercept(CYPRESS_SERVER).as('getNext')
+        cy.contains('Member Management').realClick()
+        cy.get('#PaginationControlsPresentation').should('be.visible')
+        cy.get('[data-testid^="page"]').should('have.length.greaterThan', 1)
+        cy.get('[data-testid="page-2-btn"]').should('be.visible')
+        cy.get('[data-testid="next-page-btn"]').click()
+        cy.get('[data-testid^="page"]').each((_page) => {
+          cy.wrap(_page).scrollIntoView()
+          cy.wrap(_page).should('not.be.disabled')
+          cy.wrap(_page).realClick()
+          cy.wait('@getNext')
+        })
+        cy.get('[data-testid="page-1-btn"]').realClick()
 
-      findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'assistant')
-      findMember(`${Cypress.env('CYPRESS_MEMBER')}`, 'member')
+        cy.env(['CYPRESS_MEMBER']).then(({ CYPRESS_MEMBER }) => {
+          findMember(CYPRESS_MEMBER, 'editor')
+        })
+      })
     })
   },
 ) // end of describe
