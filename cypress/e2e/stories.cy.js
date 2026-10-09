@@ -19,7 +19,11 @@ describe(
     })
 
     it('10.1 - Click on stories grid view', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Learn').click()
       cy.contains('Stories').click()
       cy.get('ul li', { timeout: 10000 }).first().click()
@@ -29,7 +33,11 @@ describe(
     })
 
     it('10.2 - Check list view stories', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Learn').click()
       cy.contains('Stories').click()
       cy.contains('Use list view').click()

@@ -18,7 +18,11 @@ describe(
       )
     })
     it('4.0 - site nav - dictionary', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Dictionary').click()
       cy.contains('Words').click()
       cy.get('[data-testid="word-header"]').should('exist')
@@ -36,7 +40,11 @@ describe(
     })
 
     it('12.1 - alphabet', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Alphabet').should('exist')
       cy.get('[data-testid="character-detail-header"] button').should(
         'have.length',
@@ -45,7 +53,9 @@ describe(
     })
 
     it('explore languages - search', () => {
-      cy.visit(`${Cypress.env('baseUrl')}languages`)
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(`${baseUrl}languages`)
+      })
       cy.get('[id="LanguagesPresentation"] a').should('have.length.above', 1)
       cy.get('[id="LanguagesPresentation"] a').each((_site) => {
         const _href = _site.prop('href')

@@ -22,14 +22,22 @@ describe(
       // i moved the visit from outside of beforeEach so i don't have to get it to log in on every it test
       cy.on('uncaught:exception', () => false)
 
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
 
       cy.get('[data-testid=SearchInput]').type('a{enter}')
       cy.contains('Not2 Found').should('not.exist')
     })
 
     it('Grab a song name and search', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Learn').click()
       cy.contains('Songs').click()
       cy.get('[data-testid="SongAndStoriesGridTile"]')
@@ -45,7 +53,9 @@ describe(
     })
 
     it('global search from homepage', () => {
-      cy.visit(`${Cypress.env('baseUrl')}`)
+      cy.env(['baseUrl']).then(({ baseUrl }) => {
+        cy.visit(`${baseUrl}`)
+      })
       cy.contains('SEARCH FIRSTVOICES').click()
       cy.get(`table`).find('tr').should('have.length.greaterThan', 1)
 

@@ -19,30 +19,39 @@ describe(
         [], // and force the response to be: []
       )
       Cypress.Commands.add('_login', () => {
-        cy.visit(`${Cypress.env('baseUrl')}`)
-        cy.contains('Sign in').click()
-        cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-          Cypress.Commands.add('login', (email, password) => {
-            cy.get('#signInFormUsername').type(email, { force: true })
-            cy.get('#signInFormPassword').type(`${password}{enter}`, {
-              force: true,
-            })
-          })
-
-          cy.contains('Sign in with your email and password').should('exist')
-          cy.login(
-            Cypress.env('CYPRESS_FV_USERNAME'),
-            Cypress.env('CYPRESS_FV_PASSWORD'),
-          )
+        cy.env(['baseUrl']).then(({ baseUrl }) => {
+          cy.visit(baseUrl)
         })
+        cy.contains('Sign in').click()
+        cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+          cy.origin(CYPRESS_ORIGIN, () => {
+            Cypress.Commands.add('login', (email, password) => {
+              cy.get('.visible-lg')
+                .find('#signInFormUsername')
+                .should('be.visible')
+              cy.get('.visible-lg').find('#signInFormUsername').type(email)
+              // lets try an incorrect password
+              cy.get('.visible-lg')
+                .find('#signInFormPassword')
+                .type(`${password}{enter}`)
+            })
 
-        cy.contains('Explore Languages').click()
+            cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+              ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+                cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+              },
+            )
+          })
+        })
       })
     })
 
     it('adding speaker to audio', () => {
       cy._login()
-      cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+      cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+        cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+        cy.contains(CYPRESS_FV_INITIALS).click()
+      })
       cy.contains('Dashboard').click()
       cy.contains('Media').click()
       cy.contains('Audio').click()
@@ -50,7 +59,10 @@ describe(
       cy.get('[data-testid="EntryDrawerEdit"]')
         .invoke('removeAttr', 'target')
         .click()
-      cy.get('[data-testid="autocomplete-multi-input"]').type(' ')
+      cy.get('[id="description"]').clear()
+      cy.get('[id="description"]').type('test description')
+      cy.press(Cypress.Keyboard.Keys.TAB)
+      //cy.get('[data-testid="autocomplete-multi-input"]').type(' ')
       cy.get('[role="option"]').first().click()
       cy.get('[data-testid="autocomplete-multi-input"]').type('{esc}')
       cy.contains('Save changes').click()
@@ -61,7 +73,8 @@ describe(
         .first()
         .invoke('removeAttr', 'target')
         .click()
-      cy.get('[data-testid="autocomplete-multi-input"]').type(' ')
+      cy.get('[id="description"]').type(' test')
+      cy.press(Cypress.Keyboard.Keys.TAB)
       cy.get('[role="option"]').first().click()
       cy.get('[data-testid="autocomplete-multi-input"]').type('{esc}')
       cy.contains('Save changes').click()

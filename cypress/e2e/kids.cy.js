@@ -16,19 +16,31 @@ describe(
         },
         [], // and force the response to be: []
       )
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Kids').click()
     })
 
     it('14.1 - Visit kids dictionary', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Kids').click()
       cy.contains('Dictionary').click()
       cy.contains('404').should('not.exist')
     })
 
     it('14.2 - visit kids alphabet', () => {
-      cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
+      cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+        ({ baseUrl, CYPRESS_DIALECT }) => {
+          cy.visit(`${baseUrl}${CYPRESS_DIALECT}`)
+        },
+      )
       cy.contains('Kids').click()
       cy.contains('Alphabet').click()
       cy.contains(' 404').should('not.exist')

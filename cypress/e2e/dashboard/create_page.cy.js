@@ -20,29 +20,37 @@ describe('Dashboard - Page testing', () => {
       cy.get('[data-testid="DeleteModal"]').contains('Delete').click()
     })
 
-    cy.visit(`${Cypress.env('baseUrl')}`)
-    cy.contains('Sign in').click()
-    cy.origin(`${Cypress.env('CYPRESS_ORIGIN')}`, () => {
-      Cypress.Commands.add('login', (email, password) => {
-        cy.get('#signInFormUsername').type(email, { force: true })
-        // lets try an incorrect password
-        cy.get('#signInFormPassword').type(`${password}{enter}`, {
-          force: true,
-        })
-      })
-
-      cy.login(
-        Cypress.env('CYPRESS_FV_USERNAME'),
-        Cypress.env('CYPRESS_FV_PASSWORD'),
-      )
+    cy.env(['baseUrl']).then(({ baseUrl }) => {
+      cy.visit(baseUrl)
     })
+    cy.contains('Sign in').click()
+    cy.env(['CYPRESS_ORIGIN']).then(({ CYPRESS_ORIGIN }) => {
+      cy.origin(CYPRESS_ORIGIN, () => {
+        Cypress.Commands.add('login', (email, password) => {
+          cy.get('.visible-lg').find('#signInFormUsername').should('be.visible')
+          cy.get('.visible-lg').find('#signInFormUsername').type(email)
+          // lets try an incorrect password
+          cy.get('.visible-lg')
+            .find('#signInFormPassword')
+            .type(`${password}{enter}`)
+        })
+
+        cy.env(['CYPRESS_FV_USERNAME', 'CYPRESS_FV_PASSWORD']).then(
+          ({ CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD }) => {
+            cy.login(CYPRESS_FV_USERNAME, CYPRESS_FV_PASSWORD)
+          },
+        )
+      })
+    })
+    cy.get('[id="footer"]').should('exist')
   })
 
   const _slug = `testQA${String.fromCharCode(97 + Math.floor(Math.random() * 26))}`
   it('2.2 - Create Page', () => {
-    cy.contains('Explore Languages').click()
-    cy.title().should('eq', 'FirstVoices')
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+      cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+      cy.contains(CYPRESS_FV_INITIALS).click()
+    })
     cy.contains('Dashboard').should('be.visible')
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()
@@ -51,8 +59,14 @@ describe('Dashboard - Page testing', () => {
 
     cy.contains('title must be').should('exist')
     cy.contains('Please enter a URL').should('exist')
-    cy.visit(`${Cypress.env('baseUrl')}${Cypress.env('CYPRESS_DIALECT')}`)
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+    cy.env(['baseUrl', 'CYPRESS_DIALECT']).then(
+      ({ baseUrl, CYPRESS_DIALECT }) => {
+        cy.visit(baseUrl + CYPRESS_DIALECT)
+      },
+    )
+    cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+      cy.contains(CYPRESS_FV_INITIALS).click()
+    })
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()
     cy.contains('Create a Custom Page').click()
@@ -65,13 +79,15 @@ describe('Dashboard - Page testing', () => {
     cy.contains('Success')
   })
 
-  it('Custom Page - delete new page', () => {
-    cy.contains('Explore Languages').click()
-    cy.title().should('eq', 'FirstVoices')
-    cy.contains(`${Cypress.env('CYPRESS_FV_INITIALS')}`).click()
+  it('delete new page', () => {
+    cy.env(['CYPRESS_FV_INITIALS']).then(({ CYPRESS_FV_INITIALS }) => {
+      cy.contains(CYPRESS_FV_INITIALS).should('be.visible')
+      cy.contains(CYPRESS_FV_INITIALS).click()
+    })
     cy.contains('Dashboard').should('be.visible')
     cy.contains('Dashboard').click()
     cy.contains('Edit custom pages').click()
+
     cy.deletePage(_slug, 'testQApage')
   })
 })
