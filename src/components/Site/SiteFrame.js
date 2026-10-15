@@ -23,6 +23,7 @@ import NavBar from 'components/NavBar'
 import Page from 'components/Page'
 import SearchSite from 'components/SearchSite'
 import SiteApps from 'components/SiteApps'
+import SiteContact from 'components/SiteContact'
 import SiteKeyboards from 'components/SiteKeyboards'
 import Song from 'components/Song'
 import SongsAndStories from 'components/SongsAndStories'
@@ -74,6 +75,7 @@ function SiteFrame() {
             element={<ByCategory.Container />}
           />
           <Route path="categories" element={<Categories.Container />} />
+          <Route path="contact" element={<SiteContact.Container />} />
           <Route path="songs/:id" element={<Song.Container />} />
           <Route
             path="songs"
