@@ -15,6 +15,7 @@ import joinRequests from 'services/api/joinRequests'
 import languages from 'services/api/languages'
 import memberships from 'services/api/memberships'
 import mySites from 'services/api/mySites'
+import organizations from 'services/api/organizations'
 import pages from 'services/api/pages'
 import partsOfSpeech from 'services/api/partsOfSpeech'
 import people from 'services/api/people'
@@ -48,6 +49,7 @@ export default {
   languages,
   memberships,
   mySites,
+  organizations,
   pages,
   partsOfSpeech,
   people,
