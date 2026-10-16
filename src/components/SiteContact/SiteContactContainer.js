@@ -2,23 +2,19 @@ import React from 'react'
 
 // FPCC
 import SiteContactPresentation from 'components/SiteContact/SiteContactPresentation'
-import SiteContactData from 'components/SiteContact/SiteContactData'
-import { useUserStore } from 'context/UserContext'
+import { useSiteStore } from 'context/SiteContext'
+import { useOrganizations } from 'common/dataHooks/useOrganizations'
 import LoadOrError from 'components/LoadOrError'
 
 function SiteContactContainer() {
-  const { siteTitle, organization, submitHandler, infiniteQueryResponse } =
-    SiteContactData()
-
-  const { user } = useUserStore()
+  const { site } = useSiteStore()
+  const infiniteQueryResponse = useOrganizations()
 
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
       <SiteContactPresentation
-        siteTitle={siteTitle}
-        submitHandler={submitHandler}
-        organization={organization}
-        user={user}
+        siteTitle={site?.title}
+        organization={infiniteQueryResponse?.data?.pages?.[0]?.results?.[0]}
       />
     </LoadOrError>
   )
