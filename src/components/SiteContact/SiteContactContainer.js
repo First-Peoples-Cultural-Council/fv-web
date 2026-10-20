@@ -16,12 +16,13 @@ function SiteContactContainer() {
   return (
     <LoadOrError queryResponse={infiniteQueryResponse}>
       <main id="SiteContactPresentation" className="py-2 md:py-4 lg:py-8">
-        <SiteDocHead titleArray={['Contact Us']} />
+        <SiteDocHead titleArray={['Contact']} />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6 lg:mb-10">
-            <SectionTitle.Presentation title={`${site?.title} Contact`} />
+          <div className="mb-6 lg:mb-10 space-y-4">
+            <SectionTitle.Presentation title="Contact" />
+            <div className="sr-only">for {site?.title}</div>
           </div>
-          <div className="mx-auto max-w-4xl space-y-6 md:space-y-12">
+          <div className="mx-auto max-w-4xl space-y-6 md:space-y-8">
             {infiniteQueryResponse?.data?.pages?.map((page) => (
               <React.Fragment key={page?.pageNumber}>
                 {page.results.map((organization) => (

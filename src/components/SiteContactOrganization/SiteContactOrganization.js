@@ -5,64 +5,63 @@ import PropTypes from 'prop-types'
 import WysiwygBlock from 'components/WysiwygBlock'
 
 function SiteContactOrganization({ organization }) {
-  const headerStyling = 'hidden tracking-wide text-blumine-800 font-bold mb-2'
-
   return (
-    <section>
-      <div id="SiteContactOrganization" className="">
-        <div className="space-y-6 py-6">
-          <div className="text-blumine-800 text-3xl">
-            {organization?.name || ''}
-          </div>
-          <div className="text-blumine-800">
-            {organization?.contactMessage || ''}
-          </div>
-          <div className="space-y-6">
-            {organization?.address && (
-              <div>
-                <h3 className={headerStyling}>Address</h3>
-                <WysiwygBlock htmlString={organization?.address || ''} />
+    <section id="SiteContactOrganization">
+      <div className="space-y-8">
+        <div className="text-blumine-800 text-3xl">
+          {organization?.name || ''}
+        </div>
+        <div className="text-blumine-800">
+          {organization?.contactMessage || ''}
+        </div>
+        <div className="space-y-6">
+          {organization?.address && (
+            <div>
+              <h3 className="sr-only">Address</h3>
+              <div className="text-blumine-800 font-bold -mb-4">
+                {organization?.name || ''}
               </div>
-            )}
-            {organization?.phoneNumbers?.length > 0 && (
-              <div>
-                <h3 className={headerStyling}>Phone</h3>
-                <ul>
-                  {organization?.phoneNumbers?.map((obj) => (
-                    <ListItem
-                      key={obj?.id}
-                      item={obj}
-                      href={`tel:${obj?.value}`}
-                    />
-                  ))}
-                </ul>
-              </div>
-            )}
-            {organization?.emails?.length > 0 && (
-              <div>
-                <h3 className={headerStyling}>Email</h3>
-                <ul>
-                  {organization?.emails?.map((obj) => (
-                    <ListItem
-                      key={obj?.id}
-                      item={obj}
-                      href={`mailto:${obj?.value}`}
-                    />
-                  ))}
-                </ul>
-              </div>
-            )}
-            {organization?.urlList?.length > 0 && (
-              <div>
-                <h3 className={headerStyling}>Links</h3>
-                <ul>
-                  {organization?.urlList?.map((obj) => (
-                    <ListItem key={obj?.id} item={obj} href={obj?.value} />
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+              <WysiwygBlock htmlString={organization?.address || ''} />
+            </div>
+          )}
+          {organization?.phoneNumbers?.length > 0 && (
+            <div>
+              <h3 className="sr-only">Phone</h3>
+              <ul>
+                {organization?.phoneNumbers?.map((obj) => (
+                  <ListItem
+                    key={obj?.id}
+                    item={obj}
+                    href={`tel:${obj?.value}`}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+          {organization?.emails?.length > 0 && (
+            <div>
+              <h3 className="sr-only">Email</h3>
+              <ul>
+                {organization?.emails?.map((obj) => (
+                  <ListItem
+                    key={obj?.id}
+                    item={obj}
+                    href={`mailto:${obj?.value}`}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+          {organization?.urlList?.length > 0 && (
+            <div>
+              <h3 className="sr-only">Links</h3>
+              <ul>
+                {organization?.urlList?.map((obj) => (
+                  <ListItem key={obj?.id} item={obj} href={obj?.value} />
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -77,7 +76,7 @@ function ListItem({ item, href }) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-url"
+        className="inline-url truncate"
       >
         {item?.value}
       </a>
