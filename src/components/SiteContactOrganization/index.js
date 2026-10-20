@@ -1,0 +1,3 @@
+import SiteContactOrganization from 'components/SiteContactOrganization/SiteContactOrganization'
+
+export default SiteContactOrganization

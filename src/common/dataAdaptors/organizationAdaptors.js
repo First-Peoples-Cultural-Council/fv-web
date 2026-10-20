@@ -14,14 +14,15 @@ export function labelKeyList(array) {
 
 export function organizationForViewing({ item }) {
   return {
-    ...basicDatesAdaptor({ item }),
-    site: item?.site,
-    address: item?.address,
-    contactMessage: item?.contactMessage,
-    emails: labelKeyList(item?.emails),
+    id: item?.id,
     name: item?.name,
+    contactMessage: item?.contactMessage,
+    address: item?.address,
     phoneNumbers: labelKeyList(item?.phoneNumbers),
+    emails: labelKeyList(item?.emails),
     urlList: labelKeyList(item?.urlList),
+    site: item?.site,
+    ...basicDatesAdaptor({ item }),
   }
 }
 
