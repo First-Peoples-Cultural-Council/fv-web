@@ -4,6 +4,7 @@ const en = {
     'navigation-alphabet': 'Alphabet',
     'navigation-apps': 'Mobile App',
     'navigation-categories': 'Categories',
+    'navigation-contact': 'Contact',
     'navigation-dictionary': 'Dictionary',
     'navigation-games': 'Games',
     'navigation-kids': 'Kids',
