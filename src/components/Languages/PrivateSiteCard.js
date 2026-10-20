@@ -73,7 +73,7 @@ function PrivateSiteCard({ site, user }) {
                 </h2>
 
                 <p className="mx-auto mt-3 md:mt-6 max-w-xl text-lg leading-8 text-charcoal-500">
-                  You need to be {isAnonymous && 'logged in and '}a registered
+                  You need to be {isAnonymous && 'signed in and '}a registered
                   member of this site to see its content.
                 </p>
                 <div className="mt-5 md:mt-10 space-y-2 sm:flex items-center justify-center gap-3 md:gap-x-6">
