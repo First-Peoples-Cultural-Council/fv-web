@@ -1,22 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useParams } from 'react-router'
 
 // FPCC
 import AudioButton from 'components/AudioButton'
 import WysiwygBlock from 'components/WysiwygBlock'
 import ImgFromId from 'components/ImgFromId'
+import LinkButton from 'components/LinkButton'
 import { useAudio } from 'common/dataHooks/useAudio'
 import { isUUID } from 'common/utils/stringHelpers'
-import {
-  FIRSTVOICESLINK,
-  FORMAT_LEFT,
-  FORMAT_RIGHT,
-  FORMAT_DEFAULT,
-} from 'common/constants'
+import { FORMAT_LEFT, FORMAT_RIGHT, FORMAT_DEFAULT } from 'common/constants'
 
 function WidgetTextPresentation({ widgetData }) {
-  const { sitename } = useParams()
   const { title, textWithFormatting, image, url, urlLabel, audio, bgColor } =
     widgetData.settings
 
@@ -69,17 +63,11 @@ function WidgetTextPresentation({ widgetData }) {
 
         {url && (
           <div className="flex justify-start">
-            <a
-              href={url}
-              {...(url.startsWith('/') ||
-              url.includes(FIRSTVOICESLINK) ||
-              url.startsWith(`/${sitename}`)
-                ? { target: '_self' }
-                : { target: '_blank', rel: 'noopener noreferrer' })}
-              className={`btn-lg ${bgColor ? 'btn-tertiary' : 'btn-primary'}`}
-            >
-              {urlLabel || 'More...'}
-            </a>
+            <LinkButton
+              url={url}
+              urlLabel={urlLabel}
+              styling={`btn-lg ${bgColor ? 'btn-tertiary' : 'btn-primary'}`}
+            />
           </div>
         )}
       </div>

@@ -4,12 +4,11 @@ import PropTypes from 'prop-types'
 // FPCC
 import AudioButton from 'components/AudioButton'
 import { useAudio } from 'common/dataHooks/useAudio'
-import { FIRSTVOICESLINK } from 'common/constants'
 import SectionTitle from 'components/SectionTitle'
+import LinkButton from 'components/LinkButton'
 
 function WidgetTextConcisePresentation({ widgetData }) {
   const { audio, title, text, url, urlLabel } = widgetData.settings
-  const { sitename } = widgetData
 
   const audioQueryResponse = useAudio({ id: audio })
   const audioObject = audioQueryResponse?.data
@@ -40,18 +39,7 @@ function WidgetTextConcisePresentation({ widgetData }) {
             </p>
           </div>
         )}
-        {url && (
-          <a
-            href={url}
-            {...(url.includes(FIRSTVOICESLINK) || url.startsWith(`/${sitename}`)
-              ? { target: '_self' }
-              : { target: '_blank' })}
-            rel="noopener noreferrer"
-            className="btn-primary btn-lg"
-          >
-            <span>{urlLabel || 'Learn More'}</span>
-          </a>
-        )}
+        {url && <LinkButton url={url} urlLabel={urlLabel} />}
       </div>
     </section>
   )
