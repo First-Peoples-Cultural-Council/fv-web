@@ -7,10 +7,13 @@ import GlobalConfiguration from 'src/GlobalConfiguration'
 export default function useLoginLogout() {
   const auth = useAuth()
 
-  function saveOriginalLocation() {
+  function saveOriginalLocation(destination) {
     window.sessionStorage.setItem(
       ORIGINAL_DESTINATION,
-      window.location.pathname + window.location.search + window.location.hash,
+      destination ||
+        window.location.pathname +
+          window.location.search +
+          window.location.hash,
     )
   }
 
@@ -19,10 +22,10 @@ export default function useLoginLogout() {
     auth.removeUser()
     window.location.href = GlobalConfiguration.END_SESSION_URL
   }
-
-  function login(e) {
+  // destination is optional, defaults to the current page
+  function login(e, destination) {
     e?.preventDefault()
-    saveOriginalLocation()
+    saveOriginalLocation(destination)
     auth.signinRedirect()
   }
 

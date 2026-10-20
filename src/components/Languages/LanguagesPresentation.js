@@ -12,7 +12,12 @@ import { isAtLeastRole } from 'common/utils/membershipHelpers'
 import SearchLanguagesForm from 'components/SearchLanguagesForm'
 import LoadOrError from 'components/LoadOrError'
 
-function LanguagesPresentation({ languagesQueryResponse, user }) {
+function LanguagesPresentation({
+  languagesQueryResponse,
+  user,
+  siteToJoin,
+  removeSiteToJoin,
+}) {
   const languagesList = languagesQueryResponse?.data?.results
   return (
     <section
@@ -73,6 +78,8 @@ function LanguagesPresentation({ languagesQueryResponse, user }) {
                               key={site?.id}
                               site={site}
                               user={user}
+                              openJoinForm={site?.sitename === siteToJoin}
+                              onModalClose={removeSiteToJoin}
                             />
                           ) : (
                             <SiteCard key={site?.id} site={site} user={user} />
@@ -98,10 +105,12 @@ function LanguagesPresentation({ languagesQueryResponse, user }) {
 }
 
 // PROPTYPES
-const { object } = PropTypes
+const { func, object, string } = PropTypes
 LanguagesPresentation.propTypes = {
   languagesQueryResponse: object,
   user: object,
+  siteToJoin: string,
+  removeSiteToJoin: func,
 }
 
 export default LanguagesPresentation

@@ -6,20 +6,28 @@ import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 import Join from 'components/Join'
-import { THUMBNAIL } from 'common/constants'
+import { JOIN_SITE, THUMBNAIL } from 'common/constants'
 import SiteLogo from 'components/SiteLogo'
 
-function PrivateSiteCard({ site, user }) {
+function PrivateSiteCard({ site, user, openJoinForm, onModalClose }) {
   const { login } = useLoginLogout()
 
   const [privateSiteModalOpen, setPrivateSiteModalOpen] = useState(false)
   const [showJoinForm, setShowJoinForm] = useState(false)
 
   const isAnonymous = user?.isAnonymous
+  const modalOpen = privateSiteModalOpen || !!openJoinForm
+
+  const closeModal = () => {
+    setPrivateSiteModalOpen(false)
+    setShowJoinForm(false)
+    onModalClose?.()
+  }
 
   const primaryButtonClick = (e) => {
     if (isAnonymous) {
-      login(e)
+      // come back to this site's join form after signing in
+      login(e, `/languages?${JOIN_SITE}=${site?.sitename}`)
     } else {
       setShowJoinForm(true)
     }
@@ -51,19 +59,13 @@ function PrivateSiteCard({ site, user }) {
         )}
       </button>
 
-      <Modal.Presentation
-        isOpen={privateSiteModalOpen}
-        closeHandler={() => setPrivateSiteModalOpen(false)}
-      >
+      <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <div
           data-testid="PrivateSiteModalContent"
           className="bg-white rounded-lg shadow-lg p-2"
         >
-          {showJoinForm ? (
-            <Join.Container
-              closeModalCallback={() => setPrivateSiteModalOpen(false)}
-              site={site}
-            />
+          {showJoinForm || openJoinForm ? (
+            <Join.Container closeModalCallback={closeModal} site={site} />
           ) : (
             <div className="p-4 sm:px-6 sm:py-32 lg:px-8">
               <div className="mx-auto max-w-2xl text-center">
@@ -88,7 +90,7 @@ function PrivateSiteCard({ site, user }) {
                   <button
                     data-testid="explore-languages"
                     type="button"
-                    onClick={() => setPrivateSiteModalOpen(false)}
+                    onClick={closeModal}
                     className="btn-tertiary btn-md"
                   >
                     <span>Explore other languages </span>
@@ -107,9 +109,11 @@ function PrivateSiteCard({ site, user }) {
 }
 
 // PROPTYPES
-const { object } = PropTypes
+const { bool, func, object } = PropTypes
 PrivateSiteCard.propTypes = {
   site: object,
   user: object,
+  openJoinForm: bool,
+  onModalClose: func,
 }
 export default PrivateSiteCard
