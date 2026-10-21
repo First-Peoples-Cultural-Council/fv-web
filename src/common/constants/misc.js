@@ -20,6 +20,9 @@ export const SUPPORT_LINK =
 // the key for storing a post-login redirect location
 export const ORIGINAL_DESTINATION = 'original_destination'
 
+// key for site param used to open a site's join form on the languages page
+export const JOIN_SITE = 'join'
+
 // key for destination param used for indicating intended destination for a created item e.g. widget
 export const DESTINATION = 'destination'
 // key for id param used for adding created item to a destination
