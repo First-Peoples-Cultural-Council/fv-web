@@ -16,7 +16,8 @@ function PrivateSiteCard({ site, user, openJoinForm, onModalClose }) {
   const [showJoinForm, setShowJoinForm] = useState(false)
 
   const isAnonymous = user?.isAnonymous
-  const modalOpen = privateSiteModalOpen || !!openJoinForm
+  const joinFormOpen = !!openJoinForm && !isAnonymous
+  const modalOpen = privateSiteModalOpen || !!joinFormOpen
 
   const closeModal = () => {
     setPrivateSiteModalOpen(false)
@@ -64,7 +65,7 @@ function PrivateSiteCard({ site, user, openJoinForm, onModalClose }) {
           data-testid="PrivateSiteModalContent"
           className="bg-white rounded-lg shadow-lg p-2"
         >
-          {showJoinForm || openJoinForm ? (
+          {showJoinForm || joinFormOpen ? (
             <Join.Container closeModalCallback={closeModal} site={site} />
           ) : (
             <div className="p-4 sm:px-6 sm:py-32 lg:px-8">
