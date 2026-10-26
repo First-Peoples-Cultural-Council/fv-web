@@ -85,7 +85,7 @@ function DictionaryCrudPresentation({
     control,
     errors,
     handleSubmit,
-    isValid,
+    formState,
     register,
     reset,
     resetField,
@@ -105,7 +105,7 @@ function DictionaryCrudPresentation({
 
   const stepHandle = (step) => {
     trigger()
-    if (isValid) {
+    if (formState?.isValid) {
       setActiveStep(String(step))
     }
   }

@@ -54,7 +54,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
 
   // pageOrder
 
-  const { control, errors, handleSubmit, isValid, register, reset, trigger } =
+  const { control, errors, handleSubmit, formState, register, reset, trigger } =
     useEditForm({
       defaultValues,
       validator,
@@ -63,7 +63,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
 
   const stepCallback = () => {
     trigger()
-    if (isValid) {
+    if (formState?.isValid) {
       handleSubmit(submitHandler)()
     }
   }

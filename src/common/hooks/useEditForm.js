@@ -12,7 +12,7 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
 
   const {
     control,
-    formState: { errors, isValid, isDirty, isSubmitSuccessful },
+    formState,
     handleSubmit,
     register,
     reset,
@@ -39,12 +39,10 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
 
   return {
     control,
-    errors,
+    errors: formState?.errors,
+    formState,
     handleSubmit,
     isCreateMode: !isEditMode,
-    isDirty,
-    isSubmitSuccessful,
-    isValid,
     register,
     reset,
     resetField,
