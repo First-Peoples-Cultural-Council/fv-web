@@ -5,6 +5,7 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import useLoginLogout from 'common/hooks/useLoginLogout'
+import getIcon from 'common/utils/getIcon'
 
 const defaultFormValues = {
   name: '',
@@ -15,28 +16,50 @@ const defaultFormValues = {
 function SiteContactFormPresentation({ submitHandler, user }) {
   const validator = yup.object().shape({
     name: yup.string().min(3).required('A name is required').trim(),
-    email: yup.string().email().required('A valid email is required').trim(),
+    email: yup
+      .string()
+      .email('Must be a valid email')
+      .required('A valid email is required')
+      .trim(),
     message: yup
       .string()
       .min(3)
       .max(1200)
-      .required('A Message is required')
+      .required('A message is required')
       .trim(),
   })
 
-  const { errors, handleSubmit, register, reset, isSubmitSuccessful } =
-    useEditForm({
-      defaultValues: defaultFormValues,
-      validator,
-    })
+  const { errors, formState, handleSubmit, register, reset } = useEditForm({
+    defaultValues: defaultFormValues,
+    validator,
+  })
 
   useEffect(() => {
-    if (isSubmitSuccessful) {
+    if (formState?.isSubmitSuccessful) {
       reset(defaultFormValues)
     }
-  }, [isSubmitSuccessful, reset])
+  }, [formState, reset])
 
   const { login } = useLoginLogout()
+
+  const labelStyling = 'block text-charcoal-500 text-base font-bold mb-4'
+  const inputStyling =
+    'block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 outline -outline-offset-1 outline-charcoal-300 placeholder:text-charcoal-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blumine-800 sm:text-sm/6'
+  const errorStyling = 'text-scarlet-700 text-left text-base mt-2'
+
+  const getValidationIcon = (itemErrors) => {
+    if (itemErrors) {
+      return getIcon(
+        'TimesCircleSolid',
+        'absolute -right-8 fill-current size-5 text-scarlet-700',
+      )
+    } else {
+      return getIcon(
+        'CheckCircleSolid',
+        'absolute -right-8 fill-current size-5 text-jade-500',
+      )
+    }
+  }
 
   return (
     <section id="SiteContactFormPresentation">
@@ -57,71 +80,67 @@ function SiteContactFormPresentation({ submitHandler, user }) {
         </div>
       ) : (
         <form data-testid="contact-us-form">
-          <div>
-            <div className="grid grid-cols-7">
-              <label
-                className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
-                htmlFor="name"
-              >
-                Name:
+          <div className="space-y-4">
+            <div>
+              <label className={labelStyling} htmlFor="name">
+                Name
               </label>
-              <input
-                className="col-span-5 bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
-                id="name"
-                name="name"
-                type="text"
-                {...register('name')}
-              />
-            </div>
-            {errors?.name && (
-              <div className="text-scarlet-700 text-right">
-                {errors?.name?.message}
+              <div className="flex items-center justify-start relative">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  {...register('name')}
+                  className={inputStyling}
+                />
+                {getValidationIcon(errors?.name)}
               </div>
-            )}
+              {errors?.name && (
+                <div className={errorStyling}>{errors?.name?.message}</div>
+              )}
+            </div>
 
-            <div className="mt-2 grid grid-cols-7">
-              <label
-                className="col-span-2 tracking-wide text-blumine-800 text-xl font-bold mb-2"
-                htmlFor="email"
-              >
-                Email:
+            <div>
+              <label className={labelStyling} htmlFor="email">
+                Email
               </label>
-              <input
-                className="col-span-5 inline bg-white border border-charcoal-500 rounded-lg py-3 px-4 leading-tight focus:outline-hidden focus:bg-white"
-                id="email"
-                name="email"
-                type="email"
-                {...register('email')}
-              />
-            </div>
-            {errors?.email && (
-              <div className="text-scarlet-700 text-right">
-                {errors?.email?.message}
+              <div className="flex items-center justify-start relative">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className={inputStyling}
+                  {...register('email')}
+                />
+                {getValidationIcon(errors?.email)}
               </div>
-            )}
+              {errors?.email && (
+                <div className={errorStyling}>{errors?.email?.message}</div>
+              )}
+            </div>
 
-            <div className="mt-2 grid grid-cols-7">
-              <label
-                className="block tracking-wide text-blumine-800 text-xl font-bold mb-2"
-                htmlFor="message"
-              >
-                Message:
+            <div>
+              <label className={labelStyling} htmlFor="message">
+                Message
               </label>
-              <textarea
-                className="h-32 lg:h-48 no-resize appearance-none block w-full bg-white border border-charcoal-500 rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-hidden focus:bg-white focus:border-charcoal-500 resize-none col-span-7"
-                id="message"
-                name="message"
-                defaultValue=""
-                {...register('message')}
-              />
-            </div>
-            {errors?.message && (
-              <div className="text-scarlet-700 text-right">
-                {errors?.message?.message}
+              <div className="flex items-center justify-start relative">
+                <textarea
+                  id="message"
+                  name="message"
+                  defaultValue=""
+                  rows="6"
+                  className={inputStyling}
+                  {...register('message')}
+                />
+                {getValidationIcon(errors?.message)}
               </div>
-            )}
+              {errors?.message && (
+                <div className={errorStyling}>{errors?.message?.message}</div>
+              )}
+            </div>
 
-            <div className="col-span-7 justify-start flex">
+            <div className="flex justify-end">
               <button
                 data-testid="submit"
                 type="submit"
