@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
+import { useIsFetching } from '@tanstack/react-query'
 
 // FPCC
 import { useLanguages } from 'common/dataHooks/useLanguages'
-import { useMySites } from 'common/dataHooks/useMySites'
 import { useUserStore } from 'context/UserContext'
-import { JOIN_SITE } from 'common/constants'
+import { JOIN_SITE, MY_SITES } from 'common/constants'
 import { atLeastMember } from 'common/constants/roles'
 import useSearchParamsState from 'common/hooks/useSearchParamsState'
 
@@ -26,11 +26,10 @@ function LanguagesData() {
     explorable: true,
   })
 
-  // my-sites is refetched after sign in, wait for it before checking membership
-  const { data: mySites, isSuccess, isFetching } = useMySites()
-  const mySitesReady = isSuccess && !isFetching
+  // user.sites is out of date until my-sites is refetched after sign in
+  const mySitesReady = useIsFetching({ queryKey: [MY_SITES] }) === 0
   const joinedSite = mySitesReady
-    ? mySites?.find(
+    ? user?.sites?.find(
         (site) =>
           site?.sitename === siteToJoin && atLeastMember.test(site?.role),
       )
