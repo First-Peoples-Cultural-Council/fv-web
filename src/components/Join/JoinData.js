@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 
 // FPCC
-import { useJoinRequestCreate } from 'common/dataHooks/useJoinRequests'
+import {
+  useJoinRequestCreate,
+  useMyJoinRequests,
+} from 'common/dataHooks/useJoinRequests'
 import { useSiteStore } from 'context/SiteContext'
 import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 
@@ -11,6 +14,23 @@ function JoinData({ site }) {
   const [errorMessage, setErrorMessage] = useState()
   const [errorTitle, setErrorTitle] = useState()
 
+  const { data: myJoinRequests, isSuccess: isMyJoinRequestsSuccess } =
+    useMyJoinRequests({ sitename: site?.slug || currentSite?.slug })
+
+  useEffect(() => {
+    if (
+      stage === 'form' &&
+      isMyJoinRequestsSuccess &&
+      myJoinRequests?.results?.length > 0
+    ) {
+      setErrorTitle('Existing Request Pending')
+      setErrorMessage(
+        'You have already submitted a request to join this Language Site.',
+      )
+      setStage('error')
+    }
+  }, [isMyJoinRequestsSuccess, myJoinRequests])
+
   const { mutate, isError, isSuccess, error } = useJoinRequestCreate({
     onError: async (_error) => {
       const response = await _error?.response?.json()
@@ -18,11 +38,6 @@ function JoinData({ site }) {
 
       let title = 'Request Failed'
       let message = readableMessage || ''
-      if (message?.includes('exists')) {
-        title = 'Existing Request Pending'
-        message =
-          'You have already submitted a request to join this Language Site.'
-      }
       setErrorTitle(title)
       setErrorMessage(message)
     },
