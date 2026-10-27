@@ -44,20 +44,22 @@ function SiteContactFormPresentation({ submitHandler, user }) {
 
   const labelStyling = 'block text-charcoal-500 text-base font-bold mb-4'
   const inputStyling =
-    'block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 outline -outline-offset-1 outline-charcoal-300 placeholder:text-charcoal-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blumine-800 sm:text-sm/6'
+    'block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 outline -outline-offset-1 outline-charcoal-300 placeholder:text-charcoal-300 focus:outline-blumine-800'
   const errorStyling = 'text-scarlet-700 text-left text-base mt-2'
 
-  const getValidationIcon = (itemErrors) => {
-    if (itemErrors) {
+  const getValidationIcon = (fieldId) => {
+    if (formState?.errors?.[fieldId]) {
       return getIcon(
         'TimesCircleSolid',
-        'absolute -right-8 fill-current size-5 text-scarlet-700',
+        'absolute -right-6 fill-current size-4 text-scarlet-800',
       )
-    } else {
+    } else if (formState?.dirtyFields?.[fieldId]) {
       return getIcon(
         'CheckCircleSolid',
-        'absolute -right-8 fill-current size-5 text-jade-500',
+        'absolute -right-6 fill-current size-4 text-blumine-700',
       )
+    } else {
+      return <div className="absolute -right-6 size-4" />
     }
   }
 
@@ -93,7 +95,7 @@ function SiteContactFormPresentation({ submitHandler, user }) {
                   {...register('name')}
                   className={inputStyling}
                 />
-                {getValidationIcon(errors?.name)}
+                {getValidationIcon('name')}
               </div>
               {errors?.name && (
                 <div className={errorStyling}>{errors?.name?.message}</div>
@@ -113,7 +115,7 @@ function SiteContactFormPresentation({ submitHandler, user }) {
                   className={inputStyling}
                   {...register('email')}
                 />
-                {getValidationIcon(errors?.email)}
+                {getValidationIcon('email')}
               </div>
               {errors?.email && (
                 <div className={errorStyling}>{errors?.email?.message}</div>
@@ -133,7 +135,7 @@ function SiteContactFormPresentation({ submitHandler, user }) {
                   className={inputStyling}
                   {...register('message')}
                 />
-                {getValidationIcon(errors?.message)}
+                {getValidationIcon('message')}
               </div>
               {errors?.message && (
                 <div className={errorStyling}>{errors?.message?.message}</div>

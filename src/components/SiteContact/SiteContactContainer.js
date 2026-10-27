@@ -17,7 +17,7 @@ function SiteContactContainer() {
     <LoadOrError queryResponse={infiniteQueryResponse}>
       <main id="SiteContactPresentation" className="py-2 md:py-4 lg:py-8">
         <SiteDocHead titleArray={['Contact']} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-8">
           <div className="mb-6 lg:mb-10 space-y-4">
             <SectionTitle.Presentation title="Contact" />
             <div className="sr-only">for {site?.title}</div>
