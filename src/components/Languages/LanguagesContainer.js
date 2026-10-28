@@ -6,13 +6,16 @@ import LanguagesData from 'components/Languages/LanguagesData'
 import DocHead from 'components/DocHead'
 
 function LanguagesContainer() {
-  const { languagesQueryResponse, user } = LanguagesData()
+  const { languagesQueryResponse, user, siteToJoin, removeSiteToJoin } =
+    LanguagesData()
   return (
     <>
       <DocHead titleArray={['Explore Languages']} />
       <LanguagesPresentation
         user={user}
         languagesQueryResponse={languagesQueryResponse}
+        siteToJoin={siteToJoin}
+        removeSiteToJoin={removeSiteToJoin}
       />
     </>
   )
