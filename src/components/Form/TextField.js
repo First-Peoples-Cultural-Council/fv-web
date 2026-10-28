@@ -23,6 +23,7 @@ function TextField({
   return (
     <Fragment key={`${nameId}_TextField`}>
       <FieldLabel nameId={nameId} text={label} />
+      <HelpText text={helpText} />
       <input
         id={nameId}
         name={nameId}
@@ -34,7 +35,6 @@ function TextField({
           disabled ? 'opacity-50' : ''
         } block w-full border border-charcoal-200 rounded-lg shadow-xs py-4 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800`}
       />
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

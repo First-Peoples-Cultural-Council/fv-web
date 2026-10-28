@@ -9,16 +9,18 @@ function ValidationError({ errors, nameId }) {
   return Array.isArray(errors?.[nameId]) ? (
     errors?.[nameId]?.map(({ message }, index) => (
       <div
-        // eslint-disable-next-line react/no-array-index-key
         key={index}
-        className="text-scarlet-700"
+        className="text-scarlet-800 text-left text-base mt-2"
         data-testid="DashboardFormErrorMessage"
       >
         {message}
       </div>
     ))
   ) : (
-    <div className="text-scarlet-700" data-testid="DashboardFormErrorMessage">
+    <div
+      className="text-scarlet-800 text-left text-base mt-2"
+      data-testid="DashboardFormErrorMessage"
+    >
       <ErrorMessage errors={errors} name={nameId} />
     </div>
   )
