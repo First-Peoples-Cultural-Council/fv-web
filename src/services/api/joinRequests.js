@@ -4,10 +4,10 @@ import { PAGE, PAGE_SIZE, SITES, JOIN_REQUESTS } from 'common/constants'
 const joinRequests = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}`).json(),
-  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
+  getAll: async ({ sitename, myRequests, pageParam, perPage = 48 }) =>
     apiBase()
       .get(
-        `${SITES}/${sitename}/${JOIN_REQUESTS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
+        `${SITES}/${sitename}/${JOIN_REQUESTS}/?myRequests=${myRequests}&${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
       )
       .json(),
   create: async ({ sitename, properties }) =>
