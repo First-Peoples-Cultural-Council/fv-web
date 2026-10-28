@@ -1,11 +1,12 @@
 import { basicDatesAdaptor } from 'common/dataAdaptors/basicDatesAdaptor'
+import { htmlStringHasContent } from 'common/utils/stringHelpers'
 
 export function organizationForViewing({ item }) {
   return {
     id: item?.id,
     name: item?.name,
     contactMessage: item?.contactMessage,
-    address: item?.address,
+    address: htmlStringHasContent(item?.address) ? item?.address : null,
     phoneNumbers: item?.phoneNumbers,
     emails: item?.emails,
     urlList: item?.urlList,
