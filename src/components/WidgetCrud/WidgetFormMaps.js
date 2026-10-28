@@ -71,7 +71,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
             label="Text"
             nameId="text"
             register={register}
-            errors={formState?.errors}
+            formState={formState}
           />
         </div>
         <div className="col-span-12">

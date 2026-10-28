@@ -1,14 +1,13 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
+import ValidationIcon from 'components/Form/ValidationIcon'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function TextAreaField({
-  defaultValue = '',
-  errors,
+  formState,
   label = '',
   nameId,
   helpText,
@@ -16,26 +15,26 @@ function TextAreaField({
   rows = 3,
 }) {
   return (
-    <Fragment key={`${nameId}_TextAreaField`}>
-      <FieldLabel nameId={nameId} text={label} />
-      <textarea
-        id={nameId}
-        name={nameId}
-        {...register(nameId)}
-        rows={rows}
-        className="shadow-xs focus:ring-scarlet-800 focus:border-scarlet-800 block w-full border border-charcoal-200 rounded-lg"
-        defaultValue={defaultValue}
-      />
-      <HelpText text={helpText} />
-      <ValidationError errors={errors} nameId={nameId} />
-    </Fragment>
+    <div data-testid={`${nameId}-textarea-field`}>
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
+      <div className="flex items-center justify-start relative">
+        <textarea
+          id={nameId}
+          name={nameId}
+          {...register(nameId)}
+          rows={rows}
+          className="block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 placeholder:text-charcoal-300 border border-charcoal-300 disabled:border-charcoal-100 disabled:bg-charcoal-50 disabled:text-charcoal-300 focus:outline-hidden focus:ring-blumine-800 focus:border-transparent"
+        />
+        <ValidationIcon nameId={nameId} formState={formState} />
+      </div>
+      <ValidationError errors={formState?.errors} nameId={nameId} />
+    </div>
   )
 }
 // PROPTYPES
 const { func, number, object, string } = PropTypes
 TextAreaField.propTypes = {
-  defaultValue: string,
-  errors: object,
+  formState: object,
   helpText: string,
   label: string,
   nameId: string.isRequired,

@@ -81,7 +81,7 @@ function GalleryCrudPresentation({
               label="Introduction in your language"
               nameId="intro"
               register={register}
-              errors={formState?.errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -89,7 +89,7 @@ function GalleryCrudPresentation({
               label="Introduction translation"
               nameId="introTranslation"
               register={register}
-              errors={formState?.errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">

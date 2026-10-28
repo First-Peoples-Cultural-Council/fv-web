@@ -64,7 +64,7 @@ function VideoCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Description"
                 nameId="description"
                 register={register}
-                errors={formState?.errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12">
@@ -72,7 +72,7 @@ function VideoCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}
-                errors={formState?.errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12 flex justify-end mt-6 px-6">

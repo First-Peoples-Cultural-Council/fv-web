@@ -23,7 +23,7 @@ function AudioBaseForm({ register, control, formState, speakerOptions }) {
           label="Description"
           nameId="description"
           register={register}
-          errors={formState?.errors}
+          formState={formState}
           rows={2}
         />
       </div>
@@ -42,7 +42,7 @@ function AudioBaseForm({ register, control, formState, speakerOptions }) {
           label="Acknowledgement"
           nameId="acknowledgement"
           register={register}
-          errors={formState?.errors}
+          formState={formState}
           rows={2}
         />
       </div>

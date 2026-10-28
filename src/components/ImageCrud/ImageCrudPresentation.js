@@ -65,7 +65,7 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Description"
                 nameId="description"
                 register={register}
-                errors={formState?.errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12">
@@ -73,7 +73,7 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}
-                errors={formState?.errors}
+                formState={formState}
               />
             </div>
             <Form.Audience control={control} errors={formState?.errors} />
