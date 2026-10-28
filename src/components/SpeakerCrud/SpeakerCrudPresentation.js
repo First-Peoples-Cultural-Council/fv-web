@@ -26,11 +26,12 @@ function SpeakerCrudPresentation({
     bio: '',
   }
 
-  const { errors, handleSubmit, isCreateMode, register, reset } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { formState, handleSubmit, isCreateMode, register, reset } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div id="SpeakerCrudPresentation" className="max-w-5xl p-8">
@@ -55,7 +56,7 @@ function SpeakerCrudPresentation({
               label="Name"
               nameId="name"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -64,7 +65,7 @@ function SpeakerCrudPresentation({
               nameId="bio"
               helpText="Add a short bio for this speaker."
               register={register}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">

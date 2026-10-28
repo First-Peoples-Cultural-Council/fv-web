@@ -65,7 +65,7 @@ function SongCrudPresentation({
 
   const {
     control,
-    errors,
+    formState,
     handleSubmit,
     isCreateMode,
     register,
@@ -99,7 +99,7 @@ function SongCrudPresentation({
               label="Title in your language"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -107,7 +107,7 @@ function SongCrudPresentation({
               label="Title translation"
               nameId="titleTranslation"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">
@@ -115,7 +115,7 @@ function SongCrudPresentation({
               label="Introduction in your language"
               nameId="intro"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-6">
@@ -123,7 +123,7 @@ function SongCrudPresentation({
               label="Introduction translation"
               nameId="introTranslation"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12">
@@ -131,7 +131,7 @@ function SongCrudPresentation({
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_AUDIO}
             />
           </div>
@@ -141,7 +141,7 @@ function SongCrudPresentation({
               nameId="lyrics"
               register={register}
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_LYRICS}
             />
           </div>
@@ -150,7 +150,7 @@ function SongCrudPresentation({
               label="Images"
               nameId="relatedImages"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_IMAGES}
             />
           </div>
@@ -159,7 +159,7 @@ function SongCrudPresentation({
               label="Videos"
               nameId="relatedVideos"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_VIDEOS}
             />
           </div>
@@ -168,7 +168,7 @@ function SongCrudPresentation({
               label="Documents"
               nameId="relatedDocuments"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_DOCUMENTS}
             />
           </div>
@@ -178,7 +178,7 @@ function SongCrudPresentation({
               nameId="notes"
               register={register}
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_NOTES}
             />
           </div>
@@ -188,26 +188,26 @@ function SongCrudPresentation({
               nameId="acknowledgements"
               register={register}
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_ACKNOWLEDGEMENTS}
             />
           </div>
           <div className="col-span-12">
             <Form.Visibility
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               resetField={resetField}
             />
           </div>
           <div className="col-span-6">
-            <Form.IncludeInKids control={control} errors={errors} />
+            <Form.IncludeInKids control={control} errors={formState?.errors} />
           </div>
           <div className="col-span-6">
             <Form.RadioButtons
               label="Does the cover image include the title?"
               helpText="Selecting 'Yes' will hide the title overlay in the story list"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               nameId="hideOverlay"
               options={[
                 { label: 'Yes', value: 'true' },

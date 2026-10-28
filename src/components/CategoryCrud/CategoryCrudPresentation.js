@@ -27,7 +27,7 @@ function CategoryCrudPresentation({
     parentId: '',
   }
 
-  const { control, errors, handleSubmit, isCreateMode, register, reset } =
+  const { control, formState, handleSubmit, isCreateMode, register, reset } =
     useEditForm({
       defaultValues,
       validator,
@@ -58,7 +58,7 @@ function CategoryCrudPresentation({
               label="Title"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -66,7 +66,7 @@ function CategoryCrudPresentation({
               label="Description"
               nameId="description"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -76,7 +76,7 @@ function CategoryCrudPresentation({
                 nameId="parentId"
                 control={control}
                 options={parentCategoryOptions}
-                errors={errors}
+                errors={formState?.errors}
               />
             ) : (
               <div className="text-charcoal-900 text-sm">

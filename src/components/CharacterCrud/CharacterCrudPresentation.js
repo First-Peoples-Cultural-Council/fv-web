@@ -30,7 +30,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
     note: '',
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -49,7 +49,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Related content"
               nameId="relatedDictionaryEntries"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               register={register}
               helpText="Words and phrases related to your alphabet character"
               maxItems={MAX_RELATED_ENTRIES}
@@ -61,7 +61,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Audio"
               nameId="relatedAudio"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_AUDIO_BASIC}
             />
           </div>
@@ -70,7 +70,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Image"
               nameId="relatedImages"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={1}
             />
           </div>
@@ -79,7 +79,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Video"
               nameId="relatedVideos"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={1}
             />
           </div>
@@ -88,7 +88,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Document"
               nameId="relatedDocuments"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={1}
             />
           </div>
@@ -97,7 +97,7 @@ function CharacterCrudPresentation({ backHandler, dataToEdit, submitHandler }) {
               label="Notes"
               nameId="note"
               register={register}
-              errors={errors}
+              formState={formState?.errors}
             />
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">

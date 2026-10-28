@@ -54,7 +54,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
 
   // pageOrder
 
-  const { control, errors, handleSubmit, formState, register, reset, trigger } =
+  const { control, formState, handleSubmit, register, reset, trigger } =
     useEditForm({
       defaultValues,
       validator,
@@ -95,7 +95,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Title in your language"
                 nameId="title"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-6">
@@ -103,7 +103,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Title translation"
                 nameId="titleTranslation"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12">
@@ -111,7 +111,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Author"
                 nameId="author"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-6">
@@ -119,7 +119,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Introduction in your language"
                 nameId="intro"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
             <div className="col-span-6">
@@ -127,7 +127,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Introduction translation"
                 nameId="introTranslation"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
             <div className="col-span-12">
@@ -135,7 +135,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Audio"
                 nameId="relatedAudio"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_AUDIO_BASIC}
               />
             </div>
@@ -144,7 +144,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Images"
                 nameId="relatedImages"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={1}
               />
             </div>
@@ -153,7 +153,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Videos"
                 nameId="relatedVideos"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={1}
               />
             </div>
@@ -162,7 +162,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Document"
                 nameId="relatedDocuments"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={1}
               />
             </div>
@@ -173,7 +173,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 nameId="acknowledgements"
                 register={register}
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_ACKNOWLEDGEMENTS}
               />
             </div>
@@ -183,7 +183,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 nameId="notes"
                 register={register}
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_NOTES}
               />
             </div>
@@ -192,7 +192,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 label="Does the cover image include the title?"
                 helpText="Selecting 'Yes' will hide the title overlay in the story list"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 nameId="hideOverlay"
                 options={[
                   { label: 'Yes', value: 'true' },

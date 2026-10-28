@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 
 // FPCC
 
-function FieldLabel({ text, nameId }) {
-  if (!text?.length > 0) return ''
+function FieldLabel({ text, helpText, nameId }) {
   return (
     <label
       data-testid={`label-${nameId}`}
       htmlFor={nameId}
-      className="block text-charcoal-500 text-base font-bold mb-2"
+      className="block text-charcoal-500 text-base mb-4 space-y-2"
     >
-      {text}
+      <div className="font-bold">{text}</div>
+      {helpText && <div data-testid={`help-text-${nameId}`}>{helpText}</div>}
     </label>
   )
 }
@@ -20,6 +20,7 @@ function FieldLabel({ text, nameId }) {
 const { string } = PropTypes
 FieldLabel.propTypes = {
   text: string,
+  helpText: string,
   nameId: string,
 }
 

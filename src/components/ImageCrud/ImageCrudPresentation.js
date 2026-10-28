@@ -27,7 +27,7 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
     includeInKids: 'true',
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -57,7 +57,7 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Title"
                 nameId="title"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12">
@@ -65,7 +65,7 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Description"
                 nameId="description"
                 register={register}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
             <div className="col-span-12">
@@ -73,10 +73,10 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
-            <Form.Audience control={control} errors={errors} />
+            <Form.Audience control={control} errors={formState?.errors} />
             <div className="col-span-12 flex justify-end mt-6 px-6">
               <Form.SubmitButtons
                 submitLabel="Save changes"

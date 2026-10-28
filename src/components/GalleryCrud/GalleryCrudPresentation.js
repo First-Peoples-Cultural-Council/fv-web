@@ -36,7 +36,7 @@ function GalleryCrudPresentation({
     coverImage: '',
   }
 
-  const { control, errors, handleSubmit, isCreateMode, register, reset } =
+  const { control, formState, handleSubmit, isCreateMode, register, reset } =
     useEditForm({
       defaultValues,
       validator,
@@ -65,7 +65,7 @@ function GalleryCrudPresentation({
               label="Title in your language"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -73,7 +73,7 @@ function GalleryCrudPresentation({
               label="Title translation"
               nameId="titleTranslation"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -81,7 +81,7 @@ function GalleryCrudPresentation({
               label="Introduction in your language"
               nameId="intro"
               register={register}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -89,7 +89,7 @@ function GalleryCrudPresentation({
               label="Introduction translation"
               nameId="introTranslation"
               register={register}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-6">
@@ -97,7 +97,7 @@ function GalleryCrudPresentation({
               label="Cover image"
               nameId="coverImage"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={1}
             />
           </div>
@@ -106,7 +106,7 @@ function GalleryCrudPresentation({
               label="Gallery Images"
               nameId="galleryItems"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={MAX_GALLERY_ITEMS}
             />
           </div>

@@ -40,7 +40,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
     handleSubmit,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -53,7 +53,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -68,7 +68,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               label="Title text"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -76,7 +76,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               label="Subtitle text"
               nameId="text"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">
@@ -84,7 +84,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               label="Audio"
               nameId="audio"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12">
@@ -93,7 +93,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="url"
               helpText="Enter any URL you would like to link to."
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">
@@ -102,7 +102,7 @@ function WidgetFormTextConcise({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="urlLabel"
               helpText="Enter a label for the URL button."
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
         </>

@@ -7,7 +7,7 @@ import TextAreaField from 'components/Form/TextAreaField'
 import AutocompleteMultiple from 'components/Form/AutocompleteMultiple'
 import Audience from 'components/Form/Audience'
 
-function AudioBaseForm({ register, control, errors, speakerOptions }) {
+function AudioBaseForm({ register, control, formState, speakerOptions }) {
   return (
     <>
       <div className="col-span-12">
@@ -15,7 +15,7 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           label="Title"
           nameId="title"
           register={register}
-          errors={errors}
+          formState={formState}
         />
       </div>
       <div className="col-span-12">
@@ -23,7 +23,7 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           label="Description"
           nameId="description"
           register={register}
-          errors={errors}
+          errors={formState?.errors}
           rows={2}
         />
       </div>
@@ -33,7 +33,7 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           nameId="speakers"
           control={control}
           options={speakerOptions}
-          errors={errors}
+          errors={formState?.errors}
           placeholder="Find speakers to add.."
         />
       </div>
@@ -42,12 +42,12 @@ function AudioBaseForm({ register, control, errors, speakerOptions }) {
           label="Acknowledgement"
           nameId="acknowledgement"
           register={register}
-          errors={errors}
+          errors={formState?.errors}
           rows={2}
         />
       </div>
 
-      <Audience control={control} errors={errors} />
+      <Audience control={control} errors={formState?.errors} />
     </>
   )
 }
@@ -56,7 +56,7 @@ const { array, func, object } = PropTypes
 AudioBaseForm.propTypes = {
   register: func,
   control: object,
-  errors: object,
+  formState: object,
   speakerOptions: array,
 }
 

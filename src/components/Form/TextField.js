@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function TextField({
@@ -11,7 +10,7 @@ function TextField({
   nameId,
   helpText,
   disabled = false,
-  errors,
+  formState,
   register,
 }) {
   const handleKeyDown = (event) => {
@@ -22,8 +21,7 @@ function TextField({
 
   return (
     <Fragment key={`${nameId}_TextField`}>
-      <FieldLabel nameId={nameId} text={label} />
-      <HelpText text={helpText} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <input
         id={nameId}
         name={nameId}
@@ -31,11 +29,9 @@ function TextField({
         type="text"
         disabled={disabled}
         onKeyDown={handleKeyDown}
-        className={`${
-          disabled ? 'opacity-50' : ''
-        } block w-full border border-charcoal-200 rounded-lg shadow-xs py-4 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800`}
+        className="block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 placeholder:text-charcoal-300 border border-charcoal-300 disabled:border-charcoal-100 disabled:bg-charcoal-50 disabled:text-charcoal-300 focus:outline-hidden focus:ring-blumine-800 focus:border-transparent"
       />
-      <ValidationError errors={errors} nameId={nameId} />
+      <ValidationError errors={formState?.errors} nameId={nameId} />
     </Fragment>
   )
 }
@@ -43,7 +39,7 @@ function TextField({
 const { bool, func, object, string } = PropTypes
 TextField.propTypes = {
   disabled: bool,
-  errors: object,
+  formState: object,
   helpText: string,
   label: string,
   nameId: string.isRequired,

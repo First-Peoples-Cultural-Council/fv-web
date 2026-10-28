@@ -33,7 +33,7 @@ function SiteContactContainer() {
                 ))}
               </React.Fragment>
             ))}
-            <section className="space-y-6 pb-6 lg:pb-12">
+            <section className="space-y-6 py-6 lg:pb-12">
               <h2 className="text-3xl text-blumine-800">Send us a message.</h2>
               <SiteContactForm.Container />
             </section>

@@ -49,7 +49,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     control,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -62,7 +62,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -77,7 +77,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               label="Title"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -85,7 +85,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               label="Text"
               nameId="textWithFormatting"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-6">
@@ -94,7 +94,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="image"
               helpText="Choose images with a 4:3 aspect ratio to avoid cropping."
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-6">
@@ -102,14 +102,14 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               label="Audio"
               nameId="audio"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12">
             <Form.RadioButtons
               label="Which side do you want the image on?"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               nameId="format"
               options={[
                 { label: 'Left', value: FORMAT_LEFT },
@@ -121,7 +121,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.RadioButtons
               label="Would you like a dark background color?"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               nameId="bgColor"
               options={[
                 { label: 'Yes', value: 'true' },
@@ -135,7 +135,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="url"
               helpText="Enter a URL you would like to link to e.g. https://www.firstvoices.com/smalgyax/words"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">
@@ -144,7 +144,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="urlLabel"
               helpText="Enter a label for the URL button."
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
         </>

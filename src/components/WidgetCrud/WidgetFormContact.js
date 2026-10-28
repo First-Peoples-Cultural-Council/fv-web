@@ -39,7 +39,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     control,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -54,7 +54,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -69,7 +69,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               label="Title"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -77,7 +77,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               label="Text"
               nameId="text"
               register={register}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -85,7 +85,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               label="Address"
               nameId="textWithFormatting"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12">
@@ -95,7 +95,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter a maximum of 5 links."
               register={register}
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={5}
             />
           </div>

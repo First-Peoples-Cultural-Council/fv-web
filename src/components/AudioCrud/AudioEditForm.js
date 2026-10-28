@@ -33,7 +33,7 @@ function AudioEditForm({
     includeInKids: 'true',
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -53,7 +53,7 @@ function AudioEditForm({
           <div className="grid grid-cols-12 gap-6 col-span-12">
             <AudioBaseForm
               register={register}
-              errors={errors}
+              formState={formState}
               control={control}
               speakerOptions={speakerOptions}
             />

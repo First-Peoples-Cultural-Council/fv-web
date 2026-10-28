@@ -36,7 +36,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
     control,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -49,7 +49,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -63,7 +63,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
             label="Title"
             nameId="title"
             register={register}
-            errors={errors}
+            formState={formState}
           />
         </div>
         <div className="col-span-12">
@@ -71,7 +71,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
             label="Text"
             nameId="text"
             register={register}
-            errors={errors}
+            errors={formState?.errors}
           />
         </div>
         <div className="col-span-12">
@@ -80,7 +80,7 @@ function WidgetFormMaps({ cancelHandler, dataToEdit, submitHandler }) {
             nameId="src"
             helpText="Enter a URL linking to the map you would like to add e.g. https://maps.fpcc.ca/languages/my-language"
             register={register}
-            errors={errors}
+            formState={formState}
           />
         </div>
       </WidgetFormBase>

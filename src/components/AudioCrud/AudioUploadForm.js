@@ -44,7 +44,7 @@ function AudioUploadForm({ setSelectedAudio }) {
     speakers: [],
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit: {},
@@ -120,12 +120,12 @@ function AudioUploadForm({ setSelectedAudio }) {
                 label="Choose audio file"
                 nameId="audioFile"
                 register={register}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
             <AudioBaseForm
               register={register}
-              errors={errors}
+              formState={formState}
               control={control}
               speakerOptions={speakerOptions}
             />
