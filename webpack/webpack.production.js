@@ -23,7 +23,7 @@ module.exports = (env) => {
                   {
                     modules: false,
                     useBuiltIns: 'usage',
-                    corejs: '3.39',
+                    corejs: '3.51',
                     forceAllTransforms: true,
                     targets: {
                       browsers: [
