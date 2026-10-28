@@ -7,12 +7,13 @@ import ValidationIcon from 'components/Form/ValidationIcon'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function TextField({
-  label = '',
   nameId,
   helpText,
-  disabled = false,
   formState,
   register,
+  label = '',
+  disabled = false,
+  type = 'text',
 }) {
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
@@ -28,7 +29,7 @@ function TextField({
           id={nameId}
           name={nameId}
           {...register(nameId)}
-          type="text"
+          type={type}
           disabled={disabled}
           onKeyDown={handleKeyDown}
           className="block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 placeholder:text-charcoal-300 border border-charcoal-300 disabled:border-charcoal-100 disabled:bg-charcoal-50 disabled:text-charcoal-300 focus:outline-hidden focus:ring-blumine-800 focus:border-transparent"
@@ -48,6 +49,7 @@ TextField.propTypes = {
   label: string,
   nameId: string.isRequired,
   register: func,
+  type: string,
 }
 
 export default TextField

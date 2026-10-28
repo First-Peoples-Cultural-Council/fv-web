@@ -6,6 +6,7 @@ import * as yup from 'yup'
 import useEditForm from 'common/hooks/useEditForm'
 import useLoginLogout from 'common/hooks/useLoginLogout'
 import getIcon from 'common/utils/getIcon'
+import TextField from 'components/Form/TextField'
 
 const defaultFormValues = {
   name: '',
@@ -83,48 +84,19 @@ function SiteContactFormPresentation({ submitHandler, user }) {
       ) : (
         <form data-testid="contact-us-form">
           <div className="space-y-4">
-            <div>
-              <label className={labelStyling} htmlFor="name">
-                Name
-              </label>
-              <div className="flex items-center justify-start relative">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  {...register('name')}
-                  className={inputStyling}
-                />
-                {getValidationIcon('name')}
-              </div>
-              {formState?.errors?.name && (
-                <div className={errorStyling}>
-                  {formState?.errors?.name?.message}
-                </div>
-              )}
-            </div>
-
-            <div>
-              <label className={labelStyling} htmlFor="email">
-                Email
-              </label>
-              <div className="flex items-center justify-start relative">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  className={inputStyling}
-                  {...register('email')}
-                />
-                {getValidationIcon('email')}
-              </div>
-              {formState?.errors?.email && (
-                <div className={errorStyling}>
-                  {formState?.errors?.email?.message}
-                </div>
-              )}
-            </div>
+            <TextField
+              nameId="name"
+              register={register}
+              formState={formState}
+              label="Name"
+            />
+            <TextField
+              nameId="email"
+              type="email"
+              register={register}
+              formState={formState}
+              label="Email"
+            />
 
             <div>
               <label className={labelStyling} htmlFor="message">
