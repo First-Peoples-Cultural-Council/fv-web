@@ -65,7 +65,7 @@ function JoinForm({ site, submitHandler }) {
     message: '',
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
   })
@@ -108,7 +108,10 @@ function JoinForm({ site, submitHandler }) {
               value="default"
               {...register('sitename')}
             />
-            <Form.ValidationError errors={errors} nameId="sitename" />
+            <Form.ValidationError
+              errors={formState?.errors}
+              nameId="sitename"
+            />
             <label
               htmlFor="message"
               className="block font-medium text-sm md:text-base"
@@ -159,7 +162,7 @@ function JoinForm({ site, submitHandler }) {
                 </Listbox>
               )}
             />
-            <Form.ValidationError errors={errors} nameId="reasons" />
+            <Form.ValidationError errors={formState?.errors} nameId="reasons" />
           </div>
           <div className="w-full space-y-2">
             <label
@@ -178,7 +181,7 @@ function JoinForm({ site, submitHandler }) {
               />
             </div>
 
-            <Form.ValidationError errors={errors} nameId="message" />
+            <Form.ValidationError errors={formState?.errors} nameId="message" />
           </div>
           <div className="w-full flex justify-end">
             <Form.SubmitButtons

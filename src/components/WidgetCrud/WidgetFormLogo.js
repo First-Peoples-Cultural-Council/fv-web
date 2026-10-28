@@ -37,7 +37,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
     handleSubmit,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -50,7 +50,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -64,7 +64,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
             <Form.RadioButtons
               label="Which side do you want the logo on?"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               nameId="format"
               options={[
                 { label: 'Left', value: FORMAT_LEFT },
@@ -77,7 +77,7 @@ function WidgetFormLogo({ cancelHandler, dataToEdit, submitHandler }) {
               label="Text"
               nameId="text"
               register={register}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
         </>

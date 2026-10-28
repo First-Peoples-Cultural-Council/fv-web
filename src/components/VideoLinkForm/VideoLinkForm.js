@@ -21,7 +21,7 @@ function VideoLinkForm({
     relatedVideoLinks: definitions.relatedVideoUrlsArray(),
   })
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
   })
@@ -48,7 +48,7 @@ function VideoLinkForm({
               nameId="relatedVideoLinks"
               register={register}
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               maxItems={maxItems}
               placeholder="Example links: https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
               disableExistingEdits

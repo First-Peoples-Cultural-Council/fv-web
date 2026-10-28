@@ -32,7 +32,7 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
     handleSubmit,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -45,7 +45,7 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -60,7 +60,7 @@ function WidgetFormGallery({ cancelHandler, dataToEdit, submitHandler }) {
             nameId="galleryId"
             control={control}
             register={register}
-            errors={errors}
+            errors={formState?.errors}
           />
         </div>
       </WidgetFormBase>

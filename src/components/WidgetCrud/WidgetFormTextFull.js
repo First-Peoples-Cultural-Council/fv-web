@@ -34,7 +34,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
     control,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -47,7 +47,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -61,7 +61,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             label="Text"
             nameId="textWithFormatting"
             control={control}
-            errors={errors}
+            errors={formState?.errors}
             toolbar={toolbar}
           />
         </div>

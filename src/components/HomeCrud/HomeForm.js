@@ -17,7 +17,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
     banner: null,
   }
 
-  const { control, errors, handleSubmit, reset } = useEditForm({
+  const { control, formState, handleSubmit, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -35,7 +35,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 nameId="logoArray"
                 control={control}
                 helpText="Recommended size: 512 x 512"
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={1}
                 hideSharedMedia
               />
@@ -45,7 +45,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
                 label="Add banner"
                 nameId="banner"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 helpText={
                   <div>
                     Choose between adding an image or a silent video.

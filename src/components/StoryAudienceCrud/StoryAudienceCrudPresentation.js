@@ -22,7 +22,7 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
 
   // pageOrder
 
-  const { control, errors, handleSubmit, reset, resetField } = useEditForm({
+  const { control, formState, handleSubmit, reset, resetField } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -39,12 +39,15 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
             <div className="col-span-12">
               <Form.Visibility
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 resetField={resetField}
               />
             </div>
             <div className="col-span-6">
-              <Form.IncludeInKids control={control} errors={errors} />
+              <Form.IncludeInKids
+                control={control}
+                errors={formState?.errors}
+              />
             </div>
             <div className="col-span-12 flex justify-end mt-6 px-6">
               <Form.SubmitButtons

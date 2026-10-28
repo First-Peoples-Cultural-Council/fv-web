@@ -39,7 +39,6 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
 
   return {
     control,
-    errors: formState?.errors,
     formState,
     handleSubmit,
     isCreateMode: !isEditMode,

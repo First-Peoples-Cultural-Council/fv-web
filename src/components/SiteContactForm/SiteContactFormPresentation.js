@@ -29,7 +29,7 @@ function SiteContactFormPresentation({ submitHandler, user }) {
       .trim(),
   })
 
-  const { errors, formState, handleSubmit, register, reset } = useEditForm({
+  const { formState, handleSubmit, register, reset } = useEditForm({
     defaultValues: defaultFormValues,
     validator,
   })
@@ -44,8 +44,8 @@ function SiteContactFormPresentation({ submitHandler, user }) {
 
   const labelStyling = 'block text-charcoal-500 text-base font-bold mb-4'
   const inputStyling =
-    'block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 outline -outline-offset-1 outline-charcoal-300 placeholder:text-charcoal-300 focus:outline-blumine-800'
-  const errorStyling = 'text-scarlet-700 text-left text-base mt-2'
+    'block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 outline -outline-offset-1 outline-charcoal-300 placeholder:text-charcoal-300 focus:outline-ochre-600 border border-charcoal-300 focus:border-ochre-600 focus:outline-none'
+  const errorStyling = 'text-scarlet-800 text-left text-base mt-2'
 
   const getValidationIcon = (fieldId) => {
     if (formState?.errors?.[fieldId]) {
@@ -97,8 +97,10 @@ function SiteContactFormPresentation({ submitHandler, user }) {
                 />
                 {getValidationIcon('name')}
               </div>
-              {errors?.name && (
-                <div className={errorStyling}>{errors?.name?.message}</div>
+              {formState?.errors?.name && (
+                <div className={errorStyling}>
+                  {formState?.errors?.name?.message}
+                </div>
               )}
             </div>
 
@@ -117,8 +119,10 @@ function SiteContactFormPresentation({ submitHandler, user }) {
                 />
                 {getValidationIcon('email')}
               </div>
-              {errors?.email && (
-                <div className={errorStyling}>{errors?.email?.message}</div>
+              {formState?.errors?.email && (
+                <div className={errorStyling}>
+                  {formState?.errors?.email?.message}
+                </div>
               )}
             </div>
 
@@ -137,8 +141,10 @@ function SiteContactFormPresentation({ submitHandler, user }) {
                 />
                 {getValidationIcon('message')}
               </div>
-              {errors?.message && (
-                <div className={errorStyling}>{errors?.message?.message}</div>
+              {formState?.errors?.message && (
+                <div className={errorStyling}>
+                  {formState?.errors?.message?.message}
+                </div>
               )}
             </div>
 
