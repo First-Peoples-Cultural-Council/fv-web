@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
 // FPCC
@@ -20,6 +20,22 @@ export function useJoinRequests() {
   })
 
   return infiniteQueryResponse
+}
+
+export function useMyJoinRequests({ sitename: sitenameArg }) {
+  const { sitename: sitenameParam } = useParams()
+  const sitename = sitenameArg || sitenameParam
+
+  const queryResponse = useQuery({
+    queryKey: [JOIN_REQUESTS, sitename, 'myRequests'],
+    queryFn: ({ pageParam = 1 }) =>
+      api.joinRequests.getAll({
+        sitename,
+        myRequests: 'true',
+        pageParam,
+      }),
+  })
+  return queryResponse
 }
 
 export function useJoinRequestCreate(options = {}) {

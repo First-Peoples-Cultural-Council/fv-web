@@ -30,7 +30,7 @@ function RelatedDocumentsListPresentation({ documents }) {
                   {document?.title}{' '}
                   {`(${getReadableFileSize(document?.original?.size)})`}
                 </div>
-                <p className="text-charcoal-700 text-xs line-clamp-2">
+                <p className="text-charcoal-700 text-xs">
                   Acknowledgements: {document?.acknowledgement}
                 </p>
               </div>
