@@ -70,7 +70,7 @@ yup.addMethod(yup.object, 'uniqueProperties', function (propertyNames) {
   })
 })
 
-const relatedVideoLinksUrls = yup
+const relatedVideoLinksUrl = yup
   .string()
   .trim()
   .matches(
@@ -196,11 +196,12 @@ export const definitions = {
         excludeEmptyString: true,
       })
       .required('A map url is required.'),
+  relatedVideoLinksUrl: () => relatedVideoLinksUrl,
   relatedVideoUrlsArray: () =>
     yup.array().of(
       yup
         .object({
-          text: relatedVideoLinksUrls.min(1, 'This field cannot be empty.'),
+          text: relatedVideoLinksUrl.min(1, 'This field cannot be empty.'),
         })
         .uniqueProperties([
           [

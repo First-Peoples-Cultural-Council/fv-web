@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import * as yup from 'yup'
 
 // FPCC
-import TextArrayField from 'components/Form/TextArrayField'
+import TextField from 'components/Form/TextField'
 import { definitions } from 'common/utils/validationHelpers'
 import useEditForm from 'common/hooks/useEditForm'
 
@@ -14,59 +14,77 @@ function VideoLinkForm({
   maxItems,
 }) {
   const defaultValues = {
-    relatedVideoLinks,
+    relatedVideoLink: '',
   }
 
   const validator = yup.object().shape({
-    relatedVideoLinks: definitions.relatedVideoUrlsArray(),
+    relatedVideoLink: definitions.relatedVideoLinksUrl(),
   })
 
-  const { control, formState, handleSubmit, register, reset } = useEditForm({
+  const { formState, handleSubmit, register, reset, setError } = useEditForm({
     defaultValues,
     validator,
   })
 
   const submitHandler = (formData) => {
-    const newLink =
-      formData?.relatedVideoLinks?.[
-        (formData?.relatedVideoLinks?.length || 1) - 1
-      ]
-    appendVideoLinks(newLink)
-    closeModal()
+    const newLink = formData?.relatedVideoLink
+    const isDuplicate = relatedVideoLinks.some((link) => link.text === newLink)
+    if (isDuplicate) {
+      setError(
+        'relatedVideoLink',
+        {
+          message:
+            'Duplicate links are not allowed. The URL you entered matches a link you have already added to the entry.',
+        },
+        { shouldFocus: true },
+      )
+    } else {
+      appendVideoLinks({ text: newLink })
+      closeModal()
+    }
   }
 
   return (
     <form data-testid="VideoLinkForm" onReset={reset}>
-      <div className="col-span-12">
+      <div className="max-w-4xl mx-auto mt-4">
         {relatedVideoLinks?.length < maxItems ? (
-          <div className="max-w-5xl mx-auto">
-            <p className="block text-sm font-small text-charcoal-900 italic">
-              Add a link to a video below (currently YouTube and Vimeo links are
-              supported).
-            </p>
-            <TextArrayField
-              nameId="relatedVideoLinks"
+          <div className="text-left space-y-4 px-6">
+            <TextField
+              nameId="relatedVideoLink"
               register={register}
-              control={control}
-              errors={formState?.errors}
-              maxItems={maxItems}
-              placeholder="Example links: https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
-              disableExistingEdits
+              formState={formState}
+              label="Link"
+              helpText="Currently YouTube and Vimeo links are supported."
+              placeholder="e.g. https://www.youtube.com/watch?v=A1B2C3D4E5F or https://vimeo.com/123456789"
             />
-            <button
-              data-testid="add-video-link-btn"
-              type="button"
-              className="btn-primary btn-md mt-4"
-              onClick={handleSubmit(submitHandler)}
-            >
-              Add Linked Video
-            </button>
+            <div className="flex justify-end">
+              <button
+                data-testid="add-video-link-btn"
+                type="button"
+                className="btn-primary btn-md"
+                onClick={handleSubmit(submitHandler)}
+              >
+                Add Linked Video
+              </button>
+            </div>
           </div>
         ) : (
-          <p className="block text-sm font-small text-charcoal-900 italic">
-            You have reached the maximum number of video links. Please remove
-            existing videos to add new ones.
-          </p>
+          <div className="flex w-full text-left space-y-4 px-6">
+            <p className=" text-charcoal-900">
+              You have reached the maximum number of video links - {maxItems}.
+              Please remove existing videos to add new ones.
+            </p>
+            <div className="flex justify-end">
+              <button
+                data-testid="add-video-link-btn"
+                type="button"
+                className="btn-primary btn-md"
+                onClick={closeModal}
+              >
+                Add Linked Video
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </form>
