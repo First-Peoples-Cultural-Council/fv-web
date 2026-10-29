@@ -68,6 +68,7 @@ function SiteContactFormPresentation({ submitHandler, user }) {
               register={register}
               formState={formState}
               label="Name"
+              placeholder="Name"
             />
             <TextField
               nameId="email"
@@ -75,12 +76,14 @@ function SiteContactFormPresentation({ submitHandler, user }) {
               register={register}
               formState={formState}
               label="Email"
+              placeholder="Email"
             />
             <TextAreaField
               nameId="message"
               register={register}
               formState={formState}
               label="Message"
+              placeholder="Message"
               rows={6}
             />
             <div className="flex justify-end">

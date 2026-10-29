@@ -12,6 +12,7 @@ function TextAreaField({
   nameId,
   helpText,
   register,
+  placeholder = '',
   rows = 3,
 }) {
   return (
@@ -21,6 +22,7 @@ function TextAreaField({
         <textarea
           id={nameId}
           name={nameId}
+          placeholder={placeholder}
           {...register(nameId)}
           rows={rows}
           className="block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 placeholder:text-charcoal-300 border border-charcoal-300 disabled:border-charcoal-100 disabled:bg-charcoal-50 disabled:text-charcoal-300 focus:outline-hidden focus:ring-blumine-800 focus:border-transparent"
@@ -37,6 +39,7 @@ TextAreaField.propTypes = {
   formState: object,
   helpText: string,
   label: string,
+  placeholder: string,
   nameId: string.isRequired,
   register: func,
   rows: number,
