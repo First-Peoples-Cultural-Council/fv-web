@@ -5,8 +5,8 @@ import * as yup from 'yup'
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import useLoginLogout from 'common/hooks/useLoginLogout'
-import getIcon from 'common/utils/getIcon'
 import TextField from 'components/Form/TextField'
+import TextAreaField from 'components/Form/TextAreaField'
 
 const defaultFormValues = {
   name: '',
@@ -43,27 +43,6 @@ function SiteContactFormPresentation({ submitHandler, user }) {
 
   const { login } = useLoginLogout()
 
-  const labelStyling = 'block text-charcoal-500 text-base font-bold mb-4'
-  const inputStyling =
-    'block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 outline -outline-offset-1 outline-charcoal-300 placeholder:text-charcoal-300 focus:outline-ochre-600 border border-charcoal-300 focus:border-ochre-600 focus:outline-none'
-  const errorStyling = 'text-scarlet-800 text-left text-base mt-2'
-
-  const getValidationIcon = (fieldId) => {
-    if (formState?.errors?.[fieldId]) {
-      return getIcon(
-        'TimesCircleSolid',
-        'absolute -right-6 fill-current size-4 text-scarlet-800',
-      )
-    } else if (formState?.dirtyFields?.[fieldId]) {
-      return getIcon(
-        'CheckCircleSolid',
-        'absolute -right-6 fill-current size-4 text-blumine-700',
-      )
-    } else {
-      return <div className="absolute -right-6 size-4" />
-    }
-  }
-
   return (
     <section id="SiteContactFormPresentation">
       {user.isAnonymous ? (
@@ -97,29 +76,13 @@ function SiteContactFormPresentation({ submitHandler, user }) {
               formState={formState}
               label="Email"
             />
-
-            <div>
-              <label className={labelStyling} htmlFor="message">
-                Message
-              </label>
-              <div className="flex items-center justify-start relative">
-                <textarea
-                  id="message"
-                  name="message"
-                  defaultValue=""
-                  rows="6"
-                  className={inputStyling}
-                  {...register('message')}
-                />
-                {getValidationIcon('message')}
-              </div>
-              {formState?.errors?.message && (
-                <div className={errorStyling}>
-                  {formState?.errors?.message?.message}
-                </div>
-              )}
-            </div>
-
+            <TextAreaField
+              nameId="message"
+              register={register}
+              formState={formState}
+              label="Message"
+              rows={6}
+            />
             <div className="flex justify-end">
               <button
                 data-testid="submit"
