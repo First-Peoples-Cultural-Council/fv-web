@@ -4,10 +4,10 @@ import { useFieldArray } from 'react-hook-form'
 
 // FPCC
 import getIcon from 'common/utils/getIcon'
-import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 import FieldButton from 'components/Form/FieldButton'
 import FieldLabel from 'components/Form/FieldLabel'
 import Tooltip from 'components/Tooltip'
+import ValidationError from 'components/Form/ValidationError'
 
 function TextArrayField({
   label = '',
@@ -59,16 +59,14 @@ function TextArrayField({
                   </button>
                 </Tooltip>
               </div>
-              {errors?.[nameId]?.[index] && (
-                <div className="text-scarlet-700">
-                  {convertJsonToReadableString(
-                    errors?.[nameId]?.[index]?.text?.message,
-                  )}
-                </div>
-              )}
+              <ValidationError
+                errors={errors}
+                nameId={`${nameId}.${index}.text`}
+              />
             </li>
           ))}
         </ul>
+
         {fields?.length < maxItems && (
           <FieldButton
             label={`Add ${updatedLabel}`}

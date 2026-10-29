@@ -6,6 +6,7 @@ import { useFieldArray } from 'react-hook-form'
 import getIcon from 'common/utils/getIcon'
 import FieldLabel from 'components/Form/FieldLabel'
 import Tooltip from 'components/Tooltip'
+import ValidationError from 'components/Form/ValidationError'
 
 function TextTranslationArrayField({
   label = '',
@@ -28,12 +29,12 @@ function TextTranslationArrayField({
         <ul className="space-y-4">
           {fields.map((item, index) => (
             <li key={item.id}>
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center justify-between w-full space-x-2">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-charcoal-900"
+                      className="block text-sm font-medium text-charcoal-900 mb-1"
                     >
                       {label.slice(0, -1)} in your language
                     </label>
@@ -43,16 +44,15 @@ function TextTranslationArrayField({
                       className="w-full py-2 border border-charcoal-200 bg-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-xs"
                       {...register(`${nameId}.${index}.text`)}
                     />
-                    {errors?.[nameId]?.[index]?.text?.message && (
-                      <div className="text-scarlet-700">
-                        {errors?.[nameId]?.[index]?.text?.message}
-                      </div>
-                    )}
+                    <ValidationError
+                      errors={errors}
+                      nameId={`${nameId}.${index}.text`}
+                    />
                   </div>
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-charcoal-900"
+                      className="block text-sm font-medium text-charcoal-900 mb-1"
                     >
                       {label.slice(0, -1)} Translation
                     </label>
@@ -62,11 +62,10 @@ function TextTranslationArrayField({
                       className="w-full py-2 border border-charcoal-200 bg-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-xs"
                       {...register(`${nameId}.${index}.translation`)}
                     />
-                    {errors?.[nameId]?.[index]?.translation?.message && (
-                      <div className="text-scarlet-700">
-                        {errors?.[nameId]?.[index]?.translation?.message}
-                      </div>
-                    )}
+                    <ValidationError
+                      errors={errors}
+                      nameId={`${nameId}.${index}.translation`}
+                    />
                   </div>
                 </div>
 
