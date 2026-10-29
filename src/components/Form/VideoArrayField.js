@@ -9,7 +9,6 @@ import AddVideoModal from 'components/AddVideoModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function VideoArrayField({
@@ -43,7 +42,7 @@ function VideoArrayField({
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div data-testid="VideoArrayField" className="space-y-2">
         {fields?.length > 0 && (
           <div>
@@ -100,7 +99,6 @@ function VideoArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      <HelpText text={helpText} />
     </Fragment>
   )
 }

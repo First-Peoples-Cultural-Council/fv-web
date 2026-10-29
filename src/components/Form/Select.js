@@ -4,14 +4,13 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 import CustomListbox from 'components/CustomListbox'
 
 function Select({ control, helpText, label = '', nameId, options, errors }) {
   return (
     <Fragment key="FormSelect">
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div className="w-96">
         <Controller
           control={control}
@@ -28,7 +27,6 @@ function Select({ control, helpText, label = '', nameId, options, errors }) {
           )}
         />
       </div>
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

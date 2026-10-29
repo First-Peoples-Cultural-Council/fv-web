@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { useSearchParams } from 'react-router'
 
 // FPCC
-import Form from 'components/Form'
+import Header from 'components/Form/Header'
+import Stepper from 'components/Form/Stepper'
+import NextPrevious from 'components/Form/NextPrevious'
 
 function StepWrapper({
   children,
@@ -27,16 +29,16 @@ function StepWrapper({
       className="flex flex-col p-8 space-y-4 min-h-screen max-w-5xl"
     >
       <div className="w-full flex justify-center">
-        <Form.Header title={title} />
+        <Header title={title} />
       </div>
       <div className="my-5">
-        <Form.Stepper
+        <Stepper
           steps={stepTitlesArray}
           onClickCallback={onClickCallback || defaultOnClick}
         />
       </div>
       <section>{children}</section>
-      <Form.NextPrevious
+      <NextPrevious
         numberOfSteps={stepTitlesArray?.length}
         onClickCallback={onClickCallback || defaultOnClick}
         sitename={sitename}

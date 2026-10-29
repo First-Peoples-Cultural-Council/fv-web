@@ -11,7 +11,6 @@ import FieldLabel from 'components/Form/FieldLabel'
 import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
-import HelpText from 'components/Form/HelpText'
 import ImageArrayField from 'components/Form/ImageArrayField'
 import ImageIdField from 'components/Form/ImageIdField'
 import IncludeInGames from 'components/Form/IncludeInGames'
@@ -48,7 +47,6 @@ export default {
   FileUploadField,
   GalleryField,
   Header,
-  HelpText,
   ImageArrayField,
   ImageIdField,
   IncludeInGames,

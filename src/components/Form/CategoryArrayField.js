@@ -8,7 +8,6 @@ import CategoriesBrowser from 'components/CategoriesBrowser'
 import FieldButton from 'components/Form/FieldButton'
 import XButton from 'components/Form/XButton'
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function CategoryArrayField({
@@ -31,7 +30,7 @@ function CategoryArrayField({
 
   return (
     <Fragment key={`${nameId}_CategoryArrayField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div className="space-y-2">
         <ul className="space-y-2">
           {fields.map((item, index) => (
@@ -52,7 +51,6 @@ function CategoryArrayField({
           <FieldButton label="Add category" onClickHandler={openModal} />
         )}
       </div>
-      <HelpText text={helpText} />
 
       <ValidationError errors={errors} nameId={nameId} />
 

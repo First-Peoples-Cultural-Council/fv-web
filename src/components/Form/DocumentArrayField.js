@@ -7,7 +7,6 @@ import AddDocumentModal from 'components/AddDocumentModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function DocumentArrayField({
@@ -29,7 +28,7 @@ function DocumentArrayField({
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div data-testid="DocumentArrayField" className="space-y-2">
         <ul className="space-y-1">
           {fields?.map((field, index) => (
@@ -62,7 +61,6 @@ function DocumentArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      <HelpText text={helpText} />
     </Fragment>
   )
 }

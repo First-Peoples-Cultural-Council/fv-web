@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
+import FieldLabel from 'components/Form/FieldLabel'
 import RadioButtonGroup from 'components/RadioButtonGroup'
 
 function RadioButtons({
@@ -18,6 +18,7 @@ function RadioButtons({
 }) {
   return (
     <Fragment key="FormRadioButtons">
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <Controller
         control={control}
         id={nameId}
@@ -25,13 +26,11 @@ function RadioButtons({
         render={({ field: { value, onChange } }) => (
           <RadioButtonGroup.Presentation
             value={value}
-            label={label}
             onChange={onChange}
             options={options}
           />
         )}
       />
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

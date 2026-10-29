@@ -6,7 +6,6 @@ import { useFieldArray } from 'react-hook-form'
 import getIcon from 'common/utils/getIcon'
 import { convertJsonToReadableString } from 'common/utils/stringHelpers'
 import FieldButton from 'components/Form/FieldButton'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 import Tooltip from 'components/Tooltip'
 
@@ -37,7 +36,7 @@ function TextArrayField({
 
   return (
     <Fragment key={`${nameId}_TextArrayField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       {!disableExistingEdits ? (
         <div className="space-y-2">
           <ul className="space-y-2">
@@ -100,7 +99,6 @@ function TextArrayField({
           )}
         </div>
       )}
-      <HelpText text={helpText} />
     </Fragment>
   )
 }

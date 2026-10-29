@@ -13,7 +13,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import getIcon from 'common/utils/getIcon'
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function Autocomplete({
@@ -42,7 +41,7 @@ function Autocomplete({
 
   return (
     <Fragment key="FormAutocomplete">
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div className="w-full">
         <Controller
           control={control}
@@ -126,7 +125,6 @@ function Autocomplete({
           )}
         />
       </div>
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

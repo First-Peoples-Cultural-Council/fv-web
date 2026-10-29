@@ -6,7 +6,6 @@ import { Radio, RadioGroup, Field, Label } from '@headlessui/react'
 
 function RadioButtonGroupPresentation({
   accentColor = 'blumine-600',
-  label,
   onChange,
   options,
   value,
@@ -18,11 +17,6 @@ function RadioButtonGroupPresentation({
       onChange={onChange}
     >
       <div className="space-y-2">
-        {label && (
-          <Label className="text-sm font-medium text-charcoal-900">
-            {label}
-          </Label>
-        )}
         <div className="flex space-x-8">
           {options.map((option) => (
             <Field key={option?.value} as={Fragment}>
@@ -75,7 +69,6 @@ function RadioButtonGroupPresentation({
 const { array, func, string } = PropTypes
 RadioButtonGroupPresentation.propTypes = {
   accentColor: string,
-  label: string,
   onChange: func,
   options: array.isRequired,
   value: string,

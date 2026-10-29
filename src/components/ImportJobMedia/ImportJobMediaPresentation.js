@@ -45,7 +45,8 @@ function ImportJobMediaPresentation({ queryResponse, uppy }) {
           <div className="col-span-2 space-y-2">
             <Form.FieldLabel
               nameId="upload"
-              text="New media files for the import"
+              text="Media files"
+              helpText="Upload any new media files referenced in the csv here. NB: The FirstVoices file size limit is 1GB"
             />
             {importJob?.media?.length > 0 && (
               <div className="p-5 border border-charcoal-200 rounded-lg space-y-4">
@@ -73,7 +74,6 @@ function ImportJobMediaPresentation({ queryResponse, uppy }) {
               {getIcon('Add')}
               <span>Upload files</span>
             </button>
-            <Form.HelpText text="⚠️ The FirstVoices file size limit is 1GB" />
             <DashboardModal
               uppy={uppy}
               open={isUploadModalOpen}

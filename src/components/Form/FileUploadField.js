@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
 import FieldLabel from 'components/Form/FieldLabel'
-import HelpText from 'components/Form/HelpText'
 
 function FileUploadField({
   label = '',
@@ -16,7 +15,7 @@ function FileUploadField({
 }) {
   return (
     <Fragment key={`${nameId}_FileUploadField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <input
         id={nameId}
         name={nameId}
@@ -27,7 +26,6 @@ function FileUploadField({
             file:mr-5 file:btn-md file:btn-secondary hover:file:bg-blumine-100 hover:file:cursor-pointer
             disabled:file:bg-charcoal-300 disabled:file:text-charcoal-50"
       />
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
