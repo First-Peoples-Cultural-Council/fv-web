@@ -75,7 +75,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
         className="shadow rounded-md overflow-hidden bg-white"
       >
         <form onReset={reset}>
-          <div className="grid grid-cols-12 gap-10 p-8">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-8 p-8">
             <div className="hidden">
               <input
                 id="includeInKids"

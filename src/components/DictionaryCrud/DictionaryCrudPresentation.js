@@ -321,7 +321,7 @@ function DictionaryCrudPresentation({
         <div className="space-y-5 w-full">
           <section>
             <div className="shadow rounded-md">
-              <div className="grid grid-cols-12 gap-8 bg-white p-8 rounded-md">
+              <div className="grid grid-cols-12 gap-x-10 gap-y-8 bg-white p-8 rounded-md">
                 {getStepContent(activeStepNumber)}
               </div>
             </div>
@@ -405,7 +405,7 @@ function DictionaryCrudPresentation({
         <div className="space-y-5 w-full">
           <section>
             <div className="shadow rounded-md">
-              <div className="grid grid-cols-12 gap-8 bg-white p-8 rounded-md">
+              <div className="grid grid-cols-12 gap-x-10 gap-y-8 bg-white p-8 rounded-md">
                 {steps.map((step, stepIdx) => getStepContent(stepIdx))}
               </div>
             </div>

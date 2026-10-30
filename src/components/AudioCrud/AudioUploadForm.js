@@ -114,7 +114,7 @@ function AudioUploadForm({ setSelectedAudio }) {
       </div>
       <LoadOrError queryResponse={speakerInfiniteQueryResponse}>
         <form onReset={reset}>
-          <div className="grid grid-cols-12 gap-4">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-6">
             <div className="col-span-12">
               <FileUploadField
                 label="Choose audio file"

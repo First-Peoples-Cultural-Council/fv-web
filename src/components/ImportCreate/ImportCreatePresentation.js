@@ -35,7 +35,7 @@ function ImportCreatePresentation({ backHandler, submitHandler }) {
         subtitle="Upload your batch csv and a unique title for your import"
       />
       <form id="CreateImportJobForm" onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-6 bg-white p-8 rounded-lg">
+        <div className="mt-6 grid grid-cols-12 gap-x-10 gap-y-8 bg-white p-8 rounded-lg">
           <div className="col-span-12">
             <Form.TextField
               label="Title"

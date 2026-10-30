@@ -70,7 +70,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
         )}
       </div>
       <form onReset={reset}>
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-x-10 gap-y-8">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
               label="Title"

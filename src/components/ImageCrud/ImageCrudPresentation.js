@@ -51,7 +51,7 @@ function ImageCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
               className="object-contain w-full rounded-lg"
             />
           </div>
-          <div className="grid grid-cols-12 gap-6 col-span-6">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-8 col-span-6">
             <div className="col-span-12">
               <Form.TextField
                 label="Title"

@@ -52,7 +52,7 @@ function CategoryCrudPresentation({
         </div>
       )}
       <form onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-6">
+        <div className="mt-6 grid grid-cols-12 gap-x-10 gap-y-8">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
               label="Title"

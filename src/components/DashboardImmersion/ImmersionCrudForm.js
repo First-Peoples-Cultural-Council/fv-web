@@ -46,7 +46,7 @@ function ImmersionCrudForm({ dataToEdit, site, submitHandler }) {
     <div id="ImmersionCrudForm">
       <Form.Header title="Edit Immersion Label" />
       <form onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-6">
+        <div className="mt-6 grid grid-cols-12 gap-x-10 gap-y-8">
           <div className="hidden">
             <input
               id="transKey"

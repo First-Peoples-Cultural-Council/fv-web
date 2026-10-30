@@ -57,7 +57,10 @@ function StoryPageForm({
           />
         )}
       </div>
-      <form className="w-full grid grid-cols-12 gap-10" onReset={reset}>
+      <form
+        className="w-full grid grid-cols-12 gap-x-10 gap-y-8"
+        onReset={reset}
+      >
         <div className="hidden">
           <input id="id" name="id" type="hidden" {...register('id')} />
           <input

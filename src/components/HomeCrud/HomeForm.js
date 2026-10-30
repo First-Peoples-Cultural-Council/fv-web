@@ -28,7 +28,7 @@ function HomeForm({ cancelHandler, dataToEdit, submitHandler }) {
       <div className="max-w-5xl p-6">
         <Form.Header title="Edit your logo and homepage banner" />
         <form onReset={reset}>
-          <div className="mt-6 grid grid-cols-12 gap-6">
+          <div className="mt-6 grid grid-cols-12 gap-x-10 gap-y-8">
             <div className="col-span-6">
               <Form.ImageArrayField
                 label="Add logo"

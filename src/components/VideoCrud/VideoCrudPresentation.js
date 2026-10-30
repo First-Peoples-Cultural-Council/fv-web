@@ -50,7 +50,7 @@ function VideoCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
               controls
             />
           </div>
-          <div className="grid grid-cols-12 gap-6 col-span-6">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-8 col-span-6">
             <div className="col-span-12">
               <Form.TextField
                 label="Title"

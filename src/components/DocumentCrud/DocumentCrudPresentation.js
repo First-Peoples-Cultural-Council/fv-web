@@ -44,7 +44,7 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
               'h-72 w-auto mx-auto bg-white rounded-lg p-10 fill-current text-charcoal-500',
             )}
           </div>
-          <div className="grid grid-cols-12 gap-6 col-span-6">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-8 col-span-6">
             <div className="col-span-12">
               <Form.TextField
                 label="Title"

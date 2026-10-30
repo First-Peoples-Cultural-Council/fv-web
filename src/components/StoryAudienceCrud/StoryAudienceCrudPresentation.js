@@ -35,7 +35,7 @@ function StoryAudienceCrudPresentation({ dataToEdit, submitHandler }) {
         className="shadow rounded-md overflow-hidden bg-white"
       >
         <form onReset={reset}>
-          <div className="grid grid-cols-12 gap-8 p-8">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-8 p-8">
             <div className="col-span-12">
               <Form.Visibility
                 control={control}

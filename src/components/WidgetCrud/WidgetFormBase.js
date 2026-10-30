@@ -18,7 +18,7 @@ function WidgetFormBase({
 }) {
   return (
     <form id="WidgetForm" onReset={reset}>
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12 gap-x-10 gap-y-8">
         <div className="hidden">
           <input
             id="type"
