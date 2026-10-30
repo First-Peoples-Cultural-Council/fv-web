@@ -87,7 +87,7 @@ function SongCrudPresentation({
         <div className="w-full flex justify-end mt-6 px-6">
           <DeleteButton.Presentation
             deleteHandler={deleteHandler}
-            label="Delete Song"
+            label="Delete song"
             message="Are you sure you want to delete this song from your site?"
           />
         </div>
@@ -139,9 +139,10 @@ function SongCrudPresentation({
             <Form.TextTranslationArrayField
               label="Lyrics"
               nameId="lyrics"
+              helpText="Add verses or lines with their translation."
               register={register}
               control={control}
-              errors={formState?.errors}
+              formState={formState}
               maxItems={MAX_LYRICS}
             />
           </div>

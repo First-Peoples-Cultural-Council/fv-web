@@ -15,7 +15,7 @@ function TextTranslationArrayField({
   maxItems,
   register,
   control,
-  errors,
+  formState,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -29,47 +29,46 @@ function TextTranslationArrayField({
         <ul className="space-y-4">
           {fields.map((item, index) => (
             <li key={item.id}>
-              <div className="flex items-center justify-between w-full space-x-2">
+              <div className="flex justify-between w-full space-x-2">
                 <div className="grid grid-cols-2 gap-2 w-full">
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-charcoal-900 mb-1"
+                      className="block text-sm text-charcoal-500 mb-2"
                     >
                       {label.slice(0, -1)} in your language
                     </label>
                     <textarea
                       type="text"
                       rows={6}
-                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-xs"
+                      className={`input-text min-h-[3lh] max-h-[20lh] resize-none field-sizing-content ${formState?.errors?.[nameId]?.[index]?.text && 'input-text-error'}`}
                       {...register(`${nameId}.${index}.text`)}
                     />
                     <ValidationError
-                      errors={errors}
+                      errors={formState?.errors}
                       nameId={`${nameId}.${index}.text`}
                     />
                   </div>
                   <div className="col-span-1">
                     <label
                       htmlFor={`${nameId}.${index}.text`}
-                      className="block text-sm font-medium text-charcoal-900 mb-1"
+                      className="block text-sm text-charcoal-500 mb-2"
                     >
                       {label.slice(0, -1)} Translation
                     </label>
                     <textarea
                       type="text"
-                      rows={6}
-                      className="w-full py-2 border border-charcoal-200 bg-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg shadow-xs"
+                      className={`input-text min-h-[3lh] max-h-[20lh] resize-none field-sizing-content ${formState?.errors?.[nameId]?.[index]?.translation && 'input-text-error'}`}
                       {...register(`${nameId}.${index}.translation`)}
                     />
                     <ValidationError
-                      errors={errors}
+                      errors={formState?.errors}
                       nameId={`${nameId}.${index}.translation`}
                     />
                   </div>
                 </div>
 
-                <Tooltip message={`Delete ${label.slice(0, -1)}`}>
+                <Tooltip message={`Delete ${label.slice(0, -1).toLowerCase()}`}>
                   <button
                     data-testid="delete-btn"
                     type="button"
@@ -109,7 +108,7 @@ TextTranslationArrayField.propTypes = {
   control: object,
   maxItems: number,
   register: func,
-  errors: object,
+  formState: object,
 }
 
 export default TextTranslationArrayField
