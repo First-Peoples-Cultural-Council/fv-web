@@ -114,9 +114,9 @@ export const definitions = {
       ]),
   stringArray: () =>
     yup.array().of(yup.string().typeError('This field is text only.')),
-  title: ({ charCount = 90 } = {}) => stringWithMax(charCount).min(1),
+  title: ({ charCount = 90 } = {}) =>
+    stringWithMax(charCount).required('This field is required.'),
   paragraph: ({ charCount = 250 } = {}) => stringWithMax(charCount).nullable(),
-
   textArray: ({ charCount = 225 } = {}) =>
     yup
       .array()
