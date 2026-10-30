@@ -28,7 +28,7 @@ function WidgetFormBase({
             {...register('type')}
           />
         </div>
-        <div className="col-span-12 sm:col-span-6">
+        <div className="col-span-12">
           <Form.TextField
             label={isCreateMode ? 'A nickname for your widget' : 'Nickname'}
             nameId="nickname"

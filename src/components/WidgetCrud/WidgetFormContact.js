@@ -1,24 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
+import { Link, useParams } from 'react-router'
 
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
+import { INFO, WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
 import { useContactUs } from 'common/dataHooks/useContactUs'
+import AlertBanner from 'components/AlertBanner'
 
 function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
+  const { sitename } = useParams()
+
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_CONTACT]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     title: definitions.title().required('A title is required'),
     text: definitions.paragraph(),
-    textWithFormatting: definitions.wysiwyg({ charCount: 200 }),
-    urls: definitions.urlsArray(),
     visibility: definitions.visibility(),
   })
 
@@ -29,8 +31,6 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     visibility: PUBLIC,
     title: 'Contact',
     text: 'Please contact us if you have any suggestions or feedback regarding our language content.',
-    textWithFormatting: '',
-    urls: [],
   }
 
   const {
@@ -64,7 +64,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
         type={WIDGET_CONTACT}
       >
         <>
-          <div className="col-span-12 sm:col-span-6">
+          <div className="col-span-12">
             <Form.TextField
               label="Title"
               nameId="title"
@@ -72,7 +72,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               formState={formState}
             />
           </div>
-          <div className="col-span-12 sm:col-span-6">
+          <div className="col-span-12">
             <Form.TextAreaField
               label="Text"
               nameId="text"
@@ -80,53 +80,48 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               formState={formState}
             />
           </div>
-          <div className="col-span-12 sm:col-span-6">
-            <Form.WysiwygField
-              label="Address"
-              nameId="textWithFormatting"
-              control={control}
-              formState={formState}
-            />
-          </div>
+
           <div className="col-span-12">
-            <Form.TextArrayField
-              label="Social media links"
-              nameId="urls"
-              helpText="Enter a maximum of 5 links."
-              register={register}
-              control={control}
-              formState={formState}
-              maxItems={5}
+            <AlertBanner.Presentation
+              alertType={INFO}
+              message={
+                <div>
+                  If you had an address or links on your Contact widget they
+                  have been moved to your{' '}
+                  <Link
+                    to={`/${sitename}/contact`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-url"
+                  >
+                    new Contact page
+                  </Link>
+                  . Please contact support at hello@firstvoices.com if you want
+                  to update the information on your contact page.
+                </div>
+              }
             />
           </div>
-          {data?.emailListAsString?.length > 0 ? (
-            <div className="col-span-12 mt-2 text-sm text-charcoal-500">
-              <div className="block text-sm font-medium text-charcoal-900">
-                Contact list
-              </div>
-              <div className="mt-2 text-xs text-charcoal-500 italic">
-                (Please contact support at hello@firstvoices.com to update this
-                list)
-              </div>
-              <div className="mt-2 text-sm text-charcoal-500">
-                Contact us emails will be sent to the following addresses:
-              </div>
-              <div>{data?.emailListAsString}</div>
+
+          <div className="hidden col-span-12 text-charcoal-500">
+            <div data-testid="contact-email-list">
+              <Form.FieldLabel
+                nameId="contact-email-list"
+                text="Contact email list"
+                helpText="Messages sent using the form on your Contact page will be
+              forwarded to the following addresses. To update the list please contact hello@firstvoices.com."
+              />
+              {data?.emailListAsString?.length > 0 ? (
+                <div className="w-full py-2 text-base font-bold">
+                  {data?.emailListAsString}
+                </div>
+              ) : (
+                <div className="w-full py-2 text-base font-bold text-scarlet-800">
+                  You don&apos;t have any contact emails listed. Please contact
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="col-span-12">
-              <div className="block text-sm font-medium text-charcoal-900">
-                Contact list
-              </div>
-              <div className="mt-2 text-xs text-charcoal-500 italic">
-                (Please contact support at hello@firstvoices.com to update this
-                list)
-              </div>
-              <div className="mt-2 text-sm text-charcoal-500">
-                Could not find any emails to send contact messages to.
-              </div>
-            </div>
-          )}
+          </div>
         </>
       </WidgetFormBase>
     </div>
