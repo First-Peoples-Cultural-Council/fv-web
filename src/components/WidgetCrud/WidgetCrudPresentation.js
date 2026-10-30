@@ -157,22 +157,11 @@ function WidgetForm({ cancelHandler, dataToEdit, submitHandler, type }) {
       )
 
     case WIDGET_CONTACT: {
-      // Separate urls string into separate objects with text property for form
-      const splitUrls = dataToEdit?.urls ? dataToEdit?.urls?.split(',') : []
-      const _dataToEdit = {
-        ...dataToEdit,
-        urls: splitUrls?.map((url) => ({ text: url })),
-      }
-      // Join urls into a single string for the api
-      const _submitHandler = (formData) => {
-        const urlStrings = formData?.urls?.map((url) => url?.text)
-        submitHandler({ ...formData, urls: urlStrings?.join(',') })
-      }
       return (
         <WidgetFormContact
           cancelHandler={cancelHandler}
-          dataToEdit={_dataToEdit}
-          submitHandler={_submitHandler}
+          dataToEdit={dataToEdit}
+          submitHandler={submitHandler}
         />
       )
     }
