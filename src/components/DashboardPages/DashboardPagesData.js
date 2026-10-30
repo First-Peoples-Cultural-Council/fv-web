@@ -16,7 +16,7 @@ function DashboardPagesData() {
     {
       id: 'home-edit',
       icon: 'Home',
-      name: 'Edit Homepage',
+      name: 'Edit homepage',
       description: 'Edit the main homepage for your site',
       href: `/${sitename}/dashboard/edit/home`,
       iconColor: 'ochre-800',
@@ -25,7 +25,7 @@ function DashboardPagesData() {
     {
       id: 'page-create',
       icon: 'Create',
-      name: 'Create a Custom Page',
+      name: 'Create a custom page',
       description: 'Add a new page to your site',
       href: `/${sitename}/dashboard/create/page`,
       iconColor: 'blumine-800',

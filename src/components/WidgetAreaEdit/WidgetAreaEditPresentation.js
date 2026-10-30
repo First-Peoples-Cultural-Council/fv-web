@@ -26,7 +26,7 @@ function WidgetAreaEditPresentation({
             <div className="flex justify-between items-center p-4">
               <div>
                 <p className="text-charcoal-500">
-                  The Widgets that appear on your{' '}
+                  The widgets that appear on your{' '}
                   <span className="italic font-bold">{destinationTitle}</span>{' '}
                   page
                 </p>

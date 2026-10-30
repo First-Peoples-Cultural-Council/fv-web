@@ -85,7 +85,7 @@ function WidgetCrudPresentation({
       ) : (
         <div className="space-y-2 p-6">
           <Form.Header
-            title="Create a new Widget"
+            title="Create a new widget"
             subtitle="1. Choose what type of widget you'd like to create."
           />
           <div className="grid gap-5 grid-cols-4 place-content-center p-3">

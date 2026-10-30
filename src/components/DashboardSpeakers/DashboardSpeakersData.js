@@ -14,7 +14,7 @@ function DashboardSpeakersData() {
     {
       id: 'speaker-create',
       icon: 'Create',
-      name: 'Add a Speaker',
+      name: 'Add a speaker',
       description: 'Add a new speaker to your site',
       href: `/${sitename}/dashboard/create/speaker`,
       iconColor: 'blumine-800',

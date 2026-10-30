@@ -15,8 +15,8 @@ function DashboardWidgetsData() {
     {
       id: 'widget-create',
       icon: 'Create',
-      name: 'Create a Widget',
-      description: 'Add a new Widget to your site',
+      name: 'Create a widget',
+      description: 'Add a new widget to your site',
       href: `/${sitename}/dashboard/create/widget`,
       iconColor: 'blumine-800',
     },
@@ -25,7 +25,7 @@ function DashboardWidgetsData() {
   const headerContent = {
     title: 'Widgets',
     subtitle:
-      'Manage, create, and edit the Widgets available to use across your site pages',
+      'Manage, create, and edit the widgets available to use across your site pages',
     icon: 'Widget',
   }
 
