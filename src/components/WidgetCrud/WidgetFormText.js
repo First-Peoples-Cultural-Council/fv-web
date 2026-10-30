@@ -85,7 +85,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
               label="Text"
               nameId="textWithFormatting"
               control={control}
-              errors={formState?.errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">

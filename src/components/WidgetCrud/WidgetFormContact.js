@@ -85,7 +85,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               label="Address"
               nameId="textWithFormatting"
               control={control}
-              errors={formState?.errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">

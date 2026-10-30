@@ -75,7 +75,7 @@ function StoryPageForm({
             label="Page text"
             nameId="text"
             control={control}
-            errors={formState?.errors}
+            formState={formState}
           />
         </div>
         <div className="col-span-6">
@@ -83,7 +83,7 @@ function StoryPageForm({
             label="Page translation"
             nameId="textTranslation"
             control={control}
-            errors={formState?.errors}
+            formState={formState}
           />
         </div>
         <div className="col-span-12">

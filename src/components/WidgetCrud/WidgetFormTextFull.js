@@ -61,7 +61,7 @@ function WidgetFormText({ cancelHandler, dataToEdit, submitHandler }) {
             label="Text"
             nameId="textWithFormatting"
             control={control}
-            errors={formState?.errors}
+            formState={formState}
             toolbar={toolbar}
           />
         </div>

@@ -115,7 +115,7 @@ function SongCrudPresentation({
               label="Introduction in your language"
               nameId="intro"
               control={control}
-              errors={formState?.errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6">
@@ -123,7 +123,7 @@ function SongCrudPresentation({
               label="Introduction translation"
               nameId="introTranslation"
               control={control}
-              errors={formState?.errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
