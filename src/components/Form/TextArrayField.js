@@ -16,7 +16,7 @@ function TextArrayField({
   maxItems,
   register,
   control,
-  errors,
+  formState,
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -35,14 +35,14 @@ function TextArrayField({
   return (
     <Fragment key={`${nameId}_TextArrayField`}>
       <FieldLabel nameId={nameId} text={label} helpText={helpText} />
-      <div className="space-y-2">
-        <ul className="space-y-2">
+      <div className="space-y-3">
+        <ul className="space-y-3">
           {fields.map((item, index) => (
             <li key={item.id}>
-              <div className="flex items-center w-full justify-between pr-3 border border-charcoal-200 shadow-xs bg-white rounded-lg focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800">
+              <div className="flex items-center justify-between space-x-2">
                 <input
                   type="text"
-                  className="flex w-full py-2 border border-white focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800 rounded-lg"
+                  className={`input-text ${formState?.errors?.[nameId] && 'input-text-error'}`}
                   {...register(`${nameId}.${index}.text`)}
                   onKeyDown={handleKeyDown}
                 />
@@ -60,7 +60,7 @@ function TextArrayField({
                 </Tooltip>
               </div>
               <ValidationError
-                errors={errors}
+                errors={formState?.errors}
                 nameId={`${nameId}.${index}.text`}
               />
             </li>
@@ -87,7 +87,7 @@ TextArrayField.propTypes = {
   control: object,
   maxItems: number,
   register: func,
-  errors: object,
+  formState: object,
   placeholder: string,
 }
 

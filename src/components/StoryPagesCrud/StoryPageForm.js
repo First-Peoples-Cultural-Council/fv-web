@@ -57,7 +57,7 @@ function StoryPageForm({
           />
         )}
       </div>
-      <form className="w-full grid grid-cols-12 gap-4" onReset={reset}>
+      <form className="w-full grid grid-cols-12 gap-10" onReset={reset}>
         <div className="hidden">
           <input id="id" name="id" type="hidden" {...register('id')} />
           <input
@@ -116,7 +116,7 @@ function StoryPageForm({
             nameId="notes"
             register={register}
             control={control}
-            errors={formState?.errors}
+            formState={formState}
             maxItems={1}
           />
         </div>

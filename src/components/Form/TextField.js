@@ -34,7 +34,7 @@ function TextField({
           disabled={disabled}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
-          className="block w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 placeholder:text-charcoal-300 border border-charcoal-300 disabled:border-charcoal-100 disabled:bg-charcoal-50 disabled:text-charcoal-300 focus:outline-hidden focus:ring-blumine-800 focus:border-transparent"
+          className={`input-text ${formState?.errors?.[nameId] && 'input-text-error'}`}
         />
         <ValidationIcon nameId={nameId} formState={formState} />
       </div>

@@ -75,7 +75,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
         className="shadow rounded-md overflow-hidden bg-white"
       >
         <form onReset={reset}>
-          <div className="grid grid-cols-12 gap-8 p-8">
+          <div className="grid grid-cols-12 gap-10 p-8">
             <div className="hidden">
               <input
                 id="includeInKids"
@@ -173,7 +173,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 nameId="acknowledgements"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_ACKNOWLEDGEMENTS}
               />
             </div>
@@ -183,7 +183,7 @@ function StoryCoverCrudPresentation({ dataToEdit, submitHandler }) {
                 nameId="notes"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_NOTES}
               />
             </div>

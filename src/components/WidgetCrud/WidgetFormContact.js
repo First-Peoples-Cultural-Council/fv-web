@@ -95,7 +95,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               helpText="Enter a maximum of 5 links."
               register={register}
               control={control}
-              errors={formState?.errors}
+              formState={formState}
               maxItems={5}
             />
           </div>

@@ -146,7 +146,7 @@ function DictionaryCrudPresentation({
                 nameId="translations"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_TRANSLATIONS}
                 hideLabel
               />
@@ -191,7 +191,7 @@ function DictionaryCrudPresentation({
                 nameId="notes"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_NOTES}
               />
             </div>
@@ -201,7 +201,7 @@ function DictionaryCrudPresentation({
                 nameId="acknowledgements"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_ACKNOWLEDGEMENTS}
               />
             </div>
@@ -253,7 +253,7 @@ function DictionaryCrudPresentation({
                 nameId="pronunciations"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_PRONUNCIATIONS}
               />
             </div>
@@ -263,7 +263,7 @@ function DictionaryCrudPresentation({
                 nameId="alternateSpellings"
                 register={register}
                 control={control}
-                errors={formState?.errors}
+                formState={formState}
                 maxItems={MAX_SPELLINGS}
               />
             </div>
