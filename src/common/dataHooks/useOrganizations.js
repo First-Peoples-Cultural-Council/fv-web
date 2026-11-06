@@ -6,38 +6,36 @@ import api from 'services/api'
 import { ORGANIZATIONS } from 'common/constants'
 import {
   organizationForViewing,
-  organizationForEditing,
   organizationForApi,
 } from 'common/dataAdaptors/organizationAdaptors'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 
-export function useOrganizations() {
+export function useOrganizations({ page }) {
   const { sitename } = useParams()
-
-  const infiniteQueryResponse = useInfiniteScroll({
-    queryKey: [ORGANIZATIONS, sitename],
-    queryFn: ({ pageParam = 1 }) =>
+  const queryResponse = useQuery({
+    queryKey: [ORGANIZATIONS, sitename, page],
+    queryFn: () =>
       api.organizations.getAll({
         sitename,
-        pageParam,
+        pageParam: page,
       }),
-    resultAdaptor: (result) => organizationForViewing({ item: result }),
+    select: (data) => ({
+      ...data,
+      results: data?.results?.map((result) =>
+        organizationForViewing({ item: result }),
+      ),
+    }),
   })
-
-  return infiniteQueryResponse
+  return queryResponse
 }
 
-export function useOrganization({ id, edit = false }) {
+export function useOrganization({ id }) {
   const { sitename } = useParams()
 
   const queryResponse = useQuery({
     queryKey: [ORGANIZATIONS, sitename, id],
     queryFn: () => api.organizations.get({ sitename, id }),
-    select: (data) =>
-      edit
-        ? organizationForEditing({ item: data })
-        : organizationForViewing({ item: data }),
+    select: (data) => organizationForViewing({ item: data }),
     enabled: !!id,
   })
 

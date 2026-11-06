@@ -15,10 +15,13 @@ export function organizationForViewing({ item }) {
   }
 }
 
-export function organizationForEditing({ item }) {
-  return item
-}
-
 export function organizationForApi({ formData }) {
-  return formData
+  return {
+    name: formData?.name,
+    contact_message: formData?.contactMessage,
+    address: htmlStringHasContent(formData?.address) ? formData?.address : '',
+    phone_numbers: formData?.phoneNumbers,
+    emails: formData?.emails,
+    url_list: formData?.urlList,
+  }
 }
