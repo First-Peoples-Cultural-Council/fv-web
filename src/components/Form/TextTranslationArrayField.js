@@ -87,7 +87,7 @@ function TextTranslationArrayField({
           <button
             data-testid="add-translation"
             type="button"
-            onClick={() => append({ text: '' })}
+            onClick={() => append({ text: '', translation: '' })}
             className="btn-secondary btn-md"
           >
             {getIcon('Add')}

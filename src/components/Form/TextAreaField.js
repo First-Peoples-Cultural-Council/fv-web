@@ -25,7 +25,7 @@ function TextAreaField({
           placeholder={placeholder}
           {...register(nameId)}
           rows={rows}
-          className={`input-text ${formState?.errors?.[nameId] && 'input-text-error'}`}
+          className={`input-text min-h-[3lh] max-h-[20lh] resize-none field-sizing-content ${formState?.errors?.[nameId] && 'input-text-error'}`}
         />
         <ValidationIcon nameId={nameId} formState={formState} />
       </div>
