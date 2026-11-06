@@ -15,6 +15,7 @@ import ImageArrayField from 'components/Form/ImageArrayField'
 import ImageIdField from 'components/Form/ImageIdField'
 import IncludeInGames from 'components/Form/IncludeInGames'
 import IncludeInKids from 'components/Form/IncludeInKids'
+import TextPairArrayField from 'components/Form/TextPairArrayField'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
@@ -51,6 +52,7 @@ export default {
   ImageIdField,
   IncludeInGames,
   IncludeInKids,
+  TextPairArrayField,
   NextPrevious,
   RadioButtons,
   Select,
