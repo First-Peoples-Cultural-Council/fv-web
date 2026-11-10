@@ -71,7 +71,7 @@ function SiteContactOrganization({ organization }) {
 function ListItem({ item, href }) {
   return (
     <li className="flex items-center justify-start space-x-2 py-2">
-      <span className="">{item?.label}:</span>
+      {item?.label && <span>{item?.label}:</span>}
       <a
         href={href}
         target="_blank"

@@ -55,7 +55,7 @@ export function useOrganizationCreate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: createOrganization,
-    redirectTo: `/${sitename}/dashboard/edit/organizations`,
+    redirectTo: `/${sitename}/dashboard/edit/contact`,
     queryKeyToInvalidate: [ORGANIZATIONS, sitename],
     actionWord: 'created',
     type: 'organization',
@@ -81,7 +81,7 @@ export function useOrganizationUpdate() {
 
   const mutation = useMutationWithNotification({
     mutationFn: updateOrganization,
-    redirectTo: `/${sitename}/dashboard/edit/organizations`,
+    redirectTo: `/${sitename}/dashboard/edit/contact`,
     queryKeyToInvalidate: [ORGANIZATIONS, sitename],
     actionWord: 'updated',
     type: 'organization',
@@ -103,7 +103,7 @@ export function useOrganizationDelete() {
 
   const mutation = useMutationWithNotification({
     mutationFn: deleteOrganization,
-    redirectTo: `/${sitename}/dashboard/edit/organizations`,
+    redirectTo: `/${sitename}/dashboard/edit/contact`,
     queryKeyToInvalidate: [ORGANIZATIONS, sitename],
     actionWord: 'deleted',
     type: 'organization',

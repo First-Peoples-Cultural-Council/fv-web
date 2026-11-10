@@ -11,10 +11,10 @@ import SiteDocHead from 'components/SiteDocHead'
 
 function SiteContactContainer() {
   const { site } = useSiteStore()
-  const infiniteQueryResponse = useOrganizations()
+  const queryResponse = useOrganizations({ page: 1 })
 
   return (
-    <LoadOrError queryResponse={infiniteQueryResponse}>
+    <LoadOrError queryResponse={queryResponse}>
       <main id="SiteContactPresentation" className="py-2 md:py-4 lg:py-8">
         <SiteDocHead titleArray={['Contact']} />
         <div className="max-w-7xl mx-auto px-8">
@@ -22,18 +22,15 @@ function SiteContactContainer() {
             <SectionTitle.Presentation title="Contact" />
             <div className="sr-only">for {site?.title}</div>
           </div>
-          <div className="mx-auto max-w-4xl space-y-6 md:space-y-8">
-            {infiniteQueryResponse?.data?.pages?.map((page) => (
-              <React.Fragment key={page?.pageNumber}>
-                {page.results.map((organization) => (
-                  <SiteContactOrganization
-                    key={organization?.id}
-                    organization={organization}
-                  />
-                ))}
-              </React.Fragment>
+          <div className="mx-auto max-w-4xl space-y-6 md:space-y-12 pb-6 lg:pb-12">
+            {queryResponse?.data?.results?.map((organization) => (
+              <SiteContactOrganization
+                key={organization?.id}
+                organization={organization}
+              />
             ))}
-            <section className="space-y-6 py-6 lg:pb-12">
+
+            <section className="space-y-6">
               <h2 className="text-3xl text-blumine-800">Send us a message.</h2>
               <SiteContactForm.Container />
             </section>
