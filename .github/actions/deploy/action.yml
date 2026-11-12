@@ -173,4 +173,3 @@ runs:
       shell: bash
       run: |
           kubectl rollout restart deployment fvweb -n ${{ inputs.k8_namespace }}
-          kubectl rollout status deployment fvweb -n ${{ inputs.k8_namespace }} --timeout=2m
