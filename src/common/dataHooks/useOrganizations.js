@@ -72,7 +72,7 @@ export function useOrganizationUpdate() {
 
   const updateOrganization = async (formData) => {
     const properties = organizationForApi({ formData })
-    return api.organizations.update({
+    return api.organizations.partialUpdate({
       id: formData?.id,
       sitename,
       properties,

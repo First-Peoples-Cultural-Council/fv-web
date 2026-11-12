@@ -18,6 +18,12 @@ const songs = {
     apiBase()
       .put(`${SITES}/${sitename}/${ORGANIZATIONS}/${id}`, { json: properties })
       .json(),
+  partialUpdate: async ({ sitename, id, properties }) =>
+    apiBase()
+      .patch(`${SITES}/${sitename}/${ORGANIZATIONS}/${id}`, {
+        json: properties,
+      })
+      .json(),
   delete: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${ORGANIZATIONS}/${id}`).json(),
 }

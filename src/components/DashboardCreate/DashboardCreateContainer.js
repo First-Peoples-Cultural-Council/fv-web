@@ -10,6 +10,7 @@ import CategoryCrud from 'components/CategoryCrud'
 import DictionaryCrud from 'components/DictionaryCrud'
 import GalleryCrud from 'components/GalleryCrud'
 import ImportCreate from 'components/ImportCreate'
+import OrganizationCrud from 'components/OrganizationCrud'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
@@ -48,6 +49,14 @@ function DashboardCreateContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <ImportCreate.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="organization"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <OrganizationCrud.Container />
             </RequireAuth>
           }
         />

@@ -25,6 +25,7 @@ import HomeCrud from 'components/HomeCrud'
 import ImageCrud from 'components/ImageCrud'
 import ImportJobMedia from 'components/ImportJobMedia'
 import ImportJobReport from 'components/ImportJobReport'
+import OrganizationCrud from 'components/OrganizationCrud'
 import PageCrud from 'components/PageCrud'
 import SongCrud from 'components/SongCrud'
 import SpeakerCrud from 'components/SpeakerCrud'
@@ -34,6 +35,7 @@ import WidgetCrud from 'components/WidgetCrud'
 
 import DashboardAlphabet from 'components/DashboardAlphabet'
 import DashboardCategories from 'components/DashboardCategories'
+import DashboardContact from 'components/DashboardContact'
 import DashboardEntries from 'components/DashboardEntries'
 import DashboardGalleries from 'components/DashboardGalleries'
 import DashboardImmersiom from 'components/DashboardImmersion'
@@ -65,6 +67,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <DashboardCategories.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="contact"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <DashboardContact.Container />
             </RequireAuth>
           }
         />
@@ -203,6 +213,14 @@ function DashboardEditContainer() {
           element={
             <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
               <ImportJobReport.Container />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="organization"
+          element={
+            <RequireAuth siteMembership={LANGUAGE_ADMIN} withMessage>
+              <OrganizationCrud.Container />
             </RequireAuth>
           }
         />
