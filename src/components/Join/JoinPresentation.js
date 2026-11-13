@@ -17,25 +17,30 @@ function JoinPresentation({
   closeModalCallback = () => {},
 }) {
   // For Success/Error message
-  const messageHeader =
-    stage === 'success'
-      ? 'Request has been sent'
-      : `${errorTitle || 'Your request was unsuccessful.'}`
-  const message =
-    stage === 'success'
-      ? `The language administrator for ${site?.title} will review your request.`
-      : `${errorMessage || 'Please try again at another time.'}`
+  const ICON_CLASS = 'fill-current h-12 w-12 md:h-20 md:w-20 mx-auto'
 
-  const icon =
-    stage === 'success'
-      ? getIcon(
-          'CheckCircleSolid',
-          'fill-current text-jade-500 h-12 w-12 md:h-20 md:w-20 mx-auto',
-        )
-      : getIcon(
-          'TimesCircleSolid',
-          'fill-current text-scarlet-800 h-12 w-12 md:h-20 md:w-20 mx-auto',
-        )
+  const stageContent = {
+    success: {
+      icon: getIcon('CheckCircleSolid', `${ICON_CLASS} text-jade-500`),
+      message: `The language administrator for ${site?.title} will review your request.`,
+      messageHeader: 'Request has been sent',
+    },
+    existing: {
+      icon: getIcon('InfoCircleSolid', `${ICON_CLASS} text-blumine-600`),
+      message:
+        'You have already submitted a request to join this language site.',
+      messageHeader: 'Existing request pending',
+    },
+    error: {
+      icon: getIcon('TimesCircleSolid', `${ICON_CLASS} text-scarlet-800`),
+      message: errorMessage || 'There was an error processing your request.',
+      messageHeader: errorTitle || 'Your request was unsuccessful',
+    },
+  }
+
+  const messageHeader = stageContent[stage]?.messageHeader
+  const message = stageContent[stage]?.message
+  const icon = stageContent[stage]?.icon
 
   const navigate = useNavigate()
 
@@ -54,7 +59,7 @@ function JoinPresentation({
         {stage === 'form' && (
           <JoinForm site={site} submitHandler={submitHandler} />
         )}
-        {(stage === 'success' || stage === 'error') && (
+        {['success', 'existing', 'error'].includes(stage) && (
           <div
             data-testid="JoinPresentation-message"
             className="px-6 py-14 lg:px-8"
