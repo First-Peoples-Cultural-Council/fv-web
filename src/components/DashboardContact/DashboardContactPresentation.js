@@ -5,111 +5,31 @@ import { Link } from 'react-router'
 // FPCC
 import PaginationControls from 'components/PaginationControls'
 import getIcon from 'common/utils/getIcon'
-import WysiwygBlock from 'components/WysiwygBlock'
+import OrganizationCard from 'components/DashboardContact/OrganizationCard'
 
 function DashboardContactPresentation({ queryResponse, site, page, setPage }) {
+  const isDefaultOrganization =
+    queryResponse?.data?.results?.length === 1 &&
+    queryResponse?.data?.results?.[0]?.name?.startsWith(
+      'FPCC Language Technology Program',
+    )
+
   return (
     <div id="DashboardContactPresentation">
       <div data-testid="organization-list" className="space-y-6">
-        {queryResponse?.data?.results?.map((org) => (
-          <section key={org?.id} className="bg-white rounded-lg p-4">
-            <h2 className="text-blumine-800 text-lg p-6">
-              Organization Contact Details
-            </h2>
-
-            <dl className="columns-2 text-sm space-y-6 gap-8 p-6">
-              <div>
-                <dt className="font-bold">Name</dt>
-                <dd className="">{org?.name || ''}</dd>
-              </div>
-              <div>
-                <dt className="font-bold">Message</dt>
-                <dd className="">{org?.contactMessage || ''}</dd>
-              </div>
-
-              {org?.address && (
-                <div>
-                  <dt className="font-bold">Address</dt>
-                  <dd className="">
-                    <WysiwygBlock htmlString={org?.address || ''} />
-                  </dd>
-                </div>
-              )}
-
-              {org?.phoneNumbers?.length > 0 && (
-                <div>
-                  <dt className="font-bold">Phone numbers</dt>
-                  <dd>
-                    <ul>
-                      {org?.phoneNumbers?.map((obj) => (
-                        <li
-                          key={obj?.id}
-                          className="flex items-center justify-start space-x-2 py-2"
-                        >
-                          {obj?.label && <span>{obj?.label}:</span>}
-                          <span>{obj?.value}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-              )}
-              {org?.emails?.length > 0 && (
-                <div>
-                  <dt className="font-bold">Email</dt>
-                  <dd>
-                    <ul>
-                      {org?.emails?.map((obj) => (
-                        <li
-                          key={obj?.id}
-                          className="flex items-center justify-start space-x-2 py-2"
-                        >
-                          {obj?.label && <span>{obj?.label}:</span>}
-                          <span>{obj?.value}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-              )}
-              {org?.urlList?.length > 0 && (
-                <div>
-                  <dt className="font-bold">Links</dt>
-                  <dd>
-                    <ul>
-                      {org?.urlList?.map((obj) => (
-                        <li
-                          key={obj?.id}
-                          className="flex items-center justify-start space-x-2 py-2"
-                        >
-                          {obj?.label && <span>{obj?.label}:</span>}
-                          <a
-                            href={obj?.value}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-url truncate"
-                          >
-                            {obj?.value}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-              )}
-            </dl>
-            <div className="flex items-center justify-end p-6">
-              <Link
-                data-testid={`edit-org-${org?.name}`}
-                to={`/${site?.sitename}/dashboard/edit/organization?id=${org?.id}`}
-                className="btn-secondary btn-md"
-              >
-                {getIcon('Pencil')}
-                <span>Edit</span>
-              </Link>
-            </div>
+        {isDefaultOrganization ? (
+          <section
+            data-testid="default-message"
+            className="bg-white rounded-lg p-4 text-center"
+          >
+            No contact info has been added to your site. Add your
+            organization&apos;s information below.
           </section>
-        ))}
+        ) : (
+          queryResponse?.data?.results?.map((org) => (
+            <OrganizationCard key={org?.id} org={org} />
+          ))
+        )}
       </div>
 
       <PaginationControls
@@ -119,6 +39,16 @@ function DashboardContactPresentation({ queryResponse, site, page, setPage }) {
         page={page}
         setPage={setPage}
       />
+      <div className="flex w-full items-center justify-center p-6">
+        <Link
+          data-testid="add-organization-btn"
+          to={`/${site?.sitename}/dashboard/create/organization`}
+          className="btn-primary btn-md"
+        >
+          {getIcon('Add')}
+          <span>Add organization</span>
+        </Link>
+      </div>
 
       <div className="text-charcoal-500 p-4 w-full text-center">
         If you want to remove or change the email addresses that recieve

@@ -20,18 +20,6 @@ function DashboardContactData() {
     icon: 'Mail',
   }
 
-  const tileContent = [
-    {
-      id: 'organization-create',
-      icon: 'Create',
-      name: 'Add an organization',
-      description:
-        'Add a new organization with contact info to your Contact page',
-      href: `/${site?.sitename}/dashboard/create/organization`,
-      iconColor: 'blumine-800',
-    },
-  ]
-
   return {
     deleteOrganization,
     headerContent,
@@ -39,7 +27,6 @@ function DashboardContactData() {
     queryResponse,
     page,
     setPage,
-    tileContent,
   }
 }
 

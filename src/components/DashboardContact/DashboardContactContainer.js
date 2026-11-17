@@ -7,15 +7,11 @@ import LoadOrError from 'components/LoadOrError'
 import DashboardLanding from 'components/DashboardLanding'
 
 function DashboardContactContainer() {
-  const { queryResponse, headerContent, site, page, setPage, tileContent } =
+  const { queryResponse, headerContent, site, page, setPage } =
     DashboardContactData()
   return (
     <div id="DashboardContactContainer">
-      <DashboardLanding.Presentation
-        headerContent={headerContent}
-        tileContent={tileContent}
-        site={site}
-      >
+      <DashboardLanding.Presentation headerContent={headerContent} site={site}>
         <LoadOrError queryResponse={queryResponse}>
           <DashboardContactPresentation
             queryResponse={queryResponse}
