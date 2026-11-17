@@ -27,7 +27,7 @@ function DashboardContactPresentation({
           <h3 className="text-lg text-blumine-800">Contact form email list</h3>
 
           <div className="text-charcoal-500">
-            Here is a list of the email addresses that recieve messages sent
+            Here is a list of the email addresses that recieve any messages sent
             from the form found at the bottom of your{' '}
             <Link
               to={`/${site?.sitename}/contact`}
@@ -65,7 +65,7 @@ function DashboardContactPresentation({
               Contact page
             </Link>
             . You can add information for your organization, or multiple
-            organizations, involved in your site.
+            organizations, involved in the governance of your site.
           </div>
         </div>
 
