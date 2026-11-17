@@ -12,14 +12,12 @@ import { isUUID } from 'common/utils/stringHelpers'
 import { getWidgetLabel, getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import {
-  WIDGET_CONTACT,
   WIDGET_WOTD,
   SETTING_WYSIWYG,
   SETTING_AUDIO,
   SETTING_IMAGE,
 } from 'common/constants'
 import MediaThumbnail from 'components/MediaThumbnail'
-import { useContactUs } from 'common/dataHooks/useContactUs'
 
 function WidgetAreaEditPresentationSettingsPane({
   currentWidget,
@@ -33,8 +31,6 @@ function WidgetAreaEditPresentationSettingsPane({
     handleRemoveWidget()
     setRemoveModalOpen(false)
   }
-
-  const { data } = useContactUs()
 
   const settingLabelStyling =
     'mb-1 text-sm font-bold text-blumine-600 capitalize'
@@ -163,22 +159,6 @@ function WidgetAreaEditPresentationSettingsPane({
                 <div className={`col-span-3 ${settingDetailStyling}`}>
                   Your site must be public and contain published words in order
                   for the Word of the Day Widget to display on your homepage.
-                </div>
-              )}
-              {currentWidget?.type === WIDGET_CONTACT && (
-                <div className="col-span-3">
-                  <div className={settingLabelStyling}>
-                    <div>Email Addresses where messages will be sent</div>
-                    <div className="text-sm font-normal normal-case italic text-charcoal-500">
-                      Please contact support at hello@firstvoices.com to update
-                      this email list.
-                    </div>
-                  </div>
-                  <div className={settingDetailStyling}>
-                    {data?.emailListAsString?.length > 0
-                      ? data?.emailListAsString
-                      : 'No email addresses registered. Please contact FirstVoices Support to register an email address for this form.'}
-                  </div>
                 </div>
               )}
             </div>

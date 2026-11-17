@@ -9,7 +9,6 @@ import Form from 'components/Form'
 import { INFO, WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { useContactUs } from 'common/dataHooks/useContactUs'
 import AlertBanner from 'components/AlertBanner'
 
 function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
@@ -46,8 +45,6 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     validator,
     dataToEdit,
   })
-
-  const { data } = useContactUs()
 
   return (
     <div data-testid="WidgetFormContact">
@@ -101,26 +98,6 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
                 </div>
               }
             />
-          </div>
-
-          <div className="hidden col-span-12 text-charcoal-500">
-            <div data-testid="contact-email-list">
-              <Form.FieldLabel
-                nameId="contact-email-list"
-                text="Contact email list"
-                helpText="Messages sent using the form on your Contact page will be
-              forwarded to the following addresses. To update the list please contact hello@firstvoices.com."
-              />
-              {data?.emailListAsString?.length > 0 ? (
-                <div className="w-full py-2 text-base font-bold">
-                  {data?.emailListAsString}
-                </div>
-              ) : (
-                <div className="w-full py-2 text-base font-bold text-scarlet-800">
-                  You don&apos;t have any contact emails listed. Please contact
-                </div>
-              )}
-            </div>
           </div>
         </>
       </WidgetFormBase>
