@@ -14,7 +14,7 @@ function OrganizationCard({ org }) {
   return (
     <section
       data-testid={`organization-card-${org?.name}`}
-      className="bg-white rounded-lg p-6 space-y-6"
+      className="space-y-8 pb-8"
     >
       <dl className="columns-2 space-y-6 gap-8">
         <div className="break-inside-avoid-column">
@@ -130,7 +130,7 @@ function OrganizationCard({ org }) {
         <Link
           data-testid={`edit-org-${org?.name}`}
           to={`/${org?.site?.slug}/dashboard/edit/organization?id=${org?.id}`}
-          className="btn-secondary btn-md"
+          className="btn-primary btn-md"
         >
           {getIcon('Pencil')}
           <span>Edit</span>

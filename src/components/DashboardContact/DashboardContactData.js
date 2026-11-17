@@ -6,10 +6,13 @@ import {
   useOrganizations,
   useOrganizationDelete,
 } from 'common/dataHooks/useOrganizations'
+import { useContactUs } from 'common/dataHooks/useContactUs'
 
 function DashboardContactData() {
   const { site } = useSiteStore()
   const [page, setPage] = useState(1)
+
+  const contactUsQueryResponse = useContactUs()
   const queryResponse = useOrganizations({ page })
   const { onSubmit: deleteOrganization } = useOrganizationDelete()
 
@@ -27,6 +30,7 @@ function DashboardContactData() {
     queryResponse,
     page,
     setPage,
+    emailList: contactUsQueryResponse?.data?.[0]?.emailList || [],
   }
 }
 

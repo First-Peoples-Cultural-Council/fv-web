@@ -7,7 +7,7 @@ import LoadOrError from 'components/LoadOrError'
 import DashboardLanding from 'components/DashboardLanding'
 
 function DashboardContactContainer() {
-  const { queryResponse, headerContent, site, page, setPage } =
+  const { queryResponse, emailList, headerContent, site, page, setPage } =
     DashboardContactData()
   return (
     <div id="DashboardContactContainer">
@@ -18,6 +18,7 @@ function DashboardContactContainer() {
             site={site}
             page={page}
             setPage={setPage}
+            emailList={emailList}
           />
         </LoadOrError>
       </DashboardLanding.Presentation>
