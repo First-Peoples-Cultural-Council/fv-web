@@ -18,17 +18,19 @@ function SiteContactContainer() {
       <main id="SiteContactPresentation" className="py-2 md:py-4 lg:py-8">
         <SiteDocHead titleArray={['Contact']} />
         <div className="max-w-7xl mx-auto px-8">
-          <div className="mb-6 lg:mb-10 space-y-4">
+          <div className="mb-2 lg:mb-6">
             <SectionTitle.Presentation title="Contact" />
             <div className="sr-only">for {site?.title}</div>
           </div>
-          <div className="mx-auto max-w-4xl space-y-6 md:space-y-12 pb-6 lg:pb-12">
-            {queryResponse?.data?.results?.map((organization) => (
-              <SiteContactOrganization
-                key={organization?.id}
-                organization={organization}
-              />
-            ))}
+          <div className="mx-auto max-w-4xl md:space-y-2 pb-6 lg:pb-12">
+            <div className="divide-y divide-charcoal-300 space-y-8">
+              {queryResponse?.data?.results?.map((organization) => (
+                <SiteContactOrganization
+                  key={organization?.id}
+                  organization={organization}
+                />
+              ))}
+            </div>
 
             <section className="space-y-6">
               <h2 className="text-3xl text-blumine-800">Send us a message.</h2>
