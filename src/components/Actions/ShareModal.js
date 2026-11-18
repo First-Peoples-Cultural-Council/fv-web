@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
+import { getShareContent } from 'common/utils/shareHelpers'
 import getIcon from 'common/utils/getIcon'
 import { makePlural } from 'common/utils/urlHelpers'
 import ShareLinks from 'components/ShareLinks'
@@ -11,6 +12,8 @@ import { MEMBERS, TEAM } from 'common/constants'
 function ShareModal({ entry, isOpen = false, onClose }) {
   const sitename = entry?.sitename || entry?.site?.slug
   const siteVisibility = entry?.siteVisibility || entry?.site?.visibility
+  const url = `${globalThis.location.origin.toString()}/${sitename}/${makePlural(entry?.type)}/${entry?.id}`
+  const { title: emailSubject, text: emailText } = getShareContent({ entry })
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={onClose}>
       <div
@@ -30,11 +33,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
             </p>
             <a
               className="btn-tertiary btn-lg-icon"
-              href={`mailto:?subject=${
-                entry?.title
-              }&body=${globalThis.location.origin.toString()}/${sitename}/${makePlural(
-                entry?.type,
-              )}/${entry?.id}`}
+              href={`mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(`${emailText}\n${url}`)}`}
             >
               {getIcon('Mail')}
             </a>
@@ -45,10 +44,10 @@ function ShareModal({ entry, isOpen = false, onClose }) {
               Share <strong className="mx-2">{entry?.title}</strong> on:
             </h3>
             <ShareLinks.Presentation
-              url={`${globalThis.location.origin.toString()}/${sitename}/${makePlural(
-                entry?.type,
-              )}/${entry?.id}`}
+              url={url}
               title={entry?.title}
+              emailSubject={emailSubject}
+              emailText={emailText}
             />
           </>
         )}
