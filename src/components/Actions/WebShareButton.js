@@ -16,13 +16,15 @@ function WebShareButton({
     // If user's browser has Web share use that - most modern mobile device browsers
     if (navigator?.share) {
       const { title, text } = getShareContent({ entry })
-      navigator.share({
-        title,
-        text,
-        url: `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
-          entry?.type,
-        )}/${entry?.id}`,
-      })
+      navigator
+        .share({
+          title,
+          text,
+          url: `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
+            entry?.type,
+          )}/${entry?.id}`,
+        })
+        .catch(() => {})
     } else fallBackOnClick()
   }
 
