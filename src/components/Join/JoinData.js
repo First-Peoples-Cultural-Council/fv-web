@@ -23,11 +23,7 @@ function JoinData({ site }) {
       isMyJoinRequestsSuccess &&
       myJoinRequests?.results?.length > 0
     ) {
-      setErrorTitle('Existing Request Pending')
-      setErrorMessage(
-        'You have already submitted a request to join this Language Site.',
-      )
-      setStage('error')
+      setStage('existing')
     }
   }, [isMyJoinRequestsSuccess, myJoinRequests])
 
