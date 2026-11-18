@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router'
 
 // FPCC
 import WysiwygBlock from 'components/WysiwygBlock'
 import getIcon from 'common/utils/getIcon'
 import Modal from 'components/Modal'
 import SiteContactOrganization from 'components/SiteContactOrganization'
-import { Link } from 'react-router'
 
 function OrganizationCard({ org }) {
   const [previewModalOpen, setPreviewModalOpen] = useState(false)

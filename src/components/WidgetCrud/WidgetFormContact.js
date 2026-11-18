@@ -83,18 +83,19 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
               alertType={INFO}
               message={
                 <div>
-                  If you had an address or links on your Contact widget they
-                  have been moved to your{' '}
+                  If you had an address or links on your contact widget they
+                  have been moved to your new{' '}
+                  <Link to={`/${sitename}/contact`} className="inline-url">
+                    Contact page
+                  </Link>
+                  . You can edit the contact information{' '}
                   <Link
-                    to={`/${sitename}/contact`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    to={`/${sitename}/dashboard/edit/contact`}
                     className="inline-url"
                   >
-                    new Contact page
+                    here
                   </Link>
-                  . Please contact support at hello@firstvoices.com if you want
-                  to update the information on your contact page.
+                  .
                 </div>
               }
             />

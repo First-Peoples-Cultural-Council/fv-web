@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 
 // FPCC
+import AlertBanner from 'components/AlertBanner'
 import Modal from 'components/Modal'
 import Widget from 'components/Widget'
 import WysiwygBlock from 'components/WysiwygBlock'
@@ -12,7 +13,8 @@ import { isUUID } from 'common/utils/stringHelpers'
 import { getWidgetLabel, getWidgetTypeLabel } from 'common/utils/widgetHelpers'
 import getWidgetIcon from 'common/utils/getWidgetIcon'
 import {
-  WIDGET_WOTD,
+  INFO,
+  WIDGET_CONTACT,
   SETTING_WYSIWYG,
   SETTING_AUDIO,
   SETTING_IMAGE,
@@ -48,6 +50,52 @@ function WidgetAreaEditPresentationSettingsPane({
             <em>This Widget has no customizable settings.</em>
           </div>
         </div>
+      )
+    }
+
+    // Adding custom display for COntact widget while we transition to the new Contact page.
+    // This prevents the redundant properties (urls, address etc) from displaying in the settings pane and adds a notice for users.
+    if (currentWidget?.type === WIDGET_CONTACT) {
+      return (
+        <>
+          <div className="col-span-3">
+            <dt className={settingLabelStyling}>Title</dt>
+            <dd className={settingDetailStyling}>
+              {currentWidget?.settings?.title}
+            </dd>
+          </div>
+          <div className="col-span-3">
+            <dt className={settingLabelStyling}>Text</dt>
+            <dd className={settingDetailStyling}>
+              {currentWidget?.settings?.text}
+            </dd>
+          </div>
+          <div className="col-span-3">
+            <AlertBanner.Presentation
+              alertType={INFO}
+              message={
+                <div>
+                  If you had an address or links on your contact widget they
+                  have been moved to your new{' '}
+                  <Link
+                    to={`/${site?.sitename}/contact`}
+                    className="inline-url"
+                  >
+                    Contact page
+                  </Link>
+                  . You can edit the contact information{' '}
+                  <Link
+                    to={`/${site?.sitename}/dashboard/edit/contact`}
+                    className="inline-url"
+                  >
+                    here
+                  </Link>
+                  .
+                </div>
+              }
+            />
+          </div>
+        </>
       )
     }
 
@@ -155,12 +203,6 @@ function WidgetAreaEditPresentationSettingsPane({
           <div className="mt-6">
             <div className="grid gap-x-4 gap-y-4 grid-cols-3">
               {getSettings()}
-              {currentWidget?.type === WIDGET_WOTD && (
-                <div className={`col-span-3 ${settingDetailStyling}`}>
-                  Your site must be public and contain published words in order
-                  for the Word of the Day Widget to display on your homepage.
-                </div>
-              )}
             </div>
           </div>
         </div>
