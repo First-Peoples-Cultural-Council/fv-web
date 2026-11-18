@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 
 // FPCC
 import WysiwygBlock from 'components/WysiwygBlock'
+import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
 
 function SiteContactOrganization({ organization }) {
   return (
     <section id="SiteContactOrganization">
-      <div className="space-y-8">
+      <div className="space-y-8 pb-8">
         <div className="text-blumine-800 text-3xl">
           {organization?.name || ''}
         </div>
@@ -17,16 +18,13 @@ function SiteContactOrganization({ organization }) {
         <div className="space-y-6">
           {organization?.address && (
             <div>
-              <h3 className="sr-only">Address</h3>
-              <div className="text-blumine-800 font-bold -mb-4">
-                {organization?.name || ''}
-              </div>
+              <DictionaryDetailLabel label="Address" />
               <WysiwygBlock htmlString={organization?.address || ''} />
             </div>
           )}
           {organization?.phoneNumbers?.length > 0 && (
             <div>
-              <h3 className="sr-only">Phone</h3>
+              <DictionaryDetailLabel label="Phone" />
               <ul>
                 {organization?.phoneNumbers?.map((obj) => (
                   <ListItem
@@ -40,7 +38,7 @@ function SiteContactOrganization({ organization }) {
           )}
           {organization?.emails?.length > 0 && (
             <div>
-              <h3 className="sr-only">Email</h3>
+              <DictionaryDetailLabel label="Email" />
               <ul>
                 {organization?.emails?.map((obj) => (
                   <ListItem
@@ -54,7 +52,7 @@ function SiteContactOrganization({ organization }) {
           )}
           {organization?.urlList?.length > 0 && (
             <div>
-              <h3 className="sr-only">Links</h3>
+              <DictionaryDetailLabel label="Links" />
               <ul>
                 {organization?.urlList?.map((obj) => (
                   <ListItem key={obj?.id} item={obj} href={obj?.value} />
@@ -70,7 +68,7 @@ function SiteContactOrganization({ organization }) {
 
 function ListItem({ item, href }) {
   return (
-    <li className="flex items-center justify-start space-x-2 py-2">
+    <li className="flex items-center justify-start space-x-2 pb-4">
       {item?.label && <span>{item?.label}:</span>}
       <a
         href={href}
