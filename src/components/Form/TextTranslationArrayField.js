@@ -51,7 +51,7 @@ function TextTranslationArrayField({
                   </div>
                   <div className="col-span-1">
                     <label
-                      htmlFor={`${nameId}.${index}.text`}
+                      htmlFor={`${nameId}.${index}.translation`}
                       className="block text-sm text-charcoal-500 mb-2"
                     >
                       {label.slice(0, -1)} Translation

@@ -12,8 +12,8 @@ function ValidationError({ errors, nameId }) {
       className="text-scarlet-800 text-left text-base mt-2"
     >
       {Array.isArray(errors?.[nameId]) ? (
-        errors?.[nameId]?.map(({ message, text }, index) => (
-          <div key={index}>{message || text?.message}</div>
+        errors?.[nameId]?.map((error) => (
+          <div key={error?.ref?.name}>{error?.message}</div>
         ))
       ) : (
         <ErrorMessage errors={errors} name={nameId} />
