@@ -17,6 +17,7 @@ function TextArrayField({
   register,
   control,
   formState,
+  placeholder = '',
 }) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -45,6 +46,7 @@ function TextArrayField({
                   className={`input-text ${formState?.errors?.[nameId]?.[index] && 'input-text-error'}`}
                   {...register(`${nameId}.${index}.text`)}
                   onKeyDown={handleKeyDown}
+                  placeholder={placeholder}
                 />
 
                 <Tooltip message={`Delete ${updatedLabel}`}>
