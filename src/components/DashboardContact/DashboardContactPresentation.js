@@ -85,14 +85,21 @@ function DashboardContactPresentation({
           setPage={setPage}
         />
         <div className="flex w-full items-center justify-center">
-          <Link
-            data-testid="add-organization-btn"
-            to={`/${site?.sitename}/dashboard/create/organization`}
-            className="btn-primary btn-md"
-          >
-            {getIcon('Add')}
-            <span>Add organization</span>
-          </Link>
+          {queryResponse?.data?.results?.length >= 8 ? (
+            <div className="p-6 text-charcoal-500 text-center">
+              Your site has reached the maximum number of organizations. If you
+              require more to be added please contact hello@firstvoices.com
+            </div>
+          ) : (
+            <Link
+              data-testid="add-organization-btn"
+              to={`/${site?.sitename}/dashboard/create/organization`}
+              className="btn-primary btn-md"
+            >
+              {getIcon('Add')}
+              <span>Add organization</span>
+            </Link>
+          )}
         </div>
       </div>
     </div>
