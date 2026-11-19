@@ -14,6 +14,8 @@ function ShareModal({ entry, isOpen = false, onClose }) {
   const siteVisibility = entry?.siteVisibility || entry?.site?.visibility
   const url = `${globalThis.location.origin.toString()}/${sitename}/${makePlural(entry?.type)}/${entry?.id}`
   const { title: emailSubject, text: emailText } = getShareContent({ entry })
+  const emailBody = `${emailText}\n${url}`
+
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={onClose}>
       <div
@@ -33,7 +35,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
             </p>
             <a
               className="btn-tertiary btn-lg-icon"
-              href={`mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(`${emailText}\n${url}`)}`}
+              href={`mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`}
             >
               {getIcon('Mail')}
             </a>
@@ -47,7 +49,7 @@ function ShareModal({ entry, isOpen = false, onClose }) {
               url={url}
               title={entry?.title}
               emailSubject={emailSubject}
-              emailText={emailText}
+              emailBody={emailBody}
             />
           </>
         )}

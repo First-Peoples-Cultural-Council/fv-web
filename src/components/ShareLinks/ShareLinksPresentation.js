@@ -11,7 +11,7 @@ import copyToClipboard from 'common/utils/copyToClipboard'
 
 const QrcodeCanvas = lazy(() => import('components/Actions/QrcodeCanvas'))
 
-function ShareLinksPresentation({ url, title, emailSubject, emailText }) {
+function ShareLinksPresentation({ url, title, emailSubject, emailBody }) {
   const { setNotification } = useNotification()
   let close = useClose()
 
@@ -84,7 +84,7 @@ function ShareLinksPresentation({ url, title, emailSubject, emailText }) {
         <li>
           <a
             className="btn-lg-icon btn-tertiary"
-            href={`mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(`${emailText}\n${url}`)}`}
+            href={`mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`}
           >
             {getIcon('Mail')}
           </a>
@@ -154,7 +154,7 @@ ShareLinksPresentation.propTypes = {
   url: string,
   title: string,
   emailSubject: string,
-  emailText: string,
+  emailBody: string,
 }
 
 export default ShareLinksPresentation
