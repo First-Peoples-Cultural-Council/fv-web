@@ -15,7 +15,7 @@ function DashboardContactPresentation({
   setPage,
 }) {
   const isDefaultOrganization =
-    queryResponse?.data?.results?.length === 1 &&
+    queryResponse?.data?.results?.[0]?.defaultOrganization ||
     queryResponse?.data?.results?.[0]?.name?.startsWith(
       'FPCC Language Technology Program',
     )
