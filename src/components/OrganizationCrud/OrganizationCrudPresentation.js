@@ -14,9 +14,6 @@ function OrganizationCrudPresentation({
   submitHandler,
   deleteHandler,
 }) {
-  const phoneRegex =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-
   const validator = yup.object().shape({
     name: definitions.title().required('A name is required'),
     contactMessage: definitions
@@ -38,8 +35,17 @@ function OrganizationCrudPresentation({
         label: definitions.paragraph({ charCount: 200 }),
         value: yup
           .string()
-          .matches(phoneRegex, 'Phone number is not valid')
-          .required('A number is required'),
+          .test(
+            'valid-phone-number',
+            'Enter a valid international number (e.g., +16045556789)', // 2. Error message if it fails
+            (value) => {
+              if (!value) return true // Let .required() handle empty values
+              const cleaned = value.replace(/[\s().-]/g, '')
+              const phoneRegex = /^\+?[1-9]\d{6,14}$/
+              return phoneRegex.test(cleaned)
+            },
+          )
+          .required('Phone number is required'),
       }),
     ),
     urlList: yup.array().of(
