@@ -42,7 +42,7 @@ function TextArrayField({
               <div className="flex items-center justify-between space-x-2">
                 <input
                   type="text"
-                  className={`input-text ${formState?.errors?.[nameId] && 'input-text-error'}`}
+                  className={`input-text ${formState?.errors?.[nameId]?.[index] && 'input-text-error'}`}
                   {...register(`${nameId}.${index}.text`)}
                   onKeyDown={handleKeyDown}
                 />
