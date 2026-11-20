@@ -32,7 +32,7 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
     control,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -45,7 +45,7 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -61,7 +61,7 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="image"
               helpText="Suggestion: Min size of image 200px - max image size 2000px"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12">
@@ -69,7 +69,7 @@ function WidgetFormImage({ cancelHandler, dataToEdit, submitHandler }) {
               label="Enter your caption for the image here (max: 250 characters)"
               nameId="caption"
               control={control}
-              errors={errors}
+              formState={formState}
               register={register}
             />
           </div>

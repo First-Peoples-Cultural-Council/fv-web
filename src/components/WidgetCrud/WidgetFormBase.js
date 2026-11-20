@@ -9,7 +9,7 @@ function WidgetFormBase({
   cancelHandler,
   control,
   isCreateMode,
-  errors,
+  formState,
   register,
   reset,
   resetField,
@@ -18,7 +18,7 @@ function WidgetFormBase({
 }) {
   return (
     <form id="WidgetForm" onReset={reset}>
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12 gap-x-10 gap-y-8">
         <div className="hidden">
           <input
             id="type"
@@ -28,13 +28,13 @@ function WidgetFormBase({
             {...register('type')}
           />
         </div>
-        <div className="col-span-12 sm:col-span-6">
+        <div className="col-span-12">
           <Form.TextField
             label={isCreateMode ? 'A nickname for your widget' : 'Nickname'}
             nameId="nickname"
             register={register}
             helpText="The nickname is to help you and your team to identify your widgets when editing. It will not appear on your site."
-            errors={errors}
+            formState={formState}
           />
         </div>
         {children}
@@ -43,7 +43,7 @@ function WidgetFormBase({
           <Form.Visibility
             nameId="visibility"
             control={control}
-            errors={errors}
+            errors={formState?.errors}
             resetField={resetField}
             label="Who can see this widget?"
           />
@@ -72,7 +72,7 @@ WidgetFormBase.propTypes = {
   type: string,
   // passed through from react-hook-form
   control: object,
-  errors: object,
+  formState: object,
   register: func,
   reset: func,
   resetField: func,

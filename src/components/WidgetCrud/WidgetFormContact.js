@@ -1,24 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as yup from 'yup'
+import { Link, useParams } from 'react-router'
 
 // FPCC
 import useEditForm from 'common/hooks/useEditForm'
 import Form from 'components/Form'
-import { WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
+import { INFO, WIDGET_CONTACT, FORMAT_DEFAULT, PUBLIC } from 'common/constants'
 import { definitions } from 'common/utils/validationHelpers'
 import WidgetFormBase from 'components/WidgetCrud/WidgetFormBase'
-import { useContactUs } from 'common/dataHooks/useContactUs'
+import AlertBanner from 'components/AlertBanner'
 
 function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
+  const { sitename } = useParams()
+
   const validator = yup.object().shape({
     nickname: definitions.nickname(),
     type: yup.string().required().oneOf([WIDGET_CONTACT]),
     format: yup.string().required().oneOf([FORMAT_DEFAULT]),
     title: definitions.title().required('A title is required'),
     text: definitions.paragraph(),
-    textWithFormatting: definitions.wysiwyg({ charCount: 200 }),
-    urls: definitions.urlsArray(),
     visibility: definitions.visibility(),
   })
 
@@ -27,10 +28,8 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     type: WIDGET_CONTACT,
     format: FORMAT_DEFAULT,
     visibility: PUBLIC,
-    title: 'Contact Us',
+    title: 'Contact',
     text: 'Please contact us if you have any suggestions or feedback regarding our language content.',
-    textWithFormatting: '',
-    urls: [],
   }
 
   const {
@@ -39,7 +38,7 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     control,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -47,14 +46,12 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
     dataToEdit,
   })
 
-  const { data } = useContactUs()
-
   return (
     <div data-testid="WidgetFormContact">
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -64,69 +61,45 @@ function WidgetFormContact({ cancelHandler, dataToEdit, submitHandler }) {
         type={WIDGET_CONTACT}
       >
         <>
-          <div className="col-span-12 sm:col-span-6">
+          <div className="col-span-12">
             <Form.TextField
               label="Title"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
-          <div className="col-span-12 sm:col-span-6">
+          <div className="col-span-12">
             <Form.TextAreaField
               label="Text"
               nameId="text"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
-          <div className="col-span-12 sm:col-span-6">
-            <Form.WysiwygField
-              label="Address"
-              nameId="textWithFormatting"
-              control={control}
-              errors={errors}
-            />
-          </div>
+
           <div className="col-span-12">
-            <Form.TextArrayField
-              label="Social media links"
-              nameId="urls"
-              helpText="Enter a maximum of 5 links."
-              register={register}
-              control={control}
-              errors={errors}
-              maxItems={5}
+            <AlertBanner.Presentation
+              alertType={INFO}
+              message={
+                <div>
+                  If you had an address or links on your contact widget they
+                  have been moved to your new{' '}
+                  <Link to={`/${sitename}/contact`} className="inline-url">
+                    Contact page
+                  </Link>
+                  . You can edit the contact information{' '}
+                  <Link
+                    to={`/${sitename}/dashboard/edit/contact`}
+                    className="inline-url"
+                  >
+                    here
+                  </Link>
+                  .
+                </div>
+              }
             />
           </div>
-          {data?.emailListAsString?.length > 0 ? (
-            <div className="col-span-12 mt-2 text-sm text-charcoal-500">
-              <div className="block text-sm font-medium text-charcoal-900">
-                Contact list
-              </div>
-              <div className="mt-2 text-xs text-charcoal-500 italic">
-                (Please contact support at hello@firstvoices.com to update this
-                list)
-              </div>
-              <div className="mt-2 text-sm text-charcoal-500">
-                Contact us emails will be sent to the following addresses:
-              </div>
-              <div>{data?.emailListAsString}</div>
-            </div>
-          ) : (
-            <div className="col-span-12">
-              <div className="block text-sm font-medium text-charcoal-900">
-                Contact list
-              </div>
-              <div className="mt-2 text-xs text-charcoal-500 italic">
-                (Please contact support at hello@firstvoices.com to update this
-                list)
-              </div>
-              <div className="mt-2 text-sm text-charcoal-500">
-                Could not find any emails to send contact messages to.
-              </div>
-            </div>
-          )}
         </>
       </WidgetFormBase>
     </div>

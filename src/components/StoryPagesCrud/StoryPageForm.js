@@ -39,7 +39,7 @@ function StoryPageForm({
     ordering: nextPageOrderNumber,
   }
 
-  const { control, errors, handleSubmit, register, reset } = useEditForm({
+  const { control, formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -57,7 +57,10 @@ function StoryPageForm({
           />
         )}
       </div>
-      <form className="w-full grid grid-cols-12 gap-4" onReset={reset}>
+      <form
+        className="w-full grid grid-cols-12 gap-x-10 gap-y-8"
+        onReset={reset}
+      >
         <div className="hidden">
           <input id="id" name="id" type="hidden" {...register('id')} />
           <input
@@ -72,7 +75,7 @@ function StoryPageForm({
             label="Page text"
             nameId="text"
             control={control}
-            errors={errors}
+            formState={formState}
           />
         </div>
         <div className="col-span-6">
@@ -80,7 +83,7 @@ function StoryPageForm({
             label="Page translation"
             nameId="textTranslation"
             control={control}
-            errors={errors}
+            formState={formState}
           />
         </div>
         <div className="col-span-12">
@@ -88,7 +91,7 @@ function StoryPageForm({
             label="Audio"
             nameId="relatedAudio"
             control={control}
-            errors={errors}
+            errors={formState?.errors}
             maxItems={MAX_AUDIO_BASIC}
           />
         </div>
@@ -97,7 +100,7 @@ function StoryPageForm({
             label="Videos"
             nameId="relatedVideos"
             control={control}
-            errors={errors}
+            errors={formState?.errors}
             maxItems={1}
           />
         </div>
@@ -106,7 +109,7 @@ function StoryPageForm({
             label="Images"
             nameId="relatedImages"
             control={control}
-            errors={errors}
+            errors={formState?.errors}
             maxItems={1}
           />
         </div>
@@ -116,7 +119,7 @@ function StoryPageForm({
             nameId="notes"
             register={register}
             control={control}
-            errors={errors}
+            formState={formState}
             maxItems={1}
           />
         </div>

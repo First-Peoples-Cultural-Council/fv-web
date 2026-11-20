@@ -134,6 +134,15 @@ function DashboardEditData({ urlPrefix = '' }) {
       iconColor: 'blumine-900',
       auth: LANGUAGE_ADMIN,
     },
+    CONTACTPAGE: {
+      id: 'contact-edit',
+      icon: 'Mail',
+      name: 'Edit contact page',
+      description: 'Edit the main homepage for your site',
+      href: addUrlPrefix('contact'),
+      iconColor: 'blumine-900',
+      auth: LANGUAGE_ADMIN,
+    },
     ALPHABET: {
       id: 'alphabet-edit',
       icon: 'Alphabet',
@@ -174,6 +183,7 @@ function DashboardEditData({ urlPrefix = '' }) {
     editTiles.WIDGETS,
     editTiles.PAGES,
     editTiles.HOMEPAGE,
+    editTiles.CONTACTPAGE,
     editTiles.ALPHABET,
     editTiles.IMMERSION,
     editTiles.GALLERY,

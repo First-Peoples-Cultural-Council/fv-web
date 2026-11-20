@@ -28,7 +28,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
 
   const {
     control,
-    errors,
+    formState,
     handleSubmit,
     isCreateMode,
     register,
@@ -70,13 +70,13 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
         )}
       </div>
       <form onReset={reset}>
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-x-10 gap-y-8">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
               label="Title"
               nameId="title"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -84,7 +84,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
               label="Subtitle"
               nameId="subtitle"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 sm:col-span-6">
@@ -98,7 +98,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
               }
               register={register}
               disabled={!isCreateMode}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -106,7 +106,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
               label="Add banner background"
               nameId="banner"
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               helpText={
                 <div>
                   Choose between adding an image or a silent video. Recommended
@@ -128,7 +128,7 @@ function PageForm({ cancelHandler, dataToEdit, submitHandler, deleteHandler }) {
           <div className="col-span-12">
             <Form.Visibility
               control={control}
-              errors={errors}
+              errors={formState?.errors}
               label="Who can see this page?"
               resetField={resetField}
             />

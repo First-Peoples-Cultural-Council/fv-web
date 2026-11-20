@@ -8,14 +8,13 @@ import Link from '@tiptap/extension-link'
 // FPCC
 import FieldLabel from 'components/Form/FieldLabel'
 import getIcon from 'common/utils/getIcon'
-import HelpText from 'components/Form/HelpText'
 import ValidationError from 'components/Form/ValidationError'
 import { formatHTMLForTiptap } from 'common/utils/stringHelpers'
 
 function WysiwygField({
   label = '',
   nameId,
-  errors,
+  formState,
   helpText,
   control,
   toolbar = [],
@@ -150,8 +149,10 @@ function WysiwygField({
 
   return (
     <Fragment key={`${nameId}_WysiwygField`}>
-      <FieldLabel nameId={nameId} text={label} />
-      <div className="block w-full bg-white overflow-hidden shadow-xs sm:text-sm border border-charcoal-200 rounded-lg">
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
+      <div
+        className={`input-text ${formState?.errors?.[nameId] && 'input-text-error'}`}
+      >
         <div className="flex w-full border-b border-charcoal-100 text-xl text-charcoal-700">
           {/* Toolbar for inline styles */}
           {toolbar?.includes('INLINESTYLES') && (
@@ -239,8 +240,7 @@ function WysiwygField({
           <EditorContent editor={editor} />
         </div>
       </div>
-      <HelpText text={helpText} />
-      <ValidationError errors={errors} nameId={nameId} />
+      <ValidationError errors={formState?.errors} nameId={nameId} />
     </Fragment>
   )
 }
@@ -248,7 +248,7 @@ function WysiwygField({
 const { arrayOf, object, oneOf, string } = PropTypes
 WysiwygField.propTypes = {
   helpText: string,
-  errors: object,
+  formState: object,
   label: string,
   nameId: string.isRequired,
   control: object,

@@ -39,6 +39,17 @@ export const extractTextFromHtml = (htmlString) => {
   return span.textContent || span.innerText
 }
 
+export const htmlStringHasContent = (htmlString) => {
+  if (isStringWithLength(htmlString)) {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(htmlString, 'text/html')
+
+    // .textContent extracts only the visible text, removing all HTML tags
+    return doc.body.textContent.trim().length > 0
+  }
+  return false
+}
+
 export const removeStylingFromHtml = (htmlString) =>
   // Remove all styling except line breaks, whitespace, and links
   DOMPurify.sanitize(htmlString, {

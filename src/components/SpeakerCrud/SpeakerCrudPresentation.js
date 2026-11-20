@@ -26,11 +26,12 @@ function SpeakerCrudPresentation({
     bio: '',
   }
 
-  const { errors, handleSubmit, isCreateMode, register, reset } = useEditForm({
-    defaultValues,
-    validator,
-    dataToEdit,
-  })
+  const { formState, handleSubmit, isCreateMode, register, reset } =
+    useEditForm({
+      defaultValues,
+      validator,
+      dataToEdit,
+    })
 
   return (
     <div id="SpeakerCrudPresentation" className="max-w-5xl p-8">
@@ -49,13 +50,13 @@ function SpeakerCrudPresentation({
         </div>
       )}
       <form onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-6">
+        <div className="mt-6 grid grid-cols-12 gap-x-10 gap-y-8">
           <div className="col-span-12 sm:col-span-6">
             <Form.TextField
               label="Name"
               nameId="name"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -64,7 +65,7 @@ function SpeakerCrudPresentation({
               nameId="bio"
               helpText="Add a short bio for this speaker."
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">

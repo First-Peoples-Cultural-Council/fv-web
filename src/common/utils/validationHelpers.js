@@ -70,7 +70,7 @@ yup.addMethod(yup.object, 'uniqueProperties', function (propertyNames) {
   })
 })
 
-const relatedVideoLinksUrls = yup
+const relatedVideoLinksUrl = yup
   .string()
   .trim()
   .matches(
@@ -114,9 +114,9 @@ export const definitions = {
       ]),
   stringArray: () =>
     yup.array().of(yup.string().typeError('This field is text only.')),
-  title: ({ charCount = 90 } = {}) => stringWithMax(charCount).min(1),
+  title: ({ charCount = 90 } = {}) =>
+    stringWithMax(charCount).required('This field is required.'),
   paragraph: ({ charCount = 250 } = {}) => stringWithMax(charCount).nullable(),
-
   textArray: ({ charCount = 225 } = {}) =>
     yup
       .array()
@@ -196,11 +196,12 @@ export const definitions = {
         excludeEmptyString: true,
       })
       .required('A map url is required.'),
+  relatedVideoLinksUrl: () => relatedVideoLinksUrl,
   relatedVideoUrlsArray: () =>
     yup.array().of(
       yup
         .object({
-          text: relatedVideoLinksUrls.min(1, 'This field cannot be empty.'),
+          text: relatedVideoLinksUrl.min(1, 'This field cannot be empty.'),
         })
         .uniqueProperties([
           [

@@ -9,7 +9,6 @@ import { TYPE_WORD, TYPE_PHRASE } from 'common/constants'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function EntryArrayField({
@@ -36,7 +35,7 @@ function EntryArrayField({
 
   return (
     <Fragment key={`${nameId}_EntryArrayField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div className="space-y-2">
         <ul className="space-y-1">
           {fields.map((field, index) => (
@@ -58,7 +57,6 @@ function EntryArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      <HelpText text={helpText} />
       <Modal.Presentation isOpen={modalOpen} closeHandler={closeModal}>
         <SelectorEntries.Container
           formEntries={fields}
