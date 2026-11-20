@@ -1,7 +1,7 @@
 import { apiBase } from 'services/config'
 import { PAGE, PAGE_SIZE, SITES, ORGANIZATIONS } from 'common/constants'
 
-const songs = {
+const organizations = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${ORGANIZATIONS}/${id}`).json(),
   getAll: async ({ sitename, pageParam, perPage = 48 }) =>
@@ -28,4 +28,4 @@ const songs = {
     apiBase().delete(`${SITES}/${sitename}/${ORGANIZATIONS}/${id}`).json(),
 }
 
-export default songs
+export default organizations
