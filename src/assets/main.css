@@ -70,10 +70,10 @@
   @apply text-left;
 
   & h2 {
-    @apply border-b border-charcoal-500 font-bold my-6 py-5 text-2xl text-blumine-800;
+    @apply font-bold my-6 text-2xl text-charcoal-700;
   }
   & h3 {
-    @apply font-bold my-4 text-xl text-blumine-800;
+    @apply my-4 text-xl text-charcoal-700;
   }
   & ol {
     @apply list-decimal pl-6;
@@ -85,7 +85,7 @@
     @apply my-4;
   }
   & p {
-    @apply my-4;
+    @apply my-2;
   }
   & a {
     @apply inline-url;
