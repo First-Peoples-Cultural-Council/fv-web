@@ -29,12 +29,6 @@ function DashboardContainer() {
       <SiteDocHead titleArray={['Dashboard']} />
       <Routes>
         <Route
-          path="profile"
-          element={
-            <div className="px-6 text-2xl">User Profile placeholder</div>
-          }
-        />
-        <Route
           path="support"
           element={
             <div className="flex h-screen items-center justify-center">
