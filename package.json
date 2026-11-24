@@ -59,7 +59,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.6.0",
     "mochawesome": "^8.1.1",
     "prettier": "^3.9.10",
     "webpack-cli": "^7.2.3",
