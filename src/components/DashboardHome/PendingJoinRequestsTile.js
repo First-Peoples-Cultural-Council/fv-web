@@ -21,14 +21,16 @@ function PendingJoinRequestsTile() {
         <div>
           <div className="flex items-center space-x-4">
             <div
-              className={`flex shrink-none items-center justify-center rounded-md p-3 bg-blumine-500 size-16`}
+              className={`flex shrink-none items-center justify-center rounded-md p-3 bg-ochre-700 size-16`}
             >
               {getIcon(
-                'ExclamationTriangleSolid',
+                joinRequestsInfiniteQueryResponse?.data?.pages?.[0]?.count > 0
+                  ? 'ExclamationTriangleSolid'
+                  : 'Checkmark',
                 'size-8 fill-current text-white',
               )}
             </div>
-            <div className=" text-charcoal-500">Pending join requests</div>
+            <div className=" text-charcoal-500">New join requests</div>
             <div className="text-3xl font-bold text-charcoal-900">
               {Math.max(
                 joinRequestsInfiniteQueryResponse?.data?.pages?.[0]?.count,
