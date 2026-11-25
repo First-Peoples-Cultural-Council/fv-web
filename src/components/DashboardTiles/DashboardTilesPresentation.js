@@ -12,8 +12,8 @@ function DashboardTilesPresentation({ tileContent }) {
 
   const gridClass = () =>
     tileCount === 1
-      ? 'max-w-lg rounded-lg bg-charcoal-100 overflow-hidden shadow-sm'
-      : `divide-x divide-charcoal-100 grid grid-cols-${rowSize} gap-px rounded-lg bg-charcoal-100 overflow-hidden shadow-sm`
+      ? 'max-w-lg rounded-lg overflow-hidden shadow'
+      : `divide-x divide-charcoal-100 grid grid-cols-${rowSize} gap-px rounded-lg overflow-hidden shadow`
   return (
     <section id="DashboardTilesPresentation">
       <div className={gridClass()}>

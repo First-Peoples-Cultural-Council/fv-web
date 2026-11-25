@@ -1,16 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 // FPCC
 import { useJoinRequests } from 'common/dataHooks/useJoinRequests'
 import LoadOrError from 'components/LoadOrError'
 import getIcon from 'common/utils/getIcon'
+import { useSiteStore } from 'context/SiteContext'
 
 function PendingJoinRequestsTile() {
   const joinRequestsInfiniteQueryResponse = useJoinRequests()
+  const { site } = useSiteStore()
+
   return (
-    <div
+    <Link
       id="PendingJoinRequestsTile"
-      className="rounded-lg bg-white shadow py-4 px-6 space-y-6"
+      to={`/${site?.sitename}/dashboard/memberships/requests`}
+      className="rounded-lg bg-white shadow py-4 px-6 space-y-6 hover:bg-blumine-100"
     >
       <LoadOrError queryResponse={joinRequestsInfiniteQueryResponse}>
         <div>
@@ -33,7 +38,7 @@ function PendingJoinRequestsTile() {
           </div>
         </div>
       </LoadOrError>
-    </div>
+    </Link>
   )
 }
 
