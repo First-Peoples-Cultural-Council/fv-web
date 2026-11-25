@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 import { LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 import DashboardLocator from 'components/DashboardLocator'
-import DashboardJoinList from 'components/DashboardJoinList'
+import PendingJoinRequestsTile from 'components/DashboardHome/PendingJoinRequestsTile'
 import DashboardStats from 'components/DashboardStats'
 
 function DashboardHomePresentation({ site, tiles, currentUser }) {
@@ -102,11 +102,8 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
           </ul>
         </section>
         <RequireAuth siteMembership={LANGUAGE_ADMIN}>
-          <section className="rounded-lg overflow-hidden">
-            <h2 className="mb-3 mx-2 text-sm font-medium text-charcoal-500">
-              Requests to join {site?.title}
-            </h2>
-            <DashboardJoinList.Container />
+          <section className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <PendingJoinRequestsTile />
           </section>
         </RequireAuth>
       </div>
