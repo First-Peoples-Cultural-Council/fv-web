@@ -4,7 +4,7 @@ import { Route, Routes, useLocation } from 'react-router'
 // FPCC
 import DashboardLanding from 'components/DashboardLanding'
 import PageTabs from 'components/PageTabs'
-import DashboardJoinList from 'components/DashboardJoinList'
+import JoinRequests from 'components/JoinRequests'
 import Memberships from 'components/Memberships'
 import { useSiteStore } from 'context/SiteContext'
 
@@ -43,8 +43,8 @@ function DashboardMembershipContainer() {
         <div className="bg-white rounded-lg shadow-sm">
           <PageTabs tabs={tabs} />
           <Routes>
-            <Route path="" element={<Memberships.Container />} />
-            <Route path="requests" element={<DashboardJoinList.Container />} />
+            <Route path="current" element={<Memberships.Container />} />
+            <Route path="requests" element={<JoinRequests.Container />} />
           </Routes>
         </div>
       </DashboardLanding.Presentation>
