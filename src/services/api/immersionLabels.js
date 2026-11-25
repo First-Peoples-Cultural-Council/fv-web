@@ -1,11 +1,15 @@
 import { apiBase } from 'services/config'
-import { SITES, IMMERSION_LABELS } from 'common/constants'
+import { SITES, IMMERSION_LABELS, PAGE, PAGE_SIZE } from 'common/constants'
 
 const immersionLabels = {
   get: async ({ sitename, key }) =>
     apiBase().get(`${SITES}/${sitename}/${IMMERSION_LABELS}/${key}`).json(),
-  getAll: async ({ sitename }) =>
-    apiBase().get(`${SITES}/${sitename}/${IMMERSION_LABELS}/`).json(),
+  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
+    apiBase()
+      .get(
+        `${SITES}/${sitename}/${IMMERSION_LABELS}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
+      )
+      .json(),
   getMapped: async ({ sitename }) =>
     apiBase().get(`${SITES}/${sitename}/${IMMERSION_LABELS}/all/`).json(),
   create: async ({ sitename, properties }) =>
