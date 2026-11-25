@@ -109,7 +109,7 @@ const primaryNavigationItems = (currentSitename) => {
     },
     {
       name: 'Member Management',
-      href: `/${currentSitename}/dashboard/memberships`,
+      href: `/${currentSitename}/dashboard/memberships/requests`,
       icon: 'Members',
       auth: LANGUAGE_ADMIN,
     },

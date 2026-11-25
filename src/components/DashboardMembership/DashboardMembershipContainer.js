@@ -19,29 +19,29 @@ function DashboardMembershipContainer() {
 
   const { pathname } = useLocation()
 
+  const tabs = [
+    {
+      label: 'Join requests',
+      href: `/${site?.sitename}/dashboard/memberships/requests`,
+      current: pathname?.includes('/requests'),
+    },
+    {
+      label: 'Current members',
+      href: `/${site?.sitename}/dashboard/memberships/current`,
+      current: pathname?.includes('/current'),
+    },
+    {
+      label: 'Learn about member roles',
+      href: `/${site?.sitename}/dashboard/memberships/information`,
+      current: pathname?.includes('/information'),
+    },
+  ]
+
   return (
     <div id="DashboardMembershipContainer">
       <DashboardLanding.Presentation headerContent={headerContent} site={site}>
         <div className="bg-white rounded-lg shadow-sm">
-          <PageTabs
-            tabs={[
-              {
-                label: 'Current members',
-                href: `/${site?.sitename}/dashboard/memberships`,
-                current: pathname?.endsWith('/memberships'),
-              },
-              {
-                label: 'Join requests',
-                href: `/${site?.sitename}/dashboard/memberships/requests`,
-                current: pathname?.includes('/requests'),
-              },
-              {
-                label: 'Learn about member roles',
-                href: `/${site?.sitename}/dashboard/memberships/information`,
-                current: pathname?.includes('/information'),
-              },
-            ]}
-          />
+          <PageTabs tabs={tabs} />
           <Routes>
             <Route path="" element={<Memberships.Container />} />
             <Route path="requests" element={<DashboardJoinList.Container />} />
