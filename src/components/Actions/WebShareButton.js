@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getShareContent } from 'common/utils/shareHelpers'
 import getIcon from 'common/utils/getIcon'
-import { makePlural } from 'common/utils/urlHelpers'
 
 function WebShareButton({
   entry,
@@ -14,17 +13,9 @@ function WebShareButton({
 }) {
   const handleShareClick = () => {
     // If user's browser has Web share use that - most modern mobile device browsers
-    if (navigator?.share) {
+    if (navigator.share) {
       const { title, text } = getShareContent({ entry })
-      navigator
-        .share({
-          title,
-          text,
-          url: `${globalThis.location.origin.toString()}/${entry?.sitename || entry?.site?.slug}/${makePlural(
-            entry?.type,
-          )}/${entry?.id}`,
-        })
-        .catch(() => {})
+      navigator.share({ title, text }).catch(() => {})
     } else fallBackOnClick()
   }
 

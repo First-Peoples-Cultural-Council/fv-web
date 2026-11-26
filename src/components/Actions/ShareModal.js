@@ -4,18 +4,17 @@ import PropTypes from 'prop-types'
 // FPCC
 import { getShareContent } from 'common/utils/shareHelpers'
 import getIcon from 'common/utils/getIcon'
-import { makePlural } from 'common/utils/urlHelpers'
 import ShareLinks from 'components/ShareLinks'
 import Modal from 'components/Modal'
 import { MEMBERS, TEAM } from 'common/constants'
 
 function ShareModal({ entry, isOpen = false, onClose }) {
-  const sitename = entry?.sitename || entry?.site?.slug
   const siteVisibility = entry?.siteVisibility || entry?.site?.visibility
-  const url = `${globalThis.location.origin.toString()}/${sitename}/${makePlural(entry?.type)}/${entry?.id}`
-  const { title: emailSubject, text: emailText } = getShareContent({ entry })
-  const emailBody = `${emailText}\n${url}`
-
+  const {
+    title: emailSubject,
+    text: emailBody,
+    url,
+  } = getShareContent({ entry })
   return (
     <Modal.Presentation isOpen={isOpen} closeHandler={onClose}>
       <div
