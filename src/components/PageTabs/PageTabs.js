@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 // FPCC
 
 function PageTabs({ tabs = [] }) {
+  const tabWidth = tabs?.length ? `w-1/${tabs.length}` : 'w-1/3'
   return (
     <div className="w-full px-4 py-3 bg-white rounded-lg">
       <div className="">
@@ -20,7 +21,7 @@ function PageTabs({ tabs = [] }) {
                       ? 'border-blumine-700 text-blumine-800 font-bold'
                       : 'border-charcoal-100 text-charcoal-400 hover:border-charcoal-300 hover:text-charcoal-700'
                   }
-                  w-1/${tabs.length} border-b-4 px-1 py-3 text-center text-lg`}
+                  ${tabWidth} border-b-4 px-1 py-3 text-center text-lg`}
             >
               {tab.label}
             </Link>

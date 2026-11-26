@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // FPCC
 import JoinRequestsPresentation from 'components/JoinRequests/JoinRequestsPresentation'
@@ -6,12 +6,16 @@ import { useJoinRequests } from 'common/dataHooks/useJoinRequests'
 import LoadOrError from 'components/LoadOrError'
 
 function JoinRequestsContainer() {
-  const joinRequestsInfiniteQueryResponse = useJoinRequests()
+  const [page, setPage] = useState(1)
+  const queryResponse = useJoinRequests({ page })
+
   return (
     <div id="JoinRequestsContainer">
-      <LoadOrError queryResponse={joinRequestsInfiniteQueryResponse}>
+      <LoadOrError queryResponse={queryResponse}>
         <JoinRequestsPresentation
-          joinRequestsInfiniteQueryResponse={joinRequestsInfiniteQueryResponse}
+          queryResponse={queryResponse}
+          page={page}
+          setPage={setPage}
         />
       </LoadOrError>
     </div>
