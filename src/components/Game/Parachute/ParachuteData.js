@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { useCharacters } from 'common/dataHooks/useCharacters'
 import { useParachuteSearch } from 'common/dataHooks/useGamesSearch'
 
-const PUZZLES_PER_PAGE = 100
+const PUZZLES_PER_PAGE = 50
 // Prevents infinite fetches on sites that don't have sords that meet the requirements
 const MAX_FETCHES_WITHOUT_USABLE_PUZZLE = 10
 

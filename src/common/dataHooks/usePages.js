@@ -38,7 +38,7 @@ export function usePages() {
 
   const queryResponse = useQuery({
     queryKey: [PAGES, sitename],
-    queryFn: () => api.pages.getAll({ sitename }),
+    queryFn: ({ pageParam = 1 }) => api.pages.getAll({ sitename, pageParam }),
     select: (data) => ({
       ...data,
       results: data?.results?.map((page) => ({
