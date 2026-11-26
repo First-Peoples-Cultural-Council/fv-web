@@ -31,7 +31,8 @@ export function useGalleries() {
 
   const queryResponse = useQuery({
     queryKey: [GALLERIES, sitename],
-    queryFn: () => api.galleries.getAll({ sitename }),
+    queryFn: ({ pageParam = 1 }) =>
+      api.galleries.getAll({ sitename, pageParam }),
     enabled: !!sitename,
   })
 

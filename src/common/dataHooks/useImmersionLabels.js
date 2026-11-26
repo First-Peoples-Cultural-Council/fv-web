@@ -12,7 +12,8 @@ export function useImmersionLabels() {
 
   const queryResponse = useQuery({
     queryKey: [IMMERSION_LABELS, sitename],
-    queryFn: () => api.immersionLabels.getAll({ sitename }),
+    queryFn: ({ pageParam = 1 }) =>
+      api.immersionLabels.getAll({ sitename, pageParam }),
     select: (data) => ({ ...data, labels: immersionLabelsAdaptor(data) }),
     enabled: !!sitename,
   })
