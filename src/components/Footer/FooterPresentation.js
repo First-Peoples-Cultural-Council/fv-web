@@ -67,15 +67,14 @@ function FooterPresentation() {
         </div>
       </div>
       <div className="p-2 md:py-6 md:px-3  md:flex md:items-center md:justify-center border-t-2 border-white/10 text-xs text-white/80">
-        © This database is protected by copyright laws and is owned by the
-        First Peoples’ Cultural Foundation. All materials on this site are
-        protected by copyright laws and are owned by the individual Indigenous
-        language communities who created the content. Language and multimedia
-        data available on this site is intended for private, non-commercial use
-        by individuals. Any commercial use of the language data or multimedia
-        data in whole or in part, directly or indirectly, is specifically
-        forbidden except with the prior written authority of the owner of the
-        copyright.
+        © This database is protected by copyright laws and is owned by the First
+        Peoples’ Cultural Foundation. All materials on this site are protected
+        by copyright laws and are owned by the individual Indigenous language
+        communities who created the content. Language and multimedia data
+        available on this site is intended for private, non-commercial use by
+        individuals. Any commercial use of the language data or multimedia data
+        in whole or in part, directly or indirectly, is specifically forbidden
+        except with the prior written authority of the owner of the copyright.
       </div>
       <div className="px-2 md:pb-6 md:px-3 text-xs text-white/80">
         Last build: {GlobalConfiguration?.BUILD_STRING}

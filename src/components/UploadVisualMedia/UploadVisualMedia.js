@@ -5,13 +5,16 @@ import Dashboard from '@uppy/react/dashboard'
 // FPCC
 import useCreateUppy from 'common/dataHooks/useCreateUppy'
 import { TYPE_DOCUMENT, TYPE_IMAGE, TYPE_VIDEO } from 'common/constants'
+import { getSupportedExtensionsForMediaType } from 'common/utils/mediaHelpers'
 
 function UploadVisualMedia({ maxItems, setSelectedMedia, type }) {
   const uppy = useCreateUppy({ maxItems, setSelectedMedia, type })
 
   // Clean up - Clear state of uppy on unmount
   useEffect(() => () => uppy.clear(), [uppy])
-
+  const supportedExtensions = getSupportedExtensionsForMediaType(type)
+    ?.map((extension) => `.${extension}`)
+    .join(', ')
   const baseMetaFields = [
     {
       id: 'title',
@@ -66,7 +69,7 @@ function UploadVisualMedia({ maxItems, setSelectedMedia, type }) {
   return (
     <div id="UploadVisualMedia" className="h-full pb-4 px-4">
       <p className="py-2 text-charcoal-700">
-        ⚠️ The FirstVoices file size limit is 1GB
+        Supported file types: {supportedExtensions}. The file size limit is 1GB
       </p>
       <Dashboard
         uppy={uppy}
