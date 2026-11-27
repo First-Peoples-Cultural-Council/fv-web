@@ -23,7 +23,9 @@ function AudioUploadForm({ setSelectedAudio }) {
   const errorRef = useRef(null)
   const queryClient = useQueryClient()
   const [attemptedFileType, setAttemptedFileType] = useState('unknown')
-
+  const supportedExtensions = SUPPORTED_AUDIO_EXTENSIONS.map(
+    (extension) => `.${extension}`,
+  ).join(', ')
   const validator = yup.object().shape({
     title: definitions.title().required('A title is required'),
     acknowledgement: definitions.paragraph(),
@@ -71,7 +73,7 @@ function AudioUploadForm({ setSelectedAudio }) {
       setIsUploading(false)
       setUploadError(
         error?.response?.data?.message ||
-          `Audio upload failed. Your input was '${attemptedFileType}' type. Supported file types are: .mp3, .wav, .opus, .oga, .weba.`,
+          `Audio upload failed. Your input was '${attemptedFileType}' type. Supported file types are: ${supportedExtensions}.`,
       )
       setTimeout(() => {
         if (errorRef.current) {
@@ -119,6 +121,7 @@ function AudioUploadForm({ setSelectedAudio }) {
               <FileUploadField
                 label="Choose audio file"
                 nameId="audioFile"
+                helpText={`Supported file types: ${supportedExtensions}. The file size limit is 1GB.`}
                 register={register}
                 errors={formState?.errors}
               />
