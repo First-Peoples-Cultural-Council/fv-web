@@ -109,8 +109,8 @@ function MembershipsPresentation({
           </tbody>
         }
       />
-      <div className="text-charcoal-500 p-4 w-full text-center">
-        If you want to remove or change the membership of a language admin
+      <div className="text-charcoal-500 p-8 w-full text-center">
+        NB: If you want to remove or change the membership of a language admin
         please contact hello@firstvoices.com
       </div>
     </div>
