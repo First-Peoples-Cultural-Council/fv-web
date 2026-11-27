@@ -6,6 +6,7 @@ import DashboardLanding from 'components/DashboardLanding'
 import PageTabs from 'components/PageTabs'
 import JoinRequests from 'components/JoinRequests'
 import Memberships from 'components/Memberships'
+import DashboardMembershipPresentation from 'components/DashboardMembership/DashboardMembershipPresentation'
 import { useSiteStore } from 'context/SiteContext'
 
 function DashboardMembershipContainer() {
@@ -45,6 +46,10 @@ function DashboardMembershipContainer() {
           <Routes>
             <Route path="current" element={<Memberships.Container />} />
             <Route path="requests" element={<JoinRequests.Container />} />
+            <Route
+              path="information"
+              element={<DashboardMembershipPresentation />}
+            />
           </Routes>
         </div>
       </DashboardLanding.Presentation>

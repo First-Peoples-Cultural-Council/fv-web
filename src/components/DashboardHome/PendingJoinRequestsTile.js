@@ -32,7 +32,7 @@ function PendingJoinRequestsTile() {
             </div>
             <div className=" text-charcoal-500">New join requests</div>
             <div className="text-3xl font-bold text-charcoal-900">
-              {Math.max(queryResponse?.data?.count, 0)}
+              {queryResponse?.data?.count || 0}
             </div>
           </div>
         </div>
