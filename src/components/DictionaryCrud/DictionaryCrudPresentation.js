@@ -83,9 +83,8 @@ function DictionaryCrudPresentation({
 
   const {
     control,
-    errors,
     handleSubmit,
-    isValid,
+    formState,
     register,
     reset,
     resetField,
@@ -105,7 +104,7 @@ function DictionaryCrudPresentation({
 
   const stepHandle = (step) => {
     trigger()
-    if (isValid) {
+    if (formState?.isValid) {
       setActiveStep(String(step))
     }
   }
@@ -138,7 +137,7 @@ function DictionaryCrudPresentation({
                 })} in your language`}
                 nameId="title"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12">
@@ -147,7 +146,7 @@ function DictionaryCrudPresentation({
                 nameId="translations"
                 register={register}
                 control={control}
-                errors={errors}
+                formState={formState}
                 maxItems={MAX_TRANSLATIONS}
                 hideLabel
               />
@@ -157,7 +156,7 @@ function DictionaryCrudPresentation({
                 label="Audio"
                 nameId="relatedAudio"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_AUDIO}
               />
             </div>
@@ -168,7 +167,7 @@ function DictionaryCrudPresentation({
                 control={control}
                 register={register}
                 maxItems={MAX_CATEGORIES}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
             <div className="col-span-12">
@@ -183,7 +182,7 @@ function DictionaryCrudPresentation({
                 maxItems={MAX_RELATED_ENTRIES}
                 types={[TYPE_WORD, TYPE_PHRASE]}
                 displayValue={dataToEdit?.title}
-                errors={errors}
+                errors={formState?.errors}
               />
             </div>
             <div className="col-span-12">
@@ -192,7 +191,7 @@ function DictionaryCrudPresentation({
                 nameId="notes"
                 register={register}
                 control={control}
-                errors={errors}
+                formState={formState}
                 maxItems={MAX_NOTES}
               />
             </div>
@@ -202,7 +201,7 @@ function DictionaryCrudPresentation({
                 nameId="acknowledgements"
                 register={register}
                 control={control}
-                errors={errors}
+                formState={formState}
                 maxItems={MAX_ACKNOWLEDGEMENTS}
               />
             </div>
@@ -216,7 +215,7 @@ function DictionaryCrudPresentation({
                 label="Images"
                 nameId="relatedImages"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_IMAGES}
               />
             </div>
@@ -225,7 +224,7 @@ function DictionaryCrudPresentation({
                 label="Videos"
                 nameId="relatedVideos"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_VIDEOS}
               />
             </div>
@@ -234,7 +233,7 @@ function DictionaryCrudPresentation({
                 label="Documents"
                 nameId="relatedDocuments"
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 maxItems={MAX_DOCUMENTS}
               />
             </div>
@@ -244,7 +243,7 @@ function DictionaryCrudPresentation({
                 nameId="partOfSpeech"
                 control={control}
                 options={partsOfSpeech}
-                errors={errors}
+                errors={formState?.errors}
                 helpText="NB: Most commonly applied to words and not phrases."
               />
             </div>
@@ -254,7 +253,7 @@ function DictionaryCrudPresentation({
                 nameId="pronunciations"
                 register={register}
                 control={control}
-                errors={errors}
+                formState={formState}
                 maxItems={MAX_PRONUNCIATIONS}
               />
             </div>
@@ -264,7 +263,7 @@ function DictionaryCrudPresentation({
                 nameId="alternateSpellings"
                 register={register}
                 control={control}
-                errors={errors}
+                formState={formState}
                 maxItems={MAX_SPELLINGS}
               />
             </div>
@@ -276,18 +275,18 @@ function DictionaryCrudPresentation({
             <div className="col-span-12">
               <Form.Visibility
                 control={control}
-                errors={errors}
+                errors={formState?.errors}
                 resetField={resetField}
               />
             </div>
-            <Form.Audience control={control} errors={errors} />
+            <Form.Audience control={control} errors={formState?.errors} />
             {!isCreate && (
               <div className="col-span-12">
                 <div className="rounded-lg">
                   <Form.RadioButtons
                     label="Type"
                     control={control}
-                    errors={errors}
+                    errors={formState?.errors}
                     nameId="type"
                     options={[
                       { label: 'Word', value: TYPE_WORD },
@@ -322,7 +321,7 @@ function DictionaryCrudPresentation({
         <div className="space-y-5 w-full">
           <section>
             <div className="shadow rounded-md">
-              <div className="grid grid-cols-12 gap-8 bg-white p-8 rounded-md">
+              <div className="grid grid-cols-12 gap-x-10 gap-y-8 bg-white p-8 rounded-md">
                 {getStepContent(activeStepNumber)}
               </div>
             </div>
@@ -406,7 +405,7 @@ function DictionaryCrudPresentation({
         <div className="space-y-5 w-full">
           <section>
             <div className="shadow rounded-md">
-              <div className="grid grid-cols-12 gap-8 bg-white p-8 rounded-md">
+              <div className="grid grid-cols-12 gap-x-10 gap-y-8 bg-white p-8 rounded-md">
                 {steps.map((step, stepIdx) => getStepContent(stepIdx))}
               </div>
             </div>

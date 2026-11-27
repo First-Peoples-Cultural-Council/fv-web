@@ -1,11 +1,15 @@
 import { apiBase } from 'services/config'
-import { SITES, PAGES } from 'common/constants'
+import { SITES, PAGE, PAGES, PAGE_SIZE } from 'common/constants'
 
 const pages = {
   get: async ({ sitename, slug }) =>
     apiBase().get(`${SITES}/${sitename}/${PAGES}/${slug}`).json(),
-  getAll: async ({ sitename }) =>
-    apiBase().get(`${SITES}/${sitename}/${PAGES}/`).json(),
+  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
+    apiBase()
+      .get(
+        `${SITES}/${sitename}/${PAGES}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
+      )
+      .json(),
   create: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${PAGES}/`, { json: properties })

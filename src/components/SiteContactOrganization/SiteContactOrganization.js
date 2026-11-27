@@ -1,0 +1,96 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+// FPCC
+import WysiwygBlock from 'components/WysiwygBlock'
+import DictionaryDetailLabel from 'components/DictionaryDetail/DictionaryDetailLabel'
+
+function SiteContactOrganization({ organization }) {
+  return (
+    <section id="SiteContactOrganization">
+      <div className="space-y-8 pb-8">
+        <div className="text-blumine-800 text-3xl">
+          {organization?.name || ''}
+        </div>
+        <div className="text-blumine-800">
+          {organization?.contactMessage || ''}
+        </div>
+        <div className="space-y-6">
+          {organization?.address && (
+            <div>
+              <DictionaryDetailLabel label="Address" />
+              <WysiwygBlock htmlString={organization?.address || ''} />
+            </div>
+          )}
+          {organization?.phoneNumbers?.length > 0 && (
+            <div>
+              <DictionaryDetailLabel label="Phone" />
+              <ul>
+                {organization?.phoneNumbers?.map((obj) => (
+                  <ListItem
+                    key={obj?.id}
+                    item={obj}
+                    href={`tel:${obj?.value}`}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+          {organization?.emails?.length > 0 && (
+            <div>
+              <DictionaryDetailLabel label="Email" />
+              <ul>
+                {organization?.emails?.map((obj) => (
+                  <ListItem
+                    key={obj?.id}
+                    item={obj}
+                    href={`mailto:${obj?.value}`}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
+          {organization?.urlList?.length > 0 && (
+            <div>
+              <DictionaryDetailLabel label="Links" />
+              <ul>
+                {organization?.urlList?.map((obj) => (
+                  <ListItem key={obj?.id} item={obj} href={obj?.value} />
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ListItem({ item, href }) {
+  return (
+    <li className="flex items-center justify-start space-x-2 pb-4">
+      {item?.label && <span>{item?.label}:</span>}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-url truncate"
+      >
+        {item?.value}
+      </a>
+    </li>
+  )
+}
+
+// PROPTYPES
+const { object, string } = PropTypes
+ListItem.propTypes = {
+  item: object,
+  href: string,
+}
+
+SiteContactOrganization.propTypes = {
+  organization: object,
+}
+
+export default SiteContactOrganization

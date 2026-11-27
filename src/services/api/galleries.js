@@ -1,11 +1,15 @@
 import { apiBase } from 'services/config'
-import { GALLERIES, SITES } from 'common/constants'
+import { GALLERIES, PAGE, PAGE_SIZE, SITES } from 'common/constants'
 
 const galleries = {
   get: async ({ sitename, id }) =>
     apiBase().get(`${SITES}/${sitename}/${GALLERIES}/${id}`).json(),
-  getAll: async ({ sitename }) =>
-    apiBase().get(`${SITES}/${sitename}/${GALLERIES}/`).json(),
+  getAll: async ({ sitename, pageParam, perPage = 48 }) =>
+    apiBase()
+      .get(
+        `${SITES}/${sitename}/${GALLERIES}/?${PAGE}=${pageParam}&${PAGE_SIZE}=${perPage}`,
+      )
+      .json(),
   create: async ({ sitename, properties }) =>
     apiBase()
       .post(`${SITES}/${sitename}/${GALLERIES}/`, { json: properties })

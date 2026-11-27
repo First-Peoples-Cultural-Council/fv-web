@@ -34,7 +34,7 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
     handleSubmit,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -47,7 +47,7 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -63,7 +63,7 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="androidUrl"
               register={register}
               helpText="e.g. https://play.google.com/store/apps/details?id=..."
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -72,7 +72,7 @@ function WidgetFormApps({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="iosUrl"
               register={register}
               helpText="e.g. https://apps.apple.com/ca/app/..."
-              errors={errors}
+              formState={formState}
             />
           </div>
         </>

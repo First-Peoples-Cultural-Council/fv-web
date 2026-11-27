@@ -11,11 +11,11 @@ import FieldLabel from 'components/Form/FieldLabel'
 import FileUploadField from 'components/Form/FileUploadField'
 import GalleryField from 'components/Form/GalleryField'
 import Header from 'components/Form/Header'
-import HelpText from 'components/Form/HelpText'
 import ImageArrayField from 'components/Form/ImageArrayField'
 import ImageIdField from 'components/Form/ImageIdField'
 import IncludeInGames from 'components/Form/IncludeInGames'
 import IncludeInKids from 'components/Form/IncludeInKids'
+import TextPairArrayField from 'components/Form/TextPairArrayField'
 import NextPrevious from 'components/Form/NextPrevious'
 import RadioButtons from 'components/Form/RadioButtons'
 import Select from 'components/Form/Select'
@@ -48,11 +48,11 @@ export default {
   FileUploadField,
   GalleryField,
   Header,
-  HelpText,
   ImageArrayField,
   ImageIdField,
   IncludeInGames,
   IncludeInKids,
+  TextPairArrayField,
   NextPrevious,
   RadioButtons,
   Select,

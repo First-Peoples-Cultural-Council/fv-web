@@ -27,7 +27,7 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
     role: definitions.role(),
   })
 
-  const { control, errors, handleSubmit, register, reset } = useForm({
+  const { control, formState, handleSubmit, register, reset } = useForm({
     defaultValues: {
       id: membership?.id,
       role: membership?.role,
@@ -105,7 +105,7 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
             {roleOptions.map((role) => (
               <Field key={role.id}>
                 <div className="relative flex items-start px-3 py-4">
-                  <div className="flex h-6 items-center">
+                  <div className="flex h-7 pt-1 items-center">
                     <Radio
                       id={role.id}
                       value={role.id}
@@ -135,7 +135,7 @@ function MembershipCrudPresentation({ closeHandler, membership }) {
             ))}
           </RadioGroup>
         </Fieldset>
-        <ValidationError errors={errors} nameId="role" />
+        <ValidationError errors={formState?.errors} nameId="role" />
         <div className="flex w-full py-6 items-center justify-between">
           <button
             data-testid="form-submit"

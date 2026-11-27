@@ -7,7 +7,6 @@ import AddAudioModal from 'components/AddAudioModal'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 import MediaThumbnail from 'components/MediaThumbnail'
 
@@ -30,7 +29,7 @@ function AudioArrayField({
 
   return (
     <Fragment key={`${nameId}_ArrayField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div data-testid="AudioArrayField" className="space-y-2">
         <div>
           {fields?.length > 0 &&
@@ -61,7 +60,6 @@ function AudioArrayField({
         )}
         <ValidationError errors={errors} nameId={nameId} />
       </div>
-      <HelpText text={helpText} />
     </Fragment>
   )
 }

@@ -1,9 +1,3 @@
-import WidgetContactUsContainer from 'components/WidgetContactUs/WidgetContactUsContainer'
-import WidgetContactUsPresentation from 'components/WidgetContactUs/WidgetContactUsPresentation'
-import WidgetContactUsData from 'components/WidgetContactUs/WidgetContactUsData'
+import WidgetContactUs from 'components/WidgetContactUs/WidgetContactUs'
 
-export default {
-  Container: WidgetContactUsContainer,
-  Presentation: WidgetContactUsPresentation,
-  Data: WidgetContactUsData,
-}
+export default WidgetContactUs

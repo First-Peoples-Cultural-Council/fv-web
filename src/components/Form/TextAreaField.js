@@ -1,43 +1,45 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
+import ValidationIcon from 'components/Form/ValidationIcon'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function TextAreaField({
-  defaultValue = '',
-  errors,
+  formState,
   label = '',
   nameId,
   helpText,
   register,
+  placeholder = '',
   rows = 3,
 }) {
   return (
-    <Fragment key={`${nameId}_TextAreaField`}>
-      <FieldLabel nameId={nameId} text={label} />
-      <textarea
-        id={nameId}
-        name={nameId}
-        {...register(nameId)}
-        rows={rows}
-        className="shadow-xs focus:ring-scarlet-800 focus:border-scarlet-800 block w-full border border-charcoal-200 rounded-lg"
-        defaultValue={defaultValue}
-      />
-      <HelpText text={helpText} />
-      <ValidationError errors={errors} nameId={nameId} />
-    </Fragment>
+    <div data-testid={`${nameId}-textarea-field`}>
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
+      <div className="flex items-center justify-start relative">
+        <textarea
+          id={nameId}
+          name={nameId}
+          placeholder={placeholder}
+          {...register(nameId)}
+          rows={rows}
+          className={`input-text min-h-[3lh] max-h-[20lh] resize-none field-sizing-content ${formState?.errors?.[nameId] && 'input-text-error'}`}
+        />
+        <ValidationIcon nameId={nameId} formState={formState} />
+      </div>
+      <ValidationError errors={formState?.errors} nameId={nameId} />
+    </div>
   )
 }
 // PROPTYPES
 const { func, number, object, string } = PropTypes
 TextAreaField.propTypes = {
-  defaultValue: string,
-  errors: object,
+  formState: object,
   helpText: string,
   label: string,
+  placeholder: string,
   nameId: string.isRequired,
   register: func,
   rows: number,

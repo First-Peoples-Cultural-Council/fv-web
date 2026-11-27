@@ -4,7 +4,6 @@ import { useController } from 'react-hook-form'
 import PropTypes from 'prop-types'
 
 // FPCC
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 import ValidationError from 'components/Form/ValidationError'
 import AutocompleteMultiSelect from 'components/AutocompleteMultiSelect'
@@ -30,7 +29,7 @@ function AutocompleteMultiple({
 
   return (
     <Fragment key="FormAutocompleteMultiple">
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <div className="w-full">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-6 border border-charcoal-200 rounded-lg shadow-xs bg-white">
@@ -51,7 +50,6 @@ function AutocompleteMultiple({
           </div>
         </div>
       </div>
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )
