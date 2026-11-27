@@ -17,7 +17,7 @@ export const getShareContent = ({ entry }) => {
     ? [
         `Title: ${entry?.title}`,
         translations?.length > 0 && `Translation: ${translations.join(', ')}`,
-        'Learn more on our FirstVoices:',
+        'Learn more on FirstVoices:',
       ]
     : [`Check out this private ${type} on FirstVoices!`]
 
