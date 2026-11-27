@@ -1,36 +1,58 @@
 import React from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useLocation } from 'react-router'
 
 // FPCC
+import DashboardLanding from 'components/DashboardLanding'
+import PageTabs from 'components/PageTabs'
+import JoinRequests from 'components/JoinRequests'
+import Memberships from 'components/Memberships'
 import DashboardMembershipPresentation from 'components/DashboardMembership/DashboardMembershipPresentation'
-import DashboardMembershipData from 'components/DashboardMembership/DashboardMembershipData'
+import { useSiteStore } from 'context/SiteContext'
 
 function DashboardMembershipContainer() {
-  const {
-    queryResponse,
-    deleteMembership,
-    headerContent,
-    site,
-    page,
-    setPage,
-  } = DashboardMembershipData()
+  const { site } = useSiteStore()
+  const headerContent = {
+    title: 'Member Management',
+    subtitle:
+      'Manage members of your site and provide access for team members to different functionality based on their designated roles.',
+    icon: 'Members',
+  }
+
+  const { pathname } = useLocation()
+
+  const tabs = [
+    {
+      label: 'Join requests',
+      href: `/${site?.sitename}/dashboard/memberships/requests`,
+      current: pathname?.includes('/requests'),
+    },
+    {
+      label: 'Current members',
+      href: `/${site?.sitename}/dashboard/memberships/current`,
+      current: pathname?.includes('/current'),
+    },
+    {
+      label: 'Learn about member roles',
+      href: `/${site?.sitename}/dashboard/memberships/information`,
+      current: pathname?.includes('/information'),
+    },
+  ]
+
   return (
     <div id="DashboardMembershipContainer">
-      <Routes>
-        <Route
-          path=""
-          element={
-            <DashboardMembershipPresentation
-              queryResponse={queryResponse}
-              deleteMembership={deleteMembership}
-              headerContent={headerContent}
-              site={site}
-              page={page}
-              setPage={setPage}
+      <DashboardLanding.Presentation headerContent={headerContent} site={site}>
+        <div className="bg-white rounded-lg shadow-sm">
+          <PageTabs tabs={tabs} />
+          <Routes>
+            <Route path="current" element={<Memberships.Container />} />
+            <Route path="requests" element={<JoinRequests.Container />} />
+            <Route
+              path="information"
+              element={<DashboardMembershipPresentation />}
             />
-          }
-        />
-      </Routes>
+          </Routes>
+        </div>
+      </DashboardLanding.Presentation>
     </div>
   )
 }

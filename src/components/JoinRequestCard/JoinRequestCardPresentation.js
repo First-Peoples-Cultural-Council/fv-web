@@ -17,7 +17,7 @@ import getIcon from 'common/utils/getIcon'
 import CustomListbox from 'components/CustomListbox'
 import Modal from 'components/Modal'
 
-function DashboardJoinCardPresentation({
+function JoinRequestCardPresentation({
   joinRequest,
   handleIgnore,
   handleApprove,
@@ -69,7 +69,7 @@ function DashboardJoinCardPresentation({
   const selectedOption = options.find((option) => option.value === selectedRole)
 
   return (
-    <li data-testid="DashboardJoinCard" key={joinRequest?.id}>
+    <li data-testid="JoinRequestCard" key={joinRequest?.id}>
       <div className="grid grid-cols-2">
         <div className="p-5 col-span-1">
           <div className="flex gap-x-3">
@@ -127,11 +127,11 @@ function DashboardJoinCardPresentation({
             </div>
 
             <div>
-              <label htmlFor="igore-request" className="sr-only">
+              <label htmlFor="ignore-request" className="sr-only">
                 Ignore request
               </label>
               <button
-                id="igore-request"
+                id="ignore-request"
                 data-testid="igore-request-btn"
                 type="button"
                 onClick={() => setIgnoreModalOpen(true)}
@@ -275,10 +275,10 @@ function DashboardJoinCardPresentation({
 }
 // PROPTYPES
 const { func, object } = PropTypes
-DashboardJoinCardPresentation.propTypes = {
+JoinRequestCardPresentation.propTypes = {
   joinRequest: object,
   handleIgnore: func,
   handleApprove: func,
 }
 
-export default DashboardJoinCardPresentation
+export default JoinRequestCardPresentation

@@ -1,135 +1,145 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
 
 // FPCC
-import DashboardLanding from 'components/DashboardLanding'
-import DashboardTablePaginated from 'components/DashboardTablePaginated'
-import { localDateMDYwords } from 'common/utils/stringHelpers'
-import DeleteButton from 'components/DeleteButton'
-import MembershipEditButton from 'components/MembershipEditButton'
-import Tooltip from 'components/Tooltip'
-import { LANGUAGE_ADMIN_ENUM_NAME } from 'common/constants'
+import getIcon from 'common/utils/getIcon'
+import {
+  MEMBER,
+  ASSISTANT,
+  EDITOR,
+  LANGUAGE_ADMIN,
+} from 'common/constants/roles'
 
-function DashboardMembershipPresentation({
-  queryResponse,
-  deleteMembership,
-  headerContent,
-  site,
-  page,
-  setPage,
-}) {
-  const [t] = useTranslation()
+function DashboardMembershipPresentation() {
+  const roles = [
+    {
+      name: 'Member',
+      id: MEMBER,
+      description:
+        'For anyone not involved in maintaining your FirstVoices site. They can view all Members only content but have no Dashboard access.',
+      features: [],
+    },
+    {
+      name: 'Assistant',
+      id: ASSISTANT,
+      description: (
+        <p>
+          For individuals tasked with adding <em>new</em> language content that
+          needs to be verified by another team member. They cannot publish
+          language content or edit content that has already been published.
+        </p>
+      ),
+      features: [
+        '"Team Only" language content',
+        'Galleries',
+        'Media',
+        'Exports',
+      ],
+    },
+    {
+      name: 'Editor',
+      id: EDITOR,
+      description:
+        'For individuals tasked with adding and updating language content.',
+      features: [
+        'Language content',
+        'Galleries',
+        'Media',
+        'Exports',
+        'Speakers',
+      ],
+    },
+    {
+      name: 'Language Admin',
+      id: LANGUAGE_ADMIN,
+      description:
+        'For the leaders of your team. They have access to all content and site features including membership management.',
+      features: [
+        'Language content',
+        'Galleries',
+        'Media',
+        'Exports',
+        'Speakers',
+        'Categories',
+        'Batch Imports',
+        'Site homepage',
+        'Custom Pages',
+        'Widgets',
+        'Contact info',
+      ],
+    },
+  ]
+
   return (
-    <div id="DashboardMembershipPresentation">
-      <DashboardLanding.Presentation headerContent={headerContent} site={site}>
-        <DashboardTablePaginated
-          queryResponse={queryResponse}
-          page={page}
-          setPage={setPage}
-          tableHead={
-            <thead id="MembershipTableHead">
-              <tr>
-                <th
-                  scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left text-charcoal-500 bg-charcoal-50 sm:pl-6 rounded-l-lg"
-                >
-                  Name
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
-                >
-                  Date joined
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
-                >
-                  Role assigned on
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-charcoal-500 bg-charcoal-50"
-                >
-                  Role
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-charcoal-500 bg-charcoal-50"
-                >
-                  Edit role
-                </th>
-                <th
-                  scope="col"
-                  className="py-3.5 pl-3 pr-4 sm:pr-6 text-charcoal-500 bg-charcoal-50 rounded-r-lg"
-                >
-                  Remove member
-                </th>
-              </tr>
-            </thead>
-          }
-          tableBody={
-            <tbody id="MembershipTableBody">
-              {queryResponse?.data?.results?.map((membership) => (
-                <tr key={membership?.id}>
-                  <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm font-bold text-charcoal-500 sm:pl-6">
-                    {`${membership?.user?.firstName} ${membership?.user?.lastName}`}
-                    <dl className="font-normal">
-                      <dt className="sr-only">Email</dt>
-                      <dd className="mt-1 text-charcoal-700">
-                        {membership?.user?.email}
-                      </dd>
-                    </dl>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                    {localDateMDYwords(membership?.created)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                    {localDateMDYwords(membership?.lastModified)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-2 text-sm text-charcoal-500">
-                    {t(`role-${membership?.role}`)}
-                  </td>
-                  <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                    <MembershipEditButton membership={membership} />
-                  </td>
-                  <td className="whitespace-nowrap py-2 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
-                    <Tooltip
-                      hide={membership?.role !== LANGUAGE_ADMIN_ENUM_NAME}
-                      message="To remove the membership of a Language Admin please contact FirstVoices Support"
-                    >
-                      <DeleteButton.Presentation
-                        deleteHandler={() => deleteMembership(membership?.id)}
-                        disabled={membership?.role === LANGUAGE_ADMIN_ENUM_NAME}
-                        message="Remove this user's membership?"
-                        note="This will remove any editing privileges that the user currently has and prevent them from viewing any content on your site that is not public."
-                        styling="btn-tertiary btn-md-icon text-scarlet-800 hover:bg-scarlet-100 focus:bg-scarlet-200 focus:ring-scarlet-800"
-                      />
-                    </Tooltip>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          }
-        />
-        <div className="text-charcoal-500 p-4 w-full text-center">
-          If you want to remove or change the membership of a language admin
-          please contact hello@firstvoices.com
+    <div className="shadow rounded-lg bg-white pb-8 px-10">
+      <div className="wysiwyg">
+        <h3>Understanding language team roles</h3>
+        <p>
+          When someone requests to join a language site, the Language
+          Administrator can choose which level of access they will receive.
+          Different levels of access can affect what different people are able
+          to see and do on your language site.
+        </p>
+
+        <p className="text-charcoal-500">
+          NB: In this context <span className="italic">language content</span>{' '}
+          refers to <span>words, phrases, songs, amd stories.</span>
+        </p>
+      </div>
+      <div className="mt-6">
+        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
+          {roles.map((role) => (
+            <div
+              key={role.id}
+              className="rounded-3xl p-8 ring-1 ring-charcoal-300"
+            >
+              <div className="">
+                <div className="flex items-center justify-between gap-x-4">
+                  <h3
+                    id={`tier-${role.id}`}
+                    className="text-lg text-blumine-700"
+                  >
+                    {role.name}
+                  </h3>
+                </div>
+                <p className="mt-4 text-sm/6 text-charcoal-600">
+                  {role.description}
+                </p>
+              </div>
+
+              <div className="mt-6 text-sm font-bold text-blumine-700">
+                {role.id !== MEMBER && 'Can create and edit:'}
+              </div>
+
+              <ul className="mt-4 space-y-3 text-sm text-charcoal-600">
+                {role.features.map((feature) => (
+                  <li key={feature} className="flex gap-x-3">
+                    {getIcon(
+                      'Checkmark',
+                      'h-6 w-5 flex-none fill-current text-blumine-700',
+                    )}
+
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-      </DashboardLanding.Presentation>
+      </div>
+      <p className="py-6 text-charcoal-500">
+        For more information about roles on FirstVoices please visit our{' '}
+        <a
+          href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704238/Team+roles+on+FirstVoices"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="inline-url"
+        >
+          Knowledge Base
+        </a>
+        .
+      </p>
     </div>
   )
-}
-// PROPTYPES
-const { func, object, number } = PropTypes
-DashboardMembershipPresentation.propTypes = {
-  queryResponse: object,
-  deleteMembership: func,
-  headerContent: object,
-  site: object,
-  page: number,
-  setPage: func,
 }
 
 export default DashboardMembershipPresentation

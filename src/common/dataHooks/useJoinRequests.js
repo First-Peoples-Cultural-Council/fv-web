@@ -1,25 +1,28 @@
-import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
+import {
+  keepPreviousData,
+  useMutation,
+  useQueryClient,
+  useQuery,
+} from '@tanstack/react-query'
 import { useParams } from 'react-router'
 
 // FPCC
 import api from 'services/api'
 import { JOIN_REQUESTS, MEMBER_ENUM_NAME } from 'common/constants'
 import useMutationWithNotification from 'common/dataHooks/useMutationWithNotification'
-import useInfiniteScroll from 'common/dataHooks/useInfiniteScroll'
 
-export function useJoinRequests() {
+export function useJoinRequests({ page }) {
   const { sitename } = useParams()
-
-  const infiniteQueryResponse = useInfiniteScroll({
-    queryKey: [JOIN_REQUESTS, sitename],
-    queryFn: ({ pageParam = 1 }) =>
+  const queryResponse = useQuery({
+    queryKey: [JOIN_REQUESTS, sitename, page],
+    queryFn: () =>
       api.joinRequests.getAll({
         sitename,
-        pageParam,
+        pageParam: page,
       }),
+    placeholderData: keepPreviousData,
   })
-
-  return infiniteQueryResponse
+  return queryResponse
 }
 
 export function useMyJoinRequests({ sitename: sitenameArg }) {

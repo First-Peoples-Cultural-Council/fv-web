@@ -7,7 +7,7 @@ import getIcon from 'common/utils/getIcon'
 import RequireAuth from 'common/RequireAuth'
 import { LANGUAGE_ADMIN, MEMBER } from 'common/constants/roles'
 import DashboardLocator from 'components/DashboardLocator'
-import DashboardJoinList from 'components/DashboardJoinList'
+import PendingJoinRequestsTile from 'components/DashboardHome/PendingJoinRequestsTile'
 import DashboardStats from 'components/DashboardStats'
 
 function DashboardHomePresentation({ site, tiles, currentUser }) {
@@ -57,15 +57,15 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
               >
                 <li
                   data-testid={`dashboard-home-tile-${tile?.id}`}
-                  className="relative group col-span-1 flex rounded-lg"
+                  className="relative group col-span-1 flex rounded-lg bg-white shadow hover:bg-blumine-100"
                 >
-                  <div className="bg-charcoal-50 flex h-10 w-10 shrink-0 items-center justify-center rounded-l-md font-medium">
+                  <div className="bg-charcoal-50 group-hover:bg-blumine-100 flex h-10 w-10 shrink-0 items-center justify-center rounded-l-md font-medium">
                     {getIcon(
                       tile.icon,
                       `text-${tile?.iconColor} size-6 fill-current`,
                     )}
                   </div>
-                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-charcoal-100 bg-white">
+                  <div className="flex flex-1 items-center justify-between truncate rounded-r-md">
                     <div className="flex-1 truncate p-1 ">
                       {tile?.externalLink ? (
                         <a
@@ -102,11 +102,8 @@ function DashboardHomePresentation({ site, tiles, currentUser }) {
           </ul>
         </section>
         <RequireAuth siteMembership={LANGUAGE_ADMIN}>
-          <section className="rounded-lg overflow-hidden">
-            <h2 className="mb-3 mx-2 text-sm font-medium text-charcoal-500">
-              Requests to join {site?.title}
-            </h2>
-            <DashboardJoinList.Container />
+          <section className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <PendingJoinRequestsTile />
           </section>
         </RequireAuth>
       </div>
