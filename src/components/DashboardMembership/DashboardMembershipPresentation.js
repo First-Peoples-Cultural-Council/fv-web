@@ -79,22 +79,13 @@ function DashboardMembershipPresentation() {
           Different levels of access can affect what different people are able
           to see and do on your language site.
         </p>
-        <p>
-          For more information about roles on FirstVoices please visit our{' '}
-          <a
-            href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704238/Team+roles+on+FirstVoices"
-            className="inline-url"
-          >
-            Knowledge Base
-          </a>
-          .
-        </p>
+
         <p className="text-charcoal-500">
           NB: In this context <span className="italic">language content</span>{' '}
           refers to <span>words, phrases, songs, amd stories.</span>
         </p>
       </div>
-      <div className="mt-8">
+      <div className="mt-6">
         <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
           {roles.map((role) => (
             <div
@@ -135,6 +126,18 @@ function DashboardMembershipPresentation() {
           ))}
         </div>
       </div>
+      <p className="py-6 text-charcoal-500">
+        For more information about roles on FirstVoices please visit our{' '}
+        <a
+          href="https://firstvoices.atlassian.net/wiki/spaces/FIR1/pages/1704238/Team+roles+on+FirstVoices"
+          target="_blank"
+          rel="noreferrer noopener"
+          className="inline-url"
+        >
+          Knowledge Base
+        </a>
+        .
+      </p>
     </div>
   )
 }
