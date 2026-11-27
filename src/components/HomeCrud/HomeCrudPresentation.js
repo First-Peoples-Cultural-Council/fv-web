@@ -11,7 +11,7 @@ import { HOME } from 'common/constants'
 function HomeCrudPresentation({ site }) {
   return (
     <div data-testid="HomeCrud" className="bg-charcoal-50 min-h-screen">
-      <SiteDocHead titleArray={['Edit Homepage']} />
+      <SiteDocHead titleArray={['Edit homepage']} />
       {/* Page header */}
       <div className="w-full shadow-md">
         <div className="max-w-7xl mx-auto flex items-center justify-between space-x-5 p-5">

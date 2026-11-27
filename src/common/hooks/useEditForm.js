@@ -12,13 +12,14 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
 
   const {
     control,
-    formState: { errors, isValid, isDirty, isSubmitSuccessful },
+    formState,
     handleSubmit,
     register,
     reset,
+    resetField,
+    setError,
     setValue,
     trigger,
-    resetField,
   } = useForm({
     defaultValues,
     mode: 'onChange',
@@ -39,15 +40,13 @@ function useEditForm({ defaultValues, validator, dataToEdit }) {
 
   return {
     control,
-    errors,
+    formState,
     handleSubmit,
     isCreateMode: !isEditMode,
-    isDirty,
-    isSubmitSuccessful,
-    isValid,
     register,
     reset,
     resetField,
+    setError,
     setValue,
     trigger,
   }

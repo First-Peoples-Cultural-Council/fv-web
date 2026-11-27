@@ -39,7 +39,8 @@ export function useCharacters() {
   const { sitename } = useParams()
   const queryResponse = useQuery({
     queryKey: [CHARACTERS, sitename],
-    queryFn: () => api.characters.getAll({ sitename }),
+    queryFn: ({ pageParam = 1 }) =>
+      api.characters.getAll({ sitename, pageParam }),
     enabled: !!sitename,
   })
 

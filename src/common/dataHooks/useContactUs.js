@@ -12,12 +12,6 @@ export function useContactUs() {
   const queryResponse = useQuery({
     queryKey: [CONTACT_US, sitename],
     queryFn: () => api.contactUs.get({ sitename }),
-    select: (data) => ({
-      ...data,
-      emailListAsString: data?.[0]?.emailList
-        ?.map((v) => Object.values(v).join(''))
-        .join(' - '),
-    }),
     enabled: !!sitename,
   })
 

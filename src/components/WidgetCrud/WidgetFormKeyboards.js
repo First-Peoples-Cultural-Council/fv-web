@@ -32,7 +32,7 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
     handleSubmit,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -45,7 +45,7 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -61,7 +61,7 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="macUrl"
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -70,7 +70,7 @@ function WidgetFormKeyboards({ cancelHandler, dataToEdit, submitHandler }) {
               nameId="windowsUrl"
               register={register}
               helpText="e.g. https://keyman.com/keyboards/..."
-              errors={errors}
+              formState={formState}
             />
           </div>
         </>

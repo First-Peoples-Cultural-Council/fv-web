@@ -24,7 +24,7 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
     acknowledgement: '',
   }
 
-  const { errors, handleSubmit, register, reset } = useEditForm({
+  const { formState, handleSubmit, register, reset } = useEditForm({
     defaultValues,
     validator,
     dataToEdit,
@@ -44,13 +44,13 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
               'h-72 w-auto mx-auto bg-white rounded-lg p-10 fill-current text-charcoal-500',
             )}
           </div>
-          <div className="grid grid-cols-12 gap-6 col-span-6">
+          <div className="grid grid-cols-12 gap-x-10 gap-y-8 col-span-6">
             <div className="col-span-12">
               <Form.TextField
                 label="Title"
                 nameId="title"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12">
@@ -58,7 +58,7 @@ function DocumentCrudPresentation({ dataToEdit, submitHandler, backHandler }) {
                 label="Acknowledgement"
                 nameId="acknowledgement"
                 register={register}
-                errors={errors}
+                formState={formState}
               />
             </div>
             <div className="col-span-12 flex justify-end mt-6 px-6">

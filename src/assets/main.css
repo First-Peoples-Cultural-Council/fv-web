@@ -45,6 +45,14 @@
   @apply text-blue-600 visited:text-purple-600 underline underline-offset-2;
 }
 
+@utility input-text {
+  @apply w-full rounded-lg bg-white px-4 py-2 text-base text-charcoal-900 placeholder:text-charcoal-300 border border-charcoal-300 disabled:border-charcoal-100 disabled:bg-charcoal-50 disabled:text-charcoal-300 focus:outline-hidden focus:ring-blumine-800 focus:border-transparent focus-within:border-blumine-800;
+}
+
+@utility input-text-error {
+  @apply focus:ring-scarlet-700 border-scarlet-700 bg-scarlet-50;
+}
+
 @utility breakAfter {
   page-break-after: always;
 }
@@ -62,10 +70,10 @@
   @apply text-left;
 
   & h2 {
-    @apply border-b border-charcoal-500 font-bold my-6 py-5 text-2xl text-blumine-800;
+    @apply font-bold my-6 text-2xl text-charcoal-700;
   }
   & h3 {
-    @apply font-bold my-4 text-xl text-blumine-800;
+    @apply my-4 text-xl text-charcoal-700;
   }
   & ol {
     @apply list-decimal pl-6;
@@ -77,7 +85,7 @@
     @apply my-4;
   }
   & p {
-    @apply my-4;
+    @apply my-2;
   }
   & a {
     @apply inline-url;

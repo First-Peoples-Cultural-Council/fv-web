@@ -1,18 +1,20 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 // FPCC
 import ValidationError from 'components/Form/ValidationError'
-import HelpText from 'components/Form/HelpText'
+import ValidationIcon from 'components/Form/ValidationIcon'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function TextField({
-  label = '',
   nameId,
   helpText,
-  disabled = false,
-  errors,
+  formState,
   register,
+  label = '',
+  placeholder = '',
+  disabled = false,
+  type = 'text',
 }) {
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
@@ -21,33 +23,36 @@ function TextField({
   }
 
   return (
-    <Fragment key={`${nameId}_TextField`}>
-      <FieldLabel nameId={nameId} text={label} />
-      <input
-        id={nameId}
-        name={nameId}
-        {...register(nameId)}
-        type="text"
-        disabled={disabled}
-        onKeyDown={handleKeyDown}
-        className={`${
-          disabled ? 'opacity-50' : ''
-        } block w-full border border-charcoal-200 rounded-lg shadow-xs py-4 px-3 focus:outline-hidden focus:ring-scarlet-800 focus:border-scarlet-800`}
-      />
-      <HelpText text={helpText} />
-      <ValidationError errors={errors} nameId={nameId} />
-    </Fragment>
+    <div data-testid={`${nameId}-text-field`}>
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
+      <div className="flex items-center justify-start relative">
+        <input
+          id={nameId}
+          name={nameId}
+          {...register(nameId)}
+          type={type}
+          disabled={disabled}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+          className={`input-text ${formState?.errors?.[nameId] && 'input-text-error'}`}
+        />
+        <ValidationIcon nameId={nameId} formState={formState} />
+      </div>
+      <ValidationError errors={formState?.errors} nameId={nameId} />
+    </div>
   )
 }
 // PROPTYPES
 const { bool, func, object, string } = PropTypes
 TextField.propTypes = {
   disabled: bool,
-  errors: object,
+  formState: object,
   helpText: string,
   label: string,
   nameId: string.isRequired,
+  placeholder: string,
   register: func,
+  type: string,
 }
 
 export default TextField

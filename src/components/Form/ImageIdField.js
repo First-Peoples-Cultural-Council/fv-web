@@ -9,13 +9,12 @@ import { isUUID } from 'common/utils/stringHelpers'
 import ValidationError from 'components/Form/ValidationError'
 import XButton from 'components/Form/XButton'
 import FieldButton from 'components/Form/FieldButton'
-import HelpText from 'components/Form/HelpText'
 import FieldLabel from 'components/Form/FieldLabel'
 
 function ImageIdField({ label = '', nameId, helpText, control, errors }) {
   return (
     <Fragment key={`${nameId}_ImageIdField`}>
-      <FieldLabel nameId={nameId} text={label} />
+      <FieldLabel nameId={nameId} text={label} helpText={helpText} />
       <Controller
         id={nameId}
         name={nameId}
@@ -25,7 +24,6 @@ function ImageIdField({ label = '', nameId, helpText, control, errors }) {
           <ImageIdFieldButton value={value} onChange={onChange} />
         )}
       />
-      <HelpText text={helpText} />
       <ValidationError errors={errors} nameId={nameId} />
     </Fragment>
   )

@@ -48,7 +48,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
     handleSubmit,
     reset,
     resetField,
-    errors,
+    formState,
     isCreateMode,
   } = useEditForm({
     defaultValues,
@@ -61,7 +61,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
       <WidgetFormBase
         cancelHandler={cancelHandler}
         control={control}
-        errors={errors}
+        formState={formState}
         register={register}
         reset={reset}
         resetField={resetField}
@@ -83,7 +83,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Quote 1"
               nameId="quote1"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6 -mt-4">
@@ -91,7 +91,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Attributed to"
               nameId="quote1By"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -99,7 +99,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Quote 2"
               nameId="quote2"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6 -mt-4">
@@ -107,7 +107,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Attributed to"
               nameId="quote2By"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -115,7 +115,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Quote 3"
               nameId="quote3"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-6 -mt-4">
@@ -123,7 +123,7 @@ function WidgetFormQuotes({ cancelHandler, dataToEdit, submitHandler }) {
               label="Attributed to"
               nameId="quote3By"
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
         </>

@@ -5,21 +5,19 @@ import { ErrorMessage } from '@hookform/error-message'
 // FPCC
 
 function ValidationError({ errors, nameId }) {
-  if (!errors?.[nameId]) return ''
-  return Array.isArray(errors?.[nameId]) ? (
-    errors?.[nameId]?.map(({ message }, index) => (
-      <div
-        // eslint-disable-next-line react/no-array-index-key
-        key={index}
-        className="text-scarlet-700"
-        data-testid="DashboardFormErrorMessage"
-      >
-        {message}
-      </div>
-    ))
-  ) : (
-    <div className="text-scarlet-700" data-testid="DashboardFormErrorMessage">
-      <ErrorMessage errors={errors} name={nameId} />
+  return (
+    <div
+      id="ValidationError"
+      data-testid={`${nameId}-error-message`}
+      className="text-scarlet-800 text-left text-base mt-2"
+    >
+      {Array.isArray(errors?.[nameId]) ? (
+        errors?.[nameId]?.map((error) => (
+          <div key={error?.ref?.name}>{error?.message}</div>
+        ))
+      ) : (
+        <ErrorMessage errors={errors} name={nameId} />
+      )}
     </div>
   )
 }

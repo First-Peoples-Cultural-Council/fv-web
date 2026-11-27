@@ -22,12 +22,7 @@ function ImportCreatePresentation({ backHandler, submitHandler }) {
     csvFile: null,
   }
 
-  const {
-    formState: { errors },
-    handleSubmit,
-    register,
-    reset,
-  } = useForm({
+  const { formState, handleSubmit, register, reset } = useForm({
     defaultValues,
     mode: 'onChange',
     resolver: yupResolver(validator),
@@ -40,14 +35,14 @@ function ImportCreatePresentation({ backHandler, submitHandler }) {
         subtitle="Upload your batch csv and a unique title for your import"
       />
       <form id="CreateImportJobForm" onReset={reset}>
-        <div className="mt-6 grid grid-cols-12 gap-6 bg-white p-8 rounded-lg">
+        <div className="mt-6 grid grid-cols-12 gap-x-10 gap-y-8 bg-white p-8 rounded-lg">
           <div className="col-span-12">
             <Form.TextField
               label="Title"
               nameId="title"
               helpText={`Add a title for this import to help you identify it e.g. "Nature Words", or "Spring 2026 Batch 02"`}
               register={register}
-              errors={errors}
+              formState={formState}
             />
           </div>
           <div className="col-span-12">
@@ -56,7 +51,7 @@ function ImportCreatePresentation({ backHandler, submitHandler }) {
               nameId="csvFile"
               helpText="Add your completed batch template csv in UTF-8 format."
               register={register}
-              errors={errors}
+              errors={formState?.errors}
             />
           </div>
           <div className="col-span-12 flex justify-end mt-6 px-6">

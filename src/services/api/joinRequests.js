@@ -24,10 +24,6 @@ const joinRequests = {
     apiBase()
       .post(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/ignore/`)
       .json(),
-  reject: async ({ sitename, id }) =>
-    apiBase()
-      .post(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}/reject/`)
-      .json(),
   delete: async ({ sitename, id }) =>
     apiBase().delete(`${SITES}/${sitename}/${JOIN_REQUESTS}/${id}`).json(),
 }

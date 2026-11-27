@@ -46,7 +46,7 @@ describe(
       Cypress.Commands.add('checkValidation', (widgetName) => {
         cy.contains(widgetName).click()
         cy.contains('Create widget').click()
-        cy.get('.text-scarlet-700').should('exist')
+        cy.get('.text-scarlet-800').should('exist')
         cy.contains('Go back').click()
       })
       Cypress.Commands.add('createwidget', (name) => {

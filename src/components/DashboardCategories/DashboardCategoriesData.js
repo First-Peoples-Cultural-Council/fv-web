@@ -17,7 +17,7 @@ function DashboardCategoriesData() {
     {
       id: 'category-create',
       icon: 'Create',
-      name: 'Add a Category',
+      name: 'Add a category',
       description: 'Add a new category to your dictionary',
       href: `/${sitename}/dashboard/create/category`,
       iconColor: 'blumine-900',

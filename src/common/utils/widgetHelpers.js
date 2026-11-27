@@ -60,7 +60,7 @@ export const getWidgetTypeLabel = (type) => {
     case WIDGET_APPS:
       return 'Mobile App'
     case WIDGET_CONTACT:
-      return 'Contact Us'
+      return 'Contact'
     case WIDGET_GALLERY:
       return 'Gallery'
     case WIDGET_IFRAME:
@@ -74,7 +74,7 @@ export const getWidgetTypeLabel = (type) => {
     case WIDGET_QUOTES:
       return 'Quotes'
     case WIDGET_STATS:
-      return 'New This Week'
+      return 'On This Site'
     case WIDGET_TEXT:
       return 'Text With Image'
     case WIDGET_TEXTCONCISE:

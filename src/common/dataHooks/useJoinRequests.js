@@ -116,27 +116,6 @@ export function useJoinRequestIgnore() {
   return { ...mutation, onSubmit }
 }
 
-// REJECT
-export function useJoinRequestReject() {
-  const { sitename } = useParams()
-  const rejectJoinRequest = async (id) =>
-    api.joinRequests.reject({
-      id,
-      sitename,
-    })
-
-  const mutation = useMutationWithNotification({
-    mutationFn: rejectJoinRequest,
-    queryKeyToInvalidate: [JOIN_REQUESTS, sitename],
-    actionWord: 'rejected',
-    type: 'join request',
-  })
-  const onSubmit = (id) => {
-    mutation.mutate(id)
-  }
-  return { ...mutation, onSubmit }
-}
-
 // DELETE
 export function useJoinRequestDelete() {
   const { sitename } = useParams()
